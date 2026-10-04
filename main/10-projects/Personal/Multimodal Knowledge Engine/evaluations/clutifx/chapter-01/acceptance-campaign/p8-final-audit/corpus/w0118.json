@@ -1,0 +1,727 @@
+{
+ "window": "w0118",
+ "start": "29:52",
+ "end": "30:08",
+ "start_ms": 1792000,
+ "end_ms": 1808000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-basic-concepts-covered",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los conceptos básicos ya estarían todos cubiertos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00259",
+    "asr-00260"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8eb796aa559053a3cbc1667ab164578c7bb4fad391cec4442a9c82313dfe8e14",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que «los conceptos básicos ya estarían todos», lo que sostiene que están cubiertos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que todos los conceptos básicos están cubiertos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-basic-concept",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El failure swing es uno de los conceptos básicos cubiertos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00259",
+    "asr-00260"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "edc55b6165117ffc818eadafa4fdbce3f677c27c3e715e3c769aa129914c3bca",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción incluye expresamente «el failure swing» entre los «conceptos básicos» que ya estarían cubiertos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que «failure swing» es uno de esos conceptos básicos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-at-order-block",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "La instrucción es hacer long en la vela del order block.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00258",
+    "asr-00259",
+    "frame-4de8f12d4841c630-s0-p161370000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b0c70d42020698dc6fcf102008e77db3fe8d7017fceb5847abd06e0bbedc24dd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El transcript dice «pues long aquí» y enseguida identifica esa vela como el concepto de order block; la imagen muestra además una operación long sobre la vela señalada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola instrucción: hacer long en la vela del order block."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-tool-drawn",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja una herramienta de posición long sobre la vela señalada.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p161280000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p161370000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b2ece55cf118789af0a5a5a7815847b722b19b39817606cefe056d299c3a9e1e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra una herramienta de posición long dibujada sobre la vela señalada, con una zona rectangular y etiquetas de objetivo, cierre y stop."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-tool-removed",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La herramienta de posición long se elimina de la gráfica.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p161640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p161730000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "209cbf1b3c9c7f1ab25a18c57e8c4a8278d59e9c75feff15939392280a77a076",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra una posición long seleccionada con su herramienta y controles visibles; en la segunda, esa herramienta y sus controles han desaparecido de la gráfica."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-tool-stop-adjusted",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El stop de la herramienta de posición long cambia de 1,14487 a 1,14670.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p161370000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p161460000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8251ff2ec03dd93cdcb9d4afb6f317a266de7c984f81032a7c82da85a7c93283",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra el stop de la posición long en 1,14487 y la segunda lo muestra ajustado a 1,14670."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-tool-target",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La herramienta de posición long muestra un objetivo de 1,15173.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p161370000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p161460000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p161640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0f4542adbb0c90f2325d43a36090144f92e53baf70c654cee897895cae3f35b5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En las tres imágenes, el borde superior de la herramienta de posición long está alineado con la marca 1,15173 del eje de precios y con la etiqueta «Objetivo»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-order-block-candle-closes-outside",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela señalada es la vela que «cierra por fuera».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00258",
+    "asr-00259",
+    "frame-4de8f12d4841c630-s0-p161370000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "626114d3bd465b26fa6cdb0a1666ce2a0a20f22a4f216a56846262b23fa67b95",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas citadas表达式 «esta vela cierra por fuera», lo que afirma directamente que la vela señalada es la que cierra por fuera."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-order-block-candle",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La vela señalada representa el concepto de order block.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00258",
+    "asr-00259",
+    "frame-4de8f12d4841c630-s0-p161370000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b9605424f09a528569d2d4d23c08e8d59a4816d39e6f54bd39465a1b1bdbc36a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «esta vela» y «Este es el concepto de order block», por lo que identifica la vela señalada como el order block."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ranges-basic-concept",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos son uno de los conceptos básicos cubiertos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00259",
+    "asr-00260"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4c15619fa052123e6d6ca9d551aec8f6bb82678053661eeb1d50f50d7c5023de",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enumera «los rangos» entre los «conceptos básicos» cubiertos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: que los rangos son uno de esos conceptos básicos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-strategy-basic-concept",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La SMT aplicada a la estrategia es uno de los conceptos básicos cubiertos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00259",
+    "asr-00260"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1d8621a8335fe55d639a6f9568e18c05e929402dea6a08ca5fd570931b861988",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada enumera explícitamente «la SMT aplicada a la estrategia» entre los conceptos básicos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-basic-coverage-depends-on-failure-swing",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-basic-concepts-covered",
+   "subject_version": 1,
+   "object_id": "cl-failure-swing-basic-concept",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00259",
+    "asr-00260"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a58da1eb580f0e5cf82d1cae5421778e950d2a0bd917b2f971bbc7f20bfacac4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited text says that the basic concepts would already all be covered and explicitly lists “el failure swing” among them, supporting the subject claim and the object claim in the stated orientation."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-basic-coverage-depends-on-ranges",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-basic-concepts-covered",
+   "subject_version": 1,
+   "object_id": "cl-ranges-basic-concept",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00259",
+    "asr-00260"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fa27828d9cc58b378f0908a6c9420bde78b6a2212006b4e79fe667f3c5dbe8ab",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que los conceptos básicos «ya estarían todos» y enumera explícitamente «los rangos» entre ellos, por lo que la cobertura de los conceptos básicos depende de la inclusión de los rangos como uno de esos conceptos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-basic-coverage-depends-on-smt",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-basic-concepts-covered",
+   "subject_version": 1,
+   "object_id": "cl-smt-strategy-basic-concept",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00259",
+    "asr-00260"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a9fa698507915dc66a3a356f05fe67a186930aa04249e1d0aa0b324efdf975c2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que los conceptos básicos ya estarían todos cubiertos y enumera expresamente «la SMT aplicada a la estrategia» entre ellos, vincular la cobertura general con ese concepto en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-long-depends-on-order-block",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-long-at-order-block",
+   "subject_version": 1,
+   "object_id": "cl-order-block-candle",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00258",
+    "asr-00259"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "80127976db388e4db36b7eaeddce108acfe1ddbf08bb0c5a31141e1146bd195a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica «long aquí» y, en esa misma referencia, identifica «Este es el concepto de order block», por lo que la instrucción de hacer long en esa vela queda支撑ada por su identificación como order block."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-order-block-depends-on-close",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-order-block-candle",
+   "subject_version": 1,
+   "object_id": "cl-order-block-candle-closes-outside",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00258",
+    "asr-00259"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f190cb5ca31a3af2397d6b587fa1573a2240c7f03881e90e517ae94138631a69",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia explica que el order block se identifica porque «esta vela cierra por fuera» y después reaffirma que esa vela es «el concepto de order block», Establishing that the subject claim depends on the object claim in the stated orientation."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37"
+    ],
+    "response_id": "gen-1791115854-unzBlQ5twuss6ILlD3Ci"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00258",
+   "start_ms": 1785690,
+   "end_ms": 1792270,
+   "text": "se puede hacer también y aquí abajo long también para ver el orden block es como esta vela cierra"
+  },
+  {
+   "id": "asr-00259",
+   "start_ms": 1792270,
+   "end_ms": 1799230,
+   "text": "por fuera, pues long aquí. Este es el concepto de order block. Y creo que los conceptos básicos"
+  },
+  {
+   "id": "asr-00260",
+   "start_ms": 1799230,
+   "end_ms": 1808620,
+   "text": "ya estarían todos, que son los rangos, la SMT aplicada a la estrategia, el failure swing,"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p161280000-canonical-v1",
+   "pts_ms": 1792000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p161280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p161370000-canonical-v1",
+   "pts_ms": 1793000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p161370000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p161460000-canonical-v1",
+   "pts_ms": 1794000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p161460000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p161640000-canonical-v1",
+   "pts_ms": 1796000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p161640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p161730000-canonical-v1",
+   "pts_ms": 1797000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p161730000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p162000000-canonical-v1",
+   "pts_ms": 1800000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p162000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p162360000-canonical-v1",
+   "pts_ms": 1804000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p162360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p162720000-canonical-v1",
+   "pts_ms": 1808000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p162720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

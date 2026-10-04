@@ -1,0 +1,319 @@
+{
+ "window": "w0028",
+ "start": "06:06",
+ "end": "06:13",
+ "start_ms": 366000,
+ "end_ms": 373000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-parte-inferior-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En la parte inferior de la zona de rango señalada hay un failure swing.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p33120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1a2b4b997040bc3b1ff395874a93a98efd99ee92f8855702c6f9bf15664ea921",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice directamente «este de aquí, abajo hay un failure swing», y la imagen muestra la zona de rango señalada con una marca en su parte inferior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "9f473a07a77048e13ff4a934ef0c6bedd1b1a61c9a16be5670757c65c7736cdd"
+    ],
+    "response_id": "gen-1791087184-XesWN0XMztszMyqHUG5k"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-rango-1-16148",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra una línea horizontal etiquetada como 1.16148.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p32940000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p33120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0ac1d6dea6608f367378c00ff6e6343b26db75e9d94504de8a4be630ac9ba635",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes se observa una línea horizontal con la etiqueta 1.16148 en el eje derecho."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "9f473a07a77048e13ff4a934ef0c6bedd1b1a61c9a16be5670757c65c7736cdd"
+    ],
+    "response_id": "gen-1791087184-XesWN0XMztszMyqHUG5k"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-observar-completado-rangos-diarios",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Observar en la temporalidad diaria cómo se completan los rangos es un ejercicio fácil.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p32940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "02861a3454d9a32502c82e7164c56daccf89944531887c67726050641dcfe423",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que es un ejercicio fácil observar en temporalidad diaria cómo se forman y se completan los rangos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la facilidad de observar daily el completado de los rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "9f473a07a77048e13ff4a934ef0c6bedd1b1a61c9a16be5670757c65c7736cdd"
+    ],
+    "response_id": "gen-1791087184-XesWN0XMztszMyqHUG5k"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-observar-formacion-rangos-diarios",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Observar en la temporalidad diaria cómo se forman los rangos es un ejercicio fácil.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p32940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b28ba71aeed686267981a62bab22eab0e86ce825632a72b677b9101dfaee00af",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que es un ejercicio fácil observar en la temporalidad diaria cómo se van formando los rangos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable; la temporalidad diaria solo acota su alcance."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "9f473a07a77048e13ff4a934ef0c6bedd1b1a61c9a16be5670757c65c7736cdd"
+    ],
+    "response_id": "gen-1791087184-XesWN0XMztszMyqHUG5k"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-referencia-inferior-1-14000",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra el nivel 1.14000 en la parte inferior de la zona señalada.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p32940000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p33120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "83be3926b913bb633e49463b81686b20ab7b4b90e221b3ce6c2e9a0bb705b14b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra una zona rectangular azul resaltada con el nivel 1.14000 en su borde inferior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "9f473a07a77048e13ff4a934ef0c6bedd1b1a61c9a16be5670757c65c7736cdd"
+    ],
+    "response_id": "gen-1791087184-XesWN0XMztszMyqHUG5k"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-diaria-1d",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad mostrada es diaria (1D).",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "asr-00058",
+    "frame-4de8f12d4841c630-s0-p32940000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p39510000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "47ac8dfedc56b9be14baeedad900034da7bba4be3d7c03b7978f09e8b380c149",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción cita expresamente «la temporalidad diaria», y ambas imágenes muestran la etiqueta «EURUSD · 1D»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "9f473a07a77048e13ff4a934ef0c6bedd1b1a61c9a16be5670757c65c7736cdd",
+     "ae91fd0cfd9d9beb93d69e1b5a5c72bef32c314c9c38d0ee951e2334f2f6497f"
+    ],
+    "response_id": "gen-1791087184-XesWN0XMztszMyqHUG5k"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00052",
+   "start_ms": 362440,
+   "end_ms": 381560,
+   "text": "Es un ejercicio fácil si vamos, por ejemplo, a la temporalidad diaria, ir viendo cómo se van formando rangos y cómo se van completando, ¿vale? Por ejemplo, este de aquí, abajo hay un failure swing, vais a ver el concepto más tarde qué significa en este vídeo, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p32940000-canonical-v1",
+   "pts_ms": 366000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p32940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33030000-canonical-v1",
+   "pts_ms": 367000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33120000-canonical-v1",
+   "pts_ms": 368000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33210000-canonical-v1",
+   "pts_ms": 369000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33210000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33300000-canonical-v1",
+   "pts_ms": 370000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33300000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33390000-canonical-v1",
+   "pts_ms": 371000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33480000-canonical-v1",
+   "pts_ms": 372000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33570000-canonical-v1",
+   "pts_ms": 373000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33570000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p39510000-canonical-v1",
+   "pts_ms": 439000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p39510000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

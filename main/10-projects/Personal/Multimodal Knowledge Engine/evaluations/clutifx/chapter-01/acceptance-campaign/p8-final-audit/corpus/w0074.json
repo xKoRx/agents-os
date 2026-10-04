@@ -1,0 +1,582 @@
+{
+ "window": "w0074",
+ "start": "18:25",
+ "end": "18:52",
+ "start_ms": 1105000,
+ "end_ms": 1132000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-break-even-tras-compra",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si ya hemos comprado, podríamos poner un break even.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00156"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "70a0a9b94fe140d57af8cc6ea0083e0883f63b25f3a312a9e4dd81fe9fbbc6de",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que, si ya se ha comprado, se podría poner un break even."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La condición «si ya hemos comprado» únicamente restringe la proposición principal y no añade una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dc6c3b4a7c3f36958416466f012d3804963c75137effce5fd633ec4478fb85b8"
+    ],
+    "response_id": "gen-1791100425-pTCea8rpUAHDIbwNH4IV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-entrada-otra-vez-tras-reaccion",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si el precio vuelve a reaccionar, podríamos poner nuestra entrada ahí otra vez.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00157"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d0220c7ddae0ceac77451fdc44b1da9c37e69f729f084f7592c080b7a0987f4a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que, si vuelve a reaccionar, podríamos poner la entrada ahí otra vez."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición hipotética; la condición y su consecuencia no son afirmaciones independientes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dc6c3b4a7c3f36958416466f012d3804963c75137effce5fd633ec4478fb85b8"
+    ],
+    "response_id": "gen-1791100425-pTCea8rpUAHDIbwNH4IV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estrategia-grafico-siguiente-capitulo",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Mostraré en el gráfico, en el siguiente capítulo, cómo funciona la estrategia.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00158"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0ea72a478975fefdac29a04bdde21069974680e3bbdc96b1ca55e0ba16775166",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción expresa que mostrará en un gráfico, en el siguiente capítulo, cómo funciona la estrategia."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; el gráfico y el siguiente capítulo son modificadores de la misma promesa."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dc6c3b4a7c3f36958416466f012d3804963c75137effce5fd633ec4478fb85b8"
+    ],
+    "response_id": "gen-1791100425-pTCea8rpUAHDIbwNH4IV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafio-tres-rectangulos",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra tres rectángulos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p100080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e67a08244c5df354f352ac80680bf7818e234bd788ed1cbeb26bf2225e2abfda",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La zona central del gráfico muestra tres rectángulos grandes: dos blancos y uno negro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación constitute una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dc6c3b4a7c3f36958416466f012d3804963c75137effce5fd633ec4478fb85b8"
+    ],
+    "response_id": "gen-1791100425-pTCea8rpUAHDIbwNH4IV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-moneda-cotizacion-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La moneda de cotización es USD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p100080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p175050000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ffabd31794630a7f9bbd6fab3327db447ce2c07ccf61aa7f6a4a935ec156812c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos citas muestran el par EURUSD y el selector de divisa superior derecho con la etiqueta USD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la moneda de cotización es USD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "09984ce0f1e30103a07e2fa34128de57a044f8b411c6a8e6330cecbee262f37f",
+     "dc6c3b4a7c3f36958416466f012d3804963c75137effce5fd633ec4478fb85b8"
+    ],
+    "response_id": "gen-1791100425-pTCea8rpUAHDIbwNH4IV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-reacciona-tras-rangos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Tras formarse rangos en contra, el precio vuelve a reaccionar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00157"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "615c62c1f230c864c58d51c61f408fab2104b8c60a0599e5b259868c3d306a6e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que, una vez formados rangos en contra, «vuelve a reaccionar», en referencia al precio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la reacción posterior del precio tras la formación de esos rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dc6c3b4a7c3f36958416466f012d3804963c75137effce5fd633ec4478fb85b8"
+    ],
+    "response_id": "gen-1791100425-pTCea8rpUAHDIbwNH4IV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-proceso-mas-facil-en-grafico",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El proceso de rangos y posterior reacción se verá mucho más fácil en el gráfico del siguiente capítulo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00157",
+    "asr-00158"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f2aa7d0435a7db55af36aed01818108db21f7ed3cef70e58181b71f4fa908c42",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que, al formarse rangos en contra y volver a reaccionar, «lo vais a ver mucho más fácil», y que en el siguiente capítulo se enseñará su funcionamiento en un gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dc6c3b4a7c3f36958416466f012d3804963c75137effce5fd633ec4478fb85b8"
+    ],
+    "response_id": "gen-1791100425-pTCea8rpUAHDIbwNH4IV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-antes-subir-direccion",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio puede completar rangos antes de subir hacia nuestra dirección.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00156"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4198d33d591c1f038e68d7c96788c647e983e96b3cc654780a8054e43c0919c9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que el precio puede completar rangos antes de subir hacia nuestra dirección."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la secuencia posible entre completar los rangos y subir."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dc6c3b4a7c3f36958416466f012d3804963c75137effce5fd633ec4478fb85b8"
+    ],
+    "response_id": "gen-1791100425-pTCea8rpUAHDIbwNH4IV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-en-contra",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se están formando rangos en contra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00157",
+    "frame-4de8f12d4841c630-s0-p100080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "57127812fe00178b19ad8fdd5f1ab67254caaf27c4fb1ebd637d493401179199",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que «se nos están formando rangos en contra», lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que se están formando rangos en contra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dc6c3b4a7c3f36958416466f012d3804963c75137effce5fd633ec4478fb85b8"
+    ],
+    "response_id": "gen-1791100425-pTCea8rpUAHDIbwNH4IV"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-break-even-rangos-subida",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-break-even-tras-compra",
+   "subject_version": 1,
+   "object_id": "cl-rangos-antes-subir-direccion",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00156"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "723f7847c661e3a5b4089959c76ebbdbef072e735c184ac11fe485102c085a88",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el precio puede completar rangos antes de subir hacia nuestra dirección y enseguida usa «Por lo tanto» para concluir que, si ya hemos comprado, podríamos poner un break even. Esto establece explícitamente la dependencia del break even en la completion previa de rangos, en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dc6c3b4a7c3f36958416466f012d3804963c75137effce5fd633ec4478fb85b8"
+    ],
+    "response_id": "gen-1791100425-pTCea8rpUAHDIbwNH4IV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-reaccion-rangos-contra",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-precio-reacciona-tras-rangos",
+   "subject_version": 1,
+   "object_id": "cl-rangos-en-contra",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00157"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3907dd125ed1ea03c4b649d50e99a554c93dfb51bca30af50443384db325c1ed",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que, una vez que se forman rangos en contra, «vuelve a reaccionar»,станаciendo la dependencia de la reacción posterior respecto de la formación de esos rangos en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dc6c3b4a7c3f36958416466f012d3804963c75137effce5fd633ec4478fb85b8"
+    ],
+    "response_id": "gen-1791100425-pTCea8rpUAHDIbwNH4IV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-reentrada-tras-reaccion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-entrada-otra-vez-tras-reaccion",
+   "subject_version": 1,
+   "object_id": "cl-precio-reacciona-tras-rangos",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00157"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4ded646fd0f716c368927434537ebc4c866ddbcb7745ead14dbd005798d43c72",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia条件a la posibilidad de volver a colocar la entrada en que el precio vuelva a reaccionar, después de la formación de rangos en contra; por tanto, la affirmed sobre la nueva entrada depende de la afirmación sobre esa reacción del precio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dc6c3b4a7c3f36958416466f012d3804963c75137effce5fd633ec4478fb85b8"
+    ],
+    "response_id": "gen-1791100425-pTCea8rpUAHDIbwNH4IV"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00156",
+   "start_ms": 1099350,
+   "end_ms": 1112970,
+   "text": "a nuestra dirección, puede pasar que el precio vaya a completar rangos antes de subir. Por lo tanto, aquí si nosotros hemos comprado, podríamos poner un break even"
+  },
+  {
+   "id": "asr-00157",
+   "start_ms": 1112970,
+   "end_ms": 1122470,
+   "text": "al ver que se nos están formando rangos en contra y luego una vez pasa esto, vuelve a reaccionar, podríamos poner nuestra entrada ahí otra vez. Lo vais a ver mucho más fácil"
+  },
+  {
+   "id": "asr-00158",
+   "start_ms": 1122470,
+   "end_ms": 1127930,
+   "text": "cuando os enseñe en el gráfico ya en el siguiente capítulo cómo funciona la estrategia y todo pero"
+  },
+  {
+   "id": "asr-00159",
+   "start_ms": 1127930,
+   "end_ms": 1136720,
+   "text": "para que si yo hablo de intentarte el show sepáis que es es esto un tarde el sub una vez ya se ha"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p100080000-canonical-v1",
+   "pts_ms": 1112000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p100080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p100440000-canonical-v1",
+   "pts_ms": 1116000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p100440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p100800000-canonical-v1",
+   "pts_ms": 1120000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p100800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p101160000-canonical-v1",
+   "pts_ms": 1124000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p101160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p101520000-canonical-v1",
+   "pts_ms": 1128000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p101520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p101880000-canonical-v1",
+   "pts_ms": 1132000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p101880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p99450000-canonical-v1",
+   "pts_ms": 1105000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p99450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p99720000-canonical-v1",
+   "pts_ms": 1108000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p99720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175050000-canonical-v1",
+   "pts_ms": 1945000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

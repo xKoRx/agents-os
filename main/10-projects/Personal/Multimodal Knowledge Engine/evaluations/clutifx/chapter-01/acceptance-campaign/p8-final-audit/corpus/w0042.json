@@ -1,0 +1,420 @@
+{
+ "window": "w0042",
+ "start": "09:21",
+ "end": "09:32",
+ "start_ms": 561000,
+ "end_ms": 572000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-color-linea-azul",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El color de la línea es azul.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p51480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1e4a4ca8e8adf91438db69605afb836007a319d75f1e11e8c47968fbdfd6f409",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una línea horizontal punteada de color azul."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c8b08fdc02db47372bd3034ecbc61191b237e6d72f7c5d321ee4753913f509fb"
+    ],
+    "response_id": "gen-1791090631-1obwQKMwemFIaOiRLk5Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-color-relleno-rango-negro",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El color de relleno del rango es negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p50850000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8e6bccd6a33d91e41b1bdc4178762a70a279ab41d46fe62a68e9ef499e573343",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran el rango rectangular con relleno negro y la opción negra seleccionada en la paleta de colores."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c8b08fdc02db47372bd3034ecbc61191b237e6d72f7c5d321ee4753913f509fb"
+    ],
+    "response_id": "gen-1791090631-1obwQKMwemFIaOiRLk5Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-fecha-24-06-2025",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La fecha mostrada en el gráfico es 24/6/2025.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p50490000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "e94ddc0800ca1eae6520d452a466b033b9390019ddcf5bde36210dd047139204",
+    "reasons": [
+     {
+      "code": "reviewer_malformed_output",
+      "detail": "reviewer produced a malformed verdict: claim review output schema id \"mke.claims-ground.v2\", want \"mke.claims-ground.v1\""
+     },
+     {
+      "code": "reviewer_malformed_output",
+      "detail": "corrective reissue after malformed attempt also rejected: claim review output addresses cl-fecha-24-06-2025@1@1, review target is cl-fecha-24-06-2025@1"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c8b08fdc02db47372bd3034ecbc61191b237e6d72f7c5d321ee4753913f509fb"
+    ],
+    "response_id": "gen-1791090631-1obwQKMwemFIaOiRLk5Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-desde-borde-superior-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La línea comienza en el borde superior del rango.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p51120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p51480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9685dcb28b935582585a4f054d96dd658e931455b7fae359207ba49e4f25bce4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la segunda imagen, la línea horizontal comienza exactamente en la esquina superior derecha del rango rectangular y se prolonga hacia la derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c8b08fdc02db47372bd3034ecbc61191b237e6d72f7c5d321ee4753913f509fb"
+    ],
+    "response_id": "gen-1791090631-1obwQKMwemFIaOiRLk5Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-horizontal",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La línea es horizontal.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p51480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ea0d6875a74e9181b44aaf56de0ae8b7f47e4bc5d25a756c573539af15f9ab0c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una línea horizontal visible en la parte superior del gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c8b08fdc02db47372bd3034ecbc61191b237e6d72f7c5d321ee4753913f509fb"
+    ],
+    "response_id": "gen-1791090631-1obwQKMwemFIaOiRLk5Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-borde-superior-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo está en el borde superior del rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00094",
+    "asr-00095",
+    "asr-00096",
+    "asr-00097",
+    "frame-4de8f12d4841c630-s0-p51030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p51120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p51480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b08cd79acb9627c16200c5a15f93056d325cd5ebcc047f1e0480a87adb957df6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran el rango delimitado en su parte superior y el segmento indica «ponemos que el objetivo es aquí arriba», lo que sitúa el objetivo en ese borde superior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c8b08fdc02db47372bd3034ecbc61191b237e6d72f7c5d321ee4753913f509fb"
+    ],
+    "response_id": "gen-1791090631-1obwQKMwemFIaOiRLk5Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-opacidad-relleno-rango-83",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La opacidad del relleno del rango es 83%.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p50850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ee20548c59af463c42fd2dc4986205011b638dcc36d612fddd8a98a0545b5101",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el control «Opacidad» Established en 83% para el relleno del rango seleccionado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c8b08fdc02db47372bd3034ecbc61191b237e6d72f7c5d321ee4753913f509fb"
+    ],
+    "response_id": "gen-1791090631-1obwQKMwemFIaOiRLk5Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-temporalidad-un-dia",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El rango tiene una temporalidad de un día.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00092",
+    "asr-00093",
+    "frame-4de8f12d4841c630-s0-p50490000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50580000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "650e9972f4664b3bda5cdab378b8f505d4abd4fe438780de673118a9f9f32191",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los segmentos citados, leídos en conjunto, dicen literalmente «esto es un rango de temporalidad un día», lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la temporalidad del rango es de un día."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c8b08fdc02db47372bd3034ecbc61191b237e6d72f7c5d321ee4753913f509fb"
+    ],
+    "response_id": "gen-1791090631-1obwQKMwemFIaOiRLk5Z"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00092",
+   "start_ms": 559790,
+   "end_ms": 561430,
+   "text": "esto es un rango de"
+  },
+  {
+   "id": "asr-00093",
+   "start_ms": 561430,
+   "end_ms": 563570,
+   "text": "temporalidad un día"
+  },
+  {
+   "id": "asr-00094",
+   "start_ms": 563570,
+   "end_ms": 566790,
+   "text": "¿vale? o sea"
+  },
+  {
+   "id": "asr-00095",
+   "start_ms": 566790,
+   "end_ms": 568830,
+   "text": "tendríamos nuestro objetivo ahí arriba"
+  },
+  {
+   "id": "asr-00096",
+   "start_ms": 568830,
+   "end_ms": 570950,
+   "text": "esto ya vamos a llegar más adelante pero"
+  },
+  {
+   "id": "asr-00097",
+   "start_ms": 570950,
+   "end_ms": 572710,
+   "text": "ponemos que el objetivo es aquí arriba"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50490000-canonical-v1",
+   "pts_ms": 561000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50580000-canonical-v1",
+   "pts_ms": 562000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50760000-canonical-v1",
+   "pts_ms": 564000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50850000-canonical-v1",
+   "pts_ms": 565000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50940000-canonical-v1",
+   "pts_ms": 566000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p51030000-canonical-v1",
+   "pts_ms": 567000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p51030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p51120000-canonical-v1",
+   "pts_ms": 568000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p51120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p51480000-canonical-v1",
+   "pts_ms": 572000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p51480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

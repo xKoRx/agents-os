@@ -1,0 +1,248 @@
+{
+ "window": "w0110",
+ "start": "28:20",
+ "end": "28:28",
+ "start_ms": 1700000,
+ "end_ms": 1708000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-buscar-order-block-ahora",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Buscar un order block ahora mismo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00246"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fc796b9d5ae0f68c6028df29c68db3295f8807f958b2758a0453fe90e923c4e3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «Vamos a ir ahora mismo a buscar alguno», lo que respalda la instrucción de buscar un order block ahora mismo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c6afc90b2919f590202375540a86a20bc17a7293be3dd48f64518f384ce652e2"
+    ],
+    "response_id": "gen-1791113163-vliFPsNeaaTYmHDR00G0"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-fechas-anteriores",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El eje temporal visible se desplaza hacia fechas anteriores.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p153000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p153720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "26a9a9b71c9dae5683d9f38e5321e386e5f2ce2e2acceb49eb3663342a96de9c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la primera imagen el eje abarca aproximadamente del 3 de junio al 18 de julio de 2025; en la segunda, aproximadamente del 15 de mayo al 3 de julio. Además, la fecha señalada cambia del 11 de julio al 28 de mayo, lo que muestra un desplazamiento hacia fechas anteriores."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c6afc90b2919f590202375540a86a20bc17a7293be3dd48f64518f384ce652e2"
+    ],
+    "response_id": "gen-1791113163-vliFPsNeaaTYmHDR00G0"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zona-rectangular-marcada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Una zona rectangular aparece marcada alrededor de varias velas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p153540000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p153720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2080e9ef89df2e2f625e18fae6da55cc7c3883e62174594bcf9aeb13ef535174",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran un contorno rectangular alrededor de un grupo de varias velas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c6afc90b2919f590202375540a86a20bc17a7293be3dd48f64518f384ce652e2"
+    ],
+    "response_id": "gen-1791113163-vliFPsNeaaTYmHDR00G0"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zona-senalada-es-order-block",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La zona rectangular señalada es un order block.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00246",
+    "asr-00247",
+    "frame-4de8f12d4841c630-s0-p153540000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p153720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e35452c0c1ba4fbe9b59ff755b9f80979059934e565d8829e2129c381714447c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento 了 transcript afirma explícitamente que el ejemplo señalado («este de aquí») es un order block, y las imágenes muestran la zona rectangular correspondiente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la zona rectangular señalada es un order block."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c6afc90b2919f590202375540a86a20bc17a7293be3dd48f64518f384ce652e2"
+    ],
+    "response_id": "gen-1791113163-vliFPsNeaaTYmHDR00G0"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00245",
+   "start_ms": 1695390,
+   "end_ms": 1700850,
+   "text": "en m15 para subir ya lo vais a ver el capítulo entradas pero para que no tenga que explicar"
+  },
+  {
+   "id": "asr-00246",
+   "start_ms": 1700850,
+   "end_ms": 1706390,
+   "text": "otra vez que es un order block. Vamos a ir ahora mismo a buscar alguno. Por ejemplo,"
+  },
+  {
+   "id": "asr-00247",
+   "start_ms": 1706630,
+   "end_ms": 1713020,
+   "text": "este de aquí es un order block. En el momento en que esta vela cierra afuera, es un poco"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153000000-canonical-v1",
+   "pts_ms": 1700000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153090000-canonical-v1",
+   "pts_ms": 1701000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153090000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153180000-canonical-v1",
+   "pts_ms": 1702000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153180000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153270000-canonical-v1",
+   "pts_ms": 1703000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153270000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153360000-canonical-v1",
+   "pts_ms": 1704000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153450000-canonical-v1",
+   "pts_ms": 1705000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153540000-canonical-v1",
+   "pts_ms": 1706000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153540000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153720000-canonical-v1",
+   "pts_ms": 1708000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

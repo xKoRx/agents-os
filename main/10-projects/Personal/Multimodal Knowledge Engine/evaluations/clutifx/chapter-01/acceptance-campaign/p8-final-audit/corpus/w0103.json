@@ -1,0 +1,606 @@
+{
+ "window": "w0103",
+ "start": "26:36",
+ "end": "26:52",
+ "start_ms": 1596000,
+ "end_ms": 1612000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-anotacion-otro-broker",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se añade la anotación «OTRO BROKER» al gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p144360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p144720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e0e5e6a4cb78469405141dc78d16fe77053a04601aa6e0cc0dc0a2d06a51cc8c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen no muestra la anotación «OTRO BROKER» y la imagen posterior sí la muestra en el gráfico, lo que respalda que fue añadida."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "03297b67d52a9c9dd51f8c840bd73be78164f8fee3ee19343d348eea78fd9e61"
+    ],
+    "response_id": "gen-1791110796-ADdZ8niJ2nmp8czUILDV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-forexcom-no-toma-low",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En FOREX.com no se lleva a tomar el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00223",
+    "asr-00224",
+    "frame-4de8f12d4841c630-s0-p143640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8d251bdd4088612cdc05054f1f0bebda5dcf20073f9bc6f221bde7bae753b9ec",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica «esto» como FOREX.com y contrasta explícitamente que allí «no se lleva a tomar el low» con que en FXCM «sí que se lleva el low»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "03297b67d52a9c9dd51f8c840bd73be78164f8fee3ee19343d348eea78fd9e61"
+    ],
+    "response_id": "gen-1791110796-ADdZ8niJ2nmp8czUILDV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-fxcm-puede-tomar-low",
+   "kind": "claim",
+   "version": 1,
+   "statement": "A lo mejor, en FXCM sí se lleva este low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00223",
+    "asr-00224"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "04b98196a506db31e458be89862aba68fbad315c2cc7ff7a71af8ba0e6cb613b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita afirma explícitamente que, a lo mejor, FXCM sí se toma ese low."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición, con el mismo matiz de posibilidad («a lo mejor»)."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "03297b67d52a9c9dd51f8c840bd73be78164f8fee3ee19343d348eea78fd9e61"
+    ],
+    "response_id": "gen-1791110796-ADdZ8niJ2nmp8czUILDV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-forexcom",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico mostrado es de FOREX.com.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00224",
+    "frame-4de8f12d4841c630-s0-p143640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a9059575669c73908fe179ec059a4563ef317865464be14930ba8acac7b44c6e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la etiqueta «EURUSD · 8h · FOREX.com», y el segmento citado también identifica «esto» como «Forexcom»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "03297b67d52a9c9dd51f8c840bd73be78164f8fee3ee19343d348eea78fd9e61"
+    ],
+    "response_id": "gen-1791110796-ADdZ8niJ2nmp8czUILDV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-no-toma-low-puede-ser-rango",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si no se lleva a tomar el low, igualmente se puede dar el caso como un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00223",
+    "frame-4de8f12d4841c630-s0-p143640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p143910000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d77ba203b6361742c90bb1ee7db2dfcf5961eaee8a86edd66a7f71c7e9564856",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que, si no se lleva a tomar el low, también se puede dar como un rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La condición y su consecuencia forman una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "03297b67d52a9c9dd51f8c840bd73be78164f8fee3ee19343d348eea78fd9e61"
+    ],
+    "response_id": "gen-1791110796-ADdZ8niJ2nmp8czUILDV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-otro-broker-si-toma-low",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En otro broker sí se lleva el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00223",
+    "asr-00224",
+    "frame-4de8f12d4841c630-s0-p144720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ec9427d990ec846beeeec098e28588630c9a6654801b66d9f9dd124c87ab52c5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que «en otro broker sí ha hecho el low», lo que respalda que en otro broker sí se toma el low."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "03297b67d52a9c9dd51f8c840bd73be78164f8fee3ee19343d348eea78fd9e61"
+    ],
+    "response_id": "gen-1791110796-ADdZ8niJ2nmp8czUILDV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-otro-broker-toma-low-ocasional",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Habrá ocasiones en las que otro broker sí se llevará el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00223",
+    "asr-00224"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8e60caa9f13b68320aae7d2b80793ac48bb63151cab6ed7d513df183c368bf33",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que en otro broker se hizo el low y que habrá veces en que se verá así, lo que respalda la existencia de ocasiones en que otro broker se llevará el low."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición existencial."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "03297b67d52a9c9dd51f8c840bd73be78164f8fee3ee19343d348eea78fd9e61"
+    ],
+    "response_id": "gen-1791110796-ADdZ8niJ2nmp8czUILDV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bajo-alto-vela-final",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango se define con el bajo y el alto de la vela final.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p143640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p143910000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e8a327ad4b7504e62e263e0b18181ebdfe300236423f9127d25caf6fd57ee1a3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran una línea de rango con sus extremos en el bajo y el alto de la vela, junto con la etiqueta «BAJO/ALTO A FINAL DE VELA»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el rango se define mediante el bajo y el alto de la vela final."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "03297b67d52a9c9dd51f8c840bd73be78164f8fee3ee19343d348eea78fd9e61"
+    ],
+    "response_id": "gen-1791110796-ADdZ8niJ2nmp8czUILDV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-nivel-inferior-112695",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El nivel inferior del rango es 1,12695.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p143640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7012d2cfcbf54563d679d7bc35a8d54196140a644c47e59fec74d8b2373b242e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la etiqueta de precio 1,12695 junto al nivel inferior del rango ilustrado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "03297b67d52a9c9dd51f8c840bd73be78164f8fee3ee19343d348eea78fd9e61"
+    ],
+    "response_id": "gen-1791110796-ADdZ8niJ2nmp8czUILDV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-nivel-superior-113976",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El nivel superior del rango es 1,13976.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p143910000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dff074fc5ee050a948dc97a09d46b56d6269c2c608352bb0d56ecca40d80d713",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La parte superior del rango está alineada con el nivel 1,13976 mostrado en el eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "03297b67d52a9c9dd51f8c840bd73be78164f8fee3ee19343d348eea78fd9e61"
+    ],
+    "response_id": "gen-1791110796-ADdZ8niJ2nmp8czUILDV"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-fxcm-hipotesis-caso-otro-broker",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-fxcm-puede-tomar-low",
+   "subject_version": 1,
+   "object_id": "cl-otro-broker-si-toma-low",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00223",
+    "asr-00224"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9507fa7fa1814a30b21a5aa74b53164a70ae3b739a4b84855a344720d360ab49",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que en otro broker, identificado como Forexcom, sí se hizo el low y, a partir de ese caso, plantea que a lo mejor FXCM también se lleva el low, en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "03297b67d52a9c9dd51f8c840bd73be78164f8fee3ee19343d348eea78fd9e61"
+    ],
+    "response_id": "gen-1791110796-ADdZ8niJ2nmp8czUILDV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-otro-broker-excepcion-forexcom",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-otro-broker-si-toma-low",
+   "subject_version": 1,
+   "object_id": "cl-forexcom-no-toma-low",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00223",
+    "asr-00224",
+    "frame-4de8f12d4841c630-s0-p144720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "60ed4473fedd2e4323bdd770e75ea7a617f06825c3e22e880c022acffd998788",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción contrapone explícitamente que «no se lleva a tomar el low» con que «en otro broker sí ha hecho el low»; la continuación distingue FOREX.com de FXCM y el frame corresponde a FOREX.com, sosteniendo la excepción en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "03297b67d52a9c9dd51f8c840bd73be78164f8fee3ee19343d348eea78fd9e61"
+    ],
+    "response_id": "gen-1791110796-ADdZ8niJ2nmp8czUILDV"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-depende-caso-sin-low",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-no-toma-low-puede-ser-rango",
+   "subject_version": 1,
+   "object_id": "cl-forexcom-no-toma-low",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00223",
+    "frame-4de8f12d4841c630-s0-p143640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "07396ce0eb659ea89761c53f9c5a82c8d02c6a0e5e72dae51c5ddf051073d463",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción enlaza explícitamente ambas afirmaciones: «No se lleva a tomar el low, pero podemos darlo esto como un rango igualmente», presents el caso de rango como dependiente de no tomar el low."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen identifica el contexto como FOREX.com, por lo que respalda la especificación de la afirmación objeto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "03297b67d52a9c9dd51f8c840bd73be78164f8fee3ee19343d348eea78fd9e61"
+    ],
+    "response_id": "gen-1791110796-ADdZ8niJ2nmp8czUILDV"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00223",
+   "start_ms": 1585060,
+   "end_ms": 1602810,
+   "text": "que pase algo así, ¿vale? No se lleva a tomar el low, pero podemos darlo esto como un rango igualmente por estos motivos, ¿vale? Y falta el último, que es que en otro"
+  },
+  {
+   "id": "asr-00224",
+   "start_ms": 1602810,
+   "end_ms": 1618010,
+   "text": "broker sí ha hecho el low, ¿vale? Por ejemplo, esto es Forexcom, pues a lo mejor a FXCM sí que se lleva el low este. Va a haber veces que lo vas a ver así, que esto se queda"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p143640000-canonical-v1",
+   "pts_ms": 1596000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p143640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p143730000-canonical-v1",
+   "pts_ms": 1597000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p143730000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p143910000-canonical-v1",
+   "pts_ms": 1599000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p143910000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p144000000-canonical-v1",
+   "pts_ms": 1600000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p144000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p144360000-canonical-v1",
+   "pts_ms": 1604000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p144360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p144720000-canonical-v1",
+   "pts_ms": 1608000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p144720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p144900000-canonical-v1",
+   "pts_ms": 1610000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p144900000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p145080000-canonical-v1",
+   "pts_ms": 1612000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p145080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

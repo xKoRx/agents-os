@@ -1,0 +1,408 @@
+{
+ "window": "w0123",
+ "start": "31:20",
+ "end": "31:40",
+ "start_ms": 1880000,
+ "end_ms": 1900000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ajustar-construccion-antes-del-cierre",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Ajusta la construcción ligeramente hacia arriba y hacia abajo antes del cierre.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00270",
+    "frame-4de8f12d4841c630-s0-p169560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p169920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p170280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "612ee6c76e29eec27bf7bb39c503396d0c6989527fcc7d505e077ab43eef5ef2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica «sube y baja un poco más hasta cerrar», lo que expresa directamente ajustar el objeto identificado ligeramente hacia arriba y hacia abajo hasta el cierre."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos direcciones forman una sola operación de ajuste bidireccional; «antes del cierre» solo limita temporalmente esa misma instrucción, por lo que la afirmación es atómica."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7a70e4e26686f39fdd976cea2c6be85ad6ecab2f45920f1d9f633908ac1fb39e"
+    ],
+    "response_id": "gen-1791117648-59lqSwFMPCK5MNfH02ds"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-apertura-0100",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La construcción abre a las 0100.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00270",
+    "frame-4de8f12d4841c630-s0-p169200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "f9b8e7f6bbe45042513045b35ba308254f721c3af16ff65c4257ae1cf48bdf10",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la etiqueta «0100», pero no identifica explícitamente esa hora como el momento de apertura de una construcción; la transcripción dice «Abre» y habla de una mecha, pero no vincula la apertura con las 0100."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7a70e4e26686f39fdd976cea2c6be85ad6ecab2f45920f1d9f633908ac1fb39e"
+    ],
+    "response_id": "gen-1791117648-59lqSwFMPCK5MNfH02ds"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cierre-0500",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El cierre del ejemplo se sitúa a las 0500.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00270",
+    "asr-00271",
+    "frame-4de8f12d4841c630-s0-p169200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1818d82098afea750acbf115b60775ec932d9c21b54021e6d3a41ca7d565c67c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica «hasta cerrar» y luego «cierra aquí... A las 5», y la imagen muestra la anotación 0500 en el punto de cierre."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7a70e4e26686f39fdd976cea2c6be85ad6ecab2f45920f1d9f633908ac1fb39e"
+    ],
+    "response_id": "gen-1791117648-59lqSwFMPCK5MNfH02ds"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-compras-ideales-en-manipulacion",
+   "kind": "rule",
+   "version": 1,
+   "statement": "En un contexto alcista, las compras ideales están siempre en la etapa de manipulación de la vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00270",
+    "asr-00271"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d9b6d49909fdd442624de149d5cb3e4b19f7bf5d794c1f3bab64fe1943460bfa",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que, en un contexto alcista, las compras ideales están siempre en la etapa de manipulación de la vela."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La restricción al contexto alcista limita una sola proposición y no introduce una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7a70e4e26686f39fdd976cea2c6be85ad6ecab2f45920f1d9f633908ac1fb39e"
+    ],
+    "response_id": "gen-1791117648-59lqSwFMPCK5MNfH02ds"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-construccion-power-3",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La construcción ajustada se identifica como el concepto de Power 3.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00270",
+    "asr-00271",
+    "frame-4de8f12d4841c630-s0-p170280000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p170820000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bb72e94caf300080eb70330ba62311ac6e33697fd47cd1a824111744fd991bdc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «Esto es el concepto de Power 3», en referencia inmediata a la construcción de la vela que se acaba de ajustar."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la construcción ajustada es identificada como el concepto de Power 3."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7a70e4e26686f39fdd976cea2c6be85ad6ecab2f45920f1d9f633908ac1fb39e"
+    ],
+    "response_id": "gen-1791117648-59lqSwFMPCK5MNfH02ds"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dejar-mecha-arriba",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Deja la mecha en la parte superior.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00270",
+    "frame-4de8f12d4841c630-s0-p170280000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p170820000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5f4021ce60dd8c413821f7ea7b4e41bf82de458ecee816e6d61d1a4824c6bb36",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente «dejando la mecha ahí arriba», lo que respalda la instrucción de dejar la mecha en la parte superior."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7a70e4e26686f39fdd976cea2c6be85ad6ecab2f45920f1d9f633908ac1fb39e"
+    ],
+    "response_id": "gen-1791117648-59lqSwFMPCK5MNfH02ds"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-duracion-4-horas",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La duración representada en el esquema es 4 HORAS.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p169200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p171000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7ee6ce72d9768ea46ff34da0c9ffcf2df264548d98df1e79e75a38975af9b3a0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos cuadros citados muestran la etiqueta «4 HORAS» junto al esquema, lo que establece que la duración representada es de 4 horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7a70e4e26686f39fdd976cea2c6be85ad6ecab2f45920f1d9f633908ac1fb39e"
+    ],
+    "response_id": "gen-1791117648-59lqSwFMPCK5MNfH02ds"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-manipular-construccion-hasta-mecha",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Manipula la construcción hasta que represente una mecha.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00270",
+    "frame-4de8f12d4841c630-s0-p169200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p169560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "19d44cab18ec421dacacda561c6f0f70ba08a53ec499557320cb140b5722a968",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica «Abre, manipula» y afirma que «esto ahora es una mecha», respaldando la instrucción de manipular la construcción hasta que represente una mecha."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La instrucción contiene una sola proposición: realizar una manipulación con una condición final."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7a70e4e26686f39fdd976cea2c6be85ad6ecab2f45920f1d9f633908ac1fb39e"
+    ],
+    "response_id": "gen-1791117648-59lqSwFMPCK5MNfH02ds"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00270",
+   "start_ms": 1862930,
+   "end_ms": 1883530,
+   "text": "Abre, manipula, entonces esto ahora es una mecha ya, así, sube y baja un poco más hasta cerrar, dejando la mecha ahí arriba, ¿vale?"
+  },
+  {
+   "id": "asr-00271",
+   "start_ms": 1883530,
+   "end_ms": 1906420,
+   "text": "Esto de aquí y cierra aquí, ¿vale? A las 5. Esto es el concepto de Power 3. ¿Por qué es importante esto? Para saber, pues, si tú estás buscando compras en un contexto alcista, las compras ideales siempre, siempre, siempre van a estar en esta etapa de manipulación de la vela, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p169200000-canonical-v1",
+   "pts_ms": 1880000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p169200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p169560000-canonical-v1",
+   "pts_ms": 1884000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p169560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p169920000-canonical-v1",
+   "pts_ms": 1888000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p169920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p170280000-canonical-v1",
+   "pts_ms": 1892000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p170280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p170550000-canonical-v1",
+   "pts_ms": 1895000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p170550000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p170640000-canonical-v1",
+   "pts_ms": 1896000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p170640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p170820000-canonical-v1",
+   "pts_ms": 1898000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p170820000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p171000000-canonical-v1",
+   "pts_ms": 1900000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p171000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

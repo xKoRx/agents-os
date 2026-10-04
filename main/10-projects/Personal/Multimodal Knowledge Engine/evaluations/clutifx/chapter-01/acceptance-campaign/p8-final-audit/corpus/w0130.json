@@ -1,0 +1,478 @@
+{
+ "window": "w0130",
+ "start": "33:48",
+ "end": "34:02",
+ "start_ms": 2028000,
+ "end_ms": 2042000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-first-chapter",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El contenido presentado es el primer capítulo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00321",
+    "asr-00322",
+    "frame-4de8f12d4841c630-s0-p182520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3ddfc96fa2020fb879b3c3e9bf76f611999474802ee4eba507260d1ec6d299c7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente «este es el primer capítulo»; resuelto el deixis «este» como el contenido presentado, respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el contenido presentado es el primer capítulo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "211b6106c5d07985f0e71f168a29515afc59fce40edf21f7adf37826ce0dc895"
+    ],
+    "response_id": "gen-1791120276-E3M2M6E84nHcz7BgP6di"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-four-hour-candle",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El esquema muestra una vela asociada al intervalo de 4 HORAS.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p182520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p182610000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ea51c292db33aaed6b385f3b5fa0ee43692f572f22a0c58285c9765febd87e92",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas cited muestran una vela esquemática junto a la etiqueta visible «4 HORAS», con marcas de 0100 y 0500, lo que sustenta que está asociada a un intervalo de cuatro horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "211b6106c5d07985f0e71f168a29515afc59fce40edf21f7adf37826ce0dc895"
+    ],
+    "response_id": "gen-1791120276-E3M2M6E84nHcz7BgP6di"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-four-hour-duration",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La separación vertical del esquema está rotulada como 4 HORAS.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p182520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p182610000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cf89d60b42c0b7fc791e1eb309ed993cf9c2501fdc31885ed3b5bc088cbc0523",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas muestran una separación vertical en el esquema con la etiqueta «4 HORAS»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición verificable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "211b6106c5d07985f0e71f168a29515afc59fce40edf21f7adf37826ce0dc895"
+    ],
+    "response_id": "gen-1791120276-E3M2M6E84nHcz7BgP6di"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-four-hours-is-a-concept",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El intervalo de 4 HORAS se presenta como un concepto en sí mismo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00321",
+    "frame-4de8f12d4841c630-s0-p182520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "940b71e3526192c5dd684f683db8606384ae9c1486d5097e15b4ab9bf95202d2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma «es un concepto como tal» y la imagen muestra la referencia «4 HORAS», por lo que respalda que el intervalo de 4 horas se presenta como un concepto en sí mismo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "211b6106c5d07985f0e71f168a29515afc59fce40edf21f7adf37826ce0dc895"
+    ],
+    "response_id": "gen-1791120276-E3M2M6E84nHcz7BgP6di"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-lower-label-0100",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La línea horizontal inferior del esquema está etiquetada como 0100.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p182610000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6753a69c1d17db370c0315c4374184e12459b845fa259cc197140f5b280ad580",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La línea horizontal inferior del esquema mostrado tiene la etiqueta visible «0100»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "211b6106c5d07985f0e71f168a29515afc59fce40edf21f7adf37826ce0dc895"
+    ],
+    "response_id": "gen-1791120276-E3M2M6E84nHcz7BgP6di"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rightward-scheme-arrow",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La flecha horizontal del esquema apunta hacia la derecha.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p182520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p182610000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "326100b1e3efb4fbded93eb04c8f6ce4c771d626d21a53b09bb7e4bf666b2aea",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, la flecha horizontal del esquema está orientada hacia la derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "211b6106c5d07985f0e71f168a29515afc59fce40edf21f7adf37826ce0dc895"
+    ],
+    "response_id": "gen-1791120276-E3M2M6E84nHcz7BgP6di"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-source-forex-com",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La fuente del gráfico es FOREX.com.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p182520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "161939cce9ede9f8e11bc1895318976a7c2da962689226efac14205b77d3a220",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El encabezado del gráfico muestra explícitamente «EURUSD · 15 · FOREX.com», lo que identifica a FOREX.com como su fuente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "211b6106c5d07985f0e71f168a29515afc59fce40edf21f7adf37826ce0dc895"
+    ],
+    "response_id": "gen-1791120276-E3M2M6E84nHcz7BgP6di"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-thanks-screen",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La pantalla final muestra «GRACIAS».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p183690000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p183780000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4697a766324abb8834342eabdae7456c75075c6f14b6d16338faeb5fa4efe798",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas citados muestran una pantalla de cierre con el texto «GRACIAS» de forma clearly legible."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la pantalla final muestra «GRACIAS»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "211b6106c5d07985f0e71f168a29515afc59fce40edf21f7adf37826ce0dc895"
+    ],
+    "response_id": "gen-1791120276-E3M2M6E84nHcz7BgP6di"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-upper-label-0500",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La línea horizontal superior del esquema está etiquetada como 0500.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p182610000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8fbd2bbc3054d99918b02620810cd399e5578facbbbb87de0b8d2a789ae31d00",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La línea horizontal superior del esquema tiene la etiqueta visible «0500»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "211b6106c5d07985f0e71f168a29515afc59fce40edf21f7adf37826ce0dc895"
+    ],
+    "response_id": "gen-1791120276-E3M2M6E84nHcz7BgP6di"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-visit-cursosdigitales7",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Para más cursos, visita WWW.CURSOSDIGITALES7.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p183780000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fe9644053fa3f08aaa3041050dd7c491b3c42c84c1789d2db6e6958fdf9be5d8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The frame displays “WWW.CURSOSDIGITALES7” and “PARA MÁS CURSOS VISITA,” supporting the instruction to visit that address for more courses."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement conveys one directive; “para más cursos” specifies its purpose rather than adding an independent proposition."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "211b6106c5d07985f0e71f168a29515afc59fce40edf21f7adf37826ce0dc895"
+    ],
+    "response_id": "gen-1791120276-E3M2M6E84nHcz7BgP6di"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00321",
+   "start_ms": 2027030,
+   "end_ms": 2028670,
+   "text": "es un concepto como tal"
+  },
+  {
+   "id": "asr-00322",
+   "start_ms": 2028670,
+   "end_ms": 2030970,
+   "text": "así que nada, este es el primer capítulo"
+  },
+  {
+   "id": "asr-00323",
+   "start_ms": 2030970,
+   "end_ms": 2033190,
+   "text": "y nos vemos en el siguiente"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p182520000-canonical-v1",
+   "pts_ms": 2028000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p182520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p182610000-canonical-v1",
+   "pts_ms": 2029000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p182610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p182880000-canonical-v1",
+   "pts_ms": 2032000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p182880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p183060000-canonical-v1",
+   "pts_ms": 2034000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p183060000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p183240000-canonical-v1",
+   "pts_ms": 2036000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p183240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p183600000-canonical-v1",
+   "pts_ms": 2040000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p183600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p183690000-canonical-v1",
+   "pts_ms": 2041000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p183690000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p183780000-canonical-v1",
+   "pts_ms": 2042000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p183780000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,360 @@
+{
+ "window": "w0008",
+ "start": "01:51",
+ "end": "01:58",
+ "start_ms": 111000,
+ "end_ms": 118000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-borde-figura-derecha-naranja",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El borde de la figura de la derecha cambia a naranja.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p10530000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p10620000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6851d30273c2bad417900ce4bcc423e542772f2be57bf1103a3e71a6bbcf7fcf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El contorno de la figura de la derecha aparece oscuro en la primera imagen y naranja en la segunda, por lo que las evidencias muestran el cambio indicado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dd4ac98d04be79057379b2d86aaa80fdf455b1b26a9759a920002d88f0d7a171"
+    ],
+    "response_id": "gen-1791080944-OOOOmkWJiuP8gmGBR51G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-instrumento",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p10350000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d73a130b4d1a5b780ca1303ee3553ac107b85e41b73fa703896e8f46e47db75e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente la etiqueta «EURUSD» en la interfaz y en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la identidad del instrumento mostrado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dd4ac98d04be79057379b2d86aaa80fdf455b1b26a9759a920002d88f0d7a171"
+    ],
+    "response_id": "gen-1791080944-OOOOmkWJiuP8gmGBR51G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-timeframe-5m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal del gráfico es 5M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p10350000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5e3ce052271ed16a5e0dd91526d18cb50b00a50cfc47296ac8e12461b7d60a7e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente «EURUSD | 5M» y «EURUSD · 5», por lo que el marco temporal del gráfico es 5M."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dd4ac98d04be79057379b2d86aaa80fdf455b1b26a9759a920002d88f0d7a171"
+    ],
+    "response_id": "gen-1791080944-OOOOmkWJiuP8gmGBR51G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-figura-derecha-agregada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se agrega una figura rectangular oscura en la zona derecha del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p10350000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p9990000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "01d6bb41cabe2d752f8bde2430cd67242a5b3f351a1ea3bbe51321f10f1e755a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen posterior muestra una figura rectangular oscura en la zona derecha del gráfico que no aparece en la imagen anterior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dd4ac98d04be79057379b2d86aaa80fdf455b1b26a9759a920002d88f0d7a171"
+    ],
+    "response_id": "gen-1791080944-OOOOmkWJiuP8gmGBR51G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-figura-derecha-vela-positiva",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La figura recién trazada probablemente sería una vela positiva.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00014",
+    "frame-4de8f12d4841c630-s0-p10350000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p10530000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p10620000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "49e74a47d24e825c88f24eee3d9812ac4963715a216e7722aa2dd0dfdd6d2c42",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que «esto de aquí» probablemente sería una vela positiva, y las imágenes muestran la figura trazada a la que se refiere."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la figura recién trazada probablemente representa una vela positiva."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dd4ac98d04be79057379b2d86aaa80fdf455b1b26a9759a920002d88f0d7a171"
+    ],
+    "response_id": "gen-1791080944-OOOOmkWJiuP8gmGBR51G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-figura-repetida-invertida",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La figura recién trazada es igual a la anterior, pero a la inversa.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00013",
+    "frame-4de8f12d4841c630-s0-p10260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p10350000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "01fd83ced879a4331220f0acceafbc7239f37e1fb3d53035208ae5cdbc53e688",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma literalmente «es lo mismo pero al revés», respaldando que la figura recién trazada sea igual a la anterior, pero a la inversa."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Es una sola proposición comparativa; «a la inversa» modifica la relación de igualdad y no introduce una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dd4ac98d04be79057379b2d86aaa80fdf455b1b26a9759a920002d88f0d7a171"
+    ],
+    "response_id": "gen-1791080944-OOOOmkWJiuP8gmGBR51G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-repeticion-sin-misterio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La repetición de la figura no tiene mucho misterio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00013"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "58dee7c4fe6f37589a8b80af4193381434a9891dd7128baf44b20829d5c9dcba",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que algo «es lo mismo pero al revés» y «no tiene mucho misterio», pero no identifica explícitamente esa cosa como una repetición de una figura."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dd4ac98d04be79057379b2d86aaa80fdf455b1b26a9759a920002d88f0d7a171"
+    ],
+    "response_id": "gen-1791080944-OOOOmkWJiuP8gmGBR51G"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00013",
+   "start_ms": 110680,
+   "end_ms": 115250,
+   "text": "es lo mismo pero al revés, no tiene mucho misterio"
+  },
+  {
+   "id": "asr-00014",
+   "start_ms": 115250,
+   "end_ms": 118710,
+   "text": "sería esto de aquí, probablemente una vela positiva"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10080000-canonical-v1",
+   "pts_ms": 112000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10170000-canonical-v1",
+   "pts_ms": 113000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10260000-canonical-v1",
+   "pts_ms": 114000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10260000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10350000-canonical-v1",
+   "pts_ms": 115000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10350000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10440000-canonical-v1",
+   "pts_ms": 116000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10530000-canonical-v1",
+   "pts_ms": 117000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10530000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10620000-canonical-v1",
+   "pts_ms": 118000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10620000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p9990000-canonical-v1",
+   "pts_ms": 111000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p9990000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

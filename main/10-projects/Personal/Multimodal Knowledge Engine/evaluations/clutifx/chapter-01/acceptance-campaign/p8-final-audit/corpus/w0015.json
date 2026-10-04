@@ -1,0 +1,436 @@
+{
+ "window": "w0015",
+ "start": "03:20",
+ "end": "03:32",
+ "start_ms": 200000,
+ "end_ms": 212000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esta-vela-es-rango-alcista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Esta vela es un rango alcista en este caso.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00028",
+    "frame-4de8f12d4841c630-s0-p18990000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p19080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a4b2770838f5089b2d4a8ea88a9d9bc7a3d575a9ab0553721e4015a88adad156",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que «esta vela es un rango alcista en este caso»; el fragmento ASR posterior está truncado, pero no altera esa afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia contiene una sola proposición: la vela es un rango alcista en ese caso."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a12dee678fa4095d29f92cfc89f01c7eba4db6300aea8f413ca99089f93e33bc"
+    ],
+    "response_id": "gen-1791083844-Ltxh2j9ZsGqav0cincgQ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-completa-rango-bajista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio va a completar el rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00027",
+    "frame-4de8f12d4841c630-s0-p18000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p18360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "42244e9b0e22730a420335ec6e94a963a0506604c4742da7455e9f1184f18d89",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que el precio va a completar el rango bajista, y las imágenes muestran el rango marcado en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el precio completará el rango bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a12dee678fa4095d29f92cfc89f01c7eba4db6300aea8f413ca99089f93e33bc"
+    ],
+    "response_id": "gen-1791083844-Ltxh2j9ZsGqav0cincgQ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-seleccionado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rectángulo aparece seleccionado con puntos de control.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p18540000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p18630000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50310000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9e7e9234e534b2082db141c534d1cc088a5206f5935f992df0567212af94422b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran un rectángulo con un borde de selección y puntos de control visibles en sus esquinas y lados."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una sola proposición: el rectángulo aparece seleccionado con puntos de control."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a12dee678fa4095d29f92cfc89f01c7eba4db6300aea8f413ca99089f93e33bc",
+     "b854eff52718eff70b4622e70f400086f6cacd3f18a8282ee39cc4788f28e772"
+    ],
+    "response_id": "gen-1791083844-Ltxh2j9ZsGqav0cincgQ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-cierra-dentro-rango-bajista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela cierra adentro de lo que forma un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00027",
+    "frame-4de8f12d4841c630-s0-p18000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p18450000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bbd89787f4e837b8b0b7a98884ad7e8ffbb64ef9e01b8b6e85fbe41898807441",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción cita directamente que la vela «cierra adentro» de «lo que forma un rango bajista», y las imágenes muestran la vela dentro del recuadro de ese rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el cierre de la vela ocurre dentro del rango bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a12dee678fa4095d29f92cfc89f01c7eba4db6300aea8f413ca99089f93e33bc"
+    ],
+    "response_id": "gen-1791083844-Ltxh2j9ZsGqav0cincgQ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-va-por-debajo-cierra",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela va por debajo y cierra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00028",
+    "frame-4de8f12d4841c630-s0-p18990000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p19080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6b237e03d1ad54701c802172419ac28a526742d51e22b62d78277a37a349e9ad",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma expresamente que «la vela va por debajo cierra», lo que respalda la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "«Va por debajo» y «cierra» son dos afirmaciones evaluables por separado."
+     },
+     {
+      "code": "claim_not_atomic",
+      "detail": "claim review judged the statement COMPOSITE: independently evaluable assertions must be separate claims"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a12dee678fa4095d29f92cfc89f01c7eba4db6300aea8f413ca99089f93e33bc"
+    ],
+    "response_id": "gen-1791083844-Ltxh2j9ZsGqav0cincgQ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zona-rectangular-sobre-velas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se muestra un rectángulo alrededor de varias velas en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p18000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p18990000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p19080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e2fc0332b94caa44ef112842d371553f5bb9267015885a341e27fa65d9de50a1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes citadas muestran un contorno rectangular alrededor de un grupo de varias velas en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a12dee678fa4095d29f92cfc89f01c7eba4db6300aea8f413ca99089f93e33bc"
+    ],
+    "response_id": "gen-1791083844-Ltxh2j9ZsGqav0cincgQ"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-alcista-comportamiento",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-esta-vela-es-rango-alcista",
+   "subject_version": 1,
+   "object_id": "cl-vela-va-por-debajo-cierra",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00028",
+    "frame-4de8f12d4841c630-s0-p18990000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p19080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fab23c9d52bf1910abcbbbf4253416914592a38bcf581b6071b59b78d06086f0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que la vela es un rango alcista «porque la vela va por debajo cierra», por lo que la primera afirmación depende de la segunda en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a12dee678fa4095d29f92cfc89f01c7eba4db6300aea8f413ca99089f93e33bc"
+    ],
+    "response_id": "gen-1791083844-Ltxh2j9ZsGqav0cincgQ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-bajista-cierre",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-precio-completa-rango-bajista",
+   "subject_version": 1,
+   "object_id": "cl-vela-cierra-dentro-rango-bajista",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00027",
+    "frame-4de8f12d4841c630-s0-p18000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p18450000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a86f9a4baea421a2bd422cf6554c3edce4c9840a0cb642400dd3f596d3f23b94",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The transcript explicitly links the candle closing within the forming bearish range to price completing that range: «vela y cierra adentro lo que forma un rango bajista es como el precio va a completarlo». This supports the subject claim as depending on the object claim in the stated orientation."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a12dee678fa4095d29f92cfc89f01c7eba4db6300aea8f413ca99089f93e33bc"
+    ],
+    "response_id": "gen-1791083844-Ltxh2j9ZsGqav0cincgQ"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00027",
+   "start_ms": 199000,
+   "end_ms": 205480,
+   "text": "vela y cierra adentro lo que forma un rango bajista es como el precio va a completarlo"
+  },
+  {
+   "id": "asr-00028",
+   "start_ms": 205480,
+   "end_ms": 215740,
+   "text": "este de aquí esta vela es un rango alcista en este caso porque la vela va por debajo cierra"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p18000000-canonical-v1",
+   "pts_ms": 200000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p18000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p18360000-canonical-v1",
+   "pts_ms": 204000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p18360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p18450000-canonical-v1",
+   "pts_ms": 205000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p18450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p18540000-canonical-v1",
+   "pts_ms": 206000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p18540000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p18630000-canonical-v1",
+   "pts_ms": 207000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p18630000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p18720000-canonical-v1",
+   "pts_ms": 208000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p18720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p18990000-canonical-v1",
+   "pts_ms": 211000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p18990000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p19080000-canonical-v1",
+   "pts_ms": 212000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p19080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50130000-canonical-v1",
+   "pts_ms": 557000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+   "pts_ms": 559000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50310000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

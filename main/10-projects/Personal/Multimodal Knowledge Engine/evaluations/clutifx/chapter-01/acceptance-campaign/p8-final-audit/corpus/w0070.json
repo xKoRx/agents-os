@@ -1,0 +1,832 @@
+{
+ "window": "w0070",
+ "start": "17:16",
+ "end": "17:32",
+ "start_ms": 1036000,
+ "end_ms": 1052000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intra-tartel-sub-definition",
+   "kind": "claim",
+   "version": 1,
+   "statement": "«Intra Tartel Sub» es cuando se hace un «Tartel Sub» extra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00138"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ccc71daf5761e334c5e6c5e6255a63552aa2842e0af47d1dd773636cd990a271",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia define directamente «Intra Tartel Sub» como hacer un «Tartel Sub» extra."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición definicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intra-tartel-sub-new-concept",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hay un concepto nuevo llamado «Intra Tartel Sub».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00138"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "69b4ed5f28d2eb14854c5cb08aad4d62aa8041357f45ad40879ed10cb6de0297",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que existe un nuevo concepto llamado «Intra Tartel Sub»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia afirma una sola proposición: la existencia de un concepto nuevo con ese nombre."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtlesoup-entry-level",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La línea de apertura está en 1,14487.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p93240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "66bae7eb46d03a66be319103f7d6411e4407e1fe513f0c986775b59c05c87981",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La línea horizontal de apertura coincide con el precio 1,14487 mostrado en el eje derecho."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtlesoup-label-moved",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La anotación «INTRATURTLESOUP» se reposiciona desde el interior de la zona azul hasta quedar por encima de ella.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p93240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p93330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p93420000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p93600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "26b13eaaed20c492782a7326d14a65795adfdc068d1853a2592a8e46f95cec8a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las primeras imágenes muestran la anotación dentro de la zona azul; las posteriores muestran la misma anotación por encima de su borde superior."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe un único reposicionamiento de la anotación, desde una ubicación inicial hasta una final."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtlesoup-label",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La anotación de la herramienta muestra el rótulo «INTRATURTLESOUP».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p93240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7b324f3cfed56710fcf422bbc356dd28f2a16947cbbde8b1d74e715941a74c20",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el rótulo «INTRATURTLESOUP» en la parte superior de la anotación de la herramienta."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtlesoup-open-pnl-label",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta «Apertura PyG» muestra «0.01497».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p93240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "68fd7f26666bb67e116758f40ffebeba731f7b85bd2f0cbf5a4fd57d83272450",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer failed: vlm provider parse-structured [fatal]: assistant content is not a valid JSON object"
+     },
+     {
+      "code": "reviewer_malformed_output",
+      "detail": "corrective reissue followed a malformed attempt: claim review output addresses cl-intraturtlesoup-open-pnl-label@1@1, review target is cl-intraturtlesoup-open-pnl-label@1"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtlesoup-quantity",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta «Cantidad» muestra «1550387».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p93240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d60150c44b5ac523180059690a8bc60c212bba2b6d9034f2da71b0adeeef91b3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta azul «Cantidad» muestra el valor «1550387»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtlesoup-risk-reward-ratio",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta «Relación riesgo/beneficio» muestra «3,23».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p93240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9b6077be7760fd4bcac5999a879d6461f1e6e05868e3afb4094fbcd7200bef48",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta azul de la imagen muestra «Relación riesgo/beneficio: 3,23»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtlesoup-stop-amount",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El importe mostrado junto al stop es «96000».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p93240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4b2bc2c798108def58e589fb0a72f850d71ae21dd31f71c9953c82ad65f12ac2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible junto al stop indica «Importe: 96000»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtlesoup-stop-label",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta «Stop» muestra «0,00258 (0,23%) 25,8».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p93240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d96732f6029f65231eb57516f7d2baa3ed67f479e0d6a8f194ead81927e0f161",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta negra «Stop» de la imagen muestra exactamente «0,00258 (0,23%) 25,8»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtlesoup-stop-level",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La línea de stop está en 1,14229.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p93240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "573396398f14d8b4c0efba01b2d3ba29b536a1d9cd7bfff1f4fddfe111a2cd93",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la línea de stop de la posición en el nivel 1,14229."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtlesoup-target-amount",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El importe mostrado junto al objetivo es «112930,23».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p93240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e7630e6b8e7902027f72337850d68bf87fcb65587a8be1ed3f13e2e90829c07b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta del objetivo muestra «Importe: 112930,23», por lo que la cantidad indicada es exactamente la afirmada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtlesoup-target-label",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta «Objetivo» muestra «0,00834 (0,73%) 83,4».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p93240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "20c8d22d8402fd50c7b179fb5f9229c22f0e49f85452af01295e64871861d9f5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta azul «Objetivo» muestra exactamente «0,00834 (0,73%) 83,4»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtlesoup-target-level",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La línea de objetivo está en 1,15321.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p93240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "68d6a71484f694ecb8093b7a29e8a3212df69dc6eb41d0a55936b6a427220524",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la línea de objetivo en el nivel marcado como 1,15321 en el eje de precios."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangle-fill-changed-black",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La forma rectangular situada en la zona de «INTRATURTLESOUP» cambia de relleno blanco a relleno negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p93960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p94320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p94410000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p94680000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "07558c0e81438df5cc4aa4dcb73af834425dcfb10e21c3100b2c476f85e22ba3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las primeras imágenes muestran la forma rectangular seleccionada con relleno blanco y las posteriores muestran esa misma forma con relleno negro, en la zona rotulada «INTRATURTLESOUP»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-strategy-can-have-stop-loss",
+   "kind": "claim",
+   "version": 1,
+   "statement": "A veces se puede tener un stop loss utilizando esta estrategia.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00139",
+    "asr-00140"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "24200a7efba4000c2f6aa466cc8811b0638027a85f53b96e1bed2ce413f074d6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos citas expresan conjuntamente que, en ocasiones, se puede tener un stop loss utilizando esta estrategia."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la posibilidad de tener un stop loss con esta estrategia en algunos casos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-strategy-stop-loss-not-a-problem",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Tener un stop loss utilizando esta estrategia no pasa nada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00139",
+    "asr-00140",
+    "asr-00141"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f39527baea05479ad57e645936073a47f9d7efde66dbaee0ec06189405c2697c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que, a veces, se puede tener un stop loss «utilizando esta estrategia» y «no pasa nada»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: tener un stop loss con esta estrategia no implica un problema."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tartel-sub-extra-can-occur",
+   "kind": "claim",
+   "version": 1,
+   "statement": "A veces puede ocurrir un «Tartel Sub» extra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00138",
+    "asr-00139"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "19d0d523a24220bf9da5f872ec73126cba0fcc218b2e4b6872a4e7e0cb74babc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que hay veces que puede Happens «algo así»,pcs lo que define como hacer un «Tartel Sub» extra; por tanto, la uso únicoLogic."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tartel-sub-extra-optional",
+   "kind": "rule",
+   "version": 1,
+   "statement": "No tiene por qué hacer un «Tartel Sub» extra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00138",
+    "asr-00139"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9d7173b5ae74113df48b2f7df792eb702e6c30cef63143c192f24d1186e7819f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera cita identifica «Tartel Sub extra» como la acción y la segunda afirma explícitamente «No tiene por qué hacerlo», lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que no es necesario hacer un «Tartel Sub» extra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "92dc5c6267bc5f4e6f14bcabcbefa02c9c54e47d056901678230dc3a50b31152"
+    ],
+    "response_id": "gen-1791099069-6jEln5pvtGWnTUZBY0ak"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00138",
+   "start_ms": 1032800,
+   "end_ms": 1040540,
+   "text": "Dicho esto, hay un nuevo concepto que se llama Intra Tartel Sub, que es cuando hace un Tartel Sub extra, ¿vale?"
+  },
+  {
+   "id": "asr-00139",
+   "start_ms": 1041460,
+   "end_ms": 1049870,
+   "text": "No tiene por qué hacerlo, pero hay veces que puede pasar algo así. Son veces que puedes tener un stop loss"
+  },
+  {
+   "id": "asr-00140",
+   "start_ms": 1049870,
+   "end_ms": 1051830,
+   "text": "utilizando esta estrategia"
+  },
+  {
+   "id": "asr-00141",
+   "start_ms": 1051830,
+   "end_ms": 1053290,
+   "text": "y no pasa nada, porque"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p93240000-canonical-v1",
+   "pts_ms": 1036000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p93240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p93330000-canonical-v1",
+   "pts_ms": 1037000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p93330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p93420000-canonical-v1",
+   "pts_ms": 1038000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p93420000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p93600000-canonical-v1",
+   "pts_ms": 1040000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p93600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p93960000-canonical-v1",
+   "pts_ms": 1044000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p93960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p94320000-canonical-v1",
+   "pts_ms": 1048000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p94320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p94410000-canonical-v1",
+   "pts_ms": 1049000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p94410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p94680000-canonical-v1",
+   "pts_ms": 1052000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p94680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

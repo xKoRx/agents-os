@@ -1,0 +1,84 @@
+{
+ "window": "w0081",
+ "start": "20:40",
+ "end": "20:51",
+ "start_ms": 1240000,
+ "end_ms": 1251000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00173",
+   "start_ms": 1226210,
+   "end_ms": 1245430,
+   "text": "Una vez pasa esto, ya puedes eliminar este rango, olvidarte de él y volver a analizar lo que está haciendo el precio, mirar a ver si hay un objetivo más arriba y bueno, ya no me adelanto mucho que lo vais a ver ya en el siguiente capítulo explicando ya un poco más la estrategia, ¿vale? Así que nada, seguimos."
+  },
+  {
+   "id": "asr-00174",
+   "start_ms": 1245430,
+   "end_ms": 1283400,
+   "text": "Vamos a seguir. Concepto SMT. Ya está explicado también en el curso intermedio. Muchos venís a SMT. Ya sabéis qué es. La SMT que conocemos nosotros o que conocíais vosotros anteriormente es esta. Por ejemplo, esto es el euro. Y esto es la libra. Esta sería la SMT que conocíamos, que conocíais, perdón, hasta ahora."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p111600000-canonical-v1",
+   "pts_ms": 1240000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p111600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p111690000-canonical-v1",
+   "pts_ms": 1241000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p111690000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p111960000-canonical-v1",
+   "pts_ms": 1244000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p111960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112140000-canonical-v1",
+   "pts_ms": 1246000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112320000-canonical-v1",
+   "pts_ms": 1248000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112410000-canonical-v1",
+   "pts_ms": 1249000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112500000-canonical-v1",
+   "pts_ms": 1250000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112590000-canonical-v1",
+   "pts_ms": 1251000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

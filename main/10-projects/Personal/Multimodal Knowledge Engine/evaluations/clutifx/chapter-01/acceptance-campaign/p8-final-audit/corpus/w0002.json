@@ -1,0 +1,976 @@
+{
+ "window": "w0002",
+ "start": "00:09",
+ "end": "00:36",
+ "start_ms": 9000,
+ "end_ms": 36000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-capitulo-cubre-bias",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El primer capítulo del curso completo cubre el BIAS.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001",
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3b1f01b2e565d0d3f6604f97754941a7e63d978395c85b7ce4feb759c4a486b5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción presenta el segmento como el primer capítulo del curso completo y afirma explícitamente que therein se cubrirá el BIAS."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el primer capítulo del curso completo cubre el BIAS."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-capitulo-cubre-conceptos-desconocidos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El primer capítulo del curso completo cubre conceptos que aún no se conocen.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001",
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "59e39f9b982682fdb97771bb7c484ae6cad302aa15275d63498d4ed57b02cee9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica explícitamente al segmento como «el primer capítulo» del «curso completo» y afirma que therein se cubrirán «conceptos que aún no conoces»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-capitulo-cubre-entradas",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El primer capítulo del curso completo cubre las entradas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001",
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "32cac36d4e7ad311f3d401d448416f89e351a6b61c426cf3f287cb1478e74e69",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica explícitamente que el primer capítulo del curso completo cubre «las entradas»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: qué tema cubre el primer capítulo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-capitulo-cubre-estrategia",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El primer capítulo del curso completo cubre la estrategia.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001",
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b8e0505ef49d5ccb90167fca0241d04a90cfab4ef43a09674e0155b50bc4f018",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita identifica explícitamente «el primer capítulo» y afirma que se cubrirá «La estrategia»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el primer capítulo del curso completo incluye el tema de la estrategia."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-capitulo-cubre-noticias",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El primer capítulo del curso completo explica cómo operar noticias.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001",
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ccd855c34f602ad3f70f4c3e09be90e8f52f937ebcc758f2d8dbd684478c0561",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica que el primer capítulo del curso completo incluye «cómo operar noticias»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el primer capítulo explica cómo operar noticias."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-capitulo-cubre-riesgo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El primer capítulo del curso completo cubre el riesgo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001",
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c6d1c4ff02229010b907be379aee5a03b14d155070ce8c3350663f8d2cb2a93f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica que el primer capítulo del curso completo cubrirá «la estrategia, el BIAS, las entradas, el riesgo» y otros conceptos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-curso-completo-amplia-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El curso completo ampliará lo aprendido en el curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "48381900f571e733c123de334060f6de823dd711112e7e963d730b1d99529f5b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el curso intermedio sirvió para sentar la base y que en el curso completo se ampliará todo lo aprendido."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement_afirma una sola proposición: que el curso completo ampliará lo aprendido en el curso intermedio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-curso-completo-estrategia-profundidad",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En el curso completo se explica la estrategia en profundidad.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5a924d2c8bea8305ddcac4ed4de487e2e864b654fbd17c3301d19d5e3c42427d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica explícitamente que, en el curso completo, se descubrirá la estrategia en profundidad."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-curso-intermedio-opcional",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si no se ha realizado el curso intermedio, se puede continuar sin problema.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001",
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dd18d77dc679a7642d6700906a300def42a6556bd1af54156acd143840ef48b8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que, si no se ha realizado el curso intermedio, «no pasa nada», lo que respalda que se puede continuar sin problema."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación es atómica: sostiene una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-curso-intermedio-sienta-base",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El curso intermedio sirvió para sentar la base.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "66bcfaa6c12084351d1493a3387505efc8f847afb43100846d52874ca5827c7f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que el curso intermedio «sirvió para sentar la base»; el antecedente de «eso» se resuelve como dicho curso."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: que el curso intermedio sirvió para sentar la base."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-divisa-eje-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El eje de precios está expresado en USD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p1080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ee3eb62b3988c2c23d5dadf1356676c8045e33e5f957de8fdde04fab0034099f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas citas, la escala de precios de la derecha aparece explícitamente etiquetada como USD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced",
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-fecha-grafico-24-6-2025",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La fecha mostrada en el gráfico es 24/6/2025.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p100080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p1080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p61020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6618f7368495e8b9c7d7201b6a3dd499a617087603aa49fc65f97e7d564c50e0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas muestran claramente la fecha «24/6/2025» en la parte inferior central del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2275db4fbfaac7dc5d15afb41268f7325c345fb3d5ed603bd25031e04a9b001d",
+     "2de58f6775b30ce34c0cc5f9ae9d2a7ce632406395a1dc28949eaa86776e2953",
+     "dc6c3b4a7c3f36958416466f012d3804963c75137effce5fd633ec4478fb85b8",
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-formato-similar-al-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El formato del curso completo es parecido al formato del curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001",
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b82335724f7f498c227f8f6c50fafdfab4759f1188b76634cfbe9a857ac899d5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que el formato del curso completo será «un poco similar al del curso intermedio»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición: la semejanza entre ambos formatos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-tres-zonas-sombreadas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra tres zonas de precio sombreadas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "49ebf9834f6daa030e48875c0f10572ac3bc13faa9661b3cae726755dce7a1f4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una región de precio sombreada dividida horizontalmente en tres zonas distinguibles."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-informacion-intermedio-no-totalmente-relevante",
+   "kind": "claim",
+   "version": 1,
+   "statement": "No toda la información del curso intermedio es totalmente relevante para entender el curso completo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001",
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f750264bb728819b056d723e48e7f7d20dab74c4574ecd7fad190fc4ed12da64",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda evidencia afirma que no hay información del curso intermedio que sea totalmente relevante para entender el contenido completo, lo que respalda directamente la afirmación de que no toda esa información es totalmente relevante."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia contiene una sola proposición evaluable de forma independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nivel-horizontal-1-15744",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra una línea horizontal etiquetada como 1,15744.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "13db1b1a8d8811f4cfe128595746a4d0887e77dd8c3a45dfcf3d955f3e78e80b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una línea horizontal en la parte inferior del gráfico alineada con la etiqueta 1,15744 en el eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nivel-horizontal-1-16148",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra una línea horizontal etiquetada como 1,16148.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3ea6109cfde38f429b43ec6427901d113b7990c310aed5ebc5a50081a51c1188",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una línea horizontal negra con la etiqueta 1,16148 en el eje derecho."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nivel-horizontal-discontinuo-1-15797",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra una línea horizontal discontinua etiquetada como 1,15797.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p1080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5b621ce2f7e2abe2f4da9deb84d199206628757afc5d63b8c3fbabeb2d1edd93",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una línea horizontal discontinua que atraviesa el gráfico y tiene la etiqueta 1,15797 en el eje derecho."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-primer-capitulo-curso-completo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Este es el primer capítulo del curso completo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001",
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "af1fec7d6f4f5ab8747d0b506fa108d2cad66beeb8397f9b1d3f13a455121fd8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que el contenido presentado es el primer capítulo del curso completo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La statement asserts una sola proposición: que dicho contenido es el primer capítulo del curso completo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-primer-capitulo-introductorio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El primer capítulo del curso completo tiene una función introductoria.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001",
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "174a87c72cc3155db2dcf40c9bdd66efe5a01999104b4ed5af9051c822bbe592",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica explícitamente al segmento como «el primer capítulo» y lo describe como «un poco así introducción»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el primer capítulo del curso completo tiene una función introductoria."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-5m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad mostrada es 5M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p1080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p11880000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p8100000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p9720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2b38d1c24aef78dc40a7a42f0f3ac1dd4945dc346ad6c71dbd792c32521bdfbb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran la etiqueta «EURUSD | 5M», que indica que la temporalidad mostrada es de 5 minutos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "519d276c6dc460d4b221a96cceb275509ba9f5d3eff7ce0d9c3b967a09291efd",
+     "d1be3c3a8d5e437c5f8bf937589c2da43df08fd9a6a604dfb928da01e94015a6",
+     "ef204c45b8d802304bd51e675cc95057a2c511bca42f943176f16f5feed09899"
+    ],
+    "response_id": "gen-1791078670-QQHn62KpCfUJnJewsJUh"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00001",
+   "start_ms": 5810,
+   "end_ms": 19820,
+   "text": "Hola, bienvenido al curso completo. Aquí vas a descubrir la estrategia en profundidad y nada, sé que probablemente vengas ya de mi curso intermedio, así que eso sirvió para sentar la base y voy a ampliar ya todo."
+  },
+  {
+   "id": "asr-00002",
+   "start_ms": 19820,
+   "end_ms": 34850,
+   "text": "Este va a ser el primer capítulo, un poco así introducción, pero vamos a cubrir todo. La estrategia, el BIAS, las entradas, el riesgo, conceptos que aún no conoces, cómo operar noticias, ¿vale? Todo."
+  },
+  {
+   "id": "asr-00003",
+   "start_ms": 34850,
+   "end_ms": 49400,
+   "text": "Así que nada, vamos directamente al grano. El formato que voy a seguir va a ser un poco similar al del curso intermedio y si no lo has hecho, tranquilo, no pasa nada porque no hay información que sea totalmente relevante para ahora entender esto."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p1080000-canonical-v1",
+   "pts_ms": 12000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p1080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p1440000-canonical-v1",
+   "pts_ms": 16000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p1440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p1800000-canonical-v1",
+   "pts_ms": 20000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p1800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p2160000-canonical-v1",
+   "pts_ms": 24000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p2160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p2520000-canonical-v1",
+   "pts_ms": 28000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p2520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p2880000-canonical-v1",
+   "pts_ms": 32000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p2880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3240000-canonical-v1",
+   "pts_ms": 36000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p810000-canonical-v1",
+   "pts_ms": 9000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p810000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p100080000-canonical-v1",
+   "pts_ms": 1112000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p100080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p11880000-canonical-v1",
+   "pts_ms": 132000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p11880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158940000-canonical-v1",
+   "pts_ms": 1766000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+   "pts_ms": 37000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3960000-canonical-v1",
+   "pts_ms": 44000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61020000-canonical-v1",
+   "pts_ms": 678000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p8100000-canonical-v1",
+   "pts_ms": 90000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p8100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p9720000-canonical-v1",
+   "pts_ms": 108000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p9720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

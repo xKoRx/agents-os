@@ -1,0 +1,291 @@
+{
+ "window": "w0120",
+ "start": "30:20",
+ "end": "30:40",
+ "start_ms": 1820000,
+ "end_ms": 1840000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dibujo-estructura-lineas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El instructor dibuja una estructura de líneas en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p164880000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p165240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p165600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "869857db5b7ed687e6b1200b413206284016ff11b6257fad2de484aebf77f2ec",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes sucesivas muestran líneas conectadas apareciendo y prolongándose sobre el gráfico mediante una herramienta de dibujo con puntos de edición activos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una sola acción: dibujar una estructura de líneas en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5184a156a868efeb0d9db7f91a77254c5f6846d6c5ecffa9c9e75d1dbd4893c8"
+    ],
+    "response_id": "gen-1791116255-VJFdK58TmvQXwS2ngoWU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-power-3-forma-vela",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El Power 3 se refiere a cómo se forma una vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00263"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "21868899f79101fd7bbe1944fbe390089bd7e9779d20f97be1ec3a288a8ce1a9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que «el Power 3 se refiere a cómo se forma una vela»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5184a156a868efeb0d9db7f91a77254c5f6846d6c5ecffa9c9e75d1dbd4893c8"
+    ],
+    "response_id": "gen-1791116255-VJFdK58TmvQXwS2ngoWU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-4h-representa-periodo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La vela de 4 horas representa lo ocurrido durante esas cuatro horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00265",
+    "frame-4de8f12d4841c630-s0-p165600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b1bd3991c02a550a68b1a912477111e75722e73d83d25ef328f239829492f70b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que en una vela de 4 horas «lo que ha pasado es esto» durante esas 4 horas, lo que respalda directamente la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia contiene una sola proposición: la vela de 4 horas representa lo ocurrido durante ese periodo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5184a156a868efeb0d9db7f91a77254c5f6846d6c5ecffa9c9e75d1dbd4893c8"
+    ],
+    "response_id": "gen-1791116255-VJFdK58TmvQXwS2ngoWU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-apertura-manipulacion-distribucion-cierre",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La vela se conforma de apertura, manipulación, distribución y cierre.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00264"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "69b8b056b393f900ff7e4debb59e03e8d657541ef5ebceb36f035b7645847db2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma exactamente que la vela se conforma de apertura, manipulación, distribución y cierre."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La enumeración describe una única proposición sobre los componentes de la vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5184a156a868efeb0d9db7f91a77254c5f6846d6c5ecffa9c9e75d1dbd4893c8"
+    ],
+    "response_id": "gen-1791116255-VJFdK58TmvQXwS2ngoWU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-ejemplo-temporalidad-4h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La vela del ejemplo tiene una temporalidad de 4 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00265",
+    "frame-4de8f12d4841c630-s0-p165600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "afb986e73930ab360d417d1b15ee96c59b84113033eb3538b1883a64a4d4915f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente «imagínate una vela de 4 horas» y repite que el período es de cuatro horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la temporalidad de la vela del ejemplo es de 4 horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5184a156a868efeb0d9db7f91a77254c5f6846d6c5ecffa9c9e75d1dbd4893c8"
+    ],
+    "response_id": "gen-1791116255-VJFdK58TmvQXwS2ngoWU"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00263",
+   "start_ms": 1819360,
+   "end_ms": 1825900,
+   "text": "pero para que lo veáis bien, el Power 3 se refiere a cómo se forma una vela, ¿vale?"
+  },
+  {
+   "id": "asr-00264",
+   "start_ms": 1826340,
+   "end_ms": 1836050,
+   "text": "Entonces, la vela se conforma de apertura, manipulación, distribución y cierre, ¿vale?"
+  },
+  {
+   "id": "asr-00265",
+   "start_ms": 1836670,
+   "end_ms": 1845970,
+   "text": "Esto sería una vela, os he hecho como todo el... imagínate una vela de 4 horas, pues durante 4 horas lo que ha pasado es esto, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p163800000-canonical-v1",
+   "pts_ms": 1820000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p163800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p163980000-canonical-v1",
+   "pts_ms": 1822000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p163980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p164070000-canonical-v1",
+   "pts_ms": 1823000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p164070000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p164160000-canonical-v1",
+   "pts_ms": 1824000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p164160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p164520000-canonical-v1",
+   "pts_ms": 1828000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p164520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p164880000-canonical-v1",
+   "pts_ms": 1832000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p164880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p165240000-canonical-v1",
+   "pts_ms": 1836000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p165240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p165600000-canonical-v1",
+   "pts_ms": 1840000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p165600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,398 @@
+{
+ "window": "w0012",
+ "start": "02:44",
+ "end": "02:55",
+ "start_ms": 164000,
+ "end_ms": 175000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-buscar-bias-general",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Encontrar el bias para todo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00022"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f17f96bb650749660f1b01da2111edda2d17ae7dfcd927740326e6f6a2057f97",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada enuncia directamente la instrucción «encontrar el bias para todo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: encontrar el bias para todo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7524d126337bddd3972b935a423b85d2173a9fe0aca8a0e53dfcc388fa2fb48b"
+    ],
+    "response_id": "gen-1791083411-TbqICC94ZjIzCPbkCgZW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambiar-vista-grafico",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Cambiar a la vista del gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00023",
+    "asr-00024",
+    "frame-4de8f12d4841c630-s0-p15750000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "00ed10ef53d0b38c118d0674d0b3b589ffc724d4afe53ed2956bb4335122f3df",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones indican «vamos a ir ahora un momento a gráfico», lo que respalda cambiar a la vista del gráfico; la imagen adjunta muestra dicha vista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7524d126337bddd3972b935a423b85d2173a9fe0aca8a0e53dfcc388fa2fb48b"
+    ],
+    "response_id": "gen-1791083411-TbqICC94ZjIzCPbkCgZW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-etiqueta-rango-bajista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La etiqueta del esquema derecho cambia de «rango alcista» a «rango bajista».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p14850000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p15390000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "164576e34883242357516b5163aa3e4abe6c19c2b2f5fe1401e43d8f0196b912",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra la etiqueta «rango alcista» sobre el esquema derecho y la segunda muestra «rango bajista» en ese mismo esquema."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7524d126337bddd3972b935a423b85d2173a9fe0aca8a0e53dfcc388fa2fb48b"
+    ],
+    "response_id": "gen-1791083411-TbqICC94ZjIzCPbkCgZW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-facilita-comprension-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El concepto de rango será más fácil de entender en el gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00023",
+    "asr-00024"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b6761a60b78d844ce9895353dc0aee01552c19b132c7632ef6d2a872d677d1ac",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el concepto de rango se verá «mucho más fácil de entender» al pasar al gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición sobre la facilidad de comprender el concepto en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7524d126337bddd3972b935a423b85d2173a9fe0aca8a0e53dfcc388fa2fb48b"
+    ],
+    "response_id": "gen-1791083411-TbqICC94ZjIzCPbkCgZW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-marco-temporal-cinco-minutos",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal mostrado es de 5 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p15390000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "950f0127511bba3632f95303474a1831a5d4900a5c9bdee10dca7bcf69841e1a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente «EURUSD · 5» en la parte superior y «EURUSD | 5M» junto al marco temporal, lo que indica un intervalo de 5 minutos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7524d126337bddd3972b935a423b85d2173a9fe0aca8a0e53dfcc388fa2fb48b"
+    ],
+    "response_id": "gen-1791083411-TbqICC94ZjIzCPbkCgZW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-alcista-izquierdo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El esquema de la izquierda representa un rango alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00022",
+    "frame-4de8f12d4841c630-s0-p14760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "52f334246dbc644ac249ed64f550215ec11919e58dea11ce429bc00268460ba5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica el primer esquema como «rango alcista», y la imagen muestra dicho esquema a la izquierda con la etiqueta «rango alcista»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7524d126337bddd3972b935a423b85d2173a9fe0aca8a0e53dfcc388fa2fb48b"
+    ],
+    "response_id": "gen-1791083411-TbqICC94ZjIzCPbkCgZW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bajista-derecho",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El esquema de la derecha representa un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00022",
+    "frame-4de8f12d4841c630-s0-p15390000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "607c620d4e5b305fa2d50554507d6303ac432871e8eacc9c7b0a1368d83ba69b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica el esquema de la derecha como «un rango bajista», y la imagen muestra sobre el esquema derecho la etiqueta «rango bajista»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7524d126337bddd3972b935a423b85d2173a9fe0aca8a0e53dfcc388fa2fb48b"
+    ],
+    "response_id": "gen-1791083411-TbqICC94ZjIzCPbkCgZW"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-representacion-concepto-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La representación mostrada corresponde al concepto de rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00023",
+    "frame-4de8f12d4841c630-s0-p15390000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fc06ac6e1a3944b9775e0a7210c0270c07a73820a82c35963aed1a94e13e5008",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica explícitamente la representación mostrada como «el concepto de rango», y la imagen contiene Representations rotuladas «rango alcista» y «rango bajista»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7524d126337bddd3972b935a423b85d2173a9fe0aca8a0e53dfcc388fa2fb48b"
+    ],
+    "response_id": "gen-1791083411-TbqICC94ZjIzCPbkCgZW"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00022",
+   "start_ms": 158800,
+   "end_ms": 165200,
+   "text": "encontrar el bias para todo así que esto sería rango alcista y este aquí sería un rango bajista"
+  },
+  {
+   "id": "asr-00023",
+   "start_ms": 165200,
+   "end_ms": 171300,
+   "text": "que tenemos vale este es el concepto de rango vamos a ir ahora un momento a gráfico que lo"
+  },
+  {
+   "id": "asr-00024",
+   "start_ms": 171300,
+   "end_ms": 179900,
+   "text": "vais a ver más claro y va a ser mucho más fácil de entender ya veréis vamos un momento aquí déjame"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14760000-canonical-v1",
+   "pts_ms": 164000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14850000-canonical-v1",
+   "pts_ms": 165000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15120000-canonical-v1",
+   "pts_ms": 168000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15390000-canonical-v1",
+   "pts_ms": 171000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15480000-canonical-v1",
+   "pts_ms": 172000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15570000-canonical-v1",
+   "pts_ms": 173000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15570000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15660000-canonical-v1",
+   "pts_ms": 174000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15750000-canonical-v1",
+   "pts_ms": 175000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

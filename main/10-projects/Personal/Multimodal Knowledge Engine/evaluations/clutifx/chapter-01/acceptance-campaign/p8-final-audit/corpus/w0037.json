@@ -1,0 +1,695 @@
+{
+ "window": "w0037",
+ "start": "08:22",
+ "end": "08:33",
+ "start_ms": 502000,
+ "end_ms": 513000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-bearish-range-above",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En GBPUSD se formó un rango bearish en la zona alta de la gráfica.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00067",
+    "asr-00068",
+    "frame-4de8f12d4841c630-s0-p45450000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "62f6fdb84f040a103b811882c4708bad524539c1994e6ec3550e8b4ee7b44990",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que «se formó el rango bearish aquí arriba», y el contexto y el marco identifican el gráfico de GBPUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La ubicación en la zona alta es un calificador de la misma proposición sobre la formación del rango bearish, no una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c92ec169b6ee885f1adea52f11929eec67d32f3b326c34f64f3ccd47faa1bdb0"
+    ],
+    "response_id": "gen-1791089340-i0IXO72EtbpWr5OHUFny"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-bullish-range-lower-134155",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde inferior del rango rectangular de GBPUSD está en 1,34155.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p46080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "78dc1d63527ef14f9891054bd4a6f3af906c138636ed59e21882dad830c98d5f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En el gráfico de GBPUSD, el borde inferior horizontal del rango rectangular está alineado con la etiqueta 1,34155 del eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c92ec169b6ee885f1adea52f11929eec67d32f3b326c34f64f3ccd47faa1bdb0"
+    ],
+    "response_id": "gen-1791089340-i0IXO72EtbpWr5OHUFny"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-bullish-range-upper-135843",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde superior del rango rectangular de GBPUSD está en 1,35843.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p46080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e49529651bdd23bcd93e55c34603a1ae187950604cde6fafbc2b9d1802e3d171",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El gráfico de GBPUSD muestra un rango rectangular cuya línea superior está etiquetada como 1,35843."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c92ec169b6ee885f1adea52f11929eec67d32f3b326c34f64f3ccd47faa1bdb0"
+    ],
+    "response_id": "gen-1791089340-i0IXO72EtbpWr5OHUFny"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-bullish-range",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango rectangular de GBPUSD se identifica como bullish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00068",
+    "asr-00069",
+    "frame-4de8f12d4841c630-s0-p46080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "837b902899d5a3af434f46724b247c6dedd46ebe808466e88cc150ff5061c7ca",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente «rango bullish en Libra», y el contexto visual identifica el gráfico como GBPUSD y muestra el rango rectangular en esa plataforma."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c92ec169b6ee885f1adea52f11929eec67d32f3b326c34f64f3ccd47faa1bdb0"
+    ],
+    "response_id": "gen-1791089340-i0IXO72EtbpWr5OHUFny"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-rectangular-range-drawn",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja un rango rectangular en el gráfico de GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p45810000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "17eb37ec3f563ee32c3be688cc2d1568b4eb751536bd327994dc8768e0d0639a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La tercera imagen muestra claramente un rango rectangular delineado y seleccionado sobre el gráfico de GBPUSD; las imágenes anteriores muestran su proceso de dibujo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que se dibuja un rango rectangular en el gráfico de GBPUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c92ec169b6ee885f1adea52f11929eec67d32f3b326c34f64f3ccd47faa1bdb0"
+    ],
+    "response_id": "gen-1791089340-i0IXO72EtbpWr5OHUFny"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-reversal-with-bearish-range",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La formación del rango bearish de GBPUSD coincidió con el inicio de la reversión del precio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00068",
+    "frame-4de8f12d4841c630-s0-p45450000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a02e1abc8c963c6762b0c4a5ac7528c05ee7ed2316cf511c7b8a5855c540ba79",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que «se formó el rango bearish» y que «es cuando el precio empezó a revertir»; el marco de la derecha corresponde a GBPUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación expresa una sola proposición: la formación del rango coincidió con el inicio de la reversión."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c92ec169b6ee885f1adea52f11929eec67d32f3b326c34f64f3ccd47faa1bdb0"
+    ],
+    "response_id": "gen-1791089340-i0IXO72EtbpWr5OHUFny"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-symbol-search",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La consulta del cuadro «Búsqueda de símbolos» es «GBPUSD».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p45180000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b37553cbe3b8163690203bac96cd208be8e9e65c20706339aa44b45e765ff877",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el cuadro titulado «Búsqueda de símbolos» con «GBPUSD» visible en el campo de consulta."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c92ec169b6ee885f1adea52f11929eec67d32f3b326c34f64f3ccd47faa1bdb0"
+    ],
+    "response_id": "gen-1791089340-i0IXO72EtbpWr5OHUFny"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-timeframe-1d",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico de GBPUSD usa el marco temporal 1D.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p45360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "aef14a44ce986291a4ba425e2d6de14cd31d88df7acec13d2673ddcb0927b3b2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El encabezado visible del gráfico de GBPUSD indica «1D», por lo que muestra que usa el marco temporal diario."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el marco temporal del gráfico de GBPUSD es 1D."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c92ec169b6ee885f1adea52f11929eec67d32f3b326c34f64f3ccd47faa1bdb0"
+    ],
+    "response_id": "gen-1791089340-i0IXO72EtbpWr5OHUFny"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-today-target-137489",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo de hoy del rango bullish de GBPUSD está en 1,37489.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "frame-4de8f12d4841c630-s0-p46080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7877a01d7478347e90a40b77384d4e97f2388e37d35e41c99c1ebc802af01619",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica un rango bullish en la Libra con un objetivo para hoy, y la gráfica de GBPUSD muestra la línea objetivo etiquetada en 1,37489."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el valor del objetivo de hoy."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c92ec169b6ee885f1adea52f11929eec67d32f3b326c34f64f3ccd47faa1bdb0"
+    ],
+    "response_id": "gen-1791089340-i0IXO72EtbpWr5OHUFny"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-right-chart-switch-to-gbpusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico derecho pasa de XAUUSD a GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p45270000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p45360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "60c0857ab26de48dd9020c7e76e15f576b82717ec513f0327a4650753de1cc9a",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer failed: vlm provider parse-structured [fatal]: assistant content is not a valid JSON object"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c92ec169b6ee885f1adea52f11929eec67d32f3b326c34f64f3ccd47faa1bdb0"
+    ],
+    "response_id": "gen-1791089340-i0IXO72EtbpWr5OHUFny"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-bullish-label-depends-on-drawn-range",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-gbpusd-bullish-range",
+   "subject_version": 1,
+   "object_id": "cl-gbpusd-rectangular-range-drawn",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "frame-4de8f12d4841c630-s0-p46080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "aa03f13492ef4d35a72ce4cada417f9d7c1c0676b4a686f167c12c8c9e8bc628",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran un rango rectangular dibujado sobre el gráfico de GBPUSD, y la transcripción simultánea identifica explícitamente ese «rango bullish en Libra», vincular la etiqueta bullish al rango visible."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c92ec169b6ee885f1adea52f11929eec67d32f3b326c34f64f3ccd47faa1bdb0"
+    ],
+    "response_id": "gen-1791089340-i0IXO72EtbpWr5OHUFny"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-lower-bound-depends-on-drawn-range",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-gbpusd-bullish-range-lower-134155",
+   "subject_version": 1,
+   "object_id": "cl-gbpusd-rectangular-range-drawn",
+   "object_version": 1,
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p46080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "22a51a8020f17e7a3be26c1b60a9d5b86a5117a35b1bc3503c1e0633429a7b5a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la segunda imagen se muestra un rango rectangular dibujado sobre el gráfico de GBPUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El borde horizontal inferior de ese rectángulo está alineado con la marca 1,34155, por lo que la afirmación sobre el borde inferior depende del rango dibujado en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c92ec169b6ee885f1adea52f11929eec67d32f3b326c34f64f3ccd47faa1bdb0"
+    ],
+    "response_id": "gen-1791089340-i0IXO72EtbpWr5OHUFny"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-reversal-after-bearish-range",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-gbpusd-reversal-with-bearish-range",
+   "subject_version": 1,
+   "object_id": "cl-gbpusd-bearish-range-above",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00068"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d5e23f4b8e6858004e40cf28f2f1a37e3b2478510db3c0b38744a14e60e87bfe",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que el rango bearish se formó «aquí arriba» y que ese fue el momento en que el precio empezó a revertir,.Android establish the stated connection in the required orientation."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c92ec169b6ee885f1adea52f11929eec67d32f3b326c34f64f3ccd47faa1bdb0"
+    ],
+    "response_id": "gen-1791089340-i0IXO72EtbpWr5OHUFny"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-today-target-depends-on-bullish-range",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-gbpusd-today-target-137489",
+   "subject_version": 1,
+   "object_id": "cl-gbpusd-bullish-range",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "frame-4de8f12d4841c630-s0-p46080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "25a63d4ede3881be86e9bd3ecd0a703d601e43fa8783726d1c56c0dd3e9fbae6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente «rango bullish en Libra, teníamos este objetivo para hoy», vinculando el objetivo de hoy con el rango bullish."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran el objetivo de GBPUSD en 1,37489 y el rango rectangular de GBPUSD, por lo que la relación está en la orientación indicada: el objetivo de hoy depende del rango bullish."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c92ec169b6ee885f1adea52f11929eec67d32f3b326c34f64f3ccd47faa1bdb0"
+    ],
+    "response_id": "gen-1791089340-i0IXO72EtbpWr5OHUFny"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-upper-bound-depends-on-drawn-range",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-gbpusd-bullish-range-upper-135843",
+   "subject_version": 1,
+   "object_id": "cl-gbpusd-rectangular-range-drawn",
+   "object_version": 1,
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p46080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "06c7c6508e174e836e08736d03941c9a759ce86bc6c172d129055675b0803a13",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las evidencias muestran en GBPUSD un rango rectangular en proceso y ya trazado; su borde horizontal superior está alineado con la marca de precio 1,35843. Por tanto, la afirmación sobre el borde superior depende visualmente del rango rectangular mostrado, en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "c92ec169b6ee885f1adea52f11929eec67d32f3b326c34f64f3ccd47faa1bdb0"
+    ],
+    "response_id": "gen-1791089340-i0IXO72EtbpWr5OHUFny"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00067",
+   "start_ms": 497060,
+   "end_ms": 503540,
+   "text": "bearish otra vez, que en Libra están formados, ya lo vais a ver en el tema de la SMT, ahora"
+  },
+  {
+   "id": "asr-00068",
+   "start_ms": 503540,
+   "end_ms": 508840,
+   "text": "que se formó el rango bearish aquí arriba, es cuando el precio empezó a revertir, ¿vale?"
+  },
+  {
+   "id": "asr-00069",
+   "start_ms": 509540,
+   "end_ms": 514419,
+   "text": "Otra vez, rango bullish en Libra, teníamos este objetivo para hoy. ¿Por qué? Cierra"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45180000-canonical-v1",
+   "pts_ms": 502000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45180000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45270000-canonical-v1",
+   "pts_ms": 503000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45270000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45360000-canonical-v1",
+   "pts_ms": 504000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45450000-canonical-v1",
+   "pts_ms": 505000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45720000-canonical-v1",
+   "pts_ms": 508000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45810000-canonical-v1",
+   "pts_ms": 509000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45810000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46080000-canonical-v1",
+   "pts_ms": 512000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46170000-canonical-v1",
+   "pts_ms": 513000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

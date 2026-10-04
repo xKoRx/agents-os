@@ -1,0 +1,768 @@
+{
+ "window": "w0060",
+ "start": "14:14",
+ "end": "14:29",
+ "start_ms": 854000,
+ "end_ms": 869000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-apertura-por-debajo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La apertura se realiza por debajo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00118",
+    "frame-4de8f12d4841c630-s0-p76860000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p77130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p77760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "723bde6a9d2f07027f4270eedfb4f966b668753e698f7f833760ce2f52967b58",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que la operación «abre por debajo», lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-caso-produce-rango-favorable",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El caso descrito produce un rango a favor de la tendencia para ir para arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00118",
+    "frame-4de8f12d4841c630-s0-p76860000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p77130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p77760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8b8563f921e3a3d03866a23c9c35108d54b020b84021d8f403c4af2451455263",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que la apertura por debajo y el cierre dentro del rango crean «un rango a favor de nuestra tendencia para ir para arriba»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cierre-dentro-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El cierre queda dentro del rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00118",
+    "frame-4de8f12d4841c630-s0-p76860000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p77130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p77760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "924b3774958cecc1d3fb90ca67e685012b2bd92431e8955c38182d2fe6bfb7d0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que la operación «cerrar dentro del rango», lo que respalda directamente la proposición de que el cierre queda dentro del rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable sobre la ubicación del cierre."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-extremo-no-tomado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El extremo indicado no es tomado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00118",
+    "frame-4de8f12d4841c630-s0-p77130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p77400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p77760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0cc9c767ea8423165d3750dfac17f6b029303afb5654cbc0a5cb0b2fdd748059",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente «no toma este extremo», por lo que respalda directamente que el extremo indicado no es tomado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el extremo indicado no es tomado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-limites-rango-cambian",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Los límites del rango cambian de altura durante la secuencia.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p78030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p78120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p78210000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1efdde6494768555785daf8ac356aa1046a4a3f2ad20c927a3f75ff454ab317b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran el mismo rango seleccionado en distintas posiciones: sus límites superior e inferior están en niveles de precio diferentes en cada fotograma."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-favor-es-alcista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En este caso, un rango a favor es un rango alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00119",
+    "frame-4de8f12d4841c630-s0-p78030000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "71d690132f446e0bf9417ea18482f137760df0be87326c340fd4b5a177d89049",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «Rango a favor, o sea, alcista», lo que respalda directamente la equivalencia en este caso."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-mismo-caso-contra-tendencia",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango del mismo caso va en contra de la tendencia orientada a ir para arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00118",
+    "asr-00119",
+    "frame-4de8f12d4841c630-s0-p77760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p78030000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f5c6e4e31d8e74f6f796a0303778015c5ff26adf4c979b067e4c36002f1e9416",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que, «en el mismo caso», el elementoalyzed va «en contra de nuestra tendencia», y el contexto anterior identifica esa tendencia como la orientada «para ir para arriba»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-mismo-caso-reiniciado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango del mismo caso es un reiniciado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00118",
+    "asr-00119",
+    "frame-4de8f12d4841c630-s0-p77760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p78030000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b7a19bd57f32b96f6eb9ebbe7d085d6156d7baf68cc5abee9f3bed3c6feab13c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente: «En el mismo caso, este era un reiniciado» y lo identifica como un rango reiniciado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el rango del mismo caso es un reiniciado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-rectangular-seleccionado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Un rango rectangular está seleccionado en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p77040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p77400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p78030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p78120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p78210000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b32fbc15149099b01d0b13798e4f934f3000f41926d5472d0670c59082b58392",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran un rango rectangular superpuesto al gráfico con controles de selección visibles."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-regla-rango-bajista-bullish-reiniciado",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Un rango bajista con el objetivo bullish es un reiniciado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00119",
+    "frame-4de8f12d4841c630-s0-p78030000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "87d47fe90538e19089b88c2c76a5afc2d6f5c634d8d9ab5bb7b5ab58848a7524",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «Rango bajista con el objetivo bullish, reiniciado»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la clasificación de ese rango como reiniciado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-regla-rango-favor-bullish-pendiente",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Un rango a favor con el objetivo bullish es un rango pendiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00119",
+    "frame-4de8f12d4841c630-s0-p78030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p78120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p78210000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6aa31132d22652b55e47512f454e82a689dbd52b86b99bc7b016154474f88017",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «Rango a favor, o sea, alcista con el objetivo bullish, rango pendiente», lo que sostiene directamente la clasificación expresada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: un rango a favor cuyo objetivo es bullish se clasifica como rango pendiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-8h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico mostrado es 8h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p114120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p118620000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p139500000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76860000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p78210000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d8b35db9f7b07343dbd4dd9ab6e2f156af779c87bf1af473bb73e575c2d59bf4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El encabezado visible de los fotogramas citados identifica el gráfico como «EURUSD · 8h · FOREX.com», lo que establece una temporalidad de 8 horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la temporalidad del gráfico es 8h."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0ed19f24409b2711e95bbe137c9565c2b1f8e9ea833c26f5693992fb70ec10b8",
+     "793fb2e341daf6575a941f0c69a3cec500ff1684c6d991a5d4f4b7fda2b57149",
+     "7c1e89833148028048a24284d9cd3f100c9f15762f68cbb7f2ad98177c9078a4",
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-pendiente-depende-rango-alcista",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-regla-rango-favor-bullish-pendiente",
+   "subject_version": 1,
+   "object_id": "cl-rango-favor-es-alcista",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00119"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a380d2faa515df23c69cac3e78e24f862727f186fe68f24a0a37e9819a23f90b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica explícitamente el rango a favor como «alcista» y, con el objetivo bullish, lo clasifica como «rango pendiente», en la orientación subject DEPENDS_ON object."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-favor-depende-apertura",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-caso-produce-rango-favorable",
+   "subject_version": 1,
+   "object_id": "cl-apertura-por-debajo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00118"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0f87875e16b50486a3d7a01aeb9c5c197e31313e8d25a81b6dad8f3e27c63926",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que la apertura se realiza por debajo y que, junto con el cierre dentro del rango, esto crea un rango favorable para la tendencia alcista; por tanto, el sujeto depende de la apertura por debajo en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-favor-depende-cierre",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-caso-produce-rango-favorable",
+   "subject_version": 1,
+   "object_id": "cl-cierre-dentro-rango",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00118"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0a48cb3739c6e04aee23accb14dc241d5a787e82726ed4e98b0e20a6f7ea01ad",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el cierre queda dentro del rango y que ello crea un rango a favor de la tendencia para ir para arriba, estableciendo que el subject depende del object en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-reiniciado-depende-contra-tendencia",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-mismo-caso-reiniciado",
+   "subject_version": 1,
+   "object_id": "cl-rango-mismo-caso-contra-tendencia",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00118",
+    "asr-00119"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a1bbe0f8238c4aed3afa701a6ef3f152968dac00c1cde6907628eb5cd9c6e347",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica explícitamente el rango del mismo caso como «un reiniciado porque va en contra de nuestra tendencia»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La tendencia correspondiente está descrita como orientada a ir para arriba, por lo que la condición contraria a esa tendencia sustenta la afirmación de que el rango es un reiniciado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "bf17b18fb2b81fea37ef0a81ebfbfef620f4af31c2897d8cab607e3e88dffdff"
+    ],
+    "response_id": "gen-1791094955-SxkvThrH7o3cJnmntJ8G"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00118",
+   "start_ms": 854260,
+   "end_ms": 865810,
+   "text": "¿Ves cómo no toma este extremo? Pues lo que hace es abrir por debajo, cerrar dentro del rango, creando un rango a favor de nuestra tendencia para ir para arriba."
+  },
+  {
+   "id": "asr-00119",
+   "start_ms": 865810,
+   "end_ms": 882140,
+   "text": "En el mismo caso, este era un reiniciado porque va en contra de nuestra tendencia. Rango bajista con el objetivo bullish, reiniciado. Rango a favor, o sea, alcista con el objetivo bullish, rango pendiente."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p76860000-canonical-v1",
+   "pts_ms": 854000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p76860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p77040000-canonical-v1",
+   "pts_ms": 856000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p77040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p77130000-canonical-v1",
+   "pts_ms": 857000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p77130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p77400000-canonical-v1",
+   "pts_ms": 860000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p77400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p77760000-canonical-v1",
+   "pts_ms": 864000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p77760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p78030000-canonical-v1",
+   "pts_ms": 867000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p78030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p78120000-canonical-v1",
+   "pts_ms": 868000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p78120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p78210000-canonical-v1",
+   "pts_ms": 869000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p78210000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114120000-canonical-v1",
+   "pts_ms": 1268000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118620000-canonical-v1",
+   "pts_ms": 1318000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118620000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p139500000-canonical-v1",
+   "pts_ms": 1550000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p139500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

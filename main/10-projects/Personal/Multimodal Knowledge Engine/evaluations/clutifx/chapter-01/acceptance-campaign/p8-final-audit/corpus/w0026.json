@@ -1,0 +1,290 @@
+{
+ "window": "w0026",
+ "start": "05:48",
+ "end": "05:56",
+ "start_ms": 348000,
+ "end_ms": 356000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-alcista-completado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se completa un rango alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00051"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b021e97ac53e1abd1ea9bcfb44dda81b289e8dec391fee4313230422030be214",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente «Completamos un alcista» y luego se refiere a «los rangos», lo que respalda que se completó un rango alcista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la finalización de un rango alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a95a25edc701afa8e6cd215f343095ddf5be7c3f7a7ca81e865d98680924f602"
+    ],
+    "response_id": "gen-1791086729-vVzD44XwLYKuEJauGCNQ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bajista-completado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se completa el rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00051"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "42d4d81bde1c1b2ab07c702754abd7fbf484b4cdf53548418c2f556e3a75509e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia declara explícitamente: «completamos el bajista», lo que sostiene que se completó el rango bajista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a95a25edc701afa8e6cd215f343095ddf5be7c3f7a7ca81e865d98680924f602"
+    ],
+    "response_id": "gen-1791086729-vVzD44XwLYKuEJauGCNQ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bajista-formado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se forma un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00051",
+    "frame-4de8f12d4841c630-s0-p31500000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p31590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p31770000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "303f2b87497329277eb04d26d0cb5930452e440eb2875b9af8e55207648ab809",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que «se nos forma uno bajista», lo que respalda que se forma un rango bajista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "888ef9ed829fe9fd439727cb370083e19fa3cb50b0c7e7ed98413582780ec89f",
+     "a95a25edc701afa8e6cd215f343095ddf5be7c3f7a7ca81e865d98680924f602"
+    ],
+    "response_id": "gen-1791086729-vVzD44XwLYKuEJauGCNQ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-indican-direccion-precio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos normalmente indican hacia dónde va el precio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00050",
+    "asr-00051"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d6e10b451fe9e696770b71d0841888101ce0c45243788f830211082d4efa92b7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que estos elementos «normalmente nos van a decir hacia dónde va el precio» y el contexto citado立即 identifica esos elementos como los rangos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que los rangos normalmente indican la dirección futura del precio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a95a25edc701afa8e6cd215f343095ddf5be7c3f7a7ca81e865d98680924f602"
+    ],
+    "response_id": "gen-1791086729-vVzD44XwLYKuEJauGCNQ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-se-completan-sucesivamente",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Se continúa completando los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00051"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f1eb10c31da43caa12f84d2bb8425c693e92bcf1b5e9f364922202ba31f2ff8e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que se van completando sucesivamente los rangos alcistas y bajistas, lo que respalda que se continúa completando los rangos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a95a25edc701afa8e6cd215f343095ddf5be7c3f7a7ca81e865d98680924f602"
+    ],
+    "response_id": "gen-1791086729-vVzD44XwLYKuEJauGCNQ"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00050",
+   "start_ms": 348000,
+   "end_ms": 353920,
+   "text": "Pero que sepáis que la importancia de estos es que normalmente nos van a decir hacia dónde va el precio."
+  },
+  {
+   "id": "asr-00051",
+   "start_ms": 354380,
+   "end_ms": 362440,
+   "text": "Completamos un alcista, se nos forma uno bajista, completamos el bajista y es ir completando los rangos."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p31320000-canonical-v1",
+   "pts_ms": 348000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p31320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p31410000-canonical-v1",
+   "pts_ms": 349000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p31410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p31500000-canonical-v1",
+   "pts_ms": 350000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p31500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p31590000-canonical-v1",
+   "pts_ms": 351000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p31590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p31680000-canonical-v1",
+   "pts_ms": 352000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p31680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p31770000-canonical-v1",
+   "pts_ms": 353000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p31770000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p31860000-canonical-v1",
+   "pts_ms": 354000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p31860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p32040000-canonical-v1",
+   "pts_ms": 356000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p32040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

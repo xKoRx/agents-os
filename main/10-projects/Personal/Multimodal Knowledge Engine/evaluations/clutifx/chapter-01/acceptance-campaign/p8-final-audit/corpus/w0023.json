@@ -1,0 +1,490 @@
+{
+ "window": "w0023",
+ "start": "05:04",
+ "end": "05:16",
+ "start_ms": 304000,
+ "end_ms": 316000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-completa-rango-bajista-ahora",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio irá a completar el rango bajista ahora.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00041",
+    "asr-00042"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4ace7ee2b309af65586319554440a53de559e9e2db6e3a637c3c714f430338f0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita enuncia exactamente que el precio irá a completar el rango bajista ahora."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «ahora» solo restringe el momento de completion."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1f92b75355e9124ff602cde646f9870dcabd62f2ba991c6253622a06d8bf88cd"
+    ],
+    "response_id": "gen-1791086327-xBoE3h53jr9ByGn7jxL3"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bajista-apareja-todo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Parece que el precio utiliza la manera de completar el rango bajista para ir aparejando todo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00042",
+    "asr-00043"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a08f14f3dfe6e0f9ed90b69d07e2667c9b909840555ca20583d60d8185a7bda8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas indican que el precio irá a completar el rango bajista y que utiliza ese método para completar órdenes y aparejar todo, lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el precio utiliza la forma de completar el rango bajista para aparejar todo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1f92b75355e9124ff602cde646f9870dcabd62f2ba991c6253622a06d8bf88cd"
+    ],
+    "response_id": "gen-1791086327-xBoE3h53jr9ByGn7jxL3"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bajista-completa-ordenes",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Parece que el precio utiliza la manera de completar el rango bajista para ir completando las órdenes.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00042",
+    "asr-00043"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "a9385562583032aa2e69e6f25fff47d80bfc0c40f9501cb26f6592e377fa3585",
+    "reasons": [
+     {
+      "code": "reviewer_malformed_output",
+      "detail": "reviewer produced a malformed verdict: claim review output schema id \"mke.claims-ground.v2\", want \"mke.claims-ground.v1\""
+     },
+     {
+      "code": "reviewer_malformed_output",
+      "detail": "corrective reissue after malformed attempt also rejected: claim review output schema id \"mke.claims-ground.v2\", want \"mke.claims-ground.v1\""
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1f92b75355e9124ff602cde646f9870dcabd62f2ba991c6253622a06d8bf88cd"
+    ],
+    "response_id": "gen-1791086327-xBoE3h53jr9ByGn7jxL3"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bajista-desde-alto-vela",
+   "kind": "claim",
+   "version": 1,
+   "statement": "A partir de aquí, el precio podría formar ahora un rango bajista tomando el alto de la vela indicada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00041",
+    "frame-4de8f12d4841c630-s0-p27450000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p27720000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p28080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "64389605a8032b84afe70c0356ef1d36c8b39fa8dcca7611e840621daf8fae2d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma casi literalmente que, a partir de ese punto, el precio podría formar un rango bajista tomando el alto de la vela indicada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación constituye una sola proposición predictiva; «podría», «ahora» y la referencia al alto de la vela forman parte de la misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1f92b75355e9124ff602cde646f9870dcabd62f2ba991c6253622a06d8bf88cd"
+    ],
+    "response_id": "gen-1791086327-xBoE3h53jr9ByGn7jxL3"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-borde-inferior-1-15236",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde inferior del rectángulo se muestra en 1,15236.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p28350000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p28440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "66dd408fcead135cf94fcf07b4f609d925046de5bcd670cc92b4b892ded14d04",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la segunda imagen, la etiqueta azul 1,15236 está alineada con el borde inferior del rectángulo seleccionado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1f92b75355e9124ff602cde646f9870dcabd62f2ba991c6253622a06d8bf88cd"
+    ],
+    "response_id": "gen-1791086327-xBoE3h53jr9ByGn7jxL3"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-borde-superior-1-15365",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde superior del rectángulo se muestra en 1,15365.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p28350000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p28440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ec7b2ab6772719c83d0e07d5fa59b2225f1a564ce316c915994f227c1fe628c2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el borde superior del rectángulo coincide horizontalmente con la etiqueta de precio 1,15365."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1f92b75355e9124ff602cde646f9870dcabd62f2ba991c6253622a06d8bf88cd"
+    ],
+    "response_id": "gen-1791086327-xBoE3h53jr9ByGn7jxL3"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-dibujado-vela-reciente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja un rectángulo en la zona de la vela blanca más reciente.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p28080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p28260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p28350000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "46fdbe98b32b278bea0a897c0f5ce7efbd9e4e4d2d26a0598ae37911def05bed",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La secuencia muestra un rectángulo de dibujo seleccionado mediante manejadores sobre la vela blanca más reciente, que es la vela blanca situada más a la derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1f92b75355e9124ff602cde646f9870dcabd62f2ba991c6253622a06d8bf88cd"
+    ],
+    "response_id": "gen-1791086327-xBoE3h53jr9ByGn7jxL3"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-aparejo-requiere-completar-rango",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-bajista-apareja-todo",
+   "subject_version": 1,
+   "object_id": "cl-precio-completa-rango-bajista-ahora",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00042",
+    "asr-00043"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ed704743ab13c7bf21fbf571b544f359aa23bb2ca946a6bdf2179b3d4a424ea4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera evidencia afirma que el precio irá a completar el rango bajista ahora. La segunda explica que el precio utiliza «esta manera» para completar las órdenes y aparejarlo todo, remitiendo explícitamente a la acción descrita en la primera evidencia; por ello, la explicación del aparejado depende de la finalización previa del rango bajista en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1f92b75355e9124ff602cde646f9870dcabd62f2ba991c6253622a06d8bf88cd"
+    ],
+    "response_id": "gen-1791086327-xBoE3h53jr9ByGn7jxL3"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-completado-rango-requiere-formacion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-precio-completa-rango-bajista-ahora",
+   "subject_version": 1,
+   "object_id": "cl-rango-bajista-desde-alto-vela",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00041",
+    "asr-00042"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "441f0a22743000d49e6ac11b34c595a1d696683af06d6da2a34ebfee4f083236",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda evidencia afirma que el precio «ir[a] a completar el rango bajista ahora», remitiendo al rango bajista que la primera evidencia acaba de plantear que podría formarse tomando el alto de la vela. Así, la afirmación de que el precio completará ese rango depende de la identificación previa del rango en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1f92b75355e9124ff602cde646f9870dcabd62f2ba991c6253622a06d8bf88cd"
+    ],
+    "response_id": "gen-1791086327-xBoE3h53jr9ByGn7jxL3"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-ordenes-requiere-completar-rango",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-bajista-completa-ordenes",
+   "subject_version": 1,
+   "object_id": "cl-precio-completa-rango-bajista-ahora",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00042",
+    "asr-00043"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "99e13fdc7707245c4d88a70ac586e5a1e1ebca2f32204d306f875d1978f5013e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos citas vincularon explícitamente ambas afirmaciones: primero se dice que el precio irá a completar el rango bajista ahora y luego que utiliza «esta manera» para ir completando las órdenes. Así, el uso de esa manera descrito en la afirmación sujeto depende de la acción de completar el rango bajista afirmada en la afirmación objeto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1f92b75355e9124ff602cde646f9870dcabd62f2ba991c6253622a06d8bf88cd"
+    ],
+    "response_id": "gen-1791086327-xBoE3h53jr9ByGn7jxL3"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00041",
+   "start_ms": 299680,
+   "end_ms": 306860,
+   "text": "a partir de aquí a lo mejor nos forma ahora un rango bajista tomando el alto de esta vela lo"
+  },
+  {
+   "id": "asr-00042",
+   "start_ms": 306860,
+   "end_ms": 310720,
+   "text": "Lo que va a hacer el precio es ir a completar el rango bajista ahora."
+  },
+  {
+   "id": "asr-00043",
+   "start_ms": 311200,
+   "end_ms": 317960,
+   "text": "Es como que el precio utiliza esta manera como para ir completando las órdenes y aparejando todo."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p27360000-canonical-v1",
+   "pts_ms": 304000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p27360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p27450000-canonical-v1",
+   "pts_ms": 305000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p27450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p27630000-canonical-v1",
+   "pts_ms": 307000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p27630000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p27720000-canonical-v1",
+   "pts_ms": 308000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p27720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28080000-canonical-v1",
+   "pts_ms": 312000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28260000-canonical-v1",
+   "pts_ms": 314000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28260000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28350000-canonical-v1",
+   "pts_ms": 315000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28350000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28440000-canonical-v1",
+   "pts_ms": 316000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,246 @@
+{
+ "window": "w0016",
+ "start": "03:36",
+ "end": "03:48",
+ "start_ms": 216000,
+ "end_ms": 228000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-marco-temporal-4h-240m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal mostrado es 4h (240M).",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p20520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9d66c528bd208dca160808a8b3aaceba46e744c260ca2c577b3866c9ff385845",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra «EURUSD · 4h · FOREX.com» y también «EURUSD | 240M»; ambas etiquetas identifican el marco temporal mostrado. La equivalencia entre 4h y 240M es una aclaración de la misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "881f837de588b225b4e3cfe2009f5bc0e1f82c0d01a086c6788e3e04431bf964"
+    ],
+    "response_id": "gen-1791084371-RaUbe0wclT5NT2LjSVbE"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bajista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Este rango es bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00029",
+    "asr-00119",
+    "frame-4de8f12d4841c630-s0-p20160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p20520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p79200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9672c6ecdf8e3dd49694ff9b13f3c43af82cb0d785f8c1b56def2de802484e18",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción asr-00029 afirma directamente: «este es un rango bajista»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el rango es bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "881f837de588b225b4e3cfe2009f5bc0e1f82c0d01a086c6788e3e04431bf964",
+     "f1fa14d9b47473bfc5d6eb1096086c933f6c462ff4dd856b6ca9e4f18509340c"
+    ],
+    "response_id": "gen-1791084371-RaUbe0wclT5NT2LjSVbE"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-rango-ampliado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El recuadro del rango se amplía.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p20160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p20520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a055a25f310da17f64ccf8e4f1c47e00a027e82c8b1c9d506c037468a30c1048",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la segunda imagen, el recuadro que delimita el rango tiene su borde derecho más desplazado hacia afuera que en la primera, por lo que se observa ampliado horizontalmente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "881f837de588b225b4e3cfe2009f5bc0e1f82c0d01a086c6788e3e04431bf964"
+    ],
+    "response_id": "gen-1791084371-RaUbe0wclT5NT2LjSVbE"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-toma-alto-del-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela toma el alto del rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00029",
+    "frame-4de8f12d4841c630-s0-p20160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p20520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8060ae3f210eb30f5a54e6b67130166eed7e2a86fb6abf6a59f978bddae696f6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El transcript citado afirma directamente que «la vela toma el alto» y ubica la acción en «un rango bajista»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la vela alcanza o toma el alto del rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "881f837de588b225b4e3cfe2009f5bc0e1f82c0d01a086c6788e3e04431bf964"
+    ],
+    "response_id": "gen-1791084371-RaUbe0wclT5NT2LjSVbE"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00029",
+   "start_ms": 215740,
+   "end_ms": 228940,
+   "text": "adentro va a completarlo más ejemplos este aquí es un rango bajista la vela toma el alto cierra"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p19440000-canonical-v1",
+   "pts_ms": 216000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p19440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p19620000-canonical-v1",
+   "pts_ms": 218000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p19620000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p19710000-canonical-v1",
+   "pts_ms": 219000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p19710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p19800000-canonical-v1",
+   "pts_ms": 220000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p19800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p19890000-canonical-v1",
+   "pts_ms": 221000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p19890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p19980000-canonical-v1",
+   "pts_ms": 222000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p19980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p20160000-canonical-v1",
+   "pts_ms": 224000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p20160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p20520000-canonical-v1",
+   "pts_ms": 228000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p20520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p79200000-canonical-v1",
+   "pts_ms": 880000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p79200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

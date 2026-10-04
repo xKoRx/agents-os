@@ -1,0 +1,325 @@
+{
+ "window": "w0048",
+ "start": "11:08",
+ "end": "11:16",
+ "start_ms": 668000,
+ "end_ms": 676000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-copia-grupo-visible-derecha",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Una copia del grupo de la zona izquierda queda visible en la zona derecha.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p60120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "548b003f59a778bdd2d649f179604a767b4521fbbe5382c34fc3eb7906851cee",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el grupo de la zona izquierda aparece duplicado y visible en la zona derecha, con la vela negra y las velas blancas correspondientes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6d11b438b16d13821d4aca7d65116af5b3ba23111c8bc27105ec7304c42af81c"
+    ],
+    "response_id": "gen-1791091785-iuZ73CyEjs4iufw8T66G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-copiar-grupo-zona-izquierda",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Copiar el grupo seleccionado de la zona izquierda.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00103",
+    "asr-00104",
+    "frame-4de8f12d4841c630-s0-p60120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3786137ef6d80163f31553fee3dcf3f98e8b9270e2f9eba3b6a058acd1f1e3bd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran un grupo seleccionado en la zona izquierda y, posteriormente, el mismo grupo copiado en la zona derecha."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica explícitamente: «Podemos copiar esto de aquí igual, vamos a moverlo ahí»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola acción procedural."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6d11b438b16d13821d4aca7d65116af5b3ba23111c8bc27105ec7304c42af81c"
+    ],
+    "response_id": "gen-1791091785-iuZ73CyEjs4iufw8T66G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-mover-grupo-copiado-derecha",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Mover el grupo copiado hacia la zona derecha.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00104",
+    "frame-4de8f12d4841c630-s0-p60120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8dbb50f8d4e46a2406a9aa613b58614517aacd8933e74dd39cfce7cc957bac98",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica copiar el elemento y moverlo hacia allá, y los fotogramas muestran el grupo copiado situado en la zona derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6d11b438b16d13821d4aca7d65116af5b3ba23111c8bc27105ec7304c42af81c"
+    ],
+    "response_id": "gen-1791091785-iuZ73CyEjs4iufw8T66G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-reiniciado-como-otro-caso",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El otro caso se denominará «rango reiniciado».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00103"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a6dab7f62ca2eceebd2c9f9df6b1bd6ecfc17e61d96ad5cc785cb5b103c8a6bd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que el otro caso se denominará «rango reiniciado»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el nombre asignado al otro caso."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6d11b438b16d13821d4aca7d65116af5b3ba23111c8bc27105ec7304c42af81c"
+    ],
+    "response_id": "gen-1791091785-iuZ73CyEjs4iufw8T66G"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-seleccion-grupo-zona-izquierda",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El grupo de la zona izquierda queda seleccionado.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p60390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a839b0113c8e313da89071411f36bf051fb50bfae0cf27a6802218ed9bd508ae",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra el grupo situado en la zona izquierda con Handles azules y una barra de edición, lo que indica que está seleccionado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6d11b438b16d13821d4aca7d65116af5b3ba23111c8bc27105ec7304c42af81c"
+    ],
+    "response_id": "gen-1791091785-iuZ73CyEjs4iufw8T66G"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-mover-tras-copiar",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-mover-grupo-copiado-derecha",
+   "subject_version": 1,
+   "object_id": "cl-copiar-grupo-zona-izquierda",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00104"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "efb8e72fb868347d1889ac907ea42acf18004412325065e8e68ed05711cdcdbd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona primero copiar algo («copiar esto de aquí») y luego moverlo («vamos a moverlo ahí»), estableciendo que la acción de mover sigue y depende de la copia previa."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6d11b438b16d13821d4aca7d65116af5b3ba23111c8bc27105ec7304c42af81c"
+    ],
+    "response_id": "gen-1791091785-iuZ73CyEjs4iufw8T66G"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00103",
+   "start_ms": 662140,
+   "end_ms": 670680,
+   "text": "¿Qué sería el otro caso? Vamos a verlo. Sería lo que vamos a llamar rango reiniciado, ¿vale?"
+  },
+  {
+   "id": "asr-00104",
+   "start_ms": 671280,
+   "end_ms": 676080,
+   "text": "Podemos copiar esto de aquí igual, vamos a moverlo ahí."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60120000-canonical-v1",
+   "pts_ms": 668000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60300000-canonical-v1",
+   "pts_ms": 670000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60300000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60390000-canonical-v1",
+   "pts_ms": 671000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60480000-canonical-v1",
+   "pts_ms": 672000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60570000-canonical-v1",
+   "pts_ms": 673000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60570000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60660000-canonical-v1",
+   "pts_ms": 674000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60750000-canonical-v1",
+   "pts_ms": 675000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60840000-canonical-v1",
+   "pts_ms": 676000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

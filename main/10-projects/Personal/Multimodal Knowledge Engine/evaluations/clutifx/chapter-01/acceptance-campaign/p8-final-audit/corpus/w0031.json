@@ -1,0 +1,522 @@
+{
+ "window": "w0031",
+ "start": "06:52",
+ "end": "07:01",
+ "start_ms": 412000,
+ "end_ms": 421000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-source-forex-com",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La fuente del gráfico es FOREX.com.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p37080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p79290000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cf12b1411f91701cd8ff407590dcf0de852e426c1007106cbc6dd38d0c7b4e2c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Both cited frames visibly label the chart source as FOREX.com."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2",
+     "b67e79fdbcad1e19a87d5062079b834b0d9f7d4237235d2a775178f10de16767"
+    ],
+    "response_id": "gen-1791087978-GtJB7EoT3keQ6jbikhsd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p182520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1c9ce21a392b0eaae5620c023e64c7de7e687b32b12eccf1c4a25cb5803abf66",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas citados muestran explícitamente la etiqueta EURUSD en la interfaz."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "211b6106c5d07985f0e71f168a29515afc59fce40edf21f7adf37826ce0dc895",
+     "b67e79fdbcad1e19a87d5062079b834b0d9f7d4237235d2a775178f10de16767"
+    ],
+    "response_id": "gen-1791087978-GtJB7EoT3keQ6jbikhsd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-evolution-many-timeframes",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La evolución puede comprobarse en muchas temporalidades.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00054"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "b4bfe6b25725886a83ec6f0c90546dea3b7f2260be8191c8af630c5b6082d8d8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La cita afirma que «eso» puede comprobarse en muchas temporalidades, pero no identifica explícitamente «eso» como la evolución."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b67e79fdbcad1e19a87d5062079b834b0d9f7d4237235d2a775178f10de16767"
+    ],
+    "response_id": "gen-1791087978-GtJB7EoT3keQ6jbikhsd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-final-view-zoomed",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista final se amplía sobre el intervalo septiembre de 2024–marzo de 2025.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p37800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "768539f36b3e910a36e85048287157de62c3f6d1eb12ceb090813ec5bea2c26d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segundo fotograma muestra la vista ampliada respecto del primero, y el eje temporal sitúa el intervalo desde septiembre de 2024 hasta marzo de 2025."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b67e79fdbcad1e19a87d5062079b834b0d9f7d4237235d2a775178f10de16767"
+    ],
+    "response_id": "gen-1791087978-GtJB7EoT3keQ6jbikhsd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-horizontal-level-104880",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra una línea horizontal etiquetada en 1.04880.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p37260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "adf3069c95d244a8680acdee124df97b56f93e232a058b746809f14f3a64fc58",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran etiquetas de 1.04880 en el eje derecho, pero no muestran de forma clara una línea horizontal en ese nivel."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b67e79fdbcad1e19a87d5062079b834b0d9f7d4237235d2a775178f10de16767"
+    ],
+    "response_id": "gen-1791087978-GtJB7EoT3keQ6jbikhsd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-horizontal-level-116148",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra una línea horizontal etiquetada en 1.16148.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p37260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37530000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c3f6fe58f4a01280cd7aad8544b8db7515b30e02134baad9adf39ab4257365fd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran una línea horizontal con la etiqueta 1,16148 en el eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b67e79fdbcad1e19a87d5062079b834b0d9f7d4237235d2a775178f10de16767"
+    ],
+    "response_id": "gen-1791087978-GtJB7EoT3keQ6jbikhsd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-many-examples",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Puedo buscar muchos ejemplos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00054"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "69002b2b89e12a4d314e39508862afd7e4eed46482e0f841df15bf24decdac27",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente: «puedo buscar muchos ejemplos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la capacidad del hablante para buscar muchos ejemplos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b67e79fdbcad1e19a87d5062079b834b0d9f7d4237235d2a775178f10de16767"
+    ],
+    "response_id": "gen-1791087978-GtJB7EoT3keQ6jbikhsd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-quote-currency-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El eje de cotización está expresado en USD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p182520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c68f094fe5c3c9810b49e6aeb6ebdadcc0efff2d554a13f7f535160a9a997f68",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el eje vertical de cotización aparece junto al selector «USD» en la esquina superior derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "211b6106c5d07985f0e71f168a29515afc59fce40edf21f7adf37826ce0dc895",
+     "b67e79fdbcad1e19a87d5062079b834b0d9f7d4237235d2a775178f10de16767"
+    ],
+    "response_id": "gen-1791087978-GtJB7EoT3keQ6jbikhsd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangle-january-2025",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se añade un recuadro alrededor de varias velas cercanas a enero de 2025.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p37530000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bcd5e69211d0c4a0311886107f661dc2b2678ca5dce7904df519f9d5030b5e97",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenescitedas muestran la aparición de un recuadro alrededor de un grupo de velas cercanas a enero de 2025."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una sola acción: añadir ese recuadro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b67e79fdbcad1e19a87d5062079b834b0d9f7d4237235d2a775178f10de16767"
+    ],
+    "response_id": "gen-1791087978-GtJB7EoT3keQ6jbikhsd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframe-1d",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico mostrado es únicamente diario (1D).",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00054",
+    "frame-4de8f12d4841c630-s0-p37890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6f8039b797a738c21df6523eae2407283f6b555548df2bb123634109578bb942",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el gráfico es solo diario y la imagen muestra la etiqueta «EURUSD · 1D»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b67e79fdbcad1e19a87d5062079b834b0d9f7d4237235d2a775178f10de16767"
+    ],
+    "response_id": "gen-1791087978-GtJB7EoT3keQ6jbikhsd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-visible-range-expands",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El intervalo temporal visible se amplía progresivamente hasta abarcar aproximadamente septiembre de 2024–junio de 2025.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p37080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37170000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37350000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "723aa687eed1a62662e25caa512c6726f59b551455908d82eadf61e91ad1e46e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes sucesivas muestran la ampliación del rango temporal: primero aproximadamente marzo–junio de 2025, luego enero–junio de 2025 y finalmente septiembre de 2024–junio de 2025."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La frase final identifica el alcance alcanzado por esa misma ampliación, por lo que constituye una única proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b67e79fdbcad1e19a87d5062079b834b0d9f7d4237235d2a775178f10de16767"
+    ],
+    "response_id": "gen-1791087978-GtJB7EoT3keQ6jbikhsd"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00054",
+   "start_ms": 407710,
+   "end_ms": 421350,
+   "text": "Lo podéis comprobar con vosotros mismos en muchas temporalidades cómo va pasando eso, ¿vale? Es que puedo buscar muchos ejemplos. Este de aquí también. Y esto es solo el diario, obviamente."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37080000-canonical-v1",
+   "pts_ms": 412000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37170000-canonical-v1",
+   "pts_ms": 413000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37260000-canonical-v1",
+   "pts_ms": 414000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37260000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37350000-canonical-v1",
+   "pts_ms": 415000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37350000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37440000-canonical-v1",
+   "pts_ms": 416000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37530000-canonical-v1",
+   "pts_ms": 417000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37530000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37800000-canonical-v1",
+   "pts_ms": 420000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37890000-canonical-v1",
+   "pts_ms": 421000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p182520000-canonical-v1",
+   "pts_ms": 2028000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p182520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p79290000-canonical-v1",
+   "pts_ms": 881000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p79290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

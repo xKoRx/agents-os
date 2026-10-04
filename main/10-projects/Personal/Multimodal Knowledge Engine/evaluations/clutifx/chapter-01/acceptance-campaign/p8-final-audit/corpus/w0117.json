@@ -1,0 +1,567 @@
+{
+ "window": "w0117",
+ "start": "29:39",
+ "end": "29:48",
+ "start_ms": 1779000,
+ "end_ms": 1788000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-candle-closes-outside",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela señalada en la gráfica cierra por fuera.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00257",
+    "frame-4de8f12d4841c630-s0-p160110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p160200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a43572a7f37cc0a83aa2a4bda46620a6a3563339fd74c49c76f6033be4c91ef8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que «vela de aquí cierra por fuera», lo que respalda que la vela señalada cierra por fuera."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición verificable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1936bd15f683a158b17e27f93f64c9a6b82902c1c1201a416e59b035d17a308d"
+    ],
+    "response_id": "gen-1791115472-ssKBfC9q1RFaMilt5bTT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-position-risk-reward-final",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La relación riesgo/beneficio de la configuración final es 2,88.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p160470000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p160560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p160740000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0252a5a25887b8f8d9bf81dca40ce143be60e42a4568ac68c3505509fe1c4f8f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran en la herramienta de posición la etiqueta «Relación riesgo/beneficio: 2,88», lo que respalda directamente el valor afirmado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1936bd15f683a158b17e27f93f64c9a6b82902c1c1201a416e59b035d17a308d"
+    ],
+    "response_id": "gen-1791115472-ssKBfC9q1RFaMilt5bTT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-position-stop-change",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El valor del stop mostrado cambia de 0,00084 a 0,00170.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p160200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p160380000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a763914e781129480fee4630bf6efbdf6e52ab1b361e116f62cd4af89dce64fd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra «Stop: 0,00084» y la segunda muestra «Stop: 0,00170», por lo que las evidencias citadas respaldan el cambio indicado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el valor del stop mostrado cambió de 0,00084 a 0,00170."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1936bd15f683a158b17e27f93f64c9a6b82902c1c1201a416e59b035d17a308d"
+    ],
+    "response_id": "gen-1791115472-ssKBfC9q1RFaMilt5bTT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-position-target-change",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El valor del objetivo mostrado cambia de 0,00337 a 0,00490.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p160380000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p160470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dce76e2b4f2286c8d4231ed2d259c119c061b51ed4ab939315ee1f2769a48758",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra «Objetivo: 0,00337» y la segunda muestra «Objetivo: 0,00490», por lo que las dos evidencias citedistedoos finalist. consistentemente muestran el cambio de 0,00337 a 0,00490."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe un único cambio de valor del objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1936bd15f683a158b17e27f93f64c9a6b82902c1c1201a416e59b035d17a308d"
+    ],
+    "response_id": "gen-1791115472-ssKBfC9q1RFaMilt5bTT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-position-tool-hidden",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La herramienta de posición deja de estar visible al final de la ventana.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p160740000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p160920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2da00e4aa922353b375854352ffad586a3d67c97bc61b7ebdf3ad05963b28306",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra la herramienta de posición visible sobre el gráfico y la segunda imagen, al final de la ventana citada, ya no la muestra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1936bd15f683a158b17e27f93f64c9a6b82902c1c1201a416e59b035d17a308d"
+    ],
+    "response_id": "gen-1791115472-ssKBfC9q1RFaMilt5bTT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-position-tool-visible",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La gráfica muestra una herramienta de posición.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p160110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p160200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6427d820ebfbc3d4c8c596b64c3c43d7e4c25211c953e1ccdc24efa8ce211cec",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran una herramienta de posición seleccionada sobre la gráfica, con puntos de entrada, stop y objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1936bd15f683a158b17e27f93f64c9a6b82902c1c1201a416e59b035d17a308d"
+    ],
+    "response_id": "gen-1791115472-ssKBfC9q1RFaMilt5bTT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-review-order-block-long",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Para el escenario long, se revisa el order block en la zona inferior de la gráfica.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00257",
+    "asr-00258",
+    "frame-4de8f12d4841c630-s0-p160560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p160740000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p160920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "862d3ba66cc37ab0d8fab1cc8b2fcf7ecfb96f205038029dc676efb2a1884224",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «aquí abajo long ... para ver el orden block», lo que vincula directamente el escenario long con la revisión del order block en la zona inferior; las imágenes muestran además esa zona resaltada o señalada en la parte baja de la gráfica."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1936bd15f683a158b17e27f93f64c9a6b82902c1c1201a416e59b035d17a308d"
+    ],
+    "response_id": "gen-1791115472-ssKBfC9q1RFaMilt5bTT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-take-after-outside-close",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Cuando la vela cierra por fuera, se toma la operación.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00257",
+    "frame-4de8f12d4841c630-s0-p160110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p160200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "df12539e04415cffef3f1a76d751d9fff1bb1a565bcfcc43e5ddf8d8277a8825",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice directamente «vela de aquí cierra por fuera lo tomas», lo que sustenta la regla de tomar la operación cuando la vela cierra por fuera."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1936bd15f683a158b17e27f93f64c9a6b82902c1c1201a416e59b035d17a308d"
+    ],
+    "response_id": "gen-1791115472-ssKBfC9q1RFaMilt5bTT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframe-10",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal de 10 también se puede utilizar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00257",
+    "asr-00258"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7b18fca663307f0ad2a1daab5d4389471c15e989657b8676cacbdd3767c75040",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada menciona explícitamente que se puede utilizar «10» y añade que «se puede hacer también»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: que el marco temporal de 10 se puede utilizar."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1936bd15f683a158b17e27f93f64c9a6b82902c1c1201a416e59b035d17a308d"
+    ],
+    "response_id": "gen-1791115472-ssKBfC9q1RFaMilt5bTT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframe-15",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico mostrado utiliza el marco temporal de 15.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00257",
+    "frame-4de8f12d4841c630-s0-p160110000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e466d4e3b04dcfbd47c227458a669175e5e9e6f2002c0707c74623891f425867",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente «EURUSD · 15» y «EURUSD | 15M», lo que acredita que el gráfico utiliza el marco temporal de 15 minutos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el marco temporal del gráfico mostrado es 15."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1936bd15f683a158b17e27f93f64c9a6b82902c1c1201a416e59b035d17a308d"
+    ],
+    "response_id": "gen-1791115472-ssKBfC9q1RFaMilt5bTT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframe-25",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal de 25 también se puede utilizar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00257",
+    "asr-00258"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7e2180e4231a7e2fd9348b80c238901174ce3d3843ab217aabf2294f8443398e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona explícitamente «25» entre las opciones que se pueden utilizar y añade que «se puede hacer también», lo que respalda que el marco temporal de 25 también se puede usar."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1936bd15f683a158b17e27f93f64c9a6b82902c1c1201a416e59b035d17a308d"
+    ],
+    "response_id": "gen-1791115472-ssKBfC9q1RFaMilt5bTT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframe-30",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal de 30 también se puede utilizar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00257",
+    "asr-00258"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5f7615cb79174d9df25be79d1289b09700608e8c0acc7e3c08f3076ef61185d8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada dice explícitamente que se puede utilizar «30» y que ello «también» se puede hacer, lo que respalda la afirmación de que el marco temporal de 30 también se puede utilizar."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la disponibilidad de uso del marco temporal de 30."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1936bd15f683a158b17e27f93f64c9a6b82902c1c1201a416e59b035d17a308d"
+    ],
+    "response_id": "gen-1791115472-ssKBfC9q1RFaMilt5bTT"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00257",
+   "start_ms": 1776200,
+   "end_ms": 1785690,
+   "text": "vela de aquí cierra por fuera lo tomas vale esto lo miró en 15 pero si queréis utilizar 10 25 30"
+  },
+  {
+   "id": "asr-00258",
+   "start_ms": 1785690,
+   "end_ms": 1792270,
+   "text": "se puede hacer también y aquí abajo long también para ver el orden block es como esta vela cierra"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p160110000-canonical-v1",
+   "pts_ms": 1779000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p160110000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p160200000-canonical-v1",
+   "pts_ms": 1780000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p160200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p160290000-canonical-v1",
+   "pts_ms": 1781000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p160290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p160380000-canonical-v1",
+   "pts_ms": 1782000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p160380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p160470000-canonical-v1",
+   "pts_ms": 1783000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p160470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p160560000-canonical-v1",
+   "pts_ms": 1784000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p160560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p160740000-canonical-v1",
+   "pts_ms": 1786000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p160740000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p160920000-canonical-v1",
+   "pts_ms": 1788000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p160920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,790 @@
+{
+ "window": "w0101",
+ "start": "26:06",
+ "end": "26:18",
+ "start_ms": 1566000,
+ "end_ms": 1578000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-annotation-final-candle-low-high",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El ejemplo lleva la anotación «BAJO/ALTO A FINAL DE VELA».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p140940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e0b30a1e0683de1c4b5586d716aadcbda72213bc5563aab6d3117a799a597d60",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra claramente la anotación «BAJO/ALTO A FINAL DE VELA» en el ejemplo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-annotation-smt",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El ejemplo lleva la anotación «SMT».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p140940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d34c54a2e3309d5df918779bf447ca25a2806fe294c22738bf312ebf1fc3606f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra claramente la anotación «SMT» en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-displayed-instrument-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p140940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8b37c6c27d8999d5bfce2b93164502ffb14f3e30e8e80055beea457aeb3c61c2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra claramente la etiqueta «EURUSD» en la parte superior izquierda del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-example-drawn-as-zigzag",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El ejemplo está representado mediante un zigzag.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p141120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p142020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2ff167b298a283982314751082ba276a5e8064163d158f0da43bab43b60482f1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran el ejemplo como una línea con tramos alternos ascendentes y descendentes, es decir, en zigzag."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-felur-swing-better-explanation",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En ese capítulo, el instructor explicará mejor Felur Swing.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00213",
+    "asr-00214"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b6bc9301c310c0ef3b06ec78beca2c45a6ffc8fa11b89945c58f514e566ceeab",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas indican que habrá un capítulo sobre Felur Swing y que el hablante «lo voy a enseñar mejor», lo que respalda que en ese capítulo lo explicará mejor."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la mejor explicación futura de Felur Swing en ese capítulo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-felur-swing-chapter-examples",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En ese capítulo, el instructor enseñará ejemplos de Felur Swing.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00213",
+    "asr-00214"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "569f089d56dfe75889fa370fd5a73f4fd2c625253a05fb802d90daabe8e505bb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos citas indican que habrá un capítulo de Felur Swing y que therein el instructor enseñará ejemplos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-felur-swing-chapter",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Habrá un capítulo de Felur Swing.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00213"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1fd1fd689eed6848bf37c29be9b2032c013465b17435b64dbc12f7b3feaaae73",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que habrá un capítulo de Felur Swing."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la existencia de ese capítulo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-felur-swing-direct-up-move",
+   "kind": "rule",
+   "version": 1,
+   "statement": "En un Felur Swing, el precio empieza a ir arriba directamente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00215",
+    "asr-00216",
+    "asr-00217",
+    "asr-00218",
+    "asr-00219"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "111d823d727c2bef6109ec5d167e82d8ed233f3ca84dd0d44e24401c8df063d2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que, en un Felur Swing, una vez creado el rango, el precio «empieza a ir arriba directamente»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-felur-swing-no-new-low",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Felur Swing es la situación en la que el precio no consigue hacer un nuevo bajo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00215",
+    "asr-00216",
+    "asr-00217"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cc579d4d3fa5e00520c6360d14dd06dba2ce12acc9591137f6ae25ddf187683b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas citadas俯xj state que «Felur Swing es cuando el precio no consigue hacer el nuevo bajo», lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: la definición de Felur Swing."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-felur-swing-range-created",
+   "kind": "rule",
+   "version": 1,
+   "statement": "En un Felur Swing, el rango se da por creado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00215",
+    "asr-00216",
+    "asr-00217",
+    "asr-00218"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "86d305e5ca16c89b653cc3880426dec527d40145141398a44f5252309d450853",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que, en un Felur Swing, «el rango se daría por creado»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-instructor-added-chart-example",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El instructor ha puesto un ejemplo en el gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00220",
+    "frame-4de8f12d4841c630-s0-p140940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "13779fb129f8119ea20fc849bbb1a8a853e6706d90d38473b0643996f131654d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «he puesto un poco de ejemplo, sería algo así», lo que apoya que el ponente añadió un ejemplo, y la imagen muestra anotaciones ilustrativas en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-last-drawn-low-above-prior-low",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El último mínimo del zigzag dibujado está por encima del mínimo anterior.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p140940000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p141120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ab07c7dc430cad8821ce911b99fd6f6928892ddaed19a096fcb9c7a9e4582caa",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El zigzag muestra dos mínimos consecutivos en los que el último está visiblemente por encima del mínimo anterior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zigzag-ends-with-up-arrow",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El zigzag dibujado termina con una flecha ascendente.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p141120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p142020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c223aec9cb0515a886ab27524eaa43130bcdeb1f54c21698d82c606cc4ba0fdc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes citadas muestran un zigzag cuyo extremo final es una flecha que apunta hacia arriba."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-felur-swing-examples-depend-on-chapter",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-felur-swing-chapter-examples",
+   "subject_version": 1,
+   "object_id": "cl-felur-swing-chapter",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00213",
+    "asr-00214"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4e190508df43be97753c994573e9dd0318c499e15be846e4a669b2e05a59eaae",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera cita anuncia un capítulo de Felur Swing y la segunda indica que therein se enseñarán ejemplos, por lo que la afirmación sobre los ejemplos depende de la existencia de ese capítulo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-felur-swing-explanation-depends-on-chapter",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-felur-swing-better-explanation",
+   "subject_version": 1,
+   "object_id": "cl-felur-swing-chapter",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00213",
+    "asr-00214"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0b47123102754d2e7acf806b27a1c268290f377373291ac8809ef76e17c2dc65",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia primero anuncia que habrá un capítulo de Felur Swing y luego, usando «donde», afirma que en ese capítulo el instructor enseñar ejemplos y lo enseñará mejor; por tanto, la explicación mejor depende del capítulo anunciado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-felur-swing-range-created-depends-on-no-new-low",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-felur-swing-range-created",
+   "subject_version": 1,
+   "object_id": "cl-felur-swing-no-new-low",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00215",
+    "asr-00216",
+    "asr-00217",
+    "asr-00218"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e8e7d63276928576fff416ff69c10afc5fece4f37a17af4c50d2b6dc007cded8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia vincula directamente ambas afirmaciones: dice que el Felur Swing ocurre cuando el precio no consigue hacer un nuevo bajo y, en esa misma situación, «el rango se daría por creado»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-felur-swing-up-move-depends-on-no-new-low",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-felur-swing-direct-up-move",
+   "subject_version": 1,
+   "object_id": "cl-felur-swing-no-new-low",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00215",
+    "asr-00216",
+    "asr-00217",
+    "asr-00218",
+    "asr-00219"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0f6387ed54c8acecb2f548e5bb790260c9a9ec62d8b127a86e0f5e9b64ce91aa",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited segment defines the Felur Swing by the price failing to make a new low and, in that same situation, states that the range is considered created and the price begins moving directly upward. Thus the direct upward move is presented as depending on the no-new-low condition."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c"
+    ],
+    "response_id": "gen-1791109456-oQmeTKkRCitcTHxMMiiR"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00213",
+   "start_ms": 1564680,
+   "end_ms": 1566320,
+   "text": "va a haber un capítulo de Felur Swing"
+  },
+  {
+   "id": "asr-00214",
+   "start_ms": 1566320,
+   "end_ms": 1568460,
+   "text": "donde voy a enseñar ejemplos y lo voy a enseñar mejor"
+  },
+  {
+   "id": "asr-00215",
+   "start_ms": 1568460,
+   "end_ms": 1570960,
+   "text": "pero bueno, Felur Swing es cuando"
+  },
+  {
+   "id": "asr-00216",
+   "start_ms": 1570960,
+   "end_ms": 1572760,
+   "text": "el precio no consigue hacer"
+  },
+  {
+   "id": "asr-00217",
+   "start_ms": 1572760,
+   "end_ms": 1573880,
+   "text": "el nuevo bajo"
+  },
+  {
+   "id": "asr-00218",
+   "start_ms": 1573880,
+   "end_ms": 1576780,
+   "text": "pero el rango se daría por creado y empieza a ir"
+  },
+  {
+   "id": "asr-00219",
+   "start_ms": 1576780,
+   "end_ms": 1577660,
+   "text": "arriba directamente"
+  },
+  {
+   "id": "asr-00220",
+   "start_ms": 1577660,
+   "end_ms": 1580400,
+   "text": "he puesto un poco de ejemplo, sería algo así"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p140940000-canonical-v1",
+   "pts_ms": 1566000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p140940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p141120000-canonical-v1",
+   "pts_ms": 1568000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p141120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p141300000-canonical-v1",
+   "pts_ms": 1570000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p141300000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p141480000-canonical-v1",
+   "pts_ms": 1572000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p141480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p141660000-canonical-v1",
+   "pts_ms": 1574000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p141660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p141840000-canonical-v1",
+   "pts_ms": 1576000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p141840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p141930000-canonical-v1",
+   "pts_ms": 1577000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p141930000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p142020000-canonical-v1",
+   "pts_ms": 1578000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p142020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

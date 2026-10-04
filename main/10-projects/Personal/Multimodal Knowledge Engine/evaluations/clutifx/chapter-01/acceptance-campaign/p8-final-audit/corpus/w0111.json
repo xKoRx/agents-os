@@ -1,0 +1,90 @@
+{
+ "window": "w0111",
+ "start": "28:32",
+ "end": "28:41",
+ "start_ms": 1712000,
+ "end_ms": 1721000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00247",
+   "start_ms": 1706630,
+   "end_ms": 1713020,
+   "text": "este de aquí es un order block. En el momento en que esta vela cierra afuera, es un poco"
+  },
+  {
+   "id": "asr-00248",
+   "start_ms": 1713020,
+   "end_ms": 1717900,
+   "text": "exagerado porque está cerrado muy fuera, pero es un gráfico de 8 horas. Si vamos a"
+  },
+  {
+   "id": "asr-00249",
+   "start_ms": 1717900,
+   "end_ms": 1723940,
+   "text": "M15 va a ser mucho más fácil encontrar order blocks. Por ejemplo, la venta que he tomado"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154080000-canonical-v1",
+   "pts_ms": 1712000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154170000-canonical-v1",
+   "pts_ms": 1713000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154440000-canonical-v1",
+   "pts_ms": 1716000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154530000-canonical-v1",
+   "pts_ms": 1717000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154530000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154620000-canonical-v1",
+   "pts_ms": 1718000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154620000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154710000-canonical-v1",
+   "pts_ms": 1719000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154800000-canonical-v1",
+   "pts_ms": 1720000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154890000-canonical-v1",
+   "pts_ms": 1721000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

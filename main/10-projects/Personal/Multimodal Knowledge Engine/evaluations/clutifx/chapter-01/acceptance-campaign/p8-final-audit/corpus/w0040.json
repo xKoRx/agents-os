@@ -1,0 +1,609 @@
+{
+ "window": "w0040",
+ "start": "09:00",
+ "end": "09:10",
+ "start_ms": 540000,
+ "end_ms": 550000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-completa-rango-bearish",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango bearish se completa.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00083",
+    "asr-00087"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "6325b7736ff9070e57cd9bdf76a4218c9ddf0528ad7b53a1b1e07315974f669a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera cita dice «completa el bearish», pero la segunda solo menciona «un rango» sin vincular explícitamente ese rango con lo bearish; la evidencia no acredita que se haya completado un rango bearish."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef949639f3cf42726450eb0b0e012acec77b4edc5ab8670a4adb6fc9ffecc4ea"
+    ],
+    "response_id": "gen-1791090227-fuczC4WPRrGUHHazjVRB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-cambio-temporalidad-4h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico de EURUSD pasa de una temporalidad de 1h a una de 4h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p48960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49050000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "54470047fdb1490e2a78304127d6c1902d8b2cbf0322f53643cccf6652655fb0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El primer fotograma muestra el gráfico de EURUSD etiquetado como «1h» y el segundo lo muestra como «4h», por lo que se evidencia el cambio de temporalidad de 1h a 4h."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef949639f3cf42726450eb0b0e012acec77b4edc5ab8670a4adb6fc9ffecc4ea"
+    ],
+    "response_id": "gen-1791090227-fuczC4WPRrGUHHazjVRB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-rango-delimitado-4h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el gráfico de EURUSD de 4h se muestra un rango delimitado por un rectángulo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49050000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "462b6e808dabd2c0ca57b485bdd4e116bf2e3c9c1b355fdbd1ee0de3f426c375",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra un gráfico etiquetado «EURUSD · 4h · FOREX.com» con un rango señalado por un rectángulo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef949639f3cf42726450eb0b0e012acec77b4edc5ab8670a4adb6fc9ffecc4ea"
+    ],
+    "response_id": "gen-1791090227-fuczC4WPRrGUHHazjVRB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-forma-rango-bearish",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Se forma un rango bearish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00083",
+    "asr-00087"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7151f637b3e3c6395bf871d3a69c188eec1c202e34d107925f7eb56666fba1ec",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que se forma un bearish y, en el contexto inmediato, menciona un rango, lo que respalda que se forma un rango bearish."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la formación de un rango bearish."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef949639f3cf42726450eb0b0e012acec77b4edc5ab8670a4adb6fc9ffecc4ea"
+    ],
+    "response_id": "gen-1791090227-fuczC4WPRrGUHHazjVRB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-formacion-rangos-basada-temporalidades",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La formación de los rangos está basada en las temporalidades.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00082",
+    "asr-00083",
+    "asr-00084",
+    "asr-00087"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "70f73b8f1900f51be69fa1ff9be565089d8da6d7ef06fd94f74d6c0e6551ecf0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones explican la formación de un rango mediante un movimiento bullish y otro bearish y añaden que «todo esto» está «basado en las temporalidades», lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la formación de los rangos se basa en las temporalidades."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef949639f3cf42726450eb0b0e012acec77b4edc5ab8670a4adb6fc9ffecc4ea"
+    ],
+    "response_id": "gen-1791090227-fuczC4WPRrGUHHazjVRB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-cambio-temporalidad-4h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico de GBPUSD pasa de una temporalidad de 1h a una de 4h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p48960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49050000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d340509028750f49b891e06361269e015a52c6ac35d6b9a28a34e602c0d81713",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El primer fotograma muestra el gráfico de GBPUSD con temporalidad «1h» y el segundo lo muestra con temporalidad «4h», lo que acredita el cambio indicado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef949639f3cf42726450eb0b0e012acec77b4edc5ab8670a4adb6fc9ffecc4ea"
+    ],
+    "response_id": "gen-1791090227-fuczC4WPRrGUHHazjVRB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-linea-horizontal-1-34318",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja una línea horizontal en 1.34318 en el gráfico de GBPUSD de 4h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49410000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49500000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2eac0f5709b56674783f629c1472d62437c7b9bbe373a7f3477769cf658939e0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segundo fotograma muestra una línea horizontal punteada en el gráfico GBPUSD de 4h, alineada con la etiqueta de precio 1,34318."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef949639f3cf42726450eb0b0e012acec77b4edc5ab8670a4adb6fc9ffecc4ea"
+    ],
+    "response_id": "gen-1791090227-fuczC4WPRrGUHHazjVRB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-rango-delimitado-4h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el gráfico de GBPUSD de 4h se muestra un rango delimitado por un rectángulo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49050000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bb05b48fba943976e675830a3cc8916bd0bf5bce60dbe9debeab522615655a50",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El panel derecho está etiquetado como «GBPUSD · 4h» y muestra un rectángulo que delimita una zona de precio del gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una sola proposición: el gráfico de GBPUSD de 4 h presenta un rango delimitado por un rectángulo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef949639f3cf42726450eb0b0e012acec77b4edc5ab8670a4adb6fc9ffecc4ea"
+    ],
+    "response_id": "gen-1791090227-fuczC4WPRrGUHHazjVRB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-supera-rango-4h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio del GBPUSD en 4h supera el extremo superior del rango delimitado.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49050000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "eb7b990549181dd265186556ea2b9c41064da4decf92afe8ce1b8ed620a46bfb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En el gráfico de GBPUSD de 4 h, la vela más reciente y el precio de 1,36020 aparecen por encima del borde superior del rango delimitado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef949639f3cf42726450eb0b0e012acec77b4edc5ab8670a4adb6fc9ffecc4ea"
+    ],
+    "response_id": "gen-1791090227-fuczC4WPRrGUHHazjVRB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intervalo-seleccionado-4h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "En el diálogo «Cambiar intervalo», la opción seleccionada es «4H» («4 horas»).",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p48600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8cc6cdc7b276613c80fbe93f579846ae07e71dd288656bc0475b2b756a5ad397",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el diálogo «Cambiar intervalo» con «4H» seleccionado y la etiqueta «4 horas» debajo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef949639f3cf42726450eb0b0e012acec77b4edc5ab8670a4adb6fc9ffecc4ea"
+    ],
+    "response_id": "gen-1791090227-fuczC4WPRrGUHHazjVRB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-llega-rango-bullish",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Llega un rango bullish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00082",
+    "asr-00087"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5037a1c5d5416ab3e08a2074588c29e262c730d1f1b828c959171ec8d83fa4ef",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas indican que «llega» un rango «bullish»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef949639f3cf42726450eb0b0e012acec77b4edc5ab8670a4adb6fc9ffecc4ea"
+    ],
+    "response_id": "gen-1791090227-fuczC4WPRrGUHHazjVRB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-entender-base-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo de la explicación es que entendáis un poco la base de qué es un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00086",
+    "asr-00087"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ee508d9953f2eb33e125e432d3b587bb5fd074fabf0d95a29b619c51d8d8d024",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La expresión «para que entendáis» presenta la comprensión de la base de qué es un rango como el fin de la explicación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre ese objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef949639f3cf42726450eb0b0e012acec77b4edc5ab8670a4adb6fc9ffecc4ea"
+    ],
+    "response_id": "gen-1791090227-fuczC4WPRrGUHHazjVRB"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidades-en-siguiente-capitulo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Esas temporalidades se verán en el siguiente capítulo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00084",
+    "asr-00085"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2ee772784f1b1a3c76b1b9af16c1c4169909f968d4620a494cb852188e6c7255",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas indican que «las temporalidades» que «vais a ver» estarán en «el siguiente capítulo», lo que sostiene directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: las temporalidades se verán en el siguiente capítulo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ef949639f3cf42726450eb0b0e012acec77b4edc5ab8670a4adb6fc9ffecc4ea"
+    ],
+    "response_id": "gen-1791090227-fuczC4WPRrGUHHazjVRB"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00082",
+   "start_ms": 539220,
+   "end_ms": 540720,
+   "text": "a otro, llega uno bullish,"
+  },
+  {
+   "id": "asr-00083",
+   "start_ms": 541160,
+   "end_ms": 542780,
+   "text": "forma uno bearish, completa el bearish"
+  },
+  {
+   "id": "asr-00084",
+   "start_ms": 542780,
+   "end_ms": 545280,
+   "text": "y todo esto basado en las temporalidades"
+  },
+  {
+   "id": "asr-00085",
+   "start_ms": 545280,
+   "end_ms": 547140,
+   "text": "que vais a ver en el siguiente capítulo"
+  },
+  {
+   "id": "asr-00086",
+   "start_ms": 547140,
+   "end_ms": 549480,
+   "text": "pero para que entendáis un poco la base"
+  },
+  {
+   "id": "asr-00087",
+   "start_ms": 549480,
+   "end_ms": 550560,
+   "text": "de qué es un rango"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p48600000-canonical-v1",
+   "pts_ms": 540000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p48600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p48960000-canonical-v1",
+   "pts_ms": 544000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p48960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49050000-canonical-v1",
+   "pts_ms": 545000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49140000-canonical-v1",
+   "pts_ms": 546000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49230000-canonical-v1",
+   "pts_ms": 547000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49230000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49320000-canonical-v1",
+   "pts_ms": 548000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49410000-canonical-v1",
+   "pts_ms": 549000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49500000-canonical-v1",
+   "pts_ms": 550000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

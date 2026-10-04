@@ -1,0 +1,398 @@
+{
+ "window": "w0125",
+ "start": "32:08",
+ "end": "32:24",
+ "start_ms": 1928000,
+ "end_ms": 1944000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-concepto-notion-accion-precio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Este concepto sirve principalmente para tener una noción de lo que está haciendo el precio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00278",
+    "asr-00279",
+    "asr-00280"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3c12e45cd019427146f787a732adc102850261b1f98814598c258420fbbd6338",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas citadas expresan que el propósito principal es tener una noción de cómo se mueve el mercado y de lo que está haciendo el precio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «principalmente» solo matiza su alcance."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "315682d086951f824b6838a6b458da1c74ca23b3e6914f35fc0917830d6a11ce"
+    ],
+    "response_id": "gen-1791118360-st8KkcSTdsu6ENWIJkgR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-concepto-notion-movimiento-mercado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Este concepto sirve principalmente para tener una noción de cómo se mueve el mercado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00277",
+    "asr-00278",
+    "asr-00279"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "48d1f85e8510170be3a5dd785081828b61eb4c24fee0c0fb1de4f6825dcf83dc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia表达 que el concepto es importante «más que nada para tener noción de cómo se mueve el mercado», lo que sostiene que su propósito principal es formar una noción del movimiento del mercado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la función principal del concepto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "315682d086951f824b6838a6b458da1c74ca23b3e6914f35fc0917830d6a11ce"
+    ],
+    "response_id": "gen-1791118360-st8KkcSTdsu6ENWIJkgR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-entrada-preferida-power-3-nueva-vela",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Entre entrar arriba y entrar abajo, es mejor entrar en el power of 3 de la nueva vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00274",
+    "asr-00275",
+    "frame-4de8f12d4841c630-s0-p173520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p173880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f9e7ce86bbebb5406d768eecf9cce8f365b431e7eacc270918d78c781ac09a49",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los fragmentos citados preguntan qué es mejor entre entrar arriba o abajo y responden explícitamente que es mejor entrar en el power of 3 de la nueva vela."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición comparativa sobre cuál de las dos entradas es preferible."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "315682d086951f824b6838a6b458da1c74ca23b3e6914f35fc0917830d6a11ce"
+    ],
+    "response_id": "gen-1791118360-st8KkcSTdsu6ENWIJkgR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-power-3-nueva-vela-concepto-importante",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El power of 3 de la nueva vela es un concepto muy importante.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00275",
+    "asr-00276",
+    "asr-00277",
+    "frame-4de8f12d4841c630-s0-p173880000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p173970000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a9b0c9d7cd422088e730b4de7890e0d88d679324ac8272d382025470b080f064",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica el “power of 3” de la nueva vela y afirma que es un “concepto muy importante”; la expresión “es básicamente esto” conecta ambas afirmaciones."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia contiene una única proposición sobre la importancia de ese concepto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "315682d086951f824b6838a6b458da1c74ca23b3e6914f35fc0917830d6a11ce"
+    ],
+    "response_id": "gen-1791118360-st8KkcSTdsu6ENWIJkgR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-referencia-etiqueta-inferior-0100",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta «0100» está situada en el extremo inferior de la referencia dibujada.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p173520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "31494ef90ffc1d986a12678645513b4f1bc1250d8dd7dbcb2f416d6a61e646da",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la etiqueta «0100» junto a la línea horizontal inferior de la referencia vertical, mientras que «0500» acompaña la línea superior."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la ubicación de la etiqueta."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "315682d086951f824b6838a6b458da1c74ca23b3e6914f35fc0917830d6a11ce"
+    ],
+    "response_id": "gen-1791118360-st8KkcSTdsu6ENWIJkgR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-referencia-etiqueta-superior-0500",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta «0500» está situada en el extremo superior de la referencia dibujada.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p173520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a4944ac26d71f1f4820a076b15fdaed53f880e3f3359cd5b45c156a3c74d97e2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la etiqueta «0500» junto al nivel horizontal superior de la referencia vertical dibujada, mientras «0100» aparece en el nivel inferior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "315682d086951f824b6838a6b458da1c74ca23b3e6914f35fc0917830d6a11ce"
+    ],
+    "response_id": "gen-1791118360-st8KkcSTdsu6ENWIJkgR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-referencia-rotulada-4-horas",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La referencia dibujada está rotulada como «4 HORAS».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p173520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "34f56d5227a6261e597896139adbe2b17ef63ab4cd8c740e4a67143d7cc691a7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una referencia dibujada con la etiqueta visible «4 HORAS»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "315682d086951f824b6838a6b458da1c74ca23b3e6914f35fc0917830d6a11ce"
+    ],
+    "response_id": "gen-1791118360-st8KkcSTdsu6ENWIJkgR"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00274",
+   "start_ms": 1926200,
+   "end_ms": 1929620,
+   "text": "¿Qué te es mejor, entrar aquí arriba o entrar aquí abajo?"
+  },
+  {
+   "id": "asr-00275",
+   "start_ms": 1930260,
+   "end_ms": 1934420,
+   "text": "Obviamente, será mejor entrar en el power of 3 de la nueva vela, ¿vale?"
+  },
+  {
+   "id": "asr-00276",
+   "start_ms": 1934420,
+   "end_ms": 1937180,
+   "text": "es básicamente esto"
+  },
+  {
+   "id": "asr-00277",
+   "start_ms": 1937180,
+   "end_ms": 1938420,
+   "text": "concepto muy importante"
+  },
+  {
+   "id": "asr-00278",
+   "start_ms": 1938420,
+   "end_ms": 1940700,
+   "text": "más que nada para tener"
+  },
+  {
+   "id": "asr-00279",
+   "start_ms": 1940700,
+   "end_ms": 1943920,
+   "text": "noción de cómo se mueve el mercado"
+  },
+  {
+   "id": "asr-00280",
+   "start_ms": 1943920,
+   "end_ms": 1944900,
+   "text": "y de lo que está haciendo el precio"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p173520000-canonical-v1",
+   "pts_ms": 1928000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p173520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p173880000-canonical-v1",
+   "pts_ms": 1932000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p173880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p173970000-canonical-v1",
+   "pts_ms": 1933000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p173970000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p174150000-canonical-v1",
+   "pts_ms": 1935000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p174150000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p174240000-canonical-v1",
+   "pts_ms": 1936000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p174240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p174330000-canonical-v1",
+   "pts_ms": 1937000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p174330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p174600000-canonical-v1",
+   "pts_ms": 1940000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p174600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p174960000-canonical-v1",
+   "pts_ms": 1944000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p174960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

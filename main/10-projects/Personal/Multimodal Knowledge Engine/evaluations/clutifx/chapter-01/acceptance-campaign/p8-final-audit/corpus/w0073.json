@@ -1,0 +1,286 @@
+{
+ "window": "w0073",
+ "start": "18:04",
+ "end": "18:24",
+ "start_ms": 1084000,
+ "end_ms": 1104000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-15m-timeframe",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad mostrada es 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p97560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p99360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bda24042d934afbf58453510a3b7f30bb2608299256de716126d4095d1bdecc4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran explícitamente la etiqueta «EURUSD | 15M», lo que acredita que la temporalidad mostrada es de 15 minutos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "e53ebaafbcde7adc1e6d322be124e80f207716522248d424a3c71c68c7354d0f"
+    ],
+    "response_id": "gen-1791100121-NNnZ1juqKeUw7j4xpaqe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-break-even-after-buy",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Si nosotros hemos comprado, podríamos poner un break even.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00155",
+    "asr-00156"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4b7217be99713db129f71ae767131b054154ce064625b0aed51787e8a807a676",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita dice explícitamente: “si nosotros hemos comprado, podríamos poner un break even”."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional: si se ha comprado, se podría colocar un break even."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "e53ebaafbcde7adc1e6d322be124e80f207716522248d424a3c71c68c7354d0f"
+    ],
+    "response_id": "gen-1791100121-NNnZ1juqKeUw7j4xpaqe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-counter-range-completes-before-rise",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si esto es una vela de un día y en cuatro horas se forma un rango contrario a nuestra dirección, puede pasar que el precio complete rangos antes de subir.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00155",
+    "asr-00156"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a1a7af694cdfb6349195bb933f90dcf6bf0a9fca5a97a475a0b466cc0dd1565a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que, si en cuatro horas se forma un rango contrario a la dirección y se ha comprado, el precio puede completar rangos antes de subir."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las condiciones de una vela de un día y de un rango contrario solo acotan la misma proposición; no añaden afirmaciones independientes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "e53ebaafbcde7adc1e6d322be124e80f207716522248d424a3c71c68c7354d0f"
+    ],
+    "response_id": "gen-1791100121-NNnZ1juqKeUw7j4xpaqe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-two-white-one-black-candles",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En la zona central del gráfico se observan dos velas blancas seguidas de una vela negra.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p97560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p99360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ad14f2ed22a855b8f01fd3c000acbb52b94ad0b6aaba6b563c1884fcbe36d16a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes citadas muestran, de izquierda a derecha en la zona central, dos velas blancas seguidas por una vela negra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "e53ebaafbcde7adc1e6d322be124e80f207716522248d424a3c71c68c7354d0f"
+    ],
+    "response_id": "gen-1791100121-NNnZ1juqKeUw7j4xpaqe"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-break-even-depends-on-counter-range",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-break-even-after-buy",
+   "subject_version": 1,
+   "object_id": "cl-counter-range-completes-before-rise",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00155",
+    "asr-00156"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "57cdb8f7b2b4f405aa185c8215cff3e08dd2b61693f43d6612b60f60d60e9e0c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El evidencia presenta el escenario de que se completen rangos contrarios antes de subir y, mediante «Por lo tanto», lo enlaza explícitamente con la recomendación de poner un break even si se ha comprado; por tanto, la affirmed del break-even depende del escenario citado en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "e53ebaafbcde7adc1e6d322be124e80f207716522248d424a3c71c68c7354d0f"
+    ],
+    "response_id": "gen-1791100121-NNnZ1juqKeUw7j4xpaqe"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00155",
+   "start_ms": 1081020,
+   "end_ms": 1099350,
+   "text": "No. Algunas veces pasa, sí. ¿Cómo se puede intentar predecir? Que lo vais a ver más adelante. Pero si esto es una vela, digamos, de un día y en cuatro horas tenemos, pues, algo así, como que se nos forma un rango contrario, ¿vale?"
+  },
+  {
+   "id": "asr-00156",
+   "start_ms": 1099350,
+   "end_ms": 1112970,
+   "text": "a nuestra dirección, puede pasar que el precio vaya a completar rangos antes de subir. Por lo tanto, aquí si nosotros hemos comprado, podríamos poner un break even"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p97560000-canonical-v1",
+   "pts_ms": 1084000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p97560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p97830000-canonical-v1",
+   "pts_ms": 1087000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p97830000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p97920000-canonical-v1",
+   "pts_ms": 1088000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p97920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p98100000-canonical-v1",
+   "pts_ms": 1090000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p98100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p98280000-canonical-v1",
+   "pts_ms": 1092000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p98280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p98640000-canonical-v1",
+   "pts_ms": 1096000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p98640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p99000000-canonical-v1",
+   "pts_ms": 1100000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p99000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p99360000-canonical-v1",
+   "pts_ms": 1104000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p99360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

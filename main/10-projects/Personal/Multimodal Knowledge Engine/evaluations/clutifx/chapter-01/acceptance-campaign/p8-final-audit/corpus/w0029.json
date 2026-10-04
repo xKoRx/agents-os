@@ -1,0 +1,84 @@
+{
+ "window": "w0029",
+ "start": "06:14",
+ "end": "06:26",
+ "start_ms": 374000,
+ "end_ms": 386000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00052",
+   "start_ms": 362440,
+   "end_ms": 381560,
+   "text": "Es un ejercicio fácil si vamos, por ejemplo, a la temporalidad diaria, ir viendo cómo se van formando rangos y cómo se van completando, ¿vale? Por ejemplo, este de aquí, abajo hay un failure swing, vais a ver el concepto más tarde qué significa en este vídeo, ¿vale?"
+  },
+  {
+   "id": "asr-00053",
+   "start_ms": 381560,
+   "end_ms": 407710,
+   "text": "Vamos a ir, por ejemplo, a este rango de aquí, ¿vale? Esto de aquí. Normalmente si vemos cómo nos toma el alto y cierra adentro, este cierra un poco fuera, tenía ahí una mecha dibujada, este de aquí, por ejemplo, este bullish, vemos cómo si normalmente toma un extremo y cierra adentro, lo que va a hacer el precio es ir hacia el otro extremo."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33660000-canonical-v1",
+   "pts_ms": 374000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33840000-canonical-v1",
+   "pts_ms": 376000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33930000-canonical-v1",
+   "pts_ms": 377000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33930000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p34200000-canonical-v1",
+   "pts_ms": 380000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p34200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p34290000-canonical-v1",
+   "pts_ms": 381000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p34290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p34380000-canonical-v1",
+   "pts_ms": 382000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p34380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p34560000-canonical-v1",
+   "pts_ms": 384000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p34560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p34740000-canonical-v1",
+   "pts_ms": 386000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p34740000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

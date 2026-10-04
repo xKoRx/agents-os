@@ -1,0 +1,334 @@
+{
+ "window": "w0041",
+ "start": "09:11",
+ "end": "09:20",
+ "start_ms": 551000,
+ "end_ms": 560000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-abrir-paleta-colores",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se abre la paleta de colores del rectángulo seleccionado.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "736b816e2e243b53f60b392f83cb080e27415e249c7debfc8aa6ca79b20f9039",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran un rectángulo con asas de selección y su paleta de colores abierta."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b854eff52718eff70b4622e70f400086f6cacd3f18a8282ee39cc4788f28e772"
+    ],
+    "response_id": "gen-1791090442-1LVucgltgfzOmLYFJ6WY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-vista-un-pan",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista cambia de dos paneles a un solo panel.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49770000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49860000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "107639acb3e1435f69e4f70d97df00f32c4861b307951d1d9a27d3473d6c4c6f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra dos paneles de gráficos lado a lado y la segunda muestra un único panel que ocupa todo el ancho."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b854eff52718eff70b4622e70f400086f6cacd3f18a8282ee39cc4788f28e772"
+    ],
+    "response_id": "gen-1791090442-1LVucgltgfzOmLYFJ6WY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dibujar-rectangulo-vertical",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja un rectángulo vertical en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p50040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50130000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "21c425f7072ea9104f831875ae40cebf7e70364346d55f207c928ced05be150d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra un rectángulo de orientación vertical dibujado y seleccionado sobre el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b854eff52718eff70b4622e70f400086f6cacd3f18a8282ee39cc4788f28e772"
+    ],
+    "response_id": "gen-1791090442-1LVucgltgfzOmLYFJ6WY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-hacer-rango-grande",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vamos a hacer un rango grande.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00090"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5dd989da9fd69e14eb2fe6b65411a5a11ba6d867f43ae305e618911c5567fae7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada enuncia exactamente «vamos a hacer un rango grande»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la intención de hacer un rango grande."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b854eff52718eff70b4622e70f400086f6cacd3f18a8282ee39cc4788f28e772"
+    ],
+    "response_id": "gen-1791090442-1LVucgltgfzOmLYFJ6WY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-imaginar-objeto-como-rango",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El instructor pide imaginar que el objeto mostrado es un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00091",
+    "asr-00092",
+    "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ba436efb5f71329d5015885c158d1c547a411ff0731e644167328a780f0becf2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas transcritas dicen literalmente «os vais a imaginar que esto es un rango», lo que constituye una petición para imaginar que el objeto mostrado es un rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b854eff52718eff70b4622e70f400086f6cacd3f18a8282ee39cc4788f28e772"
+    ],
+    "response_id": "gen-1791090442-1LVucgltgfzOmLYFJ6WY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-opacidad-rectangulo-cero",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La opacidad mostrada para el rectángulo es 0%.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c012b38222db850aad8af91f64482fce207c27e7acd435545abf99f2b00e4fca",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el panel de propiedades del rectángulo seleccionado muestra «Opacidad» con un valor de 0%."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b854eff52718eff70b4622e70f400086f6cacd3f18a8282ee39cc4788f28e772"
+    ],
+    "response_id": "gen-1791090442-1LVucgltgfzOmLYFJ6WY"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00088",
+   "start_ms": 550560,
+   "end_ms": 553560,
+   "text": "y para qué van a ser importantes en esta mentoría"
+  },
+  {
+   "id": "asr-00089",
+   "start_ms": 553560,
+   "end_ms": 554870,
+   "text": "está"
+  },
+  {
+   "id": "asr-00090",
+   "start_ms": 554870,
+   "end_ms": 557790,
+   "text": "vamos a hacer un rango grande"
+  },
+  {
+   "id": "asr-00091",
+   "start_ms": 557790,
+   "end_ms": 559790,
+   "text": "ahora, os vais a imaginar que"
+  },
+  {
+   "id": "asr-00092",
+   "start_ms": 559790,
+   "end_ms": 561430,
+   "text": "esto es un rango de"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49590000-canonical-v1",
+   "pts_ms": 551000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49680000-canonical-v1",
+   "pts_ms": 552000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49770000-canonical-v1",
+   "pts_ms": 553000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49770000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49860000-canonical-v1",
+   "pts_ms": 554000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50040000-canonical-v1",
+   "pts_ms": 556000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50130000-canonical-v1",
+   "pts_ms": 557000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+   "pts_ms": 559000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50310000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50400000-canonical-v1",
+   "pts_ms": 560000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

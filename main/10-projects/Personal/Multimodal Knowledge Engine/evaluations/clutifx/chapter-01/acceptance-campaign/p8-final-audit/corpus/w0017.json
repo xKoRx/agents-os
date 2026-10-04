@@ -1,0 +1,543 @@
+{
+ "window": "w0017",
+ "start": "03:49",
+ "end": "04:00",
+ "start_ms": 229000,
+ "end_ms": 240000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ajuste-cambiar-intervalo-1-minuto",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El valor del ajuste «Cambiar intervalo» es 1 minuto.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p21150000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e60e527abe2938e295df73bb4528b062d4607bc0a355e47fb3ceac037885be3e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El cuadro «Cambiar intervalo» muestra el valor «1» y debajo la etiqueta «1 minuto»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "cc512c9815bea4facdab5d374e380395483a057c0962c5d4571ac1d458e56d5c"
+    ],
+    "response_id": "gen-1791084453-90FPJe4seGG5bY2fgGao"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambiar-temporalidad-diaria",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vamos a cambiar a la temporalidad diaria.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00031",
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p21240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p21330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p32760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p32850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c4ac01602cd88acf71558c6c3b674350afa4c384c55462a354a96ff18bc68957",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente «vamos al día» y «vamos [...] a la temporalidad diaria»; además, los fotogramas muestran «Cambiar intervalo» con «1D» y «1 día», y después la cabecera «EURUSD · 1D»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "888ef9ed829fe9fd439727cb370083e19fa3cb50b0c7e7ed98413582780ec89f",
+     "cc512c9815bea4facdab5d374e380395483a057c0962c5d4571ac1d458e56d5c"
+    ],
+    "response_id": "gen-1791084453-90FPJe4seGG5bY2fgGao"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-comportamiento-en-todas-temporalidades",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Este comportamiento se presenta en todas las temporalidades.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00030",
+    "asr-00031",
+    "frame-4de8f12d4841c630-s0-p20610000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p21600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e9dc161d6a3f3a16ddf19239c25ec49b7b0f0d8df11591881c44ebcab17199ca",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «esto pasa en todas las temporalidades», lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el comportamiento descrito se presenta en todas las temporalidades."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "cc512c9815bea4facdab5d374e380395483a057c0962c5d4571ac1d458e56d5c"
+    ],
+    "response_id": "gen-1791084453-90FPJe4seGG5bY2fgGao"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-limite-inferior-rango-1-14748",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde inferior del recuadro seleccionado está etiquetado como «1,14748».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p21600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "eaf1d57f98246f20b80784842de9b7e403f3d91083c9a11fc367aaaf57a89bb4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una etiqueta azul «1,14748» alineada con el borde inferior del recuadro seleccionado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "cc512c9815bea4facdab5d374e380395483a057c0962c5d4571ac1d458e56d5c"
+    ],
+    "response_id": "gen-1791084453-90FPJe4seGG5bY2fgGao"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-limite-superior-rango-1-15611",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde superior del recuadro seleccionado está etiquetado como «1,15611».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p21600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ce585d7926ba4c38fe4a37c4a079031a1b7ea343f2fbda715cf71604ac4c6704",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra un recuadro azul seleccionado cuyo borde superior está alineado con la etiqueta «1,15611»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "cc512c9815bea4facdab5d374e380395483a057c0962c5d4571ac1d458e56d5c"
+    ],
+    "response_id": "gen-1791084453-90FPJe4seGG5bY2fgGao"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-movimiento-directo-hacia-abajo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El movimiento dentro del recuadro señalado va directamente hacia abajo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00030",
+    "frame-4de8f12d4841c630-s0-p20610000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p20700000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p20880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a214da3007019b013be3f3f9b56727dd0b48e4abd9e5fcae3775fcb1840954c9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento citado afirma explícitamente que, dentro del recuadro señalado, el movimiento «va para abajo directamente», y las imágenes muestran un descenso dentro del recuadro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la dirección del movimiento dentro del recuadro señalado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "cc512c9815bea4facdab5d374e380395483a057c0962c5d4571ac1d458e56d5c"
+    ],
+    "response_id": "gen-1791084453-90FPJe4seGG5bY2fgGao"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-recuadro-azul-seleccionado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se selecciona un recuadro azul alrededor de una vela del gráfico diario.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p21600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6e56176731192fd05eeea7771ac7ec2460ee6a5356cb60e416ce7f89e002ee77",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra un recuadro azul con tiradores seleccionado alrededor de una vela, y el gráfico está identificado como diario (1D)."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "cc512c9815bea4facdab5d374e380395483a057c0962c5d4571ac1d458e56d5c"
+    ],
+    "response_id": "gen-1791084453-90FPJe4seGG5bY2fgGao"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-recuadro-es-rango-diario",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El recuadro seleccionado es un rango diario.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00031",
+    "frame-4de8f12d4841c630-s0-p21600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "68f26733ce6176d52c2559c12bc35f21e655661f376a450636e84168aa15e0ad",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que «este es un rango diario» y la imagen muestra la temporalidad «1D»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el recuadro seleccionado es un rango diario."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "cc512c9815bea4facdab5d374e380395483a057c0962c5d4571ac1d458e56d5c"
+    ],
+    "response_id": "gen-1791084453-90FPJe4seGG5bY2fgGao"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-recuadro-se-parece-al-dibujo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El patrón del recuadro señalado se parece mucho al dibujo realizado anteriormente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00030",
+    "frame-4de8f12d4841c630-s0-p20610000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p20700000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p20880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0c912e21de2e956593fb8bc48e062e6927ca37a7b914bbd7d91363b679490deb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que «este se parece mucho al dibujo que se ha hecho», y las imágenes muestran el recuadro señalado junto con un recuadro anterior similar."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la semejanza entre el patrón del recuadro señalado y el dibujo realizado anteriormente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "cc512c9815bea4facdab5d374e380395483a057c0962c5d4571ac1d458e56d5c"
+    ],
+    "response_id": "gen-1791084453-90FPJe4seGG5bY2fgGao"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-final-1d",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad final del gráfico es 1D.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00031",
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p21330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p21420000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p21600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p32760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p32850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b2637c483c8c30c8907c986ee82ad948ca1d85f7a54abac017c0902a99d60ba9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La última imagen muestra «EURUSD · 1D» en la esquina superior izquierda, por lo que la temporalidad final es 1D; además, el diálogo anterior ofrece 1D y las transcripciones mencionan la temporalidad diaria."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "888ef9ed829fe9fd439727cb370083e19fa3cb50b0c7e7ed98413582780ec89f",
+     "cc512c9815bea4facdab5d374e380395483a057c0962c5d4571ac1d458e56d5c"
+    ],
+    "response_id": "gen-1791084453-90FPJe4seGG5bY2fgGao"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-inicial-4h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad inicial del gráfico es 4h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p20610000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p21240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "67d140e6229fc925aa73252d1bd449883e04fef834230d004bc4418e89011e34",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes citadas muestran explícitamente la etiqueta del gráfico «EURUSD · 4h · FOREX.com», por lo que la temporalidad es 4h."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "cc512c9815bea4facdab5d374e380395483a057c0962c5d4571ac1d458e56d5c"
+    ],
+    "response_id": "gen-1791084453-90FPJe4seGG5bY2fgGao"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00030",
+   "start_ms": 228940,
+   "end_ms": 234460,
+   "text": "dentro este se parece mucho al dibujo que se ha hecho y va para abajo directamente vale y ya es"
+  },
+  {
+   "id": "asr-00031",
+   "start_ms": 234460,
+   "end_ms": 241310,
+   "text": "la idea esto pasa en todas las temporalidades vamos al día y este es un rango diario vale"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p20610000-canonical-v1",
+   "pts_ms": 229000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p20610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p20700000-canonical-v1",
+   "pts_ms": 230000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p20700000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p20880000-canonical-v1",
+   "pts_ms": 232000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p20880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p21150000-canonical-v1",
+   "pts_ms": 235000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p21150000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p21240000-canonical-v1",
+   "pts_ms": 236000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p21240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p21330000-canonical-v1",
+   "pts_ms": 237000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p21330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p21420000-canonical-v1",
+   "pts_ms": 238000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p21420000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p21600000-canonical-v1",
+   "pts_ms": 240000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p21600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p32760000-canonical-v1",
+   "pts_ms": 364000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p32760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p32850000-canonical-v1",
+   "pts_ms": 365000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p32850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

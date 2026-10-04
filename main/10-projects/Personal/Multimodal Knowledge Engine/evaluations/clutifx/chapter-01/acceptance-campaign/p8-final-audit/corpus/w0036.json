@@ -1,0 +1,719 @@
+{
+ "window": "w0036",
+ "start": "08:00",
+ "end": "08:21",
+ "start_ms": 480000,
+ "end_ms": 501000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bearish-ranges-in-libra",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En Libra vuelven a formarse rangos bajistas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00067",
+    "frame-4de8f12d4841c630-s0-p45000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fdaa1b2f5bffb9dfd4ef0ca42f1bc6d9e9c003915d6e58a6c1b877ad2e9c362a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que vuelve a ser «bearish» y que en Libra esos elementos están formados, lo que respalda la reapreparición de rangos bajistas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que se están formando nuevamente rangos bajistas en Libra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc"
+    ],
+    "response_id": "gen-1791089110-aMLwCYfm1Yqw84m2lTEh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bullish-continuation-until-target",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En este caso, se puede anticipar que la continuación seguirá siendo alcista hasta el objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00064",
+    "asr-00065",
+    "asr-00066",
+    "frame-4de8f12d4841c630-s0-p43200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7e7a9ae0f4bb344519dea33d32cb358d2b1a9de6b194bdd493b95a8bbcb1ee02",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que se puede anticipar que la continuación seguirá siendo alcista hasta el objetivo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «en este caso» solo limita su contexto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc"
+    ],
+    "response_id": "gen-1791089110-aMLwCYfm1Yqw84m2lTEh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-instrument-xauusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El panel derecho muestra el instrumento XAUUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p45000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p45090000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "191276e36c16107bc6ead3c5fea93e2a9a21a00b7a63ed4a376ed6d2c334191c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran que el panel de la derecha está etiquetado como «XAUUSD»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición verificable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc"
+    ],
+    "response_id": "gen-1791089110-aMLwCYfm1Yqw84m2lTEh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-timeframe-eurusd-1d",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico de EURUSD muestra la temporalidad 1D.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p43200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "58e6bc8a5a7226ae790973640647aa725ebe4cd0dc22cff02b00fa76d8473e2a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La cabecera del gráfico muestra explícitamente «EURUSD · 1D · FOREX.com»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el gráfico de EURUSD tiene una temporalidad de 1D."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc"
+    ],
+    "response_id": "gen-1791089110-aMLwCYfm1Yqw84m2lTEh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-timeframe-xauusd-1d",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico de XAUUSD muestra la temporalidad 1D.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p45000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p45090000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "89162e27af66fc9e9f81986f1cfc30ae9ddd209a4d0d8918f038e29e20ef2bd0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran el encabezado «XAUUSD · 1D · FOREX.COM», lo que establece que el gráfico de XAUUSD tiene temporalidad 1D."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc"
+    ],
+    "response_id": "gen-1791089110-aMLwCYfm1Yqw84m2lTEh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-continuation-rule-close-outside-no-bearish-range",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Normalmente, si la vela cierra fuera y no forma un rango bajista, la señal es de continuación.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00063",
+    "asr-00064"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "48bd8442aa503f049f7794e90141ea25b64cddb7a1bab2d1e7847d03b942bced",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que las señales de continuación suelen ser válidas si la vela cierra fuera y no forma un rango bajista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos condiciones forman parte de una sola regla y no constituyen proposiciones independientes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc"
+    ],
+    "response_id": "gen-1791089110-aMLwCYfm1Yqw84m2lTEh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-current-eurusd-candle-closes-strongly",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela actual del gráfico de EURUSD cierra con fuerza.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00065",
+    "frame-4de8f12d4841c630-s0-p43200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e8f7a906ee5b81bdcd46602eea77b22f04b861965203a460f69dec7ae460de3c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que «la vela cierra con fuerza»; el marco de EURUSD permite resolver esa referencia a la vela actual mostrada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la vela actual de EURUSD cierra con fuerza."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc"
+    ],
+    "response_id": "gen-1791089110-aMLwCYfm1Yqw84m2lTEh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-current-eurusd-no-bearish-range",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela actual del gráfico de EURUSD no forma ningún rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00065",
+    "asr-00066",
+    "frame-4de8f12d4841c630-s0-p45000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "27e3e0fa0ebaf2102ca88913153f513059f2217d07fc221c763de98059ce67fe",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que la vela actual «no forma ningún rango bajista», en el contexto del gráfico de EURUSD mostrado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la vela actual de EURUSD no forma un rango bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc"
+    ],
+    "response_id": "gen-1791089110-aMLwCYfm1Yqw84m2lTEh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-horizontal-line-drawn",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja una línea horizontal en el gráfico de EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p43740000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p43920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p44280000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p44640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6d770344074078d48e49f7c7b51d1ae8ba3281563a32cbe1b771ffaeb0c1c5e1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran el gráfico de EURUSD y, a lo largo de la secuencia, una línea horizontal selecciona y se extiende sobre él."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc"
+    ],
+    "response_id": "gen-1791089110-aMLwCYfm1Yqw84m2lTEh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-target-1-16148",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo de la continuación en EURUSD está etiquetado como 1.16148.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00064",
+    "frame-4de8f12d4841c630-s0-p43200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9ecf60ea23e1635866b50a71ce8166aa5406cacde05a39a379e00c4f767f2bc6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El gráfico de EURUSD muestra una línea horizontal superior etiquetada como 1.16148, y la transcripción indica que ese es el objetivo de la continuación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el valor de la etiqueta del objetivo de continuación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc"
+    ],
+    "response_id": "gen-1791089110-aMLwCYfm1Yqw84m2lTEh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-split-view-opened",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se abre una vista dividida en dos paneles.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p45000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5a07249d3519502aee3b1453b540fddd3325cd349b44155dd5904583500ec7c6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited frame visibly shows two chart panels arranged side by side in a split-view layout."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc"
+    ],
+    "response_id": "gen-1791089110-aMLwCYfm1Yqw84m2lTEh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-symbol-search-opened",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se abre la ventana «Búsqueda de símbolos».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p138600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p45090000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8f20badc5b5bcb55a7034799e782506fc774129ca4fd6468c284d6a1a5b24014",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran una ventana modal abierta con el título «Búsqueda de símbolos»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc",
+     "e369a09cff81a116e7d6795b9c21bae16ea4c997ff01e154b8b7df4086da6237"
+    ],
+    "response_id": "gen-1791089110-aMLwCYfm1Yqw84m2lTEh"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-bullish-continuation-depends-no-bearish-range",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-bullish-continuation-until-target",
+   "subject_version": 1,
+   "object_id": "cl-current-eurusd-no-bearish-range",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00065",
+    "asr-00066"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1ac41d4cb4891b5f732c20d04d8de290a7b181ede73d638dc199299853aca2e8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que la vela actual «no forma ningún rango bajista» y, a continuación, vincula esa ausencia de rango con que «se puede anticipar» que la continuación será «alcista hasta el objetivo», en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc"
+    ],
+    "response_id": "gen-1791089110-aMLwCYfm1Yqw84m2lTEh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-bullish-continuation-depends-strong-close",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-bullish-continuation-until-target",
+   "subject_version": 1,
+   "object_id": "cl-current-eurusd-candle-closes-strongly",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00065",
+    "asr-00066"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5d8a3039fe932ecda58f326dc6480f93b3b225e79ae30eb640c666a503cc4bce",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia conecta el cierre fuerte de la vela con la anticipación de que el movimiento seguirá siendo alcista hasta el objetivo; la expresión «pues puedes anticipar» presenta el cierre fuerte como fundamento de esa continuación alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc"
+    ],
+    "response_id": "gen-1791089110-aMLwCYfm1Yqw84m2lTEh"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-bullish-continuation-depends-target",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-bullish-continuation-until-target",
+   "subject_version": 1,
+   "object_id": "cl-eurusd-target-1-16148",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00064",
+    "frame-4de8f12d4841c630-s0-p43200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "39965f27adf7a94830cb1903bca72e0686ec5dca924678642b9fffedfde03c81",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción anticipa que la movimiento continúe hacia un objetivo situado más arriba."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la subida de EURUSD y una línea horizontal etiquetada como 1.16148, que identifica el objetivo de esa continuación en la orientación declarada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc"
+    ],
+    "response_id": "gen-1791089110-aMLwCYfm1Yqw84m2lTEh"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00063",
+   "start_ms": 474530,
+   "end_ms": 481460,
+   "text": "señales de continuación vale normalmente si la vela cierra fuera y no te forma un rango bajista"
+  },
+  {
+   "id": "asr-00064",
+   "start_ms": 481460,
+   "end_ms": 486780,
+   "text": "lo que puedes esperar es que continúe teníamos un objetivo aquí arriba pues tú ves como esta"
+  },
+  {
+   "id": "asr-00065",
+   "start_ms": 486780,
+   "end_ms": 491560,
+   "text": "vela cierra con fuerza, no forma ningún rango bajista, pues puedes anticipar que esta lo"
+  },
+  {
+   "id": "asr-00066",
+   "start_ms": 491560,
+   "end_ms": 497060,
+   "text": "que va a seguir siendo es alcista hasta el objetivo, ¿vale? Ahora que se nos forman rangos"
+  },
+  {
+   "id": "asr-00067",
+   "start_ms": 497060,
+   "end_ms": 503540,
+   "text": "bearish otra vez, que en Libra están formados, ya lo vais a ver en el tema de la SMT, ahora"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p43200000-canonical-v1",
+   "pts_ms": 480000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p43200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p43560000-canonical-v1",
+   "pts_ms": 484000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p43560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p43740000-canonical-v1",
+   "pts_ms": 486000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p43740000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p43920000-canonical-v1",
+   "pts_ms": 488000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p43920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p44280000-canonical-v1",
+   "pts_ms": 492000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p44280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p44640000-canonical-v1",
+   "pts_ms": 496000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p44640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45000000-canonical-v1",
+   "pts_ms": 500000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p45090000-canonical-v1",
+   "pts_ms": 501000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p45090000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138600000-canonical-v1",
+   "pts_ms": 1540000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

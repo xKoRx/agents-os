@@ -1,0 +1,813 @@
+{
+ "window": "w0067",
+ "start": "16:24",
+ "end": "16:44",
+ "start_ms": 984000,
+ "end_ms": 1004000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-source-forexcom",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La plataforma del gráfico es FOREX.com.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p88560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6c7d360c797e4b6117e824f20928ee1f7fe8a07a895a11bf53ecae9982f00cb5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The chart header visibly labels the platform as “FOREX.com.”"
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-downward-move-can-look-like-upward-move",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Un movimiento a la baja puede parecer una subida.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00132"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "761e125b7b0ef0cd5fdfa233993e7fee5d977a084ab19f563faf6700b18e0710",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que un movimiento puede «bajar» y al mismo tiempo «parece que suba», lo que respalda directamente que un movimiento a la baja puede parecer una subida."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición y no incluye condiciones o asparagus evaluables independientemente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-feint-can-include-downward-move",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Puede haber una finta en la que el movimiento baje.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00132"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5b10a425e973099ac1f632288f079a40a33e8dd31ff0aac49387066b9d086a7c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que puede haber una finta en la que el movimiento baje."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la posibilidad de que una finta incluya un movimiento descendente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-low-sweep-with-bullish-reaction-is-turtle-soup",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Una toma del bajo seguida de una reacción bullish constituye un Turtle Soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00134"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2ddaa0024b47ce7fa4118b611fac2fcf8218a58e21c85608b874fc421fc663e9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que una toma del bajo seguida de una reacción bullish constituye un «Tartle Sup», variante fonética de «Turtle Soup»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La toma del bajo y la reacción bullish son condicionesTD jointly integrante de una sola definición, no proposiciones independientes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-price-continued-down-without-reaction",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio siguió bajando en lugar de reaccionar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131",
+    "frame-4de8f12d4841c630-s0-p88560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "60e9cd04277d70cf7737b5d03bacb02b3d7cbdc669ece1c60984b3d8c6022bd1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente: «en lugar de reaccionar, sigue bajando»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "«En lugar de reaccionar» forma parte de la misma proposición sobre la continuidad de la bajada, no una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-shown-move-not-turtle-soup",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El movimiento mostrado no era un Turtle Soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "61fac2ef23633b500f8b145a76c9e4ec083b215425540af4c04ed878293f312d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice que el movimiento «sigue bajando» y afirma explícitamente «no es ningún tartle sub», lo que respaldada la proposición de que no era un Turtle Soup."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la clasificación negativa del movimiento mostrado como Turtle Soup."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-appearance-does-not-guarantee-pattern",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Parecer un Turtle Soup no garantiza que el movimiento lo sea.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00132",
+    "asr-00133"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4c87fe56e657f5644a1cb1af82ad100a80d3cb532b193f5babd7c840ab9bdc4e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que un movimiento puede parecer un «Turtle Soup» y quizá no serlo, por lo que la apariencia no garantiza que lo sea."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable de forma independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-misidentification-error-can-occur",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La confusión de un movimiento con un Turtle Soup es un error que puede ocurrir.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00133"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4ba0825938d17d8602a6b23c47c3e4186ee9b3f8df3014f3f5814a9583f38a96",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que alguien puede confundirse al creer que es un «tartle sub» aunque quizá no lo sea, y expresamente señala que ese error puede ocurrir."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-requires-liquidity-sweep",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Un Turtle Soup tiene que ser una toma de liquidez.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7a175c39b18abf1e5bdaf92a59072cb5133ca9765a77426bfb1fe26155625252",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «el tartle sub tiene que ser una toma de liquidez», pese al error de transcripción del término."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que un Turtle Soup debe ser una toma de liquidez."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-requires-opposite-reaction",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Un Turtle Soup tiene que mostrar una reacción en la dirección contraria a la del movimiento de toma.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131",
+    "asr-00132"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a1d7ca9556c761b6c176065325dd4f35fae03001a6eebd999ce871bfb40b1240",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que Turtle Soup debe mostrar una reacción en la dirección contraria y aclara mediante el ejemplo de una finta que la reacción va en sentido opuesto al movimiento aparente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtlesoup-annotation-visible",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra la anotación «TURTLESOUP».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p88560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p90360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "85735bdd5cec1c019e4413be36e0ad56c26fe04fe0c722ed30ccf425edff16d8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran claramente la anotación «TURTLESOUP» sobre el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-upward-appearance-can-cause-turtle-soup-misidentification",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La apariencia de una subida puede hacer que se confunda el movimiento con un Turtle Soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00132",
+    "asr-00133"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5ee568239b7a44be286677b441711f95b5741ef832f4decb90f9e2bbd9aec7fe",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que un movimiento puede parecer que sube y que alguien puede confundirlo con un Turtle Soup, aunque quizá no lo sea."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la apariencia de una subida puede provocar esa identificación errónea."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-current-classification-depends-on-no-reaction",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-shown-move-not-turtle-soup",
+   "subject_version": 1,
+   "object_id": "cl-price-continued-down-without-reaction",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7e839ce61e778e327d4ebdcb989234d17d88726f91c33f1e60a176e1eea83f0d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia vincula directamente ambas afirmaciones: «en lugar de reaccionar, sigue bajando» sostiene la clasificación de que el movimiento mostrado «no es ningún Turtle Soup»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-current-classification-depends-on-opposite-reaction",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-shown-move-not-turtle-soup",
+   "subject_version": 1,
+   "object_id": "cl-turtle-soup-requires-opposite-reaction",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131",
+    "asr-00132"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "374b9cf64867215c44738a4f09dea4910bdaa57c8f69e6b50f9c4ab5e5aa1481",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el movimiento mostrado, en lugar de reaccionar, sigue bajando y por ello no es un Turtle Soup."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La misma evidencia establece que un Turtle Soup debe mostrar una reacción en la dirección contraria a la del movimiento de toma, por lo que la primera afirmación depende de esa regla."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-final-rule-depends-on-liquidity-sweep",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-low-sweep-with-bullish-reaction-is-turtle-soup",
+   "subject_version": 1,
+   "object_id": "cl-turtle-soup-requires-liquidity-sweep",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131",
+    "asr-00134"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "25854ce34ad6d645d38c948dc2228a056f88eab42c3c79c0a833c4ae431828da",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera cita establece explícitamente que un Turtle Soup tiene que ser una toma de liquidez."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita identifica precisamente una toma del bajo con reacción bullish como un Turtle Soup, por lo que la afirmación del sujeto depende de la condición expresada por el objeto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-final-rule-depends-on-opposite-reaction",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-low-sweep-with-bullish-reaction-is-turtle-soup",
+   "subject_version": 1,
+   "object_id": "cl-turtle-soup-requires-opposite-reaction",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00132",
+    "asr-00134"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4c9aca2ac97b3cccd52de5e05977d1c9c9fe00231c609f00f0ecd8da6645579f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia establish que un Turtle Soup requiere una reacción en dirección contraria al movimiento de toma y acto seguido identifica explícitamente una toma del bajo seguida de una reacción bullish como un Turtle Sup."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-misidentification-depends-on-upward-appearance",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-upward-appearance-can-cause-turtle-soup-misidentification",
+   "subject_version": 1,
+   "object_id": "cl-downward-move-can-look-like-upward-move",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00132",
+    "asr-00133"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0060c7ec975d95a384a617ba7c933385adb248a9e025c1cb794377809591d4fd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia explica que un movimiento puede ser una finta hacia abajo y parecer una subida, y que esa apariencia puede hacer que alguien lo confunda con un Turtle Soup. Así, la posible identificación errónea depende de que el movimiento hacia abajo parezca una subida."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-misidentification-error-depends-on-confusion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-turtle-soup-misidentification-error-can-occur",
+   "subject_version": 1,
+   "object_id": "cl-upward-appearance-can-cause-turtle-soup-misidentification",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00133"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "51551c159d0ac46d9651d09085f856eadd40432b8f542fdfa8d3d762404aea94",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que confundirse con un Turtle Soup «puede pasar» y que son errores posibles, pero no menciona una apariencia de subida como causa de esa confusión ni establece que el error dependa de ella."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791097735-kVnMpMc7aWbc9fo1cz3g"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00131",
+   "start_ms": 976240,
+   "end_ms": 984900,
+   "text": "en lugar de reaccionar, sigue bajando, no es ningún tartle sub, ¿vale? O sea, el tartle sub tiene que ser una toma de liquidez"
+  },
+  {
+   "id": "asr-00132",
+   "start_ms": 984900,
+   "end_ms": 994320,
+   "text": "y mostrar un tipo de reacción hacia la dirección contraria, ¿vale? Puede ser que te haga una finta, que baje, que parece que suba"
+  },
+  {
+   "id": "asr-00133",
+   "start_ms": 994320,
+   "end_ms": 999880,
+   "text": "y tú te confundas viendo que es un tartle sub y quizá no lo es. Puede pasar, ¿vale? Son errores que pueden pasar."
+  },
+  {
+   "id": "asr-00134",
+   "start_ms": 999880,
+   "end_ms": 1007360,
+   "text": "Pero la idea es esta, ¿vale? Toma del bajo, reacción bullish, pues tenemos Tartle Sup."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p88560000-canonical-v1",
+   "pts_ms": 984000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p88560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p88920000-canonical-v1",
+   "pts_ms": 988000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p88920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p89100000-canonical-v1",
+   "pts_ms": 990000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p89100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p89190000-canonical-v1",
+   "pts_ms": 991000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p89190000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p89280000-canonical-v1",
+   "pts_ms": 992000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p89280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p89640000-canonical-v1",
+   "pts_ms": 996000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p89640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90000000-canonical-v1",
+   "pts_ms": 1000000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90360000-canonical-v1",
+   "pts_ms": 1004000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

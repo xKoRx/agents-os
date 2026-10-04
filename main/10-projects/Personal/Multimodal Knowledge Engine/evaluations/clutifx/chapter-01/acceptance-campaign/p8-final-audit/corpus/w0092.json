@@ -1,0 +1,917 @@
+{
+ "window": "w0092",
+ "start": "23:18",
+ "end": "23:36",
+ "start_ms": 1398000,
+ "end_ms": 1416000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dibujo-rectangulo-negro-central",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja un rectángulo vertical negro en la zona central del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p126720000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p126900000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6fab58be3520437b987f050a9b50070311551fda31e786a99b0c746c211bf4d2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas muestran un rectángulo sólido negro de orientación vertical en la zona central del gráfico; en la segunda aparece como una newly drawn forma rectangular seleccionada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-euro-llega-objetivos-actuales",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El euro llega a sus objetivos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00196"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "24d77e7c7e0217e09dd52442344e8f2e95bdc2596c40e9e74e6590e7b8d3a510",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que el euro «llega a los objetivos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el euro alcanza sus objetivos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grupos-rotulados-eurusd-gbpusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra dos grupos de cuerpos de vela rotulados EURUSD y GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p125820000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3b77acf3541033714223f4b9c6b68284c9d6f28cc9ef22f17f52ad43acb1654d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra dos grupos de cuerpos de vela, con las etiquetas visibles EURUSD y GBPUSD respectivamente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-horizontal-113801",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra una línea horizontal marcada en 1,13801.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p125820000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4128645685f27cad573c09f928e1e7cc181a25e924d81d19c903fddc9223b718",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una línea horizontal discontinua alineada con la marca 1,13801 en el eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-posicion-long-libra",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La posición actual es un long en libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00196"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "72afaf568598e4e9324aec70978f288388e3ed59787f123d4d42c40c80a2cdcf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente «Tú estás en un long en libra», lo que respaldan que la posición actual es un long en libra."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-giro-directo-smt",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio puede girarse directamente en esa SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194",
+    "asr-00196"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "791b7e83e9acd32fd4e65a14bb0c343541cef12bb309ceabf44a4351e0ad238f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que puede haber una SMT y que el precio puede girarse directamente allí."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: la posibilidad de un giro directo del precio en esa SMT."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-negro-seleccionado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rectángulo negro aparece seleccionado mediante tiradores.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p126900000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p126990000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f7c66c98b31a937dc9e69ed21c5ce89f0873dd261cc82778c133aaa7828b2c67",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran un rectángulo negro central con tiradores de selección visibles alrededor de sus bordes y esquinas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-divergencia-objetivos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La divergencia de objetivos se identifica como un SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5928df72df249a22c954c6b1cb37279734286a9530b129384a16db4f7d6f7c47",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que la situación descrita —un objetivo completado mientras el par correlacionado no alcanza el suyo y pasa directamente al reversal— «sería un SMT», lo que identifica la divergencia de objetivos como tal."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-eur-completa-objetivo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El euro puede llegar a completar un objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a92b0fbd1c159b0856c4f33ff3a7457bab2b62936eabdfc18b00af0a4f14cb0a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada presenta explícitamente el caso de que el euro pueda llegar a completar un objetivo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la posibilidad de que el euro complete un objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-par-correlacionado-jp-dxy",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El par correlacionado puede ser JP o DXY.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0aa0b4196804d188131ae67b5e5e3f9af604a3e0d0633e467be1ac2463a777b1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que el par correlacionado puede ser «JP o DXY», lo que sostiene directamente la_statement revisada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: que el par correlacionado puede ser JP o DXY; se trata de una alternativa dentro de la misma proposición, no de afirmaciones independientes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-par-correlacionado-no-completa-objetivo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El par correlacionado puede no llegar a completar su objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "23e165a48fbf34e3bf201e15961caef4c3588ecdeb17841f0c88e25ddb98e37d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona explícitamente el caso en que «el par correlacionado, ya sea JP o DXY, no llegue a su objetivo», lo que respalda que pueda no completarlo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; la alternativa entre JP y DXY únicamente restringe la referencia al par correlacionado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-posible-zona-objetivos-euro",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Puede haber una SMT en la zona de los objetivos del euro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00196"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "53de717ba0a0aaad88c1b508d7b0163bfc8cb313f20364b4d25262777c38f304",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que el euro llega a los objetivos y que puede haber una SMT «ahí arriba», en esa zona."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La statement solo sostiene la posibilidad de que exista una SMT en la zona de los objetivos del euro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-reversal-directo-par-correlacionado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El par correlacionado puede pasar directamente al reversal en un escenario SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4256f1c243a30a87b15be8b0430ed6f8f9fdb0267f67df8ee13fb4ebd17f3a0b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona explícitamente un escenario SMT en el que el par correlacionado, ya sea JP o DXY, no llega a su objetivo y pasa directamente al reversal."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La expresión «en un escenario SMT» solo limita el contexto de la misma proposición y no añade una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vigilancia-ambos-pares-evita-situacion",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La vigilancia de ambos pares sirve para evitar esta situación.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194",
+    "asr-00195"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5fd1616b7e9c49288a011674e4efd705a17d70cce7b2015890cac6a274b2e56c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El evidencia indica que hay que estar atento a los dos pares «para que no te pase esto», es decir, para evitar la situación descrita."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que vigilar ambos pares sirve para evitar esa situación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vigilar-dos-pares-comparados",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Hay que estar atento a los dos pares que se están comparando.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194",
+    "asr-00195"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "495f524da0862fab085ed284dd654a5fcd7721a9c5e489a18e24ef273b52b3e3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda evidencia indica explícitamente que hay que estar atento a los dos pares."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La referencia a que son los pares que se están comparando identifica los dos pares y no añade una proposición independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-giro-directo-smt-actual",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-precio-giro-directo-smt",
+   "subject_version": 1,
+   "object_id": "cl-smt-posible-zona-objetivos-euro",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194",
+    "asr-00196"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1f37b54aa369db5381e784aca486dbf9cb5ba5b6eb453f1920a9fb2663342cd7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda evidencia afirma conjuntamente que puede haber una SMT en la zona de objetivos del euro y que el precio puede girarse directamente allí; la primera explica ese giro como el resultado de la configuración de SMT indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-reversal-directo-smt",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-smt-reversal-directo-par-correlacionado",
+   "subject_version": 1,
+   "object_id": "cl-smt-divergencia-objetivos",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "37029b5cf0e6076ec1ed6195e0a2f6ca50dbba70f07f90d06fea647de97e445a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia describe un escenario de divergencia de objetivos y afirma que sería un SMT, mentioning que el par correlacionado no alcanza su objetivo y pasa directamente al reversal; sin embargo, no establece explícitamente que la posibilidad del reversal directo dependa de la identificación de la divergencia de objetivos como SMT."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-divergencia-correlacionado",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-smt-divergencia-objetivos",
+   "subject_version": 1,
+   "object_id": "cl-smt-par-correlacionado-no-completa-objetivo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "539b4c89c296d7075810fa774c439c5fdf52f6314c28e1d1308a7c627506472d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica como SMT el caso en que el euro completa su objetivo mientras el par correlacionado, ya sea JP o DXY, no llega al suyo; esto sustenta la dependencia de la divergencia de objetivos respecto de la posibilidad de que el par correlacionado no complete su objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-divergencia-eur",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-smt-divergencia-objetivos",
+   "subject_version": 1,
+   "object_id": "cl-smt-eur-completa-objetivo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3f58ae3dffdb01d2888f1061c1f480bfba15b90970eb19436527f64dd8551c1f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica explícitamente como un SMT el caso en que el euro completa un objetivo mientras que el par correlacionado no lo completa, lo que establece la divergencia de objetivos como dependiente del cumplimiento por parte del euro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-zona-actual",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-smt-posible-zona-objetivos-euro",
+   "subject_version": 1,
+   "object_id": "cl-euro-llega-objetivos-actuales",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00196"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fd130fff5e39589756b3218c15d8d804c4b6d9f2946cafde7efe095f6bea3da1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el euro llega a sus objetivos y enseguida plantea que puede haber una SMT «ahí arriba», vinculando explícitamente la posibilidad de la SMT con la zona de objetivos del euro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-vigilancia-finalidad",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-vigilancia-ambos-pares-evita-situacion",
+   "subject_version": 1,
+   "object_id": "cl-vigilar-dos-pares-comparados",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194",
+    "asr-00195"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "048f00df55bc541701184de247b6c9bfe08b21843517999ff7385308e483020b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que hay que estar atento a los dos pares «para que no te pase esto», lo que establece que esa vigilancia sirve para evitar la situación mencionada y vincula ambas afirmaciones en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "63a7343adfa5d572a0120d38b1fcf2ddd1761a614aa7efada68212320afcbf5b"
+    ],
+    "response_id": "gen-1791106962-v3p6RTfC7x5dG5wuJ9RU"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00194",
+   "start_ms": 1395310,
+   "end_ms": 1409220,
+   "text": "Pues esto sería un SMT. En el caso de un objetivo, que euro pueda llegar a completar y el par correlacionado, ya sea JP o DXY, no llegue a su objetivo y pase el reversal directamente."
+  },
+  {
+   "id": "asr-00195",
+   "start_ms": 1409520,
+   "end_ms": 1415120,
+   "text": "Por lo tanto, tú aquí tendrías que estar atento a los dos pares para que no te pase esto, ¿vale?"
+  },
+  {
+   "id": "asr-00196",
+   "start_ms": 1415520,
+   "end_ms": 1422440,
+   "text": "Tú estás en un long en libra, pero euro ya ves que llega a los objetivos, puede haber una SMT ahí arriba y se te gire el precio directamente."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125820000-canonical-v1",
+   "pts_ms": 1398000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125820000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p126000000-canonical-v1",
+   "pts_ms": 1400000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p126000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p126360000-canonical-v1",
+   "pts_ms": 1404000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p126360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p126720000-canonical-v1",
+   "pts_ms": 1408000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p126720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p126900000-canonical-v1",
+   "pts_ms": 1410000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p126900000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p126990000-canonical-v1",
+   "pts_ms": 1411000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p126990000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p127080000-canonical-v1",
+   "pts_ms": 1412000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p127080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p127440000-canonical-v1",
+   "pts_ms": 1416000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p127440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

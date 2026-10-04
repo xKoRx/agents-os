@@ -1,0 +1,364 @@
+{
+ "window": "w0112",
+ "start": "28:42",
+ "end": "28:51",
+ "start_ms": 1722000,
+ "end_ms": 1731000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-buscar-venta-con-order-block-visible",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vamos a buscar una venta donde se vea su order block.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00249",
+    "asr-00250"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ccb7c075b637f074ccbc69c162f92f55b3a33e51f07ab68424c2f605ea8cb809",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited transcript explicitly says, «Vamos a buscar una donde se vea», immediately after discussing that the order block is not clearly visible on M15 and checking M10."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement expresses the single proposition of intending to search for a sale whose order block is visible."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "053d98858ae2cd6dfc4952ff7b4f755b88bfa04342b0f319c07906e3be18ba98"
+    ],
+    "response_id": "gen-1791113502-sH3yIxoogKnc1ccXGZ9O"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-intervalo-10-a-30",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El intervalo del gráfico cambia de 10 a 30 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p155520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p155790000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "76b9e8c0608730adc3b4b8c9a594dad93dffe42b1a28d3e15474acd5a8679571",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra el gráfico de EURUSD en 10 minutos y la segunda, en 30 minutos, lo que acredita el cambio de intervalo de 10 a 30 minutos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "053d98858ae2cd6dfc4952ff7b4f755b88bfa04342b0f319c07906e3be18ba98"
+    ],
+    "response_id": "gen-1791113502-sH3yIxoogKnc1ccXGZ9O"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-intervalo-15-a-10",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El intervalo del gráfico cambia de 15 a 10 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p155340000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p155430000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d9cd0a14525a300ca09d463afea310471a9621a3cf796aef2348a49e3e2f3762",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra el gráfico en EURUSD de 15 minutos y el diálogo «Cambiar intervalo» con 10 minutos; la segunda muestra el mismo gráfico en EURUSD de 10 minutos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "053d98858ae2cd6dfc4952ff7b4f755b88bfa04342b0f319c07906e3be18ba98"
+    ],
+    "response_id": "gen-1791113502-sH3yIxoogKnc1ccXGZ9O"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-intervalo-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico está en un intervalo de 15 minutos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00249",
+    "frame-4de8f12d4841c630-s0-p154980000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d3f4cbfeb40ec27fef9c1f96b6b3eb1e20017913d137da49bb2c62487cd7d01c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción menciona «M15» y el gráfico muestra explícitamente «EURUSD · 15» y «EURUSD | 15M», lo que establece un intervalo de 15 minutos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "053d98858ae2cd6dfc4952ff7b4f755b88bfa04342b0f319c07906e3be18ba98"
+    ],
+    "response_id": "gen-1791113502-sH3yIxoogKnc1ccXGZ9O"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-m15-order-blocks-mas-faciles",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En M15 va a ser mucho más fácil encontrar order blocks.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00249"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "67f591da710554f50657430ff393dd40e72a94eaa5d84283d9a723a5b0c8b9e5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente que «M15 va a ser mucho más fácil encontrar order blocks»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que en M15 será mucho más fácil encontrar order blocks."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "053d98858ae2cd6dfc4952ff7b4f755b88bfa04342b0f319c07906e3be18ba98"
+    ],
+    "response_id": "gen-1791113502-sH3yIxoogKnc1ccXGZ9O"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-order-block-venta-hoy-no-visible-en-15",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En 15 no se ve el order block de la venta que he tomado hoy.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00249",
+    "asr-00250"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f440bd020e2da57889d9376e78f714e71feb62322b3eea317aa8e38450aae5b1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas indican explícitamente que la venta tomada «hoy» no se ve en el nivel de 15 minutos, en el contexto de buscar order blocks."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la visibilidad del order block de esa venta en el nivel de 15 minutos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "053d98858ae2cd6dfc4952ff7b4f755b88bfa04342b0f319c07906e3be18ba98"
+    ],
+    "response_id": "gen-1791113502-sH3yIxoogKnc1ccXGZ9O"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-order-block-venta-hoy-poco-claro-en-10",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En 10 no se ve muy claro el order block de la venta que he tomado hoy.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00249",
+    "asr-00250",
+    "frame-4de8f12d4841c630-s0-p155430000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3d28dfbacf819549526dbdf5650ceb257891f45f9c8800f1c5e0d0e82162b8fa",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma que la venta tomada «hoy» no se ve muy clara en el gráfico de 10, lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable; la referencia a la venta de hoy y al gráfico de 10 identifica la misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "053d98858ae2cd6dfc4952ff7b4f755b88bfa04342b0f319c07906e3be18ba98"
+    ],
+    "response_id": "gen-1791113502-sH3yIxoogKnc1ccXGZ9O"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00249",
+   "start_ms": 1717900,
+   "end_ms": 1723940,
+   "text": "M15 va a ser mucho más fácil encontrar order blocks. Por ejemplo, la venta que he tomado"
+  },
+  {
+   "id": "asr-00250",
+   "start_ms": 1723940,
+   "end_ms": 1735100,
+   "text": "hoy, 15 no se ve, a ver si en 10, no se ve muy claro. Vamos a buscar una donde se vea"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p154980000-canonical-v1",
+   "pts_ms": 1722000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p154980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p155070000-canonical-v1",
+   "pts_ms": 1723000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p155070000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p155160000-canonical-v1",
+   "pts_ms": 1724000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p155160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p155250000-canonical-v1",
+   "pts_ms": 1725000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p155250000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p155340000-canonical-v1",
+   "pts_ms": 1726000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p155340000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p155430000-canonical-v1",
+   "pts_ms": 1727000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p155430000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p155520000-canonical-v1",
+   "pts_ms": 1728000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p155520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p155790000-canonical-v1",
+   "pts_ms": 1731000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p155790000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

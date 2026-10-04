@@ -1,0 +1,418 @@
+{
+ "window": "w0055",
+ "start": "12:58",
+ "end": "13:07",
+ "start_ms": 778000,
+ "end_ms": 787000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-4h-zoom",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico de 4 horas se amplía.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p70200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p70290000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ee5f66483f44ffb9f92ce87897e5773a095fbb49097a73dd434364b6bf4c556e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran el mismo gráfico de 4 horas con un intervalo temporal menos amplio y las velas más grandes en la segunda, lo que evidencia que se ha ampliado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0d2327ea1af38eef70d64e1a0b03a5ec7c01c39b5eb81bcbf361ebd3b8f10873"
+    ],
+    "response_id": "gen-1791093348-imebuE35yXF87dbaDnbA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-initial-timeframe-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El intervalo inicial del gráfico es de 15 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p70020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7878285ac8dd01b6a908c401e20760dc32b2e130abcdec312e613e6f6cade59a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The chart header shows “EURUSD · 15 · FOREX.com,” and the chart label reads “EURUSD | 15M,” explicitly showing a 15-minute interval."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0d2327ea1af38eef70d64e1a0b03a5ec7c01c39b5eb81bcbf361ebd3b8f10873"
+    ],
+    "response_id": "gen-1791093348-imebuE35yXF87dbaDnbA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-timeframe-change-1d",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El intervalo del gráfico cambia de 4 horas a 1 día.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p70380000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p70470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "83cd6fffeb2b6ea40f4f1029b38db7a507fc39611ee245697f0aece3654f561e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra «EURUSD · 4h» y la segunda «EURUSD · 1D», por lo que las evidencias citadas muestran el cambio de 4 horas a 1 día."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: el cambio del intervalo del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0d2327ea1af38eef70d64e1a0b03a5ec7c01c39b5eb81bcbf361ebd3b8f10873"
+    ],
+    "response_id": "gen-1791093348-imebuE35yXF87dbaDnbA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-timeframe-change-4h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El intervalo del gráfico cambia de 15 minutos a 4 horas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p70020000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p70110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p70200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "07bfcc43bc91317dee7982ad25ec53451ddb5dbcf408e6995bd9eb6321a6d365",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las primeras dos imágenes muestran el gráfico en 15 minutos y el diálogo «Cambiar intervalo» con la opción 4H/4 horas; la tercera muestra el gráfico ya en 4 h/240 minutos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0d2327ea1af38eef70d64e1a0b03a5ec7c01c39b5eb81bcbf361ebd3b8f10873"
+    ],
+    "response_id": "gen-1791093348-imebuE35yXF87dbaDnbA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-daily-target-level-115803",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo diario mostrado está en 1.15803.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00111",
+    "frame-4de8f12d4841c630-s0-p70830000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "709892e0f70898b1ae29d5f520c486fa7b8553f42da62a4ac1e81726f3f14a1f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra junto al precio una etiqueta de objetivo diario con el valor «1,15803», equivalente a 1.15803 en notación decimal."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0d2327ea1af38eef70d64e1a0b03a5ec7c01c39b5eb81bcbf361ebd3b8f10873"
+    ],
+    "response_id": "gen-1791093348-imebuE35yXF87dbaDnbA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-daily-target-matches-example",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo diario mostrado es el mismo objetivo que se estaba explicando como ejemplo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00111"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3cb98095706045e0b27ebeb0e2f4c95b2d9bef38f4b957e8f3ec4bd9cad5c5c3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que el objetivo diario mostrado «es el mismo que estaba explicando de ejemplo»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0d2327ea1af38eef70d64e1a0b03a5ec7c01c39b5eb81bcbf361ebd3b8f10873"
+    ],
+    "response_id": "gen-1791093348-imebuE35yXF87dbaDnbA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-draw-horizontal-line-115803",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja una línea horizontal en 1.15803 en el gráfico diario.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p70560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p70830000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "915671f17208f862661ba630dffd30f77995556d68df8c0a20d07f5f6cb606e8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segundo fotograma muestra una línea horizontal etiquetada como 1,15803 en un gráfico cuyo título indica 1D; la línea no aparece en el primer fotograma."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0d2327ea1af38eef70d64e1a0b03a5ec7c01c39b5eb81bcbf361ebd3b8f10873"
+    ],
+    "response_id": "gen-1791093348-imebuE35yXF87dbaDnbA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-find-daily-target",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Buscar el objetivo diario en el gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00111",
+    "frame-4de8f12d4841c630-s0-p70830000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ff3bc6c0455f33a304fdb1e671911dd012637471952380e427de1ba215314055",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento citado dice explícitamente que van a buscar «el objetivo diario» indicado en la parte superior del gráfico durante el ejemplo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0d2327ea1af38eef70d64e1a0b03a5ec7c01c39b5eb81bcbf361ebd3b8f10873"
+    ],
+    "response_id": "gen-1791093348-imebuE35yXF87dbaDnbA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-show-chart-example",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Ver un ejemplo de la explicación en el gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00111"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0a480031986024d662885b98487b7849bbf7a40961fd272314070f340c651175",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica explícitamente: «Vamos a ver algún ejemplo de esto en el gráfico ahora», lo que respaldan la acción de ver un ejemplo de la explicación en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición procedimental."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0d2327ea1af38eef70d64e1a0b03a5ec7c01c39b5eb81bcbf361ebd3b8f10873"
+    ],
+    "response_id": "gen-1791093348-imebuE35yXF87dbaDnbA"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00111",
+   "start_ms": 768600,
+   "end_ms": 788180,
+   "text": "Espero que haya quedado claro. Vamos a ver algún ejemplo de esto en el gráfico ahora. Así que vamos allá. ¿Vale? Vamos a buscar, por ejemplo, teníamos el objetivo este diario de aquí arriba, que es el mismo que estaba explicando de ejemplo."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70020000-canonical-v1",
+   "pts_ms": 778000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70110000-canonical-v1",
+   "pts_ms": 779000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70110000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70200000-canonical-v1",
+   "pts_ms": 780000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70290000-canonical-v1",
+   "pts_ms": 781000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70380000-canonical-v1",
+   "pts_ms": 782000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70470000-canonical-v1",
+   "pts_ms": 783000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70560000-canonical-v1",
+   "pts_ms": 784000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70830000-canonical-v1",
+   "pts_ms": 787000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70830000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

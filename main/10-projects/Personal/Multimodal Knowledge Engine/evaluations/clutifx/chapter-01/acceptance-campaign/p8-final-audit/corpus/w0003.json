@@ -1,0 +1,504 @@
+{
+ "window": "w0003",
+ "start": "00:37",
+ "end": "00:44",
+ "start_ms": 37000,
+ "end_ms": 44000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-contenido-grafico-desplazado-izquierda",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El contenido visible del gráfico se desplaza hacia el borde izquierdo de la ventana durante la secuencia.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f5873744fdc48e8a9b58452c1c1cf25be78ea79859205505a28d1dda30a6b3c7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En las tres imágenes sucesivas, las velas y el área del gráfico pasan de ocupar una zona amplia a concentrarse progresivamente junto al borde izquierdo de la ventana."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la dirección del desplazamiento del contenido visible."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2de58f6775b30ce34c0cc5f9ae9d2a7ce632406395a1dc28949eaa86776e2953"
+    ],
+    "response_id": "gen-1791078798-Q1AYVWqPWEJXKNdgJzSH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-formato-similar-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El formato que voy a seguir va a ser un poco similar al del curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3a359129226694efb8abb4a4d053bb169e3f580dc3ce0adb66be6d4f65d50b33",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que el formato que se seguirá será parecido al del curso intermedio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2de58f6775b30ce34c0cc5f9ae9d2a7ce632406395a1dc28949eaa86776e2953"
+    ],
+    "response_id": "gen-1791078798-Q1AYVWqPWEJXKNdgJzSH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-informacion-curso-intermedio-no-relevante",
+   "kind": "claim",
+   "version": 1,
+   "statement": "No hay información del curso intermedio que sea totalmente relevante para entender esto ahora.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "bc3e62598f1c1441f21dfd478e3b24df638e618d15ed26d517f6ebe8a9eb6013",
+    "reasons": [
+     {
+      "code": "reviewer_malformed_output",
+      "detail": "reviewer produced a malformed verdict: claim review output schema id \"mke.claims-ground.v2\", want \"mke.claims-ground.v1\""
+     },
+     {
+      "code": "reviewer_malformed_output",
+      "detail": "corrective reissue after malformed attempt also rejected: claim review output addresses cl-informacion-curso-intermedio-no-relevante@1@1, review target is cl-informacion-curso-intermedio-no-relevante@1"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2de58f6775b30ce34c0cc5f9ae9d2a7ce632406395a1dc28949eaa86776e2953"
+    ],
+    "response_id": "gen-1791078798-Q1AYVWqPWEJXKNdgJzSH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-moneda-grafico-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El selector de moneda del gráfico muestra USD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "49f823e5230cfe16e7995928391100a0ddf85aa4309834975c0702df26aa2dec",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el selector de moneda位于 la esquina superior derecha del gráfico y muestra «USD»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2de58f6775b30ce34c0cc5f9ae9d2a7ce632406395a1dc28949eaa86776e2953"
+    ],
+    "response_id": "gen-1791078798-Q1AYVWqPWEJXKNdgJzSH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nivel-horizontal-116148",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra una línea horizontal etiquetada 1,16148.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3420000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3510000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f40c57641086e41a72dafd2b1c3c85811b6983f4e8c7b676f7f643cd98587ab1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran una línea horizontal que atraviesa el gráfico y, en el eje derecho, está etiquetada como 1,16148."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2de58f6775b30ce34c0cc5f9ae9d2a7ce632406395a1dc28949eaa86776e2953"
+    ],
+    "response_id": "gen-1791078798-Q1AYVWqPWEJXKNdgJzSH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-sin-curso-intermedio-no-pasa-nada",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si no has hecho el curso intermedio, no pasa nada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e6cf27b0a28396d66610d7c495d59c7d6b79a437e0e1e74fc7fe21558b493a9f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que, si no se ha hecho el curso intermedio, «no pasa nada»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: no haber hecho el curso intermedio no implica ningún problema."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2de58f6775b30ce34c0cc5f9ae9d2a7ce632406395a1dc28949eaa86776e2953"
+    ],
+    "response_id": "gen-1791078798-Q1AYVWqPWEJXKNdgJzSH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframe-eurusd-5m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta de temporalidad del gráfico muestra 5M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "492e68410989dcce65d4978b857792aa6b7f95e60dd3a4e168b460c73b8d189f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran explícitamente la etiqueta «EURUSD | 5M» en la parte inferior central del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2de58f6775b30ce34c0cc5f9ae9d2a7ce632406395a1dc28949eaa86776e2953"
+    ],
+    "response_id": "gen-1791078798-Q1AYVWqPWEJXKNdgJzSH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vamos-directamente-al-grano",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vamos directamente al grano.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c976b1bf1434e49e8b35812c7fa16c6d642feeb26d36f4d001b223aed15ba9e0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada dice explícitamente: «vamos directamente al grano»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición y no incluye reglas, excepciones ni aserciones adicionales."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2de58f6775b30ce34c0cc5f9ae9d2a7ce632406395a1dc28949eaa86776e2953"
+    ],
+    "response_id": "gen-1791078798-Q1AYVWqPWEJXKNdgJzSH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zona-sombreada-inferior-izquierda",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se observa una zona rectangular sombreada en la parte inferior izquierda del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3420000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c06c0ee4599069b6762fc843383fe851429b7cc7c0d1278a47ff7c7ef1026da5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran una zona rectangular sombreada en la parte inferior izquierda del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2de58f6775b30ce34c0cc5f9ae9d2a7ce632406395a1dc28949eaa86776e2953"
+    ],
+    "response_id": "gen-1791078798-Q1AYVWqPWEJXKNdgJzSH"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zona-sombreada-superior",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se observa una zona rectangular sombreada en la parte superior del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3420000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3510000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0009a2b8c0147d68b22b966d0e1f9ad4ecac919e66bb4e629d3156103aa0df88",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran claramente una zona rectangular con sombreado en la parte superior del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2de58f6775b30ce34c0cc5f9ae9d2a7ce632406395a1dc28949eaa86776e2953"
+    ],
+    "response_id": "gen-1791078798-Q1AYVWqPWEJXKNdgJzSH"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-reassurance-depends-on-relevance",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-sin-curso-intermedio-no-pasa-nada",
+   "subject_version": 1,
+   "object_id": "cl-informacion-curso-intermedio-no-relevante",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e04ad5f0507a00cfd40050ead5da2bb384fc89dda311434445401aa604e85b0f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enlaza explícitamente ambas afirmaciones: dice que, si no se ha hecho el curso intermedio, «no pasa nada» «porque no hay información que sea totalmente relevante» para entenderlo ahora."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2de58f6775b30ce34c0cc5f9ae9d2a7ce632406395a1dc28949eaa86776e2953"
+    ],
+    "response_id": "gen-1791078798-Q1AYVWqPWEJXKNdgJzSH"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00003",
+   "start_ms": 34850,
+   "end_ms": 49400,
+   "text": "Así que nada, vamos directamente al grano. El formato que voy a seguir va a ser un poco similar al del curso intermedio y si no lo has hecho, tranquilo, no pasa nada porque no hay información que sea totalmente relevante para ahora entender esto."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+   "pts_ms": 37000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3420000-canonical-v1",
+   "pts_ms": 38000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3420000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3510000-canonical-v1",
+   "pts_ms": 39000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3510000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3600000-canonical-v1",
+   "pts_ms": 40000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3690000-canonical-v1",
+   "pts_ms": 41000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3690000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3780000-canonical-v1",
+   "pts_ms": 42000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3780000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3870000-canonical-v1",
+   "pts_ms": 43000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3870000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3960000-canonical-v1",
+   "pts_ms": 44000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

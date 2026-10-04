@@ -1,0 +1,168 @@
+{
+ "window": "w0108",
+ "start": "27:52",
+ "end": "28:04",
+ "start_ms": 1672000,
+ "end_ms": 1684000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cierre-fuera-ultima-vela-bajista-forma-orden",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Cuando una vela cierra por fuera de la última vela bajista, se forma lo que llamamos una orden.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00242",
+    "asr-00243"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e5aef551a158808f9c452aa8bc203dfdcb55c1d966f0e30aaaa14851ba847392",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas expresan directamente que, cuando una vela cierra por fuera de la última vela bajista, se forma «esto que lo llamamos orden»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la formación de una orden bajo esa condición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "f6d722f50b5413eea64b72ab2afd690a18851c3486ff9c72eebd80cf3317f211"
+    ],
+    "response_id": "gen-1791112949-EwozM4HxjFx9bpyYNKpq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-seleccionada-cambia-a-blanco",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela seleccionada cambia de negro a blanco.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p150480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p150570000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p150660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9b03d7591cbfe9b8a1949c620d44dc81eb4347cacef533cc2868f51bcf1919c2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos primeras imágenes muestran la vela seleccionada en negro y la tercera muestra la vela correspondiente en blanco."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el cambio de color de la vela seleccionada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "f6d722f50b5413eea64b72ab2afd690a18851c3486ff9c72eebd80cf3317f211"
+    ],
+    "response_id": "gen-1791112949-EwozM4HxjFx9bpyYNKpq"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00242",
+   "start_ms": 1671320,
+   "end_ms": 1683380,
+   "text": "cierra por fuera de la última vela bajista algo así cierra por fuera cuando pasa esto se nos forma"
+  },
+  {
+   "id": "asr-00243",
+   "start_ms": 1683380,
+   "end_ms": 1690890,
+   "text": "esto que lo llamamos orden lo sería un poco esto esto sí vamos a ir a gráfico lo veáis claro y es"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p150480000-canonical-v1",
+   "pts_ms": 1672000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p150480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p150570000-canonical-v1",
+   "pts_ms": 1673000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p150570000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p150660000-canonical-v1",
+   "pts_ms": 1674000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p150660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p150840000-canonical-v1",
+   "pts_ms": 1676000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p150840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p151200000-canonical-v1",
+   "pts_ms": 1680000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p151200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p151380000-canonical-v1",
+   "pts_ms": 1682000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p151380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p151470000-canonical-v1",
+   "pts_ms": 1683000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p151470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p151560000-canonical-v1",
+   "pts_ms": 1684000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p151560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

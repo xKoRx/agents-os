@@ -1,0 +1,491 @@
+{
+ "window": "w0044",
+ "start": "09:48",
+ "end": "10:12",
+ "start_ms": 588000,
+ "end_ms": 612000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-apertura-nueva-vela",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La nueva vela se dibuja abriendo en la zona situada a la derecha de la vela anterior.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00099",
+    "frame-4de8f12d4841c630-s0-p54000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p55080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9c4853db592bb5e478b5eeb603ce34ba70e0ad6a2e74c1e3580ea72b41da7a3b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice que «la nueva vela... va a abrir por aquí», y las imágenes citadas muestran esa nueva vela a la derecha de la vela anterior, con su apertura en esa zona."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "421ba3b8a44b38d177015f06d857c4d6aff275eef1ebcc8e70f3bf1d0509776c"
+    ],
+    "response_id": "gen-1791090965-c2IAUhgmJtWPaYKcVXH7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dibujo-vela-adicional",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Dibujar una vela adicional junto a las velas anteriores.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00098",
+    "frame-4de8f12d4841c630-s0-p53280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a55ab61b45454a6e3e7e6b51929b30a96067b53f4d2099a1ae5fb2ff0f98e8be",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente que se hará y dibujará «otra vela» en ese lugar, y la imagen muestra las velas该项目 esa zona del gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola instrucción: dibujar una vela adicional; la indicación de ubicación modifica esa misma acción."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "421ba3b8a44b38d177015f06d857c4d6aff275eef1ebcc8e70f3bf1d0509776c"
+    ],
+    "response_id": "gen-1791090965-c2IAUhgmJtWPaYKcVXH7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dibujo-vela-con-mechas",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Dibujar esa vela adicional con mechas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00098",
+    "frame-4de8f12d4841c630-s0-p53640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p54720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "86f15c3ee35cc45a13d7e9a253a4a04edfe4ffb1e8f04ccde29d74ad3e2afa3f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica explícitamente: «Luego hace otra vela por aquí, vamos a dibujarlo con mechas también», lo que respaldan las imágenes al mostrar otra vela con mechas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola instrucción: dibujar la vela adicional con mechas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "421ba3b8a44b38d177015f06d857c4d6aff275eef1ebcc8e70f3bf1d0509776c"
+    ],
+    "response_id": "gen-1791090965-c2IAUhgmJtWPaYKcVXH7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-mechas-realismo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Las mechas hacen que la vela se vea un poco más real.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00098"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a167f1eff5f6b3b4175ecd726307949fe184328274580598d762983cd21980a8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que la vela se dibujará «con mechas también» para que «se vea un poco más real»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: las mechas hacen que la vela parezca un poco más real."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "421ba3b8a44b38d177015f06d857c4d6aff275eef1ebcc8e70f3bf1d0509776c"
+    ],
+    "response_id": "gen-1791090965-c2IAUhgmJtWPaYKcVXH7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-price-toma-low-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio ha tomado el low del rango representado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00098",
+    "frame-4de8f12d4841c630-s0-p55080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c27f69416641b5b1644a26e4e1d4dff7c9abeca1a4cd6e9d2a6d09b41598be0a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que el precio «ha tomado el low de este rango»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el precio alcanzó el mínimo del rango representado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "421ba3b8a44b38d177015f06d857c4d6aff275eef1ebcc8e70f3bf1d0509776c"
+    ],
+    "response_id": "gen-1791090965-c2IAUhgmJtWPaYKcVXH7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-cierra-dentro",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si la nueva vela toma el low del rango y cierra dentro del rango, la formación se denomina rango pendiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00098",
+    "asr-00099",
+    "frame-4de8f12d4841c630-s0-p55080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "95813846c5339cd3c3112dafe032d14d707972a594bb931c12b2f35f31867346",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción stated que, si la nueva vela toma el low y cierra adentro, la formación se llamará «rango pendiente». Las condiciones forman parte de una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "421ba3b8a44b38d177015f06d857c4d6aff275eef1ebcc8e70f3bf1d0509776c"
+    ],
+    "response_id": "gen-1791090965-c2IAUhgmJtWPaYKcVXH7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-reaccion",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si el precio reacciona en la otra vela, la formación se denomina rango pendiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00099",
+    "frame-4de8f12d4841c630-s0-p55080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2c4e1ef3dae12589e96054605a36226936aa758541cf088e29415795dbe3f483",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica expresamente que, si el precio «reacciona en la otra vela», tomando el mínimo de la vela anterior y subiendo, «esto es lo que llamaremos un rango pendiente»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional: la reacción del precio en la otra vela da nombre a la formación como rango pendiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "421ba3b8a44b38d177015f06d857c4d6aff275eef1ebcc8e70f3bf1d0509776c"
+    ],
+    "response_id": "gen-1791090965-c2IAUhgmJtWPaYKcVXH7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reaccion-otra-vela",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La reacción en la otra vela consiste en que el precio tome el low de la vela anterior y suba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00099",
+    "frame-4de8f12d4841c630-s0-p55080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d58ab5e5b10b447e62b204b195ff34520093ac84c5101371918f6c3d844ec3d9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que en la otra vela el precio «toma el low de la vela anterior y sube»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación combina dos acciones evaluables de forma independiente: tomar el mínimo de la vela anterior y subir."
+     },
+     {
+      "code": "claim_not_atomic",
+      "detail": "claim review judged the statement COMPOSITE: independently evaluable assertions must be separate claims"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "421ba3b8a44b38d177015f06d857c4d6aff275eef1ebcc8e70f3bf1d0509776c"
+    ],
+    "response_id": "gen-1791090965-c2IAUhgmJtWPaYKcVXH7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-posible-4h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La vela que se dibuja a continuación podría ser de 4 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00098"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7a16ed94a6abc7730fea96efe83afab56b28492ade34c138f1cff104af2df29e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente «lo que podría ser 4 horas» y, acto seguido, que «hace otra vela por aquí» que van a dibujar, lo que respalda que la vela dibujada a continuación podría ser de 4 horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la posible duración de esa vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "421ba3b8a44b38d177015f06d857c4d6aff275eef1ebcc8e70f3bf1d0509776c"
+    ],
+    "response_id": "gen-1791090965-c2IAUhgmJtWPaYKcVXH7"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-pendiente-reaccion-depende",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-pendiente-reaccion",
+   "subject_version": 1,
+   "object_id": "cl-reaccion-otra-vela",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00099"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7bd1e01037f8d970ebb905cbc05dae1f561c96651fefdcb454e6aabb3fcfd559",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia explica que «reacciona en la otra vela» significa «toma el low de la vela anterior y sube» y afirma que esa reacción es lo que se llamará «rango pendiente»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "421ba3b8a44b38d177015f06d857c4d6aff275eef1ebcc8e70f3bf1d0509776c"
+    ],
+    "response_id": "gen-1791090965-c2IAUhgmJtWPaYKcVXH7"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00098",
+   "start_ms": 572710,
+   "end_ms": 594750,
+   "text": "¿Por qué? Porque ahora vamos a lo que podría ser 4 horas, ha tomado el low de este rango, así, ¿vale? Luego hace otra vela por aquí, vamos a dibujarlo con mechas también que se vea un poco más real, ¿sí?"
+  },
+  {
+   "id": "asr-00099",
+   "start_ms": 594750,
+   "end_ms": 620320,
+   "text": "Y la nueva vela que abre va a abrir por aquí y si nos toma este low por aquí y cierra adentro o reacciona en la otra vela, o sea, toma el low de la vela anterior y sube, esto es lo que llamaremos un rango pendiente."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p52920000-canonical-v1",
+   "pts_ms": 588000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p52920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p53280000-canonical-v1",
+   "pts_ms": 592000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p53280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p53640000-canonical-v1",
+   "pts_ms": 596000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p53640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p54000000-canonical-v1",
+   "pts_ms": 600000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p54000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p54360000-canonical-v1",
+   "pts_ms": 604000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p54360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p54720000-canonical-v1",
+   "pts_ms": 608000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p54720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p54990000-canonical-v1",
+   "pts_ms": 611000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p54990000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p55080000-canonical-v1",
+   "pts_ms": 612000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p55080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

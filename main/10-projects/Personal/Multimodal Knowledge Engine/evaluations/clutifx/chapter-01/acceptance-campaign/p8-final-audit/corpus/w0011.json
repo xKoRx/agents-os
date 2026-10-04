@@ -1,0 +1,373 @@
+{
+ "window": "w0011",
+ "start": "02:29",
+ "end": "02:42",
+ "start_ms": 149000,
+ "end_ms": 162000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-el-rango-derecho-es-bajista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango de la derecha es un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00022",
+    "frame-4de8f12d4841c630-s0-p13410000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p13590000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b092ac3e6290382e076932ca8804ed6a3dc5d2f260d0c15f1f3fecb4de004765",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente: «esto sería rango alcista y este aquí sería un rango bajista»; las imágenes muestran ambos rangos uno al lado del otro, y la expresión final «este aquí» corresponde al rango de la derecha en ese contexto."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el rango de la derecha es bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff4f48f9ff0e2f7f1142fc3581ecd384cc4ef6837ed02af1662195fafb34946d"
+    ],
+    "response_id": "gen-1791082736-5Gl5LNMX8DzcNPldrlR8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-el-rango-izquierdo-es-alcista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango de la izquierda es un rango alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00022",
+    "frame-4de8f12d4841c630-s0-p13410000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p13860000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7030e644cfca46447efb67099e0bac35b8c0c4e67d36046dfe885acff93cff32",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes etiquetan explícitamente el rango de la izquierda como «rango alcista», y la transcripción lo distingue del rango de la derecha, descrito como bajista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el rango de la izquierda es alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff4f48f9ff0e2f7f1142fc3581ecd384cc4ef6837ed02af1662195fafb34946d"
+    ],
+    "response_id": "gen-1791082736-5Gl5LNMX8DzcNPldrlR8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-la-estrategia-se-basa-principalmente-en-rangos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La estrategia se basa principalmente en los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00020"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5ac26eac6ad268b3dc550e6d09e76d802755e07ecad8d23bb58d5b7a04b61057",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «la estrategia se basa principalmente en los rangos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff4f48f9ff0e2f7f1142fc3581ecd384cc4ef6837ed02af1662195fafb34946d"
+    ],
+    "response_id": "gen-1791082736-5Gl5LNMX8DzcNPldrlR8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-los-rangos-no-estan-mencionados-en-el-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos no están mencionados en el curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00020",
+    "asr-00021"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "132cbc57ea071619418e877eab1da1d5d159b369c6eba92048d1077f36206bd3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited transcript says that the strategy is based mainly on ranges and that “this” is not mentioned in the intermediate course, supporting the statement that the ranges are not mentioned there."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement asserts one proposition about whether the ranges are mentioned in the intermediate course."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff4f48f9ff0e2f7f1142fc3581ecd384cc4ef6837ed02af1662195fafb34946d"
+    ],
+    "response_id": "gen-1791082736-5Gl5LNMX8DzcNPldrlR8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-los-rangos-son-importantes-para-encontrar-el-bias",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos son muy importantes para encontrar el bias.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00021",
+    "asr-00022"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "80f8ab2e4ac1af1785176caa8423d6a682ea07501812d48055e9f9d4bc2b45a7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidenciacombinationada afirma que «es muy importante para encontrar... el bias» y, en el mismo contexto, identifica «rango alcista» y «rango bajista», lo que respalda que los rangos son importantes para encontrar el bias."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la importancia de los rangos para encontrar el bias."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff4f48f9ff0e2f7f1142fc3581ecd384cc4ef6837ed02af1662195fafb34946d"
+    ],
+    "response_id": "gen-1791082736-5Gl5LNMX8DzcNPldrlR8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-los-rangos-son-importantes-para-encontrar-entradas",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos son muy importantes para encontrar las entradas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00021"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "cbcd7fe7f20a69f0fba02fed5214a7666dd5e293ed4c5f79a74f41070372fc8e",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer failed: vlm provider parse-structured [fatal]: assistant content is not a valid JSON object"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff4f48f9ff0e2f7f1142fc3581ecd384cc4ef6837ed02af1662195fafb34946d"
+    ],
+    "response_id": "gen-1791082736-5Gl5LNMX8DzcNPldrlR8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-mostrada-5m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad mostrada es 5M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p13410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "11d476e747e4312ff8be49f382b122a673ee4869c0fdb988213c5330db56e4f9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente «EURUSD | 5M», lo que acredita que la temporalidad mostrada es 5M."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff4f48f9ff0e2f7f1142fc3581ecd384cc4ef6837ed02af1662195fafb34946d"
+    ],
+    "response_id": "gen-1791082736-5Gl5LNMX8DzcNPldrlR8"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00020",
+   "start_ms": 145040,
+   "end_ms": 152600,
+   "text": "este rango vale vais a ver que la estrategia se basa principalmente en los rangos y esto no está"
+  },
+  {
+   "id": "asr-00021",
+   "start_ms": 152600,
+   "end_ms": 158800,
+   "text": "mencionado en el curso intermedio y es muy importante para encontrar las entradas para"
+  },
+  {
+   "id": "asr-00022",
+   "start_ms": 158800,
+   "end_ms": 165200,
+   "text": "encontrar el bias para todo así que esto sería rango alcista y este aquí sería un rango bajista"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13410000-canonical-v1",
+   "pts_ms": 149000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13590000-canonical-v1",
+   "pts_ms": 151000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13680000-canonical-v1",
+   "pts_ms": 152000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13860000-canonical-v1",
+   "pts_ms": 154000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14040000-canonical-v1",
+   "pts_ms": 156000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14400000-canonical-v1",
+   "pts_ms": 160000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14490000-canonical-v1",
+   "pts_ms": 161000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14580000-canonical-v1",
+   "pts_ms": 162000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

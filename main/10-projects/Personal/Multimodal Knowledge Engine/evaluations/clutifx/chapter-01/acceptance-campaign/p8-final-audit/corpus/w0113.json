@@ -1,0 +1,285 @@
+{
+ "window": "w0113",
+ "start": "28:52",
+ "end": "29:04",
+ "start_ms": 1732000,
+ "end_ms": 1744000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-buscar-vela-visible",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Buscar una vela donde se vea claramente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00250",
+    "asr-00251"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5fffd5bbf21a15098fcd6e010ae2aa210a41fdafec5e333a943a17ff1be029c6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice «no se ve muy claro. Vamos a buscar una donde se vea» y, a continuación, se refiere a «esta vela», lo que respalda la instrucción de buscar una vela donde se vea claramente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "197f08cbe01541c5556b8deb23839412194fc1d7ccdde4d5d35ad49d9af6294b"
+    ],
+    "response_id": "gen-1791113753-62aAzf6Au60HENkGNt3K"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-intervalo-30-a-15",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico cambia del intervalo de 30 minutos al de 15 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p155880000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p156150000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9c2ae37f62c1682e34ab4f20e77957d992b115abe9daaf08e234668620496839",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra el gráfico de EURUSD en el intervalo de 30 minutos y la segunda lo muestra en el intervalo de 15 minutos, por lo que ambas juntas respaldan el cambio indicado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el intervalo del gráfico cambió de 30 a 15 minutos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "197f08cbe01541c5556b8deb23839412194fc1d7ccdde4d5d35ad49d9af6294b"
+    ],
+    "response_id": "gen-1791113753-62aAzf6Au60HENkGNt3K"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-lectura-15-no-clara",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el intervalo de 15, no se ve muy claro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00250",
+    "frame-4de8f12d4841c630-s0-p156150000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1aa662c2f92299cff845087b603de9a5aed36c1d11ed43f9abf72bd180f6d573",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que en «15» «no se ve muy claro», y la imagen muestra el gráfico de EURUSD en EUR/USD · 15."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "197f08cbe01541c5556b8deb23839412194fc1d7ccdde4d5d35ad49d9af6294b"
+    ],
+    "response_id": "gen-1791113753-62aAzf6Au60HENkGNt3K"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-tras-cierre-fuera",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Una vez esta vela se cierra por fuera, ya puedes tomar tu long para ir para arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00250",
+    "asr-00251"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bd984bd5d8b651fda3845a918c020d98f8cbb640a07b3e45b56c83c3cbe0f4af",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita enuncia directamente que, una vez que la vela se cierra por fuera, se puede tomar una posición long para ir hacia arriba."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La frase contiene una sola regla accionable; «aquí» y «para ir para arriba» solo contextualizan o expresan el propósito de esa misma acción."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "197f08cbe01541c5556b8deb23839412194fc1d7ccdde4d5d35ad49d9af6294b"
+    ],
+    "response_id": "gen-1791113753-62aAzf6Au60HENkGNt3K"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-probar-intervalo-10",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Probar el intervalo de 10 para ver si se ve más claro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00250"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4f791fba60c5cb168fbdef5e6bfd27bbc8f356694f6e2a664d29327b540fed6a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia propone probar en 10 («a ver si en 10») después de indicar que 15 no se ve muy claro, lo que respalda la acción de probar el intervalo de 10 para comprobar si se ve más claro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: probar el intervalo de 10 con el fin de comprobar su claridad."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "197f08cbe01541c5556b8deb23839412194fc1d7ccdde4d5d35ad49d9af6294b"
+    ],
+    "response_id": "gen-1791113753-62aAzf6Au60HENkGNt3K"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00250",
+   "start_ms": 1723940,
+   "end_ms": 1735100,
+   "text": "hoy, 15 no se ve, a ver si en 10, no se ve muy claro. Vamos a buscar una donde se vea"
+  },
+  {
+   "id": "asr-00251",
+   "start_ms": 1735100,
+   "end_ms": 1747880,
+   "text": "Por ejemplo, aquí, una vez esta vela se cierra por fuera, aquí tú ya puedes tomar tu long para ir para arriba."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p155880000-canonical-v1",
+   "pts_ms": 1732000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p155880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p156150000-canonical-v1",
+   "pts_ms": 1735000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p156150000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p156240000-canonical-v1",
+   "pts_ms": 1736000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p156240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p156330000-canonical-v1",
+   "pts_ms": 1737000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p156330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p156420000-canonical-v1",
+   "pts_ms": 1738000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p156420000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p156600000-canonical-v1",
+   "pts_ms": 1740000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p156600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p156690000-canonical-v1",
+   "pts_ms": 1741000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p156690000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p156960000-canonical-v1",
+   "pts_ms": 1744000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p156960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

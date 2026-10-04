@@ -1,0 +1,451 @@
+{
+ "window": "w0077",
+ "start": "19:41",
+ "end": "19:53",
+ "start_ms": 1181000,
+ "end_ms": 1193000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eliminar-rango-mostrado",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Eliminar el rango mostrado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168",
+    "frame-4de8f12d4841c630-s0-p106920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p107190000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "03f86d38a5bb2d2e81f14d99552bd98a99e5c806ed6f5722a3e1b6476b22e9eb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento citado dice explícitamente «Este rango ya se puede eliminar», y las imágenes muestran el rango seleccionado y después su eliminación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La instrucción afirma una sola acción: eliminar el rango mostrado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ee363895fcfa1da1af6b96ec395758021406fa0b93f569cad2c2c7f3007102e9"
+    ],
+    "response_id": "gen-1791102251-7eDl1POPh7TkQI8My9kJ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esperar-nueva-vela-idea-alcista",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si tenemos una idea alcista, tendremos que esperar a que aparezca una nueva vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "eaecbf70ae41e383d147a21b5af857e0147c69b1ce1167841086090d6527aa1c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción expresa directamente que, si hay una idea alcista, habrá que esperar a que una nueva vela aparezca."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ee363895fcfa1da1af6b96ec395758021406fa0b93f569cad2c2c7f3007102e9"
+    ],
+    "response_id": "gen-1791102251-7eDl1POPh7TkQI8My9kJ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estructura-ya-no-es-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La estructura señalada ya no es un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168",
+    "frame-4de8f12d4841c630-s0-p106920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p107190000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1cdbe807ed6591badbe21a3d4b08ee73b75a9289c98a110fd6412fccd6ccda32",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que «esto ya no es un rango»,-ke refers al rango y la estructura señalada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la estructura señalada ha dejado de ser un rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ee363895fcfa1da1af6b96ec395758021406fa0b93f569cad2c2c7f3007102e9"
+    ],
+    "response_id": "gen-1791102251-7eDl1POPh7TkQI8My9kJ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-extremo-caja-negra-ajustado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El extremo inferior del rectángulo negro se desplaza hacia abajo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p106290000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p106560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p106650000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9baca96417348b28e79f615aab48e633f017f54d8533d16718df895c0012a323",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El borde inferior del rectángulo negro aparece más abajo en el segundo fotograma que en el primero y mantiene esa posición inferior en el tercero, lo que muestra un desplazamiento hacia abajo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ee363895fcfa1da1af6b96ec395758021406fa0b93f569cad2c2c7f3007102e9"
+    ],
+    "response_id": "gen-1791102251-7eDl1POPh7TkQI8My9kJ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nueva-vela-marcada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La nueva vela se deja marcada en el gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168",
+    "frame-4de8f12d4841c630-s0-p107190000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p107370000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2b12d79f19c0b57230a43bc315cf86e47ad3022a60a53665c970bfbf0a9161a6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que la nueva vela «la dejo aquí marcada», lo que respalda directamente que se deja marcada en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ee363895fcfa1da1af6b96ec395758021406fa0b93f569cad2c2c7f3007102e9"
+    ],
+    "response_id": "gen-1791102251-7eDl1POPh7TkQI8My9kJ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-blanco-eliminado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rectángulo blanco desaparece del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p106920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p107100000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p107190000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "47b7487bb383de24f5bbe775ff5c7d14d159ccedeac03e01018b440a0e1dfc4b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El primer fotograma muestra un rectángulo blanco seleccionado en el gráfico, mientras que el último fotograma ya no lo muestra; el rectángulo negro permanece visible."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ee363895fcfa1da1af6b96ec395758021406fa0b93f569cad2c2c7f3007102e9"
+    ],
+    "response_id": "gen-1791102251-7eDl1POPh7TkQI8My9kJ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-eurusd-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico mostrado es de 15 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p107370000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p158040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d6bc238cb5a234bbc6b20c106ea9d4babed699d28f64a89947da39271c03fe7e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran explícitamente «EURUSD · 15» y «EURUSD | 15M», lo que acredita una temporalidad de 15 minutos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la temporalidad del gráfico mostrado es de 15 minutos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b8afed7e47629d751900bbb74e1c9a97bd6953c9f08b3e2b4e4940625d23a88b",
+     "ee363895fcfa1da1af6b96ec395758021406fa0b93f569cad2c2c7f3007102e9"
+    ],
+    "response_id": "gen-1791102251-7eDl1POPh7TkQI8My9kJ"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-eliminacion-rango-depende-estructura-invalida",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-eliminar-rango-mostrado",
+   "subject_version": 1,
+   "object_id": "cl-estructura-ya-no-es-rango",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168",
+    "frame-4de8f12d4841c630-s0-p106920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p107190000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f2e824e43ffaf6cc26637f70faa1c588d8be954eedc96ef8c7cfc87c482e815c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que «Este rango ya se puede eliminar» y, en el mismo pasaje, que si la estructura cierra afuera «esto ya no es un rango», establishiendo la eliminación del rango a partir de que la estructura señalada dejó de serlo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ee363895fcfa1da1af6b96ec395758021406fa0b93f569cad2c2c7f3007102e9"
+    ],
+    "response_id": "gen-1791102251-7eDl1POPh7TkQI8My9kJ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-estructura-actual-depende-cierre-fuera",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-estructura-ya-no-es-rango",
+   "subject_version": 1,
+   "object_id": "cl-cierre-fuera-deja-de-ser-rango",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d3b6427ecca5a259c5bb395eeaed5681f83bdaa2d107021ab2e80c5c8633dfb6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que, si la vela cierra afuera, «esto ya no es un rango», Linking la afirmación de que la estructura señalada ha dejado de ser un rango con la condición de cierre fuera en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ee363895fcfa1da1af6b96ec395758021406fa0b93f569cad2c2c7f3007102e9"
+    ],
+    "response_id": "gen-1791102251-7eDl1POPh7TkQI8My9kJ"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00168",
+   "start_ms": 1179620,
+   "end_ms": 1197440,
+   "text": "Este rango ya se puede eliminar y del mismo caso, si cierra afuera, esto ya no es un rango. Si tenemos una idea alcista, tendremos que esperar ahora a que una nueva vela, bueno, la dejo aquí marcada, en este caso, ello, esto ya no es un rango."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p106290000-canonical-v1",
+   "pts_ms": 1181000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p106290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p106560000-canonical-v1",
+   "pts_ms": 1184000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p106560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p106650000-canonical-v1",
+   "pts_ms": 1185000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p106650000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p106920000-canonical-v1",
+   "pts_ms": 1188000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p106920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107100000-canonical-v1",
+   "pts_ms": 1190000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107190000-canonical-v1",
+   "pts_ms": 1191000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107190000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107280000-canonical-v1",
+   "pts_ms": 1192000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107370000-canonical-v1",
+   "pts_ms": 1193000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107370000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158040000-canonical-v1",
+   "pts_ms": 1756000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

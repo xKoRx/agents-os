@@ -1,0 +1,616 @@
+{
+ "window": "w0072",
+ "start": "17:47",
+ "end": "18:03",
+ "start_ms": 1067000,
+ "end_ms": 1083000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-one-black-candle",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra una vela negra.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p96030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p97470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "669b7caec67e64d90aadcf4203c2e657ac20302d84ab60b7324df8c06c7cfdaf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes citadas muestran claramente una vela negra en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el gráfico muestra una vela negra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff65ed105d0b3c9948f7953ec0a8780fa14f3ee102de53cdbb9acf89c9068807"
+    ],
+    "response_id": "gen-1791099746-KJmaBFrwOgEJ6GXZyrjp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-two-white-candles",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra dos velas blancas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p96030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p97470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "300ae047a95a415543fad13e74851137a862397bf32c31248bdaa39c8f098537",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas citados muestran dos velas blancas en la parte central del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff65ed105d0b3c9948f7953ec0a8780fa14f3ee102de53cdbb9acf89c9068807"
+    ],
+    "response_id": "gen-1791099746-KJmaBFrwOgEJ6GXZyrjp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-daily-candle-opposite-four-hour-range",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si hay una vela de un día, en cuatro horas puede formarse algo así como un rango contrario a ella.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00155"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1ad5349155856e79cfb292555590c6011b78ac51cabad0d18db63e15e33c1884",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que, si hay una vela de un día, en cuatro horas puede formarse algo así como un rango contrario a ella."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la posible formación de un rango contrario durante cuatro horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff65ed105d0b3c9948f7953ec0a8780fa14f3ee102de53cdbb9acf89c9068807"
+    ],
+    "response_id": "gen-1791099746-KJmaBFrwOgEJ6GXZyrjp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtle-soup-nested-turtle-soup",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El intraturtle soup hace un turtle soup dentro de un turtle soup que ya está hecho.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00151",
+    "asr-00152",
+    "asr-00153"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "912469f1c123420aea6efc0e35d3f08ffa5c4b58ef3d00147ec6879680677e09",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción fonética sostiene que “intratartel sub” hace un “tartel sub” dentro de otro “tartel sub” que ya está hecho."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el intraturtle soup genera un turtle soup anidado en uno ya existente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff65ed105d0b3c9948f7953ec0a8780fa14f3ee102de53cdbb9acf89c9068807"
+    ],
+    "response_id": "gen-1791099746-KJmaBFrwOgEJ6GXZyrjp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtle-soup-occurs-sometimes",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El intraturtle soup ocurre algunas veces.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00150",
+    "asr-00151",
+    "asr-00152",
+    "asr-00153",
+    "asr-00154",
+    "asr-00155"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "20f814b7e7c2515b0be8f34fae762df16cf1e394397a734f09075adda471ac52",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «No. Algunas veces pasa, sí», lo que respaldan que el fenómeno ocurre algunas veces."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el intraturtle soup ocurre algunas veces."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff65ed105d0b3c9948f7953ec0a8780fa14f3ee102de53cdbb9acf89c9068807"
+    ],
+    "response_id": "gen-1791099746-KJmaBFrwOgEJ6GXZyrjp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtle-soup-seen-later",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El intraturtle soup se verá más adelante.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00150",
+    "asr-00151",
+    "asr-00154",
+    "asr-00155"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "beafde7fc3e5fcc67caa8ed9066f546bbb4de90c3fb3ab8c4f49d28b4ff2eaa4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «lo vais a ver más adelante», en referencia al intraturtle soup que se está explicando."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff65ed105d0b3c9948f7953ec0a8780fa14f3ee102de53cdbb9acf89c9068807"
+    ],
+    "response_id": "gen-1791099746-KJmaBFrwOgEJ6GXZyrjp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtle-soup",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Esto sería un intraturtle soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00150",
+    "asr-00151",
+    "frame-4de8f12d4841c630-s0-p96030000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cc8bae25082c41900d2b8b9a7db278e4a48b3f20a922848b5b5b72bf3a05a334",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «esto sería» seguido de una versión fonéticamente garbleada de «intraturtle soup», y el marco muestra la etiqueta «INTRATURTLESOUP», confirmando que se refieren al mismo término."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: esto sería un intraturtle soup."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff65ed105d0b3c9948f7953ec0a8780fa14f3ee102de53cdbb9acf89c9068807"
+    ],
+    "response_id": "gen-1791099746-KJmaBFrwOgEJ6GXZyrjp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intraturtlesoup-chart-label",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La anotación del gráfico dice «INTRATURTLESOUP».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p96030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p97470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2d4544c69066a83b886947f7e5a35b90fc67dabe14a10188043866ee86acd8f0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran claramente la anotación «INTRATURTLESOUP» sobre el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff65ed105d0b3c9948f7953ec0a8780fa14f3ee102de53cdbb9acf89c9068807"
+    ],
+    "response_id": "gen-1791099746-KJmaBFrwOgEJ6GXZyrjp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-scenario-can-occur",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El escenario descrito puede ocurrir.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00148",
+    "asr-00150",
+    "asr-00151",
+    "asr-00152",
+    "asr-00153"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "318364cf71f28976da82ff43f950795bfdcc895f7282653beb947a2295198038",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas son fragmentarias y no identifican con claridad qué es «el escenario descrito»; la expresión «que pueden pasar» no permite establecer su referente ni qué occurrences son posibles."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la posibilidad de que ocurra el escenario descrito."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff65ed105d0b3c9948f7953ec0a8780fa14f3ee102de53cdbb9acf89c9068807"
+    ],
+    "response_id": "gen-1791099746-KJmaBFrwOgEJ6GXZyrjp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-scenario-impossible-100-percent-winrate",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Si el escenario descrito no fuera posible, el winrate sería del 100%.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00148",
+    "asr-00149",
+    "asr-00150",
+    "asr-00151",
+    "asr-00152",
+    "asr-00153"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0abc55356da0fbeba91d82f080e3db14d3a67386d4e5e2e82e924a96dd17df54",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice explícitamente que, si no, habría «un 100% de winrate», lo que respalda la proposición condicional."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la relación entre la imposibilidad del escenario y un winrate del 100%; la cláusula condicional solo limita esa misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff65ed105d0b3c9948f7953ec0a8780fa14f3ee102de53cdbb9acf89c9068807"
+    ],
+    "response_id": "gen-1791099746-KJmaBFrwOgEJ6GXZyrjp"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-nested-structure-depends-on-identification",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-intraturtle-soup-nested-turtle-soup",
+   "subject_version": 1,
+   "object_id": "cl-intraturtle-soup",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00150",
+    "asr-00151",
+    "asr-00152",
+    "asr-00153"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "322dd2efd28a2c43b18ae4c1981cbbfd4f92aeb14e319a79026db35a67eae851",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica «esto» como un intraturtle soup y, en la misma construcción, lo describe como aquele que hace un turtle soup dentro de otro turtle soup que ya está hecho; por tanto, la estructura anidada está directamente ligada a esa identificación en la orientación declarada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff65ed105d0b3c9948f7953ec0a8780fa14f3ee102de53cdbb9acf89c9068807"
+    ],
+    "response_id": "gen-1791099746-KJmaBFrwOgEJ6GXZyrjp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-scenario-counterfactual-depends-on-possibility",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-scenario-impossible-100-percent-winrate",
+   "subject_version": 1,
+   "object_id": "cl-scenario-can-occur",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00148",
+    "asr-00149"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ef1850fc2cf8901bfd4b41a59bfaf771005ad9e6cecb4b201e4798d40b419d8b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el escenario «puede[s] pasar» y que, si no ocurriera, habría «un 100% de winrate», con lo que presenta explícitamente la posibilidad del escenario como condición opuesta al contrafactual del sujeto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ff65ed105d0b3c9948f7953ec0a8780fa14f3ee102de53cdbb9acf89c9068807"
+    ],
+    "response_id": "gen-1791099746-KJmaBFrwOgEJ6GXZyrjp"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00148",
+   "start_ms": 1066760,
+   "end_ms": 1069020,
+   "text": "que pueden pasar, porque si no tendríamos un 100%"
+  },
+  {
+   "id": "asr-00149",
+   "start_ms": 1069020,
+   "end_ms": 1070880,
+   "text": "de winrate y tampoco es plan"
+  },
+  {
+   "id": "asr-00150",
+   "start_ms": 1070880,
+   "end_ms": 1072840,
+   "text": "¿no? o sea que esto sería"
+  },
+  {
+   "id": "asr-00151",
+   "start_ms": 1072840,
+   "end_ms": 1074540,
+   "text": "el intratartel sub que hace"
+  },
+  {
+   "id": "asr-00152",
+   "start_ms": 1074540,
+   "end_ms": 1076100,
+   "text": "un tartel sub"
+  },
+  {
+   "id": "asr-00153",
+   "start_ms": 1076100,
+   "end_ms": 1079270,
+   "text": "otro tartel sub de un tartel sub que ya está hecho"
+  },
+  {
+   "id": "asr-00154",
+   "start_ms": 1079270,
+   "end_ms": 1081020,
+   "text": "¿pasa muchas veces?"
+  },
+  {
+   "id": "asr-00155",
+   "start_ms": 1081020,
+   "end_ms": 1099350,
+   "text": "No. Algunas veces pasa, sí. ¿Cómo se puede intentar predecir? Que lo vais a ver más adelante. Pero si esto es una vela, digamos, de un día y en cuatro horas tenemos, pues, algo así, como que se nos forma un rango contrario, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p96030000-canonical-v1",
+   "pts_ms": 1067000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p96030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p96120000-canonical-v1",
+   "pts_ms": 1068000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p96120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p96480000-canonical-v1",
+   "pts_ms": 1072000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p96480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p96750000-canonical-v1",
+   "pts_ms": 1075000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p96750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p96840000-canonical-v1",
+   "pts_ms": 1076000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p96840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p97200000-canonical-v1",
+   "pts_ms": 1080000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p97200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p97380000-canonical-v1",
+   "pts_ms": 1082000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p97380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p97470000-canonical-v1",
+   "pts_ms": 1083000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p97470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

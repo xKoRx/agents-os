@@ -1,0 +1,341 @@
+{
+ "window": "w0089",
+ "start": "22:29",
+ "end": "22:40",
+ "start_ms": 1349000,
+ "end_ms": 1360000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-blue-zone",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el diagrama de EURUSD se muestra una zona rectangular azul.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p121410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e7f67d7fc4f531797bce1adf91698ea5b49c09ba5ed5488b79d815f892ae4117",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra un diagrama etiquetado «EURUSD» con una zona rectangular azul visible."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b1014f67397b04a021481bf936462cfed83ddfdb2612f347d863a2f1cb9a5985"
+    ],
+    "response_id": "gen-1791106090-dL24U63odjQ2qcMpycV6"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-candle-pattern",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El diagrama de EURUSD muestra una vela negra seguida de tres velas blancas ascendentes.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p121500000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "235daf8301f70fdbdace23c583fa6863fe61bdf4185fd51ff46900ba6cdb654b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La sección EURUSD muestra una vela negra seguida de tres velas blancas colocadas en niveles progresivamente ascendentes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b1014f67397b04a021481bf936462cfed83ddfdb2612f347d863a2f1cb9a5985"
+    ],
+    "response_id": "gen-1791106090-dL24U63odjQ2qcMpycV6"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-diagram-label",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El diagrama de la izquierda está rotulado como EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p121410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "071928626f54f7f5e39c9864202ef0812cc5a3eef77123f5f832c658f0207114",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el diagrama de la izquierda con la etiqueta visible «EURUSD»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b1014f67397b04a021481bf936462cfed83ddfdb2612f347d863a2f1cb9a5985"
+    ],
+    "response_id": "gen-1791106090-dL24U63odjQ2qcMpycV6"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-candle-pattern",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El diagrama de GBPUSD muestra una vela negra seguida de tres velas blancas ascendentes.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p121770000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p121860000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "77407d5be9a758ef6ed86dedbcd2896374c7f0c9dcc3b9394f93e3551681a653",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas identifican el gráfico como GBPUSD y muestran una vela negra seguida por tres velas blancas situadas progresivamente más arriba."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b1014f67397b04a021481bf936462cfed83ddfdb2612f347d863a2f1cb9a5985"
+    ],
+    "response_id": "gen-1791106090-dL24U63odjQ2qcMpycV6"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-diagram-label",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El diagrama de la derecha está rotulado como GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p121410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c4c2beddd10a9b2d7b925d65e6f19b96232decb61462dd9af423263d439f181a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la etiqueta «GBPUSD» bajo el diagrama situado a la derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b1014f67397b04a021481bf936462cfed83ddfdb2612f347d863a2f1cb9a5985"
+    ],
+    "response_id": "gen-1791106090-dL24U63odjQ2qcMpycV6"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-bullish-euro-target",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La variante de SMT que vamos a ver puede tener un objetivo alcista en euro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00191",
+    "frame-4de8f12d4841c630-s0-p121410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8bd44fbe460f777901e874d51a228d82ef715c6d312b49e83c65a9fb65f83d34",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que la variante de SMT que van a ver podía tener «este objetivo alcista en euro»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que esa variante puede tener un objetivo alcista en euros."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b1014f67397b04a021481bf936462cfed83ddfdb2612f347d863a2f1cb9a5985"
+    ],
+    "response_id": "gen-1791106090-dL24U63odjQ2qcMpycV6"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-two-types",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hay aproximadamente dos tipos de SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00191"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ea185d75b0ffb90e18397a7ebfe43a28725d4bed69ffc8a6bb9fe8e7b93c4d1d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «hay como dos tipos de SMT», lo que respalda la afirmación de que hay aproximadamente dos tipos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b1014f67397b04a021481bf936462cfed83ddfdb2612f347d863a2f1cb9a5985"
+    ],
+    "response_id": "gen-1791106090-dL24U63odjQ2qcMpycV6"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00191",
+   "start_ms": 1345680,
+   "end_ms": 1359310,
+   "text": "¿Vale? Pues vais a ver que hay como dos tipos de SMT, ¿vale? La que vamos a ver nosotros, en este caso, por ejemplo, podías tener este objetivo alcista en euro,"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121410000-canonical-v1",
+   "pts_ms": 1349000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121500000-canonical-v1",
+   "pts_ms": 1350000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121680000-canonical-v1",
+   "pts_ms": 1352000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121770000-canonical-v1",
+   "pts_ms": 1353000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121770000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121860000-canonical-v1",
+   "pts_ms": 1354000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p122040000-canonical-v1",
+   "pts_ms": 1356000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p122040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p122130000-canonical-v1",
+   "pts_ms": 1357000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p122130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p122400000-canonical-v1",
+   "pts_ms": 1360000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p122400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

@@ -1,0 +1,298 @@
+{
+ "window": "w0051",
+ "start": "11:44",
+ "end": "11:59",
+ "start_ms": 704000,
+ "end_ms": 719000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cierre-tras-high-rango-bajista",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si una vela toma el high del rango y cierra dentro de él, se está formando un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106",
+    "frame-4de8f12d4841c630-s0-p64440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d350f227a3716e7a794f0e3682582e1fbe32f7bd6e279576b27113714e7ac550",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que, cuando la vela toma el high y cierra adentro, se está formando un rango bajista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La cláusula condicional delimita una sola proposición: esa formación del rango看得 bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "f33e826d321475348a6eee0d65fdcfbb4e0e34849998f93b9c46bbd1ee9d93d5"
+    ],
+    "response_id": "gen-1791092429-4ChG0ZQtkccNr6GXBp2a"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-actual-bajista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango actual se está formando de manera bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106",
+    "asr-00107",
+    "frame-4de8f12d4841c630-s0-p64440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p64710000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6bbc2884dd92645cbcc8dcf38bcfdf60c1da8af5238581fe9c76c03733422ab4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los segmentos citados afirman explícitamente que «se nos está formando un rango bajista» y que «este es un rango que se nos forma bajista»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el rango actual se está formando de manera bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "f33e826d321475348a6eee0d65fdcfbb4e0e34849998f93b9c46bbd1ee9d93d5"
+    ],
+    "response_id": "gen-1791092429-4ChG0ZQtkccNr6GXBp2a"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-izquierdo-alcista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango del lado izquierdo se está formando de manera alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00107",
+    "frame-4de8f12d4841c630-s0-p63360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p64080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c418b3f1fa4c8bf3da548ce68befc43f6f70c51ee31209160c7a8276dd9604dd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que el primer rango explicado se forma «altista» (alcista); por el orden y las dos estructuras mostradas, esa referencia deíctica corresponde al rango del lado izquierdo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el rango izquierdo se está formando de manera alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "f33e826d321475348a6eee0d65fdcfbb4e0e34849998f93b9c46bbd1ee9d93d5"
+    ],
+    "response_id": "gen-1791092429-4ChG0ZQtkccNr6GXBp2a"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-toma-high-cierra-adentro",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela mostrada toma el high del rango y cierra dentro de él.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106",
+    "frame-4de8f12d4841c630-s0-p64440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p64710000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fd3ef8ded9772bd97b08fe5efdfe37fd90cbe7b797144b01fe6b62f8b2e36f7d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que la vela «toma el high y nos cierra adentro», en el contexto del rango formado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Afirma dos proposiciones evaluables independientemente: que la vela alcanza el máximo del rango y que cierra dentro de él."
+     },
+     {
+      "code": "claim_not_atomic",
+      "detail": "claim review judged the statement COMPOSITE: independently evaluable assertions must be separate claims"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "f33e826d321475348a6eee0d65fdcfbb4e0e34849998f93b9c46bbd1ee9d93d5"
+    ],
+    "response_id": "gen-1791092429-4ChG0ZQtkccNr6GXBp2a"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-bajista-actual-cierre-high",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-actual-bajista",
+   "subject_version": 1,
+   "object_id": "cl-vela-toma-high-cierra-adentro",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106",
+    "frame-4de8f12d4841c630-s0-p64440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "acc3d4b5dd9b4e4fa2f67c4e6a8033b9f40938fc4224ecb3463bc27a69822cef",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que la vela «toma el high y nos cierra adentro» y, en esa misma secuencia, explica que «se nos está formando un rango bajista aquí», por lo que la formación del rango bajista actual depende de la Take High and Close InsideICONte."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "f33e826d321475348a6eee0d65fdcfbb4e0e34849998f93b9c46bbd1ee9d93d5"
+    ],
+    "response_id": "gen-1791092429-4ChG0ZQtkccNr6GXBp2a"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00106",
+   "start_ms": 696980,
+   "end_ms": 711540,
+   "text": "Lo que ahora mismo, si vemos que esta vela abre, toma el high y nos cierra adentro, lo que está pasando ahora es que se nos está formando un rango bajista aquí, ¿vale?"
+  },
+  {
+   "id": "asr-00107",
+   "start_ms": 711760,
+   "end_ms": 718480,
+   "text": "Este es un rango que se nos forma altista, por lo tanto todo perfecto, pero este es un rango que se nos forma bajista."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63360000-canonical-v1",
+   "pts_ms": 704000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63720000-canonical-v1",
+   "pts_ms": 708000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63810000-canonical-v1",
+   "pts_ms": 709000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63810000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63900000-canonical-v1",
+   "pts_ms": 710000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63900000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63990000-canonical-v1",
+   "pts_ms": 711000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63990000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p64080000-canonical-v1",
+   "pts_ms": 712000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p64080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p64440000-canonical-v1",
+   "pts_ms": 716000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p64440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p64710000-canonical-v1",
+   "pts_ms": 719000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p64710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

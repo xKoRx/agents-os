@@ -1,0 +1,422 @@
+{
+ "window": "w0056",
+ "start": "13:08",
+ "end": "13:20",
+ "start_ms": 788000,
+ "end_ms": 800000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-cambia-1d-a-4h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico cambia de la temporalidad 1D a la temporalidad 4h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p70920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p71010000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9a0cc55784eeaf9a4561a076b44a5c53f68182e79731ab53420c831599106cf3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra EURUSD en temporalidad 1D y la segunda muestra EURUSD en temporalidad 4h, lo que evidencia el cambio indicado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: el gráfico cambia de 1D a 4h."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "07a4ad188c7edcea4dd7ffe83fc48f30ab9617f012f17cd5e0161186db901332"
+    ],
+    "response_id": "gen-1791094103-otwYVyf8XnCPSIPE7yT9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-se-desplaza-horizontalmente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista del gráfico se desplaza horizontalmente.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p71010000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p71190000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p71460000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p72000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3cacf1c0e89e8a1897893fac1787a451260b5348da996dd4969f66e69ce5180a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las cuatro imágenes muestran un cambio progresivo del rango horizontal visible del gráfico: las fechas del eje x avanzan y las velas más antiguas se desplazan o desaparecen por el lado izquierdo, mientras la escala vertical permanece estable."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el desplazamiento horizontal de la vista del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "07a4ad188c7edcea4dd7ffe83fc48f30ab9617f012f17cd5e0161186db901332"
+    ],
+    "response_id": "gen-1791094103-otwYVyf8XnCPSIPE7yT9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-tiene-bastantes-ejemplos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En el gráfico hay bastante ejemplos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00112",
+    "frame-4de8f12d4841c630-s0-p72000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "92b3f56afd48ddf787940348c71096b108207a062b81f6e082645a47648e7800",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente: «tenemos bastantes ejemplos», lo que respalda que hay bastante ejemplos en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "07a4ad188c7edcea4dd7ffe83fc48f30ab9617f012f17cd5e0161186db901332"
+    ],
+    "response_id": "gen-1791094103-otwYVyf8XnCPSIPE7yT9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-diario-es-ejemplo-anterior",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo diario mostrado es el mismo objetivo que se estaba explicando como ejemplo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00111",
+    "frame-4de8f12d4841c630-s0-p71280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "075a0bef7789e16d9a2bdf62a5d708c17678ce546af3c02c71c2b4a138f4fb4a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el objetivo diario mostrado «es el mismo que estaba explicando de ejemplo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la identidad entre ambos objetivos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "07a4ad188c7edcea4dd7ffe83fc48f30ab9617f012f17cd5e0161186db901332"
+    ],
+    "response_id": "gen-1791094103-otwYVyf8XnCPSIPE7yT9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-diario-nivel-115803",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo diario mostrado es el nivel 1,15803.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00111",
+    "frame-4de8f12d4841c630-s0-p71010000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p71280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2ee544edb93858d8d257b4a9d38318628c9fa877dd1b2e641bbb575c80c0091f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica el objetivo diario mostrado y las imágenes muestran una línea horizontal etiquetada como 1,15803."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "07a4ad188c7edcea4dd7ffe83fc48f30ab9617f012f17cd5e0161186db901332"
+    ],
+    "response_id": "gen-1791094103-otwYVyf8XnCPSIPE7yT9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-reiniciado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango señalado es un rango reiniciado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00112",
+    "asr-00119",
+    "frame-4de8f12d4841c630-s0-p72000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p79200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "eece02ca8918428588686163fa9702cea1ecbb1e3729a33a63f9839c14381efc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «el rango este es un rango reiniciado», lo que sostiene directamente la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el rango señalado es reiniciado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "07a4ad188c7edcea4dd7ffe83fc48f30ab9617f012f17cd5e0161186db901332",
+     "f1fa14d9b47473bfc5d6eb1096086c933f6c462ff4dd856b6ca9e4f18509340c"
+    ],
+    "response_id": "gen-1791094103-otwYVyf8XnCPSIPE7yT9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-revisar-ejemplo-en-grafico",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Revisar un ejemplo de lo explicado en el gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00111",
+    "frame-4de8f12d4841c630-s0-p70920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ddbeaa076ca877a4b844036ce448212593552d085a2ff932e4091b130835aed5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica expresamente: «Vamos a ver algún ejemplo de esto en el gráfico ahora» y «Vamos a buscar», lo que respalda la instrucción de revisar un ejemplo de lo explicado en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: revisar un ejemplo de lo explicado en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "07a4ad188c7edcea4dd7ffe83fc48f30ab9617f012f17cd5e0161186db901332"
+    ],
+    "response_id": "gen-1791094103-otwYVyf8XnCPSIPE7yT9"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-identidad-objetivo-depende-nivel",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-objetivo-diario-es-ejemplo-anterior",
+   "subject_version": 1,
+   "object_id": "cl-objetivo-diario-nivel-115803",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00111",
+    "frame-4de8f12d4841c630-s0-p71280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3668bf4d1b6dfe75ea48ab915e40a596c82946d3ff7debd4f127ae5259885b50",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen etiqueta la línea objetivo como 1,15803, mientras que la transcripción identifica esa misma línea como el objetivo diario y afirma que es el mismo que se estaba explicando como ejemplo. Así, la identidad afirmada en la claim izquierda queda vinculada al nivel identificado en la claim derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "07a4ad188c7edcea4dd7ffe83fc48f30ab9617f012f17cd5e0161186db901332"
+    ],
+    "response_id": "gen-1791094103-otwYVyf8XnCPSIPE7yT9"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00111",
+   "start_ms": 768600,
+   "end_ms": 788180,
+   "text": "Espero que haya quedado claro. Vamos a ver algún ejemplo de esto en el gráfico ahora. Así que vamos allá. ¿Vale? Vamos a buscar, por ejemplo, teníamos el objetivo este diario de aquí arriba, que es el mismo que estaba explicando de ejemplo."
+  },
+  {
+   "id": "asr-00112",
+   "start_ms": 788180,
+   "end_ms": 799700,
+   "text": "vamos a ver si teníamos algo por aquí. Correcto, tenemos bastantes ejemplos. Primero, el rango este es un rango reiniciado, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70920000-canonical-v1",
+   "pts_ms": 788000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71010000-canonical-v1",
+   "pts_ms": 789000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71010000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71190000-canonical-v1",
+   "pts_ms": 791000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71190000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71280000-canonical-v1",
+   "pts_ms": 792000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71460000-canonical-v1",
+   "pts_ms": 794000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71460000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71550000-canonical-v1",
+   "pts_ms": 795000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71550000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71640000-canonical-v1",
+   "pts_ms": 796000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72000000-canonical-v1",
+   "pts_ms": 800000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p79200000-canonical-v1",
+   "pts_ms": 880000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p79200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,590 @@
+{
+ "window": "w0086",
+ "start": "21:58",
+ "end": "22:09",
+ "start_ms": 1318000,
+ "end_ms": 1329000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ancho-rectangulo-cambia",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El ancho del rectángulo cambia repetidamente.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p118800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119340000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119610000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "33c54ab3e7a33bae5d1a682a72739ca24e7f744a63b2d90fe035ce06b51e9876",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los cuatro fotogramas citados muestran que el rectángulo pasa de un ancho mayor a uno menor, luego a uno mayor y finalmente a uno menor, evidenciando cambios repetidos del ancho."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el ancho del rectángulo cambia repetidamente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0ed19f24409b2711e95bbe137c9565c2b1f8e9ea833c26f5693992fb70ec10b8"
+    ],
+    "response_id": "gen-1791105079-1UuX7jiUZKOeLv9skJqt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-borde-inferior-se-desplaza",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El borde inferior del rectángulo se desplaza de 1,14592 a 1,14493.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p118800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "efe2d618c90f7e569e79c8ac7fe07677b9242d5cbf0e9f053ec535adfd42958f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la primera imagen, el borde inferior del rectángulo coincide con la línea de 1,14592; en la segunda, coincide con la de 1,14493."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0ed19f24409b2711e95bbe137c9565c2b1f8e9ea833c26f5693992fb70ec10b8"
+    ],
+    "response_id": "gen-1791105079-1UuX7jiUZKOeLv9skJqt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-borde-superior-1-15239",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde superior del rectángulo está en 1,15239.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p119160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119250000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119610000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "779437555fa78e8dc8a18de74ae4ef2b82681a4203b44ecabd1ac72eec600983",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El borde superior del rectángulo está alineado con la etiqueta de precio 1,15239 visible en el eje derecho."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0ed19f24409b2711e95bbe137c9565c2b1f8e9ea833c26f5693992fb70ec10b8"
+    ],
+    "response_id": "gen-1791105079-1UuX7jiUZKOeLv9skJqt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-capitulo-aparte-de-ejemplos",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El instructor va a hacer un capítulo aparte para los ejemplos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "601fd5fad3f5337557c7a60a2072bfcc900b635fa95164899140ada280b9be3e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El instructor dice explícitamente que no entrará en los ejemplos porque ya va a hacer un capítulo aparte, lo que respalda la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia afirma una sola proposición: que hará un capítulo separado dedicado a los ejemplos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0ed19f24409b2711e95bbe137c9565c2b1f8e9ea833c26f5693992fb70ec10b8"
+    ],
+    "response_id": "gen-1791105079-1UuX7jiUZKOeLv9skJqt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esto-se-toma-como-euro",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "«Esto» se toma como euro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cf1437d514ffaf701b5ffa34c5f25c491c5276a88e4d96fd9ff71f1b9ccb514b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice explícitamente «vamos a decir que esto es euro», lo que respalda que «esto» se toma como euro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0ed19f24409b2711e95bbe137c9565c2b1f8e9ea833c26f5693992fb70ec10b8"
+    ],
+    "response_id": "gen-1791105079-1UuX7jiUZKOeLv9skJqt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esto-se-toma-como-libra",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "«Esto» se toma como libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e24549f43854c4d422dce98d7275ed27790f9dd2168fc9c44bbda25f27777370",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice explícitamente «vamos a decir que esto es libra», lo que sostiene que «esto» se toma como libra."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0ed19f24409b2711e95bbe137c9565c2b1f8e9ea833c26f5693992fb70ec10b8"
+    ],
+    "response_id": "gen-1791105079-1UuX7jiUZKOeLv9skJqt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-etiqueta-forex-com",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El encabezado del gráfico incluye «FOREX.com».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p118620000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "64822182edca5f7e547bd716f0eb7f667c24791bd888cf757e48ffb601df5475",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El encabezado del gráfico muestra «EURUSD · 8h · FOREX.com» en la esquina superior izquierda, por lo que incluye «FOREX.com»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0ed19f24409b2711e95bbe137c9565c2b1f8e9ea833c26f5693992fb70ec10b8"
+    ],
+    "response_id": "gen-1791105079-1UuX7jiUZKOeLv9skJqt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-menu-plantillas-abierto",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El menú contextual de plantillas de dibujo está abierto.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p119160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e24651ba8100d6ccb61dad14ff480af3e6865d6f3015a874931a17e506fc0128",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra un menú contextual abierto con la opción visible «Guardar plantilla de dibujo como...» y la lista de plantillas de dibujo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0ed19f24409b2711e95bbe137c9565c2b1f8e9ea833c26f5693992fb70ec10b8"
+    ],
+    "response_id": "gen-1791105079-1UuX7jiUZKOeLv9skJqt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-no-entrar-en-ejemplos",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El instructor no va a entrar en ejemplos en esta parte.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ea7a253ce3c7d6c95bb0d122fa0d9431a35ae7f78252677549ed767d4989ad01",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El instructor dice explícitamente: «En ejemplos no voy a entrar porque ya voy a hacer un capítulo aparte», lo que respalda que no entrará en ejemplos en esta parte."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0ed19f24409b2711e95bbe137c9565c2b1f8e9ea833c26f5693992fb70ec10b8"
+    ],
+    "response_id": "gen-1791105079-1UuX7jiUZKOeLv9skJqt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-relleno-negro",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La zona rectangular cambia a relleno negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p119160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119250000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119610000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "abe3d875a2bed6044dd2b0cd825c822ac7b1b2d953bbb88ea4378ba30b98c078",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra la zona rectangular sin relleno negro y las siguientes muestran esa misma zona con relleno negro, lo que evidencia el cambio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0ed19f24409b2711e95bbe137c9565c2b1f8e9ea833c26f5693992fb70ec10b8"
+    ],
+    "response_id": "gen-1791105079-1UuX7jiUZKOeLv9skJqt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-se-crea-rectangulo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se crea un rectángulo en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p118710000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p118800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c248454a9f9b31174c77f44ae2e941313acff0e10d0f3a6eea723ad4cc8075f1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra un rectángulo seleccionado sobre el gráfico que no aparece en la primera, lo que evidencia su creación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0ed19f24409b2711e95bbe137c9565c2b1f8e9ea833c26f5693992fb70ec10b8"
+    ],
+    "response_id": "gen-1791105079-1UuX7jiUZKOeLv9skJqt"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-forma-similar-rectangulo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La SMT que podría darse aquí, utilizando «nuestra estrategia», tiene una forma similar a la zona rectangular mostrada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p118800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119610000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "67a60f427dbf2da87c2089177c033ef24f6fa07448fafbdcc68db7f96666c604",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que la SMT que podría darse «aquí», «utilizando nuestra estrategia», sería «algo así», mientras las imágenes muestran una zona rectangular."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que esa SMT tendría una forma similar a la zona rectangular mostrada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0ed19f24409b2711e95bbe137c9565c2b1f8e9ea833c26f5693992fb70ec10b8"
+    ],
+    "response_id": "gen-1791105079-1UuX7jiUZKOeLv9skJqt"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-omision-ejemplos-depende-capitulo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-no-entrar-en-ejemplos",
+   "subject_version": 1,
+   "object_id": "cl-capitulo-aparte-de-ejemplos",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "20d4abaad6b0150d69980e7a83ceda216c26d4f37a0ae0714573d76c85a5646d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enlaza explícitamente ambas afirmaciones en la orientación indicada: «En ejemplos no voy a entrar porque ya voy a hacer un capítulo aparte». Así, la decisión de no entrar en ejemplos depende de hacer un capítulo aparte para ellos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0ed19f24409b2711e95bbe137c9565c2b1f8e9ea833c26f5693992fb70ec10b8"
+    ],
+    "response_id": "gen-1791105079-1UuX7jiUZKOeLv9skJqt"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00190",
+   "start_ms": 1315270,
+   "end_ms": 1345680,
+   "text": "Ahora, ¿cómo va a ser la SMT utilizando nuestra estrategia? Vamos a decir que esto es euro y vamos a decir que esto es libra. En ejemplos no voy a entrar porque ya voy a hacer un capítulo aparte, pero la SMT que se nos podría dar aquí es algo así."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118620000-canonical-v1",
+   "pts_ms": 1318000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118620000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118710000-canonical-v1",
+   "pts_ms": 1319000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118800000-canonical-v1",
+   "pts_ms": 1320000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119160000-canonical-v1",
+   "pts_ms": 1324000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119250000-canonical-v1",
+   "pts_ms": 1325000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119250000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119340000-canonical-v1",
+   "pts_ms": 1326000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119340000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119520000-canonical-v1",
+   "pts_ms": 1328000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119610000-canonical-v1",
+   "pts_ms": 1329000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

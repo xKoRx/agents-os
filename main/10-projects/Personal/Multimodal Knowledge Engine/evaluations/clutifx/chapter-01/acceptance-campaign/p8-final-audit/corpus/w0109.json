@@ -1,0 +1,367 @@
+{
+ "window": "w0109",
+ "start": "28:08",
+ "end": "28:19",
+ "start_ms": 1688000,
+ "end_ms": 1699000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-contenido-capitulo-entradas",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Este contenido se explica en el capítulo entradas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00244",
+    "asr-00245"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c3b283534f72a9b3cedee27e1b6547d4ca807f2686b39c875ed72033ff0eeb73",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica que el contenido se podrá ver en el capítulo «entradas», lo que respalda que se explica allí."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6630d939b44a6460b04fb916978a8c1c104a98961cd7b3b5be786604a9cfa1b1"
+    ],
+    "response_id": "gen-1791113034-HjfvmdPEJo9TDQWid48x"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-espera-orden-m15-subida",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si se busca una subida, se espera la orden en M15.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00243",
+    "asr-00244",
+    "asr-00245"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3cdcc8d39cf303eed2065e3505ba9e711e83559b338019ce5aef8ee7adf70338",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia体内的 transcripción indica que, al buscar una subida, se espera Doing it en M15."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6630d939b44a6460b04fb916978a8c1c104a98961cd7b3b5be786604a9cfa1b1"
+    ],
+    "response_id": "gen-1791113034-HjfvmdPEJo9TDQWid48x"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-mas-historial",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra un historial más amplio de fechas anteriores.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p152730000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p152910000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7224e7f770e64561e79edf66a1c2d7a771020fd7f4d26e189ef33457b7f8da2a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra más velas y un eje temporal con fechas anteriores que la primera, lo que evidencia un historial más amplio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6630d939b44a6460b04fb916978a8c1c104a98961cd7b3b5be786604a9cfa1b1"
+    ],
+    "response_id": "gen-1791113034-HjfvmdPEJo9TDQWid48x"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-orden-confirmacion",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "La orden se utiliza como una pequeña confirmación.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00243",
+    "asr-00244"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2cb2b666e49e52a67a630fc7ce0ce5b1168bd57a7999fe6d98fcc3f6e1a7bc03",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada llama «orden» a «esto» y afirma que se utiliza «como una pequeña confirmación»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6630d939b44a6460b04fb916978a8c1c104a98961cd7b3b5be786604a9cfa1b1"
+    ],
+    "response_id": "gen-1791113034-HjfvmdPEJo9TDQWid48x"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-orden-denominada",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El elemento señalado en el gráfico se denomina «orden».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00243",
+    "frame-4de8f12d4841c630-s0-p152190000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7203b9a6ab807eda9028cf201b6c03d98e46af70584d1c3f722e6db3a2066193",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente «esto que lo llamamos orden» mientras pasa al gráfico, y la imagen muestra el elemento señalado en él."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación solo atribuye el nombre «orden» a ese elemento."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6630d939b44a6460b04fb916978a8c1c104a98961cd7b3b5be786604a9cfa1b1"
+    ],
+    "response_id": "gen-1791113034-HjfvmdPEJo9TDQWid48x"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-negra-seleccionada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La última vela negra de la secuencia descendente queda seleccionada.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p152190000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d390802379b3134a222eafcc121875b82049b2a9d9be3941bcf936492ba716ab",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La última vela negra de la secuencia descendente aparece seleccionada, indicada por los tiradores circulares alrededor de su marco."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6630d939b44a6460b04fb916978a8c1c104a98961cd7b3b5be786604a9cfa1b1"
+    ],
+    "response_id": "gen-1791113034-HjfvmdPEJo9TDQWid48x"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-espera-m15-confirmacion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-espera-orden-m15-subida",
+   "subject_version": 1,
+   "object_id": "cl-orden-confirmacion",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00243",
+    "asr-00244",
+    "asr-00245"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "994eedcf33dede0c6155135399c34ded8ef60564d0002495c0d7fec63f592d03",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia explica que la «orden» se utiliza como una pequeña confirmación de que, si se busca una subida, se la espera en M15, por lo que sostiene la dependencia de la afirmación del sujeto en esa confirmación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6630d939b44a6460b04fb916978a8c1c104a98961cd7b3b5be786604a9cfa1b1"
+    ],
+    "response_id": "gen-1791113034-HjfvmdPEJo9TDQWid48x"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00243",
+   "start_ms": 1683380,
+   "end_ms": 1690890,
+   "text": "esto que lo llamamos orden lo sería un poco esto esto sí vamos a ir a gráfico lo veáis claro y es"
+  },
+  {
+   "id": "asr-00244",
+   "start_ms": 1690890,
+   "end_ms": 1695390,
+   "text": "como utilizarlo como una pequeña confirmación de que si yo estoy buscando lo vamos a esperar esto"
+  },
+  {
+   "id": "asr-00245",
+   "start_ms": 1695390,
+   "end_ms": 1700850,
+   "text": "en m15 para subir ya lo vais a ver el capítulo entradas pero para que no tenga que explicar"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p151920000-canonical-v1",
+   "pts_ms": 1688000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p151920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p152010000-canonical-v1",
+   "pts_ms": 1689000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p152010000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p152100000-canonical-v1",
+   "pts_ms": 1690000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p152100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p152190000-canonical-v1",
+   "pts_ms": 1691000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p152190000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p152280000-canonical-v1",
+   "pts_ms": 1692000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p152280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p152640000-canonical-v1",
+   "pts_ms": 1696000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p152640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p152730000-canonical-v1",
+   "pts_ms": 1697000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p152730000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p152910000-canonical-v1",
+   "pts_ms": 1699000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p152910000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,618 @@
+{
+ "window": "w0115",
+ "start": "29:16",
+ "end": "29:25",
+ "start_ms": 1756000,
+ "end_ms": 1765000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cierre-order-block-long",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Cuando esta cierre aquí, en el order block, ya podrías poner tu long.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00253",
+    "asr-00254",
+    "frame-4de8f12d4841c630-s0-p158400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p158490000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fcf33fc93c2f6436e4352588a4253a582a7c26995f3d13b8dec600cc0c0841c9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que, cuando el elemento cierra en el order block, ya se puede tomar una posición long."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional: el cierre en el order block habilita entrar en long."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b8afed7e47629d751900bbb74e1c9a97bd6953c9f08b3e2b4e4940625d23a88b"
+    ],
+    "response_id": "gen-1791114108-dJELfN4vSP63c8SVoJOx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-direccion-operacion-long",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La dirección de la operación propuesta es long.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00253",
+    "frame-4de8f12d4841c630-s0-p158400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f281fec5277aee99c23e40edfe6b5ddb67e2a123bf5e89f577d5df02334e9c7b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente «ya podrías poner tu long»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El marco muestra una posición larga: el objetivo está por encima del precio de entrada y el stop por debajo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b8afed7e47629d751900bbb74e1c9a97bd6953c9f08b3e2b4e4940625d23a88b"
+    ],
+    "response_id": "gen-1791114108-dJELfN4vSP63c8SVoJOx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-entrada-long-114697",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La entrada mostrada para el long es 1,14697.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p158490000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "343d4e485dccc8bcf7264d8cbba781677c0bfedafc89d326f5c74829974d622b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos capturas muestran la operación larga con la línea de entrada marcada en 1,14697."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b8afed7e47629d751900bbb74e1c9a97bd6953c9f08b3e2b4e4940625d23a88b"
+    ],
+    "response_id": "gen-1791114108-dJELfN4vSP63c8SVoJOx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-entrada-posicion-corta-114697",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La entrada mostrada para la posición corta es 1,14697.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "2bbfcfd3c7c183c7b7fb13923327b42cf68c572b7bb21aef18fd948887c776b9",
+    "reasons": [
+     {
+      "code": "reviewer_malformed_output",
+      "detail": "reviewer produced a malformed verdict: claim review output schema id \"mke.claims-ground.v2\", want \"mke.claims-ground.v1\""
+     },
+     {
+      "code": "reviewer_malformed_output",
+      "detail": "corrective reissue after malformed attempt also rejected: claim review output schema id \"mke.claims-ground.v2\", want \"mke.claims-ground.v1\""
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b8afed7e47629d751900bbb74e1c9a97bd6953c9f08b3e2b4e4940625d23a88b"
+    ],
+    "response_id": "gen-1791114108-dJELfN4vSP63c8SVoJOx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-posicion-corta",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La primera herramienta de posición mostrada es una posición corta.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "20c7b7b75e68a48499254f0e49ea33528efe41e567a866d632048b6434806154",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La única herramienta de posición visible configura el objetivo por debajo del precio de entrada y el stop por encima, lo que muestra una posición corta."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b8afed7e47629d751900bbb74e1c9a97bd6953c9f08b3e2b4e4940625d23a88b"
+    ],
+    "response_id": "gen-1791114108-dJELfN4vSP63c8SVoJOx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-posicion-eliminada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La herramienta de posición se elimina momentáneamente del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158130000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "18589606f4c239e9196ca81749dd4f73fa21c5793d65c97391e2e71be63b1cdf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El único fotograma muestra el estado actual del gráfico, pero no permite demostrar que una herramienta de posición estuviera presente y se eliminara momentáneamente; falta evidencia temporal del cambio."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b8afed7e47629d751900bbb74e1c9a97bd6953c9f08b3e2b4e4940625d23a88b"
+    ],
+    "response_id": "gen-1791114108-dJELfN4vSP63c8SVoJOx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-tomado-23-junio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Este fue exactamente el long que tomé el día 23 de junio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00253",
+    "asr-00254",
+    "frame-4de8f12d4841c630-s0-p158400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p158490000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bf756bcc5783a081453894852f457a5d1e2150a230f07fd2a4843f9ae6e60ff6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción asr-00254 afirma literalmente: «Este fue exactamente el long que tomé el día 23 de junio», por lo que sostiene directamente la declaración."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: que el long mostrado fue el que el hablante tomó el 23 de junio; la fecha limita temporally esa misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b8afed7e47629d751900bbb74e1c9a97bd6953c9f08b3e2b4e4940625d23a88b"
+    ],
+    "response_id": "gen-1791114108-dJELfN4vSP63c8SVoJOx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-long-115034",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo mostrado para el long es 1,15034.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p158490000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p158760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "61124923730a8c64c86ef1c585a15020034045079d3aaa7526554fb7db2afce1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las capturas muestran la herramienta azul del long con el nivel de objetivo marcado en 1,15034."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b8afed7e47629d751900bbb74e1c9a97bd6953c9f08b3e2b4e4940625d23a88b"
+    ],
+    "response_id": "gen-1791114108-dJELfN4vSP63c8SVoJOx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-posicion-corta-114360",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo mostrado para la posición corta es 1,14360.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "25dbc5902a3d1685bf749091afb18451b0cfbe6d0ccd25494c1c457b9fc7ea73",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La escala lateral muestra 1,14360 como el nivel objetivo en el extremo inferior de la zona azul de la posición corta."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b8afed7e47629d751900bbb74e1c9a97bd6953c9f08b3e2b4e4940625d23a88b"
+    ],
+    "response_id": "gen-1791114108-dJELfN4vSP63c8SVoJOx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-supera-objetivo-long",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio mostrado supera el objetivo de 1,15034 del long.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p158670000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p158760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "964f5813603762a38683c65bbe02f85530ebab34ece651e5385191a6105b6370",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las cotizaciones mostradas, 1,15908 y 1,15917, superan la línea de objetivo 1,15034; la configuración con objetivo por encima de la entrada y stop por debajo corresponde al long mostrado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b8afed7e47629d751900bbb74e1c9a97bd6953c9f08b3e2b4e4940625d23a88b"
+    ],
+    "response_id": "gen-1791114108-dJELfN4vSP63c8SVoJOx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-stop-final-long-114521",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El stop del long cambia posteriormente a 1,14521.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p158850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "4be6b2ff580549aa9f58298853d542c1c04db4038737a0fdd96c39328cff75e4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran el nivel inferior del long en 1,14521, pero no muestran un valor anterior diferente; por tanto, no queda establecido que el stop cambiara posteriormente a ese nivel."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b8afed7e47629d751900bbb74e1c9a97bd6953c9f08b3e2b4e4940625d23a88b"
+    ],
+    "response_id": "gen-1791114108-dJELfN4vSP63c8SVoJOx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-stop-inicial-long-114360",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El stop inicial mostrado para el long es 1,14360.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "be67f28a1bb627c8049a048ae2a45ccf4be006bedcfb6f7b66637baf8b9c997b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta «Stop» de la posición long aparece en el nivel 1,14360."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b8afed7e47629d751900bbb74e1c9a97bd6953c9f08b3e2b4e4940625d23a88b"
+    ],
+    "response_id": "gen-1791114108-dJELfN4vSP63c8SVoJOx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-stop-long-ajustado-114497",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El stop del long cambia a 1,14497.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158490000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "82e97b1a505a8ed04e9b886c1a5a568b87f6415aa8711ef91230ce80c9441ecc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el nivel de stop de la operación long en 1,14497, alineado con la etiqueta horizontal del stop y la escala de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b8afed7e47629d751900bbb74e1c9a97bd6953c9f08b3e2b4e4940625d23a88b"
+    ],
+    "response_id": "gen-1791114108-dJELfN4vSP63c8SVoJOx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-stop-posicion-corta-115034",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El stop mostrado para la posición corta es 1,15034.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "609974000d489ef7debb2cf3f6569f365219ea6825d03ed116ffd4b779c57a4a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La captura muestra una posición de venta y su nivel superior de stop está rotulado y alineado con el precio 1,15034."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b8afed7e47629d751900bbb74e1c9a97bd6953c9f08b3e2b4e4940625d23a88b"
+    ],
+    "response_id": "gen-1791114108-dJELfN4vSP63c8SVoJOx"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00253",
+   "start_ms": 1750940,
+   "end_ms": 1761660,
+   "text": "O aquí, en esta, cuando esta cierra aquí, otra vez, order block aquí, ya podrías poner tu long."
+  },
+  {
+   "id": "asr-00254",
+   "start_ms": 1762000,
+   "end_ms": 1765810,
+   "text": "Este fue exactamente el long que tomé el día 23 de junio."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158040000-canonical-v1",
+   "pts_ms": 1756000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158130000-canonical-v1",
+   "pts_ms": 1757000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158400000-canonical-v1",
+   "pts_ms": 1760000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158490000-canonical-v1",
+   "pts_ms": 1761000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158580000-canonical-v1",
+   "pts_ms": 1762000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158670000-canonical-v1",
+   "pts_ms": 1763000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158670000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158760000-canonical-v1",
+   "pts_ms": 1764000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158850000-canonical-v1",
+   "pts_ms": 1765000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

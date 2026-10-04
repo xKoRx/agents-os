@@ -1,0 +1,653 @@
+{
+ "window": "w0039",
+ "start": "08:45",
+ "end": "08:57",
+ "start_ms": 525000,
+ "end_ms": 537000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-assume-ranges-will-complete",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Asumir que los rangos se van a completar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00079",
+    "asr-00080"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2884b445345d065d2ef3054747ae792add5851ce72d4eb8308e4e80e1123ed87",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada dice literalmente «Asumir que se van a completar» y el fragmento previo «de los rangos» permite resolver la referencia a los rangos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: asumir que los rangos se van a completar."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "005adcbe593830976a47050082873e5ee051633fe150621a2d0781212c101f71"
+    ],
+    "response_id": "gen-1791089979-iqnjkZDTzpJ5VP9C9S6Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-case-shows-importance-of-ranges",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Esta situación ilustra, en parte, la importancia de los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00076",
+    "asr-00077",
+    "asr-00078",
+    "asr-00079"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6e3a62e804bd5d745bb2df293a28b952de379e5186b7537ed769c0ac3f9aa4b1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que la situación muestra «un poco la importancia de los rangos», lo que respalda que la ilustra en parte."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "«En parte» únicamente limita la fuerza de la misma proposición y no introduce una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "005adcbe593830976a47050082873e5ee051633fe150621a2d0781212c101f71"
+    ],
+    "response_id": "gen-1791089979-iqnjkZDTzpJ5VP9C9S6Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-left-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico izquierdo muestra EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "59915ca6e3e0ef433a5a0d579c62d7df8ceff369f4ce0c045d4ed6c29865c3cf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El gráfico de la izquierda está etiquetado como «EURUSD» tanto en la parte superior como inferior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "005adcbe593830976a47050082873e5ee051633fe150621a2d0781212c101f71"
+    ],
+    "response_id": "gen-1791089979-iqnjkZDTzpJ5VP9C9S6Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-right-gbpusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico derecho muestra GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "05241785d171e4ce40da37d3d836558509401e381be58f428fff3de3c325fbfd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta superior del gráfico derecho indica «GBPUSD · 15 · FOREX.com»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el gráfico derecho representa GBPUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "005adcbe593830976a47050082873e5ee051633fe150621a2d0781212c101f71"
+    ],
+    "response_id": "gen-1791089979-iqnjkZDTzpJ5VP9C9S6Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-timeframe-15-at-start",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico de EURUSD usa el marco temporal 15 al comienzo de la ventana.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6adb8c035c67cf02635a3daa7478ff6064dea21ebf13a43e5f263aa900aed354",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El encabezado del gráfico izquierdo muestra «EURUSD · 15 · FOREX.com» y la etiqueta inferior «EURUSD | 15M», lo que acredita el uso del marco temporal de 15 minutos en la ventana citada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "005adcbe593830976a47050082873e5ee051633fe150621a2d0781212c101f71"
+    ],
+    "response_id": "gen-1791089979-iqnjkZDTzpJ5VP9C9S6Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-timeframe-changes-to-1h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El marco temporal del gráfico de EURUSD cambia de 15 a 1h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p48060000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p48240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a44323c1879bd8103217672d7ca295b301d46d8a134e27c244ec8bf871b85d66",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia muestra el gráfico de EURUSD en 15 en el primer fotograma y en 1h en el segundo; las etiquetas inferiores pasan de 15M a 60M, respectivamente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "005adcbe593830976a47050082873e5ee051633fe150621a2d0781212c101f71"
+    ],
+    "response_id": "gen-1791089979-iqnjkZDTzpJ5VP9C9S6Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbp-target-in-upper-area",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo de libra estaba en la zona superior del gráfico de GBPUSD.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00077",
+    "asr-00078",
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e3be796ae7e4708c8f1a23b33e5d05e9d62acb9d758114bdc37de7604627c96b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas citadas dicen que «el objetivo de libra estaba ahí arriba», lo que respalda directamente que estaba en la zona superior."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El marco muestra GBPUSD a la derecha y una línea horizontal marcada cerca de 1.35843 en la parte superior del gráfico, coherente con la referencia deíctica «ahí arriba»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "005adcbe593830976a47050082873e5ee051633fe150621a2d0781212c101f71"
+    ],
+    "response_id": "gen-1791089979-iqnjkZDTzpJ5VP9C9S6Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-horizontal-line-134155",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La vista 15 del gráfico de GBPUSD muestra una línea horizontal etiquetada en 1.34155.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bf1050d15ff698fe491efc1bf3eb7367654d794797ad93a3e083b760af5a6688",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La vista GBPUSD de 15 minutos muestra una línea horizontal con la etiqueta 1,34155 en el eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "005adcbe593830976a47050082873e5ee051633fe150621a2d0781212c101f71"
+    ],
+    "response_id": "gen-1791089979-iqnjkZDTzpJ5VP9C9S6Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-horizontal-line-135843",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La vista 15 del gráfico de GBPUSD muestra una línea horizontal etiquetada en 1.35843.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d6a589db3b606806d5baae0f83f090a419811b973010f1a75d01225a82a2ebe5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el gráfico GBPUSD con periodicity 15 y una línea horizontal cuya etiqueta visible es 1.35843."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "005adcbe593830976a47050082873e5ee051633fe150621a2d0781212c101f71"
+    ],
+    "response_id": "gen-1791089979-iqnjkZDTzpJ5VP9C9S6Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-price-above-line-135843",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio mostrado de GBPUSD aparece por encima de 1.35843.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47700000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "902f46726b13f211a3fa5a84a6c523eb35131c71a898571bd1a870077478c6da",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran el precio actual de GBPUSD en 1,36030 y 1,36029, respectivamente, ambos por encima de 1,35843, la línea horizontal etiquetada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "005adcbe593830976a47050082873e5ee051633fe150621a2d0781212c101f71"
+    ],
+    "response_id": "gen-1791089979-iqnjkZDTzpJ5VP9C9S6Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-rectangular-range-on-1h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico de GBPUSD en la vista 1h muestra un rango rectangular.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p48240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p48330000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e2154c9586f25affa79c4775232fc726811e8d5e3becb8337a6c166af00a91f3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran el gráfico de GBPUSD en 1h con un rango delimitado por líneas horizontales y verticales que forma un rectángulo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "005adcbe593830976a47050082873e5ee051633fe150621a2d0781212c101f71"
+    ],
+    "response_id": "gen-1791089979-iqnjkZDTzpJ5VP9C9S6Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-timeframe-15-at-start",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico de GBPUSD usa el marco temporal 15 al comienzo de la ventana.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9ad1e1c6493c347f9d684aac330ff18a5c27dfafa8dc21f4435978dc889791b0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el gráfico de GBPUSD con las etiquetas «GBPUSD · 15» y «GBPUSD | 15M», por lo que establece que utiliza el marco temporal de 15 minutos en el momento representado al comienzo de la ventana."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "005adcbe593830976a47050082873e5ee051633fe150621a2d0781212c101f71"
+    ],
+    "response_id": "gen-1791089979-iqnjkZDTzpJ5VP9C9S6Z"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-timeframe-changes-to-1h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El marco temporal del gráfico de GBPUSD cambia de 15 a 1h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p48060000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p48240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "77a87b3f358751644e28ae194d2518624e10e27123549884a37a27d5dc47a16d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra GBPUSD en 15 minutos y la segunda muestra el mismo gráfico en 1h (60M)."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "005adcbe593830976a47050082873e5ee051633fe150621a2d0781212c101f71"
+    ],
+    "response_id": "gen-1791089979-iqnjkZDTzpJ5VP9C9S6Z"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-gbpusd-price-above-depends-on-line",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-gbpusd-price-above-line-135843",
+   "subject_version": 1,
+   "object_id": "cl-gbpusd-horizontal-line-135843",
+   "object_version": 1,
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "518441d911ed29398bd89855ee8aed7f41a390d7b1d65f22f3fef2769d7174f1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The right-hand GBPUSD 15-minute chart displays quoted prices around 1.36029–1.36030, visibly above 1.35843."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The same chart shows a horizontal line explicitly labeled 1.35843, supporting the subject claim's dependence on the object claim."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "005adcbe593830976a47050082873e5ee051633fe150621a2d0781212c101f71"
+    ],
+    "response_id": "gen-1791089979-iqnjkZDTzpJ5VP9C9S6Z"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00075",
+   "start_ms": 525900,
+   "end_ms": 527380,
+   "text": "Bueno, lástima"
+  },
+  {
+   "id": "asr-00076",
+   "start_ms": 527380,
+   "end_ms": 529240,
+   "text": "que llegó antes de que pudiésemos entrar"
+  },
+  {
+   "id": "asr-00077",
+   "start_ms": 529240,
+   "end_ms": 531120,
+   "text": "en la sesión, pero el objetivo de libra"
+  },
+  {
+   "id": "asr-00078",
+   "start_ms": 531120,
+   "end_ms": 533600,
+   "text": "estaba ahí arriba. Esta es un poco la importancia"
+  },
+  {
+   "id": "asr-00079",
+   "start_ms": 533600,
+   "end_ms": 534660,
+   "text": "de los rangos."
+  },
+  {
+   "id": "asr-00080",
+   "start_ms": 535400,
+   "end_ms": 536720,
+   "text": "Asumir que se van a completar"
+  },
+  {
+   "id": "asr-00081",
+   "start_ms": 536720,
+   "end_ms": 539220,
+   "text": "y que el precio funciona de esta manera. De un rango"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47250000-canonical-v1",
+   "pts_ms": 525000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47250000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47520000-canonical-v1",
+   "pts_ms": 528000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47700000-canonical-v1",
+   "pts_ms": 530000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47700000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47790000-canonical-v1",
+   "pts_ms": 531000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47790000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47880000-canonical-v1",
+   "pts_ms": 532000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p48060000-canonical-v1",
+   "pts_ms": 534000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p48060000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p48240000-canonical-v1",
+   "pts_ms": 536000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p48240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p48330000-canonical-v1",
+   "pts_ms": 537000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p48330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

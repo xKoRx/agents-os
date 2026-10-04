@@ -1,0 +1,532 @@
+{
+ "window": "w0129",
+ "start": "33:16",
+ "end": "33:44",
+ "start_ms": 1996000,
+ "end_ms": 2024000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-duracion-esquema-4-horas",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La duración indicada en el esquema es «4 HORAS».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p182160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dadcf8d7ebe35b36cf6cb37cdc236b1baa44bace9411a29e409968c3b25f8134",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente la etiqueta «4 HORAS» en el esquema."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "59565de0ddef40118773715cc1502372bca03523aed25fd5e0fefd8cb4168c27"
+    ],
+    "response_id": "gen-1791120025-cqFvOQsUBLTuWQX1mCZ7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-importancia-conocer-logica-power-3",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Es importante que sepáis la lógica que hay detrás del Power 3.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00310",
+    "asr-00311",
+    "asr-00312"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ef8cc062ba968b45ccfa7fd17e0c834c3744830ea9efeb47e2158cabd27f0d38",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas expresan que la lógica detrás del Power 3 es importante para que lo sepáis."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la importancia de conocer la lógica detrás del Power 3."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "59565de0ddef40118773715cc1502372bca03523aed25fd5e0fefd8cb4168c27"
+    ],
+    "response_id": "gen-1791120025-cqFvOQsUBLTuWQX1mCZ7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-gris-ascenso-114868-115626",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La línea gris trazada asciende de 1,14868 a 1,15626.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p181440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p181800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5a7a7723e46f85687d3e32cb6cf5e4f7d869aa097c82da8fbd06c4cfb4cad60a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra una línea gris desde el punto rotulado 1,14868 hasta el punto superior rotulado 1,15626, por lo que asciende entre ambos valores."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el recorrido ascendente de la línea gris entre esos dos puntos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "59565de0ddef40118773715cc1502372bca03523aed25fd5e0fefd8cb4168c27"
+    ],
+    "response_id": "gen-1791120025-cqFvOQsUBLTuWQX1mCZ7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-gris-descenso-115139-114868",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La línea gris trazada desciende de 1,15139 a 1,14868.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p179640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p181800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8f369e37c66a9599c9353279ebcc954179bdab4cd0a4e2a2023bb9f15885052d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas muestran una línea gris desde el nivel 1,15139 hasta 1,14868, con un descenso visible entre ambos puntos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "59565de0ddef40118773715cc1502372bca03523aed25fd5e0fefd8cb4168c27"
+    ],
+    "response_id": "gen-1791120025-cqFvOQsUBLTuWQX1mCZ7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-logica-explicada-detras-power-3",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La lógica que se explica en este momento es la que hay detrás del Power 3.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00310",
+    "asr-00311",
+    "frame-4de8f12d4841c630-s0-p181800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5d756c207d4b14baa7d5d00f3ffb4a4a211befe205df4401215faf297c74e9f6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas citadas unen «la lógica detrás» con «del Power 3», y el demostrativo «esto» se refiere al contenido visual que se está explicando en ese momento."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "59565de0ddef40118773715cc1502372bca03523aed25fd5e0fefd8cb4168c27"
+    ],
+    "response_id": "gen-1791120025-cqFvOQsUBLTuWQX1mCZ7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-manipulacion-vela-movimiento-calmado",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si solo se manipula la naturaleza de la vela para que luego vaya a mi dirección, el movimiento se verá de un modo mucho más calmado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00305",
+    "asr-00306",
+    "asr-00307",
+    "asr-00308",
+    "asr-00309"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f29122a4f3e168f69a3eb8173bd99386ac6fad0315ea4357e9b44a27d3754fb1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que, si solo se manipula la naturaleza de la vela para que luego vaya hacia la dirección del hablante, el movimiento se verá de un modo mucho más calmado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La frase contiene una sola proposición condicional; la cláusula inicial solo restringe el supuesto de esa misma afirmación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "59565de0ddef40118773715cc1502372bca03523aed25fd5e0fefd8cb4168c27"
+    ],
+    "response_id": "gen-1791120025-cqFvOQsUBLTuWQX1mCZ7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-power-3-se-menciona-entradas",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El tema del Power 3 se mencionará muchas veces en las entradas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00312",
+    "asr-00313",
+    "asr-00314",
+    "asr-00315"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f729b66ade568a54621f6bee17738cc862e054baac0cbbce4062ab089a44f42c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que «el tema del Power 3» se mencionará «muchas veces» «en las entradas»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el tema del Power 3 se mencionará muchas veces en las entradas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "59565de0ddef40118773715cc1502372bca03523aed25fd5e0fefd8cb4168c27"
+    ],
+    "response_id": "gen-1791120025-cqFvOQsUBLTuWQX1mCZ7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-power-3-se-menciona-salidas",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El tema del Power 3 se mencionará muchas veces en las salidas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00312",
+    "asr-00313",
+    "asr-00314",
+    "asr-00315"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "631e79531afa12349318a529af3e96159d3eef8a0921873262db826f2c6857c0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice explícitamente que muchas veces se mencionará «el tema del Power 3», ya sea en las entradas ya sea en las salidas, lo que respalda la referencia a las salidas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la futura:y repetida mención del tema en las salidas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "59565de0ddef40118773715cc1502372bca03523aed25fd5e0fefd8cb4168c27"
+    ],
+    "response_id": "gen-1791120025-cqFvOQsUBLTuWQX1mCZ7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-salidas-basadas-tiempo-tema",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Las salidas basadas en el tiempo son uno de los temas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00318",
+    "asr-00319"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "406cfef4978ac6fe913830cbe07563670ed20b4817b7a8fbbe416384ff9db062",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada menciona «temas» y «salidas basadas en el tiempo», lo que presenta las salidas basadas en el tiempo como uno de los temas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que las salidas basadas en el tiempo son uno de los temas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "59565de0ddef40118773715cc1502372bca03523aed25fd5e0fefd8cb4168c27"
+    ],
+    "response_id": "gen-1791120025-cqFvOQsUBLTuWQX1mCZ7"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00305",
+   "start_ms": 1994150,
+   "end_ms": 1996270,
+   "text": "tú vas a decir, bueno, si es solo"
+  },
+  {
+   "id": "asr-00306",
+   "start_ms": 1996270,
+   "end_ms": 1998210,
+   "text": "la naturaleza de la vela"
+  },
+  {
+   "id": "asr-00307",
+   "start_ms": 1998210,
+   "end_ms": 2000730,
+   "text": "que tiene que manipular para luego ir a mi dirección"
+  },
+  {
+   "id": "asr-00308",
+   "start_ms": 2000730,
+   "end_ms": 2002510,
+   "text": "es como que lo vas a ver de un modo"
+  },
+  {
+   "id": "asr-00309",
+   "start_ms": 2002510,
+   "end_ms": 2003830,
+   "text": "mucho más calmado, ¿sabes?"
+  },
+  {
+   "id": "asr-00310",
+   "start_ms": 2004450,
+   "end_ms": 2006610,
+   "text": "sería un poco esto, la lógica detrás"
+  },
+  {
+   "id": "asr-00311",
+   "start_ms": 2006610,
+   "end_ms": 2008590,
+   "text": "del Power 3, importante para que lo"
+  },
+  {
+   "id": "asr-00312",
+   "start_ms": 2008590,
+   "end_ms": 2010230,
+   "text": "sepáis que muchas veces se va a mencionar"
+  },
+  {
+   "id": "asr-00313",
+   "start_ms": 2010230,
+   "end_ms": 2012370,
+   "text": "el tema del Power 3, ya sea en las"
+  },
+  {
+   "id": "asr-00314",
+   "start_ms": 2012370,
+   "end_ms": 2014630,
+   "text": "entradas, ya sea en las salidas"
+  },
+  {
+   "id": "asr-00315",
+   "start_ms": 2014630,
+   "end_ms": 2014910,
+   "text": "¿vale?"
+  },
+  {
+   "id": "asr-00316",
+   "start_ms": 2015800,
+   "end_ms": 2018670,
+   "text": "y ya está, sería un poco"
+  },
+  {
+   "id": "asr-00317",
+   "start_ms": 2018670,
+   "end_ms": 2020670,
+   "text": "esto, ahora sí que creo que está todo"
+  },
+  {
+   "id": "asr-00318",
+   "start_ms": 2020670,
+   "end_ms": 2023310,
+   "text": "temas, salidas"
+  },
+  {
+   "id": "asr-00319",
+   "start_ms": 2023310,
+   "end_ms": 2025550,
+   "text": "basadas en el tiempo y en traspasadas en el tiempo"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p179640000-canonical-v1",
+   "pts_ms": 1996000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p179640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p180000000-canonical-v1",
+   "pts_ms": 2000000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p180000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p180360000-canonical-v1",
+   "pts_ms": 2004000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p180360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p180720000-canonical-v1",
+   "pts_ms": 2008000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p180720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p181080000-canonical-v1",
+   "pts_ms": 2012000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p181080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p181440000-canonical-v1",
+   "pts_ms": 2016000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p181440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p181800000-canonical-v1",
+   "pts_ms": 2020000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p181800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p182160000-canonical-v1",
+   "pts_ms": 2024000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p182160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

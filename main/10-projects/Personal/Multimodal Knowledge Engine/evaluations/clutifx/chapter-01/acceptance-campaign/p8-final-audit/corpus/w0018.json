@@ -1,0 +1,527 @@
+{
+ "window": "w0018",
+ "start": "04:03",
+ "end": "04:17",
+ "start_ms": 243000,
+ "end_ms": 257000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-candle-close-inside-range",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El cierre de la vela vuelve a estar dentro del rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00032",
+    "asr-00033",
+    "frame-4de8f12d4841c630-s0-p22050000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p22320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "36f91fc99ed0636325c6a08fecd6b416526c4874aa4db3bcc8674c61df76efdd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los segmentos citados afirman explícitamente que la vela «cierra dentro otra vez», lo que respalda que su cierre vuelve a estar dentro del rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "f9abd9eb561bc384629d81781be14cb1e485d423b10896636771e15bda8f721c"
+    ],
+    "response_id": "gen-1791084685-nxLK5rMacmmq96oNKfVS"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-candle-wick-outside-range",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La mecha de la vela sale por fuera del rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00032",
+    "frame-4de8f12d4841c630-s0-p21960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p22050000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d8450d9876afeafd15ba78bd029c1edb7d5eaa2059ba4e42385b5e5507ce98a5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran la mecha inferior de la vela del 23 cruzando por debajo del límite inferior del rango delineado; la transcripción también indica que parece salir por fuera y cerrar de nuevo dentro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "f9abd9eb561bc384629d81781be14cb1e485d423b10896636771e15bda8f721c"
+    ],
+    "response_id": "gen-1791084685-nxLK5rMacmmq96oNKfVS"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-instrument-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p120330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p124830000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p129240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p138510000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p157050000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p21870000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p25200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p43200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p56880000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p70020000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p82440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p88560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p90630000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p96030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p97470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "88ee51a2526053453b6436c90e86252082bd621777bbb33846d87c3cc45f1bd6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas identifican explícitamente el instrumento mostrado como «EURUSD» en los encabezados y etiquetas de los gráficos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "0d2327ea1af38eef70d64e1a0b03a5ec7c01c39b5eb81bcbf361ebd3b8f10873",
+     "114258250adbefa443855dc29554162a4cc460b9d3d60c5710a7306d328a2a2f",
+     "142fb04addc3444003f810ce1816da82dcc7fcd8a4fca0de02507d0765f1d8f6",
+     "29b965d06acee52fdc37b1b4bdb6e3b3e14acf476df4252d90d55e144385e670",
+     "3c27d79c7a6aa6c5b6166f19c9e4fb2a1d8eaddc91f4dcc0a582aff1553b17f4",
+     "5ad9747065e7d0f96e1ce74d881fcc1f6359e67572d12103fe92f5c1ac55d3bc",
+     "8d15fa57d125abf4e9a3a910a6d888a03e8f4c813c72d653c2dd21aad3b9a880",
+     "94dfa16ff8dccc46186c8621a5094b743e00fbaa55dbd873418bd07be2aa5ade",
+     "b9eca28c852746ada7f70ba02d9e932d76456f13ee43f26030f2376001d22711",
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756",
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65",
+     "e369a09cff81a116e7d6795b9c21bae16ea4c997ff01e154b8b7df4086da6237",
+     "f9abd9eb561bc384629d81781be14cb1e485d423b10896636771e15bda8f721c",
+     "ff65ed105d0b3c9948f7953ec0a8780fa14f3ee102de53cdbb9acf89c9068807"
+    ],
+    "response_id": "gen-1791084685-nxLK5rMacmmq96oNKfVS"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-timeframe-1d",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal mostrado es 1D.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p21870000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "492d7ee5d1e4b3d4eaa818460b6a856dcaa382abe177d23855b31797fa47bf13",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente la etiqueta «1D» para EURUSD y la etiqueta inferior «EURUSD | D»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "f9abd9eb561bc384629d81781be14cb1e485d423b10896636771e15bda8f721c"
+    ],
+    "response_id": "gen-1791084685-nxLK5rMacmmq96oNKfVS"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-current-range-as-target",
+   "kind": "rule",
+   "version": 1,
+   "statement": "El rango mostrado puede utilizarse como target.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00032",
+    "asr-00033",
+    "frame-4de8f12d4841c630-s0-p22410000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p22680000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "443580f4a1315954956b565b83f62bde91563e7bb96180bd7d0732bb8f13af73",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited transcript states that the depicted bullish range can be used as a target, and the frames show the referenced highlighted range."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "f9abd9eb561bc384629d81781be14cb1e485d423b10896636771e15bda8f721c"
+    ],
+    "response_id": "gen-1791084685-nxLK5rMacmmq96oNKfVS"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-current-range-bullish",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango mostrado es un rango alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00032",
+    "asr-00033",
+    "frame-4de8f12d4841c630-s0-p22410000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p22680000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "48c7af85c27b3c2e5afcd08d0b9cc27170c7dfe8d25e951ec1ec5a1b036377a4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que «esto es un rango alcista», y el contexto y las imágenes identifican «esto» como el rango mostrado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "f9abd9eb561bc384629d81781be14cb1e485d423b10896636771e15bda8f721c"
+    ],
+    "response_id": "gen-1791084685-nxLK5rMacmmq96oNKfVS"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-lower-bound-114748",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El límite inferior del rango mostrado es 1.14748.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p21870000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6bbcfbac7501147a238860d6ae44a236924723fb73b9b612918a5ac79bdd43e1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta azul 1,14748 aparece en el eje de precios alineada con el límite inferior del rango seleccionado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "f9abd9eb561bc384629d81781be14cb1e485d423b10896636771e15bda8f721c"
+    ],
+    "response_id": "gen-1791084685-nxLK5rMacmmq96oNKfVS"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-upper-bound-115803",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El límite superior del rango mostrado es 1.15803.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p21870000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c8d6f56799c8ef9f63f05d65c1619aabf93ee2484751e737a1059fbc239ef5d3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta del límite superior del rango mostrado indica 1.15803."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Lastatement sostiene una única proposición sobre ese límite."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "f9abd9eb561bc384629d81781be14cb1e485d423b10896636771e15bda8f721c"
+    ],
+    "response_id": "gen-1791084685-nxLK5rMacmmq96oNKfVS"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00032",
+   "start_ms": 241310,
+   "end_ms": 249740,
+   "text": "porque como al extremo cierra dentro otra vez parece que va por fuera cierra dentro otra vez"
+  },
+  {
+   "id": "asr-00033",
+   "start_ms": 249740,
+   "end_ms": 255260,
+   "text": "fuera sigue dentro esto es un rango alcista y podemos utilizar esto como target ya lo veréis"
+  },
+  {
+   "id": "asr-00034",
+   "start_ms": 255260,
+   "end_ms": 261470,
+   "text": "en el vídeo del bias pero para que quede claro el concepto de rango vale ahora dentro de los"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p21870000-canonical-v1",
+   "pts_ms": 243000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p21870000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p21960000-canonical-v1",
+   "pts_ms": 244000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p21960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p22050000-canonical-v1",
+   "pts_ms": 245000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p22050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p22320000-canonical-v1",
+   "pts_ms": 248000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p22320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p22410000-canonical-v1",
+   "pts_ms": 249000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p22410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p22680000-canonical-v1",
+   "pts_ms": 252000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p22680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23040000-canonical-v1",
+   "pts_ms": 256000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23130000-canonical-v1",
+   "pts_ms": 257000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120330000-canonical-v1",
+   "pts_ms": 1337000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p124830000-canonical-v1",
+   "pts_ms": 1387000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p124830000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p129240000-canonical-v1",
+   "pts_ms": 1436000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p129240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138510000-canonical-v1",
+   "pts_ms": 1539000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138510000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157050000-canonical-v1",
+   "pts_ms": 1745000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p25200000-canonical-v1",
+   "pts_ms": 280000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p25200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p43200000-canonical-v1",
+   "pts_ms": 480000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p43200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p56880000-canonical-v1",
+   "pts_ms": 632000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p56880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70020000-canonical-v1",
+   "pts_ms": 778000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p82440000-canonical-v1",
+   "pts_ms": 916000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p82440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p88560000-canonical-v1",
+   "pts_ms": 984000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p88560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90630000-canonical-v1",
+   "pts_ms": 1007000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90630000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p96030000-canonical-v1",
+   "pts_ms": 1067000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p96030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p97470000-canonical-v1",
+   "pts_ms": 1083000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p97470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

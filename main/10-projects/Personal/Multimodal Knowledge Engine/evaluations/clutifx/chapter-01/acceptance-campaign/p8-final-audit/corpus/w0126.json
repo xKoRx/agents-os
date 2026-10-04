@@ -1,0 +1,502 @@
+{
+ "window": "w0126",
+ "start": "32:25",
+ "end": "32:40",
+ "start_ms": 1945000,
+ "end_ms": 1960000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-buscar-rango-alcista-para-comprar",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Buscar un rango alcista para comprar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00281",
+    "asr-00282"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5408c5dadd906b34565b274d5ff510cc9106ff410d8c73167990e1771d983eb0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada dice literalmente «buscar un rango alcista para comprar»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: buscar un rango alcista para comprar."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "09984ce0f1e30103a07e2fa34128de57a044f8b411c6a8e6330cecbee262f37f"
+    ],
+    "response_id": "gen-1791118542-EtTlwxlB1MA63ZC9TFrK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-diagrama-secuencia-ascendente-velas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El diagrama muestra una secuencia ascendente de dos cuerpos de vela.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p175860000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p176040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "354e290cc2dad263a5d61c2cba5996b5ffd0292fea4bdaa381f3052667beb38e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran dos cuerpos de vela, con el segundo situado más arriba y a la derecha del primero, formando una secuencia ascendente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "09984ce0f1e30103a07e2fa34128de57a044f8b411c6a8e6330cecbee262f37f"
+    ],
+    "response_id": "gen-1791118542-EtTlwxlB1MA63ZC9TFrK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-diagrama-ventana-cuatro-horas",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La secuencia «0100»–«0500» del diagrama está rotulada «4 HORAS».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p175050000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p175140000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p175230000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ca2b4119e7e5d65f401931261b6e116667636e847c379668ec91eb88631aa788",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran la secuencia «0100»–«0500» y la etiqueta «4 HORAS» situada bajo ese intervalo del diagrama."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "09984ce0f1e30103a07e2fa34128de57a044f8b411c6a8e6330cecbee262f37f"
+    ],
+    "response_id": "gen-1791118542-EtTlwxlB1MA63ZC9TFrK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-movimiento-mostrado-crea-rango-alcista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El movimiento mostrado durante el power three de la vela está creando un rango alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00284",
+    "asr-00285",
+    "asr-00286",
+    "frame-4de8f12d4841c630-s0-p175680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p176040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p176400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "93547acfd0b69f073df4ca3d5adb2833ab93c4fcde5d9c21fd66de498d187ea5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que el movimiento mostrado «te está creando un rango alcista» durante el power three de la vela."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «durante el power three de la vela» únicamente delimita el alcance temporal de esa misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "09984ce0f1e30103a07e2fa34128de57a044f8b411c6a8e6330cecbee262f37f"
+    ],
+    "response_id": "gen-1791118542-EtTlwxlB1MA63ZC9TFrK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-alcista-durante-power-three-ideal",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Cuando el rango alcista se forma durante el power three de la vela, esa es la situación ideal para comprar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00282",
+    "asr-00283",
+    "asr-00284",
+    "asr-00285",
+    "asr-00286",
+    "frame-4de8f12d4841c630-s0-p176040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p176400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "99b97ae179bcb5c7194ac2638e0da5ec667c214e5a59cedc4e66fdc7bba0f6d2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones indican buscar un rango alcista para comprar, situarlo durante el power three de la vela y calificar esa formación como «lo ideal»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La cláusula «cuando el rango alcista se forma durante el power three» solo restringe la misma afirmación sobre la situación ideal para comprar, por lo que constituye un único proposition atómica."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "09984ce0f1e30103a07e2fa34128de57a044f8b411c6a8e6330cecbee262f37f"
+    ],
+    "response_id": "gen-1791118542-EtTlwxlB1MA63ZC9TFrK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-vertical-seleccionado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el gráfico aparece un rectángulo vertical seleccionado en la zona de las velas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p176400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8b62987643ecb32a2a92d58325039073aa68145cb134c19332c45c371a26f28f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra un rectángulo vertical delineado con tiradores de selección en la zona de las velas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe un único objeto y su estado de selección."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "09984ce0f1e30103a07e2fa34128de57a044f8b411c6a8e6330cecbee262f37f"
+    ],
+    "response_id": "gen-1791118542-EtTlwxlB1MA63ZC9TFrK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-mostrada-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad mostrada es 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p175050000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p182160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e449d89d9431625be837d84997a0285e91008d3309b32e1767e70f6dec9be90d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambas imágenes muestran explícitamente la etiqueta «EURUSD | 15M», lo que respalda que la temporalidad es 15M."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "09984ce0f1e30103a07e2fa34128de57a044f8b411c6a8e6330cecbee262f37f",
+     "59565de0ddef40118773715cc1502372bca03523aed25fd5e0fefd8cb4168c27"
+    ],
+    "response_id": "gen-1791118542-EtTlwxlB1MA63ZC9TFrK"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-creacion-rango-depends-movimiento-ilustrado",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-movimiento-mostrado-crea-rango-alcista",
+   "subject_version": 1,
+   "object_id": "cl-diagrama-secuencia-ascendente-velas",
+   "object_version": 1,
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00285",
+    "asr-00286",
+    "frame-4de8f12d4841c630-s0-p176040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p176400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "32b1454a32e5532c242841c3828e354f7a142f3aed522ff62c183fe545c1a711",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran dos cuerpos de vela consecutivos en una secuencia ascendente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento citado se refiere al patrón mostrado con «esto» y afirma explícitamente que está creando un rango alcista, por lo que la afirmación del sujeto se presenta como una interpretación basada en la secuencia visible del objeto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "09984ce0f1e30103a07e2fa34128de57a044f8b411c6a8e6330cecbee262f37f"
+    ],
+    "response_id": "gen-1791118542-EtTlwxlB1MA63ZC9TFrK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-situacion-ideal-depends-creacion-rango",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-alcista-durante-power-three-ideal",
+   "subject_version": 1,
+   "object_id": "cl-movimiento-mostrado-crea-rango-alcista",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00285",
+    "asr-00286"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "aa4d374f37891959fdbc89b79b9c01267979b182f84b2cd26c7ef34c74180de8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The evidence says that doing something is ideal because it is creating a bullish range, but it does not explicitly establish that this occurs during the power three or that it is the ideal situation for buying."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "09984ce0f1e30103a07e2fa34128de57a044f8b411c6a8e6330cecbee262f37f"
+    ],
+    "response_id": "gen-1791118542-EtTlwxlB1MA63ZC9TFrK"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00281",
+   "start_ms": 1944900,
+   "end_ms": 1947860,
+   "text": "imagínate que tú tienes que"
+  },
+  {
+   "id": "asr-00282",
+   "start_ms": 1947860,
+   "end_ms": 1949700,
+   "text": "buscar un rango alcista para comprar"
+  },
+  {
+   "id": "asr-00283",
+   "start_ms": 1949700,
+   "end_ms": 1952190,
+   "text": "pues es lógico que"
+  },
+  {
+   "id": "asr-00284",
+   "start_ms": 1952190,
+   "end_ms": 1953510,
+   "text": "durante el power three de la vela"
+  },
+  {
+   "id": "asr-00285",
+   "start_ms": 1953510,
+   "end_ms": 1956270,
+   "text": "si te hace esto, pues es lo ideal"
+  },
+  {
+   "id": "asr-00286",
+   "start_ms": 1956270,
+   "end_ms": 1958530,
+   "text": "porque te está creando un rango alcista"
+  },
+  {
+   "id": "asr-00287",
+   "start_ms": 1958530,
+   "end_ms": 1960310,
+   "text": "así imagínate"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175050000-canonical-v1",
+   "pts_ms": 1945000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175140000-canonical-v1",
+   "pts_ms": 1946000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175230000-canonical-v1",
+   "pts_ms": 1947000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175230000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175320000-canonical-v1",
+   "pts_ms": 1948000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175680000-canonical-v1",
+   "pts_ms": 1952000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175860000-canonical-v1",
+   "pts_ms": 1954000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p176040000-canonical-v1",
+   "pts_ms": 1956000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p176040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p176400000-canonical-v1",
+   "pts_ms": 1960000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p176400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p182160000-canonical-v1",
+   "pts_ms": 2024000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p182160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

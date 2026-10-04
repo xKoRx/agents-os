@@ -1,0 +1,84 @@
+{
+ "window": "w0098",
+ "start": "25:25",
+ "end": "25:37",
+ "start_ms": 1525000,
+ "end_ms": 1537000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00206",
+   "start_ms": 1508980,
+   "end_ms": 1535940,
+   "text": "O sea, esto sería otro caso de S&T que muchas veces no se ve a simple vista, pero si esto es un gráfico de 4 horas y tú estás esperando que se te forme un rango para poder comprar, ¿vale? Pues, solo viendo que la libra está creándolo, puede ser que euro no tenga que crearlo y pueda llegar hasta arriba, ¿vale? Me estoy anticipando ya mucho, pero para que quede claro el concepto de SMT en la estrategia."
+  },
+  {
+   "id": "asr-00207",
+   "start_ms": 1535940,
+   "end_ms": 1552160,
+   "text": "Luego, concepto de failure swing, ya lo visteis también un poco en el curso intermedio. El failure swing es cuando el precio no consigue hacer un nuevo bajo y puede darse por varios casos."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p137250000-canonical-v1",
+   "pts_ms": 1525000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p137250000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p137520000-canonical-v1",
+   "pts_ms": 1528000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p137520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p137700000-canonical-v1",
+   "pts_ms": 1530000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p137700000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p137790000-canonical-v1",
+   "pts_ms": 1531000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p137790000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p137880000-canonical-v1",
+   "pts_ms": 1532000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p137880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138150000-canonical-v1",
+   "pts_ms": 1535000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138150000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138240000-canonical-v1",
+   "pts_ms": 1536000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138330000-canonical-v1",
+   "pts_ms": 1537000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

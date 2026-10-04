@@ -1,0 +1,431 @@
+{
+ "window": "w0019",
+ "start": "04:20",
+ "end": "04:28",
+ "start_ms": 260000,
+ "end_ms": 268000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-aclarar-concepto-rango-video-bias",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En el vídeo del bias debe quedar claro el concepto de rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00034"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e1869eb5980b8e76820fdd53b6cbb1bb69ad89b0a85e267416b30b9d0e0493bb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «en el vídeo del bias pero para que quede claro el concepto de rango», lo que respalda que el vídeo debe aclarar dicho concepto."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1e89f6908f6eb5d855d392726733dcf35cac1165f04895c882bd7b5930aafaec"
+    ],
+    "response_id": "gen-1791084802-M5VkJXczzkmGgxzGbHcx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-marco-temporal-1d-15",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El marco temporal del gráfico cambia de 1D a 15.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p23490000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p23580000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "241ba618f6565f4dcb7285215501dbbedafcd89dbe8f3e3650b7fae8e847f235",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos primeras imágenes muestran el gráfico en 1D y el diálogo «Cambiar intervalo»; la tercera muestra el gráfico en 15/15M."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El cambio de un marco temporal a otro es una única proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1e89f6908f6eb5d855d392726733dcf35cac1165f04895c882bd7b5930aafaec"
+    ],
+    "response_id": "gen-1791084802-M5VkJXczzkmGgxzGbHcx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-campo-cambiar-intervalo-15",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El campo del diálogo «Cambiar intervalo» muestra el valor 15.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23490000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "960be09ae74ae088c773538307694937a0bdc9b9cbbe001da24d8680b4257897",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el diálogo «Cambiar intervalo» con el valor 15 en su campo de entrada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1e89f6908f6eb5d855d392726733dcf35cac1165f04895c882bd7b5930aafaec"
+    ],
+    "response_id": "gen-1791084802-M5VkJXczzkmGgxzGbHcx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-hay-mas-tipos-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hay más tipos de rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00035"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "61bd7ca3f26ce4345e22b86667118a995cf9c32fad8fb2aba757ca114cf7dec8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice «tenemos más tipos de rangos», lo que respalda directamente que hay más tipos de rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: la existencia de tipos de rango adicionales."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1e89f6908f6eb5d855d392726733dcf35cac1165f04895c882bd7b5930aafaec"
+    ],
+    "response_id": "gen-1791084802-M5VkJXczzkmGgxzGbHcx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-moneda-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El eje de precios está expresado en USD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ed7562ab97f53541688ad2b1fb26988ed0c88a9a6bcae3cdc27a14d886bd7b61",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta «USD» aparece en la parte superior del eje lateral derecho de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1e89f6908f6eb5d855d392726733dcf35cac1165f04895c882bd7b5930aafaec"
+    ],
+    "response_id": "gen-1791084802-M5VkJXczzkmGgxzGbHcx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nivel-eurusd-1-13447",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra una línea horizontal en 1,13447.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0aec68b98040cf143053ef8aeb01555dd5adfcc62f576c3933c03467f99ece05",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una línea horizontal alineada con la etiqueta 1,13447 en el eje derecho."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1e89f6908f6eb5d855d392726733dcf35cac1165f04895c882bd7b5930aafaec"
+    ],
+    "response_id": "gen-1791084802-M5VkJXczzkmGgxzGbHcx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nivel-eurusd-1-13572",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra una línea horizontal en 1,13572.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9c39f9eab7322df147bba35226c0996f360c5ed649ad8de34df691bbaeebad4c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una línea horizontal trazada en el gráfico junto a la etiqueta 1,13572."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1e89f6908f6eb5d855d392726733dcf35cac1165f04895c882bd7b5930aafaec"
+    ],
+    "response_id": "gen-1791084802-M5VkJXczzkmGgxzGbHcx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nivel-eurusd-1-15067",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra una línea horizontal en 1,15067.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_CONTRADICTED",
+    "invocation_id": "d22af8db814812d8568e6becead40c907149d03e8f58d8dbf9c90483cf1c924a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta 1,15067 aparece en el eje, pero no se muestra una línea horizontal en ese nivel; las líneas horizontales visibles están en otros precios."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_CONTRADICTED",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1e89f6908f6eb5d855d392726733dcf35cac1165f04895c882bd7b5930aafaec"
+    ],
+    "response_id": "gen-1791084802-M5VkJXczzkmGgxzGbHcx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-recorrido-grafico-23-24-junio-2025",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La ventana visible del gráfico de 15 minutos cambia de posición entre las fechas del 23 y el 24 de junio de 2025.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p23850000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p23940000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8cf0b0aee7b92b0eee3d1ee3488ef034677081ea4db6fe537d60e9026eb17d2a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las evidencias muestran un gráfico de EURUSD con resolución de 15 minutos yCrosshair con fechas del 23 y el 24 de junio de 2025."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El rango temporal visible del eje horizontal cambia entre las capturas, lo que demuestra el desplazamiento de la ventana del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1e89f6908f6eb5d855d392726733dcf35cac1165f04895c882bd7b5930aafaec"
+    ],
+    "response_id": "gen-1791084802-M5VkJXczzkmGgxzGbHcx"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00034",
+   "start_ms": 255260,
+   "end_ms": 261470,
+   "text": "en el vídeo del bias pero para que quede claro el concepto de rango vale ahora dentro de los"
+  },
+  {
+   "id": "asr-00035",
+   "start_ms": 261470,
+   "end_ms": 269600,
+   "text": "rangos tenemos más tipos de rangos que nosotros hemos llamado así básicamente importante todo"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23400000-canonical-v1",
+   "pts_ms": 260000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23490000-canonical-v1",
+   "pts_ms": 261000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23580000-canonical-v1",
+   "pts_ms": 262000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23760000-canonical-v1",
+   "pts_ms": 264000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23850000-canonical-v1",
+   "pts_ms": 265000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23940000-canonical-v1",
+   "pts_ms": 266000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24030000-canonical-v1",
+   "pts_ms": 267000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24120000-canonical-v1",
+   "pts_ms": 268000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

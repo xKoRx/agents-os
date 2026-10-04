@@ -1,0 +1,90 @@
+{
+ "window": "w0035",
+ "start": "07:43",
+ "end": "07:56",
+ "start_ms": 463000,
+ "end_ms": 476000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00061",
+   "start_ms": 461450,
+   "end_ms": 466570,
+   "text": "qué importancia tienen los rangos de nuestra estrategia es básicamente navegar al precio y"
+  },
+  {
+   "id": "asr-00062",
+   "start_ms": 466570,
+   "end_ms": 474530,
+   "text": "saber pues hacia dónde va por qué hacia dónde puede ir después hay señales de reversión hay"
+  },
+  {
+   "id": "asr-00063",
+   "start_ms": 474530,
+   "end_ms": 481460,
+   "text": "señales de continuación vale normalmente si la vela cierra fuera y no te forma un rango bajista"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41670000-canonical-v1",
+   "pts_ms": 463000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41670000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41760000-canonical-v1",
+   "pts_ms": 464000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41850000-canonical-v1",
+   "pts_ms": 465000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41940000-canonical-v1",
+   "pts_ms": 466000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p42030000-canonical-v1",
+   "pts_ms": 467000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p42030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p42120000-canonical-v1",
+   "pts_ms": 468000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p42120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p42480000-canonical-v1",
+   "pts_ms": 472000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p42480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p42840000-canonical-v1",
+   "pts_ms": 476000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p42840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

@@ -1,0 +1,601 @@
+{
+ "window": "w0094",
+ "start": "23:56",
+ "end": "24:12",
+ "start_ms": 1436000,
+ "end_ms": 1452000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-symbol-gbpusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra el símbolo GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p129240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1add3a5716108da1c4155c740151cfbf9efb34e463c84504c98975b87f257bfd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la etiqueta «GBPUSD» en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "94dfa16ff8dccc46186c8621a5094b743e00fbaa55dbd873418bd07be2aa5ade"
+    ],
+    "response_id": "gen-1791107624-zOnR9ztQrY9yfp8YTi1F"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-candle-gains-lower-wick",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela negra del lado EURUSD pasa a tener una mecha inferior.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p130320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p130500000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p130680000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "89eb7cc04fd4bb0f6a6af48df84a00d5c0b806d4b01f627faa833b28c88a5a59",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer failed: vlm provider parse-structured [fatal]: assistant content is not a valid JSON object"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "94dfa16ff8dccc46186c8621a5094b743e00fbaa55dbd873418bd07be2aa5ade"
+    ],
+    "response_id": "gen-1791107624-zOnR9ztQrY9yfp8YTi1F"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-match-gbpusd-form",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Hacer que la vela de EURUSD tenga la misma forma que la de GBPUSD.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197",
+    "frame-4de8f12d4841c630-s0-p130500000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p130680000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "66a8beb0157f19ebe0c06ca79cbce25868de26c07ac70bcaa22f5c87bdb100a7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «Y el de euro que sea así», inmediatamente después de describir la forma de la vela de libra, y los fotogramas muestran las velas de EURUSD y GBPUSD a las que se refiere."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la vela de EURUSD debe tener la misma forma que la de GBPUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "94dfa16ff8dccc46186c8621a5094b743e00fbaa55dbd873418bd07be2aa5ade"
+    ],
+    "response_id": "gen-1791107624-zOnR9ztQrY9yfp8YTi1F"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-candle-body-height-changes",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Cambia la altura del cuerpo de la vela negra del lado GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p129240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p129420000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p129690000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p129960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "10bc7c940a0eb7611f21991c57382e7fe9c248f34654faf6019df81e609ea02d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas muestran que el cuerpo de la vela negra situada del lado GBPUSD cambia de extensión vertical entre las capturas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el cambio de altura de ese cuerpo de vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "94dfa16ff8dccc46186c8621a5094b743e00fbaa55dbd873418bd07be2aa5ade"
+    ],
+    "response_id": "gen-1791107624-zOnR9ztQrY9yfp8YTi1F"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-candle-gains-lower-wick",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela negra del lado GBPUSD pasa a tener una mecha inferior.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p129960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p130320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3a00a7598045142aeb0d35aec7d6da2cad27cbed6fcfcd262d1cfb48bc74e6b1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la primera imagen, la vela negra del lado GBPUSD no muestra mecha inferior; en la segunda, aparece una línea fina por debajo de su cuerpo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una sola transición: la aparición de una mecha inferior en esa vela negra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "94dfa16ff8dccc46186c8621a5094b743e00fbaa55dbd873418bd07be2aa5ade"
+    ],
+    "response_id": "gen-1791107624-zOnR9ztQrY9yfp8YTi1F"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-range-use-wick",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Dibujar el rango de GBPUSD utilizando una mecha.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197",
+    "frame-4de8f12d4841c630-s0-p129960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p130320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "315faafcff1c767dd91d76d3c565cd951b9d9054441bdd629bab712b67b7cd27",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente que el rango de libra «lo haremos con mecha», y las imágenes identifican el lado correspondiente como GBPUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "94dfa16ff8dccc46186c8621a5094b743e00fbaa55dbd873418bd07be2aa5ade"
+    ],
+    "response_id": "gen-1791107624-zOnR9ztQrY9yfp8YTi1F"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-extreme-not-taken",
+   "kind": "claim",
+   "version": 1,
+   "statement": "No se ha tomado el extremo del rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c75298300347edd34eac3818a9d67327076ed5e5db718ff981b6de58fc8c84a3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente: «no ha tomado el extremo del rango»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que no se ha tomado el extremo del rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "94dfa16ff8dccc46186c8621a5094b743e00fbaa55dbd873418bd07be2aa5ade"
+    ],
+    "response_id": "gen-1791107624-zOnR9ztQrY9yfp8YTi1F"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-between-candles-often-shown",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La SMT entre las dos velas mostradas se ve muchas veces.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197",
+    "frame-4de8f12d4841c630-s0-p129240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "08252b4e786c7c1ee87e35f88cb7605faf80a58a5e53a48895990396fe5682c6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que se ve muchas veces una SMT entre «estas dos velas»,expression corroborated by the two candles shown in the frame."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "94dfa16ff8dccc46186c8621a5094b743e00fbaa55dbd873418bd07be2aa5ade"
+    ],
+    "response_id": "gen-1791107624-zOnR9ztQrY9yfp8YTi1F"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-can-form-range",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Una SMT puede servir para formar el rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8e15a3515a9a9969457db5a99a640fd9e832d3dd9d5c2674368895eb96d43cef",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que puede haber una SMT para formar el rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "94dfa16ff8dccc46186c8621a5094b743e00fbaa55dbd873418bd07be2aa5ade"
+    ],
+    "response_id": "gen-1791107624-zOnR9ztQrY9yfp8YTi1F"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-can-reach-objectives",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Una SMT puede servir para llegar a los objetivos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cf1c85330f3ac410b3412c43b302fa8d13ec5f4e1f19918c9fb47ab86944fdf9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que una SMT puede ser «en el tema de llegar a los objetivos», lo que respalda directamente la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que una SMT puede servir para llegar a los objetivos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "94dfa16ff8dccc46186c8621a5094b743e00fbaa55dbd873418bd07be2aa5ade"
+    ],
+    "response_id": "gen-1791107624-zOnR9ztQrY9yfp8YTi1F"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-need-not-be-between-candles",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La SMT no tiene que ser entre las dos velas mostradas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197",
+    "frame-4de8f12d4841c630-s0-p129240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3ae10f101423e9918896e01778eccedc64c6ca50f5e261ff5f711c36a970ea48",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que la SMT no tiene que ser «entre estas dos velas», lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la SMT no debe estar necesariamente entre las dos velas mostradas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "94dfa16ff8dccc46186c8621a5094b743e00fbaa55dbd873418bd07be2aa5ade"
+    ],
+    "response_id": "gen-1791107624-zOnR9ztQrY9yfp8YTi1F"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-wick-makes-range-realistic",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La mecha se utiliza para que la representación del rango quede más real.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ae01700085490a1be197745087ccf0e34b3e565a1f3840440f6868df554f0b0b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que el rango se hará «con mecha, que quede más real», lo que respalda directamente el uso de la mecha para hacer más realista su representación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la finalidad del uso de la mecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "94dfa16ff8dccc46186c8621a5094b743e00fbaa55dbd873418bd07be2aa5ade"
+    ],
+    "response_id": "gen-1791107624-zOnR9ztQrY9yfp8YTi1F"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-eurusd-form-depends-on-gbpusd-form",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-eurusd-match-gbpusd-form",
+   "subject_version": 1,
+   "object_id": "cl-gbpusd-range-use-wick",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00197",
+    "frame-4de8f12d4841c630-s0-p130320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p130680000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b8c35d706dfd803def6782ba28b36951ce387895ef431903069ca9ae735a95e9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica primero que el rango de GBPUSD se hará con una mecha y, después, que la vela de EURUSD sea así, es decir, con la misma forma. Esto establece la dependencia en la orientaciónEURUSD → GBPUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "94dfa16ff8dccc46186c8621a5094b743e00fbaa55dbd873418bd07be2aa5ade"
+    ],
+    "response_id": "gen-1791107624-zOnR9ztQrY9yfp8YTi1F"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00197",
+   "start_ms": 1422440,
+   "end_ms": 1451830,
+   "text": "No es que tenga que ser una SMT entre estas dos velas, como se ve muchas veces. Puede ser una SMT en el tema de llegar a los objetivos, ¿vale? Del mismo modo puede haber una SMT para formar el rango. ¿Qué significa esto? Que el rango de libra sea así. Bueno, lo haremos con mecha, que quede más real. Que esto sea así. Por lo tanto, no ha tomado el extremo del rango. Y el de euro que sea así, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p129240000-canonical-v1",
+   "pts_ms": 1436000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p129240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p129420000-canonical-v1",
+   "pts_ms": 1438000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p129420000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p129600000-canonical-v1",
+   "pts_ms": 1440000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p129600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p129690000-canonical-v1",
+   "pts_ms": 1441000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p129690000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p129960000-canonical-v1",
+   "pts_ms": 1444000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p129960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p130320000-canonical-v1",
+   "pts_ms": 1448000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p130320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p130500000-canonical-v1",
+   "pts_ms": 1450000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p130500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p130680000-canonical-v1",
+   "pts_ms": 1452000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p130680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

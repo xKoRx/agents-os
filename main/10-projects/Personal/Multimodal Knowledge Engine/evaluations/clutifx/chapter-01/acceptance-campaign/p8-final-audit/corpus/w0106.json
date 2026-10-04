@@ -1,0 +1,430 @@
+{
+ "window": "w0106",
+ "start": "27:24",
+ "end": "27:36",
+ "start_ms": 1644000,
+ "end_ms": 1656000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-change-of-delivery-similar-to-trend-change",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El «change of delivery» sería más o menos como un cambio de tendencia.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00233",
+    "asr-00234"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "23cc93b65c953eac1d6f5c08160ecf4fc7520024ed6bdc2cefb8409a161be8ae",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita afirma directamente que «change of delivery» sería «como el cambio de tendencia un poco», lo que respalda la comparación aproximada de la sentencia."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia contiene una sola proposición: que «change of delivery» se parece, más o menos, a un cambio de tendencia."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "9275ecd82c8a762a0ee68a03e74f754bfca97a6218a2057c3ffb9890f0eeda14"
+    ],
+    "response_id": "gen-1791112425-PUuDLXbRaDEAfSTYdqCv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-order-block-important-for-change-of-delivery",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El order block es importante para el «change of delivery».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00230",
+    "asr-00231",
+    "asr-00232",
+    "asr-00233"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4bf9b1b241808726453283ef6ed65d45885d8f78e66de889975388b3e8642800",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los fragmentos citados expresan conjuntamente que el order block es importante para el cambio de delivery y密密麻麻_identifican «change of delivery» como su término en inglés."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la importancia del order block para el change of delivery."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "9275ecd82c8a762a0ee68a03e74f754bfca97a6218a2057c3ffb9890f0eeda14"
+    ],
+    "response_id": "gen-1791112425-PUuDLXbRaDEAfSTYdqCv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangle-bottom-moved-down",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El borde inferior del rectángulo se desplaza hacia abajo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p148410000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p148500000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e8ab0b59a65d6923d63d4b8e52fa326b67781baa4fe00bf263216a1072fc13c3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la segunda imagen, el borde inferior del rectángulo aparece más abajo que en la primera, mientras que el borde superior conserva su posición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre el desplazamiento del borde inferior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "9275ecd82c8a762a0ee68a03e74f754bfca97a6218a2057c3ffb9890f0eeda14"
+    ],
+    "response_id": "gen-1791112425-PUuDLXbRaDEAfSTYdqCv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangle-drawn",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja un rectángulo en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p148320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p148410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8894faf96abc27d02d135c52e7c4011890e9554ba81fb987e76a87ba5a54b301",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen evidencia un rectángulo dibujado y seleccionado sobre el gráfico; la primera muestra el gráfico antes de que aparezca."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "9275ecd82c8a762a0ee68a03e74f754bfca97a6218a2057c3ffb9890f0eeda14"
+    ],
+    "response_id": "gen-1791112425-PUuDLXbRaDEAfSTYdqCv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangle-fill-white-to-black",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El relleno del rectángulo cambia de blanco a negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p148680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p148950000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1937a35838f4c3b61f07ca76506ddce384b03edf8b20f93285048954f9aaad24",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes citadas muestran el mismo rectángulo primero con relleno blanco y después con relleno negro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "9275ecd82c8a762a0ee68a03e74f754bfca97a6218a2057c3ffb9890f0eeda14"
+    ],
+    "response_id": "gen-1791112425-PUuDLXbRaDEAfSTYdqCv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangle-lower-bound-113089",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El límite inferior del rectángulo tras la ampliación es 1.13089.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p148500000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p148680000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5a17510b3648ad3171456407a63190857bd63b48ea49419440c132fb1babf8cd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la imagen tras la ampliación, el borde inferior del rectángulo coincide con la marca 1.13089 del eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "9275ecd82c8a762a0ee68a03e74f754bfca97a6218a2057c3ffb9890f0eeda14"
+    ],
+    "response_id": "gen-1791112425-PUuDLXbRaDEAfSTYdqCv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangle-represents-order-block",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rectángulo dibujado representa un order block.",
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00230",
+    "frame-4de8f12d4841c630-s0-p148320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p148410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7df2feabef29fcc53bea7074b1f56d285f10173dba4e3e70cfc6c6889a73d2c9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El fotograma citado muestra un rectángulo dibujado en el gráfico y la transcripción citada menciona explícitamente «order block», lo que respalda que ese rectángulo representa dicho elemento."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "9275ecd82c8a762a0ee68a03e74f754bfca97a6218a2057c3ffb9890f0eeda14"
+    ],
+    "response_id": "gen-1791112425-PUuDLXbRaDEAfSTYdqCv"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangle-upper-bound-113978",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El límite superior del rectángulo es 1.13978.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p148500000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p148680000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "687ca3f187ff96a813d640487950cf7e943bdae7dcb9f9b2bf84e0498e11355c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el borde superior del rectángulo coincide con la etiqueta horizontal 1,13978."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "9275ecd82c8a762a0ee68a03e74f754bfca97a6218a2057c3ffb9890f0eeda14"
+    ],
+    "response_id": "gen-1791112425-PUuDLXbRaDEAfSTYdqCv"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00228",
+   "start_ms": 1642330,
+   "end_ms": 1644280,
+   "text": "que es"
+  },
+  {
+   "id": "asr-00229",
+   "start_ms": 1644280,
+   "end_ms": 1646780,
+   "text": "voy a ir directamente, bueno lo puedo explicar aquí también"
+  },
+  {
+   "id": "asr-00230",
+   "start_ms": 1646780,
+   "end_ms": 1648280,
+   "text": "el de order block"
+  },
+  {
+   "id": "asr-00231",
+   "start_ms": 1648280,
+   "end_ms": 1650560,
+   "text": "es importante para"
+  },
+  {
+   "id": "asr-00232",
+   "start_ms": 1650560,
+   "end_ms": 1652020,
+   "text": "el cambio de"
+  },
+  {
+   "id": "asr-00233",
+   "start_ms": 1652020,
+   "end_ms": 1654880,
+   "text": "en inglés se llama change instead of delivery"
+  },
+  {
+   "id": "asr-00234",
+   "start_ms": 1654880,
+   "end_ms": 1656860,
+   "text": "que sería como el cambio de tendencia un poco"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p147960000-canonical-v1",
+   "pts_ms": 1644000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p147960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p148140000-canonical-v1",
+   "pts_ms": 1646000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p148140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p148320000-canonical-v1",
+   "pts_ms": 1648000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p148320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p148410000-canonical-v1",
+   "pts_ms": 1649000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p148410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p148500000-canonical-v1",
+   "pts_ms": 1650000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p148500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p148680000-canonical-v1",
+   "pts_ms": 1652000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p148680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p148950000-canonical-v1",
+   "pts_ms": 1655000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p148950000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p149040000-canonical-v1",
+   "pts_ms": 1656000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p149040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

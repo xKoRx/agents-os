@@ -1,0 +1,425 @@
+{
+ "window": "w0020",
+ "start": "04:29",
+ "end": "04:37",
+ "start_ms": 269000,
+ "end_ms": 277000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-15m-timeframe",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad mostrada es 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24210000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a24026fab65741f6ae1e19532ff6ac1c1abe67dcedb110d947d30cd634cb730d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La interfaz muestra explícitamente «EURUSD | 15M» y «EURUSD · 15 · FOREX.com»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la temporalidad mostrada es 15M."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "8ac10d84d8798ff3629e005dd9c58b16673b4b2e3bc1172f7b35743c1b9dd51e"
+    ],
+    "response_id": "gen-1791084928-NsO4C5zmKlGamiBjYq4f"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-instrument",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p29610000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p97560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p99360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fa5636238fcfc527c428a0dab9c584abee63a0aa9b5d9be410689cd7df66fc5b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las cuatro imágenes muestran claramente la etiqueta EURUSD en la interfaz del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "8ac10d84d8798ff3629e005dd9c58b16673b4b2e3bc1172f7b35743c1b9dd51e",
+     "d582093fbc5f11d7b19f50405b7ddd731072fdb55ea25ff801a617826fe0dc58",
+     "e53ebaafbcde7adc1e6d322be124e80f207716522248d424a3c71c68c7354d0f"
+    ],
+    "response_id": "gen-1791084928-NsO4C5zmKlGamiBjYq4f"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-more-range-types",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hay más tipos de rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00035"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7d1ce6055f003726aeb9502da726765a14de85bfec5603e51b5df52c12843d3c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción cita explícitamente «tenemos más tipos de rangos», lo que respalda que hay más tipos de rangos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "8ac10d84d8798ff3629e005dd9c58b16673b4b2e3bc1172f7b35743c1b9dd51e"
+    ],
+    "response_id": "gen-1791084928-NsO4C5zmKlGamiBjYq4f"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-price-moves-in-relation-to-ranges",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio se mueve en función de rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00036",
+    "asr-00037"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "664b289a9a61097273d81c264845e50f131e8c36f061dd2a375e1e247e8bdbcd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «el precio se mueve en función de rangos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el movimiento del precio depende de rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "8ac10d84d8798ff3629e005dd9c58b16673b4b2e3bc1172f7b35743c1b9dd51e"
+    ],
+    "response_id": "gen-1791084928-NsO4C5zmKlGamiBjYq4f"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-black-fill",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango se rellena de negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "da47e0f176d502923621feb9509f6d2dfdaa42dd6d9cc55d06e3ee2b1ca318d0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra claramente el rango rectangular seleccionado y rellenado de negro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "8ac10d84d8798ff3629e005dd9c58b16673b4b2e3bc1172f7b35743c1b9dd51e"
+    ],
+    "response_id": "gen-1791084928-NsO4C5zmKlGamiBjYq4f"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-fill-opacity-94",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El control de opacidad del relleno está en 94%.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8aa3273f1cd596176c8b151df26561a1c2ca21b2eba553cb035a87454639d0c0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el control etiquetado «Opacidad» con el valor «94%»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "8ac10d84d8798ff3629e005dd9c58b16673b4b2e3bc1172f7b35743c1b9dd51e"
+    ],
+    "response_id": "gen-1791084928-NsO4C5zmKlGamiBjYq4f"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-lower-bound-114968",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde inferior del rango está en 1,14968.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a216eba544878c8f4a376d2d660d0221440677523e56b66babd58d56bfafbd76",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el borde inferior del rango seleccionado coincide con la etiqueta azul 1,14968 del eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "8ac10d84d8798ff3629e005dd9c58b16673b4b2e3bc1172f7b35743c1b9dd51e"
+    ],
+    "response_id": "gen-1791084928-NsO4C5zmKlGamiBjYq4f"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-upper-bound-115352",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde superior del rango está en 1,15352.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "80c736f146b2318fe17bec13faecc7b51e005c7666cb52a202b7de81b2ebe48b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran el borde superior del rango en el nivel marcado como 1,15352."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el valor del límite superior del rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "8ac10d84d8798ff3629e005dd9c58b16673b4b2e3bc1172f7b35743c1b9dd51e"
+    ],
+    "response_id": "gen-1791084928-NsO4C5zmKlGamiBjYq4f"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00035",
+   "start_ms": 261470,
+   "end_ms": 269600,
+   "text": "rangos tenemos más tipos de rangos que nosotros hemos llamado así básicamente importante todo"
+  },
+  {
+   "id": "asr-00036",
+   "start_ms": 269600,
+   "end_ms": 275000,
+   "text": "este tema los rangos que lo vais a ver pero para lo que hemos encontrado nosotros es que el precio"
+  },
+  {
+   "id": "asr-00037",
+   "start_ms": 275000,
+   "end_ms": 281060,
+   "text": "se mueve en función de rangos siempre vale el precio actúa como una cadena donde el precio"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24210000-canonical-v1",
+   "pts_ms": 269000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24210000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24300000-canonical-v1",
+   "pts_ms": 270000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24300000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24390000-canonical-v1",
+   "pts_ms": 271000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24480000-canonical-v1",
+   "pts_ms": 272000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24660000-canonical-v1",
+   "pts_ms": 274000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24750000-canonical-v1",
+   "pts_ms": 275000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24840000-canonical-v1",
+   "pts_ms": 276000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24930000-canonical-v1",
+   "pts_ms": 277000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24930000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p29610000-canonical-v1",
+   "pts_ms": 329000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p29610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p97560000-canonical-v1",
+   "pts_ms": 1084000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p97560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p99360000-canonical-v1",
+   "pts_ms": 1104000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p99360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

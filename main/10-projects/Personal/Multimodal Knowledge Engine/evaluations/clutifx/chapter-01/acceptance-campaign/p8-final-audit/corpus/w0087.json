@@ -1,0 +1,394 @@
+{
+ "window": "w0087",
+ "start": "22:10",
+ "end": "22:17",
+ "start_ms": 1330000,
+ "end_ms": 1337000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-examples-separate-chapter",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El instructor hará un capítulo aparte para los ejemplos de la SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "53751b046a203dbb79ee6fb1f91d868d1e09e4e2f1c94d95b769b7d004049ee8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El instructor dice explícitamente que no entrará en los ejemplos porque ya va a hacer un capítulo aparte, lo que respalda la afirmación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3c27d79c7a6aa6c5b6166f19c9e4fb2a1d8eaddc91f4dcc0a582aff1553b17f4"
+    ],
+    "response_id": "gen-1791105460-WJfBDBl1aFhoCJKb9ZS4"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-first-black-block-euro",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "En el ejemplo, la primera representación negra de gran tamaño se identifica como el euro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p119700000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p120330000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9cc8700bfd677e1f93a009b29e4c8fcb842f146d291ecf3dfc61f305715fcd55",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segundo fotograma muestra dos representaciones negras grandes, y la primera queda a la izquierda de la segunda. El contexto citado asigna sucesivamente «esto es euro» y «esto es libra», por lo que la primera representación se identifica como el euro. La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3c27d79c7a6aa6c5b6166f19c9e4fb2a1d8eaddc91f4dcc0a582aff1553b17f4"
+    ],
+    "response_id": "gen-1791105460-WJfBDBl1aFhoCJKb9ZS4"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-no-examples-current-explanation",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "En esta explicación no se desarrollarán ejemplos de la SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "320c992d750fd081e9f208fa2851bee18f5986f0209168f74f9192fd184977cf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica explícitamente que no entrará en ejemplos porque hará un capítulo aparte, lo que respalda que no se desarrollarán ejemplos de la SMT en esta explicación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3c27d79c7a6aa6c5b6166f19c9e4fb2a1d8eaddc91f4dcc0a582aff1553b17f4"
+    ],
+    "response_id": "gen-1791105460-WJfBDBl1aFhoCJKb9ZS4"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-second-black-block-moved-down",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La segunda representación negra de gran tamaño se desplaza hacia abajo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p120150000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p120240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "118449d328a32a7c57a6d793b408e1dec275b45f2a7c4cb24a96a16e74e204de",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la segunda imagen, la segunda representación negra de gran tamaño aparece más abajo que en la primera: tanto su borde superior como su borde inferior están desplazados hacia abajo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «segunda» y «de gran tamaño» son restrictores que identifican la representación cuyo movimiento se afirma."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3c27d79c7a6aa6c5b6166f19c9e4fb2a1d8eaddc91f4dcc0a582aff1553b17f4"
+    ],
+    "response_id": "gen-1791105460-WJfBDBl1aFhoCJKb9ZS4"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-second-black-block-pound",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "En el ejemplo, la segunda representación negra de gran tamaño se identifica como la libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p120150000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p120330000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4b82acd4689ecb671b84aa6bf565640a446885b8dc4cdadf00bfd59e554f3cb1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica secuencialmente dos elementos referidos como «esto»: el primero como euro y el segundo como libra."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran dos representaciones negras de gran tamaño en ese orden, por lo que la segunda corresponde a la libra identificada en el ejemplo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3c27d79c7a6aa6c5b6166f19c9e4fb2a1d8eaddc91f4dcc0a582aff1553b17f4"
+    ],
+    "response_id": "gen-1791105460-WJfBDBl1aFhoCJKb9ZS4"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-second-black-block-shown-right",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se muestra una segunda representación negra de gran tamaño a la derecha de la primera.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p120060000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p120150000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "58390b396a54974f3195eaad10070d6ae4ffc814e4dc46fa854805138d740d51",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra una segunda representación negra y grande situada a la derecha de la primera."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3c27d79c7a6aa6c5b6166f19c9e4fb2a1d8eaddc91f4dcc0a582aff1553b17f4"
+    ],
+    "response_id": "gen-1791105460-WJfBDBl1aFhoCJKb9ZS4"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-shown-layout-possible",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La SMT podría adoptar una forma similar a la configuración mostrada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p120330000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f4385cacddbdd1e7d7e854767bd95976a17b32238dc20da26a5591588156e8e2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que la SMT que se podría presentar «aquí» sería «algo así», lo que respalda que podría adoptar una forma similar a la configuración mostrada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la posible forma de la SMT."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3c27d79c7a6aa6c5b6166f19c9e4fb2a1d8eaddc91f4dcc0a582aff1553b17f4"
+    ],
+    "response_id": "gen-1791105460-WJfBDBl1aFhoCJKb9ZS4"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-no-examples-depends-separate-chapter",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-no-examples-current-explanation",
+   "subject_version": 1,
+   "object_id": "cl-examples-separate-chapter",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9f4814491b5a9017b6705b3736950a954df87dc3e2980a04dccf6f6e9ac2341b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El instructor declara que no entrará en los ejemplos porque hará un capítulo aparte para ellos, lo que establece directamente que la decisión de no desarrollarlos en esta explicación depende de la planificación de un capítulo separado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3c27d79c7a6aa6c5b6166f19c9e4fb2a1d8eaddc91f4dcc0a582aff1553b17f4"
+    ],
+    "response_id": "gen-1791105460-WJfBDBl1aFhoCJKb9ZS4"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00190",
+   "start_ms": 1315270,
+   "end_ms": 1345680,
+   "text": "Ahora, ¿cómo va a ser la SMT utilizando nuestra estrategia? Vamos a decir que esto es euro y vamos a decir que esto es libra. En ejemplos no voy a entrar porque ya voy a hacer un capítulo aparte, pero la SMT que se nos podría dar aquí es algo así."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119700000-canonical-v1",
+   "pts_ms": 1330000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119700000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119790000-canonical-v1",
+   "pts_ms": 1331000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119790000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119880000-canonical-v1",
+   "pts_ms": 1332000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119970000-canonical-v1",
+   "pts_ms": 1333000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119970000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120060000-canonical-v1",
+   "pts_ms": 1334000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120060000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120150000-canonical-v1",
+   "pts_ms": 1335000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120150000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120240000-canonical-v1",
+   "pts_ms": 1336000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120330000-canonical-v1",
+   "pts_ms": 1337000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

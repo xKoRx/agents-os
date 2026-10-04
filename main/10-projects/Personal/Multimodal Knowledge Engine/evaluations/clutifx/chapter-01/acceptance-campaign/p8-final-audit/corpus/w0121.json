@@ -1,0 +1,356 @@
+{
+ "window": "w0121",
+ "start": "30:42",
+ "end": "30:54",
+ "start_ms": 1842000,
+ "end_ms": 1854000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-anotacion-0100",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se añade la anotación «0100» junto al nivel horizontal inferior.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p166590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p166680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p166860000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "efa9624c5c698eaa2cff64e47e5cab9c2d91a1e78d7d3949a6ec06e82a109b75",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran la anotación «0100» adyacente al nivel horizontal inferior y su transición desde el estado de edición o selección hasta su visualización fijada en la gráfica."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3d4452e6028e8d4448c08137951cf40d0855268892ca91097db55a5f6f5931b9"
+    ],
+    "response_id": "gen-1791116394-L8Hp63Vqyr9iPsD1OeZu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-anotacion-cuatro-horas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se añade la anotación «4 HORAS» junto al esquema.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p165960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p166140000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "facacfe61d4b8b43c360b92af97c962f409894e296a5fb1fe581256c09d15f1d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra un cuadro de texto vacío «Añadir texto» junto al esquema y la segunda muestra la anotación «4 HORAS» en esa misma zona, lo que respalda que fue añadida."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3d4452e6028e8d4448c08137951cf40d0855268892ca91097db55a5f6f5931b9"
+    ],
+    "response_id": "gen-1791116394-L8Hp63Vqyr9iPsD1OeZu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esquema-representa-cuatro-horas",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El esquema representa lo que ocurrió durante las 4 horas de esa vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00265",
+    "frame-4de8f12d4841c630-s0-p165870000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p166140000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "413d658b17121b69b264792ddd48fce8358674a852732d3095f000bc86bf7c82",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que durante las 4 horas de una vela de 4 horas «lo que ha pasado es esto», y el esquema visible está etiquetado «4 HORAS»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3d4452e6028e8d4448c08137951cf40d0855268892ca91097db55a5f6f5931b9"
+    ],
+    "response_id": "gen-1791116394-L8Hp63Vqyr9iPsD1OeZu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-flecha-horizontal-superior",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La prolongación horizontal superior del esquema termina en una flecha hacia la derecha.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p165780000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p165870000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "73f1739a2e49462597f3b5a905a729c7d2a191815ddd774a9cea739d348ff26a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra que la prolongación horizontal superior termina en una flecha dirigida hacia la derecha."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe un único hecho visual."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3d4452e6028e8d4448c08137951cf40d0855268892ca91097db55a5f6f5931b9"
+    ],
+    "response_id": "gen-1791116394-L8Hp63Vqyr9iPsD1OeZu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nivel-inferior-0100-nueva-york",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El nivel horizontal inferior sería, por ejemplo, la 1:00 en hora de Nueva York.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00265",
+    "asr-00266",
+    "frame-4de8f12d4841c630-s0-p165870000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p166680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p166860000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fc203283c6e147db77b4ee35a55a020ff1935f36e505d0733367d07ce1165796",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que «esto de aquí» corresponde a la 1:00, por ejemplo, en hora de Nueva York, y el contexto visual y la imagen sitúan ese elemento en el nivel horizontal inferior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3d4452e6028e8d4448c08137951cf40d0855268892ca91097db55a5f6f5931b9"
+    ],
+    "response_id": "gen-1791116394-L8Hp63Vqyr9iPsD1OeZu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nivel-superior-0500-nueva-york",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El nivel horizontal superior sería las 5:00 en hora de Nueva York.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00265",
+    "asr-00266",
+    "frame-4de8f12d4841c630-s0-p165870000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p166140000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "35b66b1050943a03b43ea5872fcaa9c6573a45509de780e661aa3f739034ff84",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que el elemento inferior «es a la 1» en hora de Nueva York y que «esto de aquí arriba sería a las 5», lo que respalda que el nivel horizontal superior corresponde a las 5:00 en esa zona horaria."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3d4452e6028e8d4448c08137951cf40d0855268892ca91097db55a5f6f5931b9"
+    ],
+    "response_id": "gen-1791116394-L8Hp63Vqyr9iPsD1OeZu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-cuatro-horas",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El esquema dibujado sería una vela de 4 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00265",
+    "frame-4de8f12d4841c630-s0-p166140000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p166320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1a068be66e0c1f374f4464ca25666e53d2de583551ef4f6d796d70349e7fb59a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el esquema sería «una vela de 4 horas», y la imagen muestra el dibujo etiquetado «4 HORAS»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3d4452e6028e8d4448c08137951cf40d0855268892ca91097db55a5f6f5931b9"
+    ],
+    "response_id": "gen-1791116394-L8Hp63Vqyr9iPsD1OeZu"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00265",
+   "start_ms": 1836670,
+   "end_ms": 1845970,
+   "text": "Esto sería una vela, os he hecho como todo el... imagínate una vela de 4 horas, pues durante 4 horas lo que ha pasado es esto, ¿vale?"
+  },
+  {
+   "id": "asr-00266",
+   "start_ms": 1845970,
+   "end_ms": 1856890,
+   "text": "Entonces, esto de aquí es a la 1, por ejemplo, hora New York, y luego esto de aquí arriba sería a las 5, hora New York, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p165780000-canonical-v1",
+   "pts_ms": 1842000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p165780000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p165870000-canonical-v1",
+   "pts_ms": 1843000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p165870000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p165960000-canonical-v1",
+   "pts_ms": 1844000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p165960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p166140000-canonical-v1",
+   "pts_ms": 1846000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p166140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p166320000-canonical-v1",
+   "pts_ms": 1848000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p166320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p166590000-canonical-v1",
+   "pts_ms": 1851000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p166590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p166680000-canonical-v1",
+   "pts_ms": 1852000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p166680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p166860000-canonical-v1",
+   "pts_ms": 1854000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p166860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

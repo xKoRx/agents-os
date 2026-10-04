@@ -1,0 +1,578 @@
+{
+ "window": "w0057",
+ "start": "13:21",
+ "end": "13:36",
+ "start_ms": 801000,
+ "end_ms": 816000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-buscar-rango-pendiente",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vamos a buscar ahora un rango pendiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00114"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "76453d2ee71f0dc311885ee2e95105640c118418df76774e33a1a45ae8be4bb3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente «Vamos a buscar ahora un rango pendiente»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la intención de buscar ahora un rango pendiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "889c606dd9c9a306461411580af6e88e8f0633d2ec2077b56d7af83a1ee348d1"
+    ],
+    "response_id": "gen-1791094296-bjOlTdgACW8lNtYygcS9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-intervalo-4h-a-12h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El intervalo del gráfico cambia de 4h a 12H.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p72090000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p72900000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p73170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "be88ad4a7bb56a96e8f94b4322bfeec51ad77f5fa332567f3f49e7d82687deba",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las primeras imágenes muestran el gráfico de EURUSD en intervalo de 4h y el diálogo «Cambiar intervalo» con la opción 12H; la imagen final muestra el mismo gráfico en 12h."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "889c606dd9c9a306461411580af6e88e8f0633d2ec2077b56d7af83a1ee348d1"
+    ],
+    "response_id": "gen-1791094296-bjOlTdgACW8lNtYygcS9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intencion-comprar",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Tú quieres comprar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "037e37c4c5c42f7f01c537ad47b10e1c79cc6fb8c97f88b8a4d4d2752003ed9c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «tú quieres comprar»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "889c606dd9c9a306461411580af6e88e8f0633d2ec2077b56d7af83a1ee348d1"
+    ],
+    "response_id": "gen-1791094296-bjOlTdgACW8lNtYygcS9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-limite-superior-rango-115803",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde superior del rango de 12h está en 1,15803.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p73170000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p73440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f75ccd287f14efcd325e1ccb228b7fe4fe7983ef0f8ab285e4a7d4b55e526867",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambas imágenes muestran EURUSD en el gráfico de 12h con una línea horizontal superior del rango etiquetada como 1,15803."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "889c606dd9c9a306461411580af6e88e8f0633d2ec2077b56d7af83a1ee348d1"
+    ],
+    "response_id": "gen-1791094296-bjOlTdgACW8lNtYygcS9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-arriba",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo está arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113",
+    "frame-4de8f12d4841c630-s0-p72180000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p72360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p72720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a1ae9b5b3d40394fa3a277806e929612fb7a266dfb8ff2e8424e5d869e52e167",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente: «el objetivo está arriba»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "889c606dd9c9a306461411580af6e88e8f0633d2ec2077b56d7af83a1ee348d1"
+    ],
+    "response_id": "gen-1791094296-bjOlTdgACW8lNtYygcS9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-contrario-bajista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se forma un rango en contra y para abajo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113",
+    "frame-4de8f12d4841c630-s0-p72180000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p72360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p72720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "733292fe0de2bf07e640d51d49b4e470b8eafc5f04ac15725cd85b8d5d4b8df1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que se forma «un rango en contra y para abajo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las etiquetas de dirección describen una sola proposición sobre la formación de ese rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "889c606dd9c9a306461411580af6e88e8f0633d2ec2077b56d7af83a1ee348d1"
+    ],
+    "response_id": "gen-1791094296-bjOlTdgACW8lNtYygcS9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-en-12-horas",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Tenemos un rango pendiente en 12 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00114",
+    "frame-4de8f12d4841c630-s0-p72900000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p73170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f2c465f02498bc4086657f1dbc971ff62ffd35836e469a8cf60e22678f11c0af",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que van a buscar un rango pendiente que ya tienen en 12 horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran la selección del intervalo de 12 horas y la vista de EURUSD en 12h."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "889c606dd9c9a306461411580af6e88e8f0633d2ec2077b56d7af83a1ee348d1"
+    ],
+    "response_id": "gen-1791094296-bjOlTdgACW8lNtYygcS9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-reiniciado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango pendiente está reiniciado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00114",
+    "frame-4de8f12d4841c630-s0-p73170000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p73440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "df83dca7a4cc5b4178580384ff568a98eea9a7a9c117ba3c651c3b6049f3cd58",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada identifica un «rango pendiente» y afirma que «este es un reiniciado», respaldando directamente que el rango pendiente está reiniciado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "889c606dd9c9a306461411580af6e88e8f0633d2ec2077b56d7af83a1ee348d1"
+    ],
+    "response_id": "gen-1791094296-bjOlTdgACW8lNtYygcS9"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-busqueda-rango-usa-12h",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-buscar-rango-pendiente",
+   "subject_version": 1,
+   "object_id": "cl-rango-pendiente-en-12-horas",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00114",
+    "frame-4de8f12d4841c630-s0-p72900000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p73170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "863cf08f7d01ad78aab5446edb5d45a46ae2e6135df835f5b3ebc6bcee0b84e1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción enlaza explícitamente la búsqueda actual del rango pendiente con el hecho de que ya saben que lo tienen en 12 horas: «Vamos a buscar ahora un rango pendiente, que ya recuerdo que lo tenemos en 12 horas»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes adjuntas corroboran el intervalo de 12 horas mediante el selector «12H / 12 horas» y el gráfico EURUSD de 12h."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "889c606dd9c9a306461411580af6e88e8f0633d2ec2077b56d7af83a1ee348d1"
+    ],
+    "response_id": "gen-1791094296-bjOlTdgACW8lNtYygcS9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-compra-depende-objetivo-arriba",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-intencion-comprar",
+   "subject_version": 1,
+   "object_id": "cl-objetivo-arriba",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "651d7a8965a13c61ff523e1968f0f5784e2023e3c062cd7fb696503e3a9ac93f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia establece una dependencia causal en la orientación indicada: porque el objetivo está arriba, tú quieres comprar."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "889c606dd9c9a306461411580af6e88e8f0633d2ec2077b56d7af83a1ee348d1"
+    ],
+    "response_id": "gen-1791094296-bjOlTdgACW8lNtYygcS9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-bajista-excepcion-compra",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-rango-contrario-bajista",
+   "subject_version": 1,
+   "object_id": "cl-intencion-comprar",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113",
+    "frame-4de8f12d4841c630-s0-p72180000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p72360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p72720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4c2a513aff5b01299c6561cdb76e0551dd31b1c900345d80dd265aa3bb5d55c3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma «tú quieres comprar» y, con la conjunción «pero», presenta «se te forma un rango en contra y para abajo» como una excepción o contraste a esa intención, en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "889c606dd9c9a306461411580af6e88e8f0633d2ec2077b56d7af83a1ee348d1"
+    ],
+    "response_id": "gen-1791094296-bjOlTdgACW8lNtYygcS9"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-reinicio-identifica-rango-pendiente",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-pendiente-reiniciado",
+   "subject_version": 1,
+   "object_id": "cl-rango-pendiente-en-12-horas",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00114",
+    "frame-4de8f12d4841c630-s0-p73170000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p73440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "221660f50ff88b1208d49661b73c0ede29e9974a82c3fbf9d4b3cdbaf8ac418a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica primero un rango pendiente en 12 horas y acto seguido afirma que ese mismo rango es un reiniciado; las imágenes muestran el gráfico de 12 horas con el rango marcado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "889c606dd9c9a306461411580af6e88e8f0633d2ec2077b56d7af83a1ee348d1"
+    ],
+    "response_id": "gen-1791094296-bjOlTdgACW8lNtYygcS9"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00113",
+   "start_ms": 800020,
+   "end_ms": 808500,
+   "text": "Porque el objetivo está arriba, tú quieres comprar, comprar, comprar, comprar, pero se te forma un rango en contra y para abajo."
+  },
+  {
+   "id": "asr-00114",
+   "start_ms": 809240,
+   "end_ms": 818800,
+   "text": "Vamos a buscar ahora un rango pendiente, que ya recuerdo que lo tenemos en 12 horas. Tenemos, bueno, este es un reiniciado también, como veis,"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72090000-canonical-v1",
+   "pts_ms": 801000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72090000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72180000-canonical-v1",
+   "pts_ms": 802000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72180000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72360000-canonical-v1",
+   "pts_ms": 804000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72720000-canonical-v1",
+   "pts_ms": 808000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72900000-canonical-v1",
+   "pts_ms": 810000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72900000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p73080000-canonical-v1",
+   "pts_ms": 812000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p73080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p73170000-canonical-v1",
+   "pts_ms": 813000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p73170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p73440000-canonical-v1",
+   "pts_ms": 816000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p73440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

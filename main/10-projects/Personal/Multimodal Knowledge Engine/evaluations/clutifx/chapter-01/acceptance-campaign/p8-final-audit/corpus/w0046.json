@@ -1,0 +1,594 @@
+{
+ "window": "w0046",
+ "start": "10:36",
+ "end": "10:54",
+ "start_ms": 636000,
+ "end_ms": 654000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cuatro-horas-subiendo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En cuatro horas estamos subiendo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00101"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "83397a2f8d17b920b44ba227b7c0554d89cacfa3e1319cbf5db9ddace7e96f5d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «en cuatro horas estamos subiendo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ad8fe8a5b04a42da31b9cabf1aa3898c774b2d5b825b2afd3ab772773c6f042a"
+    ],
+    "response_id": "gen-1791091441-ydcbv7qDsOEH3Bzf0vJE"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-letra-d-bajo-primera-vela",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se escribe una «D» debajo de la primera vela negra.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p57600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p57690000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4dae7888e2f8f4dcf07c3d292e45a8b4d442c93f545a0f2d23bd3128db50ddea",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran una «D» situada debajo de la primera vela negra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ad8fe8a5b04a42da31b9cabf1aa3898c774b2d5b825b2afd3ab772773c6f042a"
+    ],
+    "response_id": "gen-1791091441-ydcbv7qDsOEH3Bzf0vJE"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-alcista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo es alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00101"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a4d2eb845cfc1646089cc829403abf787358a011d4a1e9a5c634795911d35075",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente: «El objetivo es alcista»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el objetivo es alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ad8fe8a5b04a42da31b9cabf1aa3898c774b2d5b825b2afd3ab772773c6f042a"
+    ],
+    "response_id": "gen-1791091441-ydcbv7qDsOEH3Bzf0vJE"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-actual-abre-bajo-rango-anterior",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango actual abre por debajo del rango anterior.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00101"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "eee564bab144fc3e0103c5eb93a6794e4194c4247812aac4372498adc53ca573",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que «este rango abre por debajo del rango anterior», lo que respalda directamente la proposición revisada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable sobre la apertura del rango actual por debajo del rango anterior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ad8fe8a5b04a42da31b9cabf1aa3898c774b2d5b825b2afd3ab772773c6f042a"
+    ],
+    "response_id": "gen-1791091441-ydcbv7qDsOEH3Bzf0vJE"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-actual-se-llama-rango-pendiente",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango actual se llama «rango pendiente».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00101",
+    "asr-00102"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "34d565b464188cda089e4ee1907d5f40c72f37ddb601cfa6f4381f78fa3edc29",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita afirma explícitamente que «esto se llama rango pendiente»; por el contexto, «esto» se refiere al rango actual."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ad8fe8a5b04a42da31b9cabf1aa3898c774b2d5b825b2afd3ab772773c6f042a"
+    ],
+    "response_id": "gen-1791091441-ydcbv7qDsOEH3Bzf0vJE"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-actual-toma-low-vela-anterior",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango actual toma el low de la vela anterior.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00101"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "e5cf9f0734625a6329bbcc3d660f99621eb4ff028876ccf51ac9ad643cd4f828",
+    "reasons": [
+     {
+      "code": "reviewer_malformed_output",
+      "detail": "reviewer produced a malformed verdict: claim review output schema id \"mke.claims-ground.v2\", want \"mke.claims-ground.v1\""
+     },
+     {
+      "code": "reviewer_malformed_output",
+      "detail": "corrective reissue after malformed attempt also rejected: claim review output schema id \"mke.claims-ground.v2\", want \"mke.claims-ground.v1\""
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ad8fe8a5b04a42da31b9cabf1aa3898c774b2d5b825b2afd3ab772773c6f042a"
+    ],
+    "response_id": "gen-1791091441-ydcbv7qDsOEH3Bzf0vJE"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-actual-va-a-favor-del-objetivo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango actual va a favor del objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00101",
+    "asr-00102"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f951f1ab8d13ecd9edefca3e69f324bd396541bcfbefb73c2aafabb4b7a11014",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que el rango referredido «va a favor de nuestro objetivo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement solo sostiene una proposición: la relación favorable del rango actual con el objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ad8fe8a5b04a42da31b9cabf1aa3898c774b2d5b825b2afd3ab772773c6f042a"
+    ],
+    "response_id": "gen-1791091441-ydcbv7qDsOEH3Bzf0vJE"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-diario-alcista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango diario es alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00101"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "05758eff325d14d9fdf5319414ad9062fa677ff8bf14e9c37cc19c1dd75ecd0e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «este rango diario ... es alcista»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el rango diario es alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ad8fe8a5b04a42da31b9cabf1aa3898c774b2d5b825b2afd3ab772773c6f042a"
+    ],
+    "response_id": "gen-1791091441-ydcbv7qDsOEH3Bzf0vJE"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-segunda-vela-seleccionada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La segunda vela blanca queda seleccionada en la gráfica.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p57960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_CONTRADICTED",
+    "invocation_id": "bf6d771c2ca2ed3d18f869daa95919c0937032f5f76005dfbfa62f574b8a2add",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La vela blanca con marcadores de selección es la primera de las tres velas blancas visibles; la segunda vela blanca no está seleccionada."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_CONTRADICTED",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ad8fe8a5b04a42da31b9cabf1aa3898c774b2d5b825b2afd3ab772773c6f042a"
+    ],
+    "response_id": "gen-1791091441-ydcbv7qDsOEH3Bzf0vJE"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-low-rango-abre-bajo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-actual-toma-low-vela-anterior",
+   "subject_version": 1,
+   "object_id": "cl-rango-actual-abre-bajo-rango-anterior",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00101"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e489d758065c808656b6620c3d20f68a13652b1f06b376371fb58fa2dc49cd36",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el rango actual «abre por debajo del rango anterior, lo que significa que toma el low de la vela anterior»,ipasando así el segundo claim al primero en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ad8fe8a5b04a42da31b9cabf1aa3898c774b2d5b825b2afd3ab772773c6f042a"
+    ],
+    "response_id": "gen-1791091441-ydcbv7qDsOEH3Bzf0vJE"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-objetivo-alcista-cuatro-horas",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-objetivo-alcista",
+   "subject_version": 1,
+   "object_id": "cl-cuatro-horas-subiendo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00101"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5e99508508c8e1cd12a637c375a30ec8aa9ea9177aac2eb70965c84dcc4de152",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma «El objetivo es alcista porque» y, dentro de la justificación, incluye explícitamente «en cuatro horas estamos subiendo», 设连 la afirmación alcista con ese dato en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ad8fe8a5b04a42da31b9cabf1aa3898c774b2d5b825b2afd3ab772773c6f042a"
+    ],
+    "response_id": "gen-1791091441-ydcbv7qDsOEH3Bzf0vJE"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-objetivo-alcista-rango-diario",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-objetivo-alcista",
+   "subject_version": 1,
+   "object_id": "cl-rango-diario-alcista",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00101"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ea29e7d2eb07fdd103d5fc9e0256e35973f1bb1db97167f52f036868500592c0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que «el objetivo es alcista porque tenemos este rango diario que esCouldn't"
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ad8fe8a5b04a42da31b9cabf1aa3898c774b2d5b825b2afd3ab772773c6f042a"
+    ],
+    "response_id": "gen-1791091441-ydcbv7qDsOEH3Bzf0vJE"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-pendiente-favor-objetivo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-actual-se-llama-rango-pendiente",
+   "subject_version": 1,
+   "object_id": "cl-rango-actual-va-a-favor-del-objetivo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00101",
+    "asr-00102"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7e94e040bfd84c2b79de8d2035ef5f6ada04ebdabd2b2b4f9025e0456c2ba13f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que el rango se llama «rango pendiente» «porque es un rango que va a favor de nuestro objetivo», lo que establece la relación DEPENDS_ON en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "ad8fe8a5b04a42da31b9cabf1aa3898c774b2d5b825b2afd3ab772773c6f042a"
+    ],
+    "response_id": "gen-1791091441-ydcbv7qDsOEH3Bzf0vJE"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00101",
+   "start_ms": 629160,
+   "end_ms": 652440,
+   "text": "Déjame repetirlo que quede claro. El objetivo es alcista porque tenemos este rango diario que es alcista, diario, y luego, por ejemplo, en cuatro horas estamos subiendo y ves como este rango abre por debajo del rango anterior, lo que significa que toma el low de la vela anterior."
+  },
+  {
+   "id": "asr-00102",
+   "start_ms": 652440,
+   "end_ms": 661680,
+   "text": "perdón, esto se llama rango pendiente, porque es un rango que va a favor de nuestro objetivo, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p57240000-canonical-v1",
+   "pts_ms": 636000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p57240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p57600000-canonical-v1",
+   "pts_ms": 640000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p57600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p57690000-canonical-v1",
+   "pts_ms": 641000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p57690000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p57960000-canonical-v1",
+   "pts_ms": 644000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p57960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p58050000-canonical-v1",
+   "pts_ms": 645000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p58050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p58320000-canonical-v1",
+   "pts_ms": 648000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p58320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p58680000-canonical-v1",
+   "pts_ms": 652000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p58680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p58860000-canonical-v1",
+   "pts_ms": 654000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p58860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

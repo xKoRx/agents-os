@@ -1,0 +1,843 @@
+{
+ "window": "w0102",
+ "start": "26:19",
+ "end": "26:32",
+ "start_ms": 1579000,
+ "end_ms": 1592000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bajo-alto-final-vela-label",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "En la pantalla aparece la etiqueta «BAJO/ALTO A FINAL DE VELA».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p142110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p143280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2598507c42db6390b7bfe0a7abca6c46890f906f66984ce0b3920d054aa97812",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes citadas muestran en pantalla la etiqueta «BAJO/ALTO A FINAL DE VELA»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-black-lower-extension",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Del borde inferior del rectángulo negro se prolonga una línea vertical hacia abajo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p142560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p142650000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4aef2e02ed0546695b890737f7b069b9b796f773fb4bd53740a6e2f57a43adc3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes se observa una línea vertical fina que se prolonga hacia abajo desde el borde inferior del rectángulo negro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-black-rectangle",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se muestra un rectángulo negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p142110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p142560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ee119dc3437c7fa6eab6e308cb603dc1f4e1283bda0b1f3a895c08b4e9a4685b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Both cited frames visibly show a solid black rectangle."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-8h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico mostrado es 8h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p142110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p143280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7e894b2938e3becbc7807576d9d2b4dd3d2adf0c2aab43fd196cba9ee3f9a2a9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran explícitamente «EURUSD · 8h · FOREX.com» en la esquina superior izquierda, lo que acredita una temporalidad de 8 horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p142110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p143280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4b299b032118b688bf596fe1643103db6bf23fb9159628b0e211736981be0ae8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran explícitamente la etiqueta «EURUSD» en el gráfico, por lo que se identifica el instrumento mostrado como EURUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la identidad del instrumento mostrado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La moneda del gráfico es USD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p142110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p143280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8c150f40bfb264cd3698f13895a8bfbcd35ada3c625ed3873a9b686a2e8bf55d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el selector de moneda de la parte superior derecha del gráfico muestra «USD»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-example-similar-prior",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El ejemplo es parecido a lo que habéis visto antes.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00220",
+    "asr-00221"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8b64d87270f11832c5ea46a3fb39f65f69b49d73b20df2f5919d21019a2311a3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas expressionan que el ejemplo es «como lo que habéis visto antes», lo que respalda directamente que es parecido a lo visto anteriormente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la semejanza entre el ejemplo y lo visto antes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gray-up-arrow",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El trazo gris termina en una flecha ascendente.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p142110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p143280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "672579d91fabcab426a7cab2a3efd3820602001604157e9960a6adcde54d271c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el trazo gris zigzag termina en una punta de flecha orientada hacia arriba."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gray-zigzag",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El trazo gris forma un movimiento zigzagueante.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p142110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p143280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ecede26c939044c69f1dc0a411eab3381bdf7c72cf2d3fdd1bfcbde81c118a1a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran un trazo gris que alterna subidas y bajadas, formando un movimiento zigzagueante."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-last-example-missing",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Falta el último ejemplo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00220",
+    "asr-00223"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8fcf71ed320cf5f7c30cbbf935ea9f11a9f1ac73876a65ef6df247db75738178",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita dice explícitamente: «Y falta el último», en un contexto inmediatamente anterior sobre ejemplos, lo que respalda que falta el último ejemplo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-no-low-take",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En el ejemplo, no se lleva a tomar el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00220",
+    "asr-00223"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d59d409767e20130f5595f69294f896b9f6d4d02fb44fb7206af9352887651d5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada presenta un ejemplo y afirma explícitamente: «No se lleva a tomar el low»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: en ese ejemplo no se toma el low."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-without-low",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Aunque no se lleva a tomar el low, se puede considerar el escenario del ejemplo como un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00220",
+    "asr-00223",
+    "frame-4de8f12d4841c630-s0-p143280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9bd958af300c5ca78cedcc38d47a19553917a9d54f9c5ca0c7ee5bf7d518844e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que «no se lleva a tomar el low» y que, aun así, «podemos darlo esto como un rango igualmente»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene dos proposiciones evaluables independientemente: que el escenario no llega al low y que, aun así, puede considerarse un rango."
+     },
+     {
+      "code": "claim_not_atomic",
+      "detail": "claim review judged the statement COMPOSITE: independently evaluable assertions must be separate claims"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-second-lower-extension",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Del borde inferior del segundo rectángulo se prolonga una línea vertical hacia abajo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p143280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fb40a13d7e4ac44f6b2951ba62a535ab40815c63d705269d8db24ce30829baca",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una línea vertical que se prolonga hacia abajo desde el borde inferior del segundo rectángulo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-second-rectangle-added",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se añade un segundo rectángulo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p142830000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p143280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "f6b6521bbbb07db09bddf319802694e7a9ceab0a73c73ac3a9cc68c58680c028",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas ya muestran un rectángulo negro y otro blanco; en el segundo solo desaparece la selección del blanco."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes no muestran la aparición o adición de un rectángulo entre ambos estados."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-second-rectangle-color-change",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El segundo rectángulo se muestra primero con relleno negro y después con relleno blanco.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p142830000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p142920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_CONTRADICTED",
+    "invocation_id": "6e2499924145f73635ea2cd6a8216af749e4e5bbeadc0019415e86ec7f989a50",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el segundo rectángulo aparece con relleno blanco, mientras que el rectángulo negro es el primero; no se muestra que el segundo pase de negro a blanco."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_CONTRADICTED",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-second-rectangle-right",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El segundo rectángulo está a la derecha del rectángulo negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p142830000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p143280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "454575e9f31c2ab7284c29d8950716db448cd5b6c05828f1d57bc5192f62a6b0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el segundo rectángulo, claro y delimitado, aparece a la derecha del rectángulo negro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-second-rectangle-smaller",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El segundo rectángulo es más pequeño que el rectángulo negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p142830000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p143280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bb102721f48494a8d6920973172b998970143bf45ae00e72aa00fe6e7425a973",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el segundo rectángulo de izquierda a derecha es el rectángulo blanco, visiblemente más pequeño que el rectángulo negro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación compara el tamaño de dos rectángulos y constituye una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-label",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "En la pantalla aparece la etiqueta «SMT».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p142110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p143280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "687fd98c29721f011ecc1e3cc0a036ca01626a3eb2405f07881cfbfab742c135",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes citadas se ve claramente la etiqueta «SMT» en la pantalla."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la aparición de said etiqueta."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-range-exception-to-no-low",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-range-without-low",
+   "subject_version": 1,
+   "object_id": "cl-no-low-take",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00223"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "572f8390a93f21dda681e7d4da76d1df370301807b90bb48506a1bc534034c4b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que «no se lleva a tomar el low» y, aun así, «podemos darlo esto como un rango igualmente», lo que establece la relación de excepción en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7afabcb5874541ddf779a2fa115a97c7e4ce93f85b1ff0d1475cab9daa0937cd"
+    ],
+    "response_id": "gen-1791110304-hrhyZwrKuyCxAYcyfrJO"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00220",
+   "start_ms": 1577660,
+   "end_ms": 1580400,
+   "text": "he puesto un poco de ejemplo, sería algo así"
+  },
+  {
+   "id": "asr-00221",
+   "start_ms": 1580400,
+   "end_ms": 1583880,
+   "text": "como lo que habéis visto antes"
+  },
+  {
+   "id": "asr-00222",
+   "start_ms": 1583880,
+   "end_ms": 1585060,
+   "text": "abre vela aquí"
+  },
+  {
+   "id": "asr-00223",
+   "start_ms": 1585060,
+   "end_ms": 1602810,
+   "text": "que pase algo así, ¿vale? No se lleva a tomar el low, pero podemos darlo esto como un rango igualmente por estos motivos, ¿vale? Y falta el último, que es que en otro"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p142110000-canonical-v1",
+   "pts_ms": 1579000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p142110000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p142200000-canonical-v1",
+   "pts_ms": 1580000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p142200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p142290000-canonical-v1",
+   "pts_ms": 1581000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p142290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p142560000-canonical-v1",
+   "pts_ms": 1584000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p142560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p142650000-canonical-v1",
+   "pts_ms": 1585000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p142650000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p142830000-canonical-v1",
+   "pts_ms": 1587000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p142830000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p142920000-canonical-v1",
+   "pts_ms": 1588000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p142920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p143280000-canonical-v1",
+   "pts_ms": 1592000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p143280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

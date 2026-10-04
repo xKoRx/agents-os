@@ -1,0 +1,407 @@
+{
+ "window": "w0069",
+ "start": "17:01",
+ "end": "17:12",
+ "start_ms": 1021000,
+ "end_ms": 1032000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-risk-reward-updated",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La relación riesgo/beneficio de la herramienta cambia de 0,81 a 3,24.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p92160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p92340000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "90fac98240bea4d73b7129f7ab80da8e8e3805472993e3d8addededcdff4c1a3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra «Relación riesgo/beneficio: 0,81» y la segunda muestra «Relación riesgo/beneficio: 3,24», lo que sustenta el cambio indicado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el valor de la relación riesgo/beneficio cambia de 0,81 a 3,24."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6177f4d5609f8c162adca094aac4f7d95f0c385c01f2982ffd3a1909b03fb7b6"
+    ],
+    "response_id": "gen-1791098769-AUWVaBcJDQI96UI1bsUo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-stop-below-turtlesoup",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si aquí estás buscando tomar longs, tu stop loss tendría que estar seguro debajo del Turtle Soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00136",
+    "asr-00137",
+    "frame-4de8f12d4841c630-s0-p92160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c905bd198ae6ca47b49e042e0521b4c021c572d458f5d39167b344814b121e54",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited transcript directly states that, when seeking to take longs here, the stop loss should be safely below the Turtle Soup; the frame confirms the label and referenced location."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement asserts one conditional recommendation about stop-loss placement."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6177f4d5609f8c162adca094aac4f7d95f0c385c01f2982ffd3a1909b03fb7b6"
+    ],
+    "response_id": "gen-1791098769-AUWVaBcJDQI96UI1bsUo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-stop-value-adjusted",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El valor del stop de la herramienta cambia de 0,00209 a 0,00258.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p91980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p92160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a5384f08760144cf6c02210a5124f89cebfecc1489ec8c8825bd11cdc1156fbc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra «Stop: 0,00209» y la segunda muestra «Stop: 0,00258», por lo que las evidencias citadas respaldan el cambio indicado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El enunciado afirma una sola proposición: que el valor del stop cambia de 0,00209 a 0,00258."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6177f4d5609f8c162adca094aac4f7d95f0c385c01f2982ffd3a1909b03fb7b6"
+    ],
+    "response_id": "gen-1791098769-AUWVaBcJDQI96UI1bsUo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-target-value-expanded",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El valor del objetivo de la herramienta cambia de 0,00209 a 0,00835.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p91980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p92340000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "03db46b2ea88316f85e83e6b660fc40cfb29d15e492de9a0b3a52791b46d1b59",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra «Objetivo: 0,00209» y la segunda muestra «Objetivo: 0,00835», por lo que ambas.Participantes? No, ambos valores. El cambio de un valor a otro constituye una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6177f4d5609f8c162adca094aac4f7d95f0c385c01f2982ffd3a1909b03fb7b6"
+    ],
+    "response_id": "gen-1791098769-AUWVaBcJDQI96UI1bsUo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-no-need-another-turtlesoup",
+   "kind": "claim",
+   "version": 1,
+   "statement": "No tendría por qué ser necesario hacer otro Turtle Soup para ir hacia arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00136",
+    "asr-00137",
+    "frame-4de8f12d4841c630-s0-p91890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "765bfea3dbd6ee2fb0d35a0c4392e6a52f6c925dbeb985ee6488c989df938253",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited transcript states that the price should not have to fall again to make another Turtle Soup in order to go up, which directly supports the statement; the frame visibly labels the setup as TURTLESUP."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement asserts one proposition about whether another Turtle Soup would be necessary for an upward move."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6177f4d5609f8c162adca094aac4f7d95f0c385c01f2982ffd3a1909b03fb7b6"
+    ],
+    "response_id": "gen-1791098769-AUWVaBcJDQI96UI1bsUo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-no-need-price-lower-again",
+   "kind": "claim",
+   "version": 1,
+   "statement": "No tendría por qué ser necesario que el precio vuelva a bajar para ir hacia arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00137"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "71a2dc9309126e24fb905cbb33071b8f164784c3bc013f4ae716a796694d45d9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que no tendría por qué ocurrir que el precio vuelva a bajar para poder ir hacia arriba, lo que respalda la proposición de que no sería necesario que vuelva a bajar."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement contiene una sola proposición: la caída previa del precio no es necesaria para que vuelva a subir."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6177f4d5609f8c162adca094aac4f7d95f0c385c01f2982ffd3a1909b03fb7b6"
+    ],
+    "response_id": "gen-1791098769-AUWVaBcJDQI96UI1bsUo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtlesoup-here-below",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El Turtle Soup está aquí abajo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00136",
+    "asr-00137",
+    "frame-4de8f12d4841c630-s0-p91890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f27554ce9048a2d978bd3004a46a917310a2b9f983e9950fdfb20f97d49b5725",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The transcript identifies the Turtle Soup—despite the ASR rendering “Tartle Sub”—as the object located “aquí abajo,” directly supporting the statement."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement asserts one proposition: the Turtle Soup is located here below."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6177f4d5609f8c162adca094aac4f7d95f0c385c01f2982ffd3a1909b03fb7b6"
+    ],
+    "response_id": "gen-1791098769-AUWVaBcJDQI96UI1bsUo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtlesoup-label",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra una etiqueta que dice «TURTLESOUP».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p91890000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p92880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "038466c398b7dcbca1a28c876b00a5db2d0968db7a453890e2b13e8e6a2a19bd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran claramente una etiqueta con el texto «TURTLESOUP»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "6177f4d5609f8c162adca094aac4f7d95f0c385c01f2982ffd3a1909b03fb7b6"
+    ],
+    "response_id": "gen-1791098769-AUWVaBcJDQI96UI1bsUo"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00136",
+   "start_ms": 1013900,
+   "end_ms": 1022220,
+   "text": "O sea, tú, si aquí estás buscando ya para tomar longs, tu stop loss tendría que estar seguro debajo del Tartle Sup, ¿vale?"
+  },
+  {
+   "id": "asr-00137",
+   "start_ms": 1022220,
+   "end_ms": 1031520,
+   "text": "que es aquí abajo. No tendría por qué pasar que el precio vuelva a bajar, a hacer otro Tartel Sub para ir para arriba."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91890000-canonical-v1",
+   "pts_ms": 1021000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91980000-canonical-v1",
+   "pts_ms": 1022000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92160000-canonical-v1",
+   "pts_ms": 1024000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92340000-canonical-v1",
+   "pts_ms": 1026000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92340000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92430000-canonical-v1",
+   "pts_ms": 1027000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92430000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92520000-canonical-v1",
+   "pts_ms": 1028000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92610000-canonical-v1",
+   "pts_ms": 1029000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92880000-canonical-v1",
+   "pts_ms": 1032000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

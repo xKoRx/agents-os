@@ -1,0 +1,739 @@
+{
+ "window": "w0091",
+ "start": "23:07",
+ "end": "23:16",
+ "start_ms": 1387000,
+ "end_ms": 1396000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-configuracion-smt",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La configuración dibujada es un tipo de SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193",
+    "asr-00194",
+    "frame-4de8f12d4841c630-s0-p125190000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "956414fbe18960dd5273e670bf9a833ec3a3ebe5986d632f2a2a19dedccfd122",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones citadas afirman explícitamente que la configuración o vela mostrada es «un tipo de SMT», y la imagen muestra la configuración a la que se refiere ese lenguaje."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eur-completa-objetivo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El euro puede completar su objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e4ce0b39981a1fb94f345c3103e2a541b9980cc563bc2c9037dba24034f7758b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada表达式 «que euro pueda llegar a completar» sostiene que el euro puede completar el objetivo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-right-candle-recolored",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela más a la derecha de GBPUSD cambia su relleno de blanco a negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p124920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p125190000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "65cd9a78a9ee6de021c66afff08525558f8c64771887d704cbc6c37f8f1c410f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la primera imagen, la vela más a la derecha de GBPUSD tiene relleno blanco; en la segunda, esa misma vela tiene relleno negro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-left-sequence-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La secuencia de velas de la izquierda está etiquetada como EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p125640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "661678f56fd2a8cb5b59906f7e25d146e7068e5326e0aa15416ad60dbc9d4b3b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La secuencia de velas situada a la izquierda aparece etiquetada visiblemente como «EURUSD»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-open-drawing-template-menu",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Se abre el menú de plantillas de dibujo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p125100000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f1428e38a8af87be4cd146a1c06e7aef06bdab7e9ddc2c6d45919d6ff085374e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra un menú abierto con las opciones «Guardar plantilla de dibujo como...» y «Aplicar plantilla de dibujo predeterminada»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-open-fill-color-palette",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Se abre el selector de color de relleno de la vela seleccionada.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p125010000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7461796ce81d03a20f15bdb2df6545ed8f4f899813ad21fb4ca02ce651246585",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra abierta la paleta del selector de color de relleno junto a una vela señalada como seleccionada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-par-correlacionado-jp-o-dxy",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El par correlacionado puede ser JP o DXY.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9e718045e1a6d841325cd82566c25cbb2c7b47a696d2cc299c39359994cf77fe",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que el par correlacionado puede ser «JP o DXY»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-par-correlacionado-reversal-directo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El par correlacionado puede pasar directamente al reversal.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ff69de99025301814be5768644af22d1c1ae1ff4bdf5ce227a02da4bb5d411a3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el par correlacionado, ya sea JP o DXY, puede no alcanzar su objetivo y pasar directamente al reversal."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La statement断言 una sola proposición: la posibilidad de que el par correlacionado pase directamente al reversal."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-par-correlacionado-sin-objetivo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El par correlacionado puede no llegar a su objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193",
+    "asr-00194",
+    "frame-4de8f12d4841c630-s0-p125190000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "babeb37a94bb18c65b8bfec8390ae4e91b83546fa645a1e6da9c94bbda4d712e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que «el par correlacionado, ya sea JP o DXY, no llegue a su objetivo», lo que respalda la proposición de que puede no alcanzarlo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la posibilidad de que el par correlacionado no llegue a su objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-right-sequence-gbpusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La secuencia de velas de la derecha está etiquetada como GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p125640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5cfdeac89ac7811e933e24712e0d05f36981c2a53ef6822175535aed014ce811",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la etiqueta «GBPUSD» debajo de la secuencia de velas situada a la derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-datos-ocultos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "A veces, algunos datos de este SMT están un poco ocultos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ff43c300cc97411917947086840d388184267da5e00605d373d8fd16d6d763da",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que «a veces estos datos están un poco ocultos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; «a veces» y «algunos» solo la restringen."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-requiere-estrategia",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si no conoces la estrategia, no vas a poder ver este SMT de ningún modo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "37a245426afaf03e1f7aad794d1c31591e7ebe008f5ce675ccf87de3fa7e827e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que, si no se conoce la estrategia, no se podrá ver ese SMT de ningún modo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-config-eur-target",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-configuracion-smt",
+   "subject_version": 1,
+   "object_id": "cl-eur-completa-objetivo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "98476fd218b5017bd1480c8566c35a09d196f7f6e69c0bc43b43eec7f4daeb8f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que «esto sería un SMT» y、暗? no."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-config-pair-misses-target",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-configuracion-smt",
+   "subject_version": 1,
+   "object_id": "cl-par-correlacionado-sin-objetivo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193",
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "5373cabfd7e7f90538c24ef8013e384ee18bc5d093e34b4c2aac553cccdcdcab",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica «esto» como un SMT y describe un caso en el que el par correlacionado no llega a su objetivo, pero no afirma ni deja claro que la afirmación sobre la configuración dependa de la afirmación sobre el par."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-config-pair-reverses",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-configuracion-smt",
+   "subject_version": 1,
+   "object_id": "cl-par-correlacionado-reversal-directo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "56b277e0918e7d8b5b9a4abd1c2d98100f59065063b23e296807e1d63cbbdf79",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma por separado que «esto sería un SMT» y que el par correlacionado puede pasar directamente al reversal, pero no establece que la configuración SMT dependa de la posibilidad de reversal del par correlacionado."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-config-pair-type",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-configuracion-smt",
+   "subject_version": 1,
+   "object_id": "cl-par-correlacionado-jp-o-dxy",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "8f40d8e805c80c7f47edc10c2f93b000c347fdfce556ac63b06e20d58b2b10e9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que «esto sería un SMT» y menciona que el par correlacionado puede ser «JP o DXY», pero no establece que la configuración SMT dependa de la posibilidad de que el par sea JP o DXY."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-visibility-scope",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-smt-requiere-estrategia",
+   "subject_version": 1,
+   "object_id": "cl-configuracion-smt",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "cbe2013354d01785e1620cd3ad03255677f201b5048d3b1734ad2fb838926c79",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica la configuración como un tipo de SMT y afirma que no poder ver ese SMT depende de no conocer la estrategia, pero no establece que la afirmación sobre la necesidad de una estrategia dependa de la afirmación de que la configuración es un tipo de SMT."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756"
+    ],
+    "response_id": "gen-1791106542-CnG2Xufb5NspldHqxWQp"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00193",
+   "start_ms": 1374580,
+   "end_ms": 1395310,
+   "text": "Y luego puede pasarte pues algo así, que esta vela haga algo así sin llegar al objetivo, ¿vale? Este es un tipo de SMT que si no conoces la estrategia no vas a poder ver de ningún modo porque a veces estos datos están un poco ocultos, ¿vale?"
+  },
+  {
+   "id": "asr-00194",
+   "start_ms": 1395310,
+   "end_ms": 1409220,
+   "text": "Pues esto sería un SMT. En el caso de un objetivo, que euro pueda llegar a completar y el par correlacionado, ya sea JP o DXY, no llegue a su objetivo y pase el reversal directamente."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p124830000-canonical-v1",
+   "pts_ms": 1387000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p124830000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p124920000-canonical-v1",
+   "pts_ms": 1388000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p124920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125010000-canonical-v1",
+   "pts_ms": 1389000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125010000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125100000-canonical-v1",
+   "pts_ms": 1390000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125190000-canonical-v1",
+   "pts_ms": 1391000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125190000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125280000-canonical-v1",
+   "pts_ms": 1392000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125550000-canonical-v1",
+   "pts_ms": 1395000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125550000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125640000-canonical-v1",
+   "pts_ms": 1396000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

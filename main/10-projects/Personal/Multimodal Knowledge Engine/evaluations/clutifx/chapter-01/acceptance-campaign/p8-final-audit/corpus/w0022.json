@@ -1,0 +1,571 @@
+{
+ "window": "w0022",
+ "start": "04:51",
+ "end": "05:00",
+ "start_ms": 291000,
+ "end_ms": 300000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cadena-precios-forma-rango-alcista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La cadena del precio forma aquí un rango alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00040",
+    "frame-4de8f12d4841c630-s0-p26460000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p26550000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fd9197aad3a268314f067bce25b98f1a98f06dfaf93b62e9162e2e4089c6415a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma expresamente que «esto aquí nos forma un rango alcista», lo que respalda la proposición sobre la cadena de precios."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la cadena de precios forma un rango alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7db02348d63c297cc2b6b17dff6c66398bbcb375782fee37d6db32a0ca0984f9"
+    ],
+    "response_id": "gen-1791085211-dHfUSziGkx0RBo5eTqSO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estrategy-seguir-cadena-precios",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La estrategia intenta seguir la cadena del precio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00039",
+    "asr-00040"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3c4244a08abbf8264fcced94f45d1a282081e33b69e9dfc1c31efe24407a5bbd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos citas expr together que la base de la estrategia es intentar seguir la cadena que va formando el precio, lo que respalda directamente la afirmación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7db02348d63c297cc2b6b17dff6c66398bbcb375782fee37d6db32a0ca0984f9"
+    ],
+    "response_id": "gen-1791085211-dHfUSziGkx0RBo5eTqSO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-posible-rango-bajista-desde-aqui",
+   "kind": "claim",
+   "version": 1,
+   "statement": "A partir de aquí, la secuencia de precios podría formar ahora un rango bajista tomando el alto de la vela blanca superior.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00040",
+    "asr-00041",
+    "frame-4de8f12d4841c630-s0-p26910000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c2a0a555cef6c358757cd6a260e3f9e30046a4aa568c90731151e427ae640a3f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que, a partir de ese punto, el precio podría formar un rango bajista tomando el alto de la vela señalada; la imagen permite resolver la referencia a la vela blanca situada más arriba."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7db02348d63c297cc2b6b17dff6c66398bbcb375782fee37d6db32a0ca0984f9"
+    ],
+    "response_id": "gen-1791085211-dHfUSziGkx0RBo5eTqSO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-forma-cadena",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio está formando una cadena.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00040"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dfe3e9c17b22e0475bc4d3528b4a908eaa0ba383175553df12de3c84f9aa6064",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada dice «esta cadena que va haciendo el precio», lo que sostiene directamente que el precio está formando una cadena."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7db02348d63c297cc2b6b17dff6c66398bbcb375782fee37d6db32a0ca0984f9"
+    ],
+    "response_id": "gen-1791085211-dHfUSziGkx0RBo5eTqSO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-alcista-se-completa",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango alcista se completa aquí.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00040",
+    "frame-4de8f12d4841c630-s0-p26550000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "47b7ba4ad929538c2bb2e5ddd629494aab4cc221aa04be9335c2a7077c4ca188",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que «esto aquí nos forma un rango alcista» y «lo completa»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el rango alcista se completa en ese punto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7db02348d63c297cc2b6b17dff6c66398bbcb375782fee37d6db32a0ca0984f9"
+    ],
+    "response_id": "gen-1791085211-dHfUSziGkx0RBo5eTqSO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-son-base-estrategia",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos son la base de la estrategia.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00039"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6bb0240a4ebf1f094d4c942047dce76aed96ad58b2059fccb94d10d909b896fb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que los rangos son «la base de la estrategia»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7db02348d63c297cc2b6b17dff6c66398bbcb375782fee37d6db32a0ca0984f9"
+    ],
+    "response_id": "gen-1791085211-dHfUSziGkx0RBo5eTqSO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-son-importantes",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos son importantes.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00039"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d16860f45b0a617c07c2725fee59037fadbbdc4c6004bcf984ec5840411398fe",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada dice explícitamente «esto es la importancia de los rangos», lo que respalda que los rangos son importantes."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7db02348d63c297cc2b6b17dff6c66398bbcb375782fee37d6db32a0ca0984f9"
+    ],
+    "response_id": "gen-1791085211-dHfUSziGkx0RBo5eTqSO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico es 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p100080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p107460000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p110790000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p26190000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p27360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p28440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49860000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50490000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p52920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p57240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "823cdc9c8a3d75906aea24f7e31fbaeba6ee2b18250dcd2ed7f37afaa1b73401",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas muestran explícitamente la etiqueta «EURUSD | 15M» en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "18a694250c8e8d9f739f3e602f7fd95ced565a4cba39a2d7653b898071fb0b0a",
+     "1f92b75355e9124ff602cde646f9870dcabd62f2ba991c6253622a06d8bf88cd",
+     "421ba3b8a44b38d177015f06d857c4d6aff275eef1ebcc8e70f3bf1d0509776c",
+     "7db02348d63c297cc2b6b17dff6c66398bbcb375782fee37d6db32a0ca0984f9",
+     "ad8fe8a5b04a42da31b9cabf1aa3898c774b2d5b825b2afd3ab772773c6f042a",
+     "b832f11324409f9913294fd27f1499d644462d7f5e123dada014e56dded363a6",
+     "b854eff52718eff70b4622e70f400086f6cacd3f18a8282ee39cc4788f28e772",
+     "c8b08fdc02db47372bd3034ecbc61191b237e6d72f7c5d321ee4753913f509fb",
+     "dc6c3b4a7c3f36958416466f012d3804963c75137effce5fd633ec4478fb85b8"
+    ],
+    "response_id": "gen-1791085211-dHfUSziGkx0RBo5eTqSO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-blanca-se-desplaza-arriba-derecha",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El cuerpo de vela blanco seleccionado se desplaza hacia arriba y a la derecha.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p26280000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p26460000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8327e8c11a904b237f766043af1acbe766768df1d13b79d2ac1fb2298f671fd4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la segunda imagen, el cuerpo blanco seleccionado aparece más arriba y más a la derecha que en la primera."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una sola trayectoria diagonal del mismo objeto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7db02348d63c297cc2b6b17dff6c66398bbcb375782fee37d6db32a0ca0984f9"
+    ],
+    "response_id": "gen-1791085211-dHfUSziGkx0RBo5eTqSO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-cambia-de-negro-a-blanco",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El relleno del cuerpo de vela seleccionado cambia de negro a blanco.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p26190000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p26280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "36801f537275048c8a1f8f6c395db3445b2e730bb157f3574e771a3fa1315fcc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra el cuerpo de la vela seleccionado con relleno negro y la segunda muestra esa misma forma seleccionada con relleno blanco, lo que evidencia el cambio de color."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7db02348d63c297cc2b6b17dff6c66398bbcb375782fee37d6db32a0ca0984f9"
+    ],
+    "response_id": "gen-1791085211-dHfUSziGkx0RBo5eTqSO"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00039",
+   "start_ms": 286680,
+   "end_ms": 293000,
+   "text": "vale esto es la importancia de los rangos y es como la base de la estrategia que es como intentar"
+  },
+  {
+   "id": "asr-00040",
+   "start_ms": 293000,
+   "end_ms": 299680,
+   "text": "seguir por esta cadena que va haciendo el precio esto aquí nos forma un rango alcista lo completa"
+  },
+  {
+   "id": "asr-00041",
+   "start_ms": 299680,
+   "end_ms": 306860,
+   "text": "a partir de aquí a lo mejor nos forma ahora un rango bajista tomando el alto de esta vela lo"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p26190000-canonical-v1",
+   "pts_ms": 291000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p26190000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p26280000-canonical-v1",
+   "pts_ms": 292000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p26280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p26460000-canonical-v1",
+   "pts_ms": 294000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p26460000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p26550000-canonical-v1",
+   "pts_ms": 295000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p26550000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p26640000-canonical-v1",
+   "pts_ms": 296000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p26640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p26730000-canonical-v1",
+   "pts_ms": 297000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p26730000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p26910000-canonical-v1",
+   "pts_ms": 299000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p26910000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p27000000-canonical-v1",
+   "pts_ms": 300000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p27000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p100080000-canonical-v1",
+   "pts_ms": 1112000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p100080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107460000-canonical-v1",
+   "pts_ms": 1194000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107460000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p110790000-canonical-v1",
+   "pts_ms": 1231000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p110790000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p27360000-canonical-v1",
+   "pts_ms": 304000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p27360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28440000-canonical-v1",
+   "pts_ms": 316000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49860000-canonical-v1",
+   "pts_ms": 554000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50130000-canonical-v1",
+   "pts_ms": 557000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50490000-canonical-v1",
+   "pts_ms": 561000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p52920000-canonical-v1",
+   "pts_ms": 588000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p52920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p57240000-canonical-v1",
+   "pts_ms": 636000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p57240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

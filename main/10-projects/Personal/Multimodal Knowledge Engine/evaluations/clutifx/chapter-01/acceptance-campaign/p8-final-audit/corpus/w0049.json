@@ -1,0 +1,532 @@
+{
+ "window": "w0049",
+ "start": "11:18",
+ "end": "11:27",
+ "start_ms": 678000,
+ "end_ms": 687000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-desaparicion-vela-blanca-pequena",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela blanca pequeña de la derecha deja de estar visible en los fotogramas posteriores.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p61560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p61740000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p61830000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "58f1844cd4c7eb30f29e631188e2da8b539c242c0d074aeb9f5fc59ed3756efc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La vela blanca pequeña situada más a la derecha se ve en el primer fotograma citado, pero ya no aparece en los dos fotogramas posteriores."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2275db4fbfaac7dc5d15afb41268f7325c345fb3d5ed603bd25031e04a9b001d"
+    ],
+    "response_id": "gen-1791092057-MTqxcKsgIqk30Ud6WFHu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-etiqueta-rango-pendiente",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta visible en el gráfico es «RANGO PENDIENTE».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p61020000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p61920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p63270000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p63360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p64710000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b47cdc20a3207f29afd3728d91865b37ac0ea8ed72248b79dc385cb69a66ab82",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible en el gráfico se lee «RANGO PENDIENTE» en las imágenes citadas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1084907a0d9ab199ac53fe49432c1e356b6a9dc2562395c4b82fcf4989ca1d01",
+     "2275db4fbfaac7dc5d15afb41268f7325c345fb3d5ed603bd25031e04a9b001d",
+     "f33e826d321475348a6eee0d65fdcfbb4e0e34849998f93b9c46bbd1ee9d93d5"
+    ],
+    "response_id": "gen-1791092057-MTqxcKsgIqk30Ud6WFHu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-temporalidad-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad indicada en el gráfico es 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p61020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e85d77148135284bf91d71212b952efe9eef112b0679cdcccf038557b922c2a5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente «EURUSD | 15M» y «EURUSD · 15 · FOREX.com», por lo que la temporalidad indicada es 15M."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2275db4fbfaac7dc5d15afb41268f7325c345fb3d5ed603bd25031e04a9b001d"
+    ],
+    "response_id": "gen-1791092057-MTqxcKsgIqk30Ud6WFHu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-encima-rango-diario",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo está situado por encima del rango diario.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105",
+    "frame-4de8f12d4841c630-s0-p61020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bf886ccf2750e15a7a9bfed6b3d7c14cd9f68e47c730316f5748af7cd4ccb105",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el objetivo está «arriba» del rango diario, lo que respalda directamente la proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2275db4fbfaac7dc5d15afb41268f7325c345fb3d5ed603bd25031e04a9b001d"
+    ],
+    "response_id": "gen-1791092057-MTqxcKsgIqk30Ud6WFHu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-diario-presente",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El gráfico incluye un rango diario.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105",
+    "frame-4de8f12d4841c630-s0-p61020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0e009c0c6fcb570be4ddd47a6e86b0b03898fea17a821aca2d278757837818bb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente «tenemos el rango diario aquí», y el gráfico muestra una construcción rotulada «RANGO PENDIENTE» con una vela marcada «D»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2275db4fbfaac7dc5d15afb41268f7325c345fb3d5ed603bd25031e04a9b001d"
+    ],
+    "response_id": "gen-1791092057-MTqxcKsgIqk30Ud6WFHu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reinicio-rango-apertura-arriba",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Para reiniciar el rango, la siguiente vela debe abrir por arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "eeb709bdb462119f98e517391bcd7a51c4ba22d126bbfc0a0c9801131c9f9c10",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que, para que el rango sea reiniciado, «la siguiente vela abre por arriba»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La statement sostiene una sola proposición sobre la condición de reinicio del rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2275db4fbfaac7dc5d15afb41268f7325c345fb3d5ed603bd25031e04a9b001d"
+    ],
+    "response_id": "gen-1791092057-MTqxcKsgIqk30Ud6WFHu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reinicio-rango-toma-high",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Para reiniciar el rango, la siguiente vela debe tomar el high.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d5af233ce62733e752d957861d0a9d67e41696ba7ab74a95dba1651d3bed02de",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que un rango reiniciado requiere que la siguiente vela abra por arriba y tome el high."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la condición para reiniciar el rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2275db4fbfaac7dc5d15afb41268f7325c345fb3d5ed603bd25031e04a9b001d"
+    ],
+    "response_id": "gen-1791092057-MTqxcKsgIqk30Ud6WFHu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-resaltado-azul-velas-blancas-derecha",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Un área azul resalta las velas blancas de la derecha.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p61110000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4c58fc7e56b723b53e21dc83a95d9f30668f5499b9ecc7524250bac101481068",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra un área azul alrededor de las velas blancas situadas a la derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2275db4fbfaac7dc5d15afb41268f7325c345fb3d5ed603bd25031e04a9b001d"
+    ],
+    "response_id": "gen-1791092057-MTqxcKsgIqk30Ud6WFHu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-seleccion-vela-blanca-pequena",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela blanca pequeña de la derecha aparece seleccionada con tiradores de edición.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p61560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "483d9110273140ca0072c9831ec6cf87d24258b2a1ecc5c94de00401a338fc67",
+    "reasons": [
+     {
+      "code": "reviewer_malformed_output",
+      "detail": "reviewer produced a malformed verdict: claim review output schema id \"mke.claims-ground.v2\", want \"mke.claims-ground.v1\""
+     },
+     {
+      "code": "reviewer_malformed_output",
+      "detail": "corrective reissue after malformed attempt also rejected: claim review output schema id \"mke.claims-ground.v2\", want \"mke.claims-ground.v1\""
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2275db4fbfaac7dc5d15afb41268f7325c345fb3d5ed603bd25031e04a9b001d"
+    ],
+    "response_id": "gen-1791092057-MTqxcKsgIqk30Ud6WFHu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-seleccion-vela-negra-derecha",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela negra de la derecha aparece seleccionada con tiradores de edición.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p61290000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p61380000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p61740000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p61830000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8c372936e39fbc96612d22e6b53f028155cfea34ffa4e92d3ddc992b730a2a03",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes 1, 2 y 4 muestran la vela negra de la derecha con tiradores circulares y cuadrados de edición, lo que indica que está seleccionada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2275db4fbfaac7dc5d15afb41268f7325c345fb3d5ed603bd25031e04a9b001d"
+    ],
+    "response_id": "gen-1791092057-MTqxcKsgIqk30Ud6WFHu"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-negra-derecha-marca-d",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La vela negra de la derecha está marcada con «D».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p61020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "08c06026a85de66f74902e85ecac1dc2b4aaf7a6e93e8c8ee7b86b2d3d2ddf73",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una «D» debajo de la vela negra situada a la derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2275db4fbfaac7dc5d15afb41268f7325c345fb3d5ed603bd25031e04a9b001d"
+    ],
+    "response_id": "gen-1791092057-MTqxcKsgIqk30Ud6WFHu"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00105",
+   "start_ms": 676080,
+   "end_ms": 696980,
+   "text": "En el mismo caso, tenemos el rango diario aquí, tenemos el objetivo arriba, pero ¿cómo sería un rango reiniciado? Pues que la siguiente vela abre por arriba y toma el high, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61020000-canonical-v1",
+   "pts_ms": 678000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61110000-canonical-v1",
+   "pts_ms": 679000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61110000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61200000-canonical-v1",
+   "pts_ms": 680000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61290000-canonical-v1",
+   "pts_ms": 681000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61380000-canonical-v1",
+   "pts_ms": 682000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61560000-canonical-v1",
+   "pts_ms": 684000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61740000-canonical-v1",
+   "pts_ms": 686000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61740000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61830000-canonical-v1",
+   "pts_ms": 687000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61830000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61920000-canonical-v1",
+   "pts_ms": 688000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63270000-canonical-v1",
+   "pts_ms": 703000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63270000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63360000-canonical-v1",
+   "pts_ms": 704000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p64710000-canonical-v1",
+   "pts_ms": 719000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p64710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

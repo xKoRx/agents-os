@@ -1,0 +1,90 @@
+{
+ "window": "w0006",
+ "start": "01:16",
+ "end": "01:29",
+ "start_ms": 76000,
+ "end_ms": 89000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00005",
+   "start_ms": 61640,
+   "end_ms": 81320,
+   "text": "¿Vale? El concepto de rango se refiere, voy a pintar la vela ahora, a las velas que la siguiente vela nos toma, o no tiene porque es la siguiente, otra vela, nos toma un extremo de esta vela y cierra dentro del anterior, ¿vale?"
+  },
+  {
+   "id": "asr-00006",
+   "start_ms": 81320,
+   "end_ms": 84540,
+   "text": "Esta sería una vela bajista probablemente, así que la pintaremos en negro."
+  },
+  {
+   "id": "asr-00007",
+   "start_ms": 85580,
+   "end_ms": 89520,
+   "text": "O sea, esto sería nosotros lo que consideramos un rango."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p6840000-canonical-v1",
+   "pts_ms": 76000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p6840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p7200000-canonical-v1",
+   "pts_ms": 80000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p7200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p7380000-canonical-v1",
+   "pts_ms": 82000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p7380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p7470000-canonical-v1",
+   "pts_ms": 83000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p7470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p7560000-canonical-v1",
+   "pts_ms": 84000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p7560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p7650000-canonical-v1",
+   "pts_ms": 85000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p7650000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p7920000-canonical-v1",
+   "pts_ms": 88000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p7920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p8010000-canonical-v1",
+   "pts_ms": 89000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p8010000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

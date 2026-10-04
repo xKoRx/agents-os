@@ -1,0 +1,270 @@
+{
+ "window": "w0007",
+ "start": "01:30",
+ "end": "01:48",
+ "start_ms": 90000,
+ "end_ms": 108000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-colocacion-etiqueta-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El instructor coloca la etiqueta «rango» encima del dibujo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00009",
+    "asr-00010",
+    "frame-4de8f12d4841c630-s0-p9360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5f8a373c4052f03fe7d363046afc94570855d3176d245658c955c46382726f4f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El fotograma muestra la etiqueta «rango» situada encima del dibujo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones «Ahora esto lo llamaríamos rango» y «Lo pongo aquí arriba» respaldan la acción de colocar esa etiqueta."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d1be3c3a8d5e437c5f8bf937589c2da43df08fd9a6a604dfb928da01e94015a6"
+    ],
+    "response_id": "gen-1791080726-SShD68VcYUPkv0wUwiNi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-proxima-demostracion-rango-bajista",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "A continuación se va a mostrar cómo se ve un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00011",
+    "asr-00012"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "db1077d9799bf483c37d1a4d19bc685e7adcefcdd1b5aee440c4f9b76c06ad45",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita anuncia que se va a ver cómo sería un rango bajista, lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que a continuación se mostrará la apariencia de un rango bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d1be3c3a8d5e437c5f8bf937589c2da43df08fd9a6a604dfb928da01e94015a6"
+    ],
+    "response_id": "gen-1791080726-SShD68VcYUPkv0wUwiNi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-alcista-mostrado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El dibujo mostrado es un rango alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00010",
+    "asr-00011",
+    "frame-4de8f12d4841c630-s0-p9360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p9720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2ce51057768b3cbcd4f380393033e56d6df18e3493c7fd441da1bf523b0cc6a1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra el mismo dibujo etiquetado explícitamente «rango alcista», y la transcripción afirma: «Este de aquí sería un rango alcista»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el dibujo mostrado es un rango alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d1be3c3a8d5e437c5f8bf937589c2da43df08fd9a6a604dfb928da01e94015a6"
+    ],
+    "response_id": "gen-1791080726-SShD68VcYUPkv0wUwiNi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-tras-extremo-y-cierre-adentro",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Cuando el precio toma uno de los dos extremos de la vela y cierra adentro, la formación se denomina «rango».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00008",
+    "asr-00009"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ba8e889067a73d6b3437d416daffb381f5f1d9e08554102224eb7e58d19e96e6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas indican que, cuando el precio toma uno de los dos extremos de la vela y cierra adentro, ello se denomina «rango»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la regla que asigna el nombre «rango» a esa formación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d1be3c3a8d5e437c5f8bf937589c2da43df08fd9a6a604dfb928da01e94015a6"
+    ],
+    "response_id": "gen-1791080726-SShD68VcYUPkv0wUwiNi"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00008",
+   "start_ms": 89920,
+   "end_ms": 98170,
+   "text": "Una vez el precio, toma uno de los dos extremos de la vela y cierra adentro."
+  },
+  {
+   "id": "asr-00009",
+   "start_ms": 98470,
+   "end_ms": 101310,
+   "text": "Ahora esto lo llamaríamos rango."
+  },
+  {
+   "id": "asr-00010",
+   "start_ms": 101950,
+   "end_ms": 103070,
+   "text": "Lo pongo aquí arriba."
+  },
+  {
+   "id": "asr-00011",
+   "start_ms": 103650,
+   "end_ms": 106390,
+   "text": "Este de aquí sería un rango alcista, en este caso."
+  },
+  {
+   "id": "asr-00012",
+   "start_ms": 107370,
+   "end_ms": 110680,
+   "text": "Ahora vamos a ver cómo se vería uno bajista."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p8100000-canonical-v1",
+   "pts_ms": 90000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p8100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p8280000-canonical-v1",
+   "pts_ms": 92000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p8280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p8370000-canonical-v1",
+   "pts_ms": 93000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p8370000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p8640000-canonical-v1",
+   "pts_ms": 96000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p8640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p8820000-canonical-v1",
+   "pts_ms": 98000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p8820000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p9000000-canonical-v1",
+   "pts_ms": 100000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p9000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p9360000-canonical-v1",
+   "pts_ms": 104000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p9360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p9720000-canonical-v1",
+   "pts_ms": 108000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p9720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

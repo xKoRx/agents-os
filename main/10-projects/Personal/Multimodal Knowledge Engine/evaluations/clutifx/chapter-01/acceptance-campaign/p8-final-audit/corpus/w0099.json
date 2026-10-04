@@ -1,0 +1,347 @@
+{
+ "window": "w0099",
+ "start": "25:39",
+ "end": "25:48",
+ "start_ms": 1539000,
+ "end_ms": 1548000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-rising-line-drawn",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja una línea con pendiente ascendente en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p139140000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "510ca3c8a6b3cad191f3fb69e827bc9982c8ffbc0d5f5eaf2c0fdd92a03c1e57",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una línea diagonal que asciende de izquierda a derecha en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "e369a09cff81a116e7d6795b9c21bae16ea4c997ff01e154b8b7df4086da6237"
+    ],
+    "response_id": "gen-1791109165-zKwhqAklZbu63ndRwwZP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-zigzag-drawn",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja un zigzag en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p139320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3c45b1babb30cd370cb2cc61dd245b2449260b883669fc123d2276e5ca0c0087",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una línea en zigzag trazada sobre el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "e369a09cff81a116e7d6795b9c21bae16ea4c997ff01e154b8b7df4086da6237"
+    ],
+    "response_id": "gen-1791109165-zKwhqAklZbu63ndRwwZP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-covered-in-intermediate-course",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El concepto de failure swing ya se vio un poco en el curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00207"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d0f711eab13921e62aeee9d17ddc41e13150ffff1d58a89ec5d292b16b362aac",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el concepto de failure swing ya se vio «un poco en el curso intermedio»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "e369a09cff81a116e7d6795b9c21bae16ea4c997ff01e154b8b7df4086da6237"
+    ],
+    "response_id": "gen-1791109165-zKwhqAklZbu63ndRwwZP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-multiple-cases",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El failure swing puede darse por varios casos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00207"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "834944db46b5c675c3332e8a909e271b6004fe397561581e8a1b062a95f3bdcd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que el failure swing «puede darse por varios casos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "e369a09cff81a116e7d6795b9c21bae16ea4c997ff01e154b8b7df4086da6237"
+    ],
+    "response_id": "gen-1791109165-zKwhqAklZbu63ndRwwZP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-no-new-low",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El failure swing es cuando el precio no consigue hacer un nuevo bajo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00207"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "84ea8f558bf8e89ceebfff675f8ad8654bdbc34d321d8e5fe68e6f6b42ab1e31",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «el failure swing es cuando el precio no consigue hacer un nuevo bajo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la definición del failure swing en términos de que el precio no logra hacer un nuevo mínimo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "e369a09cff81a116e7d6795b9c21bae16ea4c997ff01e154b8b7df4086da6237"
+    ],
+    "response_id": "gen-1791109165-zKwhqAklZbu63ndRwwZP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-symbol-search-query-x",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La ventana «Búsqueda de símbolos» muestra «X» como consulta.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p138600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "09c8a17f30b5f3b5fe0f4537ef288978c827d3baba1fcdef1b11a6d8628222d2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una ventana titulada «Búsqueda de símbolos» cuyo campo de consulta contiene «X»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "e369a09cff81a116e7d6795b9c21bae16ea4c997ff01e154b8b7df4086da6237"
+    ],
+    "response_id": "gen-1791109165-zKwhqAklZbu63ndRwwZP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zigzag-final-point-not-lower",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El extremo final del zigzag no queda por debajo del punto inicial.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p139320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "760713b7cdf732ea74fb4d559f5457cfcc0df106ab2548402c5f0ab5ef9aff16",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El punto final del zigzag aparece por encima del punto inicial en el gráfico, por lo que no queda por debajo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "e369a09cff81a116e7d6795b9c21bae16ea4c997ff01e154b8b7df4086da6237"
+    ],
+    "response_id": "gen-1791109165-zKwhqAklZbu63ndRwwZP"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00207",
+   "start_ms": 1535940,
+   "end_ms": 1552160,
+   "text": "Luego, concepto de failure swing, ya lo visteis también un poco en el curso intermedio. El failure swing es cuando el precio no consigue hacer un nuevo bajo y puede darse por varios casos."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138510000-canonical-v1",
+   "pts_ms": 1539000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138510000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138600000-canonical-v1",
+   "pts_ms": 1540000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138690000-canonical-v1",
+   "pts_ms": 1541000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138690000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138780000-canonical-v1",
+   "pts_ms": 1542000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138780000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138870000-canonical-v1",
+   "pts_ms": 1543000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138870000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138960000-canonical-v1",
+   "pts_ms": 1544000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p139140000-canonical-v1",
+   "pts_ms": 1546000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p139140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p139320000-canonical-v1",
+   "pts_ms": 1548000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p139320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

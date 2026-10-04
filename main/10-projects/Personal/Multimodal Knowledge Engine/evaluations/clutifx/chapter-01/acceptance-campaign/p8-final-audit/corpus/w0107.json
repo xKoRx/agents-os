@@ -1,0 +1,404 @@
+{
+ "window": "w0107",
+ "start": "27:37",
+ "end": "27:51",
+ "start_ms": 1657000,
+ "end_ms": 1671000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-disposicion-descendente-rectangulos",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La secuencia de rectángulos se desplaza hacia abajo de izquierda a derecha.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p149130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p149220000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p149580000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p150390000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "920a1e34742ffab018de1c0e803509f6ee49ec9fc34a1334db9b37ba4b1f206f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas muestran una secuencia de rectángulos cuyas posiciones descienden de izquierda a derecha."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la disposición de los rectángulos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "605ab42b0c42214e620dc88f1fb959734b139374e22346571a19ab1f86a8611b"
+    ],
+    "response_id": "gen-1791112727-3mmTFjL0sybSklnGSIXP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-espera-vela-alcista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Se espera una vela alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00239",
+    "asr-00240",
+    "asr-00241"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8a98b67edaf3b423b2086f479cdbba7437e2675fa08eb50427d550b5fe142374",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma «vamos a tener una vela alcista», lo que sostiene que se espera una vela alcista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la expectativa de una vela alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "605ab42b0c42214e620dc88f1fb959734b139374e22346571a19ab1f86a8611b"
+    ],
+    "response_id": "gen-1791112727-3mmTFjL0sybSklnGSIXP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulos-negros-sucesivos",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibujan sucesivamente varios rectángulos negros.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p149130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p149220000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p149400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p149580000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p150390000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "23e0e8ad42b10c753618f29def33813bad822551bb11231b99d85526c2086c83",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes sucesivas muestran que se va añadiendo un nuevo rectángulo negro cada vez, hasta aparecer varios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "605ab42b0c42214e620dc88f1fb959734b139374e22346571a19ab1f86a8611b"
+    ],
+    "response_id": "gen-1791112727-3mmTFjL0sybSklnGSIXP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-mostrada-8h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico es 8h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p149130000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4591163ce0fdc37331ce910ceb13c08e01fbd2d67f9c35c7ac8c3e88c3ae0c7a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El encabezado del gráfico muestra «EURUSD · 8h · FOREX.com», por lo que la temporalidad indicada es 8h."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "605ab42b0c42214e620dc88f1fb959734b139374e22346571a19ab1f86a8611b"
+    ],
+    "response_id": "gen-1791112727-3mmTFjL0sybSklnGSIXP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tendencia-bajista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La secuencia mostrada es una tendencia bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00238",
+    "frame-4de8f12d4841c630-s0-p149130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p149400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p149580000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p150390000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e410b4484f5571f747b3f5322a079367a07def26d4601fae02a58d95d4f80ff4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente «esto es una tendencia bajista», en referencia a la secuencia mostrada; las imágenes también muestran una progresión descendente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "605ab42b0c42214e620dc88f1fb959734b139374e22346571a19ab1f86a8611b"
+    ],
+    "response_id": "gen-1791112727-3mmTFjL0sybSklnGSIXP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-uso-order-block-confirmacion-temporalidad-baja",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Uso el order block para mis confirmaciones en temporalidad más baja.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00235",
+    "asr-00236",
+    "asr-00237"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "80682932321adedc7520ac22abd5f55115e85f09822aa2f4f533e49e2d897d15",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas_exprésan directamente que usa el order block para sus confirmaciones en temporalidad más baja."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "605ab42b0c42214e620dc88f1fb959734b139374e22346571a19ab1f86a8611b"
+    ],
+    "response_id": "gen-1791112727-3mmTFjL0sybSklnGSIXP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-uso-order-block-entradas",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Uso el order block un poco para mis entradas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00235",
+    "asr-00236",
+    "asr-00237"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0c62f6e6b519a5d8e22466227ef447a72b11a695166f6cc92fbfeaa2760551c0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas citadas sostienen que el hablante usa «el order block» «un poco» para «mis entradas»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el uso occasional del order block para las entradas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "605ab42b0c42214e620dc88f1fb959734b139374e22346571a19ab1f86a8611b"
+    ],
+    "response_id": "gen-1791112727-3mmTFjL0sybSklnGSIXP"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00235",
+   "start_ms": 1656860,
+   "end_ms": 1658880,
+   "text": "y lo uso yo un poco para"
+  },
+  {
+   "id": "asr-00236",
+   "start_ms": 1658880,
+   "end_ms": 1660300,
+   "text": "mis entradas, el order block"
+  },
+  {
+   "id": "asr-00237",
+   "start_ms": 1660300,
+   "end_ms": 1662540,
+   "text": "para mis confirmaciones en temporalidad más baja"
+  },
+  {
+   "id": "asr-00238",
+   "start_ms": 1662540,
+   "end_ms": 1664380,
+   "text": "esto es una tendencia bajista"
+  },
+  {
+   "id": "asr-00239",
+   "start_ms": 1664380,
+   "end_ms": 1666580,
+   "text": "¿vale? pues en el momento"
+  },
+  {
+   "id": "asr-00240",
+   "start_ms": 1666580,
+   "end_ms": 1669160,
+   "text": "en que vamos a tener una vela"
+  },
+  {
+   "id": "asr-00241",
+   "start_ms": 1669160,
+   "end_ms": 1671320,
+   "text": "alcista que"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p149130000-canonical-v1",
+   "pts_ms": 1657000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p149130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p149220000-canonical-v1",
+   "pts_ms": 1658000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p149220000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p149400000-canonical-v1",
+   "pts_ms": 1660000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p149400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p149580000-canonical-v1",
+   "pts_ms": 1662000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p149580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p149670000-canonical-v1",
+   "pts_ms": 1663000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p149670000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p149760000-canonical-v1",
+   "pts_ms": 1664000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p149760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p150120000-canonical-v1",
+   "pts_ms": 1668000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p150120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p150390000-canonical-v1",
+   "pts_ms": 1671000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p150390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

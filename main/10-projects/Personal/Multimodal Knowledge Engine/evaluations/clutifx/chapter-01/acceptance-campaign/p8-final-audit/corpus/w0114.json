@@ -1,0 +1,422 @@
+{
+ "window": "w0114",
+ "start": "29:05",
+ "end": "29:13",
+ "start_ms": 1745000,
+ "end_ms": 1753000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-first-example-order-block",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La zona señalada en el primer ejemplo se presenta como un ejemplo del concepto de order block.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00251",
+    "asr-00252",
+    "frame-4de8f12d4841c630-s0-p157410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "48980516dc4ab213527885d29b14c7f889598c93917446faf88c0cca47ff7f8a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas citadas introducen un ejemplo con «Por ejemplo, aquí» y enseguida identifican lo señalado: «Esto sería un poco el concepto de order block»; la imagen muestra la zona resaltada a la que se refiere el ejemplo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la zona señalada en ese ejemplo se presenta como una illustration del concepto de order block."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b9eca28c852746ada7f70ba02d9e932d76456f13ee43f26030f2376001d22711"
+    ],
+    "response_id": "gen-1791113894-KBIPY7EwGOHJGhfc2OVG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-after-close-outside",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Cuando la vela señalada se cierra por fuera de la zona mostrada, ya se puede tomar un long para ir hacia arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00251",
+    "asr-00252",
+    "frame-4de8f12d4841c630-s0-p157050000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p157230000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p157410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "09da63fc73e2da844253d1875417f036a168a75293c820c1ac633dac75e2049c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción cited statement afirma directamente que, una vez que la vela se cierra por fuera, ya se puede tomar un long para subir."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La zona señalada y la vela束 a la que se refiere el enunciado se resuelven en las imágenes y el contexto citados."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La condición de cierre fuera de la zona modifica la misma regla de entrada; no constituye una proposición independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b9eca28c852746ada7f70ba02d9e932d76456f13ee43f26030f2376001d22711"
+    ],
+    "response_id": "gen-1791113894-KBIPY7EwGOHJGhfc2OVG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-after-second-close",
+   "kind": "rule",
+   "version": 1,
+   "statement": "En el segundo ejemplo, cuando la vela señalada se cierra en la zona indicada, ya se podría tomar un long.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00252",
+    "asr-00253",
+    "frame-4de8f12d4841c630-s0-p157590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p157680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p157770000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "73084e2013ae2d36a00155bbc980528d79f2bcbf6d89b4583110db0500b1a1cf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que, cuando la vela «cierra aquí», en la zona indicada, «ya podrías poner tu long»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La cláusula temporal y espacial delimita una sola regla de entrada y no añade una proposición independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b9eca28c852746ada7f70ba02d9e932d76456f13ee43f26030f2376001d22711"
+    ],
+    "response_id": "gen-1791113894-KBIPY7EwGOHJGhfc2OVG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-projection-entry-115952",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La entrada de la proyección de posición larga es 1,15952.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p157410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3720fa798771b6ed0ca9de011942fe144b378d32af8cbb1f8b5bb5495b00e7f0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La proyección de posición larga muestra 1,15952 en la línea de entrada que separa las zonas de beneficio y pérdida."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el valor de entrada de esa proyección."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b9eca28c852746ada7f70ba02d9e932d76456f13ee43f26030f2376001d22711"
+    ],
+    "response_id": "gen-1791113894-KBIPY7EwGOHJGhfc2OVG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-projection-stop-115854",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El stop de la proyección de posición larga es 1,15854.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p157410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8e2200a3a39fd8440bd19a5152f6515437ae3e02330a5984351a97c511b26770",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La proyección de posición larga muestra una etiqueta de stop alineada con el nivel 1,15854 en el eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b9eca28c852746ada7f70ba02d9e932d76456f13ee43f26030f2376001d22711"
+    ],
+    "response_id": "gen-1791113894-KBIPY7EwGOHJGhfc2OVG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-projection-target-116168",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo de la proyección de posición larga es 1,16168.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p157410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6cbb7f9b9e53a89c38d36df866708c4aa7d04f86f6378fbd6e2ede8a05c15a81",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La proyección de posición larga muestra la etiqueta «Objetivo» y el nivel destacado 1,16168 en el gráfico de EURUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b9eca28c852746ada7f70ba02d9e932d76456f13ee43f26030f2376001d22711"
+    ],
+    "response_id": "gen-1791113894-KBIPY7EwGOHJGhfc2OVG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-stop-adjusted-115634-to-115852",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El stop de la proyección se ajusta de 1,15634 a 1,15852.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p157050000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p157230000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5a8dd99b9fa7a12fc41e15f9ed5d447322068276f9c5045c279aa73ecb13ecf4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra el stop de la proyección en 1,15634 y la segunda lo muestra ajustado a 1,15852."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El cambio de un nivel del stop a otro constituye una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b9eca28c852746ada7f70ba02d9e932d76456f13ee43f26030f2376001d22711"
+    ],
+    "response_id": "gen-1791113894-KBIPY7EwGOHJGhfc2OVG"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-second-example-order-block",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La zona indicada en el segundo ejemplo vuelve a presentarse como un order block.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00252",
+    "asr-00253",
+    "frame-4de8f12d4841c630-s0-p157590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p157680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p157770000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c4b8a193fe67d1b5f1970c9daca69d13b1a3066e05e6a709116ea35b3efbf9f7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción presenta primero el concepto de «order block» y, en el segundo ejemplo, dice «otra vez, order block aquí», lo que identifica de nuevo la zona indicada como un order block."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la zona del segundo ejemplo reaparecetabsicamente como order block."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "b9eca28c852746ada7f70ba02d9e932d76456f13ee43f26030f2376001d22711"
+    ],
+    "response_id": "gen-1791113894-KBIPY7EwGOHJGhfc2OVG"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00251",
+   "start_ms": 1735100,
+   "end_ms": 1747880,
+   "text": "Por ejemplo, aquí, una vez esta vela se cierra por fuera, aquí tú ya puedes tomar tu long para ir para arriba."
+  },
+  {
+   "id": "asr-00252",
+   "start_ms": 1748400,
+   "end_ms": 1749920,
+   "text": "Esto sería un poco el concepto de order block."
+  },
+  {
+   "id": "asr-00253",
+   "start_ms": 1750940,
+   "end_ms": 1761660,
+   "text": "O aquí, en esta, cuando esta cierra aquí, otra vez, order block aquí, ya podrías poner tu long."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157050000-canonical-v1",
+   "pts_ms": 1745000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157230000-canonical-v1",
+   "pts_ms": 1747000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157230000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157320000-canonical-v1",
+   "pts_ms": 1748000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157410000-canonical-v1",
+   "pts_ms": 1749000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157500000-canonical-v1",
+   "pts_ms": 1750000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157590000-canonical-v1",
+   "pts_ms": 1751000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157680000-canonical-v1",
+   "pts_ms": 1752000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p157770000-canonical-v1",
+   "pts_ms": 1753000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p157770000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

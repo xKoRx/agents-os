@@ -1,0 +1,102 @@
+{
+ "window": "w0122",
+ "start": "30:56",
+ "end": "31:16",
+ "start_ms": 1856000,
+ "end_ms": 1876000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00266",
+   "start_ms": 1845970,
+   "end_ms": 1856890,
+   "text": "Entonces, esto de aquí es a la 1, por ejemplo, hora New York, y luego esto de aquí arriba sería a las 5, hora New York, ¿vale?"
+  },
+  {
+   "id": "asr-00267",
+   "start_ms": 1856970,
+   "end_ms": 1857790,
+   "text": "Que es el cierre."
+  },
+  {
+   "id": "asr-00268",
+   "start_ms": 1858130,
+   "end_ms": 1859390,
+   "text": "Entonces, ¿cómo se vería esta vela?"
+  },
+  {
+   "id": "asr-00269",
+   "start_ms": 1859770,
+   "end_ms": 1862370,
+   "text": "Esta vela pintada se vería así."
+  },
+  {
+   "id": "asr-00270",
+   "start_ms": 1862930,
+   "end_ms": 1883530,
+   "text": "Abre, manipula, entonces esto ahora es una mecha ya, así, sube y baja un poco más hasta cerrar, dejando la mecha ahí arriba, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p167040000-canonical-v1",
+   "pts_ms": 1856000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p167040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p167220000-canonical-v1",
+   "pts_ms": 1858000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p167220000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p167310000-canonical-v1",
+   "pts_ms": 1859000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p167310000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p167400000-canonical-v1",
+   "pts_ms": 1860000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p167400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p167760000-canonical-v1",
+   "pts_ms": 1864000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p167760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p168120000-canonical-v1",
+   "pts_ms": 1868000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p168120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p168480000-canonical-v1",
+   "pts_ms": 1872000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p168480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p168840000-canonical-v1",
+   "pts_ms": 1876000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p168840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

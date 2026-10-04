@@ -1,0 +1,557 @@
+{
+ "window": "w0096",
+ "start": "24:36",
+ "end": "24:52",
+ "start_ms": 1476000,
+ "end_ms": 1492000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-crear-rango-mostrado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La línea puede crear el rango mostrado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00201",
+    "asr-00202",
+    "asr-00203",
+    "frame-4de8f12d4841c630-s0-p134280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b67348579740841fde3cc9cdf4be1ab65a8b96566ff81177bc47c3b3dd15a28b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el elemento puede ser usado «para crear el rango» y la imagen muestra la línea y el rango构造ado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la línea tiene la posibilidad de crear el rango mostrado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "23d21683b4a3ea36abc8b3ccf9eb1c33dd0b15144778844b445c5c7590a089db"
+    ],
+    "response_id": "gen-1791108098-6zOHvDPDE2MMhJtJ4sNC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-punto-control-rectangulo-blanca-derecho",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La parte derecha del gráfico muestra un punto de control azul en el borde inferior de un rectángulo blanco.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p134280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d1e510b0ff360ccc87b84fe5e3ad484412a7af1491dd44deb92a9bfa91f546c4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra en la parte derecha un punto de control circular azul situado en el borde inferior de un rectángulo blanco."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "23d21683b4a3ea36abc8b3ccf9eb1c33dd0b15144778844b445c5c7590a089db"
+    ],
+    "response_id": "gen-1791108098-6zOHvDPDE2MMhJtJ4sNC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-mostrado-llegar-al-target",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango mostrado puede servir para llegar hasta el target.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00202",
+    "asr-00203",
+    "frame-4de8f12d4841c630-s0-p134280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "67a4bd564a63e64659389e2aac5ca508bad3e9adc7783e5a6980e80b8e8b9517",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el rango mostrado puede crearse «para poder llegar hasta el target»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la posibilidad de que el rango mostrado sirva para alcanzar el target."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "23d21683b4a3ea36abc8b3ccf9eb1c33dd0b15144778844b445c5c7590a089db"
+    ],
+    "response_id": "gen-1791108098-6zOHvDPDE2MMhJtJ4sNC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-negro-derecha-desaparece",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rectángulo negro seleccionado en la parte derecha deja de estar visible en la imagen siguiente.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p133920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p134100000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bf6bb12a64ab527c8ea7b85f2ea0d88bef893d0e0753090782ba912839f51dc4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra un rectángulo negro en la parte derecha con marcas de selección; en la segunda imagen ese rectángulo ya no es visible."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "23d21683b4a3ea36abc8b3ccf9eb1c33dd0b15144778844b445c5c7590a089db"
+    ],
+    "response_id": "gen-1791108098-6zOHvDPDE2MMhJtJ4sNC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-negro-derecha-seleccionado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La parte derecha del gráfico muestra un rectángulo negro seleccionado.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p133920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b9a54a14e1f31d6ab6dab1e7db9ee166900efd6a15139e810e7d5579f7733573",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra, en la parte derecha del gráfico, un rectángulo negro conHandles de selección visibles."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una única proposición: ese rectángulo negro está seleccionado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "23d21683b4a3ea36abc8b3ccf9eb1c33dd0b15144778844b445c5c7590a089db"
+    ],
+    "response_id": "gen-1791108098-6zOHvDPDE2MMhJtJ4sNC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-negro-izquierda-seleccionado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La parte izquierda del gráfico muestra un rectángulo negro seleccionado.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p132840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b854bfbf1569582753c0118b56c7bf26c6d733810e76c7ff9c10f701714602b9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra en la parte izquierda un rectángulo negro con puntos de control que indican que está seleccionado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "23d21683b4a3ea36abc8b3ccf9eb1c33dd0b15144778844b445c5c7590a089db"
+    ],
+    "response_id": "gen-1791108098-6zOHvDPDE2MMhJtJ4sNC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-puede-crear-el-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La SMT puede servir para crear el rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00201"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5e6701e4ab3fc46d4b8ecba13f922bf55a8b476e3f5f0a13a6a6b87f43434526",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que la SMT puede ser utilizada para crear el rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la SMT puede servir para crear el rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "23d21683b4a3ea36abc8b3ccf9eb1c33dd0b15144778844b445c5c7590a089db"
+    ],
+    "response_id": "gen-1791108098-6zOHvDPDE2MMhJtJ4sNC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-puede-llegar-al-objetivo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La SMT puede servir para llegar al objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00201"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "07fe576209954bca53bc335693593c995ee1d8d41539774c7cdb6b58d6ee0439",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que la SMT puede ser utilizada para llegar al objetivo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la SMT puede servir para llegar al objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "23d21683b4a3ea36abc8b3ccf9eb1c33dd0b15144778844b445c5c7590a089db"
+    ],
+    "response_id": "gen-1791108098-6zOHvDPDE2MMhJtJ4sNC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-rango-inicial",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La SMT puede hacer referencia solo al rango inicial.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00202"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_CONTRADICTED",
+    "invocation_id": "a59fd2b89f48fde760b27f7b144330705d2fe11d95e09b04a04cf3f95018f2ce",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que no tiene por qué ser solo el rango inicial y que también puede referirse a rangos pendientes, lo que contradice que la SMT pueda hacer referencia únicamente al rango inicial."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_CONTRADICTED",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "23d21683b4a3ea36abc8b3ccf9eb1c33dd0b15144778844b445c5c7590a089db"
+    ],
+    "response_id": "gen-1791108098-6zOHvDPDE2MMhJtJ4sNC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-rangos-pendientes",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La SMT también puede hacer referencia a rangos pendientes.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00202"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "3d4c61b57eb7d33bc8ba08afed6f858f86fcd98832b8e36d0f59d9ce1ac15ff3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que algo puedeování también ser sobre rangos pendientes, pero el segmento citado no identifica explícitamente a la SMT como el sujeto de esa posibilidad."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "23d21683b4a3ea36abc8b3ccf9eb1c33dd0b15144778844b445c5c7590a089db"
+    ],
+    "response_id": "gen-1791108098-6zOHvDPDE2MMhJtJ4sNC"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-llegar-target-depende-creacion-linea",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-mostrado-llegar-al-target",
+   "subject_version": 1,
+   "object_id": "cl-linea-crear-rango-mostrado",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00203",
+    "frame-4de8f12d4841c630-s0-p134280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1321fc8407433568f139c3940e8a22071ccc77fc8dc55fd9eed86beddbc6fc00",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que la línea crea el rango mostrado «para poder llegar hasta el target», estableciendo que la utilidad del rango para alcanzar el target depende de su creación por la línea."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "23d21683b4a3ea36abc8b3ccf9eb1c33dd0b15144778844b445c5c7590a089db"
+    ],
+    "response_id": "gen-1791108098-6zOHvDPDE2MMhJtJ4sNC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rangos-pendientes-excepcion-rango-inicial",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-smt-rangos-pendientes",
+   "subject_version": 1,
+   "object_id": "cl-smt-rango-inicial",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00202"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a26b62a077c066d14f0d775e3837910a7962ebd550b43dd4a5421ffa605686af",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que la SMT no tiene por qué ser solo el rango inicial y que también puede referirse a rangos pendientes; por tanto, la referencia a rangos pendientes constituye una excepción a la afirmación de que solo puede referirse al rango inicial."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "23d21683b4a3ea36abc8b3ccf9eb1c33dd0b15144778844b445c5c7590a089db"
+    ],
+    "response_id": "gen-1791108098-6zOHvDPDE2MMhJtJ4sNC"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00201",
+   "start_ms": 1474660,
+   "end_ms": 1482620,
+   "text": "O sea, ya habéis visto, puede ser la SMT para llegar al objetivo o puede ser la SMT para crear el rango."
+  },
+  {
+   "id": "asr-00202",
+   "start_ms": 1482620,
+   "end_ms": 1490720,
+   "text": "no tiene por qué también ser solo el rango inicial, puede ser también en tema rangos pendientes, como he enseñado antes, ¿vale?"
+  },
+  {
+   "id": "asr-00203",
+   "start_ms": 1490780,
+   "end_ms": 1495880,
+   "text": "Puede ser que la Libra nos crea este de aquí para poder llegar hasta el target, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p132840000-canonical-v1",
+   "pts_ms": 1476000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p132840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p133020000-canonical-v1",
+   "pts_ms": 1478000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p133020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p133110000-canonical-v1",
+   "pts_ms": 1479000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p133110000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p133200000-canonical-v1",
+   "pts_ms": 1480000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p133200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p133560000-canonical-v1",
+   "pts_ms": 1484000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p133560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p133920000-canonical-v1",
+   "pts_ms": 1488000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p133920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p134100000-canonical-v1",
+   "pts_ms": 1490000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p134100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p134280000-canonical-v1",
+   "pts_ms": 1492000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p134280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

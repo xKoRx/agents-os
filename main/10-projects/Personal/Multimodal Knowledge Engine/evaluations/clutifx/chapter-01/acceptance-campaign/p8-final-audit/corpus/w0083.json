@@ -1,0 +1,505 @@
+{
+ "window": "w0083",
+ "start": "21:09",
+ "end": "21:24",
+ "start_ms": 1269000,
+ "end_ms": 1284000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dibujo-zigzag-derecha",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja una trayectoria en zigzag en la parte derecha del esquema.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p114210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p114390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p114480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p114660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4fd5bc1b3d83512d3d1deab92881c7e77a5f1223f0138ab2c553f75bab0aa7ee",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas muestran cómo se dibuja progresivamente una trayectoria en zigzag en la parte derecha del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "da8639252dfd33a66c5bc04661a5cdc32fa4a5d17d344e55835aa70f0c6c3d81"
+    ],
+    "response_id": "gen-1791104320-eYCCpWo8v9gGGdjCoZ0M"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-edicion-etiqueta-gbpusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La etiqueta de la parte derecha cambia de EURUSD a GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p115200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p115560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b59fa1d399214a7715549691592d173d2427ff641dc1ef28ca6781622186124d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra la etiqueta derecha «EURUSD» y la segunda muestra «GBPUSD», por lo que el cambio queda directo不支持 por las evidencias citadas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "da8639252dfd33a66c5bc04661a5cdc32fa4a5d17d344e55835aa70f0c6c3d81"
+    ],
+    "response_id": "gen-1791104320-eYCCpWo8v9gGGdjCoZ0M"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-nuevo-alto",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La trayectoria de EURUSD alcanza un pico posterior más alto que su pico anterior.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174",
+    "asr-00175",
+    "frame-4de8f12d4841c630-s0-p115560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ece0bd07b4fc72740a07bdc61f5402acaabc13854dc05ba3981582a1cbfec3c5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente «nuevo alto en euro», y el cuadro de EURUSD muestra un pico posterior visualmente más alto que el pico anterior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "da8639252dfd33a66c5bc04661a5cdc32fa4a5d17d344e55835aa70f0c6c3d81"
+    ],
+    "response_id": "gen-1791104320-eYCCpWo8v9gGGdjCoZ0M"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-trayectoria-izquierda",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La trayectoria izquierda está identificada como el euro, mediante la etiqueta EURUSD.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p115560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d66d184ddbd31670034d59fcb375953d9d9c5310eee65cc38e2d56255cc52a65",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una trayectoria a la izquierda con la etiqueta visible «EURUSD»; además, el contexto citado identifica ese elemento como el euro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "da8639252dfd33a66c5bc04661a5cdc32fa4a5d17d344e55835aa70f0c6c3d81"
+    ],
+    "response_id": "gen-1791104320-eYCCpWo8v9gGGdjCoZ0M"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-maximo-inferior",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El segundo máximo de GBPUSD queda por debajo de su máximo anterior.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p114660000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p115560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d09e21cac2d6e1d20e733c09b8d4331b72b41ef39d4c4f79880e89251d55e42a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La trayectoria dibujada de GBPUSD muestra un primer máximo y, tras un descenso, un segundo máximo visiblemente inferior al anterior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "da8639252dfd33a66c5bc04661a5cdc32fa4a5d17d344e55835aa70f0c6c3d81"
+    ],
+    "response_id": "gen-1791104320-eYCCpWo8v9gGGdjCoZ0M"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-trayectoria-derecha",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La trayectoria derecha está identificada como la libra, mediante la etiqueta GBPUSD.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p115560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cd652b1b2028dcd411a929a4cc6e91e228d183f609b128f78cdec0ab010ba803",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La trayectoria de la derecha aparece rotulada como «GBPUSD» y la transcripción identifica ese mismo elemento como la libra."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "da8639252dfd33a66c5bc04661a5cdc32fa4a5d17d344e55835aa70f0c6c3d81"
+    ],
+    "response_id": "gen-1791104320-eYCCpWo8v9gGGdjCoZ0M"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-movimiento-etiqueta-eurusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La etiqueta EURUSD se traslada desde la parte izquierda a la parte derecha del esquema.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p114840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p115020000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p115200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ebfc47312ea99df14e14b84e10103306a1e425e017545960a73835a2513ab43d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En el primer fotograma, la etiqueta editable EURUSD aparece en la zona izquierda; en los dos fotogramas siguientes, la misma etiqueta aparece en la zona derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "da8639252dfd33a66c5bc04661a5cdc32fa4a5d17d344e55835aa70f0c6c3d81"
+    ],
+    "response_id": "gen-1791104320-eYCCpWo8v9gGGdjCoZ0M"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-configuracion-euro-libra-conocida",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La configuración del euro y la libra es la SMT que se conocía hasta ese momento.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p115560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0a5f3d7cc321b1168198c42384eb3488e72c567b141125d9ab76f319697ff019",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica lo mostrado como «el euro» y «la libra» y afirma que esa es «la SMT que conocíamos [...] hasta ahora», lo que respalda directamente la proposición sobre la configuración conocida hasta ese momento."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "da8639252dfd33a66c5bc04661a5cdc32fa4a5d17d344e55835aa70f0c6c3d81"
+    ],
+    "response_id": "gen-1791104320-eYCCpWo8v9gGGdjCoZ0M"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-explicado-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El concepto SMT ya está explicado también en el curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4c13bf6a91845155be478a55bfbe978f8f84b667794b9c6ff010e4e482a15fbc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que el concepto SMT ya está explicado también en el curso intermedio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "da8639252dfd33a66c5bc04661a5cdc32fa4a5d17d344e55835aa70f0c6c3d81"
+    ],
+    "response_id": "gen-1791104320-eYCCpWo8v9gGGdjCoZ0M"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-muchos-participantes",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Muchos participantes vienen a SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "15eaf28a4eed34e2652a89e9f55973c135a0a101154ade349678b8932ab88d76",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice explícitamente «Muchos venís a SMT», lo que respalda que muchos participantes vengan a SMT."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "da8639252dfd33a66c5bc04661a5cdc32fa4a5d17d344e55835aa70f0c6c3d81"
+    ],
+    "response_id": "gen-1791104320-eYCCpWo8v9gGGdjCoZ0M"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-participantes-ya-saben",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los participantes que vienen a SMT ya saben qué es.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9efdcc1beb6ce8b41893d483eca60b10d03a4bf42204f14f7c02596f07832f10",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente «Muchos venís a SMT. Ya sabéis qué es», esto es, que quienes vienen a SMT ya conocen qué es."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; la frase «que vienen a SMT» solo restringe el grupo al que se aplica."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "da8639252dfd33a66c5bc04661a5cdc32fa4a5d17d344e55835aa70f0c6c3d81"
+    ],
+    "response_id": "gen-1791104320-eYCCpWo8v9gGGdjCoZ0M"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00174",
+   "start_ms": 1245430,
+   "end_ms": 1283400,
+   "text": "Vamos a seguir. Concepto SMT. Ya está explicado también en el curso intermedio. Muchos venís a SMT. Ya sabéis qué es. La SMT que conocemos nosotros o que conocíais vosotros anteriormente es esta. Por ejemplo, esto es el euro. Y esto es la libra. Esta sería la SMT que conocíamos, que conocíais, perdón, hasta ahora."
+  },
+  {
+   "id": "asr-00175",
+   "start_ms": 1283400,
+   "end_ms": 1285320,
+   "text": "nuevo alto en euro"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114210000-canonical-v1",
+   "pts_ms": 1269000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114210000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114390000-canonical-v1",
+   "pts_ms": 1271000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114480000-canonical-v1",
+   "pts_ms": 1272000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114660000-canonical-v1",
+   "pts_ms": 1274000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114840000-canonical-v1",
+   "pts_ms": 1276000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p115020000-canonical-v1",
+   "pts_ms": 1278000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p115020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p115200000-canonical-v1",
+   "pts_ms": 1280000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p115200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p115560000-canonical-v1",
+   "pts_ms": 1284000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p115560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

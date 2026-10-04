@@ -1,0 +1,770 @@
+{
+ "window": "w0084",
+ "start": "21:26",
+ "end": "21:44",
+ "start_ms": 1286000,
+ "end_ms": 1304000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-capitulo-exclusivo-smt",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Habrá un capítulo dedicado exclusivamente a SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00182"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b3008063c14fe61c01f235a735bd6eb819d654fd1a6214e4a84759ea72b6b7de",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que habrá un capítulo solo de SMT."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; la exclusividad restringe esa misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ensenado-senal-reversion-hasta-ahora",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hasta ahora se ha enseñado que la falta de un nuevo alto en GBPUSD podría ser una señal de reversión.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00176",
+    "asr-00177",
+    "asr-00178",
+    "frame-4de8f12d4841c630-s0-p115920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a801eba16331ffb558cb4a3107c396d9fdee51ca28fd95f876bb977ef4786905",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones indican que la libra no hace un nuevo alto, que esto podría ser una señal de reversión y que es lo que se ha enseñado hasta ahora; el marco identifica el contexto como GBPUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que se ha enseñado una posible regla de reversión asociada a la falta de un nuevo alto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estrategia-cambia-un-poco",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La estrategia va a cambiar un poco.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00178",
+    "asr-00179"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d220b3a817023c806eb39ece26ccb4d71219b276d02f2fcadfaa264c809e2779",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita afirma explícitamente que «la estrategia va a cambiar un poco»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el cambio de la estrategia."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-no-nuevo-alto",
+   "kind": "observation",
+   "version": 1,
+   "statement": "GBPUSD no hace un nuevo alto.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00176",
+    "frame-4de8f12d4841c630-s0-p115920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p116280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d4384ec9c037d483c7dfb96cc3df8c1fddf95649e85122dce55821006d914ad7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente «no hace nuevo alto en libra», y las imágenes identifican el gráfico como GBPUSD; «libra» corresponde al mismo activo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: GBPUSD no está formando un nuevo máximo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-instrumento-cabecera-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento indicado en la cabecera del gráfico es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p115740000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p117360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ece8cd1260f98672e7f046a5a741d114b65fde52e155b792e4dc4f10eab4b532",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la cabecera de ambos fotogramas se muestra explícitamente «EURUSD»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-introduccion-pequena-smt",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Ahora se hará una pequeña introducción al concepto de SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00180",
+    "asr-00181",
+    "asr-00184"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6aa8244af3d56666b9f91949e71507eec3b2eb80b857a139eadefa8819b9c590",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas mencionan «una pequeña introducción», «el concepto de SMT» y «lo vais a ver ahora», lo que respalda que ahora se realizará esa introducción."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-ascendente-zona-eurusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El diagrama anotado muestra una línea ascendente en la zona rotulada EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p115740000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p117360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "aed0bb470b16a2006cf91f8ea5bfd16977498a2492a6ff34bf7885e70094c3a3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen citada muestra una línea negra con pendiente ascendente en la zona rotulada EURUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una sola proposición: la presencia de una línea ascendente en esa zona del diagrama anotado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-descendente-zona-gbpusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El diagrama anotado muestra una línea descendente en la zona rotulada GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p115920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p117360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "da4b92c9f7f7c5405d81d4fb81e723f4448ebb92752b9b91ce51e5cb2b734fa2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes evidencia una línea oblicua descendente en la zona marcada GBPUSD; la segunda imagen la muestra claramente sobre la etiqueta."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-senal-reversion-sin-nuevo-alto",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La falta de un nuevo alto en GBPUSD podría ser una señal de reversión.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00176",
+    "asr-00177",
+    "frame-4de8f12d4841c630-s0-p115920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c9764aab60e8c5780312ffef8bc7167017210df420c3b385b2a45badf3458c14",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones indican que no se hace un nuevo alto en la libra y que, por ello, podría ser una señal de reversión; el marco identifica el activo como GBPUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: la falta de un nuevo alto en GBPUSD podría signallingar una reversión."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-claro-en-capitulo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El concepto de SMT quedará mucho más claro en el capítulo dedicado exclusivamente a SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00182",
+    "asr-00183"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3398b46ab58f1dc2555b5897aad3b0befb8a885b6176eeeaae81bb07d1e109b8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas indican que habrá un capítulo dedicado exclusivamente a SMT y que allí el concepto quedará mucho más claro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la claridad del concepto en ese capítulo; la referencia al capítulo solo restringe el lugar de esa claridad."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-cabecera-8h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad indicada en la cabecera del gráfico es 8h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p115740000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p117360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "25f3afff30e69827c02390f676b1608be95b40f7d0325402e72ff252943fe036",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la cabecera de ambos gráficos se lee «EURUSD · 8h · FOREX.com», lo que muestra que la temporalidad indicada es 8h."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la temporalidad indicada en la cabecera es 8h."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-trayectoria-eurusd-flecha-abajo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La trayectoria dibujada de EURUSD termina con una flecha hacia abajo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p115740000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p117360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9164a0fe1704d7494cff48b3ffa36a191919b0f1275e8494e2036e98d7256340",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, la trayectoria dibujada y etiquetada como EURUSD termina en una flecha apuntando hacia abajo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-trayectoria-gbpusd-flecha-abajo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La trayectoria dibujada de GBPUSD termina con una flecha hacia abajo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p115740000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p117360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7e8e5dc60faa50dddcb7c4e985fb88859d7d165ce7ec55fd8d6f5df7b13c4bdc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran una trayectoria etiquetada como GBPUSD que termina en una flecha apuntando hacia abajo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-claridad-smt-depende-capitulo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-smt-claro-en-capitulo",
+   "subject_version": 1,
+   "object_id": "cl-capitulo-exclusivo-smt",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00182",
+    "asr-00183"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1e2a44eae68654dad4ce15e68512f75de1ec115784bdde4156cc6295848677f4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia anuncia un capítulo dedicado exclusivamente a SMT y afirma que allí «va a quedar mucho más claro», lo que vincula la mayor claridad del concepto de SMT con dicho capítulo en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-ensenado-depende-senal-reversion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-ensenado-senal-reversion-hasta-ahora",
+   "subject_version": 1,
+   "object_id": "cl-senal-reversion-sin-nuevo-alto",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00176",
+    "asr-00177",
+    "asr-00178"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "603ea009e50fdcd4efde7205e87fa4388f38e15286cf61e35d102c7df9866c4e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones indican que la falta de un nuevo alto en libra «podría ser una señal de reversión» y que «esto» es «lo que os han enseñado hasta ahora», establishendo la relación orientación sujeto depende del objeto entre la afirmación enseñada y su contenido."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-senal-reversion-depende-no-nuevo-alto",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-senal-reversion-sin-nuevo-alto",
+   "subject_version": 1,
+   "object_id": "cl-gbpusd-no-nuevo-alto",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00176",
+    "asr-00177"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "884832e4c9aef3be6c41846da1d3102d29c80a88163195ef1735e42806398270",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que GBPUSD no hace un nuevo alto y que, por lo tanto, esto podría ser una señal de reversión, estableciendo explícitamente la relación de dependencia en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a75dd801d8ee490c57dd83c76b25e5db3312734f8a914023ab0a0ef8aeedc661"
+    ],
+    "response_id": "gen-1791104485-6vqdSe75xheMzNKSsQQq"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00176",
+   "start_ms": 1285320,
+   "end_ms": 1289680,
+   "text": "no hace nuevo alto en libra"
+  },
+  {
+   "id": "asr-00177",
+   "start_ms": 1289680,
+   "end_ms": 1292420,
+   "text": "por lo tanto podría ser una señal de reversión"
+  },
+  {
+   "id": "asr-00178",
+   "start_ms": 1292420,
+   "end_ms": 1293900,
+   "text": "esto es lo que os han enseñado hasta ahora"
+  },
+  {
+   "id": "asr-00179",
+   "start_ms": 1293900,
+   "end_ms": 1296240,
+   "text": "con la estrategia va a cambiar un poco"
+  },
+  {
+   "id": "asr-00180",
+   "start_ms": 1296240,
+   "end_ms": 1297760,
+   "text": "el concepto de SMT"
+  },
+  {
+   "id": "asr-00181",
+   "start_ms": 1297760,
+   "end_ms": 1298600,
+   "text": "lo vais a ver ahora"
+  },
+  {
+   "id": "asr-00182",
+   "start_ms": 1298600,
+   "end_ms": 1302320,
+   "text": "va a haber un capítulo solo de SMT"
+  },
+  {
+   "id": "asr-00183",
+   "start_ms": 1302320,
+   "end_ms": 1303760,
+   "text": "donde va a quedar mucho más claro"
+  },
+  {
+   "id": "asr-00184",
+   "start_ms": 1303760,
+   "end_ms": 1305680,
+   "text": "pero para hacer una pequeña introducción"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p115740000-canonical-v1",
+   "pts_ms": 1286000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p115740000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p115920000-canonical-v1",
+   "pts_ms": 1288000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p115920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p116280000-canonical-v1",
+   "pts_ms": 1292000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p116280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p116550000-canonical-v1",
+   "pts_ms": 1295000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p116550000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p116640000-canonical-v1",
+   "pts_ms": 1296000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p116640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p116910000-canonical-v1",
+   "pts_ms": 1299000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p116910000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p117000000-canonical-v1",
+   "pts_ms": 1300000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p117000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p117360000-canonical-v1",
+   "pts_ms": 1304000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p117360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

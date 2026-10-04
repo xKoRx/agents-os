@@ -1,0 +1,116 @@
+[
+ {
+  "window": "w0004",
+  "start": "00:48",
+  "end": "01:04",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0006",
+  "start": "01:16",
+  "end": "01:29",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0009",
+  "start": "01:59",
+  "end": "02:08",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0013",
+  "start": "02:56",
+  "end": "03:03",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0029",
+  "start": "06:14",
+  "end": "06:26",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0032",
+  "start": "07:02",
+  "end": "07:16",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0035",
+  "start": "07:43",
+  "end": "07:56",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0054",
+  "start": "12:45",
+  "end": "12:57",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0058",
+  "start": "13:39",
+  "end": "13:56",
+  "category": "bad evidence ref"
+ },
+ {
+  "window": "w0066",
+  "start": "16:00",
+  "end": "16:23",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0075",
+  "start": "18:56",
+  "end": "19:16",
+  "category": "other"
+ },
+ {
+  "window": "w0081",
+  "start": "20:40",
+  "end": "20:51",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0088",
+  "start": "22:18",
+  "end": "22:28",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0093",
+  "start": "23:37",
+  "end": "23:54",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0098",
+  "start": "25:25",
+  "end": "25:37",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0111",
+  "start": "28:32",
+  "end": "28:41",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0122",
+  "start": "30:56",
+  "end": "31:16",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0127",
+  "start": "32:41",
+  "end": "32:54",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0128",
+  "start": "32:55",
+  "end": "33:12",
+  "category": "identity divergence"
+ }
+]

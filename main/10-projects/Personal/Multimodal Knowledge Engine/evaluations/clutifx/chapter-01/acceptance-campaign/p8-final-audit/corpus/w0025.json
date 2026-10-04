@@ -1,0 +1,574 @@
+{
+ "window": "w0025",
+ "start": "05:29",
+ "end": "05:44",
+ "start_ms": 329000,
+ "end_ms": 344000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-assume-forming-ranges-complete",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Hay que asumir que los rangos que se van formando se van a completar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00048"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "18d2e9404890520e91ae3f7fbacfbd6a4304daa0db86d972c2349b4ed7a1a254",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que hay que asumir que los rangos que se van formando se van a completar."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: los rangos en formación se completarán como algo que debe asumirse."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d582093fbc5f11d7b19f50405b7ddd731072fdb55ea25ff801a617826fe0dc58"
+    ],
+    "response_id": "gen-1791086569-lYp1F9cLGoA3FjxuyQAg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bias-strategy-identify-completing-ranges",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En los siguientes vídeos, el bias y la explicación de la estrategia permitirán entender qué rangos se van a completar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00049"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bf89a590e84aebc373de5652c6e6edd9ad0fffb5315baedb912fb425a10be8c2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que, en los siguientes vídeos, ver el bias y la explicación de la estrategia permitirá entender qué rangos se van a completar."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d582093fbc5f11d7b19f50405b7ddd731072fdb55ea25ff801a617826fe0dc58"
+    ],
+    "response_id": "gen-1791086569-lYp1F9cLGoA3FjxuyQAg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bias-strategy-identify-noncompleting-ranges",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En los siguientes vídeos, el bias y la explicación de la estrategia permitirán entender qué rangos no se van a completar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00049"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "99e8c8d758f3e004358e52cf0a284019f79fbb3374edc6e802c39700b8ad3c52",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que, en los siguientes vídeos, ver el bias y la explicación de la estrategia permitirá entender qué rangos no se van a completar."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el bias y la explicación de la estrategiaGuardianWirerary permet will enable comprehension of the non-completing ranges."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d582093fbc5f11d7b19f50405b7ddd731072fdb55ea25ff801a617826fe0dc58"
+    ],
+    "response_id": "gen-1791086569-lYp1F9cLGoA3FjxuyQAg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bias-strategy-teaches-range-navigation",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En los siguientes vídeos, el bias y la explicación de la estrategia permitirán entender cómo navegar por los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00049"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8235c7551275afe7c21e37713719d3afd9ce41885f6f555cbc8c7547f1a82d1e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que, en los siguientes vídeos, ver el bias y la explicación de la estrategia permitirá entender cómo navegar por los rangos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el bias y la explicación de la estrategia miscon，这将 permitir comprender la navegación por los rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d582093fbc5f11d7b19f50405b7ddd731072fdb55ea25ff801a617826fe0dc58"
+    ],
+    "response_id": "gen-1791086569-lYp1F9cLGoA3FjxuyQAg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-black-candle-selected",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El cuerpo de una vela negra aparece seleccionado en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p30960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "56858df094cd6b37cb3435170a3af912975699f8528ac6eb849095d9fd6ab863",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el cuerpo negro de una vela rodeado por controles de selección."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el cuerpo de una vela negra aparece seleccionado en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d582093fbc5f11d7b19f50405b7ddd731072fdb55ea25ff801a617826fe0dc58"
+    ],
+    "response_id": "gen-1791086569-lYp1F9cLGoA3FjxuyQAg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-date-2025-06-24",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La fecha mostrada en el gráfico es 24/6/2025.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p29610000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p88560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0cf4e6fbbfe9c5494916aa88b44d7a93a1eb9d26445c55dc19a008bac6aff560",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Both cited frames visibly display the date 24/6/2025 on the chart."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d582093fbc5f11d7b19f50405b7ddd731072fdb55ea25ff801a617826fe0dc58",
+     "dbbd09a6d8f4cbba0855f7eb55a3f674bc5c95818516b89fb4b1460577324c65"
+    ],
+    "response_id": "gen-1791086569-lYp1F9cLGoA3FjxuyQAg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-timeframe-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico mostrado es 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p29610000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "66d02b2b1bf49b9d79794ae43aa18f8eef7bf883fc156623216aad16e402cf17",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible del gráfico indica «EURUSD | 15M», lo que sustenta que su temporalidad es 15M."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d582093fbc5f11d7b19f50405b7ddd731072fdb55ea25ff801a617826fe0dc58"
+    ],
+    "response_id": "gen-1791086569-lYp1F9cLGoA3FjxuyQAg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-completion-has-nuances",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La afirmación de que los rangos se van a completar tiene matices.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00048",
+    "asr-00049"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "531eed0a0047cd59f1f4fb2c5d6aeb7f702b6785494373dd66b21913333c30e5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que «hay matices» y aclara que algunos rangos se completarán y otros no, lo que respalda directamente que la afirmación general tiene matices."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición: que la afirmación sobre la finalización de los rangos requiere matices."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d582093fbc5f11d7b19f50405b7ddd731072fdb55ea25ff801a617826fe0dc58"
+    ],
+    "response_id": "gen-1791086569-lYp1F9cLGoA3FjxuyQAg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ranges-are-important",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos son importantes.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00047"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3bece8a3662e0b82eb4f75506f3207361a06b5584e50019342e753fe5a445e6b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma expresamente «la importancia de los rangos», lo que respalda que «los rangos son importantes»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable de forma independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d582093fbc5f11d7b19f50405b7ddd731072fdb55ea25ff801a617826fe0dc58"
+    ],
+    "response_id": "gen-1791086569-lYp1F9cLGoA3FjxuyQAg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-some-ranges-do-not-complete",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hay rangos que no se van a completar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00049"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1f0473e73070188764c52e1c314910771c22c5b20e48651ec50cd88a83ed81d0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que se explicará qué rangos no se van a completar, lo que respalda que existen rangos que no se completarán."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la existencia de rangos que no se van a completar."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d582093fbc5f11d7b19f50405b7ddd731072fdb55ea25ff801a617826fe0dc58"
+    ],
+    "response_id": "gen-1791086569-lYp1F9cLGoA3FjxuyQAg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-white-candle-selected",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El cuerpo de una vela blanca aparece seleccionado en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p29880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "024e614d4baa30a206605116a02d8de01f686dcbea035d2d58306247bd8b1995",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una vela blanca en el gráfico con una caja de selección y tiradores alrededor de su cuerpo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d582093fbc5f11d7b19f50405b7ddd731072fdb55ea25ff801a617826fe0dc58"
+    ],
+    "response_id": "gen-1791086569-lYp1F9cLGoA3FjxuyQAg"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-noncompleting-ranges-exception-to-assumption",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-some-ranges-do-not-complete",
+   "subject_version": 1,
+   "object_id": "cl-assume-forming-ranges-complete",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00048",
+    "asr-00049"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d79868c64a11384370dd5822e89262a4ce2ddbf29e7f94b30d2cc189930abdcf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera cita afirma explícitamente la suposición de que los rangos que se van formando se van a completar."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita introduce matices y afirma que hay rangos que no se van a completar, lo que presenta esos rangos como una excepción a dicha suposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "d582093fbc5f11d7b19f50405b7ddd731072fdb55ea25ff801a617826fe0dc58"
+    ],
+    "response_id": "gen-1791086569-lYp1F9cLGoA3FjxuyQAg"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00047",
+   "start_ms": 326540,
+   "end_ms": 331900,
+   "text": "Para que sepáis la importancia de los rangos es esto."
+  },
+  {
+   "id": "asr-00048",
+   "start_ms": 332160,
+   "end_ms": 335700,
+   "text": "Es asumir que los rangos que se nos van formando se van a completar."
+  },
+  {
+   "id": "asr-00049",
+   "start_ms": 335700,
+   "end_ms": 347660,
+   "text": "Ya vais a ver que hay matices, obviamente. En los siguientes vídeos, cuando veáis el bias y la explicación de la estrategia, ya vais a entender qué rangos se van a completar, qué no se van a completar y cómo navegar por ellos."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p29610000-canonical-v1",
+   "pts_ms": 329000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p29610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p29790000-canonical-v1",
+   "pts_ms": 331000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p29790000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p29880000-canonical-v1",
+   "pts_ms": 332000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p29880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p29970000-canonical-v1",
+   "pts_ms": 333000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p29970000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p30240000-canonical-v1",
+   "pts_ms": 336000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p30240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p30600000-canonical-v1",
+   "pts_ms": 340000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p30600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p30780000-canonical-v1",
+   "pts_ms": 342000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p30780000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p30960000-canonical-v1",
+   "pts_ms": 344000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p30960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p88560000-canonical-v1",
+   "pts_ms": 984000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p88560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

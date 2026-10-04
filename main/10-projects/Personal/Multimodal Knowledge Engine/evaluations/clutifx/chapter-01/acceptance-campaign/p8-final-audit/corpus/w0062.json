@@ -1,0 +1,1009 @@
+{
+ "window": "w0062",
+ "start": "14:41",
+ "end": "14:56",
+ "start_ms": 881000,
+ "end_ms": 896000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bullish-target-level-115803",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo bullish mostrado está marcado en 1,15803.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00119",
+    "frame-4de8f12d4841c630-s0-p79290000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0ba024972edc4c53a9aa950f72e9b9a8504fdb7493f086567cd0a18b9f39ebea",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica un «objetivo bullish» y la imagen muestra la línea horizontal correspondiente marcada en 1,15803."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-favorable-range-bullish",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango a favor es bullish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00119"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8ed7205692fa21353f3a9706e728637a6f6b997405a23ecf145a8839bd1fb998",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente: «Rango a favor, o sea, alcista», estableciendo directamente que el rango a favor es bullish."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-favorable-range-pending",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango a favor está pendiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00119"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5c3894cbfcf06ea27e139b0ccaedaa30459abc87a721fd4d609087c521503cdd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente: «Rango a favor, o sea, alcista con el objetivo bullish, rango pendiente»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: el rango a favor está pendiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-favorable-range-target-bullish",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo del rango a favor es bullish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00119"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7331110dacdc94e784087b2b0ed06055be9ee0f399f6924599c776fbf5a819ef",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente: «Rango a favor, o sea, alcista con el objetivo bullish», lo que establece que el objetivo del rango a favor es bullish."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-instrument-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p148410000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p160110000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p160920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p161280000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p79290000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p91890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3d791308695eee493c53c693e4e8b9a7fde806d51197f24f8cfd2edda55a5a00",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las seis imágenes citadas muestran claramente la etiqueta «EURUSD» para el instrumento graphing."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación identifica únicamente el instrumento mostrado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "1936bd15f683a158b17e27f93f64c9a6b82902c1c1201a416e59b035d17a308d",
+     "6177f4d5609f8c162adca094aac4f7d95f0c385c01f2982ffd3a1909b03fb7b6",
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2",
+     "7f28c6bfe9b32696971c972ba766de267f252ba96fd7ffa460bbcdba8d946c37",
+     "9275ecd82c8a762a0ee68a03e74f754bfca97a6218a2057c3ffb9890f0eeda14"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-price-currency-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La moneda del eje de precios es USD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p79290000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "42a99c466393387443f7662f3837116b56447ae6781383320359279e337b55ac",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta «USD» aparece en la parte superior del eje de precios del gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la moneda del eje de precios es USD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-countertrend",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango reinizado va en contra de nuestra tendencia.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00119"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fca519bf7ddb7c9d0b4e4e8415bac831ec7ed030cbdeda3ba44ca5827ddc2a3b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que el rango reiniciado «va en contra de nuestra tendencia»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-lower-level-114566",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde inferior del rectángulo del rango está alineado con la etiqueta 1,14566.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p79380000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p79470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a2257e57dd45b27b9c7ffd5f4f694aec4fba46cca45d78f212e1dc34d1e5e1e8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la primera imagen, el borde inferior horizontal del rectángulo del rango coincide en altura con la etiqueta destacada 1,14566 del eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-names-concrete-reference",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los nombres de los rangos sirven para hacer más concreta la referencia a ellos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00120"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "24ff1b95fea451d2637e92f9a0034a156c68d2b042b5d4253ffedf7cb78046e8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que los nombres sirven para referirse a los rangos de una forma que permita concretar más la referencia."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-names-low-importance",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los nombres de los rangos tienen poca importancia.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00120"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fdacb3d9df5859b8c7332e2288a89c4e0bec6c9406aba11ef53e78a8c0009d8f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que los nombres de los rangos no tienen mucha importancia."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la baja importancia de los nombres de los rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-rectangle-selected",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rectángulo del rango aparece seleccionado para edición.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p79380000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "25bc12b4b1bc0189f5c6f7846eec3ee051c3633f05f27fc7f970023cad68af11",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El rectángulo de rango muestra controles circulares de selección y una barra de herramientas de edición visible."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-reset-state",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango estaba reiniciado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00119"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "51c2d1af6ea1beea20c42a38a0ab8d9ec0f2d83089cafa1ae2e438f39a1b96b6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente «reiniciado» al describir el rango y explica que ese caso era un reinicio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-right-edge-moved-left",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El borde derecho del rectángulo del rango se desplaza hacia la izquierda.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p79380000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p79470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0387587b520160774c648f82420381d264484668a12e78f815b9d7e87f7df231",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la primera imagen, el borde derecho del rectángulo está cerca del borde derecho de la pantalla; en la segunda, aparece más a la izquierda, mientras el borde izquierdo conserva su posición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre el desplazamiento del borde derecho del rectángulo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-upper-level-115231",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde superior del rectángulo del rango está alineado con la etiqueta 1,15231.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p79290000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p79470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b806df1571f999a1ad337d6d7d891bb1b5096164a367b80cf96b6e91fab0e59a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el borde superior horizontal del rectángulo del rango coincide con la etiqueta 1,15231 del eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ranges-complete-toward-targets",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos se van completando en dirección a los objetivos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00122"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4c2e272661be011dfe7c6d69a68c9df380524db957253d86d8a11f3bd784d310",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que los rangos «se van completando en dirección a los objetivos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reset-range-bearish",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango reinizado era bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00119"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3eb96a1c69ea29cda47c8efa5d299b98f04e025eed1aa70118af7a4c824babdd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente: «Rango bajista con el objetivo bullish, reiniciado»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el rango reinizado era bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reset-range-target-bullish",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo del rango reinizado era bullish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00119"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f4ddadcc6fab63591aaf4d6d702ad8cf2cf7fde55a08afcf54dfc72bbdb04e12",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente: «Rango bajista con el objetivo bullish, reiniciado», lo que establece que el objetivo del rango reinizado era bullish."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-strategy-chain-of-ranges",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La estrategia se asemeja a una cadena de rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00122"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "00aa8bbeb0ac67c632ac62ad72d47dbe53fa0ad4a2f867139ab187cdeadf2e23",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que la estrategia «es un poco como una cadena de rangos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la estrategia se asemeja a una cadena de rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframe-8h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad mostrada es 8h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p143640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p145350000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p147870000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p148410000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p151920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p152910000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p153720000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p79290000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1243cb69f88182c04e473824211bb62af30a7530bdbcc47bb4f8c29a4e7fb186",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los fotogramas muestran explícitamente «EURUSD · 8h · FOREX.com» en la esquina superior izquierda."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la temporalidad mostrada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "03297b67d52a9c9dd51f8c840bd73be78164f8fee3ee19343d348eea78fd9e61",
+     "31f509218d66daf99b880e899b2fa33c75400d0cb9fd1a6d123d376a1592a1cf",
+     "6630d939b44a6460b04fb916978a8c1c104a98961cd7b3b5be786604a9cfa1b1",
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2",
+     "7587ce5c0171ddcbbe7f63450778c629075dddb2eecb10cb1d983af4dae498cc",
+     "9275ecd82c8a762a0ee68a03e74f754bfca97a6218a2057c3ffb9890f0eeda14",
+     "c6afc90b2919f590202375540a86a20bc17a7293be3dd48f64518f384ce652e2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-underlying-idea-unchanged",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La idea subyacente es la misma.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00120",
+    "asr-00121"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "85f37cd02a501156bb2b2c3e1ba847ef2a1593f4ff0fd567a4cc37b1e3b2f4f1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «la idea viene a ser lo mismo», lo que respalda que la idea subyacente es la misma."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-reset-requires-countertrend",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-range-reset-state",
+   "subject_version": 1,
+   "object_id": "cl-range-countertrend",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00119"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8c5959b4db24a35a9b7c5209f2dfd2447297efb52b8fd6103b215d3df94bcfbf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que el rango era un reinicio «porque va en contra de nuestra tendencia», lo que establece la relación de dependencia en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "72792874ed4ffcf224f854dc57f2e334afb1930cfb8a4f1876528521ed3967b2"
+    ],
+    "response_id": "gen-1791096000-ljzB6SnspltSv3xaJmxR"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00119",
+   "start_ms": 865810,
+   "end_ms": 882140,
+   "text": "En el mismo caso, este era un reiniciado porque va en contra de nuestra tendencia. Rango bajista con el objetivo bullish, reiniciado. Rango a favor, o sea, alcista con el objetivo bullish, rango pendiente."
+  },
+  {
+   "id": "asr-00120",
+   "start_ms": 882140,
+   "end_ms": 892160,
+   "text": "No tiene mucha más importancia los nombres, es simplemente para referirnos a los rangos de una forma que quede más, como para concretar más."
+  },
+  {
+   "id": "asr-00121",
+   "start_ms": 892280,
+   "end_ms": 894380,
+   "text": "Pero la idea viene a ser lo mismo."
+  },
+  {
+   "id": "asr-00122",
+   "start_ms": 895280,
+   "end_ms": 903770,
+   "text": "La estrategia ya veréis que es un poco como una cadena de rangos que se van completando en dirección a los objetivos."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p79290000-canonical-v1",
+   "pts_ms": 881000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p79290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p79380000-canonical-v1",
+   "pts_ms": 882000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p79380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p79470000-canonical-v1",
+   "pts_ms": 883000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p79470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p79560000-canonical-v1",
+   "pts_ms": 884000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p79560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p79920000-canonical-v1",
+   "pts_ms": 888000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p79920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p80280000-canonical-v1",
+   "pts_ms": 892000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p80280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p80460000-canonical-v1",
+   "pts_ms": 894000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p80460000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p80640000-canonical-v1",
+   "pts_ms": 896000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p80640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p143640000-canonical-v1",
+   "pts_ms": 1596000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p143640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p145350000-canonical-v1",
+   "pts_ms": 1615000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p145350000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p147870000-canonical-v1",
+   "pts_ms": 1643000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p147870000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p148410000-canonical-v1",
+   "pts_ms": 1649000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p148410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p151920000-canonical-v1",
+   "pts_ms": 1688000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p151920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p152910000-canonical-v1",
+   "pts_ms": 1699000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p152910000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153720000-canonical-v1",
+   "pts_ms": 1708000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p160110000-canonical-v1",
+   "pts_ms": 1779000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p160110000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p160920000-canonical-v1",
+   "pts_ms": 1788000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p160920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p161280000-canonical-v1",
+   "pts_ms": 1792000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p161280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91890000-canonical-v1",
+   "pts_ms": 1021000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

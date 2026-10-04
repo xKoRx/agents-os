@@ -1,0 +1,453 @@
+{
+ "window": "w0104",
+ "start": "26:54",
+ "end": "27:08",
+ "start_ms": 1614000,
+ "end_ms": 1628000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-diferencia-low-puede-parecer-tomada-por-un-broker",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La diferencia entre los lows puede hacer que parezca que un broker se lleva el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00225",
+    "frame-4de8f12d4841c630-s0-p145440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p145530000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "80f2ea364f49d0b1cb614154d4072c840b105338117e2fd23bdbd9315f02e0b3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice que al hacer zoom se piensa si «se lo lleva» y luego se comprueba que es «prácticamente igual»; las imágenes muestran la comparación del mínimo con «OTRO BROKER», lo que respalda que una pequeña diferencia pueda crear esa impresión."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola relación causal: la diferencia entre los lows puede hacer que parezca que un broker se lleva el low."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7587ce5c0171ddcbbe7f63450778c629075dddb2eecb10cb1d983af4dae498cc"
+    ],
+    "response_id": "gen-1791111711-tGsnpInO0unIAx06XRQb"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-fxcm-puede-registrar-low-mostrado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Puede que FXCM registre el low mostrado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00224",
+    "asr-00225",
+    "frame-4de8f12d4841c630-s0-p145440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p145530000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bceb17c5ea7db85d0f81c725acb19d84ddfad33fd5952dbb0acfa4f8fe5829b8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento citado afirma explícitamente que «a lo mejor FXCM sí que se lleva el low este», lo que respalda la proposición única de que FXCM podría registrar el low mostrado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7587ce5c0171ddcbbe7f63450778c629075dddb2eecb10cb1d983af4dae498cc"
+    ],
+    "response_id": "gen-1791111711-tGsnpInO0unIAx06XRQb"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-horizontal-junto-a-lows",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra una línea horizontal junto a los extremos bajos de las dos velas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p145260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p145440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p146160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p146250000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p146520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "516f70dd97c541f3fdc2485d5ab8b7b50dbe8811c389071459c8e166907f18fe",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran una línea horizontal junto a los extremos bajos de las dos velas representadas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7587ce5c0171ddcbbe7f63450778c629075dddb2eecb10cb1d983af4dae498cc"
+    ],
+    "response_id": "gen-1791111711-tGsnpInO0unIAx06XRQb"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-low-puede-variar-segun-broker",
+   "kind": "claim",
+   "version": 1,
+   "statement": "A veces, el extremo low de una vela se ve ligeramente distinto entre brokers.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00224",
+    "asr-00225",
+    "frame-4de8f12d4841c630-s0-p145440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p145800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "575dcbbcc3bbf4cac5282905845961af6589f76487dbfc45f96b75d551b08b8a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que, a veces, un broker «se lleva el low» mientras que en otro se presenta de otra manera."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran una comparación rotulada «BAJO/ALTO A FINAL DE VELA» y «OTRO BROKER», con niveles de low extremadamente próximos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7587ce5c0171ddcbbe7f63450778c629075dddb2eecb10cb1d983af4dae498cc"
+    ],
+    "response_id": "gen-1791111711-tGsnpInO0unIAx06XRQb"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-lows-comparados-practicamente-iguales",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los lows comparados son prácticamente iguales.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00225",
+    "frame-4de8f12d4841c630-s0-p145800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p146160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a2f62fd9f3867ebe603f9fa1b12ca765e047c3419fcd93f70094c412e785caf1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento citado afirma que lo comparado es «prácticamente igual», y las imágenes muestran que los mínimos de las dos velas están prácticamente al mismo nivel."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la igualdad práctica de los lows comparados."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7587ce5c0171ddcbbe7f63450778c629075dddb2eecb10cb1d983af4dae498cc"
+    ],
+    "response_id": "gen-1791111711-tGsnpInO0unIAx06XRQb"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-serie-identificada-forex-com",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico identifica una de las series como FOREX.com.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00224",
+    "frame-4de8f12d4841c630-s0-p145350000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e9e076a930349b8debfd06e433f577a58200dd943d7dc89cb16f89f6229ca37f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El encabezado del gráfico muestra «EURUSD · 8h · FOREX.com», identificando explícitamente FOREX.com como la serie mostrada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7587ce5c0171ddcbbe7f63450778c629075dddb2eecb10cb1d983af4dae498cc"
+    ],
+    "response_id": "gen-1791111711-tGsnpInO0unIAx06XRQb"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vista-se-amplia-en-zona-de-lows",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista del gráfico se amplía progresivamente alrededor de los lows.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00225",
+    "frame-4de8f12d4841c630-s0-p145260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p145350000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p145440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p145800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "aa9cec322343b74d7a80e793497949b71fb3b863c046a33a2c83ef6c1a43885c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica explícitamente que se sigue haciendo zoom."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes sucesivas muestran un acercamiento progresivo de la escala del gráfico centrado en la zona de los mínimos de las velas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7587ce5c0171ddcbbe7f63450778c629075dddb2eecb10cb1d983af4dae498cc"
+    ],
+    "response_id": "gen-1791111711-tGsnpInO0unIAx06XRQb"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-zoom-para-comprobar-que-broker-toma-low",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Hacer zoom para comprobar si un broker se lleva el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00225",
+    "frame-4de8f12d4841c630-s0-p145260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p145440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p145800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5b2d2dd5ee94153e5ad36a8105fb004b7f7026f65e44190dd5e92d30b974e00e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The cited transcript explicitly describes making a zoom and thinking about whether the broker takes the low, and the frames show a zoomed comparison of candle behavior across brokers."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7587ce5c0171ddcbbe7f63450778c629075dddb2eecb10cb1d983af4dae498cc"
+    ],
+    "response_id": "gen-1791111711-tGsnpInO0unIAx06XRQb"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-lows-iguales-excepciona-interpretacion-del-low",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-lows-comparados-practicamente-iguales",
+   "subject_version": 1,
+   "object_id": "cl-diferencia-low-puede-parecer-tomada-por-un-broker",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00225",
+    "frame-4de8f12d4841c630-s0-p145800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p146160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a90c9a798f519af5782118e62d46839a47c3d19ac6a96f5e9e0eed3cd0765ce8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción enlaza explícitamente la impresión de que un broker «se lo lleva» con la comprobación posterior de que los lows son «prácticamente igual», aclaran incluso que en otro broker se observa así; esto presenta la igualdad practically equal as the exception/qualifier to that interpretation."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "7587ce5c0171ddcbbe7f63450778c629075dddb2eecb10cb1d983af4dae498cc"
+    ],
+    "response_id": "gen-1791111711-tGsnpInO0unIAx06XRQb"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00224",
+   "start_ms": 1602810,
+   "end_ms": 1618010,
+   "text": "broker sí ha hecho el low, ¿vale? Por ejemplo, esto es Forexcom, pues a lo mejor a FXCM sí que se lleva el low este. Va a haber veces que lo vas a ver así, que esto se queda"
+  },
+  {
+   "id": "asr-00225",
+   "start_ms": 1618010,
+   "end_ms": 1630490,
+   "text": "aquí y te quedas haciendo zoom pensando si se lo lleva o no y luego te das cuenta que es prácticamente igual y que en otro broker esto realmente se ve así, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p145260000-canonical-v1",
+   "pts_ms": 1614000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p145260000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p145350000-canonical-v1",
+   "pts_ms": 1615000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p145350000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p145440000-canonical-v1",
+   "pts_ms": 1616000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p145440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p145530000-canonical-v1",
+   "pts_ms": 1617000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p145530000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p145800000-canonical-v1",
+   "pts_ms": 1620000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p145800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p146160000-canonical-v1",
+   "pts_ms": 1624000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p146160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p146250000-canonical-v1",
+   "pts_ms": 1625000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p146250000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p146520000-canonical-v1",
+   "pts_ms": 1628000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p146520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

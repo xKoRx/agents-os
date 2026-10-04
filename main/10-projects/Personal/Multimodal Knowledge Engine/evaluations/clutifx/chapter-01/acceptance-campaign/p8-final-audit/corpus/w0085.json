@@ -1,0 +1,820 @@
+{
+ "window": "w0085",
+ "start": "21:47",
+ "end": "21:57",
+ "start_ms": 1307000,
+ "end_ms": 1317000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-instrumento-activo-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El símbolo del gráfico activo es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p117630000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "decac87c7f801ef6d5a26baf08a4e338fe30ece299a55f1acf1b2b05be0b6be0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra «EURUSD» como símbolo del gráfico activo en el encabezado y la pestaña seleccionada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-timeframe-8h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal del gráfico activo es 8h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p117630000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p120330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p124830000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p129240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p138510000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p140940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a23aa2ba499b69edcfd59244da474bd851a2ce58a0923afd9feb6286f75081e1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las seis imágenes citadas muestran en la esquina superior izquierda la etiqueta «EURUSD · 8h · FOREX.com», que identifica el marco temporal del gráfico activo como 8h."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "3c27d79c7a6aa6c5b6166f19c9e4fb2a1d8eaddc91f4dcc0a582aff1553b17f4",
+     "529ac8505cf7788e2f7908c6d1afd9a5394f6c903fafac1f74ae12918c4dc21c",
+     "94dfa16ff8dccc46186c8621a5094b743e00fbaa55dbd873418bd07be2aa5ade",
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a",
+     "d2b784d43bac8baf70b0839f3254ac0c5b1bd454f76bc15282e18d09f297c756",
+     "e369a09cff81a116e7d6795b9c21bae16ea4c997ff01e154b8b7df4086da6237"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-desarrollo-capitulo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El tema se Osborneá completo en el capítulo de la SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00187",
+    "asr-00188"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4a9f36d7d1ab8c59d2bff3daabb982073cc1e6d45086440bde4cda01c8929019",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas indican que el tema se verá entero en el capítulo de la SMT, lo que respalda la proposición statement."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la troublingación completa del tema en dicho capítulo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-ejemplo-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El diagrama de la izquierda se presenta como el ejemplo de EURUSD.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p117630000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b9c8f26007ac1fb31efa80394aa2331143fbc459911224505ef46c130c0da81e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra dos diagramas; el de la izquierda tiene la etiqueta «EURUSD», mientras que el de la derecha está etiquetado como «GBPUSD»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El diagrama de la izquierda es una única proposición y no incluye afirmaciones independientes adicionales."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-ejemplo-gbpusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El diagrama de la derecha se presenta como el ejemplo de GBPUSD.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p117630000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a0418f46a56b97bcff49ff813b8a46dcb63b2317e3c4e94078ea1b9fd9dffd75",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra dos diagramas; el de la derecha está etiquetado explícitamente como «GBPUSD»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-ejemplos-capitulo-aparte",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los ejemplos se tratarán en un capítulo aparte.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "06e350a5e8d542ac88e18fea7e4a0075bf87d93a7ec3d402b42728817b2c7f3e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice que no entrará en los ejemplos porque hará «un capítulo aparte», lo que respalda que los ejemplos se tratarán en un capítulo separado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-ejemplos-no-desarrollados",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El ponente no entrará en los ejemplos en este momento.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a57876ad905a75847e2ee9d099f3a71c4523916b41e617c5b7fde0b936ea1f11",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El ponente afirma explícitamente que no entrará en los ejemplos en este momento, porque Weaver Marine，点缀treatará en un capítulo aparte."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-elemento-conocido",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El elemento señalado en el gráfico es lo que conocíais antes.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00189",
+    "frame-4de8f12d4841c630-s0-p118260000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5dbc2269fcb710e8da0b3ba089e70c4ec6149a57f030e78cba38912477731169",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma literalmente «esto es lo que conocíais antes», y la imagen permite resolver el deíctico «esto» como el elemento señalado. La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-eurusd-flecha-final-descendente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La trayectoria gris del ejemplo de EURUSD termina con una flecha descendente.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p117630000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1030cbb7316cdd9e1125be025769ec79be57585b1faef2bc608002533aa4d4f7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la trayectoria gris de EURUSD terminando en una flecha que apunta hacia abajo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-eurusd-segmento-ascendente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El ejemplo de EURUSD contiene un segmento negro ascendente.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p117630000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e74f2f5d227bc465a748cfcefc521ccd2716df4b4b3462d2c3dfee1b17475acb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En el ejemplo etiquetado como EURUSD se ve un segmento negro que asciende de izquierda a derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-eurusd-segmento-seleccionado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El segmento ascendente del ejemplo de EURUSD aparece seleccionado.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p117630000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p118260000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "88afa75bfeea5f12a6f38bbd64c8ebe13137eda7b9c8eb672209c239da3435f5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra el segmento ascendente del ejemplo de EURUSD resaltado en azul, con handles circulares en sus extremos y el intervalo correspondiente seleccionado en el eje temporal."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-forma-sugerida",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La SMT que se podría dar aquí tendría una forma similar a la del esquema mostrado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p117630000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c55bc0346f194e3f59a4f91daa132c9872573f7d24501e34cea929f4626f968b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que la SMT que se podría dar «aquí» sería «algo así», en referencia al esquema mostrado en la imagen."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-gbpusd-flecha-final-descendente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La trayectoria gris del ejemplo de GBPUSD termina con una flecha descendente.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p117630000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c1422441c88f1a302399a946b2d43e645f5faeaa37a35ae28bc738be9c85fdf5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La trayectoria gris situada sobre la etiqueta GBPUSD termina en una flecha que apunta hacia abajo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-gbpusd-segmento-descendente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El ejemplo de GBPUSD contiene un segmento negro descendente.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p117630000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a0fdf1cbacac5ee06f2518d30d0fa67f06c6e94aba909fa326a07ba066e373e5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra, sobre el ejemplo etiquetado como GBPUSD, un segmento de línea negro que desciende de izquierda a derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-gbpusd-trayectoria-no-visible",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La trayectoria gris del ejemplo de GBPUSD no está visible en la vista final.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p118440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p118530000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "36d43207c0225f2a076cc6e8026efb42ce56c0036e26f53434a65aacc1a74256",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La vista final citada no muestra una trayectoria gris, pero ambas evidencias identifican el gráfico como EURUSD y ninguna acredita que corresponda al ejemplo de GBPUSD; por ello no se puede respaldar la proposición completa."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-gbpusd-trayectoria-seleccionada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La trayectoria gris del ejemplo de GBPUSD aparece seleccionada.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p117630000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p118440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "baf385a0fa8d1c2c4f93c09d305eebcb51926638951d96ca70ba6a3c90dac910",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera evidencia identifica la trayectoria derecha como GBPUSD; la segunda muestra esa misma trayectoria con controles de selección visibles en sus vértices."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-uso-dxi",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El uso del DXI también sería posible.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00186"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "16099ae25c84e3ededc5f50a1bb96d45178c46e67d6011f547023c7e979f0942",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que «esto podría ser con el DXI también», lo que respalda que el uso del DXI también sería posible."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-uso-estrategia",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La SMT se presenta utilizando la estrategia propia.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2c15fae2abb4be20b0ef9957b575f992b3a0857093dfb7eb39c497ce090a96a7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia pregunta explícitamente cómo será la SMT utilizando «nuestra estrategia», lo que respalda directamente que se presenta mediante la estrategia propia."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "a98f7ad81aedd1be80a1eeba0a9f45c5ad469b9a18d6699192bd8faf5407231a"
+    ],
+    "response_id": "gen-1791104798-fIL6n3fxoaB7gss00Ee5"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00186",
+   "start_ms": 1306420,
+   "end_ms": 1309450,
+   "text": "como ya sabéis esto podría ser con el DXI también"
+  },
+  {
+   "id": "asr-00187",
+   "start_ms": 1309450,
+   "end_ms": 1312030,
+   "text": "pero bueno, ya lo vais a ver entero"
+  },
+  {
+   "id": "asr-00188",
+   "start_ms": 1312030,
+   "end_ms": 1313210,
+   "text": "en el capítulo de la SMT"
+  },
+  {
+   "id": "asr-00189",
+   "start_ms": 1313210,
+   "end_ms": 1315270,
+   "text": "esto es lo que conocíais antes"
+  },
+  {
+   "id": "asr-00190",
+   "start_ms": 1315270,
+   "end_ms": 1345680,
+   "text": "Ahora, ¿cómo va a ser la SMT utilizando nuestra estrategia? Vamos a decir que esto es euro y vamos a decir que esto es libra. En ejemplos no voy a entrar porque ya voy a hacer un capítulo aparte, pero la SMT que se nos podría dar aquí es algo así."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p117630000-canonical-v1",
+   "pts_ms": 1307000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p117630000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p117720000-canonical-v1",
+   "pts_ms": 1308000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p117720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p117900000-canonical-v1",
+   "pts_ms": 1310000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p117900000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118080000-canonical-v1",
+   "pts_ms": 1312000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118260000-canonical-v1",
+   "pts_ms": 1314000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118260000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118350000-canonical-v1",
+   "pts_ms": 1315000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118350000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118440000-canonical-v1",
+   "pts_ms": 1316000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118530000-canonical-v1",
+   "pts_ms": 1317000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118530000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120330000-canonical-v1",
+   "pts_ms": 1337000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p124830000-canonical-v1",
+   "pts_ms": 1387000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p124830000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p129240000-canonical-v1",
+   "pts_ms": 1436000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p129240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p138510000-canonical-v1",
+   "pts_ms": 1539000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p138510000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p140940000-canonical-v1",
+   "pts_ms": 1566000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p140940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

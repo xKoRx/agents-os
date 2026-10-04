@@ -1,0 +1,365 @@
+{
+ "window": "w0014",
+ "start": "03:04",
+ "end": "03:17",
+ "start_ms": 184000,
+ "end_ms": 197000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-borrar-linea-horizontal-superior",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Borrar la línea horizontal superior señalada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025",
+    "asr-00026",
+    "frame-4de8f12d4841c630-s0-p16560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "872091f8d7e44c9df3b14561ffb9bae2079e968fd0b7de71222382b8445f5828",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento citado dice «borrar esto» y la imagen permite resolver esa referencia como la línea horizontal superior mostrada en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La instrucción afirma una sola acción: borrar la línea horizontal superior señalada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "554b145b33e08996fb98a47ff839efee87e0670e1db9df088f7e306d2af23f4c"
+    ],
+    "response_id": "gen-1791083746-7oLdp3l5PWOHdVPEiAeA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-horizontal-superior-eliminada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La línea horizontal superior señalada se elimina del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p16560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16830000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3603595bbac22faf194513e983702ef98a3697bed526a05aaa5add4a7e8d98d9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra una línea horizontal superior señalada y seleccionada; en la segunda imagen esa línea ya no aparece en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la eliminación de esa línea."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "554b145b33e08996fb98a47ff839efee87e0670e1db9df088f7e306d2af23f4c"
+    ],
+    "response_id": "gen-1791083746-7oLdp3l5PWOHdVPEiAeA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-toma-high-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio toma el high del rango señalado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00026",
+    "frame-4de8f12d4841c630-s0-p17460000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17730000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "222035a7720144540b4f4b9000724b5eae9cc80e349199a5587b2e80935de59c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que el precio toma el high del rango indicado, y las imágenes muestran el rango señalado y al precio alcanzándolo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "554b145b33e08996fb98a47ff839efee87e0670e1db9df088f7e306d2af23f4c"
+    ],
+    "response_id": "gen-1791083746-7oLdp3l5PWOHdVPEiAeA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-recuadro-de-rango-dibujado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja un recuadro alrededor de un grupo de velas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p17280000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17460000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8b04855c79de0792eae957d197fad50eb337997add8d1ce6c3b66d287110dafc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra un recuadro rectangular alrededor de un grupo de velas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "554b145b33e08996fb98a47ff839efee87e0670e1db9df088f7e306d2af23f4c"
+    ],
+    "response_id": "gen-1791083746-7oLdp3l5PWOHdVPEiAeA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-recuadro-senalado-es-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El recuadro señalado es un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025",
+    "asr-00026",
+    "frame-4de8f12d4841c630-s0-p17460000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17730000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "56e54b3bcda9434bb4d3bbd8d4e97d5ebebd6fc8579aa9c3dc3c839ef89ce1cc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que «esto aquí es un rango», y las imágenes muestran el recuadro señalado al que se refiere."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "554b145b33e08996fb98a47ff839efee87e0670e1db9df088f7e306d2af23f4c"
+    ],
+    "response_id": "gen-1791083746-7oLdp3l5PWOHdVPEiAeA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframe-4h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico mostrado es de 4 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00026",
+    "frame-4de8f12d4841c630-s0-p17460000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0704526c61ec4f0e68ea1b625a0dda72360aea9744ea8ffbeb2f07243aa16b33",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente «EURUSD · 4h» y «EURUSD | 240M», lo que confirma que el gráfico es de 4 horas; la transcripción citada también lo afirma."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "554b145b33e08996fb98a47ff839efee87e0670e1db9df088f7e306d2af23f4c"
+    ],
+    "response_id": "gen-1791083746-7oLdp3l5PWOHdVPEiAeA"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-depende-de-toma-high",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-recuadro-senalado-es-rango",
+   "subject_version": 1,
+   "object_id": "cl-precio-toma-high-rango",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025",
+    "asr-00026",
+    "frame-4de8f12d4841c630-s0-p17460000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17730000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "19f5ff1056759bed85175fb4cd1fdf2a9e4575e99c20e28cb6767a3245d3ccfa",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que «esto aquí es un rango» y explica esa identificación porque «vemos como el precio toma el high de esta», lo que vincula el recuadro señalado con la toma de su high en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "554b145b33e08996fb98a47ff839efee87e0670e1db9df088f7e306d2af23f4c"
+    ],
+    "response_id": "gen-1791083746-7oLdp3l5PWOHdVPEiAeA"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00025",
+   "start_ms": 179900,
+   "end_ms": 188660,
+   "text": "borrar esto porque ya ha quedado claro ejemplos reales de rangos vale por ejemplo este de aquí"
+  },
+  {
+   "id": "asr-00026",
+   "start_ms": 188660,
+   "end_ms": 199000,
+   "text": "esto aquí es un rango en el gráfico de 4 horas porque vemos como el precio toma el high de esta"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16560000-canonical-v1",
+   "pts_ms": 184000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16830000-canonical-v1",
+   "pts_ms": 187000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16830000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16920000-canonical-v1",
+   "pts_ms": 188000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p17010000-canonical-v1",
+   "pts_ms": 189000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p17010000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p17280000-canonical-v1",
+   "pts_ms": 192000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p17280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p17460000-canonical-v1",
+   "pts_ms": 194000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p17460000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p17640000-canonical-v1",
+   "pts_ms": 196000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p17640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p17730000-canonical-v1",
+   "pts_ms": 197000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p17730000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

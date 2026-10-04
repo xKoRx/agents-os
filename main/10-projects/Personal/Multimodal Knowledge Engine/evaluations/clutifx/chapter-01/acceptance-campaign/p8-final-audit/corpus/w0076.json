@@ -1,0 +1,691 @@
+{
+ "window": "w0076",
+ "start": "19:20",
+ "end": "19:40",
+ "start_ms": 1160000,
+ "end_ms": 1180000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cierre-fuera-deja-de-ser-rango",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si la vela cierra fuera, el rango deja de ser un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00165",
+    "asr-00168"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "33a8bf09923e37bab71a64d300fe36a2d690b0a671ef719d7cc020ee641f5998",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que si la vela cierra afuera, el rango deja de ser un rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "584ffd2724e9a508ede3562dfe3ff24e6fc9e743b239c8ca9f01f69776edf0b8",
+     "ee363895fcfa1da1af6b96ec395758021406fa0b93f569cad2c2c7f3007102e9"
+    ],
+    "response_id": "gen-1791101898-qHViSOMVon47iCk2dI1N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-es-turtle-soup-del-nuevo-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Ese mismo patrón sería un turtle soup del nuevo rango central.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00163",
+    "asr-00164",
+    "frame-4de8f12d4841c630-s0-p104400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p104760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4076786fd9fca71d7d6c916bdfe96f433c8670ffc775f5b023b7da56a007568e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones afirman que habría un posible «nuevo rango» y que el patrón mostrado ya no sería un intraturtle soup, sino un turtle soup «de este rango»; las imágenes muestran el patrón central al que se refiere «esto»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: ese patrón sería un turtle soup del nuevo rango central."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "584ffd2724e9a508ede3562dfe3ff24e6fc9e743b239c8ca9f01f69776edf0b8"
+    ],
+    "response_id": "gen-1791101898-qHViSOMVon47iCk2dI1N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-idea-alcista-espera-nueva-vela",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si tenemos una idea alcista, tendremos que esperar a una nueva vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4cb9ed423d4c2c48c688a3c2cf647c0a3307267612123fd8c17bdaf25a17c789",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que, si hay una idea alcista, será necesario esperar a que aparezca una nueva vela."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional; la referencia al rango no introduce una regla independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "584ffd2724e9a508ede3562dfe3ff24e6fc9e743b239c8ca9f01f69776edf0b8"
+    ],
+    "response_id": "gen-1791101898-qHViSOMVon47iCk2dI1N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-no-es-intraturtle-soup",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El patrón rotulado INTRATURTLESOUP ya no sería un intraturtle soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00163",
+    "asr-00164",
+    "frame-4de8f12d4841c630-s0-p104400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p104760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "09fa7e01c1def2e6fea74cbcc2ea372b4dfda85f30f00bf16b4a3c1e35ef466f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones indican que «esto ya no sería un intraturtle soup» y que sería «un turtle soup de este rango»; las imágenes muestran el patrón correspondiente rotulado «INTRATURTLESOUP», pese al error de transcripción."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: ese patrón ya no sería un intraturtle soup."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "584ffd2724e9a508ede3562dfe3ff24e6fc9e743b239c8ca9f01f69776edf0b8"
+    ],
+    "response_id": "gen-1791101898-qHViSOMVon47iCk2dI1N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nuevo-rango-rectangulo-central",
+   "kind": "claim",
+   "version": 1,
+   "statement": "A lo mejor, el nuevo rango podría ser el rectángulo blanco central.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00163",
+    "frame-4de8f12d4841c630-s0-p104400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p104760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "81516a23bcf9adf5ee0bc23c658db824035895d8f47d271a2e38ee831e50b110",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice que el nuevo rango «podría ser este», y las imágenes muestran un rectángulo blanco central al que corresponde el deixis."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición, modulada de forma explícita por «a lo mejor» y «podría»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "584ffd2724e9a508ede3562dfe3ff24e6fc9e743b239c8ca9f01f69776edf0b8"
+    ],
+    "response_id": "gen-1791101898-qHViSOMVon47iCk2dI1N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-patron-senalado-se-puede-eliminar",
+   "kind": "rule",
+   "version": 1,
+   "statement": "El patrón señalado ya se puede eliminar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00164",
+    "asr-00165",
+    "frame-4de8f12d4841c630-s0-p104760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p105120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e1d8c3bce999aa18fa398da97680f4ec8a2956daf577d7eba55a255ad6e7262e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «este lo podríamos ya eliminar», en referencia al patrón señalado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el patrón señalado ya puede eliminarse."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "584ffd2724e9a508ede3562dfe3ff24e6fc9e743b239c8ca9f01f69776edf0b8"
+    ],
+    "response_id": "gen-1791101898-qHViSOMVon47iCk2dI1N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-completo-se-puede-eliminar",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Una vez que un rango se completa, ya se puede eliminar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00166",
+    "asr-00167",
+    "asr-00168"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e260e93d2bf22cb31eb49bebab9095a9d26ee8b119951dc43b9bccddafe62bd7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica explícitamente que «una vez el rango se nos completa» y después afirma que «este rango ya se puede eliminar»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: cuando un rango se completa, puede eliminarse; la condición temporal no introduce una proposición independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "584ffd2724e9a508ede3562dfe3ff24e6fc9e743b239c8ca9f01f69776edf0b8"
+    ],
+    "response_id": "gen-1791101898-qHViSOMVon47iCk2dI1N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-completo-toma-low-y-alto",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Que un rango esté completo significa que toma tanto el low como el alto.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00166",
+    "asr-00167"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7aeee00b167d8fe14f82b45c4dc792d8b008e59ac8c54af62e1fc7db94052a1a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «completa significa que toma tanto el low como el alto»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: qué significa que un rango esté completo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "584ffd2724e9a508ede3562dfe3ff24e6fc9e743b239c8ca9f01f69776edf0b8"
+    ],
+    "response_id": "gen-1791101898-qHViSOMVon47iCk2dI1N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-izquierdo-desaparece",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rectángulo blanco de la izquierda desaparece del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p104760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p105120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8a21a55a2dd4df06ec6392dd8484ff0aa758426725430073bc7f2f5abff3373e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la primera imagen se ve un rectángulo blanco grande a la izquierda y, en la segunda, ese rectángulo ya no aparece, mientras que el rectángulo blanco de la derecha permanece."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "584ffd2724e9a508ede3562dfe3ff24e6fc9e743b239c8ca9f01f69776edf0b8"
+    ],
+    "response_id": "gen-1791101898-qHViSOMVon47iCk2dI1N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-cierra-fuera-del-patron",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela del ejemplo cierra fuera del patrón señalado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00164",
+    "asr-00165",
+    "frame-4de8f12d4841c630-s0-p104400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p104760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e84c665f786bbd1d18b6d1eb890df742a32448d8c9c245bf0350454131d3b0f3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que «la vela cierra fuera», en el contexto del patrón intratartel señalado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el cierre de la vela fuera del patrón indicado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "584ffd2724e9a508ede3562dfe3ff24e6fc9e743b239c8ca9f01f69776edf0b8"
+    ],
+    "response_id": "gen-1791101898-qHViSOMVon47iCk2dI1N"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-borrado-observado-depende-de-la-eliminacion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rectangulo-izquierdo-desaparece",
+   "subject_version": 1,
+   "object_id": "cl-patron-senalado-se-puede-eliminar",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00165",
+    "frame-4de8f12d4841c630-s0-p104760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p105120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9d577758866d950aa9cac442c682cb562bd6fd6d15f6a1cf0c1dd1c2e2921812",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra el rectángulo blanco grande de la izquierda y la segunda muestra que ha desaparecido. La transcripción simultánea afirma que ese elemento ya se podría eliminar, vincular directamente la eliminación del patrón señalado con la desaparición observada del rectángulo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "584ffd2724e9a508ede3562dfe3ff24e6fc9e743b239c8ca9f01f69776edf0b8"
+    ],
+    "response_id": "gen-1791101898-qHViSOMVon47iCk2dI1N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-borrado-rango-completo-depende-de-su-definicion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-completo-se-puede-eliminar",
+   "subject_version": 1,
+   "object_id": "cl-rango-completo-toma-low-y-alto",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00166",
+    "asr-00167",
+    "asr-00168"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bd33eb9afabdf81d0b513daa18aa2668fd8804c0a5a5ec4d124a3efae9c228ef",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que un rango completo «toma tanto el low como el alto» y, a continuación, que «este rango ya se puede eliminar», por lo que la primera afirmación se presenta como la base de la segunda en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "584ffd2724e9a508ede3562dfe3ff24e6fc9e743b239c8ca9f01f69776edf0b8"
+    ],
+    "response_id": "gen-1791101898-qHViSOMVon47iCk2dI1N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-eliminacion-del-patron-depende-del-cierre-fuera",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-patron-senalado-se-puede-eliminar",
+   "subject_version": 1,
+   "object_id": "cl-vela-cierra-fuera-del-patron",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00165",
+    "frame-4de8f12d4841c630-s0-p104400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p104760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "aefd2234c80c8d5ee02ff0051adaf39ad0b2fbee237d407c0544485184eaa3d0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el patrón «lo podríamos ya eliminar porque la vela cierra fuera», lo que establece que la eliminación depende del cierre de la vela fuera del patrón en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "584ffd2724e9a508ede3562dfe3ff24e6fc9e743b239c8ca9f01f69776edf0b8"
+    ],
+    "response_id": "gen-1791101898-qHViSOMVon47iCk2dI1N"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-turtle-soup-depende-del-nuevo-rango",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-es-turtle-soup-del-nuevo-rango",
+   "subject_version": 1,
+   "object_id": "cl-nuevo-rango-rectangulo-central",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00163",
+    "asr-00164",
+    "frame-4de8f12d4841c630-s0-p104400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p104760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "64a5e1b716200c26618af1e3bc2f3271184017a038aa09df8096c77e724e5f21",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica condicionalmente el rectángulo blanco central como «un nuevo rango» y, inmediatamente después, afirma que ese patrón sería «un tartel sub de este rango», lo que establece que la clasificación como turtle soup depende de aquella identificación del nuevo rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "584ffd2724e9a508ede3562dfe3ff24e6fc9e743b239c8ca9f01f69776edf0b8"
+    ],
+    "response_id": "gen-1791101898-qHViSOMVon47iCk2dI1N"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00163",
+   "start_ms": 1157090,
+   "end_ms": 1161050,
+   "text": "y tendríamos a lo mejor un nuevo rango que podría ser este."
+  },
+  {
+   "id": "asr-00164",
+   "start_ms": 1161750,
+   "end_ms": 1166610,
+   "text": "O sea, esto ya no sería un intertartel sub, sino que sería un tartel sub de este rango"
+  },
+  {
+   "id": "asr-00165",
+   "start_ms": 1166610,
+   "end_ms": 1170510,
+   "text": "y este lo podríamos ya eliminar porque la vela cierra fuera, ¿vale?"
+  },
+  {
+   "id": "asr-00166",
+   "start_ms": 1170790,
+   "end_ms": 1174750,
+   "text": "Importante este concepto también, que una vez el rango se nos completa,"
+  },
+  {
+   "id": "asr-00167",
+   "start_ms": 1175840,
+   "end_ms": 1179620,
+   "text": "completa significa que toma tanto el low como el alto, ¿vale?"
+  },
+  {
+   "id": "asr-00168",
+   "start_ms": 1179620,
+   "end_ms": 1197440,
+   "text": "Este rango ya se puede eliminar y del mismo caso, si cierra afuera, esto ya no es un rango. Si tenemos una idea alcista, tendremos que esperar ahora a que una nueva vela, bueno, la dejo aquí marcada, en este caso, ello, esto ya no es un rango."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p104400000-canonical-v1",
+   "pts_ms": 1160000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p104400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p104760000-canonical-v1",
+   "pts_ms": 1164000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p104760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p105120000-canonical-v1",
+   "pts_ms": 1168000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p105120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p105390000-canonical-v1",
+   "pts_ms": 1171000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p105390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p105480000-canonical-v1",
+   "pts_ms": 1172000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p105480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p105660000-canonical-v1",
+   "pts_ms": 1174000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p105660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p105840000-canonical-v1",
+   "pts_ms": 1176000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p105840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p106200000-canonical-v1",
+   "pts_ms": 1180000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p106200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

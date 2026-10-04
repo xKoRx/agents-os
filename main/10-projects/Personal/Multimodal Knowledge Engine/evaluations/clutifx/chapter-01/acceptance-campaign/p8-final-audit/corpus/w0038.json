@@ -1,0 +1,576 @@
+{
+ "window": "w0038",
+ "start": "08:34",
+ "end": "08:44",
+ "start_ms": 514000,
+ "end_ms": 524000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dialogo-cambiar-intervalo-visible",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se muestra el diálogo «Cambiar intervalo».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p46890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2db230e8ee9d3d08d2ce00c6a720563b817010dcbbaf5ded75bf0823d253e284",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una ventana de diálogo titulada «Cambiar intervalo»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2d6c2dec75f417c6c3ef6fd558639faef0f18adc38e1591386c841440e76793c"
+    ],
+    "response_id": "gen-1791089700-KBJSGWdHOQ9TYvQwayuO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-temporal-pasa-1d-a-15m",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El marco temporal del gráfico de EURUSD cambia de 1D a 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p46260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46980000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ab511a34e80b4d3d182bd1fc10660de1b3055a75ed7a7c70ae3014280c38c3f3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra el gráfico de EURUSD en 1D y la segunda lo muestra en 15M, por lo que se evidencia el cambio de marco temporal."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2d6c2dec75f417c6c3ef6fd558639faef0f18adc38e1591386c841440e76793c"
+    ],
+    "response_id": "gen-1791089700-KBJSGWdHOQ9TYvQwayuO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-borde-inferior-rango-134155",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde inferior del rango seleccionado de GBPUSD es 1,34155.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p46890000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46980000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4db843bd18f9257bb9bbefd59bf9c13e0268246e10499f6191311ce0528ffc14",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas evidencias, el panel de GBPUSD muestra la línea inferior de la región seleccionada rotulada 1,34155."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2d6c2dec75f417c6c3ef6fd558639faef0f18adc38e1591386c841440e76793c"
+    ],
+    "response_id": "gen-1791089700-KBJSGWdHOQ9TYvQwayuO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-borde-superior-rango-135843",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde superior del rango seleccionado de GBPUSD es 1,35843.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p46890000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46980000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1791a50ae628fd95a2d4f8c86fed9a99c2264ce361c4f2d89996207e7975dae9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos evidencias muestran el rango seleccionado de GBPUSD con su borde superior etiquetado como 1,35843."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2d6c2dec75f417c6c3ef6fd558639faef0f18adc38e1591386c841440e76793c"
+    ],
+    "response_id": "gen-1791089700-KBJSGWdHOQ9TYvQwayuO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-cierra-con-fuerza",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La Libra (GBPUSD) cierra con fuerza.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "asr-00070",
+    "frame-4de8f12d4841c630-s0-p46710000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a601fa911aaeab9dad0c29ef56499c4df5481f6bec98484fc3fc30ebb1369d7c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas citadas expresan literalmente «Cierra con fuerza» en el contexto inmediato de « Libra», y el marco identifica el activo como GBPUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: GBPUSD cierra con fuerza."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2d6c2dec75f417c6c3ef6fd558639faef0f18adc38e1591386c841440e76793c"
+    ],
+    "response_id": "gen-1791089700-KBJSGWdHOQ9TYvQwayuO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-llega-directo-a-136031",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La Libra (GBPUSD) fue directamente hasta su objetivo de 1,36031.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "asr-00072",
+    "asr-00073",
+    "frame-4de8f12d4841c630-s0-p46710000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "23412c7bc433417978034c16c06df3cd6837b502bfe276f0d691143cf661a1af",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El testimonio afirma que la libra fue «directamente hasta su objetivo», y la imagen muestra GBPUSD en 1,36031."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La assertion describes a single event: la Libra alcanzó directamente el nivel indicado como objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2d6c2dec75f417c6c3ef6fd558639faef0f18adc38e1591386c841440e76793c"
+    ],
+    "response_id": "gen-1791089700-KBJSGWdHOQ9TYvQwayuO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-objetivo-hoy-136031",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo de la Libra (GBPUSD) para hoy es el nivel 1,36031.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "frame-4de8f12d4841c630-s0-p46710000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "724efa32409e89b71b4aa8c13a3a566d55a246d5ff34b7b34ff59c729a97796e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción menciona explícitamente «este objetivo para hoy» para la Libra, y la imagen permite resolver esa referencia mostrando GBPUSD y el nivel 1,36031 en un rango bullish."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2d6c2dec75f417c6c3ef6fd558639faef0f18adc38e1591386c841440e76793c"
+    ],
+    "response_id": "gen-1791089700-KBJSGWdHOQ9TYvQwayuO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-rango-bullish",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La Libra (GBPUSD) presenta un rango bullish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "frame-4de8f12d4841c630-s0-p46260000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "add85d06b3d6aa12f685395de0c6043b532d57c58dacb510dbdeee7596d2b971",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente «rango bullish en Libra», y la imagen identifica el instrumento como GBPUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que GBPUSD presenta un rango bullish."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2d6c2dec75f417c6c3ef6fd558639faef0f18adc38e1591386c841440e76793c"
+    ],
+    "response_id": "gen-1791089700-KBJSGWdHOQ9TYvQwayuO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-rango-seleccionado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango rectangular de GBPUSD queda seleccionado.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p46800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e2849823a1dd10842b2f8b804a989c0314b6570f102e6348857877a3a7a32b4f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el panel derecho de GBPUSD muestra el rango rectangular con Handles circulares de selección visibles."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2d6c2dec75f417c6c3ef6fd558639faef0f18adc38e1591386c841440e76793c"
+    ],
+    "response_id": "gen-1791089700-KBJSGWdHOQ9TYvQwayuO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-sin-rango-bajista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "No teníamos un rango bajista en la Libra (GBPUSD).",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "asr-00070",
+    "asr-00071"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f961e80655bb19949b413c1382b5f9b2846e0ee59e15f3af6f6af35e4eace676",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente: «no teníamos rango bajista» y ubica el análisis en «la Libra», por lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición: la ausencia de un rango bajista en GBPUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2d6c2dec75f417c6c3ef6fd558639faef0f18adc38e1591386c841440e76793c"
+    ],
+    "response_id": "gen-1791089700-KBJSGWdHOQ9TYvQwayuO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-supera-135843",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el gráfico de GBPUSD de 15M, el precio llega a estar por encima de 1,35843.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p46980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47070000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5490ae48961ae5b3e9c661a1bdfcbbfcb733dfe8372fde427747884b4aa2f92f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra el gráfico GBPUSD de 15M y la trajectory del precio cruza y queda por encima del nivel 1,35843, con una cotización visible de 1,36030."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2d6c2dec75f417c6c3ef6fd558639faef0f18adc38e1591386c841440e76793c"
+    ],
+    "response_id": "gen-1791089700-KBJSGWdHOQ9TYvQwayuO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-temporal-pasa-1d-a-15m",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El marco temporal del gráfico de GBPUSD cambia de 1D a 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p46260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46980000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "398bbebff23af19adbafb369027e1d798b95dc5f8d6c4cd26d6b06dae0022114",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra GBPUSD en 1D y la segunda muestra GBPUSD en 15/15M, por lo que la evidencia cited demuestra el cambio de marco temporal."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El cambio de 1D a 15M constituye una sola proposición sobre una transición temporal."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "2d6c2dec75f417c6c3ef6fd558639faef0f18adc38e1591386c841440e76793c"
+    ],
+    "response_id": "gen-1791089700-KBJSGWdHOQ9TYvQwayuO"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00069",
+   "start_ms": 509540,
+   "end_ms": 514419,
+   "text": "Otra vez, rango bullish en Libra, teníamos este objetivo para hoy. ¿Por qué? Cierra"
+  },
+  {
+   "id": "asr-00070",
+   "start_ms": 514419,
+   "end_ms": 516220,
+   "text": "con fuerza este, no teníamos"
+  },
+  {
+   "id": "asr-00071",
+   "start_ms": 516220,
+   "end_ms": 519039,
+   "text": "rango bajista"
+  },
+  {
+   "id": "asr-00072",
+   "start_ms": 519039,
+   "end_ms": 520880,
+   "text": "que ha hecho a la libra ir directamente"
+  },
+  {
+   "id": "asr-00073",
+   "start_ms": 520880,
+   "end_ms": 522020,
+   "text": "hasta su objetivo."
+  },
+  {
+   "id": "asr-00074",
+   "start_ms": 523169,
+   "end_ms": 524110,
+   "text": "Aquí lo veis claro."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46260000-canonical-v1",
+   "pts_ms": 514000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46260000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46440000-canonical-v1",
+   "pts_ms": 516000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46710000-canonical-v1",
+   "pts_ms": 519000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46800000-canonical-v1",
+   "pts_ms": 520000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46890000-canonical-v1",
+   "pts_ms": 521000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46980000-canonical-v1",
+   "pts_ms": 522000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47070000-canonical-v1",
+   "pts_ms": 523000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47070000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47160000-canonical-v1",
+   "pts_ms": 524000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

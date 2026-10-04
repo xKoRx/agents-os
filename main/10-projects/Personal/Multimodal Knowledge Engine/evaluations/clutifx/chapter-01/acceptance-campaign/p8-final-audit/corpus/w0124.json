@@ -1,0 +1,696 @@
+{
+ "window": "w0124",
+ "start": "31:44",
+ "end": "32:07",
+ "start_ms": 1904000,
+ "end_ms": 1927000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bullish-buys-manipulation",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Cuando buscas compras en un contexto alcista, las compras ideales están en la etapa de manipulación de la vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00271",
+    "frame-4de8f12d4841c630-s0-p172800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "522b6b7c1c9c4aba2e53340817bcc08ef44558a75f0d141626273a76350a5467",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que, al buscar compras en un contexto alcista, las compras ideales están en la etapa de manipulación de la vela."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La expresión «en un contexto alcista» solo restringe la misma proposición y no introduce una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "81048521eddd78f0890dc951e732dd2d428e51a154369bc0a73e71ce851eb112"
+    ],
+    "response_id": "gen-1791117979-fnhSC6rOVa6uCktl7fL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-check-previous-candle",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Consulta la vela anterior.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00273",
+    "frame-4de8f12d4841c630-s0-p173430000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9b64517d8506abff62e7067e865511e5458c6175af5a67f637ffc71ee819e1ee",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica explícitamente «Vas a la vela anterior», y el frame muestra el contexto de velas al que se refiere."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola instrucción: consultar la vela anterior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "81048521eddd78f0890dc951e732dd2d428e51a154369bc0a73e71ce851eb112"
+    ],
+    "response_id": "gen-1791117979-fnhSC6rOVa6uCktl7fL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-enter-power3-optimal-point",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Tras la apertura de la nueva vela de 4 horas, entra en el punto óptimo del Power of 3.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00272"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "28583c556ac9f64ac279b4bc4b98ea6a0ef5c319d89e8f8ac376b6aa1e9ff1a7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica explícitamente que se debe esperar a que abra la nueva vela de 4 horas y entrar entonces en el punto óptimo del Power of 3."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Lasequentialidad temporal y el punto de entrada forman una sola instrucción inseparable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "81048521eddd78f0890dc951e732dd2d428e51a154369bc0a73e71ce851eb112"
+    ],
+    "response_id": "gen-1791117979-fnhSC6rOVa6uCktl7fL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-lower-entry-better-for-long",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Para la entrada en long planteada, es mejor entrar en la parte baja de la vela que en la parte alta.",
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00271",
+    "asr-00272",
+    "asr-00273",
+    "asr-00274",
+    "frame-4de8f12d4841c630-s0-p173430000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "60eec968f3f6d43f4f56ac6547dffca9b65a16aff0cdade51d99406aeda32e05",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción menciona un punto óptimo de entrada y plantea si es mejor entrar arriba o abajo, pero no afirma explícitamente que la parte baja sea la mejor."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra dos velas y niveles, pero no identifica visualmente cuál de las dos entradas es superior."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "81048521eddd78f0890dc951e732dd2d428e51a154369bc0a73e71ce851eb112"
+    ],
+    "response_id": "gen-1791117979-fnhSC6rOVa6uCktl7fL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-new-4h-opens-5",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La nueva vela de 4 horas abre a las 5.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00272",
+    "frame-4de8f12d4841c630-s0-p172080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7fd15bd63d87caa2fad9113bc9a42a9f9aebf044549c4cbbb14c4b63345c0b57",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que la nueva vela de 4 horas abre a las 5, y la imagen muestra las etiquetas «4 HORAS» y «0500»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "81048521eddd78f0890dc951e732dd2d428e51a154369bc0a73e71ce851eb112"
+    ],
+    "response_id": "gen-1791117979-fnhSC6rOVa6uCktl7fL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-new-open-marks-previous-close",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Si la nueva vela abre aquí, la vela anterior ha cerrado en ese mismo punto.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00272",
+    "asr-00273",
+    "frame-4de8f12d4841c630-s0-p173430000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "35288912cf02034f4ffe29f21eed7a8e1850742682c2b0e687382b385a06d0d4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que, si la nueva vela abre en ese punto, la vela anterior ha cerrado allí; la afirmación es un único enunciado condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "81048521eddd78f0890dc951e732dd2d428e51a154369bc0a73e71ce851eb112"
+    ],
+    "response_id": "gen-1791117979-fnhSC6rOVa6uCktl7fL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-power3-concept",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La vela de referencia de 4 horas se presenta como el concepto de Power of 3.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00271",
+    "asr-00272",
+    "frame-4de8f12d4841c630-s0-p172080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1a2b42520f152e6697a6ecce3505db9409e5c6b87643e6fdae9a130be7b1db3e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El discurso identifica deícticamente la zona mostrada como «el concepto de Power 3», y la imagen etiqueta esa misma referencia temporal como «4 HORAS»; además, el siguiente segmento menciona explícitamente la nueva vela de 4 horas y el Power of 3."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la vela de referencia de 4 horas se presenta como el concepto de Power of 3."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "81048521eddd78f0890dc951e732dd2d428e51a154369bc0a73e71ce851eb112"
+    ],
+    "response_id": "gen-1791117979-fnhSC6rOVa6uCktl7fL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reference-candle-4h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El esquema de referencia muestra una vela de 4 HORAS.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00272",
+    "frame-4de8f12d4841c630-s0-p172080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "158a0b00f7a5f63059cc498bc7802582bdfe248d83c3ab19ef409eb494d19e34",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción menciona expresamente una «nueva vela de 4 horas», y la imagen muestra una vela junto a la etiqueta «4 HORAS»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "81048521eddd78f0890dc951e732dd2d428e51a154369bc0a73e71ce851eb112"
+    ],
+    "response_id": "gen-1791117979-fnhSC6rOVa6uCktl7fL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reference-close-0500",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La vela de 4 horas cierra en el punto marcado como 0500.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00271",
+    "asr-00272",
+    "frame-4de8f12d4841c630-s0-p172080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3fa41a9e6f2103eb34a6b3c780d0e92af10e3e44c73fb5f2baee42f0bb813a6d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que la vela «cierra aquí» «a las 5» y que la nueva vela de 4 horas abre a las 5; el marco muestra «4 HORAS» y el punto «0500»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "81048521eddd78f0890dc951e732dd2d428e51a154369bc0a73e71ce851eb112"
+    ],
+    "response_id": "gen-1791117979-fnhSC6rOVa6uCktl7fL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reference-open-0100",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La vela de 4 horas abre en el punto marcado como 0100.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p172080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p172440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7c617f297b4cb57452e795908235a8f468549cffaf0f0f705fe0e21e511871ba",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La anotación «4 HORAS» identifica la vela de cuatro horas, cuyo punto de apertura en el extremo inferior del cuerpo está alineado con la línea marcada «0100»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación expresa una sola proposición: el punto de apertura de esa vela es el punto marcado «0100»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "81048521eddd78f0890dc951e732dd2d428e51a154369bc0a73e71ce851eb112"
+    ],
+    "response_id": "gen-1791117979-fnhSC6rOVa6uCktl7fL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-symbol-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p171360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9eb2a57d6bf7fcef6f2c6f2d35a67d29ceacfbebc208d776a03c843ad71cbf28",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente la etiqueta «EURUSD» en la parte superior izquierda y junto al periodo «15M»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "81048521eddd78f0890dc951e732dd2d428e51a154369bc0a73e71ce851eb112"
+    ],
+    "response_id": "gen-1791117979-fnhSC6rOVa6uCktl7fL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-wait-for-new-4h-open",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Si son las 4.30 y quieres entrar en un long, espera a que abra la nueva vela de 4 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00272"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "51952d0010f5f5caa4fa6183df6e78744ba3988a3f106f99cd08d07e9211cbfa",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice explícitamente que, si son las 4:30 y se quiere entrar en un long, se debe esperar a que abra la nueva vela de 4 horas a las 5."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola instrucción condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "81048521eddd78f0890dc951e732dd2d428e51a154369bc0a73e71ce851eb112"
+    ],
+    "response_id": "gen-1791117979-fnhSC6rOVa6uCktl7fL8"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-lower-entry-depends-manipulation",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-lower-entry-better-for-long",
+   "subject_version": 1,
+   "object_id": "cl-bullish-buys-manipulation",
+   "object_version": 1,
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00271",
+    "asr-00272",
+    "asr-00274"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "d7641c784054d055a3bb9daf95ae0093328eeef8d42fd13ad0c4558bee3e2c36",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia sí afirma que, en un contexto alcista, las compras ideales están en la etapa de manipulación y que debe esperarse al punto óptimo de Power 3 para entrar en un long."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Sin embargo, la única referencia a entrar en la parte baja frente a la parte alta es una pregunta whose answer no se incluye; no se afirma allí que la parte baja sea mejor ni se identifica explícitamente con la manipulación. Por ello, la evidencia citada no establece claramente la relación de dependencia en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "81048521eddd78f0890dc951e732dd2d428e51a154369bc0a73e71ce851eb112"
+    ],
+    "response_id": "gen-1791117979-fnhSC6rOVa6uCktl7fL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-optimal-entry-depends-wait",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-enter-power3-optimal-point",
+   "subject_version": 1,
+   "object_id": "cl-wait-for-new-4h-open",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00272"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8df16f93b290c93c1bde28350e730a99f741e6bf468c4be773780bba66c06695",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica explícitamente que, si son las 4.30 y se quiere entrar en un long, se debe esperar a que abra la nueva vela de 4 horas para luego entrar en el punto óptimo del Power of 3."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "81048521eddd78f0890dc951e732dd2d428e51a154369bc0a73e71ce851eb112"
+    ],
+    "response_id": "gen-1791117979-fnhSC6rOVa6uCktl7fL8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-wait-open-depends-5",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-wait-for-new-4h-open",
+   "subject_version": 1,
+   "object_id": "cl-new-4h-opens-5",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00272"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ec1a73713009abeb1ada2c777aa8517bae9cb22d8dc12d094ef63c83e7ad6063",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que, si son las 4:30 y se quiere entrar en un long, hay que esperar a que abra la nueva vela de 4 horas, y especifica que esto ocurre a las 5."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "81048521eddd78f0890dc951e732dd2d428e51a154369bc0a73e71ce851eb112"
+    ],
+    "response_id": "gen-1791117979-fnhSC6rOVa6uCktl7fL8"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00271",
+   "start_ms": 1883530,
+   "end_ms": 1906420,
+   "text": "Esto de aquí y cierra aquí, ¿vale? A las 5. Esto es el concepto de Power 3. ¿Por qué es importante esto? Para saber, pues, si tú estás buscando compras en un contexto alcista, las compras ideales siempre, siempre, siempre van a estar en esta etapa de manipulación de la vela, ¿vale?"
+  },
+  {
+   "id": "asr-00272",
+   "start_ms": 1906420,
+   "end_ms": 1919200,
+   "text": "Por lo tanto, es importante para saber, imagínate, son las 4.30 y tú quieres entrar en un long, pues lo que vas a hacer es esperar a que abra la nueva vela de 4 horas a las 5 para en el power of 3 entrar en el punto óptimo."
+  },
+  {
+   "id": "asr-00273",
+   "start_ms": 1919580,
+   "end_ms": 1925600,
+   "text": "Vas a la vela anterior, si esto abre aquí, significa que la vela anterior ha cerrado aquí, ¿vale?"
+  },
+  {
+   "id": "asr-00274",
+   "start_ms": 1926200,
+   "end_ms": 1929620,
+   "text": "¿Qué te es mejor, entrar aquí arriba o entrar aquí abajo?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p171360000-canonical-v1",
+   "pts_ms": 1904000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p171360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p171720000-canonical-v1",
+   "pts_ms": 1908000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p171720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p171810000-canonical-v1",
+   "pts_ms": 1909000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p171810000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p172080000-canonical-v1",
+   "pts_ms": 1912000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p172080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p172440000-canonical-v1",
+   "pts_ms": 1916000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p172440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p172800000-canonical-v1",
+   "pts_ms": 1920000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p172800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p173160000-canonical-v1",
+   "pts_ms": 1924000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p173160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p173430000-canonical-v1",
+   "pts_ms": 1927000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p173430000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,90 @@
+{
+ "window": "w0066",
+ "start": "16:00",
+ "end": "16:23",
+ "start_ms": 960000,
+ "end_ms": 983000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00129",
+   "start_ms": 954040,
+   "end_ms": 960690,
+   "text": "alto del bajo pero bueno queda así un poco mejor esto sería una vela pongámosle de cuatro horas"
+  },
+  {
+   "id": "asr-00130",
+   "start_ms": 960690,
+   "end_ms": 976240,
+   "text": "vale siguiente vela hace esto así toma el low reacciona entonces es un tartel sub vale si esto"
+  },
+  {
+   "id": "asr-00131",
+   "start_ms": 976240,
+   "end_ms": 984900,
+   "text": "en lugar de reaccionar, sigue bajando, no es ningún tartle sub, ¿vale? O sea, el tartle sub tiene que ser una toma de liquidez"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p86400000-canonical-v1",
+   "pts_ms": 960000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p86400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p86760000-canonical-v1",
+   "pts_ms": 964000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p86760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p87120000-canonical-v1",
+   "pts_ms": 968000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p87120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p87480000-canonical-v1",
+   "pts_ms": 972000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p87480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p87750000-canonical-v1",
+   "pts_ms": 975000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p87750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p87840000-canonical-v1",
+   "pts_ms": 976000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p87840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p88200000-canonical-v1",
+   "pts_ms": 980000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p88200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p88470000-canonical-v1",
+   "pts_ms": 983000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p88470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

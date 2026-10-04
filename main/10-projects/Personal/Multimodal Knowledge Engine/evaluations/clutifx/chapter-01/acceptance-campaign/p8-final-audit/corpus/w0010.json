@@ -1,0 +1,409 @@
+{
+ "window": "w0010",
+ "start": "02:12",
+ "end": "02:28",
+ "start_ms": 132000,
+ "end_ms": 148000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estrategia-rangos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La estrategia se basa principalmente en los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00020"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b6f3caa9578226507d722683e4b8d8f2aaee0b066c941d2d6d476b9e31d1bb6a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «la estrategia se basa principalmente en los rangos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la estrategia se basa principalmente en los rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "519d276c6dc460d4b221a96cceb275509ba9f5d3eff7ce0d9c3b967a09291efd"
+    ],
+    "response_id": "gen-1791081877-WK2uC8fKOWWZtwZzh4Jq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-extremo-vela-anterior",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Normalmente se toma el extremo de la vela anterior.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00018",
+    "asr-00019"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "888db0984c000ff81e136c1bd64de8f774c3f27f6745cf96804945b0d00506bb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que normalmente se toma el extremo de la vela anterior."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "519d276c6dc460d4b221a96cceb275509ba9f5d3eff7ce0d9c3b967a09291efd"
+    ],
+    "response_id": "gen-1791081877-WK2uC8fKOWWZtwZzh4Jq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-creado-por-extremo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La toma del extremo de la vela anterior crea el rango resaltado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00019",
+    "asr-00020",
+    "frame-4de8f12d4841c630-s0-p12600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p12960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d4b3f5a65fd1062f8c42b1ef91eb643ccb2e5c8f6b6c7cba0dd94c6e6a1e8961",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas citadas enlazan «el extremo de la vela anterior» con la creación de «este rango», y los fotogramas muestran el rango resaltado como referente visual."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "519d276c6dc460d4b221a96cceb275509ba9f5d3eff7ce0d9c3b967a09291efd"
+    ],
+    "response_id": "gen-1791081877-WK2uC8fKOWWZtwZzh4Jq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-derecho-ampliacion",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango oscuro de la derecha se amplía.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p12600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p12960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "00990cbb357fa69600b6b5326c76afd3e474f163ac3d8101a8c95b1b957c0f09",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran que el rango oscuro situado a la derecha pasa de unas dimensiones pequeñas a unas dimensiones claramente mayores."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "519d276c6dc460d4b221a96cceb275509ba9f5d3eff7ce0d9c3b967a09291efd"
+    ],
+    "response_id": "gen-1791081877-WK2uC8fKOWWZtwZzh4Jq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-derecho-cambio-relleno",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El relleno del rango situado a la derecha cambia de claro a oscuro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p12510000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p12600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4c357871548621a56eff270644701295bd7e6b598fc4a6f09c6fbdabbdc2bcba",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra el rango derecho con relleno blanco o claro y la segunda muestra ese mismo rango con relleno negro o oscuro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una sola transición del relleno del rango de claro a oscuro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "519d276c6dc460d4b221a96cceb275509ba9f5d3eff7ce0d9c3b967a09291efd"
+    ],
+    "response_id": "gen-1791081877-WK2uC8fKOWWZtwZzh4Jq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-derecho-relleno-retirado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El relleno oscuro del rango ampliado de la derecha se retira.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p13050000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p13320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "012b3c532fed62cb2c3e73ac2d75be724e79d4bf0ab78ea6b192b217c34982bf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la primera imagen, el rango ampliado de la derecha aparece seleccionado y cubierto por un relleno oscuro amplio; en la segunda, ese relleno se ha retirado y queda visible el fondo claro del rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "519d276c6dc460d4b221a96cceb275509ba9f5d3eff7ce0d9c3b967a09291efd"
+    ],
+    "response_id": "gen-1791081877-WK2uC8fKOWWZtwZzh4Jq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-etiquetado-alcista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango mostrado está etiquetado como «rango alcista».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p11880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "67fd56242e69a4f0e24a6dda21e6aac7e5d957f8fce1ed4b86638348b6c685a0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el texto «rango alcista» sobre el rango mostrado, por lo que la etiqueta queda directamente respaldada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "519d276c6dc460d4b221a96cceb275509ba9f5d3eff7ce0d9c3b967a09291efd"
+    ],
+    "response_id": "gen-1791081877-WK2uC8fKOWWZtwZzh4Jq"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-requiere-extremo-vela-anterior",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-creado-por-extremo",
+   "subject_version": 1,
+   "object_id": "cl-extremo-vela-anterior",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00019",
+    "asr-00020"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "0ee57d346e73aa9216d2aa53dbf858fb2f1b9d503fe3e215a11e96ff26fa36fa",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona «el extremo de la vela anterior» y indica que esto «nos crea» un rango, pero no afirma que normalmente se tome dicho extremo; por tanto, noYLE-justifica plenamente la claim situada a la derecha de la relación."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "519d276c6dc460d4b221a96cceb275509ba9f5d3eff7ce0d9c3b967a09291efd"
+    ],
+    "response_id": "gen-1791081877-WK2uC8fKOWWZtwZzh4Jq"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00017",
+   "start_ms": 127310,
+   "end_ms": 134420,
+   "text": "o lo mismo, tampoco tiene que ser negativa como tal"
+  },
+  {
+   "id": "asr-00018",
+   "start_ms": 134420,
+   "end_ms": 139790,
+   "text": "pero normalmente pasa que nos toma"
+  },
+  {
+   "id": "asr-00019",
+   "start_ms": 139790,
+   "end_ms": 145040,
+   "text": "el extremo de la vela anterior y nos crea lo que sería"
+  },
+  {
+   "id": "asr-00020",
+   "start_ms": 145040,
+   "end_ms": 152600,
+   "text": "este rango vale vais a ver que la estrategia se basa principalmente en los rangos y esto no está"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p11880000-canonical-v1",
+   "pts_ms": 132000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p11880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p12150000-canonical-v1",
+   "pts_ms": 135000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p12150000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p12240000-canonical-v1",
+   "pts_ms": 136000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p12240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p12510000-canonical-v1",
+   "pts_ms": 139000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p12510000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p12600000-canonical-v1",
+   "pts_ms": 140000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p12600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p12960000-canonical-v1",
+   "pts_ms": 144000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p12960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13050000-canonical-v1",
+   "pts_ms": 145000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13320000-canonical-v1",
+   "pts_ms": 148000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

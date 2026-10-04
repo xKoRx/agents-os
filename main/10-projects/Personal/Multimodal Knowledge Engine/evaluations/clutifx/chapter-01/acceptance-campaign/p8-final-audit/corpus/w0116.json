@@ -1,0 +1,1537 @@
+{
+ "window": "w0116",
+ "start": "29:26",
+ "end": "29:38",
+ "start_ms": 1766000,
+ "end_ms": 1778000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-entrada-short-tras-cierre-fuera",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si la vela cierra por fuera del orden block, se puede tomar una entrada short.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00256",
+    "asr-00257"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e8ab6e5a836f340e6ec1e1ea522426ca0e5b889f064197287f3d1dd4b7049e17",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas conectan una vela que «cierra por fuera» con la instrucción de tomar un short, remitiendo al orden bloque."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola regla: ante ese cierre, se permite una entrada short."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-final-cantidad-14762",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La cantidad indicada por la herramienta de posición final es 14762.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p160020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bbf50a73942ed3f63fcc9c1a089d83521ef120764960ce724129352f5ac26114",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta de la herramienta de posición final muestra «Cantidad: 14762»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-final-cerrado-png-00337",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El PnG cerrado indicado por la herramienta de posición final es 0,00337.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p160020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b9094648464f6b43f55215d7c128c1e5d63e93bed971f8c1cf441445baa475b2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta azul de la herramienta de posición muestra «Cerrado PnG: 0,00337», lo que respalda directamente el valor afirmado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el PnG cerrado indicado es 0,00337."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-final-linea-png-115078",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La línea de «Cerrado PnG» de la herramienta de posición final está en 1,15078.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p160020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4a962deb24a544df6b89a896837b67c2217e195e49b722bfc15590995da811a0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta «Cerrado PnG» de la herramienta aparece junto a la línea de precio marcada como 1,15078 en la escala lateral."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-final-objetivo-distancia-00337",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La distancia del objetivo de la herramienta de posición final es 0,00337.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p160020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "19123afa770077478fd453c2ad7561e7d6411ffcf948248a64589da769dfa68c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible de la herramienta de posición indica «Objetivo: 0,00337», lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el valor de la distancia del objetivo es 0,00337."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-final-objetivo-importe-100800",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El importe del objetivo de la herramienta de posición final es 100800.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p160020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "eb05659152464d214f93802e31ea4f970ba9b3f7b33232906c25fec5d983a233",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta de la herramienta de posición muestra «Importe: 100800», lo que respalda directamente el importe indicado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-final-objetivo-nivel-114741",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo de la herramienta de posición final está en 1,14741.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p160020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0e83a9f55b6151846ba1a6e6cde59082ea39b61aab5680853575209acb8435f7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La herramienta de posición final muestra la etiqueta «Objetivo» en la línea horizontal alineada con el precio 1,14741 del eje lateral."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-final-objetivo-porcentaje-029",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo de la herramienta de posición final representa 0,29%.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p160020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "56f767dff9e961c70614583cf80bd0009b837133d1e09ea06a85e9c156a8b3ef",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta de la herramienta muestra «Objetivo: 0.00337 (0.29%)», lo que respalda directamente que el objetivo representa 0,29%."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-final-objetivo-valor-33-7",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo de la herramienta de posición final muestra el valor 33,7.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p160020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "25b2b93a107657ba92b26e12bdb11a6a8d9cc97804af374c8e28690f5c25fef4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta azul de la herramienta de posición final muestra «Objetivo: 0.00337 (0.29% 33.7)», por lo que indica claramente el valor 33,7."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el valor mostrado por el objetivo de la herramienta."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-final-riesgo-beneficio-1",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La relación riesgo/beneficio de la herramienta de posición final es 1.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p160020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4f6e6d8743269c70e6adbd9a8bb618a9111db5ee7bd5e600784e2c92db4628bf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible de la herramienta de posición muestra «Relación riesgo/beneficio: 1»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-cantidad-2272727",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La cantidad indicada por la herramienta de posición inicial es 2272727.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f104ad3e6ab9680eae8b22b02216d4f8cd0a6903223a6f21a5a113af21c98fcd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible de la herramienta de posición indica «Cantidad: 2272727»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el valor de la cantidad indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-cerrado-png-00337",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El PnG cerrado indicado por la herramienta de posición inicial es 0,00337.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "072a38c8cfdf5568e4d78aed05e45df52f60b2a14ce01c4ca20c5242ca7e3b80",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta de la herramienta de posición muestra «Cerrado PnG: 0,00337», lo que respalda directamente el valor afirmado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el PnG cerrado indicado es 0,00337."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-linea-png-114674",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La línea de «Cerrado PnG» de la herramienta de posición inicial está en 1,14674.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e93ca222781afeec1929b03cba27313cdce6386c5961219dd29d5e7e6294d7ef",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la línea horizontal discontinua etiquetada «Cerrado PnG» alineada con el valor 1,14674 en el eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-objetivo-distancia-00337",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La distancia del objetivo de la herramienta de posición inicial es 0,00337.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a1817c81d0c3e65519eca0f5113de8abdf0510434bf7afac7a0232a9e496233a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta superior de la herramienta de posición inicial muestra «Objetivo: 0,00337», por lo que la distancia del objetivo es 0,00337."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el valor de la distancia del objetivo de esa herramienta."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-objetivo-importe-107659-09",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El importe del objetivo de la herramienta de posición inicial es 107659,09.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2e86d6dbbe5b16a20d3429aafee69e84cd362512e101c45bb82b7d340920b587",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta azul del objetivo de la herramienta muestra «Importe: 107659.09», que corresponde a 107659,09 en formato español."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el importe mostrado para el objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-objetivo-nivel-115034",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo de la herramienta de posición inicial está en 1,15034.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "151bce0115e7bf0502450951c47a968a3bd09cbe140ed78f25c60c79d49d43fd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La herramienta de posición larga muestra el extremo superior etiquetado «Objetivo» alineado con el nivel 1,15034 en el eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-objetivo-porcentaje-029",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo de la herramienta de posición inicial representa 0,29%.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2ca151bf5532b5862402ea7931bcabc522209676e38b5714eb9886a9541e36cc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible de la herramienta de posición indica «Objetivo: 0,00337 (0,29%)», lo que muestra directamente que el objetivo representa 0,29%."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-objetivo-valor-33-7",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo de la herramienta de posición inicial muestra el valor 33,7.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "73811b6a74ac48cb5a46a47882f0057a62802e5ea028adbb39ce02bb22737cea",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible de «Objetivo» en la herramienta de posición muestra explícitamente el valor 33,7."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-oculta",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La herramienta de posición inicial deja de estar visible en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p159390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p159480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ae5cba5937114e0d020dc084373c129453d5b514e2208381fcdcd58cf5ef11de",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La herramienta de posición inicial aparece en el primer fotograma y ya no es visible en el segundo, por lo que la evidencia muestra directamente que deja de estar visible."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el cambio de visibilidad de la herramienta en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-riesgo-beneficio-191",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La relación riesgo/beneficio de la herramienta de posición inicial es 1,91.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3e7e0da321a1908dac074ef0ae75151d927a8b9f3c5c98b1e5991187fafe6fa4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible de la herramienta de posición indica «Relación riesgo/beneficio: 1,91», lo que respalda directamente la afirmación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-stop-distancia-00176",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La distancia del stop de la herramienta de posición inicial es 0,00176.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "37f07e67dd3c2d976b5baa6828657d505aa3a02a78a21bf6c2bb6b1b1ce125c3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible de la herramienta de posición indica «Stop: 0,00176 (0,15%)»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-stop-importe-96000",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El importe del stop de la herramienta de posición inicial es 96000.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2f2191b8b1c2f21507fb0c603dfc8f42f659e257ee3c15c32aebfabade248762",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta de la herramienta muestra «Stop: 0,00176 (0,15%) 17,6, Importe: 96000», por lo que el importe asociado al stop es 96000."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-stop-nivel-114521",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El stop de la herramienta de posición inicial está en 1,14521.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a5d934379fd08afe81ef5dd4cf9818260cbe1873d88144c0964d3e9e0449bae2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La herramienta de posición larga muestra su nivel de stop en la parte inferior, alineado con la marca del eje de precios de 1,14521."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el nivel del stop de la herramienta."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-stop-porcentaje-015",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El stop de la herramienta de posición inicial representa 0,15%.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "93bd191c0113b5c23415c15836c17bd6f67ca565d22ffbd65fd03583d319531e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta de la herramienta de posición muestra «Stop: 0,00176 (0,15%)», por lo que la evidencia respalda directamente esa afirmación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-herramienta-inicial-stop-valor-17-6",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El stop de la herramienta de posición inicial muestra el valor 17,6.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1f13e7cfffd8156d48972d315793dcb8b41226df9488fc059084c121b6cd40eb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta inferior de la herramienta de posición muestra «Stop: 0,00176 (0,15%) 17,6», por lo que el valor 17,6 está directamente visible."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el stop de la herramienta muestra el valor 17,6."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-marco-temporal-alternativo-10",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "Se puede utilizar el marco temporal de 10.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00257"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "160e8d5c91b05fef6a77606c806a8abef0b4a441ab4c1be1a2decd8a79bdc3be",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona «si queréis utilizar 10», pero no identifica explícitamente ese 10 como un marco temporal; por tanto, no establishes exactamente la proposición afirmada."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-marco-temporal-alternativo-25",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "Se puede utilizar el marco temporal de 25.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00257"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "184044c3b977d2329995645bf3d2e15428fb3db087b48db7399d2ea56e0a74ca",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice «si queréis utilizar 10 25 30», lo que incluye explícitamente la posibilidad de utilizar 25."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-marco-temporal-alternativo-30",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "Se puede utilizar el marco temporal de 30.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00257"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "aba386446b3536746d9ca5acc919f227ccef931a4d72d6e62cac7cfeea6c15cc",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer failed: vlm provider parse-structured [fatal]: assistant content is not a valid JSON object"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-marco-temporal-referencia-15",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal de referencia de este análisis es 15.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00257",
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c504f34e766f30d681928b6372013fa72142dfb4a7adbffe836d877ec750a0b1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente «EURUSD | 15M», lo que acredita que el marco temporal de referencia es de 15 minutos; el segmentoValidate transcript también menciona «en 15»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-orden-block-arriba",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El orden block está aquí arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00256"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5da5e072fefe9e8e2d03e0bd15775aa2218e96ea11d7812e4186c14888a867e0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente «el orden bloque aquí arriba», respaldando que el orden block está aquí arriba."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la ubicación del orden block."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-orden-block-formacion-esperada",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Se espera que se forme el orden block.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00255"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d2046d9dd4a5cbd0d9450503d2b3e118023e687ff2f2e0a92dc33288f3c54ee5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice explícitamente «espero que se formará el orden block», lo que respalda que se espera que se forme dicho orden."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la expectativa de formación del orden block."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-bajando-mucho",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio está bajando muchísimo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00255"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ba11edcee93a473a7e2105b4967041eb3617d9f3f198342f939e58d179a39b7a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «el precio está bajando muchísimo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el precio está descendiendo en gran medida."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-proveedor-forex-com",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El proveedor mostrado es FOREX.com.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p158940000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "38ef8df25401043d9fa06950a2fba35a6c604884bf0832714412ce308ccf5af1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La esquina superior izquierda de la imagen muestra explícitamente «FOREX.com» junto al par EURUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-cierra-fuera-orden-block",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela indicada cierra por fuera del orden block.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00256",
+    "asr-00257"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fdf3744fd8105ee756fbafd961d9e65ae79543737fb44030afedb97b74b1ee2f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas indican «orden bloque» y, referring to it with «vela de aquí», state explícitamente que «cierra por fuera». La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-entrada-short-requiere-cierre-fuera",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-entrada-short-tras-cierre-fuera",
+   "subject_version": 1,
+   "object_id": "cl-vela-cierra-fuera-orden-block",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00256",
+    "asr-00257"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a1d6e1ad68ada8065aa1e0619607bf33f66e3f850d248273c25c322fd4b6b435",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas indican que la vela de ejemplo «cierra por fuera» del orden block y que, en ese contexto, se entra en short o «podrías hacer lo mismo», Linking la entrada short con la cierre por fuera en la orientación sujeto DEPENDS_ON objeto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-timeframe-10-alternativa-a-15",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-marco-temporal-alternativo-10",
+   "subject_version": 1,
+   "object_id": "cl-marco-temporal-referencia-15",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00257"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1e5bb10490cb4f5231f421baad7e27d6191bc518ddb6bb219ada1986818e379b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia fija 15 como el marco temporal de referencia («esto lo miró en 15») y permite utilizar 10 como alternativa («si queréis utilizar 10»), por lo que la posibilidad de usar 10 constituye una excepción al uso de referencia de 15 en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-timeframe-25-alternativa-a-15",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-marco-temporal-alternativo-25",
+   "subject_version": 1,
+   "object_id": "cl-marco-temporal-referencia-15",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00257"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bd315ab6db1590a7255aa8e7dddc2c2cf551d4a15cda6301fe4821a950b85dbb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica que la referencia es 15 («esto lo miró en 15») y, a la vez, permite utilizar 25 («si queréis utilizar 10 25 30»); por tanto, el marco temporal 25 se presenta como una alternativa excepcional al marco de referencia 15."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-timeframe-30-alternativa-a-15",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-marco-temporal-alternativo-30",
+   "subject_version": 1,
+   "object_id": "cl-marco-temporal-referencia-15",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00257"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4ac6403c975626f608c10dda93ba5ce85bee83583c0219edfc61ffe9c7b1f6c3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica que el análisis se hizo en 15, pero que se puede utilizar 10, 25 o 30; por tanto, el uso opcional de 30 es una alternativa excepcional al marco de referencia de 15."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v3",
+    "config_fingerprint": "21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743",
+    "invocation_ids": [
+     "62d5e4868b3f9e739831a49203ba7fa9ed2810d96440165e9fe204fdba6e5ced"
+    ],
+    "response_id": "gen-1791114893-cymejB2DVH9i3IPD5GuP"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00255",
+   "start_ms": 1765810,
+   "end_ms": 1770430,
+   "text": "espero que se formará el orden block porque como veis el precio está bajando muchísimo pues se"
+  },
+  {
+   "id": "asr-00256",
+   "start_ms": 1770430,
+   "end_ms": 1776200,
+   "text": "informa esto entras en el short podrías hacer lo mismo veis el orden bloque aquí arriba esta"
+  },
+  {
+   "id": "asr-00257",
+   "start_ms": 1776200,
+   "end_ms": 1785690,
+   "text": "vela de aquí cierra por fuera lo tomas vale esto lo miró en 15 pero si queréis utilizar 10 25 30"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p158940000-canonical-v1",
+   "pts_ms": 1766000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p158940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p159030000-canonical-v1",
+   "pts_ms": 1767000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p159030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p159120000-canonical-v1",
+   "pts_ms": 1768000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p159120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p159300000-canonical-v1",
+   "pts_ms": 1770000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p159300000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p159390000-canonical-v1",
+   "pts_ms": 1771000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p159390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p159480000-canonical-v1",
+   "pts_ms": 1772000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p159480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p159840000-canonical-v1",
+   "pts_ms": 1776000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p159840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p160020000-canonical-v1",
+   "pts_ms": 1778000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p160020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}
