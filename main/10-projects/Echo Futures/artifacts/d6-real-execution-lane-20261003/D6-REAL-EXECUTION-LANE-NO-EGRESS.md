@@ -915,3 +915,193 @@ Un solo ciclo W1 CORRECTIVO (standing OD-D6-4, con NT CERRADO): (1) cerrar Ninja
 NEXT_MANAGER_ACTION:
 Veredicto FAIL ⇒ no certificar lane ni ejecutar ladder. (a) Owner: ciclo W1 correctivo (arriba; ~5 min, hoy mismo — no depende de ventana). (b) Hoy ≥17:00 CT (22:00Z): G-REALTIME feed-lane-only con el runbook §M del intento 1 (no depende del pickup). (c) Con la señal de éxito: re-despachar C→K fresh (~5 min) y ladder congelado §N en la primera ventana admisible lun 2026-10-05 00:00–15:50 CT. OD-D6-1 AUTHORIZED vigente SIN consumir (0 órdenes en 5 intentos). No emitir EF_D6_E2E_PASS.
 ```
+
+---
+---
+
+# ATTEMPT 6 — FORCED NINJASCRIPT PICKUP / FINAL C→K — 2026-10-04 (tarde, evidencia UTC ≈16:14Z–16:47Z, local -03 ≈13:14–13:47; domingo, CME cerrado)
+
+**Nota de esquema:** el despacho partía de la verdad owner post-ciclo W1 correctivo (NT cerrado → bundle reinstalado → instalación verificada → NT abierto → NinjaScript Editor Compile/F5 con CERO ERRORES → NT cerrado → NT reiniciado). Esta vez el runtime **CONFIRMÓ** esa verdad: las tres firmas físicas C0 corresponden al source `32baeaeb` y son **estructuralmente imposibles en la build vieja** (guard tests + parser real). El pickup forzado **SÍ funcionó** — `RUNTIME_BUILD_PICKUP = PASS` por primera vez en 6 intentos, y con él el lane de ejecución REAL alcanzó por primera vez la **sesión estable autenticada con recovery barrier PASADO** (F). La certificación se detiene en **H (bridge restart recovery)** por un **hallazgo de producto NUEVO, acotado y con reproducción exacta**: el barrier re-pasa sólo si el tick de snapshots del AddOn (cada 10 s) cae en la ventana de ms entre hello y reconcile — 1 pase / 5 fallos en 6 arranques. Veredicto: **REMEDIATION_REQUIRED** (C0+transporte+binding+observaciones+barrier-estable+reconnect PASS; H FAIL). Cero órdenes, cero comandos, cero mutaciones de producto/infra (delta ETCD neto CERO). Evidencia: `~/aranea/work/d6-reallane-cert-attempt6-20261004/evidence/`.
+
+## P0 — OWNER CORRECTIVE W1 VERIFIED (restart + compile + pickup)
+
+- **Ciclo owner fechado por el relay:** boots NT 16:05:34Z, 16:06:36Z, 16:07:00Z, 16:07:13Z (ciclos cortos de reinstalación/F5) → boot estable final **16:08:15.196Z** (hello feed seq 0, sesión `5b70e536…`, `addon_version 1.0.0`, `nt_version 8.1.8.3`, `reconnects:1`) = **NinjaTrader PID 1476** vigente (intento 5: PID 11488). **NINJASCRIPT_COMPILE = PASS** (owner atestigua F5 cero errores; físico: ambos AddOns cargan y publican).
+- **Staging re-verificado por el agente HOY (certutil dev-win):** `C:\Temp\EchoD6Bundle\` byte-idéntico — `EchoExecutionAddOn.cs` **7f76b30e…**, `EchoFeedAddOn.cs` 581a7087…, `echo-execution-addon.json` 9ca3fddc…, `VERIFY-ECHO-D6.ps1` 5ca716ed… (versión corregida del intento 5). Instalados en el perfil: no agent-verificables por ACL (12.ª re-probe) — el pickup se certifica **conductualmente** (§C0).
+
+## C0 — RUNTIME BUILD PICKUP: PASS (decisivo — primera vez en 6 intentos)
+
+1. **C0.1 EXECUTION PROTOCOL = PASS:** el EchoExecutionAddOn dializa **192.168.31.161:9771** y su primer frame es `echo.ntx.v1` hello autenticado. **CERO líneas de rechazo `[ntx]` en TODO el run** (6 sesiones, ~25 min de journal completo): ni `frame schema "echo.ntfeed.v1" is not "echo.ntx.v1"` (D1-viejo), ni mismatch de auth, ni error de parse. Dials físicos observados dev-win: SYN_SENT rotativos pre-bridge (reintentos ≤10 s) y ESTABLISHED persistentes por sesión (52761→A, 52819→B, 52929→C, 52961→R6).
+2. **C0.2 ACCOUNT FRAME SHAPE = PASS:** el frame account del lane ntx **parsea en el parser REAL del bridge** — `resolved` como OBJETO tipado same-as-ntfeed. Cero `cannot unmarshal bool into Go struct field AccountData.resolved of type ntx.AccountRecord` (D2-viejo, proscrito por guard y negativo pineado contra el parser real). VerifyBinding pasó en TODAS las sesiones (`accountMatch=RESOLVED` por hello + frame account aceptado — el barrier avanzó de verify_binding en 6/6 arranques).
+3. **C0.3 MARKET LANE ROUTING = PASS:** el market lane del AddOn dual conectó al **nt-feed-relay 192.168.31.161:9770** por sí solo a las **16:08:16.128Z** (0.93 s tras el boot): sesión relay `348f52ba…`, **hello seq 0 con `addon_version 2.0.0`** (el AddOn dual — el feed AddOn es 1.0.0 en `5b70e536…`: identidad de build demostrada TAMBIÉN en el lane de mercado), 443 frames (hello/account/heartbeat) con payload same-as-ntfeed (discovered 8 cuentas + resolved objeto + balances + match RESOLVED), `reconnects:1`. Mercado jamás fue a :9771.
+4. **CROSS_PROTOCOL_CONTAMINATION = NONE.** **RUNTIME_BUILD_PICKUP = PASS.** Continué inmediatamente a C→K por mandato.
+
+## C — REAL EXECUTION TRANSPORT: PASS (primera vez)
+
+- **Preflight completo PASS (re-verificado hoy):** release desplegada alineada — binario `484b550b…` @ release `40102ea5`, y `git diff --name-only 40102ea5..32baeaeb` = sólo .cs + tests Go + harness Python/JSON (sin Go de producto) ⇒ binario alineado con la verdad de producto; worktree limpio, `HEAD == origin == 32baeaeb`; journal M2 **0 registros**; `ntx/auth-token` presente (64 hex, no impreso); binding ETCD **12/12 valores exactos por lectura cruda** (`enabled=true, ALLOWED, GAU50, EARN2TRADE, RJARA114411201551, GAU50-EVAL/1, America/Chicago, 17:00, NQ 12-26, "3", NINJATRADER_BRIDGE`); prefijo crudo `/echo/development/` (sin /demo); clave `futures-bridge/accounts` ABSENTE pre-write; topic `echo.order-commands.E2T-GAU50-01.v1` **0 mensajes** (consume earliest vacío); bridge inactive+disabled, `:9771` FREE.
+- **Escritura guardada:** PRE ABSENTE → put → read-back exacto `"E2T-GAU50-01"` → cross-check MCP RO independiente found/size 12/valor exacto.
+- **Bridge:** **PID 2664145**, `account session built` **16:21:06.675Z** (`echo.execution_account E2T-GAU50-01`, topic `echo.order-commands.E2T-GAU50-01.v1`, transport NINJATRADER_BRIDGE), listener `*:9771` (`ss`); NT **PID 1476** conectó (ESTABLISHED 52761) y autenticó hello `echo.ntx.v1` en ≤15 s.
+- **SESSION_A = ESTABLE:** auth + binding + observaciones + barrier completado; readiness `recovered=true` sostenida ~15 min (7 tomas cada 30 s) hasta el disconnect acotado de G. Captura de identidad: tupla TCP NT:52761↔bridge:9771 + GUID de hello generado por-conexión (source `EchoExecutionAddOn.cs:570`; el bridge no emite el session id en INFO — limitación de observabilidad registrada); **seq inicial = 0** (contrato del parser: hello exige seq 0, pineado en `frame_test.go`/fixtures). No synthetic probe — todo el tráfico es del AddOn real.
+
+## D — REAL ACCOUNT BINDING: PASS
+
+Name-primary verificado por el lane REAL: hello `expected_account_name RJARA114411201551` == binding ETCD `provider-account-ref`, `expected_account_id "3"` == hint (sin drift ⇒ VerifyBinding RESOLVED, 6/6 sesiones). **CURRENT_NT_ACCOUNT_ID = "3"** — 10.ª sesión consecutiva del perfil (feed lane vivo `5b70e536…`, discovery 8 cuentas, exactamente 1 match RESOLVED). Binding `E2T-GAU50-01` ↔ `RJARA114411201551` sin drift.
+
+## E — REAL ACCOUNT OBSERVATIONS: PASS (por el exec lane real, primera vez)
+
+En SESSION_A el recovery barrier **consumió físicamente** account RESOLVED + **positions snapshot** + **orders snapshot** reales via `echo.ntx.v1` → bridge (el barrier COMPLETÓ: `recovered=true` — sin esas familias no avanza, demostrado 5× en los fallos de H). positions `[]`, orders `[]` (válidos físicamente observados — cuenta plana). Balances via payload account (objeto canonical); lane feed del mismo proceso: NLV/cash 50000/50000, BP/uPnL/rPnL 0/0/0 (**variante demo, 7.ª sesión documentándola** — re-observar en ventana). Executions family soportada (fixtures + source `:1133`); sin fills (cuenta sin historia de la vertical). Nada fabricado.
+
+## F — REAL RECOVERY BARRIER: **PASS — PRIMERA VEZ EN 6 INTENTOS (gate principal)**
+
+SESSION_A: authenticated session ✔ + correct account ✔ (RESOLVED, verify_binding) + positions snapshot observed ✔ + orders snapshot observed ✔ + reconciliation complete ✔ (`recovered=true`). **UnknownLiveOrders = 0** (`mismatches=0`), **AccountMismatch = 0**, **unresolved ambiguous submits = 0** (`ambiguous_orders=0`), **replayed command = 0** (topic sin mensajes, journal M2 0, `dropped_commands=0`, 0 COMMAND_FRAME en todo el run). La barrera NO fue debilitada: reconciliación completa sobre venue real con el AddOn físico.
+
+## G — REAL RECONNECT + SESSION FENCING
+
+- **Disconnect acotado (16:25:36Z→16:26:15Z, bridge abajo ~39 s):** el exec lane del AddOn sufrió el cierre remoto (EOF), liberó el socket y **re-dializó durante TODA la ventana de caída** — 5 puertos efímeros SYN_SENT consecutivos observados (52806→52810, cadencia ≤10 s, bounded connect 3 s) ⇒ **SIN WEDGE tras remote close ni tras refusals** (fix D3 de `32baeaeb` operando; la build vieja quedaba muda ≥15 min).
+- **SESSION_B ≠ SESSION_A = PASS:** nueva conexión TCP (52819) + **nueva identidad de sesión** (GUID nuevo por reconexión — pineado `EchoExecutionAddOn.cs:570`, contrato F-S2-01) + **seq reinicia en 0 legalmente** (hello exige seq 0; el bridge lo autenticó) + auth re-pasada. Observaciones reanudadas a nivel transporte (frames fluyeron; ver H para el barrier).
+- **FENCING = PASS (server-side):** la sesión A quedó cerrada/muerta al caer el listener; F-S2-04 certificada weekend (supersede con cierre inmediato, mismo binario `484b550b…`) + gate del adapter por session-id activo (`adapter.go:270` — frame de sesión supersedida rechazado). **0 command frames en todo el run; 0 phantom state; sin ningún estado mutado por sesión alguna.**
+
+## H — BRIDGE RESTART RECOVERY: **FAIL — hallazgo de producto NUEVO con reproducción exacta**
+
+- **Resultado físico (6 arranques del bridge con el AddOn REAL): 1 PASS (SESSION_A 16:21Z) / 5 FAIL** — SESSION_B 16:26:18.478Z (+2.8 s), SESSION_C 16:39:32.153Z (+6.1 s), R4/R5/R6 16:41–16:42Z; razón idéntica en los 5: `session: recovery barrier failed for E2T-GAU50-01: barrier: reconcile: ninjatrader: no position snapshot observed yet`. Fail-closed correcto en todos: sin comandos, sin phantom, sin replay, journal 0; el proceso queda vivo con sesión muerta (NRestarts=0; los comandos dejan de consumirse ⇒ detención segura del ladder).
+- **Causa pinned en source (no TOCTOU de red — presupuesto de observación):** `RestoreSubscriptions` pasa con el **hello** porque `lastObserved` se setea en TODO frame incluido hello (`adapter.go:297`), y `Reconcile`→`PositionSnapshot` falla **instantáneo** si `positionsAt` es cero (`adapter.go:941`) — sin espera. El AddOn REAL sólo publica positions/orders en su tick de snapshot (fastTimer 2 s × `snapshot_seconds=5` ⇒ **cada 10 s**; sin burst inicial al conectar — `EnsureExecLane` envía sólo hello). ⇒ el barrier re-pasa **sólo si el tick cae en la ventana [hello, reconcile] (milisegundos)**. SESSION_A pasó porque el burst del tick llegó dentro de esa ventana (coalescido detrás del hello en el buffer TCP — el server procesa hello→account→positions→orders en ráfaga antes del poll de 20 ms de Connect). Los harness/tests pasan determinísticos porque envían la ráfaga completa inmediata (como el probe weekend).
+- **Recovery duration medido:** SESSION_A built 16:21:06.675Z → barrier completado ~16:21:06.8Z (≈0.15 s tras el auth; `recovered=true` en la toma de +30 s); connects B/C/R*: +2.8/+6.1/+~5 s (fase del dial); reconexión del AddOn tras el stop ≤5 s (EOF→re-dial).
+- **Clasificación: defecto de robustez real-lane (barrier ↔ cadencia de snapshots del AddOn), NO de pickup (C0 PASS), NO de transporte (C PASS), NO del barrier-estable (F PASS).** Remediación candidata para adjudicación del Manager — **NO reparada en este shot por mandato**: (a) bridge-side: `RestoreSubscriptions` espera freshness de POSICIONES (no cualquier frame) o espera acotada (CommandTimeout) de `positionsAt` antes de Reconcile/`fresh_position`; o (b) AddOn-side: burst inicial de snapshots inmediato tras el hello. Ambas testeables en `reallane_barrier_test.go` con positions retardadas. Impacto directo: el drill restart congelado del ladder (§14.13) exige barrier re-PASS first-try ⇒ hoy fallaría ~5/6 veces (fail-closed, detendría el ladder de forma segura).
+
+## I — OWNER RESTART EVIDENCE: PASS (reutilizado, permitido por despacho)
+
+Boot owner vigente PID **1476** (16:08:15.196Z, ciclo W1 16:05–16:08Z con F5 cero errores atestiguado): Feed AddOn 1.0.0 cargó/recuperó ✔ (sesión `5b70e536…`, frames cada 10 s, rediscovery RESOLVED 1/8); **Execution AddOn 2.0.0 cargó y dializa ambos lanes correctamente** ✔ (market lane en el relay :9770 con hello 2.0.0 + exec lane autenticada en :9771) — la firma conductual C0 completa ES la evidencia del pickup. Staging verificado byte-idéntico (§P0). No se pidió otro restart.
+
+## J — G_HORIZON REAL PRECHECK
+
+`G_HORIZON_PRECHECK = PARTIAL_NEEDS_CREATED_ORDER` (6.ª vez, sin cambio): la cuenta GAU50 no tiene historial de la vertical y las superficies `LookbackDays*`/historia sólo son inspectables desde NT con el lane funcional end-to-end y una orden real. **No se creó orden.** Al ladder le queda probar: retención real `LookbackDays*` y retención `order.Name`/`Order.OrderId`/`ExecutionId` realtime↔historia↔restart (G-ID-Retention + G-HORIZON con la primera orden del ciclo G-E2E).
+
+## K — READINESS COMPOSITION
+
+- **Durante SESSION_A (estable, 7 tomas cada 30 s):** `ready_new_risk=false` con blockers EXACTAMENTE `[STATIC_ELIGIBILITY_NOT_ELIGIBLE SUBMISSION_CAPABILITIES_NOT_EXACT_READY]` — los 6 blockers de transporte/binding/reconciliación de los 5 intentos previos DESAPARECIERON. `ambiguous_orders=0 mismatches=0 dropped_commands=0 recovered=true`.
+- **Post-failure H (procesos R4–R6):** blockers `[POSITION_NOT_FRESH RECONCILIATION_AUTHORITY_UNAVAILABLE STATIC_ELIGIBILITY_NOT_ELIGIBLE SUBMISSION_CAPABILITIES_NOT_EXACT_READY]` — estado fail-closed correcto de sesión muerta (los frames SÍ llegan al adapter; la sesión ya no consume).
+- **Composición final:** EXECUTION_TRANSPORT_READY = **YES** (sesión estable demostrada ~15 min; bridge-side certificado; re-enable ~1 min) · ACCOUNT_READY = **YES** (RESOLVED vivo, ambos lanes) · RECOVERY_READY = **NO** (H: restart no robusto — única brecha) · MARKET_FRESHNESS = **STALE** (último `event_ts` REAL 2026-10-02T21:38:25.95Z, edad ≈43 h >> bound 30 s; Kafka p4 offset 5476485 @ 16:08:30Z = replay estático del boot — F-S2-02; domingo, CME cerrado ⇒ blocker esperado y VÁLIDO) · NEW_RISK_READY = **NO** (doble fail-closed: freshness + ventana GAU50-EVAL L–V). No se conflató mercado cerrado con ejecución: transporte/cuenta/recovery-barrier-estable se certificaron sobre mercado cerrado según K.
+
+## L — OWNER VERIFY TOOLING: FIXED (confirmado hoy)
+
+`VERIFY-ECHO-D6.ps1` en staging = hash `5ca716edc8953a31ea863461c02e349feea79e5bff85c3772fb73471cd19c77d` (re-verificado por certutil hoy) == la versión corregida del intento 5: exige **presencia** del feed token (contrato feed; el relay enforce igualdad con ETCD 48 hex), mantiene len=64 sólo para el token EXEC (correcto). Dry-runs del intento 5 sobre estos bytes exactos: pass-path PASS + tamper `ntx_port=0` FAIL + tamper feed-token-ausente FAIL. Tooling only; ninguna gate de producto depende ya del false negative histórico; config de producto no mutada.
+
+## /final_safety_state — probado al cierre (no asumido)
+
+- **G-EGRESS-0 restaurado y verificado:** unidad `echo-futures-bridge` **inactive + reset-failed + disabled**; `:9771` FREE (`ss`, 0 listeners); clave ETCD `futures-bridge/accounts` **eliminada con ciclo guardado** (pre-read exacta `E2T-GAU50-01` → DELETED 1 → read-back ABSENTE → cross-check MCP RO **21 claves == baseline pre-shot**); journal M2 **0 registros**; **0 COMMAND_FRAME/SUBMITTED/PREPARED/VENUE_BOUND** en el journal completo del run (6 sesiones); topic de comandos **0 mensajes** (consume earliest vacío en preflight; nada producido); **0 LIVE run, 0 comandos, 0 ambigüedad** en toda la sesión.
+- **Feed lane conectado y observando** (relay `:9770` + AddOn feed 1.0.0 sesión `5b70e536…` + market lane del dual 2.0.0 sesión `348f52ba…`, 2 ESTABLISHED de PID 1476): permitido por final_safety_state; cuenta observable RESOLVED.
+- **AddOns lado owner:** staging `C:\Temp\EchoD6Bundle` = HEAD verificado; build corregida 2.0.0 ejecutando y certificada conductualmente; sin listener :9771 el exec lane recibe refusal/refusal-timeout sin estado ni riesgo.
+- **New-risk configurationally disabled** (sin sesión habilitada + sin topic con mensajes + STALE + domingo fuera de ventana).
+- Delta ETCD neto **CERO** (put+del del mismo valor); herramienta ETCD efímera reutilizada fuera del repo (`~/aranea/work/d6-reallane-cert-final-20261004/tool/etcdx`); cero cambios dev-win (sólo lectura).
+
+## /product_changes
+
+**NONE.** Cero commits, cero cambios de source (HEAD == origin == `32baeaeb`, worktree limpio al inicio y al cierre). El hallazgo H queda documentado con repro exacta y referencias de source para el shot de remediación; el mandato prohíbe repararlo inline.
+
+## /close — Final handoff (ATTEMPT 6 — FORCED NINJASCRIPT PICKUP / FINAL C→K)
+
+```text
+D6_REAL_EXECUTION_LANE_NO_EGRESS =
+REMEDIATION_REQUIRED (6.º intento; PROGRESO DECISIVO: pickup forzado VERIFICADO — C0 PASS por primera vez, sesión REAL estable autenticada con recovery barrier PASADO por primera vez (F); la certificación se detiene SÓLO en H (bridge restart recovery): el barrier re-pasa 1/6 veces porque RestoreSubscriptions acepta el hello como observación y Reconcile exige positions sin espera, mientras el AddOn real publica positions/orders cada 10 s — defecto de robustez nuevo, acotado, con repro exacta y fail-closed seguro)
+
+SOURCE_SHA:
+32baeaeb49cff8b4227b850d7a575549bbcf54a2 (HEAD == origin, worktree limpio al inicio y al cierre)
+
+OWNER_CORRECTIVE_W1:
+PASS (fechado por el relay: boots 16:05:34→16:08:15Z; NT PID 11488→1476; staging re-verificado byte-idéntico 7f76b30e/581a7087/9ca3fddc; instalados no agent-verificables por ACL 12.ª — pickup certificado conductualmente)
+
+NINJASCRIPT_COMPILE:
+PASS (owner atestigua F5 cero errores; físico: ambos AddOns 1.0.0/2.0.0 cargan y publican desde el boot 16:08:15Z)
+
+RUNTIME_BUILD_PICKUP:
+PASS (las 3 firmas físicas pertenecen al source 32baeaeb y son estructuralmente imposibles en la build vieja; supersede del FAIL del intento 5)
+
+C0_EXEC_SCHEMA:
+echo.ntx.v1 (cero rechazos de schema en 6 sesiones; cero frames ntfeed en :9771)
+
+C0_ACCOUNT_RESOLVED_SHAPE:
+OBJECT (cero `cannot unmarshal bool`; VerifyBinding RESOLVED 6/6; shape canonical same-as-ntfeed demostrado byte-level en el lane market del mismo builder)
+
+C0_MARKET_LANE_ENDPOINT:
+192.168.31.161:9770 (sesión relay 348f52ba viva desde 16:08:16.128Z con hello addon_version 2.0.0, 443 frames same-as-ntfeed)
+
+CROSS_PROTOCOL_CONTAMINATION:
+NONE
+
+FEED_ADDON_LOADED:
+PASS (EchoFeedAddOn 1.0.0, sesión 5b70e536, boot 16:08:15.196Z, frames cada 10 s, rediscovery RESOLVED 1/8)
+
+EXECUTION_ADDON_LOADED:
+PASS (EchoExecutionAddOn 2.0.0 — hello 2.0.0 en el relay + exec lane autenticada en :9771 + ciclo Active; identidad de build doble-demostrada)
+
+EXECUTION_LANE_REAL:
+PASS (sesión REAL estable: NT:52761↔bridge:9771, hello ntx autenticado, binding verificado, positions/orders consumidas, recovered=true sostenido ~15 min)
+
+REAL_SESSION_ID_INITIAL:
+SESSION_A = conexión TCP NT:52761↔bridge:9771 + GUID de hello por-conexión (source-pineado; el id no es imprimible a INFO — limitación de observabilidad); seq inicial 0 (contrato parser)
+
+ACCOUNT_BINDING:
+PASS (Name-primary: hello RJARA114411201551 == binding ref; id "3" == hint sin drift; VerifyBinding RESOLVED en las 6 sesiones; 10.ª sesión consecutiva del perfil)
+
+CURRENT_NT_ACCOUNT_ID:
+"3"
+
+ACCOUNT_OBSERVATION:
+PASS por el exec lane REAL (account RESOLVED + positions [] + orders [] consumidas físicamente por el barrier — recovered=true lo exige; sin datos fabricados) · feed lane: balances 50000/50000 variante demo (7.ª sesión)
+
+REAL_RECOVERY_BARRIER:
+PASS — PRIMERA VEZ EN 6 INTENTOS (SESSION_A: auth+binding+positions+orders+reconcile completos; UnknownLiveOrders=0, AccountMismatch=0, ambiguous=0, replay=0; barrera completa sin debilitar) · NOTA: re-PASS tras restart NO robusto (ver H)
+
+REAL_SESSION_RECONNECT:
+PASS (disconnect acotado 39 s: EOF→re-dial loop vivo toda la ventana, 5 dials observados, SIN wedge; SESSION_B nueva conexión + nueva identidad + seq 0 legal + auth re-pasada)
+
+REAL_SESSION_FENCING:
+PASS server-side (A muerta al caer el listener; F-S2-04 weekend + gate adapter.go:270 por session-id activo; 0 command frames; 0 phantom)
+
+BRIDGE_RESTART_RECOVERY:
+FAIL — 1/6 arranques re-pasan el barrier (B +2.8s, C +6.1s, R4/R5/R6: "no position snapshot observed yet"; fail-closed seguro, proceso vivo con sesión muerta, NRestarts=0); recovery duration SESSION_A ≈0.15 s post-auth; repro y causa pinned en source (RestoreSubscriptions acepta hello; PositionSnapshot sin espera; AddOn snapshot tick cada 10 s, sin burst al conectar)
+
+G_HORIZON_PRECHECK:
+PARTIAL_NEEDS_CREATED_ORDER (6.ª vez; el ladder debe proveer la primera orden del ciclo G-E2E para LookbackDays* + G-ID-Retention realtime↔historia↔restart; NO se creó orden)
+
+EXECUTION_TRANSPORT_READY:
+YES (sesión estable demostrada; bridge-side certificado; re-enable ~1 min)
+
+ACCOUNT_READY:
+YES (RESOLVED vivo ambos lanes)
+
+RECOVERY_READY:
+NO (H — única brecha restante; el barrier estable SÍ pasó, el re-PASS tras restart es phase-dependiente)
+
+CURRENT_MARKET_FRESHNESS:
+STALE (event_ts real 2026-10-02T21:38:25.95Z, edad ≈43 h >> bound 30 s; p4 5476485 = replay del boot — F-S2-02; domingo CME cerrado: blocker esperado y VÁLIDO)
+
+NEW_RISK_READY:
+NO (doble fail-closed: freshness + ventana GAU50-EVAL L–V)
+
+OWNER_VERIFY_TOOLING:
+FIXED (staging 5ca716ed… re-verificado hoy = versión con contrato feed=presencia; dry-runs attempt 5 sobre estos bytes: PASS/FAIL/FAIL)
+
+FINAL_SAFETY_STATE:
+G-EGRESS-0 PROBADO (unidad inactive+reset-failed+disabled; :9771 FREE; accounts key eliminada con ciclo guardado — cross-check MCP RO 21 claves == baseline; journal M2 0; 0 COMMAND frames en 6 sesiones; topic 0 mensajes; feed lane + market lane conectados observando :9770; 0 LIVE run; 0 comandos; 0 ambigüedad; new-risk configurationally disabled; delta ETCD/dev-win neto CERO)
+
+PHYSICAL_ORDERS_SENT:
+0
+
+PHYSICAL_ORDERS_MODIFIED:
+0
+
+PHYSICAL_ORDERS_CANCELLED:
+0
+
+PRODUCT_CODE_CHANGES:
+NONE (cero commits; hallazgo H documentado con repro exacta y refs de source para el shot de remediación)
+
+RESIDUAL_FINDINGS:
+1) DEFECTO H — barrier restart phase-dependiente (1/6): RestoreSubscriptions pasa con el hello (lastObserved en todo frame, adapter.go:297) y Reconcile→PositionSnapshot falla instantáneo sin positionsAt (adapter.go:941) vs AddOn real con snapshots cada 10 s y sin burst al conectar (EchoExecutionAddOn.cs:540-575, fastTimer 2s × snapshot_seconds 5); repro: cualquier bridge restart con el AddOn real — 5/6 fallan a +2.8–6.1 s con "no position snapshot observed yet" · 2) session-id ntx no imprimible a INFO (identidad por tupla TCP + GUID pineado; opcional: log INFO del session id en auth exitoso para observabilidad) · 3) SYN a :9771 cerrado parece dropeado (no RST) en daedalus — SYN_SENT persiste ~2 s; sin impacto (bounded connect 3 s lo maneja) · 4) variante demo balances 50000/50000 persistente (7.ª sesión; re-observar en ventana) · 5) ACL owner 12.ª re-probe (instalados/log NT/StartTime denegados)
+
+OWNER_DECISION_REQUIRED:
+NONE (el pickup ya funcionó; sin acciones owner pendientes — el exec AddOn inerte post-teardown recibe refusal sin estado ni riesgo)
+
+NEXT_MANAGER_ACTION:
+(a) CONGELAR como certificado: pickup C0, transporte C, binding D, observaciones E, barrier estable F, reconnect/fencing G — no tocar AddOns/transporte de nuevo. (b) Despachar remediación acotada de H (fuente + repro arriba; adjudicar bridge-side espera de freshness vs AddOn-side burst inicial; pin en reallane_barrier_test.go con positions retardadas; shadow-compile 8.1.8.3 si toca .cs + re-stage bundle + W1). (c) Tras remediación + pickup: re-despachar C→K fresh (~5 min) — drill restart debe pasar FIRST-TRY determinístico — y ejecutar el ladder congelado §N del intento 1 en la primera ventana admisible lun 2026-10-05 00:00–15:50 CT. (d) Hoy ≥17:00 CT (22:00Z): G-REALTIME feed-lane-only con el runbook §M del intento 1 (no depende de H). OD-D6-1 AUTHORIZED vigente SIN consumir (0 órdenes en 6 intentos). No emitir EF_D6_E2E_PASS.
+```
