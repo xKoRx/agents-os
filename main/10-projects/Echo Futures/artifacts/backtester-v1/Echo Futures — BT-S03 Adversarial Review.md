@@ -40,13 +40,18 @@ Existe además un **incidente operativo abierto y escalado al Owner**, separado 
 | D6 HEAD inicial | `32baeaeb49cff8b4227b850d7a575549bbcf54a2` |
 | Toolchain observado | Go1.27.1 linux/amd64; go.work declara1.25.5, sin cambio de toolchain/dependencias |
 
-Commit final de review y refresh final: **PENDIENTES DE CONSOLIDACIÓN**. Los paths de SOURCE de los findings son relativos a `xKoRx/echo:v3/` en el baseline aceptado; los tests viven en el branch de review. Evidencia local externa al vault: workspace `bt-s03-20261004/reports/`.
+Commit de review **`13bb72bbe237aae0d191f26d9c5ca89a5b5b9670`**, publicado en `origin/codex/bt-s03-adversarial-review`: seis archivos nuevos, 924 líneas, exclusivamente tests tagged; cero diff de producto contra f41da25c. Backtester remoto final permanece f41da25c. Los paths de SOURCE de los findings son relativos a `xKoRx/echo:v3/` en el baseline aceptado; los tests viven en el branch de review. Evidencia local externa al vault: workspace `bt-s03-20261004/reports/`.
 
 ### D6 concurrent delta
 
-Refresh inicial confirmó los HEADs del mandato. Desde7fbd7e99: 23 archivos,1548 inserciones/96 eliminaciones, concentrados en `v3/futures-bridge/addon-ninjatrader/EchoExecutionAddOn.cs`, `endpoint_guard_test.go`, `parser-harness/`, `proto-harness/`, `protocol_contract_test.go` y `v3/futures-bridge/internal/session/reallane_barrier_test.go`. Ningún cambio a `v3/sdk`, `v3/core` ni `v3/backtester`; ninguna intersección con archivos productivos cambiados por S02. No se certifica D6 ni su gate físico.
+Refresh inicial confirmó los HEADs del mandato. Desde 7fbd7e99: 23 archivos,1548 inserciones/96 eliminaciones, concentrados en `v3/futures-bridge/addon-ninjatrader/EchoExecutionAddOn.cs`, `endpoint_guard_test.go`, `parser-harness/`, `proto-harness/`, `protocol_contract_test.go` y `v3/futures-bridge/internal/session/reallane_barrier_test.go`. Ningún cambio a `v3/sdk`, `v3/core` ni `v3/backtester`; ninguna intersección con archivos productivos cambiados por S02. No se certifica D6 ni su gate físico.
 
-`D6_CONCURRENT_DELTA = PENDING_FINAL_REFRESH`
+El refresh final observó D6 **`d08a30ce9815f820fda7132e20dc42cc345eb8e8`**. Delta nuevo desde 32baeaeb: cuatro archivos,372 inserciones/66 eliminaciones: `v3/futures-bridge/adapters/ninjatrader/{adapter.go,adapter_test.go,coverage_test.go}` y `v3/futures-bridge/internal/session/reallane_barrier_test.go`. Se inspeccionó el diff de producto: readiness de recovery por snapshots de positions/orders de la sesión actual, sin cambiar tipos/contratos compartidos; no toca SDK/Core/Backtester. Ninguna reconciliación D6 requerida para estos hallazgos, ninguna integración realizada.
+
+```text
+CONCURRENT_D6_CONFLICT = NO
+D6_CONCURRENT_DELTA = NON_CONFLICTING
+```
 
 ### SUBAGENT UTILIZATION
 
@@ -327,15 +332,27 @@ REPRO nombra tests. Comando común desde raíz del repo: `go test -tags s03revie
 
 ### Verificación final y residuales
 
-**PENDIENTE DE CONSOLIDACIÓN DE RESULTADOS.** Tras integrar sólo tests nuevos se ejecutan paquetes explícitos dentro de namespace de red nuevo (`unshare --user --map-root-user --net`, sólo loopback habilitado), con GOPROXY/GOSUMDB deshabilitados. No utilizar `go test ./...` desde SDK: contiene tests que escriben ETCD real.
+Tras integrar sólo tests nuevos se ejecutaron paquetes explícitos dentro de namespace de red nuevo (`unshare --user --map-root-user --net`, sólo loopback habilitado), con GOPROXY/GOSUMDB deshabilitados. No utilizar `go test ./...` desde SDK: contiene tests que escriben ETCD real.
 
 Comandos requeridos: SDK `go test ./v3/sdk/futures/...`; Backtester `go test ./v3/backtester/...`; Core `go test ./v3/core/internal/functions ./v3/core/internal/futuresruntime ./v3/core/internal/futuresvertical`; consumidores `go test ./v3/futures-bridge/... ./v3/futures-projector/...`; build `go build ./v3/backtester/cmd/echo-backtest`. Todos con `-count=1` y timeout explícito cuando aplica. Logs `reports/final-*.log` externos; repros tagged separados de suite heredada.
+
+| Validación final Astra | Resultado |
+| --- | --- |
+| SDK futures completo | PASS, exit0 |
+| Backtester completo | PASS, paquete principal397.002s; NDJSON12.356s; store0.445s; sim0.099s |
+| Core affected surfaces | PASS, functions0.466s, futuresruntime0.041s, futuresvertical67.149s |
+| futures-bridge + futures-projector | PASS, exit0; consumers local-only, no certificación D6 |
+| Build CLI | PASS, exit0 |
+| Repros tagged | FAIL esperado,20 tests top-level rojos; vecinos provider/F05 sin falla nueva |
+| Diff hygiene / producto | PASS; sólo seis tests nuevos, branch aceptado no mutado |
+
+La suite SDK amplia accidental anterior **FAIL y con efectos externos** no se cuenta como certificación. Los repros son diagnósticos: si S04 rechaza correctamente un input antes del punto que hoy alcanza el repro (por ejemplo Seal/FinalizeLocal en F11), se puede ajustar exclusivamente ese oráculo para aceptar el rechazo correcto y conservar la propiedad; nunca debilitarla para forzar verde.
 
 `REAL_CONDITIONAL_WRITE = NOT_VERIFIED_ENVIRONMENTAL`. No se buscaron credenciales S3 ni se certificó escritura condicional remota. Fake/local conformance se incluye en Backtester. Esto no se convierte en finding ambiental de código.
 
 ### Incidente operativo abierto — fuera del contrato productivo BT-S04
 
-El subagente Sol causal ejecutó por error `go test ./...` desde `v3/sdk`, pese al límite de paquetes y prohibición de infraestructura. El test legacy `TestSeedEchoConfig_Production` reportó escrituras bajo `/echo/production/` a las14:19:46–14:19:48 America/Santiago del2026-10-04. El resumen dijo32 claves;31 nombres Set individuales quedaron observados. Familias afectadas: bridge, core, functions, gateway, kafka, postgres y telemetry; incluye `postgres/password`. No se persisten valores ni se infiere la clave restante. Después falló el readback de `bridge/reference_accounts`; también hubo fallos de autenticación PostgreSQL y conexión Jaeger. Esas fallas no cuantifican el impacto runtime.
+El subagente Sol causal ejecutó por error `go test ./...` desde `v3/sdk`, pese al límite de paquetes y prohibición de infraestructura. El test legacy `TestSeedEchoConfig_Production` reportó escrituras bajo `/echo/production/` a las 14:19:46–14:19:48 America/Santiago del 2026-10-04. El resumen dijo 32 claves; 31 nombres Set individuales quedaron observados. Familias afectadas: bridge, core, functions, gateway, kafka, postgres y telemetry; incluye `postgres/password`. No se persisten valores ni se infiere la clave restante. Después falló el readback de `bridge/reference_accounts`; también hubo fallos de autenticación PostgreSQL y conexión Jaeger. Esas fallas no cuantifican el impacto runtime.
 
 El comando SDK terminó FAIL por sí mismo. El Primary detuvo el frente, terminó dos procesos posteriores de backtester y escaló inmediatamente al Owner. No hubo restauración ni lectura adicional de stores para investigar valores. La evidencia original está en el transcript de herramientas y su resumen sanitizado en `reports/incident.md`; no existe stdout completo guardado como archivo. No confundir “sin cambios productivos en Git” con “sin efectos externos”. La responsabilidad de coordinación permanece en el Primary.
 
@@ -343,16 +360,18 @@ El comando SDK terminó FAIL por sí mismo. El Primary detuvo el frente, termin�
 
 ### BT-S04 REMEDIATION CONTRACT
 
-- **Findings aceptados obligatorios:** F01–F13 y reducción KISS F14. F15/F16 son MINOR; no justifican por sí solos ampliar el shot. F16 puede corregirse al resolver F12. F01/F02/F03/F05 originales conservan cierre; F04 original se cierra con evidencia de F02 S03.
+- **Findings aceptados obligatorios:** BT-S03-F01–BT-S03-F13 y reducción KISS BT-S03-F14. F15/F16 son MINOR; no justifican por sí solos ampliar el shot. F16 puede corregirse al resolver F12. F01/F02/F03/F05 originales conservan cierre; F04 original se cierra con evidencia de F02 S03.
 - **Product code:** únicamente identidad/composición/driver/finalización/control/proyección/dataset/result/reproducer del Backtester y shared Operation en las fuentes nombradas; wiring/evaluator shared Provider según F05. Instalar autoridades frozen existentes, no crear campañas, DSL, workflow ni otro runtime. Corregir causación económica y validación antes de producir efectos. No implementar una solución específica de fixture.
 - **Tests requeridos:** conservar y volver verdes los repros materiales/críticos; agregar únicamente las regresiones de cada finding, especialmente target positivo STOP/AWAIT_CONTEXT, transición RuleSet/MM/calendar/EOD/DST, native dedup, stale marks y replay de controles desde el artifact. No debilitar asserts ni convertir errores en skip. Los MINOR quedan separados mientras estén abiertos.
 - **KISS obligatorio:** una lectura/verificación CLI para count/state/runID; borrar liveConfigPtr/isCashflowDup/calendarTransitionKind; preservar la verificación de integridad del publisher público. No otras eliminaciones/refactors masivos.
-- **D6 reconciliation:** PENDIENTE DE REFRESH FINAL; si continúa sin delta compartido, ninguna integración D6 requerida. Refrescar ambos branches y revisar sólo el nuevo delta; no merge/cherry-pick preventivo.
+- **D6 reconciliation:** NON_CONFLICTING al HEAD final d08a30ce; ninguna integración D6 requerida. Refrescar ambos branches y revisar sólo el nuevo delta; no merge/cherry-pick preventivo.
 - **Final certification suite:** SDK futures, Backtester completo+CLI build, Core functions/futuresruntime/futuresvertical, consumers futures-bridge/futures-projector; misma build A/A/B/A, procesos frescos, layouts alternativos, replay caller-controlled y conformance local/fake-S3. Usar lista de paquetes explícita y aislamiento sin red externa; MinIO real sólo con acceso autorizado. Certificar contra el HEAD exacto de S04 con todos los bloqueantes verdes.
 
 ### Final gate
 
 El Manager revisa primero este artifact. No se emite prompt de BT-S04 al Owner ni se inicia implementación. Los hallazgos demostrados impiden PASS independientemente de que la suite heredada resulte verde.
+
+El cierre de Agents-OS conserva continuidad en el proyecto y registros por modelo, sin L0/L1 inventados. Feedback limitado al incidente reusable. Próximo responsable: Primary Technical Manager; la recuperación de configuración de producción sigue escalada por separado.
 
 ## Fuentes
 
