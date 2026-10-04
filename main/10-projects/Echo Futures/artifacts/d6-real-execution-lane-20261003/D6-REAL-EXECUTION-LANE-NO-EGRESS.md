@@ -742,3 +742,176 @@ Autorizar el shot de remediación de producto (no es ciclo de instalación nuevo
 NEXT_MANAGER_ACTION:
 Veredicto REMEDIATION_REQUIRED ⇒ no certificar lane ni ejecutar ladder. (a) Despachar remediación D1+D2 acotada (fuente arriba; el bridge NO requiere cambios — su parser implementa el payload congelado). (b) Domingo 2026-10-04 ≥17:00 CT: G-REALTIME es feed-lane-only y NO depende de estos defectos — certificable con el runbook §M del intento 1 (feed AddOn intacto). (c) Tras remediación + W1 + re-despacho C–K en verde: ladder congelado §N en la primera ventana admisible lun 2026-10-05 00:00–15:50 CT. No emitir EF_D6_E2E_PASS.
 ```
+
+---
+---
+
+# FINAL D1+D2+D3 RETRY — C→K — 2026-10-04 (mediodía, evidencia UTC ≈15:37Z–15:45Z, local -03 ≈12:37–12:45; domingo, CME cerrado)
+
+**Nota de esquema:** el despacho partía de la verdad owner "bundle 32baeaeb instalado y verificado (hash match, declaración única)". El runtime **REFUTÓ** esa verdad en su dimensión decisiva: el proceso NT en marcha ejecuta la **build VIEJA** del EchoExecutionAddOn — las tres firmas físicas observadas pertenecen al source de `ffa493d8` (defectos ya documentados D1/D2/D3) y son **estructuralmente imposibles en el source de `32baeaeb`** (guard tests + fixtures del proto-harness lo prohíben). El fix de producto NUNCA se ejecutó. La certificación C→K se detiene en C0/C por mandato (contradicción runtime vs verdad owner). Veredicto: **FAIL** (5.º intento) — pickup de instalación no efectivo en el proceso NT en marcha; **NO es REMEDIATION_REQUIRED** (no hay defecto de producto nuevo que remediari: el producto correcto existe en `32baeaeb` y no ha corrido jamás). Cero órdenes, cero comandos, cero mutaciones de producto/infra (delta ETCD neto CERO). Evidencia: `~/aranea/work/d6-reallane-cert-final2-20261004/evidence/`.
+
+## P0 — REFUTACIÓN FÍSICA DE LA VERDAD OWNER-INSTALL (build vieja en marcha)
+
+1. **Bundle staging correcto (re-verificado por el agente ANTES del run):** `C:\Temp\EchoD6Bundle\` byte-idéntico a HEAD `32baeaeb` — `EchoExecutionAddOn.cs` **7f76b30e…**, `EchoFeedAddOn.cs` 581a7087…, `echo-execution-addon.json` 9ca3fddc… (certutil dev-win == sha256sum HEAD). La fuente de instalación es la correcta.
+2. **Proceso NT:** único proceso NinjaTrader, **PID 11488** (arranque fijado por hello feed seq 0 a las **2026-10-04T15:24:11.765Z**; StartTime ACL-denegado, 11.ª re-probe). Feed lane ESTABLISHED → :9770 (par 192.168.31.132:63325).
+3. **Firma 1 (D1):** dos conexiones del PID NT al listener :9771 (puertos 50144/50145) **enviaron schema `echo.ntfeed.v1`** a las 15:37:21Z — el build nuevo resuelve el endpoint del market lane EXCLUSIVAMENTE del feed config (:9770, fail-closed) y jamás dializa :9771 con ntfeed (guard `endpoint_guard_test.go`).
+4. **Firma 2 (D2):** dos conexiones del exec lane (50146 @ 15:37:24Z, 50147 @ 15:37:34Z) pasaron schema+auth y murieron en `cannot unmarshal bool into Go struct field AccountData.resolved of type ntx.AccountRecord` — el build nuevo tiene PROHIBIDA la serialización bool (un solo builder canónico same-as-ntfeed; negativo pineado contra el parser real del bridge).
+5. **Firma 3 (D3-viejo):** tras el 2.º rechazo de account, **silencio total ≥5 min** (0 dials, 0 líneas `[ntx]`) — la clase wedge de la build vieja; la build nueva tiene SendTimeout 3s + scan por-lane + release en EOF (pineado F-S2-01) y habría seguido reintentando ≤10 s.
+6. **Relay (:9770) sin sesión del market lane:** `evidence.jsonl` contiene una sola sesión viva (`96facfb5…` = feed AddOn). El market lane del AddOn dual NUNCA alcanzó el relay ⇒ consistente sólo con la build vieja (market lane a :9771).
+7. **Cadena temporal explicando el patrón 2+2:** desde el boot 15:24Z ambas lanes de la build vieja reintentaban contra :9771 cerrado (RST ⇒ loop vivo). Al abrir el listener (15:37:20Z): dial del market lane aceptado → schema reject → wedge `marketConnected=true` sin reader (2 rejects y jamás más); exec lane → auth OK → account-parse reject ×2 → wedge (silencio). Idéntico al patrón del intento 4.
+
+## C0 — VERIFY CURRENT NINJATRADER RUNTIME: PARTIAL
+
+- Feed AddOn cargado y vivo **PASS** (sesión `96facfb5…`, frames account/positions/orders/heartbeat cada 10 s, seq 0→457+ durante la ventana, `reconnects:1`).
+- Execution AddOn cargado y ejecutando su ciclo — **pero es la BUILD VIEJA** (`2c8ab2cf…` equivalente): firmas P0.3–P0.5. `NTX_EFFECTIVE_ENDPOINT = 192.168.31.161:9771` (config efectiva correcta — dializa, no puerto-0; el parser fix de `ffa493d8` SÍ está en la build vieja).
+- **C0 STOP:** el runtime contradice la verdad owner-install en identidad de build ⇒ por mandato no se continúa a la certificación completa contra un binario que no es el certificado.
+
+## C — REAL EXECUTION TRANSPORT: FAIL (preflight íntegro PASS; prueba de transporte REFUTADA)
+
+- **Preflight completo PASS (re-verificado hoy):** release desplegada alineada — binario `484b550b…` @ release `40102ea5`, `vcs.revision`/`vcs.modified=false`, y `git diff --name-only 40102ea5..32baeaeb` prueba que el delta NO toca Go de producto (sólo .cs + tests + harness) ⇒ bridge binario alineado con la verdad de producto; journal M2 **0 registros**; `ntx/auth-token` presente (64 hex, no impreso); binding ETCD **12/12 valores exactos** por lectura cruda (`enabled=true, ALLOWED, GAU50, EARN2TRADE, RJARA114411201551, GAU50-EVAL/1, America/Chicago, 17:00, NQ 12-26, "3", NINJATRADER_BRIDGE`); sin registros ambiguos (journal 0); topic `echo.order-commands.E2T-GAU50-01.v1` **0 mensajes** (consume earliest → vacío; NOTA infra: el topic ahora EXISTE con 1 partición — auto-create de metadata, delta vs intento 4, 0 comandos en él jamás); clave `futures-bridge/accounts` ABSENTE pre-write.
+- **Escritura guardada:** PRE ABSENTE → put → read-back exacto `E2T-GAU50-01`.
+- **Bridge:** PID **2648085**, `account session built` a las **15:37:20.891Z** (`echo.execution_account E2T-GAU50-01`, topic `echo.order-commands.E2T-GAU50-01.v1`, transport NINJATRADER_BRIDGE), listener `*:9771` verificado con `ss`; NRestarts=0 (el exit de sesión NO mató el proceso — sin loop).
+- **NT → AddOn → TCP :9771 → echo.ntx.v1 → bridge: NO OCURRIÓ** — el lane que llegó habla ntfeed (market lane, D1) y el exec lane muere en el parser de account (D2). SESSION_A: **NINGUNA** capturable. `CROSS_PROTOCOL_CONTAMINATION = FAIL` (frames ntfeed SÍ llegaron a :9771 — rechazados por el bridge con rechazo cero-estado; causa: build vieja). No synthetic probe usado.
+
+## D/E — REAL ACCOUNT BINDING + OBSERVATION
+
+- **Por el exec lane real: NOT_RUN** (ningún frame sobrevivió al parser; sin datos fabricados).
+- **Feed lane real (mismo proceso NT, sink sin máscara, sesión `96facfb5…`):** discovery 8 cuentas, **exactamente 1 match**, `resolved` = objeto tipado `{"id":"3","name":"RJARA114411201551","display_name":"RJARA114411201551"}`, `match RESOLVED`, **NT `Account.Id "3"` == hint ETCD — 9.ª sesión consecutiva**. Positions `[]`, orders `[]`; balances `NLV/cash 50000/50000`, `BP/uPnL/rPnL 0/0/0` (variante demo, 6.ª sesión documentándola). Las observaciones alcanzan el runtime (Kafka p4 offset 5476479, `ingress_ref log_identity ninjatrader-addon/96facfb5…`).
+
+## F — REAL RECOVERY BARRIER: FAIL (5.ª demostración fail-closed)
+
+`account session exited` a los **+3.125 s** del built (15:37:20.891Z → 15:37:24.016Z), razón exacta `session: recovery barrier failed for E2T-GAU50-01: barrier: reconcile: ninjatrader: no position snapshot observed yet`. Sin positions venue reales (bloqueadas por D2-en-build-vieja) el barrier se negó a completar; reconciliación no debilitada; `UnknownLiveOrders = 0`, `AccountMismatch = 0`, journal M2 0, `dropped_commands=0`, **0 command replay**.
+
+## G/H — REAL RECONNECT + FENCING / BRIDGE RESTART: NOT_RUN
+
+Sin sesión estable que fencear/reconectar (ambas lanes wedged por las firmas de la build vieja); el restart del bridge con el AddOn en silencio no ejercitaría nada (teatro prohibido). Fencing F-S2-01/04 server-side permanece certificado weekend (mismo binario `484b550b…`). Probe NO usado.
+
+## I — NINJATRADER RESTART EVIDENCE: PASS parcial (boot owner 15:24:11Z reutilizado)
+
+El boot vigente (PID 11488) demostró sobre runtime real: Feed AddOn cargó/recuperó ✔ (sesión nueva, rediscovery RESOLVED 1/8); Execution AddOn cargó y ejecuta su ciclo ✔ — **pero con bytes de la build vieja** ⇒ el pickup del bundle `32baeaeb` NO fue efectivo en este boot (o NT no recompiló/corrió desde antes de la copia, o el perfil tiene aún los .cs viejos — indistinguible por ACL 11.ª; el log NT owner discrimina en 1 minuto).
+
+## J — G_HORIZON REAL PRECHECK
+
+`G_HORIZON_PRECHECK = PARTIAL_NEEDS_CREATED_ORDER` (5.ª vez, sin cambio): la cuenta GAU50 sigue sin historial de la vertical y las superficies `LookbackDays*`/historia sólo son inspectables desde NT con el exec AddOn FUNCIONAL end-to-end. No se creó orden.
+
+## K — READINESS COMPOSITION (capturada con bridge corriendo)
+
+`ready_new_risk=false`; blockers `[POSITION_NOT_FRESH RECONCILIATION_AUTHORITY_UNAVAILABLE STATIC_ELIGIBILITY_NOT_ELIGIBLE SUBMISSION_CAPABILITIES_NOT_EXACT_READY]`, `ambiguous_orders=0 mismatches=0 dropped_commands=0 recovered=false` (mismo conjunto reducido del intento 4 — lane autenticado-a-nivel-transporte sin observaciones). Separación: **EXECUTION_TRANSPORT_READY = NO** (build vieja; bridge-side certificado y listo) · **ACCOUNT_READY = YES feed-side (RESOLVED vivo) / NO exec-side** · **RECOVERY_READY = NO** · **MARKET_FRESHNESS = STALE** (último `event_ts` REAL `2026-10-02T21:38:25.95Z`, edad ≈42 h >> bound 30 s; p4 5476479 @ 15:24:29Z = replay estático del boot — F-S2-02; domingo, CME cerrado ⇒ blocker esperado y válido) · **NEW_RISK_READY = NO** (doble fail-closed: freshness + ventana GAU50-EVAL L–V).
+
+## L — TOOLING VERIFY BUG: FIXED (restage script only)
+
+- **Causa raíz confirmada en fuente:** `VERIFY-ECHO-D6.ps1` exigía `feed auth_token length == 64` — el contrato del token EXEC — mientras el token del FEED config es de **48 hex** (== ETCD `nt-feed/auth-token` len=48 hex verificado hoy; el relay enforce la igualdad). False negative puro de tooling; el feed AddOn lleva 9 sesiones certificadas con ese token.
+- **Fix aplicado (1 línea, C:\Temp\EchoD6Bundle\VERIFY-ECHO-D6.ps1):** `if ($feedTokLen -ne 64) …` → `if ($feedTokLen -le 0) { Fail "feed auth_token ausente (el market lane quedaria DOWN)" }` — presencia (contrato feed); sin tocar checks exec (64 exigido allí, correcto), sin tocar runtime de producto. Hash **BD68F529… → 5CA716EDC8953A31EA863461C02E349FEEA79E5BFF85C3772FB73471CD19C77D**.
+- **Dry-runs (sandbox `-NtRoot C:\Temp\EchoD6-VS`):** pass-path **PASS** con feed token len=48 (`feed config: … present=True len=48` → `VERIFY_ECHO_D6 = PASS`); tamper `ntx_port=0` → **FAIL** exit 1 (`ntx_port inesperado: 0 (se requiere 9771)`); tamper feed token AUSENTE → **FAIL** exit 1 con el mensaje nuevo. `SHA256SUMS.txt` cubre sólo los 3 payload files (el script no está en la lista ⇒ patch sin impacto en el flujo owner). Sandbox y temporales eliminados; **restage script only** (payload del bundle intacto, byte-idéntico a HEAD).
+
+## /final_safety_state — probado al cierre (no asumido)
+
+- **G-EGRESS-0 restaurado y verificado:** unidad `echo-futures-bridge` **inactive** (stop 15:42:27Z + reset-failed) + **disabled**; `:9771` FREE (`ss`); clave ETCD `futures-bridge/accounts` **eliminada con ciclo guardado** (pre-read exacta `E2T-GAU50-01` → DELETED 1 → read-back ABSENTE → cross-check MCP RO **21 claves == baseline pre-shot**); journal M2 **0 registros**; **0 COMMAND_FRAME / SUBMITTED / PREPARED / VENUE_BOUND** en la captura completa del runtime (37 líneas); topic de comandos con 0 mensajes (consume earliest vacío); **0 LIVE run, 0 comandos, 0 ambigüedad** en toda la sesión.
+- **Feed lane conectado y observando** (relay `:9770` + AddOn feed PID 11488, sesión `96facfb5…`): permitido por final_safety_state; cuenta observable RESOLVED.
+- **AddOns lado owner:** staging `C:\Temp\EchoD6Bundle` = HEAD verificado; proceso NT ejecuta build vieja (pickup no efectivo); sin listener :9771 el AddOn inerte-viejo recibe refusal sin estado ni riesgo.
+- **New-risk configurationally disabled** (sin sesión habilitada + sin topic M1 con mensajes + STALE + domingo fuera de ventana).
+- Delta ETCD neto **CERO** (put+del del mismo valor); delta dev-win neto **CERO** (sandbox eliminada); herramienta ETCD efímera reutilizada fuera del repo (`~/aranea/work/d6-reallane-cert-final-20261004/tool/etcdx`).
+
+## /product_changes
+
+**NONE.** Cero commits, cero cambios de source (HEAD == origin == `32baeaeb`, worktree limpio). Las 3 firmas físicas son los defectos YA documentados D1/D2/D3 de la build `ffa493d8` ejecutándose de nuevo — no defectos nuevos: el source `32baeaeb` prohíbe los tres por construcción (guard tests + fixtures + shadow-compile) y **jamás se ejecutó**. No aplica REMEDIATION_REQUIRED.
+
+## /close — Final handoff (FINAL D1+D2+D3 RETRY — C→K)
+
+```text
+D6_REAL_EXECUTION_LANE_NO_EGRESS =
+FAIL (5.º intento; la certificación NO se completó: el proceso NT en marcha ejecuta la BUILD VIEJA del EchoExecutionAddOn — las firmas D1 (ntfeed en :9771 ×2), D2 (bool resolved ×2) y D3 (silencio post-reject) son estructuralmente imposibles en el source 32baeaeb ⇒ el pickup owner del bundle vigente NO fue efectivo en el proceso en marcha; C0 STOP por contradicción runtime; NO es defecto de producto — el producto correcto nunca corrió)
+
+SOURCE_SHA:
+32baeaeb49cff8b4227b850d7a575549bbcf54a2 (HEAD == origin, worktree limpio al inicio y al cierre)
+
+OWNER_INSTALL:
+PASS lado staging (C:\Temp\EchoD6Bundle byte-idéntico a HEAD re-verificado por agente) · REFUTADO lado runtime (build vieja ejecutando; atestación de hash en el perfil contradicha por el comportamiento — archivos del perfil no agent-verificables por ACL 11.ª)
+
+OWNER_VERIFY_TOOLING:
+FIXED (false negative del feed token corregido en VERIFY-ECHO-D6.ps1 — contrato feed = presencia, relay enforce igualdad con ETCD 48 hex; BD68F529 → 5CA716ED…; dry-run PASS + tamper port-0 FAIL + tamper no-token FAIL; restage script only)
+
+FEED_ENDPOINT:
+192.168.31.161:9770 (relay vivo; feed AddOn sesión 96facfb5 observando; SIN sesión del market lane del AddOn dual — build vieja)
+
+EXECUTION_ENDPOINT:
+192.168.31.161:9771 (listener activo durante el run; dials reales del PID NT recibidos y rechazados por build vieja)
+
+CROSS_PROTOCOL_CONTAMINATION:
+FAIL (frames echo.ntfeed.v1 SÍ llegaron a :9771 — 2 conexiones, rechazo cero-estado por el bridge; causa: build vieja con D1; el bridge no ingirió nada)
+
+FEED_ADDON_LOADED:
+PASS (sesión 96facfb5…, boot 15:24:11.765Z, frames cada 10 s, rediscovery RESOLVED 1/8)
+
+EXECUTION_ADDON_LOADED:
+PASS como proceso / FAIL como identidad de build (carga y ejecuta su ciclo — pero bytes de la build ffa493d8, no del bundle 32baeaeb; las 3 firmas de defectos viejos lo demuestran)
+
+EXECUTION_LANE_REAL:
+FAIL (transporte TCP :9771 demostrado del PID NT; schema/auth del exec lane pasan; el frame account muere en el parser por D2-viejo; market lane del AddOn dual habla ntfeed a :9771 por D1-viejo; sin sesión estable)
+
+REAL_SESSION_ID_INITIAL:
+NONE (ninguna sesión sobrevivió; built 15:37:20.891Z → exited 15:37:24.016Z sin un solo frame válido)
+
+ACCOUNT_BINDING:
+PASS feed-side vivo (RESOLVED 1/8, objeto tipado, RJARA114411201551 = NT id "3" == hint ETCD, 9.ª sesión consecutiva) · exec-side NOT_RUN (VerifyBinding jamás recibió match — D2-viejo)
+
+CURRENT_NT_ACCOUNT_ID:
+"3"
+
+ACCOUNT_FRAME_SHAPE:
+NOT_DEMONSTRABLE en runtime (el frame que llegó fue el bool-viejo, rechazado como se pineó; el shape objeto tipado está demostrado en el lane feed del MISMO proceso y por fixtures del source nuevo — pero el lane ntx con build nueva no ha corrido jamás)
+
+ACCOUNT_OBSERVATION:
+FAIL por el exec lane (NOT_RUN físico; sin datos fabricados) · feed-lane real documentado: discovery 8, positions []/orders [], balances NLV/cash 50000/50000 demo (6.ª sesión), observaciones al runtime (Kafka p4 5476479 ingress_ref 96facfb5)
+
+REAL_RECOVERY_BARRIER:
+FAIL — 5.ª demostración fail-closed: "barrier: reconcile: ninjatrader: no position snapshot observed yet" a los +3.125 s; reconciliación no debilitada; 0 UnknownLiveOrders / 0 AccountMismatch / journal 0 / 0 replay
+
+REAL_SESSION_RECONNECT:
+FAIL (NOT_RUN ejecutable — ambas lanes wedged por la build vieja; la reconexión-identidad-nueva+seq-0 queda para el run con build correcta; F-S2-01 server-side certificado)
+
+REAL_SESSION_FENCING:
+FAIL (NOT_RUN — sin sesión estable; 0 command frames en toda la sesión)
+
+BRIDGE_RESTART_RECOVERY:
+FAIL (NOT_RUN con AddOn real — mismo criterio del intento 4; weekend §8 PASS de transporte vigente; hoy: arranque limpio 1.0 s, NRestarts=0, sin loop tras el exit de sesión)
+
+G_HORIZON_PRECHECK:
+PARTIAL_NEEDS_CREATED_ORDER (5.ª vez; superficies LookbackDays* requieren lane funcional end-to-end; NO se creó orden)
+
+EXECUTION_TRANSPORT_READY:
+NO (build vieja en el proceso NT; bridge-side certificado y listo para re-enable en ~1 min tras el pickup efectivo)
+
+CURRENT_MARKET_FRESHNESS:
+STALE (event_ts real 2026-10-02T21:38:25.95Z, edad ≈42 h >> bound 30 s; p4 5476479 @ 15:24:29Z = replay estático del boot — F-S2-02; domingo CME cerrado: blocker esperado y VÁLIDO según K)
+
+NEW_RISK_READY:
+NO (doble fail-closed: freshness + ventana GAU50-EVAL L–V con domingo cerrado)
+
+EXECUTION_TRANSPORT_READY_K_COMPOSITION:
+execution = NO (pickup) · account = YES feed-side · recovery = NO · market = STALE · new-risk = NO — composición consistente con la realidad física
+
+FINAL_SAFETY_STATE:
+G-EGRESS-0 PROBADO (unidad inactive+reset-failed+disabled, :9771 FREE, accounts key eliminada con ciclo guardado — cross-check MCP RO 21 claves == baseline; journal M2 0 registros; 0 COMMAND_FRAME en 37 líneas de captura; topic de comandos 0 mensajes; feed lane conectado observando; 0 LIVE run; 0 comandos; 0 ambigüedad; new-risk configurationally disabled; delta ETCD/dev-win neto CERO)
+
+PHYSICAL_ORDERS_SENT:
+0
+
+PHYSICAL_ORDERS_MODIFIED:
+0
+
+PHYSICAL_ORDERS_CANCELLED:
+0
+
+PRODUCT_CODE_CHANGES:
+NONE (cero commits; VERIFY-ECHO-D6.ps1 del bundle staging parcheado = tooling only, sin runtime de producto)
+
+RESIDUAL_FINDINGS:
+1) PICKUP NO EFECTIVO — el proceso NT PID 11488 (boot 15:24:11Z) ejecuta la build vieja: hipótesis (a) .cs del perfil aún viejos (instalación no llegó al destino) o (b) NT no recompiló (proceso abierto durante la copia / caché NinjaScript) — el log NT owner + VERIFY-ECHO-D6.ps1 (ya sin false negative) discriminan en 1 minuto con NT cerrado · 2) topic echo.order-commands.E2T-GAU50-01.v1 ahora existe con 1 partición (auto-create; 0 mensajes jamás) — delta de observación, sin acción · 3) variante demo balances 50000/50000 persistente (6.ª sesión; re-observar en ventana) · 4) ACL owner 11.ª re-probe (StartTime/log NT denegados)
+
+OWNER_DECISION_REQUIRED:
+Un solo ciclo W1 CORRECTIVO (standing OD-D6-4, con NT CERRADO): (1) cerrar NinjaTrader; (2) re-ejecutar INSTALL-ECHO-D6.ps1 y VERIFY-ECHO-D6.ps1 — VERIFY (ya corregido) debe imprimir sha256 7f76b30e… (EchoExecutionAddOn.cs), 581a7087… (EchoFeedAddOn.cs), 9ca3fddc… (config) en [OK] y VERIFY_ECHO_D6 = PASS; (3) si VERIFY PASA: abrir NT — si el comportamiento vuelve a ser viejo con VERIFY verde ⇒ hipótesis (b): recompilar NinjaScript (F5 en el editor) y revisar el diálogo/errores de compilación; (4) dejar el bridge EN MARCHA al abrir NT (aviso al agente) para la señal observable. Señal de éxito sin intervención owner: hello `echo.ntx.v1` + account RESOLVED (objeto tipado) en journal del bridge ≤10 s tras abrir NT + SEGUNDA sesión nueva en el evidence log del relay :9770 (market lane del AddOn dual) + 0 rejects schema/bool.
+
+NEXT_MANAGER_ACTION:
+Veredicto FAIL ⇒ no certificar lane ni ejecutar ladder. (a) Owner: ciclo W1 correctivo (arriba; ~5 min, hoy mismo — no depende de ventana). (b) Hoy ≥17:00 CT (22:00Z): G-REALTIME feed-lane-only con el runbook §M del intento 1 (no depende del pickup). (c) Con la señal de éxito: re-despachar C→K fresh (~5 min) y ladder congelado §N en la primera ventana admisible lun 2026-10-05 00:00–15:50 CT. OD-D6-1 AUTHORIZED vigente SIN consumir (0 órdenes en 5 intentos). No emitir EF_D6_E2E_PASS.
+```
