@@ -23,7 +23,7 @@ updated: "2026-10-04"
 | Campo | Valor |
 | --- | --- |
 | Branch | `feature/backtester-v1-s02` (repo `xKoRx/echo`, worktree `/home/kor/aranea/work/bt-s02-20261004/echo`) |
-| HEAD cierre | ver commit de cierre sobre `7b857e33` (local; push a `origin` en el mismo cierre) |
+| HEAD cierre | `f41da25cc0b779ea48375198dbedaf932b930a80` — **pusheado a `origin`** (`7b857e33..f41da25c`), working tree limpio |
 | Baseline Manager | `7b857e33833d069c9e93cf8e16695ecfc95f1d6a` (revisado, clean al iniciar) |
 | Baseline original | `xKoRx/echo@7fbd7e990ac…` |
 | Dirty state | Limpio tras el commit de cierre; cero toques a D6/bridge/egress físico |
