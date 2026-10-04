@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "run": "clutifx-ch01-rerun-20261003/run-rerun @ candidate 19b44c1",
+    "invocation_id": "7879f510e3b1d7beccb3e55c471b2d7764aa40f64d6510fdb1c65a1267dd4f82",
+    "at_utc": "2026-10-04T16:28:27.804673233Z",
+    "catalog": "claims.jsonl (1043 claims, all @1; 146 claim_relations; config_fingerprint 21278b8671e338654482439b80b2e3532446bf6e9323b58d452d46694f505743)",
+    "objects_total": 23,
+    "refs_total": 164,
+    "refs_valid": 157,
+    "refs_invalid": 7,
+    "objects_affected": 4,
+    "reasons": {"not-exists": 7, "wrong-version": 0}
+  },
+  "sko-range-chain-strategy": {
+    "kind": "strategy",
+    "components_total": 7,
+    "invalid": [
+      {
+        "component_index": 0,
+        "ref": "cl-estrategy-chain-of-ranges@1",
+        "reason": "not-exists",
+        "nearest": "cl-strategy-chain-of-ranges@1 (existe en catálogo; slip «e» intrusa, contaminación plausible con cl-estrategy-seguir-cadena-precios@1, que sí existe)",
+        "role": "chain model"
+      },
+      {
+        "component_index": 1,
+        "ref": "cl-estrategy-cadena-de-rangos@1",
+        "reason": "not-exists",
+        "nearest": "cl-estrategia-cadena-de-rangos@1 (existe en catálogo; slip estrategy/estrategia)",
+        "role": "strategy model"
+      }
+    ]
+  },
+  "sko-reset-range": {
+    "kind": "rule",
+    "components_total": 12,
+    "invalid": [
+      {
+        "component_index": 3,
+        "ref": "cl-reinizado-requiere-contra-tendencia@1",
+        "reason": "not-exists",
+        "nearest": "sin match de id; semánticamente vecino: cl-regla-rango-bajista-bullish-reiniciado@1",
+        "role": "precondition"
+      },
+      {
+        "component_index": 5,
+        "ref": "cl-reinizado-requiere-objetivo-bullish@1",
+        "reason": "not-exists",
+        "nearest": "sin match de id; semánticamente vecino: cl-regla-rango-bajista-bullish-reiniciado@1",
+        "role": "precondition"
+      },
+      {
+        "component_index": 7,
+        "ref": "cl-reinizado-requiere-rango-bajista@1",
+        "reason": "not-exists",
+        "nearest": "sin match de id; semánticamente vecino: cl-regla-rango-bajista-bullish-reiniciado@1",
+        "role": "precondition"
+      }
+    ]
+  },
+  "sko-failure-swing": {
+    "kind": "concept",
+    "components_total": 8,
+    "invalid": [
+      {
+        "component_index": 4,
+        "ref": "cl-failure-swing-puede-darse-varios-casos@1",
+        "reason": "not-exists",
+        "nearest": "cl-failure-swing-varios-casos@1 (existe; el modelo derivó el id del statement «El failure swing puede darse por varios casos.»)",
+        "role": "variability"
+      }
+    ]
+  },
+  "sko-broker-low-comparison": {
+    "kind": "concept",
+    "components_total": 9,
+    "invalid": [
+      {
+        "component_index": 8,
+        "ref": "cl-rango-se-crearia-tras-comparacion@1",
+        "reason": "not-exists",
+        "nearest": "sin match en catálogo (ids con «comparacion»: cl-comparacion-eurusd-gbpusd@1, cl-zoom-grafico-comparacion@1)",
+        "role": "comparison consequence"
+      }
+    ]
+  }
+}
