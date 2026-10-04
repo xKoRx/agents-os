@@ -30,6 +30,9 @@ updated: "2026-10-01"
 
 # Multimodal Knowledge Engine
 
+> [!important]+ Estado canónico · 2026-10-04
+> **Campaña aceptación Clutifx Ch01 (P1–P9) EN CURSO.** P1 auditoría exhaustiva source-grounded COMPLETE (9 workers, 0 muestreo: 803/803 claims, 130/130 relations, 26/26 rechazadas, 80/80 grounding, 38/38 identidad; material precision 98.0%, wrong 4/803, 0 MISSING_MATERIAL en aceptadas, 0 falsos merges, L2 = timeout 3×120s estructural, empty-content debía ser retryable — bundle `evaluations/clutifx/chapter-01/acceptance-campaign/p1-audit/`). P2 adjudicación: 2 BLOCKER (empty-content fatal, L2 timeout) + 4 MAJOR + 4 MINOR + 5 NOTE, sin decisiones owner. P3–P5: remediation acotada `ef53530..19b44c1` (6 commits, push FF): empty-content retryable, `composition_timeout_seconds`, prompts `claims-recon.v3`/`claims-ground.v2` (kind-stability + citación adyacente + garble-ASR + anti bad-refs), rejection_category preservada en resume; adversarial independiente FINDINGS con 1 MAJOR (fallback F-1) corregido por Manager. P6 targeted live PASS @ 19b44c1: 3/3 bad-refs curadas, 0 colisiones de identidad, falso split w0078 corregido EQUIVALENT live, grounding 94.6% supported, **L2_REACHED = YES con 19/19 SKOs supported**, español 149/149. **P7 full rerun EN CURSO** (130 ventanas live @ 19b44c1, runtime `~/mke/clutifx-ch01-rerun-20261003/`); sigue P8 comparación exhaustiva old-vs-new + P9 gates finales (`CHAPTER_01_ACCEPTED` / `READY_TO_SCALE_CORPUS`). Playbook completo en memoria de campaña.
+
 > [!important]+ Estado canónico · 2026-10-01
 > **V1 / M0-R1 = CLOSED_AS_REMEDIATED** @ `fix/m0-live-readiness` `640d000eb6993de2e0181a64e7a693021f364a1a`. `M0_R1_REMEDIATION = PASS`, golden preservado, `M0 = NOT_RECERTIFIED` y la recertificación completa G0–G9 no se ejecutó.
 >
