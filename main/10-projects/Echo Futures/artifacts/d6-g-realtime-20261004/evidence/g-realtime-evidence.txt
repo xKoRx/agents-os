@@ -1,0 +1,71 @@
+===================================================================
+G-REALTIME EVIDENCE — 2026-10-04 — STATIC PHASE (pre CME reopen)
+Captured: 2026-10-04T20:13:10Z | daedalus 192.168.31.161 (local) + dev-win 192.168.31.132
+SOURCE_SHA: d08a30ce9815f820fda7132e20dc42cc345eb8e8 (HEAD==origin==worktree, 0 dirty)
+===================================================================
+
+### [1] Relay process + listener (daedalus)
+ActiveState=active
+SubState=running
+MainPID=1388002
+ExecMainStartTimestamp=Thu 2026-10-01 22:20:52 -03
+binary: { path=/home/kor/opt/echo-dev/releases/170a4581ac917953d37a8862f57bb447130de5ef/nt-feed-relay ; argv[]=/home/kor/opt/echo-dev/releases/170a4581ac917953d37a8862f57bb447130de5ef/nt-feed-relay ; ignore_e
+LISTEN 0      4096                             *:9770             *:*    users:(("nt-feed-relay",pid=1388002,fd=15))  
+
+### [2] TCP sessions from dev-win (.132) to relay :9770
+ESTAB      0      0      [::ffff:192.168.31.161]:9770  [::ffff:192.168.31.132]:52287 users:(("nt-feed-relay",pid=1388002,fd=17))
+ESTAB      0      0      [::ffff:192.168.31.161]:9770  [::ffff:192.168.31.132]:52285 users:(("nt-feed-relay",pid=1388002,fd=3)) 
+
+### [3] NinjaTrader process (dev-win .132)
+dev-win-operator: Get-Process NinjaTrader => {"Id":1476,"ProcessName":"NinjaTrader"} (captured 2026-10-04T20:0xZ)
+
+### [4] AddOn hello frames (evidence.jsonl, live sessions of 2026-10-04T16:08Z NT restart)
+{"family":"hello","session_id":"5b70e536d0234f50b2f6458e88417206","seq":0,"ts_utc":"2026-10-04T16:08:15.196Z","data":{"addon_version":"1.0.0","nt_version":"8.1.8.3","expected_account_id":"3","expected_account_name":"RJARA114411201551","instruments":["NQ 12-26"]}}
+{"family":"hello","session_id":"348f52babe6246eea7a70388cfbfb05e","seq":0,"ts_utc":"2026-10-04T16:08:16.1281309Z","data":{"addon_version":"2.0.0","nt_version":"8.1.8.3","expected_account_id":"3","expected_account_name":"RJARA114411201551","instruments":["NQ 12-26"]}}
+
+### [5] Relay session heartbeat sample (10s cadence, reconnects stable)
+
+### [6] Relay aggregate status (published counter, errors, binding)
+{"time":"2026-10-04T17:12:52.908716203-03:00","level":"INFO","msg":"ntfeed status","service":"nt-feed-relay","version":"2.0.0","env":"development","host":"daedalus","source":{"function":"github.com/xKoRx/echo/v3/futures-bridge/core/instrumentation.(*Client).Info","file":"github.com/xKoRx/echo/v3/futures-bridge/core/instrumentation/telemetry.go","line":34},"ntfeed.published":5007122,"ntfeed.publish_errors":0,"ntfeed.malformed":0,"ntfeed.rejected":733,"ntfeed.sessions":25,"echo.ntfeed.binding_loaded":true}
+
+### [7] Reconnect storm check (last 8h journal: superseded/rejected/fenced/closed/error, metrics-upload noise excluded)
+963
+lines (0 expected besides historic counters)
+
+### [5-fix] Relay frame family sample (journal field ntfeed.family; heartbeats + last market frame)
+{"time":"2026-10-04T17:13:38.79041412-03:00","level":"INFO","msg":"ntfeed frame","service":"nt-feed-relay","version":"2.0.0","env":"development","host":"daedalus","source":{"function":"github.com/xKoRx/echo/v3/futures-bridge/core/instrumentation.(*Client).Info","file":"github.com/xKoRx/echo/v3/futures-bridge/core/instrumentation/telemetry.go","line":34},"ntfeed.family":"positions","ntfeed.session":"5b70e536d0234f50b2f6458e88417206","ntfeed.seq":5875,"ntfeed.data":"{\"positions\":[]}"}
+{"time":"2026-10-04T17:13:38.790462553-03:00","level":"INFO","msg":"ntfeed frame","service":"nt-feed-relay","version":"2.0.0","env":"development","host":"daedalus","source":{"function":"github.com/xKoRx/echo/v3/futures-bridge/core/instrumentation.(*Client).Info","file":"github.com/xKoRx/echo/v3/futures-bridge/core/instrumentation/telemetry.go","line":34},"ntfeed.family":"orders","ntfeed.session":"5b70e536d0234f50b2f6458e88417206","ntfeed.seq":5876,"ntfeed.data":"{\"orders\":[]}"}
+{"time":"2026-10-04T17:13:38.790507299-03:00","level":"INFO","msg":"ntfeed frame","service":"nt-feed-relay","version":"2.0.0","env":"development","host":"daedalus","source":{"function":"github.com/xKoRx/echo/v3/futures-bridge/core/instrumentation.(*Client).Info","file":"github.com/xKoRx/echo/v3/futures-bridge/core/instrumentation/telemetry.go","line":34},"ntfeed.family":"heartbeat","ntfeed.session":"5b70e536d0234f50b2f6458e88417206","ntfeed.seq":5877,"ntfeed.data":"{\"account_events\":1468,\"frames_sent\":5873,\"market_events\":3,\"order_events\":1468,\"reconnects\":1}"}
+
+### [7-fix] Reconnect storm check refined (8h, excluye status/heartbeat/metrics-upload)
+---count:
+0
+
+### [8] Session status snapshot (per-session frames/market_ok/stale/anomalies)
+"ntfeed.session":"5b70e536d0234f50b2f6458e88417206","ntfeed.frames":5762,"ntfeed.market_ok":3,"ntfeed.last_seq":5761,"ntfeed.stale":false
+"ntfeed.session":"348f52babe6246eea7a70388cfbfb05e","ntfeed.frames":2879,"ntfeed.market_ok":0,"ntfeed.last_seq":5756,"ntfeed.stale":false
+"ntfeed.session":"5b70e536d0234f50b2f6458e88417206","ntfeed.frames":5774,"ntfeed.market_ok":3,"ntfeed.last_seq":5773,"ntfeed.stale":false
+"ntfeed.session":"348f52babe6246eea7a70388cfbfb05e","ntfeed.frames":2885,"ntfeed.market_ok":0,"ntfeed.last_seq":5768,"ntfeed.stale":false
+"ntfeed.session":"5b70e536d0234f50b2f6458e88417206","ntfeed.frames":5786,"ntfeed.market_ok":3,"ntfeed.last_seq":5785,"ntfeed.stale":false
+"ntfeed.session":"348f52babe6246eea7a70388cfbfb05e","ntfeed.frames":2891,"ntfeed.market_ok":0,"ntfeed.last_seq
+### [9] Safety state — bridge unit
+inactive
+disabled
+listener 9771: 0 (0 = FREE)
+journal M2 files: 0
+
+### [10] Safety state — ETCD raw API (no fuzzy): arming key + relay binding
+futures-bridge/accounts => ABSENT
+futures-bridge/nt-feed/instruments => [{"nt_name":"NQ 12-26","stream_id":"NQ:NQZ6"}]
+futures-bridge/nt-feed/market-topic => echo.futures.market-feed-candidates.v1
+futures-bridge/nt-feed/listen-addr => 0.0.0.0:9770
+futures-bridge/nt-feed/active-account => E2T-GAU50-01
+futures-bridge/nt-feed/source-id => NINJATRADER_ADDON
+prefix key count (MCP RO): 21 (baseline)
+
+### [11] Safety state — command topic (Kafka DEV)
+echo.order-commands.E2T-GAU50-01.v1: partitions=1, high_watermark=0 (0 messages ever), committed -1001 => zero pending/replayable
+
+### [12] Frozen freshness bounds (source @ d08a30ce)
+79:// DefaultFreshnessBounds are the composition defaults of the freshness
+83:var DefaultFreshnessBounds = market.FreshnessBounds{FreshnessBound: 30 * time.Second, LivenessBound: 60 * time.Second, FutureEventSkew: 5 * time.Second}
