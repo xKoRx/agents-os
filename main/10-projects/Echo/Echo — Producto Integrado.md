@@ -22,7 +22,7 @@ tags:
   - kind/project
   - area/echo
 created: 2026-09-07
-updated: 2026-09-24
+updated: 2026-10-04
 ---
 # Echo — Producto Integrado
 
@@ -41,6 +41,7 @@ Forge fabrica y entrega finalistas junto con operaciones SQX y MT5. Echo ingiere
 - Entregar primero dashboard auténtico durante 23–27 septiembre. Cada día inicia con planificación técnica de su hito, luego implementación, pruebas, corrección y evidencia; no terminar una jornada por mera entrega de código. Owner mantiene gates de trading/PROD separados.
 
 ## Estado y realidad
+- **Auditoría operacional PROD (04-10): `OPERATIONAL_PASS`.** Primera auditoría con SSH al runtime: core/gateway/functions en `.71` sin reinicio desde el rollout 25-sep (`master@372af59a`, cero drift), ETCD íntegro (incluida la recuperación del incidente del día), E2E persistiendo al segundo en la apertura dominical, 0 ERROR/24 h y 1 WARN esperado. **AUD-17 (4109) CERRADO** con gate cumplido; copia activa en ~15 cuentas y ~14 estrategias (AUD-18 mejorado). Pendientes P3/P4: volumen de logs del core (knob WARN no reduce export), higiene métrica de cuenta archivada, listener extra :45021 por identificar. Evidencia: [[Echo — Production Operational Audit 2026-10-04]].
 - **The Lab D3 (24-09): CLOSED / DAY_PASS.** Baseline certificado y promovido a `master@372af59a7b83604781346613da01e3d510ea1360`. Shot 2 adversarial encontró y Shot 3 corrigió F-D3-01..07; source/fixture PASS. Certificación física DEV posterior: schema D1+D3, Hasura readonly, Front Curve Lab V3, MONEY/R, períodos A/B, drill-down, stale→recalculate→publish y rollback PASS; PROD quedó intocado. `D3_AUTHENTIC_DATA_PASS` no se declara porque `FORGE_DUAL_HISTORY_INTEGRATION = PENDING`: el dataset DEV fue de verificación por la interfaz canónica, no historia Forge auténtica. Hallazgos de integración para el siguiente día: el `StrategyHistoryHandler` existe pero no está montado en el mux real del Gateway; metadata Hasura debe aplicar limpiamente sin permisos `admin` incompatibles; `--triggered-by` y polish de chart son menores. Autoridades: [[G — Correction Record D3 (Shot 3)]], [[E — F4 Handoff D3]].
 - Forge F05-C FULL: tres finalistas certificados según notas del 21-09; **no demuestra** todavía dos listas individuales SQX/MT5 con las ventanas correctas. E04 join DEV certificado para handoff operativo, **no** para Lab. E05 S0 y PG063 existen, **no** constituyen Lab V3 usable. Evidencia: [[C — Reality and Gap Matrix]]. No se ejecutaron tests, cambios de source ni consultas PROD en esta actualización documental.
 - La implementación puede conservar identidad/contratos S0 y piezas correctas del worker, pero el producto V3 tendrá UNA autoridad analítica activa: no coexistencia permanente de `canonical_trade_sets` como segundo write-master y `lab_operations`. Resolver consumidores E05/E10 mediante adaptación explícita antes del retiro de tablas.
