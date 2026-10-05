@@ -1,0 +1,76 @@
+{
+  "outcome": "PASS_THREE_SDD_DELTAS_CONTRACT_ONLY",
+  "utc": "2026-10-05T13:08:12.813111+00:00",
+  "cp_head": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+  "expected_baseline": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+  "files": [
+    {
+      "baseline": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/1-functional/spec.md",
+      "candidate": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/candidate/meli/features/20261001-real-e2e/1-functional/spec.md",
+      "baseline_sha256": "974f7028fcc481f3b54c3bfef4e4958528487caf754e682553e2582d108ff59d",
+      "candidate_sha256": "b1224872f67c964e0514e3b7e6e7bac43be067c768fd8cc058d1b0dc7243dd22",
+      "matches_git_baseline": true,
+      "reviewed_only_delta": true,
+      "delta_path": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/domain-doc-review/1-functional-delta.diff",
+      "delta_sha256": "901c5c2d8b17fa22c03b61fa3ade4525fefad1560ef047e6b0bc3d69833b5ee3"
+    },
+    {
+      "baseline": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/2-technical/spec.md",
+      "candidate": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/candidate/meli/features/20261001-real-e2e/2-technical/spec.md",
+      "baseline_sha256": "c5dcee507860086152d8c080b11d7e2e710734be1970784628d4a4f621a57abc",
+      "candidate_sha256": "bb3eaad3eef9d2823677e0c3ef87933d191e3e593f738351cd2e6c085080ba69",
+      "matches_git_baseline": true,
+      "reviewed_only_delta": true,
+      "delta_path": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/domain-doc-review/2-technical-delta.diff",
+      "delta_sha256": "1b3855157803b848531f74c51f7da5791c5391f829ffa803f79989add9affb2f"
+    },
+    {
+      "baseline": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/meli/features/20261001-real-e2e/3-tasks/tasks.md",
+      "candidate": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/candidate/meli/features/20261001-real-e2e/3-tasks/tasks.md",
+      "baseline_sha256": "5b59eb88d9cc281b883342fb40d80601d354dc79af90e2935e08ae11bfb1947e",
+      "candidate_sha256": "a29fc6756390595a3619e03b383ba858c25c4ed7e3d3fcd7a6a84643b5558692",
+      "matches_git_baseline": true,
+      "reviewed_only_delta": true,
+      "delta_path": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/domain-doc-review/3-tasks-delta.diff",
+      "delta_sha256": "703df4dfe9df3eeefa7d9b383cd21cbd259bf5f25efd96e001f60fd4647d1166"
+    }
+  ],
+  "checks": [
+    {
+      "id": "ORDER",
+      "result": "PASS",
+      "scope": "directory/state→existing stored_auth_headers→import/instantiate SandboxApi; no new auth mechanism."
+    },
+    {
+      "id": "NO_RENEW",
+      "result": "PASS",
+      "scope": "Explicit no login/renew or remote calls on rejection."
+    },
+    {
+      "id": "NO_CACHE",
+      "result": "PASS",
+      "scope": "Technical delta forbids header caching and preserves guard on each call."
+    },
+    {
+      "id": "CAUSE_SEPARATION",
+      "result": "PASS",
+      "scope": "Local logger PermissionError/reviewer availability and expiry on05Oct are not attributed to historical backend403 on02Oct."
+    },
+    {
+      "id": "EVIDENCE_BOUNDARY",
+      "result": "PASS",
+      "scope": "Constructor baseline/candidate source controls are separated from clone/KVS/complete physical E2E; distinct reviewer and physical run remain unchecked."
+    }
+  ],
+  "findings": [],
+  "nonblocking_editorial_note": "Functional delta: El403/el02/10/el05/10; tasks: baseline27/candidato27. Add ordinary spaces for readability; no contract issue.",
+  "limits": "Auth/control counts are coordinator evidence statements, not independently reproduced by this doc review. Fault reviews two code paths separately. No source/control/business certification is added.",
+  "full_specs_reread": false,
+  "code_files_reviewed_or_edited": 0,
+  "api_calls": 0,
+  "network_calls": 0,
+  "sdk_runtime_calls": 0,
+  "login_calls": 0,
+  "repository_edits": 0,
+  "business": "NOT_EXECUTED"
+}

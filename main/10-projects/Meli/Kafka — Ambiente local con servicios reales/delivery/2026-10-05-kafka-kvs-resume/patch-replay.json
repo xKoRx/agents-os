@@ -1,0 +1,31 @@
+{
+  "status": "PASS_PORTABLE_OWN_CLEAN_BASE_PATCH",
+  "base": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+  "file_count": 5,
+  "files": [
+    {
+      "path": "e2e/sandbox.py",
+      "sha256": "2c089f33a80fe4673048f84bf8ee62fa364c48222c612f3a906c3403513b3706"
+    },
+    {
+      "path": "e2e/tests/sandbox-contract.py",
+      "sha256": "641c1864da3bf39f900d1cb670bb887ba472e2b54c5fea2a007b6f1ad95a6765"
+    },
+    {
+      "path": "meli/features/20261001-real-e2e/1-functional/spec.md",
+      "sha256": "b1224872f67c964e0514e3b7e6e7bac43be067c768fd8cc058d1b0dc7243dd22"
+    },
+    {
+      "path": "meli/features/20261001-real-e2e/2-technical/spec.md",
+      "sha256": "bb3eaad3eef9d2823677e0c3ef87933d191e3e593f738351cd2e6c085080ba69"
+    },
+    {
+      "path": "meli/features/20261001-real-e2e/3-tasks/tasks.md",
+      "sha256": "a29fc6756390595a3619e03b383ba858c25c4ed7e3d3fcd7a6a84643b5558692"
+    }
+  ],
+  "patch_sha256": "9675d52dc71c84d6b5e565f1eefa6dce89ffde5e15a60aefc85550432aae846b",
+  "original_worktree_mutations": 0,
+  "scope": "SOURCE_ONLY",
+  "full_cp_e2e": "NOT_EXECUTED"
+}

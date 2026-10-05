@@ -1,0 +1,43 @@
+{
+  "source_base": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+  "checkout": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/clean-checkout",
+  "clean_before_patch": true,
+  "command": [
+    "python3",
+    "-B",
+    "e2e/tests/harness-contract.py"
+  ],
+  "exit_status": 0,
+  "log_sha256": "5d05135f31076323e9746b0ddefacc67e24568e6441d750c70c3e751ffe5c2a4",
+  "last_lines": [
+    "RECONCILIATION_INSPECTION_PASS:empty-owned",
+    "RECONCILIATION_INSPECTION_PASS:retained",
+    "RECONCILIATION_INSPECTION_PASS:missing",
+    "RECONCILIATION_INSPECTION_PASS:public-mode",
+    "RECONCILIATION_INSPECTION_PASS:symlink",
+    "RECONCILIATION_INSPECTION_PASS:file",
+    "RECONCILIATION_INSPECTION_PASS:relative",
+    "...........",
+    "----------------------------------------------------------------------",
+    "Ran 11 tests in 3.595s",
+    "",
+    "OK"
+  ],
+  "scope": "MANDATORY_HARNESS_CONTROLS_ONLY",
+  "full_cp_e2e": "NOT_EXECUTED",
+  "original_worktree_mutations": 0,
+  "protected_worktree_apply": "NOT_EXECUTED_AUTOMATIC_REVIEW_CAPACITY_FAILURE",
+  "unittest_counts": [
+    27,
+    8,
+    11
+  ],
+  "unittest_total": 46,
+  "non_unittest_control_counts": {
+    "filesystem": 7,
+    "cleanup": 5,
+    "retention": 16
+  },
+  "total_controls": 74,
+  "aggregation_first_failure_preserved": "first-aggregation-failure.json"
+}

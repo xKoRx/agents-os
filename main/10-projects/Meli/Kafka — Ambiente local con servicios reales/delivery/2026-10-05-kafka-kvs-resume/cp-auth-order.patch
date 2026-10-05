@@ -1,0 +1,114 @@
+diff --git a/e2e/sandbox.py b/e2e/sandbox.py
+index eeda6dd..2198a09 100644
+--- a/e2e/sandbox.py
++++ b/e2e/sandbox.py
+@@ -59,9 +59,10 @@ def write_private(path, value):
+ class Lifecycle:
+     def __init__(self, directory, state):
+         self.directory, self.state = directory, state
++        # Reject missing/expired auth before SDK imports initialize log/cache files.
++        self.stored_auth_headers()
+         from cli_sandbox.rest.sandboxsapi import SandboxApi
+         self.api = SandboxApi()
+-        self.stored_auth_headers()
+ 
+     def stored_auth_headers(self):
+         # Read-only preflight; never call AuthenticationHelper.get_token/login/renew.
+diff --git a/e2e/tests/sandbox-contract.py b/e2e/tests/sandbox-contract.py
+index a8d1abe..53dee52 100644
+--- a/e2e/tests/sandbox-contract.py
++++ b/e2e/tests/sandbox-contract.py
+@@ -363,5 +363,49 @@ class ScopeControlContract(unittest.TestCase):
+             constructor.assert_not_called()
+ 
+ 
++class AuthenticationConstructorContract(unittest.TestCase):
++    """SDK import ordering only; no authentication renewal or real-service evidence."""
++
++    def test_expired_auth_fails_before_importing_the_sdk(self):
++        original_import = __import__
++
++        def import_without_sdk(name, *args, **kwargs):
++            if name == 'cli_sandbox.rest.sandboxsapi':
++                raise AssertionError('SDK imported before authentication guard')
++            return original_import(name, *args, **kwargs)
++
++        for code in ('SANDBOX_FURY_LOGIN_REQUIRED', 'SANDBOX_ZERO_TRUST_LOGIN_REQUIRED'):
++            with self.subTest(code=code):
++                with patch.object(sandbox.Lifecycle, 'stored_auth_headers', side_effect=RuntimeError(code)):
++                    with patch('builtins.__import__', side_effect=import_without_sdk):
++                        with self.assertRaisesRegex(RuntimeError, code):
++                            sandbox.Lifecycle(Path('/unused-control-fixture'), {'scope': 'cp'})
++
++    def test_valid_auth_preserves_sdk_construction_after_the_guard(self):
++        observed = []
++        original_import = __import__
++        client = object()
++
++        def guarded_auth(lifecycle):
++            observed.append('authentication-guard')
++            return {}
++
++        def client_factory():
++            observed.append('sdk-construction')
++            return client
++
++        def import_sdk_fixture(name, *args, **kwargs):
++            if name == 'cli_sandbox.rest.sandboxsapi':
++                observed.append('sdk-import')
++                return types.SimpleNamespace(SandboxApi=client_factory)
++            return original_import(name, *args, **kwargs)
++
++        with patch.object(sandbox.Lifecycle, 'stored_auth_headers', guarded_auth):
++            with patch('builtins.__import__', side_effect=import_sdk_fixture):
++                lifecycle = sandbox.Lifecycle(Path('/unused-control-fixture'), {'scope': 'cp'})
++        self.assertEqual(observed, ['authentication-guard', 'sdk-import', 'sdk-construction'])
++        self.assertIs(lifecycle.api, client)
++
++
+ if __name__ == '__main__':
+     unittest.main(verbosity=1)
+diff --git a/meli/features/20261001-real-e2e/1-functional/spec.md b/meli/features/20261001-real-e2e/1-functional/spec.md
+index e5244ef..865a5f0 100644
+--- a/meli/features/20261001-real-e2e/1-functional/spec.md
++++ b/meli/features/20261001-real-e2e/1-functional/spec.md
+@@ -80,3 +80,8 @@ T23 scoped additions: the manual Deployment OpenAPI type now includes the three
+ ## CP-SCOPE-1 — foco del owner, 2026-10-02
+ 
+ El owner prioriza ejecutar E2E del CP Kafka y difiere el ecosistema. La familia `realIntegrationTest` debe poder preparar y verificar un Sandbox exclusivo de `rio-controlplane-kafka` sin aliases, BCs ni servicios Playmaker. Mantener Toolkit productivo, Kafka real, resultados Kafka, ownership/TTL/CAS y fallo explícito por falta de permisos. La familia ecosistema conserva sus dos aplicaciones y sus gates; una provenance CP-only no la certifica. El permiso clone403 continúa externo; fuente/controles no son evidencia de negocio ejecutado.
++
++
++## CP-AUTH-1 — diagnóstico de sesión previa al SDK (2026-10-05)
++
++El launcher debe rechazar una sesión Fury ausente/vencida con el código correspondiente antes de inicializar el SDK y sus archivos de log/cache. No debe iniciar login/renew ni llamadas remotas en ese rechazo. Una sesión válida conserva el SDK oficial y los guards de cada llamada. Esta corrección del gate no acredita clonación, KVS real ni E2E completo. El403 observado el02/10 conserva su fecha; el05/10 se comprobó sesión vencida sin llamadas remotas.
+diff --git a/meli/features/20261001-real-e2e/2-technical/spec.md b/meli/features/20261001-real-e2e/2-technical/spec.md
+index 3cc663e..74e7e04 100644
+--- a/meli/features/20261001-real-e2e/2-technical/spec.md
++++ b/meli/features/20261001-real-e2e/2-technical/spec.md
+@@ -185,3 +185,8 @@ Añadir `sandbox.py up --scope cp --cp-service <alias-propio>`; default ecosyste
+ 
+ 
+ CP-SCOPE-1 peer encontró P2 preexistente en Bash3.2: locals de `run_local_family() (...)` dejan de existir antes del EXIT trap; cleanup y gate.json fallaban por variable unbound. Mantener estado de familia en variables del subshell propio, accesible al trap; conservar locales de helpers activos y aislamiento respecto del parent. Mismo patrón metadata en managed. Conservar UNKNOWN/retención, no inferir ausencia por pérdida de contexto. Regresión debe ejecutar funciones reales y demostrar gate, cleanup/fallo, no API cuando faltan inputs y parent intacto.
++
++
++## CP-AUTH-1 — orden de inicialización del lifecycle
++
++Conservar asignación de directory/state; ejecutar el mismo stored_auth_headers() antes de importar/instanciar SandboxApi. El guard lee credenciales sin usar api y no inicia renovación; la importación SDK inicializa FuryCLILogger y su RotatingFileHandler. No cachear headers ni modificar SDK/logging: cada llamada conserva su guard. Reproducir fallos Tiger/ZT antes del import y orden positivo guard→import→constructor en una copia limpia. Los controles sintéticos del constructor sólo certifican control flow; la suite física sigue exigiendo servicios reales.
+diff --git a/meli/features/20261001-real-e2e/3-tasks/tasks.md b/meli/features/20261001-real-e2e/3-tasks/tasks.md
+index f159a1b..14709a8 100644
+--- a/meli/features/20261001-real-e2e/3-tasks/tasks.md
++++ b/meli/features/20261001-real-e2e/3-tasks/tasks.md
+@@ -80,3 +80,13 @@ Checked implementation/review tasks above denote source or explicitly named unit
+ - [x] Corregir P2 preexistente de contexto del EXIT trap CI en Bash3.2 y agregar regresión de funciones reales sin backend; conservar retención UNKNOWN e independencia del parent.
+ 
+ CP-SCOPE-1 source controls: coordinator `validateRealE2eHarness`72 PASS and CP compile PASS; independent source/metadata v2 PASS,0 drift/0 findings after preserving baseline and bare-variable REDs. These checkmarks certify only the named source/neutral controls. Full business run, current Toolkit server contract, clean repeated reproduction and actual corporate CI job remain NOT_EXECUTED. Current auth gate is Fury login required; the former clone403 must be rechecked after renewal.
++
++
++## CP-AUTH-1 — sesión vencida ocultada por inicialización SDK (2026-10-05)
++
++- [x] Revalidar el guard y metadata de credenciales sin red: LOGIN_REQUIRED; snapshot/token presentes y Tiger vencido. Preservar el PermissionError previo de Fury logger y el fallo temporal del reviewer de aprobación como resultados locales, sin atribuirlos al backend.
++- [x] Preparar regresión constructor Tiger/ZT y orden válido: baseline27 tests FAIL3; candidato27 PASS. Ambas copias tienen los mismos controles nuevos; sin SDK/red/renewal de negocio.
++- [ ] Reproducir desde copia limpia con revisor distinto, integrar únicamente orden/controles y verificar el harness completo.
++- [ ] Renovación interactiva del owner→recheck CP-only propio→Toolkit servidor→suite CP completa/repetible. No usar el403 histórico como intento actual ni convertir controles en certificación E2E.
++
++Writer exclusivo: coordinator en e2e/sandbox.py, e2e/tests/sandbox-contract.py y este delta SPEC/tareas. Diagnóstico seguro de respuesta403 queda propuesta source-only hasta poder reproducir la respuesta con auth válida.

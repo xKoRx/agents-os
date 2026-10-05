@@ -1,0 +1,13 @@
+{
+  "status": "PRESERVED_REPORT_AGGREGATION_ASSERTION_FAILURE",
+  "attempt": 1,
+  "derived_total": 53,
+  "expected_total": 74,
+  "omitted_log_markers": {
+    "cleanup": 5,
+    "retention": 16
+  },
+  "harness_exit_status": 0,
+  "correction": "Count the actual shell-control PASS markers alongside unittest and filesystem controls. Same execution log retained; no test rerun and no expectation change.",
+  "business": "NOT_EXECUTED"
+}

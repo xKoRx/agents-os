@@ -1,0 +1,37 @@
+{
+  "client_date": "2026-10-05",
+  "status": "BLOCKED_AUTH_REQUIRED_AND_AUTOMATIC_REVIEW_CAPACITY",
+  "scope": "CP_KAFKA_ONLY",
+  "original_heads": {
+    "cp": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+    "knowledge": "5c4cb45d9fa8c3e4a95d73542ecd58c04c7c1530"
+  },
+  "original_worktrees": "CLEAN_UNCHANGED",
+  "authentication": "STORED_TIGER_PRESENT_EXPIRED",
+  "remote_api_calls_this_phase": 0,
+  "current_clone_attempt": "NOT_EXECUTED",
+  "historical_clone": "2026-10-02_HTTP403_UNKNOWN_CAUSE",
+  "kvs_business": "NOT_EXECUTED",
+  "full_cp_e2e": "NOT_EXECUTED",
+  "fix": {
+    "status": "PREPARED_TESTED_PEER_REVIEWED_PORTABLE_PATCH_IN_OWN_TEMP_CHECKOUT",
+    "protected_original_integration": "NOT_EXECUTED_AUTO_REVIEW_FAILURE_MODEL_CAPACITY",
+    "baseline": "27 tests,3 failures",
+    "candidate": "27 tests,0 failures",
+    "independent_extra_controls": 10,
+    "mandatory_harness_controls": 74,
+    "spec_tech_tasks_paths": 3,
+    "patched_paths": 5,
+    "patch_sha256": "9675d52dc71c84d6b5e565f1eefa6dce89ffde5e15a60aefc85550432aae846b",
+    "new_original_commits": 0
+  },
+  "next_steps": [
+    "Owner interactive Fury login; revalidate stored session without requesting secrets.",
+    "Retry approval when available for SDK log access and the reviewed protected-worktree patch; do not bypass approval.",
+    "Own CP-only sandbox provisioning; preserve backend diagnostic safely if clone403 repeats.",
+    "With actual generated config: productive Toolkit server/create/version/CAS/TTL, full realIntegrationTest and independent repeat."
+  ],
+  "session": "ACTIVE_PARTIAL",
+  "tokens": "UNKNOWN",
+  "cost": "UNKNOWN"
+}

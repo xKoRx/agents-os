@@ -1,0 +1,122 @@
+{
+  "utc": "2026-10-05T13:10:36.489310+00:00",
+  "status": "PASS_SOURCE_AND_NEUTRAL_AUTH_ORDER_CONTROL_ONLY",
+  "scope": "Independent clean private copy; no installed SDK/auth/API, login/renewal, network, Gradle, Docker or business",
+  "baseline_cp_commit": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+  "source_pins": [
+    {
+      "variant": "baseline",
+      "relative": "e2e/sandbox.py",
+      "author_path": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/baseline/e2e/sandbox.py",
+      "private_snapshot": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order-peer/baseline/e2e/sandbox.py",
+      "sha256": "2627672b001fb12940396e1580b161fbce316b9751a5ad315c10fca7687850a9"
+    },
+    {
+      "variant": "baseline",
+      "relative": "e2e/tests/sandbox-contract.py",
+      "author_path": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/baseline/e2e/tests/sandbox-contract.py",
+      "private_snapshot": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order-peer/baseline/e2e/tests/sandbox-contract.py",
+      "sha256": "641c1864da3bf39f900d1cb670bb887ba472e2b54c5fea2a007b6f1ad95a6765"
+    },
+    {
+      "variant": "candidate",
+      "relative": "e2e/sandbox.py",
+      "author_path": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/candidate/e2e/sandbox.py",
+      "private_snapshot": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order-peer/candidate/e2e/sandbox.py",
+      "sha256": "2c089f33a80fe4673048f84bf8ee62fa364c48222c612f3a906c3403513b3706"
+    },
+    {
+      "variant": "candidate",
+      "relative": "e2e/tests/sandbox-contract.py",
+      "author_path": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/candidate/e2e/tests/sandbox-contract.py",
+      "private_snapshot": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order-peer/candidate/e2e/tests/sandbox-contract.py",
+      "sha256": "641c1864da3bf39f900d1cb670bb887ba472e2b54c5fea2a007b6f1ad95a6765"
+    }
+  ],
+  "reviewed_repository_paths": [
+    "e2e/sandbox.py",
+    "e2e/tests/sandbox-contract.py"
+  ],
+  "source_AST_delta": {
+    "constructor_statement_order": [
+      0,
+      3,
+      1,
+      2
+    ],
+    "all_other_launcher_AST_identical": true,
+    "comment_added": 1,
+    "stored_auth_headers_and_call_unchanged": true
+  },
+  "test_delta": {
+    "original25_test_methods_unchanged": true,
+    "fixture8_methods_unchanged": true,
+    "new_regression_methods": 2,
+    "pair_same_tests_for_RED_GREEN": true
+  },
+  "independent_reproduction": {
+    "baseline": {
+      "variant": "baseline",
+      "python": "3.14.6",
+      "testsRun": 27,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0,
+      "failure_cases": [
+        "independent_control_baseline.AuthenticationConstructorContract.test_expired_auth_fails_before_importing_the_sdk (code='SANDBOX_FURY_LOGIN_REQUIRED')",
+        "independent_control_baseline.AuthenticationConstructorContract.test_expired_auth_fails_before_importing_the_sdk (code='SANDBOX_ZERO_TRUST_LOGIN_REQUIRED')",
+        "independent_control_baseline.AuthenticationConstructorContract.test_valid_auth_preserves_sdk_construction_after_the_guard"
+      ],
+      "blocked_installed_imports": [],
+      "blocked_network_events": [],
+      "SDK_auth_network_guard": "ENFORCED",
+      "scope": "SOURCE_NATIVE_PRIVATE_FS_CONTROL_ONLY",
+      "business": "NOT_EXECUTED"
+    },
+    "candidate": {
+      "variant": "candidate",
+      "python": "3.14.6",
+      "testsRun": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failure_cases": [],
+      "blocked_installed_imports": [],
+      "blocked_network_events": [],
+      "SDK_auth_network_guard": "ENFORCED",
+      "scope": "SOURCE_NATIVE_PRIVATE_FS_CONTROL_ONLY",
+      "business": "NOT_EXECUTED"
+    },
+    "additional": {
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skip": 0,
+      "real_SDK_auth_API_calls": 0,
+      "network_events": [],
+      "scope": "PURE_FUNCTION_IMPORT_METADATA_CONTROLS_ONLY"
+    }
+  },
+  "criteria": {
+    "expired_Tiger_before_SDK_with_exact_code": "PASS",
+    "expired_ZT_before_SDK_with_exact_code": "PASS",
+    "near_margin_and_malformed_ZT": "PASS",
+    "valid_guard_import_constructor_order": "PASS",
+    "no_header_cache_fresh_call_read": "PASS",
+    "SDK_import_and_constructor_error_propagation": "PASS",
+    "expiry_after_constructor_prevents_request": "PASS"
+  },
+  "findings": [],
+  "source_drift": 0,
+  "preserved_first_peer_control_failure": {
+    "path": "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order-peer/first-peer-driver-failure.json",
+    "classification": "INVALID_PEER_DRIVER_BEFORE_ANY_TEST",
+    "reason": "socket class monkeypatch conflicted with SSL class import; corrected by socket audit hook; original source/log preserved",
+    "launcher_verdict_from_this_failure": false
+  },
+  "business": "NOT_EXECUTED",
+  "full_CP_KVS_E2E": "NOT_EXECUTED/BLOCKED",
+  "formal_Zord": "NOT_EXECUTED",
+  "original_repo_writes": 0,
+  "author_logs_used_as_oracle": false
+}

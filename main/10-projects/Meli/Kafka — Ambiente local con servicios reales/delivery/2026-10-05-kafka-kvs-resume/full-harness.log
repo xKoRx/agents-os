@@ -1,0 +1,43 @@
+CLEANUP_CONTROL_FLOW_PASS:none
+CLEANUP_CONTROL_FLOW_PASS:container-query
+CLEANUP_CONTROL_FLOW_PASS:network-query
+CLEANUP_CONTROL_FLOW_PASS:volume-query
+CLEANUP_CONTROL_FLOW_PASS:leftover
+...........................
+----------------------------------------------------------------------
+Ran 27 tests in 0.036s
+
+OK
+........
+----------------------------------------------------------------------
+Ran 8 tests in 2.236s
+
+OK
+RETENTION_CONTROL_FLOW_PASS:cp:retained
+RETENTION_CONTROL_FLOW_PASS:cp:missing
+RETENTION_CONTROL_FLOW_PASS:cp:public-mode
+RETENTION_CONTROL_FLOW_PASS:cp:symlink
+RETENTION_CONTROL_FLOW_PASS:playmaker:retained
+RETENTION_CONTROL_FLOW_PASS:playmaker:missing
+RETENTION_CONTROL_FLOW_PASS:playmaker:public-mode
+RETENTION_CONTROL_FLOW_PASS:playmaker:symlink
+RETENTION_CONTROL_FLOW_PASS:ci:retained
+RETENTION_CONTROL_FLOW_PASS:ci:missing
+RETENTION_CONTROL_FLOW_PASS:ci:public-mode
+RETENTION_CONTROL_FLOW_PASS:ci:symlink
+RETENTION_CONTROL_FLOW_PASS:managed:retained
+RETENTION_CONTROL_FLOW_PASS:managed:missing
+RETENTION_CONTROL_FLOW_PASS:managed:public-mode
+RETENTION_CONTROL_FLOW_PASS:managed:symlink
+RECONCILIATION_INSPECTION_PASS:empty-owned
+RECONCILIATION_INSPECTION_PASS:retained
+RECONCILIATION_INSPECTION_PASS:missing
+RECONCILIATION_INSPECTION_PASS:public-mode
+RECONCILIATION_INSPECTION_PASS:symlink
+RECONCILIATION_INSPECTION_PASS:file
+RECONCILIATION_INSPECTION_PASS:relative
+...........
+----------------------------------------------------------------------
+Ran 11 tests in 3.595s
+
+OK

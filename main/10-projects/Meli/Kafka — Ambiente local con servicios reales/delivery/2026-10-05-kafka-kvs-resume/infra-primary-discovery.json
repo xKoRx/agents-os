@@ -1,0 +1,198 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-10-05T13:04:29.328885+00:00",
+  "verdict": "SOURCE_DISCOVERY_ONLY",
+  "cp_checkpoint_parent_reported": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+  "installed_versions": {
+    "furycli": "5.21.0",
+    "cli_sandbox": "1.2.16",
+    "cli_services": "1.52.0"
+  },
+  "scope": {
+    "api_calls": 0,
+    "sdk_imports_or_constructors": 0,
+    "credential_or_export_reads": 0,
+    "mutations": 0,
+    "repository_edits": 0,
+    "remote_messages": 0
+  },
+  "verified_read_contracts": [
+    {
+      "method": "cli_services.services_commands.services.kvs_service.list_KVS(application)",
+      "verb": "GET",
+      "resource": "application/{application}/kvs",
+      "base_url": "https://web.furycloud.io/api/proxy/cli_services_wrapper",
+      "source": "cli_services/services_commands/services/kvs_service.py",
+      "lines": [
+        19,
+        22
+      ],
+      "consumed_fields": [
+        "name",
+        "status",
+        "metadata.container_type",
+        "metadata.test_container"
+      ],
+      "field_source": "cli_services/services_commands/commands_logic/kvs_cmd_logic.py:22-30",
+      "type_limit": "untyped response; no dedicated single-alias detail method in inspected KVS command/service files"
+    },
+    {
+      "method": "FuryApi.get_application_services()",
+      "verb": "GET",
+      "resource": "applications/{application_name}/services",
+      "source": "furycli/furyapi.py",
+      "lines": [
+        198,
+        211
+      ],
+      "base_url_contract": "config.API_URL, not resolved or instantiated",
+      "type_limit": "dict documented; no KVS/Vault/effective-role schema in method"
+    },
+    {
+      "method": "kvs_service.capacities_kvs(application,kvs_name)",
+      "verb": "GET",
+      "resource": "application/{application}/kvs/{kvs_name}/capacities",
+      "source": "cli_services/services_commands/services/kvs_service.py",
+      "lines": [
+        91,
+        94
+      ],
+      "type_limit": "capacity/quota command, no verified Vault discriminator"
+    },
+    {
+      "method": "bc_service.details_bounded_context(bounded_context_name)",
+      "verb": "GET",
+      "resource": "application/{application}/bc/{bounded_context_name}",
+      "source": "cli_sandbox/services/bc_service.py",
+      "lines": [
+        56,
+        60
+      ],
+      "consumed_fields": [
+        "name",
+        "description",
+        "services[].name",
+        "services[].type"
+      ],
+      "field_source": "cli_sandbox/sandbox_commands/helpers/utils.py:34-46",
+      "type_limit": "own BC service membership, not source-alias Vault metadata or role"
+    }
+  ],
+  "unverified_authorities": {
+    "vault": "No explicit Vault field/enum in the inspected KVS inventory consumers, service client, app model or Sandbox error client. metadata.container_type=database and metadata.test_container=true do not prove non-Vault or clone eligibility.",
+    "effective_application_role": "No getter or typed permission/role field in inspected AppApiClient, Application model, FuryApi or FuryApplication helper. collaborator filter is not an effective-role result; ACME my-teams/my-projects is not proof of Fury Commiter.",
+    "clone_eligibility": "No read-only eligibility contract discovered in this bounded source set. Sandbox clone endpoint is separate from source-KVS creation/approval."
+  },
+  "error_contract": {
+    "sandbox_source": "cli_sandbox/rest/sandboxsapi.py:39-56",
+    "stored_exception_fields": [
+      "message",
+      "status_code"
+    ],
+    "exception_source": "furycli/core/errors/__init__.py:56-64",
+    "nested_json_selection": "outer message parsed as JSON, inner message preferred then inner error; raw outer message fallback for JSONDecodeError",
+    "explicit_403_mapping": false,
+    "typed_error_code_or_correlation_id_discovered": false,
+    "parser_limit": "SandboxApi directly indexes outer message/error and assumes JSON. Missing keys/non-JSON may raise parser exceptions; message may be unstructured. No raw response or message was read.",
+    "services_client_difference": "ServicesApi checks content-type then .get(message/error); still no policy mapping for 403.",
+    "creation_approval_is_other_operation": "kvs_service.create_kvs catches source-KVS POST403 and invokes kvs_authorization; Sandbox add_service_bounded_context does not. This does not diagnose a Sandbox clone403.",
+    "cause_limit": "HTTP403 alone cannot distinguish Vault/unsupported source, eligibility, effective role or other backend authorization/policy."
+  },
+  "next_read_minimum_after_parent_auth_approval": [
+    "Read own application KVS inventory using existing list_KVS contract; require exactly one matching own alias. Retain only name/status/container_type/test_container and metadata key names/hashes as permitted; do not read business keys.",
+    "If Vault/effective-role or clone-specific cause is not present under a verified contract, keep it UNVERIFIED rather than infer it from approved/test_container or BC creation success.",
+    "Keep sanitized status and documented backend fields available through actual response/exception context. No invented error_code or request-id field names and no automatic approval/create retry."
+  ],
+  "historical_doc_boundary": "Prior live guide evidence from 2026-10-02 (Sandbox1.3.12) reports KVS supported, KVS Vault unsupported, source must belong to app and Commiter-and-up operations. Those docs were not re-opened today; no current beta/GA assertion.",
+  "sources": [
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/furycli-5.21.0.dist-info/METADATA",
+      "sha256": "4308d5edbba4dc01707acafcb522429217ae6ae6f124742da1067ffd35395819"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox-1.2.16.dist-info/METADATA",
+      "sha256": "11903e243504b7ff425f72e4ddad359ee948d852fe962ee1e9d22809c1bfa927"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services-1.52.0.dist-info/METADATA",
+      "sha256": "6eee1b4945d6a01c31ff1fd453b3c9a6db66c1015b3f724acb3b07fc09446e52"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services/services_commands/services/kvs_service.py",
+      "sha256": "931aaca10f301e71dcca3f402598a90b6ca5268b926550c4045b6ba949093ae2"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services/services_commands/commands_logic/kvs_cmd_logic.py",
+      "sha256": "d14c1d26769c1af43195b4dd86c0e5a10cbb459ca275bd25939fbc820d6d98f2"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services/services_commands/commands/kvs.py",
+      "sha256": "7b65e8f163aa788951268bd7c757d009437a72cbd41a9a8e6060f1c30751f5ed"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services/services_commands/rest/servicesapi.py",
+      "sha256": "7100ef86d3128e2aa4c7114c4d7b42f001354fa24eda2402f177d3c47f39e711"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services/services_commands/configs/config.py",
+      "sha256": "4fff6879537c689b54be7ab90d7b9320d6a722f0ef39b0651a8e584350d82c15"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/rest/sandboxsapi.py",
+      "sha256": "4e53c6f2d7e6a13c04619dfe69782c363d4197f51db192af3b0a5e0c2fa34f5d"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/configs/config.py",
+      "sha256": "1558674efe741093dd929302ff64402a8c829cc245034820f6c5ec6ec0d21e9d"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/services/bc_service.py",
+      "sha256": "6d5652596c0278f6117a3238e79b368fd5924b2ce67b109b8dd4604483659509"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/sandbox_commands/commands_logic/bc_cmd_logic.py",
+      "sha256": "b3adb76703cb7547fb7f97df3a715dc0c63dbf5495061d8a904206c0d65ffca7"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/sandbox_commands/helpers/utils.py",
+      "sha256": "b18716a124c655b856c16df3e895c2acb3a0c997d5fb9aeb08114cdbde21460e"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/furycli/core/errors/__init__.py",
+      "sha256": "90881e973c614af3ad99f0dc357c84b470dd9bf357241a07bd11b5068a00cd8f"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/furycli/furyapi.py",
+      "sha256": "5b21f8fb7811740f270805dd4b17fe090658286667008ff93665845188711f26"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/furycli/core/helpers/fury.py",
+      "sha256": "882b5da357514124c320e399656bf8e2a598047d850a5ba8595767d955f91b5e"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/furycli/communicationapi.py",
+      "sha256": "4d65996c3b10f77351f715c80229a1351413e07c69b1ec66953faa4ef300267d"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_apps/clients/app_api_client.py",
+      "sha256": "28d54fed3a65ccafed9cae24a688c92bd85682c074eccfea1dcd6db52ebd10be"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_apps/models/application.py",
+      "sha256": "e08e31a1059378cb329471ddf5a3f5c35903f45b97b444b7145e62e392d10ab3"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_apps/commands/details_cmd.py",
+      "sha256": "bd9d6fa7793fde8fbf8d96c46aba515abc8b616064cbad5463bb6b3baca8361d"
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_apps/config/constants.py",
+      "sha256": "3d7d61fbb8477a2bc82da715c7caa0473672566be7b6e047101b29a51a2a2bb4"
+    }
+  ],
+  "limits": [
+    "No API executed; no current role, Vault status, source inventory, authentication or clone outcome verified by this receipt.",
+    "No product/business result, E2E execution or production/GA certification.",
+    "Negative field/getter findings are bounded to the listed inspected files, not an exhaustive statement about all Fury APIs."
+  ]
+}
