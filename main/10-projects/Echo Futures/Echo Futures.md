@@ -2639,6 +2639,12 @@ TOP Senior Physical Integration / Certification Lead (one-shot, fresh context; N
 
 **Próximo paso:** Primary Technical Manager revisa BT-S03 y adjudica el contrato acotado S04; no se inició S04 ni se entregó prompt al Owner. Recuperación/verificación de configuración productiva requiere coordinación autorizada independiente.
 
+### Backtester V1 — BT-S04 final remediation + certification (2026-10-04)
+
+[[Echo Futures — BT-S04 Final Remediation and Certification]]: **BT_S04_FINAL_CERTIFICATION_PASS** @ `feature/backtester-v1-s04-remediation@cd451972` (pusheado, tree limpio; base `feature/backtester-v1-s02@f41da25c`). F01–F14 FIXED, F16 FIXED, F15 ACCEPTED_MINOR_OPEN (documentado: adapters productivos ya filtran; fix rompería contratos frozen). F01–F05 originales todos `CONFIRMED_FIXED_WITH_REGRESSION`. Repros tagged S03: 23/24 verdes (rojo restante = F15); baseline de entrada 20 rojos. Phase 0 test-safety: seeds ETCD v1/v2/v3 tras build tag `seeds` + `ECHO_SEED_ALLOW` + endpoint guard (evidencia bajo `unshare --net`, sin ejecutar seed real). Certificación verde: SDK futures, backtester completo 396.5s (a52 incluido), core functions/runtime/vertical, consumers, CLI build; builds legados v1/v2 rotos PREEXISTENTES en el baseline. Monitor ETCD pre/post suites idéntico (mod_revision 59390, digest `8a36217243c1`, cero escrituras en `/echo/` durante S04). D6 refresh inicial y final = `d08a30ce` sin delta: `NON_CONFLICTING`. 4 subagentes reales (B/C/D paralelos + A), ownership disjunto, 3 adaptaciones de oráculo documentadas in-file. Residual ambiental: `REAL_CONDITIONAL_WRITE = NOT_VERIFIED_ENVIRONMENTAL`, flake a52 bajo contención (PASS secuencial/aislado).
+
+**Próximo paso:** Primary Technical Manager revisa BT-S04; al aceptar, Backtester V1 queda terminado (programa cierra; no se inicia otra fase).
+
 ### D6 bridge restart recovery — F-D6-H REMEDIATION — PASS — 2026-10-04
 
 TOP Senior Recovery / Execution Transport Remediation Lead (one-shot, fresh context; NO-EGRESS, OD-D6-1 sin consumir, AddOns intocados). Corrige el ÚNICO defecto del ATTEMPT 6: la carrera de recovery al rearrancar el bridge (1 PASS / 5 FAIL, `barrier: reconcile: ninjatrader: no position snapshot observed yet` a +2.8–6.1 s; PASS sólo por alineación del tick de snapshot del AddOn con el arranque). Artifact: **`artifacts/d6-bridge-restart-recovery-20261004/D6-BRIDGE-RESTART-RECOVERY-REMEDIATION.md`**; evidencia `~/aranea/work/d6-bridge-restart-recovery-20261004/`.
