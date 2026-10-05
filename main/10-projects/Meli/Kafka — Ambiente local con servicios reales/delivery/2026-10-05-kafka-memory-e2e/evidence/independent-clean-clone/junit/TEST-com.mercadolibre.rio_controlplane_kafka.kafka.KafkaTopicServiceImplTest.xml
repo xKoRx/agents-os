@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:15.691Z" time="0.205">
+  <testcase name="peekReturnsCorrectFieldsWhenPollProvidesEnoughRecords()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest" time="0.187" />
+  <testcase name="peekSeeksCorrectlyForLatestWithTwoPartitions()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest" time="0.001" />
+  <testcase name="peekDeletesConsumerGroupAfterSuccessfulPoll()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest" time="0.001" />
+  <testcase name="peekReturnsExactlyNumMsgsWhenPollReturnsMoreRecords()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest" time="0.004" />
+  <testcase name="peekReturnsEmptyListWhenNoMessagesBeforeDeadline()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest" time="0.001" />
+  <testcase name="peekThrowsNotFoundExceptionWhenTopicDoesNotExist()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest" time="0.001" />
+  <testcase name="peekReturnsPartialResultWhenTimeoutExpiresBeforeNumMsgsCollected()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest" time="0.001" />
+  <testcase name="peekSeeksToZeroWhenEndOffsetIsSmallerThanNumMsgs()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest" time="0.001" />
+  <testcase name="peekReturnsEmptyListForTopicWithZeroPartitions()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest" time="0.0" />
+  <testcase name="peekParsesJsonValueAndSetsFormatToJson()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest" time="0.001" />
+  <testcase name="peekKeepsPlainTextFormatWhenValueIsNotJsonObjectOrArray()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest" time="0.0" />
+  <testcase name="peekThrowsInternalServerErrorWhenAdminClientCreationFails()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest" time="0.001" />
+  <testcase name="peekSeeksToBeginningForEarliestOffset()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest" time="0.001" />
+  <testcase name="peekDeletesConsumerGroupEvenWhenPollThrows()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest" time="0.001" />
+  </testsuite>

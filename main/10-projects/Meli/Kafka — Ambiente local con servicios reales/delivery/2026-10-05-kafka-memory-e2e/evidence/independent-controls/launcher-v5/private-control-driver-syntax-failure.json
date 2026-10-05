@@ -1,0 +1,8 @@
+{
+  "scope": "INVALID_PEER_DRIVER_BEFORE_ANY_CONTROLS",
+  "attempt": "V4 cleanup supplemental generator",
+  "error": "Nested triple-quote SyntaxError in generator",
+  "controls_executed": 0,
+  "business_calls": 0,
+  "source_impact": 0
+}

@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.actions.ActionResultSizeGuardTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:01.917Z" time="0.355">
+  <testcase name="measuresExactSerializedEnvelopeBytes()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionResultSizeGuardTest" time="0.347" />
+  <testcase name="reportsEnvelopeThatExceedsBudget()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionResultSizeGuardTest" time="0.001" />
+  <testcase name="rejectsNonPositiveBudget()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionResultSizeGuardTest" time="0.002" />
+  </testsuite>

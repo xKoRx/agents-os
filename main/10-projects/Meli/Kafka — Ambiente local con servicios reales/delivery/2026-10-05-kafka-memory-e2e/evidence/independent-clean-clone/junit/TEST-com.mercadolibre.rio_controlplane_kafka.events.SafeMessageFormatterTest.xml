@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" tests="40" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.874Z" time="0.018">
+  <testcase name="truncateReturnsRawPrefixWhenMaxLengthBelowMarkerLength()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="scrubSecretsDoesNotRedactBareColonValueEvenForCredentialShapedKey()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="sanitizeWithholdsInputWhenScrubStepThrowsStackOverflowError()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="truncateClampsNegativeMaxLengthToZero()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="flattenTrimsLeadingAndTrailingWhitespace()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="scrubSecretsRedactsBareEqualsPassword()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="scrubSecretsKeepsParenthesizedBareSecretTogetherAndStopsAtSemicolon()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="scrubSecretsRedactsSaslJaasConfigQuotedValue()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="truncateDoesNotBackOffWhenTheCharBeforeTheCutIsNotAHighSurrogate()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="scrubSecretsDoesNotRedactSslKeystoreLocation()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="scrubSecretsRedactsQuotedColonToken()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="truncateReturnsRawPrefixWhenMaxLengthAtMarkerLength()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="truncateNeverSplitsASurrogatePair()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="sanitizeRedactsAQuotedCredentialWhoseClosingQuoteFallsAfterTheRawInputCap()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.001" />
+  <testcase name="sanitizeReturnsEmptyForNull()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="sanitizeWithNegativeMaxLengthStillFailsClosedWhenScrubStepThrows()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="sanitizeWithholdsInputWhenScrubStepThrowsRuntimeException()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="sanitizeReturnsEmptyForBlank()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="scrubSecretsDoesNotRedactConfigKeyNamesThemselves()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="sanitizeNeverSplitsASurrogatePairAtTheRawInputCapBoundary()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.001" />
+  <testcase name="scrubSecretsRedactsUnquotedAuthorizationBearerHeader()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="flattenFoldsUnicodeSeparatorAndFormatCharacters()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.001" />
+  <testcase name="truncateDoesNotBackOffWhenTheHighSurrogateIsUnpaired()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="sanitizeHandlesPathologicalKeyLadenInputWithoutPathologicalSlowdown()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.008" />
+  <testcase name="defaultMaxLengthIs500()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="truncateReturnsUnchangedWhenUnderLimit()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.001" />
+  <testcase name="flattenReturnsEmptyForNull()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="truncateCapsAtMaxLengthWithMarkerInsideCap()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="sanitizeStillUsesRealScrubSecretsOnTheHappyPathOfTheThreeArgOverload()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="flattenFoldsWhitespaceAndControlCharactersToSingleSpace()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="scrubSecretsIsCaseInsensitiveOnKeyName()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="scrubSecretsReturnsEmptyForNull()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="scrubSecretsDoesNotRedactKeyAsMidWordSubstring()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="sanitizeFlattensScrubsAndTruncates()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.001" />
+  <testcase name="scrubSecretsLeavesMessageWithoutCredentialShapedKeysUntouched()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="truncateReturnsEmptyForNull()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="scrubSecretsRedactsJsonStyleQuotedKeyAndValue()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  <testcase name="sanitizeHandlesPathologicalInputRegardlessOfHowMuchLargerThanTheCapItIs()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.002" />
+  <testcase name="scrubSecretsRedactsCamelCaseCredentialKeys()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.001" />
+  <testcase name="scrubSecretsRedactsMultipleOccurrences()" classname="com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest" time="0.0" />
+  </testsuite>

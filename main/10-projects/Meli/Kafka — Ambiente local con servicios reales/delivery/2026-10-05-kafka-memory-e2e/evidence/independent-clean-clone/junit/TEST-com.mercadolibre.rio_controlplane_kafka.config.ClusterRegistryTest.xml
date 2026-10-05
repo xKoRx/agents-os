@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.config.ClusterRegistryTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:02.403Z" time="0.154">
+  <testcase name="resolveEmptyWhenNeitherOverrideNorSharedClusterConfigured()" classname="com.mercadolibre.rio_controlplane_kafka.config.ClusterRegistryTest" time="0.0" />
+  <testcase name="resolveReturnsEmptyForUnmappedEnvironmentId()" classname="com.mercadolibre.rio_controlplane_kafka.config.ClusterRegistryTest" time="0.0" />
+  <testcase name="bindsFromConfigurationPropertiesShape()" classname="com.mercadolibre.rio_controlplane_kafka.config.ClusterRegistryTest" time="0.151" />
+  <testcase name="resolveReturnsBrokersForMappedEnvironmentId()" classname="com.mercadolibre.rio_controlplane_kafka.config.ClusterRegistryTest" time="0.0" />
+  <testcase name="perEnvironmentOverrideTakesPrecedenceOverSharedCluster()" classname="com.mercadolibre.rio_controlplane_kafka.config.ClusterRegistryTest" time="0.0" />
+  <testcase name="setClustersToNullResetsToEmptyMap()" classname="com.mercadolibre.rio_controlplane_kafka.config.ClusterRegistryTest" time="0.0" />
+  <testcase name="resolveFallsBackToSharedClusterForAnyEnvironment()" classname="com.mercadolibre.rio_controlplane_kafka.config.ClusterRegistryTest" time="0.0" />
+  <testcase name="resolveReturnsEmptyForNullEnvironmentId()" classname="com.mercadolibre.rio_controlplane_kafka.config.ClusterRegistryTest" time="0.0" />
+  </testsuite>

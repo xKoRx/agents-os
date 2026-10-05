@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.unit.ScopeUtilTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:17.295Z" time="0.001">
+  <testcase name="nonTestSuffix()" classname="com.mercadolibre.rio_controlplane_kafka.unit.ScopeUtilTest" time="0.0" />
+  <testcase name="testNonDefaultScope()" classname="com.mercadolibre.rio_controlplane_kafka.unit.ScopeUtilTest" time="0.0" />
+  <testcase name="testCalculateScopeSuffix()" classname="com.mercadolibre.rio_controlplane_kafka.unit.ScopeUtilTest" time="0.0" />
+  <testcase name="testDefaultScope()" classname="com.mercadolibre.rio_controlplane_kafka.unit.ScopeUtilTest" time="0.001" />
+  <testcase name="prodSuffix()" classname="com.mercadolibre.rio_controlplane_kafka.unit.ScopeUtilTest" time="0.0" />
+  <testcase name="testSuffix()" classname="com.mercadolibre.rio_controlplane_kafka.unit.ScopeUtilTest" time="0.0" />
+  <testcase name="nonProdSuffix()" classname="com.mercadolibre.rio_controlplane_kafka.unit.ScopeUtilTest" time="0.0" />
+  </testsuite>

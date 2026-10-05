@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorIdempotencyIntegrationTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:03:59.331Z" time="1.306">
+  <testcase name="publicationFailureLeavesNonTerminalPublishPendingState()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorIdempotencyIntegrationTest" time="1.255" />
+  <testcase name="e2e7_selfRetryWithinOwnRetryWindowProcessesNormally()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorIdempotencyIntegrationTest" time="0.023" />
+  <testcase name="e2e2_redeliveredPeekTriggerIsDroppedAfterFirstCompletion()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorIdempotencyIntegrationTest" time="0.015" />
+  </testsuite>

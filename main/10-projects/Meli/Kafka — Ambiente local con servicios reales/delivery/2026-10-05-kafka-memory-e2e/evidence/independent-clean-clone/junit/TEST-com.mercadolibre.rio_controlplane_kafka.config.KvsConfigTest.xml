@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:02.714Z" time="0.582">
+  <testcase name="memoryProfileSelectsOnlyItsNamedClientEvenWithRemoteContainerConfigured()" classname="com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest" time="0.244" />
+  <testcase name="typedAndListAsyncVariantsFailTheFutureWithServiceError()" classname="com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest" time="0.001" />
+  <testcase name="unconfiguredLocalContextRetainsNoOpFallback()" classname="com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest" time="0.008" />
+  <testcase name="realBeanBuildsWhenEndpointEnvVarsArePresent()" classname="com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest" time="0.195" />
+  <testcase name="remoteRealE2eRetainsLazyToolkitBeanDefinitionWithoutMemoryClient()" classname="com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest" time="0.005" />
+  <testcase name="standaloneMemoryProfileHasNoBackend()" classname="com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest" time="0.006" />
+  <testcase name="memoryWithoutLocalProfileHasNoBackend()" classname="com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest" time="0.004" />
+  <testcase name="syncDataOperationsThrowServiceError()" classname="com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest" time="0.001" />
+  <testcase name="realBeanBuildsWithSegmentIdButFallsBackToUnsegmentedV1Resolution()" classname="com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest" time="0.105" />
+  <testcase name="memoryWithoutRealE2eProfileHasNoBackend()" classname="com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest" time="0.008" />
+  <testcase name="closeIsANoOp()" classname="com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest" time="0.001" />
+  <testcase name="asyncVariantsFailTheFutureWithServiceError()" classname="com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest" time="0.001" />
+  <testcase name="noOpFallbackIsRegistered()" classname="com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest" time="0.0" />
+  <testcase name="batchAndBulkOperationsThrowServiceError()" classname="com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest" time="0.001" />
+  </testsuite>

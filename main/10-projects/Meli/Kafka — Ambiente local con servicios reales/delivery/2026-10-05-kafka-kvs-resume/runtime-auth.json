@@ -1,0 +1,34 @@
+{
+  "client_date": "2026-10-05",
+  "source_head": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+  "auth_guard_utc": "2026-10-05T13:08:27.653359+00:00",
+  "auth": "SANDBOX_FURY_LOGIN_REQUIRED",
+  "metadata_utc": "2026-10-05T13:04:25.672571+00:00",
+  "snapshot_read": true,
+  "tiger_token_present": true,
+  "tiger_token_expired": true,
+  "zero_trust_present": false,
+  "metadata_limit": "Token validity/presence only, no permission, identity or backend causation claim.",
+  "remote_api_calls": 0,
+  "renewal_or_login": false,
+  "credential_values_exposed": 0,
+  "kvs_business_writes": 0,
+  "new_owned_remote_resources": 0,
+  "full_cp_e2e": "NOT_EXECUTED",
+  "clone_403": "HISTORICAL_2026_10_02_NOT_REATTEMPTED",
+  "local_sdk_failure": {
+    "error_type": "PermissionError",
+    "errno": 1,
+    "path": "/Users/rjara/.fury/logs/fury-client.log",
+    "cause": "SDK logging initialized before stored auth guard"
+  },
+  "automatic_review": {
+    "action": "SDK initialization for stored-auth preflight",
+    "executed": false,
+    "result": "REVIEW_COULD_NOT_COMPLETE_MODEL_AT_CAPACITY",
+    "unsafe_determination": false,
+    "alternative": "Existing stored_auth_headers method invoked without SDK initialization; read-only auth state established."
+  },
+  "owner_input": "Interactive Fury renewal requested; no credentials requested in chat.",
+  "next_action": "After valid stored Fury session, reattempt own CP-only Sandbox lifecycle; keep full business and actual server-version/CAS/TTL gates mandatory."
+}

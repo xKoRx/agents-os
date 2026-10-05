@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.integration.ControllerExceptionHandlerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:08.762Z" time="0.368">
+  <testcase name="testUnhandledException()" classname="com.mercadolibre.rio_controlplane_kafka.integration.ControllerExceptionHandlerTest" time="0.01" />
+  <testcase name="testApiExceptionError()" classname="com.mercadolibre.rio_controlplane_kafka.integration.ControllerExceptionHandlerTest" time="0.008" />
+  <testcase name="notFound()" classname="com.mercadolibre.rio_controlplane_kafka.integration.ControllerExceptionHandlerTest" time="0.005" />
+  <testcase name="testApiExceptionWarn()" classname="com.mercadolibre.rio_controlplane_kafka.integration.ControllerExceptionHandlerTest" time="0.004" />
+  </testsuite>

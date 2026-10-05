@@ -1,0 +1,71 @@
+{
+  "review_role": "INDEPENDENT_ROOT_SOURCE_AND_CONTROL",
+  "verdict": "CHANGES_REQUESTED_SOURCE_CONTROL_ONLY",
+  "scope": "CLI_METADATA_PRIVATE_FS_AND_OWN_NATIVE_PROCESS_ONLY_NOT_ACTUAL_GRADLE_OR_BACKEND",
+  "source_pins": {
+    "pins": [
+      {
+        "source": "/private/tmp/kafka-e2e-memory-20261005/cp/e2e/local.sh",
+        "snapshot": "/private/tmp/kafka-e2e-memory-20261005-peer/launcher-v3/e2e/local.sh",
+        "sha256": "cb4c3eb9fc89d1d76ca584bbfd738bd8926d60b133c047423eb198d468e0a7c8"
+      },
+      {
+        "source": "/private/tmp/kafka-e2e-memory-20261005/cp/e2e/verify-local-result.py",
+        "snapshot": "/private/tmp/kafka-e2e-memory-20261005-peer/launcher-v3/e2e/verify-local-result.py",
+        "sha256": "5497a7c37ea46d4f7f6472f4c55f53dc86bf746807f9c0a26625bbf3ab2ec04e"
+      },
+      {
+        "source": "/private/tmp/kafka-e2e-memory-20261005/cp/e2e/reconciliation-status.py",
+        "snapshot": "/private/tmp/kafka-e2e-memory-20261005-peer/launcher-v3/e2e/reconciliation-status.py",
+        "sha256": "1ec245c2285b60d6c29022f922a6e90a6745310ecc5ae0d2b4eebed8713ab243"
+      }
+    ],
+    "source_delta_only": "Root owns all source edits"
+  },
+  "controls": {
+    "count": 26,
+    "pass": 22,
+    "fail": 4,
+    "receipt": "verifier-controls.json",
+    "receipt_sha256": "ae29110991087b253879dafaf4fb86dab48bab11b6cb9fa2bec90e8725019c95"
+  },
+  "findings": [
+    {
+      "priority": 2,
+      "code": "NATIVE_BIRTH_INVALID_ACCEPTED",
+      "source": "e2e/verify-local-result.py",
+      "lines": [
+        41,
+        68
+      ],
+      "expected": "Both owner and worker births are nonempty valid native Instant strings and compared exactly.",
+      "actual": "Matching empty owner birth and matching malformed worker birth returned PASS/exit0.",
+      "controls": [
+        "owner-birth-empty",
+        "worker-birth-invalid"
+      ]
+    },
+    {
+      "priority": 2,
+      "code": "SCHEMA_BOOL_ACCEPTED",
+      "source": "e2e/verify-local-result.py",
+      "lines": [
+        35,
+        58
+      ],
+      "expected": "Schema version has exact integer JSON type and value1, including intent.",
+      "actual": "schema_version=true in proof or matching worker/private file returned PASS/exit0.",
+      "controls": [
+        "proof-schema-bool",
+        "worker-schema-bool"
+      ]
+    }
+  ],
+  "native_child_exit_status": 0,
+  "actual_own_native_child_absent": true,
+  "actual_own_FS_directories_absent": 26,
+  "business_runtime": "NOT_EXECUTED",
+  "actual_Gradle": "NOT_EXECUTED",
+  "source_edits": 0,
+  "first_v1_v2_failures_preserved": true
+}

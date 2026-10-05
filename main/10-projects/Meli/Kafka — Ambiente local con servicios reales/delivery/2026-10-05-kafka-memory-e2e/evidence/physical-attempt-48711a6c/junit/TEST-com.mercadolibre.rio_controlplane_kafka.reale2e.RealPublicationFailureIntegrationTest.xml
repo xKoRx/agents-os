@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealPublicationFailureIntegrationTest" tests="3" skipped="0" failures="3" errors="0" timestamp="2026-10-05T18:35:48.898Z" time="1.025">
+  <testcase name="[1] provider = &quot;aws-msk-topic&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealPublicationFailureIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] provider = &quot;gcp-kafka-topic&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealPublicationFailureIntegrationTest" time="0.083">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="actionRealProducerFailureLeavesPublicationPendingAndYoungRedeliveryDoesNotExecute()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealPublicationFailureIntegrationTest" time="0.122">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  </testsuite>

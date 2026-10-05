@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:10.506Z" time="0.061">
+  <testcase name="getClientDoesNotCollideWhenConfigValuesContainKeyValueDelimiters()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest" time="0.0" />
+  <testcase name="getClientReturnsDifferentInstancesForSameBrokersButDifferentAdminConfig()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest" time="0.0" />
+  <testcase name="getClientReturnsSameInstanceForDuplicateBrokerEntries()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest" time="0.0" />
+  <testcase name="getClientReturnsDifferentInstancesForDistinctClusters()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest" time="0.0" />
+  <testcase name="closeAllClosesEveryPooledClient()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest" time="0.0" />
+  <testcase name="createAdminClientBuildsRealClientFromConnectionConfig()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest" time="0.058" />
+  <testcase name="getClientThrowsWhenBrokersIsBlank()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest" time="0.0" />
+  <testcase name="getClientReturnsSameInstanceOnRepeatedCallWithSameLiteral()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest" time="0.0" />
+  <testcase name="getClientReturnsSameInstanceForEquivalentBrokersWithDifferentOrderAndWhitespace()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest" time="0.0" />
+  <testcase name="getClientReturnsNonNullForSingleBroker()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest" time="0.001" />
+  <testcase name="closeAllContinuesAndClearsPoolWhenAClientCloseThrows()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest" time="0.0" />
+  <testcase name="getClientThrowsWhenConnectionIsNull()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest" time="0.0" />
+  <testcase name="getClientReturnsSameInstanceForSameBrokersAndSameAdminConfig()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest" time="0.001" />
+  </testsuite>

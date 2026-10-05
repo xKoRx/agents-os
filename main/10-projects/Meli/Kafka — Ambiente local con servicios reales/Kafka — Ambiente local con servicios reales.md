@@ -17,22 +17,34 @@ prs:
 aliases: ["Kafka local real", "Ambiente local Kafka", "Control plane Kafka — Desarrollo local"]
 tags: ["kind/project", "area/meli", "app/rio-controlplane-kafka"]
 created: "2026-09-30"
-updated: "2026-10-02"
+updated: "2026-10-05"
 ---
 
 # Kafka — Ambiente local con servicios reales
 
 > [!info]+ Kafka — Ambiente local con servicios reales
-> **Área:** [[Meli]] · **Estado:** active · **Owner:** Rodrigo · **Fase:** fuente y controles revisados; ejecución E2E completa bloqueada por gates externos.
+> **Área:** [[Meli]] · **Estado:** active · **Owner:** Rodrigo · **Fase:** CP local con mapa implementado y revisado; E2E físico bloqueado por Docker/forwarding del host.
 
 ## 🎯 Objetivo
 
-Levantar [[rio-controlplane-kafka]] y [[rio-playmaker]] en un ambiente de desarrollo que ejecute PROVISION, UPDATE, DEPROVISION y PEEK contra Kafka real, use KVS real de Fury Sandbox y muestre el resultado real en Playmaker. Automatizar la comprobación de esas capacidades para desarrollo y CI. Mantener los contratos y la lógica de negocio utilizados por las aplicaciones, con una matriz verificable de cobertura y de dependencias externas.
+Ejecutar E2E del [[rio-controlplane-kafka]] contra Kafka real usando un mapa simple en memoria para la idempotencia local, conforme a la decisión explícita del owner del 2026-10-05. Fury KVS Sandbox deja de ser requisito para esta familia. Primero CP Kafka; Playmaker y el resto del ecosistema quedan para una fase posterior.
 
-El resultado esperado es un comando de inicio documentado, configuración reproducible, servicios saludables y escenarios que demuestren el efecto físico sobre topics, mensajes y estado de orquestación. La comparación de implementaciones ya terminó y vive en [[Ambientes locales RIO — Comparativa de implementaciones]]; este proyecto conduce el cambio que se desprende de esa evidencia.
+Mantener controllers, validadores, handlers, procesadores, provisioners y guard reales del CP. Comprobar efectos Kafka, resultados correlacionados y estado del mapa de la misma aplicación. El mapa no certifica persistencia tras reinicio, exclusión entre JVMs ni el cliente/servicio Toolkit productivo. La producción conserva su backend. La comparación histórica de implementaciones vive en [[Ambientes locales RIO — Comparativa de implementaciones]].
 
 ## 📊 Estado actual
 
+- **Decisión aplicada 05/10:** `LocalInMemoryKvsClient` por instancia con create exclusivo, CAS, versión local, TTL y copia de bytes; perfil `local,real-e2e,memory-e2e`. No requiere Fury, VPN ni Sandbox para este backend. El runtime/CI usa Kafka real y transporte de resultados Kafka. Ecosistema después.
+- **Código entregado:** implementación CP `7615b210e5b70667912b956c2f27cc0d1ebc80eb`; cierre documental `4c66d0d5ca77e1de4aef5b08c9e601921eb60a9b`, rama `feature/kafka-e2e-memory`, worktree limpio `/Users/rjara/fuentes/rio-controlplane-kafka-memory-e2e`. Base `7f1720d950446638ff9b15a0e4e167f3e8e26e43` y checkout anterior preservados. SPEC funcional→técnica→tareas: delta `LOCAL-MEMORY-1` en `meli/features/20261001-real-e2e/`. Rama pendiente; no producción/push/release.
+- **Verificación independiente PASS:** clon nuevo detached de `7615b21`, Java25/Gradle9.3.1 offline, `test compileRealIntegrationTestJava`:65 clases/845 pruebas/0 fallos/0 errores/0 skips;33 fuentes sin drift. Los49 controles de launcher/verificador también PASS. GenerateDocTest cambió su Swagger generado en el clon propio; diff preservado. Ninguno de estos controles acredita E2E Kafka.
+- **E2E físico FAIL/BLOCKED:** corrida `48711a6c7ffa43dc88c44b2d4b1db4b1`:343 invocaciones,309 fallidas,34 PASS,0 skips. Cinco brokers internos saludables, pero host `127.0.0.1:39092` rechazó conexión y el primer fixture agotó el timeout. Tres assertions del adapter comparaban enum contra string; corregidas sin cambiar oráculos CAS y con replay pendiente. La corrida fallida original sigue conservada.
+- **Bloqueo vigente preciso:** forwarding SSH del Colima propio recibió SIGKILL (PID41272,exit-9); causa desconocida. Sin fix causal demostrado. VM propia detenida y recursos de corrida retirados; Colima compartido tiene2GiB y no fue modificado. Hace falta un runtime Docker propio con≥5GiB y listeners host39092–39096 accesibles. No se necesita login Fury ni un alias KVS.
+- **Reproducción:** en el nuevo worktree, `DOCKER_CONTEXT=<contexto-propio-operativo> JAVA_HOME=<jdk25> ./e2e/local.sh` (opcional `--offline`). El default `./e2e/run.sh` selecciona la misma familia. Un comando realiza startup/test/teardown; faltantes o fallos retornan nonzero. Retiene recursos propios si la reconciliación es UNKNOWN o queda trabajo pendiente. Reportes por corrida en `build/local-e2e/<run>/`. CI `.github/workflows/local-kafka-e2e.yml` implementado, job externo NOT_EXECUTED.
+- **Cobertura honesta:** matriz local356:5 PASS únicamente a nivel adapter/config unitario,226 BLOCKED por Kafka host y125 NOT_EXECUTED fuera de la selección local. Matriz remota351 intacta. GCP plaintext no certifica OAuth; Kafka local no certifica BigQueue. Las fronteras y escenarios excluidos están en `e2e/LOCAL.md` y la matriz. No se declara completo el E2E.
+- **Knowledge y continuidad:** `docs/kafka-e2e-memory@0feee7b5fad32c8c7dc3dcc252d65166b15c0cd9`, worktree limpio `/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-memory-e2e`; delta5docs de la biblioteca con contratos/capas/gates actuales; master canónico auditado permanece separado de la rama pendiente. Paquete durable [handoff, parches y evidencia](delivery/2026-10-05-kafka-memory-e2e/HANDOFF.md). Próximo: restaurar el runtime propio→suite local completa→repetición independiente limpia y fallas críticas→job CI con runner elegido. Sesión AGENTS OS activa/parcial; tokens/coste desconocidos.
+
+### Corte histórico previo a la decisión de mapa (superado para la familia local)
+
+- **Revalidación 05/10:** Fury Tiger presente/vencido;0API remotas. Clone403 del02/10 no reintentado. Fix auth-before-SDK preparado con27PASS+10peer/74harness y patch5paths portable; aplicación original no ejecutada por fallo de capacidad del reviewer automático. CP7f1720d/KL5c4cb45 permanecen limpios. [Continuidad actual](delivery/2026-10-05-kafka-kvs-resume/HANDOFF.md).
 - **Veredicto: BLOCKED; objetivo incompleto.** [Handoff durable](delivery/2026-10-02-kafka-e2e-blocked/HANDOFF.md) y [cinco parches/índice](delivery/2026-10-02-kafka-e2e-blocked/delivery-index.json) conservados en el vault. El ensayo físico completo CP/KVS/Playmaker/managed y el job CI siguen NOT_EXECUTED. No cierre de sesión ni certificación final.
 - **Fuente guardada:** CP `7f1720d950446638ff9b15a0e4e167f3e8e26e43`, Playmaker candidato `acbda2f1e68ae7672de6f9571cd739da972ca07a`, overlay master `47df54fe1e341be6b1c2304a2c098b0c01d626e1`, SDK `97146e9fde6cb2d947b7978ba2ba2491d11f06b5`, knowledge `5c4cb45d9fa8c3e4a95d73542ecd58c04c7c1530`. Cinco worktrees limpios; originales y cambios previos preservados. Sin push/PR/release/despliegue. WORK_BRANCH_PENDING, no producción. Bases/ramas/SPECs exactas en el índice.
 - **Matriz:** 351 capacidades/22 columnas; 304 FULL preparadas, 29 PARTIAL, 18 NONE; **351 NOT_EXECUTED** en su contrato físico completo. FULL significa preparación revisada. Matriz SHA `2f0d813088fe8b6d2e88a8c39bc5d850edebc2a860bc0d3dbd34040111b2c50e`. Decisión implementada: source sets en CP, extensión aislada del harness Playmaker, cinco brokers para AWS RF1–5/GCP RF1–3.
@@ -63,6 +75,8 @@ El resultado esperado es un comando de inicio documentado, configuración reprod
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
+| [[rio-controlplane-kafka]] · CP local memoria actual | `feature/kafka-e2e-memory` · `rio-controlplane-kafka-memory-e2e` | Candidato `7f1720d950446638ff9b15a0e4e167f3e8e26e43` sobre develop previo | Delta `LOCAL-MEMORY-1` en funcional | Delta `LOCAL-MEMORY-1` en técnica y tareas | Implementación7615b21/docs4c66d0d;845 unit/compile peer PASS; físico BLOCKED |
+| [[ads-signals-knowledge-library]] · memoria local actual | `docs/kafka-e2e-memory` · `ads-signals-knowledge-library-kafka-memory-e2e` | Candidato `5c4cb45d9fa8c3e4a95d73542ecd58c04c7c1530` | Decisión owner05/10 y auditoría |5docs delta fuentes/capas/runbook | Commit0feee7b; estructura/histórico PASS; formal937 preexistentes idénticos |
 | [[rio-controlplane-kafka]] · `melisource/fury_rio-controlplane-kafka` | `feature/kafka-real-e2e` · worktree hermano `rio-controlplane-kafka-e2e` | `develop@4302481c69300074a85ea5eb051a27bbd505cdce` | `meli/features/20261001-real-e2e/1-functional/spec.md` lista; publicación SIG bloqueada por sesión | `meli/features/20261001-real-e2e/2-technical/spec.md` lista | Implementación/suites compiladas; real E2E pendiente |
 | [[rio-playmaker]] · `melisource/fury_rio-playmaker` | `feature/kafka-real-e2e` · worktree hermano `rio-playmaker-kafka-e2e` | `develop@7673f4bffc286f0f24d4214938df53c4c5eb9c38` | Funcional E2E del CP compartido, lista | Técnica E2E del CP compartida, lista | Adapters acciones/peek/KVS y launcher propios implementados; gates de ejecución pendientes |
 | [[ads-signals-knowledge-library]] · `melisource/fury_ads-signals-knowledge-library` | `docs/kafka-real-e2e` · worktree hermano `ads-signals-knowledge-library-kafka-e2e` | `master@de7cde85f7dd83a673c918e22ae9f08a0f7e05bd` | Contrato de auditoría del prompt maestro | Correcciones canónicas y documentación pendiente de E2E | Auditoría y correcciones verificadas en curso |
@@ -70,7 +84,7 @@ El resultado esperado es un comando de inicio documentado, configuración reprod
 
 El flujo de entrega sigue Spellbook: SPEC funcional → SPEC técnica → tasks → implementación. Completar ramas y ambas SPEC antes de modificar código. Incluir otro repositorio en esta tabla sólo si el diseño demuestra que necesita un cambio.
 
-## 🧩 Alcance propuesto
+## 🧩 Alcance histórico anterior (Sandbox/ecosistema; superado para CP local)
 
 1. **Infraestructura compartida:** reutilizar el Compose de Playmaker y agregar un perfil o archivo para tres brokers, volúmenes, healthchecks y listeners internos/externos. Un comando levanta infraestructura y arranca las dos aplicaciones con versiones y puertos explícitos.
 2. **Control plane real:** consumir los triggers locales con los DTO y validadores vigentes; delegar a los procesadores existentes; crear, actualizar y borrar topics mediante `AdminClient` real; publicar resultados a Kafka local con confirmación del broker.
@@ -80,7 +94,20 @@ El flujo de entrega sigue Spellbook: SPEC funcional → SPEC técnica → tasks 
 6. **Verificación automática:** escenarios de ciclo de vida, datos, replicación, routing y errores con evidencia en Kafka, KVS y MySQL, ejecutables mediante Gradle y en CI. Reservar una validación de integración con servicios reales no productivos para OAuth de GCP, transporte BigQueue y otras dependencias que Compose no reproduce.
 7. **Disponibilidad verificable:** el launcher del perfil de integración debe comprobar Kafka y KVS real, rechazar wiring no-op/archivos y explicar qué configuración falta. Una dependencia corporativa ausente debe producir un fallo visible en las suites que la requieren. Las pruebas de caída posterior de un KVS real verificarán la política de degradación vigente del producto.
 
-## ✅ Tareas
+## ✅ Tareas actuales — CP primero
+
+- [x] Registrar decisión del owner y delta SPEC funcional→técnica→tareas `LOCAL-MEMORY-1`.
+- [x] Implementar mapa y selección explícita del perfil local; conservar lógica del CP.
+- [x] Implementar launcher, task Gradle local, selección, informes y workflow CI.
+- [x] Reproducir unit/compilación desde clon independiente y revisar controles de resultado/cleanup.
+- [x] Actualizar la knowledge library con alcance local en memoria y evidencia sin afirmar producción.
+- [ ] Resolver runtime Docker propio/forwarding host con≥5GiB y puertos39092–39096.
+- [ ] Ejecutar toda la suite local y casos críticos de falla; verificar repetibilidad y cleanup.
+- [ ] Reproducir ruta completa desde checkout limpio con revisor distinto.
+- [ ] Ejecutar job CI local en runner autorizado; adjuntar resultado real.
+- [ ] Cerrar objetivo y sesión con feedback AGENTS OS sólo cuando los gates físicos estén satisfechos.
+
+## ✅ Tareas históricas — anteriores a la decisión de mapa
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > - [x] Confirmar KVS real de Fury Sandbox y permitir la dependencia de conectividad corporativa #owner/me #type/research #area/meli
@@ -267,3 +294,7 @@ Pregunta puntual pendiente: habilitar/confirmar clonación Sandbox del alias pro
 ## Lookup oficial Sandbox/KVS — 2026-10-02
 
 Owner pidió comprobar beta. Guías live Sandbox1.3.12/KVS2.0.43/CLI5.24.0 documentan servicios reales/KVS soportado, Commiter+ y Vault excluido. Sin etiqueta beta en páginas revisadas; búsqueda beta NoResults no acredita GA. Rol efectivo/Vault/elegibilidad concreta/cause403 permanecen NOT_VERIFIED. Independent Fault review de inferencias y3paths PASS/0findings; no lectura browser independiente ni certificación E2E. CP `7f1720d950446638ff9b15a0e4e167f3e8e26e43` y KL `5c4cb45d9fa8c3e4a95d73542ecd58c04c7c1530` clean, sólo docs/evidencia. Validadores estructural691/194 e histórico PASS; formal937 byte-idéntico baseline268be6/0nuevos. [Handoff y fuentes](delivery/2026-10-02-kafka-sandbox-docs/HANDOFF.md). Gate CP sigue clone403, KVS writes0/fullCP NOT_EXECUTED. Próximo: confirmar rol y elegibilidad del alias propio/razónbackend; repetir lifecycle CP-only y suite completa al habilitarse. Sesión active/partial, tokens/coste desconocidos.
+
+## Reanudación CP/KVS — 2026-10-05
+
+Owner pidió continuar CP Kafka. Auth guard directo12:59/13:08Z devuelveLOGIN_REQUIRED;13:04 metadata confirma token/snapshot presentes, Tigerexpired y ZTausente, sin causar claims de permiso/backend. SDKconstructor local falló antesauth por logger ~/.fury/logs PermissionError; approval SDK y aplicación5paths rechazadas por reviewermodelcapacity,0execution/no unsafejudgment. Alternativa segura: authread-only y candidatecheckout propio en /private/tmp, nunca escritura protegida víaotrocanal. SPEC→tech→tasks CP-AUTH-1 preparados; baseline27FAIL3/candidate27PASS; Fault peer SHA166b95b94b656e2c17262e006a157ba0004c9ac5fb34a3392d9281b62aeca830 PASS+10controls, Domain3docdeltaPASS. Harnessmandatory74PASS sobreclone limpio; patch5paths replayPASS SHA9675d52dc71c84d6b5e565f1eefa6dce89ffde5e15a60aefc85550432aae846b. AggregationAssertion53vs74 preservada; añadióconteos reales5cleanup+16retention desde mismo log, sin rerun/expectationchange. Originales CP7f1720d/KL5c4cb45 unchanged/clean; no newcommit/push. [Packet/handoff](delivery/2026-10-05-kafka-kvs-resume/HANDOFF.md). Estado BLOCKED currentauth+approvalcapacity; clone403histórico/noAPI/KVSwrites0/fullCP NOT_EXECUTED. Ownerlogin solicitadoasync pendiente; después auth→ownCPprovision→contratoSDKserver→suite completa/repeat. Ecosistema posterior. Sesión active/partial sin cierre; tokens/coste desconocidos.

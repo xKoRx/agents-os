@@ -1,0 +1,98 @@
+{
+  "actions": {
+    "credential_or_environment_values_printed": 0,
+    "forwarding_created": 0,
+    "installed_dependencies": 0,
+    "repo_changes": 0,
+    "restarts": 0,
+    "runtime_mutations": 0,
+    "shared_context_changes": 0
+  },
+  "business_scope": "Physical Kafka E2E remains BLOCKED by own host forwarding; no backend PASS or KVS/Fury certification.",
+  "conclusions": [
+    "Transport/auth and a short SSH shell worked in the own VM before stop.",
+    "Go-only or alternate-PATH explanation is insufficient: Python forwarding child also received SIGKILL; hostagent used /usr/bin/ssh.",
+    "No own-PID kernel/AMFI/SSH event establishes a permission denial, killing actor, policy cause or OpenSSH version bug.",
+    "No safe causal runtime fix was established; no upgrade, security-policy change, new proxy or forwarding workaround proposed."
+  ],
+  "created_utc": "2026-10-05T18:58:47.860340+00:00",
+  "docker_context": "colima-rio-kafka-e2e-01a0f8e0",
+  "observations": [
+    {
+      "limitation": "Changing log; historical snapshot hash only.",
+      "observed_sha256": "b072d5b2e044405beeeead3e5b0ab4d4c5dedb8cc3f9768e14a6af40ec5c4f30",
+      "readiness_error": "signal: killed",
+      "snapshot_lines": 56,
+      "source": "own ha.stderr.log inspected earlier",
+      "ssh_path": "/usr/bin/ssh",
+      "stderr_bytes": 0,
+      "stdout_bytes": 0,
+      "vm_running_local": "2026-10-05T15:43:58-03:00"
+    },
+    {
+      "control_master": false,
+      "elapsed_ms": 76,
+      "exit": 0,
+      "forwarding": false,
+      "remote_operation": "true via /bin/bash stdin",
+      "source": "earlier authorized own SSH shell-stdin probe",
+      "stderr_bytes": 0,
+      "stdout_bytes": 0
+    },
+    {
+      "elapsed_ms_approx_root_reported": 200,
+      "exit": -9,
+      "pid": 41272,
+      "source": "root captured actual forwarding child",
+      "source_file": "/private/tmp/kafka-e2e-memory-20261005/ssh-forward-diagnostic.json",
+      "source_sha256": "9192cc2fcde524bf9cf798429ceb3d7f9d7a3251fe66b55a11275b6d9b8653cf",
+      "stderr_bytes": 0,
+      "time_utc": "2026-10-05T18:52:39.412315+00:00"
+    },
+    {
+      "event_count": 0,
+      "exit": 0,
+      "pid": 41272,
+      "receipt_file": "pid41272-info-debug.json",
+      "source": "own pid/time exact unified-log query including info/debug",
+      "stderr_bytes": 0,
+      "window_local": [
+        "2026-10-05 15:52:29",
+        "2026-10-05 15:52:50"
+      ]
+    },
+    {
+      "attribution": "No PID/object binding to the failed SSH child. These events do not establish its kill cause.",
+      "counts": {
+        "mentions_pid41272": 0,
+        "mentions_ssh": 0,
+        "total": 68,
+        "unattributed_endpoint_security_denies": 50
+      },
+      "source": "bounded security-event window"
+    },
+    {
+      "elapsed_ms": 16,
+      "exit": 255,
+      "interpretation": "Inconclusive: root had already stopped own VM at 15:55:47 local; old SSH port unavailable.",
+      "source": "delayed-shell-probe.json",
+      "time_utc": "2026-10-05T18:57:40.968955+00:00"
+    }
+  ],
+  "own_profile": "rio-kafka-e2e-01a0f8e0",
+  "root_state_report": {
+    "own_context_socket_metadata_removed_by_root": true,
+    "own_vm_stopped_local": "2026-10-05T15:55:47-03:00",
+    "reason": "startup timeout, approximately603s",
+    "shared_runtime": "Not modified by infra agent"
+  },
+  "scope": "READ_ONLY_OWN_COLIMA_DIAGNOSIS",
+  "stop_instruction": "No further probes; leave AGENTS OS session open.",
+  "unit_scope": "Root reported845unitPASS; not run or certified by this diagnostic.",
+  "verdict": "SIGKILL_CONFIRMED_CAUSE_UNKNOWN_NO_RUNTIME_FIX_CERTIFIED",
+  "versions": {
+    "colima": "0.8.1",
+    "lima": "1.0.5",
+    "openssh": "OpenSSH_10.3p1"
+  }
+}

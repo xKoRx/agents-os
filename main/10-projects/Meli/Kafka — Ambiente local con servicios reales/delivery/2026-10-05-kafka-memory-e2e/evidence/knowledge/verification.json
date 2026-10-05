@@ -1,0 +1,24 @@
+{
+  "knowledge_base": "5c4cb45",
+  "implementation_source": "7615b210e5b70667912b956c2f27cc0d1ebc80eb",
+  "cp_documentation_supplement": "4c66d0d5ca77e1de4aef5b08c9e601921eb60a9b",
+  "structural": "PASS",
+  "historical_anchor": "PASS",
+  "historical_runbook_bytes": "UNCHANGED",
+  "source_files_checked_at_implementation": 17,
+  "formal": {
+    "result": "FAIL_PREEXISTING_SOURCE_AVAILABILITY",
+    "errors": 937,
+    "new_errors": 0,
+    "removed_errors": 0,
+    "byte_identical_to_baseline": true,
+    "log_sha256": "268be6f39a764e42569d5deafe535299f01bc5be000245779e9bd2e18bb9cdf5"
+  },
+  "feature_ids": 691,
+  "markdown": 194,
+  "physical_gate": "BLOCKED",
+  "push": "NOT_PERFORMED",
+  "source_documentation_files_checked_at_supplement": 2,
+  "knowledge_commit": "0feee7b5fad32c8c7dc3dcc252d65166b15c0cd9",
+  "knowledge_worktree": "CLEAN"
+}

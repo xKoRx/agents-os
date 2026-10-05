@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.integration.PingControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:09.554Z" time="0.005">
+  <testcase name="ping()" classname="com.mercadolibre.rio_controlplane_kafka.integration.PingControllerTest" time="0.002" />
+  </testsuite>

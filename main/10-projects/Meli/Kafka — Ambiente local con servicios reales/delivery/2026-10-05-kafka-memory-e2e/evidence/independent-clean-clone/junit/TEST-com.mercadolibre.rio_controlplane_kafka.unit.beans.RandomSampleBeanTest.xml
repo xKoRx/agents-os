@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.unit.beans.RandomSampleBeanTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:17.296Z" time="0.0">
+  <testcase name="randomPositiveTestOK()" classname="com.mercadolibre.rio_controlplane_kafka.unit.beans.RandomSampleBeanTest" time="0.0" />
+  </testsuite>

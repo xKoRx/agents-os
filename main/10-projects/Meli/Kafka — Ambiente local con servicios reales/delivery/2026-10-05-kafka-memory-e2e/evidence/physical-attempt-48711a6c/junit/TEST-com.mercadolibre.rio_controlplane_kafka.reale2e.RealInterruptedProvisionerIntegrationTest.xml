@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-10-05T18:35:17.022Z" time="24.729">
+  <testcase name="initializationError" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" time="0.0">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="java.util.concurrent.ExecutionException" />
+  </testcase>
+  </testsuite>

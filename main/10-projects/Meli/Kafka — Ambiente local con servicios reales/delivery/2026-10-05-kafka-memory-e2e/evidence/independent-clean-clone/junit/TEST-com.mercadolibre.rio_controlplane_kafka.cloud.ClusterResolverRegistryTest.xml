@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.cloud.ClusterResolverRegistryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:02.355Z" time="0.002">
+  <testcase name="forProvider_emptyRegistry_returnsEmpty()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.ClusterResolverRegistryTest" time="0.0" />
+  <testcase name="constructor_duplicateProvider_throws()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.ClusterResolverRegistryTest" time="0.001" />
+  <testcase name="forProvider_returnsRegisteredResolver()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.ClusterResolverRegistryTest" time="0.001" />
+  <testcase name="forProvider_unregisteredProvider_returnsEmpty()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.ClusterResolverRegistryTest" time="0.0" />
+  </testsuite>

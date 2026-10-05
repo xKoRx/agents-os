@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.telemetry.MetricsTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:17.275Z" time="0.02">
+  <testcase name="outcomeActionsCarriesStatusTemplateIdempotencyAndKvsError()" classname="com.mercadolibre.rio_controlplane_kafka.telemetry.MetricsTest" time="0.009" />
+  <testcase name="receivedDeploymentsOmitsComponentTemplate()" classname="com.mercadolibre.rio_controlplane_kafka.telemetry.MetricsTest" time="0.001" />
+  <testcase name="incrementHttpRequestHandledDoesNotThrow()" classname="com.mercadolibre.rio_controlplane_kafka.telemetry.MetricsTest" time="0.001" />
+  <testcase name="recordLatencyOperationADoesNotThrow()" classname="com.mercadolibre.rio_controlplane_kafka.telemetry.MetricsTest" time="0.0" />
+  <testcase name="outcomeIgnoredUsesUnsupportedBoundedTags()" classname="com.mercadolibre.rio_controlplane_kafka.telemetry.MetricsTest" time="0.001" />
+  <testcase name="recordMemoryServerDoesNotThrow()" classname="com.mercadolibre.rio_controlplane_kafka.telemetry.MetricsTest" time="0.001" />
+  <testcase name="legacyEventNamesAreNoLongerEmitted()" classname="com.mercadolibre.rio_controlplane_kafka.telemetry.MetricsTest" time="0.004" />
+  <testcase name="durationRecordsHistogramUnderHomologatedName()" classname="com.mercadolibre.rio_controlplane_kafka.telemetry.MetricsTest" time="0.001" />
+  <testcase name="receivedActionsCarriesOperationTemplateAndControlplane()" classname="com.mercadolibre.rio_controlplane_kafka.telemetry.MetricsTest" time="0.0" />
+  <testcase name="eventOutcomeAttributesNeverContainPii()" classname="com.mercadolibre.rio_controlplane_kafka.telemetry.MetricsTest" time="0.001" />
+  <testcase name="outcomeDeploymentsIncludesErrorTypeAndStatus()" classname="com.mercadolibre.rio_controlplane_kafka.telemetry.MetricsTest" time="0.0" />
+  </testsuite>

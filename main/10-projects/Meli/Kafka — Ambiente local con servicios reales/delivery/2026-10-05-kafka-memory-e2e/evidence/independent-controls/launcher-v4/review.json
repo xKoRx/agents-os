@@ -1,0 +1,70 @@
+{
+  "verdict": "CHANGES_REQUESTED_SOURCE_CONTROL_ONLY",
+  "source_pins": {
+    "e2e/local.sh": "cb4c3eb9fc89d1d76ca584bbfd738bd8926d60b133c047423eb198d468e0a7c8",
+    "e2e/verify-local-result.py": "352641e3a71a709a033023c2ad61d5afe0d2884960a23231b2893bba4558042b",
+    "e2e/reconciliation-status.py": "1ec245c2285b60d6c29022f922a6e90a6745310ecc5ae0d2b4eebed8713ab243",
+    "e2e/run.sh": "4abc6296bbaccd820d396150209fad0149102cd34f622d52ffb9a3e902f4660e"
+  },
+  "previous_v3_findings_closed": true,
+  "same26_controls": {
+    "pass": 26,
+    "count": 26
+  },
+  "additional_typed_tuple_controls": {
+    "pass": 1,
+    "count": 5,
+    "red": [
+      {
+        "case": "intent-owner-PID-float",
+        "expected": "FAIL",
+        "actual": "PASS",
+        "exit": 0,
+        "native_task_proof": true,
+        "control_outcome": "FAIL"
+      },
+      {
+        "case": "actual-worker-file-PID-float",
+        "expected": "FAIL",
+        "actual": "PASS",
+        "exit": 0,
+        "native_task_proof": true,
+        "control_outcome": "FAIL"
+      },
+      {
+        "case": "actual-worker-file-schema-bool",
+        "expected": "FAIL",
+        "actual": "PASS",
+        "exit": 0,
+        "native_task_proof": true,
+        "control_outcome": "FAIL"
+      },
+      {
+        "case": "actual-worker-file-owner-PID-float",
+        "expected": "FAIL",
+        "actual": "PASS",
+        "exit": 0,
+        "native_task_proof": true,
+        "control_outcome": "FAIL"
+      }
+    ]
+  },
+  "finding": {
+    "priority": 2,
+    "code": "PRIVATE_RECORD_NUMERIC_COERCION",
+    "source": "e2e/verify-local-result.py",
+    "cause": "Python dictionary equality considers int, float, and bool values equal. Typed proof does not imply typed intent/actual worker files.",
+    "required_fix": "Preserve JSON types in comparisons or require exact integer type for schema/PID values in all three evidence objects.",
+    "runtime_effect_scope": "Invalid private control metadata returns local result PASS; no backend test was executed."
+  },
+  "entry_controls": {
+    "count": 6,
+    "pass": 6,
+    "remote_suffix_byte_identical_to_base": true
+  },
+  "actual_own_native_children_exit0_and_absent": 2,
+  "actual_own_FS_absent": 32,
+  "real_Gradle_Kafka_Docker_Fury_API_business_calls": 0,
+  "first_v1_v2_v3_failures_preserved": true,
+  "source_edits": 0
+}

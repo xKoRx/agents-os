@@ -1,0 +1,20 @@
+{
+  "pins": [
+    {
+      "source": "/private/tmp/kafka-e2e-memory-20261005/cp/e2e/local.sh",
+      "snapshot": "/private/tmp/kafka-e2e-memory-20261005-peer/launcher-v3/e2e/local.sh",
+      "sha256": "cb4c3eb9fc89d1d76ca584bbfd738bd8926d60b133c047423eb198d468e0a7c8"
+    },
+    {
+      "source": "/private/tmp/kafka-e2e-memory-20261005/cp/e2e/verify-local-result.py",
+      "snapshot": "/private/tmp/kafka-e2e-memory-20261005-peer/launcher-v3/e2e/verify-local-result.py",
+      "sha256": "5497a7c37ea46d4f7f6472f4c55f53dc86bf746807f9c0a26625bbf3ab2ec04e"
+    },
+    {
+      "source": "/private/tmp/kafka-e2e-memory-20261005/cp/e2e/reconciliation-status.py",
+      "snapshot": "/private/tmp/kafka-e2e-memory-20261005-peer/launcher-v3/e2e/reconciliation-status.py",
+      "sha256": "1ec245c2285b60d6c29022f922a6e90a6745310ecc5ae0d2b4eebed8713ab243"
+    }
+  ],
+  "source_delta_only": "Root owns all source edits"
+}

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:10.567Z" time="5.123">
+  <testcase name="needsAdjustmentReturnsFalseWhenAllPartitionsMatchTarget()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest" time="0.0" />
+  <testcase name="alterToPreservesRackDiversityWhenReducingReplicationFactor()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest" time="0.075" />
+  <testcase name="alterToInvokesReplicaReassignmentWhenTargetIsHigher()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest" time="0.001" />
+  <testcase name="alterToPrefersUnusedRacksWhenAddingReplicas()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest" time="0.001" />
+  <testcase name="alterToSkipsAdminCallWhenAlreadyAtTarget()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest" time="0.001" />
+  <testcase name="alterToWithAllSameRackBrokersFallsBackToAnyAvailableBroker()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest" time="0.0" />
+  <testcase name="alterToReducesReplicationFactorWhenTargetIsLower()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest" time="0.001" />
+  <testcase name="alterToPollsUntilReassignmentCompletesAfterOnePendingIteration()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest" time="5.037" />
+  <testcase name="alterToSkipsPartitionsAlreadyAtTargetReplicationFactor()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest" time="0.002" />
+  <testcase name="alterToThrowsTimeoutWhenPollingReassignmentCompletionTimesOut()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest" time="0.002" />
+  <testcase name="needsAdjustmentReturnsTrueWhenAnyPartitionDiffers()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest" time="0.0" />
+  <testcase name="alterToTreatsBlankRackAsMissingRackInfo()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest" time="0.001" />
+  <testcase name="alterToThrowsExecutionExceptionWhenInsufficientBrokers()" classname="com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest" time="0.001" />
+  </testsuite>

@@ -1,0 +1,206 @@
+{
+  "source_sha256": "d4b9d1f3411317ffd6a5ecfc26c6a19ebe0ad941ad39d63a26dfc59a07b18815",
+  "records": [
+    {
+      "case": "missing-proof",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "PASS",
+      "native_task_proof": false,
+      "neutral_down_called": true,
+      "control_outcome": "PASS",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "foreign-proof",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "PASS",
+      "native_task_proof": false,
+      "neutral_down_called": true,
+      "control_outcome": "PASS",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "wrong-task",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "PASS",
+      "native_task_proof": false,
+      "neutral_down_called": true,
+      "control_outcome": "PASS",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "wrong-counts",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "PASS",
+      "native_task_proof": false,
+      "neutral_down_called": true,
+      "control_outcome": "PASS",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "wrong-worker-run",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "PASS",
+      "native_task_proof": false,
+      "neutral_down_called": true,
+      "control_outcome": "PASS",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "forced-task",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "PASS",
+      "native_task_proof": false,
+      "neutral_down_called": true,
+      "control_outcome": "PASS",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "retained-UNKNOWN",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "RETAINED",
+      "native_task_proof": true,
+      "neutral_down_called": false,
+      "control_outcome": "PASS",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "missing-reconciliation",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "RETAINED",
+      "native_task_proof": true,
+      "neutral_down_called": false,
+      "control_outcome": "PASS",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "public-reconciliation",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "RETAINED",
+      "native_task_proof": true,
+      "neutral_down_called": false,
+      "control_outcome": "PASS",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "empty",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "PASS",
+      "native_task_proof": false,
+      "neutral_down_called": true,
+      "control_outcome": "PASS",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "skipped",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "PASS",
+      "native_task_proof": true,
+      "neutral_down_called": true,
+      "control_outcome": "PASS",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "failed",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "PASS",
+      "native_task_proof": true,
+      "neutral_down_called": true,
+      "control_outcome": "PASS",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "bad-command",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "PASS",
+      "native_task_proof": true,
+      "neutral_down_called": true,
+      "control_outcome": "PASS",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "bad-docker-query",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "FAIL",
+      "native_task_proof": true,
+      "neutral_down_called": true,
+      "control_outcome": "PASS",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "complete-metadata-shape",
+      "expected_control_verdict": "PASS",
+      "actual_verdict": "PASS",
+      "exit": 0,
+      "cleanup": "PASS",
+      "native_task_proof": true,
+      "neutral_down_called": true,
+      "control_outcome": "PASS",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "incomplete-worker-native-shape",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "PASS",
+      "exit": 0,
+      "cleanup": "PASS",
+      "native_task_proof": true,
+      "neutral_down_called": true,
+      "control_outcome": "FAIL",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "wrong-worker-owner",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "PASS",
+      "exit": 0,
+      "cleanup": "PASS",
+      "native_task_proof": true,
+      "neutral_down_called": true,
+      "control_outcome": "FAIL",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    },
+    {
+      "case": "boolean-worker-PID",
+      "expected_control_verdict": "FAIL",
+      "actual_verdict": "PASS",
+      "exit": 0,
+      "cleanup": "PASS",
+      "native_task_proof": true,
+      "neutral_down_called": true,
+      "control_outcome": "FAIL",
+      "scope": "SOURCE_METADATA_ONLY_NO_RUNTIME_NATIVE_OR_BACKEND_PROOF"
+    }
+  ],
+  "native_shell": "/bin/bash3.2",
+  "own_FS_absence_cases": 18,
+  "real_API_Docker_Kafka_Gradle_business_calls": 0
+}

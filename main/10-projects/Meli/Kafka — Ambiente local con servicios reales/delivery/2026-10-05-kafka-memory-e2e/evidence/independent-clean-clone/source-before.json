@@ -1,0 +1,151 @@
+{
+  "scope": "INDEPENDENT_LOCAL_CLONE_CHECKPOINT_TREE",
+  "base": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+  "head": "7615b210e5b70667912b956c2f27cc0d1ebc80eb",
+  "branch_detached": true,
+  "clone_no_hardlinks": true,
+  "before_status": "",
+  "changed_paths": 33,
+  "entries": {
+    ".github/workflows/local-kafka-e2e.yml": {
+      "sha256": "03ba2ff961cf25508e688ddfd99e3b63c2b6360adbc65b1aa4f31870e944fec1",
+      "blob": "f03593100607a82a7622d2dcff8d84946f4f1278"
+    },
+    "build.gradle": {
+      "sha256": "cb3e45fd16bc35070d6834242ad10597ea13d815ddb3cde2e86a9f32d180d9fc",
+      "blob": "f5042d69afb0ee9c52066c8bea69f9e8680cce47"
+    },
+    "e2e/LOCAL.md": {
+      "sha256": "31917a6751d96a6d0ec32c132f1a5827e2ce715d497dd563a2e198aa18fc332c",
+      "blob": "bf186afa7b7d7a97e9191363cfea3c4037a2cbb5"
+    },
+    "e2e/README.md": {
+      "sha256": "d20bceb35dbd9d23bfb8d838a0f31f8da2f0dd0123bd1d0411325b0b5827e257",
+      "blob": "0408e6f3332dec324f7b2b71ab0527e9d81bc3a7"
+    },
+    "e2e/gradle-worker-exit.gradle": {
+      "sha256": "0a2d1beebf2f710d5a7d104c47b723209141dcff14c9a5244b06dfdd052f0d73",
+      "blob": "84d938441e7530c3976f9204730d8a278ed27aff"
+    },
+    "e2e/local.sh": {
+      "sha256": "cb4c3eb9fc89d1d76ca584bbfd738bd8926d60b133c047423eb198d468e0a7c8",
+      "blob": "bc39268d0b6f1a9b42f8fc26afbb35aec03d0dad"
+    },
+    "e2e/run.sh": {
+      "sha256": "4abc6296bbaccd820d396150209fad0149102cd34f622d52ffb9a3e902f4660e",
+      "blob": "88dede5282095f37fb508738133529cd65952c75"
+    },
+    "e2e/verify-local-result.py": {
+      "sha256": "305d0ad6ec5b1484696035138e577f08fe5bfb059f3211e3c83d8e259503f684",
+      "blob": "42233a1226a688660f07830bd15f63640120bfa9"
+    },
+    "meli/features/20261001-real-e2e/1-functional/spec.md": {
+      "sha256": "7eb0b8af7b31f3a85780520bcdc52a3c75c854faaac75148e68b5349f09ffede",
+      "blob": "c7a0630e1e4b0dfb166765bbab808876bc6b1ce2"
+    },
+    "meli/features/20261001-real-e2e/2-technical/spec.md": {
+      "sha256": "21fa85cfcbbde243310429ad23e53f898e801c38cb434de9dbab340b423144c7",
+      "blob": "429a9c75ecd381139a3e59d3aa4b039d93543b7c"
+    },
+    "meli/features/20261001-real-e2e/3-tasks/tasks.md": {
+      "sha256": "806d7c1c2e6e9eb8d08b1eb4f9cddd13e17371299ba65048bfcb9528993aa3af",
+      "blob": "fb5f24a5173c0dd82f1523aba77bd845cc517999"
+    },
+    "meli/features/20261001-real-e2e/evidence/local-memory-2026-10-05.md": {
+      "sha256": "49ebcdf2bf856bf674d9b0e6887150d19e9dea3b46fd200c2a7984d709549a7a",
+      "blob": "4dea6ae071ea995a8848075070378a1eed88679b"
+    },
+    "meli/features/20261001-real-e2e/local-coverage-matrix.tsv": {
+      "sha256": "6525abf7c73fa8fe04f993a68ca8e23f9ac2a29b2061be0ffa0ba57198232109",
+      "blob": "49bc6b005bb584a5933b2d4abb7388e7c50330fb"
+    },
+    "src/main/java/com/mercadolibre/rio_controlplane_kafka/config/KvsConfig.java": {
+      "sha256": "4093d682c748aad532affc147739dab0a3ea77720734f36ecdf3b6381ada3b98",
+      "blob": "1c335146430fd006e0858b06b5d3a64c7ce88dc0"
+    },
+    "src/main/java/com/mercadolibre/rio_controlplane_kafka/reale2e/LocalInMemoryKvsClient.java": {
+      "sha256": "549915820bea132542f641fbfa01dfd180077dfcfcd4e059bac3d1834a486f9d",
+      "blob": "28d9324e4e32064cdb47aa50459a8cc362a23a38"
+    },
+    "src/main/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealE2eKvsObservationConfiguration.java": {
+      "sha256": "3f811341273dd8c2bbc7fa2a20dc88a5a4399385d27c8e840e81e813dd6e2f91",
+      "blob": "4eca236b17c99bc110b0a1f607998231ccd824f8"
+    },
+    "src/main/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealE2ePreflight.java": {
+      "sha256": "151c104c8f7182ce2006980651daa5df7ab99555d1114e1caa763c169961197e",
+      "blob": "bf08c49528a0d4de0539e33b07305e79abaa623d"
+    },
+    "src/main/resources/application-memory-e2e.yml": {
+      "sha256": "98b7860d35db8fb5d676fbf2df36713c7afbd60f96c08ccfa2e16dd53c1d559f",
+      "blob": "84c04ea73d6cb87dbde130f008d967e9f91f6aab"
+    },
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/PhysicalProvisioningFailuresTest.java": {
+      "sha256": "26c008527f18f7773d2803ac6459ecaa5340d4dc238999daf90302fe3c7c6e71",
+      "blob": "2d493429cfccca00b85a7f65256b7dfac1bde9cf"
+    },
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealBoundaryVariantsIntegrationTest.java": {
+      "sha256": "810ba3bfbc601a3930f7e9e54883e589f41a75e6c0ba4b774ef0ebaae3ed1457",
+      "blob": "76ff9b67980fd15917b336b7d50fa9da1a6d8824"
+    },
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealControlplaneIntegrationTest.java": {
+      "sha256": "e648b6b2d188642ffb3ef88171052efb1021d2fe97c8c09e012249d5b373b404",
+      "blob": "c44ff89ff408aa9cc4edf1d903383dd6d8482fb7"
+    },
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealFixtureCleanupIntegrationTest.java": {
+      "sha256": "a93b0bdcb28004f73ee72921dfe15ede522e671141d0fd1bdad8acfe7046a48c",
+      "blob": "0834d9dc0fdfe1723c8118cce9a4ded8e1fb9ff8"
+    },
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealInterruptedProvisionerIntegrationTest.java": {
+      "sha256": "6cd4d22a2d6583387d4ba38d0b5e661c94b7775d66dd0d0fa8a2870e65a1a416",
+      "blob": "da3c3c1e9b3def5c20f0bc99cc02eab3a569990e"
+    },
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealKafkaClusterFaultIntegrationTest.java": {
+      "sha256": "41db72d5f0a59462cf274a90e997db62e64529b1798ed5df53488fd7b1defe15",
+      "blob": "beca5a88cee3f7dfca5bd4e6c0848787cdb8d28c"
+    },
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealKafkaTriggerBridgeIntegrationTest.java": {
+      "sha256": "eb986410bb3abb96ff8f5a28c0d7b7c1f546ce15a3788f93032e39bd20f04960",
+      "blob": "35dd056d3b7f72e84c71f845fab35a28b20c725c"
+    },
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealKvsIntegrationTest.java": {
+      "sha256": "845854bfea4b10a91a9fe526773e8fa49d39ccafbab393cedda9eae673f52658",
+      "blob": "5a3ebb580698c243af6576ddd6e55eda4f79b29b"
+    },
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealPublicationFailureIntegrationTest.java": {
+      "sha256": "3dad7fcf6568213c8f72b03f6479d74c2556b3a590addf23d1dc46c50a0f60d3",
+      "blob": "244435e3bd063b31598adefbedcf868e6f0ef0e5"
+    },
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealReplicationDeadlineIntegrationTest.java": {
+      "sha256": "6f0a00de796125ac2c69ede766cf925c2f39c772b2b7b2d368f2a90ca579d860",
+      "blob": "3362d3248d195cb2f5f8d6034361c547af581605"
+    },
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/support/E2eActiveProfilesResolver.java": {
+      "sha256": "5bfe522c222195ad0ad58c8a5e0a2500d1077aa8772d2247e8b350f9b2bfd9d9",
+      "blob": "115aa40586c07e35d0fc231c524d6044722ea36b"
+    },
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/support/OwnedTestWorkerRegistration.java": {
+      "sha256": "2f0f2db2711b91def98f954c7eee5262427ef421220a4ea1a38538210efb94b8",
+      "blob": "eb9e8598f92b3c319a7e1f52f0f606db866f8c58"
+    },
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/support/RealE2eFixture.java": {
+      "sha256": "a93d2bc85dc1a65f52579174c56d8a7f608b40cd9630003adc4d10cac1b68028",
+      "blob": "7bb9b627e1fbcfad9ef5483a4cb45772a577ae48"
+    },
+    "src/test/java/com/mercadolibre/rio_controlplane_kafka/config/KvsConfigTest.java": {
+      "sha256": "9e2782516f429b8a606b02a42e8878f6e763feaaf39f74a690edd04e7c836c50",
+      "blob": "9ad208013ab2a5b2b40a723c27bb9a3014b8b6f7"
+    },
+    "src/test/java/com/mercadolibre/rio_controlplane_kafka/reale2e/LocalInMemoryKvsClientTest.java": {
+      "sha256": "85094a799441f712acefc7eaa73e6194c746be5c541944b38c15ea1733433896",
+      "blob": "bc622c3c728ebf7f521ed5d3946509ca9646ac68"
+    }
+  },
+  "launcher_v5_hashes_match": true,
+  "rules_read": [
+    "AGENTS.md",
+    ".agentic-rules/java/java-security-patterns-rules_v1.md",
+    ".agentic-rules/java/code-quality-rules_v1.md",
+    ".agents/context.md",
+    ".agents/code-architecture.md"
+  ]
+}

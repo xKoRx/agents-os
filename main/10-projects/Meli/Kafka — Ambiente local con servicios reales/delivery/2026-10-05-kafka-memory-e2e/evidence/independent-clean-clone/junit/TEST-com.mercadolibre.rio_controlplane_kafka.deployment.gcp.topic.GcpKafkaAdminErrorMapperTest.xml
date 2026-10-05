@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" tests="25" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.337Z" time="0.035">
+  <testcase name="mapReturnsInsufficientBrokersForInvalidReplicationFactorDirect()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.001" />
+  <testcase name="mapReturnsAuthFailedForGoogOAuth2Message()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="mapReturnsAuthFailedForOAuthMessage()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="mapReturnsKafkaAdminErrorForExecutionExceptionWithNullCause()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.001" />
+  <testcase name="mapReturnsTimeoutForKafkaTimeoutWrappedInExecutionException()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="safeMessageRunsLocalSecondSanitizationPassEvenWhenExternalLibraryDoesNotRedact()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.027" />
+  <testcase name="mapReturnsInsufficientBrokersForInvalidRfWrappedInExecutionException()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="mapReturnsAuthFailedForKafkaAuthenticationExceptionType()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="mapReturnsAuthFailedForAuthenticationMessage()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="mapReturnsTimeoutWhenRootIsTimeoutButExceptionIsExecutionException()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="mapReturnsAuthFailedForServiceAccountMessage()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="mapHandlesDeepNestedCauseForAuth()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="mapReturnsTimeoutForDirectKafkaTimeoutException()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="safeMessageRedactsKnownSensitiveValues()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.001" />
+  <testcase name="safeMessageReturnsGenericMessageForAuthFailures()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.001" />
+  <testcase name="mapReturnsKafkaAdminErrorForGenericException()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="mapReturnsAuthFailedForSaslMessage()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="mapReturnsTimeoutForExecutionExceptionWrappingTimeout()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="safeMessageReturnsUnknownForNullThrowable()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.001" />
+  <testcase name="mapReturnsKafkaAdminErrorWhenMessageIsNull()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="mapReturnsKafkaAdminErrorForDirectRuntimeException()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="safeMessageReturnsClassNameWhenMessageIsNull()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="safeMessageReturnsTruncatedMessageWhenOver500Chars()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.001" />
+  <testcase name="safeMessageReturnsFullMessageWhenUnder500Chars()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  <testcase name="mapReturnsTimeoutForDirectTimeoutException()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest" time="0.0" />
+  </testsuite>

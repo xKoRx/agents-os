@@ -1,0 +1,1 @@
+{"cloud_provider": {"gcp": {"segmentation": {"legacy": {"clusters": [{"key": "e2e-gcp-default", "component_template_code": "gcp-kafka-topic", "bootstrap_servers": "127.0.0.1:39092", "teams": ["all"]}]}}}}}

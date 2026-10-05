@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" tests="29" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:00.638Z" time="1.218">
+  <testcase name="unexpectedErrorInDegradedModePublishesWithoutFinalize()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.048" />
+  <testcase name="zeroActionTimeoutFallsBackToParamsDerivedTimeoutAndCompletes()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.003" />
+  <testcase name="droppedTerminalTriggerSkipsProcessingAndPublishing()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.002" />
+  <testcase name="droppedTakeoverLostTriggerSkipsProcessing()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.006" />
+  <testcase name="publishesTheExactCompletedMessageInstanceThatWasMeasured()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.008" />
+  <testcase name="resolvesConnectionFromProviderNotPayload()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.015" />
+  <testcase name="completedActionReservesPublishesThenFinalizes()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.007" />
+  <testcase name="notFoundExceptionFromPeekMapsToResourceNotFound()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.006" />
+  <testcase name="actionTimeoutEnforcedAtCompletableFutureLevel()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="1.01" />
+  <testcase name="failedActionFinalizesFailed()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.015" />
+  <testcase name="unexpectedErrorWithValidClaimFinalizesFailedInternalThenPublishes()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.005" />
+  <testcase name="claimThrowingSkipsPublishSoRedeliveryCanRedecide()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.006" />
+  <testcase name="droppedInProgressTriggerSkipsProcessing()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.004" />
+  <testcase name="oversizedPeekResultPublishesSpecificFailureInsteadOfCompletedPayload()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.005" />
+  <testcase name="degradedModeSkipsFinalizeButStillPublishes()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.007" />
+  <testcase name="unexpectedKafkaExceptionMapsToKafkaAdminError()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.004" />
+  <testcase name="peekHappyPathPublishesStartedThenCompleted()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.005" />
+  <testcase name="unknownActionPublishesFailedUnknownAction()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.003" />
+  <testcase name="publishFailureLeavesPublicationPendingAndDoesNotPublishContradictoryFailure()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.004" />
+  <testcase name="lostPublicationReservationSkipsPublishToAvoidDuplicate()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.004" />
+  <testcase name="invalidPeekParamsPublishesFailedInvalidParams()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.005" />
+  <testcase name="finalizeConflictAfterPublicationDoesNotEmitAnotherTerminalResult()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.005" />
+  <testcase name="unmappedEnvironmentPublishesFailedInvalidParams()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.003" />
+  <testcase name="unexpectedKafkaExceptionWithCredentialShapedMessageIsRedactedBeforePublish()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.008" />
+  <testcase name="degradedPublishFailureAfterCommitDoesNotRepublishContradictoryFailure()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.004" />
+  <testcase name="interruptedExceptionInPeekFutureGetMapsToInternal()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.003" />
+  <testcase name="completedResultsAreSortedByPartitionThenOffset()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.004" />
+  <testcase name="unexpectedErrorThatLosesPublicationReservationSkipsPublish()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.006" />
+  <testcase name="nullTriggeredBySkipsMdcPutAndCompletesNormally()" classname="com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest" time="0.002" />
+  </testsuite>

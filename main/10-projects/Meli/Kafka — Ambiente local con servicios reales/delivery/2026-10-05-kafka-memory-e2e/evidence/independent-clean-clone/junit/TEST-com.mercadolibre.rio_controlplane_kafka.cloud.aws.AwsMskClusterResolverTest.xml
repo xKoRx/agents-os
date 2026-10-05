@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.cloud.aws.AwsMskClusterResolverTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:02.360Z" time="0.018">
+  <testcase name="resolveBootstrap_delegatesToClusterRegistry_present()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.aws.AwsMskClusterResolverTest" time="0.015" />
+  <testcase name="resolveBootstrap_propagatesEmptyFromRegistry()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.aws.AwsMskClusterResolverTest" time="0.001" />
+  <testcase name="provider_isAwsMsk()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.aws.AwsMskClusterResolverTest" time="0.0" />
+  </testsuite>

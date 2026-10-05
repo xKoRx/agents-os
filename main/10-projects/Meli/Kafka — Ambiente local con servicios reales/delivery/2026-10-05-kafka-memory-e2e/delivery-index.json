@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-05",
+  "owner_decision": "LOCAL_CP_REAL_KAFKA_WITH_PER_INSTANCE_MEMORY; ECOSYSTEM_LATER",
+  "verdict": "BLOCKED_PHYSICAL_E2E_INCOMPLETE",
+  "cp_implementation": "7615b210e5b70667912b956c2f27cc0d1ebc80eb",
+  "cp_head": "4c66d0d5ca77e1de4aef5b08c9e601921eb60a9b",
+  "knowledge_head": "0feee7b5fad32c8c7dc3dcc252d65166b15c0cd9",
+  "canonical_cp_master_audited_2026_10_01": "f74e856ef3de881e2d504c6cb1ced573681c1058",
+  "production_status": "WORK_BRANCH_PENDING_UNPUBLISHED",
+  "local_matrix": {
+    "rows": 356,
+    "states": {
+      "BLOCKED": 226,
+      "NOT_EXECUTED": 125,
+      "PASS": 5
+    }
+  },
+  "independent_unit": {
+    "classes": 65,
+    "tests": 845,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "author_first_physical_attempt": {
+    "classes": 10,
+    "tests": 343,
+    "failures": 309,
+    "errors": 0,
+    "skipped": 0
+  },
+  "physical_attempt_version": "Earlier launcher V1; NOT final code. Original receipt retained unchanged.",
+  "independent_controls": {
+    "invocations": 49,
+    "failures": 0,
+    "business_execution": false
+  },
+  "knowledge_formal": {
+    "errors": 937,
+    "byte_identical_to_baseline": true,
+    "new_errors": 0
+  },
+  "ci_job": "NOT_EXECUTED",
+  "runtime_blocker": "Own Colima SSH forwarding child SIGKILL exit-9; cause UNKNOWN. Need own Docker>=5GiB with host39092-39096 access.",
+  "raw_runtime_logs": "PRIVATE_TMP_ONLY; PACKET_HAS_SANITIZED_JUNIT_AND_SUMMARIES_PLUS_RAW_HASHES",
+  "tokens_and_cost": "UNKNOWN_NOT_EXPOSED",
+  "agents_os_session": "ACTIVE_PARTIAL_NOT_CLOSED"
+}

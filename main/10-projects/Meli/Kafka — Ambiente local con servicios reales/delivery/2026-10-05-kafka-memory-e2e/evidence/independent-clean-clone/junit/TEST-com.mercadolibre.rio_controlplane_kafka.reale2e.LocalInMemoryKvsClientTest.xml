@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:15.977Z" time="0.018">
+  <testcase name="actualGuardClaimsReservesFinalizesAndDropsTerminalRedelivery()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.002" />
+  <testcase name="instancesDoNotShareStateAndExposeNativeIdentity()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.001" />
+  <testcase name="expiryOverflowDoesNotWrite()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.001" />
+  <testcase name="defaultTtlNeverExpiresAndZeroExpiresImmediately()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.0" />
+  <testcase name="closeIsIdempotentAndRejectsOperations()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.002" />
+  <testcase name="successfulUpdateRefreshesTtlAndFailedUpdateDoesNot()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.001" />
+  <testcase name="ttlExpiresAtBoundaryAndExpiredKeyCanBeCreatedAgain()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.0" />
+  <testcase name="invalidArgumentsFailWithToolkitErrorCode()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.0" />
+  <testcase name="concurrentCreatesHaveOneWinner()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.002" />
+  <testcase name="unsupportedApisFailExplicitlyWithoutMutatingStore()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.002" />
+  <testcase name="createAssignsVersionAndDoesNotMutateRequest()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.0" />
+  <testcase name="deleteReflectsPresence()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.0" />
+  <testcase name="runIdentityIsRequired()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.0" />
+  <testcase name="concurrentCompareAndSetHasOneWinner()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.002" />
+  <testcase name="actualGuardTakesOverStaleClaimThroughCas()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.001" />
+  <testcase name="saveAndReadDefensivelyCopyBytes()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.0" />
+  <testcase name="compareAndSetAdvancesExactlyOnceAndPreservesValueOnConflict()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest" time="0.0" />
+  </testsuite>

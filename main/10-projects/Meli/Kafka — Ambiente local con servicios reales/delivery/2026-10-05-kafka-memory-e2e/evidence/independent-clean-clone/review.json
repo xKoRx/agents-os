@@ -1,0 +1,773 @@
+{
+  "verdict": "PASS_INDEPENDENT_CLEAN_CLONE_UNIT_AND_COMPILATION_ONLY",
+  "scope": "NO_PHYSICAL_KAFKA_OR_TOOLKIT_SANDBOX_BUSINESS_EXECUTION",
+  "base": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+  "head_before": "7615b210e5b70667912b956c2f27cc0d1ebc80eb",
+  "head_after": "7615b210e5b70667912b956c2f27cc0d1ebc80eb",
+  "changed_paths_pinned": 33,
+  "clone_detached_no_hardlinks": true,
+  "source_before_clean": true,
+  "source_after_status": " M docs/specs/swagger.yaml\n",
+  "candidate33_source_hash_drift": {},
+  "known_generated_side_effect": [
+    {
+      "status": " M",
+      "path": "docs/specs/swagger.yaml",
+      "before_sha256": "7086992d8ce875c234818c045e803b8be52063f4840321f377ba571b3382e74c",
+      "after_sha256": "254a88c00b714c8b8bcf1c4b128e076004c832b281b267d4134baaac118a7b23",
+      "diff_sha256": "d47ea7f731bff2c254cb234fc33ab5282c9cdbbe334d141f45c5a60bc908bcb8"
+    }
+  ],
+  "generated_swagger_matches_author_current_sha": false,
+  "gradle": {
+    "command": [
+      "./gradlew",
+      "--no-daemon",
+      "--offline",
+      "--console=plain",
+      "test",
+      "compileRealIntegrationTestJava"
+    ],
+    "cwd": "/private/tmp/kafka-e2e-memory-20261005-peer/clean-cp",
+    "head": "7615b210e5b70667912b956c2f27cc0d1ebc80eb",
+    "environment_policy": "Explicit system/JDK/cache only; no Fury/AWS/MELI/KVS/SDK credentials or runtime variables imported",
+    "java_version": "openjdk version \"25.0.4\" 2026-07-21 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.7.1 (build 25.0.4+7-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.7.1 (build 25.0.4+7-LTS, mixed mode, sharing)\n",
+    "exit_status": 0,
+    "elapsed_seconds": 31.824,
+    "log_sha256": "11b5532664724e9202d30c138537c2d833b34e357743fd5caf275f9d3fa5c9f5",
+    "business_runtime": "NOT_EXECUTED"
+  },
+  "junit": {
+    "classes": 65,
+    "totals": {
+      "tests": 845,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "source": "Independent parse of fresh build/test-results/test/TEST-*.xml",
+    "entries": [
+      {
+        "file": "TEST-co-74FCV5B3JU6BU.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidationExceptionTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidationExceptionTest",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "c5e3c74a762f17cf23b5e944966e750a9655ff62c78a416c8382fbe45889b294"
+      },
+      {
+        "file": "TEST-co-L631K6FVCM3VO.mercadolibre.rio_controlplane_kafka.deployment.gcp.config.GcpKafkaCredentialsConfigurationTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.gcp.config.GcpKafkaCredentialsConfigurationTest",
+        "counts": {
+          "tests": 14,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "94f8775667d5dd834ca9656d6f24185c39c1d3183285946127e0717542614fa8"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorIdempotencyIntegrationTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorIdempotencyIntegrationTest",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "c65892a28611ef318338ca1a53cf03d96162d60323c7427daacf080bd33c1bde"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.actions.ActionProcessorTest",
+        "counts": {
+          "tests": 29,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "65760f46de64552ea4cf2e09e501a7c842c01703a4f7644c78829eb3a6d2dc5b"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.actions.ActionResultPublisherTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.actions.ActionResultPublisherTest",
+        "counts": {
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "4d2a6dafb7bd5bfd5c5b6d0b52e8542c34b490d24055625cd2642f23c3f6e569"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.actions.ActionResultSizeGuardTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.actions.ActionResultSizeGuardTest",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "6bbce1b0700a0396f1f8b0dca88a2cdade38da7bd918eb24f01191606db3ae98"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest",
+        "counts": {
+          "tests": 14,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "978b2df82ffedf48b3ffb8cda399fe5b1c5adc650ff2acc0563f5a381617750d"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.cloud.CloudProviderTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.cloud.CloudProviderTest",
+        "counts": {
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "2aa3b9093087eed3f82ebd50da5892bc8f04e04edafa56dd56e677bc8bb92316"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.cloud.ClusterConnectionProviderTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.cloud.ClusterConnectionProviderTest",
+        "counts": {
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "272ff9ffeb77d0b8abf495d94386c3f258f93d0c03df2f78c6c73dce11b764f3"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.cloud.ClusterConnectionTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.cloud.ClusterConnectionTest",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "0b21e6e3d2c979641dd8f64d47e7676d70fff6c73b248fccc1064c3a0cc14300"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.cloud.ClusterResolverRegistryTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.cloud.ClusterResolverRegistryTest",
+        "counts": {
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "b851af72a499c41ef683acebf6a425bb0f6ad02af669506c7053901eea1cb7d6"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.cloud.KafkaConnectionFactoryRegistryTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.cloud.KafkaConnectionFactoryRegistryTest",
+        "counts": {
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "019be3ff43da2dc8f65964376651ab682db3cee35ba0e374d57123a66142da24"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.cloud.ResolutionContextTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.cloud.ResolutionContextTest",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "eebcaa57ebd151dcef6a5072193391be46c39289eb5a4e6abc9705ebbc9827e4"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.cloud.aws.AwsMskClusterResolverTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.cloud.aws.AwsMskClusterResolverTest",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "e7559fbfda86c1cb0e1f5f31f4805224d63de1ea56af1e696d2f228b7c57edd4"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.cloud.aws.AwsMskConnectionFactoryTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.cloud.aws.AwsMskConnectionFactoryTest",
+        "counts": {
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "5df0d8534f0901a07c6bd7f1d8991e89fd939985d140515ea26777fc78c17fae"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.config.BigQConfigTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.config.BigQConfigTest",
+        "counts": {
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "da13294bd92f690827a5fa1e58e29faf6fbf84e47efffa633f0ef4ef4c2e5233"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.config.ClusterRegistryTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.config.ClusterRegistryTest",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "75ebcaae34c5f7a4d52c311932611c5313e1129e8bcbfc7a208d75179b5e0da0"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.config.CorrelationIdFilterTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.config.CorrelationIdFilterTest",
+        "counts": {
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "60e62e332a0534741e6a70f23656ef88ea54084b7051674ad2ed66460733aaae"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest",
+        "counts": {
+          "tests": 14,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "0f94b9cedbb88f3cc323d2cfa515afbf5b5130bae24aefebcf7d6dcc4c8ea702"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.config.ObjectMapperConfigTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.config.ObjectMapperConfigTest",
+        "counts": {
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "e69e88a6feb386be5fe410b935d3a39551a8934e092526dc7c0067bb9ed27417"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.controller.ActionTriggerControllerTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.controller.ActionTriggerControllerTest",
+        "counts": {
+          "tests": 46,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "f892be4779e6752a86d8f99ce109575ea3e5766ddb3f700d787c0bb5f52830b1"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.controller.DeploymentTriggerControllerTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.controller.DeploymentTriggerControllerTest",
+        "counts": {
+          "tests": 67,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "b388a53cbf0484ae27d17975084c91aab01ef63ab8053bf8bb2afce065473c56"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorIdempotencyIntegrationTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorIdempotencyIntegrationTest",
+        "counts": {
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "1223753a42a8b03e54df48976e5cc2e677aa360293f172285c433fc078d690d9"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest",
+        "counts": {
+          "tests": 27,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "a90eff16aaaa71a79f0daefa469fe3c387ba26ffd1e69d7a6b11031ee139ae01"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest",
+        "counts": {
+          "tests": 13,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "106511a1e65011d7cc14f7161fe1da816ef274ecac283f97f09c408bc824e0ca"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest",
+        "counts": {
+          "tests": 26,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "ee375cca3fa3cdf951789168fb8fd65e0f80a5ae7a0cbe4856ab9aa206cb09b5"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.dto.ServiceResultTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.dto.ServiceResultTest",
+        "counts": {
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "1af167e287ec6446ed995c9ff7be0d3bdc6b03508d64e23fa25e165237359f0f"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest",
+        "counts": {
+          "tests": 28,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "76c4ea5959df40e6c385005a81140904afc61a6c513f906ab863bbcfb62f65f6"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpRoutingErrorMapperTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpRoutingErrorMapperTest",
+        "counts": {
+          "tests": 10,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "6efc2047317b798e82125ea48d44c442d8554e28b13398da0bbb240fa2c36785"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.gcp.config.GcpDeploymentPropertiesTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.gcp.config.GcpDeploymentPropertiesTest",
+        "counts": {
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "0c40e81a25748cfb801a0284a4d5ad7d62e222680f0d82f39de85feec2da2d64"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.GcpKafkaRoutingServiceTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.GcpKafkaRoutingServiceTest",
+        "counts": {
+          "tests": 11,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "7e52341341684abbb5ec9f87b00abb974eaad8532114aba6f5d3c262cb8f7368"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.ResolvedRoutingTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.ResolvedRoutingTest",
+        "counts": {
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "689bca46cbcb58a4e9419203c0570f31795ecf387f6f99b075cbf7e1d2431d67"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpKafkaAdminErrorMapperTest",
+        "counts": {
+          "tests": 25,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "0667c8ed54dcc5646669b1c11c65d4fce54eff946e0825fc504159a5d1be0313"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicConfigBuilderTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicConfigBuilderTest",
+        "counts": {
+          "tests": 11,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "dc23ff7be29e3a66119479adf3dca0c82659b5605535fdefde85dd60ef2877da"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest",
+        "counts": {
+          "tests": 28,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "6f1aac96612ea45397235344027b7608eb8d674d8979298f9d98046d00e1c863"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest",
+        "counts": {
+          "tests": 15,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "8d70564a45978c539eda8a712619a498e2501727442002b6a6373cacf7c0e5b8"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicProvisionerTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicProvisionerTest",
+        "counts": {
+          "tests": 60,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "611f72e87e2e2d1f7091ca81f211398340d0b3c3edfdbfa0dd70138c8225d3b9"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicProvisioningServiceImplTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicProvisioningServiceImplTest",
+        "counts": {
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "f4c42b22d6284dd0aeec3b5de59e2c11999cdbc15ffaa796bab729dad6ec72c4"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.NoOpGcpTopicProvisioningServiceTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.NoOpGcpTopicProvisioningServiceTest",
+        "counts": {
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "e78a44cacc52d646dba8a7785cd0785b8dfa5a0c79c336158f4d9f8575d83454"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest",
+        "counts": {
+          "tests": 15,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "af665ccb8f268d2146618ae3ecdc6677a026094976b20d80f64be18713313a6e"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest",
+        "counts": {
+          "tests": 14,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "167a042560f8523fda63683068fa3033b12b30d7a1b7cb1555d04da456e89a1b"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.events.DeploymentResultPublisherTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.events.DeploymentResultPublisherTest",
+        "counts": {
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "204c669f6f64697ab229b2504df8d5c676a9e69c082f6dc8c26d2e2f74da6edb"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.events.ErrorCodeTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.events.ErrorCodeTest",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "eda286088575433ff0c0e976e332294f643b58f13b84e665a0add88f89fab0d5"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.events.SafeMessageFormatterTest",
+        "counts": {
+          "tests": 40,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "b53f538b1ec6c7cfab064422ab80bb6182c48944264c749aa0e2f720a423cb8a"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest",
+        "counts": {
+          "tests": 28,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "708634f4b522f5abf45f387493fb2cfe0fbfdf03fd7ec29232c6770e981948cd"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.idempotency.TriggerStatusRecordTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.idempotency.TriggerStatusRecordTest",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "79dad6ea88a25d57e21728cd6091791ee2e2ae407c57af53669c5d93d2251306"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.integration.ActionEventsIntegrationTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.integration.ActionEventsIntegrationTest",
+        "counts": {
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "2f72ea13168b1e43882da9a57884480df41427181ff761b2154b40249e69ecea"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.integration.ApplicationStartupSmokeTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.integration.ApplicationStartupSmokeTest",
+        "counts": {
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "e0dc5e8ad9fee182fdf753285fdbe1ac33347a84aa149052ff07a0d9c06a2f4b"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.integration.ControllerExceptionHandlerTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.integration.ControllerExceptionHandlerTest",
+        "counts": {
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "73e504f505f518eb365f9a54a9a01b34cfecd6ee239b3a4274ab23d77ea870e7"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.integration.GenerateDocTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.integration.GenerateDocTest",
+        "counts": {
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "d6a0f25357bea4b0d398cc51d29b7fcb7b5a79bf12f675c8554580996b5ba656"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.integration.KafkaTopicControllerTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.integration.KafkaTopicControllerTest",
+        "counts": {
+          "tests": 11,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "acabf47f8cd6fae0c3d897eefee7ce352bb22816c6ae647bdfce82018773458c"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.integration.PingControllerTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.integration.PingControllerTest",
+        "counts": {
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "1bb5adb68807f36c8a449ec34ccbacf04529969a90ee08dcd4b4a6a304a12ee3"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.integration.ProvisioningEventsIntegrationTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.integration.ProvisioningEventsIntegrationTest",
+        "counts": {
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "9d4a3d68c8a7cf92fdebd80521848283cd5638c0db83c24527695f2708743c6a"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.kafka.KafkaAdminClientPoolImplTest",
+        "counts": {
+          "tests": 13,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "8cce832c25fbffde38b9dfe2ff892036345d2209c0fecf6268e213ed30edb169"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicReplicationFactorAdjusterTest",
+        "counts": {
+          "tests": 13,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "52e08cec2503ca1ff8125a960437f0f8034c535d64efcfd6da27946e322c1968"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.kafka.KafkaTopicServiceImplTest",
+        "counts": {
+          "tests": 14,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "21866578f3e066cad7ae182af8f917a33e150826eeca853c6456ada35a24d7b7"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.openapi.DeploymentTriggerOpenApiTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.openapi.DeploymentTriggerOpenApiTest",
+        "counts": {
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "a27eb1851465be03488837f4a5eb2e4e59398ff393af8ca0a3bb9860cbf813b6"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest",
+        "counts": {
+          "tests": 49,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "bc782b1f321d66943b4fdb137fb99bcd95b8aadd648681b6d7d7b36af5a64e96"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest",
+        "counts": {
+          "tests": 19,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "baba527d1178287042cd65c8e88c18837dee079604afecaee9780e54e4a81eda"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest",
+        "counts": {
+          "tests": 17,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "36402abccf81f202d497fd6627af15931d893db5b4d7465053963446d9740854"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest",
+        "counts": {
+          "tests": 18,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "005dffdfc59d6370e9fac19c7c08d7cb84fa6502b02f2e6dad787633814103b3"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eWorkerObserverTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eWorkerObserverTest",
+        "counts": {
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "d1e9ee09e2d96f088403a33e8f6cc6580f2c064b6743dde446af7ee92cbfc016"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.telemetry.MetricsTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.telemetry.MetricsTest",
+        "counts": {
+          "tests": 11,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "1ae1619e91d62006a8f5812873b5d6d2fea2e451a5ac1b812acda5b284509790"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.unit.ScopeUtilTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.unit.ScopeUtilTest",
+        "counts": {
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "044f7d3c77ccfb6b1c8633a3646a9382d66db97201ffb0d5ac8e305edf342bc9"
+      },
+      {
+        "file": "TEST-com.mercadolibre.rio_controlplane_kafka.unit.beans.RandomSampleBeanTest.xml",
+        "class": "com.mercadolibre.rio_controlplane_kafka.unit.beans.RandomSampleBeanTest",
+        "counts": {
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "sha256": "5ca48fdf0e1af2306d63822c0a113951fd2385eba6bdbd36b5e648bc9b5056b8"
+      }
+    ]
+  },
+  "physical_runtime": "BLOCKED_NOT_EXECUTED",
+  "physical_blocker": "Root/Infra observed dedicated Colima forwarding/SSH SIGKILL; cause remains unestablished; no Docker touched by this review",
+  "actual_Sandbox_KVS_Toolkit_Fury_API_calls": 0,
+  "original_or_author_worktree_writes": 0,
+  "previous_control_review": "../launcher-v5/review.json",
+  "previous_control_review_sha256": "e49f6388422a46a3a2a664188f2c9a6ef4a6552bfbc9ea80d0653983e8c5f397"
+}

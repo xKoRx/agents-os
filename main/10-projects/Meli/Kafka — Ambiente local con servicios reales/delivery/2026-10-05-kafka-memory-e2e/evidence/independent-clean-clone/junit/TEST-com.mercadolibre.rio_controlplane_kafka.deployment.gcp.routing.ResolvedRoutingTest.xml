@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.ResolvedRoutingTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.337Z" time="0.0">
+  <testcase name="defaultRouteUsesDefaultModeAndAllTeam()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.ResolvedRoutingTest" time="0.0" />
+  </testsuite>

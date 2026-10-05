@@ -1,0 +1,30 @@
+[
+  {
+    "path": "/Users/rjara/fuentes/rio-controlplane-kafka-memory-e2e",
+    "kind": "NEW_CP",
+    "branch": "feature/kafka-e2e-memory",
+    "head": "4c66d0d5ca77e1de4aef5b08c9e601921eb60a9b",
+    "status": "CLEAN"
+  },
+  {
+    "path": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-memory-e2e",
+    "kind": "NEW_KL",
+    "branch": "docs/kafka-e2e-memory",
+    "head": "0feee7b5fad32c8c7dc3dcc252d65166b15c0cd9",
+    "status": "CLEAN"
+  },
+  {
+    "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e",
+    "kind": "PRESERVED_CP",
+    "branch": "feature/kafka-real-e2e",
+    "head": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+    "status": "CLEAN"
+  },
+  {
+    "path": "/Users/rjara/fuentes/ads-signals-knowledge-library-kafka-e2e",
+    "kind": "PRESERVED_KL",
+    "branch": "docs/kafka-real-e2e",
+    "head": "5c4cb45d9fa8c3e4a95d73542ecd58c04c7c1530",
+    "status": "CLEAN"
+  }
+]

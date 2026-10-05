@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" tests="27" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:03.768Z" time="0.04">
+  <testcase name="unexpectedErrorInDegradedModePublishesWithoutFinalize()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.003" />
+  <testcase name="publishesFailedInvalidParamsWhenKafkaParamsParseThrows()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.001" />
+  <testcase name="claimsWithDeploymentKeyAndDeploymentStaleThreshold()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.001" />
+  <testcase name="publishesFailedInvalidParamsWhenEnvironmentNameIsBlank()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.002" />
+  <testcase name="droppedTerminalTriggerSkipsProcessingAndPublishing()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.001" />
+  <testcase name="droppedTakeoverLostTriggerSkipsProcessing()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.0" />
+  <testcase name="failedDeploymentFinalizesFailed()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.002" />
+  <testcase name="lostFinalizeCasSkipsPublishToAvoidDuplicate()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.002" />
+  <testcase name="publishesFailedInvalidParamsWhenOperationIsNull()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.003" />
+  <testcase name="publishesFailedInvalidParamsWhenClusterIsUnmapped()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.001" />
+  <testcase name="appliesEnvironmentPrefixToTopicNameBeforeProvisioning()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.002" />
+  <testcase name="unexpectedErrorWithValidClaimFinalizesFailedInternalThenPublishes()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.002" />
+  <testcase name="publishFailureAfterFinalizeDoesNotReFinalizeNorPublishContradictoryFailure()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.002" />
+  <testcase name="claimThrowingSkipsPublishSoRedeliveryCanRedecide()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.002" />
+  <testcase name="dispatchesDeprovision()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.001" />
+  <testcase name="droppedInProgressTriggerSkipsProcessing()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.001" />
+  <testcase name="resolvesConnectionFromProviderAndPassesToService()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.0" />
+  <testcase name="publishesFailedInvalidParamsWhenPrefixParamIsMissing()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.002" />
+  <testcase name="degradedModeSkipsFinalizeButStillPublishes()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.001" />
+  <testcase name="publishesFailedWhenServiceReturnsFailed()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.0" />
+  <testcase name="dispatchesUpdate()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.0" />
+  <testcase name="unexpectedErrorThatLosesFinalizeCasInCatchSkipsPublish()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.002" />
+  <testcase name="publishesFailedInvalidParamsWhenEnvironmentNameIsUnknown()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.001" />
+  <testcase name="completedDeploymentFinalizesGuardThenPublishes()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.001" />
+  <testcase name="dispatchesProvisionAndPublishesStartedThenCompleted()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.001" />
+  <testcase name="degradedPublishFailureAfterCommitDoesNotRepublishContradictoryFailure()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.001" />
+  <testcase name="publishesFailedInternalWhenServiceThrowsUnexpectedException()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentProcessorTest" time="0.002" />
+  </testsuite>

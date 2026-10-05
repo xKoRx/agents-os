@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" tests="28" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.375Z" time="0.007">
+  <testcase name="parseDeprovisionAcceptsTopicNameOnly()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseRejectsInvalidTopicNamePattern()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="withReplicationFactorReturnsCopyWithNewRf()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseRejectsPartitionsLongOverflow()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseRejectsMissingPartitions()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseReturnsNullRetentionMsWhenAbsent()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseDefaultsReplicationFactorToTwoWhenAbsent()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseAcceptsRetentionMsAsNumericString()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.001" />
+  <testcase name="parseAcceptsTopicWithRetentionMs()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="rejectsReplicationValuesThatWouldWrapToValidShort()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.001" />
+  <testcase name="acceptsExactWholeNumbersAndPreservesNumericRetentionStrings()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseDeprovisionRejectsMissingTopicName()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseAcceptsReplicationFactorFromParams()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.001" />
+  <testcase name="parseRemovesRetentionMsFromConfigsWhenSetTopLevel()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseRejectsReplicationFactorOutOfRange()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseRejectsConfigsMap()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseAcceptsPartitionsAsLong()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseRejectsMissingTopicName()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseRejectsBlankRetentionMsString()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseRejectsReplicationFactorAsDouble()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseRejectsNullParams()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseRejectsZeroPartitions()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseRejectsRetentionMsAsBooleanType()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseRejectsRetentionMsAsNonNumericString()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseDeprovisionRejectsNullParams()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  <testcase name="parseRejectsNonMapConfigs()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.001" />
+  <testcase name="rejectsFractionalNonFiniteAndOverflowNumericFieldsWithoutNarrowing()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.001" />
+  <testcase name="parseRejectsPartitionsAsFloat()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsTest" time="0.0" />
+  </testsuite>

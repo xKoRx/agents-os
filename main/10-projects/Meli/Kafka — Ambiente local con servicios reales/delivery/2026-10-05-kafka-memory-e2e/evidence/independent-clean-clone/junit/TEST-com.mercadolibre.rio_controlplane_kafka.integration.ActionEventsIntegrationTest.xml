@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.integration.ActionEventsIntegrationTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.947Z" time="3.412">
+  <testcase name="e2e7_peekHappyPathPublishesStartedThenCompleted()" classname="com.mercadolibre.rio_controlplane_kafka.integration.ActionEventsIntegrationTest" time="0.2" />
+  <testcase name="e2e10_legacyRestPeekKeepsWorkingWithBrokersUrlInBody()" classname="com.mercadolibre.rio_controlplane_kafka.integration.ActionEventsIntegrationTest" time="0.09" />
+  <testcase name="e2e8_peekTimesOutWhenServiceExceedsActionTimeout()" classname="com.mercadolibre.rio_controlplane_kafka.integration.ActionEventsIntegrationTest" time="1.024" />
+  <testcase name="e2e9_unknownActionPublishesUnknownActionFailed()" classname="com.mercadolibre.rio_controlplane_kafka.integration.ActionEventsIntegrationTest" time="0.012" />
+  </testsuite>

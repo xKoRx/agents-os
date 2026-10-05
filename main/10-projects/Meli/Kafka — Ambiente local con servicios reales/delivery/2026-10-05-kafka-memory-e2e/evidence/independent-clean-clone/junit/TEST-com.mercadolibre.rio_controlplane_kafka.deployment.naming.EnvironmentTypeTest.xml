@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.861Z" time="0.004">
+  <testcase name="fromValueThrowsOnNull()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" time="0.001" />
+  <testcase name="fromValueResolvesPrimaryValues()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" time="0.0" />
+  <testcase name="fromValueTrimAndCaseMapsToExpectedTier()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" time="0.0" />
+  <testcase name="getPrefixParameterKeyPrependsPrefix()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" time="0.0" />
+  <testcase name="[1] value = &quot;STAGING&quot;" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" time="0.0" />
+  <testcase name="[2] value = &quot;Staging&quot;" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" time="0.0" />
+  <testcase name="[3] value = &quot;  staging  &quot;" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" time="0.0" />
+  <testcase name="[4] value = &quot;PROD&quot;" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" time="0.0" />
+  <testcase name="[5] value = &quot; Prod &quot;" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" time="0.001" />
+  <testcase name="fromValueThrowsOnUnknown()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" time="0.0" />
+  <testcase name="fromValueResolvesLegacyAliases()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" time="0.0" />
+  <testcase name="getValueReturnsPrimaryValue()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" time="0.0" />
+  <testcase name="[1] value = &quot;&quot;" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" time="0.001" />
+  <testcase name="[2] value = &quot;   &quot;" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" time="0.0" />
+  <testcase name="getLegacyPrefixKeysDerivesFromAliases()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.EnvironmentTypeTest" time="0.0" />
+  </testsuite>

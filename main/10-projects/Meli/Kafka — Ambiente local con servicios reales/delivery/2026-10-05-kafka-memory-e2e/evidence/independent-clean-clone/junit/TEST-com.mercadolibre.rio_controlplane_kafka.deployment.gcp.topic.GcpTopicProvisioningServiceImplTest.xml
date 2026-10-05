@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicProvisioningServiceImplTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.768Z" time="0.092">
+  <testcase name="update_withExplicitRetention_usesBuildForUpdateConfigs()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicProvisioningServiceImplTest" time="0.087" />
+  <testcase name="deprovision_validationFails_returnsInvalidParams()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicProvisioningServiceImplTest" time="0.0" />
+  <testcase name="provision_validationFails_returnsInvalidParamsWithoutCallingProvisioner()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicProvisioningServiceImplTest" time="0.001" />
+  <testcase name="provision_happyPath_delegatesToProvisioner()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicProvisioningServiceImplTest" time="0.001" />
+  <testcase name="update_validationFails_returnsInvalidParams()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicProvisioningServiceImplTest" time="0.0" />
+  <testcase name="update_happyPath_delegatesToProvisioner()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicProvisioningServiceImplTest" time="0.001" />
+  <testcase name="provision_clientTargetUsesClusterCoordinates()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicProvisioningServiceImplTest" time="0.0" />
+  <testcase name="provision_passesDistinctCreateAndReconcileConfigMaps()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicProvisioningServiceImplTest" time="0.0" />
+  <testcase name="deprovision_happyPath_delegatesToProvisioner()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicProvisioningServiceImplTest" time="0.0" />
+  </testsuite>

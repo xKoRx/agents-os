@@ -1,0 +1,6 @@
+{
+  "launcher_sha256": "d4b9d1f3411317ffd6a5ecfc26c6a19ebe0ad941ad39d63a26dfc59a07b18815",
+  "reconciliation_helper_sha256": "1ec245c2285b60d6c29022f922a6e90a6745310ecc5ae0d2b4eebed8713ab243",
+  "source_path": "/private/tmp/kafka-e2e-memory-20261005/cp/e2e/local.sh",
+  "original_v1_preserved": true
+}

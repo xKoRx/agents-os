@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:15.972Z" time="0.005">
+  <testcase name="blankTopicNameThrows()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="replicationFactorZeroThrows()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="validParametersWithInfiniteRetention()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="partitionsZeroThrows()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="topicNameTooLongThrows()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="validParametersDoNotThrow()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="partitionsExceedsMaxThrows()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.001" />
+  <testcase name="[1] topicName = &quot;topic with spaces&quot;" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="[2] topicName = &quot;topic@invalid&quot;" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="[3] topicName = &quot;topic/slash&quot;" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="nullTopicNameThrows()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="retentionMsZeroThrows()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="multipleErrorsAreCollected()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="replicationFactorExceedsMaxThrows()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="[1] topicName = &quot;my-topic&quot;" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="[2] topicName = &quot;my.topic&quot;" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="[3] topicName = &quot;my_topic&quot;" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="[4] topicName = &quot;MyTopic123&quot;" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.0" />
+  <testcase name="retentionMsExceedsMaxThrows()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.validation.ParameterValidatorTest" time="0.001" />
+  </testsuite>

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.cloud.CloudProviderTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:02.280Z" time="0.002">
+  <testcase name="fromActionComponentTemplate_unknown_defaultsToAwsMsk()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.CloudProviderTest" time="0.001" />
+  <testcase name="fromActionComponentTemplate_awsTopic_mapsToAwsMsk()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.CloudProviderTest" time="0.0" />
+  <testcase name="fromActionComponentTemplate_gcpTopic_mapsToGcpKafka()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.CloudProviderTest" time="0.0" />
+  <testcase name="fromDeploymentComponentType_alwaysAwsMsk()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.CloudProviderTest" time="0.0" />
+  <testcase name="fromActionComponentTemplate_null_defaultsToAwsMsk()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.CloudProviderTest" time="0.0" />
+  </testsuite>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" tests="28" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:03.884Z" time="0.315">
+  <testcase name="invalidDeprovisionParamsDoesNotPublishStarted()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.226" />
+  <testcase name="nullOperationFailsFastWithoutClaimOrRouting()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.002" />
+  <testcase name="degradedKvsModeSkipsFinalizeButStillPublishes()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.004" />
+  <testcase name="exceptionAfterFinalizeIsSwallowedWithoutPublishingFailed()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.006" />
+  <testcase name="invalidProvisionParamsDoesNotPublishStarted()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.002" />
+  <testcase name="runtimeExceptionPublishesStartedThenInternalFailedWithoutRethrowing()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.002" />
+  <testcase name="droppedTakeoverLostTriggerSkipsAllPublishing()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.002" />
+  <testcase name="illegalStateExceptionAfterFinalizeIsSwallowedWithoutPublishingFailed()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.001" />
+  <testcase name="lostFinalizeCasSkipsPublishToAvoidDuplicate()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.002" />
+  <testcase name="provisionRejectsInvalidReplicationFactorInParams()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.002" />
+  <testcase name="routingKeyInParamsRejectWithoutPublishingStarted()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.002" />
+  <testcase name="illegalStateExceptionFromClaimSkipsPublish()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.001" />
+  <testcase name="claimThrowingSkipsPublishSoRedeliveryCanRedecide()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.002" />
+  <testcase name="degradedKvsModeSkipsFinalizeEvenWhenExceptionThrown()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.003" />
+  <testcase name="provisionDefaultsReplicationFactorToTwoWhenAbsentInParams()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.003" />
+  <testcase name="droppedTriggerSkipsAllPublishing()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.003" />
+  <testcase name="provisionUsesReplicationFactorFromParams()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.002" />
+  <testcase name="updatePublishesStartedThenCompleted()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.002" />
+  <testcase name="claimExceptionSkipsTerminalPublish()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.005" />
+  <testcase name="provisionLegacyRoutingPublishesStartedThenCompleted()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.001" />
+  <testcase name="illegalStateExceptionDuringClaimSkipsAllPublishing()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.002" />
+  <testcase name="deprovisionPublishesStartedThenCompleted()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.002" />
+  <testcase name="failedResultCallsFinalizeFailed()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.001" />
+  <testcase name="illegalStateExceptionFromRoutingDoesNotPublishStarted()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.025" />
+  <testcase name="lostFinalizeCasSkipsTerminalPublish()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.001" />
+  <testcase name="provisionFinalizesBeforePublishing()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.002" />
+  <testcase name="droppedInProgressTriggerSkipsAllPublishing()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.001" />
+  <testcase name="lostFinalizeCasInErrorPathSkipsPublishFailed()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpDeploymentProcessorTest" time="0.002" />
+  </testsuite>

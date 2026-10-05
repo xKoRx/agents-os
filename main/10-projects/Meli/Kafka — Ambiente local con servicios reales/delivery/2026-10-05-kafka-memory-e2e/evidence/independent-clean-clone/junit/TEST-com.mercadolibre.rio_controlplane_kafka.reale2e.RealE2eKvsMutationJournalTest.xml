@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:15.996Z" time="0.9">
+  <testcase name="pendingCompletionOrDelegateCloseFailureNeverSeals()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.098" />
+  <testcase name="journalAccountsEveryFamilyAndKindWithoutBackendCertification()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.199" />
+  <testcase name="[1] outcome = REMOTE_OUTCOME_UNKNOWN" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.067" />
+  <testcase name="[2] outcome = CANCELLED" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.067" />
+  <testcase name="[3] outcome = PARTIAL_ERROR" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.06" />
+  <testcase name="knownBackendRejectionRemainsAuditedWithoutPoisoningNormalIdempotency()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.048" />
+  <testcase name="openPersistsIdentityAndPrivateZeroReceiptBeforeAnyClientExists()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.014" />
+  <testcase name="unmatchedOrRepeatedCompletionCannotBecomeAZeroCertificate()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.051" />
+  <testcase name="replacedReceiptAndChangedPermissionsAreRejected()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.038" />
+  <testcase name="corruptReceiptOnSameInodeIsNotSilentlyRewritten()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.016" />
+  <testcase name="staleZeroBytesOnSameInodeAreNotNormalized()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.023" />
+  <testcase name="existingGenerationReceiptAndSymlinkAreNeverAdopted()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.023" />
+  <testcase name="replacedDirectoryDoesNotAcquireAuthorityOverNewNamespace()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.017" />
+  <testcase name="directoryWithBroadPermissionsIsRejectedBeforeReceiptCreation()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.002" />
+  <testcase name="beginAndMatchedCompletionAreAlreadyPresentOnActualFilesystem()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.036" />
+  <testcase name="productivePostCloseCallInvalidatesThePriorSealedSnapshot()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.051" />
+  <testcase name="deletedReceiptCannotBeReconstructedAsZero()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.02" />
+  <testcase name="checkpointIsDurableFreshAndDeeplyImmutableEvenAfterClose()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealE2eKvsMutationJournalTest" time="0.063" />
+  </testsuite>

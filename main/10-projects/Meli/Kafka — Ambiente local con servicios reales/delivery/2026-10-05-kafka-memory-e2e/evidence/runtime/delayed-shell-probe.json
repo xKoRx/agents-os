@@ -1,0 +1,12 @@
+{
+  "control_master": false,
+  "elapsed_ms": 16,
+  "exit": 255,
+  "forwarding": false,
+  "pid": 45622,
+  "remote_operation": "sleep 1; true via stdin",
+  "stderr_bytes": 63,
+  "stderr_sha256": "b9f7f52906af8d944e6b0fcb79069e0481b0220f7f59f32e83de1e499bf9cbd0",
+  "stdout_bytes": 0,
+  "time_utc": "2026-10-05T18:57:40.968955+00:00"
+}

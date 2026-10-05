@@ -1,0 +1,384 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" tests="127" skipped="0" failures="127" errors="0" timestamp="2026-10-05T18:35:14.413Z" time="1.324">
+  <testcase name="truncatedBeginningCurrentlyResetsLatestToEmptyButEarliestReadsSurvivingOffsets()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.01">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] provider = &quot;aws-msk-topic&quot;, field = &quot;component_id&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.008">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] provider = &quot;aws-msk-topic&quot;, field = &quot;component_id&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.008">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] provider = &quot;aws-msk-topic&quot;, field = &quot;environment_id&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.009">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[4] provider = &quot;aws-msk-topic&quot;, field = &quot;environment_id&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[5] provider = &quot;aws-msk-topic&quot;, field = &quot;both_ids&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[6] provider = &quot;aws-msk-topic&quot;, field = &quot;both_ids&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[7] provider = &quot;gcp-kafka-topic&quot;, field = &quot;component_id&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[8] provider = &quot;gcp-kafka-topic&quot;, field = &quot;component_id&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[9] provider = &quot;gcp-kafka-topic&quot;, field = &quot;environment_id&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[10] provider = &quot;gcp-kafka-topic&quot;, field = &quot;environment_id&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[11] provider = &quot;gcp-kafka-topic&quot;, field = &quot;both_ids&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[12] provider = &quot;gcp-kafka-topic&quot;, field = &quot;both_ids&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] variant = &quot;broken_json&quot;, body = &quot;{\&quot;brokers_url\&quot;:&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] variant = &quot;array_root&quot;, body = &quot;[]&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] variant = &quot;scalar_root&quot;, body = &quot;42&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[4] variant = &quot;wrong_type&quot;, body = &quot;{\&quot;brokers_url\&quot;:{\&quot;host\&quot;:\&quot;127.0.0.1\&quot;}}&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] variant = &quot;missing&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.004">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] variant = &quot;null&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.004">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] variant = &quot;empty&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="unknownContextSnapshotAndParamsDoNotExposeCanaryInActualSuccessfulProcessingLogs()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] provider = &quot;aws-msk-topic&quot;, field = &quot;data_product_id&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] provider = &quot;aws-msk-topic&quot;, field = &quot;data_product_id&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] provider = &quot;aws-msk-topic&quot;, field = &quot;triggered_by&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[4] provider = &quot;aws-msk-topic&quot;, field = &quot;triggered_by&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[5] provider = &quot;aws-msk-topic&quot;, field = &quot;triggered_at&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.004">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[6] provider = &quot;aws-msk-topic&quot;, field = &quot;triggered_at&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.004">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[7] provider = &quot;gcp-kafka-topic&quot;, field = &quot;data_product_id&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[8] provider = &quot;gcp-kafka-topic&quot;, field = &quot;data_product_id&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[9] provider = &quot;gcp-kafka-topic&quot;, field = &quot;triggered_by&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[10] provider = &quot;gcp-kafka-topic&quot;, field = &quot;triggered_by&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[11] provider = &quot;gcp-kafka-topic&quot;, field = &quot;triggered_at&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.008">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[12] provider = &quot;gcp-kafka-topic&quot;, field = &quot;triggered_at&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] provider = &quot;aws-msk-topic&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] provider = &quot;aws-msk-topic&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.004">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] provider = &quot;gcp-kafka-topic&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[4] provider = &quot;gcp-kafka-topic&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] provider = &quot;aws-msk-topic&quot;, variant = &quot;missing&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] provider = &quot;aws-msk-topic&quot;, variant = &quot;null&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.008">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] provider = &quot;aws-msk-topic&quot;, variant = &quot;blank&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.004">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[4] provider = &quot;aws-msk-topic&quot;, variant = &quot;whitespace&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[5] provider = &quot;gcp-kafka-topic&quot;, variant = &quot;missing&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[6] provider = &quot;gcp-kafka-topic&quot;, variant = &quot;null&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.004">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[7] provider = &quot;gcp-kafka-topic&quot;, variant = &quot;blank&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[8] provider = &quot;gcp-kafka-topic&quot;, variant = &quot;whitespace&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="exactly143360ByteActualResultIsAcceptedAtTheInclusiveBoundary()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] environmentName = &quot;staging&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] environmentName = &quot;production&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] environmentName = &quot;unknown&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] variant = &quot;invalid_utf8&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] variant = &quot;binary_controls&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] provider = &quot;aws-msk-topic&quot;, blank = &quot;&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.004">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] provider = &quot;aws-msk-topic&quot;, blank = &quot; &quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] provider = &quot;aws-msk-topic&quot;, blank = &quot;\t&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[4] provider = &quot;gcp-kafka-topic&quot;, blank = &quot;&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[5] provider = &quot;gcp-kafka-topic&quot;, blank = &quot; &quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[6] provider = &quot;gcp-kafka-topic&quot;, blank = &quot;\t&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="hugeUnknownActionCurrentlyLeavesRealPublicationPendingWithoutFabricatedFailureEvent()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.004">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] variant = &quot;null&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] variant = &quot;blank&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] variant = &quot;unknown&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="dotOnlyPhysicalNameIsRejectedByActualKafkaAfterStarted()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] offset = &quot;earliest&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] offset = &quot;latest&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] offset = &quot;UNKNOWN&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="nonUuidRunOwnedActionIdCurrentlyPublishesCorrelatedActualResult()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] contentType = &quot;text/plain&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] contentType = &quot;application/octet-stream&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] timeout = 0" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] timeout = -1" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] brokerPort = 0" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] brokerPort = 65536" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.004">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] brokerPort = 99999" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="twoMiBJsonBodyCurrentlyReachesIgnoredComponentFilterWithoutDispatch()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.004">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] provider = &quot;aws-msk-topic&quot;, field = &quot;component_id&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] provider = &quot;aws-msk-topic&quot;, field = &quot;component_id&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] provider = &quot;aws-msk-topic&quot;, field = &quot;data_product_id&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[4] provider = &quot;aws-msk-topic&quot;, field = &quot;data_product_id&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.008">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[5] provider = &quot;aws-msk-topic&quot;, field = &quot;environment_id&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[6] provider = &quot;aws-msk-topic&quot;, field = &quot;environment_id&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[7] provider = &quot;aws-msk-topic&quot;, field = &quot;component_name&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.009">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[8] provider = &quot;aws-msk-topic&quot;, field = &quot;component_name&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.008">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[9] provider = &quot;aws-msk-topic&quot;, field = &quot;data_product_name&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[10] provider = &quot;aws-msk-topic&quot;, field = &quot;data_product_name&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[11] provider = &quot;aws-msk-topic&quot;, field = &quot;environment_name&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[12] provider = &quot;aws-msk-topic&quot;, field = &quot;environment_name&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[13] provider = &quot;aws-msk-topic&quot;, field = &quot;criticality&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[14] provider = &quot;aws-msk-topic&quot;, field = &quot;criticality&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.009">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[15] provider = &quot;aws-msk-topic&quot;, field = &quot;published_at&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[16] provider = &quot;aws-msk-topic&quot;, field = &quot;published_at&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[17] provider = &quot;gcp-kafka-topic&quot;, field = &quot;component_id&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[18] provider = &quot;gcp-kafka-topic&quot;, field = &quot;component_id&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[19] provider = &quot;gcp-kafka-topic&quot;, field = &quot;data_product_id&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.009">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[20] provider = &quot;gcp-kafka-topic&quot;, field = &quot;data_product_id&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[21] provider = &quot;gcp-kafka-topic&quot;, field = &quot;environment_id&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.008">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[22] provider = &quot;gcp-kafka-topic&quot;, field = &quot;environment_id&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[23] provider = &quot;gcp-kafka-topic&quot;, field = &quot;component_name&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[24] provider = &quot;gcp-kafka-topic&quot;, field = &quot;component_name&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[25] provider = &quot;gcp-kafka-topic&quot;, field = &quot;data_product_name&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.008">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[26] provider = &quot;gcp-kafka-topic&quot;, field = &quot;data_product_name&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[27] provider = &quot;gcp-kafka-topic&quot;, field = &quot;environment_name&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[28] provider = &quot;gcp-kafka-topic&quot;, field = &quot;environment_name&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[29] provider = &quot;gcp-kafka-topic&quot;, field = &quot;criticality&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[30] provider = &quot;gcp-kafka-topic&quot;, field = &quot;criticality&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[31] provider = &quot;gcp-kafka-topic&quot;, field = &quot;published_at&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[32] provider = &quot;gcp-kafka-topic&quot;, field = &quot;published_at&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] provider = &quot;aws-msk-topic&quot;, schema = 0" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.008">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] provider = &quot;aws-msk-topic&quot;, schema = -1" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.009">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] provider = &quot;gcp-kafka-topic&quot;, schema = 0" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[4] provider = &quot;gcp-kafka-topic&quot;, schema = -1" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] variant = &quot;numeric&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] variant = &quot;object&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] variant = &quot;whitespace&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] operation = &quot;PROVISION&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] operation = &quot;UPDATE&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] provider = &quot;aws-msk-topic&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] provider = &quot;aws-msk-topic&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] provider = &quot;gcp-kafka-topic&quot;, explicitNull = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[4] provider = &quot;gcp-kafka-topic&quot;, explicitNull = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] variant = &quot;broken_json&quot;, body = &quot;{\&quot;msg\&quot;:&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] variant = &quot;scalar_msg&quot;, body = &quot;{\&quot;msg\&quot;:7}&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] variant = &quot;array_root&quot;, body = &quot;[]&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[4] variant = &quot;incompatible_field&quot;, body = &quot;{\&quot;msg\&quot;:{\&quot;action_timeout\&quot;:{\&quot;bad\&quot;:1},\&quot;component_template\&quot;:\&quot;aws-msk-topic\&quot;}}&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[1] variant = &quot;absent&quot;, header = null" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.007">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] variant = &quot;printable_unsafe&quot;, header = &quot;trace! /unsafe#value&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.005">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] variant = &quot;over128&quot;, header = &quot;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.006">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="validBaseWhosePrefixedNameExceeds249FailsBeforeStarted()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.008">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  </testsuite>

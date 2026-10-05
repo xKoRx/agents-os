@@ -1,0 +1,55 @@
+{
+  "scope": "CLI_METADATA_PRIVATE_FS_AND_OWN_NATIVE_PROCESS_ONLY_NOT_ACTUAL_GRADLE_OR_BACKEND",
+  "native_identity": {
+    "pid": 45700,
+    "birth": "2026-10-05T18:57:43.831Z",
+    "owner_pid": 45699,
+    "owner_birth": "2026-10-05T18:57:43.783Z"
+  },
+  "native_child_exit_status": 0,
+  "actual_own_native_child_absent": true,
+  "controls": [
+    {
+      "case": "complete-control-metadata",
+      "expected": "PASS",
+      "actual": "PASS",
+      "exit": 0,
+      "native_task_proof": true,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "intent-owner-PID-float",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "actual-worker-file-PID-float",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "actual-worker-file-schema-bool",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "actual-worker-file-owner-PID-float",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    }
+  ],
+  "own_FS_directories_absent": 5,
+  "real_Gradle_Kafka_Docker_Fury_API_business_calls": 0
+}

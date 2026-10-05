@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:02.272Z" time="0.008">
+  <testcase name="parseRejectsNumMsgsAboveMaximum()" classname="com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest" time="0.001" />
+  <testcase name="parseAcceptsNumericFieldsAsStrings()" classname="com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest" time="0.0" />
+  <testcase name="parseRejectsBlankOffset()" classname="com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest" time="0.001" />
+  <testcase name="parseRejectsTopicNameWithInvalidCharacters()" classname="com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest" time="0.0" />
+  <testcase name="parseRejectsNumMsgsBelowMinimum()" classname="com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest" time="0.001" />
+  <testcase name="parseRejectsBlankTopicName()" classname="com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest" time="0.0" />
+  <testcase name="parseAppliesDefaultsWhenOnlyTopicNameSupplied()" classname="com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest" time="0.0" />
+  <testcase name="parseAcceptsOverridesForAllFields()" classname="com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest" time="0.001" />
+  <testcase name="parseRejectsNonNumericNumMsgs()" classname="com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest" time="0.0" />
+  <testcase name="parseRejectsNullData()" classname="com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest" time="0.001" />
+  <testcase name="parseRejectsTimeoutAboveMaximum()" classname="com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest" time="0.0" />
+  <testcase name="parseRejectsUnknownOffset()" classname="com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest" time="0.001" />
+  <testcase name="parseAcceptsLowercaseOffsetString()" classname="com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest" time="0.0" />
+  <testcase name="parseRejectsTimeoutBelowMinimum()" classname="com.mercadolibre.rio_controlplane_kafka.actions.dto.PeekParamsTest" time="0.001" />
+  </testsuite>

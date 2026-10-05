@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.integration.GenerateDocTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:09.131Z" time="0.339">
+  <testcase name="generateSwaggerDocumentation()" classname="com.mercadolibre.rio_controlplane_kafka.integration.GenerateDocTest" time="0.336" />
+  </testsuite>

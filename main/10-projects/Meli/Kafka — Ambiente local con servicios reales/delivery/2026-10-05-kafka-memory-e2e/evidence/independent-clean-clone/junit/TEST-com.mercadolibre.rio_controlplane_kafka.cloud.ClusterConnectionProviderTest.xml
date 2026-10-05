@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.cloud.ClusterConnectionProviderTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:02.282Z" time="0.069">
+  <testcase name="connect_noFactoryRegistered_returnsEmpty_noResolve()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.ClusterConnectionProviderTest" time="0.065" />
+  <testcase name="connect_happyPath_resolvesThenConnects()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.ClusterConnectionProviderTest" time="0.002" />
+  <testcase name="connect_noResolverRegistered_returnsEmpty_noConnect()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.ClusterConnectionProviderTest" time="0.001" />
+  <testcase name="connect_resolverReturnsEmptyBootstrap_returnsEmpty_noConnect()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.ClusterConnectionProviderTest" time="0.001" />
+  </testsuite>

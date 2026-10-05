@@ -1,0 +1,24 @@
+[
+  {
+    "name": "cp",
+    "base": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+    "head": "4c66d0d5ca77e1de4aef5b08c9e601921eb60a9b",
+    "patch_sha256": "9e07599340d1b7de13d9e20277ba6c13cefb097b14480c70bed2875c556533bd",
+    "result": "PASS_TREE_IMPORT_ONLY",
+    "applied_tree": "2d7967a8e5193ac3eb2a6656b0726e27704b8237",
+    "expected_tree": "2d7967a8e5193ac3eb2a6656b0726e27704b8237",
+    "business_execution": "NOT_EXECUTED",
+    "cleanup": "OWN_CLONE_REMOVED"
+  },
+  {
+    "name": "knowledge",
+    "base": "5c4cb45d9fa8c3e4a95d73542ecd58c04c7c1530",
+    "head": "0feee7b5fad32c8c7dc3dcc252d65166b15c0cd9",
+    "patch_sha256": "013c363df78aa3b22d19014e588c78709b0f1fc418d76a313d6323a546fcd32b",
+    "result": "PASS_TREE_IMPORT_ONLY",
+    "applied_tree": "6d27cff2a2252ede977b64e631116132dbfcf28e",
+    "expected_tree": "6d27cff2a2252ede977b64e631116132dbfcf28e",
+    "business_execution": "NOT_EXECUTED",
+    "cleanup": "OWN_CLONE_REMOVED"
+  }
+]

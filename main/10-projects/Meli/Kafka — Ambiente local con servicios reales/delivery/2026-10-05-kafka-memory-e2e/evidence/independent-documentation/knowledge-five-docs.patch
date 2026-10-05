@@ -1,0 +1,168 @@
+diff --git a/docs/03-services/rio-controlplane-kafka.md b/docs/03-services/rio-controlplane-kafka.md
+index 3a50508..c3daa68 100644
+--- a/docs/03-services/rio-controlplane-kafka.md
++++ b/docs/03-services/rio-controlplane-kafka.md
+@@ -2,7 +2,7 @@
+ title: rio-controlplane-kafka
+ layer: L2
+ audience: [engineering, support, agents]
+-last_verified: 2026-10-02
++last_verified: 2026-10-05
+ confidence: high
+ sensitivity: internal
+ ---
+@@ -64,6 +64,8 @@ Los paths de deployment con operación válida y claim finalizan KVS antes de pu
+ 
+ ## Perfiles locales y pruebas
+ 
++**Rama de trabajo pendiente — 05/10:** el owner priorizó el [E2E local con Kafka real y mapa en memoria](../04-troubleshooting/kafka-real-e2e.md#corte-local-de-trabajo--0510). El candidato `feature/kafka-e2e-memory@7615b210e5b70667912b956c2f27cc0d1ebc80eb`, base `7f1720d950446638ff9b15a0e4e167f3e8e26e43`, usa `memory-e2e` sólo para ese alcance. El mapa por instancia pierde estado al reiniciar y no comparte claims entre JVMs; no acredita KVS productivo ni recovery durable. Gate físico BLOCKED: primera corrida de 343 invocaciones, 309 fallos, 34 PASS y 0 skips; host Kafka inaccesible y replay limpio final pendiente. Los 845 unitarios PASS no certifican negocio. El contrato master y las limitaciones locales del snapshot canónico descritas a continuación conservan su auditoría anterior.
++
+ `application.yml` activa `${SCOPE_SUFFIX}`; `application-local.yml` no constituye un perfil E2E aislado. El container KVS vacío en defaults/integration activa un cliente no-op y el modo degradado. Compose trae un broker plaintext con auto-create habilitado; crear un topic mediante seed/producer no demuestra PROVISION del CP. El startup GCP y la configuración de resultados requieren wiring explícito antes de una prueba aislada: no usar secretos o clusters reales como supuesto del perfil local. Fuentes: [defaults](https://github.com/melisource/fury_rio-controlplane-kafka/blob/f74e856ef3de881e2d504c6cb1ced573681c1058/src/main/resources/application.yml), [local](https://github.com/melisource/fury_rio-controlplane-kafka/blob/f74e856ef3de881e2d504c6cb1ced573681c1058/src/main/resources/application-local.yml), [integration](https://github.com/melisource/fury_rio-controlplane-kafka/blob/f74e856ef3de881e2d504c6cb1ced573681c1058/src/main/resources/application-integration_test.yml), [KVS config](https://github.com/melisource/fury_rio-controlplane-kafka/blob/f74e856ef3de881e2d504c6cb1ced573681c1058/src/main/java/com/mercadolibre/rio_controlplane_kafka/config/KvsConfig.java) y [compose](https://github.com/melisource/fury_rio-controlplane-kafka/blob/f74e856ef3de881e2d504c6cb1ced573681c1058/docker-compose.yml).
+ 
+ La selección de Secrets GCP depende del grafo que arranca: el CP completo registra un `SecretClient @Primary` cuando está presente `rio.gcp.kafka.credentials.secret-segment`; ese wrapper aplica el segmento en cada llamada real. Por eso la propiedad sí tiene efecto en Application. El probe OAuth que importa únicamente el SDK usa `rio.gcp.kafka.fury-secrets.segment-id`; esa evidencia de componente no sustituye al wrapper CP. En el master canónico, nonprod/prod/production configuran secret-segment; local/integration_test/nonsite no lo activan por sus propios archivos, aunque un override externo puede hacerlo. Fuente: [wrapper canónico](https://github.com/melisource/fury_rio-controlplane-kafka/blob/f74e856ef3de881e2d504c6cb1ced573681c1058/src/main/java/com/mercadolibre/rio_controlplane_kafka/deployment/gcp/config/GcpKafkaCredentialsConfiguration.java), [nonprod](https://github.com/melisource/fury_rio-controlplane-kafka/blob/f74e856ef3de881e2d504c6cb1ced573681c1058/src/main/resources/application-nonprod.yml) y [nonsite](https://github.com/melisource/fury_rio-controlplane-kafka/blob/f74e856ef3de881e2d504c6cb1ced573681c1058/src/main/resources/application-nonsite.yml). La SPEC candidata exige verificar el bean y ambas rutas efectivas antes del journey managed; no se ejecutó OAuth durante estos ensayos.
+diff --git a/docs/04-troubleshooting/README.md b/docs/04-troubleshooting/README.md
+index 0de41d6..8ca34ec 100644
+--- a/docs/04-troubleshooting/README.md
++++ b/docs/04-troubleshooting/README.md
+@@ -2,7 +2,7 @@
+ title: Troubleshooting RIO
+ layer: L3
+ audience: [support, engineering, operations, agents]
+-last_verified: 2026-10-01
++last_verified: 2026-10-05
+ confidence: high
+ sensitivity: internal
+ ---
+@@ -21,7 +21,7 @@ sensitivity: internal
+ | Deployment pendiente, trabado o fallido | [Deployment](deployment-stuck-or-failed.md) |
+ | Señal dropped/partial/ausente | [Signals delivery](signals-delivery.md) |
+ | Topic/acción Kafka no converge | [Kafka](kafka.md) |
+-| Verificar E2E Kafka real y sus gates | [E2E Kafka candidato](kafka-real-e2e.md) |
++| Verificar E2E local CP con Kafka real/memoria y consultar gates históricos | [E2E Kafka candidato](kafka-real-e2e.md#corte-local-de-trabajo--0510) |
+ | Tabla/MV ClickHouse falla, queda pendiente o diverge del provider | [ClickHouse](clickhouse.md) |
+ | Start/stop/materialización en timeout | [Materializer](materializer.md) |
+ | Acción completó pero runtime no converge | [Acciones y runtime](actions-and-runtime.md) |
+diff --git a/docs/04-troubleshooting/kafka-real-e2e.md b/docs/04-troubleshooting/kafka-real-e2e.md
+index bb523c7..03ab90d 100644
+--- a/docs/04-troubleshooting/kafka-real-e2e.md
++++ b/docs/04-troubleshooting/kafka-real-e2e.md
+@@ -2,13 +2,72 @@
+ title: Verificar el E2E real de Kafka CP
+ layer: L3
+ audience: [engineering, quality, support, agents]
+-last_verified: 2026-10-02
++last_verified: 2026-10-05
+ confidence: medium
+ sensitivity: internal
+ ---
+ 
+ # Verificar el E2E real de Kafka CP
+ 
++## Corte local de trabajo — 05/10
++
++**WORK_BRANCH_PENDING; gate físico BLOCKED.** La última decisión del owner retira Fury Sandbox del E2E local del CP y prioriza un mapa en memoria; el ecosistema queda para después. El candidato `feature/kafka-e2e-memory@7615b210e5b70667912b956c2f27cc0d1ebc80eb` parte de `7f1720d950446638ff9b15a0e4e167f3e8e26e43`. Este corte no reemplaza el master canónico `f74e856e` ni declara disponibilidad en producción. La primera corrida física falló; no hay una familia de negocio completa PASS ni un replay limpio del launcher final.
++
++El perfil `memory-e2e`, junto con `local,real-e2e`, usa un `ConcurrentHashMap` por instancia mediante la interfaz nativa `KvsClient`. Las versiones son asignadas localmente. El estado se pierde al reiniciar y dos JVMs mantienen mapas independientes: esta familia no acredita persistencia, exclusión entre procesos, recovery durable ni semántica del servidor Fury KVS. `RealKvsIntegrationTest` ejecuta el mapa en esta task; sus nombres legacy no prueban que se consultó un servidor.
++
++La selección de `localKafkaE2eTest` está fijada en `build.gradle` y `e2e/LOCAL.md`: diez clases funcionales, con tres escenarios child de routing/config explícitamente excluidos. Usa cinco brokers propios para AWS RF1–5 y GCP RF1–3/default2, controllers/processors/provisioners del CP y resultados sobre Kafka. No deshabilita escenarios para dar verde; los contratos fuera de selección conservan su estado separado. Los tests directos de provisioner/interrupción mantienen su capa más acotada. GCP sobre brokers plaintext locales no acredita OAuth y Kafka local no acredita delivery BigQueue. Playmaker/MySQL/EntityService, identidad y proveedores administrados conservan su alcance posterior.
++
++### Capacidades del mapa verificadas en la capa unitaria
++
++| Capacidad local | Comportamiento preparado y probado | Evidencia fijada al candidato |
++|---|---|---|
++| Create/version/CAS | Create exclusivo asigna 1; update exige la versión exacta e incrementa 1; concurrencia y reserva del guard dentro de la instancia | `LocalInMemoryKvsClientTest`, `IdempotencyGuardTest` |
++| TTL | -1 conserva, 0 expira inmediatamente, positivo expira en segundos del reloj local; update exitoso renueva el TTL | `LocalInMemoryKvsClientTest` |
++| Aislamiento y bytes | Instancias independientes; reads/writes copian bytes; otra instancia o restart no recupera el estado | `LocalInMemoryKvsClientTest` |
++| Close y APIs no soportadas | Close borra el mapa y rechaza operaciones posteriores; typed/batch/bulk fallan explícitamente | `LocalInMemoryKvsClientTest` |
++| Selección de perfil | Memoria exige `local,real-e2e,memory-e2e`; builder remoto y fallback conservan sus perfiles | `KvsConfigTest` |
++
++Son cinco capacidades locales de la matriz, no nuevos feature IDs ni garantías del servidor. Fuente al SHA candidato: `src/main/java/com/mercadolibre/rio_controlplane_kafka/reale2e/LocalInMemoryKvsClient.java`, `src/main/java/com/mercadolibre/rio_controlplane_kafka/config/KvsConfig.java` y sus tests bajo `src/test/java/com/mercadolibre/rio_controlplane_kafka/`; [diff fijado por commit](https://github.com/melisource/fury_rio-controlplane-kafka/compare/7f1720d950446638ff9b15a0e4e167f3e8e26e43...7615b210e5b70667912b956c2f27cc0d1ebc80eb).
++
++### Ejecutar y conservar evidencia
++
++```sh
++DOCKER_CONTEXT=<contexto-Docker-propio> JAVA_HOME=<JDK25-verificado> ./e2e/local.sh
++# Con las dependencias ya disponibles en cache:
++DOCKER_CONTEXT=<contexto-Docker-propio> JAVA_HOME=<JDK25-verificado> ./e2e/local.sh --offline
++```
++
++`./e2e/local.sh` y `./e2e/run.sh` sin argumentos seleccionan `localKafkaE2eTest`; no necesitan login, alias KVS, BC, instancia ni configuración Fury Sandbox. Sí requieren Docker/Compose propio con al menos 5 GiB, JDK 25, cinco puertos loopback 39092–39096 disponibles y dependencias Maven internas por red o cache. Una invocación filtrada con `--tests` acredita sólo su selección.
++
++Los reportes viven en `build/local-e2e/<RUN_ID>/`: hashes de fuente, readiness, JUnit sanitizado, prueba de finalización del worker nativo y `result.json`. `e2e/verify-local-result.py` exige test count positivo, cero fallos/errores/skips, tuple exacta de run/task/owner/worker y cleanup PASS; un HTTP200, un broker saludable o compilación no sustituyen ese resultado. Logs crudos de Gradle/brokers permanecen privados. Trabajo retenido UNKNOWN impide el `down`; no borrar journals ni resources para obtener PASS.
++
++### Evidencia de ejecución y límites actuales
++
++| Comprobación del 05/10 | Estado observado | Límite |
++|---|---|---|
++| Adapter/config/guard focal | PASS: 59 tests (17+14+28), cero fallos/errores/skips | Capa unitaria; no efecto Kafka ni servidor KVS |
++| Regresión CP y compilación | PASS: 845 unitarios, cero fallos/errores/skips; `compileRealIntegrationTestJava` PASS | No certifica negocio Kafka |
++| Reproducción independiente del SHA candidato desde clon limpio inicial | PASS: 845 unitarios/65 clases, cero fallos/errores/skips; Java25/offline `test` + `compileRealIntegrationTestJava` | Sin Docker/backend ni variables Fury/AWS/MELI/KVS; sólo unit/compilación, no E2E físico |
++| Primera corrida física `48711a6c7ffa43dc88c44b2d4b1db4b1` | FAIL: 343 invocaciones: 309 fallaron, 34 pasaron, 0 skips | Cinco brokers healthy y metadata interna con cinco IDs; host 127.0.0.1:39092 rechazó conexión. Primer describeCluster agotó deadline y el journal FAILED bloqueó fixtures posteriores. Ninguna familia completa PASS |
++| Assertions KVS de esa corrida | Tres comparaciones enum/string fallaron; corregidas a `ErrorCode.CONFLICT.getCode()` | Oracles de operaciones/CAS preservados; replay físico posterior pendiente |
++| Cleanup/native proof/UNKNOWN retention | V1 retiró recursos propios tras el fallo; controles endurecidos después. Peer independiente V5 PASS: 49 controles, 0 findings | Certifica fuente/metadata/proceso, no una corrida Kafka limpia del código final |
++| Matriz local 356 | 5 PASS unit/config; 226 BLOCKED por Kafka host; 125 NOT_EXECUTED fuera de selección | La matriz remota histórica 351 permanece intacta; no sumar PASS de capas distintas |
++| Workflow corporativo | `.github/workflows/local-kafka-e2e.yml` implementado, NOT_EXECUTED | Requiere runner del owner con Docker/JDK 25/Maven interno; no exige auth Fury |
++
++El recibo de la rama en el suplemento documental `4c66d0d5ca77e1de4aef5b08c9e601921eb60a9b` es `meli/features/20261001-real-e2e/evidence/local-memory-2026-10-05.md` (SHA256 `27d51ae2e4ecc8aa513344fad79f647bdc5c6e8f83a4f718b0d884944292cd61`); la selección/status por capacidad está en `local-coverage-matrix.tsv`. Conserva el fallo original anterior al endurecimiento del launcher y separa controles unitarios de los efectos físicos. No reemplazar efectos ni resultados Kafka por mocks o archivos. La reproducción independiente conserva `review.json` SHA256 `2c66dc4ea7a8cdc7040434ff6a4aa8d469681dc7b4a0f333b313c3671c11f033` y `unit-and-compile.log` SHA256 `11b5532664724e9202d30c138537c2d833b34e357743fd5caf275f9d3fa5c9f5`; 33 paths candidatos sin drift. Su verdict es unit/compilación únicamente.
++
++### Fuentes y escalamiento del alcance local
++
++Fuente del candidato `7615b210e5b70667912b956c2f27cc0d1ebc80eb`: `e2e/local.sh`, `e2e/run.sh`, `e2e/verify-local-result.py`, `build.gradle`, `src/main/resources/application-memory-e2e.yml`, cliente/config/tests del mapa, workflow local y SPECs bajo `meli/features/20261001-real-e2e/`; [diff de la rama de trabajo](https://github.com/melisource/fury_rio-controlplane-kafka/compare/7f1720d950446638ff9b15a0e4e167f3e8e26e43...7615b210e5b70667912b956c2f27cc0d1ebc80eb). La biblioteca no afirma que el commit esté publicado o integrado. El [suplemento documental](https://github.com/melisource/fury_rio-controlplane-kafka/compare/7615b210e5b70667912b956c2f27cc0d1ebc80eb...4c66d0d5ca77e1de4aef5b08c9e601921eb60a9b) actualiza sólo `e2e/LOCAL.md` y el recibo de evidencia: cleanup retiene recursos ante UNKNOWN y agrega la reproducción independiente unitaria. El core sigue fijado a `7615b21`. La fecha verifica esos deltas, no un nuevo master.
++
++El runtime propio Colima 0.8.1/Lima 1.0.5 falló readiness tras 603 s de restart/foreground/gRPC. SSH nativo funciona; el child de forwarding recibió SIGKILL, sin causa establecida en los controles del intervalo. No atribuirlo a VPN, auth, permisos o AMFI. La VM propia quedó detenida, sin containers del run; el runtime compartido de 2 GiB no se modificó y Docker default está indisponible.
++
++El siguiente gate es restaurar un runtime propio con al menos 5 GiB y listeners host funcionales, repetir toda la suite local y completar un replay limpio independiente, incluidos los fallos Kafka/publicación/proceso esperados. El launcher final verifica los cinco listeners host con deadline de 30 s. El 403 histórico Sandbox no bloquea este comando; las familias remotas permanecen separadas. Estado físico completo: BLOCKED.
++
++## Referencia histórica — 01/10–02/10
++
++Los apartados siguientes conservan sin reescribir el diseño y los ensayos de `feature/kafka-real-e2e` con Fury Sandbox. Sus comandos, gates KVS y prohibición de memoria corresponden a aquella familia remota, no al alcance local autorizado el 05/10.
++
+ ## Impacto y alcance
+ 
+ **WORK_BRANCH_PENDING.** El sistema se implementa en `feature/kafka-real-e2e`, sobre CP develop `4302481c69300074a85ea5eb051a27bbd505cdce` y Playmaker develop `7673f4bffc286f0f24d4214938df53c4c5eb9c38`. Los masters canónicos siguen en el [manifiesto](../08-governance/source-manifest.md); este runbook no afirma disponibilidad en producción. La decisión, SPECs, tareas, inventario y matriz se guardan en el CP bajo `meli/features/20261001-real-e2e/`.
+diff --git a/docs/06-skills/context-packs.md b/docs/06-skills/context-packs.md
+index e91a38a..2da34c1 100644
+--- a/docs/06-skills/context-packs.md
++++ b/docs/06-skills/context-packs.md
+@@ -2,7 +2,7 @@
+ title: Context packs para skills
+ layer: L1
+ audience: [skill-authors, agents]
+-last_verified: 2026-10-02
++last_verified: 2026-10-05
+ confidence: high
+ sensitivity: internal
+ ---
+@@ -32,7 +32,7 @@ Cada pack define el mínimo contexto inicial. Agrega evidencia L4 sólo si falta
+ | `assess_operational_readiness` | runbook de readiness + safe evidence | catálogo feature del mecanismo y owner/política externa requerida |
+ | `verify_capability` | feature catalog + source manifest | servicio/runbook sólo para semántica operacional y caveats |
+ | `verify_claim` | source manifest + ficha | archivo/test fijado por commit |
+-| `verify_kafka_e2e` | [ficha Kafka](../03-services/rio-controlplane-kafka.md) + [runbook Kafka](../04-troubleshooting/kafka.md) + [auditoría canónica Kafka](../08-governance/kafka-canonical-audit-2026-10-01.md) + [E2E candidato](../04-troubleshooting/kafka-real-e2e.md) | Elegir endpoint/provider y feature IDs Kafka; añadir un edge Playmaker sólo si el journey lo cruza. Separar corte integral `3cd`, revalidación focal master `0c83575` y checkpoint `1b4b8e1`: deployment local Kafka ya es master; action/KVS/Service PEEK real del harness siguen pendientes. Añadir pm.kafka.entity-inheritance o pm.local-integration.kafka-deployments sólo cuando la consulta los requiera. Config-save/entities/context tienen nuevos cuerpos T24 separados; master 0c/candidate 767 requieren artifacts/grants/namespace propios y revisión pendiente. T23 metadata/804 tests unitarios, T25 procesos/offsets y T26 18 tests unitarios no certifican negocio; rootv3 sigue PENDING_PEER. Los 20 legacy no cubren esas fronteras. Tests llamados E2E con provider/result mock no prueban el journey. |
++| `verify_kafka_e2e` | [E2E local candidato](../04-troubleshooting/kafka-real-e2e.md#corte-local-de-trabajo--0510) + [ficha Kafka](../03-services/rio-controlplane-kafka.md) | Última decisión owner 05/10: CP primero, `e2e/local.sh`/`localKafkaE2eTest`, Kafka real y estado en memoria por instancia; gate físico BLOCKED por host Kafka tras primera corrida de 343 invocaciones/309 fallos/34 PASS/0 skips; replay limpio final pendiente. Los 845 unitarios y 49 controles PASS no certifican negocio. No exige Fury Sandbox; no acredita KVS productivo, restart ni claims compartidos entre JVMs. Ecosistema después. Para contratos master, añadir [runbook Kafka](../04-troubleshooting/kafka.md) y [auditoría canónica](../08-governance/kafka-canonical-audit-2026-10-01.md), endpoint/provider y sólo sus IDs. Abrir un edge PM sólo si el journey lo cruza. Los cortes Sandbox/T23–T26, gates Entity/managed y matrices previas son históricos/preparación: no convertirlos en ejecución del candidato nuevo ni en comportamiento master. |
+ | `debug_copilot` | ficha Copilot + catálogo focal | elegir verify, GenAI o Slack; Slack muta mensajes/membership/checkpoints, no ejecutar para diagnosticar ni confiar en hints idempotentes |
+ | `debug_connector` | routing + ficha del CP confirmado | kafka-to-clickhouse: connector lifecycle (`ch.connector-lifecycle-lock`, puntero activo, `ch.connector-durable-cleanup`)/runtime/diagnósticos on-prem (`ch.connector-onprem-diagnostics`)/HTTP Basic; fury-bigqueue-kafka: source identity/partition strategy/desired vs observed; no inferir binding desde tipo |
+ | `plan_cross_service_feature` | contrato de diseño cross-service + arquitectura + boundaries/truth | un flujo L1, sólo los `edge.*` afectados y feature IDs de ambos extremos; luego routing/wire/state/authz/rollout según impacto |
+diff --git a/docs/08-governance/source-manifest.md b/docs/08-governance/source-manifest.md
+index f2816fc..5f79c6c 100644
+--- a/docs/08-governance/source-manifest.md
++++ b/docs/08-governance/source-manifest.md
+@@ -2,7 +2,7 @@
+ title: Manifiesto de fuentes
+ layer: L4
+ audience: [maintainers, engineering, agents]
+-last_verified: 2026-10-02
++last_verified: 2026-10-05
+ confidence: high
+ sensitivity: internal
+ ---
+@@ -94,3 +94,10 @@ Suplemento candidato posterior02/10: [corte de implementación acotada](kafka-ca
+ 
+ 
+ Receipt posterior: freeze agregado Root29 SHA256 `23409c2bc593f8373a419255e4c00b08747f8d01f2499a95e17755795f50b0b1`; peer r2 independiente `dd28a38d2419f35ec5a8aa2f19b01d78b6e0233b0e087f944564d4c598d6c30d`; peer de preparación de matriz `b5360b1d397aa7f693a2b188a258ad4070fb87ff2b542bcea8348004bde954a2`. El core V4.1 histórico conserva el finding de owner PID y los dos fallos del driver; r2 los cierra sólo en fuente/controles neutrales. Dos corridas del autor y dos independientes nuevas pasan14casos/159checks sin cambiar47aserciones/14casos/plazos. No se certifica SDK productivo, backend ni E2E completo.
++
++
++### Candidato local en memoria — 2026-10-05
++
++La última decisión del owner elimina Fury Sandbox como gate del E2E local CP y deja el ecosistema para después. CP `feature/kafka-e2e-memory@7615b210e5b70667912b956c2f27cc0d1ebc80eb` parte de `7f1720d950446638ff9b15a0e4e167f3e8e26e43`; [diff de la rama de trabajo](https://github.com/melisource/fury_rio-controlplane-kafka/compare/7f1720d950446638ff9b15a0e4e167f3e8e26e43...7615b210e5b70667912b956c2f27cc0d1ebc80eb). `e2e/local.sh` y `e2e/run.sh` sin argumentos seleccionan `localKafkaE2eTest`, perfiles `local,real-e2e,memory-e2e`, cinco brokers reales/RF1–5 y resultados Kafka reales, con reportes `build/local-e2e/<RUN_ID>/`. El `KvsClient` en memoria tiene create/CAS/versiones asignadas localmente/TTL por instancia; restart pierde estado y dos JVMs no comparten claims. Primera corrida física: 343 invocaciones, 309 fallos, 34 PASS y 0 skips; cinco brokers saludables y metadata interna, host Kafka inaccesible. Gate físico BLOCKED y replay limpio final pendiente. Los 845 unitarios PASS, reproducidos independientemente desde clon limpio inicial (65 clases, cero fallos/errores/skips; log SHA256 `11b5532664724e9202d30c138537c2d833b34e357743fd5caf275f9d3fa5c9f5`), y 49 controles independientes PASS no certifican negocio. Matriz local 356: 5 PASS unit/config, 226 BLOCKED por host Kafka, 125 NOT_EXECUTED fuera de selección. Workflow local implementado/NOT_EXECUTED. No acredita KVS Fury, ecosistema, OAuth, BigQueue ni CI corporativa. [Comandos, fuentes y límites](../04-troubleshooting/kafka-real-e2e.md#corte-local-de-trabajo--0510).
++
++El suplemento documental CP `4c66d0d5ca77e1de4aef5b08c9e601921eb60a9b` actualiza únicamente `e2e/LOCAL.md` y `evidence/local-memory-2026-10-05.md`; el core `7615b21` permanece intacto. Esta fecha verifica únicamente el delta candidato; no es un refresh de masters ni de las 25 fuentes. La tabla canónica y las evidencias históricas Sandbox conservan sus SHAs y estados. No se agregan feature IDs.

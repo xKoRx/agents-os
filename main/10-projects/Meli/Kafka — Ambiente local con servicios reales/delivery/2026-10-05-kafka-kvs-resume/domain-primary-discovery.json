@@ -1,0 +1,343 @@
+{
+  "outcome": "READ_ONLY_DIAGNOSTIC_CONTRACT_AND_BOUNDED_PROPOSAL",
+  "utc": "2026-10-05T13:01:39.638969+00:00",
+  "cp_head": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+  "installed_versions": {
+    "cli_sandbox": "1.2.16",
+    "furycli": "5.21.0",
+    "requests": "2.34.2"
+  },
+  "findings": [
+    {
+      "id": "DIAG-1",
+      "severity": "LIMITATION",
+      "statement": "El helper persiste sólo status_code y clase de excepción; descarta ServicesAPIException.message deliberadamente. Eso evita filtraciones, pero pierde cualquier detalle backend contenido allí. No existen campos error_code/correlation_id/headers en esa clase.",
+      "refs": [
+        "sandbox.py:129-140",
+        "core/errors/__init__.py:56-64"
+      ]
+    },
+    {
+      "id": "DIAG-2",
+      "severity": "CONTRACT",
+      "statement": "SandboxApi transforma HTTPError a ServicesAPIException sin from explícito: el HTTPError original puede permanecer en __context__ con su Response. CommunicationApi conserva HTTPError por raise o from para ZT/429. La respuesta original permite recuperar status y seleccionar metadata, sin str(exception), traceback, request ni dumps.",
+      "refs": [
+        "sandboxsapi.py:39-44",
+        "communicationapi.py:145-161",
+        "requests/exceptions.py:20-34",
+        "requests/models.py:1167"
+      ]
+    },
+    {
+      "id": "DIAG-3",
+      "severity": "LIMITATION",
+      "statement": "El parser Sandbox usa acceso directo message/error y presupone JSON. Una respuesta HTML/JSON inválida/campo message ausente puede producir otra excepción sin status_code, aunque el HTTPError siga en el contexto. El helper actual puede registrar http=null y mutation=UNKNOWN para un HTTP403 real en esas formas. ServicesApi sí usa content-type y get, pero no es el cliente del lifecycle CP.",
+      "refs": [
+        "sandbox.py:62-63",
+        "sandboxsapi.py:39-56",
+        "servicesapi.py:51-75"
+      ]
+    },
+    {
+      "id": "DIAG-4",
+      "severity": "UNRESOLVED",
+      "statement": "Estas fuentes no definen nombres/valores de códigos backend ni headers de correlación. No hay taxonomía que distinga elegibilidad Sandbox de autorización en403. No se debe convertir message o error arbitrario en error_code, ni inferir política por substrings.",
+      "refs": [
+        "sandboxsapi.py:39-56",
+        "core/errors/__init__.py:56-64",
+        "communicationapi.py:145-161"
+      ]
+    },
+    {
+      "id": "DIAG-5",
+      "severity": "IMPLEMENTATION_CAUTION",
+      "statement": "requests.Response con HTTP403 tiene truthiness false. Un extractor debe usar response is not None, nunca if response, para no perder precisamente la respuesta denegada.",
+      "refs": [
+        "requests/models.py:835-850"
+      ]
+    },
+    {
+      "id": "DIAG-6",
+      "severity": "SOURCE_CONFIRMED_ORDERING_DEFECT",
+      "statement": "Lifecycle.__init__ importa SandboxApi y configura el logger Fury antes de la prevalidación auth. Esto permite PermissionError de ~/.fury/logs antes de LOGIN_REQUIRED. El guard no depende de self.api y las funciones credentials consumidas son lecturas/decodificación local. Mover la misma llamada antes del import es una corrección acotada compatible; no la implementó este reviewer.",
+      "refs": [
+        "sandbox.py:59-82",
+        "sandboxsapi.py:11",
+        "furycli/config/config.py:83-85",
+        "furycli/utils/logger.py:92-111",
+        "credentials.py:38-53/139-155"
+      ]
+    }
+  ],
+  "proposal": {
+    "scope": "Sólo diagnóstico del catch de Lifecycle.call; sin cambiar endpoint, body, auth, retry, timeout, lifecycle o criterios de cleanup.",
+    "extract_response": "Recorrer __cause__/__context__ de las clases instaladas esperadas, máximo8 nodos con visited por identidad. Buscar requests.exceptions.HTTPError.response sin usar truthiness ni leer request/prepared headers. Ante respuestas múltiples incompatibles, declarar DIAGNOSTIC_RESPONSE_AMBIGUOUS.",
+    "status": "Conservar status_code actual si es entero estricto100..599 (bool no). Si falta, obtener el status de Response exacta; los desacuerdos son diagnóstico UNKNOWN. HTTP403 es observación de status, no clasificación de su causa.",
+    "body": "No guardar ni imprimir message, args, response.text/content/json completo, URL de excepción, traceback, request headers, cookies, exports, config ni tokens. Si se inspecciona JSON en memoria, límite16KiB y sólo rutas directas aprobadas; no recorrer arbitrariamente ni regex para sanitizar prose.",
+    "backend_code": "Closed allowlist de ruta JSON + valores literales normativos. Actualmente no hay fuente primaria que provea esa allowlist, por lo que debe iniciar vacía y emitir BACKEND_CODE_NOT_DECLARED. Un valor alfanumérico por sí solo puede ser un secreto y no basta. No adoptar error_code/code/error como contrato sólo por nombre.",
+    "correlation": "Closed allowlist de headers de Response y formatos, aprobada con fuente o contrato del servicio; no leer request headers y nunca exportar todos los headers. Las fuentes revisadas no declaran esa allowlist. Dejar CORRELATION_CONTRACT_NOT_DECLARED hasta que se obtenga; si existe un campo normativo, validar límite/formato y conservar sólo ese ID con source label.",
+    "receipt": "En last_api_error añadir sólo diagnostic{schema,response_source,http_status,body_bytes_total,body_bytes_hashed,body_sha256,body_hash_scope,backend_code,correlation_id,availability,source_contract}. body_hash_scope explicitaFULL/PREFIX; campos desconocidos null+enum estable. IDs sólo allowlist aprobada. No corregir semántica operation/cleanup en esta propuesta; recuperar status que cambie outcomes necesita control específico.",
+    "capture_timing": "Capturar dentro del catch original, antes de levantar RuntimeError(... ) from None. El helper posterior y sus logs opacos no deben transportar la excepción ni mensaje.",
+    "required_next_primary": "Confirmar con fuentes oficiales o propietario del endpoint los nombres de code/ID y enums. No hace falta otra petición sólo para validar el mecanismo de extracción. El motivo real403 sigue pendiente hasta respuesta diagnóstica con contrato verificable.",
+    "body_fingerprint": "Puede añadirse fingerprint sin raw: usar únicamente bytes ya cacheados de Response con _content_consumed=true, no response.content/raw/iter_content si pudieran leer transporte. Registrar body_bytes_total, body_bytes_hashed=min(total,16384), body_sha256 de ese prefijo y body_hash_scope=FULL_CACHED_BODY o PREFIX_16KIB; truncación explícita. No decodificar/imprimir ni usar el digest para inferir causa. Si no hay cached bytes, BODY_UNAVAILABLE_NO_READ.",
+    "correlation_operational_option": "Root puede aprobar una allowlist operacional de nombres exactos de headers de Response, distinta de un contrato server. Admitir sólo UUID canónico no-nulo o IDhex de longitud exacta aprobada, con límites y source=RESPONSE_HEADER_OPERATIONAL_ALLOWLIST; rechazar JWT/URL/newline/multivalue/tokens arbitrarios. Mientras no existan nombres aprobados, allowlist vacía. No afirmar que un header candidato sea correlación backend normativa ni causa403. No volcar el resto de headers.",
+    "private_raw_option": "No parece imprescindible con status+fingerprint+eventualID. Si un propietario exige inspección de raw, requiere autorización aparte, opt-in explícito y artefacto privado separado0600/directorio0700; nunca state.json/receipt público/stdout/stderr, y nunca request/headers/config/exports. No propuesto como default ni habilitado en esta revisión."
+  },
+  "required_controls": [
+    {
+      "id": "C1",
+      "case": "ServicesAPIException403 encadenada a HTTPError con Response original; projection status403; sin str/args/message; una única llamada delegada.",
+      "layer": "OFFLINE_EXCEPTION_METADATA"
+    },
+    {
+      "id": "C2",
+      "case": "HTML403, JSON malformado, message ausente y message no-string causan parser failure: recuperar sólo status403 del contexto; no declarar causa.",
+      "layer": "OFFLINE_EXCEPTION_METADATA"
+    },
+    {
+      "id": "C3",
+      "case": "Response403 es falsey: extractor is-not-None retiene403; ausencia Response mantiene UNKNOWN.",
+      "layer": "OFFLINE_EXCEPTION_METADATA"
+    },
+    {
+      "id": "C4",
+      "case": "__cause__ explícito ZT/429 y __context__ implícito, ciclos y chain>8; no crash/unbounded walk; no login/retry adicional.",
+      "layer": "OFFLINE_EXCEPTION_METADATA"
+    },
+    {
+      "id": "C5",
+      "case": "Status bool/string no-canónico/fuera de rango y estados contradictorios: fail closed en diagnóstico; no false status known.",
+      "layer": "OFFLINE_EXCEPTION_METADATA"
+    },
+    {
+      "id": "C6",
+      "case": "Body16KiB+, JSONdict/list/string y nestedmessage: límites aplicados; valores no declarados nunca salen del proceso.",
+      "layer": "OFFLINE_PROJECTION_NEGATIVE"
+    },
+    {
+      "id": "C7",
+      "case": "Sentinelas secretas en message, error, token, config, exports, headers request/response no aprobados: bytes ausentes en stdout/stderr/state/logs nuevos.",
+      "layer": "OFFLINE_PROJECTION_NEGATIVE"
+    },
+    {
+      "id": "C8",
+      "case": "Código arbitrario que coincide regex, JWT, URL, arrays/objects y texto de elegibilidad: no código exportado ni clasificación403.",
+      "layer": "OFFLINE_PROJECTION_NEGATIVE"
+    },
+    {
+      "id": "C9",
+      "case": "Allowlist vacía actual: status403 sí, backend_code/correlation null con enums contract-not-declared; no falso diagnóstico.",
+      "layer": "OFFLINE_PROJECTION_NEGATIVE"
+    },
+    {
+      "id": "C10",
+      "case": "Futura allowlist con contrato primario: exact literal aceptado; desconocido, oversize/newline/malformed ID rechazados; correlation sólo Response, no request.",
+      "layer": "OFFLINE_PROJECTION_CONTRACT"
+    },
+    {
+      "id": "C11",
+      "case": "Método/path/body/authenticate=False/retry=False/timeout20 y número de invocaciones sin cambios; cleanup conserva certificado/UNKNOWN y precedencia del error originales.",
+      "layer": "OFFLINE_HELPER_REGRESSION"
+    },
+    {
+      "id": "C12",
+      "case": "Tras patch autorizado, próxima ejecución owned por Root registra sólo proyección aprobada y verifica cleanupBC por API real; no interpretar403 como elegibilidad/permisos sin código normativo.",
+      "layer": "OWNED_API_ONLY_AFTER_AUTHORIZATION"
+    },
+    {
+      "id": "C13",
+      "case": "Cached body0/16KiB/16KiB+1: digest y bytes precisos, FULL vs PREFIX explícito; unread Response no consume transporte; ningún raw secret sentinel en artefactos. Hash no clasifica403.",
+      "layer": "OFFLINE_FINGERPRINT_METADATA"
+    },
+    {
+      "id": "C14",
+      "case": "Constructor: Tiger inválido/ZT inválido conservan código exacto, cero import/constructor SandboxApi/API/logs Fury; camino válido orden guard→import→constructor una vez, sin cachearheaders. Fallo SDK después auth válida continúa fallando.",
+      "layer": "OFFLINE_CONSTRUCTOR_ORDER_REGRESSION"
+    }
+  ],
+  "sources": [
+    {
+      "path": "/Users/rjara/fuentes/rio-controlplane-kafka-e2e/e2e/sandbox.py",
+      "sha256": "2627672b001fb12940396e1580b161fbce316b9751a5ad315c10fca7687850a9",
+      "line_ranges": [
+        {
+          "start": 59,
+          "end": 64
+        },
+        {
+          "start": 116,
+          "end": 146
+        },
+        {
+          "start": 354,
+          "end": 375
+        }
+      ]
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox/rest/sandboxsapi.py",
+      "sha256": "4e53c6f2d7e6a13c04619dfe69782c363d4197f51db192af3b0a5e0c2fa34f5d",
+      "line_ranges": [
+        {
+          "start": 14,
+          "end": 44
+        },
+        {
+          "start": 47,
+          "end": 56
+        }
+      ]
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/furycli/core/errors/__init__.py",
+      "sha256": "90881e973c614af3ad99f0dc357c84b470dd9bf357241a07bd11b5068a00cd8f",
+      "line_ranges": [
+        {
+          "start": 35,
+          "end": 64
+        }
+      ]
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/furycli/communicationapi.py",
+      "sha256": "4d65996c3b10f77351f715c80229a1351413e07c69b1ec66953faa4ef300267d",
+      "line_ranges": [
+        {
+          "start": 108,
+          "end": 143
+        },
+        {
+          "start": 145,
+          "end": 166
+        }
+      ]
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_services/services_commands/rest/servicesapi.py",
+      "sha256": "7100ef86d3128e2aa4c7114c4d7b42f001354fa24eda2402f177d3c47f39e711",
+      "line_ranges": [
+        {
+          "start": 44,
+          "end": 75
+        }
+      ]
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/requests/exceptions.py",
+      "sha256": "c5e18f3352454968e337bb3056f0867df2f37c0a0d2c1a77dc05e7e0b3c0411b",
+      "line_ranges": [
+        {
+          "start": 20,
+          "end": 34
+        },
+        {
+          "start": 66,
+          "end": 67
+        }
+      ]
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/requests/models.py",
+      "sha256": "d1bc0d990abf5d5ebee05f890911b4363fadf2d5264b686a963df47c529b6ace",
+      "line_ranges": [
+        {
+          "start": 835,
+          "end": 850
+        },
+        {
+          "start": 1140,
+          "end": 1167
+        },
+        {
+          "start": 1031,
+          "end": 1047
+        }
+      ]
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/cli_sandbox-1.2.16.dist-info/METADATA",
+      "sha256": "11903e243504b7ff425f72e4ddad359ee948d852fe962ee1e9d22809c1bfa927",
+      "line_ranges": [
+        {
+          "start": 2,
+          "end": 3
+        }
+      ]
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/furycli-5.21.0.dist-info/METADATA",
+      "sha256": "4308d5edbba4dc01707acafcb522429217ae6ae6f124742da1067ffd35395819",
+      "line_ranges": [
+        {
+          "start": 2,
+          "end": 3
+        }
+      ]
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/requests-2.34.2.dist-info/METADATA",
+      "sha256": "8c384ba3e979480faae2859d3c5e6c1276dd2c3616e322e124d52c8cfc556f27",
+      "line_ranges": [
+        {
+          "start": 2,
+          "end": 3
+        }
+      ]
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/furycli/core/helpers/credentials.py",
+      "sha256": "204499e70572d9ff6ff9c2ce6163a9bdba73e602564c42eb9b3378562bd5a5e7",
+      "line_ranges": [
+        {
+          "start": 19,
+          "end": 19
+        },
+        {
+          "start": 28,
+          "end": 53
+        },
+        {
+          "start": 139,
+          "end": 155
+        }
+      ]
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/furycli/config/config.py",
+      "sha256": "623cda816f9145b5fc17f420dfde44ff06a0d2ae530a0fc4cc6e6a57186a9e82",
+      "line_ranges": [
+        {
+          "start": 83,
+          "end": 85
+        }
+      ]
+    },
+    {
+      "path": "/Users/rjara/.pyenv/versions/3.10.16/lib/python3.10/site-packages/furycli/utils/logger.py",
+      "sha256": "ad09b60cfb27bccc631b5619776fae5b573e32c8bcb8ebc8962cb2baa0d17594",
+      "line_ranges": [
+        {
+          "start": 92,
+          "end": 111
+        }
+      ]
+    }
+  ],
+  "negative_source_search": "No error_code/correlation_id/request_id/traceparent contracts in selected SandboxApi, ServicesApi, CommunicationApi and error classes; static rg only.",
+  "controls_executed": 0,
+  "api_calls": 0,
+  "sdk_runtime_calls": 0,
+  "network_calls": 0,
+  "login_calls": 0,
+  "repository_edits": 0,
+  "business": "NOT_EXECUTED",
+  "coordinator_gate": "Root informa LOGIN_REQUIRED el2026-10-05; no import/API/login ejecutado por este reviewer. Renovación/ejecución owned son responsabilidad del coordinador.",
+  "constructor_candidate_review": {
+    "result": "NO_CONTRACT_CONFLICT_FOUND_IN_SCOPED_SOURCE",
+    "approved_scope_by_coordinator": "Root candidato, no patch de Domain",
+    "change": "self.directory/state asignados; stored_auth_headers(); sólo después from SandboxApi e instancia. Sin cachear headers ni eliminar guard de cada llamada.",
+    "failure_path": "Auth inválida gana antes de abrir el logger de Sandbox/Fury; no import/constructor/API y no login/renew.",
+    "valid_path": "Una lectura auth seguida por el mismo import/constructor. Luego cada call conserva el guard/timeouts/retry originales. Fallos SDK posteriores a auth válida no se convierten en éxito.",
+    "qualification": "La precedencia cambia intencionalmente; no constituye certificación backend o ejecución E2E."
+  }
+}

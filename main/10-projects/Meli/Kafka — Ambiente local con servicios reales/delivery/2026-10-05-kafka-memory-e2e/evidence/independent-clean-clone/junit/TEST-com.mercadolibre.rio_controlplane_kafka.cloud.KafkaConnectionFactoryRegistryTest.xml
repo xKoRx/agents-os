@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.cloud.KafkaConnectionFactoryRegistryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:02.357Z" time="0.001">
+  <testcase name="forProvider_emptyRegistry_returnsEmpty()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.KafkaConnectionFactoryRegistryTest" time="0.0" />
+  <testcase name="constructor_duplicateProvider_throws()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.KafkaConnectionFactoryRegistryTest" time="0.001" />
+  <testcase name="forProvider_returnsRegisteredFactory()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.KafkaConnectionFactoryRegistryTest" time="0.0" />
+  <testcase name="forProvider_unregisteredProvider_returnsEmpty()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.KafkaConnectionFactoryRegistryTest" time="0.0" />
+  </testsuite>

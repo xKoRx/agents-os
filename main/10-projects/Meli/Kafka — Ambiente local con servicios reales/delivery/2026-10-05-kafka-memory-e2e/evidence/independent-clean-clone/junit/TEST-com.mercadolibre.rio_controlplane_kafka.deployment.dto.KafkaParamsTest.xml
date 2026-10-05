@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" tests="26" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:03.846Z" time="0.01">
+  <testcase name="parseRejectsNonNumericPartitions()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.001" />
+  <testcase name="parseRejectsNullOperation()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseRejectsRetentionMsOfUnsupportedType()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseAcceptsIntegerNumbersForPartitionsAndReplicationFactor()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseRejectsConfigsThatIsNotAMap()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseRejectsBlankTopicName()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.001" />
+  <testcase name="parseAcceptsRetentionMsOnlyInsideConfigs()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseRejectsNonNumericRetentionMsString()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseAcceptsRetentionMsAsNumericString()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseRejectsNonNumericRetentionMsInsideConfigs()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="rejectsReplicationValuesThatWouldWrapToValidShort()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.001" />
+  <testcase name="acceptsExactWholeNumbersAndPreservesNumericRetentionStrings()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseRejectsTopicNameNotMatchingRegex()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseAcceptsRetentionMsOnlyAtTopLevel()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseRejectsPartitionsLessThanOne()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseAcceptsMatchingRetentionMsInBothPlaces()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseRejectsConfigsWithNullValue()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="constructorNormalizesNullConfigsToEmptyImmutableMap()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseRejectsConflictingRetentionMs()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseDeprovisionRequiresOnlyTopicName()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseAcceptsLongAndNonIntegerNumbersForNumericFields()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseRejectsReplicationFactorLessThanOne()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseReturnsImmutableConfigsForFullProvision()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  <testcase name="parseRejectsNullParams()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.001" />
+  <testcase name="rejectsFractionalNonFiniteAndOverflowNumericFieldsWithoutNarrowing()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.001" />
+  <testcase name="parseRejectsConfigsWithNonStringKey()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.dto.KafkaParamsTest" time="0.0" />
+  </testsuite>

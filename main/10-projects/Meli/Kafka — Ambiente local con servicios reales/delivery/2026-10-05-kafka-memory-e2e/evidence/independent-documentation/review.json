@@ -1,0 +1,150 @@
+{
+  "verdict": "PASS_INDEPENDENT_DOCUMENTATION_CONSISTENCY_ONLY",
+  "findings": [],
+  "knowledge": {
+    "base": "5c4cb45d9fa8c3e4a95d73542ecd58c04c7c1530",
+    "head": "0feee7b5fad32c8c7dc3dcc252d65166b15c0cd9",
+    "clean": true,
+    "changed_paths": 5,
+    "files": [
+      {
+        "path": "docs/03-services/rio-controlplane-kafka.md",
+        "before_sha256": "33fd98ea2ef37fbfed3d67766778f5306edb00964f7a65d5fdedcc4a7a7fdac3",
+        "after_sha256": "6db4a6ebc3fbbe87538f4dfb32cb53e2d68b250ddd0ad41e838f9da42d39a3d9",
+        "blob": "c3daa6890b7eac5238f254a2c02c4de81dfe70cd"
+      },
+      {
+        "path": "docs/04-troubleshooting/README.md",
+        "before_sha256": "354479a0ab5e20d6de5bfaed779054d20471f82b0d8e0f90008160bccaf0287d",
+        "after_sha256": "d87d1915ec451123c65dc1ec9bbc172d3257f908de244a6c83fa9c354406b6df",
+        "blob": "8ca34ece0487a81cd450b71254f08f7c680591ec"
+      },
+      {
+        "path": "docs/04-troubleshooting/kafka-real-e2e.md",
+        "before_sha256": "404de6ab6c5ed9039f623124e4773ec09f3dc6dad765778d175e588c2589fd84",
+        "after_sha256": "5420cd6c759d70c162b17872f0d5fea8b5316d4d3a232fdd725072950347f294",
+        "blob": "03ab90d6efe1cc73d3e0751991086f6a727e367a"
+      },
+      {
+        "path": "docs/06-skills/context-packs.md",
+        "before_sha256": "590fe3e328fe5eb7c9d8874cbfea08e89123c56f5a49c4c10c00fc8411c427bc",
+        "after_sha256": "2eb399dbfc904fb6901dfd4cc2c2e496d5d0d62717bb90b672e5dc4158fd5556",
+        "blob": "2da34c116243f97f307c9c5ddfac5454019aacab"
+      },
+      {
+        "path": "docs/08-governance/source-manifest.md",
+        "before_sha256": "94c58eabe6a938be6ec8956d7e39fc09a11740bb895f6b39a3f6bfcdd77b401d",
+        "after_sha256": "46483aa06b85c4deee5b6bd0d07d1ceb22dc0e7e92538b42cf127fcd45af7ccc",
+        "blob": "5f79c6cb4dd227a4bcffa31fb897bb3d1a3e6c85"
+      }
+    ],
+    "canonical_manifest_rows_byte_identical": true,
+    "feature_ID_catalog_not_changed": true
+  },
+  "cp": {
+    "implementation_head": "7615b210e5b70667912b956c2f27cc0d1ebc80eb",
+    "documentation_head": "4c66d0d5ca77e1de4aef5b08c9e601921eb60a9b",
+    "two_doc_delta": [
+      {
+        "path": "e2e/LOCAL.md",
+        "before_sha256": "31917a6751d96a6d0ec32c132f1a5827e2ce715d497dd563a2e198aa18fc332c",
+        "after_sha256": "55563ac4580bff5548cd77cfcb1d223ec58b9b5066ca74bc4d9ca48537f028c5"
+      },
+      {
+        "path": "meli/features/20261001-real-e2e/evidence/local-memory-2026-10-05.md",
+        "before_sha256": "49ebcdf2bf856bf674d9b0e6887150d19e9dea3b46fd200c2a7984d709549a7a",
+        "after_sha256": "27d51ae2e4ecc8aa513344fad79f647bdc5c6e8f83a4f718b0d884944292cd61"
+      }
+    ],
+    "cleanup_doc_matches_actual_retention_controls": true,
+    "independent_unit_claim_matches_actual_receipt": true
+  },
+  "contrasted_claims": {
+    "memory_profile": "local,real-e2e,memory-e2e; per-instance native KvsClient; production Toolkit/client profile preserved",
+    "state_limits": "no durability/restart/cross-JVM/Fury KVS guarantee",
+    "selected_class_count": 10,
+    "three_exclusions": [
+      "gcpMissingOrAmbiguousLegacyDefaultPublishesActualRoutingFailure",
+      "gcpMissingBootstrapPublishesActualMappingFailure",
+      "malformedGcpFilePreventsActualChildStartupInsteadOfInventingAsyncFailure"
+    ],
+    "matrix_local": {
+      "rows": 356,
+      "status_counts": {
+        "BLOCKED": 226,
+        "NOT_EXECUTED": 125,
+        "PASS": 5
+      }
+    },
+    "unit": {
+      "tests": 845,
+      "classes": 65,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "receipt_sha256": "2c66dc4ea7a8cdc7040434ff6a4aa8d469681dc7b4a0f333b313c3671c11f033",
+      "log_sha256": "11b5532664724e9202d30c138537c2d833b34e357743fd5caf275f9d3fa5c9f5"
+    },
+    "controls": {
+      "invocations": 49,
+      "confirmed_open_findings": 0,
+      "receipt_sha256": "e49f6388422a46a3a2a664188f2c9a6ef4a6552bfbc9ea80d0653983e8c5f397"
+    },
+    "first_physical_run": "343 invocations/309 failed/34 passed/0 skipped as reported in source-pinned author evidence; no complete business PASS",
+    "physical_gate": "BLOCKED; independent clean full physical launcher replay pending",
+    "SIGKILL": "Observed own forwarding process symptom; cause UNKNOWN; no causal attribution or verified fix",
+    "CI": "Workflow implemented; NOT_EXECUTED",
+    "Fury": "Not a local command/preflight gate; remote historical families remain separate",
+    "master": "f74e856 canonical table unchanged; candidate7615 expressly pending work"
+  },
+  "new_links": [
+    {
+      "source": "docs/03-services/rio-controlplane-kafka.md",
+      "link": "../04-troubleshooting/kafka-real-e2e.md#corte-local-de-trabajo--0510",
+      "target_exists": true,
+      "local_section_anchor_checked": true
+    },
+    {
+      "source": "docs/04-troubleshooting/README.md",
+      "link": "kafka-real-e2e.md#corte-local-de-trabajo--0510",
+      "target_exists": true,
+      "local_section_anchor_checked": true
+    },
+    {
+      "source": "docs/04-troubleshooting/kafka-real-e2e.md",
+      "link": "https://github.com/melisource/fury_rio-controlplane-kafka/compare/7615b210e5b70667912b956c2f27cc0d1ebc80eb...4c66d0d5ca77e1de4aef5b08c9e601921eb60a9b",
+      "scope": "SYNTAX_ONLY_REMOTE_NOT_FETCHED"
+    },
+    {
+      "source": "docs/04-troubleshooting/kafka-real-e2e.md",
+      "link": "https://github.com/melisource/fury_rio-controlplane-kafka/compare/7f1720d950446638ff9b15a0e4e167f3e8e26e43...7615b210e5b70667912b956c2f27cc0d1ebc80eb",
+      "scope": "SYNTAX_ONLY_REMOTE_NOT_FETCHED"
+    },
+    {
+      "source": "docs/06-skills/context-packs.md",
+      "link": "../04-troubleshooting/kafka-real-e2e.md#corte-local-de-trabajo--0510",
+      "target_exists": true,
+      "local_section_anchor_checked": true
+    },
+    {
+      "source": "docs/08-governance/source-manifest.md",
+      "link": "../04-troubleshooting/kafka-real-e2e.md#corte-local-de-trabajo--0510",
+      "target_exists": true,
+      "local_section_anchor_checked": true
+    },
+    {
+      "source": "docs/08-governance/source-manifest.md",
+      "link": "https://github.com/melisource/fury_rio-controlplane-kafka/compare/7f1720d950446638ff9b15a0e4e167f3e8e26e43...7615b210e5b70667912b956c2f27cc0d1ebc80eb",
+      "scope": "SYNTAX_ONLY_REMOTE_NOT_FETCHED"
+    }
+  ],
+  "scope_limits": {
+    "new_Gradle_runs": 0,
+    "Docker_API_network_calls": 0,
+    "author_repo_writes": 0,
+    "formal_validator_run": false,
+    "actual_first_physical_runtime_independently_reproduced": false,
+    "source_freshness_25masters": false,
+    "E2E_backend_certificate": false
+  }
+}

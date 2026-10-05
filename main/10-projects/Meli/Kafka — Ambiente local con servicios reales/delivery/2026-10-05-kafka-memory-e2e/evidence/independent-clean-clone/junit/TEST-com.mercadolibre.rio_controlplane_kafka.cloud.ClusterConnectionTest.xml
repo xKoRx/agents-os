@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.cloud.ClusterConnectionTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:02.351Z" time="0.003">
+  <testcase name="nullAdminConfig_normalizedToEmptyMap()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.ClusterConnectionTest" time="0.0" />
+  <testcase name="plaintext_hasBootstrapAndEmptyAdminConfig()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.ClusterConnectionTest" time="0.0" />
+  <testcase name="adminConfig_isDefensivelyCopiedAndImmutable()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.ClusterConnectionTest" time="0.002" />
+  </testsuite>

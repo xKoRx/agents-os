@@ -1,0 +1,12 @@
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic e2e_48711a6c7ffa43dc88c44b2d4b1db4b1_deployment_result.
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic e2e_48711a6c7ffa43dc88c44b2d4b1db4b1_action_result.
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic e2e_48711a6c7ffa43dc88c44b2d4b1db4b1_deployment_trigger.
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic e2e_48711a6c7ffa43dc88c44b2d4b1db4b1_action_trigger.
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic e2e_48711a6c7ffa43dc88c44b2d4b1db4b1_deployment_result_dlt.
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic e2e_48711a6c7ffa43dc88c44b2d4b1db4b1_action_result_dlt.

@@ -1,0 +1,18 @@
+{
+  "command": [
+    "./gradlew",
+    "--no-daemon",
+    "--offline",
+    "--console=plain",
+    "test",
+    "compileRealIntegrationTestJava"
+  ],
+  "cwd": "/private/tmp/kafka-e2e-memory-20261005-peer/clean-cp",
+  "head": "7615b210e5b70667912b956c2f27cc0d1ebc80eb",
+  "environment_policy": "Explicit system/JDK/cache only; no Fury/AWS/MELI/KVS/SDK credentials or runtime variables imported",
+  "java_version": "openjdk version \"25.0.4\" 2026-07-21 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.7.1 (build 25.0.4+7-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.7.1 (build 25.0.4+7-LTS, mixed mode, sharing)\n",
+  "exit_status": 0,
+  "elapsed_seconds": 31.824,
+  "log_sha256": "11b5532664724e9202d30c138537c2d833b34e357743fd5caf275f9d3fa5c9f5",
+  "business_runtime": "NOT_EXECUTED"
+}

@@ -1,0 +1,82 @@
+{
+  "scope": "ACTUAL_BASH_CLEANUP_PLUS_ACTUAL_PYTHON_CLI_PRIVATE_FS_AND_OWN_NATIVE_PROCESS_WITH_NEUTRAL_COMPOSE_DOCKER_COMMAND_STANDINS",
+  "local_source_sha256": "cb4c3eb9fc89d1d76ca584bbfd738bd8926d60b133c047423eb198d468e0a7c8",
+  "native_child_exit_status": 0,
+  "actual_own_native_child_absent": true,
+  "own_FS_directories_absent": 8,
+  "controls": [
+    {
+      "case": "complete-control-metadata",
+      "verdict": "PASS",
+      "exit": 0,
+      "cleanup": "PASS",
+      "neutral_down_called": true,
+      "native_task_proof": true,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "retained-UNKNOWN",
+      "verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "RETAINED",
+      "neutral_down_called": false,
+      "native_task_proof": true,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "missing-reconciliation",
+      "verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "RETAINED",
+      "neutral_down_called": false,
+      "native_task_proof": true,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "public-reconciliation",
+      "verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "RETAINED",
+      "neutral_down_called": false,
+      "native_task_proof": true,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "missing-proof",
+      "verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "PASS",
+      "neutral_down_called": true,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "command-failed",
+      "verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "PASS",
+      "neutral_down_called": true,
+      "native_task_proof": true,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "docker-query-failed",
+      "verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "FAIL",
+      "neutral_down_called": true,
+      "native_task_proof": true,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "compose-down-failed",
+      "verdict": "FAIL",
+      "exit": 1,
+      "cleanup": "FAIL",
+      "neutral_down_called": true,
+      "native_task_proof": true,
+      "control_outcome": "PASS"
+    }
+  ],
+  "real_Gradle_Kafka_Docker_Fury_API_business_calls": 0
+}

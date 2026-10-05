@@ -1,0 +1,104 @@
+{
+  "verdict": "PASS_SOURCE_AND_CONTROL_ONLY",
+  "review_role": "INDEPENDENT_ROOT_SOURCE_AND_CONTROL",
+  "source_pins": {
+    "e2e/local.sh": "cb4c3eb9fc89d1d76ca584bbfd738bd8926d60b133c047423eb198d468e0a7c8",
+    "e2e/verify-local-result.py": "305d0ad6ec5b1484696035138e577f08fe5bfb059f3211e3c83d8e259503f684",
+    "e2e/reconciliation-status.py": "1ec245c2285b60d6c29022f922a6e90a6745310ecc5ae0d2b4eebed8713ab243",
+    "e2e/run.sh": "4abc6296bbaccd820d396150209fad0149102cd34f622d52ffb9a3e902f4660e"
+  },
+  "source_drift": {
+    "e2e/local.sh": false,
+    "e2e/verify-local-result.py": false,
+    "e2e/reconciliation-status.py": false,
+    "e2e/run.sh": false
+  },
+  "controls": [
+    {
+      "receipt": "verifier-controls.json",
+      "sha256": "6aa5b8410c6a1caa0ecbe2235300e9dd22976889a5876b6794ae31477dbd09b7",
+      "count": 26,
+      "pass": 26,
+      "fail": 0
+    },
+    {
+      "receipt": "additional-tuple-controls.json",
+      "sha256": "3b3684322f4ba84bf5a2ac4bf1b705a1f4cd1dc949ebaaef03fc92d9b6483acd",
+      "count": 5,
+      "pass": 5,
+      "fail": 0
+    },
+    {
+      "receipt": "duplicate-field-controls.json",
+      "sha256": "1b0faa09ad92eafeb9193a9ac669dffad1dfa9bb24417ff1408afe08718427bd",
+      "count": 4,
+      "pass": 4,
+      "fail": 0
+    },
+    {
+      "receipt": "cleanup-controls.json",
+      "sha256": "f41ed3eb48a5a0f4607b5aa10ed99e67fb12cc14985f63f029b7bb9a47c4b1f5",
+      "count": 8,
+      "pass": 8,
+      "fail": 0
+    },
+    {
+      "receipt": "entry-controls.json",
+      "sha256": "90254fbf2a5dab521ca0b05ccd22e34d61341ca3e8fa96d424a089e8a5a3e82b",
+      "count": 6,
+      "pass": 6,
+      "fail": 0
+    }
+  ],
+  "total_control_invocations": 49,
+  "confirmed_open_findings": 0,
+  "closed_findings": [
+    "V1 missing/foreign native task proof accepted",
+    "V1 retained UNKNOWN cluster teardown attempted",
+    "V2 incomplete worker tuple, owner mismatch, boolean PID accepted",
+    "V3 invalid native births and boolean schema accepted",
+    "V4 private intent/actual worker JSON numeric coercion accepted"
+  ],
+  "first_failures_preserved": [
+    "../preliminary-review-v1.json",
+    "../launcher-v2/controls.json",
+    "../launcher-v3/review.json",
+    "../launcher-v4/review.json"
+  ],
+  "source_entry": {
+    "default_and_explicit_local_delegate": true,
+    "local_arguments_preserved": true,
+    "four_explicit_remote_families_have_unchanged_suffix": true,
+    "base": "7f1720d950446638ff9b15a0e4e167f3e8e26e43"
+  },
+  "cleanup": {
+    "UNKNOWN_missing_public_reconciliation_retains_no_down": true,
+    "command_failure_missing_proof_Docker_query_failure_down_failure_stays_FAIL": true,
+    "own_native_children": 4,
+    "exit_statuses": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "all_actual_native_children_reaped_absent": true,
+    "all_44_own_temporary_directories_absent": true
+  },
+  "verification": [
+    "bash -n copied e2e/local.sh",
+    "bash -n copied e2e/run.sh",
+    "ast.parse copied verify-local-result.py",
+    "actual copied helper CLI; private 0600 receipts/0700 directories; native JDK25 child identity/waitFor/death",
+    "actual cleanup native Bash with neutral compose/docker shell command stand-ins",
+    "actual native Bash entry branches with neutral argument-only local command"
+  ],
+  "scope_limits": {
+    "actual_Gradle_task_proof": "NOT_EXECUTED_THIS_REVIEW",
+    "actual_Kafka_Docker_business": "NOT_EXECUTED_THIS_REVIEW",
+    "Fury_Sandbox_KVS_Toolkit": "NOT_EXECUTED",
+    "metadata_receipts": "CONTROL_INPUTS_ONLY_NOT_BACKEND_OR_ACTUAL_GRADLE_CERTIFICATION",
+    "physical_author_first_failure": "343 tests/309 failures reported by root; no independent physical reproduction yet",
+    "full_clean_clone_suite": "PENDING_FROZEN_COMMIT_AND_SERIAL_GRADLE_SLOT"
+  },
+  "author_source_edits": 0
+}

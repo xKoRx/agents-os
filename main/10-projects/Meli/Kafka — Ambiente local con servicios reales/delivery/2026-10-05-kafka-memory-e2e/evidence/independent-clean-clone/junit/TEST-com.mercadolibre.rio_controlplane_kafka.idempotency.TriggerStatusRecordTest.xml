@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.idempotency.TriggerStatusRecordTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.937Z" time="0.005">
+  <testcase name="inProgressFactorySetsStateAndStartedAt()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.TriggerStatusRecordTest" time="0.0" />
+  <testcase name="publishPendingFactorySetsNonTerminalState()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.TriggerStatusRecordTest" time="0.001" />
+  <testcase name="withStartedAtRefreshesTimestampForTakeover()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.TriggerStatusRecordTest" time="0.0" />
+  <testcase name="failedTransitionCarriesOutcomeCode()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.TriggerStatusRecordTest" time="0.0" />
+  <testcase name="recordIsRoundTrippableThroughProjectObjectMapperConventions()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.TriggerStatusRecordTest" time="0.001" />
+  <testcase name="inProgressJsonOmitsNullFields()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.TriggerStatusRecordTest" time="0.001" />
+  <testcase name="completedTransitionPreservesStartedAtAndSetsFinishedAt()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.TriggerStatusRecordTest" time="0.0" />
+  <testcase name="publicationPendingJsonIsReadableByThePreviousRecordShape()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.TriggerStatusRecordTest" time="0.002" />
+  </testsuite>

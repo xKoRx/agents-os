@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.cloud.aws.AwsMskConnectionFactoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:02.379Z" time="0.003">
+  <testcase name="provider_isAwsMsk()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.aws.AwsMskConnectionFactoryTest" time="0.001" />
+  <testcase name="connect_returnsPlaintextConnection()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.aws.AwsMskConnectionFactoryTest" time="0.001" />
+  </testsuite>

@@ -1,0 +1,13 @@
+Sanitized task/build excerpt; runtime output omitted.
+Original private log SHA256: 37d1f5473245845eccdfb4f31709e954110569c2871f2c658a730fb2b7538713
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :compileRealIntegrationTestJava UP-TO-DATE
+> Task :processRealIntegrationTestResources
+> Task :realIntegrationTestClasses
+> Task :localKafkaE2ePreflight
+> Task :localKafkaE2eTest
+> Task :localKafkaE2eTest FAILED
+BUILD FAILED in 1m 58s
+6 actionable tasks: 3 executed, 3 up-to-date

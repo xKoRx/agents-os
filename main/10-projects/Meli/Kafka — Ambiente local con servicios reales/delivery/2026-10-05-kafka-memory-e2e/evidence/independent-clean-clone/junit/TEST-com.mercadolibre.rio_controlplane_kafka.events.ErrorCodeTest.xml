@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.events.ErrorCodeTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.872Z" time="0.002">
+  <testcase name="valueOfRejectsUnknownCode()" classname="com.mercadolibre.rio_controlplane_kafka.events.ErrorCodeTest" time="0.001" />
+  <testcase name="canonicalListMatchesSpec()" classname="com.mercadolibre.rio_controlplane_kafka.events.ErrorCodeTest" time="0.0" />
+  <testcase name="nameRoundTripsThroughValueOf()" classname="com.mercadolibre.rio_controlplane_kafka.events.ErrorCodeTest" time="0.0" />
+  </testsuite>

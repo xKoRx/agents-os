@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.integration.KafkaTopicControllerTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:09.470Z" time="0.083">
+  <testcase name="peekReturnsBadRequestWhenTimeoutMsIsBelowMin()" classname="com.mercadolibre.rio_controlplane_kafka.integration.KafkaTopicControllerTest" time="0.021" />
+  <testcase name="peekReturnsOkWithLargeNumMsgsAllowingPartialResult()" classname="com.mercadolibre.rio_controlplane_kafka.integration.KafkaTopicControllerTest" time="0.004" />
+  <testcase name="peekUsesLatestOffsetByDefault()" classname="com.mercadolibre.rio_controlplane_kafka.integration.KafkaTopicControllerTest" time="0.005" />
+  <testcase name="peekReturnsNotFoundWhenServiceThrowsNotFoundException()" classname="com.mercadolibre.rio_controlplane_kafka.integration.KafkaTopicControllerTest" time="0.006" />
+  <testcase name="peekReturnsInternalErrorWhenServiceThrowsRuntimeException()" classname="com.mercadolibre.rio_controlplane_kafka.integration.KafkaTopicControllerTest" time="0.01" />
+  <testcase name="peekUsesEarliestOffsetWhenSpecified()" classname="com.mercadolibre.rio_controlplane_kafka.integration.KafkaTopicControllerTest" time="0.005" />
+  <testcase name="peekReturnsBadRequestWhenTopicNameContainsInvalidCharacters()" classname="com.mercadolibre.rio_controlplane_kafka.integration.KafkaTopicControllerTest" time="0.003" />
+  <testcase name="peekReturnsOkWithOneMessageWhenServiceReturnsOneMessage()" classname="com.mercadolibre.rio_controlplane_kafka.integration.KafkaTopicControllerTest" time="0.003" />
+  <testcase name="peekReturnsBadRequestWhenNumMsgsIsBelowMin()" classname="com.mercadolibre.rio_controlplane_kafka.integration.KafkaTopicControllerTest" time="0.003" />
+  <testcase name="peekReturnsOkWithEmptyArrayWhenServiceReturnsEmptyList()" classname="com.mercadolibre.rio_controlplane_kafka.integration.KafkaTopicControllerTest" time="0.005" />
+  <testcase name="peekReturnsBadRequestWhenBrokersUrlIsBlank()" classname="com.mercadolibre.rio_controlplane_kafka.integration.KafkaTopicControllerTest" time="0.008" />
+  </testsuite>

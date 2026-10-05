@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.config.ObjectMapperConfigTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:03.296Z" time="0.008">
+  <testcase name="instantsSerializeAsIsoStringsNotEpochTimestamps()" classname="com.mercadolibre.rio_controlplane_kafka.config.ObjectMapperConfigTest" time="0.002" />
+  <testcase name="unknownPropertiesAreToleratedOnDeserialization()" classname="com.mercadolibre.rio_controlplane_kafka.config.ObjectMapperConfigTest" time="0.004" />
+  </testsuite>

@@ -1,0 +1,10 @@
+{
+  "files": {
+    "/private/tmp/kafka-e2e-discovery/colima-ssh-kill-2026-10-05-infra/delayed-shell-probe.json": "f5674645f6fe8ed2b0450414203700f25e5144a5a778027ae828419bea7e3971",
+    "/private/tmp/kafka-e2e-discovery/colima-ssh-kill-2026-10-05-infra/pid41272-info-debug.json": "cb4eb7442f8103b72a4bab239df5b05dee9c71e4d83e3f0d0c0fe5b017d730c0",
+    "/private/tmp/kafka-e2e-discovery/colima-ssh-kill-2026-10-05-infra/pid41272-system-correlation.json": "6442a97c10a1976c3a60a5701726e1395d272a2395881d2900f19a2ea5ce0e92",
+    "/private/tmp/kafka-e2e-discovery/colima-ssh-kill-2026-10-05-infra/receipt.json": "ff7eabebb54e0a9fceafb655d0ea8a537bba3eab331d5fe0a8908d27cd26a639",
+    "/private/tmp/kafka-e2e-discovery/colima-ssh-kill-2026-10-05-infra/report.md": "37e30538e295f1da6bf3bb7f18d6170b75d79b863320412f263f2d37328946f9"
+  },
+  "scope": "PRIVATE_DIAGNOSTIC_ONLY"
+}

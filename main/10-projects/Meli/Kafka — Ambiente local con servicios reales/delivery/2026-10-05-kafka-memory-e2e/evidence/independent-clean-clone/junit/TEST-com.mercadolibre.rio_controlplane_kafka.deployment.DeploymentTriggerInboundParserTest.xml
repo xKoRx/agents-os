@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:03.809Z" time="0.037">
+  <testcase name="parseBodyWithInvalidMsgReturnsInvalidPayload()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest" time="0.009" />
+  <testcase name="parseTypedEnvelopeReturnsSuccessWithTrigger()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest" time="0.001" />
+  <testcase name="parseTypedEnvelopeWithNullMsgReturnsMissingPayload()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest" time="0.0" />
+  <testcase name="parseTypedEnvelopeNullReturnsMissingPayload()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest" time="0.0" />
+  <testcase name="extractRoutingKeysReturnsEmptyWhenAllBlank()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest" time="0.001" />
+  <testcase name="parseJsonNullNodeReturnsMissingPayload()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest" time="0.001" />
+  <testcase name="parseNullBodyReturnsMissingPayload()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest" time="0.0" />
+  <testcase name="parseBodyWithNonStringRoutingKeyAtMsgRootCoercesToText()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest" time="0.007" />
+  <testcase name="parseValidBodyReturnsSuccessWithTrigger()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest" time="0.005" />
+  <testcase name="parseGcpBodyWithRoutingKeysAtMsgRootReturnsSuccessAndExtractsKeys()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest" time="0.004" />
+  <testcase name="parseBodyWithoutMsgReturnsMissingPayload()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest" time="0.001" />
+  <testcase name="parseMskBodyWithRoutingKeyAtMsgRootReturnsSuccessAndExtractsKeys()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest" time="0.004" />
+  <testcase name="parseBodyWithNullMsgReturnsMissingPayload()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.DeploymentTriggerInboundParserTest" time="0.0" />
+  </testsuite>

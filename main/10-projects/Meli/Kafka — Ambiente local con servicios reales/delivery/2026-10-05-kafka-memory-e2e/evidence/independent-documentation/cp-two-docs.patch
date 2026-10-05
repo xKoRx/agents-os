@@ -1,0 +1,26 @@
+diff --git a/e2e/LOCAL.md b/e2e/LOCAL.md
+index bf186af..6406327 100644
+--- a/e2e/LOCAL.md
++++ b/e2e/LOCAL.md
+@@ -12,7 +12,7 @@ DOCKER_CONTEXT=<owned-context> JAVA_HOME=<jdk25> ./e2e/local.sh --offline
+ DOCKER_CONTEXT=<owned-context> JAVA_HOME=<jdk25> ./e2e/local.sh --tests '*RealKafkaTriggerBridgeIntegrationTest'
+ ```
+ 
+-The launcher creates a unique Compose project/run, real trigger/result topics, loopback routing and private report directories. It runs `localKafkaE2eTest`, then stops/removes only that project's containers, volumes and network on success or failure. Startup, tests and teardown are one command. Missing dependencies, empty selection, test failures, skips, worker-exit failure or cleanup failure return nonzero. Reports are in `build/local-e2e/<run>/`: sanitized JUnit, source hashes, Kafka readiness, result.json and native worker completion. Raw Gradle/broker logs remain private. A filtered invocation proves only its selected scenarios. Corporate CI uses `.github/workflows/local-kafka-e2e.yml`; a workflow definition is not an executed job.
++The launcher creates a unique Compose project/run, real trigger/result topics, loopback routing and private report directories. It runs `localKafkaE2eTest`, then stops/removes only that project's containers, volumes and network when reconciliation confirms that no work remains. Missing or unknown reconciliation and retained work leave the owned resources intact and return failure. Startup, tests and teardown are one command. Missing dependencies, empty selection, test failures, skips, worker-exit failure or cleanup failure return nonzero. Reports are in `build/local-e2e/<run>/`: sanitized JUnit, source hashes, Kafka readiness, result.json and native worker completion. Raw Gradle/broker logs remain private. A filtered invocation proves only its selected scenarios. Corporate CI uses `.github/workflows/local-kafka-e2e.yml`; a workflow definition is not an executed job.
+ 
+ `local,real-e2e,memory-e2e` selects the native `LocalInMemoryKvsClient`, real Kafka connection/result adapters and the existing CP controllers, validators, processors, provisioners and IdempotencyGuard. Maps belong to one application context. Exclusive create assigns1; update checks CAS then increments; expiry removes stale entries, and reads copy bytes. TTL/counters are local adapter behavior. Restart clears the map; separate JVMs do not share claims. No productive Toolkit, durable recovery, cross-JVM exclusivity, KVS network outage or exactly-once guarantee is certified.
+ 
+diff --git a/meli/features/20261001-real-e2e/evidence/local-memory-2026-10-05.md b/meli/features/20261001-real-e2e/evidence/local-memory-2026-10-05.md
+index 4dea6ae..e5822f2 100644
+--- a/meli/features/20261001-real-e2e/evidence/local-memory-2026-10-05.md
++++ b/meli/features/20261001-real-e2e/evidence/local-memory-2026-10-05.md
+@@ -9,7 +9,7 @@ Native per-instance LocalInMemoryKvsClient through memory-e2e+real-e2e+local, ex
+ ## Evidence and actual limits
+ 
+ - PASS59 adapter/config/guard focused tests:17+14+28, zero failures/errors/skips; compileRealIntegrationTestJava PASS. Author log SHAe769a45f9dbabe7e660a9af54c49035714a6596e9001e0c39b17237a39231ce3.
+-- PASS845 full CP unit tests, zero failures/errors/skips; Java25/Gradle9.3.1. Unit tests do not certify Kafka business effects.
++- PASS845 full CP unit tests, zero failures/errors/skips; Java25/Gradle9.3.1. A different agent reproduced `test compileRealIntegrationTestJava` offline from a fresh detached clone of implementation commit7615b210e5b70667912b956c2f27cc0d1ebc80eb:65 classes/845 tests,0 failures/errors/skips,33 candidate paths without hash drift. Receipt SHA2c66dc4ea7a8cdc7040434ff6a4aa8d469681dc7b4a0f333b313c3671c11f033, log SHA11b5532664724e9202d30c138537c2d833b34e357743fd5caf275f9d3fa5c9f5. GenerateDocTest changed only its generated Swagger file in that own clone; the diff is preserved. Unit tests and compilation do not certify Kafka business effects.
+ - Real full attempt run48711a6c7ffa43dc88c44b2d4b1db4b1:343 invocations,309 failed,34 passed,0 skipped. Five Docker brokers healthy and internal metadata showed5 IDs. Host Kafka refused127.0.0.1:39092; first fixture describeCluster timed out, then its retained FAILED journal correctly blocked further fixtures. No completed business family. V1 launcher removed its own Docker resources after failure; UNKNOWN retention and native-result verification were subsequently strengthened, and that original result is not rewritten.
+ - Three KVS assertions failed because a test compared ErrorCode.CONFLICT(enum) with the SDK string conflict. Fixed to ErrorCode.CONFLICT.getCode(); operations/CAS oracles unchanged. Focused physical replay remains pending; the adapter unit layer is green.
+ - Own Colima0.8.1/Lima1.0.5 restart and foreground/gRPC-start attempts failed readiness after603s. Native SSH shell succeeds; SSH forwarding child41272 exited-9 at2026-10-05T18:52:39.412315Z, no stderr. Exact-window kernel reads did not establish a cause. Do not infer VPN/auth/permissions/AMFI. Own VM stopped after failure; no run containers remain. Shared colima runtime has2GiB and was not modified; default Docker is unavailable.

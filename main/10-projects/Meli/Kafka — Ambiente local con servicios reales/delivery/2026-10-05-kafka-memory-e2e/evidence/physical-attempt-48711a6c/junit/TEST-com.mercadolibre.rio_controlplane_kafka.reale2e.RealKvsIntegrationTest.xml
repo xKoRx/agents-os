@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" tests="37" skipped="0" failures="3" errors="0" timestamp="2026-10-05T18:35:42.303Z" time="6.594">
+  <testcase name="concurrentWorkersReserveOnlyOneTerminalPublicationUsingRealCas()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.047" />
+  <testcase name="[1] prefix = &quot;deployment:&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.007" />
+  <testcase name="[2] prefix = &quot;gcp-deployment:&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.002" />
+  <testcase name="[3] prefix = &quot;action:&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.002" />
+  <testcase name="[1] prefix = &quot;deployment:&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="2.134" />
+  <testcase name="[2] prefix = &quot;gcp-deployment:&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="2.131" />
+  <testcase name="[3] prefix = &quot;action:&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="2.126" />
+  <testcase name="[1] prefix = &quot;deployment:&quot;, json = &quot;not-json&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.005" />
+  <testcase name="[2] prefix = &quot;deployment:&quot;, json = &quot;{\&quot;state\&quot;:null,\&quot;started_at\&quot;:0}&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.002" />
+  <testcase name="[3] prefix = &quot;gcp-deployment:&quot;, json = &quot;not-json&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[4] prefix = &quot;gcp-deployment:&quot;, json = &quot;{\&quot;state\&quot;:null,\&quot;started_at\&quot;:0}&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[5] prefix = &quot;action:&quot;, json = &quot;not-json&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.002" />
+  <testcase name="[6] prefix = &quot;action:&quot;, json = &quot;{\&quot;state\&quot;:null,\&quot;started_at\&quot;:0}&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.002" />
+  <testcase name="[1] prefix = &quot;deployment:&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.002" />
+  <testcase name="[2] prefix = &quot;gcp-deployment:&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[3] prefix = &quot;action:&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.002" />
+  <testcase name="[1] prefix = &quot;deployment:&quot;, publicationPending = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.002" />
+  <testcase name="[2] prefix = &quot;deployment:&quot;, publicationPending = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[3] prefix = &quot;gcp-deployment:&quot;, publicationPending = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[4] prefix = &quot;gcp-deployment:&quot;, publicationPending = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[5] prefix = &quot;action:&quot;, publicationPending = false" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[6] prefix = &quot;action:&quot;, publicationPending = true" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[1] prefix = &quot;deployment:&quot;, state = &quot;COMPLETED&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[2] prefix = &quot;deployment:&quot;, state = &quot;FAILED&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[3] prefix = &quot;gcp-deployment:&quot;, state = &quot;COMPLETED&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[4] prefix = &quot;gcp-deployment:&quot;, state = &quot;FAILED&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[5] prefix = &quot;action:&quot;, state = &quot;COMPLETED&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[6] prefix = &quot;action:&quot;, state = &quot;FAILED&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[1] prefix = &quot;deployment:&quot;, age = 10000" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.002" />
+  <testcase name="[2] prefix = &quot;deployment:&quot;, age = 30000" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[3] prefix = &quot;gcp-deployment:&quot;, age = 10000" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[4] prefix = &quot;gcp-deployment:&quot;, age = 30000" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.002" />
+  <testcase name="[5] prefix = &quot;action:&quot;, age = 10000" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[6] prefix = &quot;action:&quot;, age = 30000" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001" />
+  <testcase name="[1] prefix = &quot;deployment:&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.003">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] prefix = &quot;gcp-deployment:&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.001">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[3] prefix = &quot;action:&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.0">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  </testsuite>

@@ -1,0 +1,63 @@
+FFF.........................
+======================================================================
+FAIL: test_expired_auth_fails_before_importing_the_sdk (__main__.AuthenticationConstructorContract.test_expired_auth_fails_before_importing_the_sdk) (code='SANDBOX_FURY_LOGIN_REQUIRED')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/baseline/e2e/tests/sandbox-contract.py", line 382, in test_expired_auth_fails_before_importing_the_sdk
+    sandbox.Lifecycle(Path('/unused-control-fixture'), {'scope': 'cp'})
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/baseline/e2e/sandbox.py", line 62, in __init__
+    from cli_sandbox.rest.sandboxsapi import SandboxApi
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/mock.py", line 1247, in _execute_mock_call
+    result = effect(*args, **kwargs)
+  File "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/baseline/e2e/tests/sandbox-contract.py", line 374, in import_without_sdk
+    raise AssertionError('SDK imported before authentication guard')
+AssertionError: SDK imported before authentication guard
+
+======================================================================
+FAIL: test_expired_auth_fails_before_importing_the_sdk (__main__.AuthenticationConstructorContract.test_expired_auth_fails_before_importing_the_sdk) (code='SANDBOX_ZERO_TRUST_LOGIN_REQUIRED')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/baseline/e2e/tests/sandbox-contract.py", line 382, in test_expired_auth_fails_before_importing_the_sdk
+    sandbox.Lifecycle(Path('/unused-control-fixture'), {'scope': 'cp'})
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/baseline/e2e/sandbox.py", line 62, in __init__
+    from cli_sandbox.rest.sandboxsapi import SandboxApi
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/mock.py", line 1247, in _execute_mock_call
+    result = effect(*args, **kwargs)
+  File "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/baseline/e2e/tests/sandbox-contract.py", line 374, in import_without_sdk
+    raise AssertionError('SDK imported before authentication guard')
+AssertionError: SDK imported before authentication guard
+
+======================================================================
+FAIL: test_valid_auth_preserves_sdk_construction_after_the_guard (__main__.AuthenticationConstructorContract.test_valid_auth_preserves_sdk_construction_after_the_guard)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/baseline/e2e/tests/sandbox-contract.py", line 406, in test_valid_auth_preserves_sdk_construction_after_the_guard
+    self.assertEqual(observed, ['authentication-guard', 'sdk-import', 'sdk-construction'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['sdk-import', 'sdk-construction', 'authentication-guard'] != ['authentication-guard', 'sdk-import', 'sdk-construction']
+
+First differing element 0:
+'sdk-import'
+'authentication-guard'
+
+- ['sdk-import', 'sdk-construction', 'authentication-guard']
++ ['authentication-guard', 'sdk-import', 'sdk-construction']
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.044s
+
+FAILED (failures=3)

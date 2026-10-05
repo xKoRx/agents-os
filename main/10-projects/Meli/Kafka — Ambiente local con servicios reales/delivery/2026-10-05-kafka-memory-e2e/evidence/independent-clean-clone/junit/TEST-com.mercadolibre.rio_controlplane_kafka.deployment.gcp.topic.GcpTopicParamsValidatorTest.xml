@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.386Z" time="0.004">
+  <testcase name="validateDoesNotRepeatStructuralTopicNameValidation()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" time="0.0" />
+  <testcase name="validateRejectsRetentionMsBelowMinusOne()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" time="0.001" />
+  <testcase name="validateDoesNotRepeatStructuralPartitionsLowerBoundValidation()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" time="0.0" />
+  <testcase name="validateRejectsPartitionsExceedingMax()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" time="0.0" />
+  <testcase name="validateAcceptsRetentionMsOfOne()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" time="0.0" />
+  <testcase name="validatePassesForMinimalValidParams()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" time="0.0" />
+  <testcase name="validateRejectsRetentionMsExceedingMax()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" time="0.001" />
+  <testcase name="validateDoesNotRepeatStructuralTopicNamePatternValidation()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" time="0.0" />
+  <testcase name="validatePassesForValidParams()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" time="0.0" />
+  <testcase name="validateRejectsTopicNameExceedingMaxLength()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" time="0.0" />
+  <testcase name="validatePassesForInfiniteRetentionMinusOne()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" time="0.0" />
+  <testcase name="validateDeprovisionRejectsTopicNameExceedingMaxLength()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" time="0.0" />
+  <testcase name="validateRejectsRetentionMsOfZero()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" time="0.0" />
+  <testcase name="validateDeprovisionPassesForValidTopicName()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" time="0.0" />
+  <testcase name="validateDeprovisionDoesNotRepeatStructuralTopicNameValidation()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicParamsValidatorTest" time="0.0" />
+  </testsuite>

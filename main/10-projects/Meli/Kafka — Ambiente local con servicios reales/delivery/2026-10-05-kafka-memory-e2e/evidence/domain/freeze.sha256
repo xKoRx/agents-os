@@ -1,0 +1,6 @@
+2bebca88a351d891103acbc9b19f9093772219c655f75e536cdfdfa87eb68c31  /private/tmp/kafka-e2e-memory-20261005/domain-evidence/freeze.json
+79e84095ae6e8e18ca8a5d32dea4d95c288766fc824f93f3c59663cfbab3d008  /private/tmp/kafka-e2e-memory-20261005/domain-evidence/handoff.md
+549915820bea132542f641fbfa01dfd180077dfcfcd4e059bac3d1834a486f9d  /private/tmp/kafka-e2e-memory-20261005/cp/src/main/java/com/mercadolibre/rio_controlplane_kafka/reale2e/LocalInMemoryKvsClient.java
+85094a799441f712acefc7eaa73e6194c746be5c541944b38c15ea1733433896  /private/tmp/kafka-e2e-memory-20261005/cp/src/test/java/com/mercadolibre/rio_controlplane_kafka/reale2e/LocalInMemoryKvsClientTest.java
+4093d682c748aad532affc147739dab0a3ea77720734f36ecdf3b6381ada3b98  /private/tmp/kafka-e2e-memory-20261005/cp/src/main/java/com/mercadolibre/rio_controlplane_kafka/config/KvsConfig.java
+9e2782516f429b8a606b02a42e8878f6e763feaaf39f74a690edd04e7c836c50  /private/tmp/kafka-e2e-memory-20261005/cp/src/test/java/com/mercadolibre/rio_controlplane_kafka/config/KvsConfigTest.java

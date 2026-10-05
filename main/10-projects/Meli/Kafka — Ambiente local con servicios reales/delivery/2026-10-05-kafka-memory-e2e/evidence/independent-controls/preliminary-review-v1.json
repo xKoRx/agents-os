@@ -1,0 +1,239 @@
+{
+  "utc": "2026-10-05T18:40:34.738228+00:00",
+  "status": "CHANGES_REQUESTED_PROVISIONAL_UNFROZEN_LAUNCHER",
+  "scope": "READONLY_SOURCE_AND_NATIVE_SHELL_PRIVATE_FS_METADATA_CONTROLS_ONLY",
+  "source": {
+    "source": "/private/tmp/kafka-e2e-memory-20261005/cp/e2e/local.sh",
+    "sha256": "c172a79671f2d1373a9c57855f1676903732ab3cfd9b116bb432709e3c0cd676",
+    "phase": "UNFROZEN_AUTHOR_TREE_OBSERVATION_ONLY"
+  },
+  "findings": [
+    {
+      "priority": 2,
+      "path": "/private/tmp/kafka-e2e-memory-20261005/cp/e2e/local.sh",
+      "lines": [
+        82,
+        89,
+        90
+      ],
+      "title": "PASS report ignores this run native task completion proof",
+      "observed_cases": [
+        "nonempty-missing-native-proof",
+        "nonempty-foreign-native-proof"
+      ],
+      "actual": "Both neutral cases exit0/PASS despite absent or foreign-run proof. Counts and command_exit alone decide result.",
+      "fix": "Require exact current run/task completion metadata and complete native worker evidence, match actual counts and reject missing/unknown proof before publishing PASS.",
+      "root_status": "ACK_FIX_PENDING"
+    },
+    {
+      "priority": 2,
+      "path": "/private/tmp/kafka-e2e-memory-20261005/cp/e2e/local.sh",
+      "lines": [
+        70,
+        72,
+        89,
+        90
+      ],
+      "title": "UNKNOWN work does not retain the Kafka namespace or prevent PASS",
+      "observed_case": "nonempty-retained-UNKNOWN",
+      "actual": "Run-owned unknown marker remains but down is invoked and result is PASS.",
+      "fix": "Use actual reconciliation status before destructive down; nonclean/unknown enumeration retains cluster, records FAIL, and keeps evidence for explicit diagnostic reconciliation.",
+      "root_status": "ACK_MEMORY_CHANGES_BACKEND_ONLY_EXISTING_RETENTION_POLICY_APPLIES"
+    }
+  ],
+  "controls": {
+    "phase": "UNFROZEN_SOURCE_OBSERVATION_ONLY",
+    "source_sha256": "c172a79671f2d1373a9c57855f1676903732ab3cfd9b116bb432709e3c0cd676",
+    "records": [
+      {
+        "case": "nonempty-missing-native-proof",
+        "exit": 0,
+        "result": {
+          "run_id": "local-control-nonempty-missing-native-proof",
+          "family": "CP_LOCAL_KAFKA_MEMORY",
+          "backend": "PER_INSTANCE_MEMORY",
+          "verdict": "PASS",
+          "command_exit": 0,
+          "cleanup": "PASS",
+          "totals": {
+            "tests": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        },
+        "neutral_compose_down_invoked": true,
+        "own_marker_retained": false,
+        "real_Docker_Kafka_API_or_business_calls": 0
+      },
+      {
+        "case": "nonempty-foreign-native-proof",
+        "exit": 0,
+        "result": {
+          "run_id": "local-control-nonempty-foreign-native-proof",
+          "family": "CP_LOCAL_KAFKA_MEMORY",
+          "backend": "PER_INSTANCE_MEMORY",
+          "verdict": "PASS",
+          "command_exit": 0,
+          "cleanup": "PASS",
+          "totals": {
+            "tests": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        },
+        "neutral_compose_down_invoked": true,
+        "own_marker_retained": false,
+        "real_Docker_Kafka_API_or_business_calls": 0
+      },
+      {
+        "case": "nonempty-retained-UNKNOWN",
+        "exit": 0,
+        "result": {
+          "run_id": "local-control-nonempty-retained-UNKNOWN",
+          "family": "CP_LOCAL_KAFKA_MEMORY",
+          "backend": "PER_INSTANCE_MEMORY",
+          "verdict": "PASS",
+          "command_exit": 0,
+          "cleanup": "PASS",
+          "totals": {
+            "tests": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        },
+        "neutral_compose_down_invoked": true,
+        "own_marker_retained": true,
+        "real_Docker_Kafka_API_or_business_calls": 0
+      },
+      {
+        "case": "empty-selection",
+        "exit": 1,
+        "result": {
+          "run_id": "local-control-empty-selection",
+          "family": "CP_LOCAL_KAFKA_MEMORY",
+          "backend": "PER_INSTANCE_MEMORY",
+          "verdict": "FAIL",
+          "command_exit": 0,
+          "cleanup": "PASS",
+          "totals": {
+            "tests": 0,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        },
+        "neutral_compose_down_invoked": true,
+        "own_marker_retained": false,
+        "real_Docker_Kafka_API_or_business_calls": 0
+      },
+      {
+        "case": "skipped-selection",
+        "exit": 1,
+        "result": {
+          "run_id": "local-control-skipped-selection",
+          "family": "CP_LOCAL_KAFKA_MEMORY",
+          "backend": "PER_INSTANCE_MEMORY",
+          "verdict": "FAIL",
+          "command_exit": 0,
+          "cleanup": "PASS",
+          "totals": {
+            "tests": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 1
+          }
+        },
+        "neutral_compose_down_invoked": true,
+        "own_marker_retained": false,
+        "real_Docker_Kafka_API_or_business_calls": 0
+      },
+      {
+        "case": "failed-selection",
+        "exit": 1,
+        "result": {
+          "run_id": "local-control-failed-selection",
+          "family": "CP_LOCAL_KAFKA_MEMORY",
+          "backend": "PER_INSTANCE_MEMORY",
+          "verdict": "FAIL",
+          "command_exit": 0,
+          "cleanup": "PASS",
+          "totals": {
+            "tests": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0
+          }
+        },
+        "neutral_compose_down_invoked": true,
+        "own_marker_retained": false,
+        "real_Docker_Kafka_API_or_business_calls": 0
+      },
+      {
+        "case": "failed-command",
+        "exit": 1,
+        "result": {
+          "run_id": "local-control-failed-command",
+          "family": "CP_LOCAL_KAFKA_MEMORY",
+          "backend": "PER_INSTANCE_MEMORY",
+          "verdict": "FAIL",
+          "command_exit": 1,
+          "cleanup": "PASS",
+          "totals": {
+            "tests": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        },
+        "neutral_compose_down_invoked": true,
+        "own_marker_retained": false,
+        "real_Docker_Kafka_API_or_business_calls": 0
+      },
+      {
+        "case": "failed-docker-query",
+        "exit": 1,
+        "result": {
+          "run_id": "local-control-failed-docker-query",
+          "family": "CP_LOCAL_KAFKA_MEMORY",
+          "backend": "PER_INSTANCE_MEMORY",
+          "verdict": "FAIL",
+          "command_exit": 1,
+          "cleanup": "FAIL",
+          "totals": {
+            "tests": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        },
+        "neutral_compose_down_invoked": true,
+        "own_marker_retained": false,
+        "real_Docker_Kafka_API_or_business_calls": 0
+      }
+    ],
+    "owned_FS_directories_reaped": 8
+  },
+  "non_findings_observed": [
+    "Instance synchronization orders local create/CAS/delete/close and prevents closed-store repopulation; no mutable static store.",
+    "KvsConfig selects memory only for local+real-e2e+memory-e2e; normal Toolkit builder behavior is unchanged.",
+    "Memory profile excludes productive Toolkit observer/preflight. Native taskproof memory branch uses empty productive generation list and does not emit productive KVS receipts.",
+    "Empty, failed, skipped, command-failed and Docker-query-failed neutral report cases all return FAIL."
+  ],
+  "readiness_note": {
+    "source_lines": [
+      100,
+      101
+    ],
+    "fact": "Broker readiness runs inside broker1, not from the actual CP host bootstrap endpoint.",
+    "root_runtime_context": "Root reports first full run failed; host connection/Colima forwarding under investigation. No independent physical run by this reviewer.",
+    "recommendation": "Probe actual host AdminClient describeCluster/readiness before whole suite to distinguish forwarding/listener failure from business assertions."
+  },
+  "original_or_author_repo_edits": 0,
+  "Gradle_runs": 0,
+  "real_Docker_Kafka_API_business_calls": 0,
+  "final_tree_certificate": false,
+  "remaining": "Wait frozen launcher/build/profile/fixtures, recheck red controls then independently reproduce clean final suite in coordinated slot."
+}

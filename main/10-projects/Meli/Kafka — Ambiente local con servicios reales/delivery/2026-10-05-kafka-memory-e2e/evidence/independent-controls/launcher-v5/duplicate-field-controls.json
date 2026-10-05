@@ -1,0 +1,47 @@
+{
+  "scope": "CLI_METADATA_PRIVATE_FS_AND_OWN_NATIVE_PROCESS_ONLY_NOT_ACTUAL_GRADLE_OR_BACKEND",
+  "native_identity": {
+    "pid": 46579,
+    "birth": "2026-10-05T18:58:45.989Z",
+    "owner_pid": 46578,
+    "owner_birth": "2026-10-05T18:58:45.915Z"
+  },
+  "native_child_exit_status": 0,
+  "actual_own_native_child_absent": true,
+  "controls": [
+    {
+      "case": "complete-control-metadata",
+      "expected": "PASS",
+      "actual": "PASS",
+      "exit": 0,
+      "native_task_proof": true,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "duplicate-proof-field",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "duplicate-intent-field",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "duplicate-worker-field",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    }
+  ],
+  "own_FS_directories_absent": 4,
+  "real_Gradle_Kafka_Docker_Fury_API_business_calls": 0
+}

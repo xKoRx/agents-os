@@ -1,0 +1,44 @@
+{
+  "source_head": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+  "results": [
+    {
+      "tree": "baseline",
+      "command": [
+        "python3",
+        "-B",
+        "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/baseline/e2e/tests/sandbox-contract.py"
+      ],
+      "exit_status": 1,
+      "log_sha256": "a893b6d333c53a5d9b33cb8f43f0098e9b282f62b0c7c587a22e894dbce2eb35",
+      "tail": [
+        "+ ['authentication-guard', 'sdk-import', 'sdk-construction']",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 27 tests in 0.044s",
+        "",
+        "FAILED (failures=3)"
+      ]
+    },
+    {
+      "tree": "candidate",
+      "command": [
+        "python3",
+        "-B",
+        "/private/tmp/kafka-e2e-discovery/cp-kvs-resume-2026-10-05-auth-order/candidate/e2e/tests/sandbox-contract.py"
+      ],
+      "exit_status": 0,
+      "log_sha256": "c34c9f6f3f7303702def3c593f220cb84ff6a897c913fcc8ca8121b9ac0e2222",
+      "tail": [
+        "...........................",
+        "----------------------------------------------------------------------",
+        "Ran 27 tests in 0.045s",
+        "",
+        "OK"
+      ]
+    }
+  ],
+  "scope": "SYNTHETIC_LAUNCHER_CONSTRUCTOR_CONTROLS_ONLY",
+  "remote_api_calls": 0,
+  "auth_renewals": 0,
+  "full_cp_e2e": "NOT_EXECUTED"
+}

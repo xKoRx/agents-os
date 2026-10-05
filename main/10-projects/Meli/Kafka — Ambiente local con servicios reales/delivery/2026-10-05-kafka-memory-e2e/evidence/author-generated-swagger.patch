@@ -1,0 +1,15 @@
+diff --git a/docs/specs/swagger.yaml b/docs/specs/swagger.yaml
+index 729daf6..eea3038 100644
+--- a/docs/specs/swagger.yaml
++++ b/docs/specs/swagger.yaml
+@@ -10,8 +10,8 @@
+     "version" : "@project.version@"
+   },
+   "servers" : [ {
+-    "url" : "https://prod_rio-controlplane-kafka.furyapps.io",
+-    "description" : "Scope prod"
++    "url" : "http://localhost:8080",
++    "description" : "Scope local"
+   } ],
+   "paths" : {
+     "/triggers/deployments" : {

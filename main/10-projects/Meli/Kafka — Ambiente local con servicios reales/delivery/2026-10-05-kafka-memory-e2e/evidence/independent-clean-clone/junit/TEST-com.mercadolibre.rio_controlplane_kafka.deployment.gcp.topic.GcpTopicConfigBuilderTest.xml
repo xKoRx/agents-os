@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicConfigBuilderTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.372Z" time="0.003">
+  <testcase name="buildAddsDefaultCleanupPolicyWhenAbsent()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicConfigBuilderTest" time="0.001" />
+  <testcase name="buildForUpdateSkipsInvalidExplicitZeroRetention()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicConfigBuilderTest" time="0.0" />
+  <testcase name="buildMergesParamsConfigsWithRetentionAndCleanup()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicConfigBuilderTest" time="0.0" />
+  <testcase name="buildForUpdateOmitsConfigsWhenRetentionAbsent()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicConfigBuilderTest" time="0.0" />
+  <testcase name="buildWithNoRetentionUsesDefaultRetentionMsAndCleanupPolicy()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicConfigBuilderTest" time="0.0" />
+  <testcase name="buildSkipsExplicitZeroRetentionAndUsesDefault()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicConfigBuilderTest" time="0.001" />
+  <testcase name="buildForUpdateIncludesRetentionMsWhenExplicit()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicConfigBuilderTest" time="0.0" />
+  <testcase name="buildForUpdateIncludesRetentionMsWhenMinusOne()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicConfigBuilderTest" time="0.001" />
+  <testcase name="buildAddsRetentionMsWhenPresent()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicConfigBuilderTest" time="0.0" />
+  <testcase name="buildPreservesExistingCleanupPolicy()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicConfigBuilderTest" time="0.0" />
+  <testcase name="buildAddsRetentionMsWhenMinusOne()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.topic.GcpTopicConfigBuilderTest" time="0.0" />
+  </testsuite>

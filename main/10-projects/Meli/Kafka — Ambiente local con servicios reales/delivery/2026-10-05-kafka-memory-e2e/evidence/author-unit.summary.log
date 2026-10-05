@@ -1,0 +1,13 @@
+Sanitized task/build excerpt; runtime output omitted.
+Original private log SHA256: 7863aa34135fc24c9239459835b23eb950e0b2433372fa5758c5554975284734
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :cleanTest
+> Task :compileTestJava UP-TO-DATE
+> Task :processTestResources UP-TO-DATE
+> Task :testClasses UP-TO-DATE
+> Task :test
+> Task :test
+BUILD SUCCESSFUL in 21s
+6 actionable tasks: 2 executed, 4 up-to-date

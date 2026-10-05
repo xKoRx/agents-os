@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.config.CorrelationIdFilterTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:02.557Z" time="0.156">
+  <testcase name="sanitizesControlCharsAndTruncatesLongValues()" classname="com.mercadolibre.rio_controlplane_kafka.config.CorrelationIdFilterTest" time="0.152" />
+  <testcase name="usesHeaderValueWhenPresent()" classname="com.mercadolibre.rio_controlplane_kafka.config.CorrelationIdFilterTest" time="0.001" />
+  <testcase name="fallsBackToGeneratedIdWhenHeaderMissing()" classname="com.mercadolibre.rio_controlplane_kafka.config.CorrelationIdFilterTest" time="0.001" />
+  <testcase name="fallsBackWhenHeaderBlank()" classname="com.mercadolibre.rio_controlplane_kafka.config.CorrelationIdFilterTest" time="0.0" />
+  <testcase name="sanitizeAllowListNeutralizesAnsiNulAndC1Controls()" classname="com.mercadolibre.rio_controlplane_kafka.config.CorrelationIdFilterTest" time="0.001" />
+  <testcase name="clearsMdcAfterChain()" classname="com.mercadolibre.rio_controlplane_kafka.config.CorrelationIdFilterTest" time="0.0" />
+  </testsuite>

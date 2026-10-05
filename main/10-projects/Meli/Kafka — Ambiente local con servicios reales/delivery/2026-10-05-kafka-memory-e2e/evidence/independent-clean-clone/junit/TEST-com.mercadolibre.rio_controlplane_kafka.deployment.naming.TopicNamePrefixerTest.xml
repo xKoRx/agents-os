@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.865Z" time="0.001">
+  <testcase name="legacyTestAndSandboxAliasesUseStagingPrefix()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest" time="0.0" />
+  <testcase name="returnsParamsUnchangedWhenTopicNameNotAString()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest" time="0.0" />
+  <testcase name="throwsWhenEnvironmentNullButTopicNamePresent()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest" time="0.0" />
+  <testcase name="throwsWhenPrefixParamMissing()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest" time="0.001" />
+  <testcase name="returnedMapIsACopyAndOriginalIsUnchanged()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest" time="0.0" />
+  <testcase name="fallsBackToLegacyPrefixKeyWhenPrimaryKeyAbsent()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest" time="0.0" />
+  <testcase name="returnsNullWhenParamsNull()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest" time="0.0" />
+  <testcase name="appliesStagingPrefixForStagingEnvironment()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest" time="0.0" />
+  <testcase name="returnsParamsUnchangedWhenTopicNameBlank()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest" time="0.0" />
+  <testcase name="appliesProductionPrefixForProductionEnvironment()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest" time="0.0" />
+  <testcase name="throwsWhenEnvironmentInvalidButTopicNamePresent()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest" time="0.0" />
+  <testcase name="returnsParamsUnchangedWhenTopicNameMissing()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest" time="0.0" />
+  <testcase name="legacyProdAliasUsesProductionPrefix()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest" time="0.0" />
+  <testcase name="throwsWhenEnvironmentBlankButTopicNamePresent()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.naming.TopicNamePrefixerTest" time="0.0" />
+  </testsuite>

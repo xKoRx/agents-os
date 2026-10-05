@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.events.DeploymentResultPublisherTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.866Z" time="0.006">
+  <testcase name="serializedErrorDetailsContainsOnlySanitizedKeys()" classname="com.mercadolibre.rio_controlplane_kafka.events.DeploymentResultPublisherTest" time="0.004" />
+  <testcase name="publishCompletedSendsEnvelopeWithCompletedStatusAndOutput()" classname="com.mercadolibre.rio_controlplane_kafka.events.DeploymentResultPublisherTest" time="0.001" />
+  <testcase name="publishFailedSendsEnvelopeWithFailedStatusAndErrorPayload()" classname="com.mercadolibre.rio_controlplane_kafka.events.DeploymentResultPublisherTest" time="0.0" />
+  <testcase name="publishUsesDeploymentResultTopicForAllStatuses()" classname="com.mercadolibre.rio_controlplane_kafka.events.DeploymentResultPublisherTest" time="0.0" />
+  <testcase name="publishStartedSendsEnvelopeWithStartedStatusAndNullOutputAndError()" classname="com.mercadolibre.rio_controlplane_kafka.events.DeploymentResultPublisherTest" time="0.0" />
+  <testcase name="doesNotPropagateWhenSendThrows()" classname="com.mercadolibre.rio_controlplane_kafka.events.DeploymentResultPublisherTest" time="0.001" />
+  <testcase name="publishesAllErrorCodesUsingEnumNameAsWireFormat()" classname="com.mercadolibre.rio_controlplane_kafka.events.DeploymentResultPublisherTest" time="0.0" />
+  </testsuite>

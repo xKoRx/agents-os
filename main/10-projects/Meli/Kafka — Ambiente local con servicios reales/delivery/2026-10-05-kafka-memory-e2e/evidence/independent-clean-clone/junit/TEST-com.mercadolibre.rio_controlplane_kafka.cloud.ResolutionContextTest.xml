@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.cloud.ResolutionContextTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:02.359Z" time="0.001">
+  <testcase name="routingKeys_isDefensivelyCopiedAndImmutable()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.ResolutionContextTest" time="0.0" />
+  <testcase name="ofEnvironment_carriesEnvironmentIdAndEmptyKeys()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.ResolutionContextTest" time="0.0" />
+  <testcase name="nullRoutingKeys_normalizedToEmptyMap()" classname="com.mercadolibre.rio_controlplane_kafka.cloud.ResolutionContextTest" time="0.001" />
+  </testsuite>

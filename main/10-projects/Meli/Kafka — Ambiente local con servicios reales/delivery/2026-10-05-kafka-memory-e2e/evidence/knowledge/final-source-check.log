@@ -1,0 +1,18 @@
+SOURCE_FILE_CHECK_PASS candidate=7615b210e5b70667912b956c2f27cc0d1ebc80eb files=17
+e2e/local.sh
+e2e/run.sh
+e2e/LOCAL.md
+e2e/verify-local-result.py
+build.gradle
+src/main/resources/application-memory-e2e.yml
+src/main/java/com/mercadolibre/rio_controlplane_kafka/reale2e/LocalInMemoryKvsClient.java
+src/main/java/com/mercadolibre/rio_controlplane_kafka/config/KvsConfig.java
+src/test/java/com/mercadolibre/rio_controlplane_kafka/reale2e/LocalInMemoryKvsClientTest.java
+src/test/java/com/mercadolibre/rio_controlplane_kafka/config/KvsConfigTest.java
+src/test/java/com/mercadolibre/rio_controlplane_kafka/idempotency/IdempotencyGuardTest.java
+.github/workflows/local-kafka-e2e.yml
+meli/features/20261001-real-e2e/evidence/local-memory-2026-10-05.md
+meli/features/20261001-real-e2e/local-coverage-matrix.tsv
+meli/features/20261001-real-e2e/1-functional/spec.md
+meli/features/20261001-real-e2e/2-technical/spec.md
+meli/features/20261001-real-e2e/3-tasks/tasks.md

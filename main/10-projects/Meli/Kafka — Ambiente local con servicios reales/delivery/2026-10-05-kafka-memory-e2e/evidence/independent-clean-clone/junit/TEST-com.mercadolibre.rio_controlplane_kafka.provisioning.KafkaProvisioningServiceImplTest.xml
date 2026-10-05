@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" tests="49" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:15.898Z" time="0.074">
+  <testcase name="provisionFailsReplicationFactorConflictWhenReplicationWouldDecrease()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.035" />
+  <testcase name="deprovisionDeletesExistingTopic()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="provisionReconcilesConfigsWhenRequestedConfigDiffers()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.002" />
+  <testcase name="provisionReconcileFailsWhenDescribeConfigsInterrupted()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="updateReturnsKafkaAdminErrorWhenCreatePartitionsFails()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="provisionReconcileOmitsRetentionMsWhenCurrentConfigValueIsNonNumeric()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="updateInterruptedWhileChangingPartitionsReturnsInternal()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="provisionIncreasesPartitionsWhenRequestedHigher()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="provisionReconcileWithEmptyPartitionListFails()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="provisionCreateTopicRedactsCredentialShapedSaslJaasMessage()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.002" />
+  <testcase name="provisionFailsWithoutMutatingWhenPartitionsIncreaseButReplicationWouldDecrease()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="deprovisionInterruptedWhileDeletingTopicReturnsInternal()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="provisionReconcileNoOpReportsRetentionMsFromExplicitTriggerValue()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="provisionReconcileTimeoutDuringPartitionIncreaseReturnsTimeout()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="provisionCreateTopicReturnsTimeoutWhenFutureTimesOut()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="updateTimeoutDuringPartitionIncreaseReturnsTimeout()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="provisionReconcileRedescribeAfterPartitionIncreaseReturnsNotFoundWhenTopicGone()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="updateReturnsResourceNotFoundWhenTopicDoesNotExist()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.002" />
+  <testcase name="provisionReconcileInterruptedDuringPartitionIncreaseReturnsInternal()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.003" />
+  <testcase name="provisionReconcileTreatsNullConfigResponseAsEmptyAndReconciles()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.002" />
+  <testcase name="provisionFailsTopicPartitionConflictWhenPartitionsWouldDecrease()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="provisionReturnsInvalidParamsWhenValidatorThrows()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="provisionReconcilesAfterTopicExistsExceptionDuringCreate()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="updateIncreasesPartitionsAndAppliesConfigs()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="updateRejectsPartitionsReductionAsTopicPartitionConflict()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="deprovisionReturnsKafkaAdminErrorWhenDeleteFails()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="provisionIsIdempotentWhenTopicAlreadyExistsWithSameConfig()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="updateRedescribeAfterPartitionIncreaseReturnsNotFoundWhenTopicGone()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="deprovisionTimeoutDuringDeleteReturnsTimeout()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="provisionFailsReplicationFactorConflictWhenOnlyNonFirstPartitionExceedsTarget()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="updateAppliesArbitraryConfigsMapWithoutChangingPartitions()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="provisionInterruptedWhileCreatingTopicReturnsInternal()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="provisionIncreasesReplicationFactorWhenRequestedHigher()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="deprovisionReturnsAlreadyAbsentWhenTopicDoesNotExist()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="provisionDescribeOutputDefaultsReplicationFactorToZeroWhenPartitionsEmpty()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="provisionTopicExistsRaceWithRedescribeFailureReturnsKafkaAdminError()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="provisionCreatesTopicWhenNotPresent()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="describe &quot;timeout&quot; during &quot;PROVISION&quot; must fail closed" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.002" />
+  <testcase name="describe &quot;timeout&quot; during &quot;UPDATE&quot; must fail closed" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="describe &quot;timeout&quot; during &quot;DEPROVISION&quot; must fail closed" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="describe &quot;auth&quot; during &quot;PROVISION&quot; must fail closed" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="describe &quot;auth&quot; during &quot;UPDATE&quot; must fail closed" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="describe &quot;auth&quot; during &quot;DEPROVISION&quot; must fail closed" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="describe &quot;interrupt&quot; during &quot;PROVISION&quot; must fail closed" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="describe &quot;interrupt&quot; during &quot;UPDATE&quot; must fail closed" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="describe &quot;interrupt&quot; during &quot;DEPROVISION&quot; must fail closed" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="updateIncreasesReplicationFactorWhenRequestedHigher()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  <testcase name="updateWithEmptyPartitionListFails()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.0" />
+  <testcase name="provisionReconcileFailsWhenDescribeConfigsTimesOut()" classname="com.mercadolibre.rio_controlplane_kafka.provisioning.KafkaProvisioningServiceImplTest" time="0.001" />
+  </testsuite>

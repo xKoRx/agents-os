@@ -1,0 +1,85 @@
+{
+  "outcome": "AUTHOR_TARGETED_UNIT_AND_COMPILE_PASS_PENDING_INDEPENDENT_PEER",
+  "utc": "2026-10-05T18:34:33.106193+00:00",
+  "baseline_commit": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+  "branch": "feature/kafka-e2e-memory",
+  "files": [
+    {
+      "path": "/private/tmp/kafka-e2e-memory-20261005/cp/src/main/java/com/mercadolibre/rio_controlplane_kafka/reale2e/LocalInMemoryKvsClient.java",
+      "relative_path": "src/main/java/com/mercadolibre/rio_controlplane_kafka/reale2e/LocalInMemoryKvsClient.java",
+      "sha256": "549915820bea132542f641fbfa01dfd180077dfcfcd4e059bac3d1834a486f9d",
+      "snapshot": "/private/tmp/kafka-e2e-memory-20261005/domain-evidence/frozen-source/src/main/java/com/mercadolibre/rio_controlplane_kafka/reale2e/LocalInMemoryKvsClient.java"
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-memory-20261005/cp/src/test/java/com/mercadolibre/rio_controlplane_kafka/reale2e/LocalInMemoryKvsClientTest.java",
+      "relative_path": "src/test/java/com/mercadolibre/rio_controlplane_kafka/reale2e/LocalInMemoryKvsClientTest.java",
+      "sha256": "85094a799441f712acefc7eaa73e6194c746be5c541944b38c15ea1733433896",
+      "snapshot": "/private/tmp/kafka-e2e-memory-20261005/domain-evidence/frozen-source/src/test/java/com/mercadolibre/rio_controlplane_kafka/reale2e/LocalInMemoryKvsClientTest.java"
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-memory-20261005/cp/src/main/java/com/mercadolibre/rio_controlplane_kafka/config/KvsConfig.java",
+      "relative_path": "src/main/java/com/mercadolibre/rio_controlplane_kafka/config/KvsConfig.java",
+      "sha256": "4093d682c748aad532affc147739dab0a3ea77720734f36ecdf3b6381ada3b98",
+      "snapshot": "/private/tmp/kafka-e2e-memory-20261005/domain-evidence/frozen-source/src/main/java/com/mercadolibre/rio_controlplane_kafka/config/KvsConfig.java"
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-memory-20261005/cp/src/test/java/com/mercadolibre/rio_controlplane_kafka/config/KvsConfigTest.java",
+      "relative_path": "src/test/java/com/mercadolibre/rio_controlplane_kafka/config/KvsConfigTest.java",
+      "sha256": "9e2782516f429b8a606b02a42e8878f6e763feaaf39f74a690edd04e7c836c50",
+      "snapshot": "/private/tmp/kafka-e2e-memory-20261005/domain-evidence/frozen-source/src/test/java/com/mercadolibre/rio_controlplane_kafka/config/KvsConfigTest.java"
+    }
+  ],
+  "unit_results": {
+    "LocalInMemoryKvsClientTest": 17,
+    "KvsConfigTest": 14,
+    "IdempotencyGuardTest": 28,
+    "tests": 59,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "junit_xml": [
+    {
+      "path": "/private/tmp/kafka-e2e-memory-20261005/domain-evidence/junit-xml/TEST-com.mercadolibre.rio_controlplane_kafka.reale2e.LocalInMemoryKvsClientTest.xml",
+      "sha256": "6462d6edb484d892d286420237ae9ba8d6fa62151d0a00f5cde7483fde0aca30"
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-memory-20261005/domain-evidence/junit-xml/TEST-com.mercadolibre.rio_controlplane_kafka.config.KvsConfigTest.xml",
+      "sha256": "62d02c0e615f4676a4afe389bfdf8bfe78de6ca6f1ecee69e636e70651343ded"
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-memory-20261005/domain-evidence/junit-xml/TEST-com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest.xml",
+      "sha256": "714cf2b2aee8fb0a42612047568072a3eac14d461df405ba4bcd4f50cf16bbc7"
+    }
+  ],
+  "compileRealIntegrationTestJava": "PASS",
+  "owned_diff_check": "PASS",
+  "scope": "CP local instance memory only; user explicitly replaces real KVS requirement in this scope",
+  "profiles": {
+    "memory": "memory-e2e & real-e2e & local",
+    "productive": "!memory-e2e",
+    "noOp": "!real-e2e & !memory-e2e"
+  },
+  "bean_name": "idempotencyKvsClient",
+  "api_identity": [
+    "String runId()",
+    "String instanceId() UUID",
+    "long ownerPid() native actual JVM"
+  ],
+  "supported": "raw byte[] get/save/update/delete async with Toolkit default sync API",
+  "unsupported": "typed get; batch/bulk read/write return failedFuture KvsClientException bad_request",
+  "semantics": {
+    "creation": "exclusive; assigns v1; request version ignored",
+    "cas": "expected version equals current; successful update increments by1; mismatch/absent/expired conflict",
+    "ttl": "-1 no expiration;0 immediate expiration;positive seconds from write;successful update refreshes;negative below-1 bad_request",
+    "reads": "null absent; defensive byte[] snapshots; configured TTL and write timestamp",
+    "close": "instance monitor orders writes with idempotent close; clears store and subsequent calls service_error",
+    "isolation": "per instance/context/JVM; no static/shared store; restart loses data"
+  },
+  "backend_executed": "LOCAL_MEMORY_UNIT_ONLY",
+  "Kafka_E2E": "NOT_EXECUTED",
+  "Fury_Sandbox": "NOT_USED",
+  "repository_commit_created": false,
+  "peer": "Fault pending",
+  "gradle_slot": "RELEASED"
+}

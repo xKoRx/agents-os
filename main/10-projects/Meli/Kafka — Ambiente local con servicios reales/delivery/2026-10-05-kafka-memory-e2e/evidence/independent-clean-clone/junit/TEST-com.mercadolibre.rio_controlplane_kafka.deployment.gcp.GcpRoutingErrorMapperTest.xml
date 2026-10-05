@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpRoutingErrorMapperTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.199Z" time="0.002">
+  <testcase name="mapsNonSpecialReasonFallsBackToViolationCode()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpRoutingErrorMapperTest" time="0.001" />
+  <testcase name="mapsViolationReasonRoutingKeyInParamsToInvalidParams()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpRoutingErrorMapperTest" time="0.0" />
+  <testcase name="mapsViolationDetailsWithFieldAndReason()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpRoutingErrorMapperTest" time="0.0" />
+  <testcase name="mapsBlankClusterKeyToSegmentClusterNotConfigured()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpRoutingErrorMapperTest" time="0.0" />
+  <testcase name="mapsBlankSegmentIdToInvalidSegmentId()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpRoutingErrorMapperTest" time="0.0" />
+  <testcase name="omitsBlankFieldAndReason()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpRoutingErrorMapperTest" time="0.001" />
+  <testcase name="mapsBlankUnknownFieldFallsBackToViolationCode()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpRoutingErrorMapperTest" time="0.0" />
+  <testcase name="mapsLegacyOnlyReasonToInvalidParams()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpRoutingErrorMapperTest" time="0.0" />
+  <testcase name="mapsBlankTeamIdToInvalidTeamId()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpRoutingErrorMapperTest" time="0.0" />
+  <testcase name="mapsRoutingViolationCodesToErrorCodes()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.GcpRoutingErrorMapperTest" time="0.0" />
+  </testsuite>

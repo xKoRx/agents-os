@@ -1,0 +1,54 @@
+{
+  "scope": "ACTUAL_NATIVE_BASH_ENTRY_BRANCH_WITH_NEUTRAL_LOCAL_ARGUMENT_STUB_NO_DOCKER_GRADLE_OR_REMOTE_API",
+  "source_sha256": "4abc6296bbaccd820d396150209fad0149102cd34f622d52ffb9a3e902f4660e",
+  "remote_suffix_byte_identical_to_base": true,
+  "base": "7f1720d950446638ff9b15a0e4e167f3e8e26e43",
+  "controls": [
+    {
+      "case": "default",
+      "exit": 0,
+      "control_outcome": "PASS",
+      "actual_local_arguments": [],
+      "actual_remote_pre_business_gate": null
+    },
+    {
+      "case": "explicit-local",
+      "exit": 0,
+      "control_outcome": "PASS",
+      "actual_local_arguments": [
+        "--tests",
+        "A B"
+      ],
+      "actual_remote_pre_business_gate": null
+    },
+    {
+      "case": "remote-cp",
+      "exit": 2,
+      "control_outcome": "PASS",
+      "actual_local_arguments": null,
+      "actual_remote_pre_business_gate": "REAL_E2E_MISSING_COMMAND:docker"
+    },
+    {
+      "case": "remote-pm",
+      "exit": 2,
+      "control_outcome": "PASS",
+      "actual_local_arguments": null,
+      "actual_remote_pre_business_gate": "REAL_E2E_MISSING_COMMAND:docker"
+    },
+    {
+      "case": "remote-canonical",
+      "exit": 2,
+      "control_outcome": "PASS",
+      "actual_local_arguments": null,
+      "actual_remote_pre_business_gate": "REAL_E2E_MISSING_COMMAND:docker"
+    },
+    {
+      "case": "remote-candidate",
+      "exit": 2,
+      "control_outcome": "PASS",
+      "actual_local_arguments": null,
+      "actual_remote_pre_business_gate": "REAL_E2E_MISSING_COMMAND:docker"
+    }
+  ],
+  "own_FS_absent": true
+}

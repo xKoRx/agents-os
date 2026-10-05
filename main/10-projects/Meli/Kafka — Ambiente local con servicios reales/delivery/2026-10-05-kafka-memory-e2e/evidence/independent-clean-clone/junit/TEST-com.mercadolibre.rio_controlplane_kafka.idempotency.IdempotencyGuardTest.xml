@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" tests="28" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.892Z" time="0.044">
+  <testcase name="claimTakesOverStalePublicationPendingRecord()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.003" />
+  <testcase name="preparePublicationMovesRecordToPendingAndReturnsNewVersion()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimReadsExistingRecordViaProjectObjectMapper()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimReturnsProceedSelfRetryWhenInProgressWithinOwnRetryWindow()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="finalizeReturnsFalseAndSwallowsCasConflict()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimReturnsDropTerminalWhenExistingStateIsFailed()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="preparePublicationReturnsDropWhenCasConflicts()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimDegradesWhenCasUpdateHitsTransientError()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.002" />
+  <testcase name="claimWithLargerStaleThresholdTakesOverWhenAgeExceedsIt()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimDegradesWhenSaveFailsWithoutHttpStatus()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimDegradesWhenGetReturnsNullAfterSaveConflict()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimDegradesWhenSaveFailsWithTransportError()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimWithLargerStaleThresholdDropsInProgressThatDefaultWouldTakeOver()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimDropsFreshPublicationPendingRecord()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.002" />
+  <testcase name="finalizeFailedSendsCasUpdateWithFailedRecordAndErrorCode()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimDegradesWhenGetFailsAfterSaveConflict()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.002" />
+  <testcase name="finalizeCompletedSendsCasUpdateWithCompletedRecord()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimReturnsTakeoverLostWhenCasUpdateConflicts()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.002" />
+  <testcase name="claimTakesOverStaleInProgressViaCasUpdate()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.003" />
+  <testcase name="finalizeReturnsTrueAndSwallowsTransientKvsError()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.002" />
+  <testcase name="claimReturnsProceedWithNextVersionWhenSaveSucceeds()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimDegradesWhenGetAfterSaveReturnsNull()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimDefaultOverloadUsesInstanceStaleThresholdForTheSameAge()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.002" />
+  <testcase name="preparePublicationDegradesWhenKvsIsUnavailable()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimDegradesWhenGetAfterSaveFails()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimReturnsDropInProgressWhenWorkerStillWorking()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.003" />
+  <testcase name="claimUsesCallerProvidedKeyVerbatim()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  <testcase name="claimReturnsDropTerminalWhenExistingStateIsCompleted()" classname="com.mercadolibre.rio_controlplane_kafka.idempotency.IdempotencyGuardTest" time="0.001" />
+  </testsuite>

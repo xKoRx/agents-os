@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.PhysicalProvisioningFailuresTest" tests="2" skipped="0" failures="2" errors="0" timestamp="2026-10-05T18:34:00.247Z" time="74.162">
+  <testcase name="unreachableDescribeNeverMeansAbsentOrSuccessfulDeletion()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.PhysicalProvisioningFailuresTest" time="71.073">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="java.util.concurrent.TimeoutException" />
+  </testcase>
+  <testcase name="unreachableGcpDescribeFailsEveryOperationAndPreservesPhysicalTopic()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.PhysicalProvisioningFailuresTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  </testsuite>

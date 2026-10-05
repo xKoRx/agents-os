@@ -1,0 +1,223 @@
+{
+  "scope": "CLI_METADATA_PRIVATE_FS_AND_OWN_NATIVE_PROCESS_ONLY_NOT_ACTUAL_GRADLE_OR_BACKEND",
+  "native_identity": {
+    "pid": 45657,
+    "birth": "2026-10-05T18:57:42.315Z",
+    "owner_pid": 45656,
+    "owner_birth": "2026-10-05T18:57:42.275Z"
+  },
+  "native_child_exit_status": 0,
+  "actual_own_native_child_absent": true,
+  "controls": [
+    {
+      "case": "complete-control-metadata",
+      "expected": "PASS",
+      "actual": "PASS",
+      "exit": 0,
+      "native_task_proof": true,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "missing-proof",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "missing-intent",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "missing-worker",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "wrong-run",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "wrong-task",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "wrong-primary",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "bad-owner-PID-bool",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "bad-worker-PID-bool",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "bad-worker-PID-float",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "worker-owner-mismatch",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "worker-birth-file-mismatch",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "worker-gradle-id-missing",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "worker-native-still-alive",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "counts-bool",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "duplicate-worker",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "worker-file-public",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "worker-file-symlink",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "failed-command",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": true,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "retained-cleanup",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": true,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "skipped-XML",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": true,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "empty-XML",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": true,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "owner-birth-empty",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "worker-birth-invalid",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "proof-schema-bool",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    },
+    {
+      "case": "worker-schema-bool",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "exit": 1,
+      "native_task_proof": false,
+      "control_outcome": "PASS"
+    }
+  ],
+  "own_FS_directories_absent": 26,
+  "real_Gradle_Kafka_Docker_Fury_API_business_calls": 0
+}

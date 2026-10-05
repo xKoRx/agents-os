@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.GcpKafkaRoutingServiceTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-05T19:04:04.281Z" time="0.056">
+  <testcase name="constructorRejectsNullDependencies()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.GcpKafkaRoutingServiceTest" time="0.045" />
+  <testcase name="missingBootstrapServersFails()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.GcpKafkaRoutingServiceTest" time="0.004" />
+  <testcase name="legacyResolverFailureMapsToSegmentNotConfigured()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.GcpKafkaRoutingServiceTest" time="0.0" />
+  <testcase name="[1] paramField = &quot;segment_id&quot;" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.GcpKafkaRoutingServiceTest" time="0.001" />
+  <testcase name="[2] paramField = &quot;team_id&quot;" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.GcpKafkaRoutingServiceTest" time="0.0" />
+  <testcase name="[3] paramField = &quot;cluster_key&quot;" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.GcpKafkaRoutingServiceTest" time="0.0" />
+  <testcase name="ambiguousLegacyTeamAllUsesLibFirstMatch()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.GcpKafkaRoutingServiceTest" time="0.001" />
+  <testcase name="bootstrapEngineFailureMapsViolation()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.GcpKafkaRoutingServiceTest" time="0.001" />
+  <testcase name="nullValueForRoutingKeyInParamsDoesNotTriggerViolation()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.GcpKafkaRoutingServiceTest" time="0.001" />
+  <testcase name="nonStringRoutingKeyValueInParamsIsRejected()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.GcpKafkaRoutingServiceTest" time="0.0" />
+  <testcase name="emptyParamsResolveLegacyDefaultForKafkaTemplate()" classname="com.mercadolibre.rio_controlplane_kafka.deployment.gcp.routing.GcpKafkaRoutingServiceTest" time="0.001" />
+  </testsuite>
