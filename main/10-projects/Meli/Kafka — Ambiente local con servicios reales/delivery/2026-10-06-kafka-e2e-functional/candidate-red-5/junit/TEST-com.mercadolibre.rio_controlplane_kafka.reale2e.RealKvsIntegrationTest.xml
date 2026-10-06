@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" tests="37" skipped="0" failures="0" errors="0" timestamp="2026-10-06T23:11:29.893Z" time="7.815">
+  <testcase name="concurrentWorkersReserveOnlyOneTerminalPublicationUsingRealCas()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.043" />
+  <testcase name="lostFinalizeCasPreservesWinningRealRecord(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.032" />
+  <testcase name="lostFinalizeCasPreservesWinningRealRecord(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.033" />
+  <testcase name="lostFinalizeCasPreservesWinningRealRecord(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.029" />
+  <testcase name="realServerTtlExpiresRecordAndAllowsSameKeyAgain(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="2.173" />
+  <testcase name="realServerTtlExpiresRecordAndAllowsSameKeyAgain(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="2.159" />
+  <testcase name="realServerTtlExpiresRecordAndAllowsSameKeyAgain(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="2.176" />
+  <testcase name="actualCorruptRecordsEnterExplicitDegradedModeWithoutReplacingStoredData(String, String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.047" />
+  <testcase name="actualCorruptRecordsEnterExplicitDegradedModeWithoutReplacingStoredData(String, String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.038" />
+  <testcase name="actualCorruptRecordsEnterExplicitDegradedModeWithoutReplacingStoredData(String, String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.041" />
+  <testcase name="actualCorruptRecordsEnterExplicitDegradedModeWithoutReplacingStoredData(String, String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.029" />
+  <testcase name="actualCorruptRecordsEnterExplicitDegradedModeWithoutReplacingStoredData(String, String) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.027" />
+  <testcase name="actualCorruptRecordsEnterExplicitDegradedModeWithoutReplacingStoredData(String, String) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.045" />
+  <testcase name="selfRetryUsesExistingVersionButPublicationReservationHasOneOwner(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.033" />
+  <testcase name="selfRetryUsesExistingVersionButPublicationReservationHasOneOwner(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.027" />
+  <testcase name="selfRetryUsesExistingVersionButPublicationReservationHasOneOwner(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.034" />
+  <testcase name="staleInProgressAndPublicationPendingCanBeTakenOver(String, boolean) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.027" />
+  <testcase name="staleInProgressAndPublicationPendingCanBeTakenOver(String, boolean) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.026" />
+  <testcase name="staleInProgressAndPublicationPendingCanBeTakenOver(String, boolean) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.027" />
+  <testcase name="staleInProgressAndPublicationPendingCanBeTakenOver(String, boolean) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.026" />
+  <testcase name="staleInProgressAndPublicationPendingCanBeTakenOver(String, boolean) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.024" />
+  <testcase name="staleInProgressAndPublicationPendingCanBeTakenOver(String, boolean) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.046" />
+  <testcase name="terminalStatesDropRedeliveryAndPersistOutcome(String, String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.035" />
+  <testcase name="terminalStatesDropRedeliveryAndPersistOutcome(String, String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.042" />
+  <testcase name="terminalStatesDropRedeliveryAndPersistOutcome(String, String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.044" />
+  <testcase name="terminalStatesDropRedeliveryAndPersistOutcome(String, String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.04" />
+  <testcase name="terminalStatesDropRedeliveryAndPersistOutcome(String, String) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.04" />
+  <testcase name="terminalStatesDropRedeliveryAndPersistOutcome(String, String) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.026" />
+  <testcase name="ownWindowAndStaleEqualityUseActualKvsCasWithDeterministicClock(String, long) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.034" />
+  <testcase name="ownWindowAndStaleEqualityUseActualKvsCasWithDeterministicClock(String, long) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.028" />
+  <testcase name="ownWindowAndStaleEqualityUseActualKvsCasWithDeterministicClock(String, long) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.034" />
+  <testcase name="ownWindowAndStaleEqualityUseActualKvsCasWithDeterministicClock(String, long) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.034" />
+  <testcase name="ownWindowAndStaleEqualityUseActualKvsCasWithDeterministicClock(String, long) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.037" />
+  <testcase name="ownWindowAndStaleEqualityUseActualKvsCasWithDeterministicClock(String, long) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.029" />
+  <testcase name="exclusiveCreateAndVersionedUpdateUseServerVersionAndRejectStaleCas(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.033" />
+  <testcase name="exclusiveCreateAndVersionedUpdateUseServerVersionAndRejectStaleCas(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.03" />
+  <testcase name="exclusiveCreateAndVersionedUpdateUseServerVersionAndRejectStaleCas(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest" time="0.029" />
+  </testsuite>
