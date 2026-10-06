@@ -116,6 +116,19 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - real_rerun: NOT_RUN; corpus físico completo pendiente.
 - state: OPEN_REPRODUCED_REMEDIATION_IN_PROGRESS.
 
+### BT2-F08 — día inicial parcial colisiona con el reset de cuenta
+
+- severity: HIGH; bloquea un horizonte válido del perfil funcional.
+- dataset/rango: reproducción E2E nativa sintética independiente sobre e2e15a3559034a3ed08c04f247baf4919e20b2ff. Warmup2026-10-05T20:59Z (Chicago15:59); fuentes20:59→21:00 y22:00→22:01 respetan break16–17; TradeStart22:00:59.999999999Z/End22:01Z. REFERENCE_ONLY, sin histórico físico ejecutado.
+- expected: día inicial es el intervalo account-day que contiene WarmupStart bajo reset17h; al boundary17h abrir un intervalo distinto, con economics/MM selector coherentes y sin consumir ordinal durante warmup.
+- actual: openInitialAccountDay usa accountDayID(civilDate(WarmupStart)); naturalboundary17h de la misma fecha usa igual ID ad-20261005, Ledger rechaza ACCOUNT_DAY_FAILED porque ese día ya está abierto.
+- first_divergence: ACCOUNT_DAY_FAILED a2026-10-05T22:00Z antes del segundo SourceClose; logs independent-fast.log del TOP revisor, source run.go684/driver.go496.
+- owner: backtester composición/identidad del intervalo account-day; defecto heredado expuesto por reset17h funcional, no fórmulas SDK/accounting/MM ni Strategy.
+- fix: PENDING_FRESH_WORKER; reuse existing civil calendar boundary semantics from experiment_plan.go, preserve valid legacy UTC00 and naturalboundary behavior. No modificar horarios caller ni inventar IDs de otro día para esconder error.
+- regression: PENDING_PERMANENT_REGRESSION; antes/después reset17h, partial-first-day/year/DST y misma reproducción break; ledger snapshots/selector/ordinal, no fictitious trades during warmup; explicit valid legacy oracles.
+- real_rerun: NOT_RUN; transferencia completa pendiente.
+- state: OPEN_REPRODUCED_REMEDIATION_PENDING.
+
 ### Retención y clasificación
 
 Reproductores y logs del revisor viven fuera del vault en el carril Aranea `work/btg-s01-20261006/source-bar-review-evidence/`; sus digests/manifest quedan en el artifact del revisor. Golden legacy bytes y casos de atomicidad/orden/calendario que detectaron estos defectos son PERMANENT_REGRESSION candidates, sin framework nuevo. Probes usados sólo para auditoría comparativa o coverage son DISPOSABLE_REPRODUCER hasta clasificación final. No se afirma un rerun real ni el cierre de findings.

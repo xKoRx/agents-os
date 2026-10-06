@@ -53,6 +53,8 @@ tags:
 
 2026-10-06: C sourcefreeze/pushclean e2e15a3559034a3ed08c04f247baf4919e20b2ff, ordinario domain/futureextrema/legacyPASS258.765s,4casosS2MM171.45s; nativecausal/horizonrace31.642/H4timer1.110. Coverage/finaldomainrace45mmax pending; no fullgateclaim. Rootcreó CLIworktree propio directoSHA, copió3SDDbyteexactos y autorizó NORMAL; TOPreviewer readonlytarget detachedmismoSHA, revisión autorizada. F06/F07 implementerregressionverified/nohistoricalclosure. D6refresco limpio sinintersección; rootnuncaimplementaproducto.
 
+2026-10-06: TOPreviewerC reproducetinyE2E F08 ACCOUNT_DAY_FAILED alreset17Chicago: warmup15:59 abre civilad20261005 y resetmismafechareabreigualID. RootregisterHIGH, pendingfreshworker/capsule; helpers civilDateOf/boundaryOf delmaterializador yaresuelven containingday conAddDate/no24h. No productwritesroot, no modificar callerWarmup/reset paraevitarfallo. DirectadverseentryOpenhipótesisdescartadaparaS2: MM safetyMARKET→nextOpen, noSLgift; preservadocomohipótesisdisproved limitada, no claimuniversalsimvenue.
+
 ## Fuentes usadas
 
 - [[BTG-PLAN]], [[BTG-S01-SUBMANAGER-PROMPT]], [[Echo Futures]], [[Echo Futures — BT-S04 Final Remediation and Certification]].

@@ -54,7 +54,7 @@ TOP cerró [[BTG-S01-OHLC-RUN-CONTRACT]], docs `549506b9`, artifact digest compr
 ### Estado observado
 
 STATE = BLOCKED_EXTERNAL — ORIGINAL_BYTES_TRANSFER_POLICY
-WORK_IN_PROGRESS = NATIVE_DRIVER_FROZEN_REVIEW_AND_CLI_IMPLEMENTATION
+WORK_IN_PROGRESS = NATIVE_DRIVER_F08_REMEDIATION_PENDING_AND_CLI_IMPLEMENTATION
 FUNCTIONAL_CONFIG_AUTHORITY = OWNER_DELEGATED_CONSISTENT_RULES_2026_10_06
 SDK_STATE = READY_SDK_PREREQUISITE_REVIEW_ONLY
 SECONDARY_STATE = ORIGINAL_TRANSFER_PENDING; FUNCTIONAL_CONFIG_SELECTED; NATIVE_PORT_IN_PROGRESS
@@ -145,6 +145,8 @@ Producto C `e2e15a3559034a3ed08c04f247baf4919e20b2ff` publicado/limpio, sin nuev
 
 Fresh TOP LOCAL revisa SHA congelado en worktree aislado; NORMAL LOCAL implementa CLI source/preparación/reproducción en `codex/btg-s01-native-cli` desde ese mismo SHA. Calentamiento, fills, cierres y contabilidad locales aún no acreditan el corpus real. Histórico sigue NOT_RUN y el submanager no adjudica aceptación.
 
+Revisión independiente C detectó BT2-F08: reset17h Chicago y WarmupStart15:59 crean un día inicial con la fecha civil del warmup y vuelven a abrir igual ID al reset17h, ACCOUNT_DAY_FAILED. Reproducción pequeña respeta el break16–17, sin gaps inventados. Defecto heredado expuesto por el perfil real de reloj, material para backtesting; requiere fresh corrective worker y misma reproducción. No se cambia el warmup caller ni el reset para ocultarlo; C candidate aún no pasa gate local.
+
 ### Continuidad y próximo paso
 
 Identidad resuelta por Owner 2026-10-06: S2 actual. Owner ubicó trece exports candles en `C:\Temp\history`; nombres/tamaños/endpoints son legibles, pero la transferencia completa SFTP está denegada por policy viewer. Se pidió ZIP preservando originales, sin ampliar ACL/perfil ni usar una ruta alternativa para sortear la denegación. Owner delegó selección de reglas consistentes para hacer funcionar backtesting; [[BTG-S01-FUNCTIONAL-BASELINE-PROFILE]] fija el baseline funcional sin atribuir reglas a una cuenta física. El lector fix `e44b741e` pasó revisión independiente y está integrado byte-exacto. Driver/venue nativo congelado `e2e15a3559034a3ed08c04f247baf4919e20b2ff`, rama `codex/btg-s01-ohlc-driver`, entra a revisión adversarial LOCAL independiente; CLI se implementa en rama propia directamente desde ese SHA, sin merges ni cambios shared nuevos. Al disponer de bytes completos y port verificado, este submanager continúa slice real, remediación y longitudinal dentro de S01. S01 no está aceptado ni cerrado; S02 no inició.
@@ -178,7 +180,7 @@ LONGITUDINAL_RUN = NOT_RUN
 DETERMINISTIC_RERUN = NOT_RUN
 ECONOMIC_STAGE_COVERAGE = NONE_DEMONSTRATED
 SIGNALS / OPERATIONS / FILLS / ACCOUNT_PNL = NOT_MEASURED
-OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F04_F05_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F06_F07_FIX_REGRESSION_IMPLEMENTER_VERIFIED_INDEPENDENT_REVIEW_PENDING; B01_RESOLVED_BY_OWNER; B02_FUNCTIONAL_PROFILE_SELECTED_BY_OWNER_DELEGATION; ORIGINAL_TRANSFER_AND_NATIVE_DRIVER_PENDING
+OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F04_F05_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F06_F07_FIX_REGRESSION_IMPLEMENTER_VERIFIED_INDEPENDENT_REVIEW_PENDING; BT2-F08_PARTIAL_INITIAL_ACCOUNT_DAY_REPRODUCED_REMEDIATION_PENDING; B01_RESOLVED_BY_OWNER; B02_FUNCTIONAL_PROFILE_SELECTED_BY_OWNER_DELEGATION; ORIGINAL_TRANSFER_AND_NATIVE_DRIVER_PENDING
 ARTIFACT = BTG-S01-REAL-GERARD-RESULT + BTG-S01-FINDINGS + identity/config + dataset inventory + NT acquisition + source SDK/remediation/final-review
 PRODUCT_PR = https://github.com/xKoRx/echo/pull/2; DRAFT_AGAINST_S04
 AGENTS_OS_COMMIT = final consolidated commit supplied in chat/PR handoff
