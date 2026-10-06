@@ -33,11 +33,19 @@ tags:
 
 - Mandato Owner de ejecutar inventario y remediación histórica real mediante especialistas LOCAL.
 
+2026-10-06: lector NT/input contract congelado por worker en `933b40d65d7fe0946bb5b75038f6c4858d9912ea`; revisión TOP LOCAL fresca despachada. Se creó carril `codex/btg-s01-ohlc-driver` directamente desde ese SHA, SDD root copiado a `specs/btg-s01-ohlc-driver/` y worker TOP recibió target concreto. No merge/rebase/cherry-pick ni writes shared SDK/D6. Corpus completo sigue sin transferir; pruebas de este port no se adjudican como histórico.
+
+2026-10-06: importados por bytes exactos desde worker `3e391ea` nota B implementación SHA256ce84fc5870ca170e18bee0a3f156ca70c8789bb2236757f5382a2b2c292d1c4a, run16e97aef, feedback8b67c279 y sesión3a01d761. Root comprobó tip54698cb0 limpio, diff933→ce0211 sólo VERIFICATION y docs posteriores sólo SDD. Lector95.3% worker, revisión independiente pendiente; root no adjudicó histórico. Worker ONE-SHOT cerrado, raíz abierta.
+
 ## Fuentes usadas
 
 - [[BTG-PLAN]], [[BTG-S01-SUBMANAGER-PROMPT]], [[Echo Futures]], [[Echo Futures — BT-S04 Final Remediation and Certification]].
 
 ## Resolución aplicada
+
+- Owner delega selección de reglas funcionales consistentes; [[BTG-S01-FUNCTIONAL-BASELINE-PROFILE]] cierra selección B02 para esta prueba, conservando corte de autoridad física ausente. Source NQFixture point5 no se copia a realNQ20 (CME fuente primaria verificada). TOP contrato549506b9 importado/digestverificado, worker cerrado. Root SDDnativeC y fresh TOPimplementer, pendiente Bfreeze; rootdocumenta sólo, no código. ZIP de originals solicitado porrechazoSFTP, sin ampliarpolicy/perfiles.
+
+- Export Owner C:\Temp\history comprobado:13archivos listados/muestras legibles. Importación artifact/feedback NORMAL9df2c94b con ambos digests verificados. Transferencia SFTPdenegada porpolicyviewer, sin cambiar identidad/ACL ni full-filedump; originales noadquiridos. Root releyó close12-23 y corrigió transcripción temprana alparser. B SDDacotado/AllowedFiles por tarea y NORMALinputparser desde407, TOPnative-run-contract independiente. PreguntaOwnerperfilrealconfig mientras continua trabajo técnico.
 
 - Consolidación final del prerequisito: remediación `407e03dd` publicada y revisión fresh TOP READY_SDK_PREREQUISITE_REVIEW_ONLY. Artifact/run NORMAL `0059595d` y artifact/run/log TOP `6e39a157` importados por contenido; producto [PR borrador #2](https://github.com/xKoRx/echo/pull/2) contra S04 adjunto, sin merge. Findings fix/regression verificados pero abiertos por real_rerun NOT_RUN. Estado histórico BLOCKED_EXTERNAL; acción mínima export GUI a C:\Temp\BTG-NQ-1m. Root conserva sesión; no acepta S01 ni inicia S02.
 

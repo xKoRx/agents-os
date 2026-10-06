@@ -37,11 +37,27 @@ Remediación producto congelada y publicada `407e03dd7ebce1f93b04ea5ff5bb5a33f1b
 
 La investigación física concluye que la identidad autorizada `echo-dev` no puede leer la carpeta del usuario KoR. C:\Temp sí es legible y no presentó export histórico en su nivel superior. El Owner no necesita ubicar la caché: mínima acción física es `Tools → Historical Data → Export`, `Minute / Last` por contrato, hacia `C:\Temp\BTG-NQ-1m`. Ese destino sólo fue propuesto, no creado ni acreditado. GUI NinjaTrader no expuesta; no se amplió ACL ni se eludió un rechazo. Hasta recibir bytes se conserva BLOCKED_EXTERNAL para la corrida real, con contexto MM/account/provider aún pendiente.
 
+### Nuevo export físico Owner — C:/Temp/history
+
+El Owner confirmó archivos de velas en C:\Temp\history. Root y NORMAL comprobaron trece NQ Last.txt legibles por listado y muestras allowlisted de primera/última fila, [[BTG-S01-NT-CANDLES-ACQUISITION]], commit `9df2c94bf736b709dfca725da4368da0ba05c66c`. Extremos observados desde `20231001 220100` en NQ12-23 hasta `20261006 035000` en NQ12-26; no equivalen a validación continua de tres años. Formato de muestra headerless `YYYYMMDD HHMMSS;O;H;L;C;V`; primeras ocho filas de12-23 avanzan cada minuto. La convención UTC/end-of-bar está documentada por NT, pero no se auditó todo el export.
+
+El bloqueo anterior de ubicación/caché dejó de ser la acción vigente. SFTP dev-win respondió POLICY_DENIED por clase safe en profile read-only; cat simple de muestras sí permite lectura, sin cambio de identidad ni privilegio. Originales completos locales, SHA256, conteos/duplicados/gaps exhaustivos siguen pendientes. Root comprobó ambos SHA256 documentales del worker y releyó la última fila12-23: close16053.5. Una transcripción temprana del handoff indicó16054; el artifact exacto y la instrucción al parser fueron contrastados/corregidos, sin cambiar el original.
+
+Continúa trabajo independiente autorizado: NORMAL construye el DatasetSource NT minute y el contrato nativo en carril `codex/btg-s01-ntminute-ingress` desde407e03dd, con SDD y AllowedFiles por tarea. TOP delimita native driver/venue y MarketContext modelado, conservando S2/MM/provider/accounting. Parser fixture de una fila real no es corpus adquirido ni corrida histórica. Referencia/perfil real de cuenta/programa, costes y scaling se preguntaron al Owner mientras avanza el lector.
+
+### Owner delega reglas consistentes para el baseline funcional
+
+La respuesta Owner posterior a la pregunta de perfil autoriza elegir reglas consistentes ahora e iterarlas después. [[BTG-S01-FUNCTIONAL-BASELINE-PROFILE]] fija el paquete funcional SIM/GENERIC100K, USD100000 inicial, MM2000/1500 uniformes por account-day, costes modelados explícitos y scaling omitido explícitamente. S2 y fórmulas GerardMM quedan compartidas/intactas; esta prueba no afirma scaling ni reglas de una prop. B02 deja de bloquear la selección de configuración funcional: no se sigue exigiendo config física recuperada para este baseline. Funded/campaña/S02 continúan fuera del mandato.
+
+TOP cerró [[BTG-S01-OHLC-RUN-CONTRACT]], docs `549506b9`, artifact digest comprobado por root. Su bloqueo de perfil es el corte anterior, supersedido por autoridad nueva Owner. SOURCE→Mark y diferencias QUOTE/ACCOUNT_ECONOMICS están probadas en source; C debe usar MarketContext nativo modelado sin quotes inventadas. Root define SDD del driver sólo para la configuración NO_ADDS explícita, con rechazo de scaling no soportado, SL-first y fases/attribution declaradas; fresh TOP LOCAL recibe implementación cross-domain después del freeze B. No claim de run ni de SDK price trigger/scaling completo.
+
 ### Estado observado
 
-STATE = BLOCKED_EXTERNAL — NINJATRADER_CORPUS_ACCESS
+STATE = BLOCKED_EXTERNAL — ORIGINAL_BYTES_TRANSFER_POLICY
+WORK_IN_PROGRESS = NTMINUTE_INPUT_CONTRACT_AND_NATIVE_DRIVER
+FUNCTIONAL_CONFIG_AUTHORITY = OWNER_DELEGATED_CONSISTENT_RULES_2026_10_06
 SDK_STATE = READY_SDK_PREREQUISITE_REVIEW_ONLY
-SECONDARY_STATE = DATA_ACCESS_AND_CONFIG_PENDING
+SECONDARY_STATE = ORIGINAL_TRANSFER_PENDING; FUNCTIONAL_CONFIG_SELECTED; NATIVE_PORT_IN_PROGRESS
 REAL_SMOKE = NOT_RUN
 LONGITUDINAL_RUN = NOT_RUN
 DETERMINISTIC_RERUN = NOT_RUN
@@ -80,8 +96,8 @@ El Owner confirmó durante el inventario: “la idea es sacar todo desde ninjatr
 | ID / clase | Expected | Actual / evidencia | First divergence / owner / mínima acción |
 | --- | --- | --- | --- |
 | BTG-B01 / RESOLVED_BY_OWNER | Vínculo canónico entre el nombre Owner Gerard y Strategy/version | Owner 2026-10-06 seleccionó S2 actual, SpecID `S2_H4_TREND_BB_PULLBACK_V1`. La inspección previa sin alias conserva su corte histórico, pero ya no bloquea la selección. | Autoridad directa en [[BTG-S01-OWNER-S2-BARS-AUTHORITY]]; configuración restante evaluada como B02. |
-| BTG-B02 / CONFIG_AUTHORITY_GAP | Config MM real y contexto account/provider para el horizonte | D4 sí define EVALUATION account-days 1–2 SL USD 2.000 / TP USD 1.500. Rows posteriores y FUNDED encontradas sólo como fixtures/modeling; no configuración Owner vigente. | Preflight/config, ningún historical run. Recuperar configuración concreta o definir etapa autorizada; no completar valores por inferencia. |
-| BTG-B03 / BLOCKED_EXTERNAL | Corpus físico real con provenance, contratos, orden, timezone y digests | Workspaces históricos seleccionados contienen Polymarket/MLB. Evidencia de feed vivo no acredita corpus multiday. Candidato NinjaTrader no listado: permiso OS denegado bajo perfil RO; ruta/stock quedan no resueltos, no declarados inexistentes. | Antes de DatasetSource; exportar la caché existente Minute/Last por contrato a C:\Temp\BTG-NQ-1m desde GUI NT. No comprar ni tocar el feed/runtime. |
+| BTG-B02 / RESOLVED_FUNCTIONAL_SELECTION_BY_OWNER | Config MM real y contexto account/provider para el horizonte | D4 sí define EVALUATION account-days 1–2 SL USD 2.000 / TP USD 1.500. Rows posteriores y FUNDED encontradas sólo como fixtures/modeling; no configuración Owner vigente. | Preflight/config, ningún historical run. Owner delegó reglas funcionales consistentes; perfil explícito en BTG-S01-FUNCTIONAL-BASELINE-PROFILE. Original config física no recuperada y no se afirma, pero ya no bloquea este baseline. |
+| BTG-B03 / BLOCKED_EXTERNAL | Corpus físico real con provenance, contratos, orden, timezone y digests | Workspaces históricos seleccionados contienen Polymarket/MLB. Evidencia de feed vivo no acredita corpus multiday. Candidato NinjaTrader no listado: permiso OS denegado bajo perfil RO; ruta/stock quedan no resueltos, no declarados inexistentes. | Antes de DatasetSource; transferir originales ya exportados C:\Temp\history por mecanismo autorizado byte-exact; listado/muestras13files legibles, SFTP policy denegada. No comprar ni tocar el feed/runtime. |
 
 BT2-F01..F03 materiales registrados en [[BTG-S01-FINDINGS]], hallados en el prerequisito SDK con probes REFERENCE_ONLY y ningún cierre. Ninguna corrida histórica real ocurrió: real_rerun NOT_RUN para todos. Los bloqueos B02/B03 son de configuración/datos; no se maquillan como defectos corregidos ni como ausencia global.
 
@@ -101,15 +117,19 @@ D6 refrescado desde remoto y worktree limpio: `d08a30ce`. Base común con S04 `7
 
 El especialista TOP confirmó un mecanismo GUI oficial `Tools → Historical Data → Export` para generar TXT UTC por contrato/intervalo/data type desde datos disponibles. Falta validar cobertura del caché y original exportado. El harness no expone GUI nativa NinjaTrader; SSH autorizado no lee la carpeta fuente. La mera existencia del exportador no satisface adquisición ni fidelidad. Detalle oficial, formato, límites y acción mínima en [[BTG-S01-NINJATRADER-ACQUISITION]].
 
-Acción física mínima actual: exportar desde la GUI la caché existente `Minute / Last` por contratos físicos a una carpeta legible por el acceso autorizado, conservando TXT y registro de opciones sin editar. Export `Tick / Last` sólo para los contratos/rangos disponibles, como validación posterior. El submanager comprobará cobertura y provenance antes de convertir. No descargar, reconectar ni cambiar Merge Policy en la instancia D6 activa. Si la caché no alcanza, adquisición posterior requiere un contexto NinjaTrader independiente autorizado y entitlement real; no se afirmó que exista.
+Acción física propuesta en el corte anterior, supersedida por exports existentes `C:\Temp\history` y transferencia pendiente: exportar desde la GUI la caché existente `Minute / Last` por contratos físicos a una carpeta legible por el acceso autorizado, conservando TXT y registro de opciones sin editar. Export `Tick / Last` sólo para los contratos/rangos disponibles, como validación posterior. El submanager comprobará cobertura y provenance antes de convertir. No descargar, reconectar ni cambiar Merge Policy en la instancia D6 activa. Si la caché no alcanza, adquisición posterior requiere un contexto NinjaTrader independiente autorizado y entitlement real; no se afirmó que exista.
 
 Stage comprobado por root mediante lecturas RO `ls C:/` y `ls C:/Temp`, perfil `dev-win`: C:\Temp legible, sin export histórico en su nivel superior. Destino propuesto al Owner `C:\Temp\BTG-NQ-1m`; no se creó carpeta ni se leyó contenido de bundles/configs D6. Permite exportar sin descubrir la ubicación interna de caché.
 
 BBO es un gap técnico condicionado al corpus: el NDJSON actual asigna a ambos lados un único timestamp/ref; combinar exports Bid/Ask independientes como QUOTE simultánea alteraría age lateral. La representación derivada debe conservar timestamps/refs por lado detrás del DatasetSource existente. Se registró compatibilidad pendiente, sin implementar adapter ni cerrar un finding de run no ejecutado. TRADE_MODEL también necesita costos/offsets explícitos; no se seleccionó por inferencia.
 
+### Lector NT nativo — candidato congelado
+
+Worker NORMAL LOCAL `gpt-6-luna` publicó código `933b40d65d7fe0946bb5b75038f6c4858d9912ea`, rama `codex/btg-s01-ntminute-ingress`; tip `54698cb0bbd870c942e3ccc010f1a12127684c01` añade sólo VERIFICATION y SPEC/PLAN/TASKS. DatasetSource streaming procesa TXT NT con schema UTC/end-of-bar, ticks exactos, OHLC/volume/order, manifests lógicos, receipts físicos y discontinuidades crudas; no rellena gaps. La unión SourceBar/legacy y políticas de modelo forman identidad explícita. Suite offline dirigida del worker pasó, adapter244/256 sentencias95.3%, oracle legacy exacto. Revisión TOP LOCAL independiente en progreso; no gate histórico ni económico satisfecho por estos tests. Artefacto [[BTG-S01-NTMINUTE-INGRESS-IMPLEMENTATION]] importado desde Agents-OS `3e391ea06440886a93fd84457b36bc0f1665b644` y digest comprobado; run/feedback/session ONE-SHOT también conservados. Worker cerró su sesión, root permanece abierto. Pro Chat pool0.
+
 ### Continuidad y próximo paso
 
-Identidad resuelta por Owner 2026-10-06: S2 actual. Fuente elegida: NinjaTrader; el Owner pidió investigar el disco porque no conoce la ruta. Inventario actualizado verifica denegación OS en carpeta de datos; acceso/export sigue pendiente, además del seam OHLC y configuración restante. La falta de respuesta no autoriza una Strategy aproximada ni un corpus sintético. Primary Manager revisa estos bloqueos y recupera/define sólo los inputs faltantes; con esa autoridad, este mismo submanager continúa el slice real, remediación y longitudinal dentro de S01. S01 no está aceptado ni cerrado; S02 no inició.
+Identidad resuelta por Owner 2026-10-06: S2 actual. Owner ubicó trece exports candles en `C:\Temp\history`; nombres/tamaños/endpoints son legibles, pero la transferencia completa SFTP está denegada por policy viewer. Se pidió ZIP preservando originales, sin ampliar ACL/perfil ni usar una ruta alternativa para sortear la denegación. Owner delegó selección de reglas consistentes para hacer funcionar backtesting; [[BTG-S01-FUNCTIONAL-BASELINE-PROFILE]] fija el baseline funcional sin atribuir reglas a una cuenta física. El lector/input contract congelado `933b40d65d7fe0946bb5b75038f6c4858d9912ea` entra a revisión independiente; driver/venue nativos implementándose en un carril separado directamente desde ese SHA. Al disponer de bytes completos y port verificado, este submanager continúa slice real, remediación y longitudinal dentro de S01. S01 no está aceptado ni cerrado; S02 no inició.
 
 REUSABLE_BEHAVIOR_CANDIDATES = NONE adjudicado por root en esta fase; candidatos/fricción propios de workers quedan en sus artefactos, sin editar skills generales.
 
@@ -129,21 +149,23 @@ ROOT_AGENT_RUN = SKIPPED: coordinación, revisión de evidencia y documentación
 SUBTASK = BTG-S01
 STATE = BLOCKED_EXTERNAL
 SDK_STATE = READY_SDK_PREREQUISITE_REVIEW_ONLY; PRODUCT_407e03dd
+INPUT_STATE = CANDIDATE_933b40d6_INDEPENDENT_REVIEW_IN_PROGRESS
+NATIVE_DRIVER_STATE = IMPLEMENTATION_IN_PROGRESS_ON_933b40d6
 BASELINE_SHA = cd451972b242c8933321e03001decd4b6d778c61
-DATASET = NINJATRADER_NQ_1M_OWNER_REPORTED; CORPUS_NOT_ACQUIRED; MANIFEST/DIGEST_NOT_AVAILABLE
-GERARD_STRATEGY_AUTHORITY = OWNER_2026_10_06_S2_H4_TREND_BB_PULLBACK_V1; CONFIG_REMAINING_TO_VERIFY
-GERARD_MM_AUTHORITY = D4-B2 + shared gerardmm; day1/2 SL2000/TP1500; runtime config NOT_RECOVERED
+DATASET = NT_EXPORT_HISTORY_13_FILES_LISTED_AND_ENDPOINTS_READ; ORIGINALS_NOT_ACQUIRED; FULL_MANIFEST_DIGEST_NOT_AVAILABLE
+GERARD_STRATEGY_AUTHORITY = OWNER_2026_10_06_S2_H4_TREND_BB_PULLBACK_V1; SHARED_DEFAULTS_SELECTED_FOR_FUNCTIONAL_RUN
+GERARD_MM_AUTHORITY = D4-B2 + shared gerardmm; day1/2 SL2000/TP1500; runtime config NOT_RECOVERED; FUNCTIONAL_PROFILE_NOW_SELECTED_BY_OWNER_DELEGATION
 REAL_SMOKE = NOT_RUN
 LONGITUDINAL_RUN = NOT_RUN
 DETERMINISTIC_RERUN = NOT_RUN
 ECONOMIC_STAGE_COVERAGE = NONE_DEMONSTRATED
 SIGNALS / OPERATIONS / FILLS / ACCOUNT_PNL = NOT_MEASURED
-OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; B01_RESOLVED_BY_OWNER; B02_B03_AND_OHLC_DRIVER_VENUE_OPEN
+OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; B01_RESOLVED_BY_OWNER; B02_FUNCTIONAL_PROFILE_SELECTED_BY_OWNER_DELEGATION; ORIGINAL_TRANSFER_AND_NATIVE_DRIVER_PENDING
 ARTIFACT = BTG-S01-REAL-GERARD-RESULT + BTG-S01-FINDINGS + identity/config + dataset inventory + NT acquisition + source SDK/remediation/final-review
 PRODUCT_PR = https://github.com/xKoRx/echo/pull/2; DRAFT_AGAINST_S04
 AGENTS_OS_COMMIT = final consolidated commit supplied in chat/PR handoff
 GAPS_FOR_S02 = remaining config + historical corpus + horizon rows/stages + economic units/rules/fees/settlement
-NEXT_PRIMARY_MANAGER_ACTION = NT GUI export Minute/Last per expiry to C:\Temp\BTG-NQ-1m; remaining MM/account/provider config; parser/driver/OHLC venue then real S2 slice within same S01
+NEXT_PRIMARY_MANAGER_ACTION = byte-preserving authorized transfer of existing C:\Temp\history files; functional profile selected; freeze/review input contract and native driver/venue; real slice then deterministic rerun within S01
 OWNER_ACCEPTANCE = NOT_ADJUDICATED
 SUBMANAGER_SESSION = OPEN
 PRO_CHAT_POOL_DELTA = 0
