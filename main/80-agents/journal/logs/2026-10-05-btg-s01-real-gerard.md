@@ -43,6 +43,8 @@ tags:
 
 2026-10-06: fixB e44b741e frozen/pushed/clean; C integró exact11files por restoretargeted yverificóSHA256. FreshTOPfinalreview confirmared933→PASSfix, rawadapter96sinexclusiones, no nuevodefectofuncionaltodavía; changed56/56 no adjudicadoporhandlersOSreachable. Importworker283b6fbb artifactorig98909ddb/run8358bfdf; narrowstrict2 detectóúnicomissing##Contenido, rootnormalizóheadersolamente (Contenido+subsecciones) yPASS2. Workerhizo globalvaultlintcon1811findingsajenos; no cleanclaimglobal. Pro0/workerclosed/rootopen.
 
+2026-10-06: importfinalreview07143d56 bytesexactos (artifactd53b8bea, rund61759d0, log93365cc0), narrowstrict4PASS. F04/F05 fix/regressionindependentverified, aúnOPENREALRERUNREQUIRED. Ctimeout600srace stackrunnablenextTimer demuestra historialcuadráticoF06; ROOTSDDnative-onlystablecompactionFiredaprobado, registros requests/liveordengen/residualslegacy intactos ysamefixturebeforeafterproofrequired. CLIworkerNORMALfreshactualgpt-6-luna despachadoreadonlyprep, waitsCfreeze.
+
 ## Fuentes usadas
 
 - [[BTG-PLAN]], [[BTG-S01-SUBMANAGER-PROMPT]], [[Echo Futures]], [[Echo Futures — BT-S04 Final Remediation and Certification]].

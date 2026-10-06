@@ -72,10 +72,10 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - actual: tras NewSource, cambiar volume35→36 en el archivo y llamar Open/Peek entrega36 con el manifiesto anterior; ErrSourceChanged llega sólo al drenar EOF, que un consumidor corto puede no alcanzar.
 - first_divergence: primera fila alterada entregada por Peek después de modificar fuente; probe TOP `reports/ntminute-ingress-review/adversarial.log`.
 - owner: adapter ntminute immutable source/cursor; ROOT coordina, worker NORMAL fresco remedia.
-- fix: EN_PROGRESO, snapshot completo privado por cursor, copia streaming acotada y hash/size contra receipt antes de exponer una fila; cleanup error/Close; cursor consume backing verificado, sin mutar originales ni cambiar identidad lógica.
-- regression: PENDING_PERMANENT_REGRESSION — cambio antes de Open, cambio después de Open, consumidor corto sin EOF y cleanup/ownership.
+- fix: e44b741e0a6c32d39326b46738dc70565db4759c; snapshot completo privado por cursor verificado contra receipt antes de exponer filas, backing inmutable; handles cerrados en error/Close y unlink best effort con error si OS deniega. Metadata/identity lógicos preservados.
+- regression: PERMANENT_REGRESSION immutable_source_regression_test.go; TOP fresh final RED933→PASSe44 preOpen head/tail/append/truncate/missing, short horizon Close beforeEOF, dualcursor/postOpenimmutability, rawmetadata/oracle byteigual. Large tail >buffer:1500/2000 rows, RED933fila82→PASSfix. Rawadapter290/29897.315%, exclusiones0.
 - real_rerun: NOT_RUN; transferencia completa pendiente.
-- state: OPEN_REPRODUCED_REMEDIATION_IN_PROGRESS. No cierre histórico.
+- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED. No cierre histórico.
 
 ### BT2-F05 — un archivo físico asignado dos veces mediante aliases
 
@@ -85,10 +85,23 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - actual: validación compara sólo strings Path; distintos aliases del mismo inode se aceptan como NQ12-23 y NQ03-24.
 - first_divergence: constructor acepta dos streams y manifiesto tras resolver ambos paths al mismo archivo físico; probe TOP `reports/ntminute-ingress-review/adversarial.log`.
 - owner: adapter ntminute physical-binding preflight.
-- fix: EN_PROGRESO, preflight de identidad filesystem de todos los bindings antes del scan/manifest; no incluir inode/localpath en identidad lógica.
-- regression: PENDING_PERMANENT_REGRESSION — symlink/hardlink/relative-alias y archivos distintos byte-equivalentes.
+- fix: e44b741e0a6c32d39326b46738dc70565db4759c; preflight SameFile de todos los bindings antes del scan/manifest; physical inode/path excluidos de identidad lógica.
+- regression: PERMANENT_REGRESSION + TOP fresh final RED933→PASSe44 aliases symlink/hardlink/relative path, distinct byteequivalentfiles permitted; full adapter race/vet/NDJSON/oracle/TCR antimasking PASS.
 - real_rerun: NOT_RUN; transferencia completa pendiente.
-- state: OPEN_REPRODUCED_REMEDIATION_IN_PROGRESS. No cierre histórico.
+- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED. No cierre histórico.
+
+### BT2-F06 — coste cuadrático del historial de timers nativo
+
+- severity: HIGH para viabilidad de horizonte histórico; no defecto de rentabilidad.
+- dataset/rango: corpus minuto sintético completo51-H4 del worker C, REFERENCE_ONLY; ningún histórico original ejecutado. Source baseline933b40d6 con delta C todavía WIP, función nextTimer heredada sin cambiar.
+- expected: scheduler nativo retiene y recorre obligaciones pendientes, coste acotado por timers activos; fulldomain smoke con calentamiento termina sin historial cuadrático.
+- actual: cada minuto re-arms/replaces timers; driver conserva fired/replaced entries y nextTimer/pushTimer los recorren, O(minutes²). E2E race agota timeout600s; primer casoSL tardó≈9m, casoTP aún calentando, stack runnable nextTimer, sin deadlock/assertion failure.
+- first_divergence: acumulación de timers fired tras cada re-arm; log/stack `reports/ohlc-driver/final-native-race.log`, antes del fix.
+- owner: backtester native driver timer storage, no shared SDK/MM/Strategy.
+- fix: EN_PROGRESO autorizado por Coordinator en SPEC/TASKS C, stable native-only removal of Fired at nextRoot entry before any index selected; no new scheduler ni modificación legacy.
+- regression: PENDING_PERMANENT_REGRESSION — misma causal trace/results con historial descartado, live generation/order/expiry/residual preserved, mismo fullminute fixture before/after flags matching y fulldomain long/short E2E/race.
+- real_rerun: NOT_RUN; corpus físico completo pendiente.
+- state: OPEN_REPRODUCED_REMEDIATION_IN_PROGRESS.
 
 ### Retención y clasificación
 
