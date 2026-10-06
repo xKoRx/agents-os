@@ -54,7 +54,7 @@ TOP cerró [[BTG-S01-OHLC-RUN-CONTRACT]], docs `549506b9`, artifact digest compr
 ### Estado observado
 
 STATE = BLOCKED_EXTERNAL — ORIGINAL_BYTES_TRANSFER_POLICY
-WORK_IN_PROGRESS = NATIVE_DRIVER_REMEDIATION_AND_CLI_PREPARATION
+WORK_IN_PROGRESS = NATIVE_DRIVER_FROZEN_REVIEW_AND_CLI_IMPLEMENTATION
 FUNCTIONAL_CONFIG_AUTHORITY = OWNER_DELEGATED_CONSISTENT_RULES_2026_10_06
 SDK_STATE = READY_SDK_PREREQUISITE_REVIEW_ONLY
 SECONDARY_STATE = ORIGINAL_TRANSFER_PENDING; FUNCTIONAL_CONFIG_SELECTED; NATIVE_PORT_IN_PROGRESS
@@ -139,9 +139,15 @@ Primer test integrado C usa corpus sintético y ejercita S2→GerardMM→Operati
 
 Prueba C completa native1m/51-H4 bajo race agota600s; stack runnable en nextTimer, sin deadlock/assertionfailure. El driver conserva timers fired/replaced y cada1m los recorre/reemplaza; crecimiento histórico produce coste cuadrático. Root registró BT2-F06 y autorizó en SDD C compaction estable native-only de Fired al inicio de nextRoot, antes de seleccionar cualquier índice. Timers live, generations, requests/history records, expiries y legacy paths se preservan. Se exige igualdad de trace/result pequeño antes/después, almacenamiento acotado por live timers y medición sobre el mismo fixture/flags, seguido de E2E/race/regresiones. No proyección de throughput sintético como rendimiento de corpus real. Compaction implementada; comparación nonrace del mismo fixture40.48s→42.46s, sin claim de speedup; records699dc77... y Resultf74d35... exactos antes/después según worker. CPUprofileafter42.45s/87.05CPU-s: GC47.4%, Builder.findSource8.95%, completeNativeBar4.82%; nextTimer deja de ser hotspot. F06 atribución de coste dominante no confirmada; storage/scans se acotan, sin tuning especulativo de SDK/caches. Freeze/revisión de C pendientes en este corte.
 
+### Driver OHLC congelado — gate local pendiente
+
+Producto C `e2e15a3559034a3ed08c04f247baf4919e20b2ff` publicado/limpio, sin nuevos writes del implementer. Suite ordinaria domain/future-extrema/legacy Driver PASS258.765s; los cuatro casos S2/GerardMM long/short SL/TP PASS171.45s, datos sintéticos REFERENCE_ONLY. Race dirigido de causalidad/horizonte/control PASS31.642s, H4/selección timers PASS1.110s; cobertura final y race domain completo siguen pendientes en el corte de freeze. F06 regresión almacenamiento/identidad y F07 late controls/horizonte están implementer-verified, pendientes revisión independiente y realrerun. Un oracle nuevo short-stop se corrigió contra cálculo MM independiente: qty30, remainingSL1475.3USD, distancia2.25, stop104.25, fill104.50; MM no cambió.
+
+Fresh TOP LOCAL revisa SHA congelado en worktree aislado; NORMAL LOCAL implementa CLI source/preparación/reproducción en `codex/btg-s01-native-cli` desde ese mismo SHA. Calentamiento, fills, cierres y contabilidad locales aún no acreditan el corpus real. Histórico sigue NOT_RUN y el submanager no adjudica aceptación.
+
 ### Continuidad y próximo paso
 
-Identidad resuelta por Owner 2026-10-06: S2 actual. Owner ubicó trece exports candles en `C:\Temp\history`; nombres/tamaños/endpoints son legibles, pero la transferencia completa SFTP está denegada por policy viewer. Se pidió ZIP preservando originales, sin ampliar ACL/perfil ni usar una ruta alternativa para sortear la denegación. Owner delegó selección de reglas consistentes para hacer funcionar backtesting; [[BTG-S01-FUNCTIONAL-BASELINE-PROFILE]] fija el baseline funcional sin atribuir reglas a una cuenta física. El lector/input contract congelado `933b40d65d7fe0946bb5b75038f6c4858d9912ea` entra a revisión independiente; driver/venue nativos implementándose en un carril separado directamente desde ese SHA. Al disponer de bytes completos y port verificado, este submanager continúa slice real, remediación y longitudinal dentro de S01. S01 no está aceptado ni cerrado; S02 no inició.
+Identidad resuelta por Owner 2026-10-06: S2 actual. Owner ubicó trece exports candles en `C:\Temp\history`; nombres/tamaños/endpoints son legibles, pero la transferencia completa SFTP está denegada por policy viewer. Se pidió ZIP preservando originales, sin ampliar ACL/perfil ni usar una ruta alternativa para sortear la denegación. Owner delegó selección de reglas consistentes para hacer funcionar backtesting; [[BTG-S01-FUNCTIONAL-BASELINE-PROFILE]] fija el baseline funcional sin atribuir reglas a una cuenta física. El lector fix `e44b741e` pasó revisión independiente y está integrado byte-exacto. Driver/venue nativo congelado `e2e15a3559034a3ed08c04f247baf4919e20b2ff`, rama `codex/btg-s01-ohlc-driver`, entra a revisión adversarial LOCAL independiente; CLI se implementa en rama propia directamente desde ese SHA, sin merges ni cambios shared nuevos. Al disponer de bytes completos y port verificado, este submanager continúa slice real, remediación y longitudinal dentro de S01. S01 no está aceptado ni cerrado; S02 no inició.
 
 REUSABLE_BEHAVIOR_CANDIDATES = NONE adjudicado por root en esta fase; candidatos/fricción propios de workers quedan en sus artefactos, sin editar skills generales.
 
@@ -162,7 +168,7 @@ SUBTASK = BTG-S01
 STATE = BLOCKED_EXTERNAL
 SDK_STATE = READY_SDK_PREREQUISITE_REVIEW_ONLY; PRODUCT_407e03dd
 INPUT_STATE = E44b741e_BOUNDED_LOCAL_VERIFIED; REAL_RERUN_PENDING
-NATIVE_DRIVER_STATE = IMPLEMENTATION_IN_PROGRESS_ON_933b40d6
+NATIVE_DRIVER_STATE = FROZEN_e2e15a3559034a3ed08c04f247baf4919e20b2ff; INDEPENDENT_REVIEW_AND_FINAL_RACE_PENDING; CLI_IMPLEMENTATION_ACTIVE
 BASELINE_SHA = cd451972b242c8933321e03001decd4b6d778c61
 DATASET = NT_EXPORT_HISTORY_13_FILES_LISTED_AND_ENDPOINTS_READ; ORIGINALS_NOT_ACQUIRED; FULL_MANIFEST_DIGEST_NOT_AVAILABLE
 GERARD_STRATEGY_AUTHORITY = OWNER_2026_10_06_S2_H4_TREND_BB_PULLBACK_V1; SHARED_DEFAULTS_SELECTED_FOR_FUNCTIONAL_RUN
@@ -172,7 +178,7 @@ LONGITUDINAL_RUN = NOT_RUN
 DETERMINISTIC_RERUN = NOT_RUN
 ECONOMIC_STAGE_COVERAGE = NONE_DEMONSTRATED
 SIGNALS / OPERATIONS / FILLS / ACCOUNT_PNL = NOT_MEASURED
-OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F04_F05_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F06_TIMER_HISTORY_REMEDIATION_IN_PROGRESS; BT2-F07_LATE_CONTROL_REMEDIATION_IN_PROGRESS; B01_RESOLVED_BY_OWNER; B02_FUNCTIONAL_PROFILE_SELECTED_BY_OWNER_DELEGATION; ORIGINAL_TRANSFER_AND_NATIVE_DRIVER_PENDING
+OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F04_F05_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F06_F07_FIX_REGRESSION_IMPLEMENTER_VERIFIED_INDEPENDENT_REVIEW_PENDING; B01_RESOLVED_BY_OWNER; B02_FUNCTIONAL_PROFILE_SELECTED_BY_OWNER_DELEGATION; ORIGINAL_TRANSFER_AND_NATIVE_DRIVER_PENDING
 ARTIFACT = BTG-S01-REAL-GERARD-RESULT + BTG-S01-FINDINGS + identity/config + dataset inventory + NT acquisition + source SDK/remediation/final-review
 PRODUCT_PR = https://github.com/xKoRx/echo/pull/2; DRAFT_AGAINST_S04
 AGENTS_OS_COMMIT = final consolidated commit supplied in chat/PR handoff

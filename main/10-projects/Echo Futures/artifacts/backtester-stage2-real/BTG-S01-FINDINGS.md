@@ -98,8 +98,8 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - actual: cada minuto re-arms/replaces timers; driver conserva fired/replaced entries y nextTimer/pushTimer los recorren, O(minutes²). E2E race agota timeout600s; primer casoSL tardó≈9m, casoTP aún calentando, stack runnable nextTimer, sin deadlock/assertion failure.
 - first_divergence: acumulación de timers fired tras cada re-arm; log/stack `reports/ohlc-driver/final-native-race.log`, antes del fix.
 - owner: backtester native driver timer storage, no shared SDK/MM/Strategy.
-- fix: WIP C autorizado, stable native-only removal of Fired at nextRoot entry before any index selected; no new scheduler ni modificación legacy. Misma prueba nonrace40.48s→42.46s no demuestra speedup; storage live acotado y trace/result exactos. CPUprofileafter GC47.4%/Builder.findSource8.95%/completeNativeBar4.82%; timer scan deja de ser hotspot, atribución dominante no confirmada. No se aplicó optimización SDK/cache especulativa.
-- regression: PENDING_PERMANENT_REGRESSION — misma causal trace/results con historial descartado, live generation/order/expiry/residual preserved, mismo fullminute fixture before/after flags matching y fulldomain long/short E2E/race.
+- fix: C congelado e2e15a3559034a3ed08c04f247baf4919e20b2ff, stable native-only removal of Fired at nextRoot entry before any index selected; no new scheduler ni modificación legacy. Misma prueba nonrace40.48s→42.46s no demuestra speedup; storage live acotado y trace/result exactos. CPUprofileafter GC47.4%/Builder.findSource8.95%/completeNativeBar4.82%; timer scan deja de ser hotspot, atribución dominante no confirmada. No se aplicó optimización SDK/cache especulativa.
+- regression: IMPLEMENTER_VERIFIED, INDEPENDENT_REVIEW_PENDING — PERMANENT_REGRESSION compara48/1000min con5000fired, causal records/result/ref digests iguales y livepeak<=20; selección/generation/order/residual race PASS. Mismo fixture/flags beforeafter sin speedup. Domain cuatro long/short SL/TP ordinarios PASS, race completo pendiente.
 - real_rerun: NOT_RUN; corpus físico completo pendiente.
 - state: OPEN_REPRODUCED_REMEDIATION_IN_PROGRESS.
 
@@ -111,8 +111,8 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - actual: el preflight inicial de Open desconocía un control admitido luego; rootControl aplicaba cashflowUSD1 a los30s antes del preflight en SourceClose.
 - first_divergence: ledger.Cashflows0→1 al procesar control tardío, probe `TestOHLCDriver_LateAdmittedControlCannotAlterExposedInterval` del worker C y logs late-control-before/after.
 - owner: native backtester root/control preflight, sin fórmulas MM/Strategy ni sharedSDK.
-- fix: WIP preflight de todos nativePending antes de seleccionar root; Coordinator clarificó horizon: control exactamente intervalEnd dentro horizonte diagnostica; control at/after EndExclusive permanece PENDING_BEYOND_HORIZON y no invalida soleterminal SourceClose, preservando S04.
-- regression: PENDING_PERMANENT_REGRESSION — late+30s, intervalEnd dentrohorizonte, control atEndExclusive sellado pending sincashflow/ambiguity, diagnostic no backdate y cero mutación anteserror.
+- fix: C congelado e2e15a3559034a3ed08c04f247baf4919e20b2ff, preflight de todos nativePending antes de seleccionar root; Coordinator clarificó horizon: control exactamente intervalEnd dentro horizonte diagnostica; control at/after EndExclusive permanece PENDING_BEYOND_HORIZON y no invalida soleterminal SourceClose, preservando S04.
+- regression: IMPLEMENTER_VERIFIED, INDEPENDENT_REVIEW_PENDING — PERMANENT_REGRESSION late+30s/intervalEnd dentrohorizonte, single/multistream pendingpinned; control atEndExclusive sellado pending sincashflow/ambiguity, soleterminal SourceClose consumido; diagnostic no backdate/cero mutación anteserror. Suite native rápida race31.642s PASS.
 - real_rerun: NOT_RUN; corpus físico completo pendiente.
 - state: OPEN_REPRODUCED_REMEDIATION_IN_PROGRESS.
 

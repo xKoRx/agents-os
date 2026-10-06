@@ -27,7 +27,7 @@ Mandato Owner recibido el 2026-10-05 (America/Santiago): máximo cinco shots; el
 Origen de este paquete: rama documental docs/backtester-gerard-bankroll-five-shots-20261005 de xKoRx/agents-os, commit `a16f4bb25cfb6882146f437f5913302a191313c2`. El submanager LOCAL observó su merge ya existente `d67319f0878610c786b94aa2ad31e5e4503e7efa` y master `bb9fa98be22057e8468e83f72cb53fd147accc09`. La revisión automática había rechazado mover master directamente en Primary; BTG-S01 no ejecutó ese merge ni altera master. Evidencia y deltas nuevos en rama documental separada para revisión.
 
 PROGRAM_STATE = IN_PROGRESS
-BTG_S01 = BLOCKED_EXTERNAL — ORIGINAL_BYTES_TRANSFER_POLICY; NTMINUTE_INPUT_VERIFIED; NATIVE_DRIVER_REMEDIATION_AND_CLI_PREPARATION
+BTG_S01 = BLOCKED_EXTERNAL — ORIGINAL_BYTES_TRANSFER_POLICY; NTMINUTE_INPUT_VERIFIED; NATIVE_DRIVER_FROZEN_REVIEW_AND_CLI_IMPLEMENTATION
 BTG_S02_TO_S05 = NOT_STARTED
 REAL_GERARD_RUN_THIS_SESSION = NOT_RUN
 CAMPAIGN_RESULTS = NOT_AVAILABLE

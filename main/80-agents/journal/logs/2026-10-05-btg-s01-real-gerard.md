@@ -49,6 +49,10 @@ tags:
 
 2026-10-06: C reproducestardíoCALLERCONTROLcashflowUSD1insidependingSource→F07registered. RootSDDclarification: preflightbounds-onlyforallpendingbeforeRootselection; +30s/intervalEndeligiblefailbeforeeffects; controlATEndExclusiveinadmittedpendingPENDINGBEYONDHORIZON no ficticioambiguity terminalSourceClose (S04preserved). Networkingfalsealarmresolved: workerusedunshare-nalone, rootuser-maproot-netPASSactualuid1000/nohostchange, repeatsamecompleteinvocation, no fallbackbarrierdegradation.
 
+2026-10-06: root refresca cuatro refs: AgentsOS master07ea74689eeb56988653cce61cc836be32c0effe, Echo master372af59a7b83604781346613da01e3d510ea1360, S04cd451972b242c8933321e03001decd4b6d778c61, D6d08a30ce9815f820fda7132e20dc42cc345eb8e8. D6 local limpio; delta desdebase7fbd7e99 sólo futures-bridge, cero intersecciónSDK/Core. Lint dirigido result/findings/plan/log4 PASS; PRagents-os#2 metadata actualizada al cortea67a7282. FreshTOP reviewer C despachado readonly bootstrap/matriz, espera SHA congelado. Short-stop oracle nuevo corregido por evidenciaMMbudget1475.3/600→2.25, stop104.25/fill104.5; no cambio MM ni finding de rentabilidad. Fuente C aún WIP; full historical NOT_RUN.
+
+2026-10-06: C sourcefreeze/pushclean e2e15a3559034a3ed08c04f247baf4919e20b2ff, ordinario domain/futureextrema/legacyPASS258.765s,4casosS2MM171.45s; nativecausal/horizonrace31.642/H4timer1.110. Coverage/finaldomainrace45mmax pending; no fullgateclaim. Rootcreó CLIworktree propio directoSHA, copió3SDDbyteexactos y autorizó NORMAL; TOPreviewer readonlytarget detachedmismoSHA, revisión autorizada. F06/F07 implementerregressionverified/nohistoricalclosure. D6refresco limpio sinintersección; rootnuncaimplementaproducto.
+
 ## Fuentes usadas
 
 - [[BTG-PLAN]], [[BTG-S01-SUBMANAGER-PROMPT]], [[Echo Futures]], [[Echo Futures — BT-S04 Final Remediation and Certification]].
