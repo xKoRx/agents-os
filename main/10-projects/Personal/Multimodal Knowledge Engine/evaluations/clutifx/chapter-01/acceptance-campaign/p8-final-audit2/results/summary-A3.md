@@ -36,7 +36,7 @@
 
 ## Estado de la fase
 
-- 26/26 ventanas aceptadas del rango auditadas al 100% (220/220 claims), 107/107 frames citados leídos.
+- 23/23 ventanas aceptadas del rango auditadas al 100% (220/220 claims), 107/107 frames citados leídos.
 - Salidas: `results/FULL-CLAIM-AUDIT-A3.jsonl` (220 filas), `results/MISSING-KNOWLEDGE-A3.jsonl` (2 filas), `results/summary-A3.md`.
 - w0093–w0099 (provider unavailable) y w0073/w0077/w0084 (identity divergence): fuera de alcance de este auditor; se recuerda que sus transcripts contienen contenido no reclamado (p. ej. w0084, 9 segmentos) que ningún worker de claims cubrirá si no se reprocesan.
 
