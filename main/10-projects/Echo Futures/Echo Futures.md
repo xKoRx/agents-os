@@ -23,7 +23,7 @@ tags:
   - echo-futures
   - algorithmic-trading
 created: "2026-09-25"
-updated: "2026-10-01"
+updated: "2026-10-05"
 ---
 
 # Echo Futures
@@ -2682,3 +2682,43 @@ TOP Senior Recovery / Execution Transport Remediation Lead (one-shot, fresh cont
 - **Estado final seguro:** G-EGRESS-0 intacto en 3 superficies (unidad inactive+disabled, `:9771` sin listener, ETCD `futures-bridge/` = 21 claves == baseline con clave `accounts` ABSENT); topic 0; journal 0; venue plano; 0 commits.
 
 **NEXT_MANAGER_ACTION:** escalación **OD-D6-3 conditional**: Owner reconecta en GUI de NT la conexión **"Simulación"** + datos NQ 12-26 (~2 min); señal de éxito agent-side = `market_events` del heartbeat `5b70e536…` avanzando + offsets del feed topic avanzando con `event_ts` fresco (probe §M) + balances 50000/50000. Con esa señal, re-despachar el ladder congelado COMPLETO (OD-D6-1 vigente sin consumir; C0–H y G-REALTIME frozen) en la primera ventana admisible (remaining evening 2026-10-05 o mar 2026-10-06 00:00–15:50 CT), secuencia §17: armar sesión+bridge → barrier → run config → RUN_START → G-E2E → G-STOP → G-ID-Retention → G-HORIZON → drill recovery → G-PERF → cuenta final. No emitir `EF_D6_E2E_PASS` hasta ladder completo.
+
+### Backtester V1 — manager closure + Stage 2/3 continuity — 2026-10-05
+
+**Manager gate:** `BACKTESTER_V1 = CLOSED / CERTIFIED` sobre `feature/backtester-v1-s04-remediation@cd451972b242c8933321e03001decd4b6d778c61`. BT-S00→S04 cerrados; BT-F01..F05 en `CONFIRMED_FIXED_WITH_REGRESSION`; BT-S03-F01..F14 FIXED, F16 FIXED y F15 `ACCEPTED_MINOR_OPEN`. KISS/YAGNI final = PASS. El incidente ETCD de S03 fue recuperado y S04 añadió build-tag + opt-in + endpoint guard para seeds; cero escrituras ETCD durante la certificación.
+
+**Importante — integración Git:** Backtester V1 **NO está mergeado a `master`**. Al cierre de esta sesión: `master@372af59a7b83604781346613da01e3d510ea1360`; Backtester certificado `cd451972...`; D6 continúa en carril separado `feature/d6-shot1-execution-vertical@d08a30ce9815f820fda7132e20dc42cc345eb8e8`. No mergear/rebasear preventivamente mientras D6 siga vivo; el próximo Manager debe refrescar ambos HEADs y reconciliar sólo deltas shared reales.
+
+#### Próxima etapa — Stage 2: REAL HISTORICAL BACKTEST / GERARD
+
+Objetivo de producto: **usar el Backtester V1 certificado con datos históricos REALES y la Strategy/configuración Gerard canónica REAL; si no corre o descubre un defecto, corregir el producto/shared-domain hasta que el run real funcione correctamente.**
+
+Reglas:
+- No rediseñar Backtester V1 ni crear otro engine.
+- Recuperar desde source/autoridades la identidad exacta de la “estrategia Gerard” y su configuración real; no sustituirla por fixture, aproximación o estrategia inventada.
+- GerardMM debe ser el runtime real compartido.
+- Dataset de validación debe ser histórico real, durable y reproducible (ticks; BBO cuando la fidelidad requerida lo necesite), con contratos físicos/rollover reales y manifest/digests.
+- Comenzar con un slice real acotado para smoke/diagnóstico y escalar a un horizonte longitudinal representativo; la evidencia primaria de Stage 2 no puede ser corpus sintético.
+- Ante fallo: reproducir → identificar primer divergence/error → corregir en shared domain/backtester donde corresponda → regression → volver a ejecutar el mismo histórico. No parches sólo para fixture/backtest.
+- Registrar performance real (records, tiempo, memoria, tamaño de artifact) sin optimización prematura ni SLA inventado.
+- Persistir results/artifacts reproducibles; no iniciar todavía análisis económico masivo/campaign simulation.
+- Completion candidate: Strategy Gerard + GerardMM reales ejecutan E2E sobre histórico real con `COMPLETE`/outcome esperado, multi-contract cuando el horizonte lo requiera, sin decisiones manuales en el loop y con bugs descubiertos cerrados por regresión.
+
+#### Etapa posterior — Stage 3: PROP CAMPAIGN / ECONOMICS
+
+Sólo después de Stage 2 validado. Objetivo: utilizar el motor/backtests ya confiables para modelar **muchas cuentas de fondeo y bankroll**: compra/fees/resets, evaluation/next stages/funded, cuentas quemadas, payouts, reinversión y continuidad temporal.
+
+Métricas mínimas futuras:
+- cuentas compradas / fallidas / pasadas / funded / con payout;
+- fees y resets pagados;
+- payouts brutos;
+- beneficio/pérdida neta;
+- bankroll inicial/final y curva temporal;
+- tiempo a primer payout;
+- duración de cuentas;
+- coste esperado por payout/cuenta viable;
+- resultados por prop/programa/stage y Strategy/MM.
+
+Boundary frozen: el futuro Campaign Simulator **orquesta cuentas y bankroll fuera del Backtest Engine**. No replica Strategy/GerardMM/Provider/Accounting; cada cuenta se conduce mediante el mismo engine/contexts/cashflows ya certificados.
+
+**NEXT_MANAGER_ACTION:** asumir dirección técnica de Stage 2. Refrescar Agents-OS + HEADs de Backtester/D6/master; usar el branch certificado mientras no exista integración segura; preparar y ejecutar el primer backtest histórico REAL de Gerard. Stage 2 no cierra con “el motor compila”: cierra cuando la Strategy Gerard real corre sobre datos reales y cualquier defecto encontrado queda corregido/reproducible. Al cerrar Stage 2, proponer el mandato de Stage 3.
