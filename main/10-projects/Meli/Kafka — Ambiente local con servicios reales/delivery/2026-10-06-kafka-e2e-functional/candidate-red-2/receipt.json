@@ -1,0 +1,18 @@
+{
+  "run_id": "d01cf0fbd82442fd80158dfc898e75ff",
+  "source_commit": "4df8822be9625775ef5e89b8eafb8f724792c4bb",
+  "verdict": "FAIL",
+  "native_tests": 359,
+  "passed": 349,
+  "failures": 10,
+  "errors": 0,
+  "skipped": 0,
+  "cleanup": "PASS",
+  "classification": {
+    "harness_invalid_admin_timeout": 4,
+    "action_binding_semantic_regression": 3,
+    "gcp_test_contradicts_canonical_first_match": 1,
+    "initial_absence_after_fixture_observed_creation": 2
+  },
+  "metadata_stale_broker_explanation": "supported inference, no retained wire trace"
+}

@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-06T18:41:57.253Z" time="36.103">
+  <testcase name="[1] provider = &quot;aws-msk-topic&quot;, operation = &quot;PROVISION&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" time="5.149" />
+  <testcase name="[2] provider = &quot;aws-msk-topic&quot;, operation = &quot;UPDATE&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" time="4.522" />
+  <testcase name="[3] provider = &quot;aws-msk-topic&quot;, operation = &quot;DEPROVISION&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" time="4.475" />
+  <testcase name="[4] provider = &quot;gcp-kafka-topic&quot;, operation = &quot;PROVISION&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" time="4.512" />
+  <testcase name="[5] provider = &quot;gcp-kafka-topic&quot;, operation = &quot;UPDATE&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" time="4.503" />
+  <testcase name="[6] provider = &quot;gcp-kafka-topic&quot;, operation = &quot;DEPROVISION&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" time="4.515" />
+  </testsuite>

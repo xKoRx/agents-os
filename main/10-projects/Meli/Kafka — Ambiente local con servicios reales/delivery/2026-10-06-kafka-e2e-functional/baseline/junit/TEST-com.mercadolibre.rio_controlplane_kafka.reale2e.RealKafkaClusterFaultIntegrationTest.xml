@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaClusterFaultIntegrationTest" tests="2" skipped="0" failures="2" errors="0" timestamp="2026-10-06T18:42:37.658Z" time="2.062">
+  <testcase name="[1] operation = PROVISION" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaClusterFaultIntegrationTest" time="1.093">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="java.lang.IllegalArgumentException" />
+  </testcase>
+  <testcase name="[2] operation = UPDATE" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaClusterFaultIntegrationTest" time="0.953">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="java.lang.IllegalArgumentException" />
+  </testcase>
+  </testsuite>

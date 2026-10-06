@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealFixtureCleanupIntegrationTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-10-06T20:45:58.094Z" time="0.045">
+  <testcase name="realAdminClientFailureStillDeletesEveryKvsKeyAndClosesProducer()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealFixtureCleanupIntegrationTest" time="0.03">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  </testsuite>

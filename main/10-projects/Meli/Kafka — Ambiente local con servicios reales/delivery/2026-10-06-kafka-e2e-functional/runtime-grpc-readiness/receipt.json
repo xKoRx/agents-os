@@ -1,0 +1,235 @@
+{
+  "cleanup": {
+    "five_host_ports_bind_free": true,
+    "grpc_probe": "PASS_OWNED_RESOURCE_AND_PORT_ABSENCE",
+    "native_tunnel_children_remaining": 0,
+    "remaining_owned_containers": 0,
+    "remaining_owned_volumes": 0,
+    "remaining_probe_networks": 0,
+    "ssh_probe": "PASS_OWNED_RESOURCE_AND_PORT_ABSENCE"
+  },
+  "control_failures_preserved": [
+    {
+      "evidence": "grpc-runtime-first-failure.json",
+      "failure": "First gRPC setup Docker info AssertionError",
+      "reason_verified": "Own Docker context metadata removed by colima stop; colima start found existing VM and returned already running without recreating context.",
+      "resolution": "Recreate only owned context at its original Unix endpoint; no context use.",
+      "tool_chunk": "25b681"
+    },
+    {
+      "failure": "One diagnostic read SyntaxError: elseNone",
+      "resolution": "Corrected read-only diagnostic; not a backend failure.",
+      "runtime_mutations": 0,
+      "tool_chunk": "27e6c7"
+    }
+  ],
+  "created_utc": "2026-10-06T22:58:18.180451+00:00",
+  "dependencies_installed_by_agent": 0,
+  "failure_boundary": {
+    "hostagent_ssh_forwarding_failure": "signal: killed",
+    "initial_guest_health": 5,
+    "initial_host_api_versions_passed": 0,
+    "initial_host_error": "ConnectionRefusedError errno61",
+    "native_control_check_exit": 0,
+    "native_fresh_elapsed_ms": 16,
+    "native_fresh_no_mux_tunnel_exit": -9,
+    "native_fresh_pid": 40124,
+    "native_mux_forwards_exit": [
+      -9,
+      -9,
+      -9,
+      -9,
+      -9
+    ],
+    "own_pid_unified_log_events": 0,
+    "same_executable": "/usr/bin/ssh",
+    "signal_origin": "UNKNOWN",
+    "ssh_sha256": "e22a8f3069beddf378d24f6b747831491345ee2e7b4e7e4599c4ca61f6f38064",
+    "ssh_version": "OpenSSH_10.3p1, LibreSSL3.3.6"
+  },
+  "final_runtime": {
+    "active_context": "colima",
+    "checks": {
+      "containers": {
+        "count": 0,
+        "exit": 0
+      },
+      "volumes": {
+        "count": 0,
+        "exit": 0
+      }
+    },
+    "config_bytes_unchanged": true,
+    "config_sha256": {
+      "/Users/rjara/.colima/_lima/colima-rio-kafka-e2e-01a0f8e0/lima.yaml": "6348d8e85ac680b90dc49de41840c1ca75de5744b501fe7e51ed187ca1b09235",
+      "/Users/rjara/.colima/rio-kafka-e2e-01a0f8e0/colima.yaml": "5b75fd2dddff4103df7fd11d055094e6226a24bf8ce222fc3270d11351270c21"
+    },
+    "docker_context": "colima-rio-kafka-e2e-01a0f8e0",
+    "docker_info": "6198427648 \"aarch64\" \"27.4.0\"",
+    "forward_events": [
+      {
+        "killed": false,
+        "line": 37,
+        "message": "Not forwarding TCP 127.0.0.54:53",
+        "time": "2026-10-06T19:52:09-03:00"
+      },
+      {
+        "killed": false,
+        "line": 38,
+        "message": "Not forwarding TCP [::]:22",
+        "time": "2026-10-06T19:52:09-03:00"
+      },
+      {
+        "killed": false,
+        "line": 39,
+        "message": "Not forwarding UDP 127.0.0.54:53",
+        "time": "2026-10-06T19:52:09-03:00"
+      },
+      {
+        "killed": false,
+        "line": 40,
+        "message": "Not forwarding UDP 127.0.0.53:53",
+        "time": "2026-10-06T19:52:09-03:00"
+      },
+      {
+        "killed": false,
+        "line": 41,
+        "message": "Not forwarding UDP 192.168.5.3:68",
+        "time": "2026-10-06T19:52:09-03:00"
+      },
+      {
+        "killed": false,
+        "line": 45,
+        "message": "Forwarding TCP from 127.0.0.1:39094 to 127.0.0.1:39094",
+        "time": "2026-10-06T19:54:54-03:00"
+      },
+      {
+        "killed": false,
+        "line": 46,
+        "message": "Forwarding TCP from 127.0.0.1:39095 to 127.0.0.1:39095",
+        "time": "2026-10-06T19:54:54-03:00"
+      },
+      {
+        "killed": false,
+        "line": 47,
+        "message": "Forwarding TCP from 127.0.0.1:39092 to 127.0.0.1:39092",
+        "time": "2026-10-06T19:54:54-03:00"
+      },
+      {
+        "killed": false,
+        "line": 48,
+        "message": "Forwarding TCP from 127.0.0.1:39093 to 127.0.0.1:39093",
+        "time": "2026-10-06T19:54:54-03:00"
+      },
+      {
+        "killed": false,
+        "line": 49,
+        "message": "Forwarding TCP from 127.0.0.1:39096 to 127.0.0.1:39096",
+        "time": "2026-10-06T19:54:54-03:00"
+      },
+      {
+        "killed": false,
+        "line": 59,
+        "message": "Port forwarding closed proto:tcp host:127.0.0.1:39094 guest:127.0.0.1:39094",
+        "time": "2026-10-06T19:56:33-03:00"
+      },
+      {
+        "killed": false,
+        "line": 63,
+        "message": "Port forwarding closed proto:tcp host:127.0.0.1:39095 guest:127.0.0.1:39095",
+        "time": "2026-10-06T19:56:33-03:00"
+      },
+      {
+        "killed": false,
+        "line": 67,
+        "message": "Port forwarding closed proto:tcp host:127.0.0.1:39092 guest:127.0.0.1:39092",
+        "time": "2026-10-06T19:56:33-03:00"
+      },
+      {
+        "killed": false,
+        "line": 71,
+        "message": "Port forwarding closed proto:tcp host:127.0.0.1:39093 guest:127.0.0.1:39093",
+        "time": "2026-10-06T19:56:33-03:00"
+      },
+      {
+        "killed": false,
+        "line": 76,
+        "message": "Port forwarding closed proto:tcp host:127.0.0.1:39096 guest:127.0.0.1:39096",
+        "time": "2026-10-06T19:56:39-03:00"
+      }
+    ],
+    "own_hostagent_pid": 41634,
+    "own_mode_env": "false",
+    "own_profile": "rio-kafka-e2e-01a0f8e0",
+    "root_failed_run_drift": [],
+    "root_failed_run_preserved_files": 8,
+    "root_runtime_handoff": "Docker exclusive released to root; no Gradle/CP/business tests executed.",
+    "runtime_status": "RUNNING_GRPC_EMPTY",
+    "time_utc": "2026-10-06T22:57:05.323388+00:00"
+  },
+  "host_api_versions": {
+    "api_counts": [
+      61,
+      61,
+      61,
+      61,
+      61
+    ],
+    "error_codes": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "passed": 5,
+    "receipt": "grpc-api-versions-host.json",
+    "receipt_sha256": "00b369ec9f6593d6501dcfefbae5a964ec0b326b2ff9f2a673a3e8bacae6acd2",
+    "response_bytes": [
+      376,
+      376,
+      376,
+      376,
+      376
+    ],
+    "total": 5
+  },
+  "limits": [
+    "One gRPC readiness probe; repeatability and full CP E2E are not certified.",
+    "No CP, Gradle or business test executed in this infrastructure task.",
+    "SIGKILL emitter/OS cause is unknown; no claim about VPN or permissions.",
+    "Mode is process-scoped: Colima0.8.1 future restarts force SSH unless owned startup explicitly uses supported Lima env."
+  ],
+  "official_sources": [
+    "https://raw.githubusercontent.com/abiosoft/colima/v0.8.1/environment/vm/lima/lima.go",
+    "https://raw.githubusercontent.com/lima-vm/lima/v1.0.5/pkg/hostagent/hostagent.go",
+    "https://lima-vm.io/docs/config/port/",
+    "https://lima-vm.io/docs/config/environment-variables/"
+  ],
+  "root_failed_run": "/private/tmp/kafka-e2e-validate-20261006/cp/build/local-e2e/2d88001ba3e04d3495494415896328b2",
+  "root_failed_run_drift": [],
+  "root_failed_run_files_preserved": 8,
+  "scope": "OWN_RUNTIME_DIAGNOSIS_AND_READINESS_ONLY",
+  "shared_context_or_service_changes": 0,
+  "source_changes": 0,
+  "supported_recovery": {
+    "colima_version": "0.8.1",
+    "config_bytes_unchanged": true,
+    "context_recreated_at_original_owned_unix_socket": true,
+    "default_active_context": "colima",
+    "grpc_probe_run": "6eb2fcb44f5a4b25b90642c9557a388c",
+    "lima_version": "1.0.5",
+    "mode_proof": "grpc-mode-proof.json",
+    "own_instance": "colima-rio-kafka-e2e-01a0f8e0",
+    "own_lima_home": "/Users/rjara/.colima/_lima",
+    "requested_env": "LIMA_SSH_PORT_FORWARDER=false"
+  },
+  "unsupported_paths_not_used": {
+    "binary_override": false,
+    "colima0_8_1_port_forwarder_flag": "ABSENT",
+    "external_env_to_colima_start": "IGNORED_BY_PINNED_SOURCE_FORCED_TRUE",
+    "security_policy_changes": false,
+    "upgrades": false
+  },
+  "verdict": "GRPC_HOST_KAFKA_READINESS_PASS_5_OF_5_AND_PROBE_CLEANUP_PASS"
+}

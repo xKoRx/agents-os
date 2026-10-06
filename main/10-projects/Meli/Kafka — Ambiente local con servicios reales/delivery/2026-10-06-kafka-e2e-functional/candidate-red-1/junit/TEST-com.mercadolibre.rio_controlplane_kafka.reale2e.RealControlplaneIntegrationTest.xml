@@ -1,0 +1,504 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" tests="167" skipped="0" failures="167" errors="0" timestamp="2026-10-06T20:45:54.708Z" time="3.385">
+  <testcase name="nameOnlyDeprovisionDeletesAnActualTopic(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.022">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="nameOnlyDeprovisionDeletesAnActualTopic(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="malformedPolicyParamsFailWithoutKafkaEffectsForBothProviders(String, Object) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.02">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="malformedPolicyParamsFailWithoutKafkaEffectsForBothProviders(String, Object) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.022">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="malformedPolicyParamsFailWithoutKafkaEffectsForBothProviders(String, Object) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="malformedPolicyParamsFailWithoutKafkaEffectsForBothProviders(String, Object) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.018">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="malformedPolicyParamsFailWithoutKafkaEffectsForBothProviders(String, Object) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="malformedPolicyParamsFailWithoutKafkaEffectsForBothProviders(String, Object) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="malformedPolicyParamsFailWithoutKafkaEffectsForBothProviders(String, Object) [7]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="nullOperationFailsAndGcpRepeatsWithoutClaimWhileMskDeduplicates(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="nullOperationFailsAndGcpRepeatsWithoutClaimWhileMskDeduplicates(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="actualInvalidKafkaConfigLeavesPartialPartitionEffectAndNewIdCompletesReconciliation()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restRejectsBlankAndMalformedBrokerAddressesWithoutKafkaMutation(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restRejectsBlankAndMalformedBrokerAddressesWithoutKafkaMutation(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restRejectsBlankAndMalformedBrokerAddressesWithoutKafkaMutation(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restRejectsBlankAndMalformedBrokerAddressesWithoutKafkaMutation(String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restRejectsBlankAndMalformedBrokerAddressesWithoutKafkaMutation(String) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restRejectsBlankAndMalformedBrokerAddressesWithoutKafkaMutation(String) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="gcpDefaultsApplyOnCreateAndUpdateOmittedReplicationPreservesExistingFactor()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="actionFailureContractsUseActualResultTransportAndKvs(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.023">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="actionFailureContractsUseActualResultTransportAndKvs(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="actionFailureContractsUseActualResultTransportAndKvs(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="actionFailureContractsUseActualResultTransportAndKvs(String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="actionInvalidPeekParametersPublishFailureBeforeStartedWithoutPhysicalEffects(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="actionInvalidPeekParametersPublishFailureBeforeStartedWithoutPhysicalEffects(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="actionInvalidPeekParametersPublishFailureBeforeStartedWithoutPhysicalEffects(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.019">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="actionInvalidPeekParametersPublishFailureBeforeStartedWithoutPhysicalEffects(String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="nonStringGcpRoutingKeysAreRejectedBeforeStarted(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.018">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="nonStringGcpRoutingKeysAreRejectedBeforeStarted(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.02">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="nonStringGcpRoutingKeysAreRejectedBeforeStarted(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restAndActionPeekPreserveMessageFieldsAndDoNotCommit(String, String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restAndActionPeekPreserveMessageFieldsAndDoNotCommit(String, String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restAndActionPeekPreserveMessageFieldsAndDoNotCommit(String, String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.022">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restAndActionPeekPreserveMessageFieldsAndDoNotCommit(String, String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.037">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restAndActionPeekPreserveMessageFieldsAndDoNotCommit(String, String) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restAndActionPeekPreserveMessageFieldsAndDoNotCommit(String, String) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restAndActionPeekPreserveMessageFieldsAndDoNotCommit(String, String) [7]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restAndActionPeekPreserveMessageFieldsAndDoNotCommit(String, String) [8]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.013">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restAndActionPeekPreserveMessageFieldsAndDoNotCommit(String, String) [9]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="missingTopicRestReturns404AndNoKafkaResourcesAppear()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="mskPrimaryPrefixWinsOverDifferentLegacyAlias()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="heterogeneousPartitionReplicationIsGuardedAndEveryPartitionReconciles(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="heterogeneousPartitionReplicationIsGuardedAndEveryPartitionReconciles(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.024">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="gcpRoutingKeysInsideParamsFailWithoutStarted(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="gcpRoutingKeysInsideParamsFailWithoutStarted(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.025">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="gcpRoutingKeysInsideParamsFailWithoutStarted(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.018">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="mskCreateWithOmittedRetentionUsesActualBrokerDefaultAndUpdatePreservesIt()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.026">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restBoundaryViolationsReturn400WithoutKafkaMutation(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.024">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restBoundaryViolationsReturn400WithoutKafkaMutation(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.021">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restBoundaryViolationsReturn400WithoutKafkaMutation(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.021">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restBoundaryViolationsReturn400WithoutKafkaMutation(String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.018">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="blankRootAndParamsGcpRoutingKeysPreserveLegacyDefault(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="blankRootAndParamsGcpRoutingKeysPreserveLegacyDefault(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.022">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="blankRootAndParamsGcpRoutingKeysPreserveLegacyDefault(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="actionAcceptsContractMinimumMsgOnlyEnvelopeAcrossRealHttpKafkaAndKvs()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="updateAllDimensionsAndNoopPreservePhysicalMetadataAndUnrequestedConfigs(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="updateAllDimensionsAndNoopPreservePhysicalMetadataAndUnrequestedConfigs(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.02">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="actionEnvelopeMetadataAndUnknownFieldsPreserveActualPeek()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="retentionConflictAndGcpGenericConfigsFailBeforeStarted()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.018">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.021">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.023">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.022">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.018">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [7]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [8]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [9]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.023">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [10]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [11]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [12]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [13]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [14]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.023">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [15]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.012">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [16]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [17]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="numericContractsRejectFractionalOverflowAndWrappedReplicationBeforeStarted(String, String, Number) [18]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="actualKafkaConfigFailureSanitizesSyntheticCredentialShapedValueInResult()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.024">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="emptyPartialAndTimedOutPeekObserveActualPolling()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="futureSchemaUnknownComponentAndRootGcpRoutingAreAcknowledgedWithoutClaim()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.025">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="missingRestBrokerFieldAndInvalidTopicAreRejected()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.02">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="provisionReconcilePreservesOmittedConfigsAndGuardsMixedDecrements(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.024">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="provisionReconcilePreservesOmittedConfigsAndGuardsMixedDecrements(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.022">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restAndActionDefaultLimitsReadTenActualLatestMessages()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.023">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.019">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.019">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.024">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.022">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.019">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [7]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.013">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [8]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [9]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [10]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.023">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [11]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.018">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [12]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [13]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [14]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [15]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.023">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [16]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.02">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [17]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.018">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [18]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [19]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.013">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [20]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.033">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [21]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.02">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [22]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [23]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [24]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.013">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [25]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.013">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [26]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [27]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [28]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [29]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="invalidStructuralWireTypesFailBeforeStartedAndAnyPhysicalKafkaMutation(String, String, Object) [30]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="deploymentEnvelopeMetadataAndUnknownSnapshotFieldsDoNotChangeDomainRouting()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="mskStructuralValidationFailsBeforeStarted(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="mskStructuralValidationFailsBeforeStarted(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.02">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="mskStructuralValidationFailsBeforeStarted(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.013">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="mskStructuralValidationFailsBeforeStarted(String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="mskStructuralValidationFailsBeforeStarted(String) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="provisionExplicitRetentionPatchPreservesOtherActualConfigs(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="provisionExplicitRetentionPatchPreservesOtherActualConfigs(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="infiniteRetentionAndOmittedUpdatePreserveActualConfig(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.013">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="infiniteRetentionAndOmittedUpdatePreserveActualConfig(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="updateExplicitReplicationReductionUsesRealReassignment(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="updateExplicitReplicationReductionUsesRealReassignment(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.02">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="gcpPeekUsesLegacyRoutingAndActualConsumerWithProductionDomainBeans()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="mskAllEnvironmentAliasesResolveTheirPhysicalPrefix(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="mskAllEnvironmentAliasesResolveTheirPhysicalPrefix(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="mskAllEnvironmentAliasesResolveTheirPhysicalPrefix(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="mskAllEnvironmentAliasesResolveTheirPhysicalPrefix(String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.013">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="mskAllEnvironmentAliasesResolveTheirPhysicalPrefix(String) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="terminalDeploymentSameIdWithChangedPayloadDoesNotApplyNewDesiredDimensions()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="mskMatchingRetentionSourcesAndGcpNullConfigsAreAccepted()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="ignoredActionWireVariantsHaveNoResultOrClaim(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="ignoredActionWireVariantsHaveNoResultOrClaim(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.024">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="ignoredActionWireVariantsHaveNoResultOrClaim(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="ignoredActionWireVariantsHaveNoResultOrClaim(String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="deprovisionIgnoresUnsupportedCreateParametersAndDeletesPhysicalTopic(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.014">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="deprovisionIgnoresUnsupportedCreateParametersAndDeletesPhysicalTopic(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.025">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="oversizedActionResultBecomesSmallFailureAndHealthyTerminalDuplicateIsDropped()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.028">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="mskUnknownEnvironmentIdUsesActualSharedCluster()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.028">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.025">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.026">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.03">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.027">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [7]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [8]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [9]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [10]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.015">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.02">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.019">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.021">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.027">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [7]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.02">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [8]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.018">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="restActualUnreachableKafkaReturnsFailureAndLeavesNoPersistentPeekGroup()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.018">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="terminalActionSameIdWithChangedDataDropsNewPeekAndRetainsOriginalResult()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.022">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="latestEarliestAndMultipartitionPeekUseRealOffsetsWithGlobalLimit()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.019">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="missingTopicUpdateFailsAndTerminalRedeliveryDoesNotPublishAgain(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.02">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="missingTopicUpdateFailsAndTerminalRedeliveryDoesNotPublishAgain(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.019">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="concurrentHttpDeploymentDuplicateSharesOneHealthyTerminalCasOwner(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="concurrentHttpDeploymentDuplicateSharesOneHealthyTerminalCasOwner(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest" time="0.016">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  </testsuite>

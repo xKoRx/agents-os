@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaTriggerBridgeIntegrationTest" tests="2" skipped="0" failures="2" errors="0" timestamp="2026-10-06T18:42:39.723Z" time="74.737">
+  <testcase name="[1] provider = &quot;aws-msk-topic&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaTriggerBridgeIntegrationTest" time="37.206">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="[2] provider = &quot;gcp-kafka-topic&quot;" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaTriggerBridgeIntegrationTest" time="37.169">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  </testsuite>

@@ -1,0 +1,11 @@
+{
+  "read_only_inspection": "docker --context colima-rio-kafka-e2e-01a0f8e0 image inspect <compose pinned digest>",
+  "compose_ref": "apache/kafka@sha256:4ceccc577f03f51f6af8dbfda55194d0d892f4fa7913ffbded567ce3895622ed",
+  "local_image_id": "sha256:793ff1e5c750c9f8723804161c211a75bcc011b7b18fa951dd514bd7646e4aaa",
+  "architecture": "arm64",
+  "runtime_memory_bytes": 6198423552,
+  "containers_after_baseline": 0,
+  "shared_default_untouched": true,
+  "prior_SIGKILL_cause": "unknown; no causal fix claimed",
+  "CI_runtime": "NOT_EXECUTED"
+}

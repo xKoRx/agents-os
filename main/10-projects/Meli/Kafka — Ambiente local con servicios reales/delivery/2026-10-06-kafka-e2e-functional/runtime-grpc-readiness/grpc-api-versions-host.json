@@ -1,0 +1,88 @@
+{
+  "broker_results": [
+    {
+      "api_count": 61,
+      "api_versions_range": [
+        0,
+        4
+      ],
+      "broker": 1,
+      "correlation_id": 6101,
+      "elapsed_ms": 13,
+      "error_code": 0,
+      "host": "127.0.0.1",
+      "port": 39092,
+      "response_bytes": 376,
+      "status": "PASS",
+      "time_utc": "2026-10-06T22:55:32.070512+00:00"
+    },
+    {
+      "api_count": 61,
+      "api_versions_range": [
+        0,
+        4
+      ],
+      "broker": 2,
+      "correlation_id": 6102,
+      "elapsed_ms": 7,
+      "error_code": 0,
+      "host": "127.0.0.1",
+      "port": 39093,
+      "response_bytes": 376,
+      "status": "PASS",
+      "time_utc": "2026-10-06T22:55:32.083361+00:00"
+    },
+    {
+      "api_count": 61,
+      "api_versions_range": [
+        0,
+        4
+      ],
+      "broker": 3,
+      "correlation_id": 6103,
+      "elapsed_ms": 12,
+      "error_code": 0,
+      "host": "127.0.0.1",
+      "port": 39094,
+      "response_bytes": 376,
+      "status": "PASS",
+      "time_utc": "2026-10-06T22:55:32.090109+00:00"
+    },
+    {
+      "api_count": 61,
+      "api_versions_range": [
+        0,
+        4
+      ],
+      "broker": 4,
+      "correlation_id": 6104,
+      "elapsed_ms": 8,
+      "error_code": 0,
+      "host": "127.0.0.1",
+      "port": 39095,
+      "response_bytes": 376,
+      "status": "PASS",
+      "time_utc": "2026-10-06T22:55:32.102419+00:00"
+    },
+    {
+      "api_count": 61,
+      "api_versions_range": [
+        0,
+        4
+      ],
+      "broker": 5,
+      "correlation_id": 6105,
+      "elapsed_ms": 10,
+      "error_code": 0,
+      "host": "127.0.0.1",
+      "port": 39096,
+      "response_bytes": 376,
+      "status": "PASS",
+      "time_utc": "2026-10-06T22:55:32.110575+00:00"
+    }
+  ],
+  "business_test": false,
+  "operation": "actual Kafka ApiVersions v0 over own host loopback with gRPC forwarding",
+  "passed": 5,
+  "total": 5
+}

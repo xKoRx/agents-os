@@ -1,0 +1,19 @@
+{
+  "status": "FAIL_NOT_CERTIFIED",
+  "run_id": "cc21725628c84592b64113606ff072e7",
+  "tests": 348,
+  "pass": 261,
+  "failures": 87,
+  "errors": 0,
+  "skipped": 0,
+  "cleanup": "PASS",
+  "native_task_proof": false,
+  "cp_base": "4c66d0d5ca77e1de4aef5b08c9e601921eb60a9b",
+  "command": "DOCKER_CONTEXT=colima-rio-kafka-e2e-01a0f8e0 JAVA_HOME=<jdk25> ./e2e/local.sh --offline",
+  "filtered": false,
+  "runtime_memory_bytes": 6198423552,
+  "raw_logs": "private; no payload copy",
+  "unit_tests": 845,
+  "unit_failures": 0,
+  "tokens_cost": "unknown"
+}

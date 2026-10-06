@@ -1,0 +1,17 @@
+{
+  "exit": 0,
+  "unit_classes": 68,
+  "tests": 880,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "compileRealIntegrationTestJava": "PASS",
+  "validateRealE2eHarness": "PASS",
+  "validateLocalE2eEvidence": "PASS_20_CONTROLS",
+  "bootJar": "PASS",
+  "source_hashes": 266,
+  "source_drift": [],
+  "commit": "b7910487c6a5336e128f9452b96f1e1641aa1740",
+  "log": "candidate-combined-8.log",
+  "scope": "PREREQUISITES_ONLY_NOT_PHYSICAL_E2E"
+}

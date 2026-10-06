@@ -1,0 +1,18 @@
+{
+  "run_id": "ba6f97e381c24319961fa0e36dfc1bd0",
+  "source_commit": "3661388c8aebc19309512de528db033c57fb28f9",
+  "verdict": "FAIL",
+  "native_tests": 360,
+  "failures": 211,
+  "errors": 0,
+  "skipped": 0,
+  "source_declared": 359,
+  "cleanup": "RETAINED",
+  "failure_classification": {
+    "stale_child_map_admission": 6,
+    "prefixed_owned_topic_recorder_rejection": 1,
+    "retained_journal_admission_cascade": 203,
+    "retained_journal_class_cleanup": 1
+  },
+  "manual_cleanup": "OWNED_CLUSTER_AND_PROTOCOL_RESOURCES_REMOVED_SEPARATELY; DOES_NOT_CHANGE_NATIVE_FAIL_OR_RETAINED_VERDICT"
+}

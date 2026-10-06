@@ -1,0 +1,74 @@
+{
+  "after_execution_gates": [
+    "Commandexit0; result verdictPASS, cleanupPASS, strict native_task_proof=true and case_receipts_valid=true, totals exactly359/0/0/0.",
+    "Independently recount raw/sanitized native JUnit across exact10classes and100methods, per-index inventory359; no skipped/error/failure/extra/missing invocation. Hash rawXML and immutable source/evidence.",
+    "Re-run the pinned verifier on its fresh evidence and independently cross-check359 case receipts with native unique ID/class/method/index/outcome/worker ownership; required evidence per-index must match source inventory.",
+    "Inspect existing receipts and assertions for CRUD RF1-5AWS/RF1-3GCP, configs/partitions, REST/action PEEK/no commit, retry/duplicate, native producer failure with real zero-event windows, brokerstop/restoration, real RFdeadline pending/recovery, and actual worker interruption; no fabricated results or storage.",
+    "Native RF assertions must reach real SET value/source, allfive captured baseline states, pending reassignment/TIMEOUT+terminalguard and allfive exact restoration; source review alone is insufficient.",
+    "Reconciliation actual private directory CLEAN; no retained journals. Recheck all exact fresh-run labeled Docker containers/networks/volumes including own auxiliary projects, registered childPID/start identities and loopback ports absent; do not delete anything to manufacture a pass.",
+    "Tracked source unchanged after execution. Preserve failures/raw logs privately and report failure distinctly if any gate fails; no oracle/filter/rerun alteration."
+  ],
+  "before_execution_gates": [
+    "Explicit root handoff confirms root physical359/0failure/0error/0skip and strict native/case/cleanupPASS; no root/author Docker or Gradle activity remains.",
+    "Recheck exact clean b791048 and15 reviewpins; build/.gradle absent from fresh clone, no author build/caches copied.",
+    "Read-only owned-context runtime checks: Docker endpoint,6GiB/aarch64, owned gRPC stillrunning; zero root test resources/own children, free39092-39096. Do not access or alter default shared context.",
+    "Execute exactly same unfiltered local.sh --offline with Java25/explicit owned context; launcher generates a fresh run/project and all namespace IDs."
+  ],
+  "clone": "/private/tmp/kafka-e2e-validate-20261006/peer-clean-v4",
+  "command": "DOCKER_CONTEXT=colima-rio-kafka-e2e-01a0f8e0 JAVA_HOME=/Users/rjara/Library/Java/JavaVirtualMachines/corretto-25.0.4/Contents/Home PATH=/Users/rjara/Library/Java/JavaVirtualMachines/corretto-25.0.4/Contents/Home/bin:$PATH ./e2e/local.sh --offline",
+  "command_cwd": "/private/tmp/kafka-e2e-validate-20261006/peer-clean-v4",
+  "coverage_boundaries": [
+    "All359 passing invocations prove this selected local Kafka/per-instance-memory family; direct provisioner/interruption layers remain narrow and ignored/startup methods legitimately omit business result/guard evidence.",
+    "Remote Fury Sandbox/KVS, GCP OAuth, BigQueue, cross-JVM/durable map recovery, PM/ecosystem and corporate CI remain outside this family and not certified.",
+    "Runtime repair receipt proves one infrastructure probe/readiness and cleanup only; repeated full execution remains pending. SIGKILL sender/cause remains unknown.",
+    "Launcher host preflight checks TCP connectivity; native Kafka protocol/business validation is provided by the actual suite and required physical observations. Do not infer physicalPASS from TCP/health/source/unit checks."
+  ],
+  "current_root_attempt": {
+    "run_id": "c6e8062a5de64da7af9663e7f6cfa128",
+    "status": "RUNNING_ROOT_EXCLUSIVE_NO_HANDOFF"
+  },
+  "extra_gradle_args": [],
+  "filters": [],
+  "head": "b7910487c6a5336e128f9452b96f1e1641aa1740",
+  "inventory": {
+    "classes": {
+      "com.mercadolibre.rio_controlplane_kafka.reale2e.PhysicalProvisioningFailuresTest": 2,
+      "com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest": 137,
+      "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest": 167,
+      "com.mercadolibre.rio_controlplane_kafka.reale2e.RealFixtureCleanupIntegrationTest": 1,
+      "com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest": 6,
+      "com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaClusterFaultIntegrationTest": 2,
+      "com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaTriggerBridgeIntegrationTest": 2,
+      "com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest": 37,
+      "com.mercadolibre.rio_controlplane_kafka.reale2e.RealPublicationFailureIntegrationTest": 3,
+      "com.mercadolibre.rio_controlplane_kafka.reale2e.RealReplicationDeadlineIntegrationTest": 2
+    },
+    "expected_tests": 359,
+    "method_count": 100,
+    "pins_sha256": "cb8dd732ac6307b506b28e7c8fe94d7ba9158e93e166978f3e7ce6c98ef53230"
+  },
+  "kind": "INDEPENDENT_FULL_REPLAY_READINESS",
+  "read_receipts": {
+    "/private/tmp/kafka-e2e-discovery/own-forwarding-20261006-infra/grpc-api-versions-host.json": "00b369ec9f6593d6501dcfefbae5a964ec0b326b2ff9f2a673a3e8bacae6acd2",
+    "/private/tmp/kafka-e2e-discovery/own-forwarding-20261006-infra/grpc-probe-cleanup.json": "b4c7ae79ffba7af423b76e665932c6c40eff9d7f39dfe012700db24c2c0a4f90",
+    "/private/tmp/kafka-e2e-discovery/own-forwarding-20261006-infra/receipt.json": "8806f19857e6255175459c3a9a7c4bf4a7e435cbe28a0d8bb1b1a74b6cf1a240",
+    "/private/tmp/kafka-e2e-discovery/own-forwarding-20261006-infra/report.md": "f05044ce3c5d3034b4e201b7b35c5327f1be1b58cf927c090de3f630cc5d7c13"
+  },
+  "replay_executed": false,
+  "runtime_recipe": {
+    "architecture": "aarch64",
+    "colima": "0.8.1",
+    "context": "colima-rio-kafka-e2e-01a0f8e0",
+    "docker": "27.4.0",
+    "forwarder": "gRPC via existing owned Lima hostagent env LIMA_SSH_PORT_FORWARDER=false",
+    "fresh_Colima_start_risk": "Colima0.8.1 forces SSH forwarding; do not restart a healthy transferred runtime.",
+    "lima": "1.0.5",
+    "memory_bytes_reported": 6198427648,
+    "profile": "rio-kafka-e2e-01a0f8e0",
+    "recovery_not_to_repeat_during_handoff": true
+  },
+  "schema_version": 1,
+  "source_clean": true,
+  "source_note": "LOCAL.md still describes historical99methods/861unit checkpoint; actual pinned inventory100/359 and current rootunit880 prerequisite are the execution authority. No doc/source write by reviewer.",
+  "verdict": "READY_PENDING_ROOT_FULL_PASS_AND_EXPLICIT_HANDOFF"
+}

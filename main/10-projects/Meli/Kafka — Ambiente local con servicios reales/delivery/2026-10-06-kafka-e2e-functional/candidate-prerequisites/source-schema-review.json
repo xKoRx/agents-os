@@ -1,0 +1,126 @@
+{
+  "base": "db7f2794eb95cee78ece85b4f1563b606e4211b5",
+  "controls": {
+    "classes": 10,
+    "complete_branch_maps": 4,
+    "invocations": 359,
+    "methods": 100,
+    "methods_and_requirements_unchanged_from_base": true,
+    "negative_controls": [
+      {
+        "name": "sparse_branch",
+        "reason": "invocation evidence binding",
+        "result": "REJECTED"
+      },
+      {
+        "name": "extra_branch",
+        "reason": "invocation evidence binding",
+        "result": "REJECTED"
+      },
+      {
+        "name": "leading_zero_branch",
+        "reason": "invocation evidence binding",
+        "result": "REJECTED"
+      },
+      {
+        "name": "unknown_enum",
+        "reason": "method inventory binding",
+        "result": "REJECTED"
+      },
+      {
+        "name": "boolean_count",
+        "reason": "method inventory binding",
+        "result": "REJECTED"
+      },
+      {
+        "name": "stale_source_sha",
+        "reason": "class source hash mismatch",
+        "result": "REJECTED"
+      }
+    ],
+    "neutral_exit": 0,
+    "neutral_tests": 20,
+    "positive": "PASS"
+  },
+  "findings": [],
+  "head": "b7910487c6a5336e128f9452b96f1e1641aa1740",
+  "kind": "INDEPENDENT_BOUNDED_SOURCE_SCHEMA_REVIEW",
+  "nonblocking_execution_note": "Native SET DescribeConfigs assertion is immediate after broker ack, and remains fail-closed; actual visibility, replication pending, all-five restoration and cleanup must be established by the upcoming physical run.",
+  "runtime_limitations": {
+    "backend": "No productive KVS/Sandbox/Playmaker/OAuth/corporate CI certification.",
+    "candidate3": "Historical 359/350PASS/9FAIL/0error/skip, cleanupPASS retained as failure evidence; RF SET/reassignment/restore not reached in those RF failures.",
+    "candidate4": "NOT_EXECUTED_BY_REVIEWER; full physical success and clean independent replay pending root gate/handoff."
+  },
+  "schema_version": 1,
+  "scope": "Seven changed source/inventory files; read-only provider/configuration context. No Gradle, Docker, application process, remote API, or broker mutation executed by reviewer.",
+  "source_clean_before_after": true,
+  "source_drift": 0,
+  "source_observations": [
+    {
+      "conclusion": "First native wait retains the operation budget. Retry Java TimeoutException becomes absence only after real Unknown/null and expiry of min(grace,operation deadline). Early Java timeout, native Kafka timeout/generic/auth ExecutionException and interruption retain caller mappings.",
+      "file": "KafkaTopicMetadataObserver.java",
+      "lines": [
+        33,
+        72
+      ]
+    },
+    {
+      "conclusion": "Added two actual KafkaFutureImpl pending-wait deadline regressions (300ms grace and 300ms operation with 2s grace); early Java timeout and native Kafka timeout/generic/auth preserve exact exception. Reviewed source; independent Java execution not performed.",
+      "file": "KafkaTopicMetadataObserverTest.java"
+    },
+    {
+      "conclusion": "Real REST PEEK readiness retries only HTTP404/error not_found; HTTP200 must contain an empty JSON array. Other statuses, bodies, exceptions fail. Original FAILED/TIMEOUT, guard, two-result and no-redelivery assertions remain unchanged.",
+      "file": "RealBoundaryVariantsIntegrationTest.java",
+      "lines": [
+        705,
+        747
+      ]
+    },
+    {
+      "conclusion": "Repeat DELETE requires productive AWS pool or exact separate realE2eGcpAdminClient absence after physical fixture absence. Only Unknown/null satisfies absence; present is bounded retry, all other errors propagate. Production stale-Present/deleteUnknown FAILED mapping unchanged.",
+      "file": "RealControlplaneIntegrationTest.java",
+      "lines": [
+        97,
+        1030
+      ]
+    },
+    {
+      "conclusion": "Matcher follows current productive method per operation and still requires owned fault reached, actual virtual worker, KafkaFutureImpl.get, and pending result before interrupt; result/flag/absence assertions unchanged.",
+      "file": "RealInterruptedProvisionerIntegrationTest.java",
+      "lines": [
+        119,
+        134
+      ]
+    },
+    {
+      "conclusion": "All five snapshots captured before mutation. Native missing entry is recorded as absent without invented value/source. SET requires actual value1/DYNAMIC_BROKER_CONFIG. Finally attempts cancellation and restoration for every broker independently, retains suppressed failures, restores exact original presence/value/source using SET or DELETE. Fetch/quota guards and physical RF/result/KVS assertions unchanged.",
+      "file": "RealReplicationDeadlineIntegrationTest.java",
+      "lines": [
+        92,
+        216
+      ]
+    },
+    {
+      "conclusion": "Only four selected-source SHA entries changed. All method, evidence, branch, layer, cardinality and class/path mappings byte-equivalent as parsed to base:10 classes/100 methods/359 invocations/four complete per-index maps.",
+      "file": "local-case-inventory.json"
+    }
+  ],
+  "source_pins": {
+    "e2e/local-case-inventory.json": "cb8dd732ac6307b506b28e7c8fe94d7ba9158e93e166978f3e7ce6c98ef53230",
+    "e2e/test_verify_local_result.py": "4852ce0efa7c1c32c05972d7aa578fe5e0fe809bf1085ff96e1d73d0be976c1b",
+    "e2e/verify-local-result.py": "f65c451ca625b16663d14601a83142728692ffead532b8c1307de2e2f671e943",
+    "src/main/java/com/mercadolibre/rio_controlplane_kafka/kafka/KafkaTopicMetadataObserver.java": "541caa6800c859646e5fdd293283762285cf87acbdb527e518f7f9c2d78f11cf",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/PhysicalProvisioningFailuresTest.java": "26c008527f18f7773d2803ac6459ecaa5340d4dc238999daf90302fe3c7c6e71",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealBoundaryVariantsIntegrationTest.java": "e8a0c0cf161c8f8b55611552a0ddb31bff5f5d44ed73584ec9a30fd9f7220c6c",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealControlplaneIntegrationTest.java": "ce16d3ca5bcba2bac9a5a5526b3bb82a4373aba420d57737eed4c2062c2484a8",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealFixtureCleanupIntegrationTest.java": "738e83c33cfdc7766ad88fc5703de6787a1e398fa985f0459ffedde32380e110",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealInterruptedProvisionerIntegrationTest.java": "85eb8de1a2d303afc6c243cfc43ad810772c0b4cea8f8822bb4d18c31621b768",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealKafkaClusterFaultIntegrationTest.java": "8c8c5e5c6ee9e60e61a8f105b800c8ccdf72003d5e64948b27112b1889615e68",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealKafkaTriggerBridgeIntegrationTest.java": "978c36d89ea5410367cbb97ca7f9c18711654449b56a8a868c8f5398daf176e4",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealKvsIntegrationTest.java": "270d987272a0641a97fce3e74b1bd0ca397edfa039bc897977297d80c4e3cc41",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealPublicationFailureIntegrationTest.java": "1b031c530e51d8f3bd124c5922901c23b76294b1af0d4d5ff0c5319448cdc605",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealReplicationDeadlineIntegrationTest.java": "2055d0cf94cdd481d88d7f5f18ef264f1c5ce9a77e30222e9bfa5baaa5c9a095",
+    "src/test/java/com/mercadolibre/rio_controlplane_kafka/kafka/KafkaTopicMetadataObserverTest.java": "b5a53b9515dcc918cb299a5d18a0a9501d6ead1d4110e461e70c70e854b99074"
+  },
+  "verdict": "PASS_SOURCE_SCHEMA_ONLY"
+}

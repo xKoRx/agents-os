@@ -1,0 +1,15 @@
+{
+  "run_id": "2d88001ba3e04d3495494415896328b2",
+  "commit": "b7910487c6a5336e128f9452b96f1e1641aa1740",
+  "launcher": "FAIL",
+  "business": "NOT_EXECUTED",
+  "native_tests": 0,
+  "cleanup": "PASS",
+  "stage": "HOST_KAFKA_READINESS",
+  "reason": "LOCAL_E2E_HOST_KAFKA_PORTS_UNREACHABLE after30s",
+  "docker_brokers_healthy": 5,
+  "physical_source_review": "PASS_SOURCE_SCHEMA_ONLY",
+  "unit_tests": 880,
+  "unit_failures": 0,
+  "raw": "/private/tmp/kafka-e2e-validate-20261006/scenario-evidence/candidate-e2e-startup-red-4"
+}

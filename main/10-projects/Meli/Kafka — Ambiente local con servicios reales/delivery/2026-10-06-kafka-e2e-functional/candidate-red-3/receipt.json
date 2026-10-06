@@ -1,0 +1,20 @@
+{
+  "run_id": "7bbf862d57d648d0b3ca6ecafc9abcd1",
+  "source_commit": "db7f2794eb95cee78ece85b4f1563b606e4211b5",
+  "verdict": "FAIL",
+  "native_tests": 359,
+  "passed": 350,
+  "failures": 9,
+  "errors": 0,
+  "skipped": 0,
+  "cleanup": "PASS",
+  "independent_own_docker_empty": true,
+  "classification": {
+    "peek_cp_visible_precondition": 1,
+    "repeat_delete_stale_present_then_native_unknown": 1,
+    "initial_absence_grace_future_expiry": 1,
+    "interruption_matcher_obsolete_method": 4,
+    "rf_deadline_broker_config_missing_entry": 2
+  },
+  "private_raw_evidence": "/private/tmp/kafka-e2e-validate-20261006/scenario-evidence/candidate-e2e-red-3"
+}

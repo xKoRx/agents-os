@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" tests="6" skipped="0" failures="4" errors="0" timestamp="2026-10-06T22:11:27.809Z" time="58.679">
+  <testcase name="actualOwnedWorkerInterruptionFailsDescribeClosedAndPreservesThreadFlag(String, DeploymentOperation) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" time="5.952" />
+  <testcase name="actualOwnedWorkerInterruptionFailsDescribeClosedAndPreservesThreadFlag(String, DeploymentOperation) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" time="9.431">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.awaitility.core.ConditionTimeoutException" />
+  </testcase>
+  <testcase name="actualOwnedWorkerInterruptionFailsDescribeClosedAndPreservesThreadFlag(String, DeploymentOperation) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" time="9.88">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.awaitility.core.ConditionTimeoutException" />
+  </testcase>
+  <testcase name="actualOwnedWorkerInterruptionFailsDescribeClosedAndPreservesThreadFlag(String, DeploymentOperation) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" time="5.206" />
+  <testcase name="actualOwnedWorkerInterruptionFailsDescribeClosedAndPreservesThreadFlag(String, DeploymentOperation) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" time="9.399">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.awaitility.core.ConditionTimeoutException" />
+  </testcase>
+  <testcase name="actualOwnedWorkerInterruptionFailsDescribeClosedAndPreservesThreadFlag(String, DeploymentOperation) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest" time="9.378">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.awaitility.core.ConditionTimeoutException" />
+  </testcase>
+  </testsuite>

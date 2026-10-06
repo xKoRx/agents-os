@@ -1,0 +1,65 @@
+{
+  "build_artifacts_copied": false,
+  "clean_before_after": true,
+  "clone": "/private/tmp/kafka-e2e-validate-20261006/peer-clean-v4",
+  "commands": [
+    [
+      "git",
+      "clone",
+      "--no-hardlinks",
+      "--no-checkout",
+      "/private/tmp/kafka-e2e-validate-20261006/cp",
+      "/private/tmp/kafka-e2e-validate-20261006/peer-clean-v4"
+    ],
+    [
+      "git",
+      "checkout",
+      "--detach",
+      "b7910487c6a5336e128f9452b96f1e1641aa1740"
+    ]
+  ],
+  "detached": true,
+  "git_alternates": false,
+  "git_object_shared_inodes": 0,
+  "gradle_cache_copied": false,
+  "head": "b7910487c6a5336e128f9452b96f1e1641aa1740",
+  "inventory": {
+    "classes": 10,
+    "invocations": 359,
+    "methods": 100,
+    "selected_source_hashes_valid": true
+  },
+  "kind": "CLEAN_INDEPENDENT_REPLAY_PREPARATION",
+  "preserved_prior_clone": "/private/tmp/kafka-e2e-validate-20261006/peer-clean-v3",
+  "review_pin_count": 15,
+  "review_pin_drift": 0,
+  "review_pins": {
+    "e2e/local-case-inventory.json": "cb8dd732ac6307b506b28e7c8fe94d7ba9158e93e166978f3e7ce6c98ef53230",
+    "e2e/test_verify_local_result.py": "4852ce0efa7c1c32c05972d7aa578fe5e0fe809bf1085ff96e1d73d0be976c1b",
+    "e2e/verify-local-result.py": "f65c451ca625b16663d14601a83142728692ffead532b8c1307de2e2f671e943",
+    "src/main/java/com/mercadolibre/rio_controlplane_kafka/kafka/KafkaTopicMetadataObserver.java": "541caa6800c859646e5fdd293283762285cf87acbdb527e518f7f9c2d78f11cf",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/PhysicalProvisioningFailuresTest.java": "26c008527f18f7773d2803ac6459ecaa5340d4dc238999daf90302fe3c7c6e71",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealBoundaryVariantsIntegrationTest.java": "e8a0c0cf161c8f8b55611552a0ddb31bff5f5d44ed73584ec9a30fd9f7220c6c",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealControlplaneIntegrationTest.java": "ce16d3ca5bcba2bac9a5a5526b3bb82a4373aba420d57737eed4c2062c2484a8",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealFixtureCleanupIntegrationTest.java": "738e83c33cfdc7766ad88fc5703de6787a1e398fa985f0459ffedde32380e110",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealInterruptedProvisionerIntegrationTest.java": "85eb8de1a2d303afc6c243cfc43ad810772c0b4cea8f8822bb4d18c31621b768",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealKafkaClusterFaultIntegrationTest.java": "8c8c5e5c6ee9e60e61a8f105b800c8ccdf72003d5e64948b27112b1889615e68",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealKafkaTriggerBridgeIntegrationTest.java": "978c36d89ea5410367cbb97ca7f9c18711654449b56a8a868c8f5398daf176e4",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealKvsIntegrationTest.java": "270d987272a0641a97fce3e74b1bd0ca397edfa039bc897977297d80c4e3cc41",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealPublicationFailureIntegrationTest.java": "1b031c530e51d8f3bd124c5922901c23b76294b1af0d4d5ff0c5319448cdc605",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealReplicationDeadlineIntegrationTest.java": "2055d0cf94cdd481d88d7f5f18ef264f1c5ce9a77e30222e9bfa5baaa5c9a095",
+    "src/test/java/com/mercadolibre/rio_controlplane_kafka/kafka/KafkaTopicMetadataObserverTest.java": "b5a53b9515dcc918cb299a5d18a0a9501d6ead1d4110e461e70c70e854b99074"
+  },
+  "root_candidate4_failure": {
+    "classification": "STARTUP_FAIL_ZERO_TESTS_BUSINESS_NOT_EXECUTED",
+    "cleanup": "PASS",
+    "independently_reproduced": false,
+    "run_id": "2d88001ba3e04d3495494415896328b2"
+  },
+  "runtime_status": "NO_TEST_EXECUTION; no Gradle or Docker. Waiting for root full physical PASS and explicit runtime handoff.",
+  "schema_version": 1,
+  "source": "/private/tmp/kafka-e2e-validate-20261006/cp",
+  "tracked_files": 497,
+  "tracked_manifest_sha256": "f9317c2b6f51c95ebe45460fa67bf022d614b022b4eb0e94f0479646cc7c4b08",
+  "verdict": "PASS_PREPARATION_ONLY"
+}

@@ -1,0 +1,142 @@
+{
+  "classes": [
+    {
+      "name": "com.mercadolibre.rio_controlplane_kafka.reale2e.PhysicalProvisioningFailuresTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest",
+      "tests": "127",
+      "failures": "46",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "tests": "166",
+      "failures": "34",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealFixtureCleanupIntegrationTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest",
+      "tests": "6",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaClusterFaultIntegrationTest",
+      "tests": "2",
+      "failures": "2",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaTriggerBridgeIntegrationTest",
+      "tests": "2",
+      "failures": "2",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealKvsIntegrationTest",
+      "tests": "37",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealPublicationFailureIntegrationTest",
+      "tests": "3",
+      "failures": "1",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealReplicationDeadlineIntegrationTest",
+      "tests": "2",
+      "failures": "2",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "message_groups": {
+    "org.opentest4j.AssertionFailedError: expected: <200> but was: <500>": 74,
+    "java.lang.AssertionError: Could not read actual topic metadata": 2,
+    "java.util.concurrent.ExecutionException: org.apache.kafka.common.errors.InvalidReplicaAssignmentException: The manual partition assignment includes a partition with 3 replica(s), b": 2,
+    "org.awaitility.core.ConditionTimeoutException: Assertion condition defined as a Lambda expression in com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest": 1,
+    "org.opentest4j.AssertionFailedError: expected: <COMPLETED> but was: <FAILED>": 1,
+    "org.opentest4j.AssertionFailedError: expected: <2> but was: <1>": 1,
+    "java.lang.IllegalArgumentException: EXPLICIT_OWNED_COMPOSE_CONTEXT_AND_PROJECT_REQUIRED": 4,
+    "org.opentest4j.AssertionFailedError: expected: <true> but was: <false>": 2
+  },
+  "examples": [
+    {
+      "case": "truncatedBeginningCurrentlyResetsLatestToEmptyButEarliestReadsSurvivingOffsets()",
+      "message": "org.opentest4j.AssertionFailedError: expected: <200> but was: <500>"
+    },
+    {
+      "case": "[1] provider = \"aws-msk-topic\", field = \"component_id\", explicitNull = false",
+      "message": "org.opentest4j.AssertionFailedError: expected: <200> but was: <500>"
+    },
+    {
+      "case": "[2] provider = \"aws-msk-topic\", field = \"component_id\", explicitNull = true",
+      "message": "org.opentest4j.AssertionFailedError: expected: <200> but was: <500>"
+    },
+    {
+      "case": "[3] provider = \"aws-msk-topic\", field = \"environment_id\", explicitNull = false",
+      "message": "org.opentest4j.AssertionFailedError: expected: <200> but was: <500>"
+    },
+    {
+      "case": "[4] provider = \"aws-msk-topic\", field = \"environment_id\", explicitNull = true",
+      "message": "org.opentest4j.AssertionFailedError: expected: <200> but was: <500>"
+    },
+    {
+      "case": "[5] provider = \"aws-msk-topic\", field = \"both_ids\", explicitNull = false",
+      "message": "org.opentest4j.AssertionFailedError: expected: <200> but was: <500>"
+    },
+    {
+      "case": "[6] provider = \"aws-msk-topic\", field = \"both_ids\", explicitNull = true",
+      "message": "org.opentest4j.AssertionFailedError: expected: <200> but was: <500>"
+    },
+    {
+      "case": "[7] provider = \"gcp-kafka-topic\", field = \"component_id\", explicitNull = false",
+      "message": "org.opentest4j.AssertionFailedError: expected: <200> but was: <500>"
+    },
+    {
+      "case": "[8] provider = \"gcp-kafka-topic\", field = \"component_id\", explicitNull = true",
+      "message": "org.opentest4j.AssertionFailedError: expected: <200> but was: <500>"
+    },
+    {
+      "case": "[9] provider = \"gcp-kafka-topic\", field = \"environment_id\", explicitNull = false",
+      "message": "org.opentest4j.AssertionFailedError: expected: <200> but was: <500>"
+    },
+    {
+      "case": "[10] provider = \"gcp-kafka-topic\", field = \"environment_id\", explicitNull = true",
+      "message": "org.opentest4j.AssertionFailedError: expected: <200> but was: <500>"
+    },
+    {
+      "case": "[11] provider = \"gcp-kafka-topic\", field = \"both_ids\", explicitNull = false",
+      "message": "org.opentest4j.AssertionFailedError: expected: <200> but was: <500>"
+    },
+    {
+      "case": "[12] provider = \"gcp-kafka-topic\", field = \"both_ids\", explicitNull = true",
+      "message": "org.opentest4j.AssertionFailedError: expected: <200> but was: <500>"
+    },
+    {
+      "case": "[1] provider = \"aws-msk-topic\", field = \"data_product_id\", explicitNull = false",
+      "message": "org.opentest4j.AssertionFailedError: expected: <200> but was: <500>"
+    }
+  ]
+}

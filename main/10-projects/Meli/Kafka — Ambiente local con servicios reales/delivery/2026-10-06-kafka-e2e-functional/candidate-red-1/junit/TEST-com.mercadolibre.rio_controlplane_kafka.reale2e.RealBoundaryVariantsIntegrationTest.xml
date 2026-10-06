@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" tests="137" skipped="0" failures="27" errors="0" timestamp="2026-10-06T20:41:34.750Z" time="259.956">
+  <testcase name="truncatedBeginningCurrentlyResetsLatestToEmptyButEarliestReadsSurvivingOffsets()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="5.737" />
+  <testcase name="legacyNullableActionIdentitiesRemainIndependentCompatibility(String, String, boolean) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.255" />
+  <testcase name="legacyNullableActionIdentitiesRemainIndependentCompatibility(String, String, boolean) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.152" />
+  <testcase name="legacyNullableActionIdentitiesRemainIndependentCompatibility(String, String, boolean) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.919" />
+  <testcase name="legacyNullableActionIdentitiesRemainIndependentCompatibility(String, String, boolean) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.628" />
+  <testcase name="legacyNullableActionIdentitiesRemainIndependentCompatibility(String, String, boolean) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.43" />
+  <testcase name="legacyNullableActionIdentitiesRemainIndependentCompatibility(String, String, boolean) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.073" />
+  <testcase name="legacyNullableActionIdentitiesRemainIndependentCompatibility(String, String, boolean) [7]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.463" />
+  <testcase name="legacyNullableActionIdentitiesRemainIndependentCompatibility(String, String, boolean) [8]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.796" />
+  <testcase name="legacyNullableActionIdentitiesRemainIndependentCompatibility(String, String, boolean) [9]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.243" />
+  <testcase name="legacyNullableActionIdentitiesRemainIndependentCompatibility(String, String, boolean) [10]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.229" />
+  <testcase name="legacyNullableActionIdentitiesRemainIndependentCompatibility(String, String, boolean) [11]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.168" />
+  <testcase name="legacyNullableActionIdentitiesRemainIndependentCompatibility(String, String, boolean) [12]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.042" />
+  <testcase name="malformedRestBindingCurrentlyReturnsGenericErrorWithoutKafkaCalls(String, String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.922" />
+  <testcase name="malformedRestBindingCurrentlyReturnsGenericErrorWithoutKafkaCalls(String, String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.806" />
+  <testcase name="malformedRestBindingCurrentlyReturnsGenericErrorWithoutKafkaCalls(String, String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.969" />
+  <testcase name="malformedRestBindingCurrentlyReturnsGenericErrorWithoutKafkaCalls(String, String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.883" />
+  <testcase name="missingNullAndEmptyPrefixesFailBeforeKafkaMutation(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.098" />
+  <testcase name="missingNullAndEmptyPrefixesFailBeforeKafkaMutation(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.207" />
+  <testcase name="missingNullAndEmptyPrefixesFailBeforeKafkaMutation(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.186" />
+  <testcase name="unknownContextSnapshotAndParamsDoNotExposeCanaryInActualSuccessfulProcessingLogs()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.212" />
+  <testcase name="missingRequiredActionMetadataIsIgnoredBeforeActualPeek(String, String, boolean) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.631" />
+  <testcase name="missingRequiredActionMetadataIsIgnoredBeforeActualPeek(String, String, boolean) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.546" />
+  <testcase name="missingRequiredActionMetadataIsIgnoredBeforeActualPeek(String, String, boolean) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.968" />
+  <testcase name="missingRequiredActionMetadataIsIgnoredBeforeActualPeek(String, String, boolean) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.579" />
+  <testcase name="missingRequiredActionMetadataIsIgnoredBeforeActualPeek(String, String, boolean) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.492" />
+  <testcase name="missingRequiredActionMetadataIsIgnoredBeforeActualPeek(String, String, boolean) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.987" />
+  <testcase name="missingRequiredActionMetadataIsIgnoredBeforeActualPeek(String, String, boolean) [7]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.468" />
+  <testcase name="missingRequiredActionMetadataIsIgnoredBeforeActualPeek(String, String, boolean) [8]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.529" />
+  <testcase name="missingRequiredActionMetadataIsIgnoredBeforeActualPeek(String, String, boolean) [9]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="3.006" />
+  <testcase name="missingRequiredActionMetadataIsIgnoredBeforeActualPeek(String, String, boolean) [10]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="3.135" />
+  <testcase name="missingRequiredActionMetadataIsIgnoredBeforeActualPeek(String, String, boolean) [11]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.86" />
+  <testcase name="missingRequiredActionMetadataIsIgnoredBeforeActualPeek(String, String, boolean) [12]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="3.053" />
+  <testcase name="missingDeploymentIdIsIgnoredWithoutAcquiringGlobalKey(String, boolean) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="4.149" />
+  <testcase name="missingDeploymentIdIsIgnoredWithoutAcquiringGlobalKey(String, boolean) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="3.69" />
+  <testcase name="missingDeploymentIdIsIgnoredWithoutAcquiringGlobalKey(String, boolean) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="3.658" />
+  <testcase name="missingDeploymentIdIsIgnoredWithoutAcquiringGlobalKey(String, boolean) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="3.741" />
+  <testcase name="missingOrBlankActionIdIsIgnoredWithoutAcquiringGlobalKey(String, String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="4.466" />
+  <testcase name="missingOrBlankActionIdIsIgnoredWithoutAcquiringGlobalKey(String, String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="4.49" />
+  <testcase name="missingOrBlankActionIdIsIgnoredWithoutAcquiringGlobalKey(String, String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="4.443" />
+  <testcase name="missingOrBlankActionIdIsIgnoredWithoutAcquiringGlobalKey(String, String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="4.441" />
+  <testcase name="missingOrBlankActionIdIsIgnoredWithoutAcquiringGlobalKey(String, String) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="4.78" />
+  <testcase name="missingOrBlankActionIdIsIgnoredWithoutAcquiringGlobalKey(String, String) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="4.614" />
+  <testcase name="missingOrBlankActionIdIsIgnoredWithoutAcquiringGlobalKey(String, String) [7]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="4.589" />
+  <testcase name="missingOrBlankActionIdIsIgnoredWithoutAcquiringGlobalKey(String, String) [8]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="4.496" />
+  <testcase name="exactly143360ByteActualResultIsAcceptedAtTheInclusiveBoundary()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="3.438" />
+  <testcase name="gcpLegacyDefaultUsesOwnedClusterAndLeavesPhysicalNameUnprefixed(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.559" />
+  <testcase name="gcpLegacyDefaultUsesOwnedClusterAndLeavesPhysicalNameUnprefixed(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.861" />
+  <testcase name="gcpLegacyDefaultUsesOwnedClusterAndLeavesPhysicalNameUnprefixed(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.605" />
+  <testcase name="gcpMissingBootstrapPublishesActualMappingFailure(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.909">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="java.lang.IllegalStateException" />
+  </testcase>
+  <testcase name="gcpMissingBootstrapPublishesActualMappingFailure(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.032">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="java.lang.IllegalStateException" />
+  </testcase>
+  <testcase name="gcpMissingBootstrapPublishesActualMappingFailure(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.859">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="java.lang.IllegalStateException" />
+  </testcase>
+  <testcase name="gcpMissingBootstrapPublishesActualMappingFailure(String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.818">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="java.lang.IllegalStateException" />
+  </testcase>
+  <testcase name="actualBinaryRecordsExposeCurrentLossyTextContractForRestAndAction(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.772" />
+  <testcase name="actualBinaryRecordsExposeCurrentLossyTextContractForRestAndAction(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.539" />
+  <testcase name="blankTriggeredByIsIgnoredBeforeActualPeek(String, String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.004" />
+  <testcase name="blankTriggeredByIsIgnoredBeforeActualPeek(String, String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.965" />
+  <testcase name="blankTriggeredByIsIgnoredBeforeActualPeek(String, String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.015" />
+  <testcase name="blankTriggeredByIsIgnoredBeforeActualPeek(String, String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.042" />
+  <testcase name="blankTriggeredByIsIgnoredBeforeActualPeek(String, String) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.005" />
+  <testcase name="blankTriggeredByIsIgnoredBeforeActualPeek(String, String) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.071" />
+  <testcase name="nullBlankAndUnknownEnvironmentNamesFailBeforeKafkaMutation(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.131" />
+  <testcase name="nullBlankAndUnknownEnvironmentNamesFailBeforeKafkaMutation(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.228" />
+  <testcase name="nullBlankAndUnknownEnvironmentNamesFailBeforeKafkaMutation(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.208" />
+  <testcase name="dotOnlyPhysicalNameIsRejectedByActualKafkaAfterStarted()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.318" />
+  <testcase name="restOffsetCaseAndUnknownValueCurrentlyReachGenericBindingHandler(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.806" />
+  <testcase name="restOffsetCaseAndUnknownValueCurrentlyReachGenericBindingHandler(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.924" />
+  <testcase name="restOffsetCaseAndUnknownValueCurrentlyReachGenericBindingHandler(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.976" />
+  <testcase name="nonUuidRunOwnedActionIdCurrentlyPublishesCorrelatedActualResult()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.323" />
+  <testcase name="unsupportedContentTypeUsesCurrentGenericHandlerBeforeBusinessDispatch(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.449" />
+  <testcase name="unsupportedContentTypeUsesCurrentGenericHandlerBeforeBusinessDispatch(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.496" />
+  <testcase name="nonpositiveActionTimeoutUsesCurrentOneSecondFallbackAndPublishesRealTimeout(int) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="4.958" />
+  <testcase name="nonpositiveActionTimeoutUsesCurrentOneSecondFallbackAndPublishesRealTimeout(int) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="4.289" />
+  <testcase name="gcpMissingOrAmbiguousLegacyDefaultPublishesActualRoutingFailure(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.843">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="java.lang.IllegalStateException" />
+  </testcase>
+  <testcase name="gcpMissingOrAmbiguousLegacyDefaultPublishesActualRoutingFailure(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.808">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="java.lang.IllegalStateException" />
+  </testcase>
+  <testcase name="syntacticallyAcceptedInvalidPortCurrentlyReturnsActualKafkaFailure(int) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.826" />
+  <testcase name="syntacticallyAcceptedInvalidPortCurrentlyReturnsActualKafkaFailure(int) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.859" />
+  <testcase name="syntacticallyAcceptedInvalidPortCurrentlyReturnsActualKafkaFailure(int) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.816" />
+  <testcase name="twoMiBJsonBodyCurrentlyReachesIgnoredComponentFilterWithoutDispatch()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.43" />
+  <testcase name="largeUnknownActionWithinRequestBudgetPublishesFailedResultAndTerminalGuard()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.022" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.129" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.963" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.984" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.262" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [5]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.227" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [6]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.033" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [7]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.978" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [8]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.045" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [9]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.016" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [10]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.966" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [11]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.988" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [12]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.982" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [13]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.949" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [14]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.978" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [15]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.952" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [16]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.943" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [17]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.011" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [18]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.014" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [19]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.96" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [20]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.001" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [21]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.981" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [22]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.941" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [23]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.988" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [24]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.998" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [25]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.966" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [26]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.006" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [27]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.923" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [28]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.946" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [29]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.92" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [30]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.048" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [31]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.027" />
+  <testcase name="missingRequiredDeploymentMetadataIsIgnoredBeforePhysicalProvisioning(String, String, boolean) [32]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.989" />
+  <testcase name="zeroAndNegativeSchemaAreIgnoredBeforePhysicalProvisioning(String, int) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.018" />
+  <testcase name="zeroAndNegativeSchemaAreIgnoredBeforePhysicalProvisioning(String, int) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.049" />
+  <testcase name="zeroAndNegativeSchemaAreIgnoredBeforePhysicalProvisioning(String, int) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="2.02" />
+  <testcase name="zeroAndNegativeSchemaAreIgnoredBeforePhysicalProvisioning(String, int) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.954" />
+  <testcase name="prefixTypesExposeCurrentStringConversionInsteadOfInventedValidation(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="1.185">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="java.lang.IllegalStateException" />
+  </testcase>
+  <testcase name="prefixTypesExposeCurrentStringConversionInsteadOfInventedValidation(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.034">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="prefixTypesExposeCurrentStringConversionInsteadOfInventedValidation(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.024">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="unknownKafkaConfigFailsActualBrokerValidationWithoutSilentIgnore(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.019">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="unknownKafkaConfigFailsActualBrokerValidationWithoutSilentIgnore(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.021">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="legacyNullDeploymentGroupCompatibilityStillCompletesActualProvisioning(String, boolean) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.017">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="legacyNullDeploymentGroupCompatibilityStillCompletesActualProvisioning(String, boolean) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.02">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="legacyNullDeploymentGroupCompatibilityStillCompletesActualProvisioning(String, boolean) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.019">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="legacyNullDeploymentGroupCompatibilityStillCompletesActualProvisioning(String, boolean) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.02">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="malformedActionBindingCurrentlyReturnsGenericErrorWithoutDispatch(String, String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.019">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="malformedActionBindingCurrentlyReturnsGenericErrorWithoutDispatch(String, String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.021">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="malformedActionBindingCurrentlyReturnsGenericErrorWithoutDispatch(String, String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.022">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="malformedActionBindingCurrentlyReturnsGenericErrorWithoutDispatch(String, String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.019">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="currentConfiguredHeaderPropagatesActualSanitizedMdcIntoAsyncResultPublication(String, String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.029">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="currentConfiguredHeaderPropagatesActualSanitizedMdcIntoAsyncResultPublication(String, String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.022">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="currentConfiguredHeaderPropagatesActualSanitizedMdcIntoAsyncResultPublication(String, String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.027">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="malformedGcpFilePreventsActualChildStartupInsteadOfInventingAsyncFailure(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.018">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="malformedGcpFilePreventsActualChildStartupInsteadOfInventingAsyncFailure(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.019">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="malformedGcpFilePreventsActualChildStartupInsteadOfInventingAsyncFailure(String) [3]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.019">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="malformedGcpFilePreventsActualChildStartupInsteadOfInventingAsyncFailure(String) [4]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.019">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="validBaseWhosePrefixedNameExceeds249FailsBeforeStarted()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest" time="0.018">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  </testsuite>
