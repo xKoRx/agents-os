@@ -27,7 +27,7 @@ Mandato Owner recibido el 2026-10-05 (America/Santiago): máximo cinco shots; el
 Origen de este paquete: rama documental docs/backtester-gerard-bankroll-five-shots-20261005 de xKoRx/agents-os, commit `a16f4bb25cfb6882146f437f5913302a191313c2`. El submanager LOCAL observó su merge ya existente `d67319f0878610c786b94aa2ad31e5e4503e7efa` y master `bb9fa98be22057e8468e83f72cb53fd147accc09`. La revisión automática había rechazado mover master directamente en Primary; BTG-S01 no ejecutó ese merge ni altera master. Evidencia y deltas nuevos en rama documental separada para revisión.
 
 PROGRAM_STATE = IN_PROGRESS
-BTG_S01 = BLOCKED_EXTERNAL — ORIGINAL_BYTES_TRANSFER_POLICY; NTMINUTE_INPUT_VERIFIED; NATIVE_DRIVER_F08_REMEDIATION_AND_CLI_IMPLEMENTATION
+BTG_S01 = BLOCKED_EXTERNAL — ORIGINAL_BYTES_TRANSFER_POLICY; NTMINUTE_INPUT_VERIFIED; CLI_F09_F10_REMEDIATION; F08_INDEPENDENTLY_VERIFIED
 BTG_S02_TO_S05 = NOT_STARTED
 REAL_GERARD_RUN_THIS_SESSION = NOT_RUN
 CAMPAIGN_RESULTS = NOT_AVAILABLE
@@ -131,6 +131,8 @@ Inventario BTG-S01 ejecutado LOCAL con especialistas ONE-SHOT TOP/NORMAL. Identi
 Delta posterior Owner: autoriza fijar reglas consistentes para el fin funcional del backtester e iterarlas después. [[BTG-S01-FUNCTIONAL-BASELINE-PROFILE]] selecciona contexto/costes/MM uniformes explícitos; config física no se presenta como recuperada. Export existente C:\Temp\history con13files/endpoints legibles en [[BTG-S01-NT-CANDLES-ACQUISITION]], originals completos aún no transferidos porpolicySFTP. NTminute reader y driver nativo avanzan, sin fake quotes, sin S02 ni aceptación.
 
 Los siguientes prompts se generan justo a tiempo desde el resultado aceptado del shot anterior.
+
+Delta integrado local: F08 corregido171fc712 e independiente PASS; CLI198f29f4 realiza S2/MM shared y sealed reproducción en proceso fresco con corpus sintético. TOP detectó F09 cleanup ante error público y F10 metadata autenticidad; fresh NORMAL corrige en carril propio. [[BTG-S01-FINDINGS]] conserva real reruns pendientes; no gate histórico, S02 NOT_STARTED.
 
 ## Fuentes
 

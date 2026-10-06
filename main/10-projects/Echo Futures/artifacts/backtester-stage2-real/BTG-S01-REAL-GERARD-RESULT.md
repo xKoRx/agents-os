@@ -54,10 +54,10 @@ TOP cerró [[BTG-S01-OHLC-RUN-CONTRACT]], docs `549506b9`, artifact digest compr
 ### Estado observado
 
 STATE = BLOCKED_EXTERNAL — ORIGINAL_BYTES_TRANSFER_POLICY
-WORK_IN_PROGRESS = NATIVE_DRIVER_F08_REMEDIATION_ACTIVE_AND_CLI_IMPLEMENTATION
+WORK_IN_PROGRESS = CLI_F09_F10_FRESH_REMEDIATION; F08_INDEPENDENTLY_VERIFIED
 FUNCTIONAL_CONFIG_AUTHORITY = OWNER_DELEGATED_CONSISTENT_RULES_2026_10_06
 SDK_STATE = READY_SDK_PREREQUISITE_REVIEW_ONLY
-SECONDARY_STATE = ORIGINAL_TRANSFER_PENDING; FUNCTIONAL_CONFIG_SELECTED; NATIVE_PORT_IN_PROGRESS
+SECONDARY_STATE = ORIGINAL_TRANSFER_PENDING; FUNCTIONAL_CONFIG_SELECTED; LOCAL_CLI_FINAL_REMEDIATION
 REAL_SMOKE = NOT_RUN
 LONGITUDINAL_RUN = NOT_RUN
 DETERMINISTIC_RERUN = NOT_RUN
@@ -149,6 +149,14 @@ Revisión independiente C detectó BT2-F08: reset17h Chicago y WarmupStart15:59 
 
 Worker C cerró con sourcee2e15a35 intocado/docsd9a4c571; importación root4notes SHA artifact3c62e1c2 y strictPASS. Extendedrace se interrumpió trasfindingmaterialF08 a624.35s/exit143, stopsubcase completado y TP iniciado; no wholePASS, perfil parcial fuera del union. TOPreviewer cerró docs83a71f1a: artifact762d48e3 importado byte-exacto junto a run/log, strictPASS3. Coverage525/55295.1087% adjudicado independientemente con10 invariantes de composición, bruto525/56293.4164%; F06/F07 fix/regressionindependentlyverified, realrerunNOTRUN. Fresh NORMAL remedia F08 inicialización en carril propio; CLI integra ese fix futuro sólo byteexacto desdeSHA congelado bajo deltaSDD, luego freshTOP LOCAL revisa integración. No nuevas writes en candidatos C/B congelados.
 
+### Gate integrado local — F08 verificado, F09/F10 en corrección
+
+F08 fix171fc712 y su integración byteexacta en CLI198f29f4 pasaron TOP independiente: mismo break Chicago17h nativo/legacy, calendarios23/25h DST, EndExclusive y oráculos legacy byteiguales; coverage10/10 bruto. [[BTG-S01-ACCOUNT-DAY-REMEDIATION]] importado byteexacto desde docs280f8993, strictPASS3. F08 queda OPEN_REAL_RERUN_REQUIRED.
+
+CLI worker cerró source198f29f44bc6e58dd445c9a9b5ee1adfdade2ae9 / docs-onlytip6ef303f57739f0b2a44288f387b377d145eeceac, [[BTG-S01-NATIVE-CLI-IMPLEMENTATION]] docs25c89818. TOP independiente pasó fresh-process S2/GerardMM long SL-first en129.517s aislados:30 contratos, entry102.5/protective exit99.5, gross-1800/cost149.4/net-1949.4, COMPLETE y sealed reproduce IDENTICAL sin spec hermano. Son inputs sintéticos REFERENCE_ONLY, no métricas del histórico. Coverage CLI186/19296.875% bruto y CLI+F08196/20297.0297%, sin exclusiones.
+
+Revisión material mantiene gate local REMEDIATION_REQUIRED: F09 cursor nativo permanece abierto ante SpoolDir error público run/reproduce; snapshots ya desvinculados, sin claim de archivo persistente nombrado. F10 Scope debe declarar preparación no adjudica autenticidad, FidelityOHLC correcto. Root despachó fresh NORMAL desde6ef303, AllowedFiles sólo cleanup CLI y Scope + nueva regresión; candidato previo intacto. Constructor leak no demostrado y marshal-error guard alcanzable/correcto, sin refactor NewRun/ResultWriter ni shared SDK. Capsule/logs en reports/native-integrated-final-review. Fresh TOP verificará fix congelado antes de PR nativo; [[BTG-S01-FINDINGS]] registra expected/actual/owner/evidencia.
+
 ### Continuidad y próximo paso
 
 Identidad resuelta por Owner 2026-10-06: S2 actual. Owner ubicó trece exports candles en `C:\Temp\history`; nombres/tamaños/endpoints son legibles, pero la transferencia completa SFTP está denegada por policy viewer. Se pidió ZIP preservando originales, sin ampliar ACL/perfil ni usar una ruta alternativa para sortear la denegación. Owner delegó selección de reglas consistentes para hacer funcionar backtesting; [[BTG-S01-FUNCTIONAL-BASELINE-PROFILE]] fija el baseline funcional sin atribuir reglas a una cuenta física. El lector fix `e44b741e` pasó revisión independiente y está integrado byte-exacto. Driver/venue nativo congelado `e2e15a3559034a3ed08c04f247baf4919e20b2ff`, rama `codex/btg-s01-ohlc-driver`, entra a revisión adversarial LOCAL independiente; CLI se implementa en rama propia directamente desde ese SHA, sin merges ni cambios shared nuevos. Al disponer de bytes completos y port verificado, este submanager continúa slice real, remediación y longitudinal dentro de S01. S01 no está aceptado ni cerrado; S02 no inició.
@@ -172,7 +180,7 @@ SUBTASK = BTG-S01
 STATE = BLOCKED_EXTERNAL
 SDK_STATE = READY_SDK_PREREQUISITE_REVIEW_ONLY; PRODUCT_407e03dd
 INPUT_STATE = E44b741e_BOUNDED_LOCAL_VERIFIED; REAL_RERUN_PENDING
-NATIVE_DRIVER_STATE = FROZEN_e2e15a3559034a3ed08c04f247baf4919e20b2ff; INDEPENDENT_REVIEW_AND_FINAL_RACE_PENDING; CLI_IMPLEMENTATION_ACTIVE
+NATIVE_DRIVER_STATE = FROZEN_e2e15a3559034a3ed08c04f247baf4919e20b2ff; F08_FIX_171fc712_INDEPENDENTLY_VERIFIED; CLI_198f29f4_REMEDIATION_REQUIRED_F09_F10
 BASELINE_SHA = cd451972b242c8933321e03001decd4b6d778c61
 DATASET = NT_EXPORT_HISTORY_13_FILES_LISTED_AND_ENDPOINTS_READ; ORIGINALS_NOT_ACQUIRED; FULL_MANIFEST_DIGEST_NOT_AVAILABLE
 GERARD_STRATEGY_AUTHORITY = OWNER_2026_10_06_S2_H4_TREND_BB_PULLBACK_V1; SHARED_DEFAULTS_SELECTED_FOR_FUNCTIONAL_RUN
@@ -182,12 +190,12 @@ LONGITUDINAL_RUN = NOT_RUN
 DETERMINISTIC_RERUN = NOT_RUN
 ECONOMIC_STAGE_COVERAGE = NONE_DEMONSTRATED
 SIGNALS / OPERATIONS / FILLS / ACCOUNT_PNL = NOT_MEASURED
-OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F04_F05_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F06_F07_FIX_REGRESSION_INDEPENDENTLY_VERIFIED_REAL_RERUN_PENDING; BT2-F08_PARTIAL_INITIAL_ACCOUNT_DAY_REPRODUCED_FRESH_REMEDIATION_ACTIVE; B01_RESOLVED_BY_OWNER; B02_FUNCTIONAL_PROFILE_SELECTED_BY_OWNER_DELEGATION; ORIGINAL_TRANSFER_AND_NATIVE_DRIVER_PENDING
+OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F04_F05_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F06_F07_FIX_REGRESSION_INDEPENDENTLY_VERIFIED_REAL_RERUN_PENDING; BT2-F08_FIX_REGRESSION_INDEPENDENTLY_VERIFIED_REAL_RERUN_PENDING; BT2-F09_F10_REPRODUCED_FRESH_REMEDIATION_ACTIVE; B01_RESOLVED_BY_OWNER; B02_FUNCTIONAL_PROFILE_SELECTED_BY_OWNER_DELEGATION; ORIGINAL_TRANSFER_AND_NATIVE_DRIVER_PENDING
 ARTIFACT = BTG-S01-REAL-GERARD-RESULT + BTG-S01-FINDINGS + identity/config + dataset inventory + NT acquisition + source SDK/remediation/final-review
 PRODUCT_PR = https://github.com/xKoRx/echo/pull/2; DRAFT_AGAINST_S04
 AGENTS_OS_COMMIT = final consolidated commit supplied in chat/PR handoff
 GAPS_FOR_S02 = remaining config + historical corpus + horizon rows/stages + economic units/rules/fees/settlement
-NEXT_PRIMARY_MANAGER_ACTION = byte-preserving authorized transfer of existing C:\Temp\history files; functional profile selected; freeze/review input contract and native driver/venue; real slice then deterministic rerun within S01
+NEXT_PRIMARY_MANAGER_ACTION = byte-preserving authorized transfer of existing C:\Temp\history files; functional profile selected; fresh CLI F09/F10 correction and independent gate; real slice then deterministic rerun within S01
 OWNER_ACCEPTANCE = NOT_ADJUDICATED
 SUBMANAGER_SESSION = OPEN
 PRO_CHAT_POOL_DELTA = 0

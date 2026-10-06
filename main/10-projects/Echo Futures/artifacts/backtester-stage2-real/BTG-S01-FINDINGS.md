@@ -124,9 +124,35 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - actual: openInitialAccountDay usa accountDayID(civilDate(WarmupStart)); naturalboundary17h de la misma fecha usa igual ID ad-20261005, Ledger rechaza ACCOUNT_DAY_FAILED porque ese día ya está abierto.
 - first_divergence: ACCOUNT_DAY_FAILED a2026-10-05T22:00Z antes del segundo SourceClose; logs independent-fast.log del TOP revisor, source run.go684/driver.go496.
 - owner: backtester composición/identidad del intervalo account-day; defecto heredado expuesto por reset17h funcional, no fórmulas SDK/accounting/MM ni Strategy.
-- fix: FRESH_NORMAL_WORKER_ACTIVE, codex/btg-s01-account-day-remediation desdee2e15a35 conSDD congelado; reuse existing civil calendar boundary semantics from experiment_plan.go, preserve valid legacy UTC00 and naturalboundary behavior. No modificar horarios caller ni inventar IDs de otro día para esconder error.
-- regression: PENDING_PERMANENT_REGRESSION; antes/después reset17h, partial-first-day/year/DST y misma reproducción break; ledger snapshots/selector/ordinal, no fictitious trades during warmup; explicit valid legacy oracles.
+- fix: congelado171fc712e56d731493befeef5c54a2620f25d31a; inicializa el intervalo contenedor con civilDateOf/boundaryOf/AddDate existente, conserva reset natural, WarmupStart caller e IDs naturales. Integración CLI byteexacta comprobada independientemente en198f29f4.
+- regression: PERMANENT_REGRESSION + TOP independiente RED e2e15a35→PASS171fc712; mismo break nativo y legacy, antes/at/después17h, año y Chicago23/25h DST, EndExclusive/timezonefailure. Oráculos legacy UTC00/after17 result+records byteiguales (678137/678131 bytes). Race7.477s, S04/Plan/native10.509s y vet PASS aislados; coverage10/10 bruto sin exclusiones. Evidencia externa reports/native-integrated-final-review/f08-proof.json; [[BTG-S01-ACCOUNT-DAY-REMEDIATION]].
 - real_rerun: NOT_RUN; transferencia completa pendiente.
+- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED, scope sintético. No cierre histórico.
+
+### BT2-F09 — cursor nativo sin liberar ante fallo de salida CLI
+
+- severity: MEDIUM; ownership/cleanup del CLI.
+- dataset/rango: reproducción pública sintética nativa sobre198f29f44bc6e58dd445c9a9b5ee1adfdade2ae9, REFERENCE_ONLY; source real no ejecutado.
+- expected: tras NewRun exitoso, cerrar cursor poseído antes de cada return de error; conservar el primer error y Finish normal una sola vez.
+- actual: cmdRun y cmdReproduce con un archivo regular bloqueando out/<RunID> retornan spool-create error pero conservan un FD adicional del snapshot ya desvinculado, observado inmediatamente con GOGC=off. No archivo privado nombrado persistente; exit del proceso/GC puede liberarlo después.
+- first_divergence: error SpoolDir después de NewRun; FDs0→1 run,1→2 reproduce en reports/native-integrated-final-review/cli-f09-capsule.log. Constructor leak DISPROVED acotado: validaciones antes de Open y fallo de Open limpia el adapter.
+- owner: cmd/echo-backtest executeRunSource/executeReproductionSource; no NewRun/ResultWriter/SDK cambios justificados.
+- fix: fresh NORMAL codex/btg-s01-native-cli-final-remediation desde6ef303f5, SDD Root congelado; limpieza mínima de paths de error preservando artefactos exitosos.
+- regression: PENDING_PERMANENT_REGRESSION; mismo input público y FD cerrado antes de GC/retorno, primer error intacto, normalFinish/failuresealed/reproduce/legacy preservados.
+- real_rerun: NOT_RUN; originales completos pendientes.
+- state: OPEN_REPRODUCED_REMEDIATION_PENDING.
+
+### BT2-F10 — preparación no declara límite de autenticidad
+
+- severity: LOW; metadata no conforme a SPEC.
+- dataset/rango: manifest preparado sintético sobre198f29f4; REFERENCE_ONLY.
+- expected: Scope declara que la preparación no adjudica autenticidad de la fuente junto a NO_ADDS/horizonte caller/AvailableAt/no BBO o LIVE parity; Fidelity OHLC_1M_MODEL_V1.
+- actual: Scope omite esa frontera explícita. No se infiere flag auto-REAL ni claim histórico falso.
+- first_divergence: prepare_nt.go112, manifest Scope contra aclaración Coordinator de specs/btg-s01-nt-cli/SPEC.md.
+- owner: CLI preparación metadata.
+- fix: fresh NORMAL del mismo carril F09, una aclaración Scope sin cambiar reglas/fidelidad.
+- regression: PENDING_OUTPUT_SCOPE_ASSERTION; preservar configuración/digests/horizonte restantes.
+- real_rerun: NOT_RUN; originales completos pendientes.
 - state: OPEN_REPRODUCED_REMEDIATION_PENDING.
 
 ### Retención y clasificación
