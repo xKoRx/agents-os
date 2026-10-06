@@ -55,6 +55,8 @@ tags:
 
 2026-10-06: TOPreviewerC reproducetinyE2E F08 ACCOUNT_DAY_FAILED alreset17Chicago: warmup15:59 abre civilad20261005 y resetmismafechareabreigualID. RootregisterHIGH, pendingfreshworker/capsule; helpers civilDateOf/boundaryOf delmaterializador yaresuelven containingday conAddDate/no24h. No productwritesroot, no modificar callerWarmup/reset paraevitarfallo. DirectadverseentryOpenhipótesisdescartadaparaS2: MM safetyMARKET→nextOpen, noSLgift; preservadocomohipótesisdisproved limitada, no claimuniversalsimvenue.
 
+2026-10-06: import7notas Cdocd9a4c571 (artifact3c62e1c2/feedbackc702dcaf/run63d055da/log6bfd9237), TOPdoc83a71f1a(artifact762d48e3/run5b31c88f/log599573c8); bytesSHAchecks+narrowstrict7PASS. Cextendedraceinterrumpido624.35s/exit143 porROOTF08, partialstopPASS/tpstart ynowholePASS. TOPCraw525/562/applicable525/55295.1087 10immutabilityinvariantsaccepted; F06/F07 localfixregressionverified/realrerunNOTRUN; F08needsfreshfix. NORMALaccountdayworkeractivoSDDactualtargetfrozen, CLIintegration-onlydeltaROOT TASKS antesrestorefuturo, TOPfreshintegratedreviewreadonlyprepwaitsfinalfreeze. CLIfirst125sPASSsinnetnsnoofflinegate; workeracknowledgesrepeataislado, frictionfeedbackownrequired/noinfrachangeclaim.
+
 ## Fuentes usadas
 
 - [[BTG-PLAN]], [[BTG-S01-SUBMANAGER-PROMPT]], [[Echo Futures]], [[Echo Futures — BT-S04 Final Remediation and Certification]].

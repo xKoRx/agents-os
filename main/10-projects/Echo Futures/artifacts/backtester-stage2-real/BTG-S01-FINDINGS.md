@@ -99,9 +99,9 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - first_divergence: acumulación de timers fired tras cada re-arm; log/stack `reports/ohlc-driver/final-native-race.log`, antes del fix.
 - owner: backtester native driver timer storage, no shared SDK/MM/Strategy.
 - fix: C congelado e2e15a3559034a3ed08c04f247baf4919e20b2ff, stable native-only removal of Fired at nextRoot entry before any index selected; no new scheduler ni modificación legacy. Misma prueba nonrace40.48s→42.46s no demuestra speedup; storage live acotado y trace/result exactos. CPUprofileafter GC47.4%/Builder.findSource8.95%/completeNativeBar4.82%; timer scan deja de ser hotspot, atribución dominante no confirmada. No se aplicó optimización SDK/cache especulativa.
-- regression: IMPLEMENTER_VERIFIED, INDEPENDENT_REVIEW_PENDING — PERMANENT_REGRESSION compara48/1000min con5000fired, causal records/result/ref digests iguales y livepeak<=20; selección/generation/order/residual race PASS. Mismo fixture/flags beforeafter sin speedup. Domain cuatro long/short SL/TP ordinarios PASS, race completo pendiente.
+- regression: FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED — PERMANENT_REGRESSION compara48/1000min con5000fired, causal records/result/ref digests iguales y livepeak<=20; selección/generation/order/residual race PASS. Mismo fixture/flags beforeafter sin speedup. Domain cuatro long/short SL/TP ordinarios PASS, race completo pendiente.
 - real_rerun: NOT_RUN; corpus físico completo pendiente.
-- state: OPEN_REPRODUCED_REMEDIATION_IN_PROGRESS.
+- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED, scope sintético. No cierre histórico.
 
 ### BT2-F07 — control tardío aplicado dentro de vela expuesta no resuelta
 
@@ -112,9 +112,9 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - first_divergence: ledger.Cashflows0→1 al procesar control tardío, probe `TestOHLCDriver_LateAdmittedControlCannotAlterExposedInterval` del worker C y logs late-control-before/after.
 - owner: native backtester root/control preflight, sin fórmulas MM/Strategy ni sharedSDK.
 - fix: C congelado e2e15a3559034a3ed08c04f247baf4919e20b2ff, preflight de todos nativePending antes de seleccionar root; Coordinator clarificó horizon: control exactamente intervalEnd dentro horizonte diagnostica; control at/after EndExclusive permanece PENDING_BEYOND_HORIZON y no invalida soleterminal SourceClose, preservando S04.
-- regression: IMPLEMENTER_VERIFIED, INDEPENDENT_REVIEW_PENDING — PERMANENT_REGRESSION late+30s/intervalEnd dentrohorizonte, single/multistream pendingpinned; control atEndExclusive sellado pending sincashflow/ambiguity, soleterminal SourceClose consumido; diagnostic no backdate/cero mutación anteserror. Suite native rápida race31.642s PASS.
+- regression: FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED — PERMANENT_REGRESSION late+30s/intervalEnd dentrohorizonte, single/multistream pendingpinned; control atEndExclusive sellado pending sincashflow/ambiguity, soleterminal SourceClose consumido; diagnostic no backdate/cero mutación anteserror. Suite native rápida race31.642s PASS.
 - real_rerun: NOT_RUN; corpus físico completo pendiente.
-- state: OPEN_REPRODUCED_REMEDIATION_IN_PROGRESS.
+- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED, scope sintético. No cierre histórico.
 
 ### BT2-F08 — día inicial parcial colisiona con el reset de cuenta
 
@@ -124,7 +124,7 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - actual: openInitialAccountDay usa accountDayID(civilDate(WarmupStart)); naturalboundary17h de la misma fecha usa igual ID ad-20261005, Ledger rechaza ACCOUNT_DAY_FAILED porque ese día ya está abierto.
 - first_divergence: ACCOUNT_DAY_FAILED a2026-10-05T22:00Z antes del segundo SourceClose; logs independent-fast.log del TOP revisor, source run.go684/driver.go496.
 - owner: backtester composición/identidad del intervalo account-day; defecto heredado expuesto por reset17h funcional, no fórmulas SDK/accounting/MM ni Strategy.
-- fix: PENDING_FRESH_WORKER; reuse existing civil calendar boundary semantics from experiment_plan.go, preserve valid legacy UTC00 and naturalboundary behavior. No modificar horarios caller ni inventar IDs de otro día para esconder error.
+- fix: FRESH_NORMAL_WORKER_ACTIVE, codex/btg-s01-account-day-remediation desdee2e15a35 conSDD congelado; reuse existing civil calendar boundary semantics from experiment_plan.go, preserve valid legacy UTC00 and naturalboundary behavior. No modificar horarios caller ni inventar IDs de otro día para esconder error.
 - regression: PENDING_PERMANENT_REGRESSION; antes/después reset17h, partial-first-day/year/DST y misma reproducción break; ledger snapshots/selector/ordinal, no fictitious trades during warmup; explicit valid legacy oracles.
 - real_rerun: NOT_RUN; transferencia completa pendiente.
 - state: OPEN_REPRODUCED_REMEDIATION_PENDING.
