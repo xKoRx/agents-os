@@ -1,0 +1,36 @@
+{
+  "client_date": "2026-10-06",
+  "scope": "READ_ONLY_STATUS_AND_IMPLEMENTATION_REVIEW; NO_BUSINESS_TEST_RERUN",
+  "cp_head": "4c66d0d5ca77e1de4aef5b08c9e601921eb60a9b",
+  "cp_branch": "feature/kafka-e2e-memory",
+  "cp_git_status": "CLEAN",
+  "docker_contexts": [
+    "colima(current)",
+    "default"
+  ],
+  "docker_colima_readonly_info": {
+    "version": "27.4.0",
+    "architecture": "aarch64",
+    "memory_bytes": 2054631424
+  },
+  "required_docker_memory_bytes": 5368709120,
+  "current_runtime_gate": "BLOCKED_MEMORY_BELOW_LAUNCHER_MINIMUM",
+  "historical_runtime_gate_2026_10_05": "Dedicated Colima forwarding SIGKILL exit-9; cause unknown; dedicated VM stopped",
+  "last_physical_run": "48711a6c7ffa43dc88c44b2d4b1db4b1",
+  "last_physical_counts": {
+    "tests": 343,
+    "failures": 309,
+    "errors": 0,
+    "skipped": 0
+  },
+  "independent_unit_counts": {
+    "tests": 845,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "full_physical_e2e": "NOT_CERTIFIED",
+  "ci_job": "NOT_EXECUTED",
+  "backend": "PER_INSTANCE_MEMORY_NO_FURY_SANDBOX",
+  "evidence_source": "../2026-10-05-kafka-memory-e2e/HANDOFF.md"
+}
