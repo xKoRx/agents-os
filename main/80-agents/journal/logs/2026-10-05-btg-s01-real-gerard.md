@@ -45,6 +45,10 @@ tags:
 
 2026-10-06: importfinalreview07143d56 bytesexactos (artifactd53b8bea, rund61759d0, log93365cc0), narrowstrict4PASS. F04/F05 fix/regressionindependentverified, aúnOPENREALRERUNREQUIRED. Ctimeout600srace stackrunnablenextTimer demuestra historialcuadráticoF06; ROOTSDDnative-onlystablecompactionFiredaprobado, registros requests/liveordengen/residualslegacy intactos ysamefixturebeforeafterproofrequired. CLIworkerNORMALfreshactualgpt-6-luna despachadoreadonlyprep, waitsCfreeze.
 
+2026-10-06: estadoinputVERIFIEDboundedLOCAL e44 (históricoNOTRUN), driverC remediación+CLIprep. F06compaction no speedupmatchnonrace40.48→42.46, trace/resultsworkerexact; CPUafter42.45wall/87.05CPUGC47.4% vsfindSource8.95 completeNativeBar4.82, no cachesSDKrefactor autorizado. Storagebound sí, throughputclaim no. ProbefuturoCallercontrolintrabar enreproducción antesdepersistirfinding.
+
+2026-10-06: C reproducestardíoCALLERCONTROLcashflowUSD1insidependingSource→F07registered. RootSDDclarification: preflightbounds-onlyforallpendingbeforeRootselection; +30s/intervalEndeligiblefailbeforeeffects; controlATEndExclusiveinadmittedpendingPENDINGBEYONDHORIZON no ficticioambiguity terminalSourceClose (S04preserved). Networkingfalsealarmresolved: workerusedunshare-nalone, rootuser-maproot-netPASSactualuid1000/nohostchange, repeatsamecompleteinvocation, no fallbackbarrierdegradation.
+
 ## Fuentes usadas
 
 - [[BTG-PLAN]], [[BTG-S01-SUBMANAGER-PROMPT]], [[Echo Futures]], [[Echo Futures — BT-S04 Final Remediation and Certification]].

@@ -54,7 +54,7 @@ TOP cerró [[BTG-S01-OHLC-RUN-CONTRACT]], docs `549506b9`, artifact digest compr
 ### Estado observado
 
 STATE = BLOCKED_EXTERNAL — ORIGINAL_BYTES_TRANSFER_POLICY
-WORK_IN_PROGRESS = NTMINUTE_INPUT_CONTRACT_AND_NATIVE_DRIVER
+WORK_IN_PROGRESS = NATIVE_DRIVER_REMEDIATION_AND_CLI_PREPARATION
 FUNCTIONAL_CONFIG_AUTHORITY = OWNER_DELEGATED_CONSISTENT_RULES_2026_10_06
 SDK_STATE = READY_SDK_PREREQUISITE_REVIEW_ONLY
 SECONDARY_STATE = ORIGINAL_TRANSFER_PENDING; FUNCTIONAL_CONFIG_SELECTED; NATIVE_PORT_IN_PROGRESS
@@ -137,7 +137,7 @@ Primer test integrado C usa corpus sintético y ejercita S2→GerardMM→Operati
 
 ### Primer bottleneck demostrado — BT2-F06
 
-Prueba C completa native1m/51-H4 bajo race agota600s; stack runnable en nextTimer, sin deadlock/assertionfailure. El driver conserva timers fired/replaced y cada1m los recorre/reemplaza; crecimiento histórico produce coste cuadrático. Root registró BT2-F06 y autorizó en SDD C compaction estable native-only de Fired al inicio de nextRoot, antes de seleccionar cualquier índice. Timers live, generations, requests/history records, expiries y legacy paths se preservan. Se exige igualdad de trace/result pequeño antes/después, almacenamiento acotado por live timers y medición sobre el mismo fixture/flags, seguido de E2E/race/regresiones. No proyección de throughput sintético como rendimiento de corpus real. Implementación/freeze/revisión pendientes en este corte.
+Prueba C completa native1m/51-H4 bajo race agota600s; stack runnable en nextTimer, sin deadlock/assertionfailure. El driver conserva timers fired/replaced y cada1m los recorre/reemplaza; crecimiento histórico produce coste cuadrático. Root registró BT2-F06 y autorizó en SDD C compaction estable native-only de Fired al inicio de nextRoot, antes de seleccionar cualquier índice. Timers live, generations, requests/history records, expiries y legacy paths se preservan. Se exige igualdad de trace/result pequeño antes/después, almacenamiento acotado por live timers y medición sobre el mismo fixture/flags, seguido de E2E/race/regresiones. No proyección de throughput sintético como rendimiento de corpus real. Compaction implementada; comparación nonrace del mismo fixture40.48s→42.46s, sin claim de speedup; records699dc77... y Resultf74d35... exactos antes/después según worker. CPUprofileafter42.45s/87.05CPU-s: GC47.4%, Builder.findSource8.95%, completeNativeBar4.82%; nextTimer deja de ser hotspot. F06 atribución de coste dominante no confirmada; storage/scans se acotan, sin tuning especulativo de SDK/caches. Freeze/revisión de C pendientes en este corte.
 
 ### Continuidad y próximo paso
 
@@ -161,7 +161,7 @@ ROOT_AGENT_RUN = SKIPPED: coordinación, revisión de evidencia y documentación
 SUBTASK = BTG-S01
 STATE = BLOCKED_EXTERNAL
 SDK_STATE = READY_SDK_PREREQUISITE_REVIEW_ONLY; PRODUCT_407e03dd
-INPUT_STATE = CANDIDATE_933b40d6_INDEPENDENT_REVIEW_IN_PROGRESS
+INPUT_STATE = E44b741e_BOUNDED_LOCAL_VERIFIED; REAL_RERUN_PENDING
 NATIVE_DRIVER_STATE = IMPLEMENTATION_IN_PROGRESS_ON_933b40d6
 BASELINE_SHA = cd451972b242c8933321e03001decd4b6d778c61
 DATASET = NT_EXPORT_HISTORY_13_FILES_LISTED_AND_ENDPOINTS_READ; ORIGINALS_NOT_ACQUIRED; FULL_MANIFEST_DIGEST_NOT_AVAILABLE
@@ -172,7 +172,7 @@ LONGITUDINAL_RUN = NOT_RUN
 DETERMINISTIC_RERUN = NOT_RUN
 ECONOMIC_STAGE_COVERAGE = NONE_DEMONSTRATED
 SIGNALS / OPERATIONS / FILLS / ACCOUNT_PNL = NOT_MEASURED
-OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F04_F05_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F06_TIMER_HISTORY_REMEDIATION_IN_PROGRESS; B01_RESOLVED_BY_OWNER; B02_FUNCTIONAL_PROFILE_SELECTED_BY_OWNER_DELEGATION; ORIGINAL_TRANSFER_AND_NATIVE_DRIVER_PENDING
+OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F04_F05_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F06_TIMER_HISTORY_REMEDIATION_IN_PROGRESS; BT2-F07_LATE_CONTROL_REMEDIATION_IN_PROGRESS; B01_RESOLVED_BY_OWNER; B02_FUNCTIONAL_PROFILE_SELECTED_BY_OWNER_DELEGATION; ORIGINAL_TRANSFER_AND_NATIVE_DRIVER_PENDING
 ARTIFACT = BTG-S01-REAL-GERARD-RESULT + BTG-S01-FINDINGS + identity/config + dataset inventory + NT acquisition + source SDK/remediation/final-review
 PRODUCT_PR = https://github.com/xKoRx/echo/pull/2; DRAFT_AGAINST_S04
 AGENTS_OS_COMMIT = final consolidated commit supplied in chat/PR handoff

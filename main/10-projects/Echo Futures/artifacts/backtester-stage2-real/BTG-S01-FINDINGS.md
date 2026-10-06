@@ -98,8 +98,21 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - actual: cada minuto re-arms/replaces timers; driver conserva fired/replaced entries y nextTimer/pushTimer los recorren, O(minutes²). E2E race agota timeout600s; primer casoSL tardó≈9m, casoTP aún calentando, stack runnable nextTimer, sin deadlock/assertion failure.
 - first_divergence: acumulación de timers fired tras cada re-arm; log/stack `reports/ohlc-driver/final-native-race.log`, antes del fix.
 - owner: backtester native driver timer storage, no shared SDK/MM/Strategy.
-- fix: EN_PROGRESO autorizado por Coordinator en SPEC/TASKS C, stable native-only removal of Fired at nextRoot entry before any index selected; no new scheduler ni modificación legacy.
+- fix: WIP C autorizado, stable native-only removal of Fired at nextRoot entry before any index selected; no new scheduler ni modificación legacy. Misma prueba nonrace40.48s→42.46s no demuestra speedup; storage live acotado y trace/result exactos. CPUprofileafter GC47.4%/Builder.findSource8.95%/completeNativeBar4.82%; timer scan deja de ser hotspot, atribución dominante no confirmada. No se aplicó optimización SDK/cache especulativa.
 - regression: PENDING_PERMANENT_REGRESSION — misma causal trace/results con historial descartado, live generation/order/expiry/residual preserved, mismo fullminute fixture before/after flags matching y fulldomain long/short E2E/race.
+- real_rerun: NOT_RUN; corpus físico completo pendiente.
+- state: OPEN_REPRODUCED_REMEDIATION_IN_PROGRESS.
+
+### BT2-F07 — control tardío aplicado dentro de vela expuesta no resuelta
+
+- severity: HIGH, causal accounting/control ownership.
+- dataset/rango: probe C sintético minute interval con orden protectiva working, CALLER_CONTROLLED; REFERENCE_ONLY. Source C WIP, ningún rango histórico original.
+- expected: control admitido después del modeledOpen con EffectiveAt dentro de una vela expuesta/working pendiente se diagnostica OHLC_BOUNDARY_AMBIGUOUS antes de aplicar cualquier cashflow/context/settlement, usando sólo intervalbounds y timestamp/control conocidos; diagnosticAt>=caller completedfrontier.
+- actual: el preflight inicial de Open desconocía un control admitido luego; rootControl aplicaba cashflowUSD1 a los30s antes del preflight en SourceClose.
+- first_divergence: ledger.Cashflows0→1 al procesar control tardío, probe `TestOHLCDriver_LateAdmittedControlCannotAlterExposedInterval` del worker C y logs late-control-before/after.
+- owner: native backtester root/control preflight, sin fórmulas MM/Strategy ni sharedSDK.
+- fix: WIP preflight de todos nativePending antes de seleccionar root; Coordinator clarificó horizon: control exactamente intervalEnd dentro horizonte diagnostica; control at/after EndExclusive permanece PENDING_BEYOND_HORIZON y no invalida soleterminal SourceClose, preservando S04.
+- regression: PENDING_PERMANENT_REGRESSION — late+30s, intervalEnd dentrohorizonte, control atEndExclusive sellado pending sincashflow/ambiguity, diagnostic no backdate y cero mutación anteserror.
 - real_rerun: NOT_RUN; corpus físico completo pendiente.
 - state: OPEN_REPRODUCED_REMEDIATION_IN_PROGRESS.
 
