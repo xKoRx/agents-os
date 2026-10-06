@@ -2689,6 +2689,14 @@ TOP Senior Recovery / Execution Transport Remediation Lead (one-shot, fresh cont
 
 **Importante — integración Git:** Backtester V1 **NO está mergeado a `master`**. Al cierre de esta sesión: `master@372af59a7b83604781346613da01e3d510ea1360`; Backtester certificado `cd451972...`; D6 continúa en carril separado `feature/d6-shot1-execution-vertical@d08a30ce9815f820fda7132e20dc42cc345eb8e8`. No mergear/rebasear preventivamente mientras D6 siga vivo; el próximo Manager debe refrescar ambos HEADs y reconciliar sólo deltas shared reales.
 
+#### Programa vigente Owner — Gerard + bankroll, máximo cinco shots — 2026-10-05
+
+El Owner amplía la continuidad Stage 2/Stage 3 en un solo programa: hacer funcionar el backtester con Strategy y GerardMM reales; medir cuentas quemadas, retiros y profit de una campaña con bankroll; reinvertir retiros cobrados; máximo cuatro retiros por cuenta; buscar objetivos monetarios convenientes. Plan: [[BTG-PLAN]]. Primer encargo listo: [[BTG-S01-SUBMANAGER-PROMPT]].
+
+**Estado:** `BTG-S01 = READY_FOR_LOCAL_DISPATCH`; `S02–S05 = NOT_STARTED`; `REAL_GERARD_RUN = NOT_RUN` en este programa. S01 usa submanager persistente sin cupo de ciclos internos; especialistas ONE-SHOT. S02 diseña el delta; S03–S05 siguen implementación → adversarial LOCAL independiente → corrección/gate final. El Primary Manager conserva coordinación y no se autocierra.
+
+**Datos aún por resolver:** Owner expresó bankroll `5k`, costo `120k` y ~41 cuentas; `USD 5.000 / USD 120` es hipótesis explicativa, no unidad confirmada. Recuperar configuración/identidad Gerard y dataset físico antes de certificar S01; recuperar reglas/fees/settlement del programa antes de resultados económicos. Las 41 compras son capacidad inicial ilustrativa, no límite total con reinversión. Conservar baseline de una cuenta operando a la vez salvo instrucción posterior. Detalle, límites y gates en [[BTG-PLAN]].
+
 #### Próxima etapa — Stage 2: REAL HISTORICAL BACKTEST / GERARD
 
 Objetivo de producto: **usar el Backtester V1 certificado con datos históricos REALES y la Strategy/configuración Gerard canónica REAL; si no corre o descubre un defecto, corregir el producto/shared-domain hasta que el run real funcione correctamente.**
@@ -2721,4 +2729,4 @@ Métricas mínimas futuras:
 
 Boundary frozen: el futuro Campaign Simulator **orquesta cuentas y bankroll fuera del Backtest Engine**. No replica Strategy/GerardMM/Provider/Accounting; cada cuenta se conduce mediante el mismo engine/contexts/cashflows ya certificados.
 
-**NEXT_MANAGER_ACTION:** asumir dirección técnica de Stage 2. Refrescar Agents-OS + HEADs de Backtester/D6/master; usar el branch certificado mientras no exista integración segura; preparar y ejecutar el primer backtest histórico REAL de Gerard. Stage 2 no cierra con “el motor compila”: cierra cuando la Strategy Gerard real corre sobre datos reales y cualquier defecto encontrado queda corregido/reproducible. Al cerrar Stage 2, proponer el mandato de Stage 3.
+**NEXT_MANAGER_ACTION:** ejecutar [[BTG-S01-SUBMANAGER-PROMPT]] con un TOP LOCAL como submanager persistente para obtener el primer backtest histórico REAL de Gerard y reparar sus defectos. Seguir [[BTG-PLAN]]: máximo cinco shots (S01 funcionamiento real; S02 diseño de campaña/objetivos; S03 implementación; S04 adversarial LOCAL; S05 corrección/certificación). La campaña sólo comienza después de validar el baseline histórico. Refrescar HEADs antes de ejecutar; no afirmar runs ni gates aún no demostrados.
