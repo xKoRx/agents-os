@@ -17,7 +17,7 @@ prs:
 aliases: ["Kafka local real", "Ambiente local Kafka", "Control plane Kafka — Desarrollo local"]
 tags: ["kind/project", "area/meli", "app/rio-controlplane-kafka"]
 created: "2026-09-30"
-updated: "2026-10-05"
+updated: "2026-10-06"
 ---
 
 # Kafka — Ambiente local con servicios reales
@@ -33,6 +33,7 @@ Mantener controllers, validadores, handlers, procesadores, provisioners y guard 
 
 ## 📊 Estado actual
 
+- **Consulta/recheck 06/10 (sólo lectura):** CP4c66d0d limpio. Docker actual `colima`27.4.0/aarch64 tiene2054631424bytes (~2GiB), menor que el gate5GiB. No se repitieron pruebas de negocio hoy. Último E2E sigue343/309fallos y objetivo físico incompleto. Patrones de perfil/adapters contrastados con KMSdevelop7fe7745, ClickHouserama7de630c y Playmakerrelease5abe5c2; no estándar E2E común ni pruebas físicas de otrosCP certificadas. [Recibo actual](delivery/2026-10-06-kafka-e2e-status/status.json).
 - **Decisión aplicada 05/10:** `LocalInMemoryKvsClient` por instancia con create exclusivo, CAS, versión local, TTL y copia de bytes; perfil `local,real-e2e,memory-e2e`. No requiere Fury, VPN ni Sandbox para este backend. El runtime/CI usa Kafka real y transporte de resultados Kafka. Ecosistema después.
 - **Código entregado:** implementación CP `7615b210e5b70667912b956c2f27cc0d1ebc80eb`; cierre documental `4c66d0d5ca77e1de4aef5b08c9e601921eb60a9b`, rama `feature/kafka-e2e-memory`, worktree limpio `/Users/rjara/fuentes/rio-controlplane-kafka-memory-e2e`. Base `7f1720d950446638ff9b15a0e4e167f3e8e26e43` y checkout anterior preservados. SPEC funcional→técnica→tareas: delta `LOCAL-MEMORY-1` en `meli/features/20261001-real-e2e/`. Rama pendiente; no producción/push/release.
 - **Verificación independiente PASS:** clon nuevo detached de `7615b21`, Java25/Gradle9.3.1 offline, `test compileRealIntegrationTestJava`:65 clases/845 pruebas/0 fallos/0 errores/0 skips;33 fuentes sin drift. Los49 controles de launcher/verificador también PASS. GenerateDocTest cambió su Swagger generado en el clon propio; diff preservado. Ninguno de estos controles acredita E2E Kafka.

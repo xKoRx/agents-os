@@ -32,5 +32,26 @@
   "full_physical_e2e": "NOT_CERTIFIED",
   "ci_job": "NOT_EXECUTED",
   "backend": "PER_INSTANCE_MEMORY_NO_FURY_SANDBOX",
-  "evidence_source": "../2026-10-05-kafka-memory-e2e/HANDOFF.md"
+  "evidence_source": "../2026-10-05-kafka-memory-e2e/HANDOFF.md",
+  "alignment_readonly_sources": [
+    {
+      "repo": "rio-controlplane-kms",
+      "branch": "develop",
+      "head": "7fe77453c4e14ce4ee0e368188902c8ecabc21f2",
+      "precedent": "Spring integration_test; native in-memory KVS/QKVS; other dependencies substituted; not physical E2E certification"
+    },
+    {
+      "repo": "rio-controlplane-clickhouse",
+      "branch": "feature/new-component-context",
+      "head": "7de630c6cac59e5d1c43d85a44475bcb7033ebfc",
+      "precedent": "local DeploymentStateService map; Compose exists; inspected HTTP tests mock clients/results"
+    },
+    {
+      "repo": "rio-playmaker",
+      "branch": "release/202610.5.0",
+      "head": "5abe5c26a0e52a689001dd43ee3f4e84aa76960d",
+      "precedent": "local/local-integration actual Kafka transport with ACK and productive result consumer"
+    }
+  ],
+  "alignment_verdict": "PROFILE_AND_ADAPTER_PATTERNS_ALIGNED; NO_COMMON_E2E_SOURCESET_STANDARD_FOUND; NO_OTHER_CP_TEST_RUN"
 }
