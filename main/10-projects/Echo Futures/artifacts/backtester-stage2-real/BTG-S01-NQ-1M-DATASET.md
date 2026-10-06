@@ -60,6 +60,8 @@ El source certificado `xKoRx/echo@cd451972b242c8933321e03001decd4b6d778c61` sepa
 
 ### Acción mínima para desbloquear
 
+Delta submanager tras el cierre del inventario: `read_command ls C:/` y `ls C:/Temp`, mismo perfil `dev-win`, permitieron leer la raíz y el stage C:\Temp. Sólo se observaron bundles/checklists D6 y archivos AddOn/config en ese nivel, sin TXT histórico; no se leyeron sus contenidos ni se alteraron. C:\Temp es un destino legible comprobado. `C:\Temp\BTG-NQ-1m` se propone como carpeta nueva de export por Owner, todavía no creada ni inspeccionada. No fue un intento de entrar por otra identidad a la carpeta denegada.
+
 El Owner debe exportar desde NinjaTrader la cobertura disponible como TXT, conservando los archivos originales de exportación sin edición, con un contrato físico por archivo y el rango/opciones reales de export registrados; luego debe dejar los bytes en un stage local legible o adjuntarlos. Si el output elegido no conserva intervalos de un minuto y el timestamp NT, no usarlo como prueba de barras 1m. Tras recibir bytes, guardar los originales fuera del vault en `Aranea work/btg-s01-nt-bars-data/originals/`, calcular hashes/bytes y producir el manifest físico/logical sólo con los registros observados. Mientras ese handoff no ocurra, corpus `NOT_ACQUIRED`; no ejecutar el backtester ni seleccionar un slice por inferencia.
 
 ## Fuentes

@@ -92,6 +92,8 @@ El especialista TOP confirmó un mecanismo GUI oficial `Tools → Historical Dat
 
 Acción física mínima actual: exportar desde la GUI la caché existente `Minute / Last` por contratos físicos a una carpeta legible por el acceso autorizado, conservando TXT y registro de opciones sin editar. Export `Tick / Last` sólo para los contratos/rangos disponibles, como validación posterior. El submanager comprobará cobertura y provenance antes de convertir. No descargar, reconectar ni cambiar Merge Policy en la instancia D6 activa. Si la caché no alcanza, adquisición posterior requiere un contexto NinjaTrader independiente autorizado y entitlement real; no se afirmó que exista.
 
+Stage comprobado por root mediante lecturas RO `ls C:/` y `ls C:/Temp`, perfil `dev-win`: C:\Temp legible, sin export histórico en su nivel superior. Destino propuesto al Owner `C:\Temp\BTG-NQ-1m`; no se creó carpeta ni se leyó contenido de bundles/configs D6. Permite exportar sin descubrir la ubicación interna de caché.
+
 BBO es un gap técnico condicionado al corpus: el NDJSON actual asigna a ambos lados un único timestamp/ref; combinar exports Bid/Ask independientes como QUOTE simultánea alteraría age lateral. La representación derivada debe conservar timestamps/refs por lado detrás del DatasetSource existente. Se registró compatibilidad pendiente, sin implementar adapter ni cerrar un finding de run no ejecutado. TRADE_MODEL también necesita costos/offsets explícitos; no se seleccionó por inferencia.
 
 ### Continuidad y próximo paso
