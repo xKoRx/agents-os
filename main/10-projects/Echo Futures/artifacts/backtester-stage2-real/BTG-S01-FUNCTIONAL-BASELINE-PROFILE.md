@@ -46,7 +46,7 @@ Esta elección es operacionalmente consistente y limitada. Scaling desactivado e
 
 ### Gates pendientes
 
-Originales NT completos siguen pendientes de transferencia autorizada: SFTP dev-win denegado por policy viewer, aunque los trece nombres y muestras son legibles. Se pidió ZIP del directorio al Owner mientras continúa implementación. Lector/input contract congelado en `933b40d6` entra a revisión independiente; driver/venue/MarketContext y atribución de cierre/boundary tienen SDD concreto y están en implementación, pendientes de pruebas independientes. Profile materializado, RunSpec/config/digests, corpus/digests y corrida histórica aún NOT_RUN; el cuadro no es evidencia de ejecución. Bajo baseline sin adds, ACCOUNT_ECONOMICS puede ejercitar TP/protection reales, pero no prueba toda la trayectoria GerardMM con scaling.
+Originales NT completos siguen pendientes de transferencia autorizada: SFTP dev-win denegado por policy viewer, aunque los trece nombres y muestras son legibles. Se pidió ZIP del directorio al Owner mientras continúa implementación. Lector corregidoe44b741e, driver/venuee2e15a35 y account-day171fc712 tienen pruebas independientes acotadas; CLI198f29f4 materializa RunSpec/config/model/calendar digests y ejecuta el perfil compartido sobre corpus sintético, [[BTG-S01-NATIVE-INTEGRATED-FINAL-REVIEW]]. F09/F10 CLI están en remediación fresh. Original corpus/digests y corrida histórica siguen NOT_RUN; el cuadro no acredita ejecución histórica. Bajo baseline sin adds, ACCOUNT_ECONOMICS puede ejercitar TP/protection reales, pero no prueba toda la trayectoria GerardMM con scaling.
 
 ## Fuentes
 

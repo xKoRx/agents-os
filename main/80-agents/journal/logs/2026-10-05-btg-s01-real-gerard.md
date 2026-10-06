@@ -82,6 +82,8 @@ tags:
 
 - Delta integrado: importación byteexacta F08 docs280f8993 y CLI docs25c89818, F08 TOP PASS/legacy byteigual; revisión CLI198f confirmó F09 cleanup y F10 Scope. Root conserva candidato y congela SDD/despacha fresh NORMAL F09/F10; histórico NOT_RUN por transferencia original pendiente. No shared/D6/infra delta.
 
+- Importación TOP integrada docs3b7b6eb6: artifactf6d0fcc1 y capsule+6 hashes contrastados, strictPASS3. Refresh cuatro HEADs sin avance; D6 checkout limpio/delta bridge-only, sin intervención. Perfil/rootestado actualizados por delta sin modificar fuentes técnicas.
+
 ## Validación
 
 - Root comprobó siete SHA256 del bundle final TOP, todos OK. STRICT nueve documentos/registros: 0 errores/0 warnings; nota proyecto conserva cinco errores baseline sin delta. Materializer no reescribe notas existentes; artifacts importados conservan schema materializado del worker y fueron validados por lint.
