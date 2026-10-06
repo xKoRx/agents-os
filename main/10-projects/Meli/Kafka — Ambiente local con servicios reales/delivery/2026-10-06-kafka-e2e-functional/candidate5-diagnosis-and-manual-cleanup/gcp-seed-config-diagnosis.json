@@ -1,0 +1,234 @@
+{
+  "canonical_comparison": {
+    "candidate_head": "b7910487c6a5336e128f9452b96f1e1641aa1740",
+    "canonical_head": "f74e856ef3de881e2d504c6cb1ced573681c1058",
+    "sources": [
+      {
+        "candidate_blob": "38f00ab75427fcc759a8656f3060d756bf3e06f3",
+        "candidate_sha256": "ce16d3ca5bcba2bac9a5a5526b3bb82a4373aba420d57737eed4c2062c2484a8",
+        "canonical_present": false,
+        "path": "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealControlplaneIntegrationTest.java"
+      },
+      {
+        "byte_identical_to_canonical": false,
+        "candidate_blob": "cf78fbffbfac498aaca8a30f69668d0a84de5ad7",
+        "candidate_sha256": "eefe0a9c028931675cb0e445200b31e08d7f5a0ee08e9055d87dd38232b319a0",
+        "canonical_blob": "ba75d03fa690c28fad669545c0dd1b02b23e4cf4",
+        "canonical_present": true,
+        "canonical_sha256": "1fc652773f13f9b1dde9f2abd221050ff62225ef10cb477aca0740e08eca319b",
+        "path": "src/main/java/com/mercadolibre/rio_controlplane_kafka/deployment/gcp/topic/GcpTopicProvisioner.java"
+      },
+      {
+        "byte_identical_to_canonical": false,
+        "candidate_blob": "4a15dc15fa619a2458364dad19a93cc667e69097",
+        "candidate_sha256": "308a8904165380cfb7bc2300a9de79fe6db9fe617220bf16e3c4b3ad7bbc580b",
+        "canonical_blob": "bb95dd870af6ff04b3f50e722d2c59c16a615424",
+        "canonical_present": true,
+        "canonical_sha256": "a1793dc6a34f7282b1a3056bd11f267038a87d07824ed486ace32c3c0a8b9f1c",
+        "path": "src/main/java/com/mercadolibre/rio_controlplane_kafka/deployment/gcp/topic/GcpKafkaAdminErrorMapper.java"
+      },
+      {
+        "candidate_blob": "ab929f2ae01f06c57c2e121c189ed6c5f0396f77",
+        "candidate_sha256": "545f84c59c19d0c5ff164c0df57d78fb839439fcab5a18d9d8bc501e4b203532",
+        "canonical_present": false,
+        "path": "src/main/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealE2eConfiguration.java"
+      },
+      {
+        "candidate_blob": "046c92531210144a5ffb59d082e3ae3cede533a5",
+        "candidate_sha256": "9b6f1fbec7c0a11bef9260a0bf4a08cdf3a538768de753ebc42a695cf129f6cc",
+        "canonical_present": false,
+        "path": "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/support/RealE2eFixture.java"
+      }
+    ]
+  },
+  "classification": {
+    "established": "Native DescribeConfigsUnknown after initial native topicPresent, then existingmapperFAILED. The relevant failure branch is inherited from canonicalf74, not a regression in the newly changed initialUPDATE/DELETE metadata grace.",
+    "fix_boundary": "Prefer a bounded read-only test seed-readiness precondition for this existing-topic PROVISION patch: the same productive AWS pool/GCP bean must observe the exact own seed topic and actual seed configs before dispatch. Keep updated=true, finalretention2000000, unchangedcleanupdelete and correlatedCOMPLETED/guard assertions. A production knownPresent-DescribeConfigsUnknown retry changes canonicalerror behavior and needs a separate normative contract plus originalerror/interruption regressions; native cause alone is insufficient to call it a business defect.",
+    "inference": "Transient broker/admin config visibility is consistent with prior two nativePASS receipts and current knownPresent-to-DescribeConfigsUnknown. The exact server-side propagation cause is not proved; do not attribute it to forwarding/auth/routing.",
+    "not_wrong_oracle": "No proof that expected explicitretention patch should be weakened. Prior realPASS observed2000000retention anddeletecleanup +COMPLETEDguard; preserve those assertions."
+  },
+  "correlation_sha256": "19cc5583d9fc979cb8ecc5273880d03615564bac6df206bf1efe131031b11d09",
+  "current_case_sha256": "e4e41d4c2e37825a2c40fd697ba17c6b0a1b929fdf5285186d1957af102cc4bc",
+  "head": "b7910487c6a5336e128f9452b96f1e1641aa1740",
+  "invocation_index": 2,
+  "kind": "INDEPENDENT_CURRENT_RUN_RETENTION_PATCH_DIAGNOSIS",
+  "observed": {
+    "correlated_operation_log_counts": {
+      "configs_failure": 1,
+      "create": 0,
+      "created_concurrently": 0,
+      "lookup": 1
+    },
+    "current_xml": {
+      "assertion_stack": [
+        "at com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest.dispatch(RealControlplaneIntegrationTest.java:978)",
+        "at com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest.provisionExplicitRetentionPatchPreservesOtherActualConfigs(RealControlplaneIntegrationTest.java:891)"
+      ],
+      "exact_correlated_native_configs_error_in_xml": true,
+      "exists": true,
+      "failure_message": "org.opentest4j.AssertionFailedError: unexpected terminal error code=KAFKA_ADMIN_ERROR ==> expected: <COMPLETED> but was: <FAILED>",
+      "failures": "1",
+      "matching_case_count": 1,
+      "sha256": "b03a813a4dad0c311f93f3e8e7a3c5164cea765314731c23465f92e698de04d3",
+      "tests": "167",
+      "used": true
+    },
+    "exact_uuid_hash_matches": 1,
+    "final_native_message_redacted": "2026-10-06 20:07:42.571 ERROR -- [virtual-5904] c.m.r.d.gcp.topic.GcpTopicProvisioner : [correlationId: CORRELATION_SHA256:19cc5583d9fc979cb8ecc5273880d03615564bac6df206bf1efe131031b11d09] failed to describe configs for GCP topic OWNED_TOPIC (errorType=ExecutionException, reason=UnknownTopicOrPartitionException)",
+    "native_cause_safe_reason": "UnknownTopicOrPartitionException",
+    "native_error_type": "ExecutionException",
+    "native_exception_time": "2026-10-06 20:07:42.571",
+    "native_source": "Current Gradle9 binary/output-events.bin; gradle.log has no matching UUID, XML not used unless fresh.",
+    "operation": "describeConfigs TOPIC, before any retention/config mutation",
+    "physical_after_failure": "Real own topic present,1partition,RF1; no successful retention patch assertion reached. Guard not read because dispatch expectedCOMPLETED failed first.",
+    "result_sequence": [
+      "STARTED/NONE",
+      "FAILED/KAFKA_ADMIN_ERROR"
+    ]
+  },
+  "prior_same_case_pass_receipts": [
+    {
+      "case_status": "PASSED",
+      "exists": true,
+      "guard_states": [
+        "COMPLETED"
+      ],
+      "name": "candidate-e2e-red-2",
+      "path": "/private/tmp/kafka-e2e-validate-20261006/scenario-evidence/candidate-e2e-red-2/run/test-workers/task-localKafkaE2eTest/cases/case-a0e8f6cde3b7969c68b54bffa522b76ae322144121f6b9e453f12a8292ba84aa.json",
+      "physical": [
+        {
+          "configs": {
+            "cleanup_policy": "delete",
+            "compression_type": "producer",
+            "min_insync_replicas": "1",
+            "retention_ms": "2000000"
+          },
+          "effect_label": "topic_present",
+          "partitions": 1,
+          "replica_ids": [
+            [
+              3
+            ]
+          ],
+          "topic_id": "SFrzdPnYQ9CEsVIikoYyHg"
+        }
+      ],
+      "result_sequences": [
+        [
+          [
+            "STARTED",
+            "NONE"
+          ],
+          [
+            "COMPLETED",
+            "NONE"
+          ]
+        ]
+      ],
+      "run_id": "d01cf0fbd82442fd80158dfc898e75ff",
+      "sha256": "d3ad494b7113cb3ab7d69a6c0899d869696321b292a869236bf25f0fcf9a7f42"
+    },
+    {
+      "case_status": "PASSED",
+      "exists": true,
+      "guard_states": [
+        "COMPLETED"
+      ],
+      "name": "candidate-e2e-red-3",
+      "path": "/private/tmp/kafka-e2e-validate-20261006/scenario-evidence/candidate-e2e-red-3/run/test-workers/task-localKafkaE2eTest/cases/case-a0e8f6cde3b7969c68b54bffa522b76ae322144121f6b9e453f12a8292ba84aa.json",
+      "physical": [
+        {
+          "configs": {
+            "cleanup_policy": "delete",
+            "compression_type": "producer",
+            "min_insync_replicas": "1",
+            "retention_ms": "2000000"
+          },
+          "effect_label": "topic_present",
+          "partitions": 1,
+          "replica_ids": [
+            [
+              4
+            ]
+          ],
+          "topic_id": "vlI7vlYQSZSY6qNRIf01uQ"
+        }
+      ],
+      "result_sequences": [
+        [
+          [
+            "STARTED",
+            "NONE"
+          ],
+          [
+            "COMPLETED",
+            "NONE"
+          ]
+        ]
+      ],
+      "run_id": "7bbf862d57d648d0b3ca6ecafc9abcd1",
+      "sha256": "8d4718b84d17c356e984d9b9620c94c5c89981e3e6591c4e9eab6fcaa9ff2ed5"
+    }
+  ],
+  "provider": "gcp-kafka-topic",
+  "recommendation": {
+    "choice": "TEST_ONLY_PRODUCTIVE_SEED_READINESS_FOR_EXISTING_TOPIC_RECONCILE",
+    "maintainability": "Use existing provider-to-productiveAdmin choice (AWS pool vs separateGCP bean) in a private helper scoped to externally seeded reconcile fixtures; do not claim RESTPEEK establishes GCPconfigsreadiness. Do not add global sleeps, ignoreException, missing-config defaults, or weaken finalassertions.",
+    "minimal_scope": "Before dispatch atRealControlplaneIntegrationTest888-891, read actual ownTopic via correct productive Admin and require seededretention1234567/cleanupdelete +1partition/RF1; no mutation or fabricated Config. Use one bounded deadline and per-request remainingbudget; only real Unknown is retried as such, present but not-yet-seeded metadata/config remains readinessfalse; auth/generic/native timeout/interruption fail.",
+    "production_alternative": "Only if owner explicitly requires reconcile resiliency after initialKnownPresent: scoped nativeDescribeConfigsUnknown reobservation with short monotonicgrace bounded by current operationdeadline, realfuture/cause validation, original auth/generic/nativeTimeout/interruption mapping, persistentUnknown FAILED. Must retain the observedfailure baseline and be validated separately; not approved/implemented by this review.",
+    "reason": "The test declares a fully existing topic but currently proves seed visibility only through the independent fixture Admin. Actual productive GCP describeConfigs reportedUnknown while initialproductive topicmetadata wasPresent. Canonicalf74 explicitly maps that single native configerror toFAILED; no normative configpropagationretry guarantee was established."
+  },
+  "root_reported_full_outcome": {
+    "cleanup": "RETAINED",
+    "errors": 0,
+    "failures": 10,
+    "independently_recounted_whole_suite": false,
+    "passed": 349,
+    "skipped": 0,
+    "tests": 359
+  },
+  "run_id": "c6e8062a5de64da7af9663e7f6cfa128",
+  "runtime_scope": "Root fullrun has now finished; peer read currentfresh CPXML167/1failure and actual nativecorrelatederror. No API,Docker,Gradle,processinterruption,mocks orsource edits by reviewer; independent replay remains ineligible.",
+  "schema_version": 1,
+  "source_chain": [
+    {
+      "lines": [
+        886,
+        894
+      ],
+      "meaning": "Seed ownRF1/1partition topic withretention1234567/cleanupdelete; explicitPROVISION retention2000000 expectsupdatedtrue and unchangedcleanupdelete; same assertions in prior passed runs.",
+      "path": "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealControlplaneIntegrationTest.java"
+    },
+    {
+      "lines": [
+        100,
+        108,
+        300,
+        304,
+        535,
+        554
+      ],
+      "meaning": "Native initial describe returnsPresent and entersreconcile; DescribeConfigs failure aborts before applyConfigs; the exact observedUnknown exception maps via existing admin failure.",
+      "path": "src/main/java/com/mercadolibre/rio_controlplane_kafka/deployment/gcp/topic/GcpTopicProvisioner.java"
+    },
+    {
+      "lines": [
+        13,
+        23
+      ],
+      "meaning": "map(Exception) method is byte-identical to canonicalf74; ADMIN_ERROR mapsKAFKA_ADMIN_ERROR; sanitizedmessage enhancement does not change this mapping.",
+      "path": "src/main/java/com/mercadolibre/rio_controlplane_kafka/deployment/gcp/topic/GcpKafkaAdminErrorMapper.java"
+    },
+    {
+      "lines": [
+        40,
+        59
+      ],
+      "meaning": "GCP productive Admin is separate from independentfixture/RESTpool, and routing rejects any bootstrapdifferent fromownedcluster. No wrongrouting evidence in this failure.",
+      "path": "src/main/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealE2eConfiguration.java"
+    }
+  ],
+  "test_class": "RealControlplaneIntegrationTest",
+  "test_method": "provisionExplicitRetentionPatchPreservesOtherActualConfigs",
+  "verdict": "ACTUAL_FAILURE_LOCATED_SOURCE_ONLY_NO_RUNTIME_REPLAY"
+}

@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "run_id": "c6e8062a5de64da7af9663e7f6cfa128",
+  "project": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128",
+  "docker_context": "colima-rio-kafka-e2e-01a0f8e0",
+  "authorized_action": "Manual cleanup of own retained run; original result/journal remain RETAINED/RED",
+  "time_utc": "2026-10-06T23:20:39.285933+00:00",
+  "before": {
+    "containers": [
+      {
+        "id": "0a9e6f95636625d484e6869c750b1c3c256e0fdc24f16a084f39cf4da3268cab",
+        "name": "/rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128-broker4-1",
+        "labels": {
+          "com.docker.compose.config-hash": "0ea169c8644aa2d2a2fca22566d128c7817111d2a8e59c17323fb8b60d815f8c",
+          "com.docker.compose.container-number": "1",
+          "com.docker.compose.depends_on": "",
+          "com.docker.compose.image": "sha256:793ff1e5c750c9f8723804161c211a75bcc011b7b18fa951dd514bd7646e4aaa",
+          "com.docker.compose.oneoff": "False",
+          "com.docker.compose.project": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128",
+          "com.docker.compose.project.config_files": "/private/tmp/kafka-e2e-validate-20261006/cp/e2e/compose.yaml",
+          "com.docker.compose.project.environment_file": "/private/tmp/kafka-e2e-validate-20261006/cp/build/local-e2e/c6e8062a5de64da7af9663e7f6cfa128/compose.env",
+          "com.docker.compose.project.working_dir": "/private/tmp/kafka-e2e-validate-20261006/cp/e2e",
+          "com.docker.compose.service": "broker4",
+          "com.docker.compose.version": "5.5.1",
+          "io.rio.e2e.owned": "true",
+          "io.rio.e2e.run": "c6e8062a5de64da7af9663e7f6cfa128",
+          "maintainer": "Apache Kafka",
+          "org.label-schema.build-date": "2025-05-12",
+          "org.label-schema.description": "Apache Kafka",
+          "org.label-schema.name": "kafka",
+          "org.label-schema.vcs-url": "https://github.com/apache/kafka"
+        }
+      },
+      {
+        "id": "ec49a093df73d3f8dc14cfb45e3176ad21eae181d3241ea4d0acbdcd4579d1a4",
+        "name": "/rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128-broker3-1",
+        "labels": {
+          "com.docker.compose.config-hash": "16ca55c00d46a3a725784cc93ccb93406a6be2d155a0896dcf6475194e68f75e",
+          "com.docker.compose.container-number": "1",
+          "com.docker.compose.depends_on": "",
+          "com.docker.compose.image": "sha256:793ff1e5c750c9f8723804161c211a75bcc011b7b18fa951dd514bd7646e4aaa",
+          "com.docker.compose.oneoff": "False",
+          "com.docker.compose.project": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128",
+          "com.docker.compose.project.config_files": "/private/tmp/kafka-e2e-validate-20261006/cp/e2e/compose.yaml",
+          "com.docker.compose.project.environment_file": "/private/tmp/kafka-e2e-validate-20261006/cp/build/local-e2e/c6e8062a5de64da7af9663e7f6cfa128/compose.env",
+          "com.docker.compose.project.working_dir": "/private/tmp/kafka-e2e-validate-20261006/cp/e2e",
+          "com.docker.compose.service": "broker3",
+          "com.docker.compose.version": "5.5.1",
+          "io.rio.e2e.owned": "true",
+          "io.rio.e2e.run": "c6e8062a5de64da7af9663e7f6cfa128",
+          "maintainer": "Apache Kafka",
+          "org.label-schema.build-date": "2025-05-12",
+          "org.label-schema.description": "Apache Kafka",
+          "org.label-schema.name": "kafka",
+          "org.label-schema.vcs-url": "https://github.com/apache/kafka"
+        }
+      },
+      {
+        "id": "4a26f3b79a4c4a12155dfdc2dee00d427774f65d7775c410a8c5a1545a6a62f2",
+        "name": "/rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128-broker1-1",
+        "labels": {
+          "com.docker.compose.config-hash": "2c856544477255a2e437db472d3675b47068586080d6afc8febf10b604b52ce9",
+          "com.docker.compose.container-number": "1",
+          "com.docker.compose.depends_on": "",
+          "com.docker.compose.image": "sha256:793ff1e5c750c9f8723804161c211a75bcc011b7b18fa951dd514bd7646e4aaa",
+          "com.docker.compose.oneoff": "False",
+          "com.docker.compose.project": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128",
+          "com.docker.compose.project.config_files": "/private/tmp/kafka-e2e-validate-20261006/cp/e2e/compose.yaml",
+          "com.docker.compose.project.environment_file": "/private/tmp/kafka-e2e-validate-20261006/cp/build/local-e2e/c6e8062a5de64da7af9663e7f6cfa128/compose.env",
+          "com.docker.compose.project.working_dir": "/private/tmp/kafka-e2e-validate-20261006/cp/e2e",
+          "com.docker.compose.service": "broker1",
+          "com.docker.compose.version": "5.5.1",
+          "io.rio.e2e.owned": "true",
+          "io.rio.e2e.run": "c6e8062a5de64da7af9663e7f6cfa128",
+          "maintainer": "Apache Kafka",
+          "org.label-schema.build-date": "2025-05-12",
+          "org.label-schema.description": "Apache Kafka",
+          "org.label-schema.name": "kafka",
+          "org.label-schema.vcs-url": "https://github.com/apache/kafka"
+        }
+      },
+      {
+        "id": "1fca49d80e3d4ccf3c70956e1c8b8f72f3dbbdac1349f102c1c9ede1137bdfc2",
+        "name": "/rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128-broker2-1",
+        "labels": {
+          "com.docker.compose.config-hash": "5652b599ecfcb20b111842f055c154da74fdd28665eaabcd465a0a8318338802",
+          "com.docker.compose.container-number": "1",
+          "com.docker.compose.depends_on": "",
+          "com.docker.compose.image": "sha256:793ff1e5c750c9f8723804161c211a75bcc011b7b18fa951dd514bd7646e4aaa",
+          "com.docker.compose.oneoff": "False",
+          "com.docker.compose.project": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128",
+          "com.docker.compose.project.config_files": "/private/tmp/kafka-e2e-validate-20261006/cp/e2e/compose.yaml",
+          "com.docker.compose.project.environment_file": "/private/tmp/kafka-e2e-validate-20261006/cp/build/local-e2e/c6e8062a5de64da7af9663e7f6cfa128/compose.env",
+          "com.docker.compose.project.working_dir": "/private/tmp/kafka-e2e-validate-20261006/cp/e2e",
+          "com.docker.compose.service": "broker2",
+          "com.docker.compose.version": "5.5.1",
+          "io.rio.e2e.owned": "true",
+          "io.rio.e2e.run": "c6e8062a5de64da7af9663e7f6cfa128",
+          "maintainer": "Apache Kafka",
+          "org.label-schema.build-date": "2025-05-12",
+          "org.label-schema.description": "Apache Kafka",
+          "org.label-schema.name": "kafka",
+          "org.label-schema.vcs-url": "https://github.com/apache/kafka"
+        }
+      },
+      {
+        "id": "ece9c368e8e2c5405fff6277673ade04edec6f04233e2523e3a7c6d0ea835380",
+        "name": "/rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128-broker5-1",
+        "labels": {
+          "com.docker.compose.config-hash": "7db9a837446f7277868c42feb5ab0af83a0f6c26d58802b2eac498aa7ab4d390",
+          "com.docker.compose.container-number": "1",
+          "com.docker.compose.depends_on": "",
+          "com.docker.compose.image": "sha256:793ff1e5c750c9f8723804161c211a75bcc011b7b18fa951dd514bd7646e4aaa",
+          "com.docker.compose.oneoff": "False",
+          "com.docker.compose.project": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128",
+          "com.docker.compose.project.config_files": "/private/tmp/kafka-e2e-validate-20261006/cp/e2e/compose.yaml",
+          "com.docker.compose.project.environment_file": "/private/tmp/kafka-e2e-validate-20261006/cp/build/local-e2e/c6e8062a5de64da7af9663e7f6cfa128/compose.env",
+          "com.docker.compose.project.working_dir": "/private/tmp/kafka-e2e-validate-20261006/cp/e2e",
+          "com.docker.compose.service": "broker5",
+          "com.docker.compose.version": "5.5.1",
+          "io.rio.e2e.owned": "true",
+          "io.rio.e2e.run": "c6e8062a5de64da7af9663e7f6cfa128",
+          "maintainer": "Apache Kafka",
+          "org.label-schema.build-date": "2025-05-12",
+          "org.label-schema.description": "Apache Kafka",
+          "org.label-schema.name": "kafka",
+          "org.label-schema.vcs-url": "https://github.com/apache/kafka"
+        }
+      }
+    ],
+    "volumes": [
+      {
+        "id": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128_broker1_data",
+        "name": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128_broker1_data",
+        "labels": {
+          "com.docker.compose.config-hash": "d95f8e65b17cd92613377ec90b3332d3e795ca60cf2fb3da6b9d365990493ed2",
+          "com.docker.compose.project": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128",
+          "com.docker.compose.version": "5.5.1",
+          "com.docker.compose.volume": "broker1_data"
+        }
+      },
+      {
+        "id": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128_broker2_data",
+        "name": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128_broker2_data",
+        "labels": {
+          "com.docker.compose.config-hash": "4ea2ed2caef9962cc2153d548b223abb6038d399cd9513eb3bced0e953fa8dc0",
+          "com.docker.compose.project": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128",
+          "com.docker.compose.version": "5.5.1",
+          "com.docker.compose.volume": "broker2_data"
+        }
+      },
+      {
+        "id": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128_broker3_data",
+        "name": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128_broker3_data",
+        "labels": {
+          "com.docker.compose.config-hash": "1e9468f5705779ae2ac281b018fe77f3eb715a91e4d31deda3390cd47cf453f0",
+          "com.docker.compose.project": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128",
+          "com.docker.compose.version": "5.5.1",
+          "com.docker.compose.volume": "broker3_data"
+        }
+      },
+      {
+        "id": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128_broker4_data",
+        "name": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128_broker4_data",
+        "labels": {
+          "com.docker.compose.config-hash": "33115af9a2e47066230da88edbce9f4fb381c2e9cd425d34457db68608c1dfc9",
+          "com.docker.compose.project": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128",
+          "com.docker.compose.version": "5.5.1",
+          "com.docker.compose.volume": "broker4_data"
+        }
+      },
+      {
+        "id": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128_broker5_data",
+        "name": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128_broker5_data",
+        "labels": {
+          "com.docker.compose.config-hash": "2ecda516a7ed8e8500ae5b7d94b2174b8d409b55efb8302bcf552b17a776d201",
+          "com.docker.compose.project": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128",
+          "com.docker.compose.version": "5.5.1",
+          "com.docker.compose.volume": "broker5_data"
+        }
+      }
+    ],
+    "networks": [
+      {
+        "id": "4f6f819ee869798c71eda00b79a4b13911c1d59054bbef6175aebefa7949d13a",
+        "name": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128_default",
+        "labels": {
+          "com.docker.compose.config-hash": "650dfcf81bd4edc995fa6299530f277ec6c67dc6f990072e9e311338106a45e1",
+          "com.docker.compose.network": "default",
+          "com.docker.compose.project": "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128",
+          "com.docker.compose.version": "5.5.1"
+        }
+      }
+    ]
+  },
+  "reap_proof": {
+    "pids": [
+      44781,
+      44739,
+      46313,
+      47203,
+      46335,
+      46068,
+      46570,
+      46786
+    ],
+    "ps_exit": 1,
+    "stdout_bytes": 0,
+    "observed_utc": "2026-10-06T23:20:39.286520+00:00"
+  },
+  "original_result_sha256": "b43387476bc449ad4ac0ab66c0625c206b85f19384c235bbd4c6dbf3598ce297",
+  "original_journal_sha256": "fcd29090504be9826843c707fc1dfd9097dc870d0583c47403a671605d67cf6d",
+  "compose_sha256": "efbbef07fb998dd9b5100446ec4b673454764733c9f50a16316591d1c79c63bd",
+  "environment_file_sha256": "5bf09702a59aefbaa5c75696c2dbf49619318f2df9e77b1e9aeecc026aed98e8",
+  "original_file_count": 392,
+  "before_original_drift": [],
+  "active_global_context_before": "colima",
+  "context_host": "unix:///Users/rjara/.colima/rio-kafka-e2e-01a0f8e0/docker.sock",
+  "started_utc": "2026-10-06T23:21:13.517169+00:00",
+  "finished_utc": "2026-10-06T23:21:25.159779+00:00",
+  "verdict": "MANUAL_CLEANUP_PASS",
+  "down_command": [
+    "/opt/homebrew/bin/docker",
+    "--context",
+    "colima-rio-kafka-e2e-01a0f8e0",
+    "compose",
+    "--project-name",
+    "rio-kafka-e2e-c6e8062a5de64da7af9663e7f6cfa128",
+    "--file",
+    "/private/tmp/kafka-e2e-validate-20261006/cp/e2e/compose.yaml",
+    "--env-file",
+    "/private/tmp/kafka-e2e-validate-20261006/cp/build/local-e2e/c6e8062a5de64da7af9663e7f6cfa128/compose.env",
+    "down",
+    "--volumes",
+    "--remove-orphans"
+  ],
+  "down_exit": 0,
+  "down_log_sha256": "3f1895209b41bf21e82f7e99ace8f7618cd5e20d49d8e92743119f21269c73cc",
+  "after_remaining": {
+    "containers": [],
+    "volumes": [],
+    "networks": []
+  },
+  "host_ports": [
+    {
+      "port": 39092,
+      "bind_free": true
+    },
+    {
+      "port": 39093,
+      "bind_free": true
+    },
+    {
+      "port": 39094,
+      "bind_free": true
+    },
+    {
+      "port": 39095,
+      "bind_free": true
+    },
+    {
+      "port": 39096,
+      "bind_free": true
+    }
+  ],
+  "after_original_drift": [],
+  "active_global_context_after": "colima",
+  "own_grpc_hostagent_pid": 41634,
+  "own_grpc_false_env_observed": true,
+  "docker_runtime": {
+    "ServerVersion": "27.4.0",
+    "Architecture": "aarch64",
+    "MemTotal": 6198427648,
+    "NCPU": 4
+  },
+  "original_result_and_journal_authority": "UNCHANGED: original run stays FAILED/RETAINED; this is a separate manual lifecycle receipt",
+  "business_test_execution": false
+}

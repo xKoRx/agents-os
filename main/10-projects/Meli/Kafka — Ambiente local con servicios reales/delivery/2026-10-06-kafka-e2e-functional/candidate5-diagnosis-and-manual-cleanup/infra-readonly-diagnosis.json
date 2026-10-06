@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "observed_utc": "2026-10-06T23:19:11.655463+00:00",
+  "verdict": "READ_ONLY_DIAGNOSIS_COMPLETE_CAUSE_NOT_FULLY_PROVEN",
+  "run_id": "c6e8062a5de64da7af9663e7f6cfa128",
+  "candidate": "b791048",
+  "scope": "own retained Docker runtime and source/XML/timeline only; no mutations/restarts/cleanup/Gradle",
+  "run_result_unchanged": {
+    "run_id": "c6e8062a5de64da7af9663e7f6cfa128",
+    "family": "CP_LOCAL_KAFKA_MEMORY",
+    "backend": "PER_INSTANCE_MEMORY",
+    "verdict": "FAIL",
+    "command_exit": 1,
+    "cleanup": "RETAINED",
+    "native_task_proof": false,
+    "case_receipts_valid": false,
+    "totals": {
+      "tests": 359,
+      "failures": 10,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "preserved_files": 392,
+  "preserved_hash_drift": [],
+  "runtime": {
+    "profile": "rio-kafka-e2e-01a0f8e0",
+    "docker_context": "colima-rio-kafka-e2e-01a0f8e0",
+    "mode": "gRPC (LIMA_SSH_PORT_FORWARDER=false previously observed hostagent41634)",
+    "colima_version": "0.8.1",
+    "lima_version": "1.0.5",
+    "memory_pin_gib": 6,
+    "cpu_pin": 4,
+    "vm_type": "VZ",
+    "architecture": "aarch64"
+  },
+  "confirmed": [
+    "Five retained containers currently running/healthy, no OOMKilled, restart_count0; containers4/5 have deliberate stop/start timestamps.",
+    "23:10:36.577Z brokers4/5 entered shutdown; containers exited23:10:39.810Z/40.006Z.",
+    "23:10:41.138Z CP PROVISION attemptedRF5;23:10:41.149Z actual Kafka InvalidReplicationFactorException Insufficient brokers(3) and publishedFAILED.",
+    "Admin329 DESCRIBE_TOPIC_PARTITIONS correlation13 to node5 sent~23:10:41.643Z (derived from cancellation elapsed46791ms); cancellation at23:11:28.434Z.",
+    "Hostagent removed listener39095/39096 at23:10:42Z; re-added both at23:10:54Z; containers4/5 restarted23:10:52.596Z/52.864Z and KafkaSTARTED23:10:56.996Z/56.957Z.",
+    "OwnedKafkaFaults.close invokes restoreBrokers then closesAdmin, even after failing scenario. Restoration occurred after pre-restoration read failure by source/event sequence; no recoveredtrigger or COMPLETED appears in this XML.",
+    "Fixture.awaitTopic.get(10s) catches ExecutionException(UnknownTopic) but does not retry native TimeoutException; suppressed fixture.deleteOwnedTopic.get(30s)Timeout leaves FAILED RESOURCE_CLEANUP_FAILED journal, which blocks subsequentfixtures.",
+    "Current ApiVersions all5 PASS12-45ms; current Metadata v0 all5 PASS9-20ms with5brokerIDs, topicerror3 for sole previously-retainedtopic (nowabsent). These observations do not change ledger authority or certify run/businessPASS.",
+    "No signal:killed in snapshotted gRPC hostagent log; no persistent loss of host forwarders established. Historical docker events empty, so no lifecycle data inferred from that query."
+  ],
+  "limits": [
+    "No packet capture or process-level historical stream trace: causality between a stale gRPC stream and pending Kafka Admin request cannot be proven from current logs. CloseRead debug errors alone do not prove defect.",
+    "Pending request to stoppednode and fail-fast get10s explain immediate harness abort boundary; exact KafkaAdmin/network recovery mechanics remain unproven.",
+    "Current topic absence may reflect eventual execution of timed-out cleanup delete, not verified cleanup completion at failuretime; journal/resources deliberately retained.",
+    "No resources reconciled or removed; no assertion relaxed; full result remains RED349/359 with10failures. Other GCP rootfailure assigned separatepeer."
+  ],
+  "proposal_for_parent_only": [
+    "If code correction is selected, give GPT6Luna a bounded fault-aware metadata wait that keeps actual RF/ISR/config/result assertions and harddeadline; account for native timeout while brokers deliberately stop. Do not convert code3/absence into scenarioPASS.",
+    "A causal gRPC claim requires separately authorized isolated stop/start protocol reproducer; do not restart this retained runtime blindly. No such mutation is authorized in this receipt."
+  ],
+  "control_error_preserved": {
+    "kind": "diagnostic parser IndexError due blankclient.id configvalue",
+    "result": "corrected parser only, no service/source mutation"
+  },
+  "web_read_limit": {
+    "pinned_lima_portfwd_source_attempts": "cachemiss for two guessed sourcepaths, unused as evidence",
+    "causal_source_claim": "none"
+  }
+}

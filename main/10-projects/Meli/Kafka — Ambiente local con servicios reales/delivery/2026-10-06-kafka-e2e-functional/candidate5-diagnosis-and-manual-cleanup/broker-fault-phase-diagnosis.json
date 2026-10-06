@@ -1,0 +1,164 @@
+{
+  "controlflow_evidence": {
+    "no_logging_reset_in_test_source": true,
+    "no_recovery_PROVISION_log": true,
+    "no_second_correlation_in_idx1_receipt": true,
+    "one_first_PROVISION_in_raw_XML": true,
+    "post_restore_RF_poll_reached": false,
+    "seed_survives_on_broker1_by_explicit_assignment": true
+  },
+  "head": "b7910487c6a5336e128f9452b96f1e1641aa1740",
+  "kind": "INDEPENDENT_CLUSTER_FAULT_PHASE_DIAGNOSIS",
+  "minimal_plan": {
+    "alternative": "A private cluster-fault-only bounded native-read helper with same rules could avoid broad fixture behavior changes, but must reuse realobservation recording and retain original90s limit; no genericignoreExceptions wrapper around fixtureawaitTopic.",
+    "budget": "Set one monotonic90s deadline when helperstarts; eachget budget min(10s,remaining). At remaining<=0 readinessfalse lets outerdeadline fail; no additional90s window/restart. Successful return must still be actualnonnull TopicDescription with partitions and preserve observedmetadata recording.",
+    "caller_assertions": "RF1/configretention muststill be read and asserted under3nodes before explicitrestore;5nodes+realnewIDCOMPLETED/terminalguard/RF5/ISR5/pendingempty/duplicateFAILED invariants unchanged. No move of assertion afterrestore, broadignoreExceptions, invented snapshot, assertion weakening or timeout swallowing incleanup.",
+    "change": "Within existing90s Awaitility and sameownAdmin/topic, catch ONLY java.util.concurrent.TimeoutException from timedget and return readinessfalse. Keep current nativeUnknown-topic retry. Preserve all otherExecutionException causes including nativeKafkaTimeout/auth/generic, RuntimeException and InterruptedException without retry.",
+    "regressions": [
+      "Pending actualKafkaFuture localtimedwait expires then later realmetadata read succeeds inside outerdeadline.",
+      "Alwayspending timedreads exhaust the originalboundedwindow and fail.",
+      "ExecutionException(nativeKafkaTimeout),auth,generic and InterruptedException retain exact failure/no retry.",
+      "Full native two-invocation reducedbroker/restoration fixture run plus strictresults/guard/config/cleanup, and all359 fullunfiltered afterward."
+    ],
+    "scope": "Fixture read-only awaitTopic helper only; production providers/results/guard mappings unchanged."
+  },
+  "native_failures": [
+    {
+      "message": "java.util.concurrent.TimeoutException",
+      "name": "actualThreeLiveBrokersRejectRfFiveReconcileAndRestoredClusterCompletesNewId(DeploymentOperation) [1]",
+      "relevant_stack": [
+        "java.util.concurrent.TimeoutException",
+        "at org.apache.kafka.common.internals.KafkaFutureImpl.get(KafkaFutureImpl.java:183)",
+        "at com.mercadolibre.rio_controlplane_kafka.reale2e.support.RealE2eFixture.lambda$awaitTopic$0(RealE2eFixture.java:1039)",
+        "Suppressed: java.util.concurrent.TimeoutException",
+        "at org.apache.kafka.common.internals.KafkaFutureImpl.get(KafkaFutureImpl.java:183)",
+        "at com.mercadolibre.rio_controlplane_kafka.reale2e.support.RealE2eFixture.deleteOwnedTopic(RealE2eFixture.java:1182)",
+        "at com.mercadolibre.rio_controlplane_kafka.reale2e.support.RealE2eFixture.cleanup(RealE2eFixture.java:1159)",
+        "at com.mercadolibre.rio_controlplane_kafka.reale2e.support.RealE2eFixture.close(RealE2eFixture.java:1243)",
+        "at com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaClusterFaultIntegrationTest.cleanupAfterOwnedFaultRestoration(RealKafkaClusterFaultIntegrationTest.java:47)"
+      ],
+      "seconds": "55.208"
+    },
+    {
+      "message": "org.opentest4j.AssertionFailedError: An existing journal blocks new fixture clients until reconciliation ==> expected: <true> but was: <false>",
+      "name": "actualThreeLiveBrokersRejectRfFiveReconcileAndRestoredClusterCompletesNewId(DeploymentOperation) [2]",
+      "relevant_stack": [
+        "at com.mercadolibre.rio_controlplane_kafka.reale2e.support.RealE2eFixture.verifyConstructionJournals(RealE2eFixture.java:675)",
+        "at com.mercadolibre.rio_controlplane_kafka.reale2e.support.RealE2eFixture.<init>(RealE2eFixture.java:163)",
+        "at com.mercadolibre.rio_controlplane_kafka.reale2e.support.RealE2eFixture.<init>(RealE2eFixture.java:130)",
+        "at com.mercadolibre.rio_controlplane_kafka.reale2e.support.RealE2eFixture.<init>(RealE2eFixture.java:124)",
+        "at com.mercadolibre.rio_controlplane_kafka.reale2e.support.RealE2eFixture.<init>(RealE2eFixture.java:119)",
+        "at com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaClusterFaultIntegrationTest.openBeforePhysicalBrokerReduction(RealKafkaClusterFaultIntegrationTest.java:41)"
+      ],
+      "seconds": "0.032"
+    }
+  ],
+  "receipts": [
+    {
+      "correlations": [],
+      "guard_observations": [],
+      "index": 2,
+      "path": "/private/tmp/kafka-e2e-validate-20261006/cp/build/local-e2e/c6e8062a5de64da7af9663e7f6cfa128/test-workers/task-localKafkaE2eTest/cases/case-ca937fbe7b3bf4e4a96c17bb5b712f5d18bca061c29663fca346514b5fda37e0.json",
+      "result_sequences": [],
+      "sha256": "a06c45a7e40af417a42a3d43ff2fe1af5c304c29f160551cd6f3c9dd585b52a6",
+      "status": "FAILED"
+    },
+    {
+      "correlations": [
+        "f5c3b614fd1debeab6b3c81aa6573dc7bf408e2a28d3877fcc6467b85ee7c6d3"
+      ],
+      "guard_observations": [
+        {
+          "domain": "deployment",
+          "key_sha256": "f3be0fd9223c818a2b67f68b25c9d8e3dc174f86284218f81f17543142d01998",
+          "native_error_code": null,
+          "native_identity_status": "OBSERVED",
+          "native_instance_id": "62ebe196-d7c4-4214-aee3-a9eb0ad100a1",
+          "observation": "ITEM_READ",
+          "operation": null,
+          "owner_pid": 44781,
+          "state": "FAILED",
+          "version": 2
+        }
+      ],
+      "index": 1,
+      "path": "/private/tmp/kafka-e2e-validate-20261006/cp/build/local-e2e/c6e8062a5de64da7af9663e7f6cfa128/test-workers/task-localKafkaE2eTest/cases/case-4f964b336cbfccc1c8851af5ca60baf1532b4f005ff973d48dc1afb40e62295a.json",
+      "result_sequences": [
+        [
+          [
+            "STARTED",
+            "NONE"
+          ],
+          [
+            "FAILED",
+            "KAFKA_ADMIN_ERROR"
+          ]
+        ]
+      ],
+      "sha256": "6b1e0a7382ccdce8ed270af17421d9762152e7ccf6afcee890733b3b96a458de",
+      "status": "FAILED"
+    }
+  ],
+  "run_id": "c6e8062a5de64da7af9663e7f6cfa128",
+  "schema_version": 1,
+  "scope": "Read-only exactsource/freshXML/receipt diagnosis. No source edits, Gradle,Docker,API orprocesscontrols executed; fullindependent replay ineligible.",
+  "source_pins": {
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealKafkaClusterFaultIntegrationTest.java": "8c8c5e5c6ee9e60e61a8f105b800c8ccdf72003d5e64948b27112b1889615e68",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/faults/OwnedKafkaFaults.java": "095f8406604ab59e3172d49056fbb606fbfdd0c079b769675d2b15ba6d92a364",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/support/RealE2eFixture.java": "9b6f1fbec7c0a11bef9260a0bf4a08cdf3a538768de753ebc42a695cf129f6cc"
+  },
+  "timeline": [
+    {
+      "observation": "Explicit NewTopic assignment partition0->broker1,retention1234567; fixtureawaitTopic before reduction. Broker1 is not among stopped4/5.",
+      "phase": "seed_before_reduction",
+      "source": "RealKafkaClusterFaultIntegrationTest.java:55-58"
+    },
+    {
+      "observation": "Owned4/5 stopped; exactly3 native live nodes asserted before firstdispatch.",
+      "phase": "owned_reduction",
+      "source": "RealKafkaClusterFaultIntegrationTest.java:61-63"
+    },
+    {
+      "observation": "Only observed own-topic PROVISION, requestedRF5; correlation SHA f5c3b614fd1debeab6b3c81aa6573dc7bf408e2a28d3877fcc6467b85ee7c6d3",
+      "phase": "first_PROVISION",
+      "time": "20:10:41.138"
+    },
+    {
+      "observation": "Actual InvalidReplicationFactorException:Insufficientbrokers3/RF5; STARTED->FAILED/KAFKA_ADMIN_ERROR and actualmemoryguardFAILED/version2 observed.",
+      "phase": "first_real_admin_failure",
+      "time": "20:10:41.149"
+    },
+    {
+      "observation": "Primary stack points to fixtureawaitTopic1039 localget10sTimeout. This is the RF1 unchanged-state assertion while still reduced; not recoveryRF5/ISR5 poll.",
+      "phase": "first_state_audit_before_restore",
+      "source": "RealKafkaClusterFaultIntegrationTest.java:67"
+    },
+    {
+      "observation": "Root/Infra-reported HA readded39095/39096; not independently replayed by this review. Source OwnedKafkaFaults.close calls restore in try-resource failure unwinding.",
+      "phase": "try_resource_restoration",
+      "time": "20:10:54"
+    },
+    {
+      "observation": "Suppressed JavaTimeout from realdeleteOwnedTopic.get30s; journalretained. Do not normalize/delete on timeout.",
+      "phase": "fixture_cleanup",
+      "source": "RealE2eFixture.java:1182"
+    },
+    {
+      "observation": "Constructor rejected retained journal before any new fixture clients/dispatch; receipt no correlations/results/guard. Correct fail-closed cascade, not another physical RFfailure.",
+      "phase": "second_invocation"
+    }
+  ],
+  "verdict": "PRIMARY_PRE_RESTORE_FIXTURE_READ_TIMEOUT_CONFIRMED",
+  "wire_cause_boundary": {
+    "actual_exception": "java.util.concurrent.TimeoutException from KafkaFutureImpl.get(10s), not ExecutionException wrapping nativeKafkaTimeout.",
+    "client_logs": "80 relevant interleaved nativeclient warnings captured privately; multiple autogeneratedAdminClientIDs. FixtureAdmin has onlybootstrap config and no durable clientID binding to request. No exact request/broker/correlation wiretrace.",
+    "stopped_broker_selection": "UNKNOWN; possible but not proven. No routing/forwarder/lease cause claim."
+  },
+  "xml_counts": {
+    "failures": 2,
+    "journal_cascade": 1,
+    "primary": 1,
+    "tests": 2
+  },
+  "xml_sha256": "c2de47619e2ff29f4f8609f430efebd253d2f9f88098b51ff4166bc2e00829a9"
+}
