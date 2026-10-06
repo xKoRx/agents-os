@@ -38,15 +38,15 @@ Gap real detuvo el primer smoke. Distinguir ausencia física, calendario y bug d
 
 ## Resolución aplicada
 
-Strict halt correcto; UNKNOWN causa de omisiones/outside prints. F12reporting corregido con realrerun/reproduce. F13summarycounts abierto, sin esconderlo como límite. Tres exports insuficientes bajo51H4; no fakebars, PnLsum/reset ni overrides inventados.
+Strict halt correcto; UNKNOWN causa de omisiones/outside prints. F12reporting corregido con realrerun/reproduce. F13/F14summary corregidos con mismo smoke COMPLETE24fills/30ops+freshIDENTICAL; terminal residual eliminado, economía original preservada. Tres exports raw insuficientes bajo51H4; derivación autorizada excluye226outside intervals conservando bytes/gaps internos y habilita≥51H4 en cada derivado; no fakebars, PnLsum/reset ni overrides inventados.
 
 ## Validación
 
-CalendarResolver/SessionGrid compartidos sobrebytes reales, SHA y source refs; RED/GREEN/race/vet directos offline; dos failedreal reruns+freshreproduceIDENTICAL. Sin autorización ampliada de infra, trading niPROD.
+CalendarResolver/SessionGrid compartidos sobrebytes reales, SHA y source refs; RED/GREEN/race/vet directos offline; dos failedreal reruns+freshreproduceIDENTICAL; corrected raw COMPLETE136.932records y freshIDENTICAL. Comparación entre builds conserva economía y ledger/risk, sólo refs/IDs/provenance deRunID distintos; provider digest distinto visible. Sin autorización ampliada de infra, trading niPROD.
 
 ## Compartibilidad
 
-Scope local; sin secretos, dumps pesados ni paths absolutos de vault. Feedback y reusablebehaviorNONE.
+Scope local; sin secretos, dumps pesados ni paths absolutos de vault. [[2026-10-06-btg-s01-real-gap-forensics-session-feedback]] registra oráculo inicial/timeout10min; reusablebehaviorNONE.
 
 ## Rollback
 
