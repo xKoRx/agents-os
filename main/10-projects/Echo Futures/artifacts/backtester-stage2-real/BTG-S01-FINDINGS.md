@@ -23,6 +23,8 @@ Registrar las divergencias materiales verificadas del carril BTG-S01 sin convert
 
 ### Corte y procedencia
 
+Delta real2026-10-06: Owner entregó copias legibles de13exports; root verificó bytes/hashes y primeros intentos históricos. Los estados NOT_RUN de F01–F11 conservan su corte previo y todavía no se cierran por los fracasos de cobertura/sesión actuales. BT2-F12 proviene de estos nuevos artifacts auténticos. Smoke limpio activo y paquete de reruns en curso; no blanket closure.
+
 Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certificado `cd451972b242c8933321e03001decd4b6d778c61`. Revisor TOP LOCAL `gpt-6.1-sol` independiente. Corpus real NOT_ACQUIRED; todos los rangos siguientes son N/A para histórico real, y los probes son REFERENCE_ONLY. Remediación NORMAL fresh-context `407e03dd7ebce1f93b04ea5ff5bb5a33f1bac1ef` en `codex/btg-s01-source-bars-remediation`, preservando el candidate anterior; nuevo TOP independiente confirma el gate SDK en [[BTG-S01-SOURCE-BAR-SDK-FINAL-REVIEW]]. Ningún finding cumple todavía el cierre histórico frozen.
 
 ### BT2-F01 — serialización legacy modificada
@@ -167,6 +169,19 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - regression: PERMANENT_REGRESSION + freshTOP RED e632Close2/Peek3/Next1 → PASS15422 Close1/Peek3/Next1, mismo sealedscript/override/originalmodeerror. Concurrent128/sequential Closeerror cache errors.Is/As, F09publicFD []→[]→[], race8.070s/F081.171s/vet/build; shortsealedSOURCE_COVERAGE_INCOMPLETE/reproIDENTICAL y legacy e632→15422 byteigual SHAd5325ae6cf99725a9e7e23dab1951b1e8fb60468f29a41179a636f5b504c5ad7. Independent changedblocks3/3 bruto/aplicable, sinexclusiones. Evidence reports/cli-cursor-once-review.
 - real_rerun: NOT_RUN; originales completos pendientes.
 - state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED, scope sintético. No cierre histórico.
+
+### BT2-F12 — fallo histórico reportado al caller frontier antiguo
+
+- severity: MEDIUM; atribución temporal de evidencia real incorrecta, sin divergencia de scheduler probada.
+- dataset/rango: NQ12-23 real, SHA256caead986337256d77011d58cb49d4d4b20393b1261c0f1ef4c494cd0397c6c94; warmupsOct1/Oct10 y fallosOct10/Oct13, artifacts externos de real-history-execution.
+- expected: Summary.LastLogicalTime de FAILED refleja último clock alcanzado; causa de source inválido identifica ref e intervalo. La referencia de input rechazado y último prefix consumido son coordenadas diferentes.
+- actual: summary queda en warmupOct1 aunque records/error gap alcanzaronOct10; nextRoot validation failure deOct13 se fecha al warmupOct10 y causa omite intervalo/ref en no-owning-session branch.
+- first_divergence: Finish summary y AdvanceUntil nextRoot-error capsule usan r.frontier (caller-completed frontier) en lugar del último clock alcanzado. Mantener frontier es intencional para fases/timers: no se autoriza alterarlo per root.
+- owner: backtester finish.go/driver.go; TOP LOCAL real_gap_forensics implementor, Root sólo SDD/specs/coordination.
+- fix: IN_PROGRESS, carrilcodex/btg-s01-real-diagnostics desdefb210ac4, AllowedFilesdos production + nueva real_failure_frontier_test.go. Cambio sólo FAILED time y source attribution, no guard/calendar/Strategy/MM/risk/scheduler.
+- regression: focused RED confirmado missing minute summary start vs start+2min y outside-source interval ausente; GREEN/race/vet y métricas finales pendientes. PERMANENT_REGRESSION.
+- real_rerun: PENDING same authentic failed slice and fresh reproduction; successful smoke candidate activo aparte.
+- state: OPEN_REMEDIATION_AND_REAL_RERUN_REQUIRED. No cierre permitido todavía.
 
 ### Retención y clasificación
 

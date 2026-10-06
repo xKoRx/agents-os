@@ -53,18 +53,56 @@ TOP cerró [[BTG-S01-OHLC-RUN-CONTRACT]], docs `549506b9`, artifact digest compr
 
 ### Estado observado
 
-STATE = BLOCKED_EXTERNAL — ORIGINAL_BYTES_TRANSFER_POLICY
-WORK_IN_PROGRESS = FINAL_EVIDENCE_HANDOFF; LOCAL_NATIVE_PREREQUISITE_INDEPENDENTLY_VERIFIED
+STATE = RUNNING — REAL_CLEAN_SLICE_20231029; FIRST_FAILURES_RETAINED
+WORK_IN_PROGRESS = ACTUAL_CLEAN_SLICE_PID464239; BT2_F12_DIAGNOSTIC_FIX_FOCUSED_REGRESSION
 FUNCTIONAL_CONFIG_AUTHORITY = OWNER_DELEGATED_CONSISTENT_RULES_2026_10_06
 SDK_STATE = READY_SDK_PREREQUISITE_REVIEW_ONLY
-SECONDARY_STATE = ORIGINAL_TRANSFER_PENDING; FUNCTIONAL_CONFIG_SELECTED; READY_LOCAL_NATIVE_BASELINE_REVIEW_ONLY
-REAL_SMOKE = NOT_RUN
+SECONDARY_STATE = OWNER_COPY_13_FILES_FULLY_READ_AND_HASHED; FUNCTIONAL_CONFIG_SELECTED; REAL_EXECUTION_PENDING
+REAL_SMOKE = FAILED_FIRST_ATTEMPT_SOURCE_COVERAGE_INCOMPLETE; SUCCESSFUL_SMOKE_NOT_YET_DEMONSTRATED
 LONGITUDINAL_RUN = NOT_RUN
 DETERMINISTIC_RERUN = NOT_RUN
 ECONOMIC_STAGE_COVERAGE = NOT_DEMONSTRATED
 SIGNALS / OPERATIONS / FILLS / ACCOUNT_PNL = NOT_MEASURED
 
 El inventario previo del Primary es preparación documental; no acredita datos físicos ni una corrida. S00–S04 son ACCEPTED_INPUT para capacidades; D6, Generic20/GAU50 y simuladores previos son REFERENCE_ONLY. Otros runs permanecen UNREVIEWED.
+
+### Continuación ejecutiva — originales trasladados a Daedalus
+
+Mandato Owner vigente: completar el programa de cinco shots el 6–7 de octubre de 2026, America/Santiago. S01 continúa con S2 compartida, GerardMM y `BTG_FUNCTIONAL_NQ_EVAL_V1`; `NO_ADDS` aceptado sólo para este baseline funcional. Los parámetros no se optimizan. El destino exacto comunicado es `daedalus:/home/hermes-ops/echo-dev/history/nq/`, con trece exports NQ Last 1m esperados. El bloqueo SFTP Windows queda como antecedente y deja de ser la causa vigente.
+
+Comprobación local 2026-10-06 18:26 UTC: `hostname` devuelve `daedalus`; `id` identifica uid1000 `kor`, sin grupo `hermes-ops`. `ls -ld /home/hermes-ops/echo-dev/history/nq` devuelve Permission denied. `namei -l` localiza la primera denegación al atravesar `/home/hermes-ops`, modo `0750`, owner/grupo `hermes-ops`. `getfacl -p /home/hermes-ops` confirma `user::rwx`, `group::r-x`, `other::---`, sin entrada para `kor`. No se pudo verificar existencia, tamaños ni hashes de los trece archivos; su traslado es autoridad Owner, no lectura física acreditada.
+
+El inventario vivo `aranea-ssh.list_connections` expone nueve perfiles, ninguno para Daedalus o `hermes-ops`. No se recurrió a sudo, contenedores, perfiles root de otros hosts, cambios de identidad ni ACL/policy. La prohibición expresa del mandato impide eludir esta denegación. Mínima acción solicitada: una copia intacta accesible a `kor` en `/home/kor/aranea/work/btg-s01-20261006/history/nq/`; no nueva exportación ni ZIP. Al recibirla se comprobarán todos los bytes y digests, sin atribuir una verificación del origen inaccesible.
+
+Especialista fresh ONE-SHOT NORMAL LOCAL `gpt-6-luna`, `real_history_execution`, despachado desde el candidato integrado `fb210ac4afeab2315aaa3c424f287c2d9db5a7b3` para el run real y su reproducción. Confirmó independientemente la denegación y continúa build offline del CLI existente y preparación del comando concreto. Ningún PID de backtest histórico ha arrancado; REAL_SMOKE, LONGITUDINAL y RERUN siguen NOT_RUN. El submanager permanece abierto, S02–S05 no iniciados.
+
+Refresh de continuidad: Agents-OS master `a2fb92548475f6865c972de70e31db466e7ca13e`; diff relevante desde `07ea7468` sólo journals ajenos, sin delta en autoridades Echo/skills. Echo master `372af59a`, S04 `cd451972`, D6 `d08a30ce`, candidato `fb210ac4`, sin avance. D6 checkout y candidato limpios. Sin merges ni intervención runtime.
+
+### Resolución física Owner y arranque real — corte posterior
+
+El Owner confirmó la copia solicitada. Root encontró trece archivos en `/home/kor/aranea/work/btg-s01-20261006/history/nq/nq/` (carpeta anidada conservada), comprobó sus tamaños y leyó todos los bytes con `sha256sum`, sin errores. Los trece tamaños coinciden con el inventario Windows previo. NQ12-23 SHA256 `caead986337256d77011d58cb49d4d4b20393b1261c0f1ef4c494cd0397c6c94`; NQ12-26 `2176dce88405aee7fe5383cf1244330ad83fe0b0f1105abe9c7b198a30555141`. La provenance es export NinjaTrader Owner + traslado/copia confirmado por Owner; los hashes físicos de la ruta home/hermes original siguen sin verificarse, y no se inventa esa comparación.
+
+La denegación anterior queda histórica: ya no bloquea ejecutar sobre las copias legibles. Worker previo `real_history_execution` cerró ONE-SHOT antes de la confirmación con CLI build PASS y feedback NONE; [[BTG-S01 Real History Execution]] y su agent_run se importaron por contenido desde `2c58eeec`, sin merge. Root verificó README SHA256 `a78fb52a58303708aae6095aba1a99e72163897ca3bd8fa1352b8ef6a3692cb9` y binary `5a20ed5c34fa6bfb0e898aa1e39021bd2dcf1865a8fc93ef394964d538c2e945`, candidato limpio.
+
+Fresh NORMAL LOCAL `gpt-6-luna`, `historical_smoke`, recibió mandato completo para usar ese binary y completar smoke auténtico, ampliar sólo el horizonte ante cero trades, corregir fallos ordinarios, medir rendimiento, longitudinal y fresh rerun. Manifiesto exhaustivo y primer RunID aún en preparación: no se afirma PID histórico ni PASS antes de su ejecución. No se reabre identidad, perfil, costes ni aprobación de horizonte. S01 permanece en curso dentro de la ventana Owner; S02–S05 no iniciados.
+
+### Primer run auténtico — fallo visible de cobertura
+
+`prepare-functional-nt` completó usando NQZ3/NQ12-23 real y perfil congelado. RunID `bt-862144ea58fd404b04cc65eb254516f4ec6d5edf811bcc12c28ecacb78f4d97c`; commit `fb210ac4`, binary `5a20ed5c`, inputs digest `sha256:862144ea58fd404b04cc65eb254516f4ec6d5edf811bcc12c28ecacb78f4d97c`. Ventana operada solicitada 2023-10-15T22:00Z → 2023-10-22T22:00Z, warmup previo desde primera disponibilidad del export; ejecución offline en namespace sin red, sin race. PID458702 terminó; ningún proceso activo se afirma en este corte.
+
+Resultado sellado `execution_state=FAILED`, CLI exit0: `SOURCE_COVERAGE_INCOMPLETE` en 2023-10-10T00:16Z, antes de operar. Primer expected interval `[00:16,00:17)`; originales no contienen cierres00:17/00:18 y siguiente cierre00:19. Se preservan original, configuración y fallo; no se fabrica la cobertura. Source consumido8415 filas, root inputs18561, records52238; operaciones0/fills0, balance/equity100000USD, gross/cost/net0. Es un fallo técnico de corrida, no baseline rentable ni smoke funcional terminado.
+
+Tiempo medido33.23s wall (67.59s user,3.17s system), maxRSS124980KiB; ~253.2 source filas/s hasta primera interrupción, ~1572.0 output records/s. El tiempo incluye la ejecución fallida y sellado; no extrapolar como rendimiento longitudinal certificado. Log/result en workspace externo `reports/real-history-execution/smoke-20231015.log` y `smoke-20231015/<RunID>/result.json.gz`; result SHA256 `07d5ab7b97c880beed18a22731d0e757e6048e2494f93d0efecbc7e25983ca72`, contrastado en salida CLI.
+
+NORMAL continúa reproducir en proceso fresco y seleccionar tramo suficiente por cobertura/calidad, sin selección por PnL. Fresh TOP LOCAL `gpt-6.1-sol`, `real_gap_forensics`, inspecciona contrato/discontinuidades/ventanas de los13exports y cualquier divergencia material de reporte. No nueva ceremonia de diseño/adversarial: sólo diagnóstico de este recorrido real y ownership del fix si hay bug probado. Gaps no se interpolan ni se disfrazan como sesiones cerradas. Findings previos siguen pendientes de rerun exitoso; S02 no iniciado.
+
+### Ejecución vigente y diagnóstico precisado — 18:47 UTC
+
+Primer fracaso de gap reproducido en proceso fresco: IDENTICAL,44.23s; no acredita un smoke exitoso. Intentos posteriores encontraron una vela fuera del calendario semanal declarado (viernes2023-10-13 cierre21:01Z, intervaloChicago16:00–16:01). Guard correcto. El error aparecía retrofechado al warmup por diagnóstico del driver/summary; TOP verificó BT2-F12, root asignó fix sólo `driver.go`/`finish.go` y nueva regresión, sin alterar caller frontier, scheduler, timers ni datos/calendario. RED confirmado, patch mínimo y GREEN en curso en carril aislado `codex/btg-s01-real-diagnostics`; el candidatefb permanece intacto.
+
+Inventory TOP encontró segmento limpio NQZ3 de warmup2023-10-15T22Z a2023-11-03T21Z,90H4 completos, readinessOct26T10Z. Selección por calidad/cobertura, nunca por PnL. Smoke actual: warmupOct15T22Z, tradeOct29T22Z → Nov3T21Z (cinco account-days); PID464239, wrapper464204. A18:47:03UTC seguía activo102s, CPU acumulado4m10s y RSS214992KiB. RunID aún no materializado; estado RUNNING, nunca PASS. Comando exacto en log externo `/home/kor/aranea/work/btg-s01-20261006/reports/real-history-execution/smoke-clean-long-20231029.log`: binaryecho-backtest `run --spec .../prepared-smoke-clean-long-20231029/runspec.json --nt-source-config .../source.json --out .../smoke-clean-long-20231029`, bajo namespace offline y time rusage.
+
+TOP determina causa de omisiones intrasesión UNKNOWN (no-trade vs pérdida de datos no demostrado); no se rellena ni relaja policy `FAIL_VISIBLE_GAPS_V1`. Inventario inicial identifica tres contratos sin segmento suficiente para51H4 entre gaps/outside rows (03-25 max48H4,09-25 max49,12-25 max34), pendiente paquete preciso. Estos límites no se adjudican como bugs ni full13COMPLETE; no se suman cuentas reseteadas. Longitudinal/rerun exitosos pendientes del primer smoke funcional y remedioF12.
 
 ### Autoridad recuperada y aislamiento
 
@@ -97,7 +135,7 @@ El Owner confirmó durante el inventario: “la idea es sacar todo desde ninjatr
 | --- | --- | --- | --- |
 | BTG-B01 / RESOLVED_BY_OWNER | Vínculo canónico entre el nombre Owner Gerard y Strategy/version | Owner 2026-10-06 seleccionó S2 actual, SpecID `S2_H4_TREND_BB_PULLBACK_V1`. La inspección previa sin alias conserva su corte histórico, pero ya no bloquea la selección. | Autoridad directa en [[BTG-S01-OWNER-S2-BARS-AUTHORITY]]; configuración restante evaluada como B02. |
 | BTG-B02 / RESOLVED_FUNCTIONAL_SELECTION_BY_OWNER | Config MM real y contexto account/provider para el horizonte | D4 sí define EVALUATION account-days 1–2 SL USD 2.000 / TP USD 1.500. Rows posteriores y FUNDED encontradas sólo como fixtures/modeling; no configuración Owner vigente. | Preflight/config, ningún historical run. Owner delegó reglas funcionales consistentes; perfil explícito en BTG-S01-FUNCTIONAL-BASELINE-PROFILE. Original config física no recuperada y no se afirma, pero ya no bloquea este baseline. |
-| BTG-B03 / BLOCKED_EXTERNAL | Corpus físico real con provenance, contratos, orden, timezone y digests | Workspaces históricos seleccionados contienen Polymarket/MLB. Evidencia de feed vivo no acredita corpus multiday. Candidato NinjaTrader no listado: permiso OS denegado bajo perfil RO; ruta/stock quedan no resueltos, no declarados inexistentes. | Antes de DatasetSource; transferir originales ya exportados C:\Temp\history por mecanismo autorizado byte-exact; listado/muestras13files legibles, SFTP policy denegada. No comprar ni tocar el feed/runtime. |
+| BTG-B03 / RESOLVED_LOCAL_COPY_ACCESS | Corpus físico real con provenance, contratos, orden, timezone y digests | Owner trasladó originales a Daedalus y luego copió trece exports al workspace legible. Root leyó todos los bytes y hashes de las copias; tamaños coinciden con inventario previo. La ruta home/hermes original conserva su denegación y sus hashes no se atribuyen a lectura directa. | Acceso resuelto por acción física Owner; continuar descriptor/manifiesto y run real con las copias. No se hizo workaround de privilegios ni intervención runtime. |
 
 BT2-F01..F03 materiales registrados en [[BTG-S01-FINDINGS]], hallados en el prerequisito SDK con probes REFERENCE_ONLY y ningún cierre. Ninguna corrida histórica real ocurrió: real_rerun NOT_RUN para todos. Los bloqueos B02/B03 son de configuración/datos; no se maquillan como defectos corregidos ni como ausencia global.
 
@@ -173,7 +211,7 @@ Refs refrescadas nuevamente antes del gatefinal: AgentsOSmaster07ea74689eeb56988
 
 ### Continuidad y próximo paso
 
-Identidad/configuración funcional resueltas; baseline nativo local listo para revisión y corrida real tras originales. C:\Temp\history13exports ya existen y tienen listado/muestras verificadas; fullSFTP denegado porpolicyviewer y ZIP preservando originales ya solicitado. No ampliar ACL/identidad ni sortear denegación. Al recibir bytes completos, submanager continúa provenance/digests y manifest físico, slice real con warmup51H4/20x5m y varios account-days, primerdivergence→fix→regression→mismodata, longitudinal y freshdeterministicrerun. Roll/holiday/gaps se fijan por evidencia del corpus, sin interpolar ni tratar jumpcontrato comoPnL. S01 no aceptado ni cerrado, S02 no iniciado.
+Identidad/configuración funcional resueltas; candidato integrado y CLI compilado. Owner entregó copia local accesible y sus trece archivos fueron leídos/hasheados íntegramente; las denegaciones originales pertenecen al corte anterior. El submanager continúa provenance/digests y manifest físico, slice real con warmup51H4/20x5m y varios account-days, primerdivergence→fix→regression→mismodata, longitudinal y freshdeterministicrerun. Roll/holiday/gaps se fijan por evidencia del corpus, sin interpolar ni tratar jumpcontrato comoPnL. S01 no aceptado ni cerrado, S02 no iniciado.
 
 REUSABLE_BEHAVIOR_CANDIDATES = NONE adjudicado por root en esta fase; candidatos/fricción propios de workers quedan en sus artefactos, sin editar skills generales.
 
@@ -199,12 +237,12 @@ ROOT_AGENT_RUN = SKIPPED: coordinación, revisión de evidencia y documentación
 
 ```text
 SUBTASK = BTG-S01
-STATE = BLOCKED_EXTERNAL
+STATE = IN_PROGRESS_REAL_HISTORY
 SDK_STATE = READY_SDK_PREREQUISITE_REVIEW_ONLY; PRODUCT_407e03dd
 INPUT_STATE = E44b741e_BOUNDED_LOCAL_VERIFIED; REAL_RERUN_PENDING
 NATIVE_DRIVER_STATE = FROZEN_e2e15a3559034a3ed08c04f247baf4919e20b2ff; F08_FIX_171fc712_INDEPENDENTLY_VERIFIED; CLI_SOURCE_15422c2329164a33a76bf63912491168227660b7_READY_LOCAL_NATIVE_BASELINE_REVIEW_ONLY
 BASELINE_SHA = cd451972b242c8933321e03001decd4b6d778c61
-DATASET = NT_EXPORT_HISTORY_13_FILES_LISTED_AND_ENDPOINTS_READ; ORIGINALS_NOT_ACQUIRED; FULL_MANIFEST_DIGEST_NOT_AVAILABLE
+DATASET = OWNER_LOCAL_COPY_13_NQ_LAST_1M_FILES_READABLE_AND_FULL_BYTES_HASHED; SOURCE_OWNER_PROVENANCE; EXHAUSTIVE_MANIFEST_PREPARATION
 GERARD_STRATEGY_AUTHORITY = OWNER_2026_10_06_S2_H4_TREND_BB_PULLBACK_V1; SHARED_DEFAULTS_SELECTED_FOR_FUNCTIONAL_RUN
 GERARD_MM_AUTHORITY = D4-B2 + shared gerardmm; day1/2 SL2000/TP1500; runtime config NOT_RECOVERED; FUNCTIONAL_PROFILE_NOW_SELECTED_BY_OWNER_DELEGATION
 REAL_SMOKE = NOT_RUN
@@ -212,12 +250,12 @@ LONGITUDINAL_RUN = NOT_RUN
 DETERMINISTIC_RERUN = NOT_RUN
 ECONOMIC_STAGE_COVERAGE = NONE_DEMONSTRATED
 SIGNALS / OPERATIONS / FILLS / ACCOUNT_PNL = NOT_MEASURED
-OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F04_F05_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F06_F07_FIX_REGRESSION_INDEPENDENTLY_VERIFIED_REAL_RERUN_PENDING; BT2-F08_FIX_REGRESSION_INDEPENDENTLY_VERIFIED_REAL_RERUN_PENDING; BT2-F09_F10_FIX_REGRESSION_INDEPENDENTLY_VERIFIED_REAL_RERUN_PENDING; BT2-F11_LOW_FIX_REGRESSION_INDEPENDENTLY_VERIFIED_REAL_RERUN_PENDING; B01_RESOLVED_BY_OWNER; B02_FUNCTIONAL_PROFILE_SELECTED_BY_OWNER_DELEGATION; ORIGINAL_BYTES_TRANSFER_PENDING; ZERO_LOCAL_REMEDIATIONS_PENDING
+OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F04_F05_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F06_F07_FIX_REGRESSION_INDEPENDENTLY_VERIFIED_REAL_RERUN_PENDING; BT2-F08_FIX_REGRESSION_INDEPENDENTLY_VERIFIED_REAL_RERUN_PENDING; BT2-F09_F10_FIX_REGRESSION_INDEPENDENTLY_VERIFIED_REAL_RERUN_PENDING; BT2-F11_LOW_FIX_REGRESSION_INDEPENDENTLY_VERIFIED_REAL_RERUN_PENDING; B01_RESOLVED_BY_OWNER; B02_FUNCTIONAL_PROFILE_SELECTED_BY_OWNER_DELEGATION; ORIGINAL_ACCESS_RESOLVED_BY_OWNER_COPY; REAL_RUN_PREPARATION
 ARTIFACT = BTG-S01-REAL-GERARD-RESULT + BTG-S01-FINDINGS + BTG-S01-CLI-CURSOR-ONCE-FINAL-REVIEW + dataset/identity/profile + NTminute/driver/CLI reports
 PRODUCT_PR = https://github.com/xKoRx/echo/pull/2; DRAFT_AGAINST_S04; https://github.com/xKoRx/echo/pull/3 NATIVE_DRAFT_DEPENDS_ON_PR2; VERIFIED_TIP_fb210ac4afeab2315aaa3c424f287c2d9db5a7b3
 AGENTS_OS_COMMIT = final consolidated commit supplied in chat/PR handoff
 GAPS_FOR_S02 = authentic corpus manifest/reruns; explicit rollover/holiday evidence; prop/funded/scaling rules and cost calibration; economic units/withdrawals/settlement
-NEXT_PRIMARY_MANAGER_ACTION = byte-preserving authorized transfer of existing C:\Temp\history files; functional profile selected; local native prerequisite verified; real slice then deterministic rerun within S01
+NEXT_PRIMARY_MANAGER_ACTION = await actual smoke outcome from integrated fb210ac on Owner copies; remediate first divergence then longitudinal and fresh deterministic rerun within SAME_S01; deadline Oct6_7_America_Santiago
 OWNER_ACCEPTANCE = NOT_ADJUDICATED
 SUBMANAGER_SESSION = OPEN
 PRO_CHAT_POOL_DELTA = 0
