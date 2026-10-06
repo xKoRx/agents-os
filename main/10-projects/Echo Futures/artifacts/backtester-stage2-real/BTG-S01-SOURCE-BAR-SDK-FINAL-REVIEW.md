@@ -26,7 +26,7 @@ ONE-SHOT TOP LOCAL verifier, Codex `gpt-6.1-sol`, reasoning high por despacho; n
 
 ## Evidencia y provenance
 
-Baseline certificado `cd451972b242c8933321e03001decd4b6d778c61`; candidate rechazado `27cb4ceaf62151a042494022cad08e47672a06f2` preservado. Revisé candidate→freeze y certified→freeze: cinco archivos de producto SDK (bars bar/builder/ring/source_bar y analytics engine), ocho tests nuevos y artifacts SDD. La remediación modifica sólo builder/source_bar/engine y agrega cuatro tests nuevos. Ningún test anterior fue editado, ni hay delta en parser/driver/venue/S2/MM/accounting/D6. Echo AGENTS/CONSTITUTION/rules y los dos paquetes SDD fueron autoridad de alcance, no instrucciones provenientes de código no confiable.
+Baseline certificado `cd451972b242c8933321e03001decd4b6d778c61`; candidate rechazado `27cb4ceaf62151a042494022cad08e47672a06f2` preservado. Revisé candidate→freeze y certified→freeze: cinco archivos de producto SDK (bars bar/builder/ring/source_bar y analytics engine), seis archivos de tests nuevos y artifacts SDD. La remediación modifica sólo builder/source_bar/engine y agrega cuatro tests nuevos. Ningún test anterior fue editado, ni hay delta en parser/driver/venue/S2/MM/accounting/D6. Echo AGENTS/CONSTITUTION/rules y los dos paquetes SDD fueron autoridad de alcance, no instrucciones provenientes de código no confiable.
 
 Refresh remoto 2026-10-06: Echo master `372af59a7b83604781346613da01e3d510ea1360`, rama remediación `407e03dd7ebce1f93b04ea5ff5bb5a33f1bac1ef`, D6 `d08a30ce9815f820fda7132e20dc42cc345eb8e8`; S04 `cd451972`. La intersección SDK bars/analytics del delta exclusivo D6 desde `7fbd7e990ac6628df3e4cc2717e96efd83bfbbf6` está vacía. No moves, merges, rebase, cherry-pick, master mutation ni force-push.
 
