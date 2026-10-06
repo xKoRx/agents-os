@@ -19,3 +19,6 @@ Cuarto intento de suite: `b791048`, run `2d88001ba3e04d3495494415896328b2`, FAIL
 
 
 Quinto intento EN_EJECUCION, no certificado: `b7910487c6a5336e128f9452b96f1e1641aa1740`, run `c6e8062a5de64da7af9663e7f6cfa128`, sesión32754. Readiness Kafka PASS y pruebas nativas activas sin filtros. Revisión source/schema independiente PASS, clean-v4 497 archivos/15pins listo para replay después de terminar y limpiar root. `runtime-grpc-readiness/` conserva límites/comandos/hash; sólo acredita conectividad.
+
+
+Quinto intento terminado FAIL: `c6e8062a5de64da7af9663e7f6cfa128`,359/349PASS/10FAIL/0error/skip,cleanupRETAINED. Dos raíces GCP DescribeConfigs Unknown antesmutation y ClusterFault read metadata Timeout; ocho cascadas bloqueadas por journal retenido. `candidate-red-5/` conserva380 artefactos sanitizados/hash. RFnative, bridge/publicación no acreditados por este intento. Nueva corrección acotada con SPEC/review/Luna pendiente; no cierre ni full PASS.
