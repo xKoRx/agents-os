@@ -28,7 +28,7 @@ tags:
 
 ## Cambio
 
-- **Tipo:** created
+- **Tipo:** updated
 - **Archivo(s):**
   - `BTG-S01-SOURCE-BAR-SDK-IMPLEMENTATION.md`
   - `2026-10-06-codex-gpt-6-luna-btg-s01-source-bar-sdk.md`
@@ -43,11 +43,11 @@ tags:
 
 ## Resolución aplicada
 
-- Se materializaron las notas con el contrato schema v1. El producto agrega OHLC directamente por timeframe, conserva provenance y compleción, aplica causalidad/fencing y copia metadata a consumidores.
+- Se materializaron las notas con el contrato schema v1. El producto agrega OHLC directamente por timeframe, conserva provenance y compleción, aplica causalidad/fencing y copia metadata a consumidores. El review TOP luego detectó que `Builder`/`OwnerState` serializan `input_mode:"TRADE"`, contra SPEC; el frozen `27cb4cea` queda como candidate y el parent delegó la reparación a un worker separado.
 
 ## Validación
 
-- Tests de `bars`, `analytics`, `strategies/s2` y vet en aislamiento de red PASS; cobertura bruta/aplicable y exclusiones están detalladas en la VERIFICATION del repo y en el artefacto de implementación.
+- Tests de `bars`, `analytics`, `strategies/s2` y vet en aislamiento de red PASS; cobertura bruta/aplicable y exclusiones están detalladas en la VERIFICATION del repo y en el artefacto de implementación. Review TOP: BarRecord JSON/Version sin delta, Builder/OwnerState JSON con delta material; no aceptar el candidate hasta corregir y comparar bytes.
 
 ## Compartibilidad
 

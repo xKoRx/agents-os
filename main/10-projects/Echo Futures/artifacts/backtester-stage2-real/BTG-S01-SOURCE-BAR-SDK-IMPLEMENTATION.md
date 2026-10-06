@@ -34,6 +34,14 @@ reordenamiento, solapamiento y corrección de agregados cerrados. `analytics`
 admite sólo una causa de entrada, impone disponibilidad contra su reloj y
 emite snapshots, cierres y timers por las rutas compartidas.
 
+Estado: candidate congelado para revisión; **no aceptado**. La revisión TOP de
+`27cb4cea` encontró una divergencia contra SPEC: `BarRecord` JSON/Version
+coinciden con `cd451972`, pero la nueva persistencia de `Builder.InputMode`
+añade `input_mode:"TRADE"` al JSON de `Builder`/`OwnerState` para entradas
+TRADE. Los tests actuales no incluyen un oráculo byte-a-byte de esos envelopes.
+El owner indicó mantener este SHA intacto y resolverlo con un worker remedial
+separado; esta rama no se debe usar como aceptación final.
+
 El estado mantiene visibles los minutos faltantes mediante referencias y
 conteo; este SDK no completa huecos ni determina readiness de corpus. `Ring`,
 forming snapshots y cada entrega de cierre copian la metadata mutable del
@@ -83,7 +91,8 @@ contrato, la cobertura aplicable de ambos caminos es 100%, superior al gate de
 
 Los bytes del corpus NQ 1m siguen inaccesibles. No se añadió parser, driver,
 venue, smoke-run ni afirmación de lectura del corpus, readiness real, aceptación
-de S2 o rentabilidad.
+de S2 o rentabilidad. Las pruebas de paquetes pasan, pero la divergencia de
+serialización persistida descrita arriba deja este candidato pendiente.
 
 ## Fuentes
 

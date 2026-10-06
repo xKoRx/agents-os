@@ -15,8 +15,8 @@ agent_model: gpt-6-luna
 model_source: system-reported
 task_type: coding
 task_complexity: high
-outcome: success
-verification: passed
+outcome: partial
+verification: partial
 evaluator: agent
 user_rework: unknown
 load_policy: manual
@@ -38,8 +38,8 @@ tags:
 ## Evidencia
 
 - **Validaciones ejecutadas:** tests net-isolated `bars`, `analytics`, `strategies/s2`; `go vet` de esos paquetes; gofmt diff y git diff-check.
-- **Resultado observable:** todos los comandos PASS. Valores independientes OHLCV, causalidad, orden/replay/fence, sesión/DST y aislamiento de metadata quedaron cubiertos.
-- **Limitaciones de la evidencia:** cobertura bruta de funciones nuevas varía; los statements faltantes son defensas de estado inválido o errores redundantes tras preflight y están enumerados con cálculo en VERIFICATION. Corpus real no disponible; no se ejecutó parser ni real-data run.
+- **Resultado observable:** todos los comandos listados PASS. Valores independientes OHLCV, causalidad, orden/replay/fence, sesión/DST y aislamiento de metadata quedaron cubiertos. Después del freeze, TOP detectó que `Builder`/`OwnerState` serializan el nuevo campo `input_mode:"TRADE"`, contra el requisito de serialized bytes unchanged; `BarRecord` JSON y `Version` sí coinciden con el baseline.
+- **Limitaciones de la evidencia:** tests actuales no comparan byte-a-byte los envelopes serializados de `Builder`/`OwnerState`. La cobertura bruta varía; los statements no cubiertos y el cálculo aplicable están enumerados en VERIFICATION. Corpus real no disponible; no se ejecutó parser ni real-data run. El candidate queda pendiente de corrección/review independiente.
 
 ## Evaluación
 
@@ -49,10 +49,10 @@ tags:
 - **Autonomy:** cerré fallos de compilación ordinarios y añadí regresiones para las observaciones TOP antes del freeze.
 - **Efficiency:** un worktree de producto y uno documental; paquetes explícitos, sin `go test ./...`.
 - **Tool use:** tests/vet sin red y con módulos offline.
-- **Overall:** prerequisito SDK entregado para review; no es aceptación de corpus ni run real.
+- **Overall:** implementación candidate congelada y pusheada, con divergencia de serialización confirmada por review TOP; requiere reparación separada antes de aceptación.
 
 ## Resultado
 
-- **Outcome:** success — código congelado y pusheado, esperando review independiente.
+- **Outcome:** partial — código congelado y pusheado; review independiente encontró delta de bytes persistidos en Builder/OwnerState.
 - **Rework posterior:** unknown.
-- **Aprendizaje para comparar herramientas:** la cobertura bruta del repositorio oculta la del seam; VERIFICATION separa statements aplicables de guards que la pureza del preflight hace inalcanzables.
+- **Aprendizaje para comparar herramientas:** los tests del agregado y BarRecord no prueban por sí solos la compatibilidad del envelope persistido del Builder; la revisión TOP encontró el delta que faltaba en los oráculos de bytes.
