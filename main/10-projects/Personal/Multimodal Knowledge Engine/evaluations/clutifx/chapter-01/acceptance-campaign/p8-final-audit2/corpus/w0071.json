@@ -1,0 +1,788 @@
+{
+ "window": "w0071",
+ "start": "17:33",
+ "end": "17:44",
+ "start_ms": 1053000,
+ "end_ms": 1064000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-apertura-pyg",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El campo «Apertura PyG» muestra 0,01503.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p95040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "66c2a6bc00d2688c69b386c1805d7d7fa6a13f453cf350aaa3bbe57a5711e79b",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cantidad-apertura",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El campo «Cantidad» muestra 1550387.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p95040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "2f682eb0d9a84179f24305557cbf396fa0625cd3c687880462890397468548ed",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-horizontal-extendida-derecha",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La línea horizontal inferior se extiende hacia la derecha.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p95220000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p95400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "172555783bafa8b55c92498a9aa7ed40a6552edf556ce02e319c6815c17d7230",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran una línea horizontal situada bajo las velas de precio que continúa hacia la derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-logica-correcta",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La lógica está correcta.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00142"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ca5fca5e67ffae2e2c7c4995ee9db492aae1a03be96e3a1e0f8b3a31dffbfb0e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente que «la lógica está correcta»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-no-pasa-nada",
+   "kind": "claim",
+   "version": 1,
+   "statement": "No pasa nada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00141"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "002bdcbdaadb71564cb4c48f29812ebc826e65810ac71f9b9e19988db10adb48",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada dice literalmente «y no pasa nada», que sostiene la afirmación «No pasa nada»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación expresa una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-diferencia",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El campo «Objetivo» muestra 0,00834.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p95040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d94d59af31f5ea8141fec289b8f6461d2a543be6f5aa4471a872aebb75f684d2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta «Objetivo» de la imagen muestra el valor 0,00834."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-importe",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El importe mostrado para el objetivo es 112930,23.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p95040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "49fb00b4c7b4655f65777fd57452fe6c6c68f589c3d294d447a3256e9ca2f31f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta azul del objetivo muestra explícitamente «Importe: 112930,23»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-porcentaje",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El campo «Objetivo» muestra 0,73%.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p95040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4eea186097649daf38302117cc3582d9d618bbb98573d1620a5b8e7c18bdda85",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible dice «Objetivo: 0,00834 (0,73%)», por lo que muestra 0,73 %."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-valor-adicional",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta «Objetivo» muestra el valor 83,4.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p95040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e0862b73405c9323e099c4aba07d3eaebe9b7387a6ebbdf359c605554edf0378",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta «Objetivo» de la imagen muestra explícitamente el valor 83,4."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-sigue-operativo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Este rango sigue estando operativo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00145",
+    "asr-00146",
+    "frame-4de8f12d4841c630-s0-p95040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ce17f32916983ecf3a68e15f8abeb5c9cf1d1a6b09e7cf8a063014071f797fee",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas de transcripción citadas enuncian literalmente «Este rango sigue estando operativo»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el rango continúa operativo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-relacion-riesgo-beneficio",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La relación riesgo/beneficio es 3,23.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p95040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "a440dc485a0078fefaa9ee4d0ab93d585a7611d51c46ac8dcd9e67ea8180ba79",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-stop-diferencia",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El campo «Stop» muestra 0,00258.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p95040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1de89c4b0220bc1efe1e820a5c35b5f5a265561562b6f303b56cb791bc31915f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente la etiqueta «Stop: 0,00258»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-stop-importe",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El importe mostrado para el stop es 96000.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p95040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "31c91a0b56f4ad5a6e5ac01651faa1449cda04328e80c101d8f5b97aa9d98955",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta del stop muestra explícitamente «Importe: 96000»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-stop-porcentaje",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El campo «Stop» muestra 0,23%.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p95040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "53a8ec8168323d67c5a92fcc073bc66dfe930ff48ddc5433c60fe05c8ddfc3a1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible dice «Stop: 0,00258 (0,23%)», por lo que muestra el porcentaje 0,23%."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-stop-valor-adicional",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta «Stop» muestra el valor 25,8.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p95040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "b381eb075e0a38cdbac29f2e7050e6477dc4cebd82953e7dbf5b9887e1a9d68c",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-negra-cierra-dentro-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela negra sigue cerrando dentro del rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00143",
+    "asr-00144",
+    "asr-00145",
+    "frame-4de8f12d4841c630-s0-p94860000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p94950000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p95040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cc68ba39518a768a9ebed42d8482269ff100428c8c7edeeb7e598266e00ca286",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El transcript afirma que «la vela sigue cerrando dentro» y las imágenes muestran la vela negra formándose dentro del rango sombreado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-no-pasa-nada-depende-logica",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-no-pasa-nada",
+   "subject_version": 1,
+   "object_id": "cl-logica-correcta",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00141",
+    "asr-00142"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4fddc4a8b4afac297333a39f2de2807b33102119115d7d86bd4f024a05f962f7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enuncia «no pasa nada, porque la lógica está bien, la lógica está correcta», lo que establece explícitamente la dependencia de «No pasa nada» respecto de «La lógica está correcta» en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-operativo-depende-cierre-vela",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-sigue-operativo",
+   "subject_version": 1,
+   "object_id": "cl-vela-negra-cierra-dentro-rango",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00143",
+    "asr-00144",
+    "asr-00145",
+    "asr-00146"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "93fc6f1ebbc98519d860af80d933cbebf806a1a9d4df32bb756b14f4f2ccd292",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The evidence explicitly links the claims with «por lo tanto»: «la vela sigue cerrando dentro» and therefore «este rango sigue estando operativo», matching the stated dependency orientation."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1"
+    ],
+    "response_id": "gen-1791166294-yWFoKdUuwthRr7WC4SBd"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00141",
+   "start_ms": 1051830,
+   "end_ms": 1053290,
+   "text": "y no pasa nada, porque"
+  },
+  {
+   "id": "asr-00142",
+   "start_ms": 1053290,
+   "end_ms": 1055750,
+   "text": "la lógica está bien, la lógica está correcta"
+  },
+  {
+   "id": "asr-00143",
+   "start_ms": 1055750,
+   "end_ms": 1057630,
+   "text": "como veis, la vela"
+  },
+  {
+   "id": "asr-00144",
+   "start_ms": 1057630,
+   "end_ms": 1059190,
+   "text": "sigue cerrando dentro, por lo tanto"
+  },
+  {
+   "id": "asr-00145",
+   "start_ms": 1059190,
+   "end_ms": 1062020,
+   "text": "este rango sigue estando"
+  },
+  {
+   "id": "asr-00146",
+   "start_ms": 1062020,
+   "end_ms": 1062940,
+   "text": "operativo, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p94770000-canonical-v1",
+   "pts_ms": 1053000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p94770000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p94860000-canonical-v1",
+   "pts_ms": 1054000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p94860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p94950000-canonical-v1",
+   "pts_ms": 1055000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p94950000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p95040000-canonical-v1",
+   "pts_ms": 1056000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p95040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p95130000-canonical-v1",
+   "pts_ms": 1057000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p95130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p95220000-canonical-v1",
+   "pts_ms": 1058000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p95220000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p95400000-canonical-v1",
+   "pts_ms": 1060000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p95400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p95760000-canonical-v1",
+   "pts_ms": 1064000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p95760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

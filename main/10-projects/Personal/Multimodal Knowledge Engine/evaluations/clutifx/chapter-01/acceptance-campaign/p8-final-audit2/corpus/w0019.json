@@ -1,0 +1,353 @@
+{
+ "window": "w0019",
+ "start": "04:20",
+ "end": "04:28",
+ "start_ms": 260000,
+ "end_ms": 268000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-temporal-a-15m",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista temporal cambia de 1D a 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23490000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p23580000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "642669e87c4e7eb94045db7b9edadba17667f5b0298af5939b7e6bb2451a1c59",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00338b5c8261c295bdcdc7ab6e472f756cc5162c162dfb39bee51eb215731f1e"
+    ],
+    "response_id": "gen-1791149165-2nXGoQosHThxW9w8xpAU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dialogo-cambiar-intervalo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El vídeo muestra abierto el diálogo «Cambiar intervalo».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23490000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "82bf6f3b882b5a0491649f627b0fdef0cf219551d13eb73d05460bdf4ddcc720",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00338b5c8261c295bdcdc7ab6e472f756cc5162c162dfb39bee51eb215731f1e"
+    ],
+    "response_id": "gen-1791149165-2nXGoQosHThxW9w8xpAU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-marco-temporal-inicial-diario",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal inicial mostrado es 1D.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "51f2a0e22c2f0bfd8665ceba51b340ebe0c000e3889f8d7084632926b52cfbe3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente «EURUSD · 1D · FOREX.com» y «EURUSD | 1D», por lo que el marco temporal mostrado es 1D."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00338b5c8261c295bdcdc7ab6e472f756cc5162c162dfb39bee51eb215731f1e"
+    ],
+    "response_id": "gen-1791149165-2nXGoQosHThxW9w8xpAU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-mas-tipos-dentro-de-rangos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Ahora, dentro de los rangos, tenemos más tipos de rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00034",
+    "asr-00035"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2700f9a5949e46e13978858e2c4b4923847e78052746bdffb524f11ebb209f79",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente que «ahora dentro de los rangos tenemos más tipos de rangos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: dentro de los rangos existen más tipos de rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00338b5c8261c295bdcdc7ab6e472f756cc5162c162dfb39bee51eb215731f1e"
+    ],
+    "response_id": "gen-1791149165-2nXGoQosHThxW9w8xpAU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-sobre-velas-diarias",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Hay un rectángulo trazado alrededor de un grupo de velas del gráfico diario.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "119857599043ada2125cf75f5396f4fc9821369c2e463c72f86194502ee51db2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra un rectángulo trazado alrededor de un grupo de velas en el gráfico diario."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00338b5c8261c295bdcdc7ab6e472f756cc5162c162dfb39bee51eb215731f1e"
+    ],
+    "response_id": "gen-1791149165-2nXGoQosHThxW9w8xpAU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-valor-dialogo-un-minuto",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "En el diálogo «Cambiar intervalo», el valor mostrado es «1» y su etiqueta es «1 minuto».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23490000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "be83a9408308a7764e83d4d00ce32238e369644e0c8b17f503db17e735e3c397",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El diálogo muestra «Cambiar intervalo», el valor «1» y la etiqueta «1 minuto»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene dos proposiciones independientes: el valor mostrado es «1» y la etiqueta es «1 minuto»."
+     },
+     {
+      "code": "claim_not_atomic",
+      "detail": "claim review judged the statement COMPOSITE: independently evaluable assertions must be separate claims"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00338b5c8261c295bdcdc7ab6e472f756cc5162c162dfb39bee51eb215731f1e"
+    ],
+    "response_id": "gen-1791149165-2nXGoQosHThxW9w8xpAU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vista-15m-sin-velas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista de 15 minutos acaba mostrando una zona sin velas visibles.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p23940000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fce157d27d4f8c401ad8ab4e2a4fe2031e34b5206e2022b2bcf7ed530725da9a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La vista identificada como «EURUSD | 15M» termina mostrando una zona vacía sin velas visibles."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00338b5c8261c295bdcdc7ab6e472f756cc5162c162dfb39bee51eb215731f1e"
+    ],
+    "response_id": "gen-1791149165-2nXGoQosHThxW9w8xpAU"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00034",
+   "start_ms": 255260,
+   "end_ms": 261470,
+   "text": "en el vídeo del bias pero para que quede claro el concepto de rango vale ahora dentro de los"
+  },
+  {
+   "id": "asr-00035",
+   "start_ms": 261470,
+   "end_ms": 269600,
+   "text": "rangos tenemos más tipos de rangos que nosotros hemos llamado así básicamente importante todo"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23400000-canonical-v1",
+   "pts_ms": 260000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23490000-canonical-v1",
+   "pts_ms": 261000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23580000-canonical-v1",
+   "pts_ms": 262000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23760000-canonical-v1",
+   "pts_ms": 264000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23850000-canonical-v1",
+   "pts_ms": 265000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23940000-canonical-v1",
+   "pts_ms": 266000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24030000-canonical-v1",
+   "pts_ms": 267000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24120000-canonical-v1",
+   "pts_ms": 268000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

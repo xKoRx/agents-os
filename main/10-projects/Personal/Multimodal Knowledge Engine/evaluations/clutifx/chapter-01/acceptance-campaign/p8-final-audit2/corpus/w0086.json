@@ -1,0 +1,494 @@
+{
+ "window": "w0086",
+ "start": "21:58",
+ "end": "22:09",
+ "start_ms": 1318000,
+ "end_ms": 1329000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-timeframe-8h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico es 8h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p118620000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119610000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119700000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p120420000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p125640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "ab91e5cb08f418e27a8117994c09a9a3967c0b17ae65532a82db907a5aa40bf9",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c585500e38c38f6f84e775fd36bf5f954ea646cb6b52508d600f9f16312102b",
+     "5bd42e7ff8c23b2b28e4ba2ac0fabc49cf44d9ced3ebd9d74b7e602e3c1cb5e3",
+     "7bf10e7376bb54f5e5a0f5c190e355fa7ef8a677f803569558232356631978a4",
+     "8b66cc9baebefa832266e8a5fb701d561cb029f09e6e7d49718f324322712626"
+    ],
+    "response_id": "gen-1791172040-aKGe1nc5dFEoWJP32Hni"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangle-drawn",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja un rectángulo vertical en la zona izquierda del área central del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p118620000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p118710000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p118800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3eba96542e598bd09534d8386a9049d76d0d439c402f3992f64b1c8624fe0c31",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas muestran la aparición y el ajuste de una forma rectangular más alta que ancha en la zona izquierda del área central del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c585500e38c38f6f84e775fd36bf5f954ea646cb6b52508d600f9f16312102b"
+    ],
+    "response_id": "gen-1791172040-aKGe1nc5dFEoWJP32Hni"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangle-filled-black",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rectángulo pasa a estar relleno de color negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p119160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119250000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119340000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6d432fb8d20bf971a759a8c28237b40befaeaa5db3bb843c8a1929c2bd2dd552",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran el rectángulo inicialmente sin relleno y posteriormente relleno de color negro, lo que sustenta la transición afirmada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c585500e38c38f6f84e775fd36bf5f954ea646cb6b52508d600f9f16312102b"
+    ],
+    "response_id": "gen-1791172040-aKGe1nc5dFEoWJP32Hni"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangle-width-changed",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El ancho del rectángulo cambia durante la secuencia.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p118800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119340000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119610000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2c1fa4c6b2e1bcf1635e67f08adcdf30c4bb4b1236bae517410a8e315c82acfb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas muestran el mismo rectángulo con anchos visuales claramente distintos: amplio en la primera imagen, estrecho en la segunda, intermedio en la tercera y estrecho en la cuarta."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c585500e38c38f6f84e775fd36bf5f954ea646cb6b52508d600f9f16312102b"
+    ],
+    "response_id": "gen-1791172040-aKGe1nc5dFEoWJP32Hni"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-assume-euro",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "En el ejemplo de SMT, el primer «esto» se toma como euro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p118620000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p118710000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b13fff62ef886d4ae1ec4e470953ab841f96feb1d8cc00de3b538bfe95de6ae0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente «esto es euro» antes de «esto es libra», por lo que el primer «esto» se toma como euro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c585500e38c38f6f84e775fd36bf5f954ea646cb6b52508d600f9f16312102b"
+    ],
+    "response_id": "gen-1791172040-aKGe1nc5dFEoWJP32Hni"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-assume-pound",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "En el ejemplo de SMT, el segundo «esto» se toma como libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p118710000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p118800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b88f5350d68710dd175ca739ffad1300d0264cd5ade4dffb8b950cb7a217ee2a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «Vamos a decir que esto es euro y vamos a decir que esto es libra»; por ello, la segunda INSTANCE de «esto» se toma como libra."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c585500e38c38f6f84e775fd36bf5f954ea646cb6b52508d600f9f16312102b"
+    ],
+    "response_id": "gen-1791172040-aKGe1nc5dFEoWJP32Hni"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-examples-separate-chapter",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Los ejemplos de SMT se abordarán en un capítulo aparte.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "103ba3a7b1883524c6c8e5d66d4d8a3ef87f076eb1cbffbdf98cf409c6771e13",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c585500e38c38f6f84e775fd36bf5f954ea646cb6b52508d600f9f16312102b"
+    ],
+    "response_id": "gen-1791172040-aKGe1nc5dFEoWJP32Hni"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-shape-like-shown",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La SMT que podría aparecer en este punto se presenta con una forma «así».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p118800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119250000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119610000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "927c207f1bb65422efa768f1ee53f45bce6a0c1777d1cf59a6879689c4e02a4b",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c585500e38c38f6f84e775fd36bf5f954ea646cb6b52508d600f9f16312102b"
+    ],
+    "response_id": "gen-1791172040-aKGe1nc5dFEoWJP32Hni"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-skip-examples-here",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El instructor no entrará en ejemplos de SMT en este punto.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "65e213708b5b4df16905f2086969130ffa87a0a0fe376ba86fca63120ad1b437",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice explícitamente «En ejemplos no voy a entrar», lo que respaldá que el instructor no entrará en ejemplos de SMT en ese punto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c585500e38c38f6f84e775fd36bf5f954ea646cb6b52508d600f9f16312102b"
+    ],
+    "response_id": "gen-1791172040-aKGe1nc5dFEoWJP32Hni"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-omission-depends-on-chapter",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-smt-skip-examples-here",
+   "subject_version": 1,
+   "object_id": "cl-smt-examples-separate-chapter",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "12f1ee4b6cc03054010385e6443638df69ad6f4b96fc09f6da226fce57917c6e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enlaza explícitamente ambas afirmaciones con «porque»: el instructor no entrará en ejemplos SMT en ese punto porque los abordará en un capítulo aparte."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c585500e38c38f6f84e775fd36bf5f954ea646cb6b52508d600f9f16312102b"
+    ],
+    "response_id": "gen-1791172040-aKGe1nc5dFEoWJP32Hni"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00190",
+   "start_ms": 1315270,
+   "end_ms": 1345680,
+   "text": "Ahora, ¿cómo va a ser la SMT utilizando nuestra estrategia? Vamos a decir que esto es euro y vamos a decir que esto es libra. En ejemplos no voy a entrar porque ya voy a hacer un capítulo aparte, pero la SMT que se nos podría dar aquí es algo así."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118620000-canonical-v1",
+   "pts_ms": 1318000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118620000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118710000-canonical-v1",
+   "pts_ms": 1319000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118800000-canonical-v1",
+   "pts_ms": 1320000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119160000-canonical-v1",
+   "pts_ms": 1324000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119250000-canonical-v1",
+   "pts_ms": 1325000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119250000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119340000-canonical-v1",
+   "pts_ms": 1326000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119340000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119520000-canonical-v1",
+   "pts_ms": 1328000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119610000-canonical-v1",
+   "pts_ms": 1329000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119700000-canonical-v1",
+   "pts_ms": 1330000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119700000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120420000-canonical-v1",
+   "pts_ms": 1338000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120420000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125640000-canonical-v1",
+   "pts_ms": 1396000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

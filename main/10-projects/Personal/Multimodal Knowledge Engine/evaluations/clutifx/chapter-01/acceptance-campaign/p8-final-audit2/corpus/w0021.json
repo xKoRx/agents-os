@@ -1,0 +1,607 @@
+{
+ "window": "w0021",
+ "start": "04:40",
+ "end": "04:50",
+ "start_ms": 280000,
+ "end_ms": 290000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-limite-inferior-rectangulo-1-14973",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El límite inferior del rectángulo seleccionado está etiquetado como 1,14973.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p25650000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p25830000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8f8fcd75856ed14112d0defa3b9e4e3349a7d279ca20c680f4ec8d79b68f480d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta 1,14973 aparece en el eje de precios alineada con el borde inferior del rectángulo negro seleccionado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9ec0550cb823453af922b1c43bcb7ad9a145093a89970d597e3bc81e8ee34a9f"
+    ],
+    "response_id": "gen-1791149508-bNcQc7J4vSbzWClboBdP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-limite-superior-rectangulo-1-15179",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El límite superior del rectángulo seleccionado está etiquetado como 1,15179.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p25650000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p25830000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ee959c3f374fc7b8db1fdbaadba11b9e6d9306efe098c6b5ed4ccfba6dc4674a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra el rectángulo seleccionado con su borde superior alineado con la etiqueta azul 1,15179 en el eje de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9ec0550cb823453af922b1c43bcb7ad9a145093a89970d597e3bc81e8ee34a9f"
+    ],
+    "response_id": "gen-1791149508-bNcQc7J4vSbzWClboBdP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-opacidad-rectangulo-100",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La opacidad mostrada para el rectángulo seleccionado es 100%.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p25830000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p26010000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bcb9a716f7414bdecf6dd61f871f63c60d719191ccd5858e7a28bf4783a5acbd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes se muestra un rectángulo seleccionado mediante tiradores y el panel «Opacidad» indica 100%."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9ec0550cb823453af922b1c43bcb7ad9a145093a89970d597e3bc81e8ee34a9f"
+    ],
+    "response_id": "gen-1791149508-bNcQc7J4vSbzWClboBdP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-panel-color-rectangulo-abierto",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se abre el panel de color del rectángulo seleccionado.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p25830000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p26010000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "07d54de4a65795b5c710d280e9cc33c521b66d961ea77d1558850de45dd26841",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran un rectángulo con tiradores de selección y el panel de paleta de color visible, asociado a su edición de color."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9ec0550cb823453af922b1c43bcb7ad9a145093a89970d597e3bc81e8ee34a9f"
+    ],
+    "response_id": "gen-1791149508-bNcQc7J4vSbzWClboBdP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-forma-un-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio forma un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00037",
+    "asr-00038"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c4c543df7ab280ae8dec0c3fa5754a14403bf8d95d77913d1024898d9decc79a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas enlazan directamente al precio con la acción de «forma un rango»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9ec0550cb823453af922b1c43bcb7ad9a145093a89970d597e3bc81e8ee34a9f"
+    ],
+    "response_id": "gen-1791149508-bNcQc7J4vSbzWClboBdP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-siempre-actua-como-cadena",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio siempre actúa como una cadena.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00037"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4c2dd6781b8a73352102fbbfa03d02143329ed099290b0d6b7e940feff5abea1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente que «el precio actúa como una cadena»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el precio siempre actúa como una cadena."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9ec0550cb823453af922b1c43bcb7ad9a145093a89970d597e3bc81e8ee34a9f"
+    ],
+    "response_id": "gen-1791149508-bNcQc7J4vSbzWClboBdP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-base-estrategia",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos son la base de la estrategia.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00039"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "453cdb6216c9cb6600871d2fb0336c4563bb00eb18effc720ed274da714ab662",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que los rangos son «la base de la estrategia», lo que respalda directamente la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "97c1b48234a81e7a66ef7d6123b484bccd0218c213fd55e4c65d67587151db93",
+     "9ec0550cb823453af922b1c43bcb7ad9a145093a89970d597e3bc81e8ee34a9f"
+    ],
+    "response_id": "gen-1791149508-bNcQc7J4vSbzWClboBdP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-negro-seleccionado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se selecciona un rectángulo negro en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p25650000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7244c003e795c7a6712ef3a1cf8b8bb2c2896d3ab50fd24d734cfc6bb4d084d2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra un rectángulo negro en el gráfico rodeado por manejadores de selección."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9ec0550cb823453af922b1c43bcb7ad9a145093a89970d597e3bc81e8ee34a9f"
+    ],
+    "response_id": "gen-1791149508-bNcQc7J4vSbzWClboBdP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframe-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal mostrado es 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p102240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p104040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p108630000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p25200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p31320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p63360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p70020000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p90630000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p94770000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p95760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d900ac282f86325b5bd632b8317b4c6edb64e516e6dd0b5c38c23c9251920928",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes citadas muestran explícitamente la etiqueta «EURUSD | 15M», lo que identifica el marco temporal como 15M."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2466041d24c9dfb2fc25340032e85bd7a07c06cd7052c47181ae11d7b9e97df5",
+     "329a3dafd9eaeae65b8da0b49fa865f2ff96edce06201feac6d70062d5a4fa71",
+     "38118a3ca3d5c1e60f9d4df472455309e1a50427fdcff7e92f626d6b76397342",
+     "4f7297d5129033f5a6b0b94ecfd999f6abba618107a6b15c5e265f9d20c2b668",
+     "6349fd9dac56a702aec450ff22d2b170caa737a75be5cb5313bc3ceaac36ded7",
+     "6f301de4e4098510c012afb8a5436c271ce59865a1ee4166532bbc4cdf2d7b58",
+     "8c5bac791f325d9d585e61900c7f5d4cc90a6246b0fe4ff7645646bd99946950",
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1",
+     "9ec0550cb823453af922b1c43bcb7ad9a145093a89970d597e3bc81e8ee34a9f"
+    ],
+    "response_id": "gen-1791149508-bNcQc7J4vSbzWClboBdP"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tras-formar-rango-precio-completa-rango",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Tras formar un rango, el precio va a completarlo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00037",
+    "asr-00038"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a61961cae71d614216c2aeffc19ef74f3fa675d5de327640a9df47b5470214cc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia encadenada indica que el precio «forma un rango» y, «seguidoramente», «va a ir a completarlo», lo que sostiene la secuencia expresada en la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la secuencia entre formar el rango y que el precio lo complete."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9ec0550cb823453af922b1c43bcb7ad9a145093a89970d597e3bc81e8ee34a9f"
+    ],
+    "response_id": "gen-1791149508-bNcQc7J4vSbzWClboBdP"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-completado-rango-depende-formacion-rango",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-tras-formar-rango-precio-completa-rango",
+   "subject_version": 1,
+   "object_id": "cl-precio-forma-un-rango",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00037",
+    "asr-00038"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "031ac2865e341dd691342a0fdf784e3da240d7a5aab80ece95dce7f5dbf17b3f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el precio «forma un rango» y, seguidamente, «va a ir a completarlo», lo que establece la secuencia de que, tras formar el rango, el precio lo completará en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9ec0550cb823453af922b1c43bcb7ad9a145093a89970d597e3bc81e8ee34a9f"
+    ],
+    "response_id": "gen-1791149508-bNcQc7J4vSbzWClboBdP"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00037",
+   "start_ms": 275000,
+   "end_ms": 281060,
+   "text": "se mueve en función de rangos siempre vale el precio actúa como una cadena donde el precio"
+  },
+  {
+   "id": "asr-00038",
+   "start_ms": 281060,
+   "end_ms": 286680,
+   "text": "forma un rango por aquí y que va a hacer sigue seguidamente el precio va a ir a completarlo"
+  },
+  {
+   "id": "asr-00039",
+   "start_ms": 286680,
+   "end_ms": 293000,
+   "text": "vale esto es la importancia de los rangos y es como la base de la estrategia que es como intentar"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p25200000-canonical-v1",
+   "pts_ms": 280000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p25200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p25380000-canonical-v1",
+   "pts_ms": 282000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p25380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p25560000-canonical-v1",
+   "pts_ms": 284000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p25560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p25650000-canonical-v1",
+   "pts_ms": 285000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p25650000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p25830000-canonical-v1",
+   "pts_ms": 287000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p25830000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p25920000-canonical-v1",
+   "pts_ms": 288000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p25920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p26010000-canonical-v1",
+   "pts_ms": 289000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p26010000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p26100000-canonical-v1",
+   "pts_ms": 290000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p26100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p102240000-canonical-v1",
+   "pts_ms": 1136000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p102240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p104040000-canonical-v1",
+   "pts_ms": 1156000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p104040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p108630000-canonical-v1",
+   "pts_ms": 1207000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p108630000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p31320000-canonical-v1",
+   "pts_ms": 348000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p31320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60120000-canonical-v1",
+   "pts_ms": 668000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63360000-canonical-v1",
+   "pts_ms": 704000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70020000-canonical-v1",
+   "pts_ms": 778000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90630000-canonical-v1",
+   "pts_ms": 1007000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90630000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p94770000-canonical-v1",
+   "pts_ms": 1053000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p94770000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p95760000-canonical-v1",
+   "pts_ms": 1064000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p95760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

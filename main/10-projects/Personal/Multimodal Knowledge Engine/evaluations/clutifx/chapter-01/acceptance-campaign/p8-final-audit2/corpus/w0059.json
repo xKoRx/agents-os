@@ -1,0 +1,724 @@
+{
+ "window": "w0059",
+ "start": "14:00",
+ "end": "14:12",
+ "start_ms": 840000,
+ "end_ms": 852000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-anticipacion-rango-mas-avanzada",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Anticipar la creación de un rango antes del cierre de la vela es una lectura más avanzada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00115",
+    "asr-00116"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "2b69c33f78fbce17f17e31c6385f5c02bf2c21a5e7531b2b3e98990fe06c3264",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estructura-se-ve-rango-8h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el gráfico de 8 horas, la estructura se ve como un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00117",
+    "frame-4de8f12d4841c630-s0-p76320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76680000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "1a1308fad397cb8d9139fee465ef829ba096a315d694dc427401105e11a310ad",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-12h-pendiente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el gráfico de 12 horas, el rango mostrado está pendiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00115",
+    "frame-4de8f12d4841c630-s0-p75600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76140000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cfba16e99ecb9a6ef2f3ddfe359bd350866a28ae584ab046a5dfd3a4e27c5a50",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que «este es un rango pendiente» y el contexto corresponde al gráfico mostrado, cuya cabecera indica «12h». La imagen presenta el rango proyectado en ese gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-8h-pendiente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango de 8 horas también está pendiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00117",
+    "frame-4de8f12d4841c630-s0-p76320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76680000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a1fea318061d308ee1de56966c3abacee5768a6dc1b67ed5396a760d4d0fb152",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «En 8 horas el rango que tendríamos es este, pendiente también»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: el rango de 8 horas está pendiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-anticipable-antes-cierre",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La creación de un rango se podía anticipar antes del cierre de la vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00115",
+    "frame-4de8f12d4841c630-s0-p75600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76140000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5923eb73753336ffaf18c25030ee9672407e553eb47a0942ef1e60bf256374b9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que se podía anticipar que se estaba creando un rango antes de que cerrara la vela."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la creación del rango podía anticiparse antes del cierre de la vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-borde-inferior-114569",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde inferior del rango mostrado está marcado en 1.14569.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p75600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "488d6eab8ad855b54528290580098c3bdebdc2f1357eadfc62bd6d7cd98b6277",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra la etiqueta 1,14569 alineada con el borde inferior del rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-borde-superior-115231",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde superior del rango mostrado está marcado en 1.15231.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p75600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "934dc7beabe733a0232211c7b26daecf9f860cd337785d52729f9a1091c6b9ac",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra el borde superior del rango en una línea horizontal alineada con la etiqueta 1,15231."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-rango-8h",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rectángulo mostrado es el rango previsto para 8 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00117",
+    "frame-4de8f12d4841c630-s0-p76320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76680000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ecc5dc42610ca8f444a6a02213fae2ee109d5524b3cb59a5b68ad25b80c497f7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que el rango que tendría el precio en 8 horas es «este», y las imágenes adjuntas muestran un rectángulo en una gráfica de 8 horas que resuelve esa referencia deíctica."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el rectángulo mostrado representa el rango previsto para 8 horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframe-12h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico se muestra en 12h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p75600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76140000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d32541eae45dc365fbc109d80ea9bbcbecff79091c947ee8f2502e8f02e59285",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible en la esquina superior izquierda de ambos fotogramas dice «EURUSD · 12h · FOREX.COM», lo que muestra que el gráfico está en 12h."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición verificable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframe-8h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico se muestra en 8h.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00117",
+    "frame-4de8f12d4841c630-s0-p76230000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b24874533e01da6cffd926d2f9c51dd559ab2c44e6ccf6afedddf190cc03604c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra en la esquina superior izquierda la etiqueta «EURUSD · 8h»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra el selector de intervalo con «8H»Introducido, y la transcripción se refiere explícitamente a «8 horas»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-empieza-reaccionar",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En tiempo real, la vela empezaba a reaccionar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00115",
+    "frame-4de8f12d4841c630-s0-p75600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76140000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "32a14bc9c02b86af03348d09794f50b8155a4febcc3810681dade1bda8f0a3c2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que, en tiempo real, se vio cómo la vela tomaba el low y empezaba a reaccionar; las imágenes muestran la progresión de la vela entre ambos momentos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-sube-directamente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela sube directamente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00115",
+    "frame-4de8f12d4841c630-s0-p75600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76140000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "951656d8a49ab1a330012625fa98001e786786dfe129c1d310d82baffd361e55",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El transcript citado afirma explícitamente que «la vela ya lo toma y sube directamente», lo que respalda directamente la proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-toma-low-tiempo-real",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En tiempo real, la vela tomaba el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00115",
+    "frame-4de8f12d4841c630-s0-p75600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76140000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "966107d1b7fc1088417113e6a36dd06f6b0f85d2b693ce99bc4573904ee8c937",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que, en tiempo real, se vio cómo la vela tomaba el low."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-toma-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela toma el rango mostrado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00115",
+    "frame-4de8f12d4841c630-s0-p75600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76140000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1b54c7006a84d6b8afa082272c3fc66a9ccc7e4ef6e0c3ec073354b7992ce697",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que «la vela ya lo toma» el rango pendiente mostrado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la vela alcanza o toma el rango mostrado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-avance-depende-de-anticipacion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-anticipacion-rango-mas-avanzada",
+   "subject_version": 1,
+   "object_id": "cl-rango-anticipable-antes-cierre",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00115",
+    "asr-00116"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c47fb673fda129976b58401ea2e8d4adeec6cc978f8ac0a29ab81192b43c5bc8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera cita afirma que la creación del rango se podía anticipar antes del cierre de la vela. La segundaBhakti cita characterize esa anticipación («eso») como «un poco ya más avanzado», vincular explícitamente la valoración de avance al hecho de poder anticiparla antes del cierre."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-pendiente-8h-continua-pendiente-12h",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-8h-pendiente",
+   "subject_version": 1,
+   "object_id": "cl-rango-12h-pendiente",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00115",
+    "asr-00117"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "218d7ce6802add130491b312691394c06af3c6c8de3ff20397ae058407750fc0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas afirman que hay un rango pendiente y que el rango de 8 horas también está pendiente, pero no establecen que la afirmación sobre 8 horas dependa de la afirmación sobre el rango de 12 horas ni enlazan explícitamente ambos rangos en esa orientación."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2"
+    ],
+    "response_id": "gen-1791162386-Gre8VDo5q8cyatL8uptp"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00115",
+   "start_ms": 818800,
+   "end_ms": 840040,
+   "text": "Y luego este es un rango pendiente que se nos creó. Aquí veis como la vela ya lo toma y sube directamente, pero esto visto a tiempo real, vimos como tomaba el low y empezaba a reaccionar, o sea que se podía anticipar de que se estaba creando un rango antes de que cerrar."
+  },
+  {
+   "id": "asr-00116",
+   "start_ms": 840040,
+   "end_ms": 846120,
+   "text": "Es un poco ya más avanzado eso, ya lo iréis viendo conforme practiquéis la estrategia, pero sería esto."
+  },
+  {
+   "id": "asr-00117",
+   "start_ms": 846280,
+   "end_ms": 853780,
+   "text": "Creo que en 8 horas sí que se ve como rango. En 8 horas el rango que tendríamos es este, pendiente también."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p75600000-canonical-v1",
+   "pts_ms": 840000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p75600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p75960000-canonical-v1",
+   "pts_ms": 844000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p75960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p76140000-canonical-v1",
+   "pts_ms": 846000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p76140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p76230000-canonical-v1",
+   "pts_ms": 847000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p76230000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p76320000-canonical-v1",
+   "pts_ms": 848000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p76320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p76500000-canonical-v1",
+   "pts_ms": 850000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p76500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p76590000-canonical-v1",
+   "pts_ms": 851000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p76590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p76680000-canonical-v1",
+   "pts_ms": 852000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p76680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

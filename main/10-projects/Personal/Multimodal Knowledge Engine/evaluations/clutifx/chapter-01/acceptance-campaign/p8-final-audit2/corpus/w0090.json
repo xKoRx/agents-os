@@ -1,0 +1,495 @@
+{
+ "window": "w0090",
+ "start": "22:41",
+ "end": "23:04",
+ "start_ms": 1361000,
+ "end_ms": 1384000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ejemplo-derecho-gbpusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico de la derecha está etiquetado como GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p124560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "f92a210023fdbbfca167074fdace486578feed849959140e014a4da18245076b",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cbecb0fb1b0b00ea31aa5d99eaca74d552b7282935f2346e021215ff356f04c"
+    ],
+    "response_id": "gen-1791173209-pmpGPRVdvCiEMfxIcVHp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ejemplo-tipo-smt",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Este es un tipo de SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "e8a0936223fe29a11bea55af2f84f9e35e40bbc1a60be4bb3b66b27c95d68343",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cbecb0fb1b0b00ea31aa5d99eaca74d552b7282935f2346e021215ff356f04c"
+    ],
+    "response_id": "gen-1791173209-pmpGPRVdvCiEMfxIcVHp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-formar-rango",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "En GBPUSD, se forma el rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00192",
+    "frame-4de8f12d4841c630-s0-p124560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "a2a10e2ebd6fa0cc58e6b26c4d51f188c052b88fe46afa5b08e0610931570c93",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cbecb0fb1b0b00ea31aa5d99eaca74d552b7282935f2346e021215ff356f04c"
+    ],
+    "response_id": "gen-1791173209-pmpGPRVdvCiEMfxIcVHp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-tomar-low",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "En GBPUSD, se toma el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00192",
+    "frame-4de8f12d4841c630-s0-p124560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "e4aca2f6413c91d15634165353e31420f9e19c1637af880bc954b19fef35625d",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cbecb0fb1b0b00ea31aa5d99eaca74d552b7282935f2346e021215ff356f04c"
+    ],
+    "response_id": "gen-1791173209-pmpGPRVdvCiEMfxIcVHp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-ultima-vela-no-alcanza-linea",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La última vela del ejemplo GBPUSD no alcanza la línea horizontal.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00192",
+    "asr-00193",
+    "frame-4de8f12d4841c630-s0-p123840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p124560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "43738667869eb349c09d2e67d5a20728bf2d7fc352ac7ec188511e9572b96175",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cbecb0fb1b0b00ea31aa5d99eaca74d552b7282935f2346e021215ff356f04c"
+    ],
+    "response_id": "gen-1791173209-pmpGPRVdvCiEMfxIcVHp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-vela-puede-no-llegar-objetivo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En GBPUSD puede ocurrir que una vela no llegue al objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00192",
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "9a13e91a4740acdd5c8c442adc48b7c534fae64f61db3ed4d6ae45f60f671037",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cbecb0fb1b0b00ea31aa5d99eaca74d552b7282935f2346e021215ff356f04c"
+    ],
+    "response_id": "gen-1791173209-pmpGPRVdvCiEMfxIcVHp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-instrumento-grafico-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico activo está etiquetado como EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p124560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e45b42b9161d31d8ca651f03b02032052932a7f4c3a7d3fe79c0bd4ef3026927",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La pestaña activa y el encabezado del gráfico muestran la etiqueta «EURUSD»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cbecb0fb1b0b00ea31aa5d99eaca74d552b7282935f2346e021215ff356f04c"
+    ],
+    "response_id": "gen-1791173209-pmpGPRVdvCiEMfxIcVHp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-datos-a-veces-ocultos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los datos de este SMT están a veces un poco ocultos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "dfe2794b38b63eaa29b84769de23dc3681b63cfbc90acfcb0472e409a80abd85",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cbecb0fb1b0b00ea31aa5d99eaca74d552b7282935f2346e021215ff356f04c"
+    ],
+    "response_id": "gen-1791173209-pmpGPRVdvCiEMfxIcVHp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-no-visible-sin-conocer-estrategia",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si no conoces la estrategia, no vas a poder ver este tipo de SMT de ningún modo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "4eba96600dc0409fccf5dfecce6be199b41202f8c35a4147345ebcf2fd57b0d1",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cbecb0fb1b0b00ea31aa5d99eaca74d552b7282935f2346e021215ff356f04c"
+    ],
+    "response_id": "gen-1791173209-pmpGPRVdvCiEMfxIcVHp"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-grafico-8h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico activo es 8h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p124560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "88b02da60ad82320be16ab69a8f3a62205e0ed5bca7f9095a45c9e11aecf7320",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El encabezado visible del gráfico activo indica «EURUSD · 8h · FOREX.com»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación expone una sola proposición: la temporalidad del gráfico es 8h."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cbecb0fb1b0b00ea31aa5d99eaca74d552b7282935f2346e021215ff356f04c"
+    ],
+    "response_id": "gen-1791173209-pmpGPRVdvCiEMfxIcVHp"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-visibilidad-depende-datos-ocultos",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-smt-no-visible-sin-conocer-estrategia",
+   "subject_version": 1,
+   "object_id": "cl-smt-datos-a-veces-ocultos",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00193"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "08098b5c2a5015e4125461cfd7622946487227011be46ce66b32b60a9f74054c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enuncia explícitamente que no poder ver este tipo de SMT si no se conoce la estrategia se debe a que «a veces estos datos están un poco ocultos», estableciendo la relación causal en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cbecb0fb1b0b00ea31aa5d99eaca74d552b7282935f2346e021215ff356f04c"
+    ],
+    "response_id": "gen-1791173209-pmpGPRVdvCiEMfxIcVHp"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00192",
+   "start_ms": 1360720,
+   "end_ms": 1374580,
+   "text": "esto sería lo mismo de antes, tomar el low y formar el rango y todo, mismo en libra, pero luego en libra puede pasarte algo así, no llega al objetivo, ¿vale?"
+  },
+  {
+   "id": "asr-00193",
+   "start_ms": 1374580,
+   "end_ms": 1395310,
+   "text": "Y luego puede pasarte pues algo así, que esta vela haga algo así sin llegar al objetivo, ¿vale? Este es un tipo de SMT que si no conoces la estrategia no vas a poder ver de ningún modo porque a veces estos datos están un poco ocultos, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p122490000-canonical-v1",
+   "pts_ms": 1361000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p122490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p122760000-canonical-v1",
+   "pts_ms": 1364000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p122760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p123120000-canonical-v1",
+   "pts_ms": 1368000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p123120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p123390000-canonical-v1",
+   "pts_ms": 1371000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p123390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p123480000-canonical-v1",
+   "pts_ms": 1372000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p123480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p123840000-canonical-v1",
+   "pts_ms": 1376000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p123840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p124200000-canonical-v1",
+   "pts_ms": 1380000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p124200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p124560000-canonical-v1",
+   "pts_ms": 1384000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p124560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

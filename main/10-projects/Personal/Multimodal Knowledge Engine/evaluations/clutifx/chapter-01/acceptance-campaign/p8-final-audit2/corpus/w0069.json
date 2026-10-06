@@ -1,0 +1,461 @@
+{
+ "window": "w0069",
+ "start": "17:01",
+ "end": "17:12",
+ "start_ms": 1021000,
+ "end_ms": 1032000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-15m-timeframe",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal mostrado es 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p91890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "4547caf0fa67f814e35a5c57fe5a47c462ab7e0265f1c4b240a50a4244a687d3",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5e27ac4e05d77437bab7751bbf3e74621cecc18ff6409ebb706faaebc7c5e5ca"
+    ],
+    "response_id": "gen-1791165516-sz8ta6Unhbwud6HDbpBs"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-instrument",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p91890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "6fdeec445916af0ac30ebe9a13e1a1bdd609a168011078fa0a2f1c1aa3a59cb7",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5e27ac4e05d77437bab7751bbf3e74621cecc18ff6409ebb706faaebc7c5e5ca"
+    ],
+    "response_id": "gen-1791165516-sz8ta6Unhbwud6HDbpBs"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-stop-below-turtlesoup",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si aquí se buscan longs, el stop loss debe quedar por debajo del Turtle Soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00136",
+    "asr-00137",
+    "frame-4de8f12d4841c630-s0-p91890000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p92880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4cde57143d53b5941faa0e1e9957ff83c5272f510c8538fb3b567110f7610876",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The transcript directly states that, when seeking longs here, the stop loss should be safely below the Turtle Soup, and the frame confirms the canonical label “TURTLESOUP.”"
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The conditional narrows a single rule about the required stop-loss placement and does not add an independently evaluable proposition."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5e27ac4e05d77437bab7751bbf3e74621cecc18ff6409ebb706faaebc7c5e5ca"
+    ],
+    "response_id": "gen-1791165516-sz8ta6Unhbwud6HDbpBs"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-no-additional-downside-turtlesoup-before-up",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Para ir hacia arriba, el precio no debería tener que formar otro Turtle Soup a la baja.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00136",
+    "asr-00137"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6b5846cea0e0979b9644b8f1ef24b02669adebc1424dcbf57d8d2701ffe69a91",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita afirma directamente que el precio no tendría por qué volver a bajar y hacer otro «Tartel Sub» para ir hacia arriba; «Tartel Sub» es la forma fonética distorted de «Turtle Soup». La afirmación presenta una sola proposición: no sería necesario otro Turtle Soup a la baja antes de subir."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5e27ac4e05d77437bab7751bbf3e74621cecc18ff6409ebb706faaebc7c5e5ca"
+    ],
+    "response_id": "gen-1791165516-sz8ta6Unhbwud6HDbpBs"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-position-risk-reward-3-24",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El campo «Relación riesgo/beneficio» muestra 3,24.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p92340000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "605ceca4c0f7f1004c1baf37e470a481a55be66b29db828264d18f5a387a410d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible en la imagen dice «Relación riesgo/beneficio: 3,24»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5e27ac4e05d77437bab7751bbf3e74621cecc18ff6409ebb706faaebc7c5e5ca"
+    ],
+    "response_id": "gen-1791165516-sz8ta6Unhbwud6HDbpBs"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-position-stop-0-00209-to-0-00258",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El campo «Stop» de la herramienta de posición pasa de 0,00209 a 0,00258.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p91980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p92160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p92340000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9ca63fa75a78f31fc4884de68142eb6ca5110e27acca30d12cc8855baf12bcb9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra «Stop: 0,00209» y las imágenes segunda y tercera muestran «Stop: 0,00258» en la misma herramienta de posición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5e27ac4e05d77437bab7751bbf3e74621cecc18ff6409ebb706faaebc7c5e5ca"
+    ],
+    "response_id": "gen-1791165516-sz8ta6Unhbwud6HDbpBs"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-position-stop-below-entry",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En la herramienta de posición, el stop queda por debajo de la apertura.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p92340000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "61f00d6cb206274bf89f8aadca0758fd1277861c7f05fb37649e7cccdecabc52",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La herramienta de posición muestra la apertura aproximadamente en 1,14487 y el stop en 1,14258, por lo que el stop queda por debajo de la apertura."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5e27ac4e05d77437bab7751bbf3e74621cecc18ff6409ebb706faaebc7c5e5ca"
+    ],
+    "response_id": "gen-1791165516-sz8ta6Unhbwud6HDbpBs"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-position-target-0-00209-to-0-00835",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El campo «Objetivo» de la herramienta de posición pasa de 0,00209 a 0,00835.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p91980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p92340000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1eca96bc50ef484e4926618d8c40136b29b4006c013e7f208d175faabdbeef4b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra «Objetivo: 0,00209» y la segunda muestra «Objetivo: 0,00835», lo que evidencia el cambio indicado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5e27ac4e05d77437bab7751bbf3e74621cecc18ff6409ebb706faaebc7c5e5ca"
+    ],
+    "response_id": "gen-1791165516-sz8ta6Unhbwud6HDbpBs"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-position-target-above-entry",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En la herramienta de posición, el objetivo queda por encima de la apertura.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p92340000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5fbec89b8a33afd8c6e8144a2a45462967c9f2cf317276fc8dc9a3032fce7219",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la etiqueta «Objetivo» situada verticalmente por encima de la etiqueta «Apertura» en la herramienta de posición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición relacional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5e27ac4e05d77437bab7751bbf3e74621cecc18ff6409ebb706faaebc7c5e5ca"
+    ],
+    "response_id": "gen-1791165516-sz8ta6Unhbwud6HDbpBs"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtlesoup-annotation-visible",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra una anotación de texto «TURTLESOUP».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p91890000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p92880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d72c62908e45989b7026336826d8b4c452964f4fa0e8f4ca626f7fe2bd488d6f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran claramente la anotación de texto «TURTLESOUP» sobre el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5e27ac4e05d77437bab7751bbf3e74621cecc18ff6409ebb706faaebc7c5e5ca"
+    ],
+    "response_id": "gen-1791165516-sz8ta6Unhbwud6HDbpBs"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00136",
+   "start_ms": 1013900,
+   "end_ms": 1022220,
+   "text": "O sea, tú, si aquí estás buscando ya para tomar longs, tu stop loss tendría que estar seguro debajo del Tartle Sup, ¿vale?"
+  },
+  {
+   "id": "asr-00137",
+   "start_ms": 1022220,
+   "end_ms": 1031520,
+   "text": "que es aquí abajo. No tendría por qué pasar que el precio vuelva a bajar, a hacer otro Tartel Sub para ir para arriba."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91890000-canonical-v1",
+   "pts_ms": 1021000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91980000-canonical-v1",
+   "pts_ms": 1022000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92160000-canonical-v1",
+   "pts_ms": 1024000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92340000-canonical-v1",
+   "pts_ms": 1026000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92340000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92430000-canonical-v1",
+   "pts_ms": 1027000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92430000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92520000-canonical-v1",
+   "pts_ms": 1028000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92610000-canonical-v1",
+   "pts_ms": 1029000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p92880000-canonical-v1",
+   "pts_ms": 1032000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p92880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

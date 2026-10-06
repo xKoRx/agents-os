@@ -1,0 +1,90 @@
+{
+ "window": "w0110",
+ "start": "28:20",
+ "end": "28:28",
+ "start_ms": 1700000,
+ "end_ms": 1708000,
+ "disposition": "rejected",
+ "rejection_category": "provider unavailable",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00245",
+   "start_ms": 1695390,
+   "end_ms": 1700850,
+   "text": "en m15 para subir ya lo vais a ver el capítulo entradas pero para que no tenga que explicar"
+  },
+  {
+   "id": "asr-00246",
+   "start_ms": 1700850,
+   "end_ms": 1706390,
+   "text": "otra vez que es un order block. Vamos a ir ahora mismo a buscar alguno. Por ejemplo,"
+  },
+  {
+   "id": "asr-00247",
+   "start_ms": 1706630,
+   "end_ms": 1713020,
+   "text": "este de aquí es un order block. En el momento en que esta vela cierra afuera, es un poco"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153000000-canonical-v1",
+   "pts_ms": 1700000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153090000-canonical-v1",
+   "pts_ms": 1701000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153090000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153180000-canonical-v1",
+   "pts_ms": 1702000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153180000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153270000-canonical-v1",
+   "pts_ms": 1703000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153270000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153360000-canonical-v1",
+   "pts_ms": 1704000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153450000-canonical-v1",
+   "pts_ms": 1705000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153540000-canonical-v1",
+   "pts_ms": 1706000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153540000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p153720000-canonical-v1",
+   "pts_ms": 1708000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p153720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

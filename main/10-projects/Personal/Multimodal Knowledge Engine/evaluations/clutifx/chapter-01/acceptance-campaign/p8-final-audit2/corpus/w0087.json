@@ -1,0 +1,307 @@
+{
+ "window": "w0087",
+ "start": "22:10",
+ "end": "22:17",
+ "start_ms": 1330000,
+ "end_ms": 1337000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-black-rectangles-greater-separation",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rectángulo de la derecha queda más alejado horizontalmente del de la izquierda.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p120150000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p120240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "fa7102d9c5916feafc071df674fa8ee78c09a4950f910c80aa9660d06ff3fe07",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5bd42e7ff8c23b2b28e4ba2ac0fabc49cf44d9ced3ebd9d74b7e602e3c1cb5e3"
+    ],
+    "response_id": "gen-1791172312-Tgm8L0SzRTYmaYMCwbLY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-initial-black-rectangle",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista inicial muestra un rectángulo negro vertical.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p119790000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "31735da2c10a810c7bd18a181f13385d933e2ea66e9a06115c24b04ec0472500",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen citada muestra un rectángulo negro de orientación vertical."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5bd42e7ff8c23b2b28e4ba2ac0fabc49cf44d9ced3ebd9d74b7e602e3c1cb5e3"
+    ],
+    "response_id": "gen-1791172312-Tgm8L0SzRTYmaYMCwbLY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-left-rectangle-euro",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El instructor identifica el rectángulo de la izquierda como euro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p120060000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p120330000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "16047128b67b73d3599c1ddf3a4be9930a81e1a90eb609cfe5f034fd85cd9dd0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «esto es euro» y luego «esto es libra»; los fotogramas muestran los rectángulos y permiten resolver el primero como el de la izquierda y el segundo como el de la derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5bd42e7ff8c23b2b28e4ba2ac0fabc49cf44d9ced3ebd9d74b7e602e3c1cb5e3"
+    ],
+    "response_id": "gen-1791172312-Tgm8L0SzRTYmaYMCwbLY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-right-rectangle-pound",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El instructor identifica el rectángulo de la derecha como libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p120150000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p120330000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7d6176428e43e122e178cdd4ed3d36f7f2803bd072dcac64e3023bbacb84a382",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice sucesivamente «esto es euro» y «esto es libra»; las imágenes muestran dos rectángulos centrais, por lo que la segunda referencia se resuelve como el rectángulo de la derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5bd42e7ff8c23b2b28e4ba2ac0fabc49cf44d9ced3ebd9d74b7e602e3c1cb5e3"
+    ],
+    "response_id": "gen-1791172312-Tgm8L0SzRTYmaYMCwbLY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-second-black-rectangle-appears",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Aparece un segundo rectángulo negro vertical a la derecha del primero.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p120060000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p120150000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "13760065a056509ce921ab7b6457c7fabb1e30b9f8b2bfd3caa1993ddf042789",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El primer fotograma muestra un rectángulo negro vertical y el segundo muestra además otro a su derecha, por lo que la aparición del segundo queda respaldada visualmente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5bd42e7ff8c23b2b28e4ba2ac0fabc49cf44d9ced3ebd9d74b7e602e3c1cb5e3"
+    ],
+    "response_id": "gen-1791172312-Tgm8L0SzRTYmaYMCwbLY"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-form-with-strategy",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La SMT que podría darse en esta situación utilizando nuestra estrategia tendría una forma similar a la configuración mostrada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p120240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p120330000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "1bd4ff0ac11d48276825108e8c63f278b711ce29aded5b32dc90a3234930304a",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5bd42e7ff8c23b2b28e4ba2ac0fabc49cf44d9ced3ebd9d74b7e602e3c1cb5e3"
+    ],
+    "response_id": "gen-1791172312-Tgm8L0SzRTYmaYMCwbLY"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00190",
+   "start_ms": 1315270,
+   "end_ms": 1345680,
+   "text": "Ahora, ¿cómo va a ser la SMT utilizando nuestra estrategia? Vamos a decir que esto es euro y vamos a decir que esto es libra. En ejemplos no voy a entrar porque ya voy a hacer un capítulo aparte, pero la SMT que se nos podría dar aquí es algo así."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119700000-canonical-v1",
+   "pts_ms": 1330000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119700000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119790000-canonical-v1",
+   "pts_ms": 1331000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119790000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119880000-canonical-v1",
+   "pts_ms": 1332000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119970000-canonical-v1",
+   "pts_ms": 1333000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119970000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120060000-canonical-v1",
+   "pts_ms": 1334000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120060000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120150000-canonical-v1",
+   "pts_ms": 1335000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120150000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120240000-canonical-v1",
+   "pts_ms": 1336000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120330000-canonical-v1",
+   "pts_ms": 1337000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

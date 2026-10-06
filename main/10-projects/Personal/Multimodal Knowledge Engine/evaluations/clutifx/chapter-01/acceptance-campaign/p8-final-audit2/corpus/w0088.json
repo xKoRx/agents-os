@@ -1,0 +1,430 @@
+{
+ "window": "w0088",
+ "start": "22:18",
+ "end": "22:28",
+ "start_ms": 1338000,
+ "end_ms": 1348000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-first-figure-black",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La primera figura de la secuencia bajo EURUSD es negra.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p121230000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p121320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "307330be361863c215a2a486203efd42f0d3420a741f75958858161e6bec9a74",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7bf10e7376bb54f5e5a0f5c190e355fa7ef8a677f803569558232356631978a4"
+    ],
+    "response_id": "gen-1791172613-XxgJ0QXV2sxY5zen6PXZ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-three-white-figures",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Las tres figuras posteriores de la secuencia bajo EURUSD son blancas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p121230000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p121320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "e9996df6c87ca0f65942eb0e91bc096d27a473bfd136610f17573e8b0da3eead",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7bf10e7376bb54f5e5a0f5c190e355fa7ef8a677f803569558232356631978a4"
+    ],
+    "response_id": "gen-1791172613-XxgJ0QXV2sxY5zen6PXZ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-example-left-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La sección izquierda del ejemplo representa EURUSD (euro).",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p121230000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p121320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "eb28677268d16203a698410603ca05d92dac7ecf61b3b4b024ae6d723d9df19d",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7bf10e7376bb54f5e5a0f5c190e355fa7ef8a677f803569558232356631978a4"
+    ],
+    "response_id": "gen-1791172613-XxgJ0QXV2sxY5zen6PXZ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-example-right-gbpusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La sección derecha del ejemplo representa GBPUSD (libra).",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p121230000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p121320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "822244211c06e96834df3142d45d372b3e3aafc0f3694b18faa75e9aeb73a8b2",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7bf10e7376bb54f5e5a0f5c190e355fa7ef8a677f803569558232356631978a4"
+    ],
+    "response_id": "gen-1791172613-XxgJ0QXV2sxY5zen6PXZ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-black-figure",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La figura de la sección GBPUSD es negra.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p121230000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p121320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "69eefd0906a11c677fa4452dc260426d67cf1a299386269db7c1b412440afc46",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7bf10e7376bb54f5e5a0f5c190e355fa7ef8a677f803569558232356631978a4"
+    ],
+    "response_id": "gen-1791172613-XxgJ0QXV2sxY5zen6PXZ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-bullish-euro-objective",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En este caso, por ejemplo, podíamos tener un objetivo alcista en euro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "asr-00191",
+    "frame-4de8f12d4841c630-s0-p121230000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p121320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "aa5f387cd002426ed103f9b1be4ec74ec556a1b9887665d46e6218a24efc4845",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que, en ese caso, podía haber un objetivo alcista en euro; la diferencia entre «este» y «un» no altera la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la posibilidad de un objetivo alcista en euro para el caso tackling."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7bf10e7376bb54f5e5a0f5c190e355fa7ef8a677f803569558232356631978a4"
+    ],
+    "response_id": "gen-1791172613-XxgJ0QXV2sxY5zen6PXZ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-small-black-rectangle-appears",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En la vista intermedia aparece un rectángulo negro pequeño entre los dos rectángulos grandes.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p120780000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p120870000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "391e4afa100c7c7b7fd505a2ac3b2b6e87574ed2afab8c7c1d82d99f5c258ae5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la segunda imagen citada aparece un rectángulo negro pequeño situado entre los dos rectángulos negros grandes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7bf10e7376bb54f5e5a0f5c190e355fa7ef8a677f803569558232356631978a4"
+    ],
+    "response_id": "gen-1791172613-XxgJ0QXV2sxY5zen6PXZ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-strategy-form",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Con nuestra estrategia, la SMT podría presentar una forma similar a la del esquema mostrado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00190",
+    "frame-4de8f12d4841c630-s0-p121230000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p121320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "f0cb9333ef24a01a9e6717be71ee82b44050b38aab1a6fc2a94c0de36b8bf3cd",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7bf10e7376bb54f5e5a0f5c190e355fa7ef8a677f803569558232356631978a4"
+    ],
+    "response_id": "gen-1791172613-XxgJ0QXV2sxY5zen6PXZ"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-two-types",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hay como dos tipos de SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00191"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e167ff6f850060faf68c83211b5e754e43c8fac7996e54f8d667a83047edcdbd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma literalmente que «hay como dos tipos de SMT»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7bf10e7376bb54f5e5a0f5c190e355fa7ef8a677f803569558232356631978a4"
+    ],
+    "response_id": "gen-1791172613-XxgJ0QXV2sxY5zen6PXZ"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00190",
+   "start_ms": 1315270,
+   "end_ms": 1345680,
+   "text": "Ahora, ¿cómo va a ser la SMT utilizando nuestra estrategia? Vamos a decir que esto es euro y vamos a decir que esto es libra. En ejemplos no voy a entrar porque ya voy a hacer un capítulo aparte, pero la SMT que se nos podría dar aquí es algo así."
+  },
+  {
+   "id": "asr-00191",
+   "start_ms": 1345680,
+   "end_ms": 1359310,
+   "text": "¿Vale? Pues vais a ver que hay como dos tipos de SMT, ¿vale? La que vamos a ver nosotros, en este caso, por ejemplo, podías tener este objetivo alcista en euro,"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120420000-canonical-v1",
+   "pts_ms": 1338000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120420000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120600000-canonical-v1",
+   "pts_ms": 1340000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120690000-canonical-v1",
+   "pts_ms": 1341000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120690000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120780000-canonical-v1",
+   "pts_ms": 1342000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120780000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120870000-canonical-v1",
+   "pts_ms": 1343000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120870000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p120960000-canonical-v1",
+   "pts_ms": 1344000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p120960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121230000-canonical-v1",
+   "pts_ms": 1347000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121230000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121320000-canonical-v1",
+   "pts_ms": 1348000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

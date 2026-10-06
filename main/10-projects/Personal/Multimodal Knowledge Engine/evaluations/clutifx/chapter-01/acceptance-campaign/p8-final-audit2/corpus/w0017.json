@@ -1,0 +1,403 @@
+{
+ "window": "w0017",
+ "start": "03:49",
+ "end": "04:00",
+ "start_ms": 229000,
+ "end_ms": 240000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-temporalidad-4h-1d",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico cambia de la temporalidad de 4h a la de 1D.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00031",
+    "frame-4de8f12d4841c630-s0-p21240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p21330000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "5b83da3e33afea479f082ae13e4530673eabb41f237f4b39e4a466315234f747",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: network failure"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "73af5c7f8b4cfd5ed70eca9bab513766de4073c278ff69a92d656fb8f19efa91"
+    ],
+    "response_id": "gen-1791148735-rMj2S1VDE2O0Bfj2mMNx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dibujo-parecido-anterior",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El patrón mostrado se parece mucho al dibujo que se ha hecho.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00030",
+    "frame-4de8f12d4841c630-s0-p20610000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p20700000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "d385c12e375212979d8b7ed60b77c05085c8eab37708d463642912a4d9008f37",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "73af5c7f8b4cfd5ed70eca9bab513766de4073c278ff69a92d656fb8f19efa91"
+    ],
+    "response_id": "gen-1791148735-rMj2S1VDE2O0Bfj2mMNx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p20610000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p21330000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "f8db3c9ffe61fab000bf01911d12c58b96a58067397389cb9db97373221dff93",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "73af5c7f8b4cfd5ed70eca9bab513766de4073c278ff69a92d656fb8f19efa91"
+    ],
+    "response_id": "gen-1791148735-rMj2S1VDE2O0Bfj2mMNx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ir-temporalidad-diaria",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vamos a la temporalidad diaria.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00031",
+    "frame-4de8f12d4841c630-s0-p21240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p21330000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1172be96921d3ce1b0077bf10c5edb242c4d910edddaa63bc1c36c48dac7d5e0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente «vamos al día», y las imágenes muestran el cambio de EURUSD·4h a EURUSD·1D."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación es una única instrucción de cambiar a la temporalidad diaria."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "73af5c7f8b4cfd5ed70eca9bab513766de4073c278ff69a92d656fb8f19efa91"
+    ],
+    "response_id": "gen-1791148735-rMj2S1VDE2O0Bfj2mMNx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-patron-todas-temporalidades",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Este patrón se da en todas las temporalidades.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00030",
+    "asr-00031"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "499412ba69a20a8cf893dbda1d4ba812906a3e6c56d6086b46562931f1afd60c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente «esto pasa en todas las temporalidades», y «este patrón» remite al mismo referente que «esto»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el patrón dado aparece en todas las temporalidades."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "73af5c7f8b4cfd5ed70eca9bab513766de4073c278ff69a92d656fb8f19efa91"
+    ],
+    "response_id": "gen-1791148735-rMj2S1VDE2O0Bfj2mMNx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-baja-directamente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio va directamente hacia abajo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00030",
+    "frame-4de8f12d4841c630-s0-p20610000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p20880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "97a079d1721a390d0caecee4efbc311ff42eda9a37c65277c71cd3d5c7eefc40",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento citado afirma directamente «va para abajo directamente», y las dos capturas muestran el movimiento descendente del precio Carrefour de la zona 1,152–1,153 hacia aproximadamente 1,147."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el precio se desplaza directamente hacia abajo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "73af5c7f8b4cfd5ed70eca9bab513766de4073c278ff69a92d656fb8f19efa91"
+    ],
+    "response_id": "gen-1791148735-rMj2S1VDE2O0Bfj2mMNx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-diario",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El dibujo actual es un rango diario.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00031",
+    "frame-4de8f12d4841c630-s0-p21420000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p21600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dfc43bccb3e70582f707bdeffb2a537dd7f31d7c3c4be25c6b4e21cd38c75057",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento citado afirma directamente «este es un rango diario», y las imágenes muestran un rango rectangular trazado sobre el gráfico referred por el demonstrativo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el dibujo actual es un rango diario."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "73af5c7f8b4cfd5ed70eca9bab513766de4073c278ff69a92d656fb8f19efa91"
+    ],
+    "response_id": "gen-1791148735-rMj2S1VDE2O0Bfj2mMNx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-4h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En la vista de 4h se ve un rectángulo alrededor de varias velas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p20610000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p20700000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p20880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e3dcd94ab239a0409617a550d6659fd6d447cbda50f4de7659c0ec53a2fccc46",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran una gráfica de EURUSD identificada como «4h» y un contorno rectangular alrededor de varias velas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "73af5c7f8b4cfd5ed70eca9bab513766de4073c278ff69a92d656fb8f19efa91"
+    ],
+    "response_id": "gen-1791148735-rMj2S1VDE2O0Bfj2mMNx"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00030",
+   "start_ms": 228940,
+   "end_ms": 234460,
+   "text": "dentro este se parece mucho al dibujo que se ha hecho y va para abajo directamente vale y ya es"
+  },
+  {
+   "id": "asr-00031",
+   "start_ms": 234460,
+   "end_ms": 241310,
+   "text": "la idea esto pasa en todas las temporalidades vamos al día y este es un rango diario vale"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p20610000-canonical-v1",
+   "pts_ms": 229000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p20610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p20700000-canonical-v1",
+   "pts_ms": 230000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p20700000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p20880000-canonical-v1",
+   "pts_ms": 232000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p20880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p21150000-canonical-v1",
+   "pts_ms": 235000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p21150000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p21240000-canonical-v1",
+   "pts_ms": 236000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p21240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p21330000-canonical-v1",
+   "pts_ms": 237000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p21330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p21420000-canonical-v1",
+   "pts_ms": 238000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p21420000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p21600000-canonical-v1",
+   "pts_ms": 240000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p21600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

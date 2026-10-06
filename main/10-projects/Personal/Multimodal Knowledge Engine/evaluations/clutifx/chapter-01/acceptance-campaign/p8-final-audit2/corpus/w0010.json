@@ -1,0 +1,439 @@
+{
+ "window": "w0010",
+ "start": "02:12",
+ "end": "02:28",
+ "start_ms": 132000,
+ "end_ms": 148000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estrategia-basa-rangos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La estrategia se basa principalmente en los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00020"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "25f17a722f8b4967501b817d5d772eef74e86cf6c30bf64f5b1261923d388126",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6010655569027034ae225f6d033da7081efe3d63b44db2d690946160dad475eb"
+    ],
+    "response_id": "gen-1791146995-UAGbCY2Q8NOroB2iHwsb"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-fecha-2025-06-24",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La fecha mostrada en el gráfico es 24/6/2025.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p11880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "ce8ec4febe10c232678ddea557ffb97981fc8ba85ba818dc4705f017d7f0c7c7",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6010655569027034ae225f6d033da7081efe3d63b44db2d690946160dad475eb"
+    ],
+    "response_id": "gen-1791146995-UAGbCY2Q8NOroB2iHwsb"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-figura-rectangular-ampliada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La figura rectangular se amplía hacia la derecha hasta pasar a abarcar varias velas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p12600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p12960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "6654f0784b75118bbdacd2fe2c52634c0361c2bf04b0bef98a115e2353f2a529",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6010655569027034ae225f6d033da7081efe3d63b44db2d690946160dad475eb"
+    ],
+    "response_id": "gen-1791146995-UAGbCY2Q8NOroB2iHwsb"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-figura-rectangular-relleno-negro",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La figura rectangular seleccionada cambia de un relleno claro a un relleno negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p12510000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p12600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "48d61d92766f20fb4c85bfd60fc99f71afac193ee0e373ce1e885de52967926b",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6010655569027034ae225f6d033da7081efe3d63b44db2d690946160dad475eb"
+    ],
+    "response_id": "gen-1791146995-UAGbCY2Q8NOroB2iHwsb"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-figura-rectangular-sin-relleno-oscuro",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La figura rectangular vuelve a mostrarse sin el relleno oscuro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p13050000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p13320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "d1e140080e10b6eb3f3a5a397d8637979779769a4d275090fd8fddf2c32e018f",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6010655569027034ae225f6d033da7081efe3d63b44db2d690946160dad475eb"
+    ],
+    "response_id": "gen-1791146995-UAGbCY2Q8NOroB2iHwsb"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-no-tiene-que-ser-negativo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Aquello tampoco tiene que ser negativo como tal.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00017"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dd0d0a5d9199eaa81d0064bf4d17b99bf4851baad3640021f11b818ab069ef3b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación reformula directamente «tampoco tiene que ser negativa como tal»; «aquello» funciona como referencia discourse y el cambio de género gramatical no altera la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: aquello no tiene que ser negativo de manera necesaria."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6010655569027034ae225f6d033da7081efe3d63b44db2d690946160dad475eb"
+    ],
+    "response_id": "gen-1791146995-UAGbCY2Q8NOroB2iHwsb"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-etiquetado-alcista",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La anotación del rango dice «rango alcista».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p11880000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p13320000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "95cc781ce5f317d8a547fd3c72b38061b9df0648719dd53511882104735c3b16",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran junto al rango la anotación visible «rango alcista»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6010655569027034ae225f6d033da7081efe3d63b44db2d690946160dad475eb"
+    ],
+    "response_id": "gen-1791146995-UAGbCY2Q8NOroB2iHwsb"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-extremo-vela-anterior",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Normalmente, este rango se crea tomando el extremo de la vela anterior.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00018",
+    "asr-00019",
+    "asr-00020"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ce2a5d7320a99a84133d3d4e2cd6aac2a7b7ed9eef419b448f2c19f5d3b1024f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas expresan conjuntamente que, normalmente, se toma «el extremo de la vela anterior» y con ello se crea «este rango»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre cómo se crea normalmente el rango; «normalmente» solo limita esa misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6010655569027034ae225f6d033da7081efe3d63b44db2d690946160dad475eb"
+    ],
+    "response_id": "gen-1791146995-UAGbCY2Q8NOroB2iHwsb"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframe-5m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal mostrado es 5M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p11880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7e15adcc60eb873ab52d490a9cee09e507c0a4120a09b0948fb6462ba5b68899",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente la etiqueta «EURUSD | 5M», por lo que el marco temporal mostrado es 5M."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6010655569027034ae225f6d033da7081efe3d63b44db2d690946160dad475eb"
+    ],
+    "response_id": "gen-1791146995-UAGbCY2Q8NOroB2iHwsb"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00017",
+   "start_ms": 127310,
+   "end_ms": 134420,
+   "text": "o lo mismo, tampoco tiene que ser negativa como tal"
+  },
+  {
+   "id": "asr-00018",
+   "start_ms": 134420,
+   "end_ms": 139790,
+   "text": "pero normalmente pasa que nos toma"
+  },
+  {
+   "id": "asr-00019",
+   "start_ms": 139790,
+   "end_ms": 145040,
+   "text": "el extremo de la vela anterior y nos crea lo que sería"
+  },
+  {
+   "id": "asr-00020",
+   "start_ms": 145040,
+   "end_ms": 152600,
+   "text": "este rango vale vais a ver que la estrategia se basa principalmente en los rangos y esto no está"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p11880000-canonical-v1",
+   "pts_ms": 132000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p11880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p12150000-canonical-v1",
+   "pts_ms": 135000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p12150000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p12240000-canonical-v1",
+   "pts_ms": 136000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p12240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p12510000-canonical-v1",
+   "pts_ms": 139000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p12510000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p12600000-canonical-v1",
+   "pts_ms": 140000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p12600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p12960000-canonical-v1",
+   "pts_ms": 144000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p12960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13050000-canonical-v1",
+   "pts_ms": 145000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13320000-canonical-v1",
+   "pts_ms": 148000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

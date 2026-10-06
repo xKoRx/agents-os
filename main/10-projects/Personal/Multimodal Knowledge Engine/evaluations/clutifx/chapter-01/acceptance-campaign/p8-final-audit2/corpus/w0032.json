@@ -1,0 +1,356 @@
+{
+ "window": "w0032",
+ "start": "07:02",
+ "end": "07:16",
+ "start_ms": 422000,
+ "end_ms": 436000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-anadido-progresivo-rectangulos",
+   "kind": "observation",
+   "version": 1,
+   "statement": "A lo largo de la secuencia aparecen progresivamente más rectángulos sobre el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p37980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p38520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p39150000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p39240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "0a38143736f5e1592ab9d7ded8e30ecf249bc766681d4f98c5b97d15ab174981",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "552998a3bced603158b06df7e645af07b77ef212cea8517a4bc328ef916675ef"
+    ],
+    "response_id": "gen-1791153582-gSBvvZDB3lFVDpq4k67H"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-curso-rapido-si-ejemplo-bastara",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Si el ejemplo mostrado fuera suficiente para operar, el curso sería muy rápido.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00055"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "a687363277aa24526c443cf6c41f93d4d954214e312a395148616110808027e0",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "552998a3bced603158b06df7e645af07b77ef212cea8517a4bc328ef916675ef"
+    ],
+    "response_id": "gen-1791153582-gSBvvZDB3lFVDpq4k67H"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ejemplo-rangos-no-basta-para-operar",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El ejemplo mostrado de precio formando rangos no es suficiente para operar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00055",
+    "asr-00056",
+    "frame-4de8f12d4841c630-s0-p39150000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "d796698f9e6dc0584fd17d20760202686a48d457102d2163eeb1b61241c9e487",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "552998a3bced603158b06df7e645af07b77ef212cea8517a4bc328ef916675ef"
+    ],
+    "response_id": "gen-1791153582-gSBvvZDB3lFVDpq4k67H"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-movimiento-ilustra-logica-rangos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El movimiento del precio se usa para ilustrar la lógica de los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00055",
+    "asr-00056",
+    "frame-4de8f12d4841c630-s0-p39150000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5f47afb62738f0facdba93045c14d43299a3240e3340b46133c7a73e88fbf8f5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El discurso dice directamente que, para mostrar la lógica de los rangos, «el precio se va moviendo así», y añade que de esa forma va formando rangos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el movimiento del precio se emplea para ilustrar la lógica de los rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "552998a3bced603158b06df7e645af07b77ef212cea8517a4bc328ef916675ef"
+    ],
+    "response_id": "gen-1791153582-gSBvvZDB3lFVDpq4k67H"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-completa-rangos",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el movimiento mostrado, el precio va completando los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00056",
+    "frame-4de8f12d4841c630-s0-p39150000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "12213c4aba2918f37334e063ea74d33e7dc6fc7d470b5d4af0812fd812144c84",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma literalmente que va formando rangos y que los va completando, lo que respaldan «el precio va completando los rangos» y el movimiento mostrado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la progresión del precio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "552998a3bced603158b06df7e645af07b77ef212cea8517a4bc328ef916675ef"
+    ],
+    "response_id": "gen-1791153582-gSBvvZDB3lFVDpq4k67H"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-forma-rangos",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el movimiento mostrado, el precio va formando rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00055",
+    "asr-00056",
+    "frame-4de8f12d4841c630-s0-p39150000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b622bef3472fd3ddf9916cf8eeec800b49b52ed865062663905f4687e6a73aa1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción cited states explícitamente que «el precio se va moviendo así» y que «va formando rangos», lo que respalda directamente que el precio va formando rangos en el movimiento mostrado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "552998a3bced603158b06df7e645af07b77ef212cea8517a4bc328ef916675ef"
+    ],
+    "response_id": "gen-1791153582-gSBvvZDB3lFVDpq4k67H"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-delimitados-rectangulos",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Varios rangos de precio aparecen delimitados por rectángulos en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p39150000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p39240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f0478253aa2f0b1a3e08b57fe0c297730bca5f0a0016ad76f93c78502cc32c6e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran varios rectángulos que delimitan distintas zonas del gráfico de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "552998a3bced603158b06df7e645af07b77ef212cea8517a4bc328ef916675ef"
+    ],
+    "response_id": "gen-1791153582-gSBvvZDB3lFVDpq4k67H"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00055",
+   "start_ms": 421870,
+   "end_ms": 429810,
+   "text": "No es suficiente esto para operar, sino el curso sería muy rápido. Pero para que veáis un poco la lógica de esto de los rangos, es que el precio se va moviendo así, ¿vale?"
+  },
+  {
+   "id": "asr-00056",
+   "start_ms": 429810,
+   "end_ms": 437310,
+   "text": "tal cual va formando rangos los va completando y va como haciendo su sus cosas pues en funciona"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37980000-canonical-v1",
+   "pts_ms": 422000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p38070000-canonical-v1",
+   "pts_ms": 423000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p38070000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p38160000-canonical-v1",
+   "pts_ms": 424000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p38160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p38520000-canonical-v1",
+   "pts_ms": 428000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p38520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p38880000-canonical-v1",
+   "pts_ms": 432000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p38880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p38970000-canonical-v1",
+   "pts_ms": 433000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p38970000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p39150000-canonical-v1",
+   "pts_ms": 435000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p39150000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p39240000-canonical-v1",
+   "pts_ms": 436000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p39240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,348 @@
+{
+ "window": "w0031",
+ "start": "06:52",
+ "end": "07:01",
+ "start_ms": 412000,
+ "end_ms": 421000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-comprobacion-muchas-temporalidades",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Eso se puede comprobar en muchas temporalidades.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00054"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "3ac45b40a11b6d08da8573887549241fe04036826640f6ce4bdc8598c432c870",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "36faaaa401406f8268543ac92f51f9ce63b52bbf89287ba9d1643fc4a5a3eedf"
+    ],
+    "response_id": "gen-1791153323-pCeWh0KXOWj2UtgyzFxA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-actual-es-ejemplo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El gráfico mostrado aquí también es uno de esos ejemplos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00054",
+    "frame-4de8f12d4841c630-s0-p37890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "e253db5b4a619b3f1b3bec4bacea4d571597bf5e439720c1946a78b44c857db3",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "36faaaa401406f8268543ac92f51f9ce63b52bbf89287ba9d1643fc4a5a3eedf"
+    ],
+    "response_id": "gen-1791153323-pCeWh0KXOWj2UtgyzFxA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-muestra-mas-historial",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista del gráfico muestra progresivamente más historial.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p37080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37170000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37350000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "1130b24acd62f694679773527095e2ace64190001040b0dabda72df1e66ad44e",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "36faaaa401406f8268543ac92f51f9ce63b52bbf89287ba9d1643fc4a5a3eedf"
+    ],
+    "response_id": "gen-1791153323-pCeWh0KXOWj2UtgyzFxA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafio-amplia-velas-febrero",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista del gráfico muestra con más detalle unas velas de febrero de 2025.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p37530000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "42a3b8b4ed6f636cd5985f64b2a4be110df542e570872d0023bf012c4d35d6c6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes sucesivas muestran el gráfico de EURUSD ampliarse hasta presentar con mayor detalle una selección de velas située en febrero de 2025."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "36faaaa401406f8268543ac92f51f9ce63b52bbf89287ba9d1643fc4a5a3eedf"
+    ],
+    "response_id": "gen-1791153323-pCeWh0KXOWj2UtgyzFxA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-muchos-ejemplos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Se pueden buscar muchos ejemplos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00054"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "11da7c17c800dc007a6732b8a06c9b606a7aa271c8537acd3e68a90db84d14ff",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación reproduce la proposición expresada en «puedo buscar muchos ejemplos»: es posible buscar muchos ejemplos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La perífrasis impersonal «se pueden buscar» no introduce una proposición independiente respecto de la capacidad expresada por «puedo buscar»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "36faaaa401406f8268543ac92f51f9ce63b52bbf89287ba9d1643fc4a5a3eedf"
+    ],
+    "response_id": "gen-1791153323-pCeWh0KXOWj2UtgyzFxA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-velas-febrero",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Un rectángulo aparece alrededor de varias velas de febrero de 2025.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p37800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8a927540482772794aa538466da36b3efab13155e5c58b866a69ef98d03ab093",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las capturas muestran un contorno rectangular alrededor de varias velas, situado junto a la etiqueta «Feb» en el eje de 2025."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "36faaaa401406f8268543ac92f51f9ce63b52bbf89287ba9d1643fc4a5a3eedf"
+    ],
+    "response_id": "gen-1791153323-pCeWh0KXOWj2UtgyzFxA"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-unica-diaria",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico mostrado es únicamente diaria (1D).",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00054",
+    "frame-4de8f12d4841c630-s0-p37080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37890000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a0c403a804979483ae0c961dcfea9f4dc400683a93c1d5964806e14597923823",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma expresamente «esto es solo el diario», y ambas imágenes muestran la etiqueta «1D» y el selector «1D» para EURUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la temporalidad del gráfico mostrado es exclusivamente diaria; «únicamente» solo la restringe."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "36faaaa401406f8268543ac92f51f9ce63b52bbf89287ba9d1643fc4a5a3eedf"
+    ],
+    "response_id": "gen-1791153323-pCeWh0KXOWj2UtgyzFxA"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00054",
+   "start_ms": 407710,
+   "end_ms": 421350,
+   "text": "Lo podéis comprobar con vosotros mismos en muchas temporalidades cómo va pasando eso, ¿vale? Es que puedo buscar muchos ejemplos. Este de aquí también. Y esto es solo el diario, obviamente."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37080000-canonical-v1",
+   "pts_ms": 412000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37170000-canonical-v1",
+   "pts_ms": 413000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37260000-canonical-v1",
+   "pts_ms": 414000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37260000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37350000-canonical-v1",
+   "pts_ms": 415000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37350000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37440000-canonical-v1",
+   "pts_ms": 416000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37530000-canonical-v1",
+   "pts_ms": 417000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37530000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37800000-canonical-v1",
+   "pts_ms": 420000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37890000-canonical-v1",
+   "pts_ms": 421000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,442 @@
+{
+ "window": "w0051",
+ "start": "11:44",
+ "end": "11:59",
+ "start_ms": 704000,
+ "end_ms": 719000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-annotation-pending-range",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El esquema lleva la etiqueta «RANGO PENDIENTE».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p63360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "3df2097664e3df771ecf2b9c9c43a3a2d201a79d62dc2043c02ac2428a32cc51",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "8c5bac791f325d9d585e61900c7f5d4cc90a6246b0fe4ff7645646bd99946950"
+    ],
+    "response_id": "gen-1791160528-oK8pSt06kGJnV1tzFUCg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-left-range-forming-bullish",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango de la izquierda se forma al alza.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00107",
+    "frame-4de8f12d4841c630-s0-p63360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p63720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6aa91cd5d1ac524ce118c9e5c3ea3debc5a2bf3bd232dbac0931a43a497c8d73",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que el primer rango se forma «alcista»; por el contexto visual y el contraste posterior con el rango de la derecha, esa referencia corresponde al rango de la izquierda."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "8c5bac791f325d9d585e61900c7f5d4cc90a6246b0fe4ff7645646bd99946950"
+    ],
+    "response_id": "gen-1791160528-oK8pSt06kGJnV1tzFUCg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-line-horizontal-115000-drawn",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja una línea horizontal en 1,15000 en la parte derecha del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p63360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p63720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_CONTRADICTED",
+    "invocation_id": "2019b70a6694c9ab3b8ba7967bb2fb4d68a53f19a9934006185f40738975d6a8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran que aparece una línea horizontal en la parte derecha, pero su altura coincide con la marca 1,15029 de la escala, no con 1,15000."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_CONTRADICTED",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "8c5bac791f325d9d585e61900c7f5d4cc90a6246b0fe4ff7645646bd99946950"
+    ],
+    "response_id": "gen-1791160528-oK8pSt06kGJnV1tzFUCg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-price-currency-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La moneda del eje de precios es USD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p63360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "32ac8202da472e0705b134337c75aeb670dc28b6e983cfd7b28d388d34f94662",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La parte superior del eje de precios muestra explícitamente la etiqueta «USD»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "8c5bac791f325d9d585e61900c7f5d4cc90a6246b0fe4ff7645646bd99946950"
+    ],
+    "response_id": "gen-1791160528-oK8pSt06kGJnV1tzFUCg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-right-range-forming-bearish",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango de la derecha se está formando a la baja en este momento.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106",
+    "asr-00107",
+    "frame-4de8f12d4841c630-s0-p63720000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p64440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "695f0d9ff675f30530945c1df9bd8407999a5c55b110cb5deae5a1bfc3b8fec4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que «se nos está formando un rango bajista aquí» y, en la línea siguiente, que «este es un rango que se nos forma bajista». La referencia «aquí» se resuelve al rango de la derecha mostrado en las imágenes."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el rango de la derecha se está formando a la baja en el momento indicado; «en este momento» solo limita temporalmente esa misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "8c5bac791f325d9d585e61900c7f5d4cc90a6246b0fe4ff7645646bd99946950"
+    ],
+    "response_id": "gen-1791160528-oK8pSt06kGJnV1tzFUCg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rightmost-candle-sweeps-high-closes-inside",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela del extremo derecho toma el high y, después, cierra dentro del rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106",
+    "frame-4de8f12d4841c630-s0-p63720000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p64080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7bd91f286f84117aff31dc5d245af0608b94df88178a5bd7cb28fe190fe72fbd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente que «esta vela» «toma el high» y «nos cierra adentro», con «esta vela» identificable como la vela del extremo derecho."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene dos proposiciones evaluables de forma independiente: que la vela alcanza el máximo y que después cierra dentro del rango."
+     },
+     {
+      "code": "claim_not_atomic",
+      "detail": "claim review judged the statement COMPOSITE: independently evaluable assertions must be separate claims"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "8c5bac791f325d9d585e61900c7f5d4cc90a6246b0fe4ff7645646bd99946950"
+    ],
+    "response_id": "gen-1791160528-oK8pSt06kGJnV1tzFUCg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rule-sweep-close-forms-bearish-range",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si la vela abre, toma el high y luego cierra dentro, se está formando un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2095053bc2d02d28946208a4e46c7aefb2dd3f7f8a23a687e05326fbb61c615c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada enuncia directamente que, si la vela abre, toma el high y cierra adentro, se está formando un rango bajista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres condiciones describen un único patrón de velas y sustentan una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "8c5bac791f325d9d585e61900c7f5d4cc90a6246b0fe4ff7645646bd99946950"
+    ],
+    "response_id": "gen-1791160528-oK8pSt06kGJnV1tzFUCg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-series-source-forex-com",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La serie mostrada está identificada como «FOREX.com».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p63360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "00cdd78621370c58b2929f11333c813cfb0d5b5887f208187a090e06265595a4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La cabecera del gráfico muestra «EURUSD · 15 · FOREX.com», lo que identifica la serie mostrada como «FOREX.com»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "8c5bac791f325d9d585e61900c7f5d4cc90a6246b0fe4ff7645646bd99946950"
+    ],
+    "response_id": "gen-1791160528-oK8pSt06kGJnV1tzFUCg"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-right-bearish-range-depends-on-sweep-close",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-right-range-forming-bearish",
+   "subject_version": 1,
+   "object_id": "cl-rightmost-candle-sweeps-high-closes-inside",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106",
+    "frame-4de8f12d4841c630-s0-p63720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6576464c4d50fdbe35bab7630c3743a6da5d8282a1b6930d870624120fa2ee38",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción enlaza explícitamente ambas afirmaciones con «si»: si la vela del extremo derecho toma el high y luego cierra dentro, «se nos está formando un rango bajista aquí», en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "8c5bac791f325d9d585e61900c7f5d4cc90a6246b0fe4ff7645646bd99946950"
+    ],
+    "response_id": "gen-1791160528-oK8pSt06kGJnV1tzFUCg"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00106",
+   "start_ms": 696980,
+   "end_ms": 711540,
+   "text": "Lo que ahora mismo, si vemos que esta vela abre, toma el high y nos cierra adentro, lo que está pasando ahora es que se nos está formando un rango bajista aquí, ¿vale?"
+  },
+  {
+   "id": "asr-00107",
+   "start_ms": 711760,
+   "end_ms": 718480,
+   "text": "Este es un rango que se nos forma altista, por lo tanto todo perfecto, pero este es un rango que se nos forma bajista."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63360000-canonical-v1",
+   "pts_ms": 704000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63720000-canonical-v1",
+   "pts_ms": 708000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63810000-canonical-v1",
+   "pts_ms": 709000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63810000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63900000-canonical-v1",
+   "pts_ms": 710000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63900000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63990000-canonical-v1",
+   "pts_ms": 711000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63990000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p64080000-canonical-v1",
+   "pts_ms": 712000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p64080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p64440000-canonical-v1",
+   "pts_ms": 716000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p64440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p64710000-canonical-v1",
+   "pts_ms": 719000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p64710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

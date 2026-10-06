@@ -1,0 +1,84 @@
+{
+ "window": "w0123",
+ "start": "31:20",
+ "end": "31:40",
+ "start_ms": 1880000,
+ "end_ms": 1900000,
+ "disposition": "rejected",
+ "rejection_category": "provider unavailable",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00270",
+   "start_ms": 1862930,
+   "end_ms": 1883530,
+   "text": "Abre, manipula, entonces esto ahora es una mecha ya, así, sube y baja un poco más hasta cerrar, dejando la mecha ahí arriba, ¿vale?"
+  },
+  {
+   "id": "asr-00271",
+   "start_ms": 1883530,
+   "end_ms": 1906420,
+   "text": "Esto de aquí y cierra aquí, ¿vale? A las 5. Esto es el concepto de Power 3. ¿Por qué es importante esto? Para saber, pues, si tú estás buscando compras en un contexto alcista, las compras ideales siempre, siempre, siempre van a estar en esta etapa de manipulación de la vela, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p169200000-canonical-v1",
+   "pts_ms": 1880000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p169200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p169560000-canonical-v1",
+   "pts_ms": 1884000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p169560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p169920000-canonical-v1",
+   "pts_ms": 1888000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p169920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p170280000-canonical-v1",
+   "pts_ms": 1892000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p170280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p170550000-canonical-v1",
+   "pts_ms": 1895000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p170550000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p170640000-canonical-v1",
+   "pts_ms": 1896000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p170640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p170820000-canonical-v1",
+   "pts_ms": 1898000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p170820000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p171000000-canonical-v1",
+   "pts_ms": 1900000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p171000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

@@ -1,0 +1,114 @@
+{
+ "window": "w0126",
+ "start": "32:25",
+ "end": "32:40",
+ "start_ms": 1945000,
+ "end_ms": 1960000,
+ "disposition": "rejected",
+ "rejection_category": "provider unavailable",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00281",
+   "start_ms": 1944900,
+   "end_ms": 1947860,
+   "text": "imagínate que tú tienes que"
+  },
+  {
+   "id": "asr-00282",
+   "start_ms": 1947860,
+   "end_ms": 1949700,
+   "text": "buscar un rango alcista para comprar"
+  },
+  {
+   "id": "asr-00283",
+   "start_ms": 1949700,
+   "end_ms": 1952190,
+   "text": "pues es lógico que"
+  },
+  {
+   "id": "asr-00284",
+   "start_ms": 1952190,
+   "end_ms": 1953510,
+   "text": "durante el power three de la vela"
+  },
+  {
+   "id": "asr-00285",
+   "start_ms": 1953510,
+   "end_ms": 1956270,
+   "text": "si te hace esto, pues es lo ideal"
+  },
+  {
+   "id": "asr-00286",
+   "start_ms": 1956270,
+   "end_ms": 1958530,
+   "text": "porque te está creando un rango alcista"
+  },
+  {
+   "id": "asr-00287",
+   "start_ms": 1958530,
+   "end_ms": 1960310,
+   "text": "así imagínate"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175050000-canonical-v1",
+   "pts_ms": 1945000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175140000-canonical-v1",
+   "pts_ms": 1946000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175230000-canonical-v1",
+   "pts_ms": 1947000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175230000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175320000-canonical-v1",
+   "pts_ms": 1948000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175680000-canonical-v1",
+   "pts_ms": 1952000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p175860000-canonical-v1",
+   "pts_ms": 1954000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p175860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p176040000-canonical-v1",
+   "pts_ms": 1956000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p176040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p176400000-canonical-v1",
+   "pts_ms": 1960000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p176400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

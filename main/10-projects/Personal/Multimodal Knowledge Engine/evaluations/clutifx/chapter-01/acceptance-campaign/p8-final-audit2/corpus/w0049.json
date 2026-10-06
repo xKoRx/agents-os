@@ -1,0 +1,323 @@
+{
+ "window": "w0049",
+ "start": "11:18",
+ "end": "11:27",
+ "start_ms": 678000,
+ "end_ms": 687000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-borde-superior-rectangulo-derecho-sube",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El borde superior del rectángulo negro de la derecha se desplaza hacia arriba.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p61290000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p61830000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "0b03a17bcd81f2979517114a42fcf93e82cb1d233f54aaff9f9f58c844f146db",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a86e610f33a2cf4115a554d8aea262b3ab02f5722e9f4d01fa9218015d639094"
+    ],
+    "response_id": "gen-1791160208-xb1OZPRww5bM5FCX0oIi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-sobre-rango-diario",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo está situado por encima del rango diario.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105",
+    "frame-4de8f12d4841c630-s0-p61020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "594a20a9ef048fd5f62491bc995074bb8971af68b7f3403b41f2bdca7928ce93",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «tenemos el rango diario aquí, tenemos el objetivo arriba», lo que sostiene que el objetivo está situado por encima del rango diario."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición verificable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a86e610f33a2cf4115a554d8aea262b3ab02f5722e9f4d01fa9218015d639094"
+    ],
+    "response_id": "gen-1791160208-xb1OZPRww5bM5FCX0oIi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-diario-mostrado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se muestra un rango diario en el gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105",
+    "frame-4de8f12d4841c630-s0-p61020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ccabc0a41ee75eacfcefd404cc10e63549cb69d1c143252bd0b8cd6b8be12160",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El transcripción dice explícitamente «tenemos el rango diario aquí», y el gráfico muestra una figura marcada «D», correspondiente al rango diario."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a86e610f33a2cf4115a554d8aea262b3ab02f5722e9f4d01fa9218015d639094"
+    ],
+    "response_id": "gen-1791160208-xb1OZPRww5bM5FCX0oIi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-reiniciado-apertura-vela-siguiente",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Un rango reiniciado se produce cuando la siguiente vela abre por arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cd1af0e7a91042655015bee46f648e733944c38a82b1caf62d463acea51876f0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que un rango reiniciado sería cuando la siguiente vela abre por arriba y toma el high."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La oración contiene una sola proposición condicional; la cláusula «cuando» especifica la condición de esa misma proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a86e610f33a2cf4115a554d8aea262b3ab02f5722e9f4d01fa9218015d639094"
+    ],
+    "response_id": "gen-1791160208-xb1OZPRww5bM5FCX0oIi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-reiniciado-vela-toma-high",
+   "kind": "rule",
+   "version": 1,
+   "statement": "En un rango reiniciado, la siguiente vela toma el high.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0a6d477e72f6120a0c0d9031c7d567db230e84df91722a1040938c13fb3d8d1d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que, en un rango reiniciado, «la siguiente vela abre por arriba y toma el high»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la siguiente vela toma el high en ese contexto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a86e610f33a2cf4115a554d8aea262b3ab02f5722e9f4d01fa9218015d639094"
+    ],
+    "response_id": "gen-1791160208-xb1OZPRww5bM5FCX0oIi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rotulo-rango-pendiente",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico incluye el rótulo «RANGO PENDIENTE».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p61020000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p61920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b97782d31353864dbe6e000fef1830ebb9066d1e7e7d35bd182d4ea76befe65f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran de forma legible el rótulo «RANGO PENDIENTE» en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición verificable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a86e610f33a2cf4115a554d8aea262b3ab02f5722e9f4d01fa9218015d639094",
+     "d1b67dfb35cb95a0234a7b3cd331190bbcc3ecddcbdd2b04366f9881e862a54d"
+    ],
+    "response_id": "gen-1791160208-xb1OZPRww5bM5FCX0oIi"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00105",
+   "start_ms": 676080,
+   "end_ms": 696980,
+   "text": "En el mismo caso, tenemos el rango diario aquí, tenemos el objetivo arriba, pero ¿cómo sería un rango reiniciado? Pues que la siguiente vela abre por arriba y toma el high, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61020000-canonical-v1",
+   "pts_ms": 678000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61110000-canonical-v1",
+   "pts_ms": 679000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61110000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61200000-canonical-v1",
+   "pts_ms": 680000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61290000-canonical-v1",
+   "pts_ms": 681000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61380000-canonical-v1",
+   "pts_ms": 682000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61560000-canonical-v1",
+   "pts_ms": 684000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61740000-canonical-v1",
+   "pts_ms": 686000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61740000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61830000-canonical-v1",
+   "pts_ms": 687000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61830000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61920000-canonical-v1",
+   "pts_ms": 688000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

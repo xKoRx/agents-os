@@ -1,0 +1,682 @@
+{
+ "window": "w0079",
+ "start": "20:08",
+ "end": "20:20",
+ "start_ms": 1208000,
+ "end_ms": 1220000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-continuacion-hacia-arriba",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Desde el punto de referencia actual, el precio podría continuar hasta el nivel superior señalado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169",
+    "asr-00170",
+    "asr-00171",
+    "frame-4de8f12d4841c630-s0-p109800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "e6f60f5ac551eeb7550701c4d187822ae7546b2db64adca12e9f144c43a1f322",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4"
+    ],
+    "response_id": "gen-1791169456-61u1wVUbj46U8r5K5r6q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esperar-apertura-nueva-vela",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Hay que esperar a que abra una nueva vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "c97ae3411b21a4d00d88e076162a1413377d8512f4ad0213c29ed26fcaa07867",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4"
+    ],
+    "response_id": "gen-1791169456-61u1wVUbj46U8r5K5r6q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esperar-formacion-nuevo-rango",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Hay que esperar que la nueva vela forme un nuevo rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169",
+    "frame-4de8f12d4841c630-s0-p108720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "461c93a5e523cad0f50ccec6be4bbcaf1ff7af4fe913b826fd9e777ca7bcc917",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4"
+    ],
+    "response_id": "gen-1791169456-61u1wVUbj46U8r5K5r6q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esperar-toma-low-nueva-vela",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Hay que esperar que la nueva vela tome el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169",
+    "frame-4de8f12d4841c630-s0-p108720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "2ea2086fa69a0965376944f4acbfffef5f4e12ebafda2640f66bc87a19cc6e7b",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4"
+    ],
+    "response_id": "gen-1791169456-61u1wVUbj46U8r5K5r6q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-corregido-otro-punto",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo corregido se sitúa en el otro punto señalado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169",
+    "asr-00170",
+    "frame-4de8f12d4841c630-s0-p109080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "056d3f3a670b20f5fce7c45a73ba87e784f0f398f469c5037d31265405c2d12b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El discurso primero sitúa el objetivo «aquí» y después lo corrige explícitamente: «Ya no aquí... sino este»; la expresión «otro punto señalado» resume ese cambio de referencia."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4"
+    ],
+    "response_id": "gen-1791169456-61u1wVUbj46U8r5K5r6q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-inicial",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Inicialmente, el objetivo se sitúa en el punto señalado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169",
+    "frame-4de8f12d4841c630-s0-p108720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d7d34f7c078a30f9d6731eeb4334a05f3eab89fb39a6e51898b6c3b9e24fca98",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma «tenemos el objetivo aquí» y la imagen muestra el punto horizontal señalado al que se refiere ese «aquí»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la ubicación inicial del objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4"
+    ],
+    "response_id": "gen-1791169456-61u1wVUbj46U8r5K5r6q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-rechazado-inicial",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo ya no se sitúa en el punto señalado inicialmente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169",
+    "asr-00170",
+    "frame-4de8f12d4841c630-s0-p108720000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p109080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8927984c6ca3b5894fdec17ad1c7f118cdfaabb26c188c45deb9c6846d05852e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El transcript corrige explícitamente el objetivo anterior: «Ya no aquí... sino este», lo que indica que ya no está en el punto señalado inicialmente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran que el nivel horizontal superior anterior fue eliminado y sustituido por otro nivel objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4"
+    ],
+    "response_id": "gen-1791169456-61u1wVUbj46U8r5K5r6q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-punto-inicial-borrado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El punto anterior ya está borrado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169",
+    "asr-00170",
+    "frame-4de8f12d4841c630-s0-p108720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "055e5249c4755ba86c96b65f8cd3fcd152bd55c29fd412cb497af44cd2eb2fdc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente «esto ya está borrado» y el contexto distingue ese punto del nuevo punto indicado, por lo que sostiene que el punto anterior está borrado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4"
+    ],
+    "response_id": "gen-1791169456-61u1wVUbj46U8r5K5r6q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-blanca-alargada-arriba",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El cuerpo seleccionado de la vela blanca de la derecha se alarga hacia arriba.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p109620000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p109800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6218a3b05d4cb09987633ecea2471d5fb75a6e80fa19dbda908f39bf9293c81d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En las dos imágenes, el cuerpo seleccionado de la vela blanca derecha conserva su borde inferior y su borde superior sube, por lo que se alarga hacia arriba."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe un único cambio visual del mismo cuerpo seleccionado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4"
+    ],
+    "response_id": "gen-1791169456-61u1wVUbj46U8r5K5r6q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-derecha-seleccionada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El cuerpo de la vela de la derecha queda seleccionado.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p109440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p109530000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p109620000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5e81bdc53d989fd72fe4bdb37804f82b451d2e34e55be8ca70e36f43bc182d10",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En las tres imágenes, el cuerpo de la vela situada a la derecha aparece rodeado por tiradores de selección."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4"
+    ],
+    "response_id": "gen-1791169456-61u1wVUbj46U8r5K5r6q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-recoloreada-blanco",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El relleno de la vela de la derecha cambia de negro a blanco.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p109440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p109530000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p109620000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "264650f108709adc995540e211451b610a1282704f0f84f110cadef56dc71c43",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos primeras imágenes muestran negra la vela de la derecha y la tercera muestra su relleno blanco, por lo que se observa el cambio indicado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4"
+    ],
+    "response_id": "gen-1791169456-61u1wVUbj46U8r5K5r6q"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-nuevo-rango-requiere-toma-low",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-esperar-formacion-nuevo-rango",
+   "subject_version": 1,
+   "object_id": "cl-esperar-toma-low-nueva-vela",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f4863909641a91375d793cfe5a111e08da59ae58318ee88bdb68bb52e5a37086",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia ordena que la nueva vela «tome el low, así, forme nuevo rango», lo que presenta la formación del nuevo rango como consecuencia de que tome el low y sustenta la dependencia en esa orientación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4"
+    ],
+    "response_id": "gen-1791169456-61u1wVUbj46U8r5K5r6q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-objetivo-corregido-contradice-inicial",
+   "version": 1,
+   "type": "CONTRADICTS",
+   "subject_id": "cl-objetivo-corregido-otro-punto",
+   "subject_version": 1,
+   "object_id": "cl-objetivo-inicial",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169",
+    "asr-00170",
+    "frame-4de8f12d4841c630-s0-p108720000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p109080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f4cd4afdd842efd0ee05df75a2968f2167b66e868b6a52abd55b7b20d842b3b6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción sitúa inicialmente el objetivo en «aquí» y acto seguido lo corrige explícitamente: «Ya no aquí... sino este», negando el punto anterior y situando el objetivo corregido en otro punto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4"
+    ],
+    "response_id": "gen-1791169456-61u1wVUbj46U8r5K5r6q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rechazo-requiere-punto-borrado",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-objetivo-rechazado-inicial",
+   "subject_version": 1,
+   "object_id": "cl-punto-inicial-borrado",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169",
+    "asr-00170"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "da928b902fc87330791006dc81ccc3b96939de94e55bd35e40975c55d19d7481",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento enuncia «Ya no aquí» y lo explica inmediatamente con «Porque esto ya está borrado, sino este», estableciendo que el objetivo ya no está en el punto anterior precisamente porque dicho punto fue borrado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4"
+    ],
+    "response_id": "gen-1791169456-61u1wVUbj46U8r5K5r6q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-toma-low-requiere-apertura",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-esperar-toma-low-nueva-vela",
+   "subject_version": 1,
+   "object_id": "cl-esperar-apertura-nueva-vela",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "e022c5af9436cca5f297672772679331f7475a5873bdf30b4cabfcb57b8f63c7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enumera que hay que esperar que la nueva vela abra y que tome el low, pero no enuncia ni implica explícitamente que esperar que tome el low dependa de esperar su apertura."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4"
+    ],
+    "response_id": "gen-1791169456-61u1wVUbj46U8r5K5r6q"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00169",
+   "start_ms": 1197440,
+   "end_ms": 1208710,
+   "text": "¿Y qué tenemos que esperar ahora? Que la nueva vela abra, tome el low, así, forme nuevo rango y tenemos el objetivo aquí."
+  },
+  {
+   "id": "asr-00170",
+   "start_ms": 1209230,
+   "end_ms": 1212910,
+   "text": "Ya no aquí, ¿vale? Porque esto ya está borrado, sino este."
+  },
+  {
+   "id": "asr-00171",
+   "start_ms": 1213530,
+   "end_ms": 1219830,
+   "text": "Y a partir de aquí, pues, podríamos seguir hasta ahí arriba."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p108720000-canonical-v1",
+   "pts_ms": 1208000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p108720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p108900000-canonical-v1",
+   "pts_ms": 1210000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p108900000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p109080000-canonical-v1",
+   "pts_ms": 1212000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p109080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p109170000-canonical-v1",
+   "pts_ms": 1213000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p109170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p109440000-canonical-v1",
+   "pts_ms": 1216000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p109440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p109530000-canonical-v1",
+   "pts_ms": 1217000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p109530000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p109620000-canonical-v1",
+   "pts_ms": 1218000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p109620000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p109800000-canonical-v1",
+   "pts_ms": 1220000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p109800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

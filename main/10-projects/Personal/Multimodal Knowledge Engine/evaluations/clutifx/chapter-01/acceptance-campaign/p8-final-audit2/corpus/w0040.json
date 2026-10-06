@@ -1,0 +1,718 @@
+{
+ "window": "w0040",
+ "start": "09:00",
+ "end": "09:10",
+ "start_ms": 540000,
+ "end_ms": 550000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bearish-range-completion",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se completa el rango bearish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00083"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "1fe5ccd4679f67ff7d5b4a3b7aa3c14be71e12640361bee70038345a6626c70e",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bearish-range-formation",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se forma un rango bearish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00083"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "f01160030512ebf53a07260795565ddfaed1b81258857a62c6e8444f8d1af507",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bullish-range-arrival",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Llega un rango bullish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00082"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "d20c95264752e6afe5a6abd4c0b719e7584ad889b864b592c8ef7e54ca0ea21d",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-timeframe-1h-to-4h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La temporalidad del gráfico de EURUSD cambia de 1h a 4h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p48960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49050000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "887269d8ad0edf84d6209566523633b0bbe83257469368eec5bbe45125779360",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-view-pans-earlier",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista temporal del gráfico de EURUSD se desplaza hacia fechas anteriores.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49230000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49500000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "6f8f0d233a14b693577fc20fbe6014da26120cbd75cb611f727314d3525a63aa",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-explanation-aims-at-range-basis",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo de esta explicación es que entendáis la base de qué es un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00086",
+    "asr-00087"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "a0453ff213b6b29cc389dc1e28ec205b249b931d7df75adba5acfc127499eca3",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-4h-rectangle-visible",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico de GBPUSD en 4h muestra un rectángulo trazado sobre las velas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49050000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49500000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "11cf825af8d750272899e302929c7e2f15dfad3f42c10796797bdcce3c2ed42d",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-timeframe-1h-to-4h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La temporalidad del gráfico de GBPUSD cambia de 1h a 4h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p48960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49050000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "522cd9e2af91fad6f9e6b0ae5b09ad0a1f84d4b3fd1a0ab4ccc4b73e3499590a",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-view-pans-earlier",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista temporal del gráfico de GBPUSD se desplaza hacia fechas anteriores.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49230000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49500000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "717036f0b9a39bdccc815d25f0f00bc90608ebb44c916edee73c4111b54a6056",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-interval-value-4h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El intervalo mostrado en el cuadro «Cambiar intervalo» es «4H» («4 horas»).",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p48600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "378aeab80bc093f61bb1a5051688c41665fb6eaca150c3bf09d4f6ac057282e5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el cuadro «Cambiar intervalo» con el valor «4H» y la equivalencia «4 horas»; la aclaración entre paréntesis no añade una proposición independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-reading-based-on-timeframes",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La lectura de los rangos se basa en las temporalidades.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00082",
+    "asr-00083",
+    "asr-00084"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4da0c0c8040322fe1fc107e11f0ed1ed05ebd7feee60457683a4c65bec051e13",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que la interpretación bullish/bearish descrita («todo esto») está «basada en las temporalidades»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la lectura se basa en las temporalidades."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframes-shown-next-chapter",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Las temporalidades se verán en el siguiente capítulo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00084",
+    "asr-00085"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "207c60b60429e539cc2712b09de4b486cf10ca22f8119e466c21d1a55228c5bd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos citas expresan que las temporalidades se verán en el siguiente capítulo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-bearish-completion-depends-on-formation",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-bearish-range-completion",
+   "subject_version": 1,
+   "object_id": "cl-bearish-range-formation",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00083"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "14f581324fc850f0d0fe2d2a94a8774130f25172fb22f8b78c16f681cb67aba5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona la formación y la finalización del bearish, pero no enuncia ni enactúa una dependencia entre ambas afirmaciones."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-bearish-completion-depends-on-timeframes",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-bearish-range-completion",
+   "subject_version": 1,
+   "object_id": "cl-range-reading-based-on-timeframes",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00083",
+    "asr-00084"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2eb312ce1dae0f2d7021ec826486ea9f6fe40cb26edf5038b9da00d82bae9522",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «completa el bearish» y enseguida añade «y todo esto basado en las temporalidades», lo que presenta la completion del rango bearish como algo basado en las temporalidades en la orientación solicitada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-bearish-formation-depends-on-timeframes",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-bearish-range-formation",
+   "subject_version": 1,
+   "object_id": "cl-range-reading-based-on-timeframes",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00083",
+    "asr-00084"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ab2ae2c9f2bff8f9c726a0681651360ee41465bdbb3328f282c5eb197d5d9e05",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La expresión «y todo esto basado en las temporalidades» enlaza explícitamente lo bearish formado con las temporalidades y establece la dependencia en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-bullish-range-depends-on-timeframes",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-bullish-range-arrival",
+   "subject_version": 1,
+   "object_id": "cl-range-reading-based-on-timeframes",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00082",
+    "asr-00084"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "d624e42cd6f79db648fd73a69fc19955641a7f14ee0383427ed95779d5bb458c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The evidence says that “todo esto” is based on timeframes, but it does not explicitly identify the preceding bullish item as a range or establish that a range reading is what depends on the timeframes."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "941930b131c81332febfea11c0e27e84896ffb54f731cdb7a76210287d95b433"
+    ],
+    "response_id": "gen-1791156841-As0eEpkgOjxM6eFERBkx"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00082",
+   "start_ms": 539220,
+   "end_ms": 540720,
+   "text": "a otro, llega uno bullish,"
+  },
+  {
+   "id": "asr-00083",
+   "start_ms": 541160,
+   "end_ms": 542780,
+   "text": "forma uno bearish, completa el bearish"
+  },
+  {
+   "id": "asr-00084",
+   "start_ms": 542780,
+   "end_ms": 545280,
+   "text": "y todo esto basado en las temporalidades"
+  },
+  {
+   "id": "asr-00085",
+   "start_ms": 545280,
+   "end_ms": 547140,
+   "text": "que vais a ver en el siguiente capítulo"
+  },
+  {
+   "id": "asr-00086",
+   "start_ms": 547140,
+   "end_ms": 549480,
+   "text": "pero para que entendáis un poco la base"
+  },
+  {
+   "id": "asr-00087",
+   "start_ms": 549480,
+   "end_ms": 550560,
+   "text": "de qué es un rango"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p48600000-canonical-v1",
+   "pts_ms": 540000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p48600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p48960000-canonical-v1",
+   "pts_ms": 544000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p48960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49050000-canonical-v1",
+   "pts_ms": 545000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49140000-canonical-v1",
+   "pts_ms": 546000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49230000-canonical-v1",
+   "pts_ms": 547000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49230000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49320000-canonical-v1",
+   "pts_ms": 548000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49410000-canonical-v1",
+   "pts_ms": 549000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49500000-canonical-v1",
+   "pts_ms": 550000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

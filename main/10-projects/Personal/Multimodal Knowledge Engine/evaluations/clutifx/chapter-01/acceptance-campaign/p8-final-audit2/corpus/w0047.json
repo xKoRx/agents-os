@@ -1,0 +1,246 @@
+{
+ "window": "w0047",
+ "start": "10:56",
+ "end": "11:07",
+ "start_ms": 656000,
+ "end_ms": 667000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nombre-rango-pendiente",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango mostrado se denomina «rango pendiente».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00102",
+    "frame-4de8f12d4841c630-s0-p59310000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "29e66590c18944a952e93432b3d35de8782632eeadd69b931a3c71a0afc403a8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma literalmente «esto se llama rango pendiente», y la imagen muestra la etiqueta «RANGO PENDIENTE» junto al rango representado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Lastatement sostiene una sola proposición: el nombre del rango mostrado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3911fa816628d2db0f418eec2ee8b95b7e6f89fa0ad62df5bb614cfa59c1fe96"
+    ],
+    "response_id": "gen-1791159578-7sYjmSDaJoKDfkQM6xEK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nombre-rango-reiniciado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El otro caso se denominará «rango reiniciado».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00102",
+    "asr-00103",
+    "frame-4de8f12d4841c630-s0-p59310000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "007a5cc6defae9595c66ce0edb34868ccc1d01ae4d08f1eb36997ca9c0d645ba",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente: «Sería lo que vamos a llamar rango reiniciado», lo que respalda la denominación propuesta para «el otro caso»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el nombre asignado a ese caso."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3911fa816628d2db0f418eec2ee8b95b7e6f89fa0ad62df5bb614cfa59c1fe96"
+    ],
+    "response_id": "gen-1791159578-7sYjmSDaJoKDfkQM6xEK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-favorece-objetivo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango pendiente va a favor de nuestro objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00102",
+    "frame-4de8f12d4841c630-s0-p59310000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9417bee6278b927dfef1af3ca7e3211b611e7a70ebaede6c28b2596fe1590ac0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que «esto se llama rango pendiente» es «un rango que va a favor de nuestro objetivo», lo que respalda directamente la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el rango pendiente va a favor del objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3911fa816628d2db0f418eec2ee8b95b7e6f89fa0ad62df5bb614cfa59c1fe96"
+    ],
+    "response_id": "gen-1791159578-7sYjmSDaJoKDfkQM6xEK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-negro-adicional-derecha",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En la parte derecha del gráfico aparece un rectángulo negro adicional.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p59940000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60030000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bd1ba2844a1b4a2d589f0687cb96b347b40b01b582b6c7c022d43b47920cdfef",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra un rectángulo negro adicional en la parte derecha del gráfico, además del rectángulo negro de la izquierda."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3911fa816628d2db0f418eec2ee8b95b7e6f89fa0ad62df5bb614cfa59c1fe96"
+    ],
+    "response_id": "gen-1791159578-7sYjmSDaJoKDfkQM6xEK"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00102",
+   "start_ms": 652440,
+   "end_ms": 661680,
+   "text": "perdón, esto se llama rango pendiente, porque es un rango que va a favor de nuestro objetivo, ¿vale?"
+  },
+  {
+   "id": "asr-00103",
+   "start_ms": 662140,
+   "end_ms": 670680,
+   "text": "¿Qué sería el otro caso? Vamos a verlo. Sería lo que vamos a llamar rango reiniciado, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59040000-canonical-v1",
+   "pts_ms": 656000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59310000-canonical-v1",
+   "pts_ms": 659000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59310000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59400000-canonical-v1",
+   "pts_ms": 660000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59580000-canonical-v1",
+   "pts_ms": 662000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59760000-canonical-v1",
+   "pts_ms": 664000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59850000-canonical-v1",
+   "pts_ms": 665000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59940000-canonical-v1",
+   "pts_ms": 666000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60030000-canonical-v1",
+   "pts_ms": 667000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

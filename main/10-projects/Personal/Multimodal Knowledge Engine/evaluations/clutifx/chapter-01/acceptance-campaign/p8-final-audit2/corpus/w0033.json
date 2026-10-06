@@ -1,0 +1,505 @@
+{
+ "window": "w0033",
+ "start": "07:19",
+ "end": "07:30",
+ "start_ms": 439000,
+ "end_ms": 450000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-history-panned",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista del gráfico se desplaza por distintos periodos temporales.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p39510000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p40140000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p40410000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p40500000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "480a4ae176b8ff339caf2b6fd75f19ebdb82575678858d3ba410029298d3639c",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c2f5a54708b650743ceeb867756bd20d888ae693d24392b8805ae427ba4f0a3"
+    ],
+    "response_id": "gen-1791153719-9KFHLCaBFGPfvmK0HOnI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-instrument-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento del gráfico mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p39510000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p63360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p90630000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "992eb919401b9600cc8d65b801c71c375c7ab4945e84baab316e32d738535fd4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran explícitamente la etiqueta «EURUSD» en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c2f5a54708b650743ceeb867756bd20d888ae693d24392b8805ae427ba4f0a3",
+     "4f7297d5129033f5a6b0b94ecfd999f6abba618107a6b15c5e265f9d20c2b668",
+     "8c5bac791f325d9d585e61900c7f5d4cc90a6246b0fe4ff7645646bd99946950"
+    ],
+    "response_id": "gen-1791153719-9KFHLCaBFGPfvmK0HOnI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-observe-range-completion",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Si quieres hacer este ejercicio, observa cómo se van completando los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00058",
+    "asr-00059"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c5849082a31500482d3de285c01e618b5f9030591f6a047bebefb442c2de008e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica que, si se quiere hacer el ejercicio, la tarea es observar cómo los rangos se van completando."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La frase condicional solo limita la instrucción principal y no añade una proposición independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c2f5a54708b650743ceeb867756bd20d888ae693d24392b8805ae427ba4f0a3"
+    ],
+    "response_id": "gen-1791153719-9KFHLCaBFGPfvmK0HOnI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-operate-daily-chart-only",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Se puede operar solo observando el gráfico diario.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00058"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ee36b454343d70252f442171aca7dcc86facbaacf30ffbbe4e7a5fb1b5f9dd41",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que se podría «operar solo viendo el gráfico diario», lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Lastatement sostiene una sola proposición: que es posible operar observando únicamente el gráfico diario."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c2f5a54708b650743ceeb867756bd20d888ae693d24392b8805ae427ba4f0a3"
+    ],
+    "response_id": "gen-1791153719-9KFHLCaBFGPfvmK0HOnI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-selected",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Un rango del gráfico aparece seleccionado con puntos de control azules.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "asr-00057",
+    "frame-4de8f12d4841c630-s0-p39960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "629d20ea8601c481dd2881cea59ccb3416d3ba2c9aa08c2c31b959d950aeab44",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra un rango rectangular seleccionado en el gráfico con puntos de control azules visibles."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c2f5a54708b650743ceeb867756bd20d888ae693d24392b8805ae427ba4f0a3"
+    ],
+    "response_id": "gen-1791153719-9KFHLCaBFGPfvmK0HOnI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ranges-always-complete",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos siempre se van completando.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00059"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7868ae28877663976638d454a26b273acf78e67dbfec95ff6d6f116ccee9d9e3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma casi literalmente que «los rangos se te van completando siempre», lo que respalda que siempre se van completando."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c2f5a54708b650743ceeb867756bd20d888ae693d24392b8805ae427ba4f0a3"
+    ],
+    "response_id": "gen-1791153719-9KFHLCaBFGPfvmK0HOnI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ranges-drawn-on-chart",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Estoy dibujando varios rangos en el gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00057",
+    "frame-4de8f12d4841c630-s0-p39510000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p39960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "888503cb620f7cd361402cb962bfacc8bf18ff0a83952b8ee7b78c094daa4084",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «os estoy pintando los rangos», lo que sostiene la acción de dibujar varios rangos en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran varios rangos rectangulares trazados sobre el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c2f5a54708b650743ceeb867756bd20d888ae693d24392b8805ae427ba4f0a3"
+    ],
+    "response_id": "gen-1791153719-9KFHLCaBFGPfvmK0HOnI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ranges-not-always-complete",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos no siempre se van completando.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00059"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "42c71677d9888595f297e79acb297c1e0d9c7227b7f1606b5ef9477cb85e47b7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que «los rangos se te van completando siempre no siempre», lo que respalda que no siempre se van completando."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición: los rangos no siempre se completan."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c2f5a54708b650743ceeb867756bd20d888ae693d24392b8805ae427ba4f0a3"
+    ],
+    "response_id": "gen-1791153719-9KFHLCaBFGPfvmK0HOnI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframe-1d",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico mostrado es 1D.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00058",
+    "frame-4de8f12d4841c630-s0-p39510000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "40ba9b71aa66345950573487ba18fb4b25b6c254f449e3d21c9962c51056c9a9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El gráfico muestra explícitamente la etiqueta «EURUSD · 1D», y la transcripción se refiere a él como «gráfico diario»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la temporalidad del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c2f5a54708b650743ceeb867756bd20d888ae693d24392b8805ae427ba4f0a3"
+    ],
+    "response_id": "gen-1791153719-9KFHLCaBFGPfvmK0HOnI"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-not-always-contradicts-always",
+   "version": 1,
+   "type": "CONTRADICTS",
+   "subject_id": "cl-ranges-not-always-complete",
+   "subject_version": 1,
+   "object_id": "cl-ranges-always-complete",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00059"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "70fe9235f69845abc7cccf4a12059896b9ee80ddf6d813996c3d6458a6a58f1c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción corrige explícitamente «siempre» por «no siempre» al hablar de cómo se completan los rangos, lo que respalda que la afirmación «no siempre» contradice la de «siempre» en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4c2f5a54708b650743ceeb867756bd20d888ae693d24392b8805ae427ba4f0a3"
+    ],
+    "response_id": "gen-1791153719-9KFHLCaBFGPfvmK0HOnI"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00057",
+   "start_ms": 437310,
+   "end_ms": 444030,
+   "text": "como los rangos están formados lo estáis viendo ahí muchos que os estoy pintando los rangos más"
+  },
+  {
+   "id": "asr-00058",
+   "start_ms": 444030,
+   "end_ms": 449870,
+   "text": "clean podrías hasta operar solo viendo el gráfico diario pero si quieres hacer este ejercicio por"
+  },
+  {
+   "id": "asr-00059",
+   "start_ms": 449870,
+   "end_ms": 457070,
+   "text": "vuestra parte de ir viendo un poco como los rangos se te van completando siempre no siempre por esto"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p39510000-canonical-v1",
+   "pts_ms": 439000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p39510000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p39600000-canonical-v1",
+   "pts_ms": 440000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p39600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p39960000-canonical-v1",
+   "pts_ms": 444000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p39960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p40140000-canonical-v1",
+   "pts_ms": 446000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p40140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p40230000-canonical-v1",
+   "pts_ms": 447000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p40230000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p40320000-canonical-v1",
+   "pts_ms": 448000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p40320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p40410000-canonical-v1",
+   "pts_ms": 449000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p40410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p40500000-canonical-v1",
+   "pts_ms": 450000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p40500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63360000-canonical-v1",
+   "pts_ms": 704000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90630000-canonical-v1",
+   "pts_ms": 1007000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90630000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,475 @@
+{
+ "window": "w0078",
+ "start": "19:54",
+ "end": "20:07",
+ "start_ms": 1194000,
+ "end_ms": 1207000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eliminar-rango-actual",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El rango actual ya se puede eliminar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168",
+    "frame-4de8f12d4841c630-s0-p107460000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "eed0f0a4cbcee66b35f5041b62ee0ac5016c24d326fefaf460cc223999fdf537",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2466041d24c9dfb2fc25340032e85bd7a07c06cd7052c47181ae11d7b9e97df5"
+    ],
+    "response_id": "gen-1791169171-K57HqEYQhArRZ8Ebn5Qi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esperar-nueva-vela-idea-alcista",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Si tenemos una idea alcista, hay que esperar a que abra una nueva vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168",
+    "asr-00169"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "9132152849b6839e78d7bdf57ddf5e5362766317cc7abd868f6773378271ce7d",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2466041d24c9dfb2fc25340032e85bd7a07c06cd7052c47181ae11d7b9e97df5"
+    ],
+    "response_id": "gen-1791169171-K57HqEYQhArRZ8Ebn5Qi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-mecha-inferior-se-prolonga",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La mecha inferior de la nueva vela se prolonga hacia abajo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p108000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p108360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "97fb44b4d9b42a7ba50c8de0477d173fb0e966494404cee45d54b9502fa945e3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, la vela nueva es la de la derecha y su mecha inferior se extiende claramente por debajo del cuerpo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2466041d24c9dfb2fc25340032e85bd7a07c06cd7052c47181ae11d7b9e97df5"
+    ],
+    "response_id": "gen-1791169171-K57HqEYQhArRZ8Ebn5Qi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nueva-vela-forma-nuevo-rango",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Después de tomar el low anterior, se espera que la nueva vela forme un nuevo rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d464763ea002dd81973e565edcfcacbf28da8970e1b826a124a8015850d8c83a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que la nueva vela debe tomar el low y, así, formar un nuevo rango, lo que respalda la proposición sobre su formación después de tomar el low anterior."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la formación del nuevo rango por la nueva vela tras tomar el low."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2466041d24c9dfb2fc25340032e85bd7a07c06cd7052c47181ae11d7b9e97df5"
+    ],
+    "response_id": "gen-1791169171-K57HqEYQhArRZ8Ebn5Qi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nueva-vela-negra-dibujada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja una nueva vela negra a la derecha de las velas anteriores.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p107820000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p108000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9a8c13408111146fa4e14c3cc2740ce7ff54ac8755ae9d05c4ac2e48fe021ffe",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la segunda imagen aparece, a la derecha de las velas anteriores, una nueva vela negra que no estaba presente en la primera imagen."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2466041d24c9dfb2fc25340032e85bd7a07c06cd7052c47181ae11d7b9e97df5"
+    ],
+    "response_id": "gen-1791169171-K57HqEYQhArRZ8Ebn5Qi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nueva-vela-toma-low",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "La nueva vela debe tomar el low anterior.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169",
+    "frame-4de8f12d4841c630-s0-p107460000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "399cd5b9c72787f37793f48df916dec8222df9f46b9914d784137061465db266",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción enuncia que hay que esperar que la nueva vela tome el low, lo que respalda la proposición de que debe tomar el low anterior."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la acción de la nueva vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2466041d24c9dfb2fc25340032e85bd7a07c06cd7052c47181ae11d7b9e97df5"
+    ],
+    "response_id": "gen-1791169171-K57HqEYQhArRZ8Ebn5Qi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-1-13871",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo marcado en el gráfico es 1,13871.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169",
+    "frame-4de8f12d4841c630-s0-p108630000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4ddce21881d58179afbdf3909fff20545e438e1a89aae58f7858a477365cfbcd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción señala «el objetivo aquí», y la línea horizontal marcada en la imagen corresponde a la etiqueta 1,13871."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre el valor del objetivo mostrado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2466041d24c9dfb2fc25340032e85bd7a07c06cd7052c47181ae11d7b9e97df5"
+    ],
+    "response_id": "gen-1791169171-K57HqEYQhArRZ8Ebn5Qi"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-nuevo-rango-tras-toma-low",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-nueva-vela-forma-nuevo-rango",
+   "subject_version": 1,
+   "object_id": "cl-nueva-vela-toma-low",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e8b96c94c8c6c0093763aeb5aee77a4c68a8983a7b3d2de66f24fb82d63dff10",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia encadena explícitamente que la nueva vela «tome el low» y, así, «forme nuevo rango», por lo que la formación del rango depende de que tome el low en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2466041d24c9dfb2fc25340032e85bd7a07c06cd7052c47181ae11d7b9e97df5"
+    ],
+    "response_id": "gen-1791169171-K57HqEYQhArRZ8Ebn5Qi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-objetivo-tras-nuevo-rango",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-objetivo-1-13871",
+   "subject_version": 1,
+   "object_id": "cl-nueva-vela-forma-nuevo-rango",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00169",
+    "frame-4de8f12d4841c630-s0-p108630000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "8fbb45d637f5fca1242796cafc8b829a619cd6cdb2a93c10de727c51dd4dcc11",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2466041d24c9dfb2fc25340032e85bd7a07c06cd7052c47181ae11d7b9e97df5"
+    ],
+    "response_id": "gen-1791169171-K57HqEYQhArRZ8Ebn5Qi"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-toma-low-tras-apertura-nueva-vela",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-nueva-vela-toma-low",
+   "subject_version": 1,
+   "object_id": "cl-esperar-nueva-vela-idea-alcista",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00168",
+    "asr-00169"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4fb82bde027130d7d69e3768c67641b29f0d34ac5c35a015a5a1a0227b4108d9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enlaza explícitamente ambas proposiciones: si hay una idea alcista, se debe esperar la apertura de una nueva vela y, en el mismo escenario, se especifica que esa vela «tome el low». Así, la toma del low anterior se presenta como el comportamiento requerido de la nueva vela cuya apertura debe esperado bajo la condición alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2466041d24c9dfb2fc25340032e85bd7a07c06cd7052c47181ae11d7b9e97df5"
+    ],
+    "response_id": "gen-1791169171-K57HqEYQhArRZ8Ebn5Qi"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00168",
+   "start_ms": 1179620,
+   "end_ms": 1197440,
+   "text": "Este rango ya se puede eliminar y del mismo caso, si cierra afuera, esto ya no es un rango. Si tenemos una idea alcista, tendremos que esperar ahora a que una nueva vela, bueno, la dejo aquí marcada, en este caso, ello, esto ya no es un rango."
+  },
+  {
+   "id": "asr-00169",
+   "start_ms": 1197440,
+   "end_ms": 1208710,
+   "text": "¿Y qué tenemos que esperar ahora? Que la nueva vela abra, tome el low, así, forme nuevo rango y tenemos el objetivo aquí."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107460000-canonical-v1",
+   "pts_ms": 1194000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107460000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107640000-canonical-v1",
+   "pts_ms": 1196000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107730000-canonical-v1",
+   "pts_ms": 1197000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107730000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p107820000-canonical-v1",
+   "pts_ms": 1198000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p107820000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p108000000-canonical-v1",
+   "pts_ms": 1200000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p108000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p108090000-canonical-v1",
+   "pts_ms": 1201000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p108090000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p108360000-canonical-v1",
+   "pts_ms": 1204000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p108360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p108630000-canonical-v1",
+   "pts_ms": 1207000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p108630000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

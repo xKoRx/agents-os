@@ -1,0 +1,90 @@
+{
+ "window": "w0023",
+ "start": "05:04",
+ "end": "05:16",
+ "start_ms": 304000,
+ "end_ms": 316000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00041",
+   "start_ms": 299680,
+   "end_ms": 306860,
+   "text": "a partir de aquí a lo mejor nos forma ahora un rango bajista tomando el alto de esta vela lo"
+  },
+  {
+   "id": "asr-00042",
+   "start_ms": 306860,
+   "end_ms": 310720,
+   "text": "Lo que va a hacer el precio es ir a completar el rango bajista ahora."
+  },
+  {
+   "id": "asr-00043",
+   "start_ms": 311200,
+   "end_ms": 317960,
+   "text": "Es como que el precio utiliza esta manera como para ir completando las órdenes y aparejando todo."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p27360000-canonical-v1",
+   "pts_ms": 304000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p27360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p27450000-canonical-v1",
+   "pts_ms": 305000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p27450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p27630000-canonical-v1",
+   "pts_ms": 307000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p27630000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p27720000-canonical-v1",
+   "pts_ms": 308000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p27720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28080000-canonical-v1",
+   "pts_ms": 312000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28260000-canonical-v1",
+   "pts_ms": 314000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28260000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28350000-canonical-v1",
+   "pts_ms": 315000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28350000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28440000-canonical-v1",
+   "pts_ms": 316000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

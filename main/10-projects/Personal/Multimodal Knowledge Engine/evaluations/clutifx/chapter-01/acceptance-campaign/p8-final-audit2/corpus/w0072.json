@@ -1,0 +1,332 @@
+{
+ "window": "w0072",
+ "start": "17:47",
+ "end": "18:03",
+ "start_ms": 1067000,
+ "end_ms": 1083000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-daily-candle-opposite-range-four-hours",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si se parte de una vela de un día, en cuatro horas puede formarse un rango contrario.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00155"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "ccf0d2d35e625bd5fdd854cf03cbbf2d11ff80f96b37b8afac5d2f6278945333",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6f0e54908e40129ca950d664e32fdb3c93be5fb59ff9d3bc120a898df360b1ef"
+    ],
+    "response_id": "gen-1791166576-bHaIeTckg24ECmqXZop8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intra-turtle-soup-creates-turtle-soup",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Un intra-turtle soup hace otro turtle soup a partir de un turtle soup ya formado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00151",
+    "asr-00152",
+    "asr-00153"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e10ed7d4275fafe5b6320f4138630373f83abc9a44ec917861730c3d0ce90f5a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las formas ASR «intratartel sub» y «tartel sub» son deformaciones fonéticas de «intra-turtle soup» y «turtle soup»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que un intra-turtle soup hace otro turtle soup a partir de un turtle soup que ya está hecho."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6f0e54908e40129ca950d664e32fdb3c93be5fb59ff9d3bc120a898df360b1ef"
+    ],
+    "response_id": "gen-1791166576-bHaIeTckg24ECmqXZop8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intra-turtle-soup-example",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El patrón mostrado sería un intra-turtle soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00150",
+    "asr-00151",
+    "asr-00152",
+    "frame-4de8f12d4841c630-s0-p97200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dd7590c86d1fe8fad54c8559e6ec5fa7c9a3001e15d23c476c5054f2e8454855",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que «esto sería» el término auditado como «intratartel sub», y la imagen muestra el patrón etiquetado «INTRATURTLE SOUP», resolviendo la forma fonética al nombre canónico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6f0e54908e40129ca950d664e32fdb3c93be5fb59ff9d3bc120a898df360b1ef"
+    ],
+    "response_id": "gen-1791166576-bHaIeTckg24ECmqXZop8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intra-turtle-soup-not-frequent",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El patrón de intra-turtle soup no pasa muchas veces.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00150",
+    "asr-00151",
+    "asr-00152",
+    "asr-00153",
+    "asr-00154",
+    "asr-00155"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "40dc06bedb2cffdc054157f85a9c45f6b5ce93367e9a052f9807f5c3f6f0d1d4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción pregunta si el patrón «intra-turtle soup» pasa muchas veces y responde «No. Algunas veces pasa», lo que sostiene directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que dicho patrón no ocurre con frecuencia."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6f0e54908e40129ca950d664e32fdb3c93be5fb59ff9d3bc120a898df360b1ef"
+    ],
+    "response_id": "gen-1791166576-bHaIeTckg24ECmqXZop8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intra-turtle-soup-occurs-sometimes",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El patrón de intra-turtle soup pasa algunas veces.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00150",
+    "asr-00151",
+    "asr-00152",
+    "asr-00153",
+    "asr-00154",
+    "asr-00155"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e34955452f2d6dff0a03044a706a813835742cfa3b95ef7a54a1b4f4a31c2751",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente «No. Algunas veces pasa, sí», en referencia al patrón identificado por el forma fonéticamente distortionada «intratartel sub»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el patrón ocurre algunas veces."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6f0e54908e40129ca950d664e32fdb3c93be5fb59ff9d3bc120a898df360b1ef"
+    ],
+    "response_id": "gen-1791166576-bHaIeTckg24ECmqXZop8"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00148",
+   "start_ms": 1066760,
+   "end_ms": 1069020,
+   "text": "que pueden pasar, porque si no tendríamos un 100%"
+  },
+  {
+   "id": "asr-00149",
+   "start_ms": 1069020,
+   "end_ms": 1070880,
+   "text": "de winrate y tampoco es plan"
+  },
+  {
+   "id": "asr-00150",
+   "start_ms": 1070880,
+   "end_ms": 1072840,
+   "text": "¿no? o sea que esto sería"
+  },
+  {
+   "id": "asr-00151",
+   "start_ms": 1072840,
+   "end_ms": 1074540,
+   "text": "el intratartel sub que hace"
+  },
+  {
+   "id": "asr-00152",
+   "start_ms": 1074540,
+   "end_ms": 1076100,
+   "text": "un tartel sub"
+  },
+  {
+   "id": "asr-00153",
+   "start_ms": 1076100,
+   "end_ms": 1079270,
+   "text": "otro tartel sub de un tartel sub que ya está hecho"
+  },
+  {
+   "id": "asr-00154",
+   "start_ms": 1079270,
+   "end_ms": 1081020,
+   "text": "¿pasa muchas veces?"
+  },
+  {
+   "id": "asr-00155",
+   "start_ms": 1081020,
+   "end_ms": 1099350,
+   "text": "No. Algunas veces pasa, sí. ¿Cómo se puede intentar predecir? Que lo vais a ver más adelante. Pero si esto es una vela, digamos, de un día y en cuatro horas tenemos, pues, algo así, como que se nos forma un rango contrario, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p96030000-canonical-v1",
+   "pts_ms": 1067000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p96030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p96120000-canonical-v1",
+   "pts_ms": 1068000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p96120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p96480000-canonical-v1",
+   "pts_ms": 1072000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p96480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p96750000-canonical-v1",
+   "pts_ms": 1075000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p96750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p96840000-canonical-v1",
+   "pts_ms": 1076000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p96840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p97200000-canonical-v1",
+   "pts_ms": 1080000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p97200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p97380000-canonical-v1",
+   "pts_ms": 1082000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p97380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p97470000-canonical-v1",
+   "pts_ms": 1083000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p97470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

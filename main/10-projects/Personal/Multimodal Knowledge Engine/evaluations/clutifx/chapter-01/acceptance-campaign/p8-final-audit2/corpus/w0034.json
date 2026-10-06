@@ -1,0 +1,559 @@
+{
+ "window": "w0034",
+ "start": "07:32",
+ "end": "07:42",
+ "start_ms": 452000,
+ "end_ms": 462000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-comprender-logica-importancia-rangos",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Comprender la lógica de la importancia de los rangos de nuestra estrategia.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00060",
+    "asr-00061"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "536d7faa8f974c5e0f0a4befc50981e14ce3dcd9169fa73d159875ef60b07284",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9cc8a353790c325c6f96039219f86fb31f17bfbbbbb2b8856f19c07ca8f69df7"
+    ],
+    "response_id": "gen-1791155084-RcU21GsmaQvBZsCpacyF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-divisa-eje-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El eje de precios está expresado en USD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p41040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "0e4eff579de26bbe012e6de60560e0bb228b2ef0c6abffe653c85e21d997c4b2",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9cc8a353790c325c6f96039219f86fb31f17bfbbbbb2b8856f19c07ca8f69df7"
+    ],
+    "response_id": "gen-1791155084-RcU21GsmaQvBZsCpacyF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estrategia-navegar-al-precio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Nuestra estrategia consiste básicamente en navegar al precio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00061"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "4eb37bb59e23cacb1c2e76a0a2adff6d3f93fdf868d2bbb096c5839b5f1dcbd0",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9cc8a353790c325c6f96039219f86fb31f17bfbbbbb2b8856f19c07ca8f69df7"
+    ],
+    "response_id": "gen-1791155084-RcU21GsmaQvBZsCpacyF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-observar-evolucion-rangos",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vuestra parte es observar cómo evolucionan los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00059"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "79c78f6887555dd92e5a802d33926d6971a1d2897659fd5fca5d160e202f7b8f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia asigna a los oyentes la tarea de «ir viendo» cómo los rangos «se te van completando», lo que respalda la proposición de observar cómo evolucionan."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la función de los participantes es observar la evolución de los rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9cc8a353790c325c6f96039219f86fb31f17bfbbbbb2b8856f19c07ca8f69df7"
+    ],
+    "response_id": "gen-1791155084-RcU21GsmaQvBZsCpacyF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-porcion-historico-cambia",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La porción del histórico visible cambia durante la ventana.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p40680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p41130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p41580000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cd98c8b340bd76631f015ecd9c46cab93f7cd814489447585078aecfd2e688c1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Los tres fotogramas cited show different visible date ranges and price scales, demonstrating that the visible portion of the chart history changes during the window."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9cc8a353790c325c6f96039219f86fb31f17bfbbbbb2b8856f19c07ca8f69df7"
+    ],
+    "response_id": "gen-1791155084-RcU21GsmaQvBZsCpacyF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-no-siempre-se-completan",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos no siempre se completan.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00059",
+    "asr-00060"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "51100f91a3ac645c97849add6ee1df05753305258151ec85f4e389edbdcfae2e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «a veces no se completan», lo que sostiene que los rangos no siempre se completan."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement assertion único sobre la频率 con que se completan los rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9cc8a353790c325c6f96039219f86fb31f17bfbbbbb2b8856f19c07ca8f69df7"
+    ],
+    "response_id": "gen-1791155084-RcU21GsmaQvBZsCpacyF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-rectangulares-visibles",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra varios rangos representados por rectángulos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p41130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p41220000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p41400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9f7f9dc3be18b260b2bb1771d2378fbcaa21a2ef89f7e797cd96030b41746615",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las capturas citadas muestran varios recuadros rectangulares delimitando zonas del gráfico de precios."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9cc8a353790c325c6f96039219f86fb31f17bfbbbbb2b8856f19c07ca8f69df7"
+    ],
+    "response_id": "gen-1791155084-RcU21GsmaQvBZsCpacyF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-se-van-completando",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos se van completando.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00059"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4cd95e4b5ae00029e90139798acc444c4452d4b9b5f5d5daa6eb970d3739e54a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que «los rangos se te van completando», lo que respalda directamente la proposición de que los rangos se van completando."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9cc8a353790c325c6f96039219f86fb31f17bfbbbbb2b8856f19c07ca8f69df7"
+    ],
+    "response_id": "gen-1791155084-RcU21GsmaQvBZsCpacyF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-revisar-razon-no-completado",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Revisar por qué los rangos a veces no se completan.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00059",
+    "asr-00060"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "eb43a5aba36902a8c655ee9549a1f9276e0c6723c0969661296f3838492baebf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice que están allí «para ver por qué a veces no se completan» y el segmento previo identifica lo que se completa como «los rangos»; la acción de revisarlo es una reformulación equivalente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que corresponde revisar por qué los rangos a veces no se completan."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9cc8a353790c325c6f96039219f86fb31f17bfbbbbb2b8856f19c07ca8f69df7"
+    ],
+    "response_id": "gen-1791155084-RcU21GsmaQvBZsCpacyF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-grafico-1d",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico es 1D.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p41040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c2c143028e5896afd363d6b3806c202ab905c7653fea5a7c4acbf34ba78e51e9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La esquina superior izquierda muestra explícitamente «EURUSD · 1D», lo que identifica la temporalidad del gráfico como 1D."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9cc8a353790c325c6f96039219f86fb31f17bfbbbbb2b8856f19c07ca8f69df7"
+    ],
+    "response_id": "gen-1791155084-RcU21GsmaQvBZsCpacyF"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-no-siempre-excepcion-completado",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-rangos-no-siempre-se-completan",
+   "subject_version": 1,
+   "object_id": "cl-rangos-se-van-completando",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00059",
+    "asr-00060"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ed17c94d4ce5be54477eae607caf1ae112ce731ffdc26a6ae3c46bc45a492705",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que «los rangos se te van completando» y, al mismo tiempo, que «no siempre» o «a veces no se completan»; por tanto, la no finalización ocasional constituye la excepción Qualification to la afirmación de que los rangos se van completando."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9cc8a353790c325c6f96039219f86fb31f17bfbbbbb2b8856f19c07ca8f69df7"
+    ],
+    "response_id": "gen-1791155084-RcU21GsmaQvBZsCpacyF"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-revision-razon-depende-no-completado",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-revisar-razon-no-completado",
+   "subject_version": 1,
+   "object_id": "cl-rangos-no-siempre-se-completan",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00059",
+    "asr-00060"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5dd40639263b5192dc16f5e293c9219b39fb054a66319cb76ea7745ccb797043",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia presenta la revisión como la finalidad de observar por qué los rangos no se completan: «estáis aquí también para ver por qué a veces no se completan». Así, la acción de revisar la causa depende del hecho de que los rangos no siempre se completan, expressed también como «siempre no siempre» en la línea anterior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9cc8a353790c325c6f96039219f86fb31f17bfbbbbb2b8856f19c07ca8f69df7"
+    ],
+    "response_id": "gen-1791155084-RcU21GsmaQvBZsCpacyF"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00059",
+   "start_ms": 449870,
+   "end_ms": 457070,
+   "text": "vuestra parte de ir viendo un poco como los rangos se te van completando siempre no siempre por esto"
+  },
+  {
+   "id": "asr-00060",
+   "start_ms": 457070,
+   "end_ms": 461450,
+   "text": "estáis aquí también para ver por qué a veces no se completan pero para que pilléis la lógica de"
+  },
+  {
+   "id": "asr-00061",
+   "start_ms": 461450,
+   "end_ms": 466570,
+   "text": "qué importancia tienen los rangos de nuestra estrategia es básicamente navegar al precio y"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p40680000-canonical-v1",
+   "pts_ms": 452000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p40680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41040000-canonical-v1",
+   "pts_ms": 456000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41130000-canonical-v1",
+   "pts_ms": 457000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41220000-canonical-v1",
+   "pts_ms": 458000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41220000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41310000-canonical-v1",
+   "pts_ms": 459000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41310000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41400000-canonical-v1",
+   "pts_ms": 460000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41490000-canonical-v1",
+   "pts_ms": 461000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41580000-canonical-v1",
+   "pts_ms": 462000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

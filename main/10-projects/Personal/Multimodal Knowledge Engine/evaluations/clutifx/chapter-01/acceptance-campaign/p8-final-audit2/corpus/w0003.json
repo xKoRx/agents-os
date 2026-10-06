@@ -1,0 +1,1056 @@
+{
+ "window": "w0003",
+ "start": "00:37",
+ "end": "00:44",
+ "start_ms": 37000,
+ "end_ms": 44000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-caida-velas-en-region-sombreada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La secuencia de velas de la derecha muestra una caída pronunciada dentro de la región rectangular sombreada.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3510000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "f37d1e4e8539e611b8db5e162b81ea5518d973c3e749ab70147af38485a79fe0",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "e0b31cfd5641ec4b488ecff0f845d022c2e58003c8552f228804dcb9e79f311a"
+    ],
+    "response_id": "gen-1791144743-BnW65hOTVKk9MJBUAbwo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-contenido-grafico-se-desplaza-izquierda",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El contenido del gráfico se desplaza hacia la izquierda durante la ventana.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "34dd4747c0d48670148a5e0e0bc11a91ae4ebe84874df51c3637b35f3305898f",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "e0b31cfd5641ec4b488ecff0f845d022c2e58003c8552f228804dcb9e79f311a"
+    ],
+    "response_id": "gen-1791144743-BnW65hOTVKk9MJBUAbwo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-curso-intermedio-no-supone-problema",
+   "kind": "claim",
+   "version": 1,
+   "statement": "No haber realizado el curso intermedio no supone ningún problema para entender esto ahora.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "d55ef6094f8a0a8c53c4ef34db31f12f6d40dd37b80806a6ae24917968e90853",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "e0b31cfd5641ec4b488ecff0f845d022c2e58003c8552f228804dcb9e79f311a"
+    ],
+    "response_id": "gen-1791144743-BnW65hOTVKk9MJBUAbwo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-fecha-visible-24-6-2025",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta central inferior muestra la fecha 24/6/2025.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p25200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "6d2356674fe39febc30e4eca1fedc0f424c38f9cfb0ee211b4c23e3d3d86fdca",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9ec0550cb823453af922b1c43bcb7ad9a145093a89970d597e3bc81e8ee34a9f",
+     "e0b31cfd5641ec4b488ecff0f845d022c2e58003c8552f228804dcb9e79f311a"
+    ],
+    "response_id": "gen-1791144743-BnW65hOTVKk9MJBUAbwo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-formato-similar-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El formato que seguiré será un poco similar al del curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "7713eee68b72e06d377d302e2a43b765b626b3b79e1d83726aceb47062d7f0fc",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "e0b31cfd5641ec4b488ecff0f845d022c2e58003c8552f228804dcb9e79f311a"
+    ],
+    "response_id": "gen-1791144743-BnW65hOTVKk9MJBUAbwo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-informacion-curso-intermedio-no-totalmente-relevante",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Ninguna información del curso intermedio es totalmente relevante para entender esto ahora.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "53111e0dd6e31629d99134a51e1601e1193d6ff5050f1942d697fde93708fd64",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que «no hay información que sea totalmente relevante para ahora entender esto», en el contexto de que el formato es similar al del curso intermedio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "e0b31cfd5641ec4b488ecff0f845d022c2e58003c8552f228804dcb9e79f311a"
+    ],
+    "response_id": "gen-1791144743-BnW65hOTVKk9MJBUAbwo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-instrumento-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p102240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p104040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p106200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p10710000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p108630000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p108720000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p109980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p114120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p11520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p11880000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p121410000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p122400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p14760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p15750000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p15840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p18000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p19440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p21870000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p23400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p23580000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p25200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p28620000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p29610000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p31320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p32220000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p32850000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p32940000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p33660000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p37980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50490000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p57240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p59040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60120000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p61020000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p61920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p64800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p6750000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p70020000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p72090000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p75600000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p76860000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p80820000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p81450000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p84960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p86130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p86400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p88560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p9000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p90360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p94770000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p95760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "217e0e3d0550fa844ad2e5b73d2f3da3841a7373372503743286a718ae586da2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran explícitamente la etiqueta «EURUSD» en la interfaz y en el gráfico del instrumento."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "00338b5c8261c295bdcdc7ab6e472f756cc5162c162dfb39bee51eb215731f1e",
+     "00edd0c056961bf091643a1f93f3848842acee7617d8dfa4798bccff5820cde2",
+     "0b20b60104f64fe8061e34883d474555f7c2ab8265af25c4444a38463eca975d",
+     "0ba11db8bb2a7119690688c0a142c43584a6cb491c58bdf043f3b29558ad2a26",
+     "15a0c95228ce06ca4a38b897b147a54b1908c11e7db43c89e0ddff28ecf4f5f9",
+     "1768f32e81dc3380e2ad443df6515bb6ab8a59441cb6e2fe9ad52b01d6238af3",
+     "1e3765881094abc8400bc457fe41ae4b828886a67e7b867304f45d609165e666",
+     "2466041d24c9dfb2fc25340032e85bd7a07c06cd7052c47181ae11d7b9e97df5",
+     "27808e6323567ecbedd2c5a5ffa4671e8994586066bc808360337cfa3e9dd221",
+     "2ad603a1a98a95a437271469ff7caf2b1311ed90d18db9b05cda197803529548",
+     "2f1a4a56c4ebb91e7f1dcbe9c6d1a780d7a976aa01df6065c5d182d6013fe274",
+     "306468079b6a14feffd9e59ec2e224b0ed79c25eec3870bbc3be620ce03b21d6",
+     "329a3dafd9eaeae65b8da0b49fa865f2ff96edce06201feac6d70062d5a4fa71",
+     "36faaaa401406f8268543ac92f51f9ce63b52bbf89287ba9d1643fc4a5a3eedf",
+     "38118a3ca3d5c1e60f9d4df472455309e1a50427fdcff7e92f626d6b76397342",
+     "3911fa816628d2db0f418eec2ee8b95b7e6f89fa0ad62df5bb614cfa59c1fe96",
+     "3c22544e083322aa8b73a37a6979ba141cf3615169ab9eb49781212796659723",
+     "432f18bc9b9ef272c037c289eda23780bfe2d2c9534a6a96097ddaa75b3442b1",
+     "438eb17c4c9153fce6a7a17386710f6bc96820fc30b7411e0de98925358f17b7",
+     "51fc86638c562e544b318eb1dc5e3976aae2ef80203c95bc78bc4aab8554c1e4",
+     "552998a3bced603158b06df7e645af07b77ef212cea8517a4bc328ef916675ef",
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd",
+     "5cc51f9275f34ab1b09889b1ef85914b62340247dad07aaef34b63a25ddefca0",
+     "5e41dfda7ab6ef1dd5c5585fc2b1bc4d3ff20aac55ab285161085cbc44406ef1",
+     "6010655569027034ae225f6d033da7081efe3d63b44db2d690946160dad475eb",
+     "6349fd9dac56a702aec450ff22d2b170caa737a75be5cb5313bc3ceaac36ded7",
+     "6960cefe7956a69942b594d5aac8eb9c25fce608361609703f72fe09d718ae8d",
+     "6c6756b642cf42f1b3f21ae1b09b6cb2f026b3220169504df17b5e671c668806",
+     "6f301de4e4098510c012afb8a5436c271ce59865a1ee4166532bbc4cdf2d7b58",
+     "734e7fd197660107d7d58f93a330dc1b8692409a3f9038602b0be55f4838127a",
+     "81f97d1b408e6648910358f8fb91e5b975e5bac1d3e3123b99ce7ad93977c145",
+     "8677c7c5c3712bf26bb284d2253def165f27d2aed825b8c55b84440407b3bbc0",
+     "99e1e7e7f8eee6b0d3354fdade423e867a1af3f1e8009d2ed3e2bda9fc074cb1",
+     "9ec0550cb823453af922b1c43bcb7ad9a145093a89970d597e3bc81e8ee34a9f",
+     "a67a375ebcaf40e742e53fea33e2cef38157b4e13509fef88ca89c7da237fb94",
+     "a7a42d8c76c3c4203423c93041e7d5d103499cf04ae2de54590380b60954948c",
+     "a86e610f33a2cf4115a554d8aea262b3ab02f5722e9f4d01fa9218015d639094",
+     "b61c9c9202b0ec7d3948b8291fc14ce9396905af81c8f80ee14c80ea7c6b86dc",
+     "c5c279a24b82d5a0e843f7e595cf8f7b4d60a23148ffaa4c19b0ec111fa384f4",
+     "c60d6dbef3d062b7b221bb50e5482299714cb5e4b4bdbf41bf009e703599781d",
+     "c9a120241d798b4c690453c37d77c98475932b560f204a82e659f1106f010247",
+     "d1b67dfb35cb95a0234a7b3cd331190bbcc3ecddcbdd2b04366f9881e862a54d",
+     "decb000fef4e97c406823003f28e1a9063d20cd65c184db9e2b49855ac5626e2",
+     "e0b31cfd5641ec4b488ecff0f845d022c2e58003c8552f228804dcb9e79f311a",
+     "fd6968920987acf19be9f55efffbdf28b8cc77aec60001c8c8df58ffe6b8c20a"
+    ],
+    "response_id": "gen-1791144743-BnW65hOTVKk9MJBUAbwo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nivel-horizontal-1-16148",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La línea horizontal negra que cruza el gráfico está rotulada en 1,16148.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3420000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "22f5265342a22e02cae102cb526b952ffc1b9a5e518fad37e7d615b92ac5b917",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, una línea horizontal negra cruza el gráfico y aparece rotulada en el eje derecho como 1,16148."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "e0b31cfd5641ec4b488ecff0f845d022c2e58003c8552f228804dcb9e79f311a"
+    ],
+    "response_id": "gen-1791144743-BnW65hOTVKk9MJBUAbwo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-region-azul-sale-de-vista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La región rectangular con sombreado azul del extremo derecho sale de la vista.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3780000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2ec038b6c3c3bde4ab3f0294bb35a51d82c572f1b3a00c29b63a9529b7a1db68",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La región rectangular azul aparece hacia el extremo derecho en la primera imagen y, en la segunda, ha sido desplazada hasta el extremo izquierdo, donde queda parcialmente recortada por el borde de la vista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "e0b31cfd5641ec4b488ecff0f845d022c2e58003c8552f228804dcb9e79f311a"
+    ],
+    "response_id": "gen-1791144743-BnW65hOTVKk9MJBUAbwo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-region-rectangular-sombreada-azul",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Una región rectangular con sombreado azul está situada junto a las velas del extremo derecho.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "16fcad36a7685a960c1737cb12365a5db71b0a7c1dde89ce12bbcc09ce28198f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una región rectangular con sombreado azul adyacente a las velas situadas en el extremo derecho."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La forma, el sombreado y su ubicación respecto a las velas componen una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "e0b31cfd5641ec4b488ecff0f845d022c2e58003c8552f228804dcb9e79f311a"
+    ],
+    "response_id": "gen-1791144743-BnW65hOTVKk9MJBUAbwo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-selector-moneda-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El selector de moneda visible muestra USD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3960000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "53ac62c1d872434f936085a74b5cf6d3867b7853e03b9ff1c26f060fc1592e96",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la esquina superior derecha de ambos fotogramas, el selector de moneda visible muestra «USD»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "e0b31cfd5641ec4b488ecff0f845d022c2e58003c8552f228804dcb9e79f311a"
+    ],
+    "response_id": "gen-1791144743-BnW65hOTVKk9MJBUAbwo"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-5m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad mostrada es 5M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p10710000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p11520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p3960000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p6750000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p9000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a49cb9da42d3cc520e7837e797134607454f74abdd10a71670a3e44998e84801",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran explícitamente «EURUSD · 5» y la etiqueta «EURUSD | 5M», lo que establece una temporalidad de 5 minutos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6c6756b642cf42f1b3f21ae1b09b6cb2f026b3220169504df17b5e671c668806",
+     "81f97d1b408e6648910358f8fb91e5b975e5bac1d3e3123b99ce7ad93977c145",
+     "decb000fef4e97c406823003f28e1a9063d20cd65c184db9e2b49855ac5626e2",
+     "e0b31cfd5641ec4b488ecff0f845d022c2e58003c8552f228804dcb9e79f311a"
+    ],
+    "response_id": "gen-1791144743-BnW65hOTVKk9MJBUAbwo"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-curso-intermedio-no-problema-depende-irrelevancia",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-curso-intermedio-no-supone-problema",
+   "subject_version": 1,
+   "object_id": "cl-informacion-curso-intermedio-no-totalmente-relevante",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5e6f97734daaa5d1e38fde589cb6c56ceffbc2dd03257f4b27632177b404a5a8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El evidencia conecta explícitamente ambas afirmaciones mediante «porque»: no haber realizado el curso intermedio «no pasa nada» debido a que no hay información de ese curso totalmente relevante para entender el contenido actual."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "e0b31cfd5641ec4b488ecff0f845d022c2e58003c8552f228804dcb9e79f311a"
+    ],
+    "response_id": "gen-1791144743-BnW65hOTVKk9MJBUAbwo"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00003",
+   "start_ms": 34850,
+   "end_ms": 49400,
+   "text": "Así que nada, vamos directamente al grano. El formato que voy a seguir va a ser un poco similar al del curso intermedio y si no lo has hecho, tranquilo, no pasa nada porque no hay información que sea totalmente relevante para ahora entender esto."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3330000-canonical-v1",
+   "pts_ms": 37000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3420000-canonical-v1",
+   "pts_ms": 38000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3420000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3510000-canonical-v1",
+   "pts_ms": 39000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3510000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3600000-canonical-v1",
+   "pts_ms": 40000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3690000-canonical-v1",
+   "pts_ms": 41000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3690000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3780000-canonical-v1",
+   "pts_ms": 42000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3780000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3870000-canonical-v1",
+   "pts_ms": 43000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3870000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3960000-canonical-v1",
+   "pts_ms": 44000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p102240000-canonical-v1",
+   "pts_ms": 1136000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p102240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p104040000-canonical-v1",
+   "pts_ms": 1156000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p104040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p106200000-canonical-v1",
+   "pts_ms": 1180000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p106200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10710000-canonical-v1",
+   "pts_ms": 119000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p108630000-canonical-v1",
+   "pts_ms": 1207000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p108630000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p108720000-canonical-v1",
+   "pts_ms": 1208000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p108720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p109980000-canonical-v1",
+   "pts_ms": 1222000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p109980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114120000-canonical-v1",
+   "pts_ms": 1268000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p11520000-canonical-v1",
+   "pts_ms": 128000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p11520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p11880000-canonical-v1",
+   "pts_ms": 132000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p11880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121410000-canonical-v1",
+   "pts_ms": 1349000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p122400000-canonical-v1",
+   "pts_ms": 1360000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p122400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14760000-canonical-v1",
+   "pts_ms": 164000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15750000-canonical-v1",
+   "pts_ms": 175000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15840000-canonical-v1",
+   "pts_ms": 176000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16560000-canonical-v1",
+   "pts_ms": 184000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p18000000-canonical-v1",
+   "pts_ms": 200000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p18000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p19440000-canonical-v1",
+   "pts_ms": 216000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p19440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p21870000-canonical-v1",
+   "pts_ms": 243000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p21870000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23400000-canonical-v1",
+   "pts_ms": 260000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p23580000-canonical-v1",
+   "pts_ms": 262000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p23580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24210000-canonical-v1",
+   "pts_ms": 269000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24210000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p25200000-canonical-v1",
+   "pts_ms": 280000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p25200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p28620000-canonical-v1",
+   "pts_ms": 318000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p28620000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p29610000-canonical-v1",
+   "pts_ms": 329000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p29610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p31320000-canonical-v1",
+   "pts_ms": 348000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p31320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p32220000-canonical-v1",
+   "pts_ms": 358000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p32220000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p32850000-canonical-v1",
+   "pts_ms": 365000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p32850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p32940000-canonical-v1",
+   "pts_ms": 366000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p32940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33660000-canonical-v1",
+   "pts_ms": 374000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37080000-canonical-v1",
+   "pts_ms": 412000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p37980000-canonical-v1",
+   "pts_ms": 422000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p37980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50490000-canonical-v1",
+   "pts_ms": 561000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p57240000-canonical-v1",
+   "pts_ms": 636000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p57240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59040000-canonical-v1",
+   "pts_ms": 656000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60120000-canonical-v1",
+   "pts_ms": 668000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61020000-canonical-v1",
+   "pts_ms": 678000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61920000-canonical-v1",
+   "pts_ms": 688000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p64800000-canonical-v1",
+   "pts_ms": 720000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p64800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p6750000-canonical-v1",
+   "pts_ms": 75000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p6750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70020000-canonical-v1",
+   "pts_ms": 778000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72090000-canonical-v1",
+   "pts_ms": 801000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72090000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p75600000-canonical-v1",
+   "pts_ms": 840000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p75600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p76320000-canonical-v1",
+   "pts_ms": 848000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p76320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p76860000-canonical-v1",
+   "pts_ms": 854000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p76860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p80820000-canonical-v1",
+   "pts_ms": 898000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p80820000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p81450000-canonical-v1",
+   "pts_ms": 905000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p81450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p84960000-canonical-v1",
+   "pts_ms": 944000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p84960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p86130000-canonical-v1",
+   "pts_ms": 957000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p86130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p86400000-canonical-v1",
+   "pts_ms": 960000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p86400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p88560000-canonical-v1",
+   "pts_ms": 984000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p88560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p9000000-canonical-v1",
+   "pts_ms": 100000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p9000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90360000-canonical-v1",
+   "pts_ms": 1004000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p94770000-canonical-v1",
+   "pts_ms": 1053000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p94770000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p95760000-canonical-v1",
+   "pts_ms": 1064000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p95760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

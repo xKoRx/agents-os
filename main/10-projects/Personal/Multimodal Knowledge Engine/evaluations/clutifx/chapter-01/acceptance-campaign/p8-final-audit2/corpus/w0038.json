@@ -1,0 +1,462 @@
+{
+ "window": "w0038",
+ "start": "08:34",
+ "end": "08:44",
+ "start_ms": 514000,
+ "end_ms": 524000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-cambio-intervalo-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico de EURUSD cambia del intervalo 1D al intervalo 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p46890000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46980000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "d9eeea10d0ef6bbe849b0fb8873d53429456674ba9f76bace71a0bcd4407f169",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "b696304ca960a2f72562331ae4112255b5deefcaf9c8e207b4b0e0ae387da097"
+    ],
+    "response_id": "gen-1791156188-krmhnIOVnwbuh4KpnESy"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-ausencia-rango-bajista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "No había un rango bajista en GBPUSD.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00070",
+    "asr-00071",
+    "frame-4de8f12d4841c630-s0-p46710000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "9421edc8b8692c627572288e8aacc3881247e6f186fa8b9b71a405a27957a51c",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "b696304ca960a2f72562331ae4112255b5deefcaf9c8e207b4b0e0ae387da097"
+    ],
+    "response_id": "gen-1791156188-krmhnIOVnwbuh4KpnESy"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-cambio-intervalo-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico de GBPUSD cambia del intervalo 1D al intervalo 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p46890000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46980000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "533db3fc5039b71bd85dd03f535dc22a02f4ddcba421eb8ae2668abfe8b6b49c",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "b696304ca960a2f72562331ae4112255b5deefcaf9c8e207b4b0e0ae387da097"
+    ],
+    "response_id": "gen-1791156188-krmhnIOVnwbuh4KpnESy"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-cierre-fuerte",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela diaria de GBPUSD cierra con fuerza.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "asr-00070",
+    "frame-4de8f12d4841c630-s0-p46260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46710000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "3ff9b5b9176dec8cd8effb24e0abef46a6898033999b97539e89a731ba71cc57",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "b696304ca960a2f72562331ae4112255b5deefcaf9c8e207b4b0e0ae387da097"
+    ],
+    "response_id": "gen-1791156188-krmhnIOVnwbuh4KpnESy"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-llegada-directa-a-objetivo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La Libra fue directamente hasta su objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "asr-00072",
+    "asr-00073",
+    "asr-00074",
+    "frame-4de8f12d4841c630-s0-p46980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47070000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "5045bf9c96d948bffb5557f143db2516dd65ebbd619a16c22054990492d3e690",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "b696304ca960a2f72562331ae4112255b5deefcaf9c8e207b4b0e0ae387da097"
+    ],
+    "response_id": "gen-1791156188-krmhnIOVnwbuh4KpnESy"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-objetivo-hoy-135843",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde superior del rango bullish de GBPUSD, etiquetado en 1,35843, era el objetivo de hoy.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "asr-00073",
+    "asr-00074",
+    "frame-4de8f12d4841c630-s0-p46890000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46980000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47070000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "e5910d99745c9717c7a0df3d39e5c4081413e7a86565ceaaf30d5975ca0bfb31",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "b696304ca960a2f72562331ae4112255b5deefcaf9c8e207b4b0e0ae387da097"
+    ],
+    "response_id": "gen-1791156188-krmhnIOVnwbuh4KpnESy"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-rango-borde-inferior-134155",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde inferior de la región rectangular visible en el gráfico diario de GBPUSD está en 1,34155.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p46890000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46980000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "fd6614fcbebe5200d76f54bc70c4317ac20a809b078742a4bb3da8b2f3bc5ea0",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "b696304ca960a2f72562331ae4112255b5deefcaf9c8e207b4b0e0ae387da097"
+    ],
+    "response_id": "gen-1791156188-krmhnIOVnwbuh4KpnESy"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-rango-bullish",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Había un rango bullish en la Libra (GBPUSD).",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "frame-4de8f12d4841c630-s0-p46260000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p46800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "8b73fcfec68a616c0cba3b2e346df8730dc8e3a5f0244c611a4e7e1a7ed61089",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "b696304ca960a2f72562331ae4112255b5deefcaf9c8e207b4b0e0ae387da097"
+    ],
+    "response_id": "gen-1791156188-krmhnIOVnwbuh4KpnESy"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-llegada-directa-definida-por-objetivo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-gbpusd-llegada-directa-a-objetivo",
+   "subject_version": 1,
+   "object_id": "cl-gbpusd-objetivo-hoy-135843",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00069",
+    "asr-00072",
+    "asr-00073"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "2cb8ae3cb1e9e0e5aeed5279c7940b9f9616aa9a62698610789d15e8215ca50c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia conecta anafóricamente «este objetivo para hoy» con «su objetivo» y sostiene genéricamente que la Libra fue directamente hasta él, pero no identifica ese objetivo como el borde superior etiquetado en 1,35843; por tanto, no establece la dependencia respecto de ese objeto específico."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "b696304ca960a2f72562331ae4112255b5deefcaf9c8e207b4b0e0ae387da097"
+    ],
+    "response_id": "gen-1791156188-krmhnIOVnwbuh4KpnESy"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00069",
+   "start_ms": 509540,
+   "end_ms": 514419,
+   "text": "Otra vez, rango bullish en Libra, teníamos este objetivo para hoy. ¿Por qué? Cierra"
+  },
+  {
+   "id": "asr-00070",
+   "start_ms": 514419,
+   "end_ms": 516220,
+   "text": "con fuerza este, no teníamos"
+  },
+  {
+   "id": "asr-00071",
+   "start_ms": 516220,
+   "end_ms": 519039,
+   "text": "rango bajista"
+  },
+  {
+   "id": "asr-00072",
+   "start_ms": 519039,
+   "end_ms": 520880,
+   "text": "que ha hecho a la libra ir directamente"
+  },
+  {
+   "id": "asr-00073",
+   "start_ms": 520880,
+   "end_ms": 522020,
+   "text": "hasta su objetivo."
+  },
+  {
+   "id": "asr-00074",
+   "start_ms": 523169,
+   "end_ms": 524110,
+   "text": "Aquí lo veis claro."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46260000-canonical-v1",
+   "pts_ms": 514000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46260000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46440000-canonical-v1",
+   "pts_ms": 516000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46710000-canonical-v1",
+   "pts_ms": 519000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46800000-canonical-v1",
+   "pts_ms": 520000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46890000-canonical-v1",
+   "pts_ms": 521000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p46980000-canonical-v1",
+   "pts_ms": 522000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p46980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47070000-canonical-v1",
+   "pts_ms": 523000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47070000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47160000-canonical-v1",
+   "pts_ms": 524000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

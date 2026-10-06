@@ -1,0 +1,448 @@
+{
+ "window": "w0029",
+ "start": "06:14",
+ "end": "06:26",
+ "start_ms": 374000,
+ "end_ms": 386000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cierra-un-poco-fuera",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El elemento señalado en el ejemplo cierra un poco fuera del rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00053",
+    "frame-4de8f12d4841c630-s0-p33930000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p34200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "de8f225f79527488a47fe3bea0afe1ad5edf75632153f4be2fd43af47101cb2d",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "734e7fd197660107d7d58f93a330dc1b8692409a3f9038602b0be55f4838127a"
+    ],
+    "response_id": "gen-1791151479-Zs92rSl6eQrh0zVb4hmx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dibujo-rango-may",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja un rango alrededor de una secuencia de velas de la zona central del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p33930000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p34200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p34290000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "563d3de3448dd61dce82ba0a58ca7938ab867aa97f6acda35bceba81f85f407a",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "734e7fd197660107d7d58f93a330dc1b8692409a3f9038602b0be55f4838127a"
+    ],
+    "response_id": "gen-1791151479-Zs92rSl6eQrh0zVb4hmx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-inferior",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El elemento señalado en la parte inferior es un «failure swing», cuyo concepto se explica más adelante en el vídeo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p33840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p33930000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p34200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "fc3aade381cd35e15ee8f39680b21906d4ba43b8d59ed46202ab3b46bb25521a",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "734e7fd197660107d7d58f93a330dc1b8692409a3f9038602b0be55f4838127a"
+    ],
+    "response_id": "gen-1791151479-Zs92rSl6eQrh0zVb4hmx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-mecha-dibujada",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el punto señalado hay una mecha dibujada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00053",
+    "frame-4de8f12d4841c630-s0-p33930000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p34200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3a8a97b2d8627cc01c68d1699f69addfac6ebe24c53fda64807b8244bffe523b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma literalmente «tenía ahí una mecha dibujada», y las imágenes muestran el rango señalado al que se refiere ese «ahí»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: en el punto señalado hay una mecha dibujada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "734e7fd197660107d7d58f93a330dc1b8692409a3f9038602b0be55f4838127a"
+    ],
+    "response_id": "gen-1791151479-Zs92rSl6eQrh0zVb4hmx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-contrario-tras-cierre-interno",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Normalmente, cuando el precio toma un extremo del rango y cierra dentro, se dirige al extremo contrario.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00053",
+    "frame-4de8f12d4841c630-s0-p33930000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p34200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p34560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bb1ea1bb9d1c209a875e08646b1b40c08a9649e74cbd9192dad130ced4b56429",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente que, normalmente, cuando el precio toma un extremo y cierra dentro, se dirige hacia el otro extremo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional: normalmente, si se toma un extremo y se cierra dentro, el precio va hacia el extremo contrario."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "734e7fd197660107d7d58f93a330dc1b8692409a3f9038602b0be55f4838127a"
+    ],
+    "response_id": "gen-1791151479-Zs92rSl6eQrh0zVb4hmx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bullish-senalado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango señalado como ejemplo es bullish.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00053",
+    "frame-4de8f12d4841c630-s0-p34380000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p34560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3103490e4b849f2ad2ac7a299dd5dc8360995d315b40461e50f5b312f6d2bf35",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica expresamente el rango referido como ejemplo con «este bullish», resolviendo la referencia deíctica al mismo rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "734e7fd197660107d7d58f93a330dc1b8692409a3f9038602b0be55f4838127a"
+    ],
+    "response_id": "gen-1791151479-Zs92rSl6eQrh0zVb4hmx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-seguir-completamiento-rangos",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Observar en la temporalidad diaria cómo se van completando los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p34200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p34290000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7e7f8844778eddd2f7af7c0fae3bee68456c31980b68724fe1d7ae6d42967589",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica expresamente observar en la temporalidad diaria cómo se van formando y completando los rangos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: una instrucción de observación en una temporalidad y un modo de observación determinados."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "734e7fd197660107d7d58f93a330dc1b8692409a3f9038602b0be55f4838127a"
+    ],
+    "response_id": "gen-1791151479-Zs92rSl6eQrh0zVb4hmx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-seguir-formacion-rangos",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Observar en la temporalidad diaria cómo se van formando los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p33840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p33930000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p34200000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "f6376664df3f4a7f9ae08ee635c1f02ccdbdf7e6550c0cffdcc3840b8e9e17c4",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "734e7fd197660107d7d58f93a330dc1b8692409a3f9038602b0be55f4838127a"
+    ],
+    "response_id": "gen-1791151479-Zs92rSl6eQrh0zVb4hmx"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-cierra-fuera-excepcion-cierre-interno",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-cierra-un-poco-fuera",
+   "subject_version": 1,
+   "object_id": "cl-objetivo-contrario-tras-cierre-interno",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00053"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "422586e7959af8e414418dda6e5c72a6da1583bdb8c614897024bcbeec07bab2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enuncia la regla normal de que, si el precio toma un extremo y cierra dentro, irá hacia el otro extremo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Inmediatamente afterward presenta el caso señalado como uno que «cierra un poco fuera», por lo que no cumple la condición de cierre dentro y queda explícitamente contrastado como excepción a esa regla."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "734e7fd197660107d7d58f93a330dc1b8692409a3f9038602b0be55f4838127a"
+    ],
+    "response_id": "gen-1791151479-Zs92rSl6eQrh0zVb4hmx"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00052",
+   "start_ms": 362440,
+   "end_ms": 381560,
+   "text": "Es un ejercicio fácil si vamos, por ejemplo, a la temporalidad diaria, ir viendo cómo se van formando rangos y cómo se van completando, ¿vale? Por ejemplo, este de aquí, abajo hay un failure swing, vais a ver el concepto más tarde qué significa en este vídeo, ¿vale?"
+  },
+  {
+   "id": "asr-00053",
+   "start_ms": 381560,
+   "end_ms": 407710,
+   "text": "Vamos a ir, por ejemplo, a este rango de aquí, ¿vale? Esto de aquí. Normalmente si vemos cómo nos toma el alto y cierra adentro, este cierra un poco fuera, tenía ahí una mecha dibujada, este de aquí, por ejemplo, este bullish, vemos cómo si normalmente toma un extremo y cierra adentro, lo que va a hacer el precio es ir hacia el otro extremo."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33660000-canonical-v1",
+   "pts_ms": 374000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33840000-canonical-v1",
+   "pts_ms": 376000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p33930000-canonical-v1",
+   "pts_ms": 377000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p33930000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p34200000-canonical-v1",
+   "pts_ms": 380000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p34200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p34290000-canonical-v1",
+   "pts_ms": 381000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p34290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p34380000-canonical-v1",
+   "pts_ms": 382000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p34380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p34560000-canonical-v1",
+   "pts_ms": 384000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p34560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p34740000-canonical-v1",
+   "pts_ms": 386000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p34740000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

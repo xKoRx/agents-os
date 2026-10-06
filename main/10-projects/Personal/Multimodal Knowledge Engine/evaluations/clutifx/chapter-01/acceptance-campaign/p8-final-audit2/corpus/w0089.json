@@ -1,0 +1,380 @@
+{
+ "window": "w0089",
+ "start": "22:29",
+ "end": "22:40",
+ "start_ms": 1349000,
+ "end_ms": 1360000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-eurusd-gbpusd-lado-a-lado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Las representaciones de EURUSD y GBPUSD aparecen una al lado de la otra en el mismo gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p121410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "3cf65bc0f27790a49f479f4d7d2e7751e66d2f3c65023dd073a9ccecaad8b9c0",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "51fc86638c562e544b318eb1dc5e3976aae2ef80203c95bc78bc4aab8554c1e4"
+    ],
+    "response_id": "gen-1791172929-TsiteuvlNel4QkZ4Tl2k"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-instrumento-gbpusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico también muestra el símbolo GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p121410000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p122400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "343a5742ad2cdf2475ffbce9b36fbb004cac1ed83586eb9285b510201f050359",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran claramente la etiqueta «GBPUSD» junto a «EURUSD» en el gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "51fc86638c562e544b318eb1dc5e3976aae2ef80203c95bc78bc4aab8554c1e4"
+    ],
+    "response_id": "gen-1791172929-TsiteuvlNel4QkZ4Tl2k"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-seleccion-tres-velas-eurusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se seleccionan tres velas blancas consecutivas de EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p121500000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bcab1dc673a021a8dbe9aa89ed81c1ba976415a636e7a2d5e93951b9671360a9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra tres velas blancas consecutivas de EURUSD y cada una aparece con controles de selección."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "51fc86638c562e544b318eb1dc5e3976aae2ef80203c95bc78bc4aab8554c1e4"
+    ],
+    "response_id": "gen-1791172929-TsiteuvlNel4QkZ4Tl2k"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-seleccion-tres-velas-gbpusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Después se seleccionan tres velas blancas consecutivas de GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p121680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p121770000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "55f73d1f0d22e2d73900e021395a726d6847bfaab033f096699a1b6523a394e6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la segunda imagen, bajo la etiqueta GBPUSD, se muestran tres velas blancas consecutivas con contorno y tiradores azules de selección; las imágenes citadas muestran el estado posterior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "51fc86638c562e544b318eb1dc5e3976aae2ef80203c95bc78bc4aab8554c1e4"
+    ],
+    "response_id": "gen-1791172929-TsiteuvlNel4QkZ4Tl2k"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-seleccion-vela-derecha-gbpusd",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Después se selecciona la vela blanca más a la derecha de GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p121860000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p122040000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f230a1800992e1128d0ac6d076fd62e5d25ea1f817e2a4a89b9d356d669c0358",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra la vela blanca más a la derecha del grupo GBPUSD y la segunda muestra controles de selecciónsuperpuestos a esa misma vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "51fc86638c562e544b318eb1dc5e3976aae2ef80203c95bc78bc4aab8554c1e4"
+    ],
+    "response_id": "gen-1791172929-TsiteuvlNel4QkZ4Tl2k"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-dos-tipos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hay como dos tipos de SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00191"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "78f52b69c1ffbe1aff13388bdc3a01e071ad3d91ed104d1c80e8cdd30d9751e4",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "51fc86638c562e544b318eb1dc5e3976aae2ef80203c95bc78bc4aab8554c1e4"
+    ],
+    "response_id": "gen-1791172929-TsiteuvlNel4QkZ4Tl2k"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-objetivo-alcista-eurusd-1-13794",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "En el ejemplo, el objetivo alcista para EURUSD es el nivel 1,13794.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00191",
+    "frame-4de8f12d4841c630-s0-p121410000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p121500000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f1cccb35ee0ac0b12e985caec2507749e624a4823cb7ea38f7d14101c60c4372",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción menciona explícitamente «este objetivo alcista en euro»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "En las capturas de ese mismo ejemplo, el referente se resuelve con la marca 1,13794 visible en el eje de precios del panel EURUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el nivel concreto del objetivo alcista mostrado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "51fc86638c562e544b318eb1dc5e3976aae2ef80203c95bc78bc4aab8554c1e4"
+    ],
+    "response_id": "gen-1791172929-TsiteuvlNel4QkZ4Tl2k"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-tipo-explicado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El tipo de SMT que vamos a ver es uno de esos dos tipos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00191"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "dad06bcc698c47c3508529e5b46725d9fe64cacb4a5c3060655e1264f0cb36d8",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "51fc86638c562e544b318eb1dc5e3976aae2ef80203c95bc78bc4aab8554c1e4"
+    ],
+    "response_id": "gen-1791172929-TsiteuvlNel4QkZ4Tl2k"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00191",
+   "start_ms": 1345680,
+   "end_ms": 1359310,
+   "text": "¿Vale? Pues vais a ver que hay como dos tipos de SMT, ¿vale? La que vamos a ver nosotros, en este caso, por ejemplo, podías tener este objetivo alcista en euro,"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121410000-canonical-v1",
+   "pts_ms": 1349000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121500000-canonical-v1",
+   "pts_ms": 1350000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121680000-canonical-v1",
+   "pts_ms": 1352000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121770000-canonical-v1",
+   "pts_ms": 1353000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121770000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p121860000-canonical-v1",
+   "pts_ms": 1354000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p121860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p122040000-canonical-v1",
+   "pts_ms": 1356000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p122040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p122130000-canonical-v1",
+   "pts_ms": 1357000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p122130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p122400000-canonical-v1",
+   "pts_ms": 1360000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p122400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

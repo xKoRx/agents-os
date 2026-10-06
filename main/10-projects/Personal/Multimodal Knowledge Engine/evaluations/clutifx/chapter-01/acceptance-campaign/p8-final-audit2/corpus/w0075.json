@@ -1,0 +1,382 @@
+{
+ "window": "w0075",
+ "start": "18:56",
+ "end": "19:16",
+ "start_ms": 1136000,
+ "end_ms": 1156000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-cerrado-fuera-no-valido",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Un rango cerrado fuera de sí mismo ya no se consideraría más un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00161",
+    "asr-00162"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "876f19cab2f88e04c56a903a0060fe1f9e8f9f25fd82c795969a4ef9f0f3f02f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enlaza explícitamente el cierre fuera del primer rango con que ese rango ya no se consideraría un rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La condición y su consecuencia forman una sola regla, por lo que la afirmación es atómica."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "38118a3ca3d5c1e60f9d4df472455309e1a50427fdcff7e92f626d6b76397342"
+    ],
+    "response_id": "gen-1791167677-D39lPvQzYOXhm6LG89Q4"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-cierre-fuera-eliminable",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si el cierre queda fuera del primer rango, ese primer rango ya se puede eliminar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00161",
+    "asr-00162"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5369eac592c37e081d68b97e100bb37a70f6fa4001541248ad9610ad7a1792ad",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enuncia la condición de que el cierre quede fuera del primer rango y, en consecuencia, que ese rango ya se puede eliminar y deja de considerarse un rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "38118a3ca3d5c1e60f9d4df472455309e1a50427fdcff7e92f626d6b76397342"
+    ],
+    "response_id": "gen-1791167677-D39lPvQzYOXhm6LG89Q4"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-scalp-cierre-dentro-rango",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Para que un trade sea considerado intradía de scalp, el cierre tiene que producirse dentro del mismo rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00159",
+    "asr-00160",
+    "asr-00161"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d8cd10051b77c83fdd50c0e3466a9cbc0a6895776100d020f81ed634f5adf025",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia exige «cerrar dentro del mismo rango» y explica que, si el cierre ocurre fuera del primer rango, no cumple la condición; el enunciado reproduce esa única definición operativa."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "38118a3ca3d5c1e60f9d4df472455309e1a50427fdcff7e92f626d6b76397342"
+    ],
+    "response_id": "gen-1791167677-D39lPvQzYOXhm6LG89Q4"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-scalp-reaccion-dentro-rango",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Para que un trade sea considerado intradía de scalp, la reacción tiene que desarrollarse dentro del mismo rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00159",
+    "asr-00160",
+    "asr-00161"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "289d9844aab919c7e83f14d2068821e70a8e4544aa4f2caee2216eec493b3264",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que, para que un trade sea considerado scalp, la reacción debeProducesizarse dentro del mismo rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Es una única regla definicional; la condición delimita la misma proposición y no añade una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "38118a3ca3d5c1e60f9d4df472455309e1a50427fdcff7e92f626d6b76397342"
+    ],
+    "response_id": "gen-1791167677-D39lPvQzYOXhm6LG89Q4"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-scalp-toma-dentro-rango",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Para que un trade sea considerado intradía de scalp, la toma tiene que realizarse dentro del mismo rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00159",
+    "asr-00160",
+    "asr-00161"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8060c156eb55ba49c6473367039b778376cb35f0e98e2a7cad61abc8b1040413",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las transcripciones identifican la garabata «intentarte el show» con «intradía de scalp» y afirman que la toma debe hacerse dentro del mismo rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la toma dentro del mismo rango es una condición para que el trade sea considerado intradía de scalp."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "38118a3ca3d5c1e60f9d4df472455309e1a50427fdcff7e92f626d6b76397342"
+    ],
+    "response_id": "gen-1791167677-D39lPvQzYOXhm6LG89Q4"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-cierre-fuera-excepcion-scalp",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-rango-cerrado-fuera-no-valido",
+   "subject_version": 1,
+   "object_id": "cl-scalp-cierre-dentro-rango",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00161",
+    "asr-00162"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "35a0f40aa04377819030612eefd24dfde069e8f803ba2488146ef1a02ac7a2db",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia plantea el caso de que el cierre ocurra fuera del rango y afirma que ese rango ya no se consideraría rango, frente a la condición de que el cierre se produzca dentro del mismo rango para la consideración intradía de scalp."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "38118a3ca3d5c1e60f9d4df472455309e1a50427fdcff7e92f626d6b76397342"
+    ],
+    "response_id": "gen-1791167677-D39lPvQzYOXhm6LG89Q4"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-eliminacion-rango-requiere-invalidez",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-cierre-fuera-eliminable",
+   "subject_version": 1,
+   "object_id": "cl-rango-cerrado-fuera-no-valido",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00161",
+    "asr-00162"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "ff7b386b716ca7e6a37c206b403b4f5dee1dd57cd0a91adebd3c8474d55aa821",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas citan la condición y consecutivamente que el rango puede eliminarse y ya no se consideraría un rango, pero no enactúan que la primera afirmación dependa de la segunda ni que una cosa sea la condición o definición de la otra."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "38118a3ca3d5c1e60f9d4df472455309e1a50427fdcff7e92f626d6b76397342"
+    ],
+    "response_id": "gen-1791167677-D39lPvQzYOXhm6LG89Q4"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00159",
+   "start_ms": 1127930,
+   "end_ms": 1136720,
+   "text": "para que si yo hablo de intentarte el show sepáis que es es esto un tarde el sub una vez ya se ha"
+  },
+  {
+   "id": "asr-00160",
+   "start_ms": 1136720,
+   "end_ms": 1143660,
+   "text": "dado el otro tarde vale lo mismo tiene que ser tomar y reacción y cerrar dentro del mismo rango"
+  },
+  {
+   "id": "asr-00161",
+   "start_ms": 1143660,
+   "end_ms": 1153410,
+   "text": "para que sea considerado intentarte su sitio si cierra fuera del primer rango así vale este rango"
+  },
+  {
+   "id": "asr-00162",
+   "start_ms": 1153410,
+   "end_ms": 1157090,
+   "text": "y ya se puede eliminar, ya no se consideraría más un rango"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p102240000-canonical-v1",
+   "pts_ms": 1136000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p102240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p102600000-canonical-v1",
+   "pts_ms": 1140000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p102600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p102780000-canonical-v1",
+   "pts_ms": 1142000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p102780000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p102960000-canonical-v1",
+   "pts_ms": 1144000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p102960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p103050000-canonical-v1",
+   "pts_ms": 1145000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p103050000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p103320000-canonical-v1",
+   "pts_ms": 1148000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p103320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p103680000-canonical-v1",
+   "pts_ms": 1152000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p103680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p104040000-canonical-v1",
+   "pts_ms": 1156000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p104040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

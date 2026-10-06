@@ -1,0 +1,484 @@
+{
+ "window": "w0066",
+ "start": "16:00",
+ "end": "16:23",
+ "start_ms": 960000,
+ "end_ms": 983000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-caso-mostrado-no-es-turtlesoup",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El caso mostrado no es ningún Turtle Soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "f4aebf348f47387348a622700e88088b0acd19c1e8a07937a0c9af511f163f0c",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "27808e6323567ecbedd2c5a5ffa4671e8994586066bc808360337cfa3e9dd221"
+    ],
+    "response_id": "gen-1791164613-VHwqubrQIqAuHqtvBeK7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-caso-vela-no-reacciona",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el caso mostrado, la vela no reacciona después de tomar el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00130",
+    "asr-00131",
+    "frame-4de8f12d4841c630-s0-p88200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p88470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "b45720a9e97a5a37bb5f03163c5bf51bbed98e68d34870863aef89b568696216",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "27808e6323567ecbedd2c5a5ffa4671e8994586066bc808360337cfa3e9dd221"
+    ],
+    "response_id": "gen-1791164613-VHwqubrQIqAuHqtvBeK7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-caso-vela-sigue-bajando",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el caso mostrado, la vela sigue bajando después de tomar el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00130",
+    "asr-00131",
+    "frame-4de8f12d4841c630-s0-p88200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p88470000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "1b7ddce3895634eb17b22b49241830ead218f303ea56a01e80ac98cf67d478cd",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "27808e6323567ecbedd2c5a5ffa4671e8994586066bc808360337cfa3e9dd221"
+    ],
+    "response_id": "gen-1791164613-VHwqubrQIqAuHqtvBeK7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-caso-vela-toma-low",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el caso mostrado, la vela siguiente toma el low.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00130",
+    "asr-00131",
+    "frame-4de8f12d4841c630-s0-p87480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p87750000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "7ec5b2b279058bdceb1894c28e985de552fe9711757dedd7979ac20e6362ec8e",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "27808e6323567ecbedd2c5a5ffa4671e8994586066bc808360337cfa3e9dd221"
+    ],
+    "response_id": "gen-1791164613-VHwqubrQIqAuHqtvBeK7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-low-y-reaccion-turtlesoup",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Cuando la vela toma el low y reacciona, es un Turtle Soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00130",
+    "frame-4de8f12d4841c630-s0-p87750000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p87840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "fe29a8a8adc640fee73ff75a079004a3c5514ae6772ce8c5391c91b76bc9ca27",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que cuando la vela toma el low y reacciona, entonces es un «tartel sub», deformación fonética de «Turtle Soup»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La condición y su consecuencia forman una sola regla y no dos afirmaciones independientes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "27808e6323567ecbedd2c5a5ffa4671e8994586066bc808360337cfa3e9dd221"
+    ],
+    "response_id": "gen-1791164613-VHwqubrQIqAuHqtvBeK7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-interpretado-como-vela",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rectángulo grande de la izquierda se interpreta como una vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00129",
+    "frame-4de8f12d4841c630-s0-p86400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p87120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "11fb91cb912218d8c0f354d9ee463499e884385bc7c4b6ec7ac0f6f4086455a2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «esto sería una vela», y el deíctico se resuelve en el rectángulo grande situado a la izquierda y mostrado en las imágenes."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la identificación de ese rectángulo como una vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "27808e6323567ecbedd2c5a5ffa4671e8994586066bc808360337cfa3e9dd221"
+    ],
+    "response_id": "gen-1791164613-VHwqubrQIqAuHqtvBeK7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtlesoup-toma-liquidez",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Un Turtle Soup tiene que ser una toma de liquidez.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f819566beb91faaf169797239c2c8658666bd2599616a2c9705f94bd5571203c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que «el tartle sub tiene que ser una toma de liquidez»; «tartle sub» es una forma fonética distortionada de «Turtle Soup»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "27808e6323567ecbedd2c5a5ffa4671e8994586066bc808360337cfa3e9dd221"
+    ],
+    "response_id": "gen-1791164613-VHwqubrQIqAuHqtvBeK7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-ejemplo-cuatro-horas",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La vela del ejemplo se plantea como una vela de cuatro horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00129",
+    "frame-4de8f12d4841c630-s0-p86400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "51b3de92ceec9641ddf29bdf43565622646196b35ee4d7b8a553ebdf56f91847",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente «esto sería una vela pongámosle de cuatro horas», por lo que plantea la vela del ejemplo como una vela de cuatro horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "27808e6323567ecbedd2c5a5ffa4671e8994586066bc808360337cfa3e9dd221"
+    ],
+    "response_id": "gen-1791164613-VHwqubrQIqAuHqtvBeK7"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-no-turtlesoup-depende-bajista",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-caso-mostrado-no-es-turtlesoup",
+   "subject_version": 1,
+   "object_id": "cl-caso-vela-sigue-bajando",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "ab94b80e299c59e277bd36e55652142ce51fd60126fa382b6a02efc0174984e8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The evidence links the candle continuing downward instead of reacting with the conclusion that the case is not a Turtle Soup, but it never states that the candle had taken the low. Therefore, the object claim and the exact dependency in the stated orientation are not fully established."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "27808e6323567ecbedd2c5a5ffa4671e8994586066bc808360337cfa3e9dd221"
+    ],
+    "response_id": "gen-1791164613-VHwqubrQIqAuHqtvBeK7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-no-turtlesoup-depende-no-reaccion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-caso-mostrado-no-es-turtlesoup",
+   "subject_version": 1,
+   "object_id": "cl-caso-vela-no-reacciona",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "2e301abc1978003e14ee36068ad32c3393069d8126efabce42bef34c45916aa7",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider read-body [retry-exhausted]: retry budget of 2 exhausted; last failure: response body read failed"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "27808e6323567ecbedd2c5a5ffa4671e8994586066bc808360337cfa3e9dd221"
+    ],
+    "response_id": "gen-1791164613-VHwqubrQIqAuHqtvBeK7"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00129",
+   "start_ms": 954040,
+   "end_ms": 960690,
+   "text": "alto del bajo pero bueno queda así un poco mejor esto sería una vela pongámosle de cuatro horas"
+  },
+  {
+   "id": "asr-00130",
+   "start_ms": 960690,
+   "end_ms": 976240,
+   "text": "vale siguiente vela hace esto así toma el low reacciona entonces es un tartel sub vale si esto"
+  },
+  {
+   "id": "asr-00131",
+   "start_ms": 976240,
+   "end_ms": 984900,
+   "text": "en lugar de reaccionar, sigue bajando, no es ningún tartle sub, ¿vale? O sea, el tartle sub tiene que ser una toma de liquidez"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p86400000-canonical-v1",
+   "pts_ms": 960000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p86400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p86760000-canonical-v1",
+   "pts_ms": 964000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p86760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p87120000-canonical-v1",
+   "pts_ms": 968000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p87120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p87480000-canonical-v1",
+   "pts_ms": 972000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p87480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p87750000-canonical-v1",
+   "pts_ms": 975000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p87750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p87840000-canonical-v1",
+   "pts_ms": 976000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p87840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p88200000-canonical-v1",
+   "pts_ms": 980000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p88200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p88470000-canonical-v1",
+   "pts_ms": 983000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p88470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

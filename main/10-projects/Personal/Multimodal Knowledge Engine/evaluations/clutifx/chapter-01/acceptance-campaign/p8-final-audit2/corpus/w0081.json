@@ -1,0 +1,516 @@
+{
+ "window": "w0081",
+ "start": "20:40",
+ "end": "20:51",
+ "start_ms": 1240000,
+ "end_ms": 1251000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-comprobar-objetivo-superior-tras-ocurrir-esto",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Una vez que esto ocurre, se comprueba si hay un objetivo más arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00173"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "34cdc12207759b7e4be509984fb1ea2fb1675db073f0eb6fbd811c5d3802d6ff",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "894413f67d135dd0a8ccc48876faf2b5b05f4fe7d80dd8427e419acc0dbf6b22"
+    ],
+    "response_id": "gen-1791170114-KYwxL3iEFLSSkOFEQSih"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-8h-precio-sobre-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio del EURUSD en 8h se encuentra por encima del rango rectangular visible.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p112140000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "acf1d9e5e41502a2521cb81cb47822cf58604a65fac4a966075beab7e3a77bbc",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "894413f67d135dd0a8ccc48876faf2b5b05f4fe7d80dd8427e419acc0dbf6b22"
+    ],
+    "response_id": "gen-1791170114-KYwxL3iEFLSSkOFEQSih"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-eliminable-tras-ocurrir-esto",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Una vez que esto ocurre, se puede eliminar el rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00173",
+    "frame-4de8f12d4841c630-s0-p112140000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f0ca3127b10a8098ab31477d8e446de279ccb85d343b1c3380239dacb1456440",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que, una vez que esto pasa, ya se puede eliminar el rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La cláusula temporal expresa la condición de la misma proposición y no añade una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "894413f67d135dd0a8ccc48876faf2b5b05f4fe7d80dd8427e419acc0dbf6b22"
+    ],
+    "response_id": "gen-1791170114-KYwxL3iEFLSSkOFEQSih"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-olvidable-tras-ocurrir-esto",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Una vez que esto ocurre, se puede olvidar el rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00173",
+    "frame-4de8f12d4841c630-s0-p112140000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1fe9396d3078fd6e2cf9c1a24ac7965e0e8e153cb5a6258dfe2b1afc4eed49d7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que, una vez que esto pasa, se puede olvidar el rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "894413f67d135dd0a8ccc48876faf2b5b05f4fe7d80dd8427e419acc0dbf6b22"
+    ],
+    "response_id": "gen-1791170114-KYwxL3iEFLSSkOFEQSih"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reanalizar-precio-tras-ocurrir-esto",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Una vez que esto ocurre, se vuelve a analizar lo que está haciendo el precio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00173"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ed7f248a9fb9cfb5fc98b41b6db892fcdb4b92d5aacf2d443b1d84d26c0329c8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que, una vez que esto pasa, se puede volver a analizar lo que está haciendo el precio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La proposición es atómica: expresa una sola consecuencia de que ocurra el evento referido."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "894413f67d135dd0a8ccc48876faf2b5b05f4fe7d80dd8427e419acc0dbf6b22"
+    ],
+    "response_id": "gen-1791170114-KYwxL3iEFLSSkOFEQSih"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-ejemplo-derecho-libra",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico derecho del ejemplo es la libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p112320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p112410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "c8d78bc9da78e21389275f9184975638906154eec57b2c9655f50cc91f620dfc",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "894413f67d135dd0a8ccc48876faf2b5b05f4fe7d80dd8427e419acc0dbf6b22"
+    ],
+    "response_id": "gen-1791170114-KYwxL3iEFLSSkOFEQSih"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-ejemplo-derecho-xauusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico derecho del ejemplo está etiquetado como XAUUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p112320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p112410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "2c7a04a35994a179d2b5bb448779b974226864802eee2ec88bd2239e0f0e5330",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "894413f67d135dd0a8ccc48876faf2b5b05f4fe7d80dd8427e419acc0dbf6b22"
+    ],
+    "response_id": "gen-1791170114-KYwxL3iEFLSSkOFEQSih"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-ejemplo-izquierdo-euro",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico izquierdo del ejemplo es el euro, etiquetado como EURUSD.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p112320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p112410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "1361d10cd3b92d71009d7675f8335dba63a4c56bd8d91cfed3c19aba97fc195a",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "894413f67d135dd0a8ccc48876faf2b5b05f4fe7d80dd8427e419acc0dbf6b22"
+    ],
+    "response_id": "gen-1791170114-KYwxL3iEFLSSkOFEQSih"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-explicada-en-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El concepto SMT ya está explicado también en el curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "ad50ffdd6c35079701ee50737d63046ca6ffe78c7a6eecdb981e73ed0a91e3fc",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "894413f67d135dd0a8ccc48876faf2b5b05f4fe7d80dd8427e419acc0dbf6b22"
+    ],
+    "response_id": "gen-1791170114-KYwxL3iEFLSSkOFEQSih"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-mostrada-conocida-por-audiencia",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La SMT que la audiencia conocía anteriormente es la que se muestra en el ejemplo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p112320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p112410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "db67ee653969df4e72ff1de73ec462ad76dd58ea2e93f3d91eb5c275ccda6dee",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "894413f67d135dd0a8ccc48876faf2b5b05f4fe7d80dd8427e419acc0dbf6b22"
+    ],
+    "response_id": "gen-1791170114-KYwxL3iEFLSSkOFEQSih"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-libra-contradice-etiqueta-xauusd",
+   "version": 1,
+   "type": "CONTRADICTS",
+   "subject_id": "cl-smt-ejemplo-derecho-libra",
+   "subject_version": 1,
+   "object_id": "cl-smt-ejemplo-derecho-xauusd",
+   "object_version": 1,
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p112320000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p112410000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "179846f0df9d1726979c134acee5496689dfd11a2908c90a491ee16e6099ba4e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica el gráfico derecho mediante deixis como «la libra», equivalente a GBPUSD según la resolución de identidad indicada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran que el gráfico derecho está etiquetado como XAUUSD."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Por tanto, las dos afirmaciones sobre el mismo gráfico son incompatibles en la orientación sujeto–objeto: Pound/GBPUSD frente a XAUUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "894413f67d135dd0a8ccc48876faf2b5b05f4fe7d80dd8427e419acc0dbf6b22"
+    ],
+    "response_id": "gen-1791170114-KYwxL3iEFLSSkOFEQSih"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00173",
+   "start_ms": 1226210,
+   "end_ms": 1245430,
+   "text": "Una vez pasa esto, ya puedes eliminar este rango, olvidarte de él y volver a analizar lo que está haciendo el precio, mirar a ver si hay un objetivo más arriba y bueno, ya no me adelanto mucho que lo vais a ver ya en el siguiente capítulo explicando ya un poco más la estrategia, ¿vale? Así que nada, seguimos."
+  },
+  {
+   "id": "asr-00174",
+   "start_ms": 1245430,
+   "end_ms": 1283400,
+   "text": "Vamos a seguir. Concepto SMT. Ya está explicado también en el curso intermedio. Muchos venís a SMT. Ya sabéis qué es. La SMT que conocemos nosotros o que conocíais vosotros anteriormente es esta. Por ejemplo, esto es el euro. Y esto es la libra. Esta sería la SMT que conocíamos, que conocíais, perdón, hasta ahora."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p111600000-canonical-v1",
+   "pts_ms": 1240000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p111600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p111690000-canonical-v1",
+   "pts_ms": 1241000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p111690000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p111960000-canonical-v1",
+   "pts_ms": 1244000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p111960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112140000-canonical-v1",
+   "pts_ms": 1246000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112140000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112320000-canonical-v1",
+   "pts_ms": 1248000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112410000-canonical-v1",
+   "pts_ms": 1249000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112500000-canonical-v1",
+   "pts_ms": 1250000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112500000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p112590000-canonical-v1",
+   "pts_ms": 1251000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p112590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

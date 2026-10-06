@@ -1,0 +1,386 @@
+{
+ "window": "w0083",
+ "start": "21:09",
+ "end": "21:24",
+ "start_ms": 1269000,
+ "end_ms": 1284000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dibujo-segunda-trayectoria",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja progresivamente una segunda trayectoria a la derecha de la trayectoria etiquetada como «EURUSD».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p114210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p114390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p114480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p114660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "b0b8b5a91661152e0ef81771efd147c85b6b4693fac0400badb06dc4a6ff04b7",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a9315641d8100104e10df1b38151612f8d0339977e007072e909b0fcb1e295da"
+    ],
+    "response_id": "gen-1791171270-U52anZI1zfW8xh5S57BO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-nuevo-alto",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el ejemplo dibujado, el euro registra un nuevo alto.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00175",
+    "frame-4de8f12d4841c630-s0-p114210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p115560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "d8a4e6d899277fb6dc7e2707afc392ca52cae359609aea6691b796d6f78e13d5",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a9315641d8100104e10df1b38151612f8d0339977e007072e909b0fcb1e295da"
+    ],
+    "response_id": "gen-1791171270-U52anZI1zfW8xh5S57BO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-temporalidad-8h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad del gráfico de la plataforma es 8h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p114210000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "61821e6a8c3ddf82bca9f5398260c1541e5636b64d6eb07a6bd9c555f5514412",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia muestra explícitamente «EURUSD · 8h · FOREX.com» en la cabecera del gráfico, lo que establece una temporalidad de 8 horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a9315641d8100104e10df1b38151612f8d0339977e007072e909b0fcb1e295da"
+    ],
+    "response_id": "gen-1791171270-U52anZI1zfW8xh5S57BO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-conocido-por-muchos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Muchos de quienes vienen a SMT ya conocen qué es.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "96592e7d8895f52a34b4728935e11ed48eb26e5c352420ce187b881409fec47b",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a9315641d8100104e10df1b38151612f8d0339977e007072e909b0fcb1e295da"
+    ],
+    "response_id": "gen-1791171270-U52anZI1zfW8xh5S57BO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-explicado-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El concepto de SMT ya está explicado también en el curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "5ad2b218f852da0c7283eacd0803b7e00a6ed5d4c11a067511fc19abd642a9d9",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a9315641d8100104e10df1b38151612f8d0339977e007072e909b0fcb1e295da"
+    ],
+    "response_id": "gen-1791171270-U52anZI1zfW8xh5S57BO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-representacion-anterior",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La representación que aparece en pantalla es la SMT que conocían anteriormente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p115560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1c0d3f906ef957fdb93019d3f688583d767183066159f92c437417d09787bc65",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento citado identifica explícitamente la representación señalada como «la SMT que conocíamos [...] anteriormente», y la imagen muestra los gráficos de EURUSD y GBPUSD a los que se refiere el discourse."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a9315641d8100104e10df1b38151612f8d0339977e007072e909b0fcb1e295da"
+    ],
+    "response_id": "gen-1791171270-U52anZI1zfW8xh5S57BO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-trayectoria-derecha-gbpusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La trayectoria de la derecha está etiquetada como «GBPUSD».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p115560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b5a2875a0a6591b65ea1aee9649fb880165436a87b140262167248b71638f7cb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra dos trayectorias y la de la derecha tiene la etiqueta «GBPUSD» debajo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a9315641d8100104e10df1b38151612f8d0339977e007072e909b0fcb1e295da"
+    ],
+    "response_id": "gen-1791171270-U52anZI1zfW8xh5S57BO"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-trayectoria-izquierda-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La trayectoria de la izquierda está etiquetada como «EURUSD».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00174",
+    "frame-4de8f12d4841c630-s0-p114210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p115560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "983c3c23f7d576c1cffe99f824888ecdce1e53baa855a268a319f7416da43a99",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En las dos imágenes, la trayectoria situada a la izquierda aparece etiquetada como «EURUSD»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a9315641d8100104e10df1b38151612f8d0339977e007072e909b0fcb1e295da"
+    ],
+    "response_id": "gen-1791171270-U52anZI1zfW8xh5S57BO"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00174",
+   "start_ms": 1245430,
+   "end_ms": 1283400,
+   "text": "Vamos a seguir. Concepto SMT. Ya está explicado también en el curso intermedio. Muchos venís a SMT. Ya sabéis qué es. La SMT que conocemos nosotros o que conocíais vosotros anteriormente es esta. Por ejemplo, esto es el euro. Y esto es la libra. Esta sería la SMT que conocíamos, que conocíais, perdón, hasta ahora."
+  },
+  {
+   "id": "asr-00175",
+   "start_ms": 1283400,
+   "end_ms": 1285320,
+   "text": "nuevo alto en euro"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114210000-canonical-v1",
+   "pts_ms": 1269000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114210000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114390000-canonical-v1",
+   "pts_ms": 1271000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114480000-canonical-v1",
+   "pts_ms": 1272000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114660000-canonical-v1",
+   "pts_ms": 1274000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114840000-canonical-v1",
+   "pts_ms": 1276000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p115020000-canonical-v1",
+   "pts_ms": 1278000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p115020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p115200000-canonical-v1",
+   "pts_ms": 1280000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p115200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p115560000-canonical-v1",
+   "pts_ms": 1284000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p115560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

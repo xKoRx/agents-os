@@ -1,0 +1,468 @@
+{
+ "window": "w0004",
+ "start": "00:48",
+ "end": "01:04",
+ "start_ms": 48000,
+ "end_ms": 64000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-symbol-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El símbolo mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p101880000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p118620000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p119610000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p5400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p82440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "9e23f515794e40e3bea928d3669ea3f99f82b78a89419a4bd202aa5e71ae92b7",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "104614d7fa6060e6d91876dbe16e2e4a6f3a0ab6c038ee96a122c5e27dfa31d8",
+     "19d951931144b1865c01e25fcd7dd09baf24bc9c772a367fa851759ec9047960",
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6",
+     "4c585500e38c38f6f84e775fd36bf5f954ea646cb6b52508d600f9f16312102b"
+    ],
+    "response_id": "gen-1791145566-DsVAg7weFeZXk8VsUK05"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-drawing-color-palette-open",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La paleta de colores de la herramienta de dibujo está abierta.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p5490000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "8fffb1237fe528aa5d6fe13f63a29f9246c1f88ab2c2a81c8ca9d26c97d79d9b",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "19d951931144b1865c01e25fcd7dd09baf24bc9c772a367fa851759ec9047960"
+    ],
+    "response_id": "gen-1791145566-DsVAg7weFeZXk8VsUK05"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-drawing-rectangle-lower-bound",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La línea inferior del rectángulo dibujado coincide con la etiqueta de precio 1,15006.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p5400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "e306b05602e2844e24fb3889df0a63544501d99fd98cf233476a57ecb134bc2b",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "19d951931144b1865c01e25fcd7dd09baf24bc9c772a367fa851759ec9047960"
+    ],
+    "response_id": "gen-1791145566-DsVAg7weFeZXk8VsUK05"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-drawing-rectangle-upper-bound",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La línea superior del rectángulo dibujado coincide con la etiqueta de precio 1,15389.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p5400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "19734d077305dc90cbcef7f4da98a0cd10924f07ef2759dc89473bfac544c5f9",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "19d951931144b1865c01e25fcd7dd09baf24bc9c772a367fa851759ec9047960"
+    ],
+    "response_id": "gen-1791145566-DsVAg7weFeZXk8VsUK05"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-drawing-vertical-rectangle",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja un rectángulo vertical en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p5400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p5670000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "a8abf99be336cb1ce76b54fe9cd684e9701190480d10fde28602e6a3cf54315e",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "19d951931144b1865c01e25fcd7dd09baf24bc9c772a367fa851759ec9047960"
+    ],
+    "response_id": "gen-1791145566-DsVAg7weFeZXk8VsUK05"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-instructor-paint-candle",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El instructor va a pintar una vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00005"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "99523a76e74a2ecb23f5b7996838bf6040996d1c1216f9a5692348572af732bd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice explícitamente «voy a pintar la vela ahora», lo que respalda que el instructor va a pintar una vela."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la acción que el instructor realizaré."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "19d951931144b1865c01e25fcd7dd09baf24bc9c772a367fa851759ec9047960"
+    ],
+    "response_id": "gen-1791145566-DsVAg7weFeZXk8VsUK05"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-other-candle-takes-extreme",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En un rango, otra vela toma un extremo de una vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00004",
+    "asr-00005"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1120edfe5e0dcb1b7a00b1143f2dc878f6348546afef9c81a27269beedcae5b3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia explica que el concepto de rango incluye que otra vela tome un extremo de una vela."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "«En un rango» únicamente limita el contexto de esa misma proposición, sin añadir una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "19d951931144b1865c01e25fcd7dd09baf24bc9c772a367fa851759ec9047960"
+    ],
+    "response_id": "gen-1791145566-DsVAg7weFeZXk8VsUK05"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-taking-candle-closes-inside",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La vela que toma un extremo de la vela anterior cierra dentro de esa vela anterior.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00005"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e98b035a0a1a5b38c09311ac32d68cea331bd0524bdf7c33328693f49c69eae3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que otra vela toma un extremo de una vela y cierra dentro de la vela anterior, lo que respalda directamente la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement contiene una sola regla: la vela que toma un extremo de la vela anterior cierra dentro de ella."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "19d951931144b1865c01e25fcd7dd09baf24bc9c772a367fa851759ec9047960"
+    ],
+    "response_id": "gen-1791145566-DsVAg7weFeZXk8VsUK05"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-range-taking-candle-not-necessarily-next",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La vela que toma el extremo no tiene por qué ser la vela inmediatamente siguiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00005"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b63b43dd536b4a2c76debfd70606ec1b1f6d0ebb828823b298e578484c4844e6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que la vela que toma un extremo puede ser «otra vela» y que «no tiene porque es la siguiente», lo que respalda directamente que no tiene por qué ser la vela inmediatamente siguiente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "19d951931144b1865c01e25fcd7dd09baf24bc9c772a367fa851759ec9047960"
+    ],
+    "response_id": "gen-1791145566-DsVAg7weFeZXk8VsUK05"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00003",
+   "start_ms": 34850,
+   "end_ms": 49400,
+   "text": "Así que nada, vamos directamente al grano. El formato que voy a seguir va a ser un poco similar al del curso intermedio y si no lo has hecho, tranquilo, no pasa nada porque no hay información que sea totalmente relevante para ahora entender esto."
+  },
+  {
+   "id": "asr-00004",
+   "start_ms": 49620,
+   "end_ms": 61640,
+   "text": "Voy a empezar desde cero aquí también. Así que nada, vamos a empezar con los conceptos. Primero de todo, vamos a inculcar un concepto nuevo que a lo mejor no conocéis vosotros, que es el concepto de rango."
+  },
+  {
+   "id": "asr-00005",
+   "start_ms": 61640,
+   "end_ms": 81320,
+   "text": "¿Vale? El concepto de rango se refiere, voy a pintar la vela ahora, a las velas que la siguiente vela nos toma, o no tiene porque es la siguiente, otra vela, nos toma un extremo de esta vela y cierra dentro del anterior, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p4320000-canonical-v1",
+   "pts_ms": 48000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p4320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p4680000-canonical-v1",
+   "pts_ms": 52000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p4680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p5040000-canonical-v1",
+   "pts_ms": 56000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p5040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p5130000-canonical-v1",
+   "pts_ms": 57000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p5130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p5400000-canonical-v1",
+   "pts_ms": 60000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p5400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p5490000-canonical-v1",
+   "pts_ms": 61000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p5490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p5670000-canonical-v1",
+   "pts_ms": 63000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p5670000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p5760000-canonical-v1",
+   "pts_ms": 64000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p5760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p101880000-canonical-v1",
+   "pts_ms": 1132000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p101880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p118620000-canonical-v1",
+   "pts_ms": 1318000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p118620000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119610000-canonical-v1",
+   "pts_ms": 1329000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p82440000-canonical-v1",
+   "pts_ms": 916000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p82440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

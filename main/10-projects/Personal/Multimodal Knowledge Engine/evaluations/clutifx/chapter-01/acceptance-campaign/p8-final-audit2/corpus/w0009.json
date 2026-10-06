@@ -1,0 +1,397 @@
+{
+ "window": "w0009",
+ "start": "01:59",
+ "end": "02:08",
+ "start_ms": 119000,
+ "end_ms": 128000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-relleno-figura-derecha",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El relleno de la figura vertical situada a la derecha cambia de oscuro a blanco.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p10710000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p10800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "fb853769557516cb456da2ab4495dfca86309c28a0b461e5c0519a980e2386a6",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6c6756b642cf42f1b3f21ae1b09b6cb2f026b3220169504df17b5e671c668806"
+    ],
+    "response_id": "gen-1791146776-P7wLNTpSFWhIbKmbrkgU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-esquema-rango-alcista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El esquema visible está rotulado «rango alcista».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p10710000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p11520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "fe2e6f1a5f5bd856589fc15fc3b82cad4aefee0e33b2c3b3851ca564d7d007f8",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6c6756b642cf42f1b3f21ae1b09b6cb2f026b3220169504df17b5e671c668806"
+    ],
+    "response_id": "gen-1791146776-P7wLNTpSFWhIbKmbrkgU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-figura-blanca-superior-derecha",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En la parte superior derecha aparece una figura rectangular blanca pequeña.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p11160000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p11430000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "3374041821c01983a153e8af28217b077bc7105031df7859908817a1b5d932b5",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6c6756b642cf42f1b3f21ae1b09b6cb2f026b3220169504df17b5e671c668806"
+    ],
+    "response_id": "gen-1791146776-P7wLNTpSFWhIbKmbrkgU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-figura-derecha-solo-contorno",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Durante la edición, la figura vertical situada a la derecha se muestra únicamente con su contorno.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p11070000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "4f12d7cfddda9b7ba45b75e88f97ae8df0430571bde3ac6db24ba0ddd5b70b65",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6c6756b642cf42f1b3f21ae1b09b6cb2f026b3220169504df17b5e671c668806"
+    ],
+    "response_id": "gen-1791146776-P7wLNTpSFWhIbKmbrkgU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-figura-presentada-como-vela-negativa",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La figura rectangular pequeña situada en la parte superior derecha se presenta como una vela negativa.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00016",
+    "frame-4de8f12d4841c630-s0-p11430000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p11520000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "cd3d50a35cf0d854f572236da794cd034315a3bc1f7dfc4279d81914f7a1f6d1",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6c6756b642cf42f1b3f21ae1b09b6cb2f026b3220169504df17b5e671c668806"
+    ],
+    "response_id": "gen-1791146776-P7wLNTpSFWhIbKmbrkgU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-negativa-frecuente",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Lo que se ve en la mayoría de las ocasiones es una vela negativa.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00015",
+    "asr-00016"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "035f81b3128c43029eeae7d9a6744a75593120bb7dc7e11d4758c4794aaed696",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que la mayoría de las veces se verá «una vela negativa», lo que respalda directamente la proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6c6756b642cf42f1b3f21ae1b09b6cb2f026b3220169504df17b5e671c668806"
+    ],
+    "response_id": "gen-1791146776-P7wLNTpSFWhIbKmbrkgU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-no-necesariamente-negativa",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La vela no tiene por qué ser negativa como tal.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00015",
+    "asr-00016",
+    "asr-00017"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8b0644da9e34dea0a484ea02b1576b8dda908a1d62174a4ac918aae1db781bbf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La tercera cita afirma directamente que la vela «tampoco tiene que ser negativa como tal»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia contiene una única proposición: la vela no está obligada a ser negativa en sí misma."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6c6756b642cf42f1b3f21ae1b09b6cb2f026b3220169504df17b5e671c668806"
+    ],
+    "response_id": "gen-1791146776-P7wLNTpSFWhIbKmbrkgU"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-no-necesidad-negativa-excepcion-frecuencia",
+   "version": 1,
+   "type": "EXCEPTION_TO",
+   "subject_id": "cl-vela-no-necesariamente-negativa",
+   "subject_version": 1,
+   "object_id": "cl-vela-negativa-frecuente",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00015",
+    "asr-00016",
+    "asr-00017"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "98c91a183071f7135e5042819fa57f98c6024d8ac6a307a7487ccb78c15e127c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia contrapone explícitamente que «la mayoría de veces vais a ver que sí» es «una vela negativa» con que «tampoco tiene que ser negativa como tal», estableciendo la_no-necesidad como excepción a la frecuencia."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6c6756b642cf42f1b3f21ae1b09b6cb2f026b3220169504df17b5e671c668806"
+    ],
+    "response_id": "gen-1791146776-P7wLNTpSFWhIbKmbrkgU"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00015",
+   "start_ms": 118710,
+   "end_ms": 122850,
+   "text": "no tiene por qué, pero la mayoría de veces vais a ver que sí que es así"
+  },
+  {
+   "id": "asr-00016",
+   "start_ms": 122850,
+   "end_ms": 127310,
+   "text": "y una vela negativa"
+  },
+  {
+   "id": "asr-00017",
+   "start_ms": 127310,
+   "end_ms": 134420,
+   "text": "o lo mismo, tampoco tiene que ser negativa como tal"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10710000-canonical-v1",
+   "pts_ms": 119000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10710000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10800000-canonical-v1",
+   "pts_ms": 120000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10890000-canonical-v1",
+   "pts_ms": 121000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10890000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p10980000-canonical-v1",
+   "pts_ms": 122000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p10980000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p11070000-canonical-v1",
+   "pts_ms": 123000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p11070000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p11160000-canonical-v1",
+   "pts_ms": 124000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p11160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p11430000-canonical-v1",
+   "pts_ms": 127000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p11430000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p11520000-canonical-v1",
+   "pts_ms": 128000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p11520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,434 @@
+{
+ "window": "w0005",
+ "start": "01:05",
+ "end": "01:15",
+ "start_ms": 65000,
+ "end_ms": 75000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-fecha-grafico-24-06-2025",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La fecha mostrada es 24/6/2025.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p29610000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p6750000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "4924ecda16af1ca5dad9e45609ae08ebeadd7f61b7bd1cc09b89847c6e408cc8",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "81f97d1b408e6648910358f8fb91e5b975e5bac1d3e3123b99ce7ad93977c145",
+     "8677c7c5c3712bf26bb284d2253def165f27d2aed825b8c55b84440407b3bbc0"
+    ],
+    "response_id": "gen-1791145819-kBeZGDRv3Sq8AXpjRe2Q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-rectangulo-vertical",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el gráfico aparece un rectángulo vertical.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p6210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p6750000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "27e653331c4c4898e817d57d798582de60009884b645d4f90bb5cc5259a6a8a0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas citados muestran claramente un rectángulo de orientación vertical en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la presencia de ese rectángulo vertical."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "81f97d1b408e6648910358f8fb91e5b975e5bac1d3e3123b99ce7ad93977c145"
+    ],
+    "response_id": "gen-1791145819-kBeZGDRv3Sq8AXpjRe2Q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-procedimiento-pintar-vela-rango",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Pintar la vela del rango en el gráfico.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00005",
+    "frame-4de8f12d4841c630-s0-p6210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p6750000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "152c48ca9ec02844e4504b8cd5a87fef49d668679b384dbea14e98daeb045577",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente que va a pintar la vela del rango, y las imágenes muestran esa vela rectangular dibujándose en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola acción: pintar la vela del rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "81f97d1b408e6648910358f8fb91e5b975e5bac1d3e3123b99ce7ad93977c145"
+    ],
+    "response_id": "gen-1791145819-kBeZGDRv3Sq8AXpjRe2Q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-vela-no-necesariamente-siguiente",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La vela que toma un extremo de la vela anterior no tiene que ser la vela inmediatamente siguiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00005"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "81f7a92092ebf4a55d5a9a5e182a47868e91937ddfa3bdd681aa6ce3e8b71565",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que la vela que toma un extremo de otra «no tiene porque ser la siguiente», lo que respalda directamente que no tiene que ser la vela inmediatamente siguiente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la vela que toma un extremo de la anterior no estáobligada a ser la inmediatamente siguiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "81f97d1b408e6648910358f8fb91e5b975e5bac1d3e3123b99ce7ad93977c145"
+    ],
+    "response_id": "gen-1791145819-kBeZGDRv3Sq8AXpjRe2Q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-vela-toma-extremo-cierra-dentro",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El concepto de rango se refiere a que otra vela tome un extremo de la vela anterior y cierre dentro de ella.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00005"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9854bf8e7be9a66680c11e814e4d7624d2b8f9d94edb96b00057b3edb5cc995d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia define explícitamente el concepto de rango como aquel en que otra vela toma un extremo de la vela anterior y cierra dentro de ella."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la definición del concepto de rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "81f97d1b408e6648910358f8fb91e5b975e5bac1d3e3123b99ce7ad93977c145"
+    ],
+    "response_id": "gen-1791145819-kBeZGDRv3Sq8AXpjRe2Q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-linea-discontinua-central",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rectángulo vertical de la izquierda incluye una línea horizontal discontinua en el centro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p6210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p6750000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1df396d0c2f7952da0c65a56d2cb9d942f464e2a982c1e8c470359f67f314a58",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran un rectángulo vertical izquierdo con una línea horizontal discontinua situada aproximadamente en su centro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "81f97d1b408e6648910358f8fb91e5b975e5bac1d3e3123b99ce7ad93977c145"
+    ],
+    "response_id": "gen-1791145819-kBeZGDRv3Sq8AXpjRe2Q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-opacidad-0-a-56",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La opacidad del relleno se ajusta de 0% a 56%.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p6030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p6120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "963aacb76c9213e6572741e201589112743e1234020b3dfa3e2a2cabd3ff1597",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra «Opacidad» al 0% y la segunda al 56%, por lo que ambas evidencian el ajuste de la opacidad del relleno de 0% a 56%."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "81f97d1b408e6648910358f8fb91e5b975e5bac1d3e3123b99ce7ad93977c145"
+    ],
+    "response_id": "gen-1791145819-kBeZGDRv3Sq8AXpjRe2Q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-relleno-blanco",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rectángulo vertical de la izquierda tiene un relleno blanco.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p6210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p6750000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d7da5334b87afd20fbcd73b8f5000ee51f0feb97b16ccb8f8ef06eff5f764ea1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el rectángulo vertical situado a la izquierda muestra un interior blanco, distinto del fondo gris."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "81f97d1b408e6648910358f8fb91e5b975e5bac1d3e3123b99ce7ad93977c145"
+    ],
+    "response_id": "gen-1791145819-kBeZGDRv3Sq8AXpjRe2Q"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-segundo-rectangulo-a-la-derecha",
+   "kind": "observation",
+   "version": 1,
+   "statement": "A la derecha del primer rectángulo aparece un segundo rectángulo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p6750000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5de12ec76bd9f7192a00dd38b066ce3bfb674ff691e1ae3c3fdf851819a852cd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra dos rectángulos delineados, y el segundo está situado a la derecha del primero."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "81f97d1b408e6648910358f8fb91e5b975e5bac1d3e3123b99ce7ad93977c145"
+    ],
+    "response_id": "gen-1791145819-kBeZGDRv3Sq8AXpjRe2Q"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00005",
+   "start_ms": 61640,
+   "end_ms": 81320,
+   "text": "¿Vale? El concepto de rango se refiere, voy a pintar la vela ahora, a las velas que la siguiente vela nos toma, o no tiene porque es la siguiente, otra vela, nos toma un extremo de esta vela y cierra dentro del anterior, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p5850000-canonical-v1",
+   "pts_ms": 65000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p5850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p5940000-canonical-v1",
+   "pts_ms": 66000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p5940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p6030000-canonical-v1",
+   "pts_ms": 67000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p6030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p6120000-canonical-v1",
+   "pts_ms": 68000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p6120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p6210000-canonical-v1",
+   "pts_ms": 69000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p6210000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p6390000-canonical-v1",
+   "pts_ms": 71000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p6390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p6480000-canonical-v1",
+   "pts_ms": 72000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p6480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p6750000-canonical-v1",
+   "pts_ms": 75000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p6750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p29610000-canonical-v1",
+   "pts_ms": 329000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p29610000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

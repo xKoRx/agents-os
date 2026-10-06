@@ -1,0 +1,90 @@
+{
+ "window": "w0109",
+ "start": "28:08",
+ "end": "28:19",
+ "start_ms": 1688000,
+ "end_ms": 1699000,
+ "disposition": "rejected",
+ "rejection_category": "provider unavailable",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00243",
+   "start_ms": 1683380,
+   "end_ms": 1690890,
+   "text": "esto que lo llamamos orden lo sería un poco esto esto sí vamos a ir a gráfico lo veáis claro y es"
+  },
+  {
+   "id": "asr-00244",
+   "start_ms": 1690890,
+   "end_ms": 1695390,
+   "text": "como utilizarlo como una pequeña confirmación de que si yo estoy buscando lo vamos a esperar esto"
+  },
+  {
+   "id": "asr-00245",
+   "start_ms": 1695390,
+   "end_ms": 1700850,
+   "text": "en m15 para subir ya lo vais a ver el capítulo entradas pero para que no tenga que explicar"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p151920000-canonical-v1",
+   "pts_ms": 1688000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p151920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p152010000-canonical-v1",
+   "pts_ms": 1689000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p152010000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p152100000-canonical-v1",
+   "pts_ms": 1690000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p152100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p152190000-canonical-v1",
+   "pts_ms": 1691000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p152190000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p152280000-canonical-v1",
+   "pts_ms": 1692000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p152280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p152640000-canonical-v1",
+   "pts_ms": 1696000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p152640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p152730000-canonical-v1",
+   "pts_ms": 1697000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p152730000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p152910000-canonical-v1",
+   "pts_ms": 1699000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p152910000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

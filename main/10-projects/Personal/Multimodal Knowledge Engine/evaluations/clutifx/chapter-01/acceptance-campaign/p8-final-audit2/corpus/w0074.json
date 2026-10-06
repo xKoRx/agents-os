@@ -1,0 +1,403 @@
+{
+ "window": "w0074",
+ "start": "18:25",
+ "end": "18:52",
+ "start_ms": 1105000,
+ "end_ms": 1132000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-break-even-if-bought",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si ya hemos comprado, podríamos poner un break even.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00156"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "05ca01ae066431d48e4142aada72a17d8c7ff4f3a92680611d5877d5f7a251ba",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "104614d7fa6060e6d91876dbe16e2e4a6f3a0ab6c038ee96a122c5e27dfa31d8"
+    ],
+    "response_id": "gen-1791166894-NP1lF1aw5JB0nndU94Hx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-date-label-24-6-2025",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta de fecha visible es «24/6/2025».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p101880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "8f051b0b5115f9158bd3e6e5709b860c7f27a3d4825146bd354a16a116986ec4",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "104614d7fa6060e6d91876dbe16e2e4a6f3a0ab6c038ee96a122c5e27dfa31d8"
+    ],
+    "response_id": "gen-1791166894-NP1lF1aw5JB0nndU94Hx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-selected-currency-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La moneda seleccionada en el gráfico es «USD».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p101880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "a8c5a7df1a3c4badff18f1594d5802f4ff8cbd2377171289c26ccb72b7743a25",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "104614d7fa6060e6d91876dbe16e2e4a6f3a0ab6c038ee96a122c5e27dfa31d8"
+    ],
+    "response_id": "gen-1791166894-NP1lF1aw5JB0nndU94Hx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-source-forexcom",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta de fuente del gráfico es «FOREX.com».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p101880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "96c0998d3809a32bb8e27946cbd898431ce1928de3515b73fda2d4bed80f292c",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "104614d7fa6060e6d91876dbe16e2e4a6f3a0ab6c038ee96a122c5e27dfa31d8"
+    ],
+    "response_id": "gen-1791166894-NP1lF1aw5JB0nndU94Hx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-countertrend-ranges-before-rise",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Puede pasar que el precio complete rangos en contra de nuestra dirección antes de subir.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00156",
+    "asr-00157"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "2ca2434a11265505920609eb40a4b785ba3e8f2eabe4080c6b659428529e309d",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "104614d7fa6060e6d91876dbe16e2e4a6f3a0ab6c038ee96a122c5e27dfa31d8"
+    ],
+    "response_id": "gen-1791166894-NP1lF1aw5JB0nndU94Hx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reenter-after-countertrend-reaction",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Cuando se formen rangos en contra y el precio vuelva a reaccionar, podríamos volver a entrar en ese punto.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00156",
+    "asr-00157"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dbcb370c223851e61ac28b6b778c928e1726d70878b2bd2e3b9df48d74012758",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita sostiene directamente que, cuando se forman rangos en contra y el precio vuelve a reaccionar, se podría colocar la entrada de nuevo ahí."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación enuncia una sola regla condicional; la formación de rangos en contra y la reacción posterior son condiciones jointly constitutivas de esa misma regla, no proposiciones independientes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "104614d7fa6060e6d91876dbe16e2e4a6f3a0ab6c038ee96a122c5e27dfa31d8"
+    ],
+    "response_id": "gen-1791166894-NP1lF1aw5JB0nndU94Hx"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-break-even-depends-on-countertrend-ranges",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-break-even-if-bought",
+   "subject_version": 1,
+   "object_id": "cl-countertrend-ranges-before-rise",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00156"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4d22bc32f7684cb393d1de8e70b9d0c4055794ed7c426dc3de8e6f1b46495ed8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enlaza explícitamente ambas afirmaciones con «Por lo tanto»: primero señala que el precio puede completar rangos en contra de la dirección antes de subir y después plantea que, si ya se ha comprado, podría ponerse un break even."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "104614d7fa6060e6d91876dbe16e2e4a6f3a0ab6c038ee96a122c5e27dfa31d8"
+    ],
+    "response_id": "gen-1791166894-NP1lF1aw5JB0nndU94Hx"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-reentry-depends-on-countertrend-ranges",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-reenter-after-countertrend-reaction",
+   "subject_version": 1,
+   "object_id": "cl-countertrend-ranges-before-rise",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00156",
+    "asr-00157"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c5fd46e16edc741111a51611bbef64666db225a429cbc9b747be118332838164",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia presenta primero la posibilidad de que el precio complete rangos en contra antes de subir y, después, que al formarse esos rangos y volver a reaccionar se pueda reintroducir la entrada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La secuencia «rangos en contra» → «vuelve a reaccionar» → «poner nuestra entrada ahí otra vez» enuncia la dependencia en la orientación solicitada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "104614d7fa6060e6d91876dbe16e2e4a6f3a0ab6c038ee96a122c5e27dfa31d8"
+    ],
+    "response_id": "gen-1791166894-NP1lF1aw5JB0nndU94Hx"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00156",
+   "start_ms": 1099350,
+   "end_ms": 1112970,
+   "text": "a nuestra dirección, puede pasar que el precio vaya a completar rangos antes de subir. Por lo tanto, aquí si nosotros hemos comprado, podríamos poner un break even"
+  },
+  {
+   "id": "asr-00157",
+   "start_ms": 1112970,
+   "end_ms": 1122470,
+   "text": "al ver que se nos están formando rangos en contra y luego una vez pasa esto, vuelve a reaccionar, podríamos poner nuestra entrada ahí otra vez. Lo vais a ver mucho más fácil"
+  },
+  {
+   "id": "asr-00158",
+   "start_ms": 1122470,
+   "end_ms": 1127930,
+   "text": "cuando os enseñe en el gráfico ya en el siguiente capítulo cómo funciona la estrategia y todo pero"
+  },
+  {
+   "id": "asr-00159",
+   "start_ms": 1127930,
+   "end_ms": 1136720,
+   "text": "para que si yo hablo de intentarte el show sepáis que es es esto un tarde el sub una vez ya se ha"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p100080000-canonical-v1",
+   "pts_ms": 1112000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p100080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p100440000-canonical-v1",
+   "pts_ms": 1116000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p100440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p100800000-canonical-v1",
+   "pts_ms": 1120000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p100800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p101160000-canonical-v1",
+   "pts_ms": 1124000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p101160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p101520000-canonical-v1",
+   "pts_ms": 1128000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p101520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p101880000-canonical-v1",
+   "pts_ms": 1132000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p101880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p99450000-canonical-v1",
+   "pts_ms": 1105000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p99450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p99720000-canonical-v1",
+   "pts_ms": 1108000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p99720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

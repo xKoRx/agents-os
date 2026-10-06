@@ -1,0 +1,826 @@
+{
+ "window": "w0092",
+ "start": "23:18",
+ "end": "23:36",
+ "start_ms": 1398000,
+ "end_ms": 1416000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-correlacionado-jp-o-dxy",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El par correlacionado puede ser JP o DXY.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "4d6101b2f9eed8f17c23926aa1bbc6641ab1382454af6b503e5e8a3bbfdaafcf",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-escenario-smt",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El escenario mostrado sería un SMT.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194",
+    "frame-4de8f12d4841c630-s0-p126720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "ded70bdc1dde67b99388ef6f4558e402ca33118d31a9ca612e7a6cb69884f745",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eur-llega-objetivos",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el ejemplo, EUR llega a sus objetivos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00196",
+    "frame-4de8f12d4841c630-s0-p127080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "5017639dee5f4860b8710a417d882e79ec2a96a471838c4eb8c4ed6792157590",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La pestaña del gráfico indica EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p125820000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "04974645a653affe564520abed0f0905e7def140f690d6333f93fb205396dded",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-en-libra",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En el ejemplo, estás en una posición long en libra.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00196",
+    "frame-4de8f12d4841c630-s0-p127080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d9e90dc8ad3b1f26d1a0badfc0e165fb67cdeb175541f0a735811186ebdba68d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma explícitamente: «Tú estás en un long en libra», que corresponde a estar en una posición long en libra."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-long-libra-puede-girarse",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En ese escenario, el precio del long en libra puede girarse directamente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194",
+    "asr-00196"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ad635f64783c12a110db1aaaa614359c4a19ad270ab006227c09267eb149458e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita afirma directamente que, estando en un long en libra y llegando euro a sus objetivos, el precio puede girarse directamente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La expresión «en ese escenario» solo delimita el contexto de la misma proposición y no añade una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rectangulo-negro-gbpusd-anadido",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se añade un rectángulo negro a la secuencia rotulada GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p126720000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p126900000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p127080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "737fe6ab5f33ca8e098aee82764f5de9abf02c1c9e6270382317861973af1a6a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenescomparisonsequence shows a new black rectangle selected in the GBPUSD sequence, before being displayed alongside the existing black rectangles."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-secuencia-gbpusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico incluye una secuencia rotulada GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p125820000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0c20d283a7dc1f7345488c40cba87edccef6b11811695b3e87c4a60d3d4d293d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una secuencia de velas junto a la etiqueta visible «GBPUSD»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-correlacionado-no-completa-objetivo",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Una condición para que el escenario mostrado sea un SMT es que el par correlacionado no llegue a completar su objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "08c6b3176a45c64841a3b2c5765285308d9a4c7c7e72ba98ae90d37db4ad07e2",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-correlacionado-reversal-directo",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Una condición para que el escenario mostrado sea un SMT es que el par correlacionado pase directamente al reversal.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "c013604858e83e2d3a4b0ab2430224aee401104c3d59f3f9ce33a6e597e8e039",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-eur-completa-objetivo",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Una condición para que el escenario mostrado sea un SMT es que EUR llegue a completar el objetivo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194",
+    "frame-4de8f12d4841c630-s0-p126720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "b4f1d41b253680c06fce5745e5f3bf0791fdeef951e7b779de2da679ad78ddbf",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-smt-zona-superior",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En el ejemplo, puede haber una SMT en la zona superior.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194",
+    "asr-00196",
+    "frame-4de8f12d4841c630-s0-p127080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "6aa0d5645a9e7adde0ce0b64f4495aa7a33ad6f7cd93c7546f89358d489b0f81",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vigilar-eur-y-par-correlacionado",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "En esta situación, tendrías que estar atento a EUR y al par correlacionado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194",
+    "asr-00195"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e713957360cc5397076205bf234508eb5ea23ae1c37718f6376a54297f6214c1",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia indica expresamente que, en esa situación, hay que estar atento a los dos pares: EUR y el par correlacionado, identificado como JP o DXY."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene dos instrucciones evaluables de forma independiente: prestar atención a EUR y prestar atención al par correlacionado."
+     },
+     {
+      "code": "claim_not_atomic",
+      "detail": "claim review judged the statement COMPOSITE: independently evaluable assertions must be separate claims"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-escenario-smt-depende-correlacionado-sin-objetivo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-escenario-smt",
+   "subject_version": 1,
+   "object_id": "cl-smt-correlacionado-no-completa-objetivo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2f16273e110cbe92db048a218d1cc5a6e97908cd1261e081bd19e916c27f728e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica el escenario como un SMT y lo presenta condicionalmente: sería un SMT en el caso de que el par correlacionado no llegue a su objetivo, lo que establece la dependencia de la afirmación del sujeto respecto de la condición del objeto en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-escenario-smt-depende-eur-objetivo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-escenario-smt",
+   "subject_version": 1,
+   "object_id": "cl-smt-eur-completa-objetivo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3c34d05e75cdfa7a5743a96056e43700d7b4c6349b5aac45d88410bb6e2ef39c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia presenta el escenario como un SMT y enuncia la condición de que EUR llegue a completar el objetivo mientras que el par correlacionado no alcance el suyo y pase directamente a reversal."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-escenario-smt-depende-reversal-directo",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-escenario-smt",
+   "subject_version": 1,
+   "object_id": "cl-smt-correlacionado-reversal-directo",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d68dc4db192a8aae15c64955b0e0abc87d619128c469d84a5d79a506f7ed9e08",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica directamente el escenario como un SMT y loformula condicionalmente: «esto sería un SMT» cuando el par correlacionado no llega a su objetivo y «pase el reversal directamente»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-giro-long-libra-depande-smt-superior",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-precio-long-libra-puede-girarse",
+   "subject_version": 1,
+   "object_id": "cl-smt-zona-superior",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194",
+    "asr-00196"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bab2a4ef09f9fe09215de1a58559f9c319f42342d3bdb00e2c3bc92827a4bc05",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda evidencia presenta el escenario en que se está en un long en libra, puede haber una SMT «ahí arriba» y el precio gira directamente,ourismando la dependencia de la afirmación subjectiva en la posible SMT de la zona superior."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-smt-superior-depande-eur-objetivos",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-smt-zona-superior",
+   "subject_version": 1,
+   "object_id": "cl-eur-llega-objetivos",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00196"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "d23818003352eb837d77c0315769693a52316848297e9daec024184e8de6c63f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que EUR llega a sus objetivos y, en la misma intervention, que puede haber una SMT «ahí arriba», pero no enuncia una dependencia condicional, causal o definicional entre ambos hechos; solo los yuxtapone."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-vigilancia-ambos-pares-depende-escenario-smt",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-vigilar-eur-y-par-correlacionado",
+   "subject_version": 1,
+   "object_id": "cl-escenario-smt",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00194",
+    "asr-00195"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "657cd47e20a7073ceb5a2d399935288549a51610e3a6b83a49dbe40a298e9fa7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica explícitamente el escenario como un SMT y, dentro de ese caso, explica que hay que estar atento tanto a EUR como al par correlacionado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "ElConnector «Por lo tanto» enlaza la advertencia sobre ambos pares con el escenario SMT descrito inmediatamente antes, en la orientación indicada: la vigilancia de ambos depende del escenario SMT."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "54fb77209be189d69c4347b3946e8f2353537f4553164b56661aa91bb6ff0086"
+    ],
+    "response_id": "gen-1791174417-xHqZo3roNXMJeFdonynK"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00194",
+   "start_ms": 1395310,
+   "end_ms": 1409220,
+   "text": "Pues esto sería un SMT. En el caso de un objetivo, que euro pueda llegar a completar y el par correlacionado, ya sea JP o DXY, no llegue a su objetivo y pase el reversal directamente."
+  },
+  {
+   "id": "asr-00195",
+   "start_ms": 1409520,
+   "end_ms": 1415120,
+   "text": "Por lo tanto, tú aquí tendrías que estar atento a los dos pares para que no te pase esto, ¿vale?"
+  },
+  {
+   "id": "asr-00196",
+   "start_ms": 1415520,
+   "end_ms": 1422440,
+   "text": "Tú estás en un long en libra, pero euro ya ves que llega a los objetivos, puede haber una SMT ahí arriba y se te gire el precio directamente."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125820000-canonical-v1",
+   "pts_ms": 1398000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125820000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p126000000-canonical-v1",
+   "pts_ms": 1400000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p126000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p126360000-canonical-v1",
+   "pts_ms": 1404000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p126360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p126720000-canonical-v1",
+   "pts_ms": 1408000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p126720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p126900000-canonical-v1",
+   "pts_ms": 1410000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p126900000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p126990000-canonical-v1",
+   "pts_ms": 1411000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p126990000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p127080000-canonical-v1",
+   "pts_ms": 1412000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p127080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p127440000-canonical-v1",
+   "pts_ms": 1416000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p127440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

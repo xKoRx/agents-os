@@ -1,0 +1,551 @@
+{
+ "window": "w0057",
+ "start": "13:21",
+ "end": "13:36",
+ "start_ms": 801000,
+ "end_ms": 816000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-buscar-rango-pendiente",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Buscar ahora un rango pendiente.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00114"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "57d375b94acc2d6def8557aa72a8a48ec0c081b5e02ae6587812cb6beedc9494",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a7a42d8c76c3c4203423c93041e7d5d103499cf04ae2de54590380b60954948c"
+    ],
+    "response_id": "gen-1791161961-HcAR39WP79DVFVqeFgUe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-temporal-4h-a-12h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico cambia del intervalo de 4h al de 12h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p73080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p73170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "a67119fbb02d1fd077cdfdd1d20f1c14295660fef9a5614316ea88d0ab3b07b0",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a7a42d8c76c3c4203423c93041e7d5d103499cf04ae2de54590380b60954948c"
+    ],
+    "response_id": "gen-1791161961-HcAR39WP79DVFVqeFgUe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-compra-si-objetivo-arriba",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si el objetivo está arriba, se quiere comprar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "ed73423806a9070082cfb5efcf768dad36ed1728f136e907c425e71067fdda8a",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a7a42d8c76c3c4203423c93041e7d5d103499cf04ae2de54590380b60954948c"
+    ],
+    "response_id": "gen-1791161961-HcAR39WP79DVFVqeFgUe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-arriba",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El objetivo está arriba.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8bfa39db100f73ea2a0d68b7f43ee1c2b7214550ccac39ece952c52404d8476c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente «el objetivo está arriba»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a7a42d8c76c3c4203423c93041e7d5d103499cf04ae2de54590380b60954948c"
+    ],
+    "response_id": "gen-1791161961-HcAR39WP79DVFVqeFgUe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-12h-reiniciado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango pendiente del intervalo de 12 horas es también un reiniciado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00114",
+    "frame-4de8f12d4841c630-s0-p73170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6988b45616fbec69fe040badf2ea13d4b04ce13cc9e7defd002328d047ae8de3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica el rango pendiente como el de 12 horas y afirma que ese mismo rango es «un reiniciado también»; la imagen muestra el intervalo de 12 horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el rango pendiente de 12 horas es un reiniciado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a7a42d8c76c3c4203423c93041e7d5d103499cf04ae2de54590380b60954948c"
+    ],
+    "response_id": "gen-1791161961-HcAR39WP79DVFVqeFgUe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-contrario-a-compra",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Se forma un rango en contra de la intención de comprar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "91421b5afc87501c8547ef84f28594601245073b4334198f1050cff7c629c0bb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que, aunque se quiere comprar, «se te forma un rango en contra y para abajo», lo que respalda la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: se forma un rango contrario a la intención de comprar."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a7a42d8c76c3c4203423c93041e7d5d103499cf04ae2de54590380b60954948c"
+    ],
+    "response_id": "gen-1791161961-HcAR39WP79DVFVqeFgUe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-hacia-abajo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango formado tiene una dirección hacia abajo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "192500a255136bce8179aa514f25246b4037bc1d4854fe900d08fbaab73c40d0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que se forma «un rango en contra y para abajo», lo que respalda que el rango formado tiene una dirección hacia abajo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La declaración contiene una sola proposición sobre la dirección del rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a7a42d8c76c3c4203423c93041e7d5d103499cf04ae2de54590380b60954948c"
+    ],
+    "response_id": "gen-1791161961-HcAR39WP79DVFVqeFgUe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente-en-12h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El rango pendiente está en el intervalo de 12 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00114",
+    "frame-4de8f12d4841c630-s0-p72900000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p73170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "183218de5b4413c6153ef7ea734953729981e1b98f00ff62417b6e1b69e787c5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice explícitamente que el rango pendiente está «en 12 horas», y la imagen muestra el selector «Cambiar intervalo» con «12H / 12 horas»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a7a42d8c76c3c4203423c93041e7d5d103499cf04ae2de54590380b60954948c"
+    ],
+    "response_id": "gen-1791161961-HcAR39WP79DVFVqeFgUe"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-busqueda-rango-usa-temporal-12h",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-buscar-rango-pendiente",
+   "subject_version": 1,
+   "object_id": "cl-rango-pendiente-en-12h",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00114"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "c867f20e458f0e32cedd59175f7d1849af17e3b4119f311f9b58879ca1f757f8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que se va a buscar un rango pendiente y que este está en un intervalo de 12 horas, pero no enuncia ni enactúa que la acción de buscar dependa de esa ubicación temporal."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a7a42d8c76c3c4203423c93041e7d5d103499cf04ae2de54590380b60954948c"
+    ],
+    "response_id": "gen-1791161961-HcAR39WP79DVFVqeFgUe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-compra-requiere-objetivo-arriba",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-compra-si-objetivo-arriba",
+   "subject_version": 1,
+   "object_id": "cl-objetivo-arriba",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "60f020f28968c297ad8e612c39fae45a4dea313736e3ed249629a9e2a11940b5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enlaza explícitamente el objetivo arriba como前提 de querer comprar: «Porque el objetivo está arriba, tú quieres comprar», en la orientación de que la afirmación sobre la compra depende de la afirmación sobre el objetivo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a7a42d8c76c3c4203423c93041e7d5d103499cf04ae2de54590380b60954948c"
+    ],
+    "response_id": "gen-1791161961-HcAR39WP79DVFVqeFgUe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-contrario-requiere-intencion-compra",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-contrario-a-compra",
+   "subject_version": 1,
+   "object_id": "cl-compra-si-objetivo-arriba",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00113"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "233e1769d291c1383b3e5fb3b260b2c13f928e76f87fb1a367787630cdd411f7",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enuncia que, porque el objetivo está arriba, existe intención de comprar y, en contraste con ella, se forma un rango «en contra y para abajo»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a7a42d8c76c3c4203423c93041e7d5d103499cf04ae2de54590380b60954948c"
+    ],
+    "response_id": "gen-1791161961-HcAR39WP79DVFVqeFgUe"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-reiniciado-referente-rango-12h",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-12h-reiniciado",
+   "subject_version": 1,
+   "object_id": "cl-rango-pendiente-en-12h",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00114",
+    "frame-4de8f12d4841c630-s0-p73170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1208e30b4f5b51a9cc863de258a3a05685c2286c272c23bb2eced61161c279d8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The transcript identifies the pending range as one located in the 12-hour interval, then states that “este” is also a reset. The demonstrative resolves to that just-identified 12-hour pending range, directly predicating the reset claim of the object claim in the required orientation."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a7a42d8c76c3c4203423c93041e7d5d103499cf04ae2de54590380b60954948c"
+    ],
+    "response_id": "gen-1791161961-HcAR39WP79DVFVqeFgUe"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00113",
+   "start_ms": 800020,
+   "end_ms": 808500,
+   "text": "Porque el objetivo está arriba, tú quieres comprar, comprar, comprar, comprar, pero se te forma un rango en contra y para abajo."
+  },
+  {
+   "id": "asr-00114",
+   "start_ms": 809240,
+   "end_ms": 818800,
+   "text": "Vamos a buscar ahora un rango pendiente, que ya recuerdo que lo tenemos en 12 horas. Tenemos, bueno, este es un reiniciado también, como veis,"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72090000-canonical-v1",
+   "pts_ms": 801000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72090000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72180000-canonical-v1",
+   "pts_ms": 802000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72180000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72360000-canonical-v1",
+   "pts_ms": 804000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72720000-canonical-v1",
+   "pts_ms": 808000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72900000-canonical-v1",
+   "pts_ms": 810000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72900000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p73080000-canonical-v1",
+   "pts_ms": 812000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p73080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p73170000-canonical-v1",
+   "pts_ms": 813000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p73170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p73440000-canonical-v1",
+   "pts_ms": 816000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p73440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

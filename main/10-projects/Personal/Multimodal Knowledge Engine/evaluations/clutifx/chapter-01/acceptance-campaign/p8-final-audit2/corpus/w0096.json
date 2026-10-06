@@ -1,0 +1,90 @@
+{
+ "window": "w0096",
+ "start": "24:36",
+ "end": "24:52",
+ "start_ms": 1476000,
+ "end_ms": 1492000,
+ "disposition": "rejected",
+ "rejection_category": "provider unavailable",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00201",
+   "start_ms": 1474660,
+   "end_ms": 1482620,
+   "text": "O sea, ya habéis visto, puede ser la SMT para llegar al objetivo o puede ser la SMT para crear el rango."
+  },
+  {
+   "id": "asr-00202",
+   "start_ms": 1482620,
+   "end_ms": 1490720,
+   "text": "no tiene por qué también ser solo el rango inicial, puede ser también en tema rangos pendientes, como he enseñado antes, ¿vale?"
+  },
+  {
+   "id": "asr-00203",
+   "start_ms": 1490780,
+   "end_ms": 1495880,
+   "text": "Puede ser que la Libra nos crea este de aquí para poder llegar hasta el target, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p132840000-canonical-v1",
+   "pts_ms": 1476000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p132840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p133020000-canonical-v1",
+   "pts_ms": 1478000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p133020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p133110000-canonical-v1",
+   "pts_ms": 1479000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p133110000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p133200000-canonical-v1",
+   "pts_ms": 1480000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p133200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p133560000-canonical-v1",
+   "pts_ms": 1484000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p133560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p133920000-canonical-v1",
+   "pts_ms": 1488000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p133920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p134100000-canonical-v1",
+   "pts_ms": 1490000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p134100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p134280000-canonical-v1",
+   "pts_ms": 1492000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p134280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

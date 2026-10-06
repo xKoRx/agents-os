@@ -1,0 +1,312 @@
+{
+ "window": "w0056",
+ "start": "13:08",
+ "end": "13:20",
+ "start_ms": 788000,
+ "end_ms": 800000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-bastantes-ejemplos",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico mostrado contiene bastantes ejemplos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00111",
+    "asr-00112"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "cd09d5300f33eb3da05f3b32405d81f6d69faa87741d12b76e662a76bff1a798",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "59077be58f2b2b3064e57368ba729356fe3082bd02680b518737d9f712291388"
+    ],
+    "response_id": "gen-1791161688-gduMH07FPBoiL9M0XP4J"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-cambio-1d-4h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico cambia de una temporalidad de 1D a una temporalidad de 4h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p70920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p71010000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "c430de34252f304978d2496c0b8be50da45b0db6421972f746c9fde15ba9f582",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "59077be58f2b2b3064e57368ba729356fe3082bd02680b518737d9f712291388"
+    ],
+    "response_id": "gen-1791161688-gduMH07FPBoiL9M0XP4J"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-diario-115803",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo diario mostrado es 1,15803.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00111",
+    "frame-4de8f12d4841c630-s0-p70920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9d8385a013438ea5b88cd18ab85b37297ab39f78532b34f4a4516ae285c62197",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una línea horizontal del gráfico etiquetada como 1,15803, correspondiente al objetivo diario indicado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "59077be58f2b2b3064e57368ba729356fe3082bd02680b518737d9f712291388"
+    ],
+    "response_id": "gen-1791161688-gduMH07FPBoiL9M0XP4J"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-diario-ejemplo-anterior",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo diario mostrado es el mismo objetivo que estaba explicando como ejemplo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00111",
+    "frame-4de8f12d4841c630-s0-p70920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "377f18c7d574446f981cb1c09752199db9ef464f891787878c78b6a963c04408",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el objetivo diario mostrado «es el mismo que estaba explicando de ejemplo»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "59077be58f2b2b3064e57368ba729356fe3082bd02680b518737d9f712291388"
+    ],
+    "response_id": "gen-1791161688-gduMH07FPBoiL9M0XP4J"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-indicado-reiniciado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango indicado en el gráfico es un rango reiniciado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00112",
+    "frame-4de8f12d4841c630-s0-p71010000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p72000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4367c909084e8309e59c814d284638ef0ea0ad0cacf4be09055046a7d714db57",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente: «el rango este es un rango reiniciado», por lo que sostiene directamente la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "59077be58f2b2b3064e57368ba729356fe3082bd02680b518737d9f712291388"
+    ],
+    "response_id": "gen-1791161688-gduMH07FPBoiL9M0XP4J"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-recuadro-sobre-velas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja un recuadro alrededor de un grupo de velas del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p71640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p72000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1cbac9fb31b6540e7619e7e3e9658f7fa51bb59fdcb0f3173cbac7f98e678371",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda imagen muestra un recuadro delineado alrededor de un grupo de velas del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "59077be58f2b2b3064e57368ba729356fe3082bd02680b518737d9f712291388"
+    ],
+    "response_id": "gen-1791161688-gduMH07FPBoiL9M0XP4J"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00111",
+   "start_ms": 768600,
+   "end_ms": 788180,
+   "text": "Espero que haya quedado claro. Vamos a ver algún ejemplo de esto en el gráfico ahora. Así que vamos allá. ¿Vale? Vamos a buscar, por ejemplo, teníamos el objetivo este diario de aquí arriba, que es el mismo que estaba explicando de ejemplo."
+  },
+  {
+   "id": "asr-00112",
+   "start_ms": 788180,
+   "end_ms": 799700,
+   "text": "vamos a ver si teníamos algo por aquí. Correcto, tenemos bastantes ejemplos. Primero, el rango este es un rango reiniciado, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p70920000-canonical-v1",
+   "pts_ms": 788000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p70920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71010000-canonical-v1",
+   "pts_ms": 789000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71010000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71190000-canonical-v1",
+   "pts_ms": 791000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71190000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71280000-canonical-v1",
+   "pts_ms": 792000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71460000-canonical-v1",
+   "pts_ms": 794000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71460000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71550000-canonical-v1",
+   "pts_ms": 795000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71550000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p71640000-canonical-v1",
+   "pts_ms": 796000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p71640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p72000000-canonical-v1",
+   "pts_ms": 800000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p72000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

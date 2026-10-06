@@ -1,0 +1,162 @@
+{
+ "window": "w0129",
+ "start": "33:16",
+ "end": "33:44",
+ "start_ms": 1996000,
+ "end_ms": 2024000,
+ "disposition": "rejected",
+ "rejection_category": "provider unavailable",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00305",
+   "start_ms": 1994150,
+   "end_ms": 1996270,
+   "text": "tú vas a decir, bueno, si es solo"
+  },
+  {
+   "id": "asr-00306",
+   "start_ms": 1996270,
+   "end_ms": 1998210,
+   "text": "la naturaleza de la vela"
+  },
+  {
+   "id": "asr-00307",
+   "start_ms": 1998210,
+   "end_ms": 2000730,
+   "text": "que tiene que manipular para luego ir a mi dirección"
+  },
+  {
+   "id": "asr-00308",
+   "start_ms": 2000730,
+   "end_ms": 2002510,
+   "text": "es como que lo vas a ver de un modo"
+  },
+  {
+   "id": "asr-00309",
+   "start_ms": 2002510,
+   "end_ms": 2003830,
+   "text": "mucho más calmado, ¿sabes?"
+  },
+  {
+   "id": "asr-00310",
+   "start_ms": 2004450,
+   "end_ms": 2006610,
+   "text": "sería un poco esto, la lógica detrás"
+  },
+  {
+   "id": "asr-00311",
+   "start_ms": 2006610,
+   "end_ms": 2008590,
+   "text": "del Power 3, importante para que lo"
+  },
+  {
+   "id": "asr-00312",
+   "start_ms": 2008590,
+   "end_ms": 2010230,
+   "text": "sepáis que muchas veces se va a mencionar"
+  },
+  {
+   "id": "asr-00313",
+   "start_ms": 2010230,
+   "end_ms": 2012370,
+   "text": "el tema del Power 3, ya sea en las"
+  },
+  {
+   "id": "asr-00314",
+   "start_ms": 2012370,
+   "end_ms": 2014630,
+   "text": "entradas, ya sea en las salidas"
+  },
+  {
+   "id": "asr-00315",
+   "start_ms": 2014630,
+   "end_ms": 2014910,
+   "text": "¿vale?"
+  },
+  {
+   "id": "asr-00316",
+   "start_ms": 2015800,
+   "end_ms": 2018670,
+   "text": "y ya está, sería un poco"
+  },
+  {
+   "id": "asr-00317",
+   "start_ms": 2018670,
+   "end_ms": 2020670,
+   "text": "esto, ahora sí que creo que está todo"
+  },
+  {
+   "id": "asr-00318",
+   "start_ms": 2020670,
+   "end_ms": 2023310,
+   "text": "temas, salidas"
+  },
+  {
+   "id": "asr-00319",
+   "start_ms": 2023310,
+   "end_ms": 2025550,
+   "text": "basadas en el tiempo y en traspasadas en el tiempo"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p179640000-canonical-v1",
+   "pts_ms": 1996000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p179640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p180000000-canonical-v1",
+   "pts_ms": 2000000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p180000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p180360000-canonical-v1",
+   "pts_ms": 2004000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p180360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p180720000-canonical-v1",
+   "pts_ms": 2008000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p180720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p181080000-canonical-v1",
+   "pts_ms": 2012000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p181080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p181440000-canonical-v1",
+   "pts_ms": 2016000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p181440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p181800000-canonical-v1",
+   "pts_ms": 2020000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p181800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p182160000-canonical-v1",
+   "pts_ms": 2024000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p182160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

@@ -1,0 +1,1085 @@
+{
+ "window": "w0002",
+ "start": "00:09",
+ "end": "00:36",
+ "start_ms": 9000,
+ "end_ms": 36000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-blue-shaded-zone",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra una zona horizontal azul sombreada en la parte inferior derecha.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "7b590fbb58f2cc919db8c5201358fed634932d9b689759baa325f28afd2b45eb",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-date-24-6-2025",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra la fecha 24/6/2025.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p63360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p810000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "ab670640ccf74727fe53deecce91f2ffe8d70f937a06befe7aa8b37ce60be96d",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479",
+     "8c5bac791f325d9d585e61900c7f5d4cc90a6246b0fe4ff7645646bd99946950"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-gray-shaded-zone",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra una zona horizontal gris sombreada en la parte superior derecha.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "95502e96eb343a8b632bdba2d1e6a924cdd15e32daaf773f51da587e2bc36092",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-instrument-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p119700000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p125640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p51840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p810000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p93240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p96030000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "22a5a453f44430afc6157076b09be880af725fc5a7b68139fbcfe7a4279bc255",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "006bce87554f6b4ab61b7877c7015dfdce0e9176327d533dc67a8f06de6a77d2",
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479",
+     "5bd42e7ff8c23b2b28e4ba2ac0fabc49cf44d9ced3ebd9d74b7e602e3c1cb5e3",
+     "6f0e54908e40129ca950d664e32fdb3c93be5fb59ff9d3bc120a898df360b1ef",
+     "8b66cc9baebefa832266e8a5fb701d561cb029f09e6e7d49718f324322712626",
+     "ac0fbc5a1b9a29bf6c87fcf4ca75c6fb8054f3500938005dd7f7e5b4225694ba"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-label-115728",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra la etiqueta 1.15728.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "4657d9e73ec53401f9a82da8d47c8eaf865319bba40b3b48ac7f119a916371c9",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-label-115744",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra la etiqueta 1.15744.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "502f567542451b8f3b0ef41dfce18cf3182bc7a240569f4d1ac59c5d8b198987",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-line-115797",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra una línea horizontal punteada rotulada 1.15797.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "2766660f843ea6ffe66aec4cdc24a554264aed692a9ab9e046207de9783ba2c4",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-line-116148",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra una línea horizontal rotulada 1.16148.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p3240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "1e5e4c23e73bd99252f2fc810b0ddab72c68299fb41e062852dd5d0c8ad82e13",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-price-currency-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El eje de precios está expresado en USD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p5400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p810000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "44321cfe276b8eeabda5dbeeb32594aaf1ab109406e0a148ab4d90fd82ff72d6",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "19d951931144b1865c01e25fcd7dd09baf24bc9c772a367fa851759ec9047960",
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-source-forex-com",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La fuente indicada en el gráfico es FOREX.com.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p119700000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p5400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p810000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p82440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "2ea4f986a8ce0110774241d61a9dabc13c6d7b8f795c59c6dd2307e77b961857",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "19d951931144b1865c01e25fcd7dd09baf24bc9c772a367fa851759ec9047960",
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479",
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6",
+     "5bd42e7ff8c23b2b28e4ba2ac0fabc49cf44d9ced3ebd9d74b7e602e3c1cb5e3"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-timeframe-5m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal visible es 5M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p5400000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p810000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "d475f798b9720675a415a8360f04b51370ec693b775e5992093e9ff655de09cb",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "19d951931144b1865c01e25fcd7dd09baf24bc9c772a367fa851759ec9047960",
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-complete-course-explains-strategy-in-depth",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El curso completo explica la estrategia en profundidad.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "549a26684015b28d5b39c31b6920e70067ef86b714a0423327ddf4c3372b8f44",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-course-format-similar-to-intermediate",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El formato que se seguirá será un poco similar al del curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "e14f0cbde22533895a786bc99a7f638a1655df7525847b77385f430b24312dd1",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-current-chapter-is-first",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El capítulo actual se presenta como el primero del curso.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "e69f3116320d53fb29fd0d716a161ddf1c13981bfb57b4af4a971ad51c8d1302",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-first-chapter-covers-bias",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El primer capítulo cubre el BIAS.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "245ca492dbb6a7f015493695f064396337e46aaea1fd0e5aa10c5d47b40b6587",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-first-chapter-covers-entries",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El primer capítulo cubre las entradas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "772cf6fd67af8d3f7c2869243be7cbe0e3bcae538dacc2161035783c53c25df5",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-first-chapter-covers-new-concepts",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El primer capítulo cubre conceptos que aún no conoces.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "3a11c35e150814fd4f6bd7bac0a78fa54e89e7ed345a13c707726f14cc84d286",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-first-chapter-covers-risk",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El primer capítulo cubre el riesgo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "92a9b207e22b426adf7b35131951e985358439c174d3c7d708e480c86cd25384",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-first-chapter-covers-strategy",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El primer capítulo cubre la estrategia.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "bace7224c4eceecc2766f682b333f6bb3200fffdd5fd7718ca61858d6ae3513a",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-first-chapter-covers-trading-news",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El primer capítulo explica cómo operar noticias.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "4935b78413c01592d0f78afd45cf243de6594121ff8a968eb1541a94cc06871f",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-first-chapter-is-introductory",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El primer capítulo es, en parte, una introducción.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00002"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "e733cb327f57c62a314227c65e8de0301017f89854b2b1d1b758ede5080ad755",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intermediate-course-not-a-prerequisite",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si no se ha realizado el curso intermedio, se puede continuar con este contenido sin problema.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e1bc7123a3a0d209c692b0de1edecf97bca0c6f2d340f6f8f04edddcef1fa18b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que, si no se ha realizado el curso intermedio, no pasa nada porque su información no es relevante para entender el contenido actual."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intermediate-course-set-foundation",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El curso intermedio sirvió para sentar la base.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4aaf2fbbeb47209ec5ec183932e9965c5353af5c6f167881457ac0af35fe4f32",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma explícitamente que el curso intermedio «sirvió para sentar la base», lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-intermediate-info-not-fully-relevant-now",
+   "kind": "claim",
+   "version": 1,
+   "statement": "No hay información del curso intermedio que sea totalmente relevante para entender este contenido ahora.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d41642c8a6077352d9355cfa6718776715447eba5ec0b83db0438a9767466e22",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que no hay información totalmente relevante para entender «esto» ahora y, en el contexto, vincula esa irrelevancia con no haber realizado el curso intermedio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia contiene una sola proposición: la ausencia de información del curso intermedio completamente relevante para la comprensión actual de este contenido."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-intermediate-course-optional-depends-on-relevance",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-intermediate-course-not-a-prerequisite",
+   "subject_version": 1,
+   "object_id": "cl-intermediate-info-not-fully-relevant-now",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00003"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "46a5e4bb0ac9f226cbe8a2045f3ade7001c6d2ceffc2552f97cfc6d0aa97574a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción enuncia explícitamente la dependencia causal: si no se ha realizado el curso intermedio, se puede continuar sin problema «porque no hay información que sea totalmente relevante para ahora entender esto»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "2abce0a8bb464e78663d997a94849a69269f5389242baacf182eb53f2ec7b479"
+    ],
+    "response_id": "gen-1791144488-f3ZhCqoH2ON89GOkupmM"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00001",
+   "start_ms": 5810,
+   "end_ms": 19820,
+   "text": "Hola, bienvenido al curso completo. Aquí vas a descubrir la estrategia en profundidad y nada, sé que probablemente vengas ya de mi curso intermedio, así que eso sirvió para sentar la base y voy a ampliar ya todo."
+  },
+  {
+   "id": "asr-00002",
+   "start_ms": 19820,
+   "end_ms": 34850,
+   "text": "Este va a ser el primer capítulo, un poco así introducción, pero vamos a cubrir todo. La estrategia, el BIAS, las entradas, el riesgo, conceptos que aún no conoces, cómo operar noticias, ¿vale? Todo."
+  },
+  {
+   "id": "asr-00003",
+   "start_ms": 34850,
+   "end_ms": 49400,
+   "text": "Así que nada, vamos directamente al grano. El formato que voy a seguir va a ser un poco similar al del curso intermedio y si no lo has hecho, tranquilo, no pasa nada porque no hay información que sea totalmente relevante para ahora entender esto."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p1080000-canonical-v1",
+   "pts_ms": 12000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p1080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p1440000-canonical-v1",
+   "pts_ms": 16000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p1440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p1800000-canonical-v1",
+   "pts_ms": 20000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p1800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p2160000-canonical-v1",
+   "pts_ms": 24000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p2160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p2520000-canonical-v1",
+   "pts_ms": 28000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p2520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p2880000-canonical-v1",
+   "pts_ms": 32000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p2880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p3240000-canonical-v1",
+   "pts_ms": 36000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p3240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p810000-canonical-v1",
+   "pts_ms": 9000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p810000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p119700000-canonical-v1",
+   "pts_ms": 1330000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p119700000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p125640000-canonical-v1",
+   "pts_ms": 1396000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p125640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p51840000-canonical-v1",
+   "pts_ms": 576000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p51840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p5400000-canonical-v1",
+   "pts_ms": 60000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p5400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63360000-canonical-v1",
+   "pts_ms": 704000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p82440000-canonical-v1",
+   "pts_ms": 916000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p82440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p93240000-canonical-v1",
+   "pts_ms": 1036000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p93240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p96030000-canonical-v1",
+   "pts_ms": 1067000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p96030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

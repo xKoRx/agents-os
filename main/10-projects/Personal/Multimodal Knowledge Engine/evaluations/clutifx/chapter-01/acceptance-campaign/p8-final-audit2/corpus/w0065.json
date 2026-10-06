@@ -1,0 +1,315 @@
+{
+ "window": "w0065",
+ "start": "15:44",
+ "end": "15:57",
+ "start_ms": 944000,
+ "end_ms": 957000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-contorno-rectangular-dibujado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja un contorno rectangular en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p85590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p85680000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "473e7403d8be573dc7d51a1cb9c5df3f60c02bd0aaaafa58386c6a65e1bfd7a0",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "0ba11db8bb2a7119690688c0a142c43584a6cb491c58bdf043f3b29558ad2a26"
+    ],
+    "response_id": "gen-1791164430-Mi3sZpEGCclv4ypvKSOk"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-etiqueta-turtlesoup",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra la etiqueta «TURTLESOUP».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p85590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p86130000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "80126f5276a52973630d12f1351303f0b0f1abc66d81adf71fa9ad4ba6858702",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "0ba11db8bb2a7119690688c0a142c43584a6cb491c58bdf043f3b29558ad2a26"
+    ],
+    "response_id": "gen-1791164430-Mi3sZpEGCclv4ypvKSOk"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nombre-toma-alto-bajo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "«Toma del alto del bajo» se propone como nombre para la vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00128",
+    "asr-00129"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "20d1fe263ee0ebc74fe266a223b50075e1625179bf31bf54ff2663c2138e56ad",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento citado presenta «toma del alto del bajo» dentro de «otros nombres» y lo aplica a «una vela», por lo que respalda que se propone como nombre para ella."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que la expresión es propuesta como nombre de la vela."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "0ba11db8bb2a7119690688c0a142c43584a6cb491c58bdf043f3b29558ad2a26"
+    ],
+    "response_id": "gen-1791164430-Mi3sZpEGCclv4ypvKSOk"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-nombre-toma-liquidez",
+   "kind": "claim",
+   "version": 1,
+   "statement": "«Toma de liquidez» se propone como nombre para la vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00128",
+    "asr-00129"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "43b6a14e885192290898e12283486305512de5a4f41f633d18cfd24493e6b30b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento menciona «toma de liquidez» entre los nombres considerados para la vela, y el discurso continúa界定ando la vela y el nombre que se le dará."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "0ba11db8bb2a7119690688c0a142c43584a6cb491c58bdf043f3b29558ad2a26"
+    ],
+    "response_id": "gen-1791164430-Mi3sZpEGCclv4ypvKSOk"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objeto-dibujado-vela",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objeto dibujado sería una vela.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00128",
+    "asr-00129",
+    "frame-4de8f12d4841c630-s0-p85590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p86130000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3971ea3c13787014ec6d0418baefe0c083e4bff6bed4db8adcda9228e09294ee",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento citado afirma explícitamente que el objeto dibujado «sería una vela», y las imágenes muestran su construcción como una vela de cuatro horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "0ba11db8bb2a7119690688c0a142c43584a6cb491c58bdf043f3b29558ad2a26"
+    ],
+    "response_id": "gen-1791164430-Mi3sZpEGCclv4ypvKSOk"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vela-dibujada-cuatro-horas",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La vela dibujada se etiqueta como una vela de cuatro horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00128",
+    "asr-00129",
+    "frame-4de8f12d4841c630-s0-p85590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p86130000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "985b2689d221d8fe9f240f253255b2048f8886efc35075956462eaeaadf56bb3",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran una vela dibujada y el segmento citado dice «esto sería una vela, pongámosle de cuatro horas», por lo que la vela dibujada recibe explícitamente la etiqueta de vela de cuatro horas. La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "0ba11db8bb2a7119690688c0a142c43584a6cb491c58bdf043f3b29558ad2a26"
+    ],
+    "response_id": "gen-1791164430-Mi3sZpEGCclv4ypvKSOk"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00128",
+   "start_ms": 939690,
+   "end_ms": 954040,
+   "text": "vale vamos a hacerlo así de otros nombres como toma de liquidez o simplemente pues toma del"
+  },
+  {
+   "id": "asr-00129",
+   "start_ms": 954040,
+   "end_ms": 960690,
+   "text": "alto del bajo pero bueno queda así un poco mejor esto sería una vela pongámosle de cuatro horas"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p84960000-canonical-v1",
+   "pts_ms": 944000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p84960000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p85320000-canonical-v1",
+   "pts_ms": 948000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p85320000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p85590000-canonical-v1",
+   "pts_ms": 951000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p85590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p85680000-canonical-v1",
+   "pts_ms": 952000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p85680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p85770000-canonical-v1",
+   "pts_ms": 953000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p85770000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p85860000-canonical-v1",
+   "pts_ms": 954000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p85860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p86040000-canonical-v1",
+   "pts_ms": 956000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p86040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p86130000-canonical-v1",
+   "pts_ms": 957000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p86130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

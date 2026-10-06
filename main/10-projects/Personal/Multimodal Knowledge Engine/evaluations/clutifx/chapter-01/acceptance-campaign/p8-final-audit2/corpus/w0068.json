@@ -1,0 +1,334 @@
+{
+ "window": "w0068",
+ "start": "16:47",
+ "end": "17:00",
+ "start_ms": 1007000,
+ "end_ms": 1020000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-left-white-rectangle-top-adjusted-upward",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El borde superior del rectángulo blanco de la izquierda se ajusta hacia arriba durante la secuencia.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p90630000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p90810000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p91080000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p91170000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0670e21a991aa32394c50a5d6d9e6aa959bcbe55187708b9da14ce51bb775b9a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En las dos primeras imágenes, el borde superior del rectángulo blanco izquierdo está más abajo; en las dos siguientes aparece desplazado hacia arriba y se mantiene allí."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Los tiradores de selección visibles en la tercera imagen muestran que el borde fue ajustado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4f7297d5129033f5a6b0b94ecfd999f6abba618107a6b15c5e265f9d20c2b668"
+    ],
+    "response_id": "gen-1791165137-LUR8aZzOcnh1DjGF2C9a"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-long-stop-below-turtle-soup",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si se busca tomar longs en un Turtle Soup, el stop loss tiene que situarse de forma segura por debajo del Turtle Soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00135",
+    "asr-00136"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "537fa5e09f6cb0e11a071f4476a2f52988de4beef563ec8a58cd6f6b9a7c483c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que, al buscar tomar longs, el stop loss tiene que estar seguro por debajo del «Tartle Sup», forma fonética de «Turtle Soup»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición condicional sobre la ubicación del stop loss."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4f7297d5129033f5a6b0b94ecfd999f6abba618107a6b15c5e265f9d20c2b668"
+    ],
+    "response_id": "gen-1791165137-LUR8aZzOcnh1DjGF2C9a"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-right-rectangle-fill-changed-to-white",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rectángulo derecho cambia su relleno de negro a blanco.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p91440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p91530000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p91800000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "df8c686fda4033b02a2214fd87c8720d58af70effea8735faa35261c7e124f8f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra el rectángulo derecho con relleno negro y las siguientes lo muestran con relleno blanco."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una única transición temporal del relleno de negro a blanco."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4f7297d5129033f5a6b0b94ecfd999f6abba618107a6b15c5e265f9d20c2b668"
+    ],
+    "response_id": "gen-1791165137-LUR8aZzOcnh1DjGF2C9a"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-chart-label",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El ejemplo del gráfico está etiquetado con el texto «TURTLESOUP».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p90630000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b9f394bd18cfe2a3b6e6e790ad6685d4a8ca0d1fdd3b314fd2b4ef57031ed369",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen citada muestra un gráfico con la etiqueta visible «TURTLESOUP»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4f7297d5129033f5a6b0b94ecfd999f6abba618107a6b15c5e265f9d20c2b668"
+    ],
+    "response_id": "gen-1791165137-LUR8aZzOcnh1DjGF2C9a"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-low-sweep-bullish-reaction",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Si se produce una toma del bajo y una reacción bullish, se tiene un Turtle Soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00134",
+    "frame-4de8f12d4841c630-s0-p90630000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6742e43c2573de5abcb8f8a4df529d460f1e464b682f5dcff913dbf7aec5811c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción enuncia la misma regla: toma del bajo y reacción bullish dan lugar a «Tartle Sup»; el marco identifica canónicamente ese término como «TURTLESOUP»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación es una sola proposición condicional o definicional."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4f7297d5129033f5a6b0b94ecfd999f6abba618107a6b15c5e265f9d20c2b668"
+    ],
+    "response_id": "gen-1791165137-LUR8aZzOcnh1DjGF2C9a"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-signals-early-movement",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El Turtle Soup marca que el inicio del movimiento ya puede darse.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00135"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ac617e2dafe8bd42624c84ec4139c44ecf86854b486e2fb0132adb1aebf064bc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que «Tartle Sup» es lo que marca que el inicio del movimiento ya se puede dar; «Tartle Sup» es una forma fonética distortionada de «Turtle Soup»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "4f7297d5129033f5a6b0b94ecfd999f6abba618107a6b15c5e265f9d20c2b668"
+    ],
+    "response_id": "gen-1791165137-LUR8aZzOcnh1DjGF2C9a"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00134",
+   "start_ms": 999880,
+   "end_ms": 1007360,
+   "text": "Pero la idea es esta, ¿vale? Toma del bajo, reacción bullish, pues tenemos Tartle Sup."
+  },
+  {
+   "id": "asr-00135",
+   "start_ms": 1007540,
+   "end_ms": 1013480,
+   "text": "Concepto muy importante porque el Tartle Sup es lo que marca que el inicio del movimiento se puede dar ya."
+  },
+  {
+   "id": "asr-00136",
+   "start_ms": 1013900,
+   "end_ms": 1022220,
+   "text": "O sea, tú, si aquí estás buscando ya para tomar longs, tu stop loss tendría que estar seguro debajo del Tartle Sup, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90630000-canonical-v1",
+   "pts_ms": 1007000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90630000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90720000-canonical-v1",
+   "pts_ms": 1008000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90810000-canonical-v1",
+   "pts_ms": 1009000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90810000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91080000-canonical-v1",
+   "pts_ms": 1012000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91170000-canonical-v1",
+   "pts_ms": 1013000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91170000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91440000-canonical-v1",
+   "pts_ms": 1016000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91530000-canonical-v1",
+   "pts_ms": 1017000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91530000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p91800000-canonical-v1",
+   "pts_ms": 1020000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p91800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

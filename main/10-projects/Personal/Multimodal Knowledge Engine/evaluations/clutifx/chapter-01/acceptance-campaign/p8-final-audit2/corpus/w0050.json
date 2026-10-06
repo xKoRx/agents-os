@@ -1,0 +1,561 @@
+{
+ "window": "w0050",
+ "start": "11:28",
+ "end": "11:43",
+ "start_ms": 688000,
+ "end_ms": 703000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bajista-condicion-apertura",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La apertura por arriba de la vela es una condición para que se forme un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105",
+    "asr-00106"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "1b47707ea94f6a6281d7548e087db830d1d936a7b2dcad81c525e8e2d1297887",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "d1b67dfb35cb95a0234a7b3cd331190bbcc3ecddcbdd2b04366f9881e862a54d"
+    ],
+    "response_id": "gen-1791160380-EY5i6yDMN5HT94STYnDq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bajista-condicion-cierre-dentro",
+   "kind": "rule",
+   "version": 1,
+   "statement": "El cierre de la vela dentro del rango es una condición para que se forme un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "8b6b5a0ff6e7355d6905b9df52648491e5fa95db6f30fd7891d6be2d6493b2e5",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "d1b67dfb35cb95a0234a7b3cd331190bbcc3ecddcbdd2b04366f9881e862a54d"
+    ],
+    "response_id": "gen-1791160380-EY5i6yDMN5HT94STYnDq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-bajista-condicion-high",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La toma del high por la vela es una condición para que se forme un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105",
+    "asr-00106"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "d28a607645ac2a01d84b4a58a648d5e51630540b9293d3292339569daee7994a",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "d1b67dfb35cb95a0234a7b3cd331190bbcc3ecddcbdd2b04366f9881e862a54d"
+    ],
+    "response_id": "gen-1791160380-EY5i6yDMN5HT94STYnDq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-fuente-forexcom",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La fuente indicada para EURUSD es FOREX.com.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p61920000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "162b4bb3f2e462018e744e7a34b8f508669b3cc764b2c66264b004535c6b6227",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "d1b67dfb35cb95a0234a7b3cd331190bbcc3ecddcbdd2b04366f9881e862a54d"
+    ],
+    "response_id": "gen-1791160380-EY5i6yDMN5HT94STYnDq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objetivo-por-encima-rango",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo está situado por encima del rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a70c13d6012ef59ecca1950679c34a8e7360f94fb4903fd4fd98aaff560e789d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma directamente que el objetivo está «arriba» respecto del rango diario."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "d1b67dfb35cb95a0234a7b3cd331190bbcc3ecddcbdd2b04366f9881e862a54d"
+    ],
+    "response_id": "gen-1791160380-EY5i6yDMN5HT94STYnDq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bajista-en-formacion",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En este momento se está formando un rango bajista en la zona señalada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106",
+    "frame-4de8f12d4841c630-s0-p62640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p62820000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "470a9ca164bd7500248af668200a7aaa15833c24ced96f42ae449fde148aceb6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El transcript afirma explícitamente que en ese momento se está formando un rango bajista en la zona señalada."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición; el momento y la zona son calificadores del mismonehmen."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "d1b67dfb35cb95a0234a7b3cd331190bbcc3ecddcbdd2b04366f9881e862a54d"
+    ],
+    "response_id": "gen-1791160380-EY5i6yDMN5HT94STYnDq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-referencia-diario",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El rango de referencia es diario.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8594db09e2f312854fb13451395b697d2baa564969c106b81f7e5ac46d7b2a74",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente «tenemos el rango diario aquí», lo que sostiene que el rango de referencia es diario."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "d1b67dfb35cb95a0234a7b3cd331190bbcc3ecddcbdd2b04366f9881e862a54d"
+    ],
+    "response_id": "gen-1791160380-EY5i6yDMN5HT94STYnDq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reinicio-condicion-apertura",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La siguiente vela debe abrir por arriba para que el rango se reinicie.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dccbdb731ed27db6140029c4975ca4a4c768de33f14e4d4035b8ce4e48af18e2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el rango se reinicia cuando la siguiente vela abre por arriba y toma el máximo."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La cláusula «para que» expresa la condición del mismo proposition, sin añadir una afirmación independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "d1b67dfb35cb95a0234a7b3cd331190bbcc3ecddcbdd2b04366f9881e862a54d"
+    ],
+    "response_id": "gen-1791160380-EY5i6yDMN5HT94STYnDq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-reinicio-condicion-high",
+   "kind": "rule",
+   "version": 1,
+   "statement": "La siguiente vela debe tomar el high para que el rango se reinicie.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c0c137aa7a353e7bfc5be2827adad9667a6245896645d135b4fe8e26a08b59c2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que el rango se reinicia cuando la siguiente vela abre por arriba y toma el high, así que la toma del high es la condición expresada en la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición sobre la condición para que se reinicie el rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "d1b67dfb35cb95a0234a7b3cd331190bbcc3ecddcbdd2b04366f9881e862a54d"
+    ],
+    "response_id": "gen-1791160380-EY5i6yDMN5HT94STYnDq"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-formacion-bajista-depende-apertura",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-bajista-en-formacion",
+   "subject_version": 1,
+   "object_id": "cl-bajista-condicion-apertura",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105",
+    "asr-00106"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "41f4d2a6fa8bf9aca075402190469214a2749a22529e44b3277a178d471e490c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia describe la apertura por arriba y la toma del high como parte del escenario de reinicio del rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "A continuación, elｏ speaker enlaza explícitamente ese comportamiento con que «se nos está formando un rango bajista aquí»,.Setup la relación de dependencia en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "d1b67dfb35cb95a0234a7b3cd331190bbcc3ecddcbdd2b04366f9881e862a54d"
+    ],
+    "response_id": "gen-1791160380-EY5i6yDMN5HT94STYnDq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-formacion-bajista-depende-cierre",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-bajista-en-formacion",
+   "subject_version": 1,
+   "object_id": "cl-bajista-condicion-cierre-dentro",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00106"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "0a0da3e41a5d46e0111b9e4f10165ca4e58a2af759655879229ac4a4d549ca11",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia menciona que la vela «nos cierra adentro» y, a la vez, que se está formando un rango bajista, pero no enuncia que dicho cierre sea una condición para la formación del rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "El «si vemos» introduce una comprobación por parte del hablante, no una regla condicional que vincule explícitamente el cierre con la formación del rango."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "d1b67dfb35cb95a0234a7b3cd331190bbcc3ecddcbdd2b04366f9881e862a54d"
+    ],
+    "response_id": "gen-1791160380-EY5i6yDMN5HT94STYnDq"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-formacion-bajista-depende-high",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-bajista-en-formacion",
+   "subject_version": 1,
+   "object_id": "cl-bajista-condicion-high",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00105",
+    "asr-00106"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "96a7b6924566c094a6e299778de14df68b4a31db2ff9efbc4ec48c0ee4070e3d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia explica que el rango se reinicia si la siguiente vela abre por arriba y toma el high, y enumera esa toma del high como condición para la formación del rango bajista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda transcripción conecta expresamente ambos hechos: la vela abre, toma el high y cierra adentro, «lo que está pasando ahora es que se nos está formando un rango bajista aquí»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "d1b67dfb35cb95a0234a7b3cd331190bbcc3ecddcbdd2b04366f9881e862a54d"
+    ],
+    "response_id": "gen-1791160380-EY5i6yDMN5HT94STYnDq"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00105",
+   "start_ms": 676080,
+   "end_ms": 696980,
+   "text": "En el mismo caso, tenemos el rango diario aquí, tenemos el objetivo arriba, pero ¿cómo sería un rango reiniciado? Pues que la siguiente vela abre por arriba y toma el high, ¿vale?"
+  },
+  {
+   "id": "asr-00106",
+   "start_ms": 696980,
+   "end_ms": 711540,
+   "text": "Lo que ahora mismo, si vemos que esta vela abre, toma el high y nos cierra adentro, lo que está pasando ahora es que se nos está formando un rango bajista aquí, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61920000-canonical-v1",
+   "pts_ms": 688000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p62010000-canonical-v1",
+   "pts_ms": 689000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p62010000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p62100000-canonical-v1",
+   "pts_ms": 690000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p62100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p62280000-canonical-v1",
+   "pts_ms": 692000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p62280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p62640000-canonical-v1",
+   "pts_ms": 696000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p62640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p62820000-canonical-v1",
+   "pts_ms": 698000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p62820000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63000000-canonical-v1",
+   "pts_ms": 700000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p63270000-canonical-v1",
+   "pts_ms": 703000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p63270000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

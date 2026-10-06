@@ -1,0 +1,126 @@
+{
+ "window": "w0084",
+ "start": "21:26",
+ "end": "21:44",
+ "start_ms": 1286000,
+ "end_ms": 1304000,
+ "disposition": "rejected",
+ "rejection_category": "identity divergence",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00176",
+   "start_ms": 1285320,
+   "end_ms": 1289680,
+   "text": "no hace nuevo alto en libra"
+  },
+  {
+   "id": "asr-00177",
+   "start_ms": 1289680,
+   "end_ms": 1292420,
+   "text": "por lo tanto podría ser una señal de reversión"
+  },
+  {
+   "id": "asr-00178",
+   "start_ms": 1292420,
+   "end_ms": 1293900,
+   "text": "esto es lo que os han enseñado hasta ahora"
+  },
+  {
+   "id": "asr-00179",
+   "start_ms": 1293900,
+   "end_ms": 1296240,
+   "text": "con la estrategia va a cambiar un poco"
+  },
+  {
+   "id": "asr-00180",
+   "start_ms": 1296240,
+   "end_ms": 1297760,
+   "text": "el concepto de SMT"
+  },
+  {
+   "id": "asr-00181",
+   "start_ms": 1297760,
+   "end_ms": 1298600,
+   "text": "lo vais a ver ahora"
+  },
+  {
+   "id": "asr-00182",
+   "start_ms": 1298600,
+   "end_ms": 1302320,
+   "text": "va a haber un capítulo solo de SMT"
+  },
+  {
+   "id": "asr-00183",
+   "start_ms": 1302320,
+   "end_ms": 1303760,
+   "text": "donde va a quedar mucho más claro"
+  },
+  {
+   "id": "asr-00184",
+   "start_ms": 1303760,
+   "end_ms": 1305680,
+   "text": "pero para hacer una pequeña introducción"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p115740000-canonical-v1",
+   "pts_ms": 1286000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p115740000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p115920000-canonical-v1",
+   "pts_ms": 1288000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p115920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p116280000-canonical-v1",
+   "pts_ms": 1292000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p116280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p116550000-canonical-v1",
+   "pts_ms": 1295000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p116550000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p116640000-canonical-v1",
+   "pts_ms": 1296000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p116640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p116910000-canonical-v1",
+   "pts_ms": 1299000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p116910000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p117000000-canonical-v1",
+   "pts_ms": 1300000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p117000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p117360000-canonical-v1",
+   "pts_ms": 1304000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p117360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

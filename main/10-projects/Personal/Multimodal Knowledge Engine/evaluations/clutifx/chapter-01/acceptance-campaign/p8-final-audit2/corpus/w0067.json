@@ -1,0 +1,705 @@
+{
+ "window": "w0067",
+ "start": "16:24",
+ "end": "16:44",
+ "start_ms": 984000,
+ "end_ms": 1004000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-anotacion-turtlesoup",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico muestra la anotación «TURTLESOUP».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p88560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p90000000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "11cc963e8cf225ed5af7ecc24e38ba0f28a874db81232b409df207c9aa6222d3",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd"
+    ],
+    "response_id": "gen-1791164857-xMsktybpJhuZa37Q0FBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-errores-identificacion-turtle-soup-pueden-ocurrir",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los errores al identificar un Turtle Soup pueden ocurrir.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00133"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "5a0c293e16c234cc8807596472eff5eaa17bee9f8f08e65f59d53f8e42f13161",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd"
+    ],
+    "response_id": "gen-1791164857-xMsktybpJhuZa37Q0FBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-finta-baja-parece-subida",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio puede hacer una finta en la que baja y parece que sube.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00132",
+    "frame-4de8f12d4841c630-s0-p89100000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p89280000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "ad7928de7cdf39276bbd7ccc5e9de845d2e9a185406bd15bc4f200474c68ac96",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd"
+    ],
+    "response_id": "gen-1791164857-xMsktybpJhuZa37Q0FBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-finta-puede-confundirse-como-turtle-soup",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Ese movimiento puede confundirse con un Turtle Soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00132",
+    "asr-00133"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "2fcb42caafd2f1fc51fb1b116650f4414cf7a20e0f558882d13ebdb83aebc06e",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd"
+    ],
+    "response_id": "gen-1791164857-xMsktybpJhuZa37Q0FBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-movimiento-no-es-turtle-soup",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Este movimiento no es ningún Turtle Soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131",
+    "frame-4de8f12d4841c630-s0-p88560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p89640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "203be22d75a30b015585a2304c616f62f96aa97594d30d2e936958e91d56214d",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The transcript directly states that the referenced continuing downward movement is not a “tartle sub”; this ASR-garbled term is identified as Turtle Soup by the on-screen label “TURTLESOUP.”"
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "The statement asserts only the single proposition that the referenced movement is not a Turtle Soup."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd"
+    ],
+    "response_id": "gen-1791164857-xMsktybpJhuZa37Q0FBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-sigue-bajando-sin-reaccionar",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En lugar de reaccionar, el precio sigue bajando.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131",
+    "frame-4de8f12d4841c630-s0-p88560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p89640000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a8a39604c36ba6f31e9518ae5eb28beac94e05b265f22fc158817511031d9f40",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma literalmente «en lugar de reaccionar, sigue bajando», y las imágenes identifican el objeto observado como el precio del EURUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd"
+    ],
+    "response_id": "gen-1791164857-xMsktybpJhuZa37Q0FBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-toma-bajo-reaccion-bullish-es-turtle-soup",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Una toma del bajo seguida de una reacción bullish es un Turtle Soup.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00134",
+    "frame-4de8f12d4841c630-s0-p90000000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p90360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7b52d27d0faba8ef3be3b1fface9121f3f40bd537c7f27ea563a79c49d8b8c23",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El transcript afirma directamente que una toma del bajo seguida de una reacción bullish es «Turtle Soup»; además, la etiqueta «TURTLE SOUP» en las citas resuelve la forma ASR «Tartle Sup» al término canónico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La toma del bajo y la reacción bullish son condiciones conjuntas de una sola definición, no proposiciones independientes."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd"
+    ],
+    "response_id": "gen-1791164857-xMsktybpJhuZa37Q0FBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-aparente-puede-no-serlo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Un movimiento que parece un Turtle Soup puede no serlo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00132",
+    "asr-00133"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9eafb86332ac0389119b988c3c8454e4a1d71fc57b36218cdf042485eb2b0dfc",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que un movimiento puede parecer un «tartle sub» —variación fonética de «Turtle Soup»— y que quizá no lo sea."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La sentencia afirma una sola proposición: que una movimiento aparente puede no ser realmente un Turtle Soup."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd"
+    ],
+    "response_id": "gen-1791164857-xMsktybpJhuZa37Q0FBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-requiere-reaccion-contraria",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Un Turtle Soup tiene que mostrar una reacción hacia la dirección contraria.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131",
+    "asr-00132"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7edb1830667ea65f5059742c5903eea2a9d52e7c7beed04880f0f80ec416b280",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma directamente que «el tartle sub» tiene que «mostrar un tipo de reacción hacia la dirección contraria»; «tartle sub» es la forma fonética de «Turtle Soup»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que un Turtle Soup debe mostrar una reacción en dirección contraria."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd"
+    ],
+    "response_id": "gen-1791164857-xMsktybpJhuZa37Q0FBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-requiere-toma-liquidez",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Un Turtle Soup tiene que ser una toma de liquidez.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e6f0c365fdc81cf4e2711375beb3b0f55f97aba97098fdb272606c2fa2a8a60b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que «el tartle sub tiene que ser una toma de liquidez»; «tartle sub» es una forma fonética distorsionada de «Turtle Soup»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement.asserta una única proposición: que un Turtle Soup debe ser una toma de liquidez."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd"
+    ],
+    "response_id": "gen-1791164857-xMsktybpJhuZa37Q0FBd"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-confusion-depende-de-finta",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-finta-puede-confundirse-como-turtle-soup",
+   "subject_version": 1,
+   "object_id": "cl-finta-baja-parece-subida",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00132",
+    "asr-00133"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1abb31b4e6b1b5dfb8f45abe46872fe756df61b6ea01e6ae573eb6573ac8e3f5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia enlaza explícitamente la posible confusión con un «Turtle Soup» con la finta en la que el precio baja y parece que sube: «que te haga una finta, que baje, que parece que suba y tú te confundas viendo que es un tartle sub»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd"
+    ],
+    "response_id": "gen-1791164857-xMsktybpJhuZa37Q0FBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-falso-turtle-soup-depende-de-reaccion-real",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-turtle-soup-aparente-puede-no-serlo",
+   "subject_version": 1,
+   "object_id": "cl-turtle-soup-requiere-reaccion-contraria",
+   "object_version": 1,
+   "epistemic": "MODEL_INFERRED",
+   "evidence_ids": [
+    "asr-00132",
+    "asr-00133"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "0ef746f425c9f5b8822610dd190b2ff741e41795a3b720ffd5fb55f771760f21",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que un movimiento aparentemente identificado como Turtle Soup quizá no lo sea y, en el pasaje anterior, menciona una reacción hacia la dirección contraria."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "No enuncia ni enactúa explícitamente que la primera posibilidad dependa de la segunda; solo presenta ambos contenido de forma consecutiva."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd"
+    ],
+    "response_id": "gen-1791164857-xMsktybpJhuZa37Q0FBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-no-turtle-soup-depende-de-no-reaccion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-movimiento-no-es-turtle-soup",
+   "subject_version": 1,
+   "object_id": "cl-precio-sigue-bajando-sin-reaccionar",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "be74c658f9116fbb32f3d3121e70d98206892e30a875fe81c7ebebcbf7106658",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma ambas proposiciones y resuelve «tartle sub» como «Turtle Soup», pero las yuxtapone sin expresar explícitamente que «no es ningún Turtle Soup» depende de que el precio siga bajando en lugar de reaccionar."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La explicación de que «Turtle Soup tiene que ser una toma de liquidez» tampoco establece esa dependencia concreta."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd"
+    ],
+    "response_id": "gen-1791164857-xMsktybpJhuZa37Q0FBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-patron-bullish-depende-de-reaccion-contraria",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-toma-bajo-reaccion-bullish-es-turtle-soup",
+   "subject_version": 1,
+   "object_id": "cl-turtle-soup-requiere-reaccion-contraria",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00132",
+    "asr-00134"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "cdbca4f47464eb3aa44f1a780898f81c9258331749e3e40805fa028e01b617ce",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita enuncia directamente el escenario del claim sujeto: «Toma del bajo, reacción bullish, pues tenemos Tartle Sup»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera cita establece el requisito del claim objeto: un Turtle Soup debe mostrar «un tipo de reacción hacia la dirección contraria»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La secuencia «Toma del bajo, reacción bullish, pues tenemos Turtle Soup» enacta la regla de que ese patrón es un Turtle Soup solo cuando se produce la reacción contraria requerida, por lo que queda establecida la dependencia en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd"
+    ],
+    "response_id": "gen-1791164857-xMsktybpJhuZa37Q0FBd"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-patron-bullish-depende-de-toma-liquidez",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-toma-bajo-reaccion-bullish-es-turtle-soup",
+   "subject_version": 1,
+   "object_id": "cl-turtle-soup-requiere-toma-liquidez",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00131",
+    "asr-00134"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dd30656d6f2811d93ab148fd05cd797a85cfcacbf9d21fb4a0f3ba3a9231f6af",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda cita identifica explícitamente «toma del bajo, reacción bullish» como un Turtle Soup. La primera establece que un Turtle Soup tiene que ser una toma de liquidez. Por tanto, la clasificación del patrón como Turtle Soup depende de que la toma del bajo sea una toma de liquidez, en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd"
+    ],
+    "response_id": "gen-1791164857-xMsktybpJhuZa37Q0FBd"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00131",
+   "start_ms": 976240,
+   "end_ms": 984900,
+   "text": "en lugar de reaccionar, sigue bajando, no es ningún tartle sub, ¿vale? O sea, el tartle sub tiene que ser una toma de liquidez"
+  },
+  {
+   "id": "asr-00132",
+   "start_ms": 984900,
+   "end_ms": 994320,
+   "text": "y mostrar un tipo de reacción hacia la dirección contraria, ¿vale? Puede ser que te haga una finta, que baje, que parece que suba"
+  },
+  {
+   "id": "asr-00133",
+   "start_ms": 994320,
+   "end_ms": 999880,
+   "text": "y tú te confundas viendo que es un tartle sub y quizá no lo es. Puede pasar, ¿vale? Son errores que pueden pasar."
+  },
+  {
+   "id": "asr-00134",
+   "start_ms": 999880,
+   "end_ms": 1007360,
+   "text": "Pero la idea es esta, ¿vale? Toma del bajo, reacción bullish, pues tenemos Tartle Sup."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p88560000-canonical-v1",
+   "pts_ms": 984000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p88560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p88920000-canonical-v1",
+   "pts_ms": 988000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p88920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p89100000-canonical-v1",
+   "pts_ms": 990000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p89100000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p89190000-canonical-v1",
+   "pts_ms": 991000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p89190000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p89280000-canonical-v1",
+   "pts_ms": 992000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p89280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p89640000-canonical-v1",
+   "pts_ms": 996000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p89640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90000000-canonical-v1",
+   "pts_ms": 1000000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90360000-canonical-v1",
+   "pts_ms": 1004000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

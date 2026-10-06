@@ -1,0 +1,425 @@
+{
+ "window": "w0063",
+ "start": "14:58",
+ "end": "15:12",
+ "start_ms": 898000,
+ "end_ms": 912000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-timeframe-15m",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El marco temporal del gráfico cambia de 8h a 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p81360000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p81450000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "9d5ab370bf17a8bc69736ff736f28e6deef29d5adaa3dcfea78f39a1d77c1e88",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cc51f9275f34ab1b09889b1ef85914b62340247dad07aaef34b63a25ddefca0"
+    ],
+    "response_id": "gen-1791163974-1AQmVJsTmywzOjmpgjJU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estrategia-cadena-rangos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La estrategia es, aproximadamente, como una cadena de rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00122"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "6cda2fa283241364aaa5327e2bb5fbb11c2670ae6f04d1bacee02131d5fe0e40",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cc51f9275f34ab1b09889b1ef85914b62340247dad07aaef34b63a25ddefca0"
+    ],
+    "response_id": "gen-1791163974-1AQmVJsTmywzOjmpgjJU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-15m-sin-velas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico de 15M aparece sin velas visibles.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p81450000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p82080000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "652ba9cbece1a8907b210e76d84a6ac9fb5c033a693b7b32563b39a895dfa54e",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cc51f9275f34ab1b09889b1ef85914b62340247dad07aaef34b63a25ddefca0"
+    ],
+    "response_id": "gen-1791163974-1AQmVJsTmywzOjmpgjJU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-mencionar-turtle-soup",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "El instructor también tiene que mencionar «Turtle Soup».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00123"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "356e6fea9c15b37a694ea74a4de3314728a253f49039f614a41c13a9ac6b49f4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La forma ASR «Tartel sub» es una distorsión fonética de «Turtle Soup», y el instructor afirma que también tiene que mencionarla."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cc51f9275f34ab1b09889b1ef85914b62340247dad07aaef34b63a25ddefca0"
+    ],
+    "response_id": "gen-1791163974-1AQmVJsTmywzOjmpgjJU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-completan-hacia-objetivos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos de la estrategia se van completando en dirección a los objetivos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00122"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d1407f4138443a5346148f38102dabffcca9ea79a441a96f5954a57cd6e2a182",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que una cadena de rangos de la estrategia «se van completando en dirección a los objetivos», lo que respalda directamente la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable sobre la progresión de los rangos hacia los objetivos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cc51f9275f34ab1b09889b1ef85914b62340247dad07aaef34b63a25ddefca0"
+    ],
+    "response_id": "gen-1791163974-1AQmVJsTmywzOjmpgjJU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-recuadros-grafico-8h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el gráfico de 8h se observan varios recuadros rectangulares trazados.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p80820000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p81360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "04c85beab79122891e324a0dce393c62c89d9da01f8dda1c3a8d179dc90c78b2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran un gráfico etiquetado como «8h» y varios recuadros rectangulares delineados sobre él."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cc51f9275f34ab1b09889b1ef85914b62340247dad07aaef34b63a25ddefca0"
+    ],
+    "response_id": "gen-1791163974-1AQmVJsTmywzOjmpgjJU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframe-inicial-8h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal inicial del gráfico es 8h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p80820000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p81360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "33bdeebc7ac54556e2d9ece63ec0499bf2f38871fc98ac07a90600726281741c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El encabezado de ambos gráficos muestra «EURUSD · 8h · FOREX.com», lo que identifica explícitamente el marco temporal como 8h."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cc51f9275f34ab1b09889b1ef85914b62340247dad07aaef34b63a25ddefca0"
+    ],
+    "response_id": "gen-1791163974-1AQmVJsTmywzOjmpgjJU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-aparece-en-mentoria",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La frase «Turtle Soup» va a aparecer mucho en la mentoría.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00123"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "36e0e269c51163825b032a0500256d9462adb4a155ceb1da23f99670c857bdc0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia identifica «Tartel sub» como una frase que «va a aparecer mucho en la mentoría»; esa forma fonética corresponde a «Turtle Soup»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cc51f9275f34ab1b09889b1ef85914b62340247dad07aaef34b63a25ddefca0"
+    ],
+    "response_id": "gen-1791163974-1AQmVJsTmywzOjmpgjJU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-turtle-soup-es-conocido",
+   "kind": "claim",
+   "version": 1,
+   "statement": "«Turtle Soup» es muy conocido.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00123"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0f8894230a9a18ec16eaf05bea10674cbeb7748a065e38835409587b7642742b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La forma transcrita «Tartel sub» es una distorsión fonética de «Turtle Soup» y la evidencia afirma explícitamente que es «muy conocido»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "5cc51f9275f34ab1b09889b1ef85914b62340247dad07aaef34b63a25ddefca0"
+    ],
+    "response_id": "gen-1791163974-1AQmVJsTmywzOjmpgjJU"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00122",
+   "start_ms": 895280,
+   "end_ms": 903770,
+   "text": "La estrategia ya veréis que es un poco como una cadena de rangos que se van completando en dirección a los objetivos."
+  },
+  {
+   "id": "asr-00123",
+   "start_ms": 905030,
+   "end_ms": 912260,
+   "text": "Tartel sub es muy conocido, pero tengo que mencionarlo también porque es una frase que va a aparecer mucho en la mentoría."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p80820000-canonical-v1",
+   "pts_ms": 898000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p80820000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p81000000-canonical-v1",
+   "pts_ms": 900000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p81000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p81360000-canonical-v1",
+   "pts_ms": 904000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p81360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p81450000-canonical-v1",
+   "pts_ms": 905000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p81450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p81540000-canonical-v1",
+   "pts_ms": 906000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p81540000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p81720000-canonical-v1",
+   "pts_ms": 908000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p81720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p81810000-canonical-v1",
+   "pts_ms": 909000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p81810000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p82080000-canonical-v1",
+   "pts_ms": 912000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p82080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

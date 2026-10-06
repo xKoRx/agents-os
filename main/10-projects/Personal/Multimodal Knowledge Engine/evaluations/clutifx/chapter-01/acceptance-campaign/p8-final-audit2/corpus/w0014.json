@@ -1,0 +1,286 @@
+{
+ "window": "w0014",
+ "start": "03:04",
+ "end": "03:17",
+ "start_ms": 184000,
+ "end_ms": 197000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-borrar-linea-senalada",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Borrar la línea horizontal señalada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025",
+    "frame-4de8f12d4841c630-s0-p16560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16830000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "8b3005f40c78aab15030851305c23dc15c9dff1505e10e0774857f53daf99a9f",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "fd6968920987acf19be9f55efffbdf28b8cc77aec60001c8c8df58ffe6b8c20a"
+    ],
+    "response_id": "gen-1791148230-8nNhyZeiWgIe7Hm62SQ8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-dibujar-rectangulo-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja un rectángulo alrededor de varias velas del gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p17280000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17460000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17730000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "5f022fcb8ab8311531252c196422b8529acc6fa4e02715ce0d0c5c2de95e2be3",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "fd6968920987acf19be9f55efffbdf28b8cc77aec60001c8c8df58ffe6b8c20a"
+    ],
+    "response_id": "gen-1791148230-8nNhyZeiWgIe7Hm62SQ8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ejemplo-es-rango-real",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El ejemplo señalado es un rango real.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025",
+    "asr-00026",
+    "frame-4de8f12d4841c630-s0-p17460000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17730000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "54ccc813f0e98116b1d9ce347675bf9ea1ed731508bfaa102bd77b2a151478a7",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "fd6968920987acf19be9f55efffbdf28b8cc77aec60001c8c8df58ffe6b8c20a"
+    ],
+    "response_id": "gen-1791148230-8nNhyZeiWgIe7Hm62SQ8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-marco-temporal-cuatro-horas",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal del gráfico es 4 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00026",
+    "frame-4de8f12d4841c630-s0-p16560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "556ed5e061cd2d951f76b7ff28aae6e4cf4afd81e6cb5c2bc3153be5e82dd6cb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción menciona explícitamente un «gráfico de 4 horas» y la etiqueta superior izquierda de la imagen muestra «EURUSD · 4h»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el marco temporal del gráfico es de 4 horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "fd6968920987acf19be9f55efffbdf28b8cc77aec60001c8c8df58ffe6b8c20a"
+    ],
+    "response_id": "gen-1791148230-8nNhyZeiWgIe7Hm62SQ8"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-toma-high-rango",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio toma el high de este rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00026",
+    "frame-4de8f12d4841c630-s0-p17460000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17640000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p17730000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "76eb3ebb184fdb9fc50e09384f13fcdf2e1454c39f1c87a0178c9065761b7ee6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El transcript afirma directamente que «el precio toma el high de esta», y la imagen identifica el rango画出 en el gráfico de 4 horas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el precio alcanza el máximo del rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "fd6968920987acf19be9f55efffbdf28b8cc77aec60001c8c8df58ffe6b8c20a"
+    ],
+    "response_id": "gen-1791148230-8nNhyZeiWgIe7Hm62SQ8"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00025",
+   "start_ms": 179900,
+   "end_ms": 188660,
+   "text": "borrar esto porque ya ha quedado claro ejemplos reales de rangos vale por ejemplo este de aquí"
+  },
+  {
+   "id": "asr-00026",
+   "start_ms": 188660,
+   "end_ms": 199000,
+   "text": "esto aquí es un rango en el gráfico de 4 horas porque vemos como el precio toma el high de esta"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16560000-canonical-v1",
+   "pts_ms": 184000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16830000-canonical-v1",
+   "pts_ms": 187000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16830000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16920000-canonical-v1",
+   "pts_ms": 188000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p17010000-canonical-v1",
+   "pts_ms": 189000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p17010000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p17280000-canonical-v1",
+   "pts_ms": 192000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p17280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p17460000-canonical-v1",
+   "pts_ms": 194000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p17460000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p17640000-canonical-v1",
+   "pts_ms": 196000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p17640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p17730000-canonical-v1",
+   "pts_ms": 197000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p17730000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

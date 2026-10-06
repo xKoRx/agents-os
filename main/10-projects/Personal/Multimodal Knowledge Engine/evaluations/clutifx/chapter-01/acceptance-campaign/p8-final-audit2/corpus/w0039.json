@@ -1,0 +1,421 @@
+{
+ "window": "w0039",
+ "start": "08:45",
+ "end": "08:57",
+ "start_ms": 525000,
+ "end_ms": 537000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-assume-ranges-complete",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Hay que asumir que los rangos se van a completar.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00079",
+    "asr-00080",
+    "asr-00081"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "1ff40cefa2167ca96db3bfd88b6e225abb911879d8fdbb76c37ddd1c4debd8ae",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a0f941b99f9ef1b47980a21dc8035a1b42e230e80f3a9d0b9a57ae5914395f8a"
+    ],
+    "response_id": "gen-1791156536-pUusiVlgdSEtRqfpKAXN"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-left-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico de la izquierda muestra el par EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "2997e87c868a97dfa1ce056d4a77803a58a5ed1516a3c55b2c51045858ec48e6",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a0f941b99f9ef1b47980a21dc8035a1b42e230e80f3a9d0b9a57ae5914395f8a"
+    ],
+    "response_id": "gen-1791156536-pUusiVlgdSEtRqfpKAXN"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-right-gbpusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico de la derecha muestra el par GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "fd1f10d4a1f449bf633f1797ee668f5cbe13ac0a54c222b7f17440167a09ef93",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a0f941b99f9ef1b47980a21dc8035a1b42e230e80f3a9d0b9a57ae5914395f8a"
+    ],
+    "response_id": "gen-1791156536-pUusiVlgdSEtRqfpKAXN"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-range-lower-134155",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El extremo inferior del rango de GBPUSD está marcado en 1,34155.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47790000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "7d612baee1d488b086340f49c6c0b6951009c96b416406f58860f22f26180d73",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a0f941b99f9ef1b47980a21dc8035a1b42e230e80f3a9d0b9a57ae5914395f8a"
+    ],
+    "response_id": "gen-1791156536-pUusiVlgdSEtRqfpKAXN"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-range-upper-135843",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El extremo superior del rango de GBPUSD está marcado en 1,35843.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p47790000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "2a7a49ce3e4000fea2a833215a66fcbe9fa482586cad549ae61bc5d485611b82",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a0f941b99f9ef1b47980a21dc8035a1b42e230e80f3a9d0b9a57ae5914395f8a"
+    ],
+    "response_id": "gen-1791156536-pUusiVlgdSEtRqfpKAXN"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-target-136238",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El objetivo de GBPUSD estaba marcado en 1,36238.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00077",
+    "asr-00078",
+    "frame-4de8f12d4841c630-s0-p47790000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p48240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "c6557fbac5be05b2a8b49550ced097c4f65cf21ac847dfecf43dc99cf1900c65",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a0f941b99f9ef1b47980a21dc8035a1b42e230e80f3a9d0b9a57ae5914395f8a"
+    ],
+    "response_id": "gen-1791156536-pUusiVlgdSEtRqfpKAXN"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-target-above-range",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo de GBPUSD estaba por encima del extremo superior del rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00077",
+    "asr-00078",
+    "frame-4de8f12d4841c630-s0-p47790000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "41e7ff4339d883318d4424b1aa65e2afa8bc95a84ef8a0d72e5fb4289639f1f4",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a0f941b99f9ef1b47980a21dc8035a1b42e230e80f3a9d0b9a57ae5914395f8a"
+    ],
+    "response_id": "gen-1791156536-pUusiVlgdSEtRqfpKAXN"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-timeframe-15m-to-1h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad de los gráficos cambia de 15 minutos a 1 hora durante la ventana.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p47250000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p48240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "aeb3a48430c44e9806ca8c1da62aba75ec358220ae45076c7db05d623c02e93e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera evidencia muestra ambos gráficos en 15 minutos (encabezados «15» y etiquetas «15M»)."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La segunda evidencia muestra ambos gráficos en 1 hora (encabezados «1h» y etiquetas «60M»), por lo que las imágenes ordenadas documentan el cambio de temporalidad durante la ventana."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: el cambio de la temporalidad de los gráficos de 15 minutos a 1 hora."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a0f941b99f9ef1b47980a21dc8035a1b42e230e80f3a9d0b9a57ae5914395f8a"
+    ],
+    "response_id": "gen-1791156536-pUusiVlgdSEtRqfpKAXN"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00075",
+   "start_ms": 525900,
+   "end_ms": 527380,
+   "text": "Bueno, lástima"
+  },
+  {
+   "id": "asr-00076",
+   "start_ms": 527380,
+   "end_ms": 529240,
+   "text": "que llegó antes de que pudiésemos entrar"
+  },
+  {
+   "id": "asr-00077",
+   "start_ms": 529240,
+   "end_ms": 531120,
+   "text": "en la sesión, pero el objetivo de libra"
+  },
+  {
+   "id": "asr-00078",
+   "start_ms": 531120,
+   "end_ms": 533600,
+   "text": "estaba ahí arriba. Esta es un poco la importancia"
+  },
+  {
+   "id": "asr-00079",
+   "start_ms": 533600,
+   "end_ms": 534660,
+   "text": "de los rangos."
+  },
+  {
+   "id": "asr-00080",
+   "start_ms": 535400,
+   "end_ms": 536720,
+   "text": "Asumir que se van a completar"
+  },
+  {
+   "id": "asr-00081",
+   "start_ms": 536720,
+   "end_ms": 539220,
+   "text": "y que el precio funciona de esta manera. De un rango"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47250000-canonical-v1",
+   "pts_ms": 525000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47250000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47520000-canonical-v1",
+   "pts_ms": 528000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47700000-canonical-v1",
+   "pts_ms": 530000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47700000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47790000-canonical-v1",
+   "pts_ms": 531000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47790000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p47880000-canonical-v1",
+   "pts_ms": 532000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p47880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p48060000-canonical-v1",
+   "pts_ms": 534000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p48060000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p48240000-canonical-v1",
+   "pts_ms": 536000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p48240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p48330000-canonical-v1",
+   "pts_ms": 537000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p48330000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

@@ -1,0 +1,684 @@
+{
+ "window": "w0041",
+ "start": "09:11",
+ "end": "09:20",
+ "start_ms": 551000,
+ "end_ms": 560000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-eurusd-dos-recuadros",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico inicial de EURUSD muestra dos recuadros.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49770000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "974230e74d95f84ac37f97949c1e216b29d96826a8d9acdf64bebc777eeff535",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "83124b5400d4e8330db927a1d125bac958748cc960248a2c04a5d8bbfe6626f9"
+    ],
+    "response_id": "gen-1791157196-Tws4Z8qPNftkG6Pj8tob"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-gbpusd-un-recuadro",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico inicial de GBPUSD muestra un recuadro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49770000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "91e387540a5968eeb1e2f3331f8e5442eccc47c40bfb78d33daa1663533c0dc3",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "83124b5400d4e8330db927a1d125bac958748cc960248a2c04a5d8bbfe6626f9"
+    ],
+    "response_id": "gen-1791157196-Tws4Z8qPNftkG6Pj8tob"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-inicial-derecho-gbpusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico inicial de la derecha corresponde a GBPUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49770000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "52e6898d8ac00f2cb92e1e0e7eb56b22d3c9592f0eada9f8d8c81404ea1239ce",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "83124b5400d4e8330db927a1d125bac958748cc960248a2c04a5d8bbfe6626f9"
+    ],
+    "response_id": "gen-1791157196-Tws4Z8qPNftkG6Pj8tob"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-inicial-izquierdo-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico inicial de la izquierda corresponde a EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49770000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "75ad0c0b364acbe05000d453126376bdb8773c64033ab49522a40b5317dff4d2",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "83124b5400d4e8330db927a1d125bac958748cc960248a2c04a5d8bbfe6626f9"
+    ],
+    "response_id": "gen-1791157196-Tws4Z8qPNftkG6Pj8tob"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-posterior-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico de la vista posterior corresponde a EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49860000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "45d60c16d931e2c31ea247c61e3be7cc84ffbaab8540996ab342a60d6b824337",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "83124b5400d4e8330db927a1d125bac958748cc960248a2c04a5d8bbfe6626f9"
+    ],
+    "response_id": "gen-1791157196-Tws4Z8qPNftkG6Pj8tob"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-hacer-rango-grande",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vamos a hacer un rango grande.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00090",
+    "frame-4de8f12d4841c630-s0-p50040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50130000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8a2a09acc90211351dc064ebe88749c385a54a2a341f615a66b376ce7565219c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada dice exactamente «vamos a hacer un rango grande»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: crear un rango grande."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "83124b5400d4e8330db927a1d125bac958748cc960248a2c04a5d8bbfe6626f9"
+    ],
+    "response_id": "gen-1791157196-Tws4Z8qPNftkG6Pj8tob"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-objeto-presentado-como-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El instructor presenta el objeto mostrado como un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00090",
+    "asr-00091",
+    "asr-00092",
+    "frame-4de8f12d4841c630-s0-p50130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "48331939734a7d66d73c575e726d9ae2dc86330014678bc534c1dabaa0169fc4",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El instructor dice explícitamente «vamos a hacer un rango grande» y «esto es un rango», y las imágenes muestran el objeto rectangular seleccionado al que se refiere."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "83124b5400d4e8330db927a1d125bac958748cc960248a2c04a5d8bbfe6626f9"
+    ],
+    "response_id": "gen-1791157196-Tws4Z8qPNftkG6Pj8tob"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-opacidad-cero",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El panel de estilo abierto muestra una opacidad de 0%.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "593a7850708a595e84935fef6426d03e5919dee2c66db6eca6a2cd5d5af7cdae",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes se ve abierto el panel de estilo y, junto a «Opacidad», aparece explícitamente el valor «0%»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "83124b5400d4e8330db927a1d125bac958748cc960248a2c04a5d8bbfe6626f9"
+    ],
+    "response_id": "gen-1791157196-Tws4Z8qPNftkG6Pj8tob"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-paleta-colores-abierta",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La paleta de colores de la herramienta de dibujo está abierta.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "da8c390ff8dd12a61cedf81da039724a6409019e6f3ad9dad0ef9b5d4d4b4d2c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las dos imágenes muestran abierta la paleta de colores de la herramienta de dibujo, con una cuadrícula de colores visible."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "83124b5400d4e8330db927a1d125bac958748cc960248a2c04a5d8bbfe6626f9"
+    ],
+    "response_id": "gen-1791157196-Tws4Z8qPNftkG6Pj8tob"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-seleccionado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango dibujado está seleccionado.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p50130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "be67b95a923c32e338fe00fc40df76a43c2b23364edfd3a52579abf47e614c7a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran el rango rectangular delineado con tiradores de selección visibles alrededor de sus vértices y punto medio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "83124b5400d4e8330db927a1d125bac958748cc960248a2c04a5d8bbfe6626f9"
+    ],
+    "response_id": "gen-1791157196-Tws4Z8qPNftkG6Pj8tob"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-derecha-4h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico inicial de la derecha tiene una temporalidad de 4h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49770000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6e869cd9c16acf0022315d863c21d6ba2c667ed56807e03bae8c60c6e3df26ca",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El gráfico de la derecha está etiquetado como «GBPUSD · 4h · FOREX.com», lo que muestra directamente una temporalidad de 4 horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "83124b5400d4e8330db927a1d125bac958748cc960248a2c04a5d8bbfe6626f9"
+    ],
+    "response_id": "gen-1791157196-Tws4Z8qPNftkG6Pj8tob"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-izquierda-4h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico inicial de la izquierda tiene una temporalidad de 4h.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49770000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "723539f61751b70b416bc9a0e5a095fb3a75b6cdce22985868bc2296c64c2742",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El encabezado del gráfico de la izquierda muestra «EURUSD · 4h · FOREX.com» y la etiqueta inferior «EURUSD | 240M», ambas indicativas de una temporalidad de 4 horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "83124b5400d4e8330db927a1d125bac958748cc960248a2c04a5d8bbfe6626f9"
+    ],
+    "response_id": "gen-1791157196-Tws4Z8qPNftkG6Pj8tob"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-vista-unica-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad mostrada en la vista de un solo gráfico es 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49860000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "21ad7074075ee6eb5bb928498311118b92705008b663c18ee5265c709b8e434f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran una vista de un solo gráfico con la etiqueta visible «EURUSD | 15M», que identifica una temporalidad de 15 minutos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "83124b5400d4e8330db927a1d125bac958748cc960248a2c04a5d8bbfe6626f9"
+    ],
+    "response_id": "gen-1791157196-Tws4Z8qPNftkG6Pj8tob"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vista-inicial-dos-graficos",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista inicial muestra dos gráficos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49590000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49680000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p49770000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "489ac076391ce30e558ec2a4e44d59d02c187498715bcc5fe8abfe17817658ce",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes citadas muestran una vista dividida en dos gráficos, uno de EURUSD y otro de GBPUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "83124b5400d4e8330db927a1d125bac958748cc960248a2c04a5d8bbfe6626f9"
+    ],
+    "response_id": "gen-1791157196-Tws4Z8qPNftkG6Pj8tob"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vista-posterior-un-grafico",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista posterior muestra un solo gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p49860000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50130000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p50400000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dda3d1c3929b73e0944e125af0a79f0c4ba648775ce41a4b36303002ba6c186c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las cinco imágenes citadas muestran un único panel de gráfico de EURUSD, sin ningún segundo gráfico visible."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "83124b5400d4e8330db927a1d125bac958748cc960248a2c04a5d8bbfe6626f9"
+    ],
+    "response_id": "gen-1791157196-Tws4Z8qPNftkG6Pj8tob"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00088",
+   "start_ms": 550560,
+   "end_ms": 553560,
+   "text": "y para qué van a ser importantes en esta mentoría"
+  },
+  {
+   "id": "asr-00089",
+   "start_ms": 553560,
+   "end_ms": 554870,
+   "text": "está"
+  },
+  {
+   "id": "asr-00090",
+   "start_ms": 554870,
+   "end_ms": 557790,
+   "text": "vamos a hacer un rango grande"
+  },
+  {
+   "id": "asr-00091",
+   "start_ms": 557790,
+   "end_ms": 559790,
+   "text": "ahora, os vais a imaginar que"
+  },
+  {
+   "id": "asr-00092",
+   "start_ms": 559790,
+   "end_ms": 561430,
+   "text": "esto es un rango de"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49590000-canonical-v1",
+   "pts_ms": 551000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49680000-canonical-v1",
+   "pts_ms": 552000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49770000-canonical-v1",
+   "pts_ms": 553000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49770000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p49860000-canonical-v1",
+   "pts_ms": 554000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p49860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50040000-canonical-v1",
+   "pts_ms": 556000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50130000-canonical-v1",
+   "pts_ms": 557000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50130000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50310000-canonical-v1",
+   "pts_ms": 559000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50310000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p50400000-canonical-v1",
+   "pts_ms": 560000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p50400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

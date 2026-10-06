@@ -1,0 +1,451 @@
+{
+ "window": "w0011",
+ "start": "02:29",
+ "end": "02:42",
+ "start_ms": 149000,
+ "end_ms": 162000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estrategia-rangos-no-mencionada-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El hecho de que la estrategia se base principalmente en los rangos no está mencionado en el curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00020",
+    "asr-00021"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "fc0f395f19fbee42c0ec525019a392d1ad0a48ded7a67cf72046a71c8d920139",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7f10476cdd8cdd1f401bea15ce4c9455b253e6afc11c8bfa1cc09da2ff1e2cb3"
+    ],
+    "response_id": "gen-1791147160-jTVUssGpPq5PLJwdwRNg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-estrategia-se-basa-principalmente-en-rangos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La estrategia se basa principalmente en los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00020"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "27849c7db4f0eadb7e871e8d4a67f6de62a83f41f7e3931ed9a3288330b73063",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7f10476cdd8cdd1f401bea15ce4c9455b253e6afc11c8bfa1cc09da2ff1e2cb3"
+    ],
+    "response_id": "gen-1791147160-jTVUssGpPq5PLJwdwRNg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-muestra-dos-rangos-rectangulares",
+   "kind": "observation",
+   "version": 1,
+   "statement": "En el gráfico se muestran dos rangos rectangulares.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p14580000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "5e23113e11d0aa5c880e7166a8be3bc413f89912872551f42ca46643a2dda49b",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7f10476cdd8cdd1f401bea15ce4c9455b253e6afc11c8bfa1cc09da2ff1e2cb3"
+    ],
+    "response_id": "gen-1791147160-jTVUssGpPq5PLJwdwRNg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-instrumento-mostrado-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p14580000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p41040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p55440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "9755654a54782fecad6d071d9d31866591c2e4137124f8ee7a1dc91ac3ff4910",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las tres imágenes muestran explícitamente la etiqueta EURUSD en la parte superior del gráfico."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7f10476cdd8cdd1f401bea15ce4c9455b253e6afc11c8bfa1cc09da2ff1e2cb3",
+     "93520281bcba70343ca13e20682bee0586752f6ebc5ab033a7ed53d44b648457",
+     "9cc8a353790c325c6f96039219f86fb31f17bfbbbbb2b8856f19c07ca8f69df7"
+    ],
+    "response_id": "gen-1791147160-jTVUssGpPq5PLJwdwRNg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-derecho-bajista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango de la derecha sería un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00022",
+    "frame-4de8f12d4841c630-s0-p14580000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5b61df903c32849bd6a49122cfeec295c71fb9a2c62392aecc66288ffff9dacb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que «este aquí sería un rango bajista»; el marco ubica «rango alcista» en el rango izquierdo, por lo que la referencia se resuelve al rango de la derecha."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7f10476cdd8cdd1f401bea15ce4c9455b253e6afc11c8bfa1cc09da2ff1e2cb3"
+    ],
+    "response_id": "gen-1791147160-jTVUssGpPq5PLJwdwRNg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-izquierro-alcista",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango de la izquierda sería un rango alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00022",
+    "frame-4de8f12d4841c630-s0-p14580000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "f5909165199dd4acb4762f09e081d97c842d585854d030d171034e34685caa28",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que «esto sería rango alcista» y la imagen muestra la etiqueta «rango alcista» sobre la estructura de la izquierda, mientras que identifica la de la derecha como rango bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7f10476cdd8cdd1f401bea15ce4c9455b253e6afc11c8bfa1cc09da2ff1e2cb3"
+    ],
+    "response_id": "gen-1791147160-jTVUssGpPq5PLJwdwRNg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-importantes-para-encontrar-bias-general",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos son muy importantes para encontrar el bias para todo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00020",
+    "asr-00021",
+    "asr-00022"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "67588d7d7a4a088b99b39d3da4878625af59a69549de250e380473dc50d85edd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que la estrategia se basa principalmente en los rangos y que son muy importantes para encontrar el bias, respaldando la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "«Para todo» solo restringe el alcance de la misma afirmación, por lo que no introduce una proposición independiente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7f10476cdd8cdd1f401bea15ce4c9455b253e6afc11c8bfa1cc09da2ff1e2cb3"
+    ],
+    "response_id": "gen-1791147160-jTVUssGpPq5PLJwdwRNg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-importantes-para-encontrar-entradas",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos son muy importantes para encontrar las entradas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00020",
+    "asr-00021"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1c426756e9b661206504aafd84a7f57d2c60d0cf8b6a8f34079bfec8f939757f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que la estrategia se basa principalmente en los rangos y que esto es muy importante para encontrar las entradas."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_oración afirma una sola proposición: la importancia de los rangos para encontrar entradas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7f10476cdd8cdd1f401bea15ce4c9455b253e6afc11c8bfa1cc09da2ff1e2cb3"
+    ],
+    "response_id": "gen-1791147160-jTVUssGpPq5PLJwdwRNg"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-mostrada-5m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad mostrada es 5M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p14580000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "20a7442a7df3fcc4e9f566329fe418920d86032623ac5272febe39e907b5d6c5",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La etiqueta visible «EURUSD | 5M» muestra explícitamente una temporalidad de 5 minutos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "7f10476cdd8cdd1f401bea15ce4c9455b253e6afc11c8bfa1cc09da2ff1e2cb3"
+    ],
+    "response_id": "gen-1791147160-jTVUssGpPq5PLJwdwRNg"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00020",
+   "start_ms": 145040,
+   "end_ms": 152600,
+   "text": "este rango vale vais a ver que la estrategia se basa principalmente en los rangos y esto no está"
+  },
+  {
+   "id": "asr-00021",
+   "start_ms": 152600,
+   "end_ms": 158800,
+   "text": "mencionado en el curso intermedio y es muy importante para encontrar las entradas para"
+  },
+  {
+   "id": "asr-00022",
+   "start_ms": 158800,
+   "end_ms": 165200,
+   "text": "encontrar el bias para todo así que esto sería rango alcista y este aquí sería un rango bajista"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13410000-canonical-v1",
+   "pts_ms": 149000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13410000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13590000-canonical-v1",
+   "pts_ms": 151000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13590000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13680000-canonical-v1",
+   "pts_ms": 152000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13680000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p13860000-canonical-v1",
+   "pts_ms": 154000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p13860000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14040000-canonical-v1",
+   "pts_ms": 156000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14400000-canonical-v1",
+   "pts_ms": 160000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14490000-canonical-v1",
+   "pts_ms": 161000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p14580000-canonical-v1",
+   "pts_ms": 162000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p14580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41040000-canonical-v1",
+   "pts_ms": 456000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p55440000-canonical-v1",
+   "pts_ms": 616000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p55440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

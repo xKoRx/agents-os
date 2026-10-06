@@ -1,0 +1,817 @@
+{
+ "window": "w0064",
+ "start": "15:16",
+ "end": "15:42",
+ "start_ms": 916000,
+ "end_ms": 942000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-currency-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La moneda del eje de precios es USD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p82440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "716c1351833911640756dee3e79f539d86185b055a3bd74920b9b53ed30dfa3b",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-date-2025-06-24",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La fecha visible en el gráfico es 24/6/2025.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p82440000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "dcfdc864e08fe2e639476f69bb00c09701809156996cd13c3bac2f6c017a3aa3",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ejemplo-linea-cae-debajo-minimo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Después de tomar el máximo, la línea del esquema cae por debajo del mínimo inicial.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p82440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p83520000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p83880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "c8bcc00dc15f5308c104bc7a80a4c12e475894c49cdc23cef82aaf336be934c4",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ejemplo-linea-horizontal-maximos",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se dibuja una línea horizontal que pasa por los dos máximos del esquema.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p84240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p84600000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "720c67df6468f9ffd9b2c5da5a3f23ef5bca1348bdded2f4b7397c09047fd0c1",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ejemplo-linea-rebota",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Después de esa caída, la línea del esquema rebota.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p83880000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "13afbe0f4ada6faaad19b31e2f06d410edc9634524f6a3f5f18040bd2dd6853d",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ejemplo-linea-toma-maximo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La línea del esquema toma el máximo previo.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p82440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p82800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p83160000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "08f2f210315023beef0774550cef096a34b2dd861fb68d16c465b4ed2c37832c",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tartel-sub-bajista-ejemplo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El caso mostrado es un tartel sub bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00125",
+    "asr-00126",
+    "frame-4de8f12d4841c630-s0-p83880000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p84240000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b875df322e8f1c49c9ae92841432af014ee41544eacd46d8bafa226096cd0e10",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción citada afirma directamente: «En este caso, esto sería un tartel sub bajista»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación presenta una sola proposición: el caso mostrado corresponde a un tartel sub bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tartel-sub-completa-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La toma del alto sirve para completar un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00124",
+    "asr-00125"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "72215700107445d3e064cbb1888f381640161077073323fb57115dfa272ca40f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que «tomar el alto» sirve para «crear un rango o para completarlo», lo que respaldan directamente la proposición sobre completar un rango."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tartel-sub-crear-rango",
+   "kind": "claim",
+   "version": 1,
+   "statement": "La toma del alto sirve para crear un rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00124",
+    "asr-00125"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b9407d225dfae35559b303ba808aa6ff5d5b39ab1b575cad103274e55f081abd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente que «tartel sub» se refiere a «tomar el alto para crear un rango», lo que respalda directamente la proposición."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Lastatement断言 una sola proposición: la toma del alto sirve para crear un rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tartel-sub-observar-ejemplos",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Observar el tartel sub con ejemplos para que se vea más claro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00126",
+    "asr-00127"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c249db83a3177e715d18eea04669a6f680b6d8dada89bcb84a6f67f8c675c663",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas인가aran que se verá el tartel sub con ejemplos para que se vea más claro; la primera cita identifica el tartel sub y la segunda expresa la acción y su purpose."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: observar el tartel sub con ejemplos para clarity."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tartel-sub-observar-velas",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Observar el tartel sub con velas para que se vea más claro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00126",
+    "asr-00127"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "86050470e2f66419e58af71634af75bb1382d86e6e45f5d8db7a4a5153dc4157",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las citas identifican «esto» como un «tartel sub bajista» y luego coinciden en observarlo con velas para que se vea más claro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: observar ese tartel con velas con el fin de clarifylo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tartel-sub-reaccion-otro-lado",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Tras tomar el alto, la reacción se dirige hacia el otro lado.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00124",
+    "asr-00125"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "5de765c60702055fe589e15085da9b6e6f5e2e3301488d48b0f9b4beacb2c648",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que, tras tomar el alto, la reacción se produce hacia el otro lado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La cláusula temporal no introduce una proposición independiente, sino que limita la misma afirmación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tartel-sub-toma-alto",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Un tartel sub se basa principalmente en tomar el alto.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00124",
+    "asr-00125"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ba3f37d37ac26b48b7763e7525ef513e606d7c41c1301b9a0bc3959e29a426b6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción define «tartel sub» como algo que se refiere principalmente a «tomar el alto», lo que respalda directamente la afirmación."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement asserts una única proposición: que un tartel sub se basa principalmente en tomar el alto."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-toma-liquidez-alias-tartel-sub",
+   "kind": "claim",
+   "version": 1,
+   "statement": "«Toma de liquidez» es otro nombre del tartel sub.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00126",
+    "asr-00127",
+    "asr-00128"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8ee5462546d9cc9481f8f7d7a4158eb8fa4384d270df60ab84dea59e3baf324e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La secuencia identifica «esto» como un «tartel sub bajista» y enseguida menciona «otros nombres como toma de liquidez», por lo que la referencia discourse permite vincular ambas expresiones."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: que «toma de liquidez» es otro nombre del «tartel sub»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-completar-rango-depende-toma-alto",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-tartel-sub-completa-rango",
+   "subject_version": 1,
+   "object_id": "cl-tartel-sub-toma-alto",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00124",
+    "asr-00125"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "dbed4d65e2dff0b9de3d0007e85ce53948a6aeb46c207963425993e4c90ab8fe",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia define el «tartel sub» como basarse básicamente en tomar el alto para crear o completar un rango, lo que enlaza explícitamente ambas afirmaciones en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-crear-rango-depende-toma-alto",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-tartel-sub-crear-rango",
+   "subject_version": 1,
+   "object_id": "cl-tartel-sub-toma-alto",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00124",
+    "asr-00125"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "476cf15a293f048dfc5110c09f313221970c0f32fec724b77b17ebe45cc72001",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia define el «tartel sub» como una construcción que toma el alto para crear o completar un rango, vincular explícitamente ambos componentes en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-reaccion-otro-lado-depende-toma-alto",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-tartel-sub-reaccion-otro-lado",
+   "subject_version": 1,
+   "object_id": "cl-tartel-sub-toma-alto",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00124",
+    "asr-00125"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3b29c21a6d111d478a545502c5730e50f67ad168a5b60dd326a856c1f0ad1855",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia define el tartel sub como basado básicamente en tomar el alto y, dentro de esa misma definición, establish que la reacción ocurre después de tomar ese alto y se dirige hacia el otro lado; por tanto, la reacción queda enlazada y dependiente de la toma del alto en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-toma-liquidez-equivalente-tartel-sub",
+   "version": 1,
+   "type": "EQUIVALENT_TO",
+   "subject_id": "cl-toma-liquidez-alias-tartel-sub",
+   "subject_version": 1,
+   "object_id": "cl-tartel-sub-toma-alto",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00124",
+    "asr-00125",
+    "asr-00128"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "57bea3b990597278574d42d61d6d33ca68b2b6758930be3fd2e40561e622d9cf",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las líneas 91268–92596 definen el «tartel sub» como basarse en tomar el alto, y la línea 93969 presenta «toma de liquidez» como otro nombre de esa operación en el mismo contexto, por lo que ambas afirmaciones quedan enlazadas en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6"
+    ],
+    "response_id": "gen-1791164170-V9AQJbfuKpXavItw8CCC"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00124",
+   "start_ms": 912620,
+   "end_ms": 925960,
+   "text": "Tartel sub básicamente se refiere a tomar el alto para crear un rango o para completarlo y tener la reacción después de tomar este alto hacia el otro lado."
+  },
+  {
+   "id": "asr-00125",
+   "start_ms": 925960,
+   "end_ms": 932310,
+   "text": "Esto sería un poco la definición de tartel sub."
+  },
+  {
+   "id": "asr-00126",
+   "start_ms": 932510,
+   "end_ms": 936490,
+   "text": "En este caso, esto sería un tartel sub bajista."
+  },
+  {
+   "id": "asr-00127",
+   "start_ms": 937270,
+   "end_ms": 939690,
+   "text": "Vamos a verlo con velas y con ejemplos, que se vea más claro."
+  },
+  {
+   "id": "asr-00128",
+   "start_ms": 939690,
+   "end_ms": 954040,
+   "text": "vale vamos a hacerlo así de otros nombres como toma de liquidez o simplemente pues toma del"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p82440000-canonical-v1",
+   "pts_ms": 916000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p82440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p82800000-canonical-v1",
+   "pts_ms": 920000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p82800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p83160000-canonical-v1",
+   "pts_ms": 924000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p83160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p83520000-canonical-v1",
+   "pts_ms": 928000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p83520000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p83880000-canonical-v1",
+   "pts_ms": 932000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p83880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p84240000-canonical-v1",
+   "pts_ms": 936000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p84240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p84600000-canonical-v1",
+   "pts_ms": 940000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p84600000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p84780000-canonical-v1",
+   "pts_ms": 942000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p84780000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

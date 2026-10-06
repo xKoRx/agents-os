@@ -1,0 +1,687 @@
+{
+ "window": "w0035",
+ "start": "07:43",
+ "end": "07:56",
+ "start_ms": 463000,
+ "end_ms": 476000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cierre-fuera-no-rango-bajista",
+   "kind": "rule",
+   "version": 1,
+   "statement": "Normalmente, si la vela cierra fuera del rango, no se forma un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00061",
+    "asr-00062",
+    "asr-00063"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "b3aaf7f78fd3b54e44d55eb96806c4d62905568f3f5ce8d8e783cbc48d9a66eb",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9b3d5ff858946dcc87d89f4776e04b76adeee6e1786e082685eab5d418e4c60"
+    ],
+    "response_id": "gen-1791155281-vujZjjs7IBFqHgeNdsyI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-existen-senales-continuacion",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hay señales de continuación.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00062",
+    "asr-00063"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "89fe3f4df76b2b185820db8083f66fe2ae7a5277e0000f19dc3cbd7d3456d2db",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9b3d5ff858946dcc87d89f4776e04b76adeee6e1786e082685eab5d418e4c60"
+    ],
+    "response_id": "gen-1791155281-vujZjjs7IBFqHgeNdsyI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-existen-senales-reversion",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hay señales de reversión.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00062"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "30184566c1dfae32a6a55535a0cb5faad82c65e18ae465686e87fef05480b868",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9b3d5ff858946dcc87d89f4776e04b76adeee6e1786e082685eab5d418e4c60"
+    ],
+    "response_id": "gen-1791155281-vujZjjs7IBFqHgeNdsyI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-ampliacion-progresiva",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista del gráfico se amplía progresivamente durante la secuencia.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p41760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p42030000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p42840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "b28fe9898ff9860c8a82835b5481eaad23086ee44b94a0b4b88658a3162e1eec",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9b3d5ff858946dcc87d89f4776e04b76adeee6e1786e082685eab5d418e4c60"
+    ],
+    "response_id": "gen-1791155281-vujZjjs7IBFqHgeNdsyI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-divisa-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La divisa del eje de precios es USD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p41670000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "08384e2ea3405ecabfdfb009ef753f2bcfc4ed1e10e3a6f44ef954ea76f0af4c",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9b3d5ff858946dcc87d89f4776e04b76adeee6e1786e082685eab5d418e4c60"
+    ],
+    "response_id": "gen-1791155281-vujZjjs7IBFqHgeNdsyI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-fuente-forex-com",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta de fuente del gráfico es FOREX.com.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p41670000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "4449da61c026555e784177af5ef8084ba7f1470ed335c6a6acc866a432f0b6e1",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9b3d5ff858946dcc87d89f4776e04b76adeee6e1786e082685eab5d418e4c60"
+    ],
+    "response_id": "gen-1791155281-vujZjjs7IBFqHgeNdsyI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-instrumento-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El instrumento mostrado es EURUSD.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p114210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p41670000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p68760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "f5a39ebd7815da6c5110bfc1715c28fc12bd7bd0a8e2638bffb248c743149341",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "46f8422a837f20e60e652145f0e1871a61cac7c050d1463c4ab49c7d124d72f5",
+     "a9315641d8100104e10df1b38151612f8d0339977e007072e909b0fcb1e295da",
+     "c9b3d5ff858946dcc87d89f4776e04b76adeee6e1786e082685eab5d418e4c60"
+    ],
+    "response_id": "gen-1791155281-vujZjjs7IBFqHgeNdsyI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-marco-temporal-1d",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El marco temporal mostrado es 1D.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p41670000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "19d7394ab46819331ff68de818584f0913242e0cb35efec277470c815e340e9c",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9b3d5ff858946dcc87d89f4776e04b76adeee6e1786e082685eab5d418e4c60"
+    ],
+    "response_id": "gen-1791155281-vujZjjs7IBFqHgeNdsyI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grafico-rectangulos-enero-febrero",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El gráfico muestra varios rectángulos en la zona de enero y febrero de 2025.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p41760000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1ba4501206d2c9cf9de5556b0cfd555a61b43694fd3be6a6d4211e8d39d07cd6",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra varios rectángulos trazados alrededor de zonas de velas del gráfico, situadas entre enero y febrero de 2025."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe un único hecho visual."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9b3d5ff858946dcc87d89f4776e04b76adeee6e1786e082685eab5d418e4c60"
+    ],
+    "response_id": "gen-1791155281-vujZjjs7IBFqHgeNdsyI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-linea-horizontal-116148",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La línea horizontal dibujada está etiquetada en 1.16148.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p41760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p42840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "41c334d39ad79f7ae0519bd38c0d6cac214842d452449465a80c93eacc839b15",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran una línea horizontal con la etiqueta 1.16148 en el eje derecho."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9b3d5ff858946dcc87d89f4776e04b76adeee6e1786e082685eab5d418e4c60"
+    ],
+    "response_id": "gen-1791155281-vujZjjs7IBFqHgeNdsyI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-importancia-estrategia",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos tienen importancia en nuestra estrategia.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00061"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "40f9c26aa160b27f3526e6ab2f7537558600a0726518d3b16d5c4230a4ec0071",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia pregunta directamente qué importancia tienen los rangos de nuestra estrategia, lo que presupone que tienen importancia en ella."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9b3d5ff858946dcc87d89f4776e04b76adeee6e1786e082685eab5d418e4c60"
+    ],
+    "response_id": "gen-1791155281-vujZjjs7IBFqHgeNdsyI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-navegacion-precio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos permiten básicamente navegar al precio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00061",
+    "asr-00062"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "607ceb14868befea6738f802fbd205673fb62d4d6955aa960165aaf214cc0097",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que la importancia de los rangos de la estrategia «es básicamente navegar al precio», que equivale a la proposición sostenida."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: los rangos permiten básicamente navegar al precio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9b3d5ff858946dcc87d89f4776e04b76adeee6e1786e082685eab5d418e4c60"
+    ],
+    "response_id": "gen-1791155281-vujZjjs7IBFqHgeNdsyI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-saber-causa-precio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos permiten saber por qué se mueve el precio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00061",
+    "asr-00062"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "26239434c8d882393b4816a74690da7354f32a8d7c0b0e23dce8f044d7f52f11",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia atribuye a los rangos la función de saber por qué va o se mueve el precio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9b3d5ff858946dcc87d89f4776e04b76adeee6e1786e082685eab5d418e4c60"
+    ],
+    "response_id": "gen-1791155281-vujZjjs7IBFqHgeNdsyI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-saber-destino-futuro",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos permiten saber hacia dónde puede ir el precio después.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00061",
+    "asr-00062"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1f5d6fd2dd736a02977e99684d0bf207a872caeb3abf759e53bb7af0644a8066",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que los rangos permiten saber hacia dónde va o puede ir el precio después."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement afirma una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9b3d5ff858946dcc87d89f4776e04b76adeee6e1786e082685eab5d418e4c60"
+    ],
+    "response_id": "gen-1791155281-vujZjjs7IBFqHgeNdsyI"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rangos-saber-direccion-precio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Los rangos permiten saber hacia dónde va el precio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00061",
+    "asr-00062"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8e5182a9ac7ea9b74b0a1e82d0dbace412d165732eec553b97469c7448de5b57",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma que los rangos permiten «saber [...] hacia dónde va» el precio."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La_statement_statement_afirma una sola proposición: que los rangos permiten determinar la dirección del precio."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9b3d5ff858946dcc87d89f4776e04b76adeee6e1786e082685eab5d418e4c60"
+    ],
+    "response_id": "gen-1791155281-vujZjjs7IBFqHgeNdsyI"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00061",
+   "start_ms": 461450,
+   "end_ms": 466570,
+   "text": "qué importancia tienen los rangos de nuestra estrategia es básicamente navegar al precio y"
+  },
+  {
+   "id": "asr-00062",
+   "start_ms": 466570,
+   "end_ms": 474530,
+   "text": "saber pues hacia dónde va por qué hacia dónde puede ir después hay señales de reversión hay"
+  },
+  {
+   "id": "asr-00063",
+   "start_ms": 474530,
+   "end_ms": 481460,
+   "text": "señales de continuación vale normalmente si la vela cierra fuera y no te forma un rango bajista"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41670000-canonical-v1",
+   "pts_ms": 463000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41670000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41760000-canonical-v1",
+   "pts_ms": 464000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41850000-canonical-v1",
+   "pts_ms": 465000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p41940000-canonical-v1",
+   "pts_ms": 466000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p41940000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p42030000-canonical-v1",
+   "pts_ms": 467000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p42030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p42120000-canonical-v1",
+   "pts_ms": 468000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p42120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p42480000-canonical-v1",
+   "pts_ms": 472000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p42480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p42840000-canonical-v1",
+   "pts_ms": 476000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p42840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p114210000-canonical-v1",
+   "pts_ms": 1269000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p114210000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p68760000-canonical-v1",
+   "pts_ms": 764000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p68760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

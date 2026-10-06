@@ -1,0 +1,523 @@
+{
+ "window": "w0020",
+ "start": "04:29",
+ "end": "04:37",
+ "start_ms": 269000,
+ "end_ms": 277000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-limite-inferior-rango-114968",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El límite inferior del rango es 1,14968.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "278b0876f8777aa9889f1bc4adf4d5a84e74b5335631c0f2dc908c2a7f23bda2",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran el borde inferior del rango etiquetado como 1,14968."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c60d6dbef3d062b7b221bb50e5482299714cb5e4b4bdbf41bf009e703599781d"
+    ],
+    "response_id": "gen-1791149331-XU8ur0SD5rTSX3FfsrnT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-limite-superior-rango-115352",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El límite superior del rango es 1,15352.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d99097a63a061a8e9d7d1937433fa9f3e48c2b1e4b3302076eb452ce85fc1833",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, el borde superior del rango seleccionado coincide con la etiqueta 1,15352."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el valor del límite superior del rango."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c60d6dbef3d062b7b221bb50e5482299714cb5e4b4bdbf41bf009e703599781d"
+    ],
+    "response_id": "gen-1791149331-XU8ur0SD5rTSX3FfsrnT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-mas-tipos-de-rangos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Hay más tipos de rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00035"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3c6a1626303e1e1f83e170970da7f222aa8f34828e65358e290ed1f860d8b831",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice directamente «tenemos más tipos de rangos», que equivale a «Hay más tipos de rangos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c60d6dbef3d062b7b221bb50e5482299714cb5e4b4bdbf41bf009e703599781d"
+    ],
+    "response_id": "gen-1791149331-XU8ur0SD5rTSX3FfsrnT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-actua-como-una-cadena",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio actúa como una cadena.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00037"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "409636d77552cf4f0de6c9a6bb9f8c6f0367d8fbf0c093c3dfded6829b549050",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada enuncia literalmente que «el precio actúa como una cadena»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c60d6dbef3d062b7b221bb50e5482299714cb5e4b4bdbf41bf009e703599781d"
+    ],
+    "response_id": "gen-1791149331-XU8ur0SD5rTSX3FfsrnT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-precio-se-mueve-en-funcion-de-rangos",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El precio se mueve en función de rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00036",
+    "asr-00037"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "2cfaba70962c93d22d988528f736d97c68ab4f8dbf3380380fcf8ec4fc921405",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente que «el precio se mueve en función de rangos»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el precio se mueve en función de rangos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "9ec0550cb823453af922b1c43bcb7ad9a145093a89970d597e3bc81e8ee34a9f",
+     "c60d6dbef3d062b7b221bb50e5482299714cb5e4b4bdbf41bf009e703599781d"
+    ],
+    "response_id": "gen-1791149331-XU8ur0SD5rTSX3FfsrnT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-cambia-relleno-a-negro",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El relleno del rango cambia de blanco a negro.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24390000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7f2c1455f1c411f029751225030221ca36da6dcc2c67ba066185d32234f7430f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Las primeras imágenes muestran el rango con relleno blanco y la última lo muestra con relleno negro, documenting el cambio de color."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe un solo cambio: el relleno pasa de blanco a negro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c60d6dbef3d062b7b221bb50e5482299714cb5e4b4bdbf41bf009e703599781d"
+    ],
+    "response_id": "gen-1791149331-XU8ur0SD5rTSX3FfsrnT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-orientado-verticalmente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rango dibujado está orientado verticalmente.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24390000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "6a0ef115d575ad9bc746781257d0f33b8a2803859123d17cfff2b84fa49dfd55",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El rango dibujado es un rectángulo claramente más alto que ancho, por lo que está orientado verticalmente."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c60d6dbef3d062b7b221bb50e5482299714cb5e4b4bdbf41bf009e703599781d"
+    ],
+    "response_id": "gen-1791149331-XU8ur0SD5rTSX3FfsrnT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad mostrada es 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p106200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24210000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p57240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p59040000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p61020000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p61920000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p64800000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p88560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p90360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8a7ce2a885974ee0f93c8fd0baa26d16a0673fa6b0b34630e0573b847f0bdddb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La interfaz muestra explícitamente «EURUSD | 15M» y «EURUSD · 15 · FOREX.com», lo que identifica una temporalidad de 15 minutos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "15a0c95228ce06ca4a38b897b147a54b1908c11e7db43c89e0ddff28ecf4f5f9",
+     "306468079b6a14feffd9e59ec2e224b0ed79c25eec3870bbc3be620ce03b21d6",
+     "3911fa816628d2db0f418eec2ee8b95b7e6f89fa0ad62df5bb614cfa59c1fe96",
+     "5614531e84cf6007c54e5496df66b2a15ecb4a84e5a8f2db1b0173b41f782cdd",
+     "6960cefe7956a69942b594d5aac8eb9c25fce608361609703f72fe09d718ae8d",
+     "a86e610f33a2cf4115a554d8aea262b3ab02f5722e9f4d01fa9218015d639094",
+     "c60d6dbef3d062b7b221bb50e5482299714cb5e4b4bdbf41bf009e703599781d",
+     "d1b67dfb35cb95a0234a7b3cd331190bbcc3ecddcbdd2b04366f9881e862a54d"
+    ],
+    "response_id": "gen-1791149331-XU8ur0SD5rTSX3FfsrnT"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-vista-grafico-se-desplaza-horizontalmente",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista del gráfico se desplaza horizontalmente.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p24750000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p24930000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "15d7cfc9830508882b17dfde63d75e41b17d972bc15a95997dbecf29732599dd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Comparando las dos imágenes, el contenido visible del gráfico se mueve hacia la izquierda: la región negra pasa de aproximadamente x=789–923 a x=579–701 mientras la escala vertical permanece fija. Esto evidencia un desplazamiento horizontal de la vista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la vista del gráfico se desplaza horizontalmente."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c60d6dbef3d062b7b221bb50e5482299714cb5e4b4bdbf41bf009e703599781d"
+    ],
+    "response_id": "gen-1791149331-XU8ur0SD5rTSX3FfsrnT"
+   }
+  }
+ ],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00035",
+   "start_ms": 261470,
+   "end_ms": 269600,
+   "text": "rangos tenemos más tipos de rangos que nosotros hemos llamado así básicamente importante todo"
+  },
+  {
+   "id": "asr-00036",
+   "start_ms": 269600,
+   "end_ms": 275000,
+   "text": "este tema los rangos que lo vais a ver pero para lo que hemos encontrado nosotros es que el precio"
+  },
+  {
+   "id": "asr-00037",
+   "start_ms": 275000,
+   "end_ms": 281060,
+   "text": "se mueve en función de rangos siempre vale el precio actúa como una cadena donde el precio"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24210000-canonical-v1",
+   "pts_ms": 269000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24210000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24300000-canonical-v1",
+   "pts_ms": 270000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24300000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24390000-canonical-v1",
+   "pts_ms": 271000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24480000-canonical-v1",
+   "pts_ms": 272000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24660000-canonical-v1",
+   "pts_ms": 274000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24750000-canonical-v1",
+   "pts_ms": 275000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24840000-canonical-v1",
+   "pts_ms": 276000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p24930000-canonical-v1",
+   "pts_ms": 277000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p24930000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p106200000-canonical-v1",
+   "pts_ms": 1180000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p106200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p57240000-canonical-v1",
+   "pts_ms": 636000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p57240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p59040000-canonical-v1",
+   "pts_ms": 656000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p59040000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61020000-canonical-v1",
+   "pts_ms": 678000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p61920000-canonical-v1",
+   "pts_ms": 688000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p61920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p64800000-canonical-v1",
+   "pts_ms": 720000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p64800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p88560000-canonical-v1",
+   "pts_ms": 984000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p88560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90360000-canonical-v1",
+   "pts_ms": 1004000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,524 @@
+{
+ "window": "w0043",
+ "start": "09:36",
+ "end": "09:46",
+ "start_ms": 576000,
+ "end_ms": 586000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-another-candle-forms",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Después se forma otra vela por aquí.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00098",
+    "frame-4de8f12d4841c630-s0-p51930000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p52020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "bb2e5a11e850834d604b735c4445bc8b80c5e226237d97b82dd8e1838326eb6f",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "ac0fbc5a1b9a29bf6c87fcf4ca75c6fb8054f3500938005dd7f7e5b4225694ba"
+    ],
+    "response_id": "gen-1791157623-J137AwjIfwtXagaicA4A"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-candle-possible-4h",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La vela analizada podría ser de 4 horas.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00098",
+    "frame-4de8f12d4841c630-s0-p51840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "a9d8a2ec86ed43df444a23a5967d207dcbfeb3ec3b7c66c3d2b71f3e88fc5bbb",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "ac0fbc5a1b9a29bf6c87fcf4ca75c6fb8054f3500938005dd7f7e5b4225694ba"
+    ],
+    "response_id": "gen-1791157623-J137AwjIfwtXagaicA4A"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-candle-takes-range-low",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela en cuestión ha tomado el low de este rango.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00098",
+    "frame-4de8f12d4841c630-s0-p51840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p52020000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "42e8224cddf490b500abc73aedf08a08a5a90a16967222fe94fb17abf9189063",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "ac0fbc5a1b9a29bf6c87fcf4ca75c6fb8054f3500938005dd7f7e5b4225694ba"
+    ],
+    "response_id": "gen-1791157623-J137AwjIfwtXagaicA4A"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-chart-timeframe-15m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El timeframe del gráfico mostrado es 15M.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p101880000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p51840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p82440000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p93240000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p96030000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "3ec1b79fb199ca01f45ec4e859f9c8c1e354507346796756f261849d6fc616e3",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "006bce87554f6b4ab61b7877c7015dfdce0e9176327d533dc67a8f06de6a77d2",
+     "104614d7fa6060e6d91876dbe16e2e4a6f3a0ab6c038ee96a122c5e27dfa31d8",
+     "3edbe0bafcbce887b6cc3677f16392f9354e347ce499b511cad97c1ceb861dd6",
+     "6f0e54908e40129ca950d664e32fdb3c93be5fb59ff9d3bc120a898df360b1ef",
+     "ac0fbc5a1b9a29bf6c87fcf4ca75c6fb8054f3500938005dd7f7e5b4225694ba"
+    ],
+    "response_id": "gen-1791157623-J137AwjIfwtXagaicA4A"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-draw-another-candle-with-wicks",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Añadir mechas a la otra vela que se está dibujando.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00098",
+    "frame-4de8f12d4841c630-s0-p52290000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p52560000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "62e520c96593b45e3dae008869d16c12e4a633a5b6d72d6f68ec076f32b8dcb4",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "ac0fbc5a1b9a29bf6c87fcf4ca75c6fb8054f3500938005dd7f7e5b4225694ba"
+    ],
+    "response_id": "gen-1791157623-J137AwjIfwtXagaicA4A"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-drawn-body-color-change",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El relleno del cuerpo de la vela cambia de negro a blanco.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p52650000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p52740000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "334785409c994686ff7645ee4afcd99b27d505b1733ec2d070408a75e54d3390",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "ac0fbc5a1b9a29bf6c87fcf4ca75c6fb8054f3500938005dd7f7e5b4225694ba"
+    ],
+    "response_id": "gen-1791157623-J137AwjIfwtXagaicA4A"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-drawn-body-lower-bound-1-14422",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde inferior del cuerpo de la vela dibujada está en 1,14422.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p51930000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "77d678399740a6e7899a07dcf4a2b54f706eafe6a187db5fddd49aff15f74a65",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "ac0fbc5a1b9a29bf6c87fcf4ca75c6fb8054f3500938005dd7f7e5b4225694ba"
+    ],
+    "response_id": "gen-1791157623-J137AwjIfwtXagaicA4A"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-drawn-body-upper-bound-1-14697",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El borde superior del cuerpo de la vela dibujada está en 1,14697.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p51930000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "7c467495dabd3deb69afc8da2a377556b53bcfcd39d6705a8c0a52ebec828bbf",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "ac0fbc5a1b9a29bf6c87fcf4ca75c6fb8054f3500938005dd7f7e5b4225694ba"
+    ],
+    "response_id": "gen-1791157623-J137AwjIfwtXagaicA4A"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-drawn-candle-has-lower-wick",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vela dibujada tiene una mecha inferior.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p52560000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p52740000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "9e13825c5dec973c3623129557177d6cf16a2041d418de818e11e82c0a468634",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "ac0fbc5a1b9a29bf6c87fcf4ca75c6fb8054f3500938005dd7f7e5b4225694ba"
+    ],
+    "response_id": "gen-1791157623-J137AwjIfwtXagaicA4A"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-wicks-improve-candle-realism",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El objetivo de añadir mechas es que la vela se vea un poco más real.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00098"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "46f5825574816024683551eb3c7db2bae0c63b3c67769a1b7cefd9cd51df6240",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia dice que dibujarán la vela «con mechas también» para que «se vea un poco más real», lo que enuncia directamente el objetivo indicado."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "ac0fbc5a1b9a29bf6c87fcf4ca75c6fb8054f3500938005dd7f7e5b4225694ba"
+    ],
+    "response_id": "gen-1791157623-J137AwjIfwtXagaicA4A"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-range-low-uses-4h-candle",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-candle-takes-range-low",
+   "subject_version": 1,
+   "object_id": "cl-candle-possible-4h",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00098"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1f5e56e9cf649162779a5218cd74dd534fdc01126d88ac785b15c78d161ddaf0",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia presenta la vela que «ha tomado el low de este rango» dentro del marco de lo que «podría ser 4 horas»,造作 explícitamente la dependencia de la afirmación del sujeto respecto de la posibilidad de que la vela sea de 4 horas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "ac0fbc5a1b9a29bf6c87fcf4ca75c6fb8054f3500938005dd7f7e5b4225694ba"
+    ],
+    "response_id": "gen-1791157623-J137AwjIfwtXagaicA4A"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00098",
+   "start_ms": 572710,
+   "end_ms": 594750,
+   "text": "¿Por qué? Porque ahora vamos a lo que podría ser 4 horas, ha tomado el low de este rango, así, ¿vale? Luego hace otra vela por aquí, vamos a dibujarlo con mechas también que se vea un poco más real, ¿sí?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p51840000-canonical-v1",
+   "pts_ms": 576000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p51840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p51930000-canonical-v1",
+   "pts_ms": 577000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p51930000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p52020000-canonical-v1",
+   "pts_ms": 578000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p52020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p52200000-canonical-v1",
+   "pts_ms": 580000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p52200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p52290000-canonical-v1",
+   "pts_ms": 581000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p52290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p52560000-canonical-v1",
+   "pts_ms": 584000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p52560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p52650000-canonical-v1",
+   "pts_ms": 585000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p52650000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p52740000-canonical-v1",
+   "pts_ms": 586000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p52740000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p101880000-canonical-v1",
+   "pts_ms": 1132000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p101880000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p82440000-canonical-v1",
+   "pts_ms": 916000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p82440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p93240000-canonical-v1",
+   "pts_ms": 1036000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p93240000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p96030000-canonical-v1",
+   "pts_ms": 1067000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p96030000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

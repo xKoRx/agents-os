@@ -1,0 +1,588 @@
+{
+ "window": "w0027",
+ "start": "05:58",
+ "end": "06:05",
+ "start_ms": 358000,
+ "end_ms": 365000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-intervalo-15m-a-1d",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El intervalo del gráfico cambia de «15M» a «1D».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p32670000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p32760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p32850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "2a51fa329660b8a62ce22a6623f518b5db885a076bdfb400e29b377dda83907a",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9a120241d798b4c690453c37d77c98475932b560f204a82e659f1106f010247"
+    ],
+    "response_id": "gen-1791150618-oVaV8obiHlCTWM4nnsZX"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-completar-rangos-sucesivamente",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El proceso consiste en completar sucesivamente los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00051"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "0a5a18716ed9537cb12c91f5277d4d551baefa719692e61bfe3ba5ce7b54f9c0",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9a120241d798b4c690453c37d77c98475932b560f204a82e659f1106f010247"
+    ],
+    "response_id": "gen-1791150618-oVaV8obiHlCTWM4nnsZX"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ejercicio-facil-temporalidad-diaria",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El ejercicio de observar los rangos es fácil, por ejemplo, si se va a la temporalidad diaria.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p32760000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p32850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "13fce1f7d2c5f360006a2875ee5257d9ffa94959dd11109c996a105471e3cfb9",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9a120241d798b4c690453c37d77c98475932b560f204a82e659f1106f010247"
+    ],
+    "response_id": "gen-1791150618-oVaV8obiHlCTWM4nnsZX"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-concepto-mas-tarde",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El concepto del failure swing identificado en la parte inferior del gráfico se verá más tarde en el vídeo.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p32850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "ab55c69c2259bb4c0c19b6db58883aa3d1ee7fe1d63d7ee19f6b1a94be87e0d6",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9a120241d798b4c690453c37d77c98475932b560f204a82e659f1106f010247"
+    ],
+    "response_id": "gen-1791150618-oVaV8obiHlCTWM4nnsZX"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-failure-swing-inferior-diario",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En la parte inferior del gráfico diario se identifica un failure swing.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p32850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "1083b73ad00827e6015cd237bd0dd364f7bf95711557a72176e3fa0211164032",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9a120241d798b4c690453c37d77c98475932b560f204a82e659f1106f010247"
+    ],
+    "response_id": "gen-1791150618-oVaV8obiHlCTWM4nnsZX"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-observar-completado-rangos-diario",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "En la temporalidad diaria, observar cómo se completan los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p32850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "70d1d5cea51dcbded504aaf5e3f6db8d9f361b2f765448e65da3c11383fa7e8e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripciónCITADA indica explícitamente observar, en la temporalidad diaria, cómo se van formando y completando los rangos; el marco muestra además una temporalidad 1D."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9a120241d798b4c690453c37d77c98475932b560f204a82e659f1106f010247"
+    ],
+    "response_id": "gen-1791150618-oVaV8obiHlCTWM4nnsZX"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-observar-formacion-rangos-diario",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "En la temporalidad diaria, observar cómo se forman los rangos.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p32850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4ba18cb1ff96cfea3dbf16f235d266f0b1e5d8bd29ed0bbcd3ad2b861f1bf2a8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica expresamente que, en la temporalidad diaria, se puede observar cómo se van formando los rangos."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La indicación contiene una sola proposición; «en la temporalidad diaria» solo restringe su alcance."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9a120241d798b4c690453c37d77c98475932b560f204a82e659f1106f010247"
+    ],
+    "response_id": "gen-1791150618-oVaV8obiHlCTWM4nnsZX"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-alcista-completado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Se completa un rango alcista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00051"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b57af9c8fa2e4df63129b0137bbc0eda50db28d7fe9c6c1030572eb4c7f2310b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma explícitamente: «Completamos un alcista», lo que respalda directamente la proposición de que se completó un rango alcista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición evaluable."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9a120241d798b4c690453c37d77c98475932b560f204a82e659f1106f010247"
+    ],
+    "response_id": "gen-1791150618-oVaV8obiHlCTWM4nnsZX"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bajista-completado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Tras formarse el rango bajista, este se completa.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00051"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c745b8bc407d0ded812806c5517e2f556c78b11fd561af4af4246f675a1d6689",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma que se forma un rango bajista y que después «completamos el bajista», lo que respalda que este se completa tras formarse."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la secuencia entre la formación y la finalización del rango bajista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9a120241d798b4c690453c37d77c98475932b560f204a82e659f1106f010247"
+    ],
+    "response_id": "gen-1791150618-oVaV8obiHlCTWM4nnsZX"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-bajista-formado-tras-rango-alcista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Después de completar el rango alcista, se forma un rango bajista.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00051"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e15b4d2c6777616a4ae1c24abdeb62dee4115f3923c386667ea2975743f33c93",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia citada afirma directamente: «Completamos un alcista, se nos forma uno bajista», lo que respalda que después de completar el rango alcista se forma un rango bajista."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La oración contiene una sola proposición sobre la formación del rango bajista tras completarse el rango alcista."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9a120241d798b4c690453c37d77c98475932b560f204a82e659f1106f010247"
+    ],
+    "response_id": "gen-1791150618-oVaV8obiHlCTWM4nnsZX"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-failure-swing-concepto-tras-observacion",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-failure-swing-concepto-mas-tarde",
+   "subject_version": 1,
+   "object_id": "cl-failure-swing-inferior-diario",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00052",
+    "frame-4de8f12d4841c630-s0-p32850000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d09c6c65f68c789c5f6cc95d7b382cdd6e48c5eeecf0fe276a44ae78bcfbacce",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción identifica en la parte inferior del gráfico diario un «failure swing» y afirma inmediatamente que su concepto se verá más tarde en el vídeo, enlazando explícitamente ambas afirmaciones en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9a120241d798b4c690453c37d77c98475932b560f204a82e659f1106f010247"
+    ],
+    "response_id": "gen-1791150618-oVaV8obiHlCTWM4nnsZX"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-bajista-completa-tras-formarse",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-bajista-completado",
+   "subject_version": 1,
+   "object_id": "cl-rango-bajista-formado-tras-rango-alcista",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00051"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "446f3b6cd3eac3da6b76642c764b2971e0dbe5f3b25aa0be1ae656d339dcfac9",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider parse [retry-exhausted]: retry budget of 2 exhausted; last failure: response contains no choices"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9a120241d798b4c690453c37d77c98475932b560f204a82e659f1106f010247"
+    ],
+    "response_id": "gen-1791150618-oVaV8obiHlCTWM4nnsZX"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-rango-bajista-forma-tras-alcista",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-rango-bajista-formado-tras-rango-alcista",
+   "subject_version": 1,
+   "object_id": "cl-rango-alcista-completado",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00051"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "18a698c6ebf299c4cb4eff5c9e4dc87bdafdeb62263a7809f815baf6027bf881",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "The evidence directly states the sequence “Completamos un alcista, se nos forma uno bajista”: a bullish range is completed and then a bearish range forms. This supports the subject claim’s dependence on the object claim in the stated orientation."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "c9a120241d798b4c690453c37d77c98475932b560f204a82e659f1106f010247"
+    ],
+    "response_id": "gen-1791150618-oVaV8obiHlCTWM4nnsZX"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00051",
+   "start_ms": 354380,
+   "end_ms": 362440,
+   "text": "Completamos un alcista, se nos forma uno bajista, completamos el bajista y es ir completando los rangos."
+  },
+  {
+   "id": "asr-00052",
+   "start_ms": 362440,
+   "end_ms": 381560,
+   "text": "Es un ejercicio fácil si vamos, por ejemplo, a la temporalidad diaria, ir viendo cómo se van formando rangos y cómo se van completando, ¿vale? Por ejemplo, este de aquí, abajo hay un failure swing, vais a ver el concepto más tarde qué significa en este vídeo, ¿vale?"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p32220000-canonical-v1",
+   "pts_ms": 358000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p32220000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p32310000-canonical-v1",
+   "pts_ms": 359000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p32310000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p32400000-canonical-v1",
+   "pts_ms": 360000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p32400000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p32490000-canonical-v1",
+   "pts_ms": 361000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p32490000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p32580000-canonical-v1",
+   "pts_ms": 362000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p32580000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p32670000-canonical-v1",
+   "pts_ms": 363000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p32670000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p32760000-canonical-v1",
+   "pts_ms": 364000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p32760000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p32850000-canonical-v1",
+   "pts_ms": 365000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p32850000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

@@ -1,0 +1,132 @@
+{
+ "window": "w0128",
+ "start": "32:55",
+ "end": "33:12",
+ "start_ms": 1975000,
+ "end_ms": 1992000,
+ "disposition": "rejected",
+ "rejection_category": "provider unavailable",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00295",
+   "start_ms": 1974010,
+   "end_ms": 1975110,
+   "text": "un poco esto la lógica."
+  },
+  {
+   "id": "asr-00296",
+   "start_ms": 1975890,
+   "end_ms": 1977450,
+   "text": "También importante para saber"
+  },
+  {
+   "id": "asr-00297",
+   "start_ms": 1977450,
+   "end_ms": 1979310,
+   "text": "un poco de noción de qué está pasando."
+  },
+  {
+   "id": "asr-00298",
+   "start_ms": 1979750,
+   "end_ms": 1982050,
+   "text": "Si esto es una vela de 4 horas, tú vas"
+  },
+  {
+   "id": "asr-00299",
+   "start_ms": 1982050,
+   "end_ms": 1984150,
+   "text": "a ir a 15 minutos y esto"
+  },
+  {
+   "id": "asr-00300",
+   "start_ms": 1984150,
+   "end_ms": 1985990,
+   "text": "lo vas a ver como una bajada así, muy"
+  },
+  {
+   "id": "asr-00301",
+   "start_ms": 1985990,
+   "end_ms": 1988010,
+   "text": "agresiva. ¿Vale? Esto te puede"
+  },
+  {
+   "id": "asr-00302",
+   "start_ms": 1988010,
+   "end_ms": 1989810,
+   "text": "liar mucho si tienes el foco en la"
+  },
+  {
+   "id": "asr-00303",
+   "start_ms": 1989810,
+   "end_ms": 1991790,
+   "text": "temporalidad más baja. Si tú te alejas"
+  },
+  {
+   "id": "asr-00304",
+   "start_ms": 1991790,
+   "end_ms": 1994090,
+   "text": "y pones el foco en lo que está pasando en 4 horas,"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p177750000-canonical-v1",
+   "pts_ms": 1975000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p177750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p177840000-canonical-v1",
+   "pts_ms": 1976000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p177840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p178020000-canonical-v1",
+   "pts_ms": 1978000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p178020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p178200000-canonical-v1",
+   "pts_ms": 1980000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p178200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p178470000-canonical-v1",
+   "pts_ms": 1983000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p178470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p178560000-canonical-v1",
+   "pts_ms": 1984000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p178560000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p178920000-canonical-v1",
+   "pts_ms": 1988000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p178920000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p179280000-canonical-v1",
+   "pts_ms": 1992000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p179280000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

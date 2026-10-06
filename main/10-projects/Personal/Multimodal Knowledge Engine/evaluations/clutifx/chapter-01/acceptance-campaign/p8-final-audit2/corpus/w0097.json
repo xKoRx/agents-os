@@ -1,0 +1,90 @@
+{
+ "window": "w0097",
+ "start": "24:56",
+ "end": "25:24",
+ "start_ms": 1496000,
+ "end_ms": 1524000,
+ "disposition": "rejected",
+ "rejection_category": "provider unavailable",
+ "claims": [],
+ "relations": [],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00204",
+   "start_ms": 1496620,
+   "end_ms": 1502160,
+   "text": "Y que en cambio Euro no consiga crear el rango para ir hasta el target, ¿vale?"
+  },
+  {
+   "id": "asr-00205",
+   "start_ms": 1502220,
+   "end_ms": 1508980,
+   "text": "Pero esto lo podemos ver como un rango que sí que se ha creado, ya que la Libra lo ha hecho, ¿vale?"
+  },
+  {
+   "id": "asr-00206",
+   "start_ms": 1508980,
+   "end_ms": 1535940,
+   "text": "O sea, esto sería otro caso de S&T que muchas veces no se ve a simple vista, pero si esto es un gráfico de 4 horas y tú estás esperando que se te forme un rango para poder comprar, ¿vale? Pues, solo viendo que la libra está creándolo, puede ser que euro no tenga que crearlo y pueda llegar hasta arriba, ¿vale? Me estoy anticipando ya mucho, pero para que quede claro el concepto de SMT en la estrategia."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p134640000-canonical-v1",
+   "pts_ms": 1496000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p134640000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p135000000-canonical-v1",
+   "pts_ms": 1500000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p135000000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p135360000-canonical-v1",
+   "pts_ms": 1504000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p135360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p135720000-canonical-v1",
+   "pts_ms": 1508000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p135720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p136080000-canonical-v1",
+   "pts_ms": 1512000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p136080000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p136440000-canonical-v1",
+   "pts_ms": 1516000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p136440000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p136800000-canonical-v1",
+   "pts_ms": 1520000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p136800000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p137160000-canonical-v1",
+   "pts_ms": 1524000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p137160000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

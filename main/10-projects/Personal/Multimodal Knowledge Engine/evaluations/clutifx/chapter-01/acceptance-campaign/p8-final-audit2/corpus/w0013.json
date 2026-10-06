@@ -1,0 +1,475 @@
+{
+ "window": "w0013",
+ "start": "02:56",
+ "end": "03:03",
+ "start_ms": 176000,
+ "end_ms": 183000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-borrar-anotacion-rango-seleccionada",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Borrar la anotación de rango seleccionada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025",
+    "frame-4de8f12d4841c630-s0-p16290000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16380000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "71be367add4445559bbafa17e4e52643a417d4d146ceee71fb33c3f95f0bfdc6",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a67a375ebcaf40e742e53fea33e2cef38157b4e13509fef88ca89c7da237fb94"
+    ],
+    "response_id": "gen-1791147403-EGWybioIM8CI7HU7Rnk7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-cambio-temporalidad-4h",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La temporalidad del gráfico cambia a 4 horas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p16020000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16110000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "afe917795a9903434f6d62dc4ed96747d906085598cdee07f7a6122ad8fae514",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a67a375ebcaf40e742e53fea33e2cef38157b4e13509fef88ca89c7da237fb94"
+    ],
+    "response_id": "gen-1791147403-EGWybioIM8CI7HU7Rnk7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-punto-ya-claro",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El punto tratado ya ha quedado claro.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "835fcdddb6303d7217332f48a64e27b987abfa402e30e98de6c4c1fa4f1fd680",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La evidencia afirma explícitamente «ya ha quedado claro»; «esto» y «el punto tratado» remiten al mismo asunto intrinsically万千 included en el contexto citado."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el punto tratado ya había quedado claro."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a67a375ebcaf40e742e53fea33e2cef38157b4e13509fef88ca89c7da237fb94"
+    ],
+    "response_id": "gen-1791147403-EGWybioIM8CI7HU7Rnk7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-senalado-ejemplo-real",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El rango señalado es un ejemplo real.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025",
+    "frame-4de8f12d4841c630-s0-p16200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16290000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "889f776e8112a2011b615c6787140e4e0a43c7148f38082cd77d7335da01ed8a",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción presenta explícitamente «este de aquí» como un «ejemplo real de rango»; el contexto visual identifica ese «este» con el rango resaltado en azul."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a67a375ebcaf40e742e53fea33e2cef38157b4e13509fef88ca89c7da237fb94"
+    ],
+    "response_id": "gen-1791147403-EGWybioIM8CI7HU7Rnk7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rotulo-rango-alcista-eliminado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rótulo «rango alcista» deja de aparecer en la vista de 4 horas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p16200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16380000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "bfd8f468d8c031f9be3a2316ceb8a08e3644333691dd4d5e2e28bf5cbac904f8",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra la vista de 4 horas con la etiqueta «rango alcista»; en la segunda imagen, posterior, esa etiqueta ya no aparece."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación describe una sola transición temporal."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a67a375ebcaf40e742e53fea33e2cef38157b4e13509fef88ca89c7da237fb94"
+    ],
+    "response_id": "gen-1791147403-EGWybioIM8CI7HU7Rnk7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rotulo-rango-alcista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista inicial incluye un rótulo «rango alcista».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p15840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16110000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "76135189c66ed3d01276b2cc9c73b6af693fda05da2a3447ecb57422ece7b7cb",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen citada muestra claramente el rótulo «rango alcista» en la vista del gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación sostiene una sola proposición: que la vista inicial incluye ese rótulo."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a67a375ebcaf40e742e53fea33e2cef38157b4e13509fef88ca89c7da237fb94"
+    ],
+    "response_id": "gen-1791147403-EGWybioIM8CI7HU7Rnk7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rotulo-rango-bajista-eliminado",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El rótulo «rango bajista» deja de aparecer en la vista de 4 horas.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p16200000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16380000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "57bb0aadff1dc15a184ab079be7ecc62100080ea3111d2ac1a8be95a56ad9d5e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen muestra la vista de 4 horas con el rótulo «rango bajista»; en la segunda imagen posterior ese rótulo ya no aparece."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a67a375ebcaf40e742e53fea33e2cef38157b4e13509fef88ca89c7da237fb94"
+    ],
+    "response_id": "gen-1791147403-EGWybioIM8CI7HU7Rnk7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rotulo-rango-bajista",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La vista inicial incluye un rótulo «rango bajista».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p15840000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p16110000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1fe25d888ef268f6ef9a90b278099ccfbe6e0c389998fcfeb6150e001e0ff607",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La primera imagen citada muestra claramente el rótulo «rango bajista»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a67a375ebcaf40e742e53fea33e2cef38157b4e13509fef88ca89c7da237fb94"
+    ],
+    "response_id": "gen-1791147403-EGWybioIM8CI7HU7Rnk7"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-inicial-5m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La temporalidad inicial del gráfico es 5 minutos.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p15840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "a620a3bcfc1223c223cec2d5a79f96c474ca3d3e68d74c680428a76993891c87",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra explícitamente «EURUSD · 5» y «EURUSD | 5M», lo que establece una temporalidad de 5 minutos."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a67a375ebcaf40e742e53fea33e2cef38157b4e13509fef88ca89c7da237fb94"
+    ],
+    "response_id": "gen-1791147403-EGWybioIM8CI7HU7Rnk7"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-borrar-anotacion-ya-claro",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-borrar-anotacion-rango-seleccionada",
+   "subject_version": 1,
+   "object_id": "cl-punto-ya-claro",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00025",
+    "frame-4de8f12d4841c630-s0-p16290000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "b8906d5f8c6fe3a8399be03f43eb3056f431cebe7bafa9428de50070fd4fe97e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice «borrar esto porque ya ha quedado claro», estableciendo explícitamente que la acción de borrar depende de que el punto ya haya quedado claro."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la anotación de rango a la que se refiere «esto»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "a67a375ebcaf40e742e53fea33e2cef38157b4e13509fef88ca89c7da237fb94"
+    ],
+    "response_id": "gen-1791147403-EGWybioIM8CI7HU7Rnk7"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00024",
+   "start_ms": 171300,
+   "end_ms": 179900,
+   "text": "vais a ver más claro y va a ser mucho más fácil de entender ya veréis vamos un momento aquí déjame"
+  },
+  {
+   "id": "asr-00025",
+   "start_ms": 179900,
+   "end_ms": 188660,
+   "text": "borrar esto porque ya ha quedado claro ejemplos reales de rangos vale por ejemplo este de aquí"
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15840000-canonical-v1",
+   "pts_ms": 176000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p15930000-canonical-v1",
+   "pts_ms": 177000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p15930000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16020000-canonical-v1",
+   "pts_ms": 178000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16020000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16110000-canonical-v1",
+   "pts_ms": 179000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16110000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16200000-canonical-v1",
+   "pts_ms": 180000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16200000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16290000-canonical-v1",
+   "pts_ms": 181000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16290000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16380000-canonical-v1",
+   "pts_ms": 182000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16380000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p16470000-canonical-v1",
+   "pts_ms": 183000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p16470000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

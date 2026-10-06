@@ -1,0 +1,524 @@
+{
+ "window": "w0048",
+ "start": "11:08",
+ "end": "11:16",
+ "start_ms": 668000,
+ "end_ms": 676000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-copia-visible-derecha-rectangulo",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Una copia de la selección queda visible a la derecha del rectángulo negro de la derecha.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p60660000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "b6ed42ed2ea8918f9a98256702e8a47ff98dca6056fd4a1dd595be3b1f0a7792",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6349fd9dac56a702aec450ff22d2b170caa737a75be5cb5313bc3ceaac36ded7"
+    ],
+    "response_id": "gen-1791159936-eiw7b1iqNhNeJd2tp6bU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-copiar-seleccion-mostrada",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Podemos copiar la selección mostrada.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00104",
+    "frame-4de8f12d4841c630-s0-p60480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60660000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "5394dc746951586366bf076b3a179a0cce04ace03281d301639f11a8668f0b05",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6349fd9dac56a702aec450ff22d2b170caa737a75be5cb5313bc3ceaac36ded7"
+    ],
+    "response_id": "gen-1791159936-eiw7b1iqNhNeJd2tp6bU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-grupo-original-visible-izquierda",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El grupo original permanece visible a la izquierda.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p60480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0b83b0289f2f371bd9e9ee264d36501fcc2c16e4b07cf8011a6302a918f584ea",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En la primera imagen, el grupo original aparece en la zona izquierda; en la segunda, ese mismo grupo continúa visible a la izquierda mientras la copia seleccionada aparece a la derecha."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6349fd9dac56a702aec450ff22d2b170caa737a75be5cb5313bc3ceaac36ded7"
+    ],
+    "response_id": "gen-1791159936-eiw7b1iqNhNeJd2tp6bU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-mover-copia-derecha-rectangulo",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Vamos a mover esa copia a la derecha del rectángulo negro de la derecha.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00104",
+    "frame-4de8f12d4841c630-s0-p60750000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d43dd90531c35f70ee51bec7d2262d9a4e176bc97d109ea4389e9248ea6072ec",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción indica copiar un elemento y moverlo «ahí»; los fotogramas muestran la copia a la derecha del rectángulo negro situado más a la derecha."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: realizar una única acción de mover la copia a ese destino."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6349fd9dac56a702aec450ff22d2b170caa737a75be5cb5313bc3ceaac36ded7"
+    ],
+    "response_id": "gen-1791159936-eiw7b1iqNhNeJd2tp6bU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-pendiente",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El gráfico está rotulado «RANGO PENDIENTE».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p60120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "8cbd37fa9d8161c613617617090996757a43524293482288dcc4a800652a29be",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra claramente la etiqueta «RANGO PENDIENTE» sobre el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: que el gráfico tiene esa rotulación."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6349fd9dac56a702aec450ff22d2b170caa737a75be5cb5313bc3ceaac36ded7"
+    ],
+    "response_id": "gen-1791159936-eiw7b1iqNhNeJd2tp6bU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-rango-reiniciado",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El otro caso se llamará «rango reiniciado».",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00103",
+    "frame-4de8f12d4841c630-s0-p60120000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "3dbca5046714cee4c91584754bff9662cb97090d5507fcb877c54fe1d31dec84",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción dice literalmente «Sería lo que vamos a llamar rango reiniciado», lo que respalda directamente la afirmación sobre el nombre del otro caso."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: el nombre asignado a ese caso."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6349fd9dac56a702aec450ff22d2b170caa737a75be5cb5313bc3ceaac36ded7"
+    ],
+    "response_id": "gen-1791159936-eiw7b1iqNhNeJd2tp6bU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-seleccion-etiqueta-d",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La etiqueta «D» también aparece incluida en la selección.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p60480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60570000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "713564a01f9e25769d5fe8cfa0c2a9531c292d5e2fe0ea7a75058d9e7840ae4e",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "En ambas imágenes, la etiqueta «D» aparece dentro del recuadro de selección azul."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6349fd9dac56a702aec450ff22d2b170caa737a75be5cb5313bc3ceaac36ded7"
+    ],
+    "response_id": "gen-1791159936-eiw7b1iqNhNeJd2tp6bU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-seleccion-tres-velas-blancas",
+   "kind": "observation",
+   "version": 1,
+   "statement": "Tres velas blancas aparecen seleccionadas en el gráfico.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p60480000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60570000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "1c8b13f553a28a33de51eac3fd09450a6328efce39d3d711447eff01c5a29830",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "Ambos fotogramas muestran tres velas con relleno blanco, contorno azul y manejadores de selección visibles en el gráfico."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación constituye una sola proposición sobre la selección de tres velas blancas."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6349fd9dac56a702aec450ff22d2b170caa737a75be5cb5313bc3ceaac36ded7"
+    ],
+    "response_id": "gen-1791159936-eiw7b1iqNhNeJd2tp6bU"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-copia-depende-seleccion-d",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-copiar-seleccion-mostrada",
+   "subject_version": 1,
+   "object_id": "cl-seleccion-etiqueta-d",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00104",
+    "frame-4de8f12d4841c630-s0-p60480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_INSUFFICIENT",
+    "invocation_id": "89f2833eae55fcd33dc3cb009f2bb74cbdabadebd549ec31c262b538491c8244",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que se puede copiar lo seleccionado y la imagen muestra la etiqueta «D» dentro de la selección, pero ninguna parte enuncia o enactúa una dependencia, regla condicional o vínculo causal entre ambas proposiciones; solo aparecen juntas."
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_INSUFFICIENT",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6349fd9dac56a702aec450ff22d2b170caa737a75be5cb5313bc3ceaac36ded7"
+    ],
+    "response_id": "gen-1791159936-eiw7b1iqNhNeJd2tp6bU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-copia-depende-seleccion-velas",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-copiar-seleccion-mostrada",
+   "subject_version": 1,
+   "object_id": "cl-seleccion-tres-velas-blancas",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00104",
+    "frame-4de8f12d4841c630-s0-p60480000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "4a545e01e8269d8e2cb9dbb142dfbad40c157c43626218857b48c45186dbfd0f",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción afirma que se puede copiar «esto de aquí», y la imagen muestra tres velas blancas con controles de selección; por tanto, la copia descrita depende directamente de esa selección en la orientación indicada."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6349fd9dac56a702aec450ff22d2b170caa737a75be5cb5313bc3ceaac36ded7"
+    ],
+    "response_id": "gen-1791159936-eiw7b1iqNhNeJd2tp6bU"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-movimiento-depende-copia",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-mover-copia-derecha-rectangulo",
+   "subject_version": 1,
+   "object_id": "cl-copiar-seleccion-mostrada",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00104",
+    "frame-4de8f12d4841c630-s0-p60660000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p60840000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "c732b4e73532073fc19dfaeee48f79d9159d73e2db100e56fd9fba5fa39550dd",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La transcripción enlaza explícitamente ambas acciones: «Podemos copiar esto de aquí... vamos a moverlo ahí»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "Las imágenes muestran primero la selección mostrada y después la copiaea trasladada a la derecha del rectángulo negro derecho, por lo que el movimiento FORMATO de la copia depende de la copia previa."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "6349fd9dac56a702aec450ff22d2b170caa737a75be5cb5313bc3ceaac36ded7"
+    ],
+    "response_id": "gen-1791159936-eiw7b1iqNhNeJd2tp6bU"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00103",
+   "start_ms": 662140,
+   "end_ms": 670680,
+   "text": "¿Qué sería el otro caso? Vamos a verlo. Sería lo que vamos a llamar rango reiniciado, ¿vale?"
+  },
+  {
+   "id": "asr-00104",
+   "start_ms": 671280,
+   "end_ms": 676080,
+   "text": "Podemos copiar esto de aquí igual, vamos a moverlo ahí."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60120000-canonical-v1",
+   "pts_ms": 668000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60120000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60300000-canonical-v1",
+   "pts_ms": 670000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60300000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60390000-canonical-v1",
+   "pts_ms": 671000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60390000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60480000-canonical-v1",
+   "pts_ms": 672000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60480000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60570000-canonical-v1",
+   "pts_ms": 673000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60570000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60660000-canonical-v1",
+   "pts_ms": 674000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60660000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60750000-canonical-v1",
+   "pts_ms": 675000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60750000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p60840000-canonical-v1",
+   "pts_ms": 676000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p60840000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  }
+ ]
+}

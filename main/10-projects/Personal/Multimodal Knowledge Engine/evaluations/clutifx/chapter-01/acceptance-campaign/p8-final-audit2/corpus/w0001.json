@@ -1,0 +1,780 @@
+{
+ "window": "w0001",
+ "start": "00:00",
+ "end": "00:08",
+ "start_ms": 0,
+ "end_ms": 8000,
+ "disposition": "accepted",
+ "rejection_category": null,
+ "claims": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-ampliacion-curso-completo",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El instructor va a ampliar en el curso completo todo lo tratado en el curso intermedio.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "eb48d60a30d1fc60ef9dd3b3834d85d4518f62372b60f8a08ba45edff6316028",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-audiencia-curso-intermedio",
+   "kind": "claim",
+   "version": 1,
+   "statement": "Probablemente el público asistente ya proceda del curso intermedio del instructor.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "d204fa72dfea56e64ef8921fbdd19cd7cb2526f40eab518d6d165c7a1a3b66b6",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-caida-precios-extremo-derecho",
+   "kind": "observation",
+   "version": 1,
+   "statement": "El precio presenta una caída pronunciada en el extremo derecho de la serie visible.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1",
+    "frame-4de8f12d4841c630-s0-p720000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "c97253f4d768948f8aac51c51f7daecc34fdf925899d0883d2c30b6efd6091e3",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-campo-c-116044",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El campo de cierre «C» muestra 1,16044.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "3bb813f5da0801dcb106067e43d7578013fdecac22e57cc6ea76e4f0bcdc2337",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-campo-h-116045",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El campo de máximo «H» muestra 1,16045.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "507bf4e51da4e84cc3dadc87954262477ec9401865dc22bfc6e66344325ab02e",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-campo-l-116018",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El campo de mínimo «L» muestra 1,16018.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "cbbb85345ff726503c064a6954ee09d2b928813736d02ce6872e2ebd87b17cff",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-campo-o-116018",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El campo de apertura «O» muestra 1,16018.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "14767dbb3846dd726ae781e14c2bedfed4761dcaa36d87dac6d57b48992eaa26",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-curso-completo-estrategia-en-profundidad",
+   "kind": "claim",
+   "version": 1,
+   "statement": "En el curso completo se descubrirá la estrategia en profundidad.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "9abcdd78e715bb20e9c864e50ff4d0ffb6b7827e8b18de2401bbf5f0fda0f8a6",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-curso-intermedio-sienta-base",
+   "kind": "claim",
+   "version": 1,
+   "statement": "El curso intermedio del instructor sirvió para sentar la base.",
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "5c3af21395abda9194087ca5f30027aebbdcdad0fcaed654f304dba3e3827c9a",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-fuente-grafica-forex-com",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La fuente visible en el encabezado es «FOREX.com».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "REVIEW_UNAVAILABLE",
+    "invocation_id": "800136b825a81fca20bd4f9877b72d4a563495a6dad624c277f3a8953e2217f9",
+    "reasons": [
+     {
+      "code": "reviewer_unavailable",
+      "detail": "reviewer unavailable after bounded attempts: vlm provider transport [retry-exhausted]: retry budget of 2 exhausted; last failure: request timed out"
+     }
+    ]
+   },
+   "publication": "UNSUPPORTED_REVIEW_UNAVAILABLE",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-moneda-cotizacion-usd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La moneda de cotización mostrada es «USD».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ba2a30b9e61007be9202fad94e06a2dab9aade7e5fd15c32a906d40501736b9b",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La esquina superior derecha de la gráfica muestra explícitamente la etiqueta «USD»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición: la moneda de cotización mostrada es USD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-simbolo-grafico-eurusd",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "El símbolo mostrado en la gráfica es «EURUSD».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "e49d33d8c98f6423ff0092ee2577e76f82b4abe8fe4e4d100149a1f5f4b20406",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La propia gráfica muestra explícitamente la etiqueta «EURUSD»."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-tarjeta-muestra-bienvenido",
+   "kind": "observation",
+   "version": 1,
+   "statement": "La tarjeta muestra el mensaje «BIENVENIDO».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "60324f6b3b17ebe3e42a9f4db53fba332a8ea9381742f5556c491ae1e9503a35",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra una tarjeta con el mensaje «BIENVENIDO» claramente visible y afirma una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-temporalidad-grafico-5m",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La etiqueta de temporalidad de la gráfica es «5M».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "d4a442da265f2f33902f1912eeed6d4bed0df4d3f75b12235c153b02c5d9eef9",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La gráfica muestra explícitamente la etiqueta «EURUSD | 5M» en la parte inferior central."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-url-cursosdigitales701",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La URL visible en la tarjeta es «WWW.CURSOSDIGITALES701.COM».",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "75c1eb900746a9ce7d9f5b73bf9a78aaa25ae9bee88d08dfa176b161d964af40",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra la URL «WWW.CURSOSDIGITALES701.COM» en la parte superior de la tarjeta."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-variacion-absoluta-00026",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La variación mostrada en unidades de precio es +0,00026.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "0cf6ada1c1fc287122c20872cde1e3d8f5d68e8a119aaf3ea9bba30a20efde66",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La cabecera del gráfico muestra explícitamente «+0,00026» junto a los valores OHLC de EURUSD."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-variacion-porcentual-002",
+   "kind": "parameter",
+   "version": 1,
+   "statement": "La variación porcentual mostrada es +0,02%.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p540000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "ef98eeb6e5bce9958fa02e16ff37feb5c6e21d8f86a90531be68f047b160c630",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La parte superior del gráfico muestra explícitamente «+0,02%» como variación porcentual."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola proposición."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  },
+  {
+   "schema": "mke.claims.v1",
+   "id": "cl-visitar-sitio-para-mas-cursos",
+   "kind": "procedure_step",
+   "version": 1,
+   "statement": "Para más cursos, visita nuestro sitio web.",
+   "epistemic": "VIDEO_OBSERVED",
+   "evidence_ids": [
+    "frame-4de8f12d4841c630-s0-p360000-canonical-v1"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7a463cce1a0717d218482e2b552c74953bef569b74a6a223aa039c0cc53aff1c",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "La imagen muestra el texto exacto «PARA MÁS CURSOS VISITA NUESTRO SITIO WEB»."
+     },
+     {
+      "code": "reviewer_reason",
+      "detail": "La afirmación contiene una sola instrucción; «para más cursos» únicamente indica su propósito."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "schema": "mke.claims.v1",
+   "id": "rel-ampliacion-completa-apoya-base-intermedia",
+   "version": 1,
+   "type": "DEPENDS_ON",
+   "subject_id": "cl-ampliacion-curso-completo",
+   "subject_version": 1,
+   "object_id": "cl-curso-intermedio-sienta-base",
+   "object_version": 1,
+   "epistemic": "INSTRUCTOR_SAID",
+   "evidence_ids": [
+    "asr-00001"
+   ],
+   "integrity": {
+    "status": "INTEGRITY_PASS"
+   },
+   "grounding": {
+    "status": "GROUNDING_SUPPORTED",
+    "invocation_id": "7b4989c09aef1c27bb187b2b02b69d29b797b59e2320a65f7ad76cac550c9c90",
+    "reasons": [
+     {
+      "code": "reviewer_reason",
+      "detail": "El segmento vincula explícitamente ambos contenido y función: el curso intermedio «sirvió para sentar la base» y, partiendo de él, el instructor dice «voy a ampliar ya todo», lo que sustenta que la ampliación del curso completo depende de esa base intermedia."
+     }
+    ]
+   },
+   "publication": "SUPPORTED_BY_AUTOMATED_REVIEW",
+   "provenance": {
+    "task": "claims.reconstruction",
+    "provider": "openrouter",
+    "model": "stealth/space-bunny-alpha",
+    "prompt_version": "mke.claims-recon.v4",
+    "config_fingerprint": "f05c95e494b89802005e5e996224a91036d442cdab4fb5799f2e7988ef758338",
+    "invocation_ids": [
+     "745469f6393526ce1464d10a72b7009fca20db75afc87664c69802fe91721d18"
+    ],
+    "response_id": "gen-1791144196-CzzF9fVD7CqpGKUVHmqn"
+   }
+  }
+ ],
+ "unresolved_record_ids": [],
+ "transcript": [
+  {
+   "id": "asr-00001",
+   "start_ms": 5810,
+   "end_ms": 19820,
+   "text": "Hola, bienvenido al curso completo. Aquí vas a descubrir la estrategia en profundidad y nada, sé que probablemente vengas ya de mi curso intermedio, así que eso sirvió para sentar la base y voy a ampliar ya todo."
+  }
+ ],
+ "frames": [
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p0-canonical-v1",
+   "pts_ms": 0,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p0-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p180000-canonical-v1",
+   "pts_ms": 2000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p180000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p270000-canonical-v1",
+   "pts_ms": 3000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p270000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p360000-canonical-v1",
+   "pts_ms": 4000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p360000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p450000-canonical-v1",
+   "pts_ms": 5000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p450000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p540000-canonical-v1",
+   "pts_ms": 6000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p540000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p720000-canonical-v1",
+   "pts_ms": 8000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p720000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": true
+  },
+  {
+   "evidence_id": "frame-4de8f12d4841c630-s0-p90000-canonical-v1",
+   "pts_ms": 1000,
+   "path": "/home/kor/mke/clutifx-ch01-20260930/media-run/evidence/objects/frame-4de8f12d4841c630-s0-p90000-canonical-v1.png",
+   "exists": true,
+   "cited_by_claim": false
+  }
+ ]
+}

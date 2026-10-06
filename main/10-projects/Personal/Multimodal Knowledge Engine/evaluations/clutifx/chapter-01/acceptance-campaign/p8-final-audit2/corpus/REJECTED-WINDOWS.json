@@ -1,0 +1,296 @@
+[
+ {
+  "window": "w0006",
+  "start": "01:16",
+  "end": "01:29",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0008",
+  "start": "01:51",
+  "end": "01:58",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0023",
+  "start": "05:04",
+  "end": "05:16",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0044",
+  "start": "09:48",
+  "end": "10:12",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0054",
+  "start": "12:45",
+  "end": "12:57",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0058",
+  "start": "13:39",
+  "end": "13:56",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0061",
+  "start": "14:30",
+  "end": "14:40",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0062",
+  "start": "14:41",
+  "end": "14:56",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0073",
+  "start": "18:04",
+  "end": "18:24",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0077",
+  "start": "19:41",
+  "end": "19:53",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0084",
+  "start": "21:26",
+  "end": "21:44",
+  "category": "identity divergence"
+ },
+ {
+  "window": "w0093",
+  "start": "23:37",
+  "end": "23:54",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0094",
+  "start": "23:56",
+  "end": "24:12",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0095",
+  "start": "24:15",
+  "end": "24:32",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0096",
+  "start": "24:36",
+  "end": "24:52",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0097",
+  "start": "24:56",
+  "end": "25:24",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0098",
+  "start": "25:25",
+  "end": "25:37",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0099",
+  "start": "25:39",
+  "end": "25:48",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0100",
+  "start": "25:50",
+  "end": "26:05",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0101",
+  "start": "26:06",
+  "end": "26:18",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0102",
+  "start": "26:19",
+  "end": "26:32",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0103",
+  "start": "26:36",
+  "end": "26:52",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0104",
+  "start": "26:54",
+  "end": "27:08",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0105",
+  "start": "27:10",
+  "end": "27:23",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0106",
+  "start": "27:24",
+  "end": "27:36",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0107",
+  "start": "27:37",
+  "end": "27:51",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0108",
+  "start": "27:52",
+  "end": "28:04",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0109",
+  "start": "28:08",
+  "end": "28:19",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0110",
+  "start": "28:20",
+  "end": "28:28",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0111",
+  "start": "28:32",
+  "end": "28:41",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0112",
+  "start": "28:42",
+  "end": "28:51",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0113",
+  "start": "28:52",
+  "end": "29:04",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0114",
+  "start": "29:05",
+  "end": "29:13",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0115",
+  "start": "29:16",
+  "end": "29:25",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0116",
+  "start": "29:26",
+  "end": "29:38",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0117",
+  "start": "29:39",
+  "end": "29:48",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0118",
+  "start": "29:52",
+  "end": "30:08",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0119",
+  "start": "30:10",
+  "end": "30:19",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0120",
+  "start": "30:20",
+  "end": "30:40",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0121",
+  "start": "30:42",
+  "end": "30:54",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0122",
+  "start": "30:56",
+  "end": "31:16",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0123",
+  "start": "31:20",
+  "end": "31:40",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0124",
+  "start": "31:44",
+  "end": "32:07",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0125",
+  "start": "32:08",
+  "end": "32:24",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0126",
+  "start": "32:25",
+  "end": "32:40",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0127",
+  "start": "32:41",
+  "end": "32:54",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0128",
+  "start": "32:55",
+  "end": "33:12",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0129",
+  "start": "33:16",
+  "end": "33:44",
+  "category": "provider unavailable"
+ },
+ {
+  "window": "w0130",
+  "start": "33:48",
+  "end": "34:02",
+  "category": "provider unavailable"
+ }
+]
