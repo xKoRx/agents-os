@@ -39,6 +39,8 @@ tags:
 
 ## Resolución aplicada
 
+- Consolidación final del prerequisito: remediación `407e03dd` publicada y revisión fresh TOP READY_SDK_PREREQUISITE_REVIEW_ONLY. Artifact/run NORMAL `0059595d` y artifact/run/log TOP `6e39a157` importados por contenido; producto [PR borrador #2](https://github.com/xKoRx/echo/pull/2) contra S04 adjunto, sin merge. Findings fix/regression verificados pero abiertos por real_rerun NOT_RUN. Estado histórico BLOCKED_EXTERNAL; acción mínima export GUI a C:\Temp\BTG-NQ-1m. Root conserva sesión; no acepta S01 ni inicia S02.
+
 - Delta prerequisito SDK: candidate producto `27cb4cea` y cierre documental `612d24b3` preservados/importados; root normalizó párrafos y corrigió atribución root/Owner. TOP confirmó BT2-F01..F03, aún abiertos y sin rerun real; fresh NORMAL remedial en carril propio. Root sólo congeló SDD/ownership; no implementó código ni aceptó gate.
 
 - Lint estricto root detectó `model_source: system-reported` no permitido en el run importado del SDK. Se normalizó a `host`, con modelo exacto `gpt-6-luna` del despacho expuesto por el harness; sin cambiar consumo ni resultados. Los cinco digests de oráculos TOP fueron comprobados por root: todos OK.
@@ -52,7 +54,9 @@ tags:
 
 ## Validación
 
-- `git ls-remote` y estado local observados; sin corrida real ni cambio de producto. Cuatro tests GerardMM existentes PASS offline por worker; root validó 11 source digests y evidencia externa. Nuevos documentos/plan/registros con lint dirigido sin findings; proyecto conserva cinco findings preexistentes demostrados en baseline. Git diff-check y revisión de paths/secret hygiene aplicados.
+- Root comprobó siete SHA256 del bundle final TOP, todos OK. STRICT nueve documentos/registros: 0 errores/0 warnings; nota proyecto conserva cinco errores baseline sin delta. Materializer no reescribe notas existentes; artifacts importados conservan schema materializado del worker y fueron validados por lint.
+
+- `git ls-remote` y estado local observados; sin corrida real; cambios de producto SDK aislados atribuidos a workers, root no implementa. Cuatro tests GerardMM existentes PASS offline por worker; root validó 11 source digests y evidencia externa. Nuevos documentos/plan/registros con lint dirigido sin findings; proyecto conserva cinco findings preexistentes demostrados en baseline. Git diff-check y revisión de paths/secret hygiene aplicados.
 
 ## Compartibilidad
 

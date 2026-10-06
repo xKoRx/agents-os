@@ -25,13 +25,22 @@ Conseguir el baseline histórico REAL de la Strategy Gerard exacta y GerardMM co
 
 [[BTG-S01-OWNER-S2-BARS-AUTHORITY]] fija S2 actual (`S2_H4_TREND_BB_PULLBACK_V1`) + GerardMM actual, NQ Last 1m principal y SL-first si una vela toca SL y TP. B01 alias se resuelve por instrucción directa; el resto del informe anterior conserva su corte histórico. No se afirmó una corrida ni se completaron rows económicas por inferencia.
 
-Dos especialistas fresh-context cerraron sus encargos: TOP forensics del seam OHLC/causal bars/ejecución y NORMAL inventario físico Windows de minute/tick y exports. [[BTG-S01-S2-1M-FORENSICS]] pasó diez tests existentes offline y delimitó un ingreso nativo de barras al SDK. [[BTG-S01-NQ-1M-DATASET]] confirma AccessDenied sobre Documents/db/minute, Downloads y Public; ningún byte recuperado. Un nuevo NORMAL implementa sólo el ingreso compartido de barras y su agregación; driver y ejecución OHLC siguen pendientes. Preguntas de trayectoria MM intrabar y configuración se delimitan por evidencia.
+Dos especialistas fresh-context cerraron sus encargos: TOP forensics del seam OHLC/causal bars/ejecución y NORMAL inventario físico Windows de minute/tick y exports. [[BTG-S01-S2-1M-FORENSICS]] pasó diez tests existentes offline y delimitó un ingreso nativo de barras al SDK. [[BTG-S01-NQ-1M-DATASET]] confirma AccessDenied sobre Documents/db/minute, Downloads y Public; ningún byte recuperado. NORMAL implementó el ingreso compartido de barras y su agregación; driver y ejecución OHLC siguen pendientes. Preguntas de trayectoria MM intrabar y configuración se delimitan por evidencia.
 
 Delta implementación: NORMAL cerró candidate `27cb4ceaf62151a042494022cad08e47672a06f2`, [[BTG-S01-SOURCE-BAR-SDK-IMPLEMENTATION]], documentos `612d24b37e2db5d004896a70170921de2c7b3084`. Paquetes bars/analytics/S2 y vet offline PASS; no aceptación. TOP independiente confirmó tres findings en [[BTG-S01-FINDINGS]]: bytes legacy Builder/OwnerState modificados, rechazo de modo después de mutar otro builder y gate de coverage no demostrado con exclusiones de ramas alcanzables. Remediación fresh NORMAL propia desde ese SHA; candidate previo preservado. La importación root normaliza párrafos y distingue instrucción del submanager de decisión Owner, sin alterar pruebas ni resultados.
 
+### Delta verificado — prerequisito SDK, no histórico
+
+Remediación producto congelada y publicada `407e03dd7ebce1f93b04ea5ff5bb5a33f1bac1ef`, [[BTG-S01-SOURCE-BAR-SDK-REMEDIATION]]. Nuevo TOP LOCAL fresh-context concluye READY_SDK_PREREQUISITE_REVIEW_ONLY en [[BTG-S01-SOURCE-BAR-SDK-FINAL-REVIEW]]: once oráculos de bytes legacy iguales a baseline en proceso fresco; rechazo mixto atómico; restore OHLC tras eviction/discard mantiene modo y high-water; QUOTE válido compatible. Race suites explícitas bars/analytics/S2 y vet PASS dentro de namespace sin red. Source raw 129/135=95.56%; applySourceBar raw 38/41, applicable 38/38 con tres guards redundantes demostrados, sin excluir errores de input alcanzables.
+
+[PR producto borrador #2](https://github.com/xKoRx/echo/pull/2) contra `feature/backtester-v1-s04-remediation`, head `407e03dd`, adjunto a este task. Sin merge/despliegue, S2/MM/accounting intactos. [[BTG-S01-FINDINGS]] conserva BT2-F01..F03 abiertos: fix/regression verificados, real_rerun NOT_RUN. El gate SDK no prueba señales, fills ni rentabilidad de mercado.
+
+La investigación física concluye que la identidad autorizada `echo-dev` no puede leer la carpeta del usuario KoR. C:\Temp sí es legible y no presentó export histórico en su nivel superior. El Owner no necesita ubicar la caché: mínima acción física es `Tools → Historical Data → Export`, `Minute / Last` por contrato, hacia `C:\Temp\BTG-NQ-1m`. Ese destino sólo fue propuesto, no creado ni acreditado. GUI NinjaTrader no expuesta; no se amplió ACL ni se eludió un rechazo. Hasta recibir bytes se conserva BLOCKED_EXTERNAL para la corrida real, con contexto MM/account/provider aún pendiente.
+
 ### Estado observado
 
-STATE = IN_PROGRESS — S2_OHLC_SOURCE_AND_DATA_READINESS
+STATE = BLOCKED_EXTERNAL — NINJATRADER_CORPUS_ACCESS
+SDK_STATE = READY_SDK_PREREQUISITE_REVIEW_ONLY
 SECONDARY_STATE = DATA_ACCESS_AND_CONFIG_PENDING
 REAL_SMOKE = NOT_RUN
 LONGITUDINAL_RUN = NOT_RUN
@@ -72,7 +81,7 @@ El Owner confirmó durante el inventario: “la idea es sacar todo desde ninjatr
 | --- | --- | --- | --- |
 | BTG-B01 / RESOLVED_BY_OWNER | Vínculo canónico entre el nombre Owner Gerard y Strategy/version | Owner 2026-10-06 seleccionó S2 actual, SpecID `S2_H4_TREND_BB_PULLBACK_V1`. La inspección previa sin alias conserva su corte histórico, pero ya no bloquea la selección. | Autoridad directa en [[BTG-S01-OWNER-S2-BARS-AUTHORITY]]; configuración restante evaluada como B02. |
 | BTG-B02 / CONFIG_AUTHORITY_GAP | Config MM real y contexto account/provider para el horizonte | D4 sí define EVALUATION account-days 1–2 SL USD 2.000 / TP USD 1.500. Rows posteriores y FUNDED encontradas sólo como fixtures/modeling; no configuración Owner vigente. | Preflight/config, ningún historical run. Recuperar configuración concreta o definir etapa autorizada; no completar valores por inferencia. |
-| BTG-B03 / BLOCKED_EXTERNAL | Corpus físico real con provenance, contratos, orden, timezone y digests | Workspaces históricos seleccionados contienen Polymarket/MLB. Evidencia de feed vivo no acredita corpus multiday. Candidato NinjaTrader no listado: permiso OS denegado bajo perfil RO; ruta/stock quedan no resueltos, no declarados inexistentes. | Antes de DatasetSource; aportar ubicación del export existente o acceso RO a esa fuente. No comprar ni tocar el feed/runtime. |
+| BTG-B03 / BLOCKED_EXTERNAL | Corpus físico real con provenance, contratos, orden, timezone y digests | Workspaces históricos seleccionados contienen Polymarket/MLB. Evidencia de feed vivo no acredita corpus multiday. Candidato NinjaTrader no listado: permiso OS denegado bajo perfil RO; ruta/stock quedan no resueltos, no declarados inexistentes. | Antes de DatasetSource; exportar la caché existente Minute/Last por contrato a C:\Temp\BTG-NQ-1m desde GUI NT. No comprar ni tocar el feed/runtime. |
 
 BT2-F01..F03 materiales registrados en [[BTG-S01-FINDINGS]], hallados en el prerequisito SDK con probes REFERENCE_ONLY y ningún cierre. Ninguna corrida histórica real ocurrió: real_rerun NOT_RUN para todos. Los bloqueos B02/B03 son de configuración/datos; no se maquillan como defectos corregidos ni como ausencia global.
 
@@ -82,7 +91,7 @@ El worker TOP observó Core DEV binario source `372af59a`, `vcs.modified=false`;
 
 Cuatro tests existentes GerardMM pasaron bajo namespace sin red externa: day1/2, day3 sin resolver, FUNDED ausente/configurado y scaling explícito. Sirven como evidencia de fail-closed y capacidades compartidas; REAL_SMOKE sigue NOT_RUN. Config instalada y fixtures permanecen separados. Logs completos y comandos en [[BTG-S01-IDENTITY-CONFIG]].
 
-En el inventario inicial originales y producto no fueron modificados; no hubo suite amplia, seeds, trading, runtime restart ni configuración de infraestructura. La reanudación tiene un carril producto propio desde S04, `codex/btg-s01-source-bars`, para el prerequisito SDK definido en `specs/btg-s01-source-bars/`; su resultado aún requiere revisión. El aislamiento `unshare --user --map-root-user --net` funciona. Toolchain observado Go 1.27.1 linux/amd64; no claim de determinismo entre builds.
+En el inventario inicial originales y producto no fueron modificados; no hubo suite amplia, seeds, trading, runtime restart ni configuración de infraestructura. La reanudación tiene un carril producto propio desde S04, `codex/btg-s01-source-bars`, para el prerequisito SDK definido en `specs/btg-s01-source-bars/`; su candidate anterior fue rechazado y la remediación `407e03dd` pasó revisión SDK independiente, sin corrida real. El aislamiento `unshare --user --map-root-user --net` funciona. Toolchain observado Go 1.27.1 linux/amd64; no claim de determinismo entre builds.
 
 ### No interferencia D6
 
@@ -110,13 +119,16 @@ Evidencia consolidada en `xKoRx/agents-os`, rama `codex/btg-s01-evidence`, base 
 
 Refresh antes del handoff: Echo master `372af59a`, S04 `cd451972`, D6 `d08a30ce`, source/D6 trees limpios. Agents-OS master avanzó a `a326c237d6a2fdfd6fc9367da927da40328df33b`; diff desde base no afecta Echo Futures ni Agents-OS/skills relevantes. No se integró ese delta ajeno. Documentación nueva y plan con lint dirigido sin findings; nota de proyecto mantiene cinco errores de lint preexistentes (dos tags y tres secciones), idénticos al baseline, sin ampliación.
 
-ROOT_AGENT_RUN = SKIPPED: coordinación, revisión de evidencia y documentación; el único segmento de tests de producto atribuible está registrado por el worker TOP. ROOT_SESSION_CLOSE = NOT_REQUESTED.
+Refresh final: Agents-OS master `07ea74689eeb56988653cce61cc836be32c0effe`, Echo master `372af59a`, S04 `cd451972`, D6 `d08a30ce`; producto frozen `407e03dd` y D6 locales limpios. SDK/D6 sin intersección material; sin cambios runtime/bridge.
+
+ROOT_AGENT_RUN = SKIPPED: coordinación, revisión de evidencia y documentación; los segmentos de implementación/tests están atribuidos en los registros ONE-SHOT respectivos. ROOT_SESSION_CLOSE = NOT_REQUESTED.
 
 ### Handoff compacto
 
 ```text
 SUBTASK = BTG-S01
-STATE = IN_PROGRESS — S2_OHLC_READINESS; DATA_ACCESS_BLOCKED
+STATE = BLOCKED_EXTERNAL
+SDK_STATE = READY_SDK_PREREQUISITE_REVIEW_ONLY; PRODUCT_407e03dd
 BASELINE_SHA = cd451972b242c8933321e03001decd4b6d778c61
 DATASET = NINJATRADER_NQ_1M_OWNER_REPORTED; CORPUS_NOT_ACQUIRED; MANIFEST/DIGEST_NOT_AVAILABLE
 GERARD_STRATEGY_AUTHORITY = OWNER_2026_10_06_S2_H4_TREND_BB_PULLBACK_V1; CONFIG_REMAINING_TO_VERIFY
@@ -126,11 +138,12 @@ LONGITUDINAL_RUN = NOT_RUN
 DETERMINISTIC_RERUN = NOT_RUN
 ECONOMIC_STAGE_COVERAGE = NONE_DEMONSTRATED
 SIGNALS / OPERATIONS / FILLS / ACCOUNT_PNL = NOT_MEASURED
-OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_OPEN; B01_RESOLVED_BY_OWNER; B02_B03_AND_OHLC_DRIVER_VENUE_OPEN
-ARTIFACT = BTG-S01-REAL-GERARD-RESULT + BTG-S01-FINDINGS + identity/config + dataset inventory + NT acquisition + source SDK/review
+OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; B01_RESOLVED_BY_OWNER; B02_B03_AND_OHLC_DRIVER_VENUE_OPEN
+ARTIFACT = BTG-S01-REAL-GERARD-RESULT + BTG-S01-FINDINGS + identity/config + dataset inventory + NT acquisition + source SDK/remediation/final-review
+PRODUCT_PR = https://github.com/xKoRx/echo/pull/2; DRAFT_AGAINST_S04
 AGENTS_OS_COMMIT = final consolidated commit supplied in chat/PR handoff
 GAPS_FOR_S02 = remaining config + historical corpus + horizon rows/stages + economic units/rules/fees/settlement
-NEXT_PRIMARY_MANAGER_ACTION = NT authorized bytes/export + remaining MM config; native OHLC seam; real S2 slice and pessimistic rerun within same S01
+NEXT_PRIMARY_MANAGER_ACTION = NT GUI export Minute/Last per expiry to C:\Temp\BTG-NQ-1m; remaining MM/account/provider config; parser/driver/OHLC venue then real S2 slice within same S01
 OWNER_ACCEPTANCE = NOT_ADJUDICATED
 SUBMANAGER_SESSION = OPEN
 PRO_CHAT_POOL_DELTA = 0
