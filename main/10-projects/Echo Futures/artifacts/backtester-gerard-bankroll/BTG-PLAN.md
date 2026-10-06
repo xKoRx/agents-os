@@ -27,7 +27,7 @@ Mandato Owner recibido el 2026-10-05 (America/Santiago): máximo cinco shots; el
 Origen de este paquete: rama documental docs/backtester-gerard-bankroll-five-shots-20261005 de xKoRx/agents-os, commit `a16f4bb25cfb6882146f437f5913302a191313c2`. El submanager LOCAL observó su merge ya existente `d67319f0878610c786b94aa2ad31e5e4503e7efa` y master `bb9fa98be22057e8468e83f72cb53fd147accc09`. La revisión automática había rechazado mover master directamente en Primary; BTG-S01 no ejecutó ese merge ni altera master. Evidencia y deltas nuevos en rama documental separada para revisión.
 
 PROGRAM_STATE = IN_PROGRESS
-BTG_S01 = BLOCKED_EXTERNAL — ORIGINAL_BYTES_TRANSFER_POLICY; NTMINUTE_INPUT_VERIFIED; CLI_F11_EXACT_ONCE_REMEDIATION; F08_F09_F10_INDEPENDENTLY_VERIFIED
+BTG_S01 = BLOCKED_EXTERNAL — ORIGINAL_BYTES_TRANSFER_POLICY; NTMINUTE_INPUT_VERIFIED; READY_LOCAL_NATIVE_BASELINE_REVIEW_ONLY; REAL_RUN_NOT_RUN
 BTG_S02_TO_S05 = NOT_STARTED
 REAL_GERARD_RUN_THIS_SESSION = NOT_RUN
 CAMPAIGN_RESULTS = NOT_AVAILABLE
@@ -132,7 +132,7 @@ Delta posterior Owner: autoriza fijar reglas consistentes para el fin funcional 
 
 Los siguientes prompts se generan justo a tiempo desde el resultado aceptado del shot anterior.
 
-Delta integrado local: F08 corregido171fc712 e independiente PASS; CLI198f29f4 realiza S2/MM shared y sealed reproducción en proceso fresco con corpus sintético. TOP detectó F09 cleanup ante error público y F10 metadata autenticidad; F09/F10 independientes PASS en e632; freshNORMAL corrige F11 LOW exact-once EOF en carril propio. [[BTG-S01-FINDINGS]] conserva real reruns pendientes; no gate histórico, S02 NOT_STARTED.
+Delta integrado local: F08 corregido171fc712 e independiente PASS; CLI198f29f4 realiza S2/MM shared y sealed reproducción en proceso fresco con corpus sintético. TOP detectó F09 cleanup ante error público y F10 metadata autenticidad; F09/F10 independientes PASS en e632; F11 LOW corregido15422 y freshTOPPASS. Carril nativo local listo y [PRdraft3](https://github.com/xKoRx/echo/pull/3) depende SDK [PR2](https://github.com/xKoRx/echo/pull/2); tipfb210ac/code15422. Original corpus/manifest/digests aún pendientes. [[BTG-S01-FINDINGS]] conserva real reruns pendientes; no gate histórico, S02 NOT_STARTED.
 
 ## Fuentes
 

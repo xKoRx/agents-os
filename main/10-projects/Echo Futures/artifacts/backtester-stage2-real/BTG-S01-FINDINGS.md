@@ -163,10 +163,10 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - actual: driver cierra sequenceCursor al EOF, sequenceSource retiene el wrapper y el cleanup CLI después de error de re-admisión vuelve a cerrar. Cursor native idempotente: sin fuga ni divergencia económica/error observada.
 - first_divergence: pointer de ownership aún presente después de EOF; cmdReproduce reproduce el error público, seam equivalente instrumentado con DatasetSource nativo observa Close2/Peek3/Next1. Probe TestReviewerOwnershipPublicValidSealedScriptOverride/log public-readmission-eof.log, capsuleSHA74fe84bdca5709a250d9668756f8daed9e77b74b4ac70ca574076dfb896073d7.
 - owner: CLI sequenceCursor/sequenceSource lifecycle run.go; no SDK/NewRun/ResultWriter cambio justificado.
-- fix: fresh NORMAL codex/btg-s01-cli-cursor-once desdee632, RootSDD frozen, wrapper mínimo.
-- regression: PENDING_PERMANENT_REGRESSION; mismo sealed script/override RED e632→nuevoPASS Close1, normal/error/Closecause y F09/F10 unchanged; fresh TOP final requerido.
+- fix: source15422c2329164a33a76bf63912491168227660b7 desdee632, sequenceCursor.Close sync.Once cachea primer resultado; no otros productionfiles/API/domain changes. Docs-onlytip e320fef9 preserva F09Verification exacta.
+- regression: PERMANENT_REGRESSION + freshTOP RED e632Close2/Peek3/Next1 → PASS15422 Close1/Peek3/Next1, mismo sealedscript/override/originalmodeerror. Concurrent128/sequential Closeerror cache errors.Is/As, F09publicFD []→[]→[], race8.070s/F081.171s/vet/build; shortsealedSOURCE_COVERAGE_INCOMPLETE/reproIDENTICAL y legacy e632→15422 byteigual SHAd5325ae6cf99725a9e7e23dab1951b1e8fb60468f29a41179a636f5b504c5ad7. Independent changedblocks3/3 bruto/aplicable, sinexclusiones. Evidence reports/cli-cursor-once-review.
 - real_rerun: NOT_RUN; originales completos pendientes.
-- state: OPEN_REPRODUCED_REMEDIATION_PENDING.
+- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED, scope sintético. No cierre histórico.
 
 ### Retención y clasificación
 

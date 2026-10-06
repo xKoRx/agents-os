@@ -86,6 +86,10 @@ tags:
 
 - Delta F11: TOP e632 confirma F09/F10 PASS pero reproduce Close2 tras EOF/admission error (LOW, cursor native idempotente sin divergencia). RootSDD wrapper-only/freshNORMAL desdee632, candidato anterior preservado; largeE2E timeoutGOGCoff y FAILED_HARNESS GOWORK conservados, no wholePASS/retries generales. Importación docsab67f7c9 byteexacta.
 
+- Gatefinal local15422: freshTOP independentPASS F11 exactonce, F09publicFD/Scope/F08/race/vet/build/shortfreshseal/repro/legacybytes;3/3 changedblocksnoexclusions. Importación workerF09docs5e629319/F11docs4d5612b9 exactbytes. CuatroHEADs refreshsinavance/D6limpio; sourceSDKB/C/Core sinnuevointersect. TodosrealrerunsNOTRUN, datosoriginalesSFTPblocked, Rootpermaneceabierto.
+
+- FinalTOP docs cffcf2a2 importado byteexacto/artifact86bfe8ea;19hashes externos comprobados. Tipfb210ac añade sólo nuevaSDDVERIFICATION, Go bytes iguales15422; PRnativeEcho3 draft/baseSDK407 creado/adjunto, sinmerge. Dos producerartifacts sinfrontmatter se normalizaron con envolturaDoc canónica y bodies originales intactos/SHAs declarados; no cambios source/tests.
+
 ## Validación
 
 - Root comprobó siete SHA256 del bundle final TOP, todos OK. STRICT nueve documentos/registros: 0 errores/0 warnings; nota proyecto conserva cinco errores baseline sin delta. Materializer no reescribe notas existentes; artifacts importados conservan schema materializado del worker y fueron validados por lint.
