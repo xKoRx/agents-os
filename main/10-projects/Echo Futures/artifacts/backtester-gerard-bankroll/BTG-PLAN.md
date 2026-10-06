@@ -9,7 +9,7 @@ aliases: []
 tags:
   - kind/doc
 created: "2026-10-05"
-updated: "2026-10-05"
+updated: "2026-10-06"
 ---
 
 # BTG-PLAN — Gerard real, bankroll y objetivos
@@ -24,10 +24,10 @@ Mandato Owner recibido el 2026-10-05 (America/Santiago): máximo cinco shots; el
 
 ### 1. Estado y autoridad
 
-Ubicación de este paquete: rama documental docs/backtester-gerard-bankroll-five-shots-20261005 de xKoRx/agents-os. Su integración a master sigue pendiente. La revisión automática rechazó mover master directamente; el paquete se conserva como cambio revisable y puede utilizarse para el inventario/pruebas locales sin ese merge.
+Origen de este paquete: rama documental docs/backtester-gerard-bankroll-five-shots-20261005 de xKoRx/agents-os, commit `a16f4bb25cfb6882146f437f5913302a191313c2`. El submanager LOCAL observó su merge ya existente `d67319f0878610c786b94aa2ad31e5e4503e7efa` y master `bb9fa98be22057e8468e83f72cb53fd147accc09`. La revisión automática había rechazado mover master directamente en Primary; BTG-S01 no ejecutó ese merge ni altera master. Evidencia y deltas nuevos en rama documental separada para revisión.
 
-PROGRAM_STATE = PLANNED
-BTG_S01 = READY_FOR_LOCAL_DISPATCH
+PROGRAM_STATE = IN_PROGRESS
+BTG_S01 = BLOCKED_DECISION — IDENTITY; SECONDARY_BLOCKED_EXTERNAL — DATASET
 BTG_S02_TO_S05 = NOT_STARTED
 REAL_GERARD_RUN_THIS_SESSION = NOT_RUN
 CAMPAIGN_RESULTS = NOT_AVAILABLE
@@ -124,7 +124,7 @@ Entregables: comando reproducible, configuración/manifest del escenario, tabla 
 
 ### 8. Próxima acción concreta
 
-Ejecutar BTG-S01-SUBMANAGER-PROMPT en un agente TOP LOCAL con repositorios y acceso autorizado a Aranea/datasets. Esta sesión CLOUD verificó documentación y refs por GitHub; no tiene un canal operativo expuesto hacia Daedalus y no ejecutó backtests. El estado READY_FOR_LOCAL_DISPATCH expresa que el encargo está listo, no que el histórico/configuración estén certificados.
+Inventario BTG-S01 ejecutado LOCAL con especialistas ONE-SHOT TOP/NORMAL; estado BLOCKED_DECISION por identidad/configuración Gerard y bloqueo externo de dataset suficiente. Evidencia y mínima acción en [[BTG-S01-REAL-GERARD-RESULT]], [[BTG-S01-IDENTITY-CONFIG]] y [[BTG-S01-DATASET-INVENTORY]]. Primary Manager revisa y recupera/define sólo esos inputs. Submanager conserva continuidad para ejecutar el slice y remediación al resolverlos; REAL_SMOKE/LONGITUDINAL/RERUN siguen NOT_RUN y S02 permanece NOT_STARTED.
 
 Los siguientes prompts se generan justo a tiempo desde el resultado aceptado del shot anterior.
 

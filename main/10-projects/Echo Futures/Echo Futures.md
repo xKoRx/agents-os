@@ -23,7 +23,7 @@ tags:
   - echo-futures
   - algorithmic-trading
 created: "2026-09-25"
-updated: "2026-10-05"
+updated: "2026-10-06"
 ---
 
 # Echo Futures
@@ -2693,7 +2693,7 @@ TOP Senior Recovery / Execution Transport Remediation Lead (one-shot, fresh cont
 
 El Owner amplía la continuidad Stage 2/Stage 3 en un solo programa: hacer funcionar el backtester con Strategy y GerardMM reales; medir cuentas quemadas, retiros y profit de una campaña con bankroll; reinvertir retiros cobrados; máximo cuatro retiros por cuenta; buscar objetivos monetarios convenientes. Plan: [[BTG-PLAN]]. Primer encargo listo: [[BTG-S01-SUBMANAGER-PROMPT]].
 
-**Estado:** `BTG-S01 = READY_FOR_LOCAL_DISPATCH`; `S02–S05 = NOT_STARTED`; `REAL_GERARD_RUN = NOT_RUN` en este programa. S01 usa submanager persistente sin cupo de ciclos internos; especialistas ONE-SHOT. S02 diseña el delta; S03–S05 siguen implementación → adversarial LOCAL independiente → corrección/gate final. El Primary Manager conserva coordinación y no se autocierra.
+**Estado:** `BTG-S01 = BLOCKED_DECISION — IDENTITY; SECONDARY_BLOCKED_EXTERNAL — DATASET`; `S02–S05 = NOT_STARTED`; `REAL_GERARD_RUN = NOT_RUN` en este programa. S01 usa submanager persistente sin cupo de ciclos internos; especialistas ONE-SHOT. S02 diseña el delta; S03–S05 siguen implementación → adversarial LOCAL independiente → corrección/gate final. El Primary Manager conserva coordinación y no se autocierra.
 
 **Datos aún por resolver:** Owner expresó bankroll `5k`, costo `120k` y ~41 cuentas; `USD 5.000 / USD 120` es hipótesis explicativa, no unidad confirmada. Recuperar configuración/identidad Gerard y dataset físico antes de certificar S01; recuperar reglas/fees/settlement del programa antes de resultados económicos. Las 41 compras son capacidad inicial ilustrativa, no límite total con reinversión. Conservar baseline de una cuenta operando a la vez salvo instrucción posterior. Detalle, límites y gates en [[BTG-PLAN]].
 
@@ -2729,4 +2729,4 @@ Métricas mínimas futuras:
 
 Boundary frozen: el futuro Campaign Simulator **orquesta cuentas y bankroll fuera del Backtest Engine**. No replica Strategy/GerardMM/Provider/Accounting; cada cuenta se conduce mediante el mismo engine/contexts/cashflows ya certificados.
 
-**NEXT_MANAGER_ACTION:** ejecutar [[BTG-S01-SUBMANAGER-PROMPT]] con un TOP LOCAL como submanager persistente para obtener el primer backtest histórico REAL de Gerard y reparar sus defectos. Seguir [[BTG-PLAN]]: máximo cinco shots (S01 funcionamiento real; S02 diseño de campaña/objetivos; S03 implementación; S04 adversarial LOCAL; S05 corrección/certificación). La campaña sólo comienza después de validar el baseline histórico. Refrescar HEADs antes de ejecutar; no afirmar runs ni gates aún no demostrados.
+**NEXT_MANAGER_ACTION:** revisar [[BTG-S01-REAL-GERARD-RESULT]]: inventario LOCAL ejecutado, BLOCKED_DECISION por identidad/configuración Gerard y BLOCKED_EXTERNAL secundario por corpus suficiente no recuperado/acceso RO denegado. Resolver/aportar autoridad exacta de Strategy y fuente durable del histórico; submanager persistente retoma el slice y remediación en S01 al recibir esos inputs. S02–S05 siguen NOT_STARTED, corrida real NOT_RUN; no hay aceptación de gate ni intervención D6.
