@@ -1,0 +1,50 @@
+# Summary — P8 Final Audit · Auditor A3 (fuente-grounded)
+
+- **Run auditado:** P7b `e7bc387` · runtime `~/mke/clutifx-ch01-rerun2-20261004/run-rerun2/`
+- **Rango:** w0067–w0099, **ventanas aceptadas únicamente**. Tormenta de transporte (04:34–10:28Z Oct 5): w0093–w0099 REJECTED `provider unavailable` (0 claims, cubiertas por otro worker) → fuera de alcance, como instruido.
+- **Cobertura real:** 23 ventanas aceptadas de 33 (rechazadas: w0073/w0077/w0084 `identity divergence` y w0093–w0099 `provider unavailable`, todas con 0 claims), **220 claims auditados, sin muestreo**.
+- **Evidencia verificada:** 100% de los claims contra transcript; **los 107 frames citados distintos fueron LEÍDOS con Read** (PNG 1920×1080). Ningún nivel fino juzgado sólo desde transcript.
+
+## Distribución de labels (n=220)
+
+| Label | n | % |
+|---|---|---|
+| CORRECT | 202 | 91.8% |
+| DUPLICATE | 13 | 5.9% |
+| PARTIAL | 4 | 1.8% |
+| WRONG | 1 | 0.5% |
+| OVERGENERALIZED / UNVERIFIABLE | 0 | 0% |
+
+- **Precision total (CORRECT/total): 91.8%.**
+- **Precision parcial (CORRECT + PARTIAL como acierto parcial 0.5): 92.7%** — (202 + 4×0.5)/220.
+- **Precision sobre claims no duplicados (202/(220−13)): 97.6%.**
+- Materialidad: 178 material=YES, 42 material=NO (observaciones cosméticas de UI de dibujo: selecciones, recoloreados, desplazamientos, menús de plantilla/paleta).
+
+## Hallazgos clave
+
+1. **WRONG (1):** `cl-smt-ejemplo-derecho-libra` (w0081) — el instructor dice «esto es la libra» pero el frame muestra cabecera **XAUUSD (oro)**. El corpus capturó la contradicción (claim gemelo `cl-smt-ejemplo-derecho-xauusd` CORRECT), pero publicado sin review el claim paramétrico falso convive con el verdadero. Material YES.
+2. **PARTIAL (4):** los tres `cl-scalp-*` de w0075 — la condición (toma/reacción/cierre dentro del mismo rango) es fiel al ASR, pero el concepto «intradía de scalp» es una reconstrucción no soportada de un tramo ASR muy degradado; el contexto (w0072/w0074) indica **intra turtle soup**. Y `cl-smt-forma-estrategia` (w0085) — el ASR es una promesa («es algo así») y los frames citados aún muestran el ejemplo antiguo; la forma nueva sólo se materializa en w0086–w0089.
+3. **DUPLICATE (13):** artefacto sistemático de ventanas solapadas que citan el mismo segmento ASR: asr-00134 (w0067/w0068), asr-00136 (w0068/w0069), asr-00169 (w0078/w0079 ×3), asr-00173 (w0080/w0081 ×4), asr-00174 (w0081/w0083), asr-00191 (w0088/w0089), asr-00193 (w0090/w0091 ×2). Contenido correcto, pero inflan el corpus (~5.9%).
+4. **Los garbles ASR documentados** («Tartel Sub»/«Tartle Sup»≡Turtle Soup, «intertartel sub»≡intra turtle soup, «GIP», «DXI»≡DXY, «JP»≡JPY) **no degradan** los claims donde la proposición es correcta (nota de rango aplicada). El único caso donde el garble sí dañó el claim es w0075 (concepto alucinado, ver PARTIAL/MISSING).
+5. **Parámetros numéricos verificados al dígito** en frames: Stop 0,00209→0,00258 / 0,23% / 25,8 / 96.000; Objetivo 0,00209→0,00835 / 0,73% / 83,4 / 112.930,23; RR 3,23–3,24; Apertura PyG 0,01497/0,01503; Cantidad 1.550.387; niveles 1,13871 y 1,13794; temporalidad 15M/8h(480M). Sin errores numéricos.
+6. **Verificaciones visuales dinámicas confirmadas:** reubicación INTRATURTLESOUP dentro→fuera de zona; beige→negro y desplazamiento de rectángulos; relleno negro→blanco; desaparición de vela/rango EURUSD y recorrido GBPUSD; segunda trayectoria progresiva; cierre de vela fuera del rango; mecha que toma el low; objetivo corregido a nivel superior; última vela GBPUSD sin alcanzar la línea (SMT tipo 2).
+
+## MISSING-KNOWLEDGE (2, ambas material)
+
+1. **w0072 · MISSING_MATERIAL:** «No hay 100% de winrate; pueden pasar pérdidas» (asr-00148/00149) — caveat central de la estrategia, sin claim en ninguna ventana aceptada.
+2. **w0075 · MISSING_MATERIAL:** la regla de completitud del **intra turtle soup** (toma+reacción+cierre dentro del mismo rango; cierre fuera ⇒ rango eliminable) correctamente atribuida — los claims existentes la atribuyen al «intradía de scalp» alucinado.
+
+## Estado de la fase
+
+- 26/26 ventanas aceptadas del rango auditadas al 100% (220/220 claims), 107/107 frames citados leídos.
+- Salidas: `results/FULL-CLAIM-AUDIT-A3.jsonl` (220 filas), `results/MISSING-KNOWLEDGE-A3.jsonl` (2 filas), `results/summary-A3.md`.
+- w0093–w0099 (provider unavailable) y w0073/w0077/w0084 (identity divergence): fuera de alcance de este auditor; se recuerda que sus transcripts contienen contenido no reclamado (p. ej. w0084, 9 segmentos) que ningún worker de claims cubrirá si no se reprocesan.
+
+## FEEDBACK (Agents-OS)
+
+1. **Bootstrap en subagentes one-shot:** AGENTS.md manda invocar `80-agents/skills/agents-os-bootstrap/SKILL.md` al inicio de *toda* sesión, pero los subagentes de auditoría con contexto fresco y tarea cerrada recibimos el mandato sin un modo ligero. Sugerencia: un flag/submodo `bootstrap: minimal-subagent` que resuelva VAULT_ROOT y cargue sólo routing, sin la máquina completa de startup. Coste actual: cada subagente o ignora la regla (lo que hice: bootstrap mínimo manual) o paga el startup completo.
+2. **Reviewer como cuello de botella único:** casi todos los claims publican `UNSUPPORTED_REVIEW_UNAVAILABLE` y 7 ventanas enteras (w0093–w0099) murieron por `vlm provider transport [retry-exhausted]` con budget 2. El pipeline depende de un solo proveedor VLM en la fase de review; conviene budget adaptativo + failover de proveedor, y encolar re-review posterior en vez de publicar UNSUPPORTED de forma permanente.
+3. **Dedup cross-window ausente:** 13/220 claims (5.9%) son duplicados por solape de ventanas (mismo asr-ID citado desde dos ventanas). Un post-pass de deduplicación por `evidence_ids` compartidos + similitud de `statement` lo eliminaría barato.
+4. **Glosario de garbles no inyectado en claims-reconstruction:** el motor de claims reconstruye conceptos desde ASR degradado y alucinó «intradía de scalp» (w0075) donde el corpus ya conoce los garbles canónicos (tartle sub, GIP, DXI…). Inyectar ese glosario en el prompt `mke.claims-recon.v4` y, para tramos con confianza ASR baja, marcar `epistemic` provisional en vez de bautizar conceptos nuevos.
+5. **Cruce INSTRUCTOR_SAID vs VIDEO_OBSERVED:** el caso libra/XAUUSD (w0081) muestra que el revisor automático debería contrastar claims paramétricos dichos por el instructor contra etiquetas visibles en frame y emitir una relación de contradicción (existe `relations` en el esquema) antes de publicar.
+6. **Ventanas REJECTED con contenido:** w0073/w0077/w0084 (identity divergence) y w0093–w0099 dejan transcript sin claims; si no se reprocesan, el capítulo tendrá huecos de conocimiento reales (w0084 tiene 9 segmentos). Sugerir política de reproceso diferido en vez de descarte.
