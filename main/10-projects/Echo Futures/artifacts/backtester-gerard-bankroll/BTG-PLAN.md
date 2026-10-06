@@ -9,7 +9,7 @@ aliases: []
 tags:
   - kind/doc
 created: "2026-10-05"
-updated: "2026-10-05"
+updated: "2026-10-06"
 ---
 
 # BTG-PLAN — Gerard real, bankroll y objetivos
@@ -24,12 +24,12 @@ Mandato Owner recibido el 2026-10-05 (America/Santiago): máximo cinco shots; el
 
 ### 1. Estado y autoridad
 
-Ubicación de este paquete: rama documental docs/backtester-gerard-bankroll-five-shots-20261005 de xKoRx/agents-os. Su integración a master sigue pendiente. La revisión automática rechazó mover master directamente; el paquete se conserva como cambio revisable y puede utilizarse para el inventario/pruebas locales sin ese merge.
+Origen de este paquete: rama documental docs/backtester-gerard-bankroll-five-shots-20261005 de xKoRx/agents-os, commit `a16f4bb25cfb6882146f437f5913302a191313c2`. El submanager LOCAL observó su merge ya existente `d67319f0878610c786b94aa2ad31e5e4503e7efa` y master `bb9fa98be22057e8468e83f72cb53fd147accc09`. La revisión automática había rechazado mover master directamente en Primary; BTG-S01 no ejecutó ese merge ni altera master. Evidencia y deltas nuevos en rama documental separada para revisión.
 
-PROGRAM_STATE = PLANNED
-BTG_S01 = READY_FOR_LOCAL_DISPATCH
+PROGRAM_STATE = IN_PROGRESS
+BTG_S01 = REAL_BOUNDED_BASELINE_COMPLETE_AND_REPRODUCIBLE; FULL13_CONTINUITY_BLOCKED_DECISION; PRIMARY_REVIEW_PENDING
 BTG_S02_TO_S05 = NOT_STARTED
-REAL_GERARD_RUN_THIS_SESSION = NOT_RUN
+REAL_GERARD_RUN_THIS_SESSION = COMPLETE_DERIVED_NQZ3_20231029_20231123; FRESH_IDENTICAL
 CAMPAIGN_RESULTS = NOT_AVAILABLE
 DESIGN_FREEZE = NOT_STARTED
 PROMOTION = SOURCE_ONLY
@@ -124,9 +124,23 @@ Entregables: comando reproducible, configuración/manifest del escenario, tabla 
 
 ### 8. Próxima acción concreta
 
-Ejecutar BTG-S01-SUBMANAGER-PROMPT en un agente TOP LOCAL con repositorios y acceso autorizado a Aranea/datasets. Esta sesión CLOUD verificó documentación y refs por GitHub; no tiene un canal operativo expuesto hacia Daedalus y no ejecutó backtests. El estado READY_FOR_LOCAL_DISPATCH expresa que el encargo está listo, no que el histórico/configuración estén certificados.
+**Corte real vigente2026-10-06:** smoke RAW corregido y longitudinal DERIVED de una cuenta continua NQZ3 Oct29→Nov23 completos y fresh reproducidos IDENTICAL. Code d69d03ec, tip77e188bc test/docs; 113operaciones/39con fills/78fills, cuenta100k→65706.68USD, net−34293.32USD, maxDD35225.55USD. Run6m47.02s/~527.3MiB, fresh7m41.56s; resultSHA b11bd4e…a637. S2/MM compartidos, NO_ADDS funcional explícito, sin optimización. Trece archivos completos hasheados; no tres años continuos ni rollover certificado: gaps configurados mantienen FAIL_VISIBLE_GAPS_V1 y requieren adjudicación Primary de calendario/recuperación para el horizonte integral. BT2-F12–F14 corregidos/regresión+realrerun, [PRdraft4](https://github.com/xKoRx/echo/pull/4). Evidencia y cápsula S02 en [[BTG-S01-REAL-GERARD-RESULT]]. S02–S05 NOT_STARTED; no aceptación Owner, Root abierto. Los cortes preparatorios inferiores conservan su fecha/evidencia y quedan supersedidos por este resultado.
+
+**Primer run real:** prepare completado, `bt-862144ea…f4d97c` ejecutado offline con NQ12-23/S2/MM congelados; FAILED por dos velas ausentes en warmup2023-10-10,0ops/0fills.33.23s/124980KiB, sin interpolación. NORMAL reproduce y selecciona ventana por cobertura; TOP inspecciona discontinuidades y contrato para corrección sólo si hay bug probado. Aún no smoke funcional/longitudinal/rerun exitosos. Evidencia exacta y next action en [[BTG-S01-REAL-GERARD-RESULT]].
+
+**Resolución posterior Owner:** copia de los trece exports ya accesible en workspace Daedalus, carpeta anidada `history/nq/nq`; Root leyó y hasheó íntegramente los trece archivos, tamaños iguales al inventario Windows. Bloqueo de acceso resuelto por Owner, sin ACL ni identidad alternativa. Fresh NORMAL LOCAL `historical_smoke` usa binary integrado fb210ac4 ya compilado para primer run real, diagnóstico/remediación y continuación longitudinal/reproducción. No nueva decisión de perfil ni horizonte necesaria. Estado actual S01 IN_PROGRESS, métricas aún NOT_MEASURED hasta run terminado; S02–S05 NOT_STARTED.
+
+**Delta ejecutivo vigente — 2026-10-06:** Owner fija ventana 6–7 de octubre de 2026 America/Santiago para los cinco shots, sin S06. Originales trasladados a `daedalus:/home/hermes-ops/echo-dev/history/nq/`; el antiguo bloqueo Windows deja de ser vigente. Comprobación en Daedalus identifica sesión `kor` y Permission denied al atravesar home0750 de `hermes-ops`, sin ACL ni perfil MCP autorizado para lectura. Fresh NORMAL LOCAL prepara el CLI integrado `fb210ac4` mientras se solicita copia intacta accesible a kor. Perfil funcional y NO_ADDS inicial ya autorizados, sin reapertura nominal/económica. Próxima acción: leer/verificar bytes y completar smoke, longitudinal y rerun real con ese candidato; NOT_RUN hasta evidencia terminada. S01 permanece abierto y S02–S05 no iniciados; detalles en [[BTG-S01-REAL-GERARD-RESULT]].
+
+Delta Owner 2026-10-06: [[BTG-S01-OWNER-S2-BARS-AUTHORITY]] selecciona S2 actual + GerardMM, NQ Last 1m principal y SL-first ante SL/TP en la misma vela. Alias resuelto; inspección física y seam OHLC en curso. La validación tick posterior queda limitada a cobertura físicamente recuperada; no asumir un año completo. Continúa S01, sin S02 ni optimización.
+
+Inventario BTG-S01 ejecutado LOCAL con especialistas ONE-SHOT TOP/NORMAL. Identidad S2 resuelta por Owner; configuración restante y acceso físico siguen pendientes. Inventario actualizado [[BTG-S01-NQ-1M-DATASET]] confirma AccessDenied en la fuente Windows sin bytes recuperados. [[BTG-S01-S2-1M-FORENSICS]] delimita el prerequisito SDK OHLC, implementado y remediado en `407e03dd`, con TOP fresh review SDK PASS; [PR producto borrador](https://github.com/xKoRx/echo/pull/2) contra S04. Ningún claim de histórico; BT2-F01..F03 siguen abiertos por falta de real rerun. Evidencia y mínima acción en [[BTG-S01-REAL-GERARD-RESULT]] y [[BTG-S01-IDENTITY-CONFIG]]. Submanager conserva continuidad; REAL_SMOKE/LONGITUDINAL/RERUN siguen NOT_RUN y S02 permanece NOT_STARTED.
+
+Delta posterior Owner: autoriza fijar reglas consistentes para el fin funcional del backtester e iterarlas después. [[BTG-S01-FUNCTIONAL-BASELINE-PROFILE]] selecciona contexto/costes/MM uniformes explícitos; config física no se presenta como recuperada. Export existente C:\Temp\history con13files/endpoints legibles en [[BTG-S01-NT-CANDLES-ACQUISITION]], originals completos aún no transferidos porpolicySFTP. NTminute reader y driver nativo avanzan, sin fake quotes, sin S02 ni aceptación.
 
 Los siguientes prompts se generan justo a tiempo desde el resultado aceptado del shot anterior.
+
+Delta integrado local: F08 corregido171fc712 e independiente PASS; CLI198f29f4 realiza S2/MM shared y sealed reproducción en proceso fresco con corpus sintético. TOP detectó F09 cleanup ante error público y F10 metadata autenticidad; F09/F10 independientes PASS en e632; F11 LOW corregido15422 y freshTOPPASS. Carril nativo local listo y [PRdraft3](https://github.com/xKoRx/echo/pull/3) depende SDK [PR2](https://github.com/xKoRx/echo/pull/2); tipfb210ac/code15422. Original corpus/manifest/digests aún pendientes. [[BTG-S01-FINDINGS]] conserva real reruns pendientes; no gate histórico, S02 NOT_STARTED.
 
 ## Fuentes
 
