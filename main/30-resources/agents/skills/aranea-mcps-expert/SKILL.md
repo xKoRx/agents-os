@@ -5,7 +5,7 @@ name: aranea-mcps-expert
 description: Selecciona y gobierna capabilities MCP Aranea para agentes de desarrollo bajo aranea-agent-dev; ambiente, autoridad, estado certificado y runbook. Nunca se activa para MELI/corporativo.
 scope: area
 created: "2026-09-11"
-updated: "2026-10-01"
+updated: "2026-10-06"
 area: "[[Aranea]]"
 entities:
   - "[[Aranea]]"

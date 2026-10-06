@@ -12,7 +12,7 @@ description: >-
   [[mcp-access-plane-operations]] / runbook capability-plane).
 scope: area
 created: "2026-09-15"
-updated: "2026-09-15"
+updated: "2026-10-06"
 entities:
   - "[[Aranea]]"
   - "[[AGENT-PLATFORM - MCP Access Plane]]"
