@@ -128,6 +128,10 @@ Ejecutar BTG-S01-SUBMANAGER-PROMPT en un agente TOP LOCAL con repositorios y acc
 
 Los siguientes prompts se generan justo a tiempo desde el resultado aceptado del shot anterior.
 
+### 9. Delta Owner 2026-10-06 — BTG-S03 (vigente)
+
+Mandato Owner registrado en [[BTG-S03-OWNER-MANDATE-20261006]]. Prioridad vigente: «No quiero una estrategia ganadora: quiero que el motor ejecute la estrategia como en real. Strategy y MM deben poder cambiar sin modificar el motor. KISS/YAGNI. No perder tiempo mejorando ROI». Objetivo S03 = engine correctness con Strategy/MM intercambiables sobre los mismos seams del runtime, ambos modos BASIC/CAMPAIGN ejecutados de verdad y candidato CANDIDATE_READY_FOR_PRIMARY_REVIEW para S04. ROI/rentabilidad queda fuera de alcance: F3 deja de exigir búsqueda de rentabilidad (configuración sigue, optimización NO); T30/holdout/ranking = SUPERSEDED_BY_OWNER_SCOPE (no PASS); T38 acotada a prueba focalizada de propagación de configuración. Resultado económico negativo es aceptable si la ejecución es correcta. Fecha límite Owner: 2026-10-07 America/Santiago; sin S06 ni nueva fase de diseño. Limpieza administrativa asociada: rama codex/btg-s02-design-cloud-20261006 retirada tras recuperar su feedback original a master.
+
 ## Fuentes
 
 - Owner, conversación 2026-10-05: objetivo Gerard + bankroll + cuatro retiros + reinversión + cinco shots.
