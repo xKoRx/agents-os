@@ -153,8 +153,8 @@ No puedes definir una Strategy distinta, completar una política económica ause
 Orquesta autónomamente con subagentes. Decide cuántos necesitas y el orden según evidencia; el Owner no coordina comandos ni workers por ti.
 
 Selección:
-- NORMAL LOCAL / GLM-5.3-Flash para conversión, fixes acotados, pruebas y ejecución.
-- TOP LOCAL / GPT-6 Sol para forensics y divergencias cross-domain.
+- NORMAL LOCAL / GPT 6 Luna para conversión, fixes acotados, pruebas y ejecución.
+- TOP LOCAL / GPT-6.1 Sol para forensics y divergencias cross-domain.
 - TOP/GOD CLOUD para razonamiento sobre una cápsula suficiente cuando ahorre capacidad LOCAL.
 - Adversarial de implementación que requiera E2E: siempre LOCAL.
 - SEARCH/DEEPRESEARCH sólo para una pregunta externa necesaria y actual; semántica interna se resuelve desde autoridades.
