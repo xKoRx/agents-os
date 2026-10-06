@@ -27,7 +27,7 @@ Mandato Owner recibido el 2026-10-05 (America/Santiago): máximo cinco shots; el
 Origen de este paquete: rama documental docs/backtester-gerard-bankroll-five-shots-20261005 de xKoRx/agents-os, commit `a16f4bb25cfb6882146f437f5913302a191313c2`. El submanager LOCAL observó su merge ya existente `d67319f0878610c786b94aa2ad31e5e4503e7efa` y master `bb9fa98be22057e8468e83f72cb53fd147accc09`. La revisión automática había rechazado mover master directamente en Primary; BTG-S01 no ejecutó ese merge ni altera master. Evidencia y deltas nuevos en rama documental separada para revisión.
 
 PROGRAM_STATE = IN_PROGRESS
-BTG_S01 = BLOCKED_DECISION — IDENTITY; SECONDARY_BLOCKED_EXTERNAL — DATASET
+BTG_S01 = IN_PROGRESS — OWNER_SELECTED_S2_AND_1M_PESSIMISTIC_MODEL
 BTG_S02_TO_S05 = NOT_STARTED
 REAL_GERARD_RUN_THIS_SESSION = NOT_RUN
 CAMPAIGN_RESULTS = NOT_AVAILABLE
@@ -124,7 +124,9 @@ Entregables: comando reproducible, configuración/manifest del escenario, tabla 
 
 ### 8. Próxima acción concreta
 
-Inventario BTG-S01 ejecutado LOCAL con especialistas ONE-SHOT TOP/NORMAL; estado BLOCKED_DECISION por identidad/configuración Gerard y bloqueo externo de dataset suficiente. Evidencia y mínima acción en [[BTG-S01-REAL-GERARD-RESULT]], [[BTG-S01-IDENTITY-CONFIG]] y [[BTG-S01-DATASET-INVENTORY]]. Primary Manager revisa y recupera/define sólo esos inputs. Submanager conserva continuidad para ejecutar el slice y remediación al resolverlos; REAL_SMOKE/LONGITUDINAL/RERUN siguen NOT_RUN y S02 permanece NOT_STARTED.
+Delta Owner 2026-10-06: [[BTG-S01-OWNER-S2-BARS-AUTHORITY]] selecciona S2 actual + GerardMM, NQ Last 1m principal y SL-first ante SL/TP en la misma vela. Alias resuelto; inspección física y seam OHLC en curso. La validación tick posterior queda limitada a cobertura físicamente recuperada; no asumir un año completo. Continúa S01, sin S02 ni optimización.
+
+Inventario BTG-S01 ejecutado LOCAL con especialistas ONE-SHOT TOP/NORMAL. Identidad S2 resuelta por Owner; configuración restante y acceso físico siguen pendientes. Inventario actualizado [[BTG-S01-NQ-1M-DATASET]] confirma AccessDenied en la fuente Windows sin bytes recuperados. [[BTG-S01-S2-1M-FORENSICS]] delimita el prerequisito SDK OHLC, ahora delegado a NORMAL en un carril desde S04. Evidencia y mínima acción en [[BTG-S01-REAL-GERARD-RESULT]] y [[BTG-S01-IDENTITY-CONFIG]]. Submanager conserva continuidad; REAL_SMOKE/LONGITUDINAL/RERUN siguen NOT_RUN y S02 permanece NOT_STARTED.
 
 Los siguientes prompts se generan justo a tiempo desde el resultado aceptado del shot anterior.
 
