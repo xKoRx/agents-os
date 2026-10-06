@@ -39,6 +39,8 @@ tags:
 
 2026-10-06: revisión B independiente reproduce BT2-F04 sourcechanged antesEOFexposure y BT2-F05 aliasesphysicalfile; rootregistró findings y congeló SDD correctivo, despachó freshNORMAL gpt-6-luna a carril codex/btg-s01-ntminute-remediation desde54698cb0. C continúa APIstable e integrará sólobytesexactos despuésfixSHA mediante restoretargeted autorizadoenTASKS, sinmerge/rebase/cherry ni writesSDK/D6. Se preparaSDDCLI offline delgado fuera producto, noimplementaciónprematura.
 
+2026-10-06: importación exacta reviewf416c952 (artifact19b6f598, run302f84f6, log6806d43e) verificada. GateB NO_ACCEPTF04/F05; modelo/union/oraclelegacy ycoverageindependentPASS. RootaprobóTCR sólo assertiontimingEOF→Open en testnuevoreciente, conforme09§3/10§2; suitecompletafreshworkerPASSsinomitirtest. CprimerE2Esintéticopasa, no smokehistórico; CLI/closedconsumption clause congruenteInputSequenceexistente, sinframeworknuevo.
+
 ## Fuentes usadas
 
 - [[BTG-PLAN]], [[BTG-S01-SUBMANAGER-PROMPT]], [[Echo Futures]], [[Echo Futures — BT-S04 Final Remediation and Certification]].
