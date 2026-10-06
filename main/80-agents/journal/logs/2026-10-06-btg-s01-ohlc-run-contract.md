@@ -37,6 +37,10 @@ Mandato ONE-SHOT arquitecto/forensics de BTG-S01; authorities Owner, SDK407 y re
 
 Schema materializer y strict lint de artifact/run/log, git diff --check y source clean HEAD407. Sin suites de producto por slice de diseño sin implementation. Worker aplica session-close por mandato, feedback/reusable candidates NONE, PRO_CHAT_POOL_DELTA0; Root no se cierra.
 
+## Reconciliación de handoff
+
+Root confirmó modelo gpt-6.1-sol por harness; registro corregido a model_source host. Se precisó que ACCOUNT_ECONOMICS alcanza TP/protección pero no adds, FILL/ORDER_FINAL sí evalúan adds, y ExecutableQuoteSource no admite fake modeled quote. C se clasifica diagnostic port; seam ModelPrice C2 propuesto, fuera de permiso actual, requiere freeze e intrabar policy sólo ante caso real.
+
 ## Rollback
 
 Revertir sólo el commit documental de esta rama; no modifica baselines de producto ni gates Owner.
