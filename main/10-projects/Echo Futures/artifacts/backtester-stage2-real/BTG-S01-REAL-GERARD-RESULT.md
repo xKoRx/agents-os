@@ -125,7 +125,7 @@ BBO es un gap técnico condicionado al corpus: el NDJSON actual asigna a ambos l
 
 ### Lector NT nativo — candidato congelado
 
-Worker NORMAL LOCAL `gpt-6-luna` publicó código `933b40d65d7fe0946bb5b75038f6c4858d9912ea`, rama `codex/btg-s01-ntminute-ingress`; tip `54698cb0bbd870c942e3ccc010f1a12127684c01` añade sólo VERIFICATION y SPEC/PLAN/TASKS. DatasetSource streaming procesa TXT NT con schema UTC/end-of-bar, ticks exactos, OHLC/volume/order, manifests lógicos, receipts físicos y discontinuidades crudas; no rellena gaps. La unión SourceBar/legacy y políticas de modelo forman identidad explícita. Suite offline dirigida del worker pasó, adapter244/256 sentencias95.3%, oracle legacy exacto. Revisión TOP LOCAL independiente en progreso; no gate histórico ni económico satisfecho por estos tests. Artefacto [[BTG-S01-NTMINUTE-INGRESS-IMPLEMENTATION]] importado desde Agents-OS `3e391ea06440886a93fd84457b36bc0f1665b644` y digest comprobado; run/feedback/session ONE-SHOT también conservados. Worker cerró su sesión, root permanece abierto. Pro Chat pool0.
+Worker NORMAL LOCAL `gpt-6-luna` publicó código `933b40d65d7fe0946bb5b75038f6c4858d9912ea`, rama `codex/btg-s01-ntminute-ingress`; tip `54698cb0bbd870c942e3ccc010f1a12127684c01` añade sólo VERIFICATION y SPEC/PLAN/TASKS. DatasetSource streaming procesa TXT NT con schema UTC/end-of-bar, ticks exactos, OHLC/volume/order, manifests lógicos, receipts físicos y discontinuidades crudas; no rellena gaps. La unión SourceBar/legacy y políticas de modelo forman identidad explícita. Suite offline dirigida del worker pasó, adapter244/256 sentencias95.3%, oracle legacy exacto. Revisión TOP LOCAL independiente demostró BT2-F04/F05: cursor podía exponer bytes mutados antes del check EOF y múltiples aliases del mismo archivo físico se vinculaban a streams distintos. Remediación NORMAL fresca en carril separado activa, regresiones/snapshot verificado antes de exposición; candidato no aceptado. Matriz restante identity/model/union/legacy dirigida pasa, sin gate histórico ni económico satisfecho por estos tests. Artefacto [[BTG-S01-NTMINUTE-INGRESS-IMPLEMENTATION]] importado desde Agents-OS `3e391ea06440886a93fd84457b36bc0f1665b644` y digest comprobado; run/feedback/session ONE-SHOT también conservados. Worker cerró su sesión, root permanece abierto. Pro Chat pool0.
 
 ### Continuidad y próximo paso
 
@@ -160,7 +160,7 @@ LONGITUDINAL_RUN = NOT_RUN
 DETERMINISTIC_RERUN = NOT_RUN
 ECONOMIC_STAGE_COVERAGE = NONE_DEMONSTRATED
 SIGNALS / OPERATIONS / FILLS / ACCOUNT_PNL = NOT_MEASURED
-OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; B01_RESOLVED_BY_OWNER; B02_FUNCTIONAL_PROFILE_SELECTED_BY_OWNER_DELEGATION; ORIGINAL_TRANSFER_AND_NATIVE_DRIVER_PENDING
+OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F04_F05_REPRODUCED_REMEDIATION_IN_PROGRESS; B01_RESOLVED_BY_OWNER; B02_FUNCTIONAL_PROFILE_SELECTED_BY_OWNER_DELEGATION; ORIGINAL_TRANSFER_AND_NATIVE_DRIVER_PENDING
 ARTIFACT = BTG-S01-REAL-GERARD-RESULT + BTG-S01-FINDINGS + identity/config + dataset inventory + NT acquisition + source SDK/remediation/final-review
 PRODUCT_PR = https://github.com/xKoRx/echo/pull/2; DRAFT_AGAINST_S04
 AGENTS_OS_COMMIT = final consolidated commit supplied in chat/PR handoff

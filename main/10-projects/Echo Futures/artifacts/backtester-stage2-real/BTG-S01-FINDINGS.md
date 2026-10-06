@@ -64,6 +64,32 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - real_rerun: NOT_RUN, corpus no adquirido.
 - state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED. Esto no es un cierre permitido por el mandato.
 
+### BT2-F04 — filas mutables expuestas bajo manifiesto congelado
+
+- severity: HIGH (revisor R01/P1).
+- dataset/rango: probe local independiente sobre code `933b40d6`, fila NT observada usada como REFERENCE_ONLY; corpus físico completo no adquirido.
+- expected: ningún byte distinto al receipt validado puede entregarse bajo la identidad del constructor; consumidor que termina horizonte o cierra cursor antes de EOF conserva ese contrato.
+- actual: tras NewSource, cambiar volume35→36 en el archivo y llamar Open/Peek entrega36 con el manifiesto anterior; ErrSourceChanged llega sólo al drenar EOF, que un consumidor corto puede no alcanzar.
+- first_divergence: primera fila alterada entregada por Peek después de modificar fuente; probe TOP `reports/ntminute-ingress-review/adversarial.log`.
+- owner: adapter ntminute immutable source/cursor; ROOT coordina, worker NORMAL fresco remedia.
+- fix: EN_PROGRESO, snapshot completo privado por cursor, copia streaming acotada y hash/size contra receipt antes de exponer una fila; cleanup error/Close; cursor consume backing verificado, sin mutar originales ni cambiar identidad lógica.
+- regression: PENDING_PERMANENT_REGRESSION — cambio antes de Open, cambio después de Open, consumidor corto sin EOF y cleanup/ownership.
+- real_rerun: NOT_RUN; transferencia completa pendiente.
+- state: OPEN_REPRODUCED_REMEDIATION_IN_PROGRESS. No cierre histórico.
+
+### BT2-F05 — un archivo físico asignado dos veces mediante aliases
+
+- severity: MEDIUM (revisor R02/P2).
+- dataset/rango: probe local dos bindings de contratos físicos, paths aliases; REFERENCE_ONLY, sin rango histórico.
+- expected: misma fuente física no puede vincularse a dos streams usando symlink/hardlink/alias de path; archivos distintos legítimos con bytes iguales son admisibles.
+- actual: validación compara sólo strings Path; distintos aliases del mismo inode se aceptan como NQ12-23 y NQ03-24.
+- first_divergence: constructor acepta dos streams y manifiesto tras resolver ambos paths al mismo archivo físico; probe TOP `reports/ntminute-ingress-review/adversarial.log`.
+- owner: adapter ntminute physical-binding preflight.
+- fix: EN_PROGRESO, preflight de identidad filesystem de todos los bindings antes del scan/manifest; no incluir inode/localpath en identidad lógica.
+- regression: PENDING_PERMANENT_REGRESSION — symlink/hardlink/relative-alias y archivos distintos byte-equivalentes.
+- real_rerun: NOT_RUN; transferencia completa pendiente.
+- state: OPEN_REPRODUCED_REMEDIATION_IN_PROGRESS. No cierre histórico.
+
 ### Retención y clasificación
 
 Reproductores y logs del revisor viven fuera del vault en el carril Aranea `work/btg-s01-20261006/source-bar-review-evidence/`; sus digests/manifest quedan en el artifact del revisor. Golden legacy bytes y casos de atomicidad/orden/calendario que detectaron estos defectos son PERMANENT_REGRESSION candidates, sin framework nuevo. Probes usados sólo para auditoría comparativa o coverage son DISPOSABLE_REPRODUCER hasta clasificación final. No se afirma un rerun real ni el cierre de findings.

@@ -37,6 +37,8 @@ tags:
 
 2026-10-06: importados por bytes exactos desde worker `3e391ea` nota B implementación SHA256ce84fc5870ca170e18bee0a3f156ca70c8789bb2236757f5382a2b2c292d1c4a, run16e97aef, feedback8b67c279 y sesión3a01d761. Root comprobó tip54698cb0 limpio, diff933→ce0211 sólo VERIFICATION y docs posteriores sólo SDD. Lector95.3% worker, revisión independiente pendiente; root no adjudicó histórico. Worker ONE-SHOT cerrado, raíz abierta.
 
+2026-10-06: revisión B independiente reproduce BT2-F04 sourcechanged antesEOFexposure y BT2-F05 aliasesphysicalfile; rootregistró findings y congeló SDD correctivo, despachó freshNORMAL gpt-6-luna a carril codex/btg-s01-ntminute-remediation desde54698cb0. C continúa APIstable e integrará sólobytesexactos despuésfixSHA mediante restoretargeted autorizadoenTASKS, sinmerge/rebase/cherry ni writesSDK/D6. Se preparaSDDCLI offline delgado fuera producto, noimplementaciónprematura.
+
 ## Fuentes usadas
 
 - [[BTG-PLAN]], [[BTG-S01-SUBMANAGER-PROMPT]], [[Echo Futures]], [[Echo Futures — BT-S04 Final Remediation and Certification]].
