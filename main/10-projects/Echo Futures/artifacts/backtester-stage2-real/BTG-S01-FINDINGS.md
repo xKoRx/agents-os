@@ -138,9 +138,9 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - first_divergence: error SpoolDir después de NewRun; FDs0→1 run,1→2 reproduce en reports/native-integrated-final-review/cli-f09-capsule.log. Constructor leak DISPROVED acotado: validaciones antes de Open y fallo de Open limpia el adapter.
 - owner: cmd/echo-backtest executeRunSource/executeReproductionSource; no NewRun/ResultWriter/SDK cambios justificados.
 - fix: fresh NORMAL codex/btg-s01-native-cli-final-remediation desde6ef303f5, SDD Root congelado; limpieza mínima de paths de error preservando artefactos exitosos.
-- regression: PENDING_PERMANENT_REGRESSION; mismo input público y FD cerrado antes de GC/retorno, primer error intacto, normalFinish/failuresealed/reproduce/legacy preservados.
+- regression: PERMANENT_REGRESSION + TOP independiente RED198f FD0→1→2 / PASSe632 FD0→0→0, GOGCoff sólo prueba FD; close1/peek0/next0, errors.Is ENOTDIR/errors.As PathError y sentinel secundario preservados; race6.470s/F081.260s/vet/build, freshfailuresealed/repro IDENTICAL y legacy198f→e632 byteiguales. Coverage42/42 bruto/aplicable, ceroexclusiones. [[BTG-S01-NATIVE-CLI-FINAL-REMEDIATION-REVIEW]].
 - real_rerun: NOT_RUN; originales completos pendientes.
-- state: OPEN_REPRODUCED_REMEDIATION_PENDING.
+- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED, scope sintético. No cierre histórico.
 
 ### BT2-F10 — preparación no declara límite de autenticidad
 
@@ -151,7 +151,20 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - first_divergence: prepare_nt.go112, manifest Scope contra aclaración Coordinator de specs/btg-s01-nt-cli/SPEC.md.
 - owner: CLI preparación metadata.
 - fix: fresh NORMAL del mismo carril F09, una aclaración Scope sin cambiar reglas/fidelidad.
-- regression: PENDING_OUTPUT_SCOPE_ASSERTION; preservar configuración/digests/horizonte restantes.
+- regression: TOP independiente Scope authenticity PASS e632, Fidelity/NO_ADDS/callerhorizon/AvailableAt/BBOlimits preservados; mismo gate42/42 sin exclusiones.
+- real_rerun: NOT_RUN; originales completos pendientes.
+- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED, scope sintético. No cierre histórico.
+
+### BT2-F11 — segundo Close tras EOF y error de re-admisión
+
+- severity: LOW; gate local de ownership exact-once.
+- dataset/rango: dos minute records UTC sintéticos reales en el adapter, artefacto CALLER sellado válido + override --spec AUTO válido; e63254875b84b9ebe91b26ca138bb5c19843113a, REFERENCE_ONLY, sin histórico original.
+- expected: un solo Close subyacente entre driver EOF/Finish y cleanup CLI; original admission-mode error preservado.
+- actual: driver cierra sequenceCursor al EOF, sequenceSource retiene el wrapper y el cleanup CLI después de error de re-admisión vuelve a cerrar. Cursor native idempotente: sin fuga ni divergencia económica/error observada.
+- first_divergence: pointer de ownership aún presente después de EOF; cmdReproduce reproduce el error público, seam equivalente instrumentado con DatasetSource nativo observa Close2/Peek3/Next1. Probe TestReviewerOwnershipPublicValidSealedScriptOverride/log public-readmission-eof.log, capsuleSHA74fe84bdca5709a250d9668756f8daed9e77b74b4ac70ca574076dfb896073d7.
+- owner: CLI sequenceCursor/sequenceSource lifecycle run.go; no SDK/NewRun/ResultWriter cambio justificado.
+- fix: fresh NORMAL codex/btg-s01-cli-cursor-once desdee632, RootSDD frozen, wrapper mínimo.
+- regression: PENDING_PERMANENT_REGRESSION; mismo sealed script/override RED e632→nuevoPASS Close1, normal/error/Closecause y F09/F10 unchanged; fresh TOP final requerido.
 - real_rerun: NOT_RUN; originales completos pendientes.
 - state: OPEN_REPRODUCED_REMEDIATION_PENDING.
 
