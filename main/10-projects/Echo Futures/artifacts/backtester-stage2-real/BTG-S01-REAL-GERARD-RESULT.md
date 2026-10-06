@@ -27,6 +27,8 @@ Conseguir el baseline histórico REAL de la Strategy Gerard exacta y GerardMM co
 
 Dos especialistas fresh-context cerraron sus encargos: TOP forensics del seam OHLC/causal bars/ejecución y NORMAL inventario físico Windows de minute/tick y exports. [[BTG-S01-S2-1M-FORENSICS]] pasó diez tests existentes offline y delimitó un ingreso nativo de barras al SDK. [[BTG-S01-NQ-1M-DATASET]] confirma AccessDenied sobre Documents/db/minute, Downloads y Public; ningún byte recuperado. Un nuevo NORMAL implementa sólo el ingreso compartido de barras y su agregación; driver y ejecución OHLC siguen pendientes. Preguntas de trayectoria MM intrabar y configuración se delimitan por evidencia.
 
+Delta implementación: NORMAL cerró candidate `27cb4ceaf62151a042494022cad08e47672a06f2`, [[BTG-S01-SOURCE-BAR-SDK-IMPLEMENTATION]], documentos `612d24b37e2db5d004896a70170921de2c7b3084`. Paquetes bars/analytics/S2 y vet offline PASS; no aceptación. TOP independiente confirmó tres findings en [[BTG-S01-FINDINGS]]: bytes legacy Builder/OwnerState modificados, rechazo de modo después de mutar otro builder y gate de coverage no demostrado con exclusiones de ramas alcanzables. Remediación fresh NORMAL propia desde ese SHA; candidate previo preservado. La importación root normaliza párrafos y distingue instrucción del submanager de decisión Owner, sin alterar pruebas ni resultados.
+
 ### Estado observado
 
 STATE = IN_PROGRESS — S2_OHLC_SOURCE_AND_DATA_READINESS
@@ -72,7 +74,7 @@ El Owner confirmó durante el inventario: “la idea es sacar todo desde ninjatr
 | BTG-B02 / CONFIG_AUTHORITY_GAP | Config MM real y contexto account/provider para el horizonte | D4 sí define EVALUATION account-days 1–2 SL USD 2.000 / TP USD 1.500. Rows posteriores y FUNDED encontradas sólo como fixtures/modeling; no configuración Owner vigente. | Preflight/config, ningún historical run. Recuperar configuración concreta o definir etapa autorizada; no completar valores por inferencia. |
 | BTG-B03 / BLOCKED_EXTERNAL | Corpus físico real con provenance, contratos, orden, timezone y digests | Workspaces históricos seleccionados contienen Polymarket/MLB. Evidencia de feed vivo no acredita corpus multiday. Candidato NinjaTrader no listado: permiso OS denegado bajo perfil RO; ruta/stock quedan no resueltos, no declarados inexistentes. | Antes de DatasetSource; aportar ubicación del export existente o acceso RO a esa fuente. No comprar ni tocar el feed/runtime. |
 
-No se registran findings de software BT2-Fxx cerrados: ninguna corrida histórica real ocurrió y no se observó una primera divergencia histórica. Los bloqueos anteriores son de autoridad/configuración/datos; no fueron maquillados como defectos corregidos ni como ausencia global.
+BT2-F01..F03 materiales registrados en [[BTG-S01-FINDINGS]], hallados en el prerequisito SDK con probes REFERENCE_ONLY y ningún cierre. Ninguna corrida histórica real ocurrió: real_rerun NOT_RUN para todos. Los bloqueos B02/B03 son de configuración/datos; no se maquillan como defectos corregidos ni como ausencia global.
 
 ### Evidencia independiente obtenida
 
@@ -124,8 +126,8 @@ LONGITUDINAL_RUN = NOT_RUN
 DETERMINISTIC_RERUN = NOT_RUN
 ECONOMIC_STAGE_COVERAGE = NONE_DEMONSTRATED
 SIGNALS / OPERATIONS / FILLS / ACCOUNT_PNL = NOT_MEASURED
-OPEN_MATERIAL_FINDINGS = NO_REAL_RUN_FINDINGS_ADJUDICATED; B01_RESOLVED_BY_OWNER; B02_B03_AND_OHLC_SEAM_OPEN
-ARTIFACT = BTG-S01-REAL-GERARD-RESULT + identity/config + dataset inventory + NT acquisition
+OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_OPEN; B01_RESOLVED_BY_OWNER; B02_B03_AND_OHLC_DRIVER_VENUE_OPEN
+ARTIFACT = BTG-S01-REAL-GERARD-RESULT + BTG-S01-FINDINGS + identity/config + dataset inventory + NT acquisition + source SDK/review
 AGENTS_OS_COMMIT = final consolidated commit supplied in chat/PR handoff
 GAPS_FOR_S02 = remaining config + historical corpus + horizon rows/stages + economic units/rules/fees/settlement
 NEXT_PRIMARY_MANAGER_ACTION = NT authorized bytes/export + remaining MM config; native OHLC seam; real S2 slice and pessimistic rerun within same S01

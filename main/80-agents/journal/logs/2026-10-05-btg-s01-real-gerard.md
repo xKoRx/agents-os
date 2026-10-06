@@ -39,6 +39,10 @@ tags:
 
 ## Resolución aplicada
 
+- Delta prerequisito SDK: candidate producto `27cb4cea` y cierre documental `612d24b3` preservados/importados; root normalizó párrafos y corrigió atribución root/Owner. TOP confirmó BT2-F01..F03, aún abiertos y sin rerun real; fresh NORMAL remedial en carril propio. Root sólo congeló SDD/ownership; no implementó código ni aceptó gate.
+
+- Lint estricto root detectó `model_source: system-reported` no permitido en el run importado del SDK. Se normalizó a `host`, con modelo exacto `gpt-6-luna` del despacho expuesto por el harness; sin cambiar consumo ni resultados. Los cinco digests de oráculos TOP fueron comprobados por root: todos OK.
+
 - Delta 2026-10-06: root comprobó por lectura autorizada que C:\Temp es legible; propuso C:\Temp\BTG-NQ-1m como destino de export GUI. Ningún export adquirido, ninguna creación remota ni contenido D6 leído. Inventario y reporte actualizados por delta.
 
 - Reanudación Owner 2026-10-06: S2 actual seleccionada, corpus NQ 1m y regla SL-first. Autoridad en [[BTG-S01-OWNER-S2-BARS-AUTHORITY]]; inventario RO nuevo en [[BTG-S01-NQ-1M-DATASET]] y forensics del soporte OHLC en [[BTG-S01-S2-1M-FORENSICS]]. No se repite el bloqueo nominal como si siguiera sin decidirse; bytes/configuración y seam de producto siguen pendientes.
