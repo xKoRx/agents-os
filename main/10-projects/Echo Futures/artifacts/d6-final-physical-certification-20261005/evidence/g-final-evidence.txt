@@ -1,0 +1,73 @@
+D6 FINAL PHYSICAL CERTIFICATION — EVIDENCE PACK — 2026-10-05
+Verdict: ENVIRONMENTAL_BLOCKED (gate B CURRENT_MARKET_FRESHNESS = STALE; ladder detenido antes de armar egress)
+Authority SHA: d08a30ce9815f820fda7132e20dc42cc345eb8e8 (C0–H CERTIFIED/FROZEN, G-REALTIME PASS/FROZEN)
+OD-D6-1: VALID y SIN CONSUMIR (PHYSICAL_ORDERS_SENT = MODIFIED = CANCELLED = 0)
+Local wall clock at start: 2026-10-05 21:05 -03 = 2026-10-05 19:05 CDT = 2026-10-06T00:05Z
+
+=== 1. FRESHNESS PROBE (runbook M, 2 tomas) — topic echo.futures.market-feed-candidates.v1 p4 ===
+
+TOMA 1 @ ~2026-10-06T00:05Z:
+  {"topic":"echo.futures.market-feed-candidates.v1","partition":4,"offset":6172016,"key":"NQ:NQZ6",
+   "event_type":"QUOTE","event_ts":"2026-10-05T04:40:06.376Z","receive_ts":"2026-10-05T04:40:06.515985915Z",
+   "ingress_ref":{"log_identity":"ninjatrader-addon/5b70e536d0234f50b2f6458e88417206","partition":0,"offset":713565},
+   "payload(b64 decoded)":"{\"bid_price\":\"31074.75\",\"bid_qty\":1,\"ask_price\":\"31075.5\",\"ask_qty\":1}"}
+  event_ts_age = ~19 h 25 min >> bound 30 s (frozen F-S2-02/03)  => STALE
+
+TOMA 2 @ ~2026-10-06T00:07Z (tras >=35 s de espera):
+  mismo offset 6172016, mismo event_ts 2026-10-05T04:40:06.376Z — offsets SIN avance entre tomas.
+  (G-REALTIME congelado había certificado ~1,700–2,300 eventos/min en sesión abierta; 0 avance = feed muerto, no mercado lento.)
+
+=== 2. CAUSA RAÍZ — session events del propio EchoFeedAddOn (evidence sink del relay, sin máscara) ===
+
+/home/kor/opt/echo-dev/var/nt-feed/evidence.jsonl (66,681,651 bytes, mtime 2026-10-05 21:14 -03):
+
+  {"family":"session","session_id":"5b70e536d0234f50b2f6458e88417206","seq":6,
+   "ts_utc":"2026-10-04T16:08:28.27Z","data":{"connection":"Simulación","status":"Connected"}}        <- boot W1 domingo
+  {"family":"session","session_id":"5b70e536d0234f50b2f6458e88417206","seq":713586,
+   "ts_utc":"2026-10-05T04:40:54.675Z","data":{"connection":"Simulación","status":"ConnectionLost"}}  <- 23:40:54 CT dom
+  {"family":"session","session_id":"5b70e536d0234f50b2f6458e88417206","seq":713679,
+   "ts_utc":"2026-10-05T04:44:46.428Z","data":{"connection":"MarketData","status":"RESET","detail":"NQ 12-26"}} <- 23:44:46 CT dom
+
+  SIN NINGÚN evento "Connected" posterior (escaneo reverse completo del sink).
+  Ningún reconnect del AddOn al relay (heartbeat "reconnects":1 invariante desde el domingo).
+  Último frame market en el sink: seq 704099 REJECTED duplicate/rewound @ 2026-10-05T04:36:00.364Z (NQ 12-26 QUOTE 31043.75/31045).
+
+=== 3. LANE ADDON VIVO PERO SIN MARKET DATA (relay :9770, sesión 5b70e536) ===
+
+Heartbeats actuales cada 10 s con frames advancing, market_events CONGELADO:
+  2026-10-05T21:09:54-03 heartbeat {"frames_sent":741559,"market_events":695574,"account_events":11496,"reconnects":1}
+  2026-10-05T21:10:14-03 heartbeat {"frames_sent":741567,"market_events":695574,"account_events":11498,"reconnects":1}
+  2026-10-06T00:14:45Z    heartbeat {"frames_sent":741675,"market_events":695574,"reconnects":1,"order_events":11525,"account_events":11525}
+  ntfeed session status: {"session":"5b70e536…","frames":741516,"market_ok":695534,"stale":false,"last_seq":741559}
+  (stale=false del relay = liveness de transporte; NO significa market data viva.)
+
+=== 4. VENUE ABIERTO (corroboración independiente) ===
+
+WebSearch 2026-10-05 evening: "Nasdaq 100 E-Mini Contracts Delayed Futures - Monday, October 5th: 30807.93 +306.37" (Investing.com).
+Venue trading en la sesión evening (reopen CME 17:00 CT). NQ movió ~-270 pts desde el último evento del feed (31075 -> ~30808):
+la cuenta quedó FLAT durante todo el movimiento; el fail-closed STALE bloqueó new-risk como diseña el modelo frozen.
+
+=== 5. G-EGRESS-0 (estado al inicio y al cierre — NUNCA se armó) ===
+
+- systemd --user echo-futures-bridge.service: "Active: inactive (dead)", "disabled" (estado idéntico al cierre H remediation 2026-10-04).
+- :9771: sin listener, 0 conexiones (ss). Único listener relacionado: :9770 nt-feed-relay PID 1388002 (release 170a4581, up continuo).
+- ETCD DEV prefix /echo/development/futures-bridge/ = 21 claves == baseline H remediation (12 binding/identidad + journal-root + ntx/auth-token[secreto] + 7 nt-feed).
+  Clave de armado /echo/development/futures-bridge/accounts = ABSENT (no aparece en listing ni en el prefijo contado).
+- Binding vivo (frames de cuenta actuales, sink sin máscara @ 2026-10-06T00:17:55.731Z):
+  discovered 8 cuentas, "match":"RESOLVED", resolved {id:"3", name:"RJARA114411201551"} — NT Account.Id "3" estable (11.ª sesión consecutiva).
+  Balances reportados 0/0/0/0/0 = artefacto documentado del estado desconectado del venue (variante weekend-demo; era 50000/50000 en G-REALTIME dom).
+  positions:[] / orders:[] en todos los frames actuales — venue plano, 0 working, 0 unknown.
+- Topic echo.order-commands.E2T-GAU50-01.v1: consume earliest limit 1 => [] (0 mensajes, HW 0, 1 partición).
+- Journal M2 /home/kor/opt/echo-dev/var/futures-bridge/journal: vacío (0 archivos).
+- Release puente presente: /home/kor/opt/echo-dev/releases/d08a30ce9815f820fda7132e20dc42cc345eb8e8/futures-bridge (sin arrancar).
+- Worktree D6 ~/aranea/work/d6-shot1-20261001/echo @ d08a30ce, limpio, origin/feature/d6-shot1-execution-vertical == HEAD.
+
+=== 6. PROCESOS ECHO DEV ===
+
+echo-core PID 9763, echo-gateway PID 1984, lab-worker PID 1985 (current release), nt-feed-relay PID 1388002 — sin cambios de config.
+
+=== 7. ACCESO dev-win (diagnóstico NT-side) ===
+
+- Sesiones TCP hacia relay :9770 desde 192.168.31.132:52285/52287 ESTABLISHED (2 AddOns: feed + exec).
+- tasklist vía SSH dev-win (viewer y operator): POLICY_DENIED / "Access denied" — realidad ACL C0 re-confirmada; el estado interno de NT
+  y la reconexión de la conexión "Simulación"/Tradovate son CICLO OWNER (GUI). No se intentó automatización GUI (fuera de mandato).
