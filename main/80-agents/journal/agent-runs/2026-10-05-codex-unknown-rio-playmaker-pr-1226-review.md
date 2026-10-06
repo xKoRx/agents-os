@@ -3,7 +3,7 @@ type: agent_run
 schema_version: 1
 scope: session
 created: "2026-10-05"
-updated: "2026-10-05"
+updated: "2026-10-06"
 area: "[[Meli]]"
 project:
 application: "[[rio-playmaker]]"
@@ -52,3 +52,11 @@ Sin scores: resultado parcial y sin reproducción concurrente.
 - **Outcome:** Request changes anterior retirado; revisión independiente completada. Approve retenido por dos defectos confirmados y comentados en el HEAD actual.
 - **Rework posterior:** El usuario señaló que un hallazgo crítico debía quedar comentado en GitHub. Se corrigió la omisión y se verificó el comentario remoto bajo rjara_meli.
 - **Aprendizaje para comparar herramientas:** El estado remoto y los comentarios se vincularon al HEAD exacto. Los resultados de Zord se deduplicaron y contrastaron con código, intención y fuente primaria; una ejecución exitosa no implica ausencia de defectos ni valida automáticamente cada hallazgo.
+
+## Seguimiento — 2026-10-06
+
+- **Pedido:** Publicar los comentarios y una propuesta concreta de solución.
+- **Conectividad:** Primer acceso gh devolvió 403 de allowlist; se pidió conectar GlobalProtect sin haber probado que estuviera desconectada. El usuario corrigió esa suposición. Reintento exitoso y route de api.github.com por interfaz VPN; no se cambió configuración de red.
+- **Delta observado:** HEAD f4e2e2de55ec10ce4c1a4040f138499ad106809d contiene 450555c, que incorpora recordRollbackFailure condicional sin dirty/save y guard transaccional en updateComponentDesign. Se leyeron las respuestas del autor y las regresiones añadidas. CI, cobertura, dependencias, análisis estático y workflow SUCCESS; Code Reviewer NEUTRAL.
+- **Publicación verificada:** Respuestas 4196043131 y 4196043645, bajo rjara_meli, en los dos hilos existentes. Explican las soluciones ya aplicadas y proponen pruebas reales de dos transacciones MySQL para reclaim/terminal y PATCH concurrente con rollback. Se evitó publicar una propuesta que presentara como pendientes cambios ya implementados.
+- **Límite:** Seguimiento de esos dos hallazgos y redacción de propuestas; no revisión completa del nuevo delta, nueva ejecución Zord, tests locales, modificación de código ni approve.

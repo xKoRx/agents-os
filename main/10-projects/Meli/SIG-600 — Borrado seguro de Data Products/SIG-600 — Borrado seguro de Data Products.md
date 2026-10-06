@@ -29,7 +29,7 @@ tags:
   - area/meli
   - project/sig-600
 created: "2026-09-28"
-updated: "2026-10-01"
+updated: "2026-10-06"
 ---
 
 # SIG-600 — Borrado seguro de Data Products
@@ -55,6 +55,7 @@ updated: "2026-10-01"
 
 ## 📊 Estado actual
 
+- **2026-10-06 — Hotfix del blocker publicado en [PR draft #1267](https://github.com/melisource/fury_rio-playmaker/pull/1267) contra master:** `hotfix/dp-delete-ignore-deleted-components-master@9118cbe7f`, base `master@7dbc49ccf`. Excluye componentes `Deleted` (case-insensitive) o con `deleted_at`, conservando el bloqueo de componentes vigentes y el historial. Regresión local repetida sobre master: 4.400 tests, 0 fallas/errores, 2 skips preexistentes; line coverage 97,21%; contratos y focalizados PASS. [0.0.1-delete-dp-fix](https://web.furycloud.io/rio-playmaker/versions/detail/0.0.1-delete-dp-fix) creada por solicitud del owner, `FINISHED` desde el mismo SHA; Fury registra `run_test=false` pese a solicitarla sin `--no-tests`. Publicación autorizada explícitamente por el owner; preparación sobre develop conservada local. Review humana y checks del PR pendientes. [Detalle](<Hotfix — Borrado de DP con componentes eliminados.md>) y [descripción](<Descripción PR — rio-playmaker — Hotfix componentes eliminados.md>). Sin deploy ni cambios a SPECs remotas.
 - **Autorización Playmaker en [PR #1228](https://github.com/melisource/fury_rio-playmaker/pull/1228): `d6a72a7e1` publicado, develop `dc38ad5a9` integrado, MERGEABLE y los cinco checks de Fury SUCCESS, incluido CI #5758 sobre el mismo SHA.** Se conserva el lock de ownership y Kraken OR membresía del owner para DELETE; la identidad viene del principal autenticado. El guard independiente de cascade heredado de PR #1182 exige el grant del owner cuando el ownership está completo, incluso para equipo plataforma. Update y updateStatus conservan el mismo lock y transacción, con 403 para el owner previo, 404 después del borrado y 410 para DELETE repetido autorizado. Escenarios de esta rama AT-010-S18/S17, sin colisiones con develop. Regresión: 4.383 tests, 0 fallas/errores y 2 skips preexistentes; 83 selectores y los tres checks LOCAL_STACK PASS. Cleanup de MySQL, loopback y Kafka certificado. Review humana pendiente. La [descripción canónica](<Descripción PR — rio-playmaker.md>) conserva las variantes mock y capturas. Acceso Fury a Kraken, revisión especializada de dependencia, coordinación de blockers concurrentes y BFF/UI pendientes; iniciativa activa y SPECs sin cambios.
 - SIG-600 CA-1 aún pide prevalidar antes del `DELETE`; SIG-643 valida dentro. También queda pendiente coordinar las rutas de deploy concurrentes y las demás reglas de bloqueo antes de considerar lista la iniciativa completa.
 
@@ -135,6 +136,9 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-10-06 — Versión del hotfix** — Creada [0.0.1-delete-dp-fix](https://web.furycloud.io/rio-playmaker/versions/detail/0.0.1-delete-dp-fix) desde `hotfix/dp-delete-ignore-deleted-components-master@9118cbe7f`, por solicitud explícita del owner. Fury confirma `FINISHED`, SHA completo correcto y build #1788; etiqueta `run_test=false` aunque la CLI se invocó sin `--no-tests`. La suite local del mismo commit pasó 4.400 tests (2 skips preexistentes). Sin deploy.
+- **2026-10-06 — Hotfix de componentes eliminados** — Publicado [PR draft #1267](https://github.com/melisource/fury_rio-playmaker/pull/1267) contra master con `9118cbe7f`, tras autorización explícita del owner y port exclusivo del hotfix desde la preparación local sobre develop. Regresión sobre master: 4.400 tests sin fallas/errores (2 skips), line coverage 97,21%; focalizados y contratos PASS. Descripción: [[Descripción PR — rio-playmaker — Hotfix componentes eliminados]]. Sin deploy.
 
 - **2026-10-01 — Nueva iniciativa en develop** — PR #1182 avanzó la base a `dc38ad5a9`. Se conservaron ambas capas de autorización y el lock, se resolvieron los cuatro conflictos y la nueva colisión del catálogo con AT-010-S18/S17. El nuevo setup Mockito delega la lectura bloqueada; se adaptó el stub con doReturn sin debilitar el verify de una sola lectura y ningún save. Regresión de 4.383 tests, 0 fallas/errores, 2 skips; 83 selectores y tres LOCAL_STACK PASS. Cleanup de los tres proyectos del run certificado. Merge `d6a72a7e1` publicado y MERGEABLE frente al último develop; CI #5758 y los cinco checks de Fury SUCCESS en el SHA exacto. Cobertura global 94,84% y del PR 94,02%; static-analyzer sin issues nuevos. Dependencies SUCCESS con aviso LOW por autobulk heredado de develop. Code Scanning de GitHub conserva startup_failure previo sin jobs; no es un check de Fury. Checkout limpio. Sesión AGENTS OS cerrada por pedido explícito; feedback registrado en [[2026-10-01-rio-playmaker-pr-1228-session-feedback]]. La iniciativa sigue activa; review humana pendiente.
 
