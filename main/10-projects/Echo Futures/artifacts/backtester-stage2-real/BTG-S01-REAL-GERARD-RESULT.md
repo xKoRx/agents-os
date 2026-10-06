@@ -21,6 +21,52 @@ Conseguir el baseline histórico REAL de la Strategy Gerard exacta y GerardMM co
 
 ## Contenido
 
+### Resultado real consolidado — 2026-10-06
+
+**El backtester completó y reprodujo el tramo probado; esta configuración perdió.** No se afirma cobertura continua de los tres años ni rollover histórico validado. El submanager permanece abierto y entrega el baseline acotado al Primary Manager; aceptación Owner y gate integral pendientes.
+
+| Evidencia | Smoke RAW corregido | Longitudinal DERIVED corregido |
+| --- | --- | --- |
+| Warmup UTC | 2023-10-15T22:00Z | 2023-10-15T22:00Z |
+| TradeStart → EndExclusive UTC | 2023-10-29T22:00Z → 2023-11-03T21:00Z | 2023-10-29T22:00Z → 2023-11-23T03:29Z |
+| Contrato físico | NQ 12-23 / NQZ3 | NQ 12-23 / NQZ3 |
+| Estado / fresh reproduce | COMPLETE / IDENTICAL | COMPLETE / IDENTICAL |
+| Señales / operaciones materializadas / operaciones con fills / fills únicos | 60 / 30 / 12 / 24 | 225 / 113 / 39 / 78 |
+| Balance inicial → final USD | 100000 → 90029.30 | 100000 → 65706.68 |
+| Gross / costes / net USD | −8900 / 1070.70 / −9970.70 | −27650 / 6643.32 / −34293.32 |
+| Max drawdown USD | 9970.70 | 35225.55 |
+| SOURCE_CLOSE físicos / records / root inputs | 20700 / 136932 / 45656 | 38909 / 270781 / 85824 |
+| Wall proceso run / reproduce | 2m36.06s / 2m40.04s | 6m47.02s / 7m41.56s |
+| MaxRSS run / reproduce KiB | 301204 / 283248 | 539916 / 543384 |
+
+Longitudinal RunID `bt-bd627d8a82e7faf07c5f17c0e89e60352d46abd882e64fa7286f99fd0430029f`. Resultado y reproducción tienen SHA256 idéntico `b11bd4e7776762523f29c9dda8e264c98818f5e209c7b051e72e6e671222a637`, 12668478 bytes. Produce ~95.60 barras físicas/s y ~665.28 records/s medidos sobre el proceso completo, sin race, namespace sin red. Son dos procesos frescos equivalentes, sin sumar cuentas reinicializadas. Último fill/posición flat aNov23T03:06Z; unrealized0 y cashflows0. Una Operation ACTIVE flat permanece declarada bajo REPORT_RESIDUALS: flat no sustituye el intent de terminación del dominio compartido; no se oculta ni se fuerza cierre.
+
+Producción ejecutada `d69d03eceeac1495522473a95baf08087f5c28b3`, binary SHA256 `79bd5f2aab74c242dbece8ebd274975c94d37100d18af80103e3c44d62e69839`; tip publicado `77e188bc1ab7cfddcb99e5fcd1a0ffc0c49ea626` sólo corrige un oráculo nuevo y VERIFICATION, Go producción idéntico a d69. S2 `S2_H4_TREND_BB_PULLBACK_V1` y GerardMM/Provider/Operation/accounting compartidos. Perfil `BTG_FUNCTIONAL_NQ_EVAL_V1`: SIM/GENERIC100K, EVALUATION fijo2000SL/1500TP USD por account-day explícito, fee2.49USD/contrato/lado y1tick slippage. NO_ADDS_FUNCTIONAL_BASELINE_V1, OHLC_1M_MODEL_V1 / SL_FIRST_NEXT_OPEN_V1; trayectoria intrabar modelada, no ticks/quotes observados ni LIVE_EQUIVALENT. No ajuste de S2/MM para mejorar pérdidas.
+
+RunSpec físico SHA256 `c8fa6cbba91fda93b25528a0303392a06314269ef319924eda69ae13635357ef`; dataset lógico `sha256:dea223977939067746d5cd8e4c54e2f6bcf01dae80475e7eb55ec9d8ed5b5c84`; profile `sha256:a43787c9db8fee824fec4d3bf051de8623b549ddcd8192f6c1d70ec868f7f79f`; Calendar `sha256:b092415709ffc9cdd9990cf1194e3b7939d1f94197f488d635b7916d2913981f`; execution `sha256:bbf9f57480b6b974b3685d06460119825a8389da40048ad7e0041e1ce8b71520`. Manifest conserva config antes de resolución y artifact conserva config normalizada/resuelta: digests de objetos distintos, no comparados como si fueran el mismo objeto.
+
+Corpus13files leído íntegramente: 57457558bytes/1096336rows, manifest SHA256 `226f37dd77e9daabc7fe7e985ae1ce11e72f3ecb7fbbd8c54e62fc329f509326`. Derivación exact byte subsequence: 226rows fuera del Calendar configurado excluidas, 1096110retenidas; originals intactos. NQ12-23 derivado SHA256 `85d88ed0b2df3ab6435546676ba49549cfce5cec75495552a28edd13860e7750`, sólo6exclusiones. Manifest exclusiones `318eb05eee54db7e4eed220f157e584eea3b81dc848330d2de745a54811a7d26`; verificación `a67aab5fc67d35b507fc1da0af504198d8cc4ed518babd32976eed6d87e29258`. Los24831 minutos ausentes son respecto al Calendar semanal sin overrides: causaUNKNOWN, no prueba de horario histórico oficial CME ni pérdida del proveedor. No se rellenaron gaps.
+
+**Frontera pendiente:** la corrida continua solicitada de los13exports no está completada. FAIL_VISIBLE_GAPS_V1 detiene en missing-open; el primer gap2023Oct10 está físicamente probado y el longitudinal termina antes del siguienteNov23T03:29. Todos los13derivados tienen segmentos con warmup suficiente, pero esas ventanas no equivalen a una cuenta continua ni acreditan rollover. Primera divergencia fuera de sesión correcta fue sourceOct15[04:32,04:33)Chicago sábado23:32, no una vela viernes21:01; quedan supersedidas las atribuciones preliminares. Primary debe adjudicar cobertura/calendario/recuperación explícita de gaps para el horizonte integral; no se inventa ese contrato en S01.
+
+BT2-F01–F11 revisados previamente conservan regresión específica y ahora tienen rerun integrado real, con alcance de ramas declarado en la matriz; BT2-F12–F14 corregidos con regresión y rerun real; [[BTG-S01-REAL-GAP-FORENSICS]] conserva RED/GREEN, fallos, tiempos y censo pre/post. PR producto [borrador4](https://github.com/xKoRx/echo/pull/4), apilado en fb210ac4/PR3; no merge/despliegue. D6 refrescado nuevamente d08a30ce, limpio, intersección SDK/Core vacía; shareddelta final sólo getter Ledger.FillCount readonly y test nuevo. Agents-OS master observado `2e6c75e8f425be43fedbfe76d280dd92f38b76ed`, sin delta de autoridades Echo/bootstrap/skill aplicables desdea2fb9254. Registros y artifacts ONE-SHOT importados por bytes, root conserva continuidad.
+
+### Comando mínimo y evidencia final
+
+Comandos existentes ejecutados offline; el helper prepara el RunSpec sellado y el reproduce verifica resultado/records según contrato. Los outputs pesados permanecen en workspace Aranea. Se puede elegir otro directorio de salida sin alterar la identidad de inputs.
+
+```sh
+btg_bin=/home/kor/aranea/work/btg-s01-20261006/reports/real-gap-forensics/echo-backtest-counters
+btg_work=/home/kor/aranea/work/btg-s01-20261006/reports/real-history-execution
+unshare --user --map-root-user --net "$btg_bin" prepare-functional-nt --input "$btg_work/input-longitudinal-nqz3-derived-candidate.json" --out "$btg_work/prepared-longitudinal-nqz3-derived-candidate"
+unshare --user --map-root-user --net "$btg_bin" run --spec "$btg_work/prepared-longitudinal-nqz3-derived-candidate/runspec.json" --nt-source-config "$btg_work/source-derived.json" --out "$btg_work/longitudinal-nqz3-derived-candidate"
+unshare --user --map-root-user --net "$btg_bin" reproduce --result "$btg_work/longitudinal-nqz3-derived-candidate/bt-bd627d8a82e7faf07c5f17c0e89e60352d46abd882e64fa7286f99fd0430029f/result.json.gz" --nt-source-config "$btg_work/source-derived.json" --out "$btg_work/reproduce-longitudinal-nqz3-derived-candidate"
+```
+
+Detalle machine-readable de runs/fallos/comandos/digests: `/home/kor/aranea/work/btg-s01-20261006/reports/historical-smoke/historical-smoke-evidence.json`, SHA256 `9d231434ece6bdfec0cedc20f36445f8f23c0b9f8c0299785ce0c5288a1a1445`, 14621bytes. [[BTG-S01-NQZ3-REAL-HISTORICAL-EXECUTION]] importado de worker d92a53ad; root normalizó area/links y primera causa de fallo, con hashes original/normalizado explícitos. [[BTG-S01 Final Operation Residual Classification]] importado exacto de worker53d8f35f, docSHA `9e65000026b29c26abe062b88300d7ab41d113cc76509f86bccecb43a2683923`; autoridad D2-04 I5/TERM-02 y records270594/270610/270612 demuestran residual legítimo sin termination intent. No se clasifica como nuevo defecto material.
+
+Workers historical_smoke y final_operation_residual ONE-SHOT cerrados, registros attribuibles Codex/Luna y Codex/Sol importados. Feedback NORMAL NONE; feedback TOP sólo doctor global con errores ajenos al delta, sin modificar skills ni repetir global suites. Lint final14paths PASS0errors/0warnings tras normalización de enum/sección de un agent_run; proyecto conserva sus cinco errores preexistentes. Root no ejecuta session-close propio ni marca aceptación Owner. El intento de despachar un worker adicional de auditoría de prerequisitos fue rechazado por límite de threads del harness: no se afirma ejecución ni modelo adicional. Root efectuó la revisión de conservación de fixes y alcance de la matriz sin producto nuevo.
+
 ### Reanudación Owner — 2026-10-06
 
 [[BTG-S01-OWNER-S2-BARS-AUTHORITY]] fija S2 actual (`S2_H4_TREND_BB_PULLBACK_V1`) + GerardMM actual, NQ Last 1m principal y SL-first si una vela toca SL y TP. B01 alias se resuelve por instrucción directa; el resto del informe anterior conserva su corte histórico. No se afirmó una corrida ni se completaron rows económicas por inferencia.
@@ -53,16 +99,14 @@ TOP cerró [[BTG-S01-OHLC-RUN-CONTRACT]], docs `549506b9`, artifact digest compr
 
 ### Estado observado
 
-STATE = RUNNING — REAL_CLEAN_SLICE_20231029; FIRST_FAILURES_RETAINED
-WORK_IN_PROGRESS = ACTUAL_CLEAN_SLICE_PID464239; BT2_F12_DIAGNOSTIC_FIX_FOCUSED_REGRESSION
+STATE = REAL_BASELINE_COMPLETE_BOUNDED; FULL_13_CONTRACT_CONTINUITY_BLOCKED_DECISION
+WORK_IN_PROGRESS = CONSOLIDATION_AND_PRIMARY_MANAGER_REVIEW; NO_HISTORICAL_PID_ACTIVE
 FUNCTIONAL_CONFIG_AUTHORITY = OWNER_DELEGATED_CONSISTENT_RULES_2026_10_06
-SDK_STATE = READY_SDK_PREREQUISITE_REVIEW_ONLY
-SECONDARY_STATE = OWNER_COPY_13_FILES_FULLY_READ_AND_HASHED; FUNCTIONAL_CONFIG_SELECTED; REAL_EXECUTION_PENDING
-REAL_SMOKE = FAILED_FIRST_ATTEMPT_SOURCE_COVERAGE_INCOMPLETE; SUCCESSFUL_SMOKE_NOT_YET_DEMONSTRATED
-LONGITUDINAL_RUN = NOT_RUN
-DETERMINISTIC_RERUN = NOT_RUN
-ECONOMIC_STAGE_COVERAGE = NOT_DEMONSTRATED
-SIGNALS / OPERATIONS / FILLS / ACCOUNT_PNL = NOT_MEASURED
+REAL_SMOKE = COMPLETE_RAW_5_DAYS_CORRECTED
+LONGITUDINAL_RUN = COMPLETE_DERIVED_NQZ3_OCT29_NOV23
+DETERMINISTIC_RERUN = BOTH_FRESH_IDENTICAL
+ECONOMIC_STAGE_COVERAGE = EVALUATION_FUNCTIONAL_NO_ADDS_ONLY
+SIGNALS / OPERATIONS / FILLS / ACCOUNT_PNL = 225 / 113 / 78 / MINUS_34293_32_USD
 
 El inventario previo del Primary es preparación documental; no acredita datos físicos ni una corrida. S00–S04 son ACCEPTED_INPUT para capacidades; D6, Generic20/GAU50 y simuladores previos son REFERENCE_ONLY. Otros runs permanecen UNREVIEWED.
 
@@ -103,6 +147,20 @@ Primer fracaso de gap reproducido en proceso fresco: IDENTICAL,44.23s; no acredi
 Inventory TOP encontró segmento limpio NQZ3 de warmup2023-10-15T22Z a2023-11-03T21Z,90H4 completos, readinessOct26T10Z. Selección por calidad/cobertura, nunca por PnL. Smoke actual: warmupOct15T22Z, tradeOct29T22Z → Nov3T21Z (cinco account-days); PID464239, wrapper464204. A18:47:03UTC seguía activo102s, CPU acumulado4m10s y RSS214992KiB. RunID aún no materializado; estado RUNNING, nunca PASS. Comando exacto en log externo `/home/kor/aranea/work/btg-s01-20261006/reports/real-history-execution/smoke-clean-long-20231029.log`: binaryecho-backtest `run --spec .../prepared-smoke-clean-long-20231029/runspec.json --nt-source-config .../source.json --out .../smoke-clean-long-20231029`, bajo namespace offline y time rusage.
 
 TOP determina causa de omisiones intrasesión UNKNOWN (no-trade vs pérdida de datos no demostrado); no se rellena ni relaja policy `FAIL_VISIBLE_GAPS_V1`. Inventario inicial identifica tres contratos sin segmento suficiente para51H4 entre gaps/outside rows (03-25 max48H4,09-25 max49,12-25 max34), pendiente paquete preciso. Estos límites no se adjudican como bugs ni full13COMPLETE; no se suman cuentas reseteadas. Longitudinal/rerun exitosos pendientes del primer smoke funcional y remedioF12.
+
+### Baseline real previo al fix de resumen y longitudinal vigente
+
+Smoke `bt-0049ea259d5b853e3ef4504f6330790048e5401c966d98d8a191b9b5b1ad5fb0` terminó COMPLETE, warmupOct15T22Z / tradeOct29T22Z → Nov3T21Z. Fuente NQ12-23 original, codefb210ac4, misma S2/MM/perfil. Resultado6,588,615bytes, SHA256 `cdbab77738600019410a6d754a73b9992b168da3ee2b79d5e70a78df8fffc19f`. Records136932, root inputs45656; SOURCE_CLOSE20700 (rootordinal NO es conteo physicalbars).150.36s/maxRSS274940KiB:137.67physicalbars/s,910.7records/s,303.64rootinputs/s. Fresh reproduce IDENTICAL con mismoRunID/records,177.40s/maxRSS272868KiB. REPRODUCIBLE para ese escenario; no LIVE_EQUIVALENT.
+
+Eventos compartidos reconciliados:60 señales (30OPEN/30CLOSE_ALL),30decisionesProviderALLOW,30operaciones materializadas/terminales (12con fills),24fills con24provider_execution_id únicos,430contract-sides;34órdenes observadas y10cancels confirmados. Coste430×2.49=1070.70USD. Cuenta inicial100000USD, balance/equity final90029.30USD, gross−8900USD, net−9970.70USD, unrealized0/exposición0; maxDD9970.70USD. Cinco account-day PnL netos−1999.30/−1979.78/−1994.26/−1998.40/−1998.96. Esta configuración perdió en este período; no se optimizó. No se infieren cuentas quemadas ni resultados de prop/funded.
+
+Encontrados BT2-F13: resumen reporta fills0/operations0 pese a los eventos/census anteriores; BT2-F14: residual operation abierto pese a latest shared snapshot TERMINAL/MM_NO_ACTION, CurrentOperationID retenido intencionalmente. Account-day/stage residuals sí legítimos bajo REPORT_RESIDUALS. TOP prueba RED y corrige finish/getter SDK readonly FillCount sin mutar economía, scheduler ni política. D6 refrescado antes sharedgetter: d08a30ce/master372af59a, limpio, delta bridge-only/no SDK-Coreintersección. BT2-F12 ya tiene fix970f1d52 + regresión y dos failedrealreruns/freshreproIDENTICAL con reached-time/source-ref precisos; estado de cierre en [[BTG-S01-FINDINGS]].
+
+Manifiesto corpus raw13files `reports/historical-smoke/corpus-manifest.json`, SHA256 `226f37dd77e9daabc7fe7e985ae1ce11e72f3ecb7fbbd8c54e62fc329f509326`:57457558bytes/1096336filas,0malformed/order/duplicates/tickmisaligned/OHLC/negativevolume. Inventory usa aliasesNQZ23 etc.; RunSpec NQZ3 identifica misma combinación year2023/month12/externalNTref y hash, sin equivalencia implícita de streamIDs.
+
+Preparación derivada autorizada: exact byte subsequence de NT,226filas fuera de regiones del calendario compartido excluidas con ref/interval/rawlineSHA/reason;1096110retained. Sólo6exclusiones en NQ12-23 (68771retained). Originales inalterados; intrasesiongaps íntegros/failvisible. Scope explicitado en `reports/real-gap-forensics/derived-nt-weekly-v1` manifest. Tras excluir fuera-sesión los13contratos sí tienen segmentos≥51H4, por lo que conclusión RAW anterior de tres sinwarmup ya no aplica a DERIVED. Full13span sigue limitado por gaps auténticos/causaUNKNOWN, sin policy de recuperación inventada.
+
+Longitudinal raw más amplio falló correctamente al encontrar otras filas fuera sesión; no se interpreta como éxito. Longitudinal DERIVED actual RunID `bt-ac706c414d88dfbb1d4057c56dee113a4bee92fdc4a22435cd9968b89756b5c5`, PID475832/time475797: warmupOct15T22Z, tradeOct29T22Z, finNov23T03:29Z (último observedclose pre-intragap). Reejecuta íntegro prefix desde cuenta100k en UN run, no suma smoke/resetaccounts. Al último check seguía activo109s/RSS~222MB, codefb pre-counterfix; finalpostfix/repro pendientes. Logs/spec/source derivados conservados en `reports/real-history-execution/longitudinal-nqz3-derived`. No PID futuro ni PASS se promete.
 
 ### Autoridad recuperada y aislamiento
 
@@ -237,25 +295,22 @@ ROOT_AGENT_RUN = SKIPPED: coordinación, revisión de evidencia y documentación
 
 ```text
 SUBTASK = BTG-S01
-STATE = IN_PROGRESS_REAL_HISTORY
-SDK_STATE = READY_SDK_PREREQUISITE_REVIEW_ONLY; PRODUCT_407e03dd
-INPUT_STATE = E44b741e_BOUNDED_LOCAL_VERIFIED; REAL_RERUN_PENDING
-NATIVE_DRIVER_STATE = FROZEN_e2e15a3559034a3ed08c04f247baf4919e20b2ff; F08_FIX_171fc712_INDEPENDENTLY_VERIFIED; CLI_SOURCE_15422c2329164a33a76bf63912491168227660b7_READY_LOCAL_NATIVE_BASELINE_REVIEW_ONLY
-BASELINE_SHA = cd451972b242c8933321e03001decd4b6d778c61
-DATASET = OWNER_LOCAL_COPY_13_NQ_LAST_1M_FILES_READABLE_AND_FULL_BYTES_HASHED; SOURCE_OWNER_PROVENANCE; EXHAUSTIVE_MANIFEST_PREPARATION
-GERARD_STRATEGY_AUTHORITY = OWNER_2026_10_06_S2_H4_TREND_BB_PULLBACK_V1; SHARED_DEFAULTS_SELECTED_FOR_FUNCTIONAL_RUN
-GERARD_MM_AUTHORITY = D4-B2 + shared gerardmm; day1/2 SL2000/TP1500; runtime config NOT_RECOVERED; FUNCTIONAL_PROFILE_NOW_SELECTED_BY_OWNER_DELEGATION
-REAL_SMOKE = NOT_RUN
-LONGITUDINAL_RUN = NOT_RUN
-DETERMINISTIC_RERUN = NOT_RUN
-ECONOMIC_STAGE_COVERAGE = NONE_DEMONSTRATED
-SIGNALS / OPERATIONS / FILLS / ACCOUNT_PNL = NOT_MEASURED
-OPEN_MATERIAL_FINDINGS = BT2-F01_F02_F03_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F04_F05_FIX_REGRESSION_VERIFIED_REAL_RERUN_PENDING; BT2-F06_F07_FIX_REGRESSION_INDEPENDENTLY_VERIFIED_REAL_RERUN_PENDING; BT2-F08_FIX_REGRESSION_INDEPENDENTLY_VERIFIED_REAL_RERUN_PENDING; BT2-F09_F10_FIX_REGRESSION_INDEPENDENTLY_VERIFIED_REAL_RERUN_PENDING; BT2-F11_LOW_FIX_REGRESSION_INDEPENDENTLY_VERIFIED_REAL_RERUN_PENDING; B01_RESOLVED_BY_OWNER; B02_FUNCTIONAL_PROFILE_SELECTED_BY_OWNER_DELEGATION; ORIGINAL_ACCESS_RESOLVED_BY_OWNER_COPY; REAL_RUN_PREPARATION
-ARTIFACT = BTG-S01-REAL-GERARD-RESULT + BTG-S01-FINDINGS + BTG-S01-CLI-CURSOR-ONCE-FINAL-REVIEW + dataset/identity/profile + NTminute/driver/CLI reports
-PRODUCT_PR = https://github.com/xKoRx/echo/pull/2; DRAFT_AGAINST_S04; https://github.com/xKoRx/echo/pull/3 NATIVE_DRAFT_DEPENDS_ON_PR2; VERIFIED_TIP_fb210ac4afeab2315aaa3c424f287c2d9db5a7b3
-AGENTS_OS_COMMIT = final consolidated commit supplied in chat/PR handoff
-GAPS_FOR_S02 = authentic corpus manifest/reruns; explicit rollover/holiday evidence; prop/funded/scaling rules and cost calibration; economic units/withdrawals/settlement
-NEXT_PRIMARY_MANAGER_ACTION = await actual smoke outcome from integrated fb210ac on Owner copies; remediate first divergence then longitudinal and fresh deterministic rerun within SAME_S01; deadline Oct6_7_America_Santiago
+STATE = BLOCKED_DECISION; REAL_BOUNDED_BASELINE_READY_FOR_PRIMARY_MANAGER_REVIEW
+BASELINE_SHA = d69d03eceeac1495522473a95baf08087f5c28b3; published_tip77e188bc_test_docs_only
+DATASET = 13_OWNER_NT_EXPORTS_FULLY_HASHED; COMPLETED_RUN_NQZ3_DERIVED_ONLY; corpus226f37dd; derived85d88ed0
+GERARD_STRATEGY_AUTHORITY = OWNER_2026_10_06_S2_H4_TREND_BB_PULLBACK_V1_SHARED_DEFAULTS
+GERARD_MM_AUTHORITY = D4-B2_SHARED_GERARDMM; OWNER_FUNCTIONAL_PROFILE_BTG_FUNCTIONAL_NQ_EVAL_V1
+REAL_SMOKE = COMPLETE_RAW_OCT29_NOV3; 30_operations_24_fills
+LONGITUDINAL_RUN = COMPLETE_DERIVED_OCT29_NOV23; bt-bd627d8a82e7faf07c5f17c0e89e60352d46abd882e64fa7286f99fd0430029f
+DETERMINISTIC_RERUN = IDENTICAL_FRESH_PROCESS; result_SHA_b11bd4e7776762523f29c9dda8e264c98818f5e209c7b051e72e6e671222a637
+ECONOMIC_STAGE_COVERAGE = EVALUATION_NO_ADDS_FUNCTIONAL_ONLY; NO_FUNDED_CAMPAIGN
+SIGNALS / OPERATIONS / FILLS / ACCOUNT_PNL = 225 / 113_materialized_39_filled / 78_unique / -34293.32_USD
+OPEN_MATERIAL_FINDINGS = NONE_CONFIRMED_OPEN_F01_TO_F14; FULL13_GAPS_AND_REAL_ROLLOVER_ARE_UNRESOLVED_COVERAGE_CONTRACT
+ARTIFACT = BTG-S01-REAL-GERARD-RESULT; BTG-S01-FINDINGS; BTG-S01-REAL-GAP-FORENSICS; worker historical execution report; external sealed runs/manifests
+PRODUCT_PR = https://github.com/xKoRx/echo/pull/4; DRAFT_STACKED_ON_PR3; NO_MERGE
+AGENTS_OS_COMMIT = consolidated commit supplied in PR/chat; no self-referential SHA fabricated
+GAPS_FOR_S02 = explicit historical Calendar/gap recovery and real rollover coverage; adds/scaling; funded/prop costs; economic units; 4 withdrawals/reinvestment/bankroll
+NEXT_PRIMARY_MANAGER_ACTION = review completed bounded baseline and adjudicate full13coverage contract before S02; no sixth shot; window Oct6_7_America_Santiago
 OWNER_ACCEPTANCE = NOT_ADJUDICATED
 SUBMANAGER_SESSION = OPEN
 PRO_CHAT_POOL_DELTA = 0

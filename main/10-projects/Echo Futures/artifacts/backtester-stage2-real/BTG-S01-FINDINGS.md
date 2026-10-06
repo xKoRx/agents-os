@@ -23,9 +23,25 @@ Registrar las divergencias materiales verificadas del carril BTG-S01 sin convert
 
 ### Corte y procedencia
 
-Delta real2026-10-06: Owner entregó copias legibles de13exports; root verificó bytes/hashes y primeros intentos históricos. Los estados NOT_RUN de F01–F11 conservan su corte previo y todavía no se cierran por los fracasos de cobertura/sesión actuales. BT2-F12 proviene de estos nuevos artifacts auténticos. Smoke limpio activo y paquete de reruns en curso; no blanket closure.
+Corte final2026-10-06: trece exports reales legibles y hasheados; smoke RAW y longitudinal DERIVED con código posterior a los fixes terminan COMPLETE y fresh reproduce IDENTICAL. BT2-F01–F11 conservan abajo su reproducción/regresión específica y review independiente anterior. Su rerun histórico ahora es bt-b9676b4b…e4d44 y bt-bd627d8a…029f sobre el candidato integrado que contiene los fixes; no se dice que el mercado haya disparado cada error artificial de compatibilidad, control o cleanup.
 
-Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certificado `cd451972b242c8933321e03001decd4b6d778c61`. Revisor TOP LOCAL `gpt-6.1-sol` independiente. Corpus real NOT_ACQUIRED; todos los rangos siguientes son N/A para histórico real, y los probes son REFERENCE_ONLY. Remediación NORMAL fresh-context `407e03dd7ebce1f93b04ea5ff5bb5a33f1bac1ef` en `codex/btg-s01-source-bars-remediation`, preservando el candidate anterior; nuevo TOP independiente confirma el gate SDK en [[BTG-S01-SOURCE-BAR-SDK-FINAL-REVIEW]]. Ningún finding cumple todavía el cierre histórico frozen.
+El diff producción fb210ac4→d69d03ec sólo cambia atribución FAILED en driver/finish, resumen/residual en finish y getter accounting readonly: conserva los fixes F01–F11 previamente revisados. Cada cierre usa la regresión específica más este rerun auténtico del producto integrado; no convierte fixtures legacy TRADE, aliases, mutation ni control intrabar en ticks observados. Cobertura full13/rollover y recuperación de gaps quedan como frontera de contrato/datos, no finding de bug cerrado por un slice único.
+
+| Finding | Prueba específica preservada | Evidencia real posterior al fix | Cierre |
+| --- | --- | --- | --- |
+| F01 | Once oráculos legacy bytes fresh BYTE_EQUAL / golden permanentes | Código SDK407 conservado; OHLC prepare/run/reproduce correcto | FIXED_WITH_REGRESSION_AND_REAL_RERUN |
+| F02 | Preflight mixed mode atómico RED→GREEN | Modo OHLC consistente en toda agregación5m/H4 del run | FIXED_WITH_REGRESSION_AND_REAL_RERUN |
+| F03 | Coverage raw/aplicable con guards demostrados en407 | Misma lógica SDK sobre38909barras auténticas | FIXED_WITH_REGRESSION_AND_REAL_RERUN |
+| F04 | Mutable head/tail/append/short horizon RED→GREENe44 | Receipt/snapshot de archivos auténticos y freshsamehash | FIXED_WITH_REGRESSION_AND_REAL_RERUN |
+| F05 | SameFile symlink/hardlink/relative aliases; distinctfiles permitido | Binding físicoNQ12-23 con original/derivedmanifest explícito; no multi-stream claim | FIXED_WITH_REGRESSION_AND_REAL_RERUN |
+| F06 | Firedstorage bound/causal trace regression | 38909barras completas en6m47.02, no timeout ni historial timer bloqueante | FIXED_WITH_REGRESSION_AND_REAL_RERUN |
+| F07 | Latecontrols+30s/intervalend/horizon guards race | Trayectoria histórica normal sin caller cashflow; guard conserva regresión específica | FIXED_WITH_REGRESSION_AND_REAL_RERUN |
+| F08 | Reset17h/before/at/after/DST RED→GREEN171 | WarmupOct15→Nov23 cruza resets y ChicagoDSTNov5 sin colisión | FIXED_WITH_REGRESSION_AND_REAL_RERUN |
+| F09 | FD cleanup public run/reproduce error RED→GREEN | Ambos CLI reales terminan/seallan/cierra proceso; no error-outdir artificial observado | FIXED_WITH_REGRESSION_AND_REAL_RERUN |
+| F10 | Scope authenticity/NO_ADDS/preparation assertions | Manifestreal declara explícitamente noadjudicarautenticidad/modelodeejecución | FIXED_WITH_REGRESSION_AND_REAL_RERUN |
+| F11 | EOF/readmission closeexactonce RED→GREEN15422 | CLI histórico run/reproduce native completo con mismo producto integrado | FIXED_WITH_REGRESSION_AND_REAL_RERUN |
+
+Rerun común identificado para cada fila: long RunID bt-bd627d8a82e7faf07c5f17c0e89e60352d46abd882e64fa7286f99fd0430029f; code d69d03eceeac1495522473a95baf08087f5c28b3; result/repro SHA256 b11bd4e7776762523f29c9dda8e264c98818f5e209c7b051e72e6e671222a637, 270781records/113ops/78fills. No blanket claim de todos los modos/controlbranches con datos de mercado. BT2-F12–F14 tienen además reproducciones reales específicas antes/después descritas abajo. Esta adjudicación Root no sustituye aceptación Owner ni adversarial S04.
 
 ### BT2-F01 — serialización legacy modificada
 
@@ -37,8 +53,8 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - owner: SDK bars/mode serialization; raíz coordina, NORMAL implementa en carril correctivo.
 - fix: `407e03dd`; Marshal omite sólo modo TRADE redundante, restore recupera evidencia durable; OHLC modo/high-water explícitos. Once salidas legacy BYTE_EQUAL contra fresh baseline.
 - regression: golden hashes independientes en source_serialization_test.go; oráculos fresh de once estados/fronteras y restore eviction/discard PASS. PERMANENT_REGRESSION en producto, probes externos retenidos.
-- real_rerun: NOT_RUN, corpus no adquirido.
-- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED. Esto no es un cierre permitido por el mandato.
+- real_rerun: COMPLETE rawbt-b9676b4b…e4d44 + derivedbt-bd627d8a…029f, ambos freshIDENTICAL, code d69d03ec integra fix específico. Alcance/ramas reales delimitados en matriz anterior.
+- state: FIXED_WITH_REGRESSION_AND_REAL_RERUN; regresión específica y rerun integrado acotado, no equivalencia LIVE ni full13.
 
 ### BT2-F02 — rechazo de modo tras mutación parcial
 
@@ -50,8 +66,8 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - owner: SDK analytics preflight del nuevo modo, sin refactor de validación canónica legacy.
 - fix: `407e03dd`; preflight de modo de todos los builders antes de admission/guard/grid/aggregation.
 - regression: source_contract_regression_test.go y oracle independiente PASS; cero efectos y estado/owner_seq/guard inalterados. TOP nuevo verifica también hidden mode, hot discard y fence inverso.
-- real_rerun: NOT_RUN, corpus no adquirido.
-- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED. Esto no es un cierre permitido por el mandato.
+- real_rerun: COMPLETE rawbt-b9676b4b…e4d44 + derivedbt-bd627d8a…029f, ambos freshIDENTICAL, code d69d03ec integra fix específico. Alcance/ramas reales delimitados en matriz anterior.
+- state: FIXED_WITH_REGRESSION_AND_REAL_RERUN; regresión específica y rerun integrado acotado, no equivalencia LIVE ni full13.
 
 ### BT2-F03 — gate de cobertura no demostrado
 
@@ -63,8 +79,8 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - owner: evidencia/VERIFICATION del implementer, revisada independientemente.
 - fix: evidencia de `407e03dd` supersede claims del candidate, que se conserva. source_bar.go129/135 bruto95.56%; serialization19/19; admission11/11; resolver8/8; preflight4/4; applySourceBar38/41 bruto y38/38 aplicable tras proof independiente de tres guards serialmente redundantes. Errores reales no excluidos.
 - regression: casos permanentes older-region, holidays y malformedSource PASS; nuevo TOP ejecutó perfiles raw y audita rangos/denominadores/exclusiones en final-all.cover + coverage_audit.py. No coverage filtrado del source.
-- real_rerun: NOT_RUN, corpus no adquirido.
-- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED. Esto no es un cierre permitido por el mandato.
+- real_rerun: COMPLETE rawbt-b9676b4b…e4d44 + derivedbt-bd627d8a…029f, ambos freshIDENTICAL, code d69d03ec integra fix específico. Alcance/ramas reales delimitados en matriz anterior.
+- state: FIXED_WITH_REGRESSION_AND_REAL_RERUN; regresión específica y rerun integrado acotado, no equivalencia LIVE ni full13.
 
 ### BT2-F04 — filas mutables expuestas bajo manifiesto congelado
 
@@ -76,8 +92,8 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - owner: adapter ntminute immutable source/cursor; ROOT coordina, worker NORMAL fresco remedia.
 - fix: e44b741e0a6c32d39326b46738dc70565db4759c; snapshot completo privado por cursor verificado contra receipt antes de exponer filas, backing inmutable; handles cerrados en error/Close y unlink best effort con error si OS deniega. Metadata/identity lógicos preservados.
 - regression: PERMANENT_REGRESSION immutable_source_regression_test.go; TOP fresh final RED933→PASSe44 preOpen head/tail/append/truncate/missing, short horizon Close beforeEOF, dualcursor/postOpenimmutability, rawmetadata/oracle byteigual. Large tail >buffer:1500/2000 rows, RED933fila82→PASSfix. Rawadapter290/29897.315%, exclusiones0.
-- real_rerun: NOT_RUN; transferencia completa pendiente.
-- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED. No cierre histórico.
+- real_rerun: COMPLETE rawbt-b9676b4b…e4d44 + derivedbt-bd627d8a…029f, ambos freshIDENTICAL, code d69d03ec integra fix específico. Alcance/ramas reales delimitados en matriz anterior.
+- state: FIXED_WITH_REGRESSION_AND_REAL_RERUN; regresión específica y rerun integrado acotado, no equivalencia LIVE ni full13.
 
 ### BT2-F05 — un archivo físico asignado dos veces mediante aliases
 
@@ -89,8 +105,8 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - owner: adapter ntminute physical-binding preflight.
 - fix: e44b741e0a6c32d39326b46738dc70565db4759c; preflight SameFile de todos los bindings antes del scan/manifest; physical inode/path excluidos de identidad lógica.
 - regression: PERMANENT_REGRESSION + TOP fresh final RED933→PASSe44 aliases symlink/hardlink/relative path, distinct byteequivalentfiles permitted; full adapter race/vet/NDJSON/oracle/TCR antimasking PASS.
-- real_rerun: NOT_RUN; transferencia completa pendiente.
-- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED. No cierre histórico.
+- real_rerun: COMPLETE rawbt-b9676b4b…e4d44 + derivedbt-bd627d8a…029f, ambos freshIDENTICAL, code d69d03ec integra fix específico. Alcance/ramas reales delimitados en matriz anterior.
+- state: FIXED_WITH_REGRESSION_AND_REAL_RERUN; regresión específica y rerun integrado acotado, no equivalencia LIVE ni full13.
 
 ### BT2-F06 — coste cuadrático del historial de timers nativo
 
@@ -102,8 +118,8 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - owner: backtester native driver timer storage, no shared SDK/MM/Strategy.
 - fix: C congelado e2e15a3559034a3ed08c04f247baf4919e20b2ff, stable native-only removal of Fired at nextRoot entry before any index selected; no new scheduler ni modificación legacy. Misma prueba nonrace40.48s→42.46s no demuestra speedup; storage live acotado y trace/result exactos. CPUprofileafter GC47.4%/Builder.findSource8.95%/completeNativeBar4.82%; timer scan deja de ser hotspot, atribución dominante no confirmada. No se aplicó optimización SDK/cache especulativa.
 - regression: FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED — PERMANENT_REGRESSION compara48/1000min con5000fired, causal records/result/ref digests iguales y livepeak<=20; selección/generation/order/residual race PASS. Mismo fixture/flags beforeafter sin speedup. Domain cuatro long/short SL/TP ordinarios PASS, race completo pendiente.
-- real_rerun: NOT_RUN; corpus físico completo pendiente.
-- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED, scope sintético. No cierre histórico.
+- real_rerun: COMPLETE rawbt-b9676b4b…e4d44 + derivedbt-bd627d8a…029f, ambos freshIDENTICAL, code d69d03ec integra fix específico. Alcance/ramas reales delimitados en matriz anterior.
+- state: FIXED_WITH_REGRESSION_AND_REAL_RERUN; regresión específica y rerun integrado acotado, no equivalencia LIVE ni full13.
 
 ### BT2-F07 — control tardío aplicado dentro de vela expuesta no resuelta
 
@@ -115,8 +131,8 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - owner: native backtester root/control preflight, sin fórmulas MM/Strategy ni sharedSDK.
 - fix: C congelado e2e15a3559034a3ed08c04f247baf4919e20b2ff, preflight de todos nativePending antes de seleccionar root; Coordinator clarificó horizon: control exactamente intervalEnd dentro horizonte diagnostica; control at/after EndExclusive permanece PENDING_BEYOND_HORIZON y no invalida soleterminal SourceClose, preservando S04.
 - regression: FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED — PERMANENT_REGRESSION late+30s/intervalEnd dentrohorizonte, single/multistream pendingpinned; control atEndExclusive sellado pending sincashflow/ambiguity, soleterminal SourceClose consumido; diagnostic no backdate/cero mutación anteserror. Suite native rápida race31.642s PASS.
-- real_rerun: NOT_RUN; corpus físico completo pendiente.
-- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED, scope sintético. No cierre histórico.
+- real_rerun: COMPLETE rawbt-b9676b4b…e4d44 + derivedbt-bd627d8a…029f, ambos freshIDENTICAL, code d69d03ec integra fix específico. Alcance/ramas reales delimitados en matriz anterior.
+- state: FIXED_WITH_REGRESSION_AND_REAL_RERUN; regresión específica y rerun integrado acotado, no equivalencia LIVE ni full13.
 
 ### BT2-F08 — día inicial parcial colisiona con el reset de cuenta
 
@@ -128,8 +144,8 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - owner: backtester composición/identidad del intervalo account-day; defecto heredado expuesto por reset17h funcional, no fórmulas SDK/accounting/MM ni Strategy.
 - fix: congelado171fc712e56d731493befeef5c54a2620f25d31a; inicializa el intervalo contenedor con civilDateOf/boundaryOf/AddDate existente, conserva reset natural, WarmupStart caller e IDs naturales. Integración CLI byteexacta comprobada independientemente en198f29f4.
 - regression: PERMANENT_REGRESSION + TOP independiente RED e2e15a35→PASS171fc712; mismo break nativo y legacy, antes/at/después17h, año y Chicago23/25h DST, EndExclusive/timezonefailure. Oráculos legacy UTC00/after17 result+records byteiguales (678137/678131 bytes). Race7.477s, S04/Plan/native10.509s y vet PASS aislados; coverage10/10 bruto sin exclusiones. Evidencia externa reports/native-integrated-final-review/f08-proof.json; [[BTG-S01-ACCOUNT-DAY-REMEDIATION]].
-- real_rerun: NOT_RUN; transferencia completa pendiente.
-- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED, scope sintético. No cierre histórico.
+- real_rerun: COMPLETE rawbt-b9676b4b…e4d44 + derivedbt-bd627d8a…029f, ambos freshIDENTICAL, code d69d03ec integra fix específico. Alcance/ramas reales delimitados en matriz anterior.
+- state: FIXED_WITH_REGRESSION_AND_REAL_RERUN; regresión específica y rerun integrado acotado, no equivalencia LIVE ni full13.
 
 ### BT2-F09 — cursor nativo sin liberar ante fallo de salida CLI
 
@@ -141,8 +157,8 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - owner: cmd/echo-backtest executeRunSource/executeReproductionSource; no NewRun/ResultWriter/SDK cambios justificados.
 - fix: fresh NORMAL codex/btg-s01-native-cli-final-remediation desde6ef303f5, SDD Root congelado; limpieza mínima de paths de error preservando artefactos exitosos.
 - regression: PERMANENT_REGRESSION + TOP independiente RED198f FD0→1→2 / PASSe632 FD0→0→0, GOGCoff sólo prueba FD; close1/peek0/next0, errors.Is ENOTDIR/errors.As PathError y sentinel secundario preservados; race6.470s/F081.260s/vet/build, freshfailuresealed/repro IDENTICAL y legacy198f→e632 byteiguales. Coverage42/42 bruto/aplicable, ceroexclusiones. [[BTG-S01-NATIVE-CLI-FINAL-REMEDIATION-REVIEW]].
-- real_rerun: NOT_RUN; originales completos pendientes.
-- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED, scope sintético. No cierre histórico.
+- real_rerun: COMPLETE rawbt-b9676b4b…e4d44 + derivedbt-bd627d8a…029f, ambos freshIDENTICAL, code d69d03ec integra fix específico. Alcance/ramas reales delimitados en matriz anterior.
+- state: FIXED_WITH_REGRESSION_AND_REAL_RERUN; regresión específica y rerun integrado acotado, no equivalencia LIVE ni full13.
 
 ### BT2-F10 — preparación no declara límite de autenticidad
 
@@ -154,8 +170,8 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - owner: CLI preparación metadata.
 - fix: fresh NORMAL del mismo carril F09, una aclaración Scope sin cambiar reglas/fidelidad.
 - regression: TOP independiente Scope authenticity PASS e632, Fidelity/NO_ADDS/callerhorizon/AvailableAt/BBOlimits preservados; mismo gate42/42 sin exclusiones.
-- real_rerun: NOT_RUN; originales completos pendientes.
-- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED, scope sintético. No cierre histórico.
+- real_rerun: COMPLETE rawbt-b9676b4b…e4d44 + derivedbt-bd627d8a…029f, ambos freshIDENTICAL, code d69d03ec integra fix específico. Alcance/ramas reales delimitados en matriz anterior.
+- state: FIXED_WITH_REGRESSION_AND_REAL_RERUN; regresión específica y rerun integrado acotado, no equivalencia LIVE ni full13.
 
 ### BT2-F11 — segundo Close tras EOF y error de re-admisión
 
@@ -167,8 +183,8 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - owner: CLI sequenceCursor/sequenceSource lifecycle run.go; no SDK/NewRun/ResultWriter cambio justificado.
 - fix: source15422c2329164a33a76bf63912491168227660b7 desdee632, sequenceCursor.Close sync.Once cachea primer resultado; no otros productionfiles/API/domain changes. Docs-onlytip e320fef9 preserva F09Verification exacta.
 - regression: PERMANENT_REGRESSION + freshTOP RED e632Close2/Peek3/Next1 → PASS15422 Close1/Peek3/Next1, mismo sealedscript/override/originalmodeerror. Concurrent128/sequential Closeerror cache errors.Is/As, F09publicFD []→[]→[], race8.070s/F081.171s/vet/build; shortsealedSOURCE_COVERAGE_INCOMPLETE/reproIDENTICAL y legacy e632→15422 byteigual SHAd5325ae6cf99725a9e7e23dab1951b1e8fb60468f29a41179a636f5b504c5ad7. Independent changedblocks3/3 bruto/aplicable, sinexclusiones. Evidence reports/cli-cursor-once-review.
-- real_rerun: NOT_RUN; originales completos pendientes.
-- state: OPEN_REAL_RERUN_REQUIRED; FIX_AND_REGRESSION_INDEPENDENTLY_VERIFIED, scope sintético. No cierre histórico.
+- real_rerun: COMPLETE rawbt-b9676b4b…e4d44 + derivedbt-bd627d8a…029f, ambos freshIDENTICAL, code d69d03ec integra fix específico. Alcance/ramas reales delimitados en matriz anterior.
+- state: FIXED_WITH_REGRESSION_AND_REAL_RERUN; regresión específica y rerun integrado acotado, no equivalencia LIVE ni full13.
 
 ### BT2-F12 — fallo histórico reportado al caller frontier antiguo
 
@@ -178,14 +194,40 @@ Candidate producto `27cb4ceaf62151a042494022cad08e47672a06f2`, baseline certific
 - actual: summary queda en warmupOct1 aunque records/error gap alcanzaronOct10; nextRoot validation failure deOct13 se fecha al warmupOct10 y causa omite intervalo/ref en no-owning-session branch.
 - first_divergence: Finish summary y AdvanceUntil nextRoot-error capsule usan r.frontier (caller-completed frontier) en lugar del último clock alcanzado. Mantener frontier es intencional para fases/timers: no se autoriza alterarlo per root.
 - owner: backtester finish.go/driver.go; TOP LOCAL real_gap_forensics implementor, Root sólo SDD/specs/coordination.
-- fix: IN_PROGRESS, carrilcodex/btg-s01-real-diagnostics desdefb210ac4, AllowedFilesdos production + nueva real_failure_frontier_test.go. Cambio sólo FAILED time y source attribution, no guard/calendar/Strategy/MM/risk/scheduler.
-- regression: focused RED confirmado missing minute summary start vs start+2min y outside-source interval ausente; GREEN/race/vet y métricas finales pendientes. PERMANENT_REGRESSION.
-- real_rerun: PENDING same authentic failed slice and fresh reproduction; successful smoke candidate activo aparte.
-- state: OPEN_REMEDIATION_AND_REAL_RERUN_REQUIRED. No cierre permitido todavía.
+- fix: 970f1d5238192a24aec8caca4a48d3da5b1d3280, sólo FAILED time/source attribution, no guard/calendar/Strategy/MM/risk/scheduler.
+- regression: focused RED confirmado missing minute summary start vs start+2min y outside-source interval ausente; GREEN/race/vet PASS por TOP. PERMANENT_REGRESSION.
+- real_rerun: source-gap bt-2b7e9fc2…d39f4 reachedOct10T00:16Z/52238records; outside-session bt-e036b4f0…6fd7 reachedOct13T20:59Z/rejected ntminute:c43f2f9c…0fab Oct15[04:32,04:33),33308records. AmbosfreshreproduceIDENTICAL, records/state/economics preservados.
+- state: FIXED_WITH_REGRESSION_AND_REAL_RERUN (F12 únicamente); evidencia TOP importada byteexacta desde9630c410 en BTG-S01-REAL-GAP-FORENSICS; no modifica guard ni scheduler.
+
+### BT2-F13 — contadores de fills y operaciones reales en cero
+
+- severity: MEDIUM.
+- dataset/rango: smoke NQZ3Oct29→Nov3 real COMPLETE `bt-0049ea…ad5fb0`.
+- expected: lifetime unique fills accounting y operaciones materializadas compartidas, distinguiendo filled/never-filled; no capped FIFO ni copia de historial de marks.
+- actual: summary fills0/operations0 frente24unique(account,provider_execution_id),30CREATED/12con fills.
+- first_divergence: Finish cuenta colección legacy sin el ciclo nativo compartido.
+- owner: finish.go + SDK accounting thin read-only FillCount getter. D6 refreshsinintersección antes sharedchange.
+- fix: d69d03eceeac1495522473a95baf08087f5c28b3; Ledger.FillCount O(1) sobre dedup económico permanente y sum IssuedOperationIDs; sin cambio monetario.
+- regression: RED real_result_counts_test.go con2unique fills/1materialized/duplicateredelivery; ledger getter zero/qty≠count/duplicate/conflict/daycontext/revision-readonly. GREEN full-warmup86.666s, race focalizado1.151s/1.026s y vet PASS. Oráculo inicial flat⇒TERMINAL incorrecto corregido en test nuevo; race full-warmup timeout10min preservado como FAIL.
+- real_rerun: rawbt-b9676b4b…e4d44 COMPLETE/136932records/24fills/30ops/−9970.70USD y freshIDENTICAL; derivedbt-bd627d8a…029f COMPLETE/270781records/78fills/113ops/−34293.32USD y freshIDENTICAL. F14 rawsinresidualterminal; derivedACTIVEflat declarado legítimo, no garantía de terminar todaslasops.
+- state: FIXED_WITH_REGRESSION_AND_REAL_RERUN.
+
+### BT2-F14 — operación terminal como residual abierto
+
+- severity: MEDIUM.
+- dataset/rango: mismo COMPLETE real5accountdays;30latestoperationsTERMINAL,posición0/unrealized0.
+- expected: residual working/live operation sólo si lifecycle compartido activo; account_day/stage abiertos sí se conservan.
+- actual: residual fop239b… peseTERMINAL/MM_NO_ACTION Nov3T19:50Z; CurrentOperationID retenido intencional no prueba actividad.
+- first_divergence: finish.residuals trata anyCurrentOperationID como abierto.
+- owner: finish.go, sin modificación del actor/runtimeOperation.
+- fix: d69d03ec; consulta status canónico para residual, excluye sólo TERMINAL, conserva nil/ACTIVE; sin borrar IDs ni mutar lifecycle.
+- regression: RED terminal residual y caso materializado no-fill working conserva residual; GREEN full-warmup86.666s, race focalizado1.151s/1.026s y vet PASS. Oráculo inicial flat⇒TERMINAL incorrecto corregido en test nuevo; race full-warmup timeout10min preservado como FAIL.
+- real_rerun: rawbt-b9676b4b…e4d44 COMPLETE/136932records/24fills/30ops/−9970.70USD y freshIDENTICAL; derivedbt-bd627d8a…029f COMPLETE/270781records/78fills/113ops/−34293.32USD y freshIDENTICAL. F14 rawsinresidualterminal; derivedACTIVEflat declarado legítimo, no garantía de terminar todaslasops.
+- state: FIXED_WITH_REGRESSION_AND_REAL_RERUN.
 
 ### Retención y clasificación
 
-Reproductores y logs del revisor viven fuera del vault en el carril Aranea `work/btg-s01-20261006/source-bar-review-evidence/`; sus digests/manifest quedan en el artifact del revisor. Golden legacy bytes y casos de atomicidad/orden/calendario que detectaron estos defectos son PERMANENT_REGRESSION candidates, sin framework nuevo. Probes usados sólo para auditoría comparativa o coverage son DISPOSABLE_REPRODUCER hasta clasificación final. No se afirma un rerun real ni el cierre de findings.
+Reproductores y logs del revisor viven fuera del vault en el carril Aranea `work/btg-s01-20261006/source-bar-review-evidence/`; sus digests/manifest quedan en el artifact del revisor. Golden legacy bytes y casos de atomicidad/orden/calendario que detectaron estos defectos son PERMANENT_REGRESSION candidates, sin framework nuevo. Probes usados sólo para auditoría comparativa o coverage son DISPOSABLE_REPRODUCER hasta clasificación final. Los reproductores sintéticos conservan su clase y no sustituyen los reruns históricos ahora identificados. Findings F01–F14 cerrados por regresión+rerun acotado; no gate Owner ni cobertura full13.
 
 ## Fuentes
 

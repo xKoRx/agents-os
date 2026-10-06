@@ -27,9 +27,9 @@ Mandato Owner recibido el 2026-10-05 (America/Santiago): máximo cinco shots; el
 Origen de este paquete: rama documental docs/backtester-gerard-bankroll-five-shots-20261005 de xKoRx/agents-os, commit `a16f4bb25cfb6882146f437f5913302a191313c2`. El submanager LOCAL observó su merge ya existente `d67319f0878610c786b94aa2ad31e5e4503e7efa` y master `bb9fa98be22057e8468e83f72cb53fd147accc09`. La revisión automática había rechazado mover master directamente en Primary; BTG-S01 no ejecutó ese merge ni altera master. Evidencia y deltas nuevos en rama documental separada para revisión.
 
 PROGRAM_STATE = IN_PROGRESS
-BTG_S01 = BLOCKED_EXTERNAL — ORIGINAL_BYTES_TRANSFER_POLICY; NTMINUTE_INPUT_VERIFIED; READY_LOCAL_NATIVE_BASELINE_REVIEW_ONLY; REAL_RUN_NOT_RUN
+BTG_S01 = REAL_BOUNDED_BASELINE_COMPLETE_AND_REPRODUCIBLE; FULL13_CONTINUITY_BLOCKED_DECISION; PRIMARY_REVIEW_PENDING
 BTG_S02_TO_S05 = NOT_STARTED
-REAL_GERARD_RUN_THIS_SESSION = NOT_RUN
+REAL_GERARD_RUN_THIS_SESSION = COMPLETE_DERIVED_NQZ3_20231029_20231123; FRESH_IDENTICAL
 CAMPAIGN_RESULTS = NOT_AVAILABLE
 DESIGN_FREEZE = NOT_STARTED
 PROMOTION = SOURCE_ONLY
@@ -123,6 +123,8 @@ Gate final: mismo comando/configuración/dataset produce el mismo resultado econ
 Entregables: comando reproducible, configuración/manifest del escenario, tabla de cuentas y eventos económicos, curva temporal de bankroll, informe baseline versus objetivos y resultados completos exportables. No agregar UI, optimizador genérico, framework multi-prop o Monte Carlo para cumplir este alcance.
 
 ### 8. Próxima acción concreta
+
+**Corte real vigente2026-10-06:** smoke RAW corregido y longitudinal DERIVED de una cuenta continua NQZ3 Oct29→Nov23 completos y fresh reproducidos IDENTICAL. Code d69d03ec, tip77e188bc test/docs; 113operaciones/39con fills/78fills, cuenta100k→65706.68USD, net−34293.32USD, maxDD35225.55USD. Run6m47.02s/~527.3MiB, fresh7m41.56s; resultSHA b11bd4e…a637. S2/MM compartidos, NO_ADDS funcional explícito, sin optimización. Trece archivos completos hasheados; no tres años continuos ni rollover certificado: gaps configurados mantienen FAIL_VISIBLE_GAPS_V1 y requieren adjudicación Primary de calendario/recuperación para el horizonte integral. BT2-F12–F14 corregidos/regresión+realrerun, [PRdraft4](https://github.com/xKoRx/echo/pull/4). Evidencia y cápsula S02 en [[BTG-S01-REAL-GERARD-RESULT]]. S02–S05 NOT_STARTED; no aceptación Owner, Root abierto. Los cortes preparatorios inferiores conservan su fecha/evidencia y quedan supersedidos por este resultado.
 
 **Primer run real:** prepare completado, `bt-862144ea…f4d97c` ejecutado offline con NQ12-23/S2/MM congelados; FAILED por dos velas ausentes en warmup2023-10-10,0ops/0fills.33.23s/124980KiB, sin interpolación. NORMAL reproduce y selecciona ventana por cobertura; TOP inspecciona discontinuidades y contrato para corrección sólo si hay bug probado. Aún no smoke funcional/longitudinal/rerun exitosos. Evidencia exacta y next action en [[BTG-S01-REAL-GERARD-RESULT]].
 

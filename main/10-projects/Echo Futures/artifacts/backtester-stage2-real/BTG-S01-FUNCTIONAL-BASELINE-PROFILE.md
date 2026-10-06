@@ -21,6 +21,8 @@ Fijar la configuración funcional offline elegida por el submanager bajo autoriz
 
 ## Contenido
 
+Delta real2026-10-06: este perfil sin cambio de parámetros completó smoke RAW y longitudinal DERIVED NQZ3 Oct29→Nov23 con fresh reproduce IDENTICAL; code d69d03ec y resultSHA b11bd4e…a637. Net−34293.32USD/maxDD35225.55USD,113ops78fills; NO_ADDS/evaluation funcional, no scaling/campaña/propLIVE. Trece originales locales leídos/hashes íntegros, transferencia resuelta por Owner. El corte anterior NOT_RUN/Windows queda supersedido; métricas, coste/identidad exacta y límites full13/gaps/rollover en [[BTG-S01-REAL-GERARD-RESULT]]. Perfil conservado, no optimizado.
+
 ### Autoridad nueva
 
 Owner 2026-10-06, respuesta a la pregunta de perfil real: «de momento deja una wea consistente, las reglas específicas las voy a iterar mas adelante. tu foco es hacer funcionar backtesting. deja las reglas consistentes, el único fin es hacer funcionar esta wea». Root tiene autoridad para seleccionar un baseline funcional explícito, no necesita recuperar un perfil físico inexistente para empezar. Se supersede exclusivamente el bloqueo de selección/configuración de este baseline; las políticas futuras de prop/funded/campaña siguen pendientes de S02. PnL negativo no se ajusta.
