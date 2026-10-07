@@ -1,0 +1,30 @@
+{
+  "case_receipts_valid": false,
+  "cleanup": "PASS",
+  "failures": [
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealFixtureCleanupIntegrationTest",
+      "message": "org.opentest4j.AssertionFailedError: Expected java.lang.Exception to be thrown, but nothing was thrown.",
+      "own_frames": [
+        "at com.mercadolibre.rio_controlplane_kafka.reale2e.RealFixtureCleanupIntegrationTest.realAdminClientFailureStillDeletesEveryKvsKeyAndClosesProducer(RealFixtureCleanupIntegrationTest.java:58)"
+      ],
+      "test": "realAdminClientFailureStillDeletesEveryKvsKeyAndClosesProducer()",
+      "type": "org.opentest4j.AssertionFailedError"
+    }
+  ],
+  "native_junit": {
+    "errors": 0,
+    "failures": 1,
+    "skipped": 0,
+    "tests": 359
+  },
+  "native_task_proof": false,
+  "note": "Full source frozen; no status promotion. Sole failure needs independent stale fault-target diagnosis; raw XML preserved before changes.",
+  "original_file_count": 712,
+  "run_id": "682f0e2bc5d749c88b0463f81a239263",
+  "scope": "ROOT_FULL_LOCAL_359_UNFILTERED",
+  "source_commit": "e003906fd2c22af1370dcc90b7832dd4b51481ba",
+  "source_drift": [],
+  "source_file_count": 499,
+  "verdict": "FAIL"
+}
