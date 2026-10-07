@@ -28,6 +28,10 @@ tags:
 
 # Feedback — BTG-S04 performance
 
+## Context
+
+Auditoría GOD LOCAL independiente de rendimiento y concurrencia BTG-S04; registro enlazado en metadata, artefactos pesados externos.
+
 ## Observación
 
 El primer fixture CONFIGURED generó fills reales pero quedó flat al minuto siguiente; clasificarlo por intención como carga sostenida habría dado una conclusión engañosa. Se conservaron esas pruebas como carga de adds y se construyó otro fixture cuya duración de exposición se afirma automáticamente. Los perfiles identifican costo de copia histórica frente a retención mediante mediciones separadas, sin cambiar código productivo.

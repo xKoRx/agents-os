@@ -15,8 +15,8 @@ agent_model: gpt-6-astra
 model_source: host
 task_type: testing
 task_complexity: high
-outcome: completed_with_findings
-verification: executed
+outcome: success
+verification: partial
 evaluator: agent
 user_rework: unknown
 source_session:
@@ -37,6 +37,10 @@ ONE-SHOT GOD LOCAL delegado; falsificación independiente de rendimiento, concur
 ## Evidencia
 
 Workspace externo BTG-S04, evidence/performance/summary.md y SHA256SUMS documentan tests nuevos btg_s04_perf_test.go, perfiles CPU/alloc/heap/GC, contador de revisiones retenidas, carga CONFIGURED sostenida LONG/SHORT, carga de adds, warmup, doji, rango amplio y 1/2/4 procesos independientes. Fuente y artefactos de S03 son evidencia histórica, no gates aceptados. Hallazgo dominante: copia completa de Ledger.Revisions para obtener último elemento, crecimiento superlineal de asignaciones; retención de mark revisions lineal demostrada separadamente.
+
+## Evaluación
+
+Evidencia mixta: pruebas de determinismo y carga completadas, defectos reproducidos; ninguna aprobación del gate. Rework del Owner UNKNOWN.
 
 ## Resultado
 
