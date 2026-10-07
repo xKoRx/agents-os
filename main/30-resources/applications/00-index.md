@@ -7,7 +7,7 @@ slug: applications-index
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-02
-updated: 2026-09-13
+updated: 2026-10-07
 reviewed: 2026-07-04
 aliases:
   - applications index
@@ -29,7 +29,7 @@ tags:
 ## 📊 De un vistazo
 
 - **Páginas:** 14 aplicaciones (catálogo raíz) + subdominio `echo/`
-- **Última ingesta:** 2026-09-13 (consolidación KBC → subdominio `echo/`).
+- **Última ingesta:** 2026-10-07 (ClickHouse: baseline develop, preflight local y estado de integración Playmaker).
 - **Estado:** active
 
 ## 📂 Catálogo
@@ -45,7 +45,7 @@ tags:
 | [[rio-materializer]] | ⚠️ **En deprecación** — traduce solicitudes de presentación en infra real (K8s, S3/GCS, MSK, Flink, ClickHouse, KMS); solo le queda el flujo de inicio Signals/Catalog. | [[Meli]] | Java |
 | [[rio-controlplane-kafka]] | Ciclo de vida de topics Kafka (PROVISION/UPDATE/DEPROVISION) + PEEK; disparado por Playmaker vía BigQueue. | [[Meli]] | Java |
 | [[rio-controlplane-flink]] | Ciclo de vida de apps Apache Flink SQL sobre AWS Kinesis Data Analytics (CQRS + event-driven). | [[Meli]] | Java |
-| [[rio-controlplane-clickhouse]] | Ciclo de vida de recursos ClickHouse (clusters, schemas, tablas, MVs, usuarios) vía REST + deployments event-driven. | [[Meli]] | Java |
+| [[rio-controlplane-clickhouse]] | Recursos ClickHouse vía deployments; develop listo; arranque local verificado y guía para conectar Kafka de Playmaker (2026-10-07). | [[Meli]] | Java |
 | [[rio-controlplane-fury]] | Control plane del "pusher": provisiona y reconcilia pipelines de enrutamiento de eventos (Kafka↔Fury Streams). | [[Meli]] | Kotlin |
 | [[rio-controlplane-kms]] | Cifrado/descifrado de secretos delegando en CKaaS y persistiendo en KVS. | [[Meli]] | Java |
 | [[rio-controlplane-observability]] | Automatiza monitores Datadog, subscription filters de CloudWatch y cuotas de logs para apps Flink. | [[Meli]] | Java |

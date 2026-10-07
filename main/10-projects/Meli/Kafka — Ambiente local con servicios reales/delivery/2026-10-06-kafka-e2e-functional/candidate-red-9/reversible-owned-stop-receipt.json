@@ -1,0 +1,37 @@
+{
+  "kind": "REVERSIBLE_OWNED_BROKERS_STOP_ONLY",
+  "run_id": "abf9a573f7d84c1786b5f2a3723367b9",
+  "source_commit": "d6678ecdc18fd984fd8644a2a6e7528dfde4ae2e",
+  "original_verdict": "FAIL",
+  "original_cleanup": "RETAINED",
+  "stop_exit_code": 0,
+  "command": [
+    "docker",
+    "--context",
+    "colima-rio-kafka-e2e-01a0f8e0",
+    "compose",
+    "--project-name",
+    "rio-kafka-e2e-abf9a573f7d84c1786b5f2a3723367b9",
+    "--env-file",
+    "/private/tmp/kafka-e2e-validate-20261006/cp/build/local-e2e/abf9a573f7d84c1786b5f2a3723367b9/compose.env",
+    "--file",
+    "/private/tmp/kafka-e2e-validate-20261006/cp/e2e/compose.yaml",
+    "stop",
+    "--timeout",
+    "30"
+  ],
+  "container_ids_unchanged": true,
+  "containers_stopped": 5,
+  "volumes_deleted": 0,
+  "networks_deleted": 0,
+  "original_file_drift": [],
+  "ports": {
+    "39092": "BIND_FREE",
+    "39093": "BIND_FREE",
+    "39094": "BIND_FREE",
+    "39095": "BIND_FREE",
+    "39096": "BIND_FREE"
+  },
+  "full_cleanup": "BLOCKED_AUTOREVIEW_DELETION_REJECTED",
+  "scope": "Only own5brokers stopped; data and all original evidence preserved; not cleanupPASS"
+}

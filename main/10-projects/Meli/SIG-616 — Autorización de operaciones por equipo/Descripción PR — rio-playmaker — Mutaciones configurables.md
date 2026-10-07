@@ -11,70 +11,67 @@ tags:
   - kind/doc
   - project/sig-616-operation-authorization
 created: "2026-10-06"
-updated: "2026-10-06"
+updated: "2026-10-07"
 ---
 
 # Descripción PR — rio-playmaker — Mutaciones configurables
 
-**Identidad:** `melisource/fury_rio-playmaker` · branch `feature/configurable-component-lifecycle-permissions@2a097e580eab451e85fc749adc83d0c3c1d218ea` · base `develop@d99f89fced9d624c6ae1d9cd8248b03a1e478830` · commits `bbd17a616` y `2a097e580` · 18 archivos, +879/-269 · SIG-616 / SIG-621 / D27–D29 · sin dependencia nueva de otro repo · 2026-10-06: 439 tests focalizados, 96 selectores y regresión de 4.666 tests PASS; cero fallas/errores, dos skips preexistentes en regresión; 97,24% de líneas · [PR #1275](https://github.com/melisource/fury_rio-playmaker/pull/1275), Draft OPEN hacia develop.
+**Identidad:** `melisource/fury_rio-playmaker` · branch `feature/configurable-component-lifecycle-permissions@526c1115cefd6e14079d1f825507063088915b24` · base `develop@a4e2829ad92a9d181e1a728db25e5f7305abab80` · commits `bbd17a616`, `2a097e580`, `1be7fb63b`, `47c2344c3`, `933eeb8d0`, merge `da9bb4312`, fix `0a5a01f76` y merge `526c1115c` · 26 archivos, +2114/-399 · SIG-616 / SIG-621 / D27–D31 · 2026-10-07: 93 selectores y 4.703 tests PASS; cero fallas/errores, dos skips; JaCoCo 97,24% y helper strict-local 97,01% · [PR #1275](https://github.com/melisource/fury_rio-playmaker/pull/1275), OPEN y MERGEABLE; CI #6029: cinco checks SUCCESS; PR coverage 97,72%, helper 97,01% y overall MeliCov 94,92%.
 
 > [!warning] **Validación de stack pendiente**
-> El contrato agregado terminó exit 1 en health MySQL por `Connection refused` entre macOS y Colima. Loopback y Kafka no se ejecutaron. Cleanup certificado del proyecto propio `rio-playmaker-agentic-17202`.
+> El contrato agregado terminó exit 1 en health MySQL por `Connection refused` entre macOS y Colima. Loopback y Kafka no se ejecutaron. Cleanup certificado del proyecto propio `rio-playmaker-agentic-48924`.
 
-> [!warning] **Gates remotos y validación desplegada pendientes**
-> CI no verificada; sin L1 de ecosistema, deploy de esta rama ni smoke F1/convergencia Fury. No se presenta la evidencia local como validación de runtime.
+> [!info] **Versión de prueba actual**
+> [`0.0.2-acme-test3`](https://web.furycloud.io/rio-playmaker/versions/detail/0.0.2-acme-test3) terminó `FINISHED` en build #1811 desde `526c1115cefd6e14079d1f825507063088915b24`, con `type=test` y `run_test=true`. Incluye todas las correcciones del PR y el merge actual. Lista para desplegar en test3; sin despliegue ni validación runtime. Sustituye para estas pruebas a `0.0.1-acme-actions-complete`.
 
 ## Propósito
 
-Conservar junto a SIG-616 la descripción del PR de mutaciones configurables hacia develop, basada en su diff y evidencia real.
+Explicar el alcance funcional del PR #1275: permisos faltantes de Fury, política ACME con proyecto/team incompleto y borrado/inactivación configurables; distinguir el alcance adicional de ClickHouse y las validaciones pendientes.
 
 ## Contenido
 
-Cuerpo en inglés siguiendo las secciones y checklists del template del repositorio. Incluye permisos start/stop de los cinco pushers Fury, permisos configurables de borrado por nombre e inactivación, y aplicabilidad común de ACME cuando existe team y proyecto.
+Cuerpo en inglés siguiendo el template del repositorio. Explica el antes/después de autorización y el fix de binding de conectores con el ejemplo A→B. Identifica los tres permisos ClickHouse como alcance adicional, el cambio del controller como documentación y el script como prueba local. No declara resuelto el timeout de importación.
 
 ---
 
 ## Description
 
-feat: configure pipeline component lifecycle permissions
+fix: complete action permissions and bind connector targets
 
-Playmaker rejects Fury pusher `start`/`stop` requests with 403 because their component/action pairs are missing from the permission configuration. Deletion by component name and inactivation also use hardcoded ACME roles. This PR completes those declarations in `application.yml` and applies one shared rule for Data Products with incomplete ownership. The implementation is self-contained in Playmaker and uses the existing Control Plane Actions.
+Restore authorization for existing Fury start/stop operations that Playmaker rejects because their permissions are missing. Also apply the agreed ownership policy: require ACME team/project permissions only when the Data Product has both values assigned. This PR changes Playmaker authorization and dispatch; it uses the existing Control Plane implementations.
 
-**Validation pending:** the local testing contract passed all 96 focused selectors, then failed its MySQL health check with `Connection refused` between macOS and Colima. Loopback and Kafka checks did not execute. CI, pre-production deployment, and Fury runtime validation remain unverified; the PR remains a draft.
+**Test version:** [`0.0.2-acme-test3`](https://web.furycloud.io/rio-playmaker/versions/detail/0.0.2-acme-test3) finished successfully in build #1811 from the current HEAD `526c1115cefd6e14079d1f825507063088915b24`, with build tests enabled. Ready to deploy to test3; deployment and runtime validation have not been performed. The local stack check remains blocked at MySQL health.
 
-Changes:
+Main changes:
 
-* Add the `fury-pusher` family with `start` and `stop` permissions at `DEV_AND_UP` for `kafka-fury-streams`, `fury-streams-kafka`, `kafka-fury-bigqueue`, `fury-bigqueue-kafka`, and `kafka-fury-kvs`.
-* Resolve deletion by name and inactivation through the exact `pipeline:delete-component` and `pipeline:inactivate-component` rules, both `DEPLOYER_AND_UP` by default. Exact lookup keeps these operations independently configurable from component wildcard rules.
-* Centralize ACME applicability in `OperationAuthorizationService`: if **either** persisted `teamName` or `projectCode` is null, empty, or whitespace, skip the ACME check. When both are present, require the configured role on the exact team/project and deny requests when ACME cannot be verified. Remove the team/project precheck from deletion and inactivation so they follow the same rule.
-* Add unit and HTTP/H2 regressions and update architecture, verification notes, scenarios, and `.testing/impact.json`.
+* **Fury:** allow the existing `start`/`stop` operations for all five Fury pusher types by adding their ten missing permission declarations at `DEV_AND_UP`.
+* **Project/team:** skip the additional ACME check when either ownership field is missing or blank. With both assigned, require the configured role on that exact team/project and deny ACME failures. Tiger and business restrictions still apply.
+* **Delete/inactivate:** move their roles into the exact `pipeline:delete-component` and `pipeline:inactivate-component` configuration rules, both `DEPLOYER_AND_UP` by default.
 
-| Configuration scope | Actions | Default access level |
-|---|---|---|
-| `fury-pusher` family | `start`, `stop` | `DEV_AND_UP` |
-| `pipeline` | `delete-component` | `DEPLOYER_AND_UP` |
-| `pipeline` | `inactivate-component` | `DEPLOYER_AND_UP` |
+**Additional ClickHouse scope:** enable existing connector pause/resume (`DEV_AND_UP`) and materialized-view describe (Tiger-only read). For pause/resume, prevent a request authorized for component A from operating B through client `data`; bind the target and routing to A's persisted deployment before publication. Resolve only the required routing fields, so unrelated Kafka provisioning references no longer block the action when the source is stopped. Missing or conflicting target/routing data is still rejected.
 
-Tiger authentication, legacy `systemId` eligibility, lifecycle blockers, locks, audit, and execution/publication checks continue to apply. Removing an exact pipeline lifecycle rule skips its additional ACME check; removing a Fury Action declaration makes that pair unknown and therefore rejected. The ownership exception applies only after a requested Action is recognized.
+**Supporting changes:** `ActionController` documents the 400/409 errors in Swagger. The script and fixture test serialized messages against actual ClickHouse handlers locally, with fresh fixtures for each run; `scripts/` already existed. These changes do not alter controller routes or execution.
+
+Table-import failures and `Warehouse lookup timed out — please try again` remain unresolved by this PR. No Control Plane code is changed.
 
 ## Dev checklist (should be completed by the developer assigned to the issue)
 
-* [ ] I have met the definition of done — stack checks, independent review, CI, and pre-production validation are pending.
+* [ ] I have met the definition of done — stack checks, independent review and deployed validation are pending.
 * [x] I have used [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
-* [x] My code follows the style guidelines of this project — changed Java files passed Google Java Format validation.
+* [x] My code follows the style guidelines of this project — changed Java passed formatting, Checkstyle and PMD.
     * [Java Fury Guideline](https://furydocs.io/code-quality/latest/guide/#/languages/java)
     * [Deep Source Java Guideline](https://deepsource.com/blog/java-code-review-guidelines#10-override-hashcode-when-overriding-equals)
 * [x] I have performed a self-review of my own code
 * [x] I have commented portions of my code, particularly in hard-to-understand areas
-* [x] I updated the applicable canonical documentation (`docs/architecture.md`, `testing.md`, `testing-scenarios.md`, Swagger, README, or CHANGELOG), or documented why it is unchanged. — Architecture and scenarios updated; generated Swagger has no diff because routes and schemas are unchanged.
+* [x] I updated the applicable canonical documentation (`docs/architecture.md`, `testing.md`, `testing-scenarios.md`, Swagger, README, or CHANGELOG), or documented why it is unchanged. — architecture, scenarios and Swagger updated.
 * [x] After my changes were applied the app is still buildable
-* [ ] My changes generate no new warnings (linters, code quality) — full linter and remote code-quality results have not been verified.
+* [x] My changes generate no new warnings (linters, code quality) — changed Java passed Checkstyle/PMD and the remote static-analyzer check passed.
 * [x] I have added tests that prove my fix is effective or that my feature works
     * Unit testing is a must
     * Integration testing is recommended
 * [x] New and existing unit tests pass locally with my changes
-* [x] Any dependent changes have been merged and published in downstream modules — no new downstream change is required; Fury handlers already implement both Actions.
-* [x] I have updated my current branch with changes made in develop/master previously — based on `develop@d99f89fce`, verified against the remote.
+* [ ] Any dependent changes have been merged and published in downstream modules — no new Control Plane code is required; deployed compatibility remains unverified.
+* [x] I have updated my current branch with changes made in develop/master previously — merged `develop@b0b076b51`.
 * [ ] I already deployed this branch in the pre-production environment — deployment has not been performed.
 
 ## Code Review checklist (must be completed by the code reviewer)
@@ -112,16 +109,15 @@ Tiger authentication, legacy `systemId` eligibility, lifecycle blockers, locks, 
 
 ## How Has This Been Tested?
 
-Local evidence from 2026-10-06 for HEAD `2a097e580eab451e85fc749adc83d0c3c1d218ea`, based on `develop@d99f89fced9d624c6ae1d9cd8248b03a1e478830`:
+Evidence from 2026-10-07 for HEAD `526c1115cefd6e14079d1f825507063088915b24`, based on `develop@a4e2829ad92a9d181e1a728db25e5f7305abab80`:
 
-* **L0 / UNIT, H2_INTEGRATION:** `./gradlew test --offline --no-daemon --tests 'com.mercadolibre.rio.playmaker.config.ConfiguredActionPermissionProviderTest' --tests 'com.mercadolibre.rio.playmaker.integration.ComponentAuthorizationIntegrationTest' --tests 'com.mercadolibre.rio.playmaker.service.ActionAuthorizationServiceTest' --tests 'com.mercadolibre.rio.playmaker.service.impl.ActionServiceImplTest' --tests 'com.mercadolibre.rio.playmaker.unit.service.OperationAuthorizationServiceTest'` — PASS: 439 tests across five suites, zero failures/errors/skips.
-* **L0 / regression:** `./gradlew test jacocoTestReport --offline --no-daemon` — PASS: 4,666 tests across 383 suites, zero failures/errors, two pre-existing skips; 97.24% global line coverage (15,223 covered / 432 missed).
-* **L0 / CONTRACT:** `./scripts/validate-repository-contract.sh` and `./scripts/validate-testing-contract.sh --staged` — PASS.
-* **L0 / UNIT, H2_INTEGRATION, LOCAL_STACK:** `PLAYMAKER_AGENTIC_MYSQL_PORT=33306 PLAYMAKER_AGENTIC_KAFKA_PORT=39093 ./scripts/run-agentic-testing-contract.sh` — all 96 focused selectors passed; aggregate exit code 1 at `AT-000-S01:L0-LOCAL_STACK` due to MySQL connection refusal. Loopback and Kafka checks did not execute.
+* **L0 / UNIT, H2_INTEGRATION, CONTRACT:** `./scripts/run-agentic-testing-contract.sh` — all 93 focused selectors passed, with no test-cache hits. The two changed suites passed 274 tests, including the stopped unrelated dependency, unresolved required routing, target conflicts, missing ownership, role denial and ACME failure cases.
+* **L0 / FULL_REGRESSION, COVERAGE:** `./gradlew test jacocoTestReport --offline --no-daemon` — 4,703 tests, zero failures/errors and two pre-existing skips; global JaCoCo line coverage 97.24%, helper strict-local coverage 97.01% (partial branch lines count as uncovered). All five checks passed in CI #6029 for this HEAD. PR coverage is 97.72%, helper coverage 97.01%, and overall MeliCov coverage 94.92%.
+* **L0 / CONSUMER_CONTRACT, prior fix evidence:** `JAVA_HOME=/Users/rjara/Library/Java/JavaVirtualMachines/corretto-25.0.4/Contents/Home ./scripts/run-connector-action-contract-check.sh /Users/rjara/fuentes/rio-controlplane-clickhouse` — 36 HTTP/H2 cases and six actual-handler checks passed using ClickHouse commit `97fcf076152c58711e7c5b483cc58555647e6423`, with mocked SQL/KVS adapters. Confirms bound target selection and no publication for rejected A→B requests. Executed at `0a5a01f76`; producer, fixture and all 21 PR code/config/script files are byte-identical in the current merge. JDK 25 and fresh producer fixture generation are required. Cleanup certified; no deployed DDL is claimed.
+* **L0 / REPOSITORY_CONTRACT:** `./scripts/validate-repository-contract.sh`, `./scripts/validate-testing-contract.sh --staged`, `./scripts/run-agentic-testing-contract.sh --plan`, `bash -n scripts/run-connector-action-contract-check.sh` and `git diff --check` passed. `pre-commit run` passed security/PII, Java formatting, Checkstyle and PMD.
+* **L0 / LOCAL_STACK, blocked:** `PLAYMAKER_AGENTIC_MYSQL_PORT=33316 PLAYMAKER_AGENTIC_KAFKA_PORT=39093 ./scripts/run-agentic-testing-contract.sh` — aggregate exit 1 at MySQL health (`Connection refused` between macOS and Colima). Loopback/Kafka did not execute. Cleanup verified: no owned containers, networks or volumes remain for `rio-playmaker-agentic-48924`.
 
-HTTP/H2 tests reproduce all ten Fury component/action pairs returning 403 before the configuration change, then 202/PENDING with one stored Action and one published trigger after the fix. They also cover role allow/deny, ACME failure, either ownership field missing, unknown Actions, and configurable lifecycle roles.
-
-Cleanup was certified for Compose project `rio-playmaker-agentic-17202`: no owned containers, networks, or volumes remain. L1 ecosystem and F1 deployed/runtime validation were not performed; local dispatch tests do not establish Fury runtime convergence.
+The merge incorporates upstream #1270 from develop; its freeze requester controller/DTO are part of the base and are excluded from this PR diff. L1 ecosystem and F1 deployed/runtime validation remain pending. The materialized-view start/stop payload contract is unchanged.
 
 ## Testing contract
 
@@ -139,11 +135,28 @@ Cleanup was certified for Compose project `rio-playmaker-agentic-17202`: no owne
 
 ## Notas internas — NO van al PR
 
-- La autorización explícita del usuario del 2026-10-06 para agregar esta descripción reemplaza la reserva anterior de redactarla personalmente. La restricción de la skill a producir texto no limita esta acción expresamente autorizada sobre el PR existente.
-- Skills aplicadas: `human-first-technical-writing` y `pr-description` canónicas. El cuerpo sigue el inglés del template y omite historia de investigación, atribuciones al usuario o conversación con otros desarrolladores.
-- El addendum de Slice 5 y D27–D29 registran las decisiones vigentes: ownership opcional con condición OR, lookup exacto para lifecycle por nombre, y familia Fury. Las afirmaciones históricas de cobertura completa anteriores a D29 no describen este HEAD.
-- La política OR se decide en `OperationAuthorizationService`; el wrapper resuelve configuración y delega. `AuthorizationUtils` conserva la elegibilidad legacy por `systemId`. Las solicitudes de excepción de freeze conservan sus reglas propias; el PR no cambia su configuración.
-- La descripción no implica merge, deploy, cambios de datos ni modificación del Control Plane. No se corrieron nuevas suites para este pedido de documentación; se usó la evidencia ya ejecutada para el mismo diff publicado.
-- Evidencia local: `/private/tmp/rio-fury-actions-config-focused-evidence.json`, `/private/tmp/rio-fury-actions-config-regression-evidence.json`, `/private/tmp/rio-fury-actions-config-contract-evidence.json` y `/private/tmp/rio-fury-actions-config-cleanup-evidence.json`; logs correspondientes en `/private/tmp`.
-- Worktree limpio. Remoto verificado: develop `d99f89fced9d624c6ae1d9cd8248b03a1e478830` y rama del PR `2a097e580eab451e85fc749adc83d0c3c1d218ea`. El cuerpo vacío se verificó nuevamente antes de escribir. Descripción publicada y lectura posterior idéntica al texto preparado; HEAD/base sin cambios y PR Draft OPEN. Evidencia de publicación: `/private/tmp/rio-playmaker-pr-1275-description-publication.json`.
-- La reproducción HTTP/H2 demuestra autorización y dispatch de Playmaker. La ejecución real de stop en Fury requiere validación desplegada posterior.
+- Se completó el PR existente y su rama, preservando los fixes previos de D27–D29. Se agregaron tres reglas ClickHouse y sus pruebas; el source del Control Plane no se modifica.
+- Skills canónicas aplicadas: `pr-description`, `human-first-technical-writing` y `agents-os-agent-run-register`. La publicación del PR y creación de la versión están autorizadas por el pedido directo del usuario.
+- Control Plane ClickHouse auditado en `53b5c087b21f98e10ca5561c11a823e91e3538b7`, handlers `PauseKafkaConnectorAction`, `ResumeKafkaConnectorAction` y `DescribeMatViewAction`; Control Plane Fury auditado en `e25d37d24464c22ae29440e748ec99567b134f78`. La existencia en source no prueba el comportamiento de un deployment remoto.
+- Hooks de seguridad, PII, formato, Checkstyle y PMD PASS para los dos archivos de pruebas modificados. La limpieza del stack se verificó por labels del Compose project propio.
+- Evidencia sanitizada: `/private/tmp/playmaker-actions-complete-test-evidence.json`, `/private/tmp/playmaker-actions-complete-pr-status.json` y `/private/tmp/playmaker-actions-complete-version-status.json`; logs en `/private/tmp/playmaker-actions-complete-*.log`.
+- Fix de review `47c2344c3`: ID/routing vinculado al target autorizado, 12 archivos del segmento. Push y cuerpo publicados y verificados por lectura en PR #1275; worktree limpio, develop sigue `d99f89fce`. CI 5990 para ese HEAD: tests/dependencies/static/workflow SUCCESS, code-coverage FAILURE (78,82% < 90%). Sin merge ni deploy.
+- Seguimiento de código fuente: start/stop de materialized views también usa selectores de data sin vínculo al envelope. Se consultó al usuario si incluirlo; el scope actual son los dos comentarios de PR y no se declara ese caso corregido.
+- Evidencia nueva: `/private/tmp/playmaker-pr1275-target-test-evidence.json`; logs `/private/tmp/playmaker-pr1275-*.log`. El consumidor de contrato se fijó en `97fcf076`.
+
+- Cleanup final certificado: stack `rio-playmaker-agentic-22154`, archives del contrato y worktree CP propio limpio eliminado; checkout principal CP preservado. Hooks post-commit PASS.
+
+- Follow-up `933eeb8d0` pusheado: 32 tests unitarios nuevos, sin cambios de producción. 97 selectores y regresión final 4.752 tests PASS; helper strict-local 93,75%, global JaCoCo 97,26%. Hooks pre/post-commit PASS; stack MySQL exit 1 y cleanup certificado para rio-playmaker-agentic-50666. Los cinco checks remotos del nuevo HEAD pasaron en CI 5994; coverage PR 95,29%, helper 93,75% y global MeliCov 94,93%.
+- Replies publicadas y verificadas: policy 4208369370 y binding 4208369705. La última quedó actualizada con el resultado remoto del nuevo HEAD; reply y body final del PR verificados por lectura exacta.
+
+- Conflictos: merge `da9bb431289da0d2d5719538ed886dda65e39c35`, padres `933eeb8d0` y `b0b076b51`. Único conflicto en impact.json: conservar pruebas D27/D31 y retirar cuatro suites eliminadas por #1254. 93 selectores y 4.687 tests PASS; cero fallas/errores, dos skips, 97,23% global JaCoCo. Stack exit 1, cleanup certificado de rio-playmaker-agentic-87924. Los cinco checks de CI 6015 SUCCESS; coverage PR 95,29%, helper 93,75% y global MeliCov 94,91%. GitHub MERGEABLE.
+
+- Aclaración ejecutiva del cuerpo por pedido del usuario: foco Fury/ACME/lifecycle, alcance extra de ClickHouse y caso A→B, controller sólo Swagger y script de prueba local. Timeout de importación sin resolver. Sin cambios de código, tests, versión ni HEAD. Cuerpo publicado y verificado; reemplazado por la revisión final que incluye el comentario P2 y el merge más reciente.
+
+- Review nuevo: comentario humano 4209736054 corregido en `0a5a01f76805c82a54d57481a61b9eb942e51640`; sólo resolver los tres campos de routing, conservando binding A y rechazo de B. Regresión roja: pause/resume 409 con Kafka detenido; verde: 274 tests, full 4.700 tests, contrato fresco 36 HTTP/H2 + seis handlers reales. Runner ajustado con `--rerun-tasks` para fixtures por run; JDK 25 requerido. Primeros intentos fallaron por JDK 21 y fixtures ausentes por up-to-date; ambos limpiaron su workspace.
+- Replies nuevas publicadas y verificadas: [P2](https://github.com/melisource/fury_rio-playmaker/pull/1275#discussion_r4210096615) y [policy](https://github.com/melisource/fury_rio-playmaker/pull/1275#discussion_r4210097356). La política D27 se conserva, sin cambio de autorización adicional.
+- Develop avanzó con #1270 durante el trabajo. Merge `526c1115cefd6e14079d1f825507063088915b24` integra `a4e2829ad92a9d181e1a728db25e5f7305abab80`; sólo impact.json tuvo conflicto, resuelto por unión de escenarios y conservación de 93 selectores. Los 21 archivos de código/config/script propios del PR son byte-identical a 0a5a01f76. El controller/DTO nuevo de freezes pertenece a develop y no aparece en el diff del PR. 93 selectores y 4.703 tests PASS; stack exit 1, cleanup de rio-playmaker-agentic-48924 certificado. Hooks pre/post-commit PASS; push, cuerpo y HEAD verificados; GitHub MERGEABLE. CI #6029: cinco checks SUCCESS; PR coverage 97,72%, helper 97,01% y overall MeliCov 94,92%. Evidencia: `/private/tmp/playmaker-pr1275-routing-merge-evidence.json` y logs `playmaker-pr1275-routing-*`.
+
+- Code Reviewer terminó NEUTRAL y repitió D27 en comentario 4210366310; respondido con la política acordada y link al reply anterior: [4210381147](https://github.com/melisource/fury_rio-playmaker/pull/1275#discussion_r4210381147). No nuevo comentario humano ni cambio de código.
+
+- Versión de prueba nueva por pedido del usuario: `0.0.2-acme-test3`, build #1811 FINISHED desde `526c1115cefd6e14079d1f825507063088915b24`, `type=test`, `run_test=true`. Sin cambios de source ni deploy. Evidencia sanitizada en `/private/tmp/playmaker-pr1275-test3-version-status.json`.

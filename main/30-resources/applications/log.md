@@ -129,3 +129,16 @@ Corrección in-place del contrato F-04: identidad del HandoffManifestV1 desde `s
 - Nuevas secciones: ownership transferido a Echo (attach/monitoring/deployment-link MT5 demo, vía E-06/E-09) y deuda git exacta de migración (`codex/f05-post-cert-delta` @ `145d6be` +2 sin release; sdk `c7f11496` sin merge; master symphony 38 commits atrás; lanes E-06; secretos versionados).
 - Baselines avanzados: symphony línea certificada `codex/f05-release-prep@745bc8b` (0.2.105), echo `origin/master@5dd998f1` + rama consolidada `feature/e09-…@7c843e9c` (contiene `4aad647b`), Gateway DEV `3d260e81`.
 - Clasificación: `BOUNDARY_IMPACT`; contratos frozen no reescritos. Cambio de entidad y programa en [[Echo Forge]] y [[Echo Forge — Factory V2 Completion]] (Explorer v0 DEFERRED_BY_OWNER); change log de sesión: [[2026-09-21-echo-forge-scope-closure-migration-readiness]].
+
+## [2026-10-07] ingest | ClickHouse — Preflight local e integración Playmaker
+
+- Actualizado [[rio-controlplane-clickhouse]] con contrato vigente de develop `c8b20b65`, Java 25, Boot 4.1.1 y SDK 1.6.1; fuentes [[Source — ClickHouse — Preflight local 2026-10-07]] y [[Source — Playmaker — Transporte local 2026-10-07]].
+- 2335 tests y arranque HTTP verificados en export aislado de develop; rechazo FAILED por Context ausente observado. DDL real y ciclo Playmaker no ejecutados.
+- Merge sobre `feature/new-component-context` pendiente de decisión contractual en cinco conflictos; sin commit ni push. Transportes locales y gates restantes documentados, sin mezclar esta validación con el avance del proyecto de adopción de inputs.
+
+## [2026-10-07] ingest | ClickHouse — Rama descartada y guía local con Kafka de Playmaker
+
+- Por instrucción explícita del owner se abortó el merge y eliminó `feature/new-component-context`; CP en `develop @ c8b20b65`, sin cambios trackeados. La referencia remota consultada no existe.
+- Reconciliado [[rio-controlplane-clickhouse]] con setup standalone y launcher `local/00-integration-pipeline.sh` de Playmaker: MySQL, Kafka host 39092, HTTP 9090 y profile local-integration. Se explicita el bridge faltante y la alternativa futura de adapters Kafka scoped en el CP.
+- Nuevas fuentes [[Source — ClickHouse — Develop y setup local 2026-10-07]] y [[Source — Playmaker — Kafka local 2026-10-07]]; la captura previa de Playmaker se marca superseded sin borrar su evidencia.
+- DTOs SDK 1.5.0/1.6.1 con signatures públicas coincidentes y schema 1; serialización E2E, DDL e integración física permanecen sin ejecutar. No se continuó la rama ni se implementaron adapters.
