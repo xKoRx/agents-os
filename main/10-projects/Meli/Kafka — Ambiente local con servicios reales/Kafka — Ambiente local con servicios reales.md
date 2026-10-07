@@ -100,7 +100,9 @@ El flujo de entrega sigue Spellbook: SPEC funcional → SPEC técnica → tasks 
 6. **Verificación automática:** escenarios de ciclo de vida, datos, replicación, routing y errores con evidencia en Kafka, KVS y MySQL, ejecutables mediante Gradle y en CI. Reservar una validación de integración con servicios reales no productivos para OAuth de GCP, transporte BigQueue y otras dependencias que Compose no reproduce.
 7. **Disponibilidad verificable:** el launcher del perfil de integración debe comprobar Kafka y KVS real, rechazar wiring no-op/archivos y explicar qué configuración falta. Una dependencia corporativa ausente debe producir un fallo visible en las suites que la requieren. Las pruebas de caída posterior de un KVS real verificarán la política de degradación vigente del producto.
 
-## ✅ Tareas vigentes — extracción pequeña 07/10
+## ✅ Tareas
+
+### Extracción pequeña vigente — 07/10
 
 - [x] Verificar develop remoto y preservar checkouts original/congelado.
 - [x] Entregar wiring local aislado, broker único, KVS efímero y transporte de resultados reales.
@@ -313,3 +315,10 @@ Owner pidió comprobar beta. Guías live Sandbox1.3.12/KVS2.0.43/CLI5.24.0 docum
 ## Reanudación CP/KVS — 2026-10-05
 
 Owner pidió continuar CP Kafka. Auth guard directo12:59/13:08Z devuelveLOGIN_REQUIRED;13:04 metadata confirma token/snapshot presentes, Tigerexpired y ZTausente, sin causar claims de permiso/backend. SDKconstructor local falló antesauth por logger ~/.fury/logs PermissionError; approval SDK y aplicación5paths rechazadas por reviewermodelcapacity,0execution/no unsafejudgment. Alternativa segura: authread-only y candidatecheckout propio en /private/tmp, nunca escritura protegida víaotrocanal. SPEC→tech→tasks CP-AUTH-1 preparados; baseline27FAIL3/candidate27PASS; Fault peer SHA166b95b94b656e2c17262e006a157ba0004c9ac5fb34a3392d9281b62aeca830 PASS+10controls, Domain3docdeltaPASS. Harnessmandatory74PASS sobreclone limpio; patch5paths replayPASS SHA9675d52dc71c84d6b5e565f1eefa6dce89ffde5e15a60aefc85550432aae846b. AggregationAssertion53vs74 preservada; añadióconteos reales5cleanup+16retention desde mismo log, sin rerun/expectationchange. Originales CP7f1720d/KL5c4cb45 unchanged/clean; no newcommit/push. [Packet/handoff](delivery/2026-10-05-kafka-kvs-resume/HANDOFF.md). Estado BLOCKED currentauth+approvalcapacity; clone403histórico/noAPI/KVSwrites0/fullCP NOT_EXECUTED. Ownerlogin solicitadoasync pendiente; después auth→ownCPprovision→contratoSDKserver→suite completa/repeat. Ecosistema posterior. Sesión active/partial sin cierre; tokens/coste desconocidos.
+
+
+## Cierre explícito — extracción pequeña — 2026-10-07
+
+El owner solicitó cerrar esta sesión y dejar feedback. La entrega vigente es `feature/kafka-local-small@eb16f5f1ef63466bcdb8ee1266eabb7ea3f21d10`: 11 archivos añadidos y 3 modificados; dos ejecuciones finales de 9 pruebas sin fallos desde ambientes vacíos, más reproducción independiente de 9 desde clon limpio. Guía operacional en `local/README.md`: `start` crea Kafka y arranca el CP; `test` crea, prueba y limpia; `stop` elimina exclusivamente recursos propios. Docker/Colima debe estar iniciado. `AGENTS.md` heredado quedó intacto; no referencia esta guía.
+
+Sesión cerrada, rama limpia y sin infraestructura propia activa. Los checkpoints anteriores conservan el estado histórico del alcance congelado; no describen esta entrega pequeña. Siguiente acción: revisión humana del diff y decidir la revisión formal Zord, NO REVISADO porque auto-review rechazó exportar el diff privado sin autorización específica. No hay PR ni push. Feedback: [[2026-10-07-kafka-small-local-session-feedback]].

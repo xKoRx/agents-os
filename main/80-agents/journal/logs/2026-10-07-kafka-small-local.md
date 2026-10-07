@@ -12,7 +12,8 @@ related: []
 aliases: []
 confidence: verified
 source_session:
-source_feedbacks: []
+source_feedbacks:
+  - "[[2026-10-07-kafka-small-local-session-feedback]]"
 share_scope: local
 load_policy: manual
 indexable: false
@@ -36,6 +37,11 @@ Encargo explícito del owner del 07/10; diff `feature/kafka-local-small@eb16f5f`
 
 9/0/0/0 en ambas corridas finales y replay independiente; 691 tests existentes y 6 controles KVS PASS. Packaging productivo sin código local y cleanup físico PASS. Original/congelado preservados. Zord formal bloqueado por auto-review; no se atribuye una certificación inexistente.
 
-## Compartibilidad y rollback
+El lint dirigido detectó el encabezado de tareas del proyecto fuera del schema; se normalizó conservando su alcance y contenido. Las cinco notas de journal pasan strict sin errores ni warnings. La consulta focalizada reconoce la entidad en el índice previo; su refresh automático no pudo escribir en caché, por lo que no se atribuye freshness.
 
-Scope local, sin secretos ni dumps. Corrección de la nota de estado mediante este delta; el código se conserva en la rama nueva sin PR ni push. No se ejecutó cierre AGENTS OS.
+## Rollback
+
+Scope local, sin secretos ni dumps. Corrección de la nota de estado mediante este delta; el código se conserva en la rama nueva sin PR ni push. El cierre posterior fue solicitado explícitamente por el owner el 07/10.
+
+
+Delta de cierre: checkpoint vigente en el proyecto, feedback por evento y reparación del schema de tres agent_runs existentes. No se creó L0/L1/L3 ni otro checkpoint interno. Las correcciones de notas son reversibles mediante su diff; la entrega de código permanece intacta.

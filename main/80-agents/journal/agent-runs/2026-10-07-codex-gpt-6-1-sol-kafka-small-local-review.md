@@ -16,7 +16,7 @@ model_source: host
 task_type: review
 task_complexity: high
 outcome: success
-verification: full
+verification: passed
 evaluator: agent
 user_rework: unknown
 source_session:
@@ -36,7 +36,7 @@ Agent independent_review: arquitectura DI/perfiles, packaging, scripts/cleanup y
 
 ## Evidencia
 
-Clon nuevo detached eb16f5f:9 tests / 0 fallos / 0 errores / 0 skips, cleanup físico y packaging productivoPASS; original/congelado preservados.
+Clon nuevo detached eb16f5f: 9 tests / 0 fallos / 0 errores / 0 skips, cleanup físico y packaging productivo PASS; original/congelado preservados.
 
 Entrega: repo `rio-controlplane-kafka`, worktree `rio-controlplane-kafka-local-small`, rama `feature/kafka-local-small`, SHA `eb16f5f1ef63466bcdb8ee1266eabb7ea3f21d10`, base remota develop `4302481c69300074a85ea5eb051a27bbd505cdce`.
 
@@ -44,4 +44,13 @@ Entrega: repo `rio-controlplane-kafka`, worktree `rio-controlplane-kafka-local-s
 
 Detectó dos errores de compilación de fixtures antes de certificación. Ningún finding material pendiente en SHA final. Zord formal no revisado por bloqueo de aprobación automática; no se sustituye por un PASS ficticio.
 
-Sin push, PR, release, Sandbox, Playmaker ni cierre AGENTS OS. Tokens/coste y rework del usuario desconocidos; no se asignaron scores.
+Sin push, PR, release, Sandbox ni Playmaker. Cierre AGENTS OS posterior por pedido explícito del owner. Tokens/coste y rework del usuario desconocidos; no se asignaron scores.
+
+
+## Evaluación
+
+El alcance local fue verificado físicamente y reproducido por un agente distinto. La revisión formal Zord permanece NO REVISADO; no se incluye en este PASS. Rework del usuario y coste no medidos.
+
+## Resultado
+
+Entrega local lista para revisión, con los cuatro flujos y sus errores contractuales comprobados. La sesión se cierra por pedido del owner; no queda infraestructura propia activa.
