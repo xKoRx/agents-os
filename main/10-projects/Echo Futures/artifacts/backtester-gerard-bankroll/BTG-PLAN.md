@@ -9,7 +9,7 @@ aliases: []
 tags:
   - kind/doc
 created: "2026-10-05"
-updated: "2026-10-05"
+updated: "2026-10-07"
 ---
 
 # BTG-PLAN — Gerard real, bankroll y objetivos
@@ -133,6 +133,18 @@ Los siguientes prompts se generan justo a tiempo desde el resultado aceptado del
 BTG_S03 = S03_CORRECTED_CANDIDATE_FOR_PRIMARY_REVIEW (2026-10-07, devolución correctiva completada: R1–R5 cerrados con pruebas, [[BTG-S03-REMEDIATION]]; candidato previo del 2026-10-06 queda supersedido por esta devolución). (2026-10-06): implementación y corridas reales en [[BTG-S03-IMPLEMENTATION]] (producto codex/btg-s03-implementation @ c1c0e7d4; BASIC real byte-idéntico al golden S01 + reproduce IDENTICAL; CAMPAIGN real 3 compras/2 burns/0 cobros, caja 5000→4640 conciliada y replay byte-idéntico; sustitución Strategy/MM por seams probada). Siguiente paso único: S04 adversarial LOCAL independiente.
 
 Mandato Owner registrado en [[BTG-S03-OWNER-MANDATE-20261006]]. Prioridad vigente: «No quiero una estrategia ganadora: quiero que el motor ejecute la estrategia como en real. Strategy y MM deben poder cambiar sin modificar el motor. KISS/YAGNI. No perder tiempo mejorando ROI». Objetivo S03 = engine correctness con Strategy/MM intercambiables sobre los mismos seams del runtime, ambos modos BASIC/CAMPAIGN ejecutados de verdad y candidato CANDIDATE_READY_FOR_PRIMARY_REVIEW para S04. ROI/rentabilidad queda fuera de alcance: F3 deja de exigir búsqueda de rentabilidad (configuración sigue, optimización NO); T30/holdout/ranking = SUPERSEDED_BY_OWNER_SCOPE (no PASS); T38 acotada a prueba focalizada de propagación de configuración. Resultado económico negativo es aceptable si la ejecución es correcta. Fecha límite Owner: 2026-10-07 America/Santiago; sin S06 ni nueva fase de diseño. Limpieza administrativa asociada: rama codex/btg-s02-design-cloud-20261006 retirada tras recuperar su feedback original a master.
+
+### 10. Delta BTG-S04 GOD LOCAL — 2026-10-07 (vigente)
+
+BTG_S04 = READY_FOR_PRIMARY_REVIEW_WITH_FINDINGS; informe único [[BTG-S04-GOD-ADVERSARIAL]]. Auditado correctivo codex/btg-s03-remediation@1bf45050780554c1135edc619bf01a8a4b04ba08, HEAD local/remoto confirmado. S04 ejecutó falsificadores nuevos, comparación real acotada con owners runtime, perfiles activos y determinismo de1/2/4procesos; tests preservados en commit local independiente d5b16049bbee7295063e88d8d8f7fa0a4bbe34fe. Candidato preservado, ningún cambio productivo ni LIVE/D6.
+
+DOMAIN_PARITY = NOT_DEMONSTRATED completo / PASS_BOUND primer circuito NO_ADDS y CONFIGURED; protección tras ADD = FAIL. SIMEXECUTION_CORRECTNESS y OPTIMIZATION_EQUIVALENCE = FAIL. CAMPAIGN_ACCOUNTING y MODULE_SUBSTITUTION = FAIL parcial; cash ledger probado sin doble débito, contexto5m/H4 continuo, pero términos de segunda cuenta, checkpoint ON_DEMAND y agregados defectuosos. PERFORMANCE = MEASURED_WITH_FINDINGS (copia histórica dominante/retención); INDEPENDENT_RUN_CONCURRENCY = PASS_BOUND con beneficio1.84x/2.35x en2/4procesos y artifacts idénticos por RunID. MIXED = REQUIREMENT_NOT_IMPLEMENTED; DATA_COVERAGE = PARTIAL; PHYSICAL_RUNTIME_READINESS = NOT_DEMONSTRATED.
+
+Dieciséis findings: protección insuficiente de7contratos con stops5/2; scheduler V2 consume futuro; skip pierde consumidor flat; clock/mark atrasados en fill; extremos revisitados; fases Open/Close invertidas; venue sella fills antes de drain; composición runtime y requirements sustitutos incompletos; términos heredados, reemplazo demorado23h50 y agregados vacíos; copia O(historial)/retención; MIXED y provenance. Las afirmaciones de cierre R1–R5 de sección9 son claims del implementador, no gates aceptados; esta evidencia supersede cualquier inferencia de aceptación. R1 rings reconstruidos es párrafo obsoleto, continuidad observable sí pasó en una stream.
+
+BTG_S05 = REQUIRED_REPAIRS_AND_RERUNS. Único siguiente paso: reparar seguridad/protección, causalidad/venue y skip probado; factories/requirements y campaña; O(1) latestRevision/retención conforme consumidores; delta MIXED y provenance. Rerun falsificadores, ampliar paridad pendiente y después BASIC USD100000 continuo y CAMPAIGN caja USD5000/compra USD120/una cuenta/hasta4cobros efectivos, sin tuning ROI ni recorte de warmup/horizonte. No S06 ni aceptación por auditor. Corridas reales existentes readback verificadas, no fresh rerun S04: CAMPAIGN Oct29T22→Nov2T22Z son96h/4sesiones, no3días; V1 economía/records iguales con bytes distintos. Trece archivos no prueban3años continuos; gaps y límites D6 quedan explícitos en informe.
+
+Cierre propio del auditor y tres workers completado con registro/feedback por delta. Primary y programa permanecen abiertos; ventana Owner sigue2026-10-07 America/Santiago, sin ocultar pendientes para cumplirla.
 
 ## Fuentes
 
