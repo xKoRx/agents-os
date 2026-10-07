@@ -11,9 +11,9 @@ entities:
 related: []
 aliases: []
 agent_surface: "[[Codex]]"
-agent_model: unknown
-agent_run:
-session_goal:
+agent_model: gpt-6-astra
+agent_run: "[[2026-10-07-codex-gpt-6-astra-btg-s04-performance]]"
+session_goal: Auditoría acotada rendimiento y concurrencia BTG-S04
 source_session:
 confidence: high
 load_policy: manual
@@ -26,89 +26,20 @@ tags:
   - agent/system1
 ---
 
-# Session Feedback - 2026-10-07 - short-topic
+# Feedback — BTG-S04 performance
 
-## Context
+## Observación
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+El primer fixture CONFIGURED generó fills reales pero quedó flat al minuto siguiente; clasificarlo por intención como carga sostenida habría dado una conclusión engañosa. Se conservaron esas pruebas como carga de adds y se construyó otro fixture cuya duración de exposición se afirma automáticamente. Los perfiles identifican costo de copia histórica frente a retención mediante mediciones separadas, sin cambiar código productivo.
 
-## Scores
+## Candidato reusable
 
-Use 1-5, where 1 is poor and 5 is excellent.
+REUSABLE_BEHAVIOR_CANDIDATES: test_harness — exigir primera/última ejecución, callbacks y continuidad de exposición en benchmarks activos; ninguna promoción de skill realizada. La evidencia está en workspace externo BTG-S04 evidence/performance y vinculada desde BTG-S04-GOD-ADVERSARIAL.
 
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
+## Evaluación
 
-## What Complicated The Session Most
+Bootstrap/skills: 4/5; contexto scoped y límites de ambiente útiles. Fricción: tests concurrentes en el mismo paquete requieren esperar a que los otros archivos compilen; coordinación resolvió sin tocar pruebas ajenas. Internal Memory no necesitó delta ni duplicación de continuidad. Cuota, tokens exactos y métricas de contexto: UNKNOWN.
 
-- Observation:
-- Why it was hard:
-- Proposed improvement:
+## Cierre
 
-## Most Useful Part Of Sistema 1
-
-- What helped:
-- Why it helped:
-- Keep/change:
-
-## Least Useful Or Noisy Part
-
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
-
-## Missing Support
-
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
-
-## Retrieval Feedback
-
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
-
-## Skill Feedback
-
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
-
-## Template Feedback
-
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
-
-## Memoria Interna (Internal Memory)
-
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
-
-## Pain Pattern Candidate
-
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
-
-## One Next Improvement
-
--
+Registro materializado y feedback completados. El cierre corresponde sólo a este worker; el auditor principal integra y conserva continuidad del programa.

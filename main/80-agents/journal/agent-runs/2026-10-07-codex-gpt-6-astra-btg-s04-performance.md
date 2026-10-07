@@ -4,19 +4,19 @@ schema_version: 1
 scope: session
 created: "2026-10-07"
 updated: "2026-10-07"
-area:
-project:
+area: "[[Echo]]"
+project: "[[Echo Futures]]"
 application:
 entities: []
 related: []
 aliases: []
 agent_surface: "[[Codex]]"
-agent_model: unknown
-model_source: unknown
-task_type: coding
-task_complexity: unknown
-outcome: partial
-verification: not_run
+agent_model: gpt-6-astra
+model_source: host
+task_type: testing
+task_complexity: high
+outcome: completed_with_findings
+verification: executed
 evaluator: agent
 user_rework: unknown
 source_session:
@@ -28,32 +28,16 @@ tags:
   - scope/session
 ---
 
-# Agent Run — 2026-10-07-codex-gpt-6-astra-btg-s04-performance
+# Agent Run — BTG-S04 performance
 
 ## Trabajo
 
-- **Objetivo:**
-- **Alcance atribuible a esta combinación superficie×modelo:**
-- **Artefactos afectados:**
+ONE-SHOT GOD LOCAL delegado; falsificación independiente de rendimiento, concurrencia de experimentos y provenance de datos sobre xKoRx/echo@1bf45050780554c1135edc619bf01a8a4b04ba08. Modelo gpt-6-astra confirmado por el harness/parent; cuota UNKNOWN, no inferida. Auditoría sin modificaciones productivas ni egress físico.
 
 ## Evidencia
 
-- **Validaciones ejecutadas:**
-- **Resultado observable:**
-- **Limitaciones de la evidencia:**
-
-## Evaluación
-
-%% Scores opcionales 1–5: agregar al frontmatter sólo cuando exista evidencia suficiente. Si son autoevaluados, conservar evaluator: agent. %%
-
-- **Correctness:**
-- **Autonomy:**
-- **Efficiency:**
-- **Tool use:**
-- **Overall:**
+Workspace externo BTG-S04, evidence/performance/summary.md y SHA256SUMS documentan tests nuevos btg_s04_perf_test.go, perfiles CPU/alloc/heap/GC, contador de revisiones retenidas, carga CONFIGURED sostenida LONG/SHORT, carga de adds, warmup, doji, rango amplio y 1/2/4 procesos independientes. Fuente y artefactos de S03 son evidencia histórica, no gates aceptados. Hallazgo dominante: copia completa de Ledger.Revisions para obtener último elemento, crecimiento superlineal de asignaciones; retención de mark revisions lineal demostrada separadamente.
 
 ## Resultado
 
-- **Outcome:**
-- **Rework posterior:**
-- **Aprendizaje para comparar herramientas:**
+READY_FOR_PRIMARY_REVIEW_WITH_FINDINGS; implementación/reparación S05 pendiente del Owner/Primary. El informe único y BTG-PLAN pertenecen al auditor raíz. No branch/PR/commit/push documental ni aceptación de gate. REUSABLE_BEHAVIOR_CANDIDATES: test_harness — verificar duración de exposición efectiva en benchmark antes de llamarlo carga activa. Cierre delegado ejecutado por delta; sin transcript/L0/L1 ni memoria nueva redundante.
