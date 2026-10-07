@@ -1,0 +1,63 @@
+EchoExecutionAddOn config parser - red/green adversarial verification
+=====================================================================
+box   : dev-win 192.168.31.132, runtime real .NET Framework 4 (csc.exe Framework64 v4.0.30319)
+arnes : generado mecanicamente desde EchoExecutionAddOn.cs por extraccion de marcadores
+        (funciones ExtractJsonString / GetString / GetNumber / ParseContracts byte-verbatim,
+        solo cambia visibilidad private -> public static). 14 vectores adversariales.
+token : V02 lee C:\Temp\EchoD6Bundle\echo-execution-addon.json del disco en runtime
+        (el token nunca se embebe ni persiste en el harness).
+
+RED - parser viejo (d361008b, el stageado en este bundle antes del fix)
+----------------------------------------------------------------------
+FAIL V01_goal_pretty: got port=0 snap=5 hb=5 host='192.168.31.161' acct='' contracts=0 | want port=9771 ...
+FAIL V02_real_bundle_config@FILE: got port=0 snap=5 hb=5 host='192.168.31.161' acct='RJARA114411201551' contracts=1 | want port=9771 ...
+PASS V03_compact
+FAIL V04_crlf_tabs: got port=0 ...
+FAIL V05_space_before_colon: got port=0 ...
+FAIL V06_space_after_value: got port=0 ...
+PASS V07_missing_port
+PASS V08_ws_only_value
+FAIL V09_negative_port: got port=0 ... | want port=-5 ...
+PASS V10_string_typed_port_failclosed
+FAIL V11_string_escapes: got port=0 ...
+FAIL V12_contracts_pretty: got port=0 ... contracts=2 | want ... contracts=2
+FAIL V13_float_exponent_pretty: got port=0 ...
+PASS V14_float_exponent_compact
+old RESULT: 5/14 PASS, 9 FAIL
+
+Lectura del rojo: host/account/contracts (strings) parsean bien; SOLO los
+numeros con whitespace tras el colon caen a 0. Con ntx_port=0, el gate
+fail-closed de d361008b deja ambas lanes HARD-DOWN: "config FAILED" con una
+config JSON perfectamente valida. La config REAL del bundle (V02) repro el
+defecto.
+
+GREEN - parser fixed (este bundle, EchoExecutionAddOn.cs 2c8ab2cf...)
+---------------------------------------------------------------------
+PASS V01_goal_pretty
+PASS V02_real_bundle_config@FILE
+PASS V03_compact
+PASS V04_crlf_tabs
+PASS V05_space_before_colon
+PASS V06_space_after_value
+PASS V07_missing_port
+PASS V08_ws_only_value
+PASS V09_negative_port
+PASS V10_string_typed_port_failclosed
+PASS V11_string_escapes
+PASS V12_contracts_pretty
+PASS V13_float_exponent_pretty
+PASS V14_float_exponent_compact
+new RESULT: 14/14 PASS, 0 FAIL
+
+Semantica fail-closed preservada (contrato d361008b intacto):
+- V07 port ausente -> 0 (gate rechaza)
+- V08 valor whitespace-only -> 0 (gate rechaza)
+- V10 port como string "9771" -> 0 (gate rechaza; jamas coerciona)
+- V09 port negativo -> -5 parseado fiel y rechazado por el gate (ntxPort <= 0)
+
+Shadow-compile contra NinjaTrader 8.1.8.3 real (DLLs fisicas)
+-------------------------------------------------------------
+EchoFeedAddOn.cs        : 0 errores, 0 warnings
+EchoExecutionAddOn.cs   : 0 errores, 3 warnings (preexistentes, 0 nuevas):
+  CS0612 Account.CreateOrder (desplazada 654 -> 661 por las +7 lineas del fix)
+  CS0649 marketEvents / accountEvents x2 @52
