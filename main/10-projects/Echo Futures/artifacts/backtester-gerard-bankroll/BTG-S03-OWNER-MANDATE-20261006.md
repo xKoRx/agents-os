@@ -28,7 +28,7 @@ updated: "2026-10-06"
 
 Mandato Owner recibido el 2026-10-06 (America/Santiago), preservado verbatim como autoridad del shot S03. Toda decisión de S03 se adjudica contra este texto; en conflicto con instrucciones supersedidas del diseño/BTG-PLAN, prevalece este mandato.
 
-## Mandato verbatim
+## Mandato — sección /goal verbatim; las demás secciones son RESUMEN ESTRUCTURADO del original (rotulación corregida por delta 2026-10-07; el original completo vive en el hilo Owner del 2026-10-06)
 
 # ECHO FUTURES — BTG-S03
 # IMPLEMENTACIÓN: MOTOR FIEL, STRATEGY/MM INTERCAMBIABLES, BASIC + CAMPAIGN
@@ -46,7 +46,7 @@ Prioridad Owner vigente: «No quiero una estrategia ganadora: quiero que el moto
 
 El programa conserva cinco shots; éste es S03. Fecha límite Owner: 7 de octubre de 2026, America/Santiago. No planificar S06, nueva fase de diseño o una plataforma adicional. No comprar tiempo reduciendo la fidelidad o declarando pruebas inexistentes.
 
-## /frozen (resumen operativo del mandato completo recibido)
+## /frozen (RESUMEN ESTRUCTURADO — no verbatim; rotulación corregida 2026-10-07)
 
 1. Entregar motor, no optimizar estrategia: S2/Gerard como configuración de prueba (SL2000/TP1500, NO_ADDS y CONFIGURED explícitos); sin barrido de rentabilidad, ranking, holdout ni tuning; T30 = SUPERSEDED_BY_OWNER_SCOPE; T38 acotada a propagación de configuración; resultado negativo aceptable.
 2. Strategy y MM intercambiables: el núcleo consume contratos; el conocimiento de ModuleS2/timeframes (ohlc_driver/requireNativeWarmup) migra al módulo/contrato compartido; MM entra por el contrato MoneyManager compartido; sin switches por strategy_id, reflect, DSL ni plugins; sustitución probada por los mismos seams del runtime.
