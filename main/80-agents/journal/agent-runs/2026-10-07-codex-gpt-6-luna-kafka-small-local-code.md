@@ -32,7 +32,7 @@ tags:
 
 ## Trabajo
 
-Dos subagentes: contracts/scenarios y local_adapters;4adapters locales, una clase funcional y una clase KVS, sin modificar negocio.
+Dos subagentes: contracts/scenarios y local_adapters;4 adapters locales, una clase funcional y una clase KVS, sin modificar negocio.
 
 ## Evidencia
 
@@ -42,6 +42,6 @@ Entrega: repo `rio-controlplane-kafka`, worktree `rio-controlplane-kafka-local-s
 
 ## Límites
 
-Correcciones durante integración: tipos Integer de timeouts Kafka, cierre de método, Map.ofEntries, consumer position antes de trigger y3mensajes para demostrar límite2. Sin rework solicitado por usuario ni fixtures que oculten defectos.
+Correcciones durante integración: tipos Integer de timeouts Kafka, cierre de método, Map.ofEntries, consumer position antes de trigger y3 mensajes para demostrar límite 2. Sin rework solicitado por usuario ni fixtures que oculten defectos.
 
 Sin push, PR, release, Sandbox, Playmaker ni cierre AGENTS OS. Tokens/coste y rework del usuario desconocidos; no se asignaron scores.

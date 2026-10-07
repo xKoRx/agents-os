@@ -36,7 +36,7 @@ Agent independent_review: arquitectura DI/perfiles, packaging, scripts/cleanup y
 
 ## Evidencia
 
-Clon nuevo detached eb16f5f:9 tests/0fail/0error/0skip, cleanup físico y packaging productivoPASS; original/congelado preservados.
+Clon nuevo detached eb16f5f:9 tests / 0 fallos / 0 errores / 0 skips, cleanup físico y packaging productivoPASS; original/congelado preservados.
 
 Entrega: repo `rio-controlplane-kafka`, worktree `rio-controlplane-kafka-local-small`, rama `feature/kafka-local-small`, SHA `eb16f5f1ef63466bcdb8ee1266eabb7ea3f21d10`, base remota develop `4302481c69300074a85ea5eb051a27bbd505cdce`.
 

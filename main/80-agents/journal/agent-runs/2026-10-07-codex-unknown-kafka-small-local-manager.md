@@ -36,7 +36,7 @@ Build, perfiles, Compose, script y README de rio-controlplane-kafka; coordinaci�
 
 ## Evidencia
 
-691 tests existentes y6 contratos KVS PASS; dos suites finales9/0/0/0 desde ambientes vacíos; startup manual y reproducción independientePASS.
+691 tests existentes y 6 contratos KVS PASS; dos suites finales9/0/0/0 desde ambientes vacíos; startup manual y reproducción independientePASS.
 
 Entrega: repo `rio-controlplane-kafka`, worktree `rio-controlplane-kafka-local-small`, rama `feature/kafka-local-small`, SHA `eb16f5f1ef63466bcdb8ee1266eabb7ea3f21d10`, base remota develop `4302481c69300074a85ea5eb051a27bbd505cdce`.
 

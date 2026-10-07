@@ -17,13 +17,13 @@ prs:
 aliases: ["Kafka local real", "Ambiente local Kafka", "Control plane Kafka — Desarrollo local"]
 tags: ["kind/project", "area/meli", "app/rio-controlplane-kafka"]
 created: "2026-09-30"
-updated: "2026-10-06"
+updated: "2026-10-07"
 ---
 
 # Kafka — Ambiente local con servicios reales
 
 > [!info]+ Kafka — Ambiente local con servicios reales
-> **Área:** [[Meli]] · **Estado:** active · **Owner:** Rodrigo · **Fase:** CP local con mapa implementado y revisado; E2E físico bloqueado por Docker/forwarding del host.
+> **Área:** [[Meli]] · **Estado:** active · **Owner:** Rodrigo · **Fase:** extracción pequeña CP local verificada físicamente dos veces y reproducida desde clon limpio; rama lista para revisión.
 
 ## 🎯 Objetivo
 
@@ -32,6 +32,8 @@ Ejecutar E2E del [[rio-controlplane-kafka]] contra Kafka real usando un mapa sim
 Mantener controllers, validadores, handlers, procesadores, provisioners y guard reales del CP. Comprobar efectos Kafka, resultados correlacionados y estado del mapa de la misma aplicación. El mapa no certifica persistencia tras reinicio, exclusión entre JVMs ni el cliente/servicio Toolkit productivo. La producción conserva su backend. La comparación histórica de implementaciones vive en [[Ambientes locales RIO — Comparativa de implementaciones]].
 
 ## 📊 Estado actual
+
+- **Entrega pequeña 07/10 — objetivo vigente:** `rio-controlplane-kafka-local-small`, rama `feature/kafka-local-small`, commit `eb16f5f1ef63466bcdb8ee1266eabb7ea3f21d10`, desde develop remoto verificado `4302481c69300074a85ea5eb051a27bbd505cdce`. PROVISION, UPDATE, DEPROVISION y PEEK acción/REST más errores contractuales: dos corridas finales **9/0/0/0 PASS** desde ambientes vacíos y reproducción independiente **9/0/0/0 PASS**. CP real, un broker Kafka real RF1, KVS mapa por JVM y resultados Kafka reales; cleanup físico y packaging productivo PASS. Diff 14 archivos (11 añadidos, 3 modificados); sólo dos anotaciones de perfil en configuración productiva, sin cambios de negocio. `local/README.md` contiene start/test/stop. Original y congelado íntegros; sin PR, push, CI ni integraciones del ecosistema. Revisión independiente sin findings materiales; Zord formal no ejecutado por rechazo automático de envío de diff privado, consulta de autorización/omisión pendiente. Registro breve y SPECs proporcionales en el control externo de esta ejecución; atribución en los agent runs `kafka-small-local-*`.
 
 - **Ejecución funcional activa 06/10 (supersede el recheck de sólo lectura):** runtime propio `colima-rio-kafka-e2e-01a0f8e0` disponible con 6.198.423.552 bytes; handshake Kafka real desde host39092–39096 verificado, shared default intacto. Baseline unfiltered `cc21725628c84592b64113606ff072e7`: **348 tests,261 PASS,87 FAIL,0errors/skips,cleanup PASS**. 845 unit+compile PASS hoy. Fixes exclusivos GPT-6 Luna: prefijo Compose corregido; binding action envelope `publish_time` opcional según OpenAPI; fixtures RF/metadatos y cobertura childrouting en curso. No certificación completa todavía. El SIGKILL previo conserva causa desconocida; el runtime actual no depende de Fury/VPN. Continuación: fixes→fullunfiltered→freeze→replay independiente desde clone limpio→evidencia/knowledge. Control activo `/private/tmp/kafka-e2e-validate-20261006/execution-control.json`.
 
@@ -78,6 +80,7 @@ Mantener controllers, validadores, handlers, procesadores, provisioners y guard 
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
+| [[rio-controlplane-kafka]] · extracción pequeña vigente | `feature/kafka-local-small` · `rio-controlplane-kafka-local-small` | develop remoto `4302481c69300074a85ea5eb051a27bbd505cdce` | Encargo 07/10 y SPEC funcional breve del control de ejecución | SPEC técnica/tareas breves del mismo control; adapters y perfil aislados | Commit `eb16f5f`; dos suites 9/0/0/0 y replay limpio 9/0/0/0 PASS; revisión independiente PASS; Zord pendiente |
 | [[rio-controlplane-kafka]] · CP local memoria actual | `feature/kafka-e2e-memory` · `rio-controlplane-kafka-memory-e2e` | Candidato `7f1720d950446638ff9b15a0e4e167f3e8e26e43` sobre develop previo | Delta `LOCAL-MEMORY-1` en funcional | Delta `LOCAL-MEMORY-1` en técnica y tareas | Implementación7615b21/docs4c66d0d;845 unit/compile peer PASS; físico BLOCKED |
 | [[ads-signals-knowledge-library]] · memoria local actual | `docs/kafka-e2e-memory` · `ads-signals-knowledge-library-kafka-memory-e2e` | Candidato `5c4cb45d9fa8c3e4a95d73542ecd58c04c7c1530` | Decisión owner05/10 y auditoría |5docs delta fuentes/capas/runbook | Commit0feee7b; estructura/histórico PASS; formal937 preexistentes idénticos |
 | [[rio-controlplane-kafka]] · `melisource/fury_rio-controlplane-kafka` | `feature/kafka-real-e2e` · worktree hermano `rio-controlplane-kafka-e2e` | `develop@4302481c69300074a85ea5eb051a27bbd505cdce` | `meli/features/20261001-real-e2e/1-functional/spec.md` lista; publicación SIG bloqueada por sesión | `meli/features/20261001-real-e2e/2-technical/spec.md` lista | Implementación/suites compiladas; real E2E pendiente |
@@ -97,7 +100,16 @@ El flujo de entrega sigue Spellbook: SPEC funcional → SPEC técnica → tasks 
 6. **Verificación automática:** escenarios de ciclo de vida, datos, replicación, routing y errores con evidencia en Kafka, KVS y MySQL, ejecutables mediante Gradle y en CI. Reservar una validación de integración con servicios reales no productivos para OAuth de GCP, transporte BigQueue y otras dependencias que Compose no reproduce.
 7. **Disponibilidad verificable:** el launcher del perfil de integración debe comprobar Kafka y KVS real, rechazar wiring no-op/archivos y explicar qué configuración falta. Una dependencia corporativa ausente debe producir un fallo visible en las suites que la requieren. Las pruebas de caída posterior de un KVS real verificarán la política de degradación vigente del producto.
 
-## ✅ Tareas actuales — CP primero
+## ✅ Tareas vigentes — extracción pequeña 07/10
+
+- [x] Verificar develop remoto y preservar checkouts original/congelado.
+- [x] Entregar wiring local aislado, broker único, KVS efímero y transporte de resultados reales.
+- [x] Verificar cuatro flujos y errores mediante endpoints, resultados terminales y efectos Kafka.
+- [x] Repetir suite completa desde dos ambientes vacíos y reproducir en clon independiente limpio.
+- [x] Confirmar limpieza exclusiva, packaging productivo y conservación de negocio.
+- [ ] Revisión humana de la rama; decidir autorización u omisión de Zord formal.
+
+## Tareas históricas — desarrollo congelado, fuera del candidato
 
 - [x] Registrar decisión del owner y delta SPEC funcional→técnica→tareas `LOCAL-MEMORY-1`.
 - [x] Implementar mapa y selección explícita del perfil local; conservar lógica del CP.
