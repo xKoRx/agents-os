@@ -1,0 +1,23 @@
+{
+  "run_id": "245a0a2c298f4bbaa2f2dc4a2c08a78d",
+  "files": {
+    "topics.txt": "e634a325a4da2605745a4eb6c207ed920b439e2f82efb73eb75acd3ec91a47a6",
+    "readiness.txt": "87635bbc83b0a60d6532ab67d1727a4947bf245686b86e748378d971f9388022",
+    "result.json": "098dc64faeded4bd18c045238cb10e3b47045a3fb2d19be75983f9a36be0a7db",
+    "reconciliation.txt": "24cd7098eb55b3078a16ab5bf0eb30b6cbdce8bb0c60ab88bf2a756e79f0e775",
+    "source.json": "7f73cc99d49ba907a3fc1aa3c4f645a3c9d3c6c2685330960ca24be0e70c9c5e",
+    "gradle.log": "5828d4bcc9a0c4a6b92f3e61d5e2e785dc36fa8e4ef2e478de5fa7b3f9538fa9",
+    "cloud-provider.json": "4450766cb634672c668bb8d3ff2b711701b0e9544758eec8d8dddc2169ba1258",
+    "startup.log": "fb733d48c79f1f7a236f9dc315fcacaff6f73535c3566244b25b073e81f553eb",
+    "cleanup.log": "37d9c1fad6f90609f128294929a177d0ddc6cb3b3921d163dc858e4e36aebadc",
+    "broker.log": "3541377a244338d811e2b474ed57a453be1a8e69f7ea0bcb5d9a9cdd8a2e3425",
+    "compose.env": "2c4ac9d7a7e711e068124c26e708d31ac871e7234b459f5e8386a50b3a266de8",
+    "junit/TEST-com.mercadolibre.rio_controlplane_kafka.reale2e.RealReplicationDeadlineIntegrationTest.xml": "3d080c837a350dffb01bbab95c6bdc39397ac75ef8730902f012c45d973ceeb3",
+    "cleanup-admin/cleanup-26530fc3-5523-4189-96e7-ac08892afc05.json": "284f010effec8fa40d34a333a1370946c12f94d8c4cafa2de6796ab530cebac2",
+    "cleanup-admin/cleanup-f51778b0-84ef-441e-85d9-8e502f78f21d.json": "2605047ff60a27968838271502eeaed7e00e50080c5551914c0501cce9cf91c0",
+    "test-workers/task-localKafkaE2eTest/worker-63868.json": "6db0687502b6607b6acd2c6dcb829ca32abc2067ee8b0a75a2c05cfc71cb0b49",
+    "test-workers/task-localKafkaE2eTest/owner-intent.json": "06325738797cdb869068cfb426d39ec30ed97b5557fc38f2691a25ddc61b8383",
+    "test-workers/task-localKafkaE2eTest/cases/case-c744d6d620d4ca62efdb61dfdf4d6cdec1fcba39e518b4223ea57be7c3a11762.json": "b7ff3a6a33eb372511bdca49dd3e173b252ddf848a232a0c4b397b45d42297dd",
+    "test-workers/task-localKafkaE2eTest/cases/case-c28957d16fc34327b7737cb97eaa84e4f03fd654f901299974c47233057056e1.json": "d46f31f4f4bb86f64eba3561c54abc3575663470c15b8ba5126b8c180c4d7e62"
+  }
+}

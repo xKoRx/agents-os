@@ -1,0 +1,16 @@
+{
+  "run_id": "5f9c95c7fef14f8396acb13c4e494ca4",
+  "family": "CP_LOCAL_KAFKA_MEMORY",
+  "backend": "PER_INSTANCE_MEMORY",
+  "verdict": "FAIL",
+  "command_exit": 0,
+  "cleanup": "PASS",
+  "native_task_proof": true,
+  "case_receipts_valid": false,
+  "totals": {
+    "tests": 13,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+}

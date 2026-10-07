@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "kind": "INDEPENDENT_CURRENT_RUN_CLUSTER_FAULT_DIAGNOSIS",
+  "scope": "READ_ONLY_SOURCE_AND_NATIVE_EXISTING_ARTIFACTS",
+  "verdict": "NATIVE_FIXTURE_OBSERVATION_FAILURES; NO_FULL_PASS",
+  "run_id": "19d659a642814618a2f97e10fa93d5b5",
+  "source": {
+    "head": "b1a017adfc8d7c2139be808d042ddea29a581bf6",
+    "status": "",
+    "pins": [
+      {
+        "path": "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealKafkaClusterFaultIntegrationTest.java",
+        "sha256": "893b5461692035481fe8ab9ad17cb6532e29a76adf77d6c25d6a613e3782eb6b"
+      },
+      {
+        "path": "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/support/RealE2eFixture.java",
+        "sha256": "e2e2620f0df65a15a77d3e69b11bc84c131a56d473ff8b0d42ccc32f94b1a3bb"
+      },
+      {
+        "path": "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/faults/OwnedKafkaFaults.java",
+        "sha256": "095f8406604ab59e3172d49056fbb606fbfdd0c079b769675d2b15ba6d92a364"
+      },
+      {
+        "path": "e2e/local-case-inventory.json",
+        "sha256": "8c966aa50e02a641cb16a8d578433e2bf21c99bf10bbf0fa47bb33ab89c8087b"
+      }
+    ],
+    "run_source_mtime": 1791330043.5511181,
+    "run_source_sha256": "2b5f0fbe9bafe07660aec6c6359b764ea08ef29b8cc12c8cbd872b6bac7f98a3"
+  },
+  "fresh_xml": {
+    "xml": "/private/tmp/kafka-e2e-validate-20261006/cp/build/test-results/localKafkaE2eTest/TEST-com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaClusterFaultIntegrationTest.xml",
+    "sha256": "bf4acb6937eeacd1be77e6e4ffb86ac1752053834fb8d47abd56118f95792512",
+    "mtime": 1791330909.4023426,
+    "root_attributes": {
+      "name": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaClusterFaultIntegrationTest",
+      "tests": "2",
+      "skipped": "0",
+      "failures": "2",
+      "errors": "0",
+      "timestamp": "2026-10-06T23:52:27.131Z",
+      "hostname": "CL000FWHK9NNX7M",
+      "time": "110.909"
+    }
+  },
+  "freshness": "Class XML mtime is newer than exact current-run source.json; no earlier-run XML used.",
+  "invocation_1": {
+    "operation": "PROVISION",
+    "case_id_sha256": "4f964b336cbfccc1c8851af5ca60baf1532b4f005ff973d48dc1afb40e62295a",
+    "receipt_sha256": "07fe03268496632e04fff88e2eeed8decc9b11b20702853da7cba608542dd8e8",
+    "case_status": "FAILED",
+    "phase": "PRE_RESTORATION_RF1_AND_CONFIG_AUDIT",
+    "failure_source": "RealKafkaClusterFaultIntegrationTest.java:69 -> RealE2eFixture.java:1081",
+    "exception_chain": [
+      "ExecutionException",
+      "org.apache.kafka.common.errors.TimeoutException",
+      "org.apache.kafka.common.errors.DisconnectException"
+    ],
+    "native_call": {
+      "api": "describeTopicPartitions",
+      "deadline_ms": 1791330814053,
+      "timed_out_at_ms": 1791330814057,
+      "tries": 1,
+      "kafka_wire_correlation_id": 11,
+      "disconnected_destination_node_id": 4
+    },
+    "source_mapping": "Completed native timeout is propagated at ExecutionException catch; pending-only local timed-get retry was not used to swallow this failure.",
+    "reached": {
+      "seed_topic": "1 partition, replica IDs [[1]] observed before stopping brokers",
+      "live_nodes_assertion": 3,
+      "cp_http_ack": 200,
+      "terminal_result": "FAILED/KAFKA_ADMIN_ERROR",
+      "guard": "FAILED/version2/native instance OBSERVED"
+    },
+    "correlation_sha256": "d253a5a8467bf6278497211a8c8cd115957f2ab216e54de9b8c101d41d25af95",
+    "terminal_native_offsets": [
+      {
+        "partition": 1,
+        "offset": 119,
+        "status": "STARTED",
+        "code": "NONE"
+      },
+      {
+        "partition": 1,
+        "offset": 120,
+        "status": "FAILED",
+        "code": "KAFKA_ADMIN_ERROR"
+      }
+    ],
+    "raw_timeline": {
+      "provision_logged": "2026-10-06 20:52:33.747 local log time",
+      "invalid_rf_logged": "2026-10-06 20:52:33.758 local log time",
+      "invalid_rf": "Insufficient brokers (3) for replication factor5",
+      "recovery_provision_logged": false
+    },
+    "not_reached": [
+      "RF1 assertion after fault",
+      "retention1234567 assertion after fault",
+      "explicit restoreBrokers success",
+      "five-node post-restore assertion",
+      "new recovery correlation/result/guard",
+      "RF5/ISR5 recovery assertions"
+    ],
+    "restoration_boundary": "try-with-resources attempts fault.close()/restore while unwinding; this is source control flow, not a successful phase oracle."
+  },
+  "invocation_2": {
+    "operation": "UPDATE",
+    "case_id_sha256": "ca937fbe7b3bf4e4a96c17bb5b712f5d18bca061c29663fca346514b5fda37e0",
+    "receipt_sha256": "a686673f0647bcd254b66b47e5ed9402c097127f92aa01c76038427ce0b19d70",
+    "case_status": "FAILED",
+    "phase": "POST_STOP_LIVE_NODES_ASSERTION_BEFORE_CP_DISPATCH",
+    "failure_source": "RealKafkaClusterFaultIntegrationTest.java:63",
+    "exception": "java.util.concurrent.TimeoutException from timed get(30s)",
+    "reached": {
+      "seed_topic": "1 partition, replica IDs [[1]] observed before broker reduction"
+    },
+    "not_reached": [
+      "assertEquals3 completion",
+      "HTTP dispatch",
+      "CP failure/result/guard",
+      "post-fault RF1/config audits",
+      "explicit restore/recovery oracles"
+    ],
+    "observed_correlations": 0,
+    "native_result_observation": "NOT_OBSERVED",
+    "guard_observation": "NOT_OBSERVED",
+    "classification": "Independent real observer read failure, not a construction/journal cascade."
+  },
+  "cause_limits": [
+    "The exception chain binds disconnected node4 to the returned fixture future; autogenerated AdminClient logger IDs are not independently bound.",
+    "No claim of gRPC failure, persistent host forwarding failure, controller malfunction, exact stale cache contents, or sender/cause of transport disconnect.",
+    "Current-run overall cleanup not certified by this report.",
+    "Seed observation before reduction is not evidence of RF1 preservation during reduction."
+  ],
+  "phase_observer_proposal": {
+    "assessment": "Reasonable narrow fixture precondition, not implemented or physically validated by this review.",
+    "contract": [
+      "Create a new read-only native Admin after each owned broker phase transition; leave productive CP Admin/pool unchanged.",
+      "Use immutable run/fixture/phase-specific client.id and durably retain identity/expected native node IDs + declared own listener endpoints.",
+      "Bootstrap reduced observer from exactly owned ports1\u20133 and restored observer from owned ports1\u20135; bootstrap list is not an allowlist of discovered nodes.",
+      "Reject unexpected native IDs/endpoints; phase readiness must observe exact current native node set.",
+      "Use actual TopicDescription/config reads and existing receipt hook; retain the same RF/result/guard/config assertions and 30s/90s deadlines.",
+      "Do not retry completed native timeouts/auth/generic failures/interruption; only existing approved pending-local timeout and completed Unknown/null/empty/condition mismatch states remain.",
+      "Close phase Admin and pending future safely on every path; no production/global metadata.max.age change."
+    ],
+    "focused_future_verification": [
+      "Run both PROVISION/UPDATE indices without changing oracles; record observer identities/expected and actual node maps for reduced/restored phases.",
+      "Verify actual RF1 + unchanged config during fault, independent native FAILED/guard, then new-ID COMPLETED/guard and actual RF5/ISR5 after restoration.",
+      "Verify all owned observers closed and original fixture journal/resource cleanup certified.",
+      "Preserve any native failure; after focused success, unfiltered359 remains mandatory."
+    ]
+  },
+  "primary_reference_file": "primary-references.json",
+  "evidence_files": [
+    "current-case-snapshots.json",
+    "fresh-xml-summary-final-at-read.json",
+    "native-output-correlated-private.json",
+    "source-pins.json"
+  ],
+  "execution": "No Gradle, Docker, producer/client requests, source edits, or physical control by reviewer."
+}

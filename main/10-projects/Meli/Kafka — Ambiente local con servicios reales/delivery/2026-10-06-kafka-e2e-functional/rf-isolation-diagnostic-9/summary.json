@@ -1,0 +1,26 @@
+{
+  "scope": "RF2_ISOLATION_DIAGNOSTIC_NOT_FULL_SUITE",
+  "authoritative_full_verdict": {
+    "run_id": "245a0a2c298f4bbaa2f2dc4a2c08a78d",
+    "family": "CP_LOCAL_KAFKA_MEMORY",
+    "backend": "PER_INSTANCE_MEMORY",
+    "verdict": "FAIL",
+    "command_exit": 1,
+    "cleanup": "PASS",
+    "native_task_proof": false,
+    "case_receipts_valid": false,
+    "totals": {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "native_filtered_build_successful": false,
+  "source_files": 497,
+  "source_drift": [],
+  "original_run_files": 18,
+  "interpretation": "Native AWS/GCP two methods passed from fresh Spring application context, cleanupPASS. Gradle completion genuinely FAILED REAL_E2E_PRIVATE_WORKER_FILE_REQUIRED; source enumeration includes cases directory as worker-file candidate. This is not merely an expected filtered-task failure. Full proof missing and full359 not certified. Connection stall causeUNKNOWN; context-cache connection inference requires source review.",
+  "actual_gradle_failure_category": "REAL_E2E_PRIVATE_WORKER_FILE_REQUIRED",
+  "suspected_harness_bug": "gradle-worker-exit.gradle90 lists cases directory; privateRead26 demands regular600 file; independent source review pending"
+}

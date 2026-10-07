@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealReplicationDeadlineIntegrationTest" tests="2" skipped="0" failures="2" errors="0" timestamp="2026-10-06T23:55:00.217Z" time="8.437">
+  <testcase name="actualThrottledRfReassignmentRemainsPendingAtDeadlineAndRestoresBeforeNewId(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealReplicationDeadlineIntegrationTest" time="4.223">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  <testcase name="actualThrottledRfReassignmentRemainsPendingAtDeadlineAndRestoresBeforeNewId(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealReplicationDeadlineIntegrationTest" time="3.978">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="org.opentest4j.AssertionFailedError" />
+  </testcase>
+  </testsuite>

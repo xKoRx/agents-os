@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealPublicationFailureIntegrationTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-06T23:54:47.366Z" time="12.851">
+  <testcase name="deploymentsKeepTerminalKvsAfterRealProducerFailureAndDropRedelivery(String) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealPublicationFailureIntegrationTest" time="3.84" />
+  <testcase name="deploymentsKeepTerminalKvsAfterRealProducerFailureAndDropRedelivery(String) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealPublicationFailureIntegrationTest" time="3.954" />
+  <testcase name="actionRealProducerFailureLeavesPublicationPendingAndYoungRedeliveryDoesNotExecute()" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealPublicationFailureIntegrationTest" time="4.197" />
+  </testsuite>

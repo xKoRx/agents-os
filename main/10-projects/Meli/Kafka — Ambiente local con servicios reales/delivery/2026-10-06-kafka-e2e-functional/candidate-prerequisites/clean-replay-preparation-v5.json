@@ -1,0 +1,60 @@
+{
+  "build_or_gradle_cache_copied": false,
+  "clean_before_after": true,
+  "clone": "/private/tmp/kafka-e2e-validate-20261006/peer-clean-v5",
+  "commands": [
+    [
+      "git",
+      "clone",
+      "--no-hardlinks",
+      "--no-checkout",
+      "/private/tmp/kafka-e2e-validate-20261006/cp",
+      "/private/tmp/kafka-e2e-validate-20261006/peer-clean-v5"
+    ],
+    [
+      "git",
+      "checkout",
+      "--detach",
+      "b1a017adfc8d7c2139be808d042ddea29a581bf6"
+    ]
+  ],
+  "critical_pin_manifest_sha256": "1fe244cc986d79e6cdfa22b44012d8c6d3956887b64ff8614d9daba8ae1e9eda",
+  "critical_pins": 28,
+  "current_root_run": "19d659a642814618a2f97e10fa93d5b5/ACTIVE_NO_HANDOFF",
+  "detached": true,
+  "git_alternates": false,
+  "head": "b1a017adfc8d7c2139be808d042ddea29a581bf6",
+  "inventory": {
+    "all_selected_source_hashes_valid": true,
+    "cases": 359,
+    "classes": 10,
+    "methods": 100
+  },
+  "kind": "CLEAN_FULL_REPLAY_PREPARATION",
+  "pin_drift": 0,
+  "plan": {
+    "acceptance": [
+      "Freshsourcehead/pins; no authorbuild copied.",
+      "359actualnativePASScases boundto10classes/100methods/indices withstrictnativeworkerexit +case_receipts_valid.",
+      "Preserved actual RF/config/ISR, correlatedresults andmemoryguard/identity observations forcriticalcases atdeclaredhonestlayer.",
+      "ReconciliationCLEAN andactualabsence ofexactownrunDockerresources/ports/children; no forcedcleanup tohideunknown.",
+      "Trackedsourceclean andprivate rawfailureevidence retained."
+    ],
+    "command": "DOCKER_CONTEXT=colima-rio-kafka-e2e-01a0f8e0 JAVA_HOME=/Users/rjara/Library/Java/JavaVirtualMachines/corretto-25.0.4/Contents/Home PATH=/Users/rjara/Library/Java/JavaVirtualMachines/corretto-25.0.4/Contents/Home/bin:$PATH ./e2e/local.sh --offline",
+    "cwd": "/private/tmp/kafka-e2e-validate-20261006/peer-clean-v5",
+    "execute_only_after": "Rootunfiltered359/0failure/error/skip, strictnative/caseproofPASS,cleanupPASS andexplicitexclusive runtime/Gradlehandoff.",
+    "filters": []
+  },
+  "prior_review_pins": 19,
+  "schema_version": 1,
+  "scope": "Preparationonly. NoGradle,Docker,APIs,services orruntimechanges. No business/readiness/CIcertification.",
+  "shared_object_inodes": 0,
+  "shared_tracked_file_inodes": 0,
+  "source": "/private/tmp/kafka-e2e-validate-20261006/cp",
+  "test_execution": "NONE",
+  "tracked_files": 497,
+  "tracked_hash_manifest_sha256": "fd4c59d36ba1def853d591f8b35feaa0f647cf3f95f6d1f5e7ff2212a390e6a1",
+  "v4_path": "/private/tmp/kafka-e2e-validate-20261006/peer-clean-v4",
+  "v4_preserved": true,
+  "verdict": "PASS_PREPARATION_ONLY"
+}

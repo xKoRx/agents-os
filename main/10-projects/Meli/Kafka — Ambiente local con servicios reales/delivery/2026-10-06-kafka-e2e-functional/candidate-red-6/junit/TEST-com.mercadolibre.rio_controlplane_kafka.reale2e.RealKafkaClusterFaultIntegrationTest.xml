@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaClusterFaultIntegrationTest" tests="2" skipped="0" failures="2" errors="0" timestamp="2026-10-06T23:52:27.131Z" time="110.909">
+  <testcase name="actualThreeLiveBrokersRejectRfFiveReconcileAndRestoredClusterCompletesNewId(DeploymentOperation) [1]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaClusterFaultIntegrationTest" time="71.99">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="java.util.concurrent.ExecutionException" />
+  </testcase>
+  <testcase name="actualThreeLiveBrokersRejectRfFiveReconcileAndRestoredClusterCompletesNewId(DeploymentOperation) [2]" classname="com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaClusterFaultIntegrationTest" time="38.902">
+    <failure message="REAL_E2E_FAILURE_DETAIL_REDACTED" type="java.util.concurrent.TimeoutException" />
+  </testcase>
+  </testsuite>

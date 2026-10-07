@@ -1,0 +1,1 @@
+{"schema_version":1,"kind":"OWNED_JUNIT_TEST_WORKER","run_id":"19d659a642814618a2f97e10fa93d5b5","task":"localKafkaE2eTest","pid":90364,"process_start_instant":"2026-10-06T23:41:04.871Z","process_owner_pid":90347,"process_owner_start_instant":"2026-10-06T23:41:00.060Z","process_owner_kind":"GRADLE_TEST_WORKER_NORMAL_EXIT","gradle_worker_id":"1"}

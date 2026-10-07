@@ -1,0 +1,26 @@
+{
+  "scope": "FOCUSED_13_DIAGNOSTIC_NOT_FULL_SUITE",
+  "run_id": "3cc97f825838411b802def07d42449cc",
+  "source_commit": "19eab8f2556bede9e02d460f1ada4a22997b6d19",
+  "source_count": 497,
+  "source_drift": [],
+  "observed": {
+    "tests": 8,
+    "failures": 5,
+    "errors": 0,
+    "skipped": 0
+  },
+  "passed": 3,
+  "cleanup": "RETAINED",
+  "status": "FAIL",
+  "missing_selected_methods": "6 Interrupted invocations not reached; initializationError1 substitutes",
+  "initial_faults": [
+    "Interrupted FIRST independent ADMIN listNodes nativeTimeout/node-1 port56547 atOwnedKafkaProtocolFaults233",
+    "Cluster idx1 BODY reaches4nativephase receipts/RF5ISR5/newIDCOMPLETED; afterEach DeleteTopics localget30Timeout atFixture1435"
+  ],
+  "cascades": [
+    "Cluster idx2 blocked by retainedjournal",
+    "RF idx1/2 blocked by retainedjournal; no quota mutations"
+  ],
+  "original_run_files": 28
+}

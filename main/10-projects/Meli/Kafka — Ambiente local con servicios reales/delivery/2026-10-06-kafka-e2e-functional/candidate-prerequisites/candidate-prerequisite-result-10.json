@@ -1,0 +1,13 @@
+{
+  "exit": 0,
+  "commit": "b1a017adfc8d7c2139be808d042ddea29a581bf6",
+  "compileRealIntegrationTestJava": "PASS",
+  "validateRealE2eHarness": "PASS",
+  "validateLocalE2eEvidence": "PASS_20_CONTROLS",
+  "bootJar": "PASS",
+  "source_hashes": 266,
+  "source_drift": [],
+  "unit_evidence": "880/68classes/0failure-error-skip combined8; main-unit-build197hashes identical; no new unit execution",
+  "scope": "PREREQUISITES_ONLY_NOT_PHYSICAL_E2E",
+  "log": "candidate-prerequisites-10.log"
+}

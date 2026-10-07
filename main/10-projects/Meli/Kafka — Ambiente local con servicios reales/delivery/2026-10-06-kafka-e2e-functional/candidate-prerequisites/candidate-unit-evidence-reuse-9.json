@@ -1,0 +1,16 @@
+{
+  "kind": "UNIT_EVIDENCE_SOURCE_BINDING_ONLY",
+  "unit_evidence_commit": "b7910487c6a5336e128f9452b96f1e1641aa1740",
+  "current_commit": "f2a236a93f5c618a865e30b55d64ebb8ae87845e",
+  "unit_tests": 880,
+  "unit_classes": 68,
+  "unit_failures_errors_skips": 0,
+  "bound_main_unit_build_files": 197,
+  "bound_source_drift": [],
+  "real_test_only_changed": [
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealControlplaneIntegrationTest.java",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealKafkaClusterFaultIntegrationTest.java",
+    "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/support/RealE2eFixture.java"
+  ],
+  "scope": "No new unit execution; main/unit/build exact byte matches passing combined8, real test compile/harness/physical retry pending"
+}

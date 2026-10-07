@@ -1,0 +1,97 @@
+{
+  "SPEC_alignment": [
+    "PendingfutureisreusedonlywhilePENDING; completedunmetRF/ISRcondition permitsfreshrealmetadataread. Eachauthorizedfaultwaitgetsone90smonotonicdeadline/getcap10/poll200; no productionmap ormutation change.",
+    "GCP/AWS seededreconcile usesconditionalownerloop20s/poll100/getcap2 andcorrectproductiveAdmin; onlyrealUnknownretry, actualseed1partition/RF1/retention1234567/cleanupdelete, auth/generic/nativeTimeout/interruption fail.",
+    "NormalAwaitilityharness remains; ordinaryawaitTopic conditionunchanged. NativefirstFAILED/RF5onlive3/guard, RF1/configbefore restore, own4/5restore,newIDCOMPLETED/RF5ISR5 andcleanup retained.",
+    "Wirecause/adminbindingUNKNOWN andcandidate5RED/retainedjournal history stayexplicit. No physical/CI/backendpromotion from sourceprerequisites."
+  ],
+  "actual_catalog_loader": {
+    "classes": 10,
+    "complete_per_index_maps": 4,
+    "invocations": 359,
+    "methods": 100,
+    "methods_layers_requirements_unchanged_from_b791": true,
+    "negatives": [
+      {
+        "case": "sparse_branch",
+        "reason": "invocation evidence binding",
+        "result": "REJECTED"
+      },
+      {
+        "case": "extra_branch",
+        "reason": "invocation evidence binding",
+        "result": "REJECTED"
+      },
+      {
+        "case": "leading_zero_index",
+        "reason": "invocation evidence binding",
+        "result": "REJECTED"
+      },
+      {
+        "case": "unknown_enum",
+        "reason": "method inventory binding",
+        "result": "REJECTED"
+      },
+      {
+        "case": "boolean_count",
+        "reason": "method inventory binding",
+        "result": "REJECTED"
+      },
+      {
+        "case": "stale_selected_source",
+        "reason": "class source hash mismatch",
+        "result": "REJECTED"
+      }
+    ],
+    "result": "PASS"
+  },
+  "findings": [],
+  "head": "b1a017adfc8d7c2139be808d042ddea29a581bf6",
+  "kind": "INDEPENDENT_FINAL_SOURCE_CATALOG_SPEC_REVIEW",
+  "pin_groups": {
+    "catalog_and_prior_review_primary": {
+      "e2e/local-case-inventory.json": "8c966aa50e02a641cb16a8d578433e2bf21c99bf10bbf0fa47bb33ab89c8087b",
+      "e2e/test_verify_local_result.py": "4852ce0efa7c1c32c05972d7aa578fe5e0fe809bf1085ff96e1d73d0be976c1b",
+      "e2e/verify-local-result.py": "f65c451ca625b16663d14601a83142728692ffead532b8c1307de2e2f671e943",
+      "src/main/java/com/mercadolibre/rio_controlplane_kafka/kafka/KafkaTopicMetadataObserver.java": "541caa6800c859646e5fdd293283762285cf87acbdb527e518f7f9c2d78f11cf",
+      "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/PhysicalProvisioningFailuresTest.java": "26c008527f18f7773d2803ac6459ecaa5340d4dc238999daf90302fe3c7c6e71",
+      "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealBoundaryVariantsIntegrationTest.java": "e8a0c0cf161c8f8b55611552a0ddb31bff5f5d44ed73584ec9a30fd9f7220c6c",
+      "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealControlplaneIntegrationTest.java": "e6d56e0ad524f1a522c873d6cfed37c42b448a64318fd6927b2204f70d898c02",
+      "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealFixtureCleanupIntegrationTest.java": "738e83c33cfdc7766ad88fc5703de6787a1e398fa985f0459ffedde32380e110",
+      "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealInterruptedProvisionerIntegrationTest.java": "85eb8de1a2d303afc6c243cfc43ad810772c0b4cea8f8822bb4d18c31621b768",
+      "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealKafkaClusterFaultIntegrationTest.java": "893b5461692035481fe8ab9ad17cb6532e29a76adf77d6c25d6a613e3782eb6b",
+      "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealKafkaTriggerBridgeIntegrationTest.java": "978c36d89ea5410367cbb97ca7f9c18711654449b56a8a868c8f5398daf176e4",
+      "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealKvsIntegrationTest.java": "270d987272a0641a97fce3e74b1bd0ca397edfa039bc897977297d80c4e3cc41",
+      "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealPublicationFailureIntegrationTest.java": "1b031c530e51d8f3bd124c5922901c23b76294b1af0d4d5ff0c5319448cdc605",
+      "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealReplicationDeadlineIntegrationTest.java": "2055d0cf94cdd481d88d7f5f18ef264f1c5ce9a77e30222e9bfa5baaa5c9a095",
+      "src/test/java/com/mercadolibre/rio_controlplane_kafka/kafka/KafkaTopicMetadataObserverTest.java": "b5a53b9515dcc918cb299a5d18a0a9501d6ead1d4110e461e70c70e854b99074"
+    },
+    "new_support_fixture": {
+      "src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/support/RealE2eFixture.java": "e2e2620f0df65a15a77d3e69b11bc84c131a56d473ff8b0d42ccc32f94b1a3bb"
+    },
+    "three_SPEC_docs": {
+      "meli/features/20261001-real-e2e/1-functional/spec.md": "9c137dc19715cf10596987e7f777bf383f0bf9bd71a79b2fd594e301b79e97c5",
+      "meli/features/20261001-real-e2e/2-technical/spec.md": "61a66dd7a96aaea54934b26cffd4f356ced5d4daebd5f3025ae9d78cbf5192fd",
+      "meli/features/20261001-real-e2e/3-tasks/tasks.md": "0c9d5503469a7c2d9cca9ec66cf461b5f62044156c04020178a9391f33b0884d"
+    }
+  },
+  "pins": {
+    "SPEC": 3,
+    "clean_before_after": true,
+    "primary": 15,
+    "source_drift": 0,
+    "support": 1,
+    "total": 19
+  },
+  "prior_records_preserved": [
+    "candidate6-three-source-review-v1/report.json",
+    "candidate6-three-source-review-v2/report.json",
+    "candidate5-retention-patch-diagnosis-v1/report.json",
+    "candidate5-cluster-fault-phase-diagnosis-v1/report.json"
+  ],
+  "review_correction": "PreviousSOURCE_ONLYreviewmissedtheunqualifiedExecutionException import. Rootprereq9compileRED preserved andresolvedsourcefix independentlyverified; prior0finding didnotprovecompile.",
+  "runtime_limitations": "NoGradle,Docker,Javac,API,application/backendorphysicaltests byreviewer. Rootprereq10compile/harnessactive independentofthisreport. Fullunfiltered359physicalPASS+explicitrootDockerhandoff requiredbeforefreshpeerreplay.",
+  "schema_version": 1,
+  "source_delta": "Onlymissingjava.util.concurrent.ExecutionException import comparedwithindependentreviewv2; identicalhelperbody andothertwofinalsourcehashes. Notcompilationproof.",
+  "verdict": "PASS_SOURCE_SCHEMA_ONLY"
+}

@@ -1,0 +1,29 @@
+{
+  "case_receipts_valid": false,
+  "cleanup": "PASS",
+  "failures": [
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealBoundaryVariantsIntegrationTest",
+      "own_frames": [
+        "at com.mercadolibre.rio_controlplane_kafka.reale2e.support.RealE2eFixture.lambda$awaitCpRestPeekSeesEmptyTopic$0(RealE2eFixture.java:1106)"
+      ],
+      "test": "nonpositiveActionTimeoutUsesCurrentOneSecondFallbackAndPublishesRealTimeout(int) [1]",
+      "type": "java.net.http.HttpTimeoutException"
+    }
+  ],
+  "interpretation": "12 actual PASS, one pre-dispatch HTTP timeout; both RF actual PASS. No full suite verdict. Native proof absent because actual failed JUnit prevents Test.doLast; filtered cases incomplete independently.",
+  "native_junit": {
+    "errors": 0,
+    "failures": 1,
+    "skipped": 0,
+    "tests": 13
+  },
+  "native_task_proof": false,
+  "original_file_count": 46,
+  "run_id": "a8b0a7bb26d9450fb05e405ce5cc52ec",
+  "scope": "FOCUSED13_DIAGNOSTIC_NOT_FULL_SUITE",
+  "source_commit": "dfa3d62cc36f867a747a06602d1cfe89dcf4b917",
+  "source_drift": [],
+  "source_file_count": 499,
+  "verdict": "FAIL"
+}

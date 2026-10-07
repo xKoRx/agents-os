@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "observed_utc": "2026-10-06T23:55:17.098295+00:00",
+  "run_id": "19d659a642814618a2f97e10fa93d5b5",
+  "head": "b1a017adfc8d7c2139be808d042ddea29a581bf6",
+  "verdict": "READ_ONLY_CONFIRMED_COMPOSE_UP_NONZERO_DIAGNOSTIC_OUTPUT_DELETED",
+  "scope": "No runtime/protocol requests, exec, mutation, Gradle or source edits. Root retains sole actor authority.",
+  "source_manifest": [
+    {
+      "path": "/private/tmp/kafka-e2e-validate-20261006/cp/src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/faults/OwnedKafkaProtocolFaults.java",
+      "sha256": "76fd108aff8f76685f3938aa83fd0a02f72b8d1319450d469846158a3bc3a7ec",
+      "snapshot_file": "source-OwnedKafkaProtocolFaults.java",
+      "bytes": 23458
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-validate-20261006/cp/src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/RealInterruptedProvisionerIntegrationTest.java",
+      "sha256": "85eb8de1a2d303afc6c243cfc43ad810772c0b4cea8f8822bb4d18c31621b768",
+      "snapshot_file": "source-RealInterruptedProvisionerIntegrationTest.java",
+      "bytes": 11320
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-validate-20261006/cp/e2e/faults/kafka_frame_proxy.py",
+      "sha256": "067e1dc5d1ebedc0de7239c213a626939f00564c6644c8360c3e49e857686f12",
+      "snapshot_file": "source-kafka_frame_proxy.py",
+      "bytes": 21499
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-validate-20261006/cp/e2e/faults/compose.authorization.yaml",
+      "sha256": "9532bb640f382bc6d03914753bf058ba1135fce62c201c97af3f7d3e67a97146",
+      "snapshot_file": "source-compose.authorization.yaml",
+      "bytes": 1904
+    },
+    {
+      "path": "/private/tmp/kafka-e2e-validate-20261006/cp/src/realIntegrationTest/java/com/mercadolibre/rio_controlplane_kafka/reale2e/faults/OwnedCompose.java",
+      "sha256": "aa1534e45cb979806f2a3d50999f4774a4a481f3be36867058497b05323e6447",
+      "snapshot_file": "source-OwnedCompose.java",
+      "bytes": 4070
+    }
+  ],
+  "python_ast": "PARSE_OK_NO_EXECUTION",
+  "gradle_snapshot": {
+    "sha256": "b5dfd0d41b632c8b3de3cc21ce0417a62e5ecf2a460cf5a0b377806ae06dcf6e",
+    "line_count": 815,
+    "selected": [
+      {
+        "line": 643,
+        "text": "RealInterruptedProvisionerIntegrationTest > initializationError FAILED"
+      },
+      {
+        "line": 644,
+        "text": "    java.lang.IllegalStateException at RealInterruptedProvisionerIntegrationTest.java:73"
+      },
+      {
+        "line": 645,
+        "text": ""
+      },
+      {
+        "line": 646,
+        "text": "RealKafkaClusterFaultIntegrationTest > actualThreeLiveBrokersRejectRfFiveReconcileAndRestoredClusterCompletesNewId(DeploymentOperation) > actualThreeLiveBrokersRejectRfFiveReconcileAndRestoredClusterCompletesNewId(DeploymentOperation) [1] FAILED"
+      }
+    ]
+  },
+  "native_xml": {
+    "exists": true,
+    "path": "/private/tmp/kafka-e2e-validate-20261006/cp/build/test-results/localKafkaE2eTest/TEST-com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest.xml",
+    "sha256": "50076d891ee32db1e411ea561a760f02e757db8db9cfd1e55882984890cbe954",
+    "suite": {
+      "tests": "1",
+      "failures": "1",
+      "errors": "0",
+      "skipped": "0",
+      "timestamp": "2026-10-06T23:52:24.568Z",
+      "time": "2.563"
+    },
+    "failures": [
+      {
+        "case": "initializationError",
+        "type": "java.lang.IllegalStateException",
+        "message": "java.lang.IllegalStateException: OWNED_DOCKER_COMMAND_FAILED",
+        "stack": [
+          "java.lang.IllegalStateException: OWNED_DOCKER_COMMAND_FAILED",
+          "\tat com.mercadolibre.rio_controlplane_kafka.reale2e.faults.OwnedCompose.execute(OwnedCompose.java:79)",
+          "\tat com.mercadolibre.rio_controlplane_kafka.reale2e.faults.OwnedCompose.command(OwnedCompose.java:41)",
+          "\tat com.mercadolibre.rio_controlplane_kafka.reale2e.faults.OwnedKafkaProtocolFaults.start(OwnedKafkaProtocolFaults.java:123)",
+          "\tat com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest.openOnlyOwnedRealBrokerAndProductionAdmin(RealInterruptedProvisionerIntegrationTest.java:73)"
+        ]
+      }
+    ]
+  },
+  "findings": [
+    "Native XML confirms exact nonzero DockerCompose up boundary. Python process started/ready file and Compose generation completed enough to reachstart123; primary startup exception is not OWNED_KAFKA_PROXY_STARTUP_FAILED.",
+    "All4generatedCompose replacementanchors match exactlyonce; source5hashes unchanged and proxyPythonASTparseOK without execution.",
+    "OwnedCompose deletes captured Dockercommand output on everyexit, includingfailure. Errorreason/exitcode cannot be recovered from this artifact.",
+    "No matching generatedcurrentrun protocoldirectories or currentrun protocolcontainers remain. This is consistentwith startupcatchcleanup, not independentcleanup certification.",
+    "Five basebrokercontainers still belong unequivocally to thisrun; read-only snapshot5healthy. It does not establish protocolhelper portreadiness.",
+    "XML incidental adminclient83 connects127.0.0.1:0 and BindException are independentbackground messages; no binding from those to thisComposefailure, so no causalclaim."
+  ],
+  "unchanged_source": true,
+  "backend_or_business_certification": false,
+  "observed_utc_final": "2026-10-06T23:56:12.689004+00:00",
+  "exact_boundary": {
+    "exception": "java.lang.IllegalStateException: OWNED_DOCKER_COMMAND_FAILED",
+    "stack": [
+      "OwnedCompose.execute:79",
+      "OwnedCompose.command:41",
+      "OwnedKafkaProtocolFaults.start:123",
+      "RealInterruptedProvisionerIntegrationTest.openOnlyOwnedRealBrokerAndProductionAdmin:73"
+    ],
+    "command_operation": [
+      "up",
+      "--detach",
+      "--wait",
+      "--wait-timeout",
+      "180"
+    ],
+    "meaning": "Child DockerCompose process returned nonzero, not a commanddeadline exception; exactexitcode/backendstderr not retained by helper.",
+    "diagnostic_loss": "OwnedCompose.execute70\u201371 mergesstdout/stderr into temporaryfile,79throw genericexception onnonzero,86deletesfile infinally beforemessage is preserved.",
+    "gRPC_causality": "NOT_ESTABLISHED",
+    "scenario_business_execution": "NONE_FOR_INTERRUPTION_METHODS: BeforeAll initializationError"
+  },
+  "limits": [
+    "No runtime/protocolprobes, no exec/start/stop/down, no VM/network/contextchange, no CPsourcewrites orGradle. Root is soleactor throughout.",
+    "Dockerbackend exactreason unavailable because existinghelper destroys output; a separateauthorizedinstrumentation/focusedreproducer would be needed.",
+    "No gRPC,portcollision,memory,permission attribution without commandoutput/causalartifact.",
+    "Runningrunlogs change naturally; snapshots/recordedsource hashes identify observations, not finalRED/cleanup authority."
+  ],
+  "proposal_to_parent_only": "If a sourcechange is assigned, preserve only sanitized private ownedComposecommand failuremetadata/output reference until reconciliation, including actualexitcode, before deletingtempfile; no weakening of guards or assertions. Only assigned writer may implement."
+}
