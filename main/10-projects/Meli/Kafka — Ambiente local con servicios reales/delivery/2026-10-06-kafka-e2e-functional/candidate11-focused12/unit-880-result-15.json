@@ -1,0 +1,28 @@
+{
+  "scope": "ROOT_FRESH_UNIT_AND_PREREQUISITE_15",
+  "commit": "d6678ecdc18fd984fd8644a2a6e7528dfde4ae2e",
+  "command": [
+    "./gradlew",
+    "--no-daemon",
+    "--offline",
+    "--console=plain",
+    "test",
+    "compileRealIntegrationTestJava",
+    "validateRealE2eHarness",
+    "validateLocalE2eEvidence",
+    "validateLocalE2eCiEvidence",
+    "bootJar",
+    "--rerun-tasks"
+  ],
+  "exit_code": 0,
+  "classes": 68,
+  "unit_totals": {
+    "tests": 880,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "source_file_count": 499,
+  "source_drift": [],
+  "log_sha256": "825e71918a734028d8fb7aff3a5690105d00e6b3402686a140a776ef8dd64479"
+}

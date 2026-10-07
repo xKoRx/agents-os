@@ -1,0 +1,19 @@
+{
+  "scope": "FILTERED_NATIVE_CLEANUP2_PLUS_CRITICAL13",
+  "source_commit": "d6678ecdc18fd984fd8644a2a6e7528dfde4ae2e",
+  "run_id": "fea9814d5974455290457071f4967416",
+  "native_junit": {
+    "tests": 15,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "native_task_proof": true,
+  "case_receipts_valid": false,
+  "cleanup": "PASS",
+  "verdict": "NATIVE15_PASS_FILTERED_NOT_FULL360",
+  "launcher_exit_code": 1,
+  "source_files": 499,
+  "source_drift": [],
+  "original_file_count": 52
+}
