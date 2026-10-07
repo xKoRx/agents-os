@@ -1,0 +1,329 @@
+{
+  "scope": "ROOT_FULL_LOCAL_360_UNFILTERED",
+  "run_id": "abf9a573f7d84c1786b5f2a3723367b9",
+  "source_commit": "d6678ecdc18fd984fd8644a2a6e7528dfde4ae2e",
+  "native_junit": {
+    "tests": 355,
+    "failures": 44,
+    "errors": 0,
+    "skipped": 0
+  },
+  "verdict": "FAIL",
+  "cleanup": "RETAINED",
+  "native_task_proof": false,
+  "case_receipts_valid": false,
+  "original_file_count": 659,
+  "source_file_count": 499,
+  "source_drift": [],
+  "failures": [
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "ignoredActionWireVariantsHaveNoResultOrClaim(String) [2]",
+      "type": "java.util.concurrent.ExecutionException",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "ignoredActionWireVariantsHaveNoResultOrClaim(String) [3]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "ignoredActionWireVariantsHaveNoResultOrClaim(String) [4]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "deprovisionIgnoresUnsupportedCreateParametersAndDeletesPhysicalTopic(String) [1]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "deprovisionIgnoresUnsupportedCreateParametersAndDeletesPhysicalTopic(String) [2]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "oversizedActionResultBecomesSmallFailureAndHealthyTerminalDuplicateIsDropped()",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "mskUnknownEnvironmentIdUsesActualSharedCluster()",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [1]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [2]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [3]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [4]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [5]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [6]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [7]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [8]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [9]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "ignoredDeploymentWireVariantsHaveNoPhysicalOrKvsEffects(String) [10]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [1]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [2]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [3]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [4]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [5]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [6]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [7]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "allSupportedReplicationFactorsCompletePhysicalCrud(String, short) [8]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "restActualUnreachableKafkaReturnsFailureAndLeavesNoPersistentPeekGroup()",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "terminalActionSameIdWithChangedDataDropsNewPeekAndRetainsOriginalResult()",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "latestEarliestAndMultipartitionPeekUseRealOffsetsWithGlobalLimit()",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "missingTopicUpdateFailsAndTerminalRedeliveryDoesNotPublishAgain(String) [1]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "missingTopicUpdateFailsAndTerminalRedeliveryDoesNotPublishAgain(String) [2]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "concurrentHttpDeploymentDuplicateSharesOneHealthyTerminalCasOwner(String) [1]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealControlplaneIntegrationTest",
+      "test": "concurrentHttpDeploymentDuplicateSharesOneHealthyTerminalCasOwner(String) [2]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealFixtureCleanupIntegrationTest",
+      "test": "realAdminClientFailureStillDeletesEveryKvsKeyAndClosesProducer()",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealFixtureCleanupIntegrationTest",
+      "test": "healthyCleanupUsesFreshScopedMutatorOnlyForLocalMemory()",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealInterruptedProvisionerIntegrationTest",
+      "test": "initializationError",
+      "type": "java.lang.IllegalStateException",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaClusterFaultIntegrationTest",
+      "test": "actualThreeLiveBrokersRejectRfFiveReconcileAndRestoredClusterCompletesNewId(DeploymentOperation) [1]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaClusterFaultIntegrationTest",
+      "test": "actualThreeLiveBrokersRejectRfFiveReconcileAndRestoredClusterCompletesNewId(DeploymentOperation) [2]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaTriggerBridgeIntegrationTest",
+      "test": "kafkaSdkTriggersCompletePhysicalCrudPeekAndSameInstanceRedelivery(String) [1]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealKafkaTriggerBridgeIntegrationTest",
+      "test": "kafkaSdkTriggersCompletePhysicalCrudPeekAndSameInstanceRedelivery(String) [2]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealPublicationFailureIntegrationTest",
+      "test": "deploymentsKeepTerminalKvsAfterRealProducerFailureAndDropRedelivery(String) [1]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealPublicationFailureIntegrationTest",
+      "test": "deploymentsKeepTerminalKvsAfterRealProducerFailureAndDropRedelivery(String) [2]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealPublicationFailureIntegrationTest",
+      "test": "actionRealProducerFailureLeavesPublicationPendingAndYoungRedeliveryDoesNotExecute()",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealReplicationDeadlineIntegrationTest",
+      "test": "actualThrottledRfReassignmentRemainsPendingAtDeadlineAndRestoresBeforeNewId(String) [1]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    },
+    {
+      "class": "com.mercadolibre.rio_controlplane_kafka.reale2e.RealReplicationDeadlineIntegrationTest",
+      "test": "actualThrottledRfReassignmentRemainsPendingAtDeadlineAndRestoresBeforeNewId(String) [2]",
+      "type": "org.opentest4j.AssertionFailedError",
+      "message": "REAL_E2E_FAILURE_DETAIL_REDACTED",
+      "own_frames": []
+    }
+  ],
+  "note": "Originals frozen before diagnosis or recovery; 355 actual is not 360 complete."
+}
