@@ -11,9 +11,9 @@ entities:
 related: []
 aliases: []
 agent_surface: "[[Codex]]"
-agent_model: unknown
-agent_run:
-session_goal:
+agent_model: gpt-6-astra
+agent_run: "[[2026-10-07-codex-gpt-6-astra-btg-s04-campaign]]"
+session_goal: "BTG-S04 campaign falsification"
 source_session:
 confidence: high
 load_policy: manual
@@ -26,89 +26,20 @@ tags:
   - agent/system1
 ---
 
-# Session Feedback - 2026-10-07 - short-topic
+# Session Feedback — BTG-S04 campaña
 
-## Context
+## Contexto y valoración
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+Worker ONE-SHOT LOCAL Codex / gpt-6-astra. Bootstrap, technical-project-manager y skills de register/feedback/close aplicadas. Retrieval enfocado por paths del mandato; memoria interna global consultada, sin nuevo checkpoint privado. Startup 4/5, retrieval 4/5, skill fit 4/5, cierre 4/5. Cuota/context_high_water_mark UNKNOWN.
 
-## Scores
+## Fricción observada
 
-Use 1-5, where 1 is poor and 5 is excellent.
+La compilación del paquete compartido puede cruzarse con un archivo de test nuevo todavía no compilable de otro worker. Se observaron errores de nombre de campo/tipo y se resolvieron por coordinación; no eran defectos del candidato. El guard anti-test-masking canónico no examina archivos untracked, por lo que se complementó con inspección del test nuevo sin promover un PASS por omisión del script.
 
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
+## REUSABLE_BEHAVIOR_CANDIDATES
 
-## What Complicated The Session Most
+Candidato `test_harness`: al auditar sustitución, variar los requisitos de contexto del módulo, no solo sus señales; comprobar que los datos solicitados efectivamente existan antes de llamar equivalentes a dos secuencias vacías. Detectó inicialización tardía de la factory Strategy en este candidato. Promoción diferida a S05/Kaizen, ninguna skill nueva.
 
-- Observation:
-- Why it was hard:
-- Proposed improvement:
+## Eficiencia y cierre
 
-## Most Useful Part Of Sistema 1
-
-- What helped:
-- Why it helped:
-- Keep/change:
-
-## Least Useful Or Noisy Part
-
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
-
-## Missing Support
-
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
-
-## Retrieval Feedback
-
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
-
-## Skill Feedback
-
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
-
-## Template Feedback
-
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
-
-## Memoria Interna (Internal Memory)
-
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
-
-## Pain Pattern Candidate
-
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
-
-## One Next Improvement
-
--
+`efficiency_assessment: REVIEW`. Lecturas iniciales demasiado extensas del contrato de ambientes produjeron truncación; siguientes lecturas acotadas. Pruebas del mismo package compartido requieren coordinación de compilación. No reducir evidencia para evitar el costo. Continuidad durable en informe S04 y fragmento externo; sin L0/L1 porque no se recibió transcript independiente. Sesión de este worker cerrada; raíz conserva programa y gate.
