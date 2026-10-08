@@ -49,3 +49,7 @@ tags:
 - **Outcome:** aceptación acotada de los wrappers C/D; la revisión integral del producto sigue pendiente.
 - **Rework posterior:** unknown.
 - **Aprendizaje para comparar herramientas:** los comparadores deben preservar contenido opaco y crear correspondencias sólo desde relaciones tipadas ya demostradas; una PASS en snapshot compuesto no transfiere a una build posterior.
+
+## Delta consolidado — 2026-10-08
+
+Gcontinuó el mismo segmento independiente sobrecheckpoint4bd:36top115nominalPASS/cuatroexit0/sourceestable, sourcehash6883c86d. Reprodujo expected-MM economía/tieStep y aliascaller/getter/SourceClose; conservaciónRED y reparación por autoresC/D, no escritura del revisor en candidato. Adjudicó cinco defensas redundantes antes de eliminación, con invariant/callers. Gateprovenciaecon corregido45nominalPASS acotado. Registro externo review-segment-registration.json importado por delta; G integral freeze4152 sigue REVIEW_RUNNING, no cierre integral ni verdictfinal. Modelrequestedgpt-6.1-sol/executedmodel,tokens,costUNKNOWN. No product/shared/vault/indexwrites del revisor ni physicalactions.

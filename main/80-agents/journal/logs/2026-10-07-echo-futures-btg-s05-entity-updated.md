@@ -3,7 +3,7 @@ type: change_log
 schema_version: 1
 scope: session
 created: "2026-10-07"
-updated: "2026-10-07"
+updated: "2026-10-08"
 area: "[[Echo]]"
 project: "[[Echo Futures]]"
 application:
@@ -118,3 +118,11 @@ Se registró la continuación de revisión de propiedad: RED independiente de al
 ## Rollback
 
 Revertir el commit documental acotado si un readback posterior contradice la fuente; preservar fuentes y cambios concurrentes, sin reset/force-push.
+
+## Delta documental freeze4152 — 2026-10-08
+
+Único escritor delegadoTOPSol por lockcoordinado Root/C/G; LunaNORMAL indisponible tras dosagentthreadlimitreject. Misma change_log, master, sin branch/worktree/PR ni escrituras productoEcho/índiceEcho/físico. Actualizados únicoS05doc, BTG-PLAN y EchoFutures con freeze4152/buildtestCLI/sourceVCS exactos yC25/coverageconfirmados; 16findingspendingfinal, G REVIEW_RUNNING/V1parcial/perf120 yBASIC/CAMPAIGNNOT_RUN. Cortesviejos son historia supersedida sólo en claimsindicados.
+
+RefreshD6real: docSHA38a4b196e1532d45d7f3460b4a580cb9fef39a226d2e0dcdd7d34c12591a6bf0/source d08a30ce9815f820fda7132e20dc42cc345eb8e8, mergebase7fbd7e99; ninguna interseccióndirecta de4pathsD6commit con deltaS05audit1bf→4152. ContratosMM/protection/claims/finality/foreignfinancialaccount/runtimefactory+replacement/PositionSeal/currentSession/reconciliationcatalog afectados transitivamente, detallados enS05; ausencia pathcomún no transfierecertificadoENVIRONMENTAL_BLOCKED. Ninja sin fullaccountseal sigue failclosed; no físicoejecutado.
+
+Consolidado E/G en registros yaexistentes y feedbackS05 único; materializado Dagent_run conforme schema, sin duplicateporfollowup. CierresE/Dsegment completos por referenciaexternal; Gintegral nocerrado yroot/Primary activos. Modelosexecutados/tokens/costUNKNOWN. Readback/hashes/autosync se registran en cápsula externa al finalizar; no otrochange_log ni higieneglobal.

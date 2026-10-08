@@ -49,3 +49,7 @@ tags:
 - **Outcome:** entrega E parcial para integración, con evidencia de tests focalizados y cobertura reconciliada.
 - **Rework posterior:** unknown.
 - **Aprendizaje para comparar herramientas:** mantener separados cobertura de líneas añadidas, cobertura por paquete y gates de comportamiento; una medición preparada no equivale a un benchmark ejecutado.
+
+## Delta consolidado — 2026-10-08
+
+E cerró su segmento externo sin nueva shot: retención/provenance/MIXED/clone y complemento finito146PASS con fuenteexacta. Archivos agent-run.md/feedback.md/session-close.md en evidence/cost-modes consolidados por referencia, sin agregar registroduplicado. Sus métricas históricas801/836 y complemento283/288 no se trasladan entre fuentes; agregado Cfreeze4152 es2426/2536 con auditoría propia. Benchmarkcontract preparado, actualperf120/300/600NOT_RUN; Esegment completo, programa pendiente. Ejecutado/tokens/costoUNKNOWN; no physicalactions.

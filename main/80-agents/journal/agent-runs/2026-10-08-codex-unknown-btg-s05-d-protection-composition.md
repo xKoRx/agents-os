@@ -4,19 +4,19 @@ schema_version: 1
 scope: session
 created: "2026-10-08"
 updated: "2026-10-08"
-area:
-project:
+area: "[[Echo]]"
+project: "[[Echo Futures]]"
 application:
-entities: []
-related: []
+entities: ["[[Echo Futures]]"]
+related: ["[[BTG-S05-REMEDIATION-AND-RESULTS]]"]
 aliases: []
 agent_surface: "[[Codex]]"
 agent_model: unknown
 model_source: unknown
 task_type: coding
-task_complexity: unknown
+task_complexity: high
 outcome: partial
-verification: not_run
+verification: partial
 evaluator: agent
 user_rework: unknown
 source_session:
@@ -32,28 +32,17 @@ tags:
 
 ## Trabajo
 
-- **Objetivo:**
-- **Alcance atribuible a esta combinación superficie×modelo:**
-- **Artefactos afectados:**
+- Objetivo: paquete B protección y paquete D composición/campaña/paridad/autoridad dentro del mismo S05; documentación final por lock exclusivo coordinado.
+- Superficie [[Codex]], solicitado gpt-6.1-sol; ejecutado UNKNOWN/model_source unknown, tokens/costo/quota UNKNOWN. Una combinación atribuible; no nuevo shot ni run por followup.
+- Scope26 Dpaths, protection B integrado9064/cc4, amendments actuales en freeze4152; AllowedFiles/current hashes y cápsulas externas son autoridad exacta. C único integrador Git de Echo; este registro no atribuye sus reparaciones a D.
 
 ## Evidencia
 
-- **Validaciones ejecutadas:**
-- **Resultado observable:**
-- **Limitaciones de la evidencia:**
-
-## Evaluación
-
-%% Scores opcionales 1–5: agregar al frontmatter sólo cuando exista evidencia suficiente. Si son autoevaluados, conservar evaluator: agent. %%
-
-- **Correctness:**
-- **Autonomy:**
-- **Efficiency:**
-- **Tool use:**
-- **Overall:**
+- D joint-current01:25top56nominalPASS exit0, fuenteGo/modules0c36a960 antes=después; additiveRoot11top21nominal/bridge41top122nominal/SDKfixture2named exit0. Additive globalprelaunch NOT_CAPTURED, no certificado posterior transferido.
+- quote-provenance05:4top26nominalPASS exit0/ownSHA383bbb47 estable; economía esperadaMM removida. G detectó empate ambiguo en ese selector; C recibió ownership y corrigió, independiente posterior45PASS. RED anteriores preservados.
+- ReadyNewRisk dinámico/procedencia snapshot: Gaccepted27named en fuentea4eb antesfreeze, no physicalcert. ActualA/B/C términos/ledgercausal/Strategycontinuity y staleBBO focalmentePASS, produceraccountstate/quote/economía runtime inyectado por público; no física independiente.
+- Cobertura propia656/72989,986 histórica quedó supersedida por agregado C fuenteexacta2426/253695,66246; D no inventa promedio ni descarta main/harness.
 
 ## Resultado
 
-- **Outcome:**
-- **Rework posterior:**
-- **Aprendizaje para comparar herramientas:**
+Entrega parcial para integración/revisión final, no aceptación producto. Registros externos `evidence/composition-campaign/{agent-run-current,session-feedback-external,session-close-external,quote-provenance-capsule}.md` importados por delta. G REVIEW_RUNNING; perf120/BASIC/CAMPAIGNNOT_RUN. Feedback ligado a [[2026-10-07-btg-s05-session-feedback]]; reworkUNKNOWN/evaluatormixed por correcciones Owner. Cierre documental del segmento completo; root/Primary continúan. Sin physicalorders/ETCD/PROD/deploy. D6doc38a4b196/source d08a30ce ENVIRONMENTAL_BLOCKED, refresh4152 no transfierecertificación.
