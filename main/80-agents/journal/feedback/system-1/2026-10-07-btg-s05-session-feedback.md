@@ -134,3 +134,12 @@ Un painpattern: agregación de evidencia antes de verificar nombre/exit/autorida
 - Flat net y replay determinista no garantizan independencia de IDs opacos: los RED prueban fills, precios, cancel/finality y economía por etapa. Metamorfismo con bijección declarada y oráculo independiente añade evidencia que un assert terminal no captura.
 - Draft privado puede exigir write para descargar; la nueva prerelease publicada conserva misma audiencia read y bundle base propio. Fresh fetch/download real y runner portable demuestran transporte y guard sin carpetas originales; misma máquina/cache se declaran, no se inventa otra máquina.
 - Materialización schema y mismo change_log evitaron notas paralelas; un intento de materializador/consulta con salida extensa quedó acotado al delta. No nuevas reglas globales ni higiene. Modelo/costo/tokens UNKNOWN, sin físico. Root/Primary no cerrados.
+
+
+## Delta cierre final real d1b — 2026-10-08
+
+- Root: dos recuperaciones sobredimensionadas/truncadas de skill TPM/histórico, corregidas con warm context y lecturas de secciones exactas; sin impacto producto/pruebas. GOD_PRODUCT_CODE_WRITES=0; técnica por workers.
+- Executor: adaptación de runner conservó un path real-inputs antiguo y asumió psutil no disponible; diagnóstico prelaunch preservado, corregido con locator/stdlib antes de procesos. No desarrollo ni cambio semántico.
+- Independiente: paths attempt renombrados al sealing y dos lecturas bootstrap/perfil amplias; recuperó outputs durables desde manifest. Distinguió identidad/material/monetario transitorio/persistente sin normalizar. Publicador: crosslane live agent path not found; Root relay usado, sin reactivar ni depurar harness.
+
+Mejora observada: warm context + delta exacto, autoridad de aceptación previa y paths sellados/manifiestos para comparación. Sin promoción de regla nueva de riesgo ni memoria privada; continuidad vive sólo en control/canónico. Requested Luna gpt-6-luna, G/publicador gpt-6.1-sol; ejecutado/tokens/costo UNKNOWN. No scores nuevos ni inferidos; no gate autoaceptado.

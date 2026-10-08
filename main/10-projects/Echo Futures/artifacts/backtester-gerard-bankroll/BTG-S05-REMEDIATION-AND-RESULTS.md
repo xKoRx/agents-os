@@ -22,7 +22,7 @@ Cerrar dentro de BTG-S05 los 16 hallazgos materiales de S04 y entregar un candid
 
 ## Contenido
 
-### Corte vigente — reales finales d1b verificados, publicación pendiente, 2026-10-08
+### Corte vigente — reales finales d1b entregados y sesión cerrada, 2026-10-08
 
 `BTG_S05=READY_FOR_FINAL_ACCEPTANCE`; `INDEPENDENT_FINAL_REAL_REVIEW=PASS_BOUNDED`; `PRIMARY_ID_DELTA=FAVORABLE_REPORTED_BY_OWNER`; `PRIMARY_FINAL_REVIEW=PENDING`; `GATE_ACCEPTED=false`; `PROMOTION=NOT_ACCEPTED`. Root adjudica el resultado técnico final tras cuatro corridas completas y sus comparaciones independientes. La aceptación Primary favorable informada por Owner cubre sólo IDs, no gate global. Mismo S05, sin desarrollo nuevo.
 
@@ -34,7 +34,7 @@ CAMPAIGN first/replay exit0: 751,442/721,335s y RSS181348/181380KiB. 1.128.183 r
 
 Primera divergencia material ambos: record90161/Oct30 01:56:24Z, protectores igualesqty4 aceptados en orden causal: d1b llena primero frente a tercero léxico histórico, dinero local igual. Primer cambio monetario BASIC transitorio Nov3 tramos7/14 converge; persistente Nov8 00:51 stop16/cancel33/EXIT33 frente a stop33/cancel16/EXIT16 histórico. Ventanas de inputs/aceptaciones/fills y agregado completo preservados; no sorting ni descarte de identidad para aprobar replay. Las 29/23 muestras PID de replay son muestras, no procesos extra.
 
-Evidencia externa `evidence/final-rerun-d1b1446d/{executor,independent,publication}`; sello independiente `manifest-independent.json` SHA256 `295117d5b293b202dce72c26a4696ca2f209a9881f44be6e584f96611f92cf80`. Publicación raw completa en nueva fase inmutable y readback remoto/master pendientes. Este mandato no toca D6,26bench,S04 ni ROI; fases anteriores intactas. Próxima acción: publicar/verificar entrega, feedback y cerrar sesión Root/especialistas por pedido Owner; Primary sigue abierto y gate false. Modelo ejecutado/tokens/costo UNKNOWN; solicitados Luna gpt-6-luna y independiente/publicador gpt-6.1-sol.
+Evidencia externa `evidence/final-rerun-d1b1446d/{executor,independent,publication}`; sello independiente `manifest-independent.json` SHA256 `295117d5b293b202dce72c26a4696ca2f209a9881f44be6e584f96611f92cf80`. Publicación raw completa en nueva fase inmutable de la [prerelease privada](https://github.com/xKoRx/echo/releases/tag/btg-s05-id-invariance-d1b1446d): `BTG-S05-FINAL-RERUN-d1b1446d.tar.gz`, 112.640.203 bytes, SHA256 `e95b178e61240ca39200f8da6be23c9c62554b2661b9821d7fe1f249062fa907`, 102 archivos executor/independiente/binario/dataset/receta. Cuatro assets nuevos descargados y verificados byte-exact; todos los miembros internos comprobados. Recibos de cierre/master final se publican separados, sin reescribir fases anteriores. Este mandato no toca D6,26bench,S04 ni ROI; fases anteriores intactas. Sesión Root y especialistas cerrada por pedido explícito Owner tras ejecución/verificación y entrega; feedback/continuidad por delta, sin cierre de Primary. Próxima acción: Primary/Owner revisa la entrega para aceptación final; gate permanece false y promotion no aceptada. Master remoto y cierre documental final se acreditan por recibos separados. Modelo ejecutado/tokens/costo UNKNOWN; solicitados Luna gpt-6-luna y independiente/publicador gpt-6.1-sol.
 
 ### Histórico — adenda de invariancia de IDs publicada, 2026-10-08
 

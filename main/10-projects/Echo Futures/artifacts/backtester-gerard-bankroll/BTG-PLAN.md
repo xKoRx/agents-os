@@ -37,7 +37,7 @@ DESIGN_FREEZE = S02_ARTIFACT_PRESERVED; SOURCE_D1B_ID_INVARIANCE_FROZEN
 PROMOTION = NOT_ACCEPTED
 
 
-Corte vigente 2026-10-08: misma S05, cuatro corridas reales finales d1b limpias y replays íntegros PASS independiente, READY_FOR_FINAL_ACCEPTANCE adjudicado por Root. BASIC net−43405,84/saldo56594,16 y CAMPAIGN net−6151,60/caja4640/3compras/2reemplazos/cobros0; economía sin tuning. Primary favorable sólo IDs reportado por Owner, PRIMARY_FINAL_REVIEW=PENDING/GATE_ACCEPTED=false/PROMOTION=NOT_ACCEPTED. Publicación raw completa nueva fase y readback pendientes. Próxima acción: finalizar entrega remota y cierre Root/especialistas por Owner, sin cerrar Primary. D6 físico NOT_DEMONSTRATED/no transferencia. Detalle y límites en [[BTG-S05-REMEDIATION-AND-RESULTS]].
+Corte vigente 2026-10-08: misma S05, cuatro corridas reales finales d1b limpias y replays íntegros PASS independiente, READY_FOR_FINAL_ACCEPTANCE adjudicado por Root. BASIC net−43405,84/saldo56594,16 y CAMPAIGN net−6151,60/caja4640/3compras/2reemplazos/cobros0; economía sin tuning. Primary favorable sólo IDs reportado por Owner, PRIMARY_FINAL_REVIEW=PENDING/GATE_ACCEPTED=false/PROMOTION=NOT_ACCEPTED. Raw completo publicado/verificado en nueva fase inmutable privada; sesión Root/especialistas cerrada por pedido Owner. Próxima acción: Primary/Owner realiza aceptación final de la entrega; Primary no cerrado/gatefalse. D6 físico NOT_DEMONSTRATED/no transferencia. Detalle y límites en [[BTG-S05-REMEDIATION-AND-RESULTS]].
 
 Refs históricas consultadas directamente en GitHub el 2026-10-06 UTC:
 
