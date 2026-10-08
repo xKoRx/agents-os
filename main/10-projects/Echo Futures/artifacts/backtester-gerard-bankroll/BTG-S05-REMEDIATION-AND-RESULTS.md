@@ -52,6 +52,12 @@ D tiene evidencia focalizada de composición H4, cuenta B con términos propios 
 
 E implementó accessor de última revisión, retención opt-in por recorder, clone tipado, MIXED y provenance; sus gates SDK focalizados pasan, con pruebas adicionales de volumen/freshness y cobertura aún pendientes. No hay mediciones finales de rendimiento ni corridas reales S05. La barrera de compilación integrada pasó con exit 0 y fuente estable (`evidence/causal/compile-barrier-command.json`); es `COMPILE_ONLY`, no un gate de tests. Los tres autores siguen trabajando sobre el candidato intermedio, sin SHA final congelado.
 
+#### Integración y revisión independiente en curso
+
+El integrador creó el candidato intermedio `f26726d1a03c0e97da9126f59a7e3d07194004da` con dependencias coherentes C/D/E; la matriz diferencial D aún en edición quedó fuera del commit. No es el SHA final ni una build certificada. Los nuevos falsificadores públicos de rollover pasan según los logs focalizados del autor; requieren el rerun final independiente.
+
+El Sol fresh-context reprodujo dos defectos materiales del comparador en un snapshot propio: campos `cause_ref`/`provider_order_ref` dentro de contenido opaco MM se normalizaban globalmente; además, un texto de detail podía crear una biyección de órdenes nunca vinculadas por hechos materiales. Sus negativos fallaron aunque los negativos del autor pasaban. Evidencia: `evidence/final-review/oracle-initial.jsonl`, proceso exit 1; snapshot completo estable `cfeddd95f8230b53caf2c9a6e4a0ad5260326dc2c355189b82b9f9ebfe488a0e`, siete fuentes S04 intactas. C debe limitar traducción a campos/rutas/tipos autoritativos conocidos y exigir que toda referencia derivada use una relación ya establecida por órdenes materiales. Contenido opaco permanece exacto aunque use nombres de campo parecidos. Las comparaciones ALL/SKIP anteriores siguen provisionales hasta reparar y revalidar con los ataques independientes; no se aceptan como equivalencia integral.
+
 #### Matriz S04-01…16
 
 `RED` apunta a la reproducción aislada de esta cápsula salvo donde se marca `OBSERVED_S04`; esas dos formas se conservan separadas. `FIX_SHA`, regresión de corrección, rerun independiente y rerun real permanecen `PENDING` para cada fila hasta contar con evidencia fresca atribuida al SHA final. No existe finding cerrado en este corte.
