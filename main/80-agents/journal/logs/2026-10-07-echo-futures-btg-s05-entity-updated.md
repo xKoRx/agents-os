@@ -104,6 +104,8 @@ DEC-15 distingue rechazo de evidencia externa y corrupción interna: el primero 
 
 Refinamientos DEC-15: la regresión EXE10 conservada obliga a separar snapshot físico válido de confianza integral para no suprimir observaciones auténticas ante mismatch. G además reprodujo un submit nuevo en adapter simulado cuando PositionFresh se perdió después de una barrera válida: se autoriza reevaluación completa antes del efecto, conservando dedup y cancel. Revalidación conjunta pendiente; no órdenes reales ni código escrito por root.
 
+Se añadió el corte independiente posterior `a4eb54ca` al informe canónico: 63/27/122 resultados nominales PASS en grupos explícitos y siete fuentes S04 intactas; snapshot de contenido, no Git SHA final. Los RED de oráculo/DEC-15 permanecen como historia, y la aceptación es sólo acotada. Se registraron la adjudicación independiente S03 cinco compras/caja4400, el error del assert independiente que confundía duplicados raw con impacto económico duplicado, y los huecos vigentes de paridad/Invoke/cobertura/build/corridas. E se reutiliza como autor de tests simexecution; G conserva independencia. Root sólo editó Markdown y mantiene un único change_log.
+
 ## Compartibilidad
 
 - **Scope:** team
