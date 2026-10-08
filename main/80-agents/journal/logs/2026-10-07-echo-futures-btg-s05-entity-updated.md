@@ -159,3 +159,8 @@ Owner autorizó misma S05 acotada y publicación para revisión dentro de xKoRx/
 Publicador push noforce a nueva rama y nueva prerelease PRIVATE/no latest, draft base intacto. Diez assets fase 1 verificados por descarga real; bundle base inmutable y suplemento SHA eecfc325b381be6a8179ca8adb4457bd47bce87ab7a7f91d295c83a0551dd99a. Recibo G fase 2 tar SHA 47f693b75cffb8ea683d4b6b75c547e1cbe3c579a5eb56f5792d734b68991d8e se publica separado, sin circularidad ni rewrite del paquete. Receta autocontenida permite reviewer read a Echo sin acceso AgentsOS ni write al draft; sin ampliar audiencia/colaboradores.
 
 Estado vigente READY_FOR_REMOTE_REVIEW_ID_INVARIANCE, no aceptación Primary/Owner: GATE_ACCEPTED=false, PROMOTION=NOT_ACCEPTED. Reales/performance 1ab históricos, nuevos d1b NOT_RUN; D6 ENVIRONMENTAL_BLOCKED/no físico. Mismo change_log y master, registros de autor/G/publicador y feedback por delta; cierres de especialistas no cierran Root/Primary. Readback/autosync/remoto AgentsOS y assets fase 2 se verifican antes del reporte final.
+
+
+## Delta de mandato final real d1b — 2026-10-08
+
+Owner informa aceptación Primary favorable sólo del delta IDs y ordena BASIC/CAMPAIGN exactos de 1ab más replay fresco de cada uno, sin desarrollo, sobre d1b limpio. IN_PROGRESS; warmup Oct15T22Z, trading Oct29T22Z, end Nov23T03:29Z. Preflight executor/independiente PASS y dos first activos, límites1200s/CPU1/GOMEM2GiB/no-red/disco4GiB/max2. Canonical nuevo corte conserva Primary pendiente/gatefalse y anteriores como historia. Único escritor documental reservado; publicación nueva fase inmutable espera raw y verificación. Sin tocar D6/26bench/S04/ROI. Cierre Root/especialistas requerido sólo tras resultado verificado y entrega remota; Primary no se cierra.

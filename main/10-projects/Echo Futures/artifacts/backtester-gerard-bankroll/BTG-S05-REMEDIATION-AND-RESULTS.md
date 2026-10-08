@@ -22,7 +22,15 @@ Cerrar dentro de BTG-S05 los 16 hallazgos materiales de S04 y entregar un candid
 
 ## Contenido
 
-### Corte vigente — adenda de invariancia de IDs publicada, 2026-10-08
+### Corte vigente — repetición final real d1b en curso, 2026-10-08
+
+`FINAL_REAL_RERUN_D1B=IN_PROGRESS`; `PRIMARY_ID_DELTA=FAVORABLE_REPORTED_BY_OWNER`; `PRIMARY_FINAL_REVIEW=PENDING`; `GATE_ACCEPTED=false`; `PROMOTION=NOT_ACCEPTED`. Owner comunica aceptación favorable del delta de IDs exclusivamente, sin gate global. Ordenó repetir BASIC/CAMPAIGN exactos de 1ab y un replay fresco de cada uno sobre producto limpio `d1b1446d401f88cfa42dee2eb959120305f5a372`, sin desarrollo. Build CLI actual SHA prefix `520d5343` bajo preflight de executor e independiente; el hash completo y recibo de build se incorporarán desde sus manifiestos sellados, no se infieren aquí.
+
+Warmup `2023-10-15T22:00:00Z`, trading `2023-10-29T22:00:00Z`, end exclusivo `2023-11-23T03:29:00Z`. First BASIC y CAMPAIGN activos como dos procesos independientes, cada trayectoria secuencial, outputs/estado aislados; máximo dos procesos, timeout 1200 s, GOMAXPROCS=1, GOMEMLIMIT=2GiB, namespace sin red y piso de disco 4GiB. Los caps históricos son límites de ejecución, no un benchmark nuevo. Resultados/footer, finanzas/caja y replay completo esperan verificación independiente; no se transfieren las cifras 1ab.
+
+Área externa vigente: `evidence/final-rerun-d1b1446d/{executor,independent,publication}`. Publicación futura será una fase nueva inmutable con artefactos raw completos y receta portable en el mismo repo privado; fases anteriores intactas. Este mandato excluye cambios D6, los 26 benchmarks, S04 y ROI. Al terminar evidencia/publicación/readback y feedback, Owner pide cerrar sesión Root y especialistas; Primary permanece abierto y gate false. Estado actual no es cierre. Próxima acción: concluir first y replays, recibir oráculo independiente y publicar/verificar hashes remotos y master AgentsOS.
+
+### Histórico — adenda de invariancia de IDs publicada, 2026-10-08
 
 `S05_ID_INVARIANCE=READY_FOR_REMOTE_REVIEW_ID_INVARIANCE`; `INDEPENDENT_LOCAL_AND_REMOTE_BOUNDED_REVIEW=PASS`; `PRIMARY_FINAL_REVIEW=PENDING`; `GATE_ACCEPTED=false`; `PROMOTION=NOT_ACCEPTED`. Misma continuación S05, sin S06 ni otro shot. Producto final `d1b1446d401f88cfa42dee2eb959120305f5a372`; los resultados reales/performance anteriores sobre 1ab son históricos y `NEW_REAL_RUNS_D1B=NOT_RUN`. Root/Primary permanecen abiertos. El alcance técnico probado es el delta acotado y sus dependencias, no una nueva certificación integral longitudinal ni física.
 
