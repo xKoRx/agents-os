@@ -17,7 +17,7 @@ prs:
 aliases: ["Kafka local real", "Ambiente local Kafka", "Control plane Kafka — Desarrollo local"]
 tags: ["kind/project", "area/meli", "app/rio-controlplane-kafka"]
 created: "2026-09-30"
-updated: "2026-10-07"
+updated: "2026-10-08"
 ---
 
 # Kafka — Ambiente local con servicios reales
@@ -32,6 +32,9 @@ Ejecutar E2E del [[rio-controlplane-kafka]] contra Kafka real usando un mapa sim
 Mantener controllers, validadores, handlers, procesadores, provisioners y guard reales del CP. Comprobar efectos Kafka, resultados correlacionados y estado del mapa de la misma aplicación. El mapa no certifica persistencia tras reinicio, exclusión entre JVMs ni el cliente/servicio Toolkit productivo. La producción conserva su backend. La comparación histórica de implementaciones vive en [[Ambientes locales RIO — Comparativa de implementaciones]].
 
 ## 📊 Estado actual
+
+- **Revisión del owner 08/10 — en ejecución:** objetivo confirmado CP+Kafka Docker para requests Postman. Se está consolidando root Compose (CP/Kafka/init-topics), perfil compose y bootstrap compartido configurable; mapa KVS preservado con prueba duplicate, check sinDocker, README único. No Playmaker/ClickHouse ni bridge HTTP. Contexto Docker activo colima (2GiB, MySQL compartido intacto) será la reproducción requerida; no se usará override del contexto anterior. La entrega eb16f5f queda como baseline histórica del delta. SPECs/tareas proporcionales y responsables en el registro único de control. Siguiente: integración→check Java21→dos corridas vacías→revisión independiente/clon limpio. Sesión reabierta por el owner; no hay nueva certificación física todavía.
+
 
 - **Entrega pequeña 07/10 — objetivo vigente:** `rio-controlplane-kafka-local-small`, rama `feature/kafka-local-small`, commit `eb16f5f1ef63466bcdb8ee1266eabb7ea3f21d10`, desde develop remoto verificado `4302481c69300074a85ea5eb051a27bbd505cdce`. PROVISION, UPDATE, DEPROVISION y PEEK acción/REST más errores contractuales: dos corridas finales **9/0/0/0 PASS** desde ambientes vacíos y reproducción independiente **9/0/0/0 PASS**. CP real, un broker Kafka real RF1, KVS mapa por JVM y resultados Kafka reales; cleanup físico y packaging productivo PASS. Diff 14 archivos (11 añadidos, 3 modificados); sólo dos anotaciones de perfil en configuración productiva, sin cambios de negocio. `local/README.md` contiene start/test/stop. Original y congelado íntegros; sin PR, push, CI ni integraciones del ecosistema. Revisión independiente sin findings materiales; Zord formal no ejecutado por rechazo automático de envío de diff privado, consulta de autorización/omisión pendiente. Registro breve y SPECs proporcionales en el control externo de esta ejecución; atribución en los agent runs `kafka-small-local-*`.
 
@@ -101,6 +104,13 @@ El flujo de entrega sigue Spellbook: SPEC funcional → SPEC técnica → tasks 
 7. **Disponibilidad verificable:** el launcher del perfil de integración debe comprobar Kafka y KVS real, rechazar wiring no-op/archivos y explicar qué configuración falta. Una dependencia corporativa ausente debe producir un fallo visible en las suites que la requieren. Las pruebas de caída posterior de un KVS real verificarán la política de degradación vigente del producto.
 
 ## ✅ Tareas
+
+### Delta Compose/Postman vigente — 08/10
+
+- [/] Consolidar Compose raíz con CP, bootstrap único y perfil compose; preservar contratos productivos.
+- [ ] Documentar requests Postman y un único camino local; eliminar supervisor del host.
+- [ ] Check Java21 sinDocker y diez escenarios (nueve originales más duplicate) dos veces desde vacío en contexto activo.
+- [ ] Reproducción independiente desde clon limpio y entrega del review punto por punto.
 
 ### Extracción pequeña vigente — 07/10
 
@@ -322,3 +332,8 @@ Owner pidió continuar CP Kafka. Auth guard directo12:59/13:08Z devuelveLOGIN_RE
 El owner solicitó cerrar esta sesión y dejar feedback. La entrega vigente es `feature/kafka-local-small@eb16f5f1ef63466bcdb8ee1266eabb7ea3f21d10`: 11 archivos añadidos y 3 modificados; dos ejecuciones finales de 9 pruebas sin fallos desde ambientes vacíos, más reproducción independiente de 9 desde clon limpio. Guía operacional en `local/README.md`: `start` crea Kafka y arranca el CP; `test` crea, prueba y limpia; `stop` elimina exclusivamente recursos propios. Docker/Colima debe estar iniciado. `AGENTS.md` heredado quedó intacto; no referencia esta guía.
 
 Sesión cerrada, rama limpia y sin infraestructura propia activa. Los checkpoints anteriores conservan el estado histórico del alcance congelado; no describen esta entrega pequeña. Siguiente acción: revisión humana del diff y decidir la revisión formal Zord, NO REVISADO porque auto-review rechazó exportar el diff privado sin autorización específica. No hay PR ni push. Feedback: [[2026-10-07-kafka-small-local-session-feedback]].
+
+
+## Reanudación por revisión — 2026-10-08
+
+Owner pide evaluar los nueve puntos del review y corregir sólo lo necesario para CP local operable por Postman. Se acepta contenerización y simplificación; se descartan NoOp KVS y diseño anticipado del transporte/red del ecosistema. La base remota no pudo refrescarse hoy por IP allowlist; se conserva la base verificada 4302481 y el checkout propio eb16f5f, sin tocar original/congelado.
