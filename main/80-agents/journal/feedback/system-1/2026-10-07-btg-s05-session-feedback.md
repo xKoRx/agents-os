@@ -127,3 +127,10 @@ Un painpattern: agregación de evidencia antes de verificar nombre/exit/autorida
 - La ejecución real detectó dos gaps que memoria-recorder y guards anteriores no cubrieron: familia ACCOUNT_REPLACEMENT omitida en writer real y lifecycle MM que dejaba ADD working tras protective full-flat. Se preservaron RED y se cerraron con productor real, cancel/finality auténticos y replays íntegros.
 - Equivalencia exige esquema positivo/lado explícito y observación pública del ReadModel; feed serializado como{} no prueba readiness/barras/contexto. Se preservan los ataques originales de side/opaque/constructor/cardinalidad.
 - Límites de harness/uso bloquearon Luna; TOP Sol autorizado hizo segmentos técnicos/documentales, sin simular identidad NORMAL ni costos/modelos expuestos. G conserva independencia; closures únicos del especialista no cierran Root/Primary.
+
+
+## Delta ID-invariance y revisión remota — 2026-10-08
+
+- Flat net y replay determinista no garantizan independencia de IDs opacos: los RED prueban fills, precios, cancel/finality y economía por etapa. Metamorfismo con bijección declarada y oráculo independiente añade evidencia que un assert terminal no captura.
+- Draft privado puede exigir write para descargar; la nueva prerelease publicada conserva misma audiencia read y bundle base propio. Fresh fetch/download real y runner portable demuestran transporte y guard sin carpetas originales; misma máquina/cache se declaran, no se inventa otra máquina.
+- Materialización schema y mismo change_log evitaron notas paralelas; un intento de materializador/consulta con salida extensa quedó acotado al delta. No nuevas reglas globales ni higiene. Modelo/costo/tokens UNKNOWN, sin físico. Root/Primary no cerrados.

@@ -4,20 +4,20 @@ schema_version: 1
 scope: session
 created: "2026-10-08"
 updated: "2026-10-08"
-area:
-project:
+area: "[[Echo]]"
+project: "[[Echo Futures]]"
 application:
-entities: []
-related: []
+entities: ["[[Echo Futures]]"]
+related: ["[[BTG-S05-REMEDIATION-AND-RESULTS]]"]
 aliases: []
 agent_surface: "[[Codex]]"
 agent_model: unknown
 model_source: unknown
-task_type: coding
-task_complexity: unknown
-outcome: partial
-verification: not_run
-evaluator: agent
+task_type: ops
+task_complexity: high
+outcome: success
+verification: passed
+evaluator: mixed
 user_rework: unknown
 source_session:
 load_policy: manual
@@ -28,32 +28,22 @@ tags:
   - scope/session
 ---
 
-# Agent Run — 2026-10-08-codex-unknown-btg-s05-id-publication
+# Agent Run — S05 Publicador remoto y documental
 
 ## Trabajo
 
-- **Objetivo:**
-- **Alcance atribuible a esta combinación superficie×modelo:**
-- **Artefactos afectados:**
+Misma continuación S05 autorizada, solicitada Sol 6.1; modelo ejecutado no expuesto, UNKNOWN. Alcance atribuible: Publicador remoto y documental.
 
 ## Evidencia
 
-- **Validaciones ejecutadas:**
-- **Resultado observable:**
-- **Limitaciones de la evidencia:**
+Push noforce, prerelease privada/no latest, diez assets descargados y hash real; base 235/suplemento 53 hashes internos. Draft base intacto. Master documental y recibos fase 2 se verifican al cerrar.
+
+Sin producto/tests/índice Echo; no tests por publicador. Sólo evidencia y docs; no físico, colaboración ampliada, PR/merge/deploy. Gate Primary/Owner false.
 
 ## Evaluación
 
-%% Scores opcionales 1–5: agregar al frontmatter sólo cuando exista evidencia suficiente. Si son autoevaluados, conservar evaluator: agent. %%
-
-- **Correctness:**
-- **Autonomy:**
-- **Efficiency:**
-- **Tool use:**
-- **Overall:**
+Evaluación por evidencia del agente y adjudicación Root/G. Scores omitidos; user rework, tokens, costo y quota UNKNOWN.
 
 ## Resultado
 
-- **Outcome:**
-- **Rework posterior:**
-- **Aprendizaje para comparar herramientas:**
+Segmento especialista completo por su alcance; Primary/Owner y Root permanecen abiertos. READY_FOR_REMOTE_REVIEW_ID_INVARIANCE no implica GATE_ACCEPTED. Evidencia autocontenida en prerelease privada btg-s05-id-invariance-d1b1446d. Sin certificación física ni transferencia de resultados longitudinales 1ab al nuevo SHA.

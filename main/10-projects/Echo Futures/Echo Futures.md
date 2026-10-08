@@ -36,7 +36,7 @@ updated: "2026-10-08"
 
 ## Corte vigente BTG-S05 — 2026-10-08
 
-READY_FOR_PRIMARY_FINAL_REVIEW sobre fuente `1ab9a7b5b596e03220f95f93e08e48995e8e4531`, 16 hallazgos FIXED_WITH_REGRESSION_AND_RERUN y ACK integral independiente G. BASIC/CAMPAIGN completos y replays exactos; financieros/caja/finality/continuidad conciliados. Cobertura nueva2445/2556=95,657277%, alcance de performance y dataset calificado en [[BTG-S05-REMEDIATION-AND-RESULTS]], única matriz vigente. INDEPENDENT_SOFTWARE_REVIEW=PASS; PRIMARY_FINAL_REVIEW=PENDING; GATE_ACCEPTED=false. Próximo paso: Primary revisa entrega y somete aceptación Owner; PROMOTION=NOT_ACCEPTED, Root/Primary abiertos. D6 físico NOT_DEMONSTRATED/no transferencia. Ningún push de producto, despliegue, ETCD o acción física. Estados BTG previos abajo son históricos.
+READY_FOR_REMOTE_REVIEW_ID_INVARIANCE sobre fuente `d1b1446d401f88cfa42dee2eb959120305f5a372`, continuación acotada de la misma S05. G local y reproducción remote-only: ocho casos inmutables y seis pares económicos Decimal iguales por etapa/final; código y evidencias necesarios en [prerelease privada de revisión](https://github.com/xKoRx/echo/releases/tag/btg-s05-id-invariance-d1b1446d). Base 1ab y sus 16 hallazgos/reales/performance se conservan históricos; reales nuevos d1b NOT_RUN. `PRIMARY_FINAL_REVIEW=PENDING`; `GATE_ACCEPTED=false`; `PROMOTION=NOT_ACCEPTED`. Próximo paso: Primary/revisor dictamina suplemento; Owner posterior y separado, Root/Primary abiertos. D6 físico NOT_DEMONSTRATED/no transferencia; ninguna acción física, merge o deploy. Detalle, hashes, receta y límites en [[BTG-S05-REMEDIATION-AND-RESULTS]].
 
 ## 🎯 Objetivo
 

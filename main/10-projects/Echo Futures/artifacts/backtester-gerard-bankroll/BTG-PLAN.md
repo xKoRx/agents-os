@@ -26,18 +26,18 @@ Mandato Owner recibido el 2026-10-05 (America/Santiago): máximo cinco shots; el
 
 Este plan y los artefactos activos del programa viven en Agents-OS `master`; las ramas documentales históricas no son autoridad vigente. Cambios del control se publican por delta en `master`, con readback y preservación de cambios concurrentes.
 
-PROGRAM_STATE = READY_FOR_PRIMARY_FINAL_REVIEW
+PROGRAM_STATE = READY_FOR_REMOTE_REVIEW_ID_INVARIANCE
 BTG_S01 = BOUNDED_REAL_RUN_COMPLETE; FULL_COVERAGE_AND_OWNER_ACCEPTANCE_OPEN
 BTG_S02 = DESIGN_PRESERVED_IN_BTG-S02-DESIGN
 BTG_S03 = HISTORICAL_CANDIDATE_AUDITED_BY_S04; FINDINGS_REMEDIATED_BY_S05
 BTG_S04 = READY_FOR_PRIMARY_REVIEW_WITH_FINDINGS
-BTG_S05 = READY_FOR_PRIMARY_FINAL_REVIEW; SOFTWARE_INDEPENDENT_REVIEW_PASS; OWNER_ACCEPTANCE_PENDING
-CAMPAIGN_RESULTS = FRESH_1AB_BASIC_AND_CAMPAIGN_COMPLETE; REPLAYS_EXACT; FINANCIAL_READBACK_PASS
-DESIGN_FREEZE = S02_ARTIFACT_PRESERVED; SOURCE_1AB_FROZEN
+BTG_S05 = READY_FOR_REMOTE_REVIEW_ID_INVARIANCE; BOUNDED_LOCAL_AND_REMOTE_PASS; PRIMARY_REVIEW_PENDING
+CAMPAIGN_RESULTS = HISTORICAL_1AB_COMPLETE_AND_EXACT; NEW_D1B_LONGITUDINAL_RUNS_NOT_RUN
+DESIGN_FREEZE = S02_ARTIFACT_PRESERVED; SOURCE_D1B_ID_INVARIANCE_FROZEN
 PROMOTION = NOT_ACCEPTED
 
 
-Corte vigente 2026-10-08: [[BTG-S05-REMEDIATION-AND-RESULTS]] contiene una matriz final de16 findings FIXED_WITH_REGRESSION_AND_RERUN, fuente1ab9a7b5 y ACK integral G. BASIC/CAMPAIGN y ambos replays completos, financieros conciliados; caja4640/3compras/2reemplazos/0cobros. INDEPENDENT_SOFTWARE_REVIEW=PASS; PRIMARY_FINAL_REVIEW=PENDING; GATE_ACCEPTED=false. Próxima acción única: Primary revisa el informe/bundle final y presenta aceptación al Owner. PROMOTION=NOT_ACCEPTED; no cierre Root/Primary ni certificación/acción física. Los estados y refs de cortes previos son históricos y no autoridad actual.
+Corte vigente 2026-10-08: misma S05, adenda acotada de invariancia de IDs sobre `d1b1446d401f88cfa42dee2eb959120305f5a372`, local y remote-only G PASS: ocho casos y seis pares económicos por etapa/final. `READY_FOR_REMOTE_REVIEW_ID_INVARIANCE`; `PRIMARY_FINAL_REVIEW=PENDING`; `GATE_ACCEPTED=false`; `PROMOTION=NOT_ACCEPTED`. La matriz original de 16 hallazgos y los reales/performance 1ab permanecen históricos; nuevos reales sobre d1b NOT_RUN. Código y todos los assets necesarios están en la prerelease privada [btg-s05-id-invariance-d1b1446d](https://github.com/xKoRx/echo/releases/tag/btg-s05-id-invariance-d1b1446d), sin depender del draft ni del acceso a AgentsOS. Próxima acción única: Primary/revisor realiza dictamen del suplemento mediante README final fase 2. Owner acepta después y por separado. Root/Primary abiertos, D6 físico NOT_DEMONSTRATED/no transferencia. Detalle y límites en [[BTG-S05-REMEDIATION-AND-RESULTS]].
 
 Refs históricas consultadas directamente en GitHub el 2026-10-06 UTC:
 
