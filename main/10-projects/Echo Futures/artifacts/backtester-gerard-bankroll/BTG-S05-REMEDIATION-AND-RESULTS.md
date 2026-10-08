@@ -123,9 +123,10 @@ BASIC sigue siendo una cuenta continua USD 100,000, con oportunidades admitidas 
 |---|---|---|---|
 | GOD, SUBMANAGER: prioridad, decisiones materiales, revisión de evidencia; cero código | GPT-6 Astra | UNKNOWN | Activo; costes/tokens UNKNOWN |
 | Evidencia y RED inicial, LOCAL ONE-SHOT | gpt-6-luna | UNKNOWN | Este registro; rerun aislado completado |
-| Protección compartida y correcciones técnicas | gpt-6.1-sol | UNKNOWN | Workers TOP activos; fixes aún no acreditados aquí |
+| Protección compartida y correcciones técnicas | gpt-6.1-sol | UNKNOWN | B integrado con regresiones focalizadas; autor continúa D, aceptación final pendiente |
 | Causalidad/venue/skip, corrección e integración coordinada | gpt-6.1-sol | UNKNOWN | Worker TOP activo; integración por un solo owner técnico |
-| Campaña/composición/costo/MIXED según dependencias | gpt-6.1-sol para cambios delicados; gpt-6-luna para mediciones acotadas autorizadas | UNKNOWN | En espera de la secuencia definida; no reportar cierre |
+| Composición/campaña y matriz diferencial | gpt-6.1-sol | UNKNOWN | D activo; instant-ACK/ADD/force-close siguen RED tras primer cambio DEC-13; offline DEC-14 en implementación |
+| Costo, MIXED y provenance | gpt-6.1-sol para cambios delicados; gpt-6-luna para mediciones acotadas autorizadas | UNKNOWN | E integrado; complemento: 800/836 líneas nuevas instrumentadas cubiertas (95,69%), CLI 91,57% aparte; mediciones finales aún no ejecutadas |
 | Revisión independiente final, ajena a fixes/integración | gpt-6.1-sol | UNKNOWN | `DISPATCHED`: contexto nuevo desde el carril C; inspección inicial de oráculos, reejecución integral pendiente del SHA final |
 
 Secuencia de aceptación: RED preservado → protección → causalidad/venue → skip → composición/campaña → costo/retención → MIXED/provenance e integración → pruebas críticas y corridas BASIC/CAMPAIGN sobre SHA/build congelados → fresh-context TOP independiente → revisión GOD → revisión Primary. Preparación disjunta puede avanzar en paralelo, pero la integración sigue esa dependencia. Ningún mismo autor revisa independientemente sus propios cambios. Todos los modelos ejecutados y costes permanecen `UNKNOWN` salvo evidencia del harness.

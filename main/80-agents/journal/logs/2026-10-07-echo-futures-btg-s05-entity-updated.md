@@ -80,6 +80,8 @@ DEC-13 responde a la divergencia causal reproducida independientemente en ADD ad
 
 DEC-14 autoriza el seam sintético offline por reporte compartido autoritativo y readiness existente. Se rechaza el diseño anterior que confiaba sólo en igualdad de netos. El contrato exige scope completo, freshness posterior a reconexión, órdenes/finality y recuperación de fills con dedup, manteniendo explícito el límite de economía/proyección runtime inyectada.
 
+Se precisó la matriz de delegación actual: B integrado con aceptación final pendiente; D activo y primer rerun tras DEC-13 aún RED, E integrado con cobertura de líneas y porcentaje CLI separados; mediciones/corridas finales no ejecutadas. A las 23:50 Santiago se informó al Owner que no había base para prometer cierre íntegro antes del plazo, conservando trabajo y requisitos dentro de S05.
+
 ## Compartibilidad
 
 - **Scope:** team
