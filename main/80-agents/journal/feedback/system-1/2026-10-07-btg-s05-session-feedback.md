@@ -121,3 +121,9 @@ tags:
 - G: pruebas independientes negativas descubrieron defectos que oráculosautor no detectaban; scope/source/copy preservados y no autoría candidato. Revisiónintegral REVIEW_RUNNING; [[2026-10-08-codex-unknown-btg-s05-g-initial-adjudication]].
 
 Un painpattern: agregación de evidencia antes de verificar nombre/exit/autoridadproductor. Mejora: índiceexpected/actual/nomatch antes del reporte, comparador tipado no convierte esperado en productor. Scores del segmentoD: evidenciahigiene2/5 previa, closeoutclarity4/5; no censusmodelo. Contextwatermark/tokens/costUNKNOWN; efficiencyREVIEW. Compacción útil tras fasecerrada+cápsula estable, sin recortar requerimientos. Internalcontinuity aportó packconservado/mandato, sin nuevos checkpointsdurables; Graphify no usado en estosworkers, no segundo feedbackGraphify. LunaNORMAL dosrejectharness explícitos, no ejecuciónficticia. PromociónL3deferred; no nueva regla/sistema por queja aislada.
+
+## Delta final C/D/G — 2026-10-08
+
+- La ejecución real detectó dos gaps que memoria-recorder y guards anteriores no cubrieron: familia ACCOUNT_REPLACEMENT omitida en writer real y lifecycle MM que dejaba ADD working tras protective full-flat. Se preservaron RED y se cerraron con productor real, cancel/finality auténticos y replays íntegros.
+- Equivalencia exige esquema positivo/lado explícito y observación pública del ReadModel; feed serializado como{} no prueba readiness/barras/contexto. Se preservan los ataques originales de side/opaque/constructor/cardinalidad.
+- Límites de harness/uso bloquearon Luna; TOP Sol autorizado hizo segmentos técnicos/documentales, sin simular identidad NORMAL ni costos/modelos expuestos. G conserva independencia; closures únicos del especialista no cierran Root/Primary.

@@ -15,8 +15,8 @@ agent_model: unknown
 model_source: unknown
 task_type: coding
 task_complexity: high
-outcome: partial
-verification: partial
+outcome: success
+verification: passed
 evaluator: agent
 user_rework: unknown
 source_session:
@@ -50,3 +50,7 @@ Evaluación mixta por correcciones Owner y ataques independientes; no score de m
 ## Resultado
 
 Entrega parcial para integración/revisión final, no aceptación producto. Registros externos `evidence/composition-campaign/{agent-run-current,session-feedback-external,session-close-external,quote-provenance-capsule}.md` importados por delta. G REVIEW_RUNNING; perf120/BASIC/CAMPAIGNNOT_RUN. Feedback ligado a [[2026-10-07-btg-s05-session-feedback]]; reworkUNKNOWN/evaluatormixed por correcciones Owner. Cierre documental del segmento completo; root/Primary continúan. Sin physicalorders/ETCD/PROD/deploy. D6doc38a4b196/source d08a30ce ENVIRONMENTAL_BLOCKED, refresh4152 no transfierecertificación.
+
+## Delta final — 2026-10-08
+
+Segmento especialista cerrado por evidencia externa atribuible; software integrado1ab9a7b5 recibió ACK integral G. Este delta supersede sólo el outcome provisional anterior, no reescribe los hechos históricos ni transfiere ejecución de otros autores. Registros/cierres externos únicos incluidos en inventario de entrega; ejecución/modelo/tokens/costo UNKNOWN si no expuestos, sin usar counters agregados Root. Root/Primary siguen abiertos, Owner acceptance pendiente y físico NOT_DEMONSTRATED.

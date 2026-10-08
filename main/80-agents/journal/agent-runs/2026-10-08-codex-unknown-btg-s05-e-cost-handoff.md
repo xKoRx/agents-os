@@ -15,8 +15,8 @@ agent_model: unknown
 model_source: unknown
 task_type: coding
 task_complexity: high
-outcome: partial
-verification: partial
+outcome: success
+verification: passed
 evaluator: agent
 user_rework: unknown
 source_session:
@@ -53,3 +53,7 @@ tags:
 ## Delta consolidado — 2026-10-08
 
 E cerró su segmento externo sin nueva shot: retención/provenance/MIXED/clone y complemento finito146PASS con fuenteexacta. Archivos agent-run.md/feedback.md/session-close.md en evidence/cost-modes consolidados por referencia, sin agregar registroduplicado. Sus métricas históricas801/836 y complemento283/288 no se trasladan entre fuentes; agregado Cfreeze4152 es2426/2536 con auditoría propia. Benchmarkcontract preparado, actualperf120/300/600NOT_RUN; Esegment completo, programa pendiente. Ejecutado/tokens/costoUNKNOWN; no physicalactions.
+
+## Delta final — 2026-10-08
+
+Segmento especialista cerrado por evidencia externa atribuible; software integrado1ab9a7b5 recibió ACK integral G. Este delta supersede sólo el outcome provisional anterior, no reescribe los hechos históricos ni transfiere ejecución de otros autores. Registros/cierres externos únicos incluidos en inventario de entrega; ejecución/modelo/tokens/costo UNKNOWN si no expuestos, sin usar counters agregados Root. Root/Primary siguen abiertos, Owner acceptance pendiente y físico NOT_DEMONSTRATED.
