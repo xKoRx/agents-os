@@ -76,6 +76,8 @@ Se registró el candidato intermedio f26726d1 y los dos RED nuevos del revisor f
 
 La revisión independiente encontró además sustitución indiscriminada de strings en el helper S04 reutilizado por D. Se preserva el original y se delega un wrapper S05 tipado; la paridad previa se mantiene provisional, sin convertir el defecto del oráculo en una divergencia de producto no demostrada.
 
+DEC-13 responde a la divergencia causal reproducida independientemente en ADD adverso: orden local FIFO para trabajo ordinario disponible, conservando safety antes de trabajo no comprometido y dependencias de comandos comprometidos. No se corrige mediante normalización de secuencias ni demora arbitraria de ACK. Las reparaciones iniciales de wrappers pasaron ataques independientes acotados; un nuevo negativo de constructor ProviderFact mantuvo abierto el wrapper C hasta corregir su kind/grant exactos.
+
 ## Compartibilidad
 
 - **Scope:** team
