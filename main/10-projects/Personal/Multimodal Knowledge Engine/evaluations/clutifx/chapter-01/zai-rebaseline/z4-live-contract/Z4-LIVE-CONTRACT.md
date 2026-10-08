@@ -1,5 +1,8 @@
 # Z4 — LIVE CONTRACT CERTIFICATION: BLOCKED_EXTERNAL_QUOTA
 
+> [!important]+ RESOLUCIÓN OWNER (2026-10-07) — CAMPAÑA PARADA
+> El Owner resolvió el bloqueo: **PARAR la migración** — "el plan zai no permite usar glm5.3flash para otras cosas... esperaremos un modelo free de openrouter". No se autoriza el endpoint coding ni el cambio de modelo. Watcher solo-sonda muerto (1ª ventana 96/96 probes 429; 2ª ventana cortada por el owner al cierre). El adapter `zai` queda pusheado @ `bd2edc1d` como capacidad disponible **sin certificación live**. Si la campaña se retoma con un modelo free de OpenRouter: `--vlm openrouter` existe y está intacto; NO se reutiliza el run-z4 (fingerprint distinto); nuevo preflight + Z4 con el modelo elegido. `CHAPTER_01_ACCEPTED = NO`, `READY_TO_SCALE_CORPUS = NO`.
+
 Fecha: 2026-10-06 · Worker: manager-adoption tras muerte del subagent (run ejecutado y adoptado por Primary Manager; ver "Desviación de proceso") · Binario: `bd2edc1d` (`go version -m` vcs.revision verificado; `vcs.modified=true` por dir no-trackeado `wt/`, sin cambio de código) · Runtime local: `~/mke/zai-live-contract-20261006/`.
 
 ```text
