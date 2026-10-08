@@ -143,3 +143,5 @@ Un painpattern: agregación de evidencia antes de verificar nombre/exit/autorida
 - Independiente: paths attempt renombrados al sealing y dos lecturas bootstrap/perfil amplias; recuperó outputs durables desde manifest. Distinguió identidad/material/monetario transitorio/persistente sin normalizar. Publicador: crosslane live agent path not found; Root relay usado, sin reactivar ni depurar harness.
 
 Mejora observada: warm context + delta exacto, autoridad de aceptación previa y paths sellados/manifiestos para comparación. Sin promoción de regla nueva de riesgo ni memoria privada; continuidad vive sólo en control/canónico. Requested Luna gpt-6-luna, G/publicador gpt-6.1-sol; ejecutado/tokens/costo UNKNOWN. No scores nuevos ni inferidos; no gate autoaceptado.
+
+Cierre: explain focal de Graphify no disponible en host (backend no instalado, exit42; wrapper no ejecutable directo, usado bash sin cambiar permisos). Fallback lectura exacta del canónico verifica estado/gate; no instalación ni higiene global, relaciones derivadas no acreditadas.
