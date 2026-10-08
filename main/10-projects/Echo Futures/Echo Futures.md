@@ -2730,3 +2730,8 @@ Métricas mínimas futuras:
 Boundary frozen: el futuro Campaign Simulator **orquesta cuentas y bankroll fuera del Backtest Engine**. No replica Strategy/GerardMM/Provider/Accounting; cada cuenta se conduce mediante el mismo engine/contexts/cashflows ya certificados.
 
 **NEXT_MANAGER_ACTION:** ejecutar [[BTG-S01-SUBMANAGER-PROMPT]] con un TOP LOCAL como submanager persistente para obtener el primer backtest histórico REAL de Gerard y reparar sus defectos. Seguir [[BTG-PLAN]]: máximo cinco shots (S01 funcionamiento real; S02 diseño de campaña/objetivos; S03 implementación; S04 adversarial LOCAL; S05 corrección/certificación). La campaña sólo comienza después de validar el baseline histórico. Refrescar HEADs antes de ejecutar; no afirmar runs ni gates aún no demostrados.
+
+#### Actualización Owner — BTG-S05 — 2026-10-07
+
+`BTG_S05 = IN_PROGRESS`; `PRODUCT_NOT_CERTIFIED`. S04 halló 16 findings que siguen abiertos hasta corrección con regresión y rerun; el reporte único, decisión de protección, evidencia y orden de trabajo están en [[BTG-S05-REMEDIATION-AND-RESULTS]]. La lectura de S01 confirma un baseline derivado reproducible hasta el gap NQZ3 de 2023-11-23, no tres años continuos ni aceptación integral. No declarar BASIC/CAMPAIGN final o D6 físico listo por evidencia de otro SHA.
+

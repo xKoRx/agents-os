@@ -24,15 +24,17 @@ Mandato Owner recibido el 2026-10-05 (America/Santiago): máximo cinco shots; el
 
 ### 1. Estado y autoridad
 
-Ubicación de este paquete: rama documental docs/backtester-gerard-bankroll-five-shots-20261005 de xKoRx/agents-os. Su integración a master sigue pendiente. La revisión automática rechazó mover master directamente; el paquete se conserva como cambio revisable y puede utilizarse para el inventario/pruebas locales sin ese merge.
+Este plan y los artefactos activos del programa viven en Agents-OS `master`; las ramas documentales históricas no son autoridad vigente. Cambios del control se publican por delta en `master`, con readback y preservación de cambios concurrentes.
 
-PROGRAM_STATE = PLANNED
-BTG_S01 = READY_FOR_LOCAL_DISPATCH
-BTG_S02_TO_S05 = NOT_STARTED
-REAL_GERARD_RUN_THIS_SESSION = NOT_RUN
-CAMPAIGN_RESULTS = NOT_AVAILABLE
-DESIGN_FREEZE = NOT_STARTED
-PROMOTION = SOURCE_ONLY
+PROGRAM_STATE = REMEDIATION_IN_PROGRESS
+BTG_S01 = BOUNDED_REAL_RUN_COMPLETE; FULL_COVERAGE_AND_OWNER_ACCEPTANCE_OPEN
+BTG_S02 = DESIGN_PRESERVED_IN_BTG-S02-DESIGN
+BTG_S03 = CORRECTED_CANDIDATE_AUDITED_BY_S04; FINDINGS_OPEN
+BTG_S04 = READY_FOR_PRIMARY_REVIEW_WITH_FINDINGS
+BTG_S05 = IN_PROGRESS; PRODUCT_NOT_CERTIFIED
+CAMPAIGN_RESULTS = HISTORICAL_READBACK_ONLY; S05_FINAL_RUNS_PENDING
+DESIGN_FREEZE = S02_ARTIFACT_PRESERVED; S05_REPAIRS_IN_PROGRESS
+PROMOTION = NOT_ACCEPTED
 
 Refs consultados directamente en GitHub el 2026-10-06 UTC:
 
@@ -43,7 +45,7 @@ Refs consultados directamente en GitHub el 2026-10-06 UTC:
 | xKoRx/echo / feature/backtester-v1-s04-remediation | cd451972b242c8933321e03001decd4b6d778c61 |
 | xKoRx/echo / feature/d6-shot1-execution-vertical | d08a30ce9815f820fda7132e20dc42cc345eb8e8 |
 
-BT-S00–S04 son ACCEPTED_INPUT para capacidades ya certificadas; no acreditan todavía el backtest histórico Gerard solicitado. D6 es CONTINUITY_REFERENCE y no depende de esta campaña. El simulador previo Prop Economics Experiment es REFERENCE_ONLY, nunca motor alternativo.
+Los artefactos previos son evidencia histórica, no certificación automática del candidato actual. El informe S04 reporta 16 findings materiales aún abiertos en S05; D6 es una referencia física separada y su certificado no se transfiere entre SHA. El simulador Prop Economics Experiment es REFERENCE_ONLY, nunca motor alternativo.
 
 Este mandato amplía Stage 2 + Stage 3 en un único programa de cinco shots. Conserva la dependencia: primero demostrar el trading histórico real; después diseñar y construir campaña/optimización. Sustituye la antigua instrucción de dejar Stage 3 para un futuro mandato separado. No cambia contratos BT-S01/D4/D5/D6.
 
@@ -122,11 +124,11 @@ Gate final: mismo comando/configuración/dataset produce el mismo resultado econ
 
 Entregables: comando reproducible, configuración/manifest del escenario, tabla de cuentas y eventos económicos, curva temporal de bankroll, informe baseline versus objetivos y resultados completos exportables. No agregar UI, optimizador genérico, framework multi-prop o Monte Carlo para cumplir este alcance.
 
-### 8. Próxima acción concreta
+### 8. Acción vigente BTG-S05
 
-Ejecutar BTG-S01-SUBMANAGER-PROMPT en un agente TOP LOCAL con repositorios y acceso autorizado a Aranea/datasets. Esta sesión CLOUD verificó documentación y refs por GitHub; no tiene un canal operativo expuesto hacia Daedalus y no ejecutó backtests. El estado READY_FOR_LOCAL_DISPATCH expresa que el encargo está listo, no que el histórico/configuración estén certificados.
+BTG-S01 produjo un baseline histórico real acotado y reproducible; cobertura integral y aceptación Owner permanecen abiertas. BTG-S04 verificó el SHA correctivo `1bf45050780554c1135edc619bf01a8a4b04ba08` y publicó falsificadores adversariales independientes. La acción vigente es cerrar los hallazgos dentro de S05, sin crear otra fase ni cambiar señales para mejorar ROI.
 
-Los siguientes prompts se generan justo a tiempo desde el resultado aceptado del shot anterior.
+El orden de trabajo y el estado de cada hallazgo se mantienen en [[BTG-S05-REMEDIATION-AND-RESULTS]]. Workers corrigen y validan según ownership; Primary revisa después de evidencia independiente fresca.
 
 ### 9. Delta Owner 2026-10-06 — BTG-S03 (vigente)
 
@@ -145,6 +147,14 @@ Dieciséis findings: protección insuficiente de7contratos con stops5/2; schedul
 BTG_S05 = REQUIRED_REPAIRS_AND_RERUNS. Único siguiente paso: reparar seguridad/protección, causalidad/venue y skip probado; factories/requirements y campaña; O(1) latestRevision/retención conforme consumidores; delta MIXED y provenance. Rerun falsificadores, ampliar paridad pendiente y después BASIC USD100000 continuo y CAMPAIGN caja USD5000/compra USD120/una cuenta/hasta4cobros efectivos, sin tuning ROI ni recorte de warmup/horizonte. No S06 ni aceptación por auditor. Corridas reales existentes readback verificadas, no fresh rerun S04: CAMPAIGN Oct29T22→Nov2T22Z son96h/4sesiones, no3días; V1 economía/records iguales con bytes distintos. Trece archivos no prueban3años continuos; gaps y límites D6 quedan explícitos en informe.
 
 Cierre propio del auditor y tres workers completado con registro/feedback por delta. Primary y programa permanecen abiertos; ventana Owner sigue2026-10-07 America/Santiago, sin ocultar pendientes para cumplirla.
+
+### 11. Delta Owner vigente BTG-S05 — 2026-10-07
+
+`BTG_S05 = IN_PROGRESS`; `PRODUCT_NOT_CERTIFIED`; matriz S04-01…16 abierta hasta que el fix SHA, regresión, rerun independiente y rerun real aplicable tengan evidencia. El informe único [[BTG-S05-REMEDIATION-AND-RESULTS]] conserva la evidencia aislada de RED, límites, decisión S05-DEC-01, delegaciones y orden de integración.
+
+La reproducción inicial preservó S04 tests en el padre exacto del SHA auditado; los cuatro grupos aislados de red devolvieron el RED esperado. No se declara BASIC/CAMPAIGN final, no se acredita MIXED ni cobertura integral, y PHYSICAL_RUNTIME_READINESS queda NOT_DEMONSTRATED.
+
+Siguiente acción: completar protección, luego causalidad/venue, skip, composición/campaña, costo/retención, MIXED/provenance, integración, corridas finales y revisión independiente fresca. No S06, no aceptación del propio worker, no despliegue.
 
 ## Fuentes
 
