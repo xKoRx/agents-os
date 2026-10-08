@@ -114,7 +114,7 @@ BASIC sigue siendo una cuenta continua USD 100,000, con oportunidades admitidas 
 | Protección compartida y correcciones técnicas | gpt-6.1-sol | UNKNOWN | Workers TOP activos; fixes aún no acreditados aquí |
 | Causalidad/venue/skip, corrección e integración coordinada | gpt-6.1-sol | UNKNOWN | Worker TOP activo; integración por un solo owner técnico |
 | Campaña/composición/costo/MIXED según dependencias | gpt-6.1-sol para cambios delicados; gpt-6-luna para mediciones acotadas autorizadas | UNKNOWN | En espera de la secuencia definida; no reportar cierre |
-| Revisión independiente final, ajena a fixes/integración | gpt-6.1-sol | UNKNOWN | Reservada, `NOT_DISPATCHED` |
+| Revisión independiente final, ajena a fixes/integración | gpt-6.1-sol | UNKNOWN | `DISPATCHED`: contexto nuevo desde el carril C; inspección inicial de oráculos, reejecución integral pendiente del SHA final |
 
 Secuencia de aceptación: RED preservado → protección → causalidad/venue → skip → composición/campaña → costo/retención → MIXED/provenance e integración → pruebas críticas y corridas BASIC/CAMPAIGN sobre SHA/build congelados → fresh-context TOP independiente → revisión GOD → revisión Primary. Preparación disjunta puede avanzar en paralelo, pero la integración sigue esa dependencia. Ningún mismo autor revisa independientemente sus propios cambios. Todos los modelos ejecutados y costes permanecen `UNKNOWN` salvo evidencia del harness.
 
@@ -128,7 +128,7 @@ El censo de 13 archivos reporta 1,096,336 filas y 24,831 minutos ausentes respec
 
 Los 16 hallazgos siguen abiertos en este corte; las pruebas no ejecutadas, límites de ambiente/datos y requisitos de seguridad se conservan por separado. La tabla sólo cambia a `FIXED_WITH_REGRESSION_AND_RERUN` o `DISPROVED_WITH_EVIDENCE` con evidencia directa y revisión; no se autoproclama gate. El estado final sólo puede ser `READY_FOR_PRIMARY_FINAL_REVIEW` cuando requisitos materiales, evidencia final e independiente estén completos; de otro modo permanece `REMEDIATION_INCOMPLETE` con el gap exacto.
 
-Acción inmediata: completar falsificadores pendientes y matriz adversarial de paridad, integrar y congelar el candidato; después medir y ejecutar BASIC/CAMPAIGN con Luna según §4. El harness devolvió `agent thread limit reached` al intentar despachar una revisión adicional, aun después de completar un worker; se conserva como limitación concreta de despacho y se reintentará al liberar el carril. No autoriza que un autor certifique sus cambios ni que GOD ejecute código. La revisión integral fresh-context final sigue `NOT_DISPATCHED`. El Primary evalúa; Owner conserva aceptación final. `GOD_PRODUCT_CODE_WRITES=0`. Este informe no cierra la sesión del Primary ni declara el runtime físico listo.
+Acción inmediata: completar la matriz adversarial de paridad, integrar y congelar el candidato; después medir y ejecutar BASIC/CAMPAIGN con Luna según §4. El harness rechazó repetidamente el despacho directo del root con `agent thread limit reached`, aun después de completar E. Un despacho autorizado desde C sí creó un Sol independiente con `fork_turns=none`, ajeno a todos los fixes e integración: `/root/s05_causal/s05_final_review`. Su inspección inicial está activa; la reejecución integral y aceptación final siguen pendientes del SHA congelado. No se atribuye independencia a los autores ni ejecución técnica a GOD. El Primary evalúa; Owner conserva aceptación final. `GOD_PRODUCT_CODE_WRITES=0`. Este informe no cierra la sesión del Primary ni declara el runtime físico listo.
 
 ## Fuentes
 

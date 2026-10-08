@@ -70,6 +70,8 @@ DEC-11 acota el segundo defecto de rollover: activar consume el slot seleccionad
 
 DEC-12 registra la detección tardía de huecos entre streams y exige enfrentar la ausencia obligatoria en el scheduler antes de avanzar otra fuente. Tras terminar E, nuevos intentos de fresh Sol, revisor anterior y Luna volvieron a fallar por límite de threads; sólo fue posible reactivar el mismo E. Se conserva identificación TOP Sol para su trabajo técnico adicional, sin fingir Luna ni revisión independiente de sus propios cambios.
 
+El despacho fresh Sol finalmente fue posible desde C, con contexto vacío y ownership sólo de evidencia/snapshot independiente. Se actualizó NOT_DISPATCHED a DISPATCHED; todavía no hay rerun integral del SHA final. No se sustituyó el revisor por un autor ni se creó otro chat del usuario. E cerró su complemento con cobertura de líneas añadidas 800/836 (95,69%), distinto del porcentaje por paquete; sus benchmarks continúan pendientes.
+
 ## Compartibilidad
 
 - **Scope:** team
