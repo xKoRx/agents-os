@@ -52,7 +52,7 @@ Se creó el único informe S05 con matriz 16, baseline/RED, S05-DEC-01/02 y secu
 
 ## Validación
 
-Materializer `materialize_schema_note.py` creó doc, change_log, agent_run y feedback conforme a schema contract v1. Se hizo readback dirigido; todas las 16 filas conservan fix/regresión/revisión/rerun en PENDING. Se verificaron fuentes S04, 226 entradas de manifest y cuatro grupos RED bajo namespace aislado de red. Falta lint final dirigido tras el commit; esta actualización no declara certificación de producto.
+Materializer `materialize_schema_note.py` creó doc, change_log, agent_run y feedback conforme a schema contract v1. `lint.py --strict` pasó para las cuatro notas nuevas; lint dirigido de BTG-PLAN no halló errores. Echo Futures retuvo las cinco observaciones históricas documentadas en el cierre S01 (2 tags y 3 secciones); un `--gate` explícito no aplicó porque el baseline excluye estos `scope_paths`, y no se alteró baseline. Readback confirmó 16 hallazgos abiertos. Bundle, patch, manifest y los cuatro grupos RED aislados fueron verificados. Sin certificación de producto.
 
 ## Compartibilidad
 
