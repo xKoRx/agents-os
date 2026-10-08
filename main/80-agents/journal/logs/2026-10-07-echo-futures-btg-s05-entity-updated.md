@@ -50,6 +50,8 @@ La auditoría S04 independiente dejó 16 findings abiertos y contradijo el estad
 
 Se creó el único informe S05 con matriz 16, baseline/RED, S05-DEC-01/02 y secuencia de trabajo. S05-DEC-01 acota la cardinalidad de protección del D4-B2 §18 conforme al mandato Owner vigente; S05-DEC-02 permanece en progreso, con trigger exacto pendiente y sin claim de fix. BTG-PLAN y Echo Futures enlazan ese informe y reflejan el estado actual. Se registraron un agent_run y feedback de esta ejecución; no L0 ni resumen duplicado. No se editaron source producto, D4, S02, S04, bootstrap o skills.
 
+Readback correctivo solicitado por Root: se precisó que GerardMM/Operation materializan los tramos mediante contratos compartidos y SimExecution sólo ejecuta; DEC-02 ahora apunta a `operation/engine_inputs.go`, `operation/mm.go`, regresión con causa `PROTECTION_WORKING`, y se corrigieron el título H1 y puntuación final. Estado y claims permanecen sin cambios.
+
 ## Validación
 
 Materializer `materialize_schema_note.py` creó doc, change_log, agent_run y feedback conforme a schema contract v1. `lint.py --strict` pasó para las cuatro notas nuevas; lint dirigido de BTG-PLAN no halló errores. Echo Futures retuvo las cinco observaciones históricas documentadas en el cierre S01 (2 tags y 3 secciones); un `--gate` explícito no aplicó porque el baseline excluye estos `scope_paths`, y no se alteró baseline. Readback confirmó 16 hallazgos abiertos. Bundle, patch, manifest y los cuatro grupos RED aislados fueron verificados. Sin certificación de producto. `git diff --check` pasó tras retirar whitespace final y línea en blanco sobrante al cierre.

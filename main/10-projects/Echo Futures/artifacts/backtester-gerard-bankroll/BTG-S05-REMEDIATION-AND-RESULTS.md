@@ -14,6 +14,8 @@ tags:
 created: "2026-10-07"
 updated: "2026-10-07"
 ---
+# BTG-S05 — Remediación y resultados
+
 ## Propósito
 
 Cerrar dentro de BTG-S05 los 16 hallazgos materiales de S04 y entregar un candidato reproducible para revisión del Primary y aceptación posterior del Owner. Este documento concentra la matriz, decisiones S05, evidencia, límites y próxima acción; los logs, manifests y fuentes completas permanecen fuera del vault.
@@ -63,11 +65,11 @@ Entrega S04 y capsule/logs son referencias de evidencia, no claims de fix. D6 ca
 
 ### 3. Decisión S05
 
-**S05-DEC-01 — protección lógica por precio con tramos limitados por caps.** El mandato Owner vigente S05 v2 prevalece para esta corrección frente a la cardinalidad de una sola `protective STOP Order` lógica indicada por D4-B2 §18. La protección conserva un precio/intent lógico; el venue la materializa mediante tramos no superpuestos de máximo 5 contratos por orden para cubrir exposición 7, dentro del máximo account-wide 10 del caso. La reconciliación de cantidad es independiente del tightening del precio: el nivel previamente alcanzado nunca se afloja; claims permanecen hasta finality; no puede existir cobertura ejecutable duplicada; ningún new-risk se admite si falta autoridad/protección exigible; salida/force-close cancela y reconcilia todos los tramos.
+**S05-DEC-01 — protección lógica por precio con tramos limitados por caps.** El mandato Owner vigente S05 v2 prevalece para esta corrección frente a la cardinalidad de una sola `protective STOP Order` lógica indicada por D4-B2 §18. La protección conserva un precio/intent lógico; GerardMM/Operation materializan las órdenes protectoras acotadas mediante contratos compartidos; SimExecution sólo ejecuta. Los tramos no superpuestos son de máximo 5 contratos por orden para cubrir exposición 7, dentro del máximo account-wide 10 del caso. La reconciliación de cantidad es independiente del tightening del precio: el nivel previamente alcanzado nunca se afloja; claims permanecen hasta finality; no puede existir cobertura ejecutable duplicada; ningún new-risk se admite si falta autoridad/protección exigible; salida/force-close cancela y reconcilia todos los tramos.
 
 La aceptación de esa decisión exige pruebas LONG y SHORT y ambas familias de add; adverso/favorable; fills parciales/duplicados; cancel-replace y finality tardía; add pendiente durante CLOSE/force-close; transición por transición de exposición, cobertura, claims y admisión. Un stop único por 7 que exceda cap5, liberar claim antes de finality, cerrar dos veces o evaluar sólo el estado terminal no cumple. La decisión no autoriza cambiar Strategy, mejorar ROI ni rediseñar ejecución física.
 
-**S05-DEC-02 — mantenimiento protector antes de admitir riesgo, `IN_PROGRESS`.** Si un ACK autoritativo indica `WORKING` para protección y ese hecho satisface un trigger material de mantenimiento, la protección/reconciliación requerida precede a cualquier nuevo riesgo; no se posterga tightening requerido para hacer pasar una prueba. El mandato Owner autoriza un cambio mínimo de mantenimiento MM desde Operation en `operation/engine.go` más su regresión: ACK protector con contexto y freshness actuales, deduplicación y precedencia de CLOSE/force-close. La causa se detectó porque la finality instala protección, pero el ACK no reactiva MM y el fixture S04 no ofrece otra quote. El contrato exacto del trigger sigue pendiente de adjudicación/evidencia del worker; todavía no hay fix ni aceptación. No generar quote sintética, polling ni bypass de authority/freshness.'
+**S05-DEC-02 — mantenimiento protector antes de admitir riesgo, `IN_PROGRESS`.** Si un ACK autoritativo indica `WORKING` para protección y ese hecho satisface un trigger material de mantenimiento, la protección/reconciliación requerida precede a cualquier nuevo riesgo; no se posterga tightening requerido para hacer pasar una prueba. El mandato Owner autoriza un cambio mínimo de mantenimiento MM desde Operation en `operation/engine_inputs.go` y `operation/mm.go`, más una nueva regresión: causa `PROTECTION_WORKING`, ACK protector con contexto y freshness actuales, deduplicación y precedencia de CLOSE/force-close. La causa se detectó porque la finality instala protección, pero el ACK no reactiva MM y el fixture S04 no ofrece otra quote. El contrato exacto del trigger sigue pendiente de adjudicación/evidencia del worker; todavía no hay fix ni aceptación. No generar quote sintética, polling ni bypass de authority/freshness.
 
 ### 4. Alcance funcional congelado, orquestación y siguiente secuencia
 
