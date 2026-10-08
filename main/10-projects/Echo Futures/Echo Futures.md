@@ -2733,5 +2733,5 @@ Boundary frozen: el futuro Campaign Simulator **orquesta cuentas y bankroll fuer
 
 #### Actualización Owner — BTG-S05 — 2026-10-07
 
-`BTG_S05 = IN_PROGRESS`; `PRODUCT_NOT_CERTIFIED`. S04 halló 16 findings que siguen abiertos hasta corrección con regresión y rerun; el reporte único, decisión de protección, evidencia y orden de trabajo están en [[BTG-S05-REMEDIATION-AND-RESULTS]]. La lectura de S01 confirma un baseline derivado reproducible hasta el gap NQZ3 de 2023-11-23, no tres años continuos ni aceptación integral. No declarar BASIC/CAMPAIGN final o D6 físico listo por evidencia de otro SHA.
+`BTG_S05 = IN_PROGRESS`; `PRODUCT_NOT_CERTIFIED`. S04 halló 16 findings que siguen abiertos hasta corrección con regresión y rerun; el reporte único, decisiones de protección, evidencia y orden de trabajo están en [[BTG-S05-REMEDIATION-AND-RESULTS]]. La lectura de S01 confirma un baseline derivado reproducible hasta el gap NQZ3 de 2023-11-23, no tres años continuos ni aceptación integral. No declarar BASIC/CAMPAIGN final o D6 físico listo por evidencia de otro SHA.
 

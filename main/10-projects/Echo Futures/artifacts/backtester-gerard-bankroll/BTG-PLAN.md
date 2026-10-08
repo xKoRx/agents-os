@@ -124,11 +124,9 @@ Gate final: mismo comando/configuración/dataset produce el mismo resultado econ
 
 Entregables: comando reproducible, configuración/manifest del escenario, tabla de cuentas y eventos económicos, curva temporal de bankroll, informe baseline versus objetivos y resultados completos exportables. No agregar UI, optimizador genérico, framework multi-prop o Monte Carlo para cumplir este alcance.
 
-### 8. Acción vigente BTG-S05
+### 8. Despacho inicial del programa (histórico)
 
-BTG-S01 produjo un baseline histórico real acotado y reproducible; cobertura integral y aceptación Owner permanecen abiertas. BTG-S04 verificó el SHA correctivo `1bf45050780554c1135edc619bf01a8a4b04ba08` y publicó falsificadores adversariales independientes. La acción vigente es cerrar los hallazgos dentro de S05, sin crear otra fase ni cambiar señales para mejorar ROI.
-
-El orden de trabajo y el estado de cada hallazgo se mantienen en [[BTG-S05-REMEDIATION-AND-RESULTS]]. Workers corrigen y validan según ownership; Primary revisa después de evidencia independiente fresca.
+El plan inicial habilitó S01 para inventario, baseline histórico real y brechas. El baseline acotado existe; la cobertura integral y aceptación Owner siguen abiertas. El estado vigente y siguiente paso después de la revisión S04 están en §11.
 
 ### 9. Delta Owner 2026-10-06 — BTG-S03 (vigente)
 
@@ -150,7 +148,7 @@ Cierre propio del auditor y tres workers completado con registro/feedback por de
 
 ### 11. Delta Owner vigente BTG-S05 — 2026-10-07
 
-`BTG_S05 = IN_PROGRESS`; `PRODUCT_NOT_CERTIFIED`; matriz S04-01…16 abierta hasta que el fix SHA, regresión, rerun independiente y rerun real aplicable tengan evidencia. El informe único [[BTG-S05-REMEDIATION-AND-RESULTS]] conserva la evidencia aislada de RED, límites, decisión S05-DEC-01, delegaciones y orden de integración.
+`BTG_S05 = IN_PROGRESS`; `PRODUCT_NOT_CERTIFIED`; matriz S04-01…16 abierta hasta que el fix SHA, regresión, rerun independiente y rerun real aplicable tengan evidencia. El informe único [[BTG-S05-REMEDIATION-AND-RESULTS]] conserva la evidencia aislada de RED, límites, decisiones S05-DEC-01/02, delegaciones y orden de integración.
 
 La reproducción inicial preservó S04 tests en el padre exacto del SHA auditado; los cuatro grupos aislados de red devolvieron el RED esperado. No se declara BASIC/CAMPAIGN final, no se acredita MIXED ni cobertura integral, y PHYSICAL_RUNTIME_READINESS queda NOT_DEMONSTRATED.
 
