@@ -100,6 +100,8 @@ DEC13 aún requiere el interleaving de dos comandos dentro de Invoke y un Send p
 
 Root retomó el lock documental después del handoff Luna, publicado en master `807355960baf0d7c6a2fd7aeec76525afbd3d7a1`, y añadió DEC-15 al artefacto canónico. La reparación D exige sello de snapshot completo real, validación compartida con BACKTEST y fail-closed cuando falta autoridad de cuenta/alcance/freshness. Ninja actualmente no acredita completitud de cuenta; no se amplía su implementación física ni se relaja MandatoryM2. Se exige preservar cancel/reducción autorizadas pese a readiness fallida y probar el lifecycle público. El fix, cobertura y revisión independiente siguen pendientes. La intersección D6 de cero nombres de archivo no demuestra ausencia de impacto transitivo; debe evaluarse el cambio shared antes del handoff final. Root sólo escribió Markdown; no implementó ni ejecutó pruebas.
 
+DEC-15 distingue rechazo de evidencia externa y corrupción interna: el primero revoca confianza con causa visible, conserva caminos de seguridad y no permite COMPLETE si no se recupera; errores internos monetarios/de identidad, drift y writer failures siguen terminales. C/D deben probar el lifecycle público sin polling ni reintentos ficticios. Es una precisión del mismo mandato de seguridad, no una certificación ni una ejecución del root.
+
 ## Compartibilidad
 
 - **Scope:** team
