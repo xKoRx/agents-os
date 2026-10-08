@@ -102,6 +102,8 @@ Root retomó el lock documental después del handoff Luna, publicado en master `
 
 DEC-15 distingue rechazo de evidencia externa y corrupción interna: el primero revoca confianza con causa visible, conserva caminos de seguridad y no permite COMPLETE si no se recupera; errores internos monetarios/de identidad, drift y writer failures siguen terminales. C/D deben probar el lifecycle público sin polling ni reintentos ficticios. Es una precisión del mismo mandato de seguridad, no una certificación ni una ejecución del root.
 
+Refinamientos DEC-15: la regresión EXE10 conservada obliga a separar snapshot físico válido de confianza integral para no suprimir observaciones auténticas ante mismatch. G además reprodujo un submit nuevo en adapter simulado cuando PositionFresh se perdió después de una barrera válida: se autoriza reevaluación completa antes del efecto, conservando dedup y cancel. Revalidación conjunta pendiente; no órdenes reales ni código escrito por root.
+
 ## Compartibilidad
 
 - **Scope:** team
