@@ -66,6 +66,8 @@ Delta posterior: DEC-08 autoriza un plan finito BACKTEST para ejecución sintét
 
 DEC-10 documenta el RED público de rollover V2 y el contrato de builders por stream declarado sin activación/readiness anticipados; el fix y aceptación se delegan a los owners técnicos. El readback de C precisó que su manifest de estabilidad cubría nueve archivos propios, no todos los transitivos del candidato.
 
+DEC-11 acota el segundo defecto de rollover: activar consume el slot seleccionado y preserva candidatos futuros legítimos; no cambia descarte por selección ni permite reactivar retirados. La revisión independiente acotada D ejecutada por E respaldó cuatro compras/4520 USD tras tres burns; el S04 original permanece RED histórico y D añadió una regresión nominal que pasa. No hay aceptación integral ni corrida final por estos deltas.
+
 ## Compartibilidad
 
 - **Scope:** team
