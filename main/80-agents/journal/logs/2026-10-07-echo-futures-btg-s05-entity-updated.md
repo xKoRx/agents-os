@@ -64,6 +64,8 @@ Materializer `materialize_schema_note.py` creó doc, change_log, agent_run y fee
 
 Delta posterior: DEC-08 autoriza un plan finito BACKTEST para ejecución sintética adversarial; DEC-09 conserva freshness contable de saldo sin inventario y revalida marks del inventario real, sin ocultar UNKNOWN. Se actualizó el avance focalizado C y la barrera COMPILE_ONLY, sin cierre de findings. Se corrigió el claim obsoleto de DEC-02 sin fix. Se dejó explícito el resultado nominal de campaña (9 PASS/1 FAIL), economía inyectada en paridad runtime y limitación de despacho `agent thread limit reached`. Las mediciones/corridas finales y revisión independiente integral permanecen pendientes. Root mantiene exclusivamente escrituras Markdown.
 
+DEC-10 documenta el RED público de rollover V2 y el contrato de builders por stream declarado sin activación/readiness anticipados; el fix y aceptación se delegan a los owners técnicos. El readback de C precisó que su manifest de estabilidad cubría nueve archivos propios, no todos los transitivos del candidato.
+
 ## Compartibilidad
 
 - **Scope:** team
