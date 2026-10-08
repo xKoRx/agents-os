@@ -12,7 +12,7 @@ aliases: []
 tags:
   - kind/doc
 created: "2026-10-07"
-updated: "2026-10-07"
+updated: "2026-10-08"
 ---
 # BTG-S05 — Remediación y resultados
 
@@ -142,6 +142,20 @@ El censo de 13 archivos reporta 1,096,336 filas y 24,831 minutos ausentes respec
 Los 16 hallazgos siguen abiertos en este corte; las pruebas no ejecutadas, límites de ambiente/datos y requisitos de seguridad se conservan por separado. La tabla sólo cambia a `FIXED_WITH_REGRESSION_AND_RERUN` o `DISPROVED_WITH_EVIDENCE` con evidencia directa y revisión; no se autoproclama gate. El estado final sólo puede ser `READY_FOR_PRIMARY_FINAL_REVIEW` cuando requisitos materiales, evidencia final e independiente estén completos; de otro modo permanece `REMEDIATION_INCOMPLETE` con el gap exacto.
 
 Acción inmediata: completar la matriz adversarial de paridad, integrar y congelar el candidato; después medir y ejecutar BASIC/CAMPAIGN con Luna según §4. El harness rechazó repetidamente el despacho directo del root con `agent thread limit reached`, aun después de completar E. Un despacho autorizado desde C sí creó un Sol independiente con `fork_turns=none`, ajeno a todos los fixes e integración: `/root/s05_causal/s05_final_review`. Su inspección inicial está activa; la reejecución integral y aceptación final siguen pendientes del SHA congelado. No se atribuye independencia a los autores ni ejecución técnica a GOD. El Primary evalúa; Owner conserva aceptación final. `GOD_PRODUCT_CODE_WRITES=0`. Este informe no cierra la sesión del Primary ni declara el runtime físico listo.
+
+### 12. Delta de estado — 2026-10-08
+
+`BTG_S05 = IN_PROGRESS`; `PRODUCT_NOT_CERTIFIED`; `READY_FOR_PRIMARY_FINAL_REVIEW = false`; `GATE_ACCEPTED = false`; `PHYSICAL_RUNTIME_READINESS = NOT_DEMONSTRATED`. La fecha límite Owner de 2026-10-07 venció; el mandato vigente continúa dentro de S05 sin bajar requisitos ni crear S06. El checkout Echo observado sigue en el SHA intermedio `f26726d1a03c0e97da9126f59a7e3d07194004da` con 11 rutas modificadas/no rastreadas; no es un freeze ni una build final.
+
+La adjudicación fresh-context G de `evidence/final-review/initial-adjudication.md` y `review-segment-registration.json` acepta los wrappers de oráculo C `86fabc` y D `f285` sólo dentro del alcance independiente acotado: snapshot compuesto `18d1d35c23e5f8dda6f4103ddd2aa44b8e44608317fc079defe7235365cf038b`, gate exit 0 con 33 resultados nominales PASS. Los RED previos que detectaron problemas en esos wrappers permanecen como historial de diagnóstico y no describen el wrapper acotado aceptado. G no revisó DEC13 ni el producto/build final; el SHA del snapshot no identifica al candidato completo.
+
+DEC13 FIFO compila (`COMPILE_ONLY`), pero los casos funcionales de ADD adverso/pyramiding/ForceClose continúan RED en el trabajo actual. No elevar compilación a PASS funcional ni extrapolar el alcance de las aceptaciones C/D. DEC14 queda en implementación/reporte/readiness. La decisión vigente para este alcance permite que readiness del backtest use el conjunto de comandos y reportes BACKTEST realmente soportados (market, stop, cancel y DAY); no exige `MandatoryM2` físico ni `LIMIT`/`MODIFY`. `SessionAnchor=FIRST_ACCEPTED_ORDER` debe aparecer explícito y digerido, y sólo se establece si hubo una aceptación real de orden. Los cambios compartidos de API permanecen `COMPILE_ONLY` hasta superar sus falsificadores.
+
+E quedó disponible para integración con cobertura declarada de 800/836 líneas añadidas (95.69%); la cifra de paquete CLI es 239/261 (91.57%) y se reporta aparte. Las pruebas focalizadas E están documentadas en `evidence/cost-modes/agent-run.md`; el nuevo `evidence/cost-modes/benchmark-contract.md` es la autoridad para perfil y ejecución. No hubo benchmark S05 ni corrida real final. Las recetas corregidas preparadas, la verificación del corpus y el inventario de recursos se guardaron en `evidence/cost-modes/preparation-capsule-20261008.md` (SHA256 `0925f6e41d0cf06fc84da4b1f437aeafda02a001debbca32e7dbcd740de1a345`). El histórico DERIVED NQZ3 está verificado en sus hashes originales; cualquier S05 run spec debe ser V2/CONFIGURED real y sellarse contra el build final.
+
+La matriz S04-01…16 permanece OPEN hasta que cada finding aplicable tenga regresión, rerun final independiente y rerun real cuando corresponda. No hay cierre integral, métricas finales ni readiness física demostrada. Próxima acción: cerrar DEC13 funcional y la corrección DEC14 bajo el contrato indicado; después revalidar gates materiales, congelar un SHA/build limpio, ejecutar primero el benchmark 120m pautado y sólo entonces autorizar las corridas BASIC y CAMPAIGN requeridas con replay fresco y cobertura/límites explícitos.
+
+Registros documentales de segmentos externos: `80-agents/journal/agent-runs/2026-10-08-codex-unknown-btg-s05-e-cost-handoff.md` y `80-agents/journal/agent-runs/2026-10-08-codex-unknown-btg-s05-g-initial-adjudication.md`.
 
 ## Fuentes
 

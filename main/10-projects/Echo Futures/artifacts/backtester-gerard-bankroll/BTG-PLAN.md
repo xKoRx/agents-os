@@ -154,6 +154,12 @@ La reproducción inicial preservó S04 tests en el padre exacto del SHA auditado
 
 Siguiente acción: completar protección, luego causalidad/venue, skip, composición/campaña, costo/retención, MIXED/provenance, integración, corridas finales y revisión independiente fresca. No S06, no aceptación del propio worker, no despliegue.
 
+### 12. Delta BTG-S05 — 2026-10-08
+
+`BTG_S05 = IN_PROGRESS`; `PRODUCT_NOT_CERTIFIED`; el plazo Owner 2026-10-07 venció y el mandato continúa dentro de S05 con los requisitos intactos, sin S06. El candidato observado `f26726d1a03c0e97da9126f59a7e3d07194004da` sigue intermedio y su checkout tiene cambios pendientes. Fresh G acepta sólo las correcciones acotadas de oráculo C86fabc/Df285 en snapshot compuesto `18d1d35c23e5f8dda6f4103ddd2aa44b8e44608317fc079defe7235365cf038b` (33 resultados nominales PASS, exit0); G no revisó DEC13 ni el producto final. DEC13 compila pero los casos funcionales de ADD adverso/pyramiding/ForceClose permanecen RED. DEC14 define readiness a partir del conjunto BACKTEST soportado (market/stop/cancel/DAY), no `MandatoryM2` físico ni `LIMIT`/`MODIFY`; `FIRST_ACCEPTED_ORDER` se declara/digiere sólo cuando una orden fue realmente aceptada. Interfaces nuevas siguen en `COMPILE_ONLY` hasta pasar falsificadores.
+
+La matriz S04-01…16 sigue abierta; E reporta 800/836 líneas añadidas (95.69%) y CLI 239/261 (91.57%) por separado. Sin benchmark, corrida BASIC/CAMPAIGN final, métricas finales ni readiness física. Próxima acción: completar DEC13 y DEC14, pasar gates materiales, congelar SHA/build limpio, iniciar benchmark por fase según [[BTG-S05-REMEDIATION-AND-RESULTS]] §12 y ejecutar corridas finales con replay fresco sólo tras autorización de freeze.
+
 ## Fuentes
 
 - Owner, conversación 2026-10-05: objetivo Gerard + bankroll + cuatro retiros + reinversión + cinco shots.

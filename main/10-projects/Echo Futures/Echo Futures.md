@@ -2734,3 +2734,8 @@ Boundary frozen: el futuro Campaign Simulator **orquesta cuentas y bankroll fuer
 #### Actualización Owner — BTG-S05 — 2026-10-07
 
 `BTG_S05 = IN_PROGRESS`; `PRODUCT_NOT_CERTIFIED`. S04 halló 16 findings que siguen abiertos hasta corrección con regresión y rerun; el reporte único, decisiones de protección, evidencia y orden de trabajo están en [[BTG-S05-REMEDIATION-AND-RESULTS]]. La lectura de S01 confirma un baseline derivado reproducible hasta el gap NQZ3 de 2023-11-23, no tres años continuos ni aceptación integral. No declarar BASIC/CAMPAIGN final o D6 físico listo por evidencia de otro SHA.
+
+
+#### Delta de estado — BTG-S05 — 2026-10-08
+
+`BTG_S05 = IN_PROGRESS`; `PRODUCT_NOT_CERTIFIED`. La fecha Owner venció, pero el trabajo continúa dentro de S05 sin recortar hallazgos ni abrir S06. La revisión fresh G acepta C86fabc/Df285 sólo para wrappers tipados bajo ataques acotados (33 PASS en snapshot compuesto), sin revisar DEC13 ni el producto final. DEC13 compila y sus casos funcionales adverso/pyramiding/ForceClose continúan RED. DEC14 fija readiness BACKTEST sobre market/stop/cancel/DAY soportados, sin requisito físico `MandatoryM2` ni `LIMIT`/`MODIFY`; `FIRST_ACCEPTED_ORDER` requiere aceptación real previa. La matriz S04-01…16 sigue abierta; no hay freeze, benchmark final, BASIC/CAMPAIGN final ni readiness física. Ver [[BTG-S05-REMEDIATION-AND-RESULTS]] §12 para evidencia y próximo gate.

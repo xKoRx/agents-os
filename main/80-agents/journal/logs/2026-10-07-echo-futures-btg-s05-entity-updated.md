@@ -82,6 +82,14 @@ DEC-14 autoriza el seam sintético offline por reporte compartido autoritativo y
 
 Se precisó la matriz de delegación actual: B integrado con aceptación final pendiente; D activo y primer rerun tras DEC-13 aún RED, E integrado con cobertura de líneas y porcentaje CLI separados; mediciones/corridas finales no ejecutadas. A las 23:50 Santiago se informó al Owner que no había base para prometer cierre íntegro antes del plazo, conservando trabajo y requisitos dentro de S05.
 
+## Delta documental S05 — 2026-10-08
+
+Se actualizó [[BTG-S05-REMEDIATION-AND-RESULTS]] §12, [[BTG-PLAN]] §12 y el estado vigente de [[Echo Futures]] con el readback posterior al vencimiento del plazo: se continúa dentro de S05, la matriz 16-finding sigue abierta, y el checkout `f26726d1` sigue intermedio. La revisión G fresh-context acepta únicamente wrappers C86fabc/Df285 dentro del snapshot compuesto y los ataques documentados (33 resultados nominales PASS, exit0); no revisa DEC13 ni el candidato final. Los RED iniciales quedan preservados como historia de sus iteraciones, no como estatus actual de esos wrappers.
+
+Se registró la adjudicación DEC14: readiness usa comandos/reportes BACKTEST realmente soportados (market, stop, cancel, DAY), excluye `MandatoryM2` físico y comandos `LIMIT`/`MODIFY` no soportados, y declara `SessionAnchor=FIRST_ACCEPTED_ORDER` sólo tras una aceptación real. DEC13 tiene compilación, pero su funcionalidad ADD adverso/pyramiding/ForceClose conserva RED. Las APIs quedan en `COMPILE_ONLY` hasta falsificadores; sin freeze ni benchmark ni corridas reales finales.
+
+La preparación NORMAL verificó hashes de las 13 fuentes originales y derivadas y fijó recetas según `evidence/cost-modes/benchmark-contract.md`; la cápsula está fuera del vault en `work/btg-s05-20261007/evidence/cost-modes/preparation-capsule-20261008.md`, SHA256 `0925f6e41d0cf06fc84da4b1f437aeafda02a001debbca32e7dbcd740de1a345`. Se materializaron los agent_run de E y G con modelo ejecutado UNKNOWN y alcance parcial en `80-agents/journal/agent-runs/2026-10-08-codex-unknown-btg-s05-e-cost-handoff.md` y `80-agents/journal/agent-runs/2026-10-08-codex-unknown-btg-s05-g-initial-adjudication.md`. No se escribió código de producto ni se ejecutaron benchmarks/backtests.
+
 ## Compartibilidad
 
 - **Scope:** team
