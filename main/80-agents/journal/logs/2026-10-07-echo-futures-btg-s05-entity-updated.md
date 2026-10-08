@@ -74,6 +74,8 @@ El despacho fresh Sol finalmente fue posible desde C, con contexto vacío y owne
 
 Se registró el candidato intermedio f26726d1 y los dos RED nuevos del revisor fresh sobre el comparador: traducción de literals opacos y creación de relaciones sin orden material previa. C recibe corrección; ALL/SKIP permanece provisional. Los ataques y snapshot son independientes, no se afirma aceptación por los negativos del autor que antes pasaban.
 
+La revisión independiente encontró además sustitución indiscriminada de strings en el helper S04 reutilizado por D. Se preserva el original y se delega un wrapper S05 tipado; la paridad previa se mantiene provisional, sin convertir el defecto del oráculo en una divergencia de producto no demostrada.
+
 ## Compartibilidad
 
 - **Scope:** team
