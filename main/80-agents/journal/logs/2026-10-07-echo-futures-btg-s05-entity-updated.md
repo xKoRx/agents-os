@@ -106,6 +106,8 @@ Refinamientos DEC-15: la regresión EXE10 conservada obliga a separar snapshot f
 
 Se añadió el corte independiente posterior `a4eb54ca` al informe canónico: 63/27/122 resultados nominales PASS en grupos explícitos y siete fuentes S04 intactas; snapshot de contenido, no Git SHA final. Los RED de oráculo/DEC-15 permanecen como historia, y la aceptación es sólo acotada. Se registraron la adjudicación independiente S03 cinco compras/caja4400, el error del assert independiente que confundía duplicados raw con impacto económico duplicado, y los huecos vigentes de paridad/Invoke/cobertura/build/corridas. E se reutiliza como autor de tests simexecution; G conserva independencia. Root sólo editó Markdown y mantiene un único change_log.
 
+Root tomó un corte documental exclusivo sobre master limpio y registró el checkpoint integrado `4bd7df61`, los fixes BBO/cuenta/skip, la distinción de pruebas Invoke seam versus ForceClose público y los PASS focales reportados por autores/G. La cobertura C vigente reportada es 870/934, aún bajo 95%; D incluye main/harness en 703/739 y E histórico comparable 801/836 no se transfiere al candidato. Se corrigió la interpretación de ramas inalcanzables conforme al perfil global: prueba de redundancia y revisión G previas a borrar, sin exclusiones ni casos artificiales. Build final, rendimiento y BASIC/CAMPAIGN siguen pendientes. No se modificó código ni se ejecutaron pruebas desde root; mismo change_log y estado IN_PROGRESS.
+
 ## Compartibilidad
 
 - **Scope:** team
