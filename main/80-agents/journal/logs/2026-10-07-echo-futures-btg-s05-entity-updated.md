@@ -90,6 +90,12 @@ Se registró la adjudicación DEC14: readiness usa comandos/reportes BACKTEST re
 
 La preparación NORMAL verificó hashes de las 13 fuentes originales y derivadas y fijó recetas según `evidence/cost-modes/benchmark-contract.md`; la cápsula está fuera del vault en `work/btg-s05-20261007/evidence/cost-modes/preparation-capsule-20261008.md`, SHA256 `8e74829fdacf17ee0eb1ba89313533a9202d6709404e2f3c8270a75560637f6c`. Se materializaron los agent_run de E y G con modelo ejecutado UNKNOWN y alcance parcial en `80-agents/journal/agent-runs/2026-10-08-codex-unknown-btg-s05-e-cost-handoff.md` y `80-agents/journal/agent-runs/2026-10-08-codex-unknown-btg-s05-g-initial-adjudication.md`. No se escribió código de producto ni se ejecutaron benchmarks/backtests.
 
+### Corrección mecánica y readback — 2026-10-08
+
+El readback más reciente conserva el mismo lock documental y los mismos seis artefactos canónicos; no se creó otro change log. La fila de delegación D y §12 registran el focal10 y los siete casos strict-revalidation PASS sólo como evidencia acotada, junto con el negativo público real: `public-reconciliation-negative-01.jsonl` sale 1; wrong-account pasa, pero missing-position con net5/snapshot vacío y stale-position de una hora dejan `ReadyNewRisk=true`. El fix D autorizado está OPEN/material y bloquea freeze; los RED históricos anteriores permanecen como historia de snapshots, no se borran.
+
+DEC13 aún requiere el interleaving de dos comandos dentro de Invoke y un Send posterior; DEC14 conserva APIs `ExecutionReconciliation` en compile-only y recorrido offline pendiente. Fresh G cubre sólo los wrappers C86fabc/Df285 del snapshot compuesto, no esos deltas ni el producto final. La cápsula externa fue corregida: el runner usa `candidate/frozen-backtester.test` y captura el código de salida/timeout a `exit-status.txt` bajo `set -e`; sus recipes son placeholders no autorizados. SHA256 actual: `e1e036579a62de46e7611c8e15da25c3ebdbaa14e1500f8c2d618df8a249256e`. NQZ3 DERIVED, fechas, perfil/capital aprobados y descriptor preparado quedan sin specs selladas, build/binario ni output IDs; no se ejecutaron comandos de benchmark/backtest.
+
 ## Compartibilidad
 
 - **Scope:** team
