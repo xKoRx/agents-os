@@ -68,6 +68,8 @@ DEC-10 documenta el RED público de rollover V2 y el contrato de builders por st
 
 DEC-11 acota el segundo defecto de rollover: activar consume el slot seleccionado y preserva candidatos futuros legítimos; no cambia descarte por selección ni permite reactivar retirados. La revisión independiente acotada D ejecutada por E respaldó cuatro compras/4520 USD tras tres burns; el S04 original permanece RED histórico y D añadió una regresión nominal que pasa. No hay aceptación integral ni corrida final por estos deltas.
 
+DEC-12 registra la detección tardía de huecos entre streams y exige enfrentar la ausencia obligatoria en el scheduler antes de avanzar otra fuente. Tras terminar E, nuevos intentos de fresh Sol, revisor anterior y Luna volvieron a fallar por límite de threads; sólo fue posible reactivar el mismo E. Se conserva identificación TOP Sol para su trabajo técnico adicional, sin fingir Luna ni revisión independiente de sus propios cambios.
+
 ## Compartibilidad
 
 - **Scope:** team
