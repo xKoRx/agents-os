@@ -23,7 +23,7 @@ tags:
   - echo-futures
   - algorithmic-trading
 created: "2026-09-25"
-updated: "2026-10-05"
+updated: "2026-10-08"
 ---
 
 # Echo Futures
@@ -32,6 +32,11 @@ updated: "2026-10-05"
 > **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Horizonte inicial:** 2026-09-25 → 2026-10-02
 >
 > Este proyecto reemplaza como autoridad de producto al discovery anterior, preservado en [[Echo Futures — Prop Economics Experiment]].
+
+
+## Corte vigente BTG-S05 — 2026-10-08
+
+READY_FOR_PRIMARY_FINAL_REVIEW sobre fuente `1ab9a7b5b596e03220f95f93e08e48995e8e4531`, 16 hallazgos FIXED_WITH_REGRESSION_AND_RERUN y ACK integral independiente G. BASIC/CAMPAIGN completos y replays exactos; financieros/caja/finality/continuidad conciliados. Cobertura nueva2445/2556=95,657277%, alcance de performance y dataset calificado en [[BTG-S05-REMEDIATION-AND-RESULTS]], única matriz vigente. Próximo paso: Primary revisa entrega y somete aceptación Owner; PROMOTION=NOT_ACCEPTED, Root/Primary abiertos. D6 físico NOT_DEMONSTRATED/no transferencia. Ningún push de producto, despliegue, ETCD o acción física. Estados BTG previos abajo son históricos.
 
 ## 🎯 Objetivo
 
@@ -2740,7 +2745,7 @@ Boundary frozen: el futuro Campaign Simulator **orquesta cuentas y bankroll fuer
 
 `BTG_S05 = IN_PROGRESS`; `PRODUCT_NOT_CERTIFIED`. El plazo Owner venció; continúa el mismo S05 sin recortar los hallazgos ni abrir S06. Fresh G acepta C86fabc/Df285 sólo dentro de los wrappers y ataques del snapshot compuesto (33 PASS nominales, exit0); todavía no revisó los nuevos cambios DEC13/14 ni el producto final. C/D tienen PASS focales en ADD adverso/pyramiding, ForceClose, offline parcial y strict-revalidation S2 siete casos; el check stale previo pasa con diferencial aún pendiente, pero un nuevo negativo público de reconciliación falla ante posición ausente y snapshot stale (`ReadyNewRisk=true`); el fix D está autorizado y sigue abierto. DEC13 conserva held únicamente para ENTRY/ADD de nuevo riesgo; protección/EXIT son inmediatos, y falta validar el interleaving de dos comandos y un Send posterior. DEC14 ordena recuperar hechos y drenar efectos antes del reporte de venue; las APIs compilan pero el recorrido offline final sigue pendiente. La matriz S04-01…16 permanece abierta y no hay freeze, benchmark ni corridas BASIC/CAMPAIGN finales o readiness física. D6 sigue `ENVIRONMENTAL_BLOCKED` en `d08a30ce`; no se transfiere su certificado. Ver [[BTG-S05-REMEDIATION-AND-RESULTS]] §12 para límites y siguiente acción.
 
-#### Corte vigente — BTG-S05 freeze4152 — 2026-10-08
+#### Corte previo — BTG-S05 freeze4152 — 2026-10-08
 
 `BTG_S05=IN_PROGRESS`; `PRODUCT_NOT_CERTIFIED`; 16 findings pendientes de aceptación final. Candidato4152ca7dd096851a29cb034c3a20bf4951e2e8aa limpio, build externo test/CLI embeddedVCS exacto/modified=false PASS. C25 autor119/119top326nominalPASS y cobertura global2426/2536=95,66246% no sustituyen revisión G `REVIEW_RUNNING`; V1 final: future-prefix y las cuatro variantes stop/take-profit LONG/SHORT PASS, todos exit0 sobre binario97f37249 congelado. Performance120 y BASIC/CAMPAIGN reales NOT_RUN. D6d08a30ce/doc38a4b196 sigue ENVIRONMENTAL_BLOCKED/no transferible; PositionSeal completo requerido, Ninja actual no lo acredita y new-risk sigue fail-closed. Luna NORMAL indisponible tras dos rechazos harness; escritor TOP Sol exclusivo con modelo ejecutado/costoUNKNOWN.
 

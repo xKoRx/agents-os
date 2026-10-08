@@ -9,7 +9,7 @@ aliases: []
 tags:
   - kind/doc
 created: "2026-10-05"
-updated: "2026-10-07"
+updated: "2026-10-08"
 ---
 
 # BTG-PLAN — Gerard real, bankroll y objetivos
@@ -26,17 +26,20 @@ Mandato Owner recibido el 2026-10-05 (America/Santiago): máximo cinco shots; el
 
 Este plan y los artefactos activos del programa viven en Agents-OS `master`; las ramas documentales históricas no son autoridad vigente. Cambios del control se publican por delta en `master`, con readback y preservación de cambios concurrentes.
 
-PROGRAM_STATE = REMEDIATION_IN_PROGRESS
+PROGRAM_STATE = READY_FOR_PRIMARY_FINAL_REVIEW
 BTG_S01 = BOUNDED_REAL_RUN_COMPLETE; FULL_COVERAGE_AND_OWNER_ACCEPTANCE_OPEN
 BTG_S02 = DESIGN_PRESERVED_IN_BTG-S02-DESIGN
-BTG_S03 = CORRECTED_CANDIDATE_AUDITED_BY_S04; FINDINGS_OPEN
+BTG_S03 = HISTORICAL_CANDIDATE_AUDITED_BY_S04; FINDINGS_REMEDIATED_BY_S05
 BTG_S04 = READY_FOR_PRIMARY_REVIEW_WITH_FINDINGS
-BTG_S05 = IN_PROGRESS; PRODUCT_NOT_CERTIFIED
-CAMPAIGN_RESULTS = HISTORICAL_READBACK_ONLY; S05_FINAL_RUNS_PENDING
-DESIGN_FREEZE = S02_ARTIFACT_PRESERVED; S05_REPAIRS_IN_PROGRESS
+BTG_S05 = READY_FOR_PRIMARY_FINAL_REVIEW; SOFTWARE_INDEPENDENT_REVIEW_PASS; OWNER_ACCEPTANCE_PENDING
+CAMPAIGN_RESULTS = FRESH_1AB_BASIC_AND_CAMPAIGN_COMPLETE; REPLAYS_EXACT; FINANCIAL_READBACK_PASS
+DESIGN_FREEZE = S02_ARTIFACT_PRESERVED; SOURCE_1AB_FROZEN
 PROMOTION = NOT_ACCEPTED
 
-Refs consultados directamente en GitHub el 2026-10-06 UTC:
+
+Corte vigente 2026-10-08: [[BTG-S05-REMEDIATION-AND-RESULTS]] contiene una matriz final de16 findings FIXED_WITH_REGRESSION_AND_RERUN, fuente1ab9a7b5 y ACK integral G. BASIC/CAMPAIGN y ambos replays completos, financieros conciliados; caja4640/3compras/2reemplazos/0cobros. Próxima acción única: Primary revisa el informe/bundle final y presenta aceptación al Owner. PROMOTION=NOT_ACCEPTED; no cierre Root/Primary ni certificación/acción física. Los estados y refs de cortes previos son históricos y no autoridad actual.
+
+Refs históricas consultadas directamente en GitHub el 2026-10-06 UTC:
 
 | Repositorio / rama | HEAD |
 | --- | --- |
