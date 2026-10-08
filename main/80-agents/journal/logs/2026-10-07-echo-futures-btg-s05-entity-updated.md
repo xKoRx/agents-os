@@ -108,6 +108,8 @@ Se añadió el corte independiente posterior `a4eb54ca` al informe canónico: 63
 
 Root tomó un corte documental exclusivo sobre master limpio y registró el checkpoint integrado `4bd7df61`, los fixes BBO/cuenta/skip, la distinción de pruebas Invoke seam versus ForceClose público y los PASS focales reportados por autores/G. La cobertura C vigente reportada es 870/934, aún bajo 95%; D incluye main/harness en 703/739 y E histórico comparable 801/836 no se transfiere al candidato. Se corrigió la interpretación de ramas inalcanzables conforme al perfil global: prueba de redundancia y revisión G previas a borrar, sin exclusiones ni casos artificiales. Build final, rendimiento y BASIC/CAMPAIGN siguen pendientes. No se modificó código ni se ejecutaron pruebas desde root; mismo change_log y estado IN_PROGRESS.
 
+Se registró la continuación de revisión de propiedad: RED independiente de alias OHLC con RunID conservado, empate ambiguo del selector económico y mutación de Source.Close desde recorder que cambia el mark futuro. Alias/selector tienen correcciones y revalidaciones focales; recorder mantiene bloqueado el freeze. Se incorporó la aceptación escrita previa de cinco redundancias y el global preliminar deduplicado 2420/2530 (95,652%), sujeto a residuales y delta pendiente. Se corrigió el conteo C22 a 113 casos principales/309 nominales, con tres EXPECTED_NOT_RUN, y se preservó el setupfail SDK/shared pese a sus resultados nominales válidos. Mismo artefacto y change_log; root sólo escribió coordinación Markdown.
+
 ## Compartibilidad
 
 - **Scope:** team
