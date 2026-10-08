@@ -26,18 +26,18 @@ Mandato Owner recibido el 2026-10-05 (America/Santiago): máximo cinco shots; el
 
 Este plan y los artefactos activos del programa viven en Agents-OS `master`; las ramas documentales históricas no son autoridad vigente. Cambios del control se publican por delta en `master`, con readback y preservación de cambios concurrentes.
 
-PROGRAM_STATE = READY_FOR_REMOTE_REVIEW_ID_INVARIANCE
+PROGRAM_STATE = READY_FOR_FINAL_ACCEPTANCE
 BTG_S01 = BOUNDED_REAL_RUN_COMPLETE; FULL_COVERAGE_AND_OWNER_ACCEPTANCE_OPEN
 BTG_S02 = DESIGN_PRESERVED_IN_BTG-S02-DESIGN
 BTG_S03 = HISTORICAL_CANDIDATE_AUDITED_BY_S04; FINDINGS_REMEDIATED_BY_S05
 BTG_S04 = READY_FOR_PRIMARY_REVIEW_WITH_FINDINGS
-BTG_S05 = READY_FOR_REMOTE_REVIEW_ID_INVARIANCE; BOUNDED_LOCAL_AND_REMOTE_PASS; PRIMARY_REVIEW_PENDING
-CAMPAIGN_RESULTS = HISTORICAL_1AB_COMPLETE_AND_EXACT; NEW_D1B_LONGITUDINAL_RUNS_NOT_RUN
+BTG_S05 = READY_FOR_FINAL_ACCEPTANCE; FOUR_FINAL_REAL_RUNS_AND_FULL_REPLAYS_INDEPENDENT_PASS; PRIMARY_REVIEW_PENDING
+CAMPAIGN_RESULTS = CURRENT_D1B_COMPLETE_AND_EXACT_REPLAY; THREE_ACCOUNTS_CASH4640_NO_PAYOUT
 DESIGN_FREEZE = S02_ARTIFACT_PRESERVED; SOURCE_D1B_ID_INVARIANCE_FROZEN
 PROMOTION = NOT_ACCEPTED
 
 
-Corte vigente 2026-10-08: misma S05, adenda acotada de invariancia de IDs sobre `d1b1446d401f88cfa42dee2eb959120305f5a372`, local y remote-only G PASS: ocho casos y seis pares económicos por etapa/final. `READY_FOR_REMOTE_REVIEW_ID_INVARIANCE`; `PRIMARY_FINAL_REVIEW=PENDING`; `GATE_ACCEPTED=false`; `PROMOTION=NOT_ACCEPTED`. La matriz original de 16 hallazgos y los reales/performance 1ab permanecen históricos; nuevos reales sobre d1b NOT_RUN. Código y todos los assets necesarios están en la prerelease privada [btg-s05-id-invariance-d1b1446d](https://github.com/xKoRx/echo/releases/tag/btg-s05-id-invariance-d1b1446d), sin depender del draft ni del acceso a AgentsOS. Próxima acción única: Primary/revisor realiza dictamen del suplemento mediante README final fase 2. Owner acepta después y por separado. Root/Primary abiertos, D6 físico NOT_DEMONSTRATED/no transferencia. Detalle y límites en [[BTG-S05-REMEDIATION-AND-RESULTS]].
+Corte vigente 2026-10-08: misma S05, cuatro corridas reales finales d1b limpias y replays íntegros PASS independiente, READY_FOR_FINAL_ACCEPTANCE adjudicado por Root. BASIC net−43405,84/saldo56594,16 y CAMPAIGN net−6151,60/caja4640/3compras/2reemplazos/cobros0; economía sin tuning. Primary favorable sólo IDs reportado por Owner, PRIMARY_FINAL_REVIEW=PENDING/GATE_ACCEPTED=false/PROMOTION=NOT_ACCEPTED. Publicación raw completa nueva fase y readback pendientes. Próxima acción: finalizar entrega remota y cierre Root/especialistas por Owner, sin cerrar Primary. D6 físico NOT_DEMONSTRATED/no transferencia. Detalle y límites en [[BTG-S05-REMEDIATION-AND-RESULTS]].
 
 Refs históricas consultadas directamente en GitHub el 2026-10-06 UTC:
 
