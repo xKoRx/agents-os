@@ -1,0 +1,14 @@
+{
+  "schema_version": "echo.backtest.ntminute.source.v1",
+  "corpus_id": "/home/kor/aranea/work/btg-s01-20261006/reports/real-gap-forensics/derived-nt-weekly-v1/NQ 12-26.Last.txt",
+  "version": "OWNER_NQ_LAST_1M_QUARTERLY_20231001_20261006_CALENDAR_FILTERED_V1",
+  "durable_ref": "owner-copy-20261006-v1+BTG_FUNCTIONAL_NQ_WEEKLY_V1-filter-v1",
+  "timestamp_convention": "NT_EXPORT_UTC_END_1M_V1",
+  "bindings": [
+    {
+      "path": "/home/kor/aranea/work/btg-s06-user-oneshot-20261008/inputs/nt/NQZ6/nt-source.json",
+      "stream_id": "Derived from corpus manifest 226f37dd77e9daabc7fe7e985ae1ce11e72f3ecb7fbbd8c54e62fc329f509326; exact-byte subsequence derivation and full exclusion manifest at reports/real-gap-forensics/derived-nt-weekly-v1/exclusions-manifest.json; shared calendar BTG_FUNCTIONAL_NQ_WEEKLY_V1; original read-only.",
+      "tick_size": "0.25"
+    }
+  ]
+}
