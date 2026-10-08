@@ -78,6 +78,8 @@ La revisión independiente encontró además sustitución indiscriminada de stri
 
 DEC-13 responde a la divergencia causal reproducida independientemente en ADD adverso: orden local FIFO para trabajo ordinario disponible, conservando safety antes de trabajo no comprometido y dependencias de comandos comprometidos. No se corrige mediante normalización de secuencias ni demora arbitraria de ACK. Las reparaciones iniciales de wrappers pasaron ataques independientes acotados; un nuevo negativo de constructor ProviderFact mantuvo abierto el wrapper C hasta corregir su kind/grant exactos.
 
+DEC-14 autoriza el seam sintético offline por reporte compartido autoritativo y readiness existente. Se rechaza el diseño anterior que confiaba sólo en igualdad de netos. El contrato exige scope completo, freshness posterior a reconexión, órdenes/finality y recuperación de fills con dedup, manteniendo explícito el límite de economía/proyección runtime inyectada.
+
 ## Compartibilidad
 
 - **Scope:** team
