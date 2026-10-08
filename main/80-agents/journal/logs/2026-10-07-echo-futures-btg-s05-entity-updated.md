@@ -56,6 +56,8 @@ Readback correctivo solicitado por Root: se precisó que GerardMM/Operation mate
 
 Delta de coordinación posterior: el informe incorpora commits intermedios B/C, cobertura modificada distinguida de cobertura global, correcciones de oráculos respaldadas por ejecución independiente y ataques de normalización/colisión conservados. Los 16 findings siguen abiertos hasta regresión, rerun e independiente final; se explicitan matrices C pendientes y el diagnóstico de warmup detenido. D/E despachados con ownership disjunto. Root sólo modificó Markdown; `GOD_PRODUCT_CODE_WRITES=0`.
 
+Decisiones de implementación DEC-03/04/05 registradas por el coordinador: MIXED con autoridad/completitud explícitas y validación streaming; retención sólo tras serialization ownership de sink explícito con finalización obligatoria, sin fingir fsync por evento; yield causal de campaña por outcome y quiescencia sin reinicio de owners. Son contratos para los workers, no resultados probados ni gates aceptados.
+
 Materializer `materialize_schema_note.py` creó doc, change_log, agent_run y feedback conforme a schema contract v1. `lint.py --strict` pasó para las cuatro notas nuevas; lint dirigido de BTG-PLAN no halló errores. Echo Futures retuvo las cinco observaciones históricas documentadas en el cierre S01 (2 tags y 3 secciones); un `--gate` explícito no aplicó porque el baseline excluye estos `scope_paths`, y no se alteró baseline. Readback confirmó 16 hallazgos abiertos. Bundle, patch, manifest y los cuatro grupos RED aislados fueron verificados. Sin certificación de producto. `git diff --check` pasó tras retirar whitespace final y línea en blanco sobrante al cierre.
 
 ## Compartibilidad
