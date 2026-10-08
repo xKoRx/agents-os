@@ -42,7 +42,7 @@ Operation ahora rechaza economía explícita de otra cuenta antes de dedup/MM; f
 
 Session reevalúa la conjunción vigente en frontera de submit después de dedup MAY_HAVE_EXECUTED y antes de efectos; debe revalidarse con pérdida real de freshness/auth/transport/capabilities, recuperación/quarantine y cancel auténtico tras reporte inválido. Las filas físicas válidas pueden observarse sin adoptar órdenes/fills ni habilitar trust; invalid rows nunca publican autoridad. Cancel y recuperación auténticos preservan su autoridad existente; bridge no infiere nuevas reducciones por side/net. Certificado D6 no transferible; `PHYSICAL_RUNTIME_READINESS=NOT_DEMONSTRATED`.
 
-Próxima acción única: terminar gates independientes/V1 del freeze4152, adjudicar sus residuales; después habilitar performance120 y BASIC/CAMPAIGN con inputs/provenance sellados y replay completo. Mantener las 16 filas pendientes hasta evidencia final atribuible al SHA, resultados reales aplicables y aceptación Owner. Ninguna acción física, PROD/ETCD, deploy ni ROI tuning en este delta documental.
+Próxima acción única: terminar el gate independiente G del freeze4152 y adjudicar sus residuales; V1 ya está completo. Después habilitar performance120 y BASIC/CAMPAIGN con inputs/provenance sellados y replay completo. Con evidencia final verificada atribuible al SHA y reruns aplicables, cada fila puede pasar a `FIXED_WITH_REGRESSION_AND_RERUN` o `DISPROVED_WITH_EVIDENCE`, habilitando `READY_FOR_PRIMARY_FINAL_REVIEW`. La aceptación Owner es posterior y separada; no es requisito previo para cerrar la matriz ni preparar el handoff. El estado actual continúa sin READY. Ninguna acción física, PROD/ETCD, deploy ni ROI tuning en este delta documental.
 
 ### 1. Estado, autoridad y baseline
 
