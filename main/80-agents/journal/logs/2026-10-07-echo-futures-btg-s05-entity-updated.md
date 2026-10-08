@@ -96,6 +96,10 @@ El readback más reciente conserva el mismo lock documental y los mismos seis ar
 
 DEC13 aún requiere el interleaving de dos comandos dentro de Invoke y un Send posterior; DEC14 conserva APIs `ExecutionReconciliation` en compile-only y recorrido offline pendiente. Fresh G cubre sólo los wrappers C86fabc/Df285 del snapshot compuesto, no esos deltas ni el producto final. La cápsula externa fue corregida: el runner usa `candidate/frozen-backtester.test` y captura el código de salida/timeout a `exit-status.txt` bajo `set -e`; sus recipes son placeholders no autorizados. SHA256 actual: `cab23d257935154f1e4eca36af34563ca294c72e7af29cb9dc433f3039debc12`. NQZ3 DERIVED, fechas, perfil/capital aprobados y descriptor preparado quedan sin specs selladas, build/binario ni output IDs; no se ejecutaron comandos de benchmark/backtest.
 
+### Decisión shared de reconciliación — 2026-10-08
+
+Root retomó el lock documental después del handoff Luna, publicado en master `807355960baf0d7c6a2fd7aeec76525afbd3d7a1`, y añadió DEC-15 al artefacto canónico. La reparación D exige sello de snapshot completo real, validación compartida con BACKTEST y fail-closed cuando falta autoridad de cuenta/alcance/freshness. Ninja actualmente no acredita completitud de cuenta; no se amplía su implementación física ni se relaja MandatoryM2. Se exige preservar cancel/reducción autorizadas pese a readiness fallida y probar el lifecycle público. El fix, cobertura y revisión independiente siguen pendientes. La intersección D6 de cero nombres de archivo no demuestra ausencia de impacto transitivo; debe evaluarse el cambio shared antes del handoff final. Root sólo escribió Markdown; no implementó ni ejecutó pruebas.
+
 ## Compartibilidad
 
 - **Scope:** team
