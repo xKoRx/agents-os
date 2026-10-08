@@ -37,7 +37,7 @@ DESIGN_FREEZE = S02_ARTIFACT_PRESERVED; SOURCE_1AB_FROZEN
 PROMOTION = NOT_ACCEPTED
 
 
-Corte vigente 2026-10-08: [[BTG-S05-REMEDIATION-AND-RESULTS]] contiene una matriz final de16 findings FIXED_WITH_REGRESSION_AND_RERUN, fuente1ab9a7b5 y ACK integral G. BASIC/CAMPAIGN y ambos replays completos, financieros conciliados; caja4640/3compras/2reemplazos/0cobros. Próxima acción única: Primary revisa el informe/bundle final y presenta aceptación al Owner. PROMOTION=NOT_ACCEPTED; no cierre Root/Primary ni certificación/acción física. Los estados y refs de cortes previos son históricos y no autoridad actual.
+Corte vigente 2026-10-08: [[BTG-S05-REMEDIATION-AND-RESULTS]] contiene una matriz final de16 findings FIXED_WITH_REGRESSION_AND_RERUN, fuente1ab9a7b5 y ACK integral G. BASIC/CAMPAIGN y ambos replays completos, financieros conciliados; caja4640/3compras/2reemplazos/0cobros. INDEPENDENT_SOFTWARE_REVIEW=PASS; PRIMARY_FINAL_REVIEW=PENDING; GATE_ACCEPTED=false. Próxima acción única: Primary revisa el informe/bundle final y presenta aceptación al Owner. PROMOTION=NOT_ACCEPTED; no cierre Root/Primary ni certificación/acción física. Los estados y refs de cortes previos son históricos y no autoridad actual.
 
 Refs históricas consultadas directamente en GitHub el 2026-10-06 UTC:
 
