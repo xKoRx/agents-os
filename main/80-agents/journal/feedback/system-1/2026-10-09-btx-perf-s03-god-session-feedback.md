@@ -31,7 +31,7 @@ tags:
 
 ## Context
 
-- Borrador durante WAITING_FOR_TOP_EVIDENCE; cierre sólo al entregar dictamen. Superficie [[Codex]], modelo real GOD UNKNOWN; GPT-6 Astra es pedido de rol, no recibo de ejecución. TOPs con selector gpt-6.1-sol y recibos separados.
+- Encargo S03 cerrado con dictamen RED / READY_FOR_PRIMARY_REVIEW; dos devoluciones únicas cerradas. Superficie [[Codex]], modelo real GOD UNKNOWN; GPT-6 Astra es pedido de rol, no recibo de ejecución. TOPs con selector gpt-6.1-sol, servido exacto UNKNOWN y recibos separados.
 - Skills: bootstrap, technical-project-manager bajo mandato específico, registro/cierre y materializador. Retrieval enfocado por paths exactos entregados; fuentes canónicas leídas por blob.
 - Segmento GOD documental: no código ni ejecución de producto. Registro [[2026-10-09-btx-perf-s03-god-adjudication]]; no agent_run de coding atribuido a GOD.
 

@@ -76,7 +76,7 @@ El sync abreviado `32d8d6d0` y SHA256 abreviado `51f2a1d2…` del handoff prelim
 
 ### Despacho y atribución
 
-La superficie efectiva de esta conversación expone shell local, archivos Daedalus y `collaboration.spawn_agent`; la etiqueta CLOUD del encargo no se utilizó para negar herramientas existentes. Los directorios Owner se comprobaron disponibles. Los dos despachos usaron `fork_turns=none`, modelo solicitado `gpt-6.1-sol`, sin autorizar subdelegación. El harness recibió explícitamente ese selector; la identidad real de ejecución sólo se acreditará con el recibo disponible y, si no se expone, permanece UNKNOWN. Modelo real GOD y consumo Pro no expuestos: UNKNOWN; el rol pedido no prueba el modelo servido.
+La superficie efectiva de esta conversación expone shell local, archivos Daedalus y `collaboration.spawn_agent`; la etiqueta CLOUD del encargo no se utilizó para negar herramientas existentes. Los directorios Owner se comprobaron disponibles. Los dos despachos usaron `fork_turns=none`, modelo solicitado `gpt-6.1-sol`, sin autorizar subdelegación. El harness recibió explícitamente ese selector; ambos TOPs reportan identidad exacta servida UNKNOWN y cumplimiento solicitado NOT_DEMONSTRATED por ausencia de recibo adicional del modelo ejecutado. No hubo sustitución silenciosa por GLM. Modelo real GOD y consumo Pro no expuestos: UNKNOWN; el rol pedido no prueba el modelo servido.
 
 | TOP | Pregunta | Límite operativo fijado por GOD | Estado |
 |---|---|---|---|
@@ -180,6 +180,23 @@ Ninguna clasificación borra el rojo original. S04 conserva una prueba que codif
 | TOP preliminar es el Sol solicitado | No demostrado: declara GLM-5.3-Flash/ZCode. Conservar procedencia y auditar evidencia; no renombrar modelo ni invalidar hechos reproducibles sólo por etiqueta |
 
 La corrección documental de estas afirmaciones vive aquí, no reemplaza los originales. E1 permanece PARTIAL_WITH_EVIDENCE y S02 PARTIAL_IMPLEMENTATION_WITH_MATERIAL_GAPS; nada de esta conciliación reinicia esos shots.
+
+### Matriz requisito → finding → evidencia → oráculo → estado
+
+| Requisito | Finding | Evidencia aceptada | Oráculo | Estado S03 |
+|---|---|---|---|---|
+| Dinero aplicado coincide con admisión | B-02 | Bin45ba14ba/log final y digests1→2 | El cuerpo admitido y la disposición aplicada deben ser el mismo; crédito1 una vez | RED, C08 |
+| Lecturas no mutan autoridad sellada | B-01 | Getter cambia ContextID y rompe digest | Vista pública aislada; siguiente lectura/cuerpo interno invariantes | RED, C09 |
+| Primera compra con caja suficiente | B-03 |119/120 da−1;120/120 da0 | Sin sobregiro/compra si fondos119, débito único si120 | RED, C10 |
+| Entrada física multicontrato y un estado financiero | F-S03-02 | Preliminar BASIC/CAMPAIGN rc2 con2streams reales | Petición única, merge estable, A→B conserva dinero/obligaciones | NOT_IMPLEMENTED/RED, C01/C02 |
+| Replay CAMPAIGN desde ambas rutas públicas | F-S03-03 | Manifest sin Artifact y routing con footer sin drenar | Mismo controlador con replacement/caja/disposiciones/residual | RED, C03 |
+| Output portable y éxito coherente | F-S03-04 | Out-root movido falla; rc0/FAILED | Rutas relativas, error visible, frontera consumida fiel | RED, C04 |
+| Sello reproducible anterior a primer cambio | F-S03-01+A | Recetas completas y cronología separada | Hash/alcance coinciden y recibo real de frontera | RECIBO_RED/FREEZE_NOT_DEMONSTRATED, C05 |
+| Rendimiento comparable end-to-end | F-S03-05+A | R run-only2,2279×; NQU6 censurado>180s | Mismo workload completo, incluye fases exigidas y denominadores explícitos | R_BOUNDED/ANCLA_FAIL/RESTO_NOT_DEMONSTRATED, C05 |
+| Equivalencia tipada entre builds | F-S03-07+A |88362/109, mapa45refs, swap monetariamente neutro rechazado | Biyección por namespace/generación; integrity y estado final por contratos propios | TRACE_PASS_BOUNDED/PROVIDER_NOT_DEMONSTRATED, C11 |
+| NQZ5 revisiones y FUNDED reales | F-S03-06+A |2764371objetos completos; batch4870–4872/cuenta2/digests | Todas revisiones del batch y autoridad posterior coherentes | PREFIX_PASS_BOUNDED/FINAL_NOT_RUN |
+| Falsificador legacy/ALL-SKIP no omite comparaciones | F-S03-09/B Structural | Legacy externo rescatado; cause_ref ALL/SKIP sin conciliar | Comparación completa y negativos incluso con identidad distinta | LEGACY_TEST_WEAK/STRUCTURAL_NO_RESUELTO, C06/C11 |
+| Safety, callbacks, rollover, lifecycle y coverage | B y matrices NOT_RUN | PASS focales con frontera exacta; nuevos RED admitidos | Pruebas causales completas y floor con denominador explícito | PARTIAL, C07/C12 y gates siguientes |
 
 ### Cuatro gates y cobertura de código separada
 
@@ -293,7 +310,7 @@ Actualizar BTG-PLAN mediante su único owner: S03 dictamen entregado RED/READY_F
 
 ### Persistencia y cierre
 
-Documento nuevo materializado por `80-agents/skills/_shared/scripts/materialize_schema_note.py doc` según contrato vigente. BTG-PLAN, el preliminar, el informe S02 y el PERF_CONTRACT permanecen intactos. Sus blobs se comprobaron nuevamente sin delta. Se cierra únicamente este encargo S03: ambos TOPs devueltos/cerrados, cero procesos propios pendientes reportados, ningún código o test escrito por GOD y ninguna ejecución S04. Primary sigue abierto; registros/feedback por delta separados y sin L0 inventado. La sincronización automática publicó versiones de trabajo explícitamente DRAFT; el corte final/readback determina el dictamen entregado.
+Documento nuevo materializado por `80-agents/skills/_shared/scripts/materialize_schema_note.py doc` según contrato vigente. BTG-PLAN, el preliminar, el informe S02 y el PERF_CONTRACT permanecen intactos. Sus blobs se comprobaron nuevamente sin delta. Se cierra únicamente este encargo S03: ambos TOPs devueltos/cerrados, cero procesos propios pendientes reportados, ningún código o test escrito por GOD y ninguna ejecución S04. Primary sigue abierto; registros/feedback por delta separados y sin L0 inventado. La sincronización automática publicó versiones de trabajo explícitamente DRAFT; el corte final/readback determina el dictamen entregado. Registro GOD [[2026-10-09-btx-perf-s03-god-adjudication]] y feedback [[2026-10-09-btx-perf-s03-god-session-feedback]]; cada TOP conserva su agent-run/feedback atribuido y enlazado en su artefacto. GOD no reclama un agent-run de generación de código por esta documentación.
 
 ## Fuentes
 

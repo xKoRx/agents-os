@@ -31,7 +31,7 @@ tags:
 
 ## Cambio
 
-- Creación de [[BTX-PERF-ADVERSARIAL]], artefactos y registros propios de TOP A/B, feedback GOD enlazado. Estado provisional WAITING_FOR_TOP_EVIDENCE; todavía sin dictamen final.
+- Creación de [[BTX-PERF-ADVERSARIAL]], artefactos y registros propios de TOP A/B, feedback GOD enlazado. Estado final RED / READY_FOR_PRIMARY_REVIEW; cobertura ejecutada parcial con NOT_RUN, encargo S03 cerrado.
 - El control BTG-PLAN y las autoridades previas no se editan.
 
 ## Motivo
@@ -44,11 +44,13 @@ tags:
 
 ## Resolución aplicada
 
-- Preservar RED ejecutado, distinguir evidencia favorable acotada de gates y registrar NOT_RUN. Despachos reales `/root/top_a_evidence` y `/root/top_b_safety`, selector `gpt-6.1-sol`, `fork_turns=none`. Ningún programa de verificación ni producto escrito por GOD.
+- Preservar RED ejecutado, distinguir evidencia favorable acotada de gates y registrar NOT_RUN. Despachos reales `/root/top_a_evidence` y `/root/top_b_safety`, selector `gpt-6.1-sol`, `fork_turns=none`; ambos cerrados con modelo exacto servido UNKNOWN y cero procesos propios pendientes reportados. Ningún programa de verificación ni producto escrito por GOD.
+- Aceptados nuevos B-01/B-02/B-03; R referencial e integridad acotados, provider final abierto; NQZ5 batch4870–4872 reconciliado en2764371objetos completos. Cinco rojos:3supersedidos/1harness/1no resuelto; baseline8/candidato5/tres CLI verdes. Performance R run-only2,2279×, ancla180s FAIL y freeze-pre-cambio no demostrado.
+- Paquete C01–C12 y delta para Primary dentro del dictamen; S04 no despachado, producto no aceptado. TOP A final blob4f97884c0a8b0d26e8d75197f22dd5e35a04a3e9; TOP B final058b63623a4bd7b2c833831ccf6360c9b5a6dc5c.
 
 ## Validación
 
-- Pendiente cierre de TOPs y validación focalizada documental. Materializador canónico ejecutado. Sync automático observado en master: `2a9611ad`/`a0707707` incluyeron el dictamen expresamente DRAFT_WAITING_FOR_TOP_EVIDENCE; no se atribuye publicación manual ni se detiene el sincronizador.
+- Materializadores canónicos y lint focalizado ejecutados; preservación de cuatro blobs de autoridad comprobada. Sync automático observado en master: `2a9611ad`/`a0707707` incluyeron versiones DRAFT_WAITING_FOR_TOP_EVIDENCE; el corte final sustituye su estado sin borrar historia. No se detuvo ni alteró el sincronizador. Readback final de master y copia de entrega se comprueban al publicar.
 
 ## Compartibilidad
 
