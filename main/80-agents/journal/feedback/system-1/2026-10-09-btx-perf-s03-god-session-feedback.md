@@ -4,16 +4,17 @@ schema_version: 1
 scope: session
 created: 2026-10-09
 updated: 2026-10-09
-area: "[[Personal]]"
-project: "[[AGENTS OS]]"
+area: "[[Echo]]"
+project: "[[Echo Futures]]"
 entities:
-  - "[[AGENTS OS]]"
-related: []
+  - "[[Echo Futures]]"
+related:
+  - "[[BTX-PERF-ADVERSARIAL]]"
 aliases: []
 agent_surface: "[[Codex]]"
 agent_model: unknown
 agent_run:
-session_goal:
+session_goal: "Adjudicar S03 con TOPs independientes sin código por GOD"
 source_session:
 confidence: high
 load_policy: manual
@@ -26,89 +27,54 @@ tags:
   - agent/system1
 ---
 
-# Session Feedback - 2026-10-09 - short-topic
+# BTX-PERF-S03 — feedback de coordinación GOD
 
 ## Context
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+- Borrador durante WAITING_FOR_TOP_EVIDENCE; cierre sólo al entregar dictamen. Superficie [[Codex]], modelo real GOD UNKNOWN; GPT-6 Astra es pedido de rol, no recibo de ejecución. TOPs con selector gpt-6.1-sol y recibos separados.
+- Skills: bootstrap, technical-project-manager bajo mandato específico, registro/cierre y materializador. Retrieval enfocado por paths exactos entregados; fuentes canónicas leídas por blob.
+- Segmento GOD documental: no código ni ejecución de producto. Registro [[2026-10-09-btx-perf-s03-god-adjudication]]; no agent_run de coding atribuido a GOD.
 
 ## Scores
 
-Use 1-5, where 1 is poor and 5 is excellent.
-
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
+- Utilidad del control/cápsula: 5/5. Ajuste de skill al despacho: 3/5 por reglas genéricas de superficie/modelo supersedidas por Owner. Autoevaluación operativa, no benchmark de modelos.
 
 ## What Complicated The Session Most
 
-- Observation:
-- Why it was hard:
-- Proposed improvement:
+- Lecturas agrupadas excedieron el output disponible. Recuperé rangos pertinentes en vez de tratar texto truncado como leído. Sync automático publica notas de trabajo: distinguir borrador de dictamen y verificar cortes.
 
 ## Most Useful Part Of Sistema 1
 
-- What helped:
-- Why it helped:
-- Keep/change:
+- La frontera manager/worker y el mandato de continuación permitieron conservar RED existente y reservar ejecución nueva para preguntas útiles para S04.
 
 ## Least Useful Or Noisy Part
 
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
+- «CLOUD sin MCP» y TOP=GPT-6 Sol no describen por sí solos este harness ni reemplazan GPT-6.1 Sol pedido por Owner. Se aplicó el despacho sin modificar skill compartida.
 
 ## Missing Support
 
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
+- Selector solicitado y modelo servido requieren recibos separados. Si el harness no expone el segundo, UNKNOWN permanece.
 
 ## Retrieval Feedback
 
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
+- Paths exactos y control único bastaron para seleccionar autoridades. Evitar concatenar documentos largos antes de conocer su tamaño; leer secciones sin omitir evidencia necesaria.
 
 ## Skill Feedback
 
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
+- El mandato acotado resolvió las diferencias con technical-project-manager; ninguna skill o política general modificada.
 
 ## Template Feedback
 
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
+- Materialización doc/change_log/feedback por contrato vigente, con validación focalizada al terminar. Un parche documental no aplicado por mismatch de título se recuperó mediante lectura reciente; no se atribuyó escritura parcial inexistente.
 
 ## Memoria Interna (Internal Memory)
 
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
+- Memoria global mínima cargada; no suplió autoridad ni recibos del proyecto. Sin checkpoint duplicado: continuidad en dictamen y delta al Primary.
 
 ## Pain Pattern Candidate
 
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
+- Separar superficie declarada, selector solicitado y recibo real del harness. Evidencia: discrepancia del preliminar y acceso local efectivo. Promoción diferida; no cambiar política por una sola observación.
 
 ## One Next Improvement
 
--
+- `context_high_water_mark=UNKNOWN`; `efficiency_assessment=REVIEW`. Reducir lecturas concatenadas que truncan output, preservando autoridades y pruebas. Impacto esperado MEDIUM, riesgo LOW. Tokens/cache/costo UNKNOWN.
