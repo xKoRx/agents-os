@@ -69,3 +69,21 @@ Scope local. Sin credenciales, secretos, dumps de mercado, memoria interna ni ca
 ## Rollback
 
 Ante instrucción Owner, restaurar sólo el delta documental pertinente desde la versión previa `52d17ce92321fe0673eeaf1ed59d7e8753d47af7` del control, preservando cambios posteriores y anotando la nueva decisión. No reset/force-push, eliminación de evidencia, cambios de producto ni cierre de sesión implícitos. El diseño original de transporte permanece en Library para trazabilidad.
+
+## Adición — adjudicación Primary de la entrega S02
+
+Owner devolvió la transcripción y handoff S02 y manifestó preocupación por consumir los cuatro shots sin resultado útil. Primary contrastó informe/control publicados, HEAD de producto y source puntual; no ejecutó producto ni pruebas, no se atribuyó el probe ni reconstruyó sus perfiles locales.
+
+El control actualizado en commit `7776aff1e5464e3d0e05718180fd1319658b6738`, blob `da376b57902a1b32dfd9076ddd606e8fa8ac92d6`, conserva cuatro shots y cambia la adjudicación a `PARTIAL_IMPLEMENTATION_WITH_MATERIAL_GAPS`. La afirmación del autor READY_FOR_S03_REVIEW queda como handoff histórico, no implementación completa aceptada. S01/adenda y E1 parcial se conservan; aceptación final no concedida, Primary abierto. Control anterior íntegro en `534daa16b9e043192250b8def8adee2fca6bd800`, mismo path, preserva los deltas del autor.
+
+Source confirmado en Echo `bbbcc1d5dc0ed18badae46b4eba1a17822632b60`: cmdExperiment exige exactamente un stream; su rama CAMPAIGN no escribe manifest.Artifact, mientras reproduce --experiment exige ese campo. El test ReproduceCampaign usa fxCorpus/fxSpec y fixtureFactory, no acredita esa ruta CLI. compareLegacyCLIArtifacts abandona con Logf+return por RunID distinto antes de comprobar estado/digests/artefacto. Estos son hallazgos estáticos puntuales, no falsificación LOCAL ya ejecutada.
+
+Informe `BTX-PERF-IMPLEMENTATION` leído, blob `cec0feaede7e52cdd9b742c0ebfd63179c158207`: contrato NQU6 BASIC<=180s frente a timeout900s reportado; sólo R BASIC75,77s→34,01s tiene pareja COMPLETE; no extrapolar2,23x ni declarar no-regresión porque ambos candidatos/control excedan600s. El sello previo no basta para justificar la proyección uniforme del prefijo con warmup. NQZ5 real quedó antes de la frontera defectuosa y coverage/pruebas críticas no se completaron. El contrato y el informe originales no se alteraron para hacerlos coincidir con el dictamen.
+
+Compare autenticado584a→bbb: sólo README y nuevo test del ring; baseline control d609ca24 y binario reportado0db2feae, candidato medido584a3cd9/binarioe5d4860b conservados como identidades diferentes. El nuevo pool de preparación no se acredita por estar especificado; ownership de RecentShared y normalización109IDs se reservan a pruebas independientes.
+
+Siguiente trabajo preparado, NO ejecutado: TOP LOCAL independiente dentro de S03, primero falsificadores baratos multistream/replay público; si confirma RED estructural, no gastar horas en reruns/auditoría general de la capacidad ausente. Pruebas cortas que puedan cambiar repairs S04, omisiones NOT_RUN, dictamen GOD independiente posterior en el mismo S03. No fixes por el verificador, nuevo diseño/probe exploratorio, quinto shot o retorno a S02 cerrado.
+
+Prompt final de transporte creado y guardado exitosamente en Library `/BTX-PERF-S03-TOP-LOCAL-VERIFICATION-PROMPT.md`, `library_file_id=libfile_4bcf419d25f88191a9bc1dd65d1123f2`, backing `file_00000000a780820ea975f22bd8fbc57a`,15929bytes,SHA256 `8fb80bf567395943ce0bd4209c23408fb362585d1e3487ac3c65af780c556141`. Contiene autoridades/baselines, M1–M7 convertidos en falsificadores, límites, condiciones de corte RED, evidencia y cierre exclusivo del worker.
+
+Validación de esta adición: edición de dos notas existentes schema_version1 con blob SHA, preservación del cuerpo previo de este log y lectura posterior de las rutas. No se crearon notas canónicas nuevas ni se reejecutó materializador/lint global para esta edición. Escritura sólo master; ningún código de producto, despliegue, permiso, broker, feedback o cierre de Primary. Rollback sólo mediante delta documental preservando cambios posteriores; no reset/force-push. Las verificaciones aún no ejecutadas siguen obligatorias: un corte RED temprano no equivale a S03 completo ni anticipa que S04 logrará el objetivo total.
