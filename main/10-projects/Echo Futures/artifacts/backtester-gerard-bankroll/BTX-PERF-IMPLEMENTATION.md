@@ -18,7 +18,7 @@ updated: "2026-10-09"
 
 ## Propósito
 
-Artefacto S02 (TOP LOCAL fresh-context ONE-SHOT, Daedalus): implementación, integración y performance del backtester con referencia corregida, según la adenda Owner de 2026-10-09 y [[BTX-PERF-DESIGN]]. Este documento contiene la sección única `PERF_CONTRACT` sellada ANTES del primer cambio de rendimiento; el bloque congelado conserva sus bytes y hash en la evidencia transportable. Estado devuelto: `READY_FOR_S03_REVIEW` condicionado a los resultados abajo; no hay aceptación de producto.
+Artefacto S02 (TOP LOCAL fresh-context ONE-SHOT, Daedalus): implementación, integración y performance del backtester con referencia corregida, según la adenda Owner de 2026-10-09 y [[BTX-PERF-DESIGN]]. Este documento contiene la sección única `PERF_CONTRACT` sellada ANTES del primer cambio de rendimiento; el bloque congelado conserva sus bytes y hash en la evidencia transportable. Estado devuelto: `READY_FOR_S03_REVIEW` con bloqueo de performance específico (horizonte completo no verificado físicamente: corridas de horas, §7.2) y NQZ5 real completo no alcanzada en presupuesto (§7.3); no hay aceptación de producto.
 
 ## 1. Identidad ejecutada
 
@@ -193,7 +193,10 @@ NQZ5 REAL completo: NO alcanzada en presupuesto (7.2: el prefijo que cruza la tr
 
 ### 7.4 Cobertura y suites
 
-Ver logs/full-suites.log del workspace; cobertura del código nuevo/modificado medida con denominador real al cierre (§7.4 final).
+- **Regresores S02 dedicados (TestBTXS02\*): 8/8 PASS** (batch+ownership 2, admission seal 2, multicontrato 3, replay campaña 1) + E2E `experiment` (CLI real, BASIC COMPLETE + replay IDENTICAL) + `TestBTXS02RecentShared…` (ventana read-only, estabilidad bajo evicción).
+- **Cobertura del código nuevo/modificado** (denominador real, funciones S02): `SealCampaignRequest` 100%, `LiveContract`/`Admissions`/`NextNegotiableOpen` 100%, `firstCampaignResultDivergence` 83%, `EnqueueControl` 82%, `ensureSourceIndex` 85%, `campaignArtifactRequest` 79%, `applyContextTransition` 75%, `recordEconomicsBatch` 76%, `activeSessionStream` 78%, `ReproduceCampaign` 69%, `deepCopyResolvedControl` 71%, `PushEvict`/`findSource`/`sourceIndexForget` 100%. Las ramas descubiertas son fallos nombrados (integrity/ownership) ejercitados parcialmente por oráculos negativos; floor 95% del paquete NO alcanzado en el denominador completo (58,1% contando sólo regresores S02 sobre backtester+bars+accounting) — queda como trabajo de S03/S04, no se rellena con tests cosméticos.
+- **Suites completas**: `cmd/echo-backtest` ✓ verde (220s); `sdk/futures/...` ✓ verde; paquete `backtester`: los 8 fallos (TestBTGS03_CampaignCashBurnReplacementAndContinuity, TestBTGS03_V2IntrabarAddsAdverseAndProtection, TestBTGS04CampaignBurnCashLedger, TestBTGS04_MixedMinuteCapabilityBoundary, TestBTGS04_StructuralReferenceSkipFirstDivergence, TestFreshProcessDeterminism, TestLargeCorpusStreamingMetrics, TestBT_S04_StandaloneReproduceClosedSpec) son **PREEXISTENTES en `50250a2b` puro**: triple ejecución demostrada (worktrees `50250a2b` / `d609ca24` / candidato) con fallos idénticos — ni los repairs ni las optimizaciones los introducen ni los agravan. Causas observadas: fixtures que declaran builds sintéticas contra binarios con stamp vcs (clase ya documentada), y derivaciones de IDs de orden entre políticas ALL/SKIP (invariancia de IDs pendiente, alcance S03).
+- **race focalizado** (delta): bars/accounting/marketctx `-race` PASS.
 
 ## 8. Evidencia transportable (fuera del vault)
 

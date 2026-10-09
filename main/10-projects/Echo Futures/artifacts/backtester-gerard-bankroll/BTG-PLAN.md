@@ -34,8 +34,14 @@ E1 = PARTIAL_WITH_EVIDENCE
 S02 = AUTHORIZED_REPAIR_AND_INTEGRATION
 PERF_TARGET_FREEZE = REQUIRED_BEFORE_OPTIMIZATIONS
 FINAL_OWNER_ACCEPTANCE = NOT_GRANTED
-CURRENT_ACTION = OWNER_RUN_SINGLE_FRESH_TOP_LOCAL_S02_PROMPT
-S02_EXECUTION = NOT_OBSERVED_BY_PRIMARY
+CURRENT_ACTION = PRIMARY_RECEIVES_S02_RESULT
+S02_EXECUTION = DELIVERED_BY_TOP_LOCAL_2026-10-09
+S02_RESULT = READY_FOR_S03_REVIEW_WITH_PERF_HORIZON_BLOCK
+S02_CONTROL_CORRECTED = d609ca241eed63b1b4413af5bae5b849d334ead0 (branch codex/btx-perf-s02, pushed)
+S02_OPTIMIZED = 584a3cd91d8ecf2d8f292547a35f8e9963e2270d (binary e5d4860b4e70f5f5833ebf374b08fb771a4551bc6d58996fa42305e1049bd141)
+S02_PERF_CONTRACT = SEALED_BEFORE_OPTIMIZATIONS (block sha256 ff320f01e9954eefaf84de5380b78e8b99e334d42ac10bf50f018d34ae89079d)
+S02_SPEEDUP_SEALED_PREFIX = 2.23x back-to-back R (>= MIN 1.5x MET)
+S02_FULL_HORIZON = NOT_VERIFIED_PHYSICALLY (hours-scale runs; preexisting, both builds)
 S03 = NOT_STARTED_INDEPENDENT_EXECUTED_ADVERSARIAL_PRESERVED
 S04 = NOT_STARTED_CORRECTION_AND_FINAL_VALIDATION_PRESERVED
 NEW_PRODUCT_CHANGES_BY_PRIMARY = NONE
@@ -120,7 +126,7 @@ Captura CPU primero sobre R sellado, timeout120s; no repeticiones/escaneos/ritua
 | Shot | Responsable / superficie | Input y estado | Salida |
 |---|---|---|---|
 | S01 | GOD CLOUD especialista | Diseño aceptado por Owner con excepción explícita; E1 PARTIAL_WITH_EVIDENCE | BTX-PERF-DESIGN materializado, commit8942ee2f; E1 registro52d17ce9 |
-| S02 | Un TOP GPT-6.1 Sol LOCAL, fresh-context ONE-SHOT | AUTHORIZED_REPAIR_AND_INTEGRATION; prompt emitido, ejecución no observada por Primary | BTX-PERF-IMPLEMENTATION, aún no recibido |
+| S02 | Un TOP GPT-6.1 Sol LOCAL, fresh-context ONE-SHOT | AUTHORIZED_REPAIR_AND_INTEGRATION; ejecutado 2026-10-09 por TOP LOCAL ([[BTX-PERF-IMPLEMENTATION]]) | BTX-PERF-IMPLEMENTATION entregado: repairs A–D RED→GREEN, replay campaña por driver completo, superficie experiment, control d609ca24/0db2feae medido, PERF_CONTRACT sellado pre-optimización, candidato 584a3cd9/e5d4860b con 2,23× en prefijo sellado y dinero exacto; bloqueo horizonte completo documentado (§7.2) y NQZ5 real completa no alcanzada en presupuesto (§7.3) |
 | S03 | GOD CLOUD independiente + TOP falsificador independiente con ejecución acreditada | Preservado, no iniciado; no sustituir ejecución por source review | BTX-PERF-ADVERSARIAL |
 | S04 | TOP fresco y comprobación independiente acotada conforme al mandato vigente | Preservado, no iniciado; correcciones y validación final | BTX-PERF-FINAL |
 
