@@ -6,6 +6,7 @@ area: "[[Echo]]"
 related:
   - "[[Echo Futures]]"
   - "[[BTX-PERF-DESIGN]]"
+  - "[[BTX-PERF-IMPLEMENTATION]]"
   - "[[BTG-S05-REMEDIATION-AND-RESULTS]]"
 aliases: []
 tags:
@@ -18,139 +19,116 @@ updated: "2026-10-09"
 
 ## Propósito
 
-Control operativo único del backtester de [[Echo Futures]]. BTG conserva su cierre histórico acotado. La intervención vigente BTX-PERF tiene cuatro shots: diseño, implementación, adversarial independiente ejecutado y corrección/validación final. Objetivo: una trayectoria histórica integrada por modalidad, utilizable por interfaz pública, reproducible y con rendimiento medido, conservando el dominio runtime y módulos Strategy/MM sustituibles. No optimizar ROI ni certificar rentabilidad.
+Control operativo único de BTX-PERF para [[Echo Futures]]: cuatro shots, una trayectoria financiera integrada por modalidad, dominio runtime compartido y módulos sustituibles. Correctness, performance, usabilidad integrada y cobertura son obligaciones separadas. No optimizar ROI ni certificar rentabilidad o readiness física. Primary coordina, no implementa ni acepta el producto.
 
-El control anterior completo queda preservado en Git, commit `52d17ce92321fe0673eeaf1ed59d7e8753d47af7`, mismo path. Esta edición reemplaza sus estados de apertura, bloqueo previo a S02, superficie de S02 y reloj operativo; no borra RED, evidencia o deltas concurrentes. La adenda Owner del9oct2026 prevalece sobre instrucciones históricas del diseño o del plan que pidan otro E1/diseño antes de repairs.
+Esta edición adjudica la entrega S02 aportada por Owner. El control anterior íntegro queda preservado en Git `534daa16b9e043192250b8def8adee2fca6bd800`, mismo path; el informe del autor y el bloque PERF_CONTRACT NO se modifican. Los estados del autor se distinguen de la adjudicación Primary. Las reglas técnicas completas de [[BTX-PERF-DESIGN]] y su adenda Owner siguen vigentes; no se retiran requisitos por esta compactación.
 
 ## Contenido
 
-### Autoridad vigente — aceptación técnica S01 y autorización acotada S02
+### Estado vigente — adjudicación Primary de S02, 2026-10-09
 
 ```text
 PROGRAM = BTX-PERF
 PRIMARY_SESSION = OPEN_UNTIL_EXPLICIT_OWNER_CLOSE
 S01_TECHNICAL_DESIGN = ACCEPTED_FOR_IMPLEMENTATION_WITH_EXPLICIT_PERF_EXCEPTION
 E1 = PARTIAL_WITH_EVIDENCE
-S02 = AUTHORIZED_REPAIR_AND_INTEGRATION
+S02_OWNER_AUTHORIZATION = AUTHORIZED_REPAIR_AND_INTEGRATION
+S02_DELIVERY = RECEIVED
+S02_AUTHOR_STATUS = READY_FOR_S03_REVIEW_WITH_PERF_HORIZON_BLOCK
+S02_PRIMARY_ADJUDICATION = PARTIAL_IMPLEMENTATION_WITH_MATERIAL_GAPS
+S02_COMPLETE_IMPLEMENTATION_ACCEPTED = NO
 PERF_TARGET_FREEZE = REQUIRED_BEFORE_OPTIMIZATIONS
+PERF_CONTRACT_SEAL = REPORTED_BY_AUTHOR_NOT_INDEPENDENTLY_RECONSTRUCTED
+PERF_CONTRACT_SUFFICIENT_JUSTIFICATION = NOT_ACCEPTED_BY_PRIMARY
 FINAL_OWNER_ACCEPTANCE = NOT_GRANTED
-CURRENT_ACTION = PRIMARY_RECEIVES_S02_RESULT
-S02_EXECUTION = DELIVERED_BY_TOP_LOCAL_2026-10-09
-S02_RESULT = READY_FOR_S03_REVIEW_WITH_PERF_HORIZON_BLOCK
-S02_CONTROL_CORRECTED = d609ca241eed63b1b4413af5bae5b849d334ead0 (branch codex/btx-perf-s02, pushed)
-S02_OPTIMIZED = 584a3cd91d8ecf2d8f292547a35f8e9963e2270d (binary e5d4860b4e70f5f5833ebf374b08fb771a4551bc6d58996fa42305e1049bd141)
-S02_PERF_CONTRACT = SEALED_BEFORE_OPTIMIZATIONS (block sha256 ff320f01e9954eefaf84de5380b78e8b99e334d42ac10bf50f018d34ae89079d)
-S02_SPEEDUP_SEALED_PREFIX = 2.23x back-to-back R (>= MIN 1.5x MET)
-S02_FULL_HORIZON = NOT_VERIFIED_PHYSICALLY (hours-scale runs; preexisting, both builds)
-S03 = NOT_STARTED_INDEPENDENT_EXECUTED_ADVERSARIAL_PRESERVED
-S04 = NOT_STARTED_CORRECTION_AND_FINAL_VALIDATION_PRESERVED
-NEW_PRODUCT_CHANGES_BY_PRIMARY = NONE
-NEW_PRODUCT_TESTS_PROFILES_RUNS_BY_PRIMARY = NONE
+CURRENT_ACTION = BOUNDED_INDEPENDENT_FALSIFICATION_WITHIN_S03
+S03 = NOT_EXECUTED_BY_PRIMARY_PROMPT_READY
+S04 = PRESERVED_CORRECTION_AND_FINAL_VALIDATION_NOT_STARTED
+PRODUCT_CHANGES_TESTS_PROFILES_RUNS_BY_PRIMARY = NONE
 PHYSICAL_RUNTIME_READINESS = NOT_DEMONSTRATED_OUT_OF_SCOPE
 PROMOTION = NOT_ACCEPTED_NO_MERGE_OR_DEPLOY
 ```
 
-Owner aprueba arquitectura y contratos técnicos de [[BTX-PERF-DESIGN]] con las precisiones de su adenda «CIERRE TÉCNICO S01 Y AUTORIZACIÓN ACOTADA DE SHOT 2». No aprueba producto, no completa E1 ni crea otro shot. Autoriza un único integrador TOP LOCAL fresh-context ONE-SHOT en Daedalus, con el acceso usado por E1. Primary permanece coordinador CLOUD, sin código de producto/tests/scripts ni integración mecánica; no acepta su propio gate. No insistir en S02 CLOUD sin runner acreditado.
+Primary leyó el informe publicado, los deltas Git y source puntual de los owners necesarios para contrastar el handoff. No ejecutó tests, descargó perfiles ni inspeccionó los bytes de los recibos locales. Los dos incumplimientos de interfaz están confirmados por source; los tiempos, replay y RED/GREEN permanecen evidencia REPORTADA hasta verificación independiente. No presentar esta revisión de manager como S03 ejecutado.
 
-### Secuencia vinculante dentro de S02
+### Adjudicación por hallazgo
 
-1. Recuperar evidencia existente y capturar CPU del baseline usando R sellado, timeout120s y herramientas autorizadas; una corrección mecánica de instrumentación como máximo.
-2. Implementar repairs de correctness, entrada integrada y replay.
-3. Congelar source/build de control corregida, con integración funcional y sin optimizaciones de rendimiento.
-4. Fijar y sellar contrato numérico con evidencia comparable.
-5. Aplicar únicamente optimizaciones sustentadas y compararlas contra ese control corregido.
+| ID | Hallazgo y alcance de evidencia | Decisión |
+|---|---|---|
+| M1 | `v3/backtester/cmd/echo-backtest/experiment.go`, cmdExperiment, exige exactamente un stream y usa Streams[0]. Source en bbbcc1d5. | Usabilidad multicontrato FAIL por carencia de implementación, no bloqueo externo de datos. La nueva entrada no cumple todavía el experimento integrado solicitado. |
+| M2 | En ese archivo, CAMPAIGN no rellena ExperimentManifest.Artifact; `cmd/echo-backtest/reproduce.go` exige Artifact no vacío para --experiment. | El replay público de CAMPAIGN por el manifest que genera la propia entrada está roto por contrato de source. Exigir prueba ejecutada independiente corta. El PASS de ReproduceCampaign vía fixtureFactory no cubre esa ruta. |
+| M3 | PERF_CONTRACT publicado fija NQU6 BASIC<=180s; el mismo informe reporta timeout del candidato a900s. MIN_SPEEDUP se exige sobre R y NQU6 completo, pero sólo R tiene pareja COMPLETE. | Ancla NQU6 BASIC FAIL según evidencia del autor, pendiente contrastar los recibos exactos; no NOT_VERIFIED sin más. MIN_SPEEDUP global NOT_DEMONSTRATED, prefijo R 2,23x REPORTADO. Horizonte todos los años y CAMPAIGN no heredan ese resultado. |
+| M4 | El contrato extrapola45,2us/root-input de un prefijo con warmup y presupone tasa uniforme. Luego el informe la considera refutada. Ambos timeouts a600s se usan para afirmar ausencia de regresión. | Sello previo no valida fundamento. No aceptar el contrato como evidencia suficiente de la precondición Owner ni aceptar no-regresión de dos tiempos censurados. Proyección5h no equivale a corrida5h ni a coste inevitable demostrado. |
+| M5 | `compareLegacyCLIArtifacts` hace Logf+return cuando difieren RunID, antes de comprobar ExecutionState, InputSHA256 y hashes. | Ese verde no acredita el comparador histórico entre builds. Drift legítimo se adjudica con oráculo tipado; un replay con la misma build no lo reemplaza. No declarar fraude ni asumir defectos económicos sin prueba. |
+| M6 | NQZ5 real no alcanzó la transición del20nov2025; el informe sitúa el spool parcial en21oct. Test de campaña usa fxCorpus/fxSpec y factory de fixture. Funciones nuevas críticas69–83% y58,1% agregado selectivo, ocho fallos reportados preexistentes. | Correctness histórica y floor95% no cerrados. Un fixture es evidencia útil, no NQZ5 histórico. Preexistente describe origen, no aceptación; clasificar impacto de los ocho fallos y denominadores, no llenar coverage cosmético. |
+| M7 | El autor declara omitido el pool de preparación por no dominar R; la comparación de32 archivos no cambia el adapter ntminute. `RecentShared` comparte el almacenamiento del ring;109 diferencias de IDs reportadas sin mapa inspeccionado por Primary. | No acreditar paralelismo implementado. Ownership público y mapeo uno-a-uno/referencias son objetivos del verificador, no bugs ejecutados por el manager. |
 
-Los objetivos se congelan antes del primer cambio destinado a mejorar rendimiento, no sólo antes de medir el candidato. Esto incluye gzip rápido, valuación incremental, índices, fast paths y paralelismo de preparación usado para acelerar. La interfaz integrada puede disponer de una preparación secuencial correcta en el control; no se introduce otro motor financiero de referencia. No esconder optimizaciones en el commit de repairs ni mover objetivos después de ver resultados.
+Fuentes de M1/M2/M5/M7: source `xKoRx/echo` en `bbbcc1d5dc0ed18badae46b4eba1a17822632b60`, archivos indicados y `v3/sdk/futures/bars/ring.go`. Fuente de métricas/omisiones: [[BTX-PERF-IMPLEMENTATION]] en Agents-OS `534daa16b9e043192250b8def8adee2fca6bd800`, blob `cec0feaede7e52cdd9b742c0ebfd63179c158207`. Fixture leído: `v3/backtester/btx_s02_campaign_replay_test.go`.
 
-Sin evidencia suficiente para sostener el contrato completo: entregar repairs/integración/replay verificados y bloqueo preciso de performance dentro del mismo S02, con optimizaciones no iniciadas. No inventar números, optimizar a ciegas, pedir otro GOD/probe exploratorio o declarar listo el objetivo total. Un fallo de profiling no revoca la autorización de repairs.
+Gates del objetivo completo: correctness NOT_DEMONSTRATED con defectos públicos materiales; performance FAIL en el ancla NQU6 reportada y NOT_DEMONSTRATED en horizontes/ratios restantes; usabilidad integrada FAIL_SOURCE_CONFIRMED; cobertura total NOT_DEMONSTRATED. No READY_FOR_OWNER_ACCEPTANCE. Un resultado útil parcial no consume ni aprueba por sí solo S03/S04.
 
-### Reloj y límites
+### Trabajo útil conservado y builds exactas
 
-```text
-HISTORICAL_CALENDAR_DEADLINE = 2026-10-09T00:00:00-03:00
-HISTORICAL_WINDOW_STATUS = EXPIRED
-HISTORICAL_180M_T0 = UNKNOWN
-S02_CONTINUATION = EXPLICITLY_AUTHORIZED_BY_OWNER
-NEW_TOTAL_OWNER_TIME_BUDGET = NOT_SPECIFIED
-CPU_DIAGNOSTIC_TIMEOUT_SECONDS = 120
-PROBE_SUGGESTED_4H_BUDGET = NOT_APPROVED
-```
+El source contiene repairs de batch/retenido y payloads de admisión, replay de controlador por API y optimizaciones por perfiles. El autor reporta RED minimo rev5→7, GREEN y ratio R BASIC75,77s→34,01s, CPU141,79s→48,69s, RSS60,4→54,5MiB,88362records/6fills y dinero igual. Es avance reutilizable; no prueba universal ni dato físico reejecutado por Primary. El porcentaje de allocations y atribución CPU se conservan como reportados en el informe, sin recomponerlos desde memoria.
 
-No reiniciar180min, no adoptar4h del probe ni convertir el timeout CPU en presupuesto total. Registrar inicio/límites reales del harness como límites de ejecución, no autorización Owner inventada. La fecha vencida no bloquea el alcance que Owner acaba de autorizar. Ningún proceso propio queda corriendo para otra sesión.
-
-### Entradas fijadas y evidencia disponible
-
-| Entrada | Identidad y alcance |
+| Identidad | Valor |
 |---|---|
-| Echo source/documentación | `50250a2b0df6106943108bf6bfe57552409f3d13`; HEAD remoto de `codex/btg-s05-id-invariance` confirmado sin cambio en este turno |
-| Código histórico | `d1b1446d401f88cfa42dee2eb959120305f5a372`; dos commits documentales hasta50250a2b, no nueva build atribuida por Primary |
-| Binario E1 | SHA256 `66657a99384ff6e622da15cd6953ea34621edc35100b536f118d1ff3918a89fb` |
-| Diseño vigente | `10-projects/Echo Futures/artifacts/backtester-gerard-bankroll/BTX-PERF-DESIGN.md`; materializado en Agents-OS master, commit `8942ee2f236d2c84b9c83cc95334588977f0bdac`, con aceptación/adenda delante de la entrega histórica |
-| Original de transporte S01 | Library `BTX-PERF-DESIGN.md`, backing `file_000000009700820e8a3386507c9564dc`, versión1; SHA256 leído `a792532bdaead5589aa05721369f5861c1807c7989dc4b048e5b59664bde9262`; no es el hash de la nota canónica |
-| Registro E1 | commit `52d17ce92321fe0673eeaf1ed59d7e8753d47af7`, `80-agents/journal/logs/2026-10-08-btx-perf-s01-e1-local-probe.md` relativo a VAULT_ROOT |
-| Cápsula E1 | Ya existente localmente según Owner y registro remoto; el commit NO contiene la cápsula íntegra. Verificar hashes y consumirla en Daedalus, no regenerarla |
-| Evaluación anterior | Informes/inputs/prepared/outputs/replay/logs referenciados por E1; nombre histórico s06 no numera este programa |
+| Baseline source/documentación | `50250a2b0df6106943108bf6bfe57552409f3d13` |
+| Código histórico | `d1b1446d401f88cfa42dee2eb959120305f5a372` |
+| Control corregido | `d609ca241eed63b1b4413af5bae5b849d334ead0` |
+| Binario control reportado | `0db2feae6237ebc20ba8ce16bcc9f50fee0e6809c3677585b403a3d708c490ee` |
+| Candidato medido | `584a3cd91d8ecf2d8f292547a35f8e9963e2270d` |
+| Binario candidato reportado | `e5d4860b4e70f5f5833ebf374b08fb771a4551bc6d58996fa42305e1049bd141` |
+| HEAD remoto observado codex/btx-perf-s02 | `bbbcc1d5dc0ed18badae46b4eba1a17822632b60` |
+| Diferencia584a→bbb | Sólo README y prueba btx_s02_ring_shared_test.go; no transferir identidad de binario por inferencia |
+| Sello PERF_CONTRACT reportado | `ff320f01e9954eefaf84de5380b78e8b99e334d42ac10bf50f018d34ae89079d` |
+| Binario E1 | `66657a99384ff6e622da15cd6953ea34621edc35100b536f118d1ff3918a89fb` |
+| Registro E1 | `52d17ce92321fe0673eeaf1ed59d7e8753d47af7`, no contiene cápsula completa |
 
-Localizadores externos de Daedalus, aportados por Owner, se conservan en el prompt de transporte S02 y en el registro E1. No son rutas de VAULT_ROOT ni montaje acreditado en CLOUD. E1 root reportado `aranea/work/btx-perf-s01-e1-20261008/` relativo al home del usuario autorizado; contiene `BTX-PERF-E1-EVIDENCE.md` y `BTX-PERF-INPUT-CAPSULE/manifest.json`. Evaluación previa bajo `aranea/work/btg-s06-user-oneshot-20261008/`. Resolver las rutas precisas desde esos recibos; no exportar NinjaTrader otra vez, clonar por worker, ampliar ACL o reconstruir paquetes grandes.
+Evidencia local: workspaces `aranea/work/btx-perf-s02-20261009/`, `aranea/work/btx-perf-s01-e1-20261008/` y `aranea/work/btg-s06-user-oneshot-20261008/`, relativos al home autorizado en Daedalus. El prompt de transporte conserva los localizadores absolutos Owner; no son montajes acreditados en CLOUD. Consumir cápsula/recibos existentes y verificar hashes, no reconstruirla, reexportar NinjaTrader, clonar por worker o ampliar ACL. GitHub permite lectura/escritura documental demostrada; eso no concede ejecución física de Daedalus a Primary.
 
-Primary leyó el diseño completo y el registro remoto E1; no inspeccionó bytes de la cápsula física ni ejecutó el probe. Acceso LOCAL usado por E1 queda aceptado como entrada del despacho, sujeto a comprobar identidad/hashes al ejecutar, no a otra investigación de conexiones.
+### Autoridad Owner que sigue vigente
 
-E1 reportó R BASIC89,64s/73,3MiB y CAMPAIGN90,04s/73,5MiB. Registro remoto: NQU6, warmup2026-07-05T22:01Z hasta fin exclusivo2026-07-19T23:00Z, exposición/SL ejercitados; CPU163,5s/167,9s y campaña caja4880. Son prefijos con warmup, no horizonte completo ni speedup. CPU/allocs no capturados; H no medido. E1 conserva PARTIAL_WITH_EVIDENCE aunque S02 capture CPU después.
+Adenda9oct2026: un integrador TOP LOCAL S02 fresh-context ONE-SHOT. Secuencia autorizada: captura CPU focalizada de R sellado, timeout120s y una corrección mecánica instrumental máxima → repairs de correctness/interfaz/replay → control corregido sin optimizaciones → contrato numérico sustentado y sellado → optimizaciones. Sin fundamento suficiente para el contrato completo, entregar repairs verificados y bloqueo sin optimizaciones, no mover objetivos después del resultado. La adjudicación actual no modifica retrospectivamente ese permiso ni el bloque histórico del autor.
 
-### Contratos congelados y precisiones Owner
+BASIC100000 continuo sin lifecycle prop; CAMPAIGN caja5000, compra ON_DEMAND120, una cuenta operando, máximo cuatro COBROS efectivos y reinversión. Pérdida nominal no debita caja otra vez. Strategy/MM compartidos sustituibles; S2/GerardMM son configuración de prueba. Sin if Gerard, cambio de SL/TP/sizing/adds/señales, recorder descartable ni dinero flotante para acelerar.
 
-**Experimento:** BASIC nominal100000 continuo sin lifecycle prop; CAMPAIGN caja5000, compra ON_DEMAND120, una cuenta operando, máximo cuatro cobros efectivos y reinversión. No sumar campañas reiniciadas ni cargar otra vez una pérdida nominal a caja. Mantener configuración funcional y dominio compartido; S2/GerardMM son módulos de prueba, no lógica del driver ni objetivo ROI.
+Preparación/lectura por stream con buffers acotados y merge estable antes del dominio; dependencias de Strategy/MM/riesgo/cuenta/caja preservadas. Diseño C financiera1, pool hasta2 sujeto a recursos, chunks256records/1MiB serializado sin confundir esa cota con RSS. No sumar campañas/contratos reiniciados ni otro motor de indicadores. Rollover prospectivo por autoridades declaradas, warmup por requisitos, obligaciones del retirado conservadas; selección futura no equivale a deuda corriente. No copiar año/mes inicial ni usar siempre catalog[0]. No inventar fechas/feriados/precios/fills o continuidad sobre gaps.
 
-**Paralelismo:** preparación/lectura por stream, buffers acotados y merge estable antes del dominio. Finalización de workers no ordena dinero. Strategy/MM/riesgo/cuenta/caja conservan dependencias. Diseño: C financiero1, pool preparación hasta2 sujeto a recursos, chunks acotados256registros/1MiB serializado según diseño; esa cota no demuestra RSS. Sin otro motor de indicadores ni partición financiera por contrato. Contraejemplo A→B y workers/orden adverso son obligaciones de prueba, no arquitectura por rediseñar.
+Historial: conservar TODAS las revisiones comprometidas SetAccountContext(k)→CloseStage(k+1)→OpenStage(k+2), autoridad final coherente y release únicamente de evidencia poseída del ledger/generación correctos con guard de autoridad corriente. Prohibidos LatestRevision como descarte, guard<= e ignorar errores. Cuerpo tipado/digest sellado al admitir, incluso REJECTED/CONFLICT/pendiente o Apply fallido; idempotencia/conflictos preservados. Replay recompone CAMPAIGN y no readmite externamente sus controles regenerados. Original esperaba ACCOUNT_REPLACEMENT, reproducción produjo OPERATION_APPLY.
 
-**Historial:** mecanismo localizado por E1 y precisado por Owner: SetAccountContext(k), CloseStage(k+1), OpenStage(k+2), luego recordEconomics(k) y release contra autoridad k+2. Conservar todas las revisiones comprometidas, publicar autoridad final coherente y liberar sólo evidencia poseída del ledger correcto. Mantener guard corriente. Prohibidos LatestRevision como descarte de intermedias, guard<= e ignorar error. Cubrir día, reemplazo, referencias prestadas, reentrancia y writer/Close fallidos. La primera nueva ejecución histórica NQZ5 comprueba la reparación; no redescubre la causa.
+Equivalencia entre builds/horizontes admite sólo diferencias tipadas justificadas y mapeos IDs uno-a-uno con referencias; no supresión genérica de IDs/hashes/timestamps/kinds. No comparar campaña vieja abortada como denominador. Separar PASS latched, solicitud/admisión/aplicación FUNDED, funded activo y cobros; no inferir0pases. Cuarto solicitado no es cuarto cobrado; residual forfeited no es caja; compra aplicada no es activación ni refund implícito.
 
-**Controles:** congelar cuerpo tipado/digest al admitir, independientemente de APPLIED/REJECTED/CONFLICT/pendiente; aplicación fallida no pierde su cuerpo. Mantener idempotencia y conflictos sin sobrescribir primera admisión. **Replay:** reconstruir modalidad completa y controlador CAMPAIGN; contrastar reemplazos, controles, compras, cobros y caja. Original esperaba ACCOUNT_REPLACEMENT; reproducción produjo OPERATION_APPLY. No invertir causalidad ni borrar records. No readmitir externamente controles regenerados por el controlador.
+### Reloj, independencia y próximos shots
 
-**Multicontrato:** petición común, catálogo físico completo, schedule prospectivo y warmup por requisitos; obligaciones del contrato retirado sobreviven. Una selección futura no es por sí sola deuda corriente. No copiar año/mes del inicial al seleccionado ni usar siempre catalog[0] como sesión. Política funcional de rollover del diseño necesita identidad/calendario declarados que resuelvan instantes; no inventar fechas, feriados, precios/fills ni continuidad sobre gaps desconocidos. Un bloqueo de datos no se usa como excusa para CLI/replay defectuosos.
+Ventana histórica `2026-10-09T00:00:00-03:00` EXPIRED; T0 histórico180min UNKNOWN; continuación S02 fue autorizada sin presupuesto total nuevo. No reiniciar180min ni aprobar4h o ventanas dedicadas por sugerencia de un worker. Límites reales del harness se registran como tales. Procesos propios terminan en la sesión.
 
-**Equivalencia:** dinero exacto, composición sustituible, callbacks/protección/reservas/claims/finality conservados. Sin if Gerard, ajustes de SL/TP/sizing/adds/señales o recorder descartado. Diferencias entre builds/horizontes sólo tipadas y justificadas; mapeos de IDs uno-a-uno con referencias preservadas. Nunca eliminar genéricamente hashes/IDs/timestamps/kinds. Comparar control corregido con optimizado en idéntica semántica/workload; campaña vieja abortada no sirve de denominador.
+| Shot | Responsabilidad | Estado y evidencia |
+|---|---|---|
+| S01 | Arquitecto GOD CLOUD distinto del manager; probe TOP LOCAL E1 | Diseño aceptado con excepción, E1 parcial; diseño materializado en8942ee2f y registro E1 en52d17ce9 |
+| S02 | Integrador TOP LOCAL ONE-SHOT | Entregado; Primary lo adjudica parcial con M1–M7, no implementación completa |
+| S03 | GOD CLOUD independiente del arquitecto/autor, con TOP independiente que escribe/ejecuta falsificadores | Sin ejecutar aquí. Primer trabajo preparado: TOP LOCAL falsifica M1/M2 y verifica oráculos/recibos; GOD independiente adjudica dentro del mismo shot. No reemplazar su dictamen por este control |
+| S04 | TOP fresco y comprobación independiente acotada | Correcciones/validación final conservadas; sin garantía inventada de que alcanzará para cumplir todo |
 
-**Lifecycle:** reconciliar separadamente PASS latched, solicitud, admisión y aplicación FUNDED, estado activo y cobros. No repetir0pases sin resolver estas disposiciones. Cuarto solicitado pendiente no equivale a cuarto cobrado; residual forfeited no es caja. Compra aplicada no equivale a activación y no se inventa refund.
+Primero pruebas cortas sobre rechazo multistream y replay por manifest propio. Si confirman RED estructural, no gastar horas en reruns completos300/600/900s o auditoría general de capacidad ausente. Completar falsificadores cortos que cambien repairs S04; devolver RED temprano y declarar el resto NOT_RUN. No convertir S03 en implementación, nueva investigación, quinto shot o reactivación de S02 cerrado. La verificación aún no realizada sigue obligatoria; RED temprano no equivale a S03 totalmente completado.
 
-### Contrato de performance — obligatorio antes de optimizar, no antes de reparar
+### Despacho y persistencia
 
-Valores actuales MAX_WALL_PER_MODE/MIN_SPEEDUP_TARGET/MAX_RSS/throughput: **NOT_FROZEN**. S02 fija el contrato completo después del control corregido y antes del primer cambio de rendimiento. Debe incluir horizonte completo solicitado por modalidad, recursos/actividad/workload comparables, C financiero fijada, ejecución y outputs/Close, replay y comparación; separar mediciones de objetivos proyectados con supuestos y sensibilidad. Conservar bytes/hash del bloque congelado y evidencia del orden control→sello→optimización.
+Único siguiente prompt de transporte: Library `/BTX-PERF-S03-TOP-LOCAL-VERIFICATION-PROMPT.md`, `library_file_id=libfile_4bcf419d25f88191a9bc1dd65d1123f2`, backing `file_00000000a780820ea975f22bd8fbc57a`;15929bytes, SHA256 `8fb80bf567395943ce0bd4209c23408fb362585d1e3487ac3c65af780c556141`. Es ejecución técnica dentro de S03, no un shot nuevo, worker ya iniciado ni dictamen independiente GOD ya devuelto. Sin herramienta de despacho directo, Owner transporta el prompt.
 
-No adoptar53,5µs/root-input para todos los años,180/220s de NQU6 como horizonte integral,2× como mejora demostrada o512MiB como máximo multianual verificado. Aborto más rápido no es mejora del objetivo. Un horizonte limitado por datos no sustituye al solicitado. No extrapolar88/67min bajo13–14procesos como benchmark aislado ni volver a lanzar ese lote.
+TOP conserva producto/originales y escribe sólo pruebas independientes en verificación aislada y evidencia. Entrega propuesta `BTX-PERF-S03-TOP-EVIDENCE.md`; `BTX-PERF-ADVERSARIAL.md` sigue reservado al dictamen independiente de S03. No más controles paralelos. Workers dejan agent-run/feedback y cierran su propia sesión; no Primary. Ningún PASS por source review, rc0, aborto idéntico o conciliación aislada.
 
-Captura CPU primero sobre R sellado, timeout120s; no repeticiones/escaneos/ritual documental antes. Una corrección mecánica instrumental máxima. No servicios nuevos, cambios de permisos, recorder/factories desactivados ni alteración de fidelidad. Instrumentado no equivale a tiempo normal; pasos despachados no equivalen a omitidos. Volumen/actividad/bytes y límites efectivos se obtienen del material existente; coste dominante no se presupone.
+Agents-OS sólo master, un escritor por delta, blob SHA/readback y preservación de cambios concurrentes. Sin ramas/PRs/worktrees documentales. Registro consolidado en [[2026-10-09-btx-perf-s02-owner-amendment]] mediante adición de esta adjudicación, sin reescribir la adenda anterior. No código de producto/tests/scripts, merge/deploy, broker/cuentas/órdenes, PROD/ETCD, permisos, feedback o cierre de Primary en esta revisión. Modelos/tokens/cuotas no expuestos UNKNOWN; no contar despachos planeados.
 
-### Registro de cuatro shots
+## Baseline histórico BTG-S05 — referencia preservada
 
-| Shot | Responsable / superficie | Input y estado | Salida |
-|---|---|---|---|
-| S01 | GOD CLOUD especialista | Diseño aceptado por Owner con excepción explícita; E1 PARTIAL_WITH_EVIDENCE | BTX-PERF-DESIGN materializado, commit8942ee2f; E1 registro52d17ce9 |
-| S02 | Un TOP GPT-6.1 Sol LOCAL, fresh-context ONE-SHOT | AUTHORIZED_REPAIR_AND_INTEGRATION; ejecutado 2026-10-09 por TOP LOCAL ([[BTX-PERF-IMPLEMENTATION]]) | BTX-PERF-IMPLEMENTATION entregado: repairs A–D RED→GREEN, replay campaña por driver completo, superficie experiment, control d609ca24/0db2feae medido, PERF_CONTRACT sellado pre-optimización, candidato 584a3cd9/e5d4860b con 2,23× en prefijo sellado y dinero exacto; bloqueo horizonte completo documentado (§7.2) y NQZ5 real completa no alcanzada en presupuesto (§7.3) |
-| S03 | GOD CLOUD independiente + TOP falsificador independiente con ejecución acreditada | Preservado, no iniciado; no sustituir ejecución por source review | BTX-PERF-ADVERSARIAL |
-| S04 | TOP fresco y comprobación independiente acotada conforme al mandato vigente | Preservado, no iniciado; correcciones y validación final | BTX-PERF-FINAL |
+Owner cerró BTG8oct2026 como PASS_BOUNDED_OFFLINE_SOFTWARE,16findings S04 e invarianciaIDs sobre d1b. Reejecución final terminada; no volver a pedirla como pendiente. WarmupNQZ3=2023-10-15T22:00Z, trading=2023-10-29T22:00Z, fin exclusivo2023-11-23T03:29Z, V2/CONFIGURED. BinarioS05 `520d5343a1171796b67daa43875ac71ebeb9ce2c5ad39f84737c7adba44a84f1`. BASIC116fills/neto−43405.84/saldo56594.16; CAMPAIGN22fills/neto−6151.60/caja4640/3compras/2reemplazos/0cobros. First/replay826.715/911.089s BASIC y751.442/721.335s CAMPAIGN, bajo concurrencia.
 
-No quinto shot, nuevo diseño/E1 ni reactivación de workers cerrados. Fuente/modelos/consumos reales o UNKNOWN; no atribuir cuota a un despacho planeado o a una sesión LOCAL. La aceptación técnica S01 no convierte los cuatro gates del programa en PASS. Correctness, performance, usabilidad integrada y cobertura conservan FAIL/NOT_DEMONSTRATED donde corresponda hasta evidencia nueva. No PASS por rc0, source review, aborto idéntico o conciliación aislada. PHYSICAL_RUNTIME_READINESS fuera; sin D6, broker, cuentas, ETCD/PROD, órdenes, permisos, merge o deploy.
-
-### Despacho único S02 y persistencia
-
-Prompt completo fresh-context: Library `/BTX-PERF-S02-TOP-LOCAL-PROMPT.md`, `library_file_id=libfile_ddc9a3c286c48191ad89688c82bca501`, backing `file_00000000802c820e8cf5d11c444bef7d`; SHA256 `eef0f184136e24dd71f2f48541248a695c45a52515b8e55debea28c2a7c4acaf`. Es transporte del mandato, no resultado de implementación. Se entrega al Owner para una sesión TOP LOCAL; no hay despacho directo ni ejecución ficticia por Primary.
-
-S02 entrega source/builds exactas, repairs/regresiones ejecutadas, contrato o límite preciso, comparación causal/métricas/artefactos transportables, README con comandos realmente ejecutados y delta del control. Worker deja feedback, agent-run atribuible y cierra sólo su sesión con procesos propios terminados; no cierra Primary. Si falla persistencia, devuelve delta/evidencia sin inventar commit. Agents-OS sólo master y readback; preservar cambios concurrentes.
-
-Registro documental consolidado de esta adenda y materialización: [[2026-10-09-btx-perf-s02-owner-amendment]]. Incluye el delta de apertura que seguía pendiente de change_log, sin recrear sesiones ni modificar el registro E1. Materialización mediante scripts/templates originales verificados en copia documental sandbox, con proyección de tipo doc/change_log del contrato vigente; no lint global, ejecución de producto o sincronización física de Daedalus.
-
-## Baseline histórico BTG-S05 — referencia, no certificación BTX-PERF
-
-Cierre anterior por Owner8oct2026: PASS_BOUNDED_OFFLINE_SOFTWARE sobre d1b1446d,16findings S04 cerrados e invariancia de IDs verificada. La reejecución final d1b terminó; no volver a pedirla como pendiente. Ventana NQZ3 warmup2023-10-15T22:00Z, trading2023-10-29T22:00Z, fin exclusivo2023-11-23T03:29Z; CONFIGURED/OHLC_CAUSAL_PATH_V2. Binario histórico S05 `520d5343a1171796b67daa43875ac71ebeb9ce2c5ad39f84737c7adba44a84f1`, distinto de E1.
-
-Resultados históricos: BASIC116fills, neto−43405.84USD, saldo56594.16; CAMPAIGN22fills, neto agregado−6151.60, caja4640,3compras/2reemplazos/0cobros. First/replay BASIC826.715/911.089s y CAMPAIGN751.442/721.335s bajo concurrencia, no benchmark aislado. Evidencia detallada en [[BTG-S05-REMEDIATION-AND-RESULTS]] y release `btg-s05-id-invariance-d1b1446d`; paquete final112640203bytes, SHA256 `e95b178e61240ca39200f8da6be23c9c62554b2661b9821d7fe1f249062fa907`. No trasladar estos resultados/cobertura/build al candidato nuevo.
-
-El objetivo BTG original vencía7oct y se cerró8oct: incumplimiento histórico preservado. Cobertura multianual completa y readiness física nunca se demostraron por ese cierre. D6 sigue separado, en otra build, y no se autoriza nuevo riesgo físico desde este programa.
+[[BTG-S05-REMEDIATION-AND-RESULTS]] conserva evidencia y release `btg-s05-id-invariance-d1b1446d`; paquete112640203bytes SHA256 `e95b178e61240ca39200f8da6be23c9c62554b2661b9821d7fe1f249062fa907`. No transferir resultados, coverage o provenance al candidato. Plazo BTG7oct/cierre8oct incumplido, no retrofechar. Cobertura multianual y readiness física nunca aprobadas; D6 separado en otra build, nuevo riesgo físico no habilitado.
 
 ## Fuentes
 
-- Adenda Owner9oct2026 en esta sesión: aceptación técnica S01, E1 parcial, S02 LOCAL, secuencia de control/freeze/optimización y ventana histórica vencida.
-- [[BTX-PERF-DESIGN]], entrega original recibida más precisiones vigentes; source/documentación50250a2b.
-- E1 registro remoto52d17ce92321fe0673eeaf1ed59d7e8753d47af7; cápsula física consumible por integrador, no alojada en ese commit.
-- Control anterior completo en52d17ce9, mismo path; [[BTG-S05-REMEDIATION-AND-RESULTS]] para baseline acotado.
+- Mandato BTX-PERF y adenda Owner9oct2026 de esta sesión, que preservan cuatro shots, independencia y aceptación final humana.
+- [[BTX-PERF-DESIGN]], [[BTX-PERF-IMPLEMENTATION]] y control previo en534daa16, mismo path.
+- Source Echo bbbcc1d5: cmd/experiment.go, cmd/reproduce.go, cmd/native_cli_e2e_test.go, btx_s02_campaign_replay_test.go y sdk/futures/bars/ring.go; compare5025→bbb y584a→bbb consultados autenticadamente.
+- E1 registro52d17ce9 y [[BTG-S05-REMEDIATION-AND-RESULTS]] sólo en sus ámbitos probados.
