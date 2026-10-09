@@ -26,89 +26,29 @@ tags:
   - agent/system1
 ---
 
-# Session Feedback - 2026-10-09 - short-topic
+
+# Session Feedback — BTX PERF S03 TOP B
 
 ## Context
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+[[Codex]], model unknown, [[2026-10-09-codex-unknown-btx-perf-s03-top-b]], evidencia [[BTX-PERF-S03-TOP-B-EVIDENCE]]. Bootstrap/technical-project-manager/agent-run/feedback/close; focused source search; local overlay intacto.
 
-## Scores
+## Observación
 
-Use 1-5, where 1 is poor and 5 is excellent.
-
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
-
-## What Complicated The Session Most
-
-- Observation:
-- Why it was hard:
-- Proposed improvement:
+Seal tests anteriores demostraban copia de admisión aislada pero no ownership de getter/cola. El oráculo monetario postadmisión detectó diferencia1→2USD. Conteos de fills/cuentas de fixtures rojos ocultaban causas correctas (cancel ADD tras SL y recompra ON_DEMAND).
 
 ## Most Useful Part Of Sistema 1
 
-- What helped:
-- Why it helped:
-- Keep/change:
-
-## Least Useful Or Noisy Part
-
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
-
-## Missing Support
-
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
-
-## Retrieval Feedback
-
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
-
-## Skill Feedback
-
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
-
-## Template Feedback
-
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
-
-## Memoria Interna (Internal Memory)
-
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
+Contrato distingue outcome y evidencia física, identidad unknown y ownership; permitió registrar límites sin inventar PASS.
 
 ## Pain Pattern Candidate
 
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
+REUSABLE_BEHAVIOR_CANDIDATES: test_harness de doble frontera getter/cola y comparación cuerpo/digest/dinero antes/después; pattern adjudicar conteos por obligaciones/causa. No promoción de skill en este shot.
 
-## One Next Improvement
+## Context Efficiency
 
--
+context_high_water_mark unknown; main_context_growth_sources: bootstrap skills y fuentes/verificadores. Primera lectura conjunta de skills produjo salida truncada; lecturas siguientes enfocadas. efficiency_assessment REVIEW. Cambio propuesto: leer contrato mínimo por secciones, impacto MEDIUM y riesgo LOW si se conservan autoridades. Tokens no expuestos.
+
+## Scores
+
+Startup clarity3; retrieval usefulness4; skill fit4; template fit4; closeout friction3; overall confidence4. Autoobservación, no evidencia comparativa de modelo.

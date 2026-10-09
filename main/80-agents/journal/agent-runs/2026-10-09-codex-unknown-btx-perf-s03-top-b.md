@@ -13,10 +13,10 @@ aliases: []
 agent_surface: "[[Codex]]"
 agent_model: unknown
 model_source: unknown
-task_type: coding
+task_type: testing
 task_complexity: unknown
 outcome: partial
-verification: not_run
+verification: partial
 evaluator: agent
 user_rework: unknown
 source_session:
@@ -28,32 +28,21 @@ tags:
   - scope/session
 ---
 
-# Agent Run — 2026-10-09-codex-unknown-btx-perf-s03-top-b
+
+# Agent Run — BTX PERF S03 TOP B
 
 ## Trabajo
 
-- **Objetivo:**
-- **Alcance atribuible a esta combinación superficie×modelo:**
-- **Artefactos afectados:**
+Auditoría independiente LOCAL, producto intacto, source bbbcc1d5. Modelo solicitado GPT-6.1 Sol; real exacto no expuesto: unknown.
 
 ## Evidencia
 
-- **Validaciones ejecutadas:**
-- **Resultado observable:**
-- **Limitaciones de la evidencia:**
+[[BTX-PERF-S03-TOP-B-EVIDENCE]]: B-01 getter corrompe seal; B-02 pending aplica2USD admitiendo1; B-03 caja119 compra120. Diez probes propios finales:5PASS/5FAIL (incluye reference oracle parcial), cinco rojos previos adjudicados. Bins/fixtures/logs sellados fuera vault.
 
 ## Evaluación
 
-%% Scores opcionales 1–5: agregar al frontmatter sólo cuando exista evidencia suficiente. Si son autoevaluados, conservar evaluator: agent. %%
-
-- **Correctness:**
-- **Autonomy:**
-- **Efficiency:**
-- **Tool use:**
-- **Overall:**
+Evaluator agent; no scores comparativos, tokens y consumo unknown. Coverage exhaustivo NOT_RUN, ventana operativa acotada.
 
 ## Resultado
 
-- **Outcome:**
-- **Rework posterior:**
-- **Aprendizaje para comparar herramientas:**
+FINDINGS/REJECT_CANDIDATE_FOR_S04; gate Owner no aceptado; user_rework unknown. Sin producto edits ni commit/push manual; cero procesos pendientes.
