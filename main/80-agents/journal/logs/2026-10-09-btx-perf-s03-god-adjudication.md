@@ -47,6 +47,7 @@ tags:
 - Preservar RED ejecutado, distinguir evidencia favorable acotada de gates y registrar NOT_RUN. Despachos reales `/root/top_a_evidence` y `/root/top_b_safety`, selector `gpt-6.1-sol`, `fork_turns=none`; ambos cerrados con modelo exacto servido UNKNOWN y cero procesos propios pendientes reportados. Ningún programa de verificación ni producto escrito por GOD.
 - Aceptados nuevos B-01/B-02/B-03; R referencial e integridad acotados, provider final abierto; NQZ5 batch4870–4872 reconciliado en2764371objetos completos. Cinco rojos:3supersedidos/1harness/1no resuelto; baseline8/candidato5/tres CLI verdes. Performance R run-only2,2279×, ancla180s FAIL y freeze-pre-cambio no demostrado.
 - Paquete C01–C12 y delta para Primary dentro del dictamen; S04 no despachado, producto no aceptado. TOP A final blob4f97884c0a8b0d26e8d75197f22dd5e35a04a3e9; TOP B final058b63623a4bd7b2c833831ccf6360c9b5a6dc5c.
+- Corrección exclusivamente documental por GOD después del cierre TOP A: sección `Resultado` agregada al agent-run, conservando `Evaluación`, y títulos `Context`, `Validación`, `Rollback` alineados con contrato. El lint estricto conjunto detectó cuatro missing-section; atribución, informe y evidencia TOP A intactos. `deliverables.json` conserva los hashes originales de su devolución; los registros auxiliares publicados tienen el delta estructural trazable, no se reescribió ese recibo.
 
 ## Validación
 

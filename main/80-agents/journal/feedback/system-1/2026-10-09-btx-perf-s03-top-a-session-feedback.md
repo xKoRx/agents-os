@@ -28,7 +28,7 @@ tags:
 
 # Session Feedback — BTX-PERF S03 TOP A
 
-## Observación
+## Context
 
 Recuperación forense de un gzip truncado:2.764.371JSON completos y92bytes del siguiente; conteo preliminar2.764.372 no distinguía frontera. Primera implementación de tooling copiaba un buffer descomprimido grande por cada objeto y consumió~270s; cursor incremental cerró lectura en~24s. Esto motivó feedback real; no cambio público de skill.
 
