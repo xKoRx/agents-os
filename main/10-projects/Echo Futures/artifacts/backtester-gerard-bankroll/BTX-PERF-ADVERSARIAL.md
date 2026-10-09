@@ -99,6 +99,24 @@ El preliminar conserva `MODEL_REPORTED=GLM-5.3-Flash`, superficie reportada ZCod
 
 No se repitieron F1/F2/F3 para fabricar confirmación redundante. Estos RED se aceptan como resultados atribuidos al ejecutor preliminar con localizadores y alcance descritos, no como pruebas corridas por GOD.
 
+### Conciliación S02 frente a la evidencia real
+
+| Afirmación anterior | Adjudicación GOD y evidencia requerida |
+|---|---|
+| Sello antes de cualquier cambio de rendimiento | Separar igualdad de contenido, binding del recibo y cronología. Publicación antes del commit no prueba ausencia de cambios anteriores sin commit. La hora declarada incompatible se describe como inconsistente; no inferir intención. Una rectificación posterior no acredita congelamiento anterior |
+| MIN_SPEEDUP cumplido | Sólo el par R completo sustenta75,77/34,01≈2,23×; el requisito que también nombra NQU6 completo no queda cerrado por R |
+| Ancla NQU6 «no verificada» | FAIL para candidato BASIC frente a180s: las censuras preservadas exceden ese umbral sin completion. No se necesita otra medición para repetir la desigualdad |
+| «No regresión» porque ambos exceden timeout | Rechazado como inferencia: dos tiempos censurados no establecen ratio ni equivalencia de duración |
+|301911 records hasta21jul en900s; NQZ5 sólo21oct | Cifras sin correspondencia con spools preservados según preliminar; TOP A fija frontera y población. No mezclar records de evidencia, inputs raíz y pasos intrabar |
+| Proyección5h = coste necesario | No admitido. Una proyección depende de mezcla de actividad, warmup, exposure y denominador; no es duración completa observada ni inevitabilidad demostrada |
+|109 diferencias prueban equivalencia total | La clasificación se conserva; biyección/referencias/negativo propio y header/footer son obligaciones adicionales. El alcance del mapa R no se transfiere a ALL/SKIP ni múltiples generaciones |
+| Repair NQZ5 sólo probado sintéticamente | El prefijo real preservado contiene replacement18nov y pass-funded20nov2025; su reconciliación amplía evidencia favorable. No significa salida íntegra ni horizonte completo |
+| Ocho fallos idénticos en todos los extremos | Baseline8, candidato5 y tres PASS de clase CLI según detalle: `TestFreshProcessDeterminism`, `TestLargeCorpusStreamingMetrics`, `TestBT_S04_StandaloneReproduceClosedSpec`. «Reparó2» del encabezado/resumen preliminar no concuerda con su propio detalle |
+| Pool no requerido porque no domina R | No aceptado como exención. El diseño aceptado exige capacidad de preparación/lectura por stream hasta2 con fallback1 por recursos. Workers∈{1,2} permite ejecutar1; no convierte ausencia de capacidad/concurrencia en implementación del pool |
+| TOP preliminar es el Sol solicitado | No demostrado: declara GLM-5.3-Flash/ZCode. Conservar procedencia y auditar evidencia; no renombrar modelo ni invalidar hechos reproducibles sólo por etiqueta |
+
+La corrección documental de estas afirmaciones vive aquí, no reemplaza los originales. E1 permanece PARTIAL_WITH_EVIDENCE y S02 PARTIAL_IMPLEMENTATION_WITH_MATERIAL_GAPS; nada de esta conciliación reinicia esos shots.
+
 ### Cuatro gates y cobertura de código separada
 
 | Gate | Estado al corte preliminar | Evidencia / límite |
