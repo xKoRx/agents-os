@@ -232,6 +232,65 @@ Los propietarios son áreas de código, no autorización a este GOD o a los TOPs
 
 Cada NOT_RUN adicional de A/B se conserva en la matriz específica siguiente. No se exige una ejecución imposible sobre interfaz ausente ni se borra la obligación por ese motivo. El rechazo del candidato es definitivo para este corte con cobertura parcial; la aceptación futura necesita las pruebas correspondientes a la build final.
 
+| Obligación focal pendiente | Por qué la evidencia actual no basta | Oráculo posterior / dependencia / gate |
+|---|---|---|
+| Timer intrabar→callback→orden y rearme | Test de timer/control PASS no cubre orden nueva desde callback ni fill retrospectivo adversarial | LONG/SHORT y ALL/SKIP: submit después de causa, drain completo, fill sólo en observación posterior elegible; C07/correctness |
+| Batch día/contexto/stage con sucesor real y reentrancia | S02 y NQZ5 cubren casos concretos; B usa reemplazo a nil para guard, no swap completo de generación | Todas las revisiones comprometidas capturadas; vistas finales coherentes; no liberación prestada/cruzada; igualdad corriente intacta, también fallos primer/intermedio/último Record y Close; C07/correctness |
+| Sello en todas las disposiciones y post-Finish | R no tiene controles; tests previos de duplicate/reject/pending no prueban ownership profundo; B-01/B-02 son RED | APPLIED/REJECTED/CONFLICT/pendiente con cuerpo/digest original recuperable y dinero una vez; mutaciones de caller/getter/nested maps no alteran autoridad; C08/C09/correctness+replay |
+| Cuarto cobro efectivo, residual y reinversión larga | FourthRequestPending pasa, pero no prueba cuarto cobro/retirada/residual; NQZ5 no conserva footer de caja | Caja=inicial−compras aplicadas+cobros netos aplicados; residual separado y no reinvertible, compra≠activación; mantener costo/fees/reglas; C07/C10/correctness |
+| MM y Strategy custom con events/timers y estado | Strategy de B verifica6 callbacks y lectura, no conjunto events/timers de MM ni continuidad bajo rollover/replacement | Módulos públicos sin ifGerard, callbacks/estado preservados, lecturas observacionales; C07/correctness |
+| Rollover completo posición+orden+claim/readiness | Núcleo preserva orden retirada y prefijos, pero combinación completa y merge CLI ausentes | Identidad/year/month propia, obligación retirada resuelta con su precio, candidato no elegible antes de readiness, caja/Strategy continuas; C01/C07/correctness+histórico |
+| Provider final y ALL/SKIP | Digest opaco distinto y cause_ref todavía no mapeada; mapas R de una generación no cubren estos pares | Preimagen final tipada, biyección por generación y referencias, colisión/swap huérfano rechazados conservando dinero; C11/correctness |
+| Input-sequence de R reconstruida desde feed | Coincidencia del digest sellado no es recomputación externa; SHA de inputs de footer sí verificado | Encuadre real de inputs consumidos, dato/fase/orden concordantes y mismo digest; C07/integridad |
+| Race y alcance global de tests | `-race` sólo reportado por S02; no ejecutado por nuevos TOPs. Coverage selectivo no global | Ejecutar sobre build final congelada y owners afectados; zero races observadas no prueba universal de thread safety; C07/cobertura código |
+
+Las tareas analíticas no resueltas se entregan a la validación independiente de S04, sin reabrir TOP A/B ni crear un tercer especialista S03. No se convierte la ausencia de recibo pre-cambio en una reparación histórica posible: si no aparece evidencia anterior auténtica, ese límite de F-S03-01 permanece para Primary/Owner.
+
+### Denominadores, comandos y reutilización verificable
+
+Recibos R originales `logs/run-control-R.stderr.log` y `logs/run-opt-R.stderr.log` cronometran `echo-backtest-control run --spec prepared-control/runspec.json ...` y `echo-backtest-optimized run --spec prepared-optimized/runspec.json ...`, con descriptor NQU6 común y outputs separados. GOD leyó las líneas `Command being timed`, user/sys/wall/maxRSS y TOP A liga los archivos completos por hash. Preparación separada, replay y comparación no están dentro de esos tiempos. Cierre/escritura realizados dentro del proceso run pertenecen a ese tiempo; no se conoce un total end-to-end de verificación por sumar duraciones no conservadas.
+
+| Magnitud R | Control | Candidato | Alcance |
+|---|---:|---:|---|
+| Wall del proceso run |75,77s|34,01s| Ratio2,22787415466×, R únicamente |
+| CPU user+sys |128,24+13,55=141,79s|45,80+2,89=48,69s| CPU no wall |
+| maxRSS |61840KiB=60,3906MiB|55788KiB=54,4805MiB| Proceso medido, no histórico completo |
+| Root inputs |1674851|1674851|45,2399 frente a20,3063µs/root-input; no sustituir por records |
+| Records emitidos |88362|88362|857,495 frente a384,893µs/record; población distinta |
+
+Comandos de verificación **ejecutados por TOP A**, CWD home autorizado; scripts y hashes viven en su paquete. Se conservan para reproducción, no se ejecutaron por GOD:
+
+```sh
+timeout 120s python3 aranea/work/btx-perf-s03-top-a-20261009/receipts.py
+timeout 120s python3 aranea/work/btx-perf-s03-top-a-20261009/compare_r.py
+timeout 300s python3 aranea/work/btx-perf-s03-top-a-20261009/prefix.py
+timeout 120s python3 aranea/work/btx-perf-s03-top-a-20261009/check_prefix.py
+```
+
+TOP B ejecutó desde su `overlay/v3`, entre otros comandos literales conservados en COMMANDS.md:
+
+```sh
+timeout 120s go test ./backtester -run '^(TestBTGS03_CampaignCashBurnReplacementAndContinuity|TestBTGS03_V2IntrabarAddsAdverseAndProtection|TestBTGS04CampaignBurnCashLedger|TestBTGS04_MixedMinuteCapabilityBoundary|TestBTGS04_StructuralReferenceSkipFirstDivergence)$' -count=1 -v
+timeout 120s ../../bin/backtester.test -test.run '^TestTOPB' -test.v
+```
+
+La segunda línea usa el localizador relativo equivalente al binario absoluto de COMMANDS.md; CWD y bin SHA45ba14ba completo fijado en identidades. Logs `five-reds.log` y `final-sealed-own.log` rc1 esperado; no se confunde fallo de aserción con rechazo del harness. El bin Gerard retenido fue compilado después del `go test` y no se le atribuye falsamente la ejecución de ese comando.
+
+Para coverage final **NOT_RUN en S03**, receta de S04 desde el checkout corregido/congelado `v3`, con `S04_OUT` fuera del árbol y procesos financieros seriales:
+
+```sh
+go test -count=1 -covermode=atomic -coverprofile="$S04_OUT/backtester-futures.cover" ./backtester/... ./sdk/futures/...
+go tool cover -func="$S04_OUT/backtester-futures.cover"
+```
+
+La lista explícita define el alcance de esa medición, no «todo Echo». S04 debe conservar stdout/rc/profile, lista de paquetes/sentencias instrumentadas y subconjunto nuevo/modificado contra control/candidato, además de cobertura de caminos críticos. Si quedan owners modificados fuera de esa lista se incluyen de forma explícita antes de medir; no se ocultan ni se promedia un paquete para dar floor global. Cualquier fail/skip/timeout permanece reportado. Estos comandos son criterio futuro, no autorización de ejecución desde esta sesión ni nueva evidencia verde.
+
+Assets a conservar por el integrador S04: B propone regresores permanentes para getters/controles congelados/dinero119–120/Record/Close; E2E candidates para ON_DEMAND y Strategy stateful. A aporta `compare_r.py` y recuperación forense como HARNESS_TOOLKIT_CANDIDATE, y `check_prefix.py` como E2E_CANDIDATE fechado. Diagnóstico ADD y mutaciones en memoria son DISPOSABLE_REPRODUCER; el comparador ALL/SKIP parcial no debe promoverse como correcto antes de C11. No integración mecánica por GOD ni promoción automática al producto.
+
+### Delta adjudicado para Primary
+
+Actualizar BTG-PLAN mediante su único owner: S03 dictamen entregado RED/READY_FOR_PRIMARY_REVIEW, cobertura ejecutada parcial explícita. Aceptar B-01/B-02/B-03 como defectos vigentes, conservar F-S03-02/03/04 y ancla BASIC180s FAIL. Rectificar sello a freeze-pre-cambio NOT_DEMONSTRATED, R a run-only2,2279×, NQZ5 a prefijo reconciliado2764371objetos completos y cinco rojos a3supersedidos/1harness/1no resuelto. Preservar provider/input-sequence/ALL-SKIP y matriz causal/lifecycle/rollover/race/coverage pendientes. S04 recibe C01–C12, sin despacho por GOD ni aceptación adelantada. Primary permanece abierto y FINAL_OWNER_ACCEPTANCE=NOT_GRANTED.
+
 ### Persistencia y cierre
 
 Documento nuevo materializado por `80-agents/skills/_shared/scripts/materialize_schema_note.py doc` según contrato vigente. BTG-PLAN, el preliminar, el informe S02 y el PERF_CONTRACT permanecen intactos. Sus blobs se comprobaron nuevamente sin delta. Se cierra únicamente este encargo S03: ambos TOPs devueltos/cerrados, cero procesos propios pendientes reportados, ningún código o test escrito por GOD y ninguna ejecución S04. Primary sigue abierto; registros/feedback por delta separados y sin L0 inventado. La sincronización automática publicó versiones de trabajo explícitamente DRAFT; el corte final/readback determina el dictamen entregado.
