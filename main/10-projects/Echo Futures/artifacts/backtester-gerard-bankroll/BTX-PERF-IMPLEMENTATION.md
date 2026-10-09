@@ -141,11 +141,59 @@ Recibo del sello: SHA256 del bloque PERF_CONTRACT anterior (delimitadores inclus
 
 ## 6. Optimizaciones sustentadas (post-sello)
 
-ESTADO: pendiente de ejecución; sólo mecanismos del perfil §2 dentro de los contratos del diseño: read models observacionales estrechos (eliminar clonación defensiva por lectura en `bars.Ring.Recent`), índice mantenido para `Builder.findSource`, compresión BestSpeed sin pérdida, con fallback exacto y biyección tipada control→candidato. Selección y descartes se registran aquí tras la medición.
+Ejecutadas tras el sello (OPTIMIZED_SHA `584a3cd91d8ecf2d8f292547a35f8e9963e2270d`, binario `e5d4860b4e70f5f5833ebf374b08fb771a4551bc6d58996fa42305e1049bd141`, vcs.modified=false), cada una sostenida por el perfil §2 y dentro de los contratos del diseño:
+
+| Mecanismo | Owner | Sustento | Descarte registrado |
+|---|---|---|---|
+| Transferencia read-only de la ventana del anillo (`bars.Ring.RecentShared`) al snapshot de barras; `marketctx` almacena la ventana por referencia (el modelo REEMPLAZA por (stream,timeframe), nunca acumula ni muta) | sdk/futures/bars + analytics + marketctx | cloneBarRecord 81,5% del alloc space; GC 38,7% CPU | Ninguno: la copia defensiva se conserva en toda frontera pública/multi-consumidor (`Recent` intacta) |
+| Índice de membresía de fuentes del Builder (`findSource`): Forming ∪ LastSource ∪ Ring con mantenimiento exacto (inserción, evicción vía `Ring.PushEvict`, descarte de forming), no serializado, rebuild lazy | sdk/futures/bars | findSource 9% CPU (escaneo lineal por record) | Índice de owners del scheduler (no dominante en perfil) |
+| Compresión gzip BestSpeed sin pérdida | resultwriter | flate ≈3,5s (2%) en R | Writer asíncrono, formato columnar: prohibidos por diseño |
+
+Discartes sin justificación medida: valuación incremental exacta (valuación/sort/aritmética NO dominantes en el perfil — hipótesis de E1 quedaron refutadas como coste dominante), fast paths del lattice, paralelismo de preparación (no requerido por el perfil; el coste está en minutos activos, no en preparación).
+
+## 6.1 Resultado de la comparación back-to-back (R prefix sellado, mismo protocolo §5)
+
+| Métrica | Control `d609ca24`/`0db2feae` | Candidato `584a3cd9`/`e5d4860b` | Delta |
+|---|---:|---:|---|
+| Wall R (timeout 120s) | 75,77 s | 34,01 s | **2,23× (≥ MIN_SPEEDUP 1,5× ✓)** |
+| CPU user+sys | 141,79 s | 48,69 s | 2,91× |
+| maxRSS | 60,4 MiB | 54,5 MiB | −9,8% (≤512 MiB ✓) |
+| Resultado económico | 98.020,18 / −1.935 / 44,82 / 6 fills | idéntico | dinero exacto ✓ |
+| Records | 88.362 | 88.362 | ✓ |
+
+Comparación causal tipada control→candidato: **88.362/88.362 records presentes en ambos; 109 diferencias, TODAS cadenas de IDs/hash derivados del build (misma clase de cascada que E1 documentó entre horizontes); cero divergencia semántica tras normalización tipada de IDs; dinero idéntico.** Replay oficial del candidato: IDENTICAL (rc=0).
 
 ## 7. Resultados del candidato y comparación
 
-ESTADO: pendiente de ejecución post-sello.
+### 7.1 Verificación del contrato PERF_CONTRACT
+
+| Campo | Estado | Evidencia |
+|---|---|---|
+| MIN_SPEEDUP_TARGET 1,5× | **CUMPLIDO** | 2,23× wall back-to-back en R (§6.1), mismo workload/protocolo/semántica |
+| MAX_RSS 512 MiB | CUMPLIDO en prefijo (54,5 MiB); horizonte completo no ejecutado en presupuesto | §6.1 |
+| MAX_WALL_PER_MODE horizonte completo (BASIC ≤3600s, CAMPAIGN ≤3900s) | **NO VERIFICADO FÍSICAMENTE — bloqueo específico** | ver 7.2 |
+| Anclas secundarias NQU6-completo (≤180s/220s) | **REFUTADAS como proyección; NO verificadas** — la tasa µs/input NO es uniforme | ver 7.2 |
+| Throughput C=1, pool ∈ {1,2} | C=1 ejecutado en todas las corridas; pool no requerido (preparación no dominante) | §6.1 |
+| Verificación (replay oficial + comparación) | Replay BASIC candidato IDENTICAL; comparación causal tipada sin divergencia semántica | §6.1 |
+
+### 7.2 Bloqueo específico: horizonte completo (preexistente, no introducido por S02)
+
+El coste por minuto activo de trading escala con la amplitud intraminuto del lattice V2 (diseño §3.4 lo anticipó: «multiplicación de trabajo activo por amplitud intraminuto») y con la exposición; la tasa µs/root-input NO es uniforme entre warmup y trading activo. Evidencia de esta sesión:
+
+- NQU6 completo (65 días, candidato): excede 600s y 900s; en 900s procesa 301.911 records llegando a 2026-07-21T03:43Z (≈2,2 días causales de exposición pesada, 204.570 OPERATION_APPLY, 18 fills) ⇒ proyección observada ≈5h de wall para el contrato completo.
+- NQU6 completo con el CONTROL corregido: excede 600s (mismo bloqueo en la referencia; NO es regresión del candidato).
+- NQZ5 (contrato 2025, alta volatilidad): el warmup+prefijo 2025-10-13→11-20 excede 240s con el candidato (4,9 ms/record medidos en warmup NQZ5 vs 0,39 ms/record del prefijo R NQU6 — 12,6× por amplitud/actividad del contrato).
+- Calibración histórica s06 (misma máquina): NQU6 full-extent BASIC 5.277s, CAMPAIGN hasta 3.993s, bajo contención 13–14× con GOMAXPROCS=1 ⇒ los horizontes completos toman HORAS, no minutos; la proyección de E1 (346s aislados) asumía tasa uniforme y quedó refutada por medición.
+
+Consecuencia por la bifurcación cerrada del mandato: los objetivos de horizonte completo quedan como objetivo sellado NO verificado físicamente; NO se mueven después de ver resultados; el speedup demostrado está anclado al workload comparable sellado. La verificación de horizonte completo requiere corridas de horas (fuera del presupuesto de esta sesión ONE-SHOT) y pertenece a S03/S04 o a una ventana de ejecución dedicada.
+
+### 7.3 Primera ejecución real NQZ5 (repair A)
+
+NQZ5 REAL completo: NO alcanzada en presupuesto (7.2: el prefijo que cruza la transición del defecto, 2025-10-13→11-20, excede 240s con el candidato; la corrida completa es de horas). La verificación del repair queda demostrada por: (1) RED mínimo que reproduce la SECUENCIA EXACTA de E1 (SetAccountContext k + CloseStage k+1 + OpenStage k+2 → liberación de k bajo sink streaming: «recorded revision 5 is not current authority 7», réplica del 4870→4872 del artefacto NQZ5 de E1, sin re-corrida del caso roto); (2) GREEN del batch con captura de todas las revisiones (TestBTXS02ContextTransitionBatchCapturesEveryCommittedRevision); (3) replay de campaña con ciclo real burn→compra→reemplazo y oráculo de caja A→B (4880→4760) IDENTICAL (TestBTXS02CampaignReplayRedrivesFullDriver). El stream parcial real NQZ5-R del candidato (spool 40MB, 49.359 records, warmup hasta 2025-10-21) quedó preservado como evidencia de ejecución real sin abortos de correctness. S03 (falsificación independiente) conserva su gate sobre NQZ5 real.
+
+### 7.4 Cobertura y suites
+
+Ver logs/full-suites.log del workspace; cobertura del código nuevo/modificado medida con denominador real al cierre (§7.4 final).
 
 ## 8. Evidencia transportable (fuera del vault)
 
