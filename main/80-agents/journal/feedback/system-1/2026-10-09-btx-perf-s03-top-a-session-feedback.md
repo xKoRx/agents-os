@@ -12,8 +12,8 @@ related: []
 aliases: []
 agent_surface: "[[Codex]]"
 agent_model: unknown
-agent_run:
-session_goal:
+agent_run: "[[2026-10-09-codex-unknown-btx-perf-s03-top-a]]"
+session_goal: BTX-PERF S03 TOP A evidencia independiente
 source_session:
 confidence: high
 load_policy: manual
@@ -26,89 +26,17 @@ tags:
   - agent/system1
 ---
 
-# Session Feedback - 2026-10-09 - short-topic
+# Session Feedback — BTX-PERF S03 TOP A
 
-## Context
+## Observación
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+Recuperación forense de un gzip truncado:2.764.371JSON completos y92bytes del siguiente; conteo preliminar2.764.372 no distinguía frontera. Primera implementación de tooling copiaba un buffer descomprimido grande por cada objeto y consumió~270s; cursor incremental cerró lectura en~24s. Esto motivó feedback real; no cambio público de skill.
 
-## Scores
+## REUSABLE_BEHAVIOR_CANDIDATES
 
-Use 1-5, where 1 is poor and 5 is excellent.
+- tooling/test_harness: oráculo tipado separado de integridad y del estado final; el digest provider opaco queda abierto aunque la biyección R pase.
+- tooling: recovery sólo de objetos completos + bandera EOF/footer; cursor incremental y límites de wall explícitos. `prefix.py` y `check_prefix.py` tienen evidencia real de este intento.
 
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
+## Evaluación
 
-## What Complicated The Session Most
-
-- Observation:
-- Why it was hard:
-- Proposed improvement:
-
-## Most Useful Part Of Sistema 1
-
-- What helped:
-- Why it helped:
-- Keep/change:
-
-## Least Useful Or Noisy Part
-
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
-
-## Missing Support
-
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
-
-## Retrieval Feedback
-
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
-
-## Skill Feedback
-
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
-
-## Template Feedback
-
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
-
-## Memoria Interna (Internal Memory)
-
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
-
-## Pain Pattern Candidate
-
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
-
-## One Next Improvement
-
--
+Internal continuity ayudó a conservar UNKNOWN y separar identidad de routing; no se modificó. Context high-water/token/costo UNKNOWN. Efficiency REVIEW: salida SHASUMS completa excesiva y lectura amplia de autoridades truncadas fueron evitables; consultas enfocadas reducen ruido sin omitir evidencia. Scores:session3/5,tooling3/5,retrieval3/5,autonomy4/5 (autoevaluación de trayectoria, no comparación de modelos). Pain pattern candidate: buffer-copy en parsing forense; promoción propuesta tooling tras revisión/forward-test, no skill editada. No Graphify-specific feedback: no Graphify utilizado. Cierre worker por mandato, documentación durable suficiente, sin L0/L1 ni memoria global.

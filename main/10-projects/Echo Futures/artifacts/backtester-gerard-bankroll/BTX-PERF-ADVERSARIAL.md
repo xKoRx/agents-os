@@ -66,6 +66,9 @@ El sync abreviado `32d8d6d0` y SHA256 abreviado `51f2a1d2…` del handoff prelim
 | Candidato medido | `584a3cd91d8ecf2d8f292547a35f8e9963e2270d` |
 | Binario medido SHA256 | `e5d4860b4e70f5f5833ebf374b08fb771a4551bc6d58996fa42305e1049bd141` |
 | HEAD de verificación preliminar | `bbbcc1d5dc0ed18badae46b4eba1a17822632b60` |
+| Binario preliminar SHA256 completo, verificado por TOP B | `c9ac66caf363e1eda662c15d07b7c6cdb2fa11e773c30243d23e4aed7edc13b8` |
+| Archive source TOP B SHA256 | `5f45a04dfccac63f8178e1f7dbec41d6bc5d0c738880eda2148650bc99441d25` |
+| Binario final de tests TOP B SHA256 | `45ba14ba265290fa3fb164ccfe4d79bedb77620c09ddc1a2e66e95ae1d6c5671` |
 
 584a→bbb cambia README y test de ring según recibos preliminares; no convierte al binario medido 584a en un binario bbb. Cada nuevo TOP debe fijar su fuente/overlay/inputs/binarios por separado. Ningún tiempo S02 se atribuye a una compilación de S03.
 
@@ -76,7 +79,7 @@ La superficie efectiva de esta conversación expone shell local, archivos Daedal
 | TOP | Pregunta | Límite operativo fijado por GOD | Estado |
 |---|---|---|---|
 | A, `/root/top_a_evidence` | Recibos/sello, biyección tipada y negativo referencial, NQZ5 preservado | 35min de tarea; comandos pequeños ≤120s; lectura forense ≤300s por spool; cero ejecución financiera nueva | DISPATCHED_WAITING |
-| B, `/root/top_b_safety` | Safety/contratos compartidos y adjudicación de cinco tests rojos | 35min de tarea; ≤120s por comando y ≤12min agregados de ejecución; único ejecutor financiero | DISPATCHED_WAITING |
+| B, `/root/top_b_safety` | Safety/contratos compartidos y adjudicación de cinco tests rojos | 35min de tarea; ≤120s por comando y ≤12min agregados de ejecución; único ejecutor financiero | RETURNED_CLOSED; evidencia aceptada con límites explícitos |
 
 Son límites operativos de este despacho, no una concesión Owner de 180min/4h ni un nuevo deadline. No se reabre el ejecutor preliminar. Cada TOP tiene un artefacto distinto y una única devolución final; GOD es el escritor documental de publicación. Nada de clones completos por worker, export NT nuevo, lote13×, corridas históricas300/600/900s, perfiles o reparación de producto.
 
@@ -98,6 +101,36 @@ El preliminar conserva `MODEL_REPORTED=GLM-5.3-Flash`, superficie reportada ZCod
 | F-S03-10 | Recibos reportan baseline8fallos y candidato5; tres tests CLI pasan | Encabezado/resumen «reparó2» inconsistente; atribución de cinco rojos pendiente B; preexistencia no prueba seguridad |
 
 No se repitieron F1/F2/F3 para fabricar confirmación redundante. Estos RED se aceptan como resultados atribuidos al ejecutor preliminar con localizadores y alcance descritos, no como pruebas corridas por GOD.
+
+### TOP B — findings adjudicados y evidencia aceptada
+
+Leído íntegro [[BTX-PERF-S03-TOP-B-EVIDENCE]], blob `058b63623a4bd7b2c833831ccf6360c9b5a6dc5c`, SHA256 `7b295e43b5d7866c24d23c6196c0a762d6f36b3127f34bef7452ffccb3378aed`. Paquete externo `aranea/work/btx-perf-s03-top-b-20261009/`; SHASUMS.txt SHA256 `430ee4e2117eff2fa063b268fc930674e44cc9ac4f000c15409476c7a4df1072`. GOD leyó COMMANDS.md, IDENTITY.json y `logs/final-sealed-own.log`; no reejecutó pruebas ni atribuye a su lectura la ejecución del TOP. Source original limpio reportado por TOP; modelos real/consumo UNKNOWN. El artefacto enumera fixtures sintéticos y hashes completos, sin corpus NT nuevo.
+
+| Finding / requisito | Evidencia y primera divergencia | Oráculo / adjudicación |
+|---|---|---|
+| B-02, CRITICAL — aplicar exactamente el cuerpo admitido | `TestTOPBCashflowUsesFrozenMoney`: admitido USD1 con digest `sha256:4c472c69516c48a53e191ad5987ce4ef052052bfc6a6377daaa866f761e5ec6b`; caller cambia a2; Apply acredita2 y APPLIED usa `sha256:db86e30d877183a5b6f826101209ae06fb72e0c385477f4f8f434baeac342a24`. Otra prueba cambia ExpectedContextDigest tras admisión y causa fallo que el cuerpo congelado no habría causado | DEFECTO_VIGENTE, EXECUTED_RED. Adenda exige payload sellado y dinero exacto. `EnqueueControl` conserva `c` original en pendingControls; C08 obligatorio. No se ha demostrado si fue introducido por optimización o heredado, y eso no altera el rechazo |
+| B-01, MAJOR — lectura pública observacional | `TestTOPBAdmissionsReadIsolation`: mutar ContextID a través de `Admissions()` cambia el payload interno; digest original `sha256:c64c6cc65135d1036458e8090e53d380c5152641c00c5ca431f28c74f7533a4d`, cuerpo posterior `sha256:cbaad4812b5ec11d1798f8af930e1e0e658b1603fdbdfb73709fd046696c89af` | DEFECTO_VIGENTE, EXECUTED_RED. Copia superficial del slice no conserva ownership profundo; C09 distinto de C08. El mutador es una prueba adversarial de frontera pública, no una propuesta de uso normal |
+| B-03, MAJOR — fondos suficientes antes de compra | `TestTOPBInitialCash119120`: fixture final válido9min, sin trading;119→compra1→−1 USD, HORIZON_REACHED, FailureCode vacío. Control120→compra1→0 USD | DEFECTO_VIGENTE, EXECUTED_RED. C10. Boundary adversarial autorizado no cambia el perfil CAMPAIGN de5000; no extrapolar sobregiro a esa entrada sin prueba. Primer fixture entries0 con error Strategy fue descartado y preservado, no fundamenta el finding |
+| Captura/Record y ownership | Cuatro subcasos independientes: fallo Record retiene5 revisiones; borrowed retiene5; owned captura2/libera hasta quedar1; reemplazo artificial del ledger devuelve LEDGER_OWNERSHIP_CHANGED y retiene5 del dueño anterior | PASS_BOUNDED. Prueba guard y conservación del owner capturado; reemplazo a nil no certifica transición real a ledger sucesor ni todas las revisiones día/contexto/stage |
+| Close fallido | `TestTOPBRecorderCloseFailure`: Finish devuelve error aunque el Result diagnóstico tenga COMPLETE | PASS_BOUNDED del canal de error; rechazar ese resultado sigue obligatorio. No adjudicar defecto nuevo sólo por el campo sin considerar err. F-S03-04 sí es un RED distinto de salida CLI |
+| Protection/finality | Ocho tests Gerard, LONG/SHORT y adverse/pyramid, parciales, ACK/claims, late ADD y cancel de riesgo pendiente, más dos fixtures nativos ALL/SKIP | PASS_BOUNDED a fixtures citados; no broker, no sustitución universal de MM ni equivalencia general ALL/SKIP |
+| Lifecycle | FourthRequestPending, ReplacementRestoresEvaluationTerms y oráculo nuevo3burns/4compras/caja4520 PASS | Cuarta solicitud pendiente no cobrada; términos restaurados en reemplazo; dinero de ese fixture conciliado. Cuarto cobro efectivo/residual y reinversión larga quedan NOT_RUN |
+| Sustitución/lecturas | Strategy pública stateful:6 callbacks, Encode/Decode consistente y mutación BarRange recibida no cambia lectura siguiente ni historia; requisitos públicosH4 PASS | PASS_BOUNDED; no certifica MM custom stateful/events/timers ni todas las referencias públicas. No contradice B-01 en otra frontera |
+| Rollover | API conserva prefijos separados y exige precio propio para orden del retirado | PASS_BOUNDED del núcleo; combinación posición+orden+claim, readiness y entrada multistream integrada siguen pendientes |
+
+La ejecución final propia devuelve rc1 de forma esperada: contiene cuatro tests de defecto rojo para tres causas adjudicadas, además del comparador StructuralReference todavía rojo/no resuelto. No se describe como «todas las pruebas PASS». Los regresores previos reutilizados y las pruebas nuevas permanecen distinguibles en el artefacto B.
+
+### Adjudicación de los cinco rojos históricos
+
+| Test original, sin editar | Clasificación final S03 | Motivo y obligación S04 |
+|---|---|---|
+| `TestBTGS03_CampaignCashBurnReplacementAndContinuity` | EXPECTATIVA_SUPERSEDIDA | Cuatro quemadas seguidas de una quinta cuenta activa al horizonte son compatibles con recompra ON_DEMAND. El límite de cobros no es un máximo de compras. Ajustar expectativa de fixture sin desactivar recompra |
+| `TestBTGS04CampaignBurnCashLedger` | EXPECTATIVA_SUPERSEDIDA | Tres burns requieren cuarta compra cuando hay fondos:4×120→caja4520; exigir3compras/caja4640 omite la sucesora activa. Oráculo independiente B lo demuestra |
+| `TestBTGS03_V2IntrabarAddsAdverseAndProtection` | FALLO_HARNESS | Se envía ADD a22:11:06.666…, SL llena a22:11:10 y cancela el ADD pendiente. Dos fills no demuestran «add ausente»; forzar un tercero aquí puede crear exposición huérfana. Fixture adicional debe garantizar paso elegible posterior sin stop anterior |
+| `TestBTGS04_MixedMinuteCapabilityBoundary` | EXPECTATIVA_SUPERSEDIDA | API acepta MIXED_MINUTE con modelo explícito y el input sin modelo falla por `ohlc_model`; assertion antigua esperaba modo no soportado. Conservar negativos de modelo/autoridad sin equiparar soporte API con CLI multistream |
+| `TestBTGS04_StructuralReferenceSkipFirstDivergence` | NO_RESUELTO | Al mapear provider_order_ref según orden ya bijectada, primera divergencia pasa a cause_ref FILL:sim-exec:ord…:1.74records/rev36 iguales y snapshots semejantes no bastan. Completar mapa referencial ALL/SKIP y negativos en S04; no declarar un bug monetario ni un PASS por inferencia |
+
+Ninguna clasificación borra el rojo original. S04 conserva una prueba que codifique el requisito vigente y trace la sustitución de expectativas obsoletas. El mapa TOP A del par real R es otro experimento y no cierra el quinto test.
 
 ### Conciliación S02 frente a la evidencia real
 
