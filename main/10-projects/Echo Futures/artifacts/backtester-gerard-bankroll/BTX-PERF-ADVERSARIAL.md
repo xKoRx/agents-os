@@ -29,18 +29,20 @@ Dictamen independiente del encargo BTX-PERF-S03 iniciado, dirigido por GOD y sus
 ### Estado del dictamen
 
 ```text
-DOCUMENT_STATE = DRAFT_WAITING_FOR_TOP_EVIDENCE
+DOCUMENT_STATE = FINAL_BOUNDED_ADJUDICATION
 PROGRAM = BTX-PERF
 SHOT = S03_CONTINUATION
 CANDIDATE_GLOBAL_PASS = REJECTED_BY_EXISTING_EXECUTED_RED
-S03_GOD_ADJUDICATION = WAITING_FOR_TOP_EVIDENCE
-S03_TEST_COVERAGE = PARTIAL
+S03_GOD_ADJUDICATION = READY_FOR_PRIMARY_REVIEW
+S03_VERDICT = RED_REJECT_CANDIDATE
+S03_DOCUMENT_COMPLETENESS = COMPLETE_FOR_BOUNDED_REJECTION_AND_S04_HANDOFF
+S03_TEST_COVERAGE = PARTIAL_WITH_EXPLICIT_NOT_RUN
 S04 = NOT_STARTED_PRESERVED
 PRIMARY_SESSION = OPEN
 FINAL_OWNER_ACCEPTANCE = NOT_GRANTED
 ```
 
-El rechazo del candidato ya tiene fundamento en la entrada multistream ausente y las dos rutas públicas de replay CAMPAIGN rotas. El dictamen final aún requiere revisar las devoluciones despachadas; una fila pendiente no se convierte en prueba realizada por el hecho de que exista ese rechazo.
+**Dictamen RED:** rechazar este candidato. A los RED integrados del preliminar se agregan tres defectos confirmados por TOP B: aplicación de dinero distinto del cuerpo admitido, corrupción del sello desde un getter público y sobregiro en la compra inicial. La evidencia favorable de la traza R y del prefijo NQZ5 se conserva con sus límites. Los dos TOPs entregaron y cerraron; el dictamen queda completo para este rechazo acotado y el paquete S04, mientras la cobertura ejecutada sigue parcial. `READY_FOR_PRIMARY_REVIEW` significa dictamen disponible, nunca producto aceptado.
 
 ### Autoridad, cortes e identidades
 
@@ -78,7 +80,7 @@ La superficie efectiva de esta conversación expone shell local, archivos Daedal
 
 | TOP | Pregunta | Límite operativo fijado por GOD | Estado |
 |---|---|---|---|
-| A, `/root/top_a_evidence` | Recibos/sello, biyección tipada y negativo referencial, NQZ5 preservado | 35min de tarea; comandos pequeños ≤120s; lectura forense ≤300s por spool; cero ejecución financiera nueva | DISPATCHED_WAITING |
+| A, `/root/top_a_evidence` | Recibos/sello, biyección tipada y negativo referencial, NQZ5 preservado | 35min de tarea; comandos pequeños ≤120s; lectura forense ≤300s por spool; cero ejecución financiera nueva | RETURNED_CLOSED; evidencia aceptada con límites explícitos |
 | B, `/root/top_b_safety` | Safety/contratos compartidos y adjudicación de cinco tests rojos | 35min de tarea; ≤120s por comando y ≤12min agregados de ejecución; único ejecutor financiero | RETURNED_CLOSED; evidencia aceptada con límites explícitos |
 
 Son límites operativos de este despacho, no una concesión Owner de 180min/4h ni un nuevo deadline. No se reabre el ejecutor preliminar. Cada TOP tiene un artefacto distinto y una única devolución final; GOD es el escritor documental de publicación. Nada de clones completos por worker, export NT nuevo, lote13×, corridas históricas300/600/900s, perfiles o reparación de producto.
@@ -89,22 +91,22 @@ El preliminar conserva `MODEL_REPORTED=GLM-5.3-Flash`, superficie reportada ZCod
 
 | ID | Aporte admitido | Reserva / conclusión que no se admite |
 |---|---|---|
-| F-S03-01 | Bytes del bloque reportados iguales en copia/publicación anterior al commit de optimización; recibos hash/hora inconsistentes | mtime y commit no prueban la frontera del primer cambio. No aceptar PERF_TARGET_FREEZE cumplido ni atribuir falsificación intencional. Receta y frontera pendientes A |
+| F-S03-01 | Bytes del bloque iguales en copia/publicación anterior al commit de optimización; recibos hash/hora inconsistentes | A resolvió receta; freeze anterior al primer cambio sigue NOT_DEMONSTRATED. No atribuir intención |
 | F-S03-02 | Dos streams físicos reales rechazados en BASIC y CAMPAIGN por `experiment`, rc2 | Defecto de implementación, no falta externa de datos; no volver a ejecutar sin duda material |
 | F-S03-03 | Manifest CAMPAIGN sin Artifact; `--result` enruta antes de drenar footer lazy; ambas rutas CLI no alcanzan controlador | IDENTICAL bare sin replacement no certifica replay de campaña; fixture API no certifica CLI |
 | F-S03-04 | Out-root movido rompe rutas; rc0 con FAILED/WARMUP_INCOMPLETE | Coverage de descriptor no acredita mercado consumido; precisar mapeo de estado/rc en S04 |
 | F-S03-05 | Par R completo75,77s→34,01s; censuras NQU6 exceden180s | Beneficio R acotado; dos timeouts no prueban no-regresión,5h no es tiempo completo observado y omisión del pool no se convalida por R |
-| F-S03-06 | Prefijo NQZ5 alcanza replacement18nov y pass-funded20nov2025, progresa hasta21nov | No completo, no footer ni checksum íntegro; conciliación contable pendiente A, nunca resume desde spool |
-| F-S03-07 | 88362 records por lado,109 records con diferencias en IDs/refs; mutación de precio rechazada | Clasificación no prueba biyección ni rechazo de refs intercambiadas; no aceptar «verificación cerrada» sin A |
+| F-S03-06 | Prefijo NQZ5 alcanza replacement18nov y pass-funded20nov2025, progresa hasta21nov | A concilió batch/cuenta/generación; no completo, no footer/checksum ni cobros finales, nunca resume desde spool |
+| F-S03-07 | 88362 records por lado,109 records con diferencias en IDs/refs; mutación de precio rechazada | A añade biyección de R y negativo referencial; estado final provider todavía no demostrado |
 | F-S03-08 | Nueve regresores S02 y840 sondas findSource; estabilidad de ventanas en bordes ejercitados | No prueba universal de inmutabilidad pública, callbacks o race |
 | F-S03-09 | Oráculo independiente rescata fixture legacy, sin diferencias de records | El test del producto sigue abandonando antes de comprobar; no queda reparado por un test externo |
-| F-S03-10 | Recibos reportan baseline8fallos y candidato5; tres tests CLI pasan | Encabezado/resumen «reparó2» inconsistente; atribución de cinco rojos pendiente B; preexistencia no prueba seguridad |
+| F-S03-10 | Recibos reportan baseline8fallos y candidato5; tres tests CLI pasan | Encabezado/resumen «reparó2» inconsistente; B adjudicó3expectativas supersedidas,1fallo de harness y1no resuelto; preexistencia no prueba seguridad |
 
 No se repitieron F1/F2/F3 para fabricar confirmación redundante. Estos RED se aceptan como resultados atribuidos al ejecutor preliminar con localizadores y alcance descritos, no como pruebas corridas por GOD.
 
 ### TOP A — sello, equivalencia y NQZ5 adjudicados
 
-Leído íntegro [[BTX-PERF-S03-TOP-A-EVIDENCE]], blob `aa08cf527d5a101f4114f017430fb77eebb622fb`, SHA256 `f16c768913d79776ea332e324beacad855b6abcadb384a1ba4cf57b5390b02e9`. Paquete externo `aranea/work/btx-perf-s03-top-a-20261009/`; SHA256MANIFEST.txt `57bba09ea65371c006c479a4a7c0f5d68b521db3055f5e22576f809bdc8d7344`. GOD revisó `seal.json`, `r-oracle.json` y `nqz5-oracle.json` además del documento; TOP A ejecutó los parsers/oráculos propios. No hubo motor financiero nuevo ni reconstrucción de cápsulas. Inputs, spools y binarios completos están ligados por `input-cuts.json`/`identity-cut.json` y tabla final del artefacto A.
+Leído íntegro [[BTX-PERF-S03-TOP-A-EVIDENCE]] y su delta final, blob `4f97884c0a8b0d26e8d75197f22dd5e35a04a3e9`, SHA256 `13508e92ddcb64f6f745deab2daf96405348f8f1dbc77b6a40c072f061e7e5c3`. Paquete externo `aranea/work/btx-perf-s03-top-a-20261009/`; SHA256MANIFEST.txt `0d8d97322435eac763802018e6fcee501813a343f06895f5bf21c85e7567f345`. GOD revisó `seal.json`, `r-oracle.json` y `nqz5-oracle.json` además del documento; TOP A ejecutó los parsers/oráculos propios. No hubo motor financiero nuevo ni reconstrucción de cápsulas. Inputs, spools y binarios completos están ligados por `input-cuts.json`/`identity-cut.json` y tabla final del artefacto A. El borrador previo leído por GOD tenía otro blob: no se confunde con esta devolución final.
 
 **Sello:** SHA256 del documento entero `measure/perf-contract-frozen.md`,13977bytes, es `2ee87f94414e3b48d7a48d8c4915c4ed994cf864e5b74702654d3e98569417f7`. Para el bloque: localizar `## PERF_CONTRACT`, primer fence de apertura text posterior y fence de cierre inclusive, sin LF final,3651bytes; SHA256 `7e71aed95548905ded11e898df04aa02fd0c54a2d4d0d8d690f743d0cd9ba984`, igual entre frozen y publicado. Agregar exactamente un LF produce3652bytes y `cfa81c17c7acea7dd78aa80b58e32984230a5e81c65a74009e4d1123d35e08d2`. `measure/perf-contract-seal.sha256` corresponde al documento entero; el hash publicado `ff320f01e9954eefaf84de5380b78e8b99e334d42ac10bf50f018d34ae89079d` no coincide con esos alcances. Se acepta `PUBLISHED_BLOCK_RECEIPT_NOT_REPRODUCIBLE`.
 
@@ -114,7 +116,7 @@ La hora declarada13:20−03 contradice publicación previa; mtime/birth10:16:59�
 
 Negativo del propio mapa: fijado el mapa, reasignar sólo `fill.order_id` del primer FILL a otra orden existente conservando dinero y las restantes referencias; rechazo en seq85929. Se acepta `R_TYPED_TRACE_EQUIVALENCE=PASS_BOUNDED_SINGLE_GENERATION`, no una propiedad universal ni igualdad de toda la build.
 
-Integridad distinta de equivalencia: A recomputó CRC/EOF gzip y records/logical SHA según encuadre de8bytes big-endian + JSON exacto; ambos artefactos R válidos. Summary/economics COMPLETE, residuales, ledger/risk e input-sequence sellado coinciden; input-sequence se cotejó, no se recomputó desde feed externo. Admisiones/dispositions no presentes en R: igualdad de ausencia no prueba su contrato. Digest provider difiere: control `ff27d84fba6a6febaceebfff0d981b73f3e9278a475ef4a366da7bf821a18993`, candidato `f644d2db0bb28d1eb3f895162ffa9feb02a4e9bb3d2d684920b27231c0187c51`. Sin preimagen tipada final, `PROVIDER_FINAL_STATE_EQUIVALENCE=NOT_DEMONSTRATED`; no eliminar ese hash ni asumir cascada de IDs. Se conserva un gap de evidencia, no un defecto monetario demostrado.
+Integridad distinta de equivalencia: A recomputó CRC/EOF gzip y records/logical SHA según encuadre de8bytes big-endian + JSON exacto; también el SHA de inputs exactos del footer y el RunID derivado. Ambos artefactos R son válidos en esos contratos. Summary/economics COMPLETE, residuales, ledger/risk e input-sequence sellado coinciden; input-sequence se cotejó, no se recomputó desde feed externo. Admisiones/dispositions no presentes en R: igualdad de ausencia no prueba su contrato. Digest provider difiere: control `ff27d84fba6a6febaceebfff0d981b73f3e9278a475ef4a366da7bf821a18993`, candidato `f644d2db0bb28d1eb3f895162ffa9feb02a4e9bb3d2d684920b27231c0187c51`. Sin preimagen tipada final, `PROVIDER_FINAL_STATE_EQUIVALENCE=NOT_DEMONSTRATED`; no eliminar ese hash ni asumir cascada de IDs. Se conserva un gap de evidencia, no un defecto monetario demostrado.
 
 **NQZ5:** input `campaign-NQZ5-optimized.json` SHA256 `89f5f1ece421ecfbabafcf0dfd5347c47197ac8ebe8ecd37698cc2bdd6110b36`, build584a/bin e5d4860b completo fijado arriba; run `bt-c-e4cc8f263b77628887517f57542c5a69c9a06d84cedaec92c4462fd623e41348`, attempt `attempt-dm0ct6ccs13a-bec43c43f142`, rc124. Spool90225184bytes SHA256 `2acbfe38122f18a65b9a5d7d7e7848563ccc83d04c990d3f3ebe804d5304f180`. Oráculo recupera **2764371 objetos completos**, gzip EOF=false y92bytes del siguiente objeto parcial. Rectifica2764372 del preliminar; no contar un objeto incompleto como record válido. Último completo21nov2025 `21:01:45.257142857Z`, root3578967/step2845190; horizonte solicitado27nov18:00Z. Recuperación forense no valida CRC/footer/Close ni permite resume.
 
@@ -166,7 +168,7 @@ Ninguna clasificación borra el rojo original. S04 conserva una prueba que codif
 | Afirmación anterior | Adjudicación GOD y evidencia requerida |
 |---|---|
 | Sello antes de cualquier cambio de rendimiento | Separar igualdad de contenido, binding del recibo y cronología. Publicación antes del commit no prueba ausencia de cambios anteriores sin commit. La hora declarada incompatible se describe como inconsistente; no inferir intención. Una rectificación posterior no acredita congelamiento anterior |
-| MIN_SPEEDUP cumplido | Sólo el par R completo sustenta75,77/34,01≈2,23×; el requisito que también nombra NQU6 completo no queda cerrado por R |
+| MIN_SPEEDUP cumplido | Sólo el par R completo sustenta75,77/34,01≈2,23×; se cronometra `run --spec` con preparación separada ya hecha, no prepare+run+replay+comparación. El requisito que también nombra NQU6 completo no queda cerrado por R |
 | Ancla NQU6 «no verificada» | FAIL para candidato BASIC frente a180s: las censuras preservadas exceden ese umbral sin completion. No se necesita otra medición para repetir la desigualdad |
 | «No regresión» porque ambos exceden timeout | Rechazado como inferencia: dos tiempos censurados no establecen ratio ni equivalencia de duración |
 |301911 records hasta21jul en900s; NQZ5 sólo21oct | Cifras sin correspondencia con spools preservados según preliminar; TOP A fija frontera y población. No mezclar records de evidencia, inputs raíz y pasos intrabar |
@@ -181,9 +183,9 @@ La corrección documental de estas afirmaciones vive aquí, no reemplaza los ori
 
 ### Cuatro gates y cobertura de código separada
 
-| Gate | Estado al corte preliminar | Evidencia / límite |
+| Gate | Estado final adjudicado | Evidencia / límite |
 |---|---|---|
-| Correctness | NOT_CLOSED | Advances A–D acotados; faltan biyección, conciliación completa y ataques críticos, además de cinco rojos por adjudicar |
+| Correctness | FAIL_EXECUTED | B-01/B-02/B-03 vigentes, incluido dinero aplicado distinto del admitido. Biyección R y NQZ5 favorecen alcance acotado; provider/ALL-SKIP y ataques pendientes impiden cierre |
 | Performance | FAIL en ancla NQU6 BASIC180s; resto parcial | 2,23× R; no ratio válido de timeouts ni horizonte completo; fundamento/sello insuficientemente acreditados |
 | Usabilidad integrada | FAIL_EXECUTED | Multistream obligatorio no implementado; replay CLI CAMPAIGN roto por ambas rutas; portabilidad y rc incorrectos |
 | Cobertura histórica de mercado | NOT_DEMONSTRATED para horizonte solicitado | Los prefijos y descriptor no demuestran trayectoria financiera continua multicontrato; NQZ5 atraviesa transición pero no termina |
@@ -193,17 +195,17 @@ Denominadores que S04 debe declarar sin intercambiarlos: wall end-to-end en segu
 
 Cobertura histórica: numerador de intervalos/observaciones efectivamente consumidos bajo obligación por stream, denominador del ReadPlan esperado para la petición sellada; informar por separado cerrado acreditado, desconocido y no requerido. No usar suma de extremos de trece archivos ni duración nominal como cobertura continua. Frontera causal y primera causa se reportan aunque no exista porcentaje defendible.
 
-Cobertura de código: sentencias cubiertas / sentencias instrumentadas del alcance declarado, con SHA, paquetes y filtros de tests. El95% aplica al alcance de desarrollo acordado y no sustituye caminos críticos. Una ejecución con `-run` selectivo no representa todas las suites. Los comandos y denominadores exactos preservados deberán ser citados por los TOPs; no se inventa una remediación de coverage en S03.
+Cobertura de código: sentencias cubiertas / sentencias instrumentadas del alcance declarado, con SHA, paquetes y filtros de tests. El95% aplica al alcance de desarrollo acordado y no sustituye caminos críticos. Una ejecución con `-run` selectivo no representa todas las suites. El58,1% se mantiene REPORTED_SELECTIVE por S02: en esta revisión no se recuperó su comando exacto/profile con lista de sentencias, ni se volvió a medir. Es insuficiente para certificar floor global. Los comandos focalizados ejecutados por B sí están preservados en COMMANDS.md; no se inventa una remediación de coverage en S03.
 
-### Paquete S04 y validación final — preparación pendiente de TOPs
+### Paquete cerrado de correcciones S04
 
-Las correcciones de producto corresponden exclusivamente a S04 y deberán quedar vinculadas a la causa, owner, regresor RED, aceptación observable y dependencias. Multistream sigue obligatorio; reducir alcance no es una salida autorizada. El paquete se cerrará después de revisar las dos devoluciones. S04 no está despachado y no se certifica por anticipado una build futura.
+Las correcciones siguientes corresponden exclusivamente a S04, vinculadas a causa, owner, regresor RED, aceptación observable y dependencias. Multistream sigue obligatorio; reducir alcance no es una salida autorizada. El paquete cierra la adjudicación S03 tras ambas devoluciones. S04 no está despachado y no se certifica por anticipado una build futura ni se promete que ese shot resolverá todo.
 
 | Prioridad / corrección | Causa y owner de producto | Cambio mínimo exigible, sin fijar implementación | RED / criterio observable | Dependencias |
 |---|---|---|---|---|
-| P0 C08 Aplicar el cuerpo financiero admitido | `run.go` EnqueueControl/pendingControls/Apply | Retener para aplicación el control tipado congelado al admitir; mutaciones del objeto del caller no alteran importe, contexto ni identidad aplicada | TOP B reporta cashflow admitido USD1, caller mutado USD2, Apply acredita2. Regresor y hashes pendientes revisión de artefacto final; criterio: se aplica1 con mismo digest y sin doble dinero | Ningún cambio de política económica; conservar APPLIED/REJECTED/CONFLICT/pendiente y negativa por conflicto |
-| P0 C09 Frontera pública de admisiones | `run.go` Admissions y ownership de TypedPayload | Entregar vista aislada o inmutable del cuerpo/digest, sin referencias mutables hacia la autoridad interna | TOP B reporta modificación por getter corrompiendo sello; criterio: cambios en la lectura no alteran admisión almacenada, digest ni posterior aplicación | C08 debe ser probado aparte; una copia en el getter no corrige el objeto pendiente |
-| P0 C10 Asequibilidad de compra inicial | `campaign.go` RunCampaign, primer débito del libro de caja | Aplicar guard de caja suficiente también a la primera compra y conservar término de negocio explícito, sin debit/activación ficticios | TOP B reporta119/120→una compra y caja−1;120/120→caja0. Criterio:119 no compra/no sobregiro,120 compra una vez; duplicados sin doble débito | Sin refund inventado ni ajuste del costo120; preservar semántica de compra≠activación |
+| P0 C08 Aplicar el cuerpo financiero admitido | `run.go` EnqueueControl/pendingControls/Apply | Retener para aplicación el control tipado congelado al admitir; mutaciones del objeto del caller no alteran importe, contexto ni identidad aplicada | B-02: `TestTOPBCashflowUsesFrozenMoney` y `TestTOPBPendingControlUsesAdmittedBody`; criterio: aplica1 con mismo digest, tiempo/orden sellados y sin doble dinero | Ningún cambio de política económica; conservar APPLIED/REJECTED/CONFLICT/pendiente y negativa por conflicto |
+| P0 C09 Frontera pública de admisiones | `run.go` Admissions y ownership de TypedPayload | Entregar vista aislada o inmutable del cuerpo/digest, sin referencias mutables hacia la autoridad interna | B-01: `TestTOPBAdmissionsReadIsolation`; mutar lectura no altera admisión almacenada, digest ni posterior aplicación; extender cashflow/maps/getter post-Finish | C08 debe ser probado aparte; una copia en el getter no corrige el objeto pendiente |
+| P0 C10 Asequibilidad de compra inicial | `campaign.go` RunCampaign, primer débito del libro de caja | Aplicar guard de caja suficiente también a la primera compra y conservar término de negocio explícito, sin debit/activación ficticios | B-03: `TestTOPBInitialCash119120` versión válida9min;119 no compra/no sobregiro,120 compra una vez; duplicados sin doble débito | Sin refund inventado ni ajuste del costo120; preservar semántica de compra≠activación |
 | P1 C01 Entrada física multistream | `cmd/echo-backtest/experiment.go`, `experiment.go`, `spec.go`, adapter `internal/datasets/ntminute` | Una petición por modalidad resuelve descriptor común, catálogo/schedule y streams físicos; preparación/lectura por stream con buffers acotados y merge estable antes del dominio | F-S03-02; aceptar los dos streams reales y preservar una trayectoria continua. A→B retiene caja/estado y obligaciones de A; orden de llegada no decide dinero | Autoridades físicas/calendario existentes; no fabricar datos ni implementar mediante suma de campañas |
 | P1 C02 Pool de preparación | Adapter `ntminute` y preparación integrada | Implementar capacidad admitida hasta dos workers y fallback uno por recursos, con razón registrada, cancelación/backpressure/Close correctos | Workers1/2 y entrega inversa producen mismo orden semántico; worker lento/fallido no causa deadlock ni COMPLETE parcial | C01; no convalidar ausencia por perfil R ni añadir trece procesos financieros |
 | P1 C03 Replay CAMPAIGN público | CLI `experiment.go`, `reproduce.go`, `replay.go`, `resultwriter.go` | Manifest enlaza artefacto/spec; detectar y reproducir CAMPAIGN desde metadatos realmente leídos, recomponiendo controlador y comparando disposiciones/caja/residuales | F-S03-03; ambas rutas CLI alcanzan full-driver en caso con burn/recompra y replacement; corrupción material/referencial rechazada; no readmisión externa duplicada | Sello/admisiones válidos; el IDENTICAL bare sin lifecycle no sirve como aceptación |
@@ -211,6 +213,8 @@ Las correcciones de producto corresponden exclusivamente a S04 y deberán quedar
 | P1 C05 Recibos y performance | Autor de evidencia S04, con revisión independiente | Rectificación append-only con receta hash y horas verificables; conservar contrato original y declarar falta de recibo de frontera si persiste. Verificar targets sin moverlos | F-S03-01/05; hash reproducible y trazabilidad; caso completo comparable y ancla180s bajo criterio congelado; no ratio entre censuras | Build corregida/congelada y inputs verificados. No otra optimización autorizada por este dictamen |
 | P2 C06 Oráculo legacy e identidad | `native_cli_e2e_test.go` y tooling independiente de verificación | Evitar salida verde anticipada por RunID distinto; comparar contratos relevantes con correspondencia tipada justificada y negativos | F-S03-09; fixture rescatado conserva igualdad y un cambio semántico o referencial se detecta aunque RunID difiera | Mapeo auditado A; no borrado global de IDs ni adaptación al bug |
 | P1 C07 Cierre de pruebas críticas/cobertura | TOP independiente de validación S04; owners afectados | Integrar regresores transportables que codifiquen invariantes y cubrir ramas críticas pendientes antes del floor | Tests rojos adjudicados por B y matriz final NOT_RUN; comando/denominador reproducible de coverage; no tests cosméticos | Repairs anteriores y final diff congelado; S03 no certifica S04 |
+| P1 C11 Equivalencia final y StructuralReference | Owners de estado provider, evidencia y harness ALL/SKIP | Exponer/recuperar preimagen tipada final y completar mapa por namespace/generación/causa para ese par; adjudicar diferencias antes de cambiar producto | `compare_r.py` conserva negativo seq85929; `TestTOPBStructuralReferencesBijection` sigue RED en cause_ref. Precio, swap de refs, colisión/huérfano deben ser rechazados; estado final no se aprueba por hash ignorado | C06; registrar gap como evidencia pendiente, no bug financiero ya probado |
+| P2 C12 Expectativas de fixtures históricos | Owners de tests de campaña/V2/MIXED | Corregir únicamente expectativas adjudicadas y crear casos que alcancen ADD posterior elegible; mantener originales/recibos en historia | Tabla de cinco rojos: ON_DEMAND3burns/4compras4520, pending ADD cancelado por SL, MIXED sin modelo falla; todos con oráculos causales | No alterar política/código para satisfacer expectativas supersedidas; StructuralReference se resuelve mediante C11 |
 
 Los propietarios son áreas de código, no autorización a este GOD o a los TOPs S03 para editarlas. La elección local de implementación permanece con el integrador S04 dentro de los contratos congelados; Primary recibe el paquete para dirigir ese shot.
 
@@ -226,11 +230,11 @@ Los propietarios son áreas de código, no autorización a este GOD o a los TOPs
 | Cobertura histórica total | No ReadPlan integrado consumido de extremo a extremo; descriptor no es ejecución | Expected/observed/closed/unknown/not-required por stream/obligación; primera frontera desconocida falla explícita; histórico |
 | Suite global y floor95 de desarrollo | S03 sólo pruebas focalizadas; resultados previos selectivos | Todas las suites afectadas con clasificación de rojos, caminos críticos y denominador explícito; cobertura código separada |
 
-Cada NOT_RUN de A/B se agregará a esta matriz con requisito y regresor pertinente. No se exige una ejecución imposible sobre interfaz ausente ni se borra la obligación por ese motivo. El rechazo del candidato puede ser definitivo con cobertura parcial; la aceptación futura necesita las pruebas correspondientes a la build final.
+Cada NOT_RUN adicional de A/B se conserva en la matriz específica siguiente. No se exige una ejecución imposible sobre interfaz ausente ni se borra la obligación por ese motivo. El rechazo del candidato es definitivo para este corte con cobertura parcial; la aceptación futura necesita las pruebas correspondientes a la build final.
 
 ### Persistencia y cierre
 
-Documento nuevo materializado por `80-agents/skills/_shared/scripts/materialize_schema_note.py doc` según contrato vigente. BTG-PLAN, el preliminar, el informe S02 y el PERF_CONTRACT permanecen intactos. Esta versión de trabajo no es todavía el dictamen final ni un cierre del encargo.
+Documento nuevo materializado por `80-agents/skills/_shared/scripts/materialize_schema_note.py doc` según contrato vigente. BTG-PLAN, el preliminar, el informe S02 y el PERF_CONTRACT permanecen intactos. Sus blobs se comprobaron nuevamente sin delta. Se cierra únicamente este encargo S03: ambos TOPs devueltos/cerrados, cero procesos propios pendientes reportados, ningún código o test escrito por GOD y ninguna ejecución S04. Primary sigue abierto; registros/feedback por delta separados y sin L0 inventado. La sincronización automática publicó versiones de trabajo explícitamente DRAFT; el corte final/readback determina el dictamen entregado.
 
 ## Fuentes
 
