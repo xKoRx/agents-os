@@ -2,8 +2,15 @@
 type: doc
 schema_version: 1
 status: active
-area: "[[Personal]]"
-related: []
+area: "[[Echo]]"
+related:
+  - "[[Echo Futures]]"
+  - "[[BTG-PLAN]]"
+  - "[[BTX-PERF-DESIGN]]"
+  - "[[BTX-PERF-IMPLEMENTATION]]"
+  - "[[BTX-PERF-S03-TOP-EVIDENCE]]"
+  - "[[BTX-PERF-S03-TOP-A-EVIDENCE]]"
+  - "[[BTX-PERF-S03-TOP-B-EVIDENCE]]"
 aliases: []
 tags:
   - kind/doc
@@ -15,12 +22,110 @@ updated: "2026-10-09"
 
 ## Propósito
 
--
+Dictamen independiente del encargo BTX-PERF-S03 iniciado, dirigido por GOD y sustentado en falsificación preliminar y dos TOPs independientes. No reinicia S01/E1/S02, no ejecuta S04 y no concede aceptación de producto. Primary conserva BTG-PLAN y Owner conserva la autoridad de producto. GOD escribe documentación y adjudica evidencia; no escribe ni modifica código, tests, fixtures ejecutables, extractores, comparadores o instrumentación, ni compila o ejecuta backtests.
 
 ## Contenido
 
--
+### Estado del dictamen
+
+```text
+DOCUMENT_STATE = DRAFT_WAITING_FOR_TOP_EVIDENCE
+PROGRAM = BTX-PERF
+SHOT = S03_CONTINUATION
+CANDIDATE_GLOBAL_PASS = REJECTED_BY_EXISTING_EXECUTED_RED
+S03_GOD_ADJUDICATION = WAITING_FOR_TOP_EVIDENCE
+S03_TEST_COVERAGE = PARTIAL
+S04 = NOT_STARTED_PRESERVED
+PRIMARY_SESSION = OPEN
+FINAL_OWNER_ACCEPTANCE = NOT_GRANTED
+```
+
+El rechazo del candidato ya tiene fundamento en la entrada multistream ausente y las dos rutas públicas de replay CAMPAIGN rotas. El dictamen final aún requiere revisar las devoluciones despachadas; una fila pendiente no se convierte en prueba realizada por el hecho de que exista ese rechazo.
+
+### Autoridad, cortes e identidades
+
+Orden de autoridad: mandato Owner BTX-PERF y adenda de aceptación S01/autorización S02, despacho Owner de esta continuación, control vigente BTG-PLAN y diseño aceptado bajo la adenda. Las afirmaciones S02, su PERF_CONTRACT y el README son objeto de contraste. Los estados históricos del diseño no revocan la aceptación posterior ni habilitan un nuevo probe.
+
+Lectura local de Agents-OS sobre `master` en `9561c60d1de2d59d1fe9ac393aaa6d37fa8ad17a`; `ls-remote origin refs/heads/master` devolvió el mismo corte. Control también leído por conector GitHub autenticado. La lectura del Primary del preliminar en `88e92e98de735dec8a0fa5832babf418c57c340c` se conserva como procedencia documental, no como inspección física de sus spools.
+
+| Artefacto | Blob Git leído | Tratamiento |
+|---|---|---|
+| BTG-PLAN.md | `de3753b81564eb62f64a8b5eb18f198a6a81fd27` | Autoridad de control; no editado por GOD |
+| BTX-PERF-DESIGN.md | `1cedf2e4c66886079a04d18dd60216b423316b42` | ACCEPTED_INPUT técnico con adenda delante de estados históricos |
+| BTX-PERF-IMPLEMENTATION.md | `cec0feaede7e52cdd9b742c0ebfd63179c158207` | AUDIT_TARGET; preservado sin correcciones retrospectivas |
+| BTX-PERF-S03-TOP-EVIDENCE.md | `cf21581c5cee5d90035e602456619e1eda2e7c0d` | ACCEPTED_INPUT_BOUNDED_WITH_QUALIFICATIONS |
+
+El sync abreviado `32d8d6d0` y SHA256 abreviado `51f2a1d2…` del handoff preliminar son localizadores reportados distintos del blob Git. No se expanden por conjetura.
+
+| Identidad de producto | Valor y alcance |
+|---|---|
+| Baseline de lectura/documentación | `50250a2b0df6106943108bf6bfe57552409f3d13` |
+| Código histórico | `d1b1446d401f88cfa42dee2eb959120305f5a372` |
+| Control corregido | `d609ca241eed63b1b4413af5bae5b849d334ead0` |
+| Binario control SHA256 | `0db2feae6237ebc20ba8ce16bcc9f50fee0e6809c3677585b403a3d708c490ee` |
+| Candidato medido | `584a3cd91d8ecf2d8f292547a35f8e9963e2270d` |
+| Binario medido SHA256 | `e5d4860b4e70f5f5833ebf374b08fb771a4551bc6d58996fa42305e1049bd141` |
+| HEAD de verificación preliminar | `bbbcc1d5dc0ed18badae46b4eba1a17822632b60` |
+
+584a→bbb cambia README y test de ring según recibos preliminares; no convierte al binario medido 584a en un binario bbb. Cada nuevo TOP debe fijar su fuente/overlay/inputs/binarios por separado. Ningún tiempo S02 se atribuye a una compilación de S03.
+
+### Despacho y atribución
+
+La superficie efectiva de esta conversación expone shell local, archivos Daedalus y `collaboration.spawn_agent`; la etiqueta CLOUD del encargo no se utilizó para negar herramientas existentes. Los directorios Owner se comprobaron disponibles. Los dos despachos usaron `fork_turns=none`, modelo solicitado `gpt-6.1-sol`, sin autorizar subdelegación. El harness recibió explícitamente ese selector; la identidad real de ejecución sólo se acreditará con el recibo disponible y, si no se expone, permanece UNKNOWN. Modelo real GOD y consumo Pro no expuestos: UNKNOWN; el rol pedido no prueba el modelo servido.
+
+| TOP | Pregunta | Límite operativo fijado por GOD | Estado |
+|---|---|---|---|
+| A, `/root/top_a_evidence` | Recibos/sello, biyección tipada y negativo referencial, NQZ5 preservado | 35min de tarea; comandos pequeños ≤120s; lectura forense ≤300s por spool; cero ejecución financiera nueva | DISPATCHED_WAITING |
+| B, `/root/top_b_safety` | Safety/contratos compartidos y adjudicación de cinco tests rojos | 35min de tarea; ≤120s por comando y ≤12min agregados de ejecución; único ejecutor financiero | DISPATCHED_WAITING |
+
+Son límites operativos de este despacho, no una concesión Owner de 180min/4h ni un nuevo deadline. No se reabre el ejecutor preliminar. Cada TOP tiene un artefacto distinto y una única devolución final; GOD es el escritor documental de publicación. Nada de clones completos por worker, export NT nuevo, lote13×, corridas históricas300/600/900s, perfiles o reparación de producto.
+
+El preliminar conserva `MODEL_REPORTED=GLM-5.3-Flash`, superficie reportada ZCode, `REQUESTED_ROLE=TOP`, `REQUESTED_MODEL_COMPLIANCE=NOT_DEMONSTRATED`. El título TOP LOCAL no cambia ese recibo. Las pruebas reproducibles se evalúan por sus inputs, oráculos y resultados; no se descartan sólo por el modelo.
+
+### Evidencia preliminar aceptada y reservas
+
+| ID | Aporte admitido | Reserva / conclusión que no se admite |
+|---|---|---|
+| F-S03-01 | Bytes del bloque reportados iguales en copia/publicación anterior al commit de optimización; recibos hash/hora inconsistentes | mtime y commit no prueban la frontera del primer cambio. No aceptar PERF_TARGET_FREEZE cumplido ni atribuir falsificación intencional. Receta y frontera pendientes A |
+| F-S03-02 | Dos streams físicos reales rechazados en BASIC y CAMPAIGN por `experiment`, rc2 | Defecto de implementación, no falta externa de datos; no volver a ejecutar sin duda material |
+| F-S03-03 | Manifest CAMPAIGN sin Artifact; `--result` enruta antes de drenar footer lazy; ambas rutas CLI no alcanzan controlador | IDENTICAL bare sin replacement no certifica replay de campaña; fixture API no certifica CLI |
+| F-S03-04 | Out-root movido rompe rutas; rc0 con FAILED/WARMUP_INCOMPLETE | Coverage de descriptor no acredita mercado consumido; precisar mapeo de estado/rc en S04 |
+| F-S03-05 | Par R completo75,77s→34,01s; censuras NQU6 exceden180s | Beneficio R acotado; dos timeouts no prueban no-regresión,5h no es tiempo completo observado y omisión del pool no se convalida por R |
+| F-S03-06 | Prefijo NQZ5 alcanza replacement18nov y pass-funded20nov2025, progresa hasta21nov | No completo, no footer ni checksum íntegro; conciliación contable pendiente A, nunca resume desde spool |
+| F-S03-07 | 88362 records por lado,109 records con diferencias en IDs/refs; mutación de precio rechazada | Clasificación no prueba biyección ni rechazo de refs intercambiadas; no aceptar «verificación cerrada» sin A |
+| F-S03-08 | Nueve regresores S02 y840 sondas findSource; estabilidad de ventanas en bordes ejercitados | No prueba universal de inmutabilidad pública, callbacks o race |
+| F-S03-09 | Oráculo independiente rescata fixture legacy, sin diferencias de records | El test del producto sigue abandonando antes de comprobar; no queda reparado por un test externo |
+| F-S03-10 | Recibos reportan baseline8fallos y candidato5; tres tests CLI pasan | Encabezado/resumen «reparó2» inconsistente; atribución de cinco rojos pendiente B; preexistencia no prueba seguridad |
+
+No se repitieron F1/F2/F3 para fabricar confirmación redundante. Estos RED se aceptan como resultados atribuidos al ejecutor preliminar con localizadores y alcance descritos, no como pruebas corridas por GOD.
+
+### Cuatro gates y cobertura de código separada
+
+| Gate | Estado al corte preliminar | Evidencia / límite |
+|---|---|---|
+| Correctness | NOT_CLOSED | Advances A–D acotados; faltan biyección, conciliación completa y ataques críticos, además de cinco rojos por adjudicar |
+| Performance | FAIL en ancla NQU6 BASIC180s; resto parcial | 2,23× R; no ratio válido de timeouts ni horizonte completo; fundamento/sello insuficientemente acreditados |
+| Usabilidad integrada | FAIL_EXECUTED | Multistream obligatorio no implementado; replay CLI CAMPAIGN roto por ambas rutas; portabilidad y rc incorrectos |
+| Cobertura histórica de mercado | NOT_DEMONSTRATED para horizonte solicitado | Los prefijos y descriptor no demuestran trayectoria financiera continua multicontrato; NQZ5 atraviesa transición pero no termina |
+| Cobertura código/tests, métrica adicional | FLOOR95_NOT_DEMONSTRATED_GLOBAL | S02 reporta58,1% selectivo y69–83% en funciones; no es cobertura global ni porcentaje de mercado |
+
+Denominadores que S04 debe declarar sin intercambiarlos: wall end-to-end en segundos, CPU user+sys en segundos, eventos raíz leídos, pasos intrabar despachados/omitidos y records de evidencia emitidos. Una tasa records/s no se convierte en µs/root-input sin conteos de conversión demostrados para el mismo run. Speedup requiere ambos tiempos completos y mismo workload/completion; throughput integrado requiere modalidades completadas sobre wall conjunto con C financiera1.
+
+Cobertura histórica: numerador de intervalos/observaciones efectivamente consumidos bajo obligación por stream, denominador del ReadPlan esperado para la petición sellada; informar por separado cerrado acreditado, desconocido y no requerido. No usar suma de extremos de trece archivos ni duración nominal como cobertura continua. Frontera causal y primera causa se reportan aunque no exista porcentaje defendible.
+
+Cobertura de código: sentencias cubiertas / sentencias instrumentadas del alcance declarado, con SHA, paquetes y filtros de tests. El95% aplica al alcance de desarrollo acordado y no sustituye caminos críticos. Una ejecución con `-run` selectivo no representa todas las suites. Los comandos y denominadores exactos preservados deberán ser citados por los TOPs; no se inventa una remediación de coverage en S03.
+
+### Paquete S04 y validación final — preparación pendiente de TOPs
+
+Las correcciones de producto corresponden exclusivamente a S04 y deberán quedar vinculadas a la causa, owner, regresor RED, aceptación observable y dependencias. Multistream sigue obligatorio; reducir alcance no es una salida autorizada. El paquete se cerrará después de revisar las dos devoluciones. S04 no está despachado y no se certifica por anticipado una build futura.
+
+### Persistencia y cierre
+
+Documento nuevo materializado por `80-agents/skills/_shared/scripts/materialize_schema_note.py doc` según contrato vigente. BTG-PLAN, el preliminar, el informe S02 y el PERF_CONTRACT permanecen intactos. Esta versión de trabajo no es todavía el dictamen final ni un cierre del encargo.
 
 ## Fuentes
 
--
+- Despacho Owner BTX-PERF-S03-GOD de2026-10-09 y adenda incorporada en [[BTX-PERF-DESIGN]].
+- [[BTG-PLAN]], [[BTX-PERF-DESIGN]], [[BTX-PERF-IMPLEMENTATION]], [[BTX-PERF-S03-TOP-EVIDENCE]], con blobs fijados en este documento.
+- `xKoRx/echo`, rama `codex/btx-perf-s02`, README canónico `v3/backtester/README.md`; interfaz anunciada contrastada con F-S03-02/03/04.
+- Evidencia externa al vault bajo Daedalus `aranea/work/btx-perf-s03-top-20261009/`, `aranea/work/btx-perf-s02-20261009/`, `aranea/work/btx-perf-s01-e1-20261008/` y `aranea/work/btg-s06-user-oneshot-20261008/`, relativas al home autorizado Owner; no son copias dentro de Agents-OS.
