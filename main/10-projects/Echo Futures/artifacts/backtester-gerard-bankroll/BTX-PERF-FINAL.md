@@ -96,12 +96,42 @@ $BIN reproduce --result    out-campaign/bt-c-90151680…/result.json.gz --nt-sou
 
 - Recibo de corridas: `measure/s04-final-runs.md` (SHA256 `c521bdff…262e8a7`); rectificación C05: `measure/perf-contract-rectification-s04.md` (`63643d5f…c5ee1d0`); mandato del verificador: `VERIFIER-MANDATE.md` (`8ebf86a5…4b5f54ee`); RED/GREEN logs en `logs/`.
 - Originales S02/S03/PERF_CONTRACT intactos (hashes verificados al inicio y al cierre; bloque 3651/3652 bytes reproducido).
-- Límites declarados sin eufemismos: (1) performance gate PARCIAL — anclas NQU6 fallidas (S02 conservado + S04 medido FAIL), speedup no demostrado; (2) cobertura multianual/catálogo completo no corrida; (3) floor 95 no alcanzado globalmente; (4) cruce real de rollover dentro de una corrida final no ocurrió porque la ventana solicitada no lo contiene (mecánica demostrada por E2E); (5) modelo servido del integrador y del verificador UNKNOWN sin recibo; (6) dos fallos preexistentes ambientales (jaeger dev probe, postgres scratch) idénticos en bbbcc1d5.
+- Límites declarados sin eufemismos: (1) performance gate PARCIAL — anclas NQU6 fallidas (S02 conservado + S04 medido FAIL), speedup no demostrado; (2) cobertura multianual/catálogo completo no corrida; (3) floor 95 no alcanzado globalmente; (4) cruce real de rollover dentro de una corrida final no ocurrió porque la ventana solicitada no lo contiene (mecánica demostrada por E2E); (5) modelo servido: el harness declaró GLM-5.3-Flash para el integrador y para el verificador (selector solicitado GPT-6.1 Sol, cumplimiento NOT_DEMONSTRATED); (6) dos fallos preexistentes ambientales (jaeger dev probe, postgres scratch) idénticos en bbbcc1d5; (7) `go test ./backtester/` completo requiere `-timeout 40m` (el default de 600s lo corta; quirk documentado).
 - Delta propuesto para BTG-PLAN (sólo Primary actualiza el control): S04 EXECUTED con las identidades de arriba; Correctness PASS con evidencia en el alcance probado; Usabilidad integrada PASS con evidencia; Performance PARTIAL (targets de horizonte cumplidos, anclas FAIL, speedup NOT_DEMONSTRATED); Cobertura histórica de la ventana solicitada PASS_BOUNDED; cobertura multianual NOT_RUN; floor95 global NO; READY_FOR_OWNER_ACCEPTANCE no propuesto mientras el gate performance esté parcial; verificación independiente interna devuelta dentro de S04.
 
 ### Comprobación independiente (devolución única del verificador, ligada a las SHAs de arriba)
 
-PENDIENTE_AL_CIERRE — el agente fresh-context fue despachado con `VERIFIER-MANDATE.md`; su veredicto se incorpora aquí verbatim al completarse. Si el despacho no devuelve a tiempo, el mandato resuelto queda en el paquete para transporte Owner y el gate de verificación queda ABIERTO (sin fingir ejecución).
+Despacho real por herramienta de agente fresh-context ONE-SHOT (workspace propio `aranea/work/btx-perf-s04-verify/`, 112 tool-uses, sin tocar el checkout del integrador ni S02/S03). Modelo servido declarado por el harness: GLM-5.3-Flash (selector solicitado GPT-6.1 Sol → cumplimiento NOT_DEMONSTRATED, mismo patrón que S03; no invalida evidencia reproducible). Devolución estructurada:
+
+```text
+VERIFIER_RESULT = PASS_WITH_FINDINGS
+IDENTITY: head 0a6a0763 (codex/btx-perf-s04, porcelain vacío) / bin f80d8974 (vcs.modified=false, go1.27.1)
+C01..C12_CHECK: C01 VERIFIED · C02 VERIFIED (5/5 pool PASS con -race) · C03 VERIFIED (replay propio de
+  COPIA: IDENTICAL 3.127.905, cash 5780→5780; corrupción byte-flip → rechazo nombrado rc2) ·
+  C04 VERIFIED (rutas relativas con out-root movido a su directorio) · C05 VERIFIED con reserva
+  (ancla: ver finding 1) · C06 VERIFIED (negativos + E2E congelado PASS) · C07 VERIFIED como estado
+  (suites propias completas: ./backtester 244 PASS/0 FAIL/1 SKIP con -timeout 40m rc0; cmd ok rc0) ·
+  C08/C09/C10 VERIFIED (los cuatro RED GREEN en su ejecución) · C11 VERIFIED (provider_final_state
+  presente y tipado en ambos footers nuevos, leído por mini-programa propio; comparadores GREEN) ·
+  C12 VERIFIED (4/4 expectativas adjudicadas PASS; quinto rojo resuelto vía C11)
+FINAL_RUNS: BASIC rc0 COMPLETE 3.214.366 records, balance 70.307,92 USD; SU replay de copia IDENTICAL
+  (22:46,54). CAMPAIGN rc0 COMPLETE HORIZON_REACHED, caja reconciliada 5780 USD, 6 cuentas (5 burns +
+  1 activa), 1 cobro 1500 APPLIED; SU replay de copia IDENTICAL (19:18,11).
+FINDINGS: (1) MEDIUM — entregable no congelado durante su ventana: el lado producto ejecutó en vivo el
+  ancla NQU6 (bajo contention: C financiera=1 no limpia para ESE recibo; el FAIL ≤180s se sostiene),
+  reescribió el perfil de coverage y corrió un replay con binario ed31156f → aceptado: el recibo del
+  ancla queda ADJUDICATED_FAIL_UNDER_CONTENTION y la medición limpia C=1 queda pendiente acotada.
+  (2) LOW — `go test ./backtester/` con timeout default (600s) lo mata: requiere -timeout 40m (quirk
+  documentado). (3) INFO — coverage total 76,2–76,4% según perfil leído; floor95 del alcance de
+  desarrollo sin demostrar globalmente (declarado). (4) INFO — el mandato decía "tres RED" y enumeraba
+  cuatro; los cuatro GREEN. (5) INFO — modelo servido GLM-5.3-Flash vs solicitado Sol (NOT_DEMONSTRATED).
+LIMITS: no lanzó 300/600/900 (prohibido); no certificó el recibo del ancla en vuelo; no verificó
+  equivalencia semántica de provider_final_state contra control (no existe par en S04); no re-midió
+  MIN_SPEEDUP; su suite válida corrió bajo contention; artefactos producto posteriores a 01:42 fuera de
+  su set sellado (ancla/coverage/replay-ed31156f — este documento los atribuye explícitamente).
+```
+
+Consecuencia para los gates: la comprobación independiente existe, está ligada a `0a6a0763`/`f80d8974` y devuelve PASS_WITH_FINDINGS; el hallazgo de proceso (1) se acepta y se documenta — no invalida los replays propios del verificador ni la suite que él mismo ejecutó.
 
 ## Fuentes
 
