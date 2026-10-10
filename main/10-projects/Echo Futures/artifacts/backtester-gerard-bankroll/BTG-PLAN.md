@@ -11,7 +11,6 @@ related:
   - "[[BTX-PERF-FINAL]]"
   - "[[BTX-PERF-S03-TOP-A-EVIDENCE]]"
   - "[[BTX-PERF-S03-TOP-B-EVIDENCE]]"
-  - "[[BTG-S05-REMEDIATION-AND-RESULTS]]"
 aliases: []
 tags:
   - kind/doc
@@ -23,129 +22,101 @@ updated: "2026-10-10"
 
 ## Propósito
 
-Control único de BTX-PERF para [[Echo Futures]]. El programa Owner consta de cuatro shots y exige una trayectoria histórica integrada por modalidad sobre todos los años disponibles, dominio runtime compartido, Strategy/MM sustituibles, replay oficial y rendimiento comparable. Primary dirige y adjudica evidencia; no desarrolla ni acepta el producto por Owner. Cobertura de código, cobertura histórica, corrección funcional y rendimiento son obligaciones distintas.
+Control único de BTX-PERF. Owner exige una trayectoria financiera integrada por modalidad sobre todo el histórico disponible, rendimiento utilizable para iterar, Strategy/MM compartidos sustituibles, replay oficial y explicación de actividad. Primary dirige y revisa evidencia: no desarrolla ni acepta producto por Owner.
 
-Esta edición recibe la entrega S04 y conserva su avance sin adoptar los PASS globales que no están sustentados. El control anterior completo permanece en Git `6e2b25c3637403e52cbbc9039b1240dae495c65b`, mismo path. No se modifican informes S02/S03/S04, diseño, PERF_CONTRACT, RED ni recibos. La aceptación técnica S01 y su adenda no redujeron el horizonte a octubre–noviembre de 2025. No se crea un quinto shot, otra investigación o reapertura automática de especialistas cerrados.
+La historia completa anterior queda preservada en el mismo path en Git `e0be1e552b51cf005ee10e0fa67295bbf78e9476`. Esta edición incorpora una NUEVA autorización expresa Owner de un último shot y corrige dos hechos: la fuente S04 ya está publicada y los TOPs directos del Owner son GLM, mientras los TOPs de GOD son Sol6.1. No reescribe informes, RED ni recibos históricos. C01–C12 y matrices pendientes conservan autoridad a través de [[BTX-PERF-ADVERSARIAL]]; los límites de [[BTX-PERF-FINAL]] no se convierten en aceptación.
 
 ## Contenido
 
-### Estado vigente — recepción y adjudicación documental Primary de S04
+### Estado vigente — autorización terminal Owner, 2026-10-10
 
 ```text
 PROGRAM = BTX-PERF
 PRIMARY_SESSION = OPEN_UNTIL_EXPLICIT_OWNER_CLOSE
-S01_TECHNICAL_DESIGN = ACCEPTED_FOR_IMPLEMENTATION_WITH_EXPLICIT_PERF_EXCEPTION
+S01_TECHNICAL_DESIGN = ACCEPTED_WITH_EXPLICIT_PERF_EXCEPTION
 E1 = PARTIAL_WITH_EVIDENCE
-S02_PRIMARY_ADJUDICATION = PARTIAL_IMPLEMENTATION_WITH_MATERIAL_GAPS
-S03_GOD_ADJUDICATION = ACCEPTED_BOUNDED_RED_REJECTION_AND_S04_HANDOFF
-S03_TEST_COVERAGE = PARTIAL_WITH_EXPLICIT_NOT_RUN
-S04_DELIVERY = RECEIVED
-S04_EXECUTION = REPORTED_EXECUTED_BY_INTEGRATOR_AND_VERIFIER
-S04_PRIMARY_ADJUDICATION = PARTIAL_DELIVERY_WITH_USEFUL_BOUNDED_FUNCTIONAL_EVIDENCE
-C01_C12_GLOBAL_CLOSURE = NOT_ACCEPTED_AS_COMPLETE
+S02 = PARTIAL_IMPLEMENTATION_WITH_MATERIAL_GAPS
+S03 = ACCEPTED_BOUNDED_RED_REJECTION_AND_HANDOFF
+S04 = PARTIAL_DELIVERY_WITH_USEFUL_BOUNDED_FUNCTIONAL_EVIDENCE
 PROGRAM_OPERATIONAL_OBJECTIVE = NOT_DELIVERED_IN_FULL
-S04_INDEPENDENT_REVIEW = REPORTED_PASS_WITH_FINDINGS_ON_0a6a0763
-S04_FINAL_HEAD_INDEPENDENT_REVIEW = NOT_DEMONSTRATED_FOR_ed31156f
-S04_SOURCE_REMOTE_RESOLUTION = FAILED_FOR_REPORTED_BRANCH_AND_ABBREVIATED_COMMITS
-CURRENT_ACTION = OWNER_REVIEW_OF_PARTIAL_DELIVERY_AND_UNSATISFIED_OBLIGATIONS
-NEW_WORKER_DISPATCH = NONE
-FIFTH_SHOT = NOT_AUTHORIZED_NOT_DISPATCHED
-READY_FOR_OWNER_ACCEPTANCE = NO
+S04_SOURCE_REMOTE_RESOLUTION = VERIFIED_ed31156fe251a053241044f7659c078424667348
+LAST_SHOT = EXPLICITLY_AUTHORIZED_BY_OWNER
+LAST_SHOT_ID = BTX-PERF-LAST
+LAST_SHOT_DISPATCH = GOD_COORDINATOR_PROMPT_ISSUED
+LAST_SHOT_EXECUTION = NOT_STARTED_BY_THIS_PRIMARY
+LAST_SHOT_GOD_PRODUCT_CODE = FORBIDDEN
+OWNER_DIRECT_TOP_MODEL = GLM-5.3-Flash
+GOD_DISPATCHED_TOP_MODEL_REQUESTED = GPT-6.1_Sol
 FINAL_OWNER_ACCEPTANCE = NOT_GRANTED
-PRODUCT_CODE_TESTS_PROFILES_BACKTESTS_BY_PRIMARY = NONE
+READY_FOR_OWNER_ACCEPTANCE = NO
 PHYSICAL_RUNTIME_READINESS = NOT_DEMONSTRATED_OUT_OF_SCOPE
-PROMOTION = NOT_ACCEPTED_NO_MERGE_OR_DEPLOY
+PROMOTION = NO_MERGE_NO_DEPLOY_NO_LIVE_AUTHORIZATION
 ```
 
-Primary leyó el informe canónico completo por rangos, su transcripción Owner y el control vigente. La devolución del verificador se leyó como cita incluida por el integrador en ese informe; no como inspección independiente de los logs originales de Daedalus. Se acepta como evidencia reportada y atribuida, suficiente para conservar los avances y detectar límites de la entrega. No se reejecutaron tests/backtests ni se inspeccionó el source S04: la resolución remota de sus refs falló. Este corte no descubre un defecto nuevo del producto por ejecución ni afirma que sigan abiertos los tres RED monetarios pese a sus GREEN reportados.
+Owner pide evaluar el producto y dar «un last shot para GOD con sus TOPs», terminar el backtester dentro del día disponible y aclarar las pocas compras/días de actividad. Es una excepción explícita al máximo anterior, no un quinto shot rutinario ni aceptación de los anteriores. No hay nuevas extensiones automáticas. GOD coordina y adjudica, TOPs desarrollan/ejecutan; no otro GOD arquitecto entre etapas ni una cadena de prompts de investigación.
 
-### Fuente recibida, disponibilidad y cortes
+La aclaración de modelo prevalece para interpretar las sesiones directas del Owner: GLM-5.3-Flash es su TOP válido. Se retira la objeción por esa elección; las reservas de correctness/evidencia son independientes. Para los trabajadores de GOD el selector solicitado sigue siendo Sol6.1, sin sustitución silenciosa. Registrar identidad servida sólo cuando exista recibo, sin convertir UNKNOWN en acusación o garantía.
 
-| Entrada | Identidad y alcance comprobado en esta recepción |
-|---|---|
-| Agents-OS master leído | `6e2b25c3637403e52cbbc9039b1240dae495c65b` |
-| Informe S04 | `10-projects/Echo Futures/artifacts/backtester-gerard-bankroll/BTX-PERF-FINAL.md`, blob Git `9b68ea4eb3627d020cef97b79c1fe21681537181`, 20735 bytes según metadata. Publicación documental verificada |
-| Dictamen S03 vigente | [[BTX-PERF-ADVERSARIAL]], blob `45fa5af308a9999f24c1028684b3eceadf448c95`; C01–C12 y matrices NOT_RUN no quedan sustituidos por etiquetas VERIFIED del autor |
-| Fuente de corridas finales reportada | `0a6a0763`; binario SHA256 `f80d8974157452f0e7ac0d757b8815a37d0a259e222d132a69321a196010f69e` |
-| HEAD final reportado | `ed31156f`; binario SHA256 `068a854802c29a6dcb69b949d8c70882101452fc1fa2db0939d6cae60216edd6`; movió un validador de producto a biblioteca después del freeze, no sólo documentación/tests |
-| Publicación de producto | GET `xKoRx/echo/git/ref/heads/codex/btx-perf-s04` devolvió404. Consultas de commits `ed31156f` y `0a6a0763` devolvieron422/No commit found. GET de `codex/btx-perf-s02` sí devolvió `bbbcc1d5dc0ed18badae46b4eba1a17822632b60` |
-| Alcance del fallo de acceso | No se pudo resolver la publicación S04 mediante esta conexión. No prueba inexistencia del trabajo local, eliminación de la rama o falta general de permisos GitHub. No se inventan SHAs completos desde abreviaturas ni se atribuye source review S04 a Primary |
-| Paquetes locales reportados | `aranea/work/btx-perf-s04-20261009/` y `aranea/work/btx-perf-s04-verify/`, relativos al home autorizado de Daedalus; no montados ni inspeccionados por este Primary |
+### Día disponible y límite global
 
-El informe conserva una inconsistencia menor de inventario: dice ocho commits y enumera nueve, concordantes con los nueve del handoff. Sin DAG remoto S04 recuperado no se adjudica el conteo real. Publicar documentación en Agents-OS no publica automáticamente código, binarios ni paquetes de evidencia de Echo. No se solicita una exportación nueva de NinjaTrader ni se amplían conexiones/permisos desde este corte.
+Recepción temporal observada por herramienta: `2026-10-10T10:09:16-03:00`, America/Santiago. «Un día» se interpreta en el mandato de transporte como máximo24h desde ese corte, hasta `2026-10-11T10:09:16-03:00`; es una interpretación explícita del presupuesto Owner, no una estimación de duración ni una promesa de entrega asíncrona. El ejecutor registra inicio/remanente reales y no reinicia el reloj por worker. Un nuevo corte sólo puede proceder de Owner. La ventana histórica9oct00:00 sigue vencida; ya no se usa para bloquear la autorización nueva.
 
-### Avance funcional conservado — evidencia reportada, no certificado universal
+### Publicación S04 resuelta y alcance de esta revisión
 
-C08/C09/C10 reportan RED baseline→GREEN y comprobación independiente en `0a6a0763`: aplicar el cuerpo financiero congelado, aislar profundamente Admissions y proteger la compra inicial119/120. Se conservan esos resultados; no se desechan por el modelo declarado ni se transforman en prueba de todas las disposiciones o del HEAD posterior.
+GET autenticado de `xKoRx/echo/refs/heads/codex/btx-perf-s04` devuelve `ed31156fe251a053241044f7659c078424667348`. Compare desde `bbbcc1d5dc0ed18badae46b4eba1a17822632b60` confirma9commits. La explicación Owner de push a un origin local intermedio es consistente con la publicación ahora accesible; no se inspeccionó la configuración física de remotes desde Primary. No volver a pedir el push ni conservar el404 como bloqueo vigente.
 
-Se reportan CLI con descriptor multistream, pool hasta2, replay de CAMPAIGN por ambas rutas, rutas relativas, rc por estado, oráculos ALL/SKIP/legacy y expectativas históricas corregidas. El verificador citado reporta suites propias, negativos y replays de sus copias. Estos son avances frente a S03, pero su alcance exacto y sus omisiones siguen determinando qué requisitos cierran.
+Primary revisó source puntual en ed31156f: adapter ntminute y pool/cursor/tests, compose/openDatasetCursor/composeStreams, experiment_catalog, E2E multistream del CLI y biblioteca, functional_profile, composición compartida y S2. Leyó el diff del último commit. No compiló, ejecutó tests/backtests, perfiló ni inspeccionó los artefactos locales completos de S04. Los hallazgos siguientes son de lectura/razonamiento sobre source, no falsificadores ya corridos por este Primary.
 
-| Resultado de la ventana ejecutada | BASIC | CAMPAIGN |
+Identidades útiles: S04 corridas `0a6a0763` abreviado/bin `f80d8974157452f0e7ac0d757b8815a37d0a259e222d132a69321a196010f69e`; HEAD ed31156f/bin reportado `068a854802c29a6dcb69b949d8c70882101452fc1fa2db0939d6cae60216edd6`. Resolver SHA completo de0a6a en el DAG antes de atribuir pruebas. No transferir la revisión independiente de0a6a al último cambio sólo por un replay del autor.
+
+### Qué significa la corrida entregada
+
+BASIC y CAMPAIGN S04 reportan trading `2025-10-27T17:52Z` a `2025-11-27T18:00Z`, con warmup desde13oct. No son tres años. BASIC saldo70307,92USD/neto−29692,08,3214366records/wall1025,53s. CAMPAIGN6compras/5burns/1cobro neto1500/caja5780,3127905records/wall668,92s; `5000−6×120+1500=5780`.
+
+Compras de cuentas no son señales, entradas, operaciones ni fills. Una cuenta puede operar múltiples veces antes de quemarse/retiro; seis compras no permiten estimar la frecuencia diaria. Los millones de records tampoco son millones de trades. Falta extraer actividad diaria de los outputs para responder la pregunta Owner, sin inventar conteos.
+
+NQH6 declara consumo0 y sin obligación en esa ventana, porque los datos/selección corresponden a diciembre. Ese0no es por sí solo un bug; sí demuestra que esas corridas no ejercitaron una transición financiera real a NQH6. Las corridas sirven como evidencia funcional acotada de pérdidas/lifecycle/cobro/replay, no como entrega multianual. Tener un descriptor con dos contratos no prueba usar ambos.
+
+S2 source:5m BAR_CLOSE, H4/SMA50, BB20/2poblacional, setup pullback y un ciclo técnico por excursión; rearme por basis/tendencia, sin apertura en la vela de rearme. No hay garantía implementada de una entrada diaria. Esto no exonera días vacíos: diagnosticar oportunidades/causas y detectar señales válidas perdidas, no forzar trades o modificar reglas para alcanzar un conteo.
+
+### Nuevos riesgos materiales localizados para el LAST SHOT
+
+| ID | Fuente / mecanismo estático | Verificación y reparación exigibles |
 |---|---|---|
-| Build de corridas reportada | `0a6a0763` / bin `f80d8974…` | Misma build |
-| Warmup / trading / fin exclusivo | 2025-10-13T17:52Z / 2025-10-27T17:52Z / 2025-11-27T18:00Z | Mismos límites |
-| Modalidad/modelo | Nominal100000 sin lifecycle; OHLC_CAUSAL_PATH_V2, CONFIGURED | Caja5000, compra120 ON_DEMAND, una activa, máximo4cobros efectivos; mismo modelo |
-| Estado reportado | COMPLETE, rc0 | COMPLETE, HORIZON_REACHED, rc0 |
-| Records de evidencia | 3214366 | 3127905 |
-| Economía reportada | Saldo70307,92USD, neto−29692,08, costos4462,08 | 6compras,5burns/reemplazos,1cobro neto1500, caja5780; cuenta activa101500,12 |
-| Wall / CPU / RSS | 1025,53s / 1453,90s / 108,36MiB | 668,92s / 964,45s / 109,57MiB |
-| Replay reportado | IDENTICAL por manifest; verificador repite en copia | IDENTICAL por manifest y result; verificador repite en copia |
+| L1 | ntminute.Source.Open asigna partes a2workers; pumpPart retiene worker hastaEOF con canal256; refill espera el stream siguiente del heap. Con3+streams largos, dos workers pueden quedar en canales llenos mientras el consumidor espera una parte todavía no asignada. | Negativo3y13streams, orden temporal adverso al orden de IDs, >256filas, workers1/2 y cancelación. Corregir starvation manteniendo orden causal; no declarar deadlock ejecutado aquí. |
+| L2 | WaitGroup de Open no se espera en Close; cancelar no confirma salida antes de cerrar parts. failed y heads cerrado pueden quedar simultáneamente seleccionables tras error. | Race/Close bajo backpressure y error junto aEOF/buffer; primera causa no se pierde ni se finge fin limpio. |
+| L3 | experiment_catalog ordena catálogo y fija primero inicial; omite cambios anteriores aTradeStart, PrepareAt=EffectiveAt, intervalos estáticos y calendario mensual basado enWeeklyBase. openDatasetCursor usa intersección global, no ReadPlan por obligación. composeStreams anticipa demanda de todos los slots. | Probar horizonte intermedio,3expiries, warmup real, overrides y retirado con obligaciones. Reconciliar selección/prefijos/ReadPlan efectivo; no afirmar que toda observación estática ya sea bug financiero. |
+| L4 | E2E TestS04ExperimentMultistreamTwoStreamsBasic comenta que no llega a diciembre; test de replay multistream de ed31156f exige schedule vacío y fuente futura fuera de horizonte. | E2E público que atraviese una frontera con ambos lados consumidos y operación/estado válidos; caso real de rollover. Los tests anteriores no acreditan esa capacidad. |
+| L5 | Falta desglose diario; S2 no tiene cadencia diaria contractual y compras no cuantifican operaciones. | Embudo diario desde datos/readiness/setup/señal hasta admisión/orden/fill, causas y días sin entrada. Oráculo independiente de reglas compartidas; no tuningROI ni cuota artificial de trades. |
 
-La caja reportada concilia exactamente `5000−6×120+1500=5780`. Es resultado del perfil FUNCTIONAL_ASSUMPTIONS del experimento, no acreditación de reglas de una prop ni rentabilidad futura. No se conserva sólo una conciliación como sustituto de causalidad, integridad o replay.
+Estos puntos alimentan tareas ejecutables, no otro ciclo de diseño. Una prueba que refute un riesgo se conserva y acota; un defecto confirmado se corrige dentro del mismo encargo. No ejecutar primero todo el histórico para descubrir un bloqueo que un fixture de segundos puede demostrar.
 
-### Límites materiales y rectificaciones del resumen de S04
+### Mandato terminal y organización
 
-**D-S04-01 — horizonte y rollover.** La entrega llama «solicitada» a su ventana octubre–noviembre2025. El mandato del programa exige todos los años disponibles y no consta autorización Owner que lo reduzca. El propio informe publica45488records de mercado NQZ5 consumidos y NQH6 con `obligated=null, consumed=0`; reconoce que no hubo rollover real en las corridas finales. Aceptar un descriptor de dos streams es avance de interfaz, no prueba de una trayectoria financiera que atravesó ambos. El E2E sintético/API de rollover reportado conserva su valor, sin sustituir la validación real de continuidad solicitada. El objetivo multianual no se intentó en esta entrega; no se presenta como bloqueado por datos mediante una corrida integral que no existe.
+Un GOD en superficie con delegación/Daedalus efectivos dirige como máximo3TOPs de trabajo disjunto (integración/fuentes, actividad-datos-Strategy, rendimiento) y1TOP verificador independiente. Es máximo, no mínimo ceremonial. Un único integrador de producto; GOD no escribe código/tests/scripts ni integra parches. Workers ONE-SHOT con devolución/cierre únicos, sin reactivarlos una vez cerrados. Comunicación intermedia para corregir RED dentro del mismo encargo es válida; no se entrega una build distinta de la que firma el verificador.
 
-**D-S04-02 — performance y denominador.** Los1025,53/668,92s corresponden a esa ventana corta. Compararlos con3600/3900s fijados para el horizonte completo no acredita MAX_WALL_PER_MODE. Las observaciones RSS también son acotadas a los procesos medidos. NQU6 completo reporta1741,82s frente a180s: incumple ese umbral en la ejecución observada, pero tuvo contención del propio ancla/coverage/replay/verificador. No es una medición limpia C=1 ni permite adjudicar cuánto tardaría aislado; tampoco autoriza convertirlo en PASS. Se conserva FAIL de la observación, ancla S02 ya fallida y aceptación de performance no demostrada. No hay par comparable control/candidato S04: MIN_SPEEDUP sigue NOT_DEMONSTRATED. El2,2279× de S02 es run-only de R, no un ratio de todo el programa. No se programan otra escalera de timeouts o benchmarks por rutina.
+Prioridades: negativos baratos pool/rollover y actividad existente → catálogo completo/gaps y reparación funcional → mejoras de coste sustentadas en carga ACTIVA → freeze final → BASIC/CAMPAIGN integrales y replay independiente → publicación verificable y reporte de operaciones/días. No repetir investigación de C08–C10 reparados; conservar regresores y completar las matrices pendientes de S03/C01–C12, incluido provider final/ALL-SKIP y cobertura del delta.
 
-**D-S04-03 — identidad final e independencia.** El verificador citado selló `0a6a0763`/`f80d8974`; excluye explícitamente artefactos posteriores a su corte, incluidos replay/coverage de `ed31156f`. Su PASS no se transfiere al HEAD final después de mover código de validación. El replay IDENTICAL posterior, declarado por el integrador, es evidencia focal favorable; no demuestra por sí solo negativos del validador, todos los callers ni validación independiente del delta. No se exige repetir indiscriminadamente todo: falta una cadena verificable de diff/identidades y comprobación independiente del impacto final.
+Esta autorización permite reparaciones/optimizaciones acotadas necesarias para el objetivo, no otro motor o plataforma. Targets históricos se conservan (BASIC3600s/CAMPAIGN3900s multianual; NQU6BASIC180s/CAMPAIGN220s; MIN_SPEEDUP1,5× y RSS512MiB), con sus fallos/fundamento objetado explícitos. Sólo comparaciones limpias y semánticamente compatibles; no retarget ni usar un mes como tres años. No medir mientras builds/tests/coverage/replays propios compiten. No escalera de reruns300/600/900. Reserva para finalización/replay dentro del corte global.
 
-**D-S04-04 — C11 no equivale a campo presente.** El verificador citado declara que provider_final_state está presente/tipado y comparadores GREEN, pero reconoce no haber comparado su equivalencia semántica contra el control porque no hay par S04. C11 exigía esa comparación y sus negativos. Exponer la preimagen no demuestra equivalencia del estado final. ALL/SKIP tiene GREEN reportado; no se le transfiere un PASS de provider no ejecutado. C11 permanece parcialmente demostrado, no cerrado íntegramente.
+La trayectoria completa usa todos los años disponibles y su catálogo verificado, no campañas por contrato sumadas. Datos genuinamente ausentes no se fabrican ni se saltan con estado arbitrario; identificar/recuperar desde autoridades autorizadas la frontera faltante, conservar requisito incumplido si no puede resolverse. Nunca COMPLETE por descriptor, rc0, replays de un aborto o conciliación aislada.
 
-**D-S04-05 — cobertura y matriz crítica.** El informe final reporta76,4% en el alcance instrumentado y porcentajes parciales en funciones del delta: ReproduceCampaign64,8%, ApplyResolvedCatalog60%, ValidateSealedMultistream84%, frozenDeclaredControls36,4%, además de rangos79–100% en otras áreas. El promedio global heredado no determina por sí solo el porcentaje del delta. Tampoco una selección de funciones llamadas «núcleo» prueba el floor95: falta numerador/denominador reproducible del desarrollo acordado y trazabilidad de las obligaciones críticas pendientes. La afirmación de cumplir95 en el núcleo no se acepta a partir de rangos con valores inferiores y sin agregado conforme. Una rama declarada inalcanzable no se excluye silenciosamente ni obtiene un test cosmético. Cobertura funcional de CLI por E2E es distinta de cobertura instrumentada. C07 no queda completamente cerrado por «suite verde» sin mapear los NOT_RUN de S03;41paquetesOK y2fallos ambientales reportados tampoco son una suite global sin fallos. Se conserva la clasificación ambiental atribuida al ejecutor sin ampliar permisos/infra.
+### Invariantes de producto y entrega
 
-**D-S04-06 — modelos y consistencia de reporte.** Handoff y sección de límites declaran GLM-5.3-Flash para integrador/verificador; tabla de identidades también conserva UNKNOWN. Registrar `S04_MODEL_REPORTED=GLM-5.3-Flash`, selector solicitado Sol no acreditado y recibo servido exacto no inspeccionado por Primary. No renombrar esas sesiones como Sol ni atribuir automáticamente sus defectos al modelo. Es una discrepancia repetida de asignación/procedencia, no motivo para borrar evidencia reproducible.
+BASIC100000 continuo sin lifecycle; CAMPAIGN5000/120 ON_DEMAND, una cuenta operando,4COBROS efectivos por cuenta y reinversión cobrada, pérdidas nominales sin redebito. Strategy/MM compartidos y sustituibles; sin ifGerard, SL/TP/sizing/adds/señales/fees alterados para velocidad oROI. Mantener protección/callbacks/reservas/claims/finality, dinero exacto, todas las revisiones y propiedad del sink, cuerpos admitidos/aplicados coherentes y getters aislados. IDs/ref mappings uno-a-uno por generación; no hashes/digests borrados.
 
-**D-S04-07 — entrega reproducible.** El documento publicado es accesible; las refs de producto no se resolvieron. La receta --result contiene RunID con elipsis y la ubicación BIN requiere resolver el CWD real. Esas líneas no son un paquete portable enteramente copiable. No inventar rutas/SHA ni confundir entrega documental con entrega íntegra del producto. Los originales y worktrees locales reportados deben conservarse; no se ejecuta publicación/push de producto, ni se modifica un archivo ajeno para simular entrega, desde esta recepción.
+Build única al final: source/bin/corpus/config/Strategy/MM y outputs con hashes; cambio posterior invalida cobertura del delta hasta revalidación. Reporte diario conciliado, resultados por cuenta, rollover realmente ejecutado, límites y tiempos con denominadores, commands completos sin elipsis/CWD ambiguo. Publicación de producto verificada en GitHub real, no sólo origin local. Agents-OS master solamente, un escritor/readback preservando concurrentes. Sin merge/deploy/órdenes/broker/cuentas/ETCD/PROD/ACL desde este encargo. Readiness física sigue separada.
 
-### Gates del objetivo completo tras S04
+### Prompt exacto y próxima devolución
 
-| Gate / obligación | Adjudicación Primary | Alcance favorable conservado |
-|---|---|---|
-| Correctness del objetivo completo y HEAD final | NOT_DEMONSTRATED | GREEN monetarios y replay en ventana/build de corridas reportados; provider final, delta posterior y matriz crítica no cerrados |
-| Performance | NOT_ACCEPTED: anclas con FAIL observado; condiciones limpias/ratios/horizonte completo NOT_DEMONSTRATED | Tiempos completos de ventana corta y R anterior; no trasladar límites entre horizontes |
-| Usabilidad integrada de todo el catálogo/horizonte | NOT_DEMONSTRATED en alcance integral | CLI/pool/replay/portabilidad reportados sobre fixtures y ventana; segundo stream real no consumido |
-| Cobertura histórica solicitada | NOT_DEMONSTRATED / objetivo completo no entregado | Ventana octubre–noviembre2025 reportada COMPLETE; no rollover final real ni todos los años |
-| Cobertura95 del alcance de desarrollo | NOT_DEMONSTRATED |76,4% global reportado y métricas por función; no agregado del delta con contrato satisfecho |
-| Publicación/identidad reproducible de producto | NOT_DEMONSTRATED en esta conexión | Informe canónico publicado; source/binarios S04 locales reportados |
+Library `/BTX-PERF-LAST-GOD-TOPS-PROMPT.md`, `library_file_id=libfile_4359e47e47108191ae5ae0c83ad73644`, backing `file_000000004e28820e82a6a9ff70a46ed4`;29661bytes,SHA256 `92ae19f23dcfa097a84aeee9e31b0b87d6b1a7257320c1fa2155c988e84251e9`. Transporte ONE-SHOT GOD, no ejecución iniciada por Primary. Salida esperada `BTX-PERF-LAST-FINAL.md` en este directorio canónico, con paquete externo y todos los gates/evidencias de la build final. No precrear ese dictamen ni dar aceptación por Owner.
 
-No se rechaza por completo el trabajo ni se inventa un bug nuevo desde ausencia de prueba; se rechaza la promoción de resultados acotados a «C01–C12 íntegro» y «sólo falta performance». Los cuatro shots han sido devueltos, pero el objetivo operativo sigue sin entregarse completo. Agotar la secuencia no concede aceptación. No se solicita al Owner aceptar un resultado que el manager declare listo cuando hay obligaciones conocidas abiertas.
-
-### Continuidad, autoridad y límites que sobreviven
-
-El programa no se reinicia. No quinto shot automático, nuevo prompt de investigación, worker en background ni regreso a las sesiones cerradas. Esta recepción sólo adjudica/documenta. La falta de fuente final/evidencia y los requisitos pendientes quedan explícitos para una decisión posterior Owner; no se transforma esa decisión en otro presupuesto o autorización tácita. Primary permanece abierto hasta cierre explícito.
-
-Siguen vigentes los contratos completos de [[BTX-PERF-DESIGN]], la adenda Owner y C01–C12/matrices finales de [[BTX-PERF-ADVERSARIAL]]: BASIC100000 sin lifecycle, CAMPAIGN5000/120/una activa/cuatro COBROS por cuenta, reinversión sólo de cobrados, pérdida nominal sin redebito; módulos compartidos sustituibles; todas las revisiones comprometidas y guard corriente; controles tipados congelados al admitir/aplicar y vistas aisladas; replay completo con identidad/referencias; preparación hasta2workers con fallback1, buffers acotados y merge causal; warmup/schedule prospectivos, obligaciones del retirado y gaps explícitos. Nada de ROI tuning, ifGerard, floats, cambios SL/TP/sizing/adds/señales/fees, recorder descartado, calendarios/precios/fills inventados o suma de campañas reiniciadas.
-
-C05 conserva rectificación append-only y el contrato original. Recibo históricoff320f01 objetado y freeze antes del primer cambio siguen NOT_DEMONSTRATED; una rectificación posterior no puede acreditar retrospectivamente la secuencia. Targets no movidos para aceptar resultados parciales.
-
-Ventana histórica `2026-10-09T00:00:00-03:00` EXPIRED; no180min/4h ni ventana dedicada nueva. Cero procesos propios al cierre es reporte de ejecutores, no sondeo de este Primary. D6/PHYSICAL_RUNTIME_READINESS siguen separados: no LIVE, broker/cuentas, órdenes, PROD/ETCD, permisos, merge, despliegue ni promoción. GitHub lectura/escritura documental se usa sobre master únicamente, con protección por blob y preservación de cambios concurrentes.
-
-### Registro de cuatro shots
-
-| Shot | Estado de su entrega |
-|---|---|
-| S01 | Diseño aceptado con excepción explícita; E1 PARTIAL_WITH_EVIDENCE preservado |
-| S02 | Entregado, parcial con carencias; source publicado hasta bbbcc1d5 |
-| S03 | Dictamen RED acotado aceptado para rechazo/remediación; pruebas NOT_RUN preservadas |
-| S04 | Entregado y recibido como avance funcional acotado con obligaciones abiertas; fuente remota no resuelta, HEAD final no certificado por el verificador citado |
-
-Los prompts previos son transporte histórico, no despachos activos. Su registro íntegro y baselines BTG-S05 permanecen en la versión anterior de este control y los logs. No se reabre d1b, su reejecución final ni los16hallazgos S04 históricos. Registro consolidado de esta recepción: [[2026-10-09-btx-perf-s02-owner-amendment]], adición fechada10oct2026. No feedback/cierre de Primary ni modificaciones de producto.
+S04/contrato/informes siguen intactos. Registro de esta autorización y rectificaciones en el change_log consolidado [[2026-10-09-btx-perf-s02-owner-amendment]], con historia anterior preservada por Git. Primary sigue abierto; no feedback/cierre Primary implícitos.
 
 ## Fuentes
 
-- Mandato Owner BTX-PERF de cuatro shots, especialmente horizonte íntegro, gates separados y aceptación final humana; adenda S01/S02 y despacho S04 ya emitido.
-- Handoff S04 recibido del Owner y [[BTX-PERF-FINAL]], blob `9b68ea4eb3627d020cef97b79c1fe21681537181` en Agents-OS `6e2b25c3637403e52cbbc9039b1240dae495c65b`; sus resultados/verificador son reportes atribuidos, no ejecutados aquí.
-- [[BTX-PERF-ADVERSARIAL]], [[BTX-PERF-DESIGN]], [[BTX-PERF-IMPLEMENTATION]] y evidencias A/B dentro de sus autoridades y cortes; no modificados.
-- Control previo completo en `6e2b25c3637403e52cbbc9039b1240dae495c65b`, blob `a1b215b7bc40f62f891f17bac23fc3ae352e61a3`; los límites de acceso S04 se basan en respuestas404/422 actuales y lectura positiva de S02 en la misma conexión.
+- Mensaje Owner10oct2026: asignación GLM/Sol, push real de S04, pregunta sobre frecuencia y autorización expresa de un LAST SHOT dentro del día disponible.
+- Mandato original BTX-PERF, especialmente trayectoria única y todas las oportunidades admisibles; la nueva autorización altera número de encargos/plazo, no permite aceptar producto incompleto.
+- [[BTX-PERF-DESIGN]], [[BTX-PERF-ADVERSARIAL]], [[BTX-PERF-FINAL]], originales inalterados.
+- Echo ed31156fe251a053241044f7659c078424667348: paths/funciones citados en esta nota y en el prompt; compare autenticado bbbcc1d5→ed31156f:9commits. Revisión de source, no ejecución Primary.
+- Control/journal anteriores completos en e0be1e552b51cf005ee10e0fa67295bbf78e9476. Los404/422 anteriores son históricos, la publicación actual ya está verificada.
