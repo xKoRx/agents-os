@@ -14,10 +14,11 @@ tags:
   - area/meli
   - app/rio-controlplane-clickhouse
 created: 2026-08-10
-updated: 2026-10-07
-last_verified: 2026-10-07
+updated: 2026-10-08
+last_verified: 2026-10-08
 confidence: high
 sources:
+  - "[[Source — ClickHouse — Pruebas físicas locales 2026-10-08]]"
   - "[[Source — ClickHouse — Preflight local 2026-10-07]]"
   - "[[Source — ClickHouse — Develop y setup local 2026-10-07]]"
   - "[[Source — Playmaker — Kafka local 2026-10-07]]"
@@ -39,37 +40,47 @@ sources:
 - **Consume / produce:** para PROVISION/UPDATE valida Context mediante el resolver del SDK; conserva `params` como configuración efectiva y un snapshot separado de Context. DEPROVISION mantiene metadata del trigger legacy. Publica `DeploymentResultMessage` en `rio-deployment-result`; en scopes desplegados usa KVS y clientes corporativos, mientras `SCOPE=local` activa estado/ownership/locks en memoria, KMS simulado y publisher de archivos.
 - **Llama a / lo llaman:** recibe los triggers del deployment path de [[rio-playmaker]]; conserva contratos legacy asociados a [[rio-materializer]]. Usa ClickHouse y, fuera del scope local, servicios corporativos de discovery, estado, transporte y cifrado.
 
-## 🧩 Implementación (volátil · last_verified: 2026-10-07)
+## 🧩 Implementación (volátil · last_verified: 2026-10-08)
 
-- **Baseline inspeccionado:** `develop @ c8b20b65`, actualizado desde GitHub el 2026-10-07. La validación descrita abajo corresponde a ese commit.
+- **Baseline inspeccionado:** `develop @ c8b20b65`, actualizado desde GitHub el 2026-10-07. La validación física del 2026-10-08 corresponde a ese baseline más los fixes locales sin commit descritos abajo.
 - **Stack:** Java 25 · Spring Boot 4.1.1 · Gradle 9.3.1 · Jetty · SpringDoc 3.1.1.
 - **Librerías verificadas:** `rio-sdk-events:1.6.1`, `com.clickhouse:client-v2:0.9.6`, `restclient-core:3.0.2`; integración Cloud Controller mediante `rio-core-java-cloud-controller-spring3:202606.29.1`.
 - **Configuración local:** `application-local.yml` importa `.env` opcional y usa `CLICKHOUSE_ONPREM_USER` (default `controlplane`) y `CLICKHOUSE_ONPREM_PASSWORD`; endpoint por defecto `http://localhost:8123`. `SCOPE=local` selecciona también los adapters locales, no basta con activar únicamente el perfil Spring.
 
-## 📍 Estado local e integración con Playmaker · 2026-10-07
+## 📍 Estado local e integración con Playmaker · 2026-10-08
 
 | Frente | Estado observado | Alcance |
 |---|---|---|
-| Repositorio | Listo en develop | `develop @ c8b20b65`, alineado con origin; merge abortado y rama descartada eliminada; sin cambios trackeados |
-| Tests de develop | PASS | 2335 tests, 357 clases, sin fallos, errores ni omitidos; `test bootJar` exitoso |
-| Arranque del CP | PASS | `application.jar`, Java 25 y `SCOPE=local`; `/ping` devolvió `pong`, HTTP 200; proceso de prueba detenido |
+| Repositorio | Develop con fixes locales | Baseline `c8b20b65`; rama descartada eliminada; cambios de cliente HTTP, credenciales, ownership local y tooling sin commit/push |
+| Suite Gradle | PASS | 2340 tests, 357 clases, sin fallos, errores ni omitidos; `test bootJar jacocoTestReport` exitoso; usa mocks y se reporta separada de la suite física |
+| Arranque del CP | PASS | `application.jar`, Java 25 y `SCOPE=local`; `/ping` = `pong`; CP dejado activo en loopback 8080 |
 | Contrato de rechazo | PASS | Trigger sin Context produjo `FAILED` en archivo de resultados; HTTP 200 fue sólo ACK |
-| DDL sobre ClickHouse | No ejecutado | Imagen 25.8 disponible; no se inició el servidor ni se creó una tabla |
+| Ciclo físico sobre ClickHouse | PASS | Motor 25.8.33.6; 14 escenarios contra CP/motor reales, incluidos datos, grants, updates, MV, ownership y deprovision; cleanup sin tablas/usuarios/detached de prueba |
 | Ciclo Playmaker → CP → Playmaker | No ejecutado | Ambos repos tienen transportes locales distintos y requieren conexión explícita |
 
 ### Estado del repositorio
 
-El owner descartó `feature/new-component-context`. Se abortó el merge, se volvió a develop y se eliminó la rama local; la consulta remota confirmó que tampoco existe esa referencia en origin. Sólo permanece `graphify-out/` sin tracking, preservado. No hay decisión de merge pendiente y no se continuó la implementación antigua de adopción de inputs. [[Plan de implementación — Context en ClickHouse]] conserva su valor histórico y no define el alcance de este setup.
+El owner descartó `feature/new-component-context`. Se abortó el merge, se volvió a develop y se eliminó la rama local; la consulta remota confirmó que tampoco existe esa referencia en origin. `graphify-out/` se preservó. Ahora hay fixes y tooling de pruebas sin commit en develop, autorizados por la solicitud posterior de funcionamiento local; no se continuó la implementación antigua de adopción de inputs. [[Plan de implementación — Context en ClickHouse]] conserva su valor histórico y no define el alcance de este setup.
+
+### Pruebas físicas y fixes verificados
+
+El runner `local/clickhouse_e2e.py` de `melisource/fury_rio-controlplane-clickhouse` agrega 14 escenarios reales a la suite Gradle: provision tipado e índices, escritura/lectura/grants, replay idempotente, metadata, updates con conservación de filas, MV con stop/start y eventos de runtime, conflictos de propietario, Context ausente, tipo inválido, deprovision y reasignación después de liberar ownership. Espera resultados terminales correlacionados y comprueba SQL; un ACK HTTP no se cuenta como éxito. El reporte reproducible vive en `local/VALIDATION.md` y la captura durable en [[Source — ClickHouse — Pruebas físicas locales 2026-10-08]].
+
+Se corrigieron tres hallazgos: `format=JSONEachRow` rechazado por el servidor → `default_format=JSONEachRow`; contraseñas generadas sin dígito → dígito y símbolo garantizados en posiciones distintas; ownership local no-op → registro atómico en memoria por instancia. Las regresiones fueron RED antes de cada fix y GREEN después; generador 100% líneas/ramas y todas las líneas/ramas nuevas de ownership cubiertas. El camino KVS desplegado conserva comportamiento. No se agregaron dependencias.
+
+El runner prepara permisos de datos sólo en `rio_local_e2e.*`, gestión sólo de usernames exactos de su corrida y lecturas de metadatos necesarias; revoca los permisos temporales al terminar. La revisión automática rechazó grants globales y se resolvió con esa alternativa limitada. Cero tablas, usuarios y recursos detached de fixtures quedaron después del PASS; MySQL existente preservado. CP, ClickHouse y forward loopback de Colima quedan activos. El estado/ownership local se pierde al reiniciar el CP; KMS sigue simulado.
 
 ### Para levantarlo localmente
 
-1. Desde el checkout `rio-controlplane-clickhouse`, usar Java 25 y configurar `.env` local, ignorado por Git: `CLICKHOUSE_LOCAL_ADMIN_PASSWORD` para el administrador Docker y `CLICKHOUSE_ONPREM_PASSWORD` para el usuario SQL `controlplane`. El README, sección On-Premise, contiene los comandos de generación de contraseñas y creación/grants del usuario; el usuario del CP debe existir antes del primer deployment.
+1. Desde el checkout `rio-controlplane-clickhouse`, usar Java 25 y configurar `.env` local, ignorado por Git: `CLICKHOUSE_LOCAL_ADMIN_PASSWORD` para el administrador Docker y `CLICKHOUSE_ONPREM_PASSWORD` para el usuario SQL `controlplane`. Para repetir la validación física, seguir `local/README.md`: el runner prepara los grants específicos de sus fixtures usando el admin local, sin grants globales de gestión de usuarios.
 2. Iniciar el ClickHouse del repo y luego el CP:
 
 ```bash
 export JAVA_HOME="$(/usr/libexec/java_home -v 25)"
 docker compose up -d clickhouse
 SCOPE=local APPLICATION=rio-controlplane-clickhouse ./gradlew bootRun
+# En otra terminal, con el CP y motor activos:
+python3 local/clickhouse_e2e.py
 ```
 
 3. Comprobar `http://localhost:8123/ping` (servidor ClickHouse) y `http://localhost:8080/ping` (CP). El profile local lee `.env` desde el root del proyecto. El CP puede arrancar sin completar el setup SQL; ping por sí solo no certifica DDL.
@@ -77,7 +88,9 @@ SCOPE=local APPLICATION=rio-controlplane-clickhouse ./gradlew bootRun
 
 El CP standalone usa ClickHouse real y adapters locales para estado, locks, cifrado y transporte; no necesita Kafka para arrancar en esta modalidad.
 
-**Gap de fixtures:** el ejemplo de provision del README y el request Bruno MergeTree consultados no traen Context. El schema 1 sí coincide con `DeploymentSchemaVersion.CURRENT` en SDK 1.5.0 y 1.6.1; el dato faltante es Context, cuya ausencia se comprobó como FAILED. Completar esa parte del fixture antes de certificar provision. Un HTTP 200 no demuestra creación de tabla.
+**Fixtures:** el ejemplo README se corrigió con Context y warehouse existente; el runner probado contiene fixtures completos. Los requests Bruno legacy inspeccionados el 2026-10-07 no se certificaron en esta corrida. El schema 1 coincide con `DeploymentSchemaVersion.CURRENT`; Context ausente produce FAILED aunque el ACK sea HTTP 200.
+
+**Colima:** se observó motor healthy dentro de la VM pero 8123 inaccesible desde el Mac porque el forward SSH terminaba con exit 137. `local/colima_forward.py` ofrece el fallback probado en loopback 8123/9000 mediante Colima/socat instalados, sin reiniciar servicios. Mantenerlo activo mientras ese problema siga presente.
 
 Docker está disponible con aproximadamente 1,91 GiB asignados y un MySQL existente en 3306. No se validaron su base, usuario ni migraciones; esa instancia no puede asumirse como el MySQL de Playmaker. Dimensionar la memoria antes de iniciar el stack conjunto y mantener datos/puertos de prueba aislados.
 

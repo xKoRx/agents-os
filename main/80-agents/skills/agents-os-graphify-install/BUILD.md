@@ -22,13 +22,13 @@ sincronizan dentro del vault.
 
 ## Contenido
 
-- Paquete actual: `graphifyy 0.9.6.post2`.
+- Paquete actual: `graphifyy 0.9.81.post1`.
 - Repo fuente local: resolver por `AGENTS_OS_GRAPHIFY_REPO` o por la ubicación
   configurada en la máquina; rama
-  `feat/obsidian-vault-wikilinks`, base `220fb0a` más el snapshot local
+  `feat/obsidian-vault-wikilinks-0.9.81`, base tag upstream `v0.9.81` más el port local
   metadata-aware documentado en el historial del proyecto.
 - Wheel actual SHA-256:
-  `fd36205f41f9d9455c67f40cca1d191e1662b7c6f7146a9aebe23e56c57dc4a8`.
+  `a85eb20603b40b443ee87fc9b6e3818eff43b37b3028dd7d9667220604fbb2e1`.
 - Ubicación local de artefactos: `~/.local/share/graphify-obsidian/dist/`.
 - Wrapper canónico pequeño:
   `80-agents/skills/agents-os-graphify-install/scripts/graphify-obsidian`.

@@ -10,7 +10,7 @@ parent:
 sprint:
 start: "2026-09-30"
 due:
-progress: 25
+progress: 0
 repo: "https://github.com/melisource/fury_rio-controlplane-kafka"
 jira:
 prs:
@@ -23,20 +23,28 @@ updated: "2026-10-08"
 # Kafka — Ambiente local con servicios reales
 
 > [!info]+ Kafka — Ambiente local con servicios reales
-> **Área:** [[Meli]] · **Estado:** active · **Owner:** Rodrigo · **Fase:** extracción pequeña CP local verificada físicamente dos veces y reproducida desde clon limpio; rama lista para revisión.
+> **Área:** [[Meli]] · **Estado:** active · **Owner:** Rodrigo · **Fase:** diseño de transporte Kafka local solicitado; implementación pendiente. La entrega HTTP anterior conserva su evidencia 8/8, pero no acredita el nuevo recorrido. PR85 merged externamente; sesión activa.
 
 ## 🎯 Objetivo
 
-Ejecutar E2E del [[rio-controlplane-kafka]] contra Kafka real usando un mapa simple en memoria para la idempotencia local, conforme a la decisión explícita del owner del 2026-10-05. Fury KVS Sandbox deja de ser requisito para esta familia. Primero CP Kafka; Playmaker y el resto del ecosistema quedan para una fase posterior.
+Diseñar primero una integración local pequeña entre [[rio-playmaker]] real y [[rio-controlplane-kafka]] real usando `rio-deployment-trigger-local` y `rio-deployment-result-local`: API Playmaker → producer Kafka → consumer CP → processors/provisioners reales → Kafka físico → publishers y producer Kafka → consumer Playmaker → estado MySQL/KVS observable. Se propone que producers/consumers vivan dentro de cada aplicación, sin proceso bridge HTTP. Un broker dueño CP y MySQL propio; ambos utilizables por Postman. ClickHouse, Fury y demás integraciones remotas quedan fuera. La implementación HTTP anterior queda como evidencia histórica separada.
 
-Mantener controllers, validadores, handlers, procesadores, provisioners y guard reales del CP. Comprobar efectos Kafka, resultados correlacionados y estado del mapa de la misma aplicación. El mapa no certifica persistencia tras reinicio, exclusión entre JVMs ni el cliente/servicio Toolkit productivo. La producción conserva su backend. La comparación histórica de implementaciones vive en [[Ambientes locales RIO — Comparativa de implementaciones]].
+Conservar contratos, validaciones, handlers, publicación, idempotencia y capacidades productivas. Mapas KVS por proceso sustituyen únicamente almacenamiento local: no certifican persistencia tras reinicio, coordinación entre JVMs ni servicio Toolkit. PR85 y originales/congelados se preservan. Defectos ajenos quedan FAIL/BLOCKED. El owner autorizó el 08/10 corregir el lifecycle DEPROVISION en Playmaker para completar esta integración; GCP PEEK y demás gaps siguen fuera. La comparación histórica vive en [[Ambientes locales RIO — Comparativa de implementaciones]].
 
 ## 📊 Estado actual
 
-- **Revisión del owner 08/10 — en ejecución:** objetivo confirmado CP+Kafka Docker para requests Postman. Se está consolidando root Compose (CP/Kafka/init-topics), perfil compose y bootstrap compartido configurable; mapa KVS preservado con prueba duplicate, check sinDocker, README único. No Playmaker/ClickHouse ni bridge HTTP. Contexto Docker activo colima (2GiB, MySQL compartido intacto) será la reproducción requerida; no se usará override del contexto anterior. La entrega eb16f5f queda como baseline histórica del delta. SPECs/tareas proporcionales y responsables en el registro único de control. Siguiente: integración→check Java21→dos corridas vacías→revisión independiente/clon limpio. Sesión reabierta por el owner; no hay nueva certificación física todavía.
+- **LOCAL-HTTP-2 — entrega verificada:** PM4795/0fails/0errors/2skips existentes +7adaptersPASS; lifecycle131 y H2consumer9PASS. Gate completo12selectores/3L0/L1PASS. Fuente final:dosLIVE8/8 en13.416/12.069s con mismosIDs/starttimestamps; down/recreación8/8 en13.207s; clon independiente8/8 en13.425s,0fails/errors/skips. ModoDIRECTPROVISION+PEEK+DEPROVISIONcompleted/inactive/slotterminated/KafkaausentePASS; fixturesAPIborrados. CP691+12 y standalone25KafkaPASS. PM rama `feature/kafka-http-local-lifecycle-fix` desde develop44c2905 sincronizado; CP rama `feature/playmaker-http-local-lifecycle-integration` desde develop6a91937 tras merge externoPR85, árbolidénticoal localaprobadoaa19883. 42PM/8CP staged y byteidénticos a clones,0mismatch; guía/AT/arquitecturaPASS,0nuevosfindingsestáticos. Ownedcleanup0containers/networks/volumes/images, contextoglobalcolima y VM rioRunning4CPU/8GiB/40GiB; originales/primeroscandidatospreservados. GCPPEEKéxitoBLOCKED y watchdogcallbackausente conservados; MeliAppSec/AOCNOT_EXECUTED. Evidencia/JUnit/logs sanitizados fuera deldiff y registroúnico [[2026-10-08-playmaker-cp-http-local-integration]]. Sin nuevo commit/push/PR/merge propio; revisiónhumana pendiente. Sesiónactive, alcance local100%, sin cierre.
+
+- **Reanudación autorizada — 08/10:** owner exige corregir Playmaker y ramas desde CP con desarrollo local / Playmaker develop recién sincronizado. Fetch + ls-remote confirman PM `44c290591a104e1471f43f132007fb6d13169684`; nuevo worktree `rio-playmaker-kafka-http-lifecycle`, rama `feature/kafka-http-local-lifecycle-fix`, wiring previo trasladado por patch exacto. CP mantiene `feature/playmaker-http-local-integration` desde el local aprobado `aa198836c9a8c21b66e9ef5ac56afb965dc795ea`; no sale de develop sin locales. Originales y primer candidato permanecen intactos. SPEC delta LOCAL-HTTP-2 debajo; sesión warm sin nuevo bootstrap.
+
+- **Primer candidato HTTP — histórico 08/10, supersedido por LOCAL-HTTP-2:** ramas nuevas sobre Playmaker develop44c2905 y CP PR85 OPEN aa19883/develop931893e. HTTP bidireccional por DI, MySQL propio y un broker implementados; producción conserva cuerpos/contratos/providers. Cinco suites completas — dos vivas sin down, una vacía, clon independiente y fuente final certificada por otro autor: **7 tests,5 PASS/2 FAIL/0errors/skips** cada una, cleanup PASS. CP DEPROVISION COMPLETED y Kafka físicamente ausente; Playmaker conserva requested/is_active por guard de terminal previo para el mismo deployment DB ID. Defecto productivo preservado; lifecycle completo BLOCKED. PM4787 productivos/0fails/0errors/2skips +7 locales PASS; CP691 productivos+12 locales PASS y standalone25/25 PASS, limpieza exclusiva. Seis selectores/3L0 y validadores PASS; L1 FAIL. Modo directo PROVISION/PEEK físicos PASS; recorder loopback y rechazo de listener activo verificados. Jars0 locales nuevos; ramas staged sin commit para no bypass de gates. MeliAppSec/AOC actualización interna NOT_EXECUTED por capacidades ausentes. Registro consolidado [[2026-10-08-playmaker-cp-http-local-integration]]. VM rio y originales intactos; sesión activa sin push/PR/merge.
+
+- **Continuidad preparada antes de implementar — 08/10 (histórico):** [[Prompt maestro — Playmaker y CP Kafka local]] listo para copiar. `rio-playmaker-kafka-e2e` es worktree de `fury_rio-playmaker`, rama histórica `feature/kafka-real-e2e@acbda2f1e68ae7672de6f9571cd739da972ca07a`, mismo common-dir que el original; no repo ni módulo nuevo. Playmaker develop remoto verificado `44c290591a104e1471f43f132007fb6d13169684`. El gate histórico exige Sandbox y `CP/e2e/run.sh`: sólo consulta/extracción. Próxima implementación: ramas limpias desde bases vigentes; CP85 intacto, broker dueño CP/redrio-local, MySQL propio Playmaker, adaptersHTTP en ambos sentidos y E2E desde APIsPlaymaker. Callback actions observado `/events/actions/result` (plural). En ese corte previo la integración aún no estaba implementada; el delta vigente arriba la supersede.
+
+- **Corrección del review 08/10 — final verificada antes de publicar el PR:** retirada la expansión local de actions GCP; PEEK válido GCP reproduce FAILED/INVALID_PARAMS (`reason=unmapped`) sin STARTED y replay usa AWS. Commit único `aa198836c9a8c21b66e9ef5ac56afb965dc795ea`, parent develop remoto `931893e00d26363c13bee35ca19ed0980b959b51`; patch lz4/Jackson heredado exacto. 16 paths (10 A/6 M), checkout limpio. Manager:25/25×2 en55.751/55.766 s de pared, mismo CP/broker, sin down/up/restart. Sol: clon Git real limpio fuera de HOME/con espacios, startup16.468 s,25/25en56.884 s (precompile separado4.497 s),691+6checkPASS19.621 s, jar productivo0local y0findingsmateriales. Ambas limpiezas eliminan3containers/redrio-local/6vol propios; snapshot finalrio idéntico vacío inicial. Original/congelado/2Playmaker preservados. README actual, Colima rio4CPU/8GiB/40GiB con Lima y medición230/380 MB; CHANGELOG agregado. Evidencia externa `/private/tmp/kafka-local-extraction-20261007/compose-revision/final-review-20261008/DELIVERY.md`. Sin PR/push ni cambios de negocio; gap GCP y diseño posterior abajo. Sesión activa.
 
 
-- **Entrega pequeña 07/10 — objetivo vigente:** `rio-controlplane-kafka-local-small`, rama `feature/kafka-local-small`, commit `eb16f5f1ef63466bcdb8ee1266eabb7ea3f21d10`, desde develop remoto verificado `4302481c69300074a85ea5eb051a27bbd505cdce`. PROVISION, UPDATE, DEPROVISION y PEEK acción/REST más errores contractuales: dos corridas finales **9/0/0/0 PASS** desde ambientes vacíos y reproducción independiente **9/0/0/0 PASS**. CP real, un broker Kafka real RF1, KVS mapa por JVM y resultados Kafka reales; cleanup físico y packaging productivo PASS. Diff 14 archivos (11 añadidos, 3 modificados); sólo dos anotaciones de perfil en configuración productiva, sin cambios de negocio. `local/README.md` contiene start/test/stop. Original y congelado íntegros; sin PR, push, CI ni integraciones del ecosistema. Revisión independiente sin findings materiales; Zord formal no ejecutado por rechazo automático de envío de diff privado, consulta de autorización/omisión pendiente. Registro breve y SPECs proporcionales en el control externo de esta ejecución; atribución en los agent runs `kafka-small-local-*`.
+- **Entrega pequeña 07/10 — baseline histórica, supersedida por el candidato 08/10:** `rio-controlplane-kafka-local-small`, rama `feature/kafka-local-small`, commit `eb16f5f1ef63466bcdb8ee1266eabb7ea3f21d10`, desde develop remoto verificado `4302481c69300074a85ea5eb051a27bbd505cdce`. PROVISION, UPDATE, DEPROVISION y PEEK acción/REST más errores contractuales: dos corridas finales **9/0/0/0 PASS** desde ambientes vacíos y reproducción independiente **9/0/0/0 PASS**. CP real, un broker Kafka real RF1, KVS mapa por JVM y resultados Kafka reales; cleanup físico y packaging productivo PASS. Diff 14 archivos (11 añadidos, 3 modificados); sólo dos anotaciones de perfil en configuración productiva, sin cambios de negocio. `local/README.md` contiene start/test/stop. Original y congelado íntegros; sin PR, push, CI ni integraciones del ecosistema. Revisión independiente sin findings materiales; Zord formal no ejecutado por rechazo automático de envío de diff privado, consulta de autorización/omisión pendiente. Registro breve y SPECs proporcionales en el control externo de esta ejecución; atribución en los agent runs `kafka-small-local-*`.
 
 - **Ejecución funcional activa 06/10 (supersede el recheck de sólo lectura):** runtime propio `colima-rio-kafka-e2e-01a0f8e0` disponible con 6.198.423.552 bytes; handshake Kafka real desde host39092–39096 verificado, shared default intacto. Baseline unfiltered `cc21725628c84592b64113606ff072e7`: **348 tests,261 PASS,87 FAIL,0errors/skips,cleanup PASS**. 845 unit+compile PASS hoy. Fixes exclusivos GPT-6 Luna: prefijo Compose corregido; binding action envelope `publish_time` opcional según OpenAPI; fixtures RF/metadatos y cobertura childrouting en curso. No certificación completa todavía. El SIGKILL previo conserva causa desconocida; el runtime actual no depende de Fury/VPN. Continuación: fixes→fullunfiltered→freeze→replay independiente desde clone limpio→evidencia/knowledge. Control activo `/private/tmp/kafka-e2e-validate-20261006/execution-control.json`.
 
@@ -83,7 +91,9 @@ Mantener controllers, validadores, handlers, procesadores, provisioners y guard 
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| [[rio-controlplane-kafka]] · extracción pequeña vigente | `feature/kafka-local-small` · `rio-controlplane-kafka-local-small` | develop remoto `4302481c69300074a85ea5eb051a27bbd505cdce` | Encargo 07/10 y SPEC funcional breve del control de ejecución | SPEC técnica/tareas breves del mismo control; adapters y perfil aislados | Commit `eb16f5f`; dos suites 9/0/0/0 y replay limpio 9/0/0/0 PASS; revisión independiente PASS; Zord pendiente |
+| [[rio-playmaker]] · integración HTTP local + lifecycle | `feature/kafka-http-local-lifecycle-fix` · `rio-playmaker-kafka-http-lifecycle` | develop recién sincronizado `44c290591a104e1471f43f132007fb6d13169684` | LOCAL-HTTP-1 + LOCAL-HTTP-2 en esta nota | LOCAL-HTTP-1 + LOCAL-HTTP-2 en esta nota | Certificado8/8×4, DIRECTPASS, gate/regresiónPASS; diffstaged para review |
+| [[rio-controlplane-kafka]] · integración HTTP local vigente | `feature/playmaker-http-local-lifecycle-integration` · `rio-controlplane-kafka-http-lifecycle` | develop sincronizado `6a91937c0664d83f907dec222af8a96b4042c6ae`, árbol idéntico al local aprobadoaa19883 | LOCAL-HTTP-1 compartida | LOCAL-HTTP-1 compartida | Overlay HTTP exacto; rama anterior/PR85 preservados, merge externo |
+| [[rio-controlplane-kafka]] · Kafka Compose vigente | `feature/kafka-local-small` · `rio-controlplane-kafka-local-small` | develop remoto `931893e00d26363c13bee35ca19ed0980b959b51` | Encargo y SPEC breve del control externo | Compose, adapters/perfil aislados y matriz local | Commit único `aa19883`;25×2 vivo <60 s y clon final25 <60 s PASS;691+6/packaging PASS;PR [#85](https://github.com/melisource/fury_rio-controlplane-kafka/pull/85) MERGED externamente08/10 21:35:09UTC |
 | [[rio-controlplane-kafka]] · CP local memoria actual | `feature/kafka-e2e-memory` · `rio-controlplane-kafka-memory-e2e` | Candidato `7f1720d950446638ff9b15a0e4e167f3e8e26e43` sobre develop previo | Delta `LOCAL-MEMORY-1` en funcional | Delta `LOCAL-MEMORY-1` en técnica y tareas | Implementación7615b21/docs4c66d0d;845 unit/compile peer PASS; físico BLOCKED |
 | [[ads-signals-knowledge-library]] · memoria local actual | `docs/kafka-e2e-memory` · `ads-signals-knowledge-library-kafka-memory-e2e` | Candidato `5c4cb45d9fa8c3e4a95d73542ecd58c04c7c1530` | Decisión owner05/10 y auditoría |5docs delta fuentes/capas/runbook | Commit0feee7b; estructura/histórico PASS; formal937 preexistentes idénticos |
 | [[rio-controlplane-kafka]] · `melisource/fury_rio-controlplane-kafka` | `feature/kafka-real-e2e` · worktree hermano `rio-controlplane-kafka-e2e` | `develop@4302481c69300074a85ea5eb051a27bbd505cdce` | `meli/features/20261001-real-e2e/1-functional/spec.md` lista; publicación SIG bloqueada por sesión | `meli/features/20261001-real-e2e/2-technical/spec.md` lista | Implementación/suites compiladas; real E2E pendiente |
@@ -105,10 +115,74 @@ El flujo de entrega sigue Spellbook: SPEC funcional → SPEC técnica → tasks 
 
 ## ✅ Tareas
 
+### Delta autorizado LOCAL-HTTP-2 — lifecycle DEPROVISION
+
+**SPEC funcional:** completar DEPROVISION iniciado por API Playmaker después de un PROVISION terminal, incluyendo tópico ya ausente y replay. El terminal de una operación anterior del mismo deployment DB ID no bloquea la operación actual. COMPLETED de undeploy queda observable como action=undeploy/status=completed, deployment inactivo y service terminado; FAILED conserva error y permite reintentar. Late/replay de la misma operación no regresa terminal ni resucita recursos/servicio. Preservar contratos wire, logs/historia, grouped deploy/materializer, auth y gap GCP.
+
+**SPEC técnica:** usar UUID de operación del resultado y logs persistidos (materialization_id) para acotar el guard terminal de UNDEPLOY por deployment + operación; los DEPLOY/materializer conservan su guard legacy global. Callbacks de materializer pueden registrar IDs null/de recurso antes del bus, por lo que no se aplica un cambio global de guard. Confirmar lookup para UUID anterior/actual, operaciones UNDEPLOY con group heredado y persistencia antes de dispatch; si existe carrera antes del commit, usar seam transaccional productivo AFTER_COMMIT, nunca delay ni rama local. COMPLETED UNDEPLOY aplica semántica de terminación, sin nueva migración/SDK/dependencia. Consultas parametrizadas. El fallo de dispatch postcommit puede terminalizar la fila anterior, pero sólo actualiza el service si ese deployment sigue activo; preservar un slot supersedido igual que el handler normal. Documentar cualquier ajuste material antes de implementar. ROOT maneja ramas/build/infra/docs; Luna sólo handler/repository/undeploy + unitarios (incluye adaptar el constructor de UndeploymentServiceImplTest); Sol sólo tests H2/E2E y review read-only. Un escritor por archivo; root certifica E2E de otro autor.
+
+**Tareas:**
+- [x] Sincronizar PM develop, registrar base y crear rama/worktree limpio con overlay local previo; CP conserva base local aa19883.
+- [x] Diagnosticar y corregir guard por operación, transición de undeploy y dispatch antes del commit con regresión red→green.
+- [x] Ejecutar tests focalizados/gates AT y regresión completa; conservar standalone CP25 Kafka.
+- [x] Certificar E2E completo dos veces mismo ambiente vivo, recrear y repetir, reproducir desde clones limpios por otro agente.
+- [x] Verificar limpieza física, actualizar guía/evidencia y dejar ramas listas sin publicar PR/merge.
+
+### Integración HTTP local Playmaker + CP — vigente 08/10
+
+- [x] Revalidar bases/PR85, registrar identidades y crear ramas/worktrees aislados.
+- [x] Fijar matriz desde contratos vigentes, selección DI y fixtures locales con validaciones existentes.
+- [x] Implementar HTTP bidireccional, KVS mapa por proceso y Compose Playmaker/MySQL unido a rio-local.
+- [x] Ejecutar unitarios afectados, gates AT/impact/documentación y regresiones de ambos repos.
+- [x] Ejecutar E2E desde Playmaker dos veces sin down; recrear vacío y repetir; probar CP standalone25 en Kafka sin CP simultáneo.
+- [x] Reproducción y revisión independiente desde clones limpios con espacios/fuera de HOME; limpieza física exclusiva.
+- [x] Dejar ramas/diff/matriz/evidencia listas para revisión humana, sin push/PR/merge.
+
+### SPEC funcional — LOCAL-HTTP-1
+
+**Problema:** los runners locales actuales no conectan el estado persistido de Playmaker con los efectos físicos del CP Kafka. El loopback y un ACK no permiten verificar el lifecycle completo.
+
+| ID | Requisito | Prioridad |
+|---|---|---|
+| RF-1 | Ejecutar ambas aplicaciones reales utilizables desde Postman, Kafka y MySQL locales propios. | Debe |
+| RF-2 | PROVISION, UPDATE y DEPROVISION entran por Playmaker y terminan con estado observable y efecto Kafka verificado. | Debe |
+| RF-3 | Actions soportadas por ambos repos conservan resultados/errores/payload, correlación y deduplicación. | Debe |
+| RF-4 | Preservar flujos productivos, SDKs y gates administrados; reportar defectos heredados como FAIL/BLOCKED. | Debe |
+| RF-5 | Repetir en ambiente vivo y vacío, reproducir independientemente y eliminar sólo recursos propios. | Debe |
+
+**CA-1:** requests reales Playmaker producen STARTED→terminal según contrato, resultado CP y estado final Playmaker compatibles, con topic/config/particiones/RF1 o ausencia física comprobados. **CA-2:** PEEK devuelve keys y mensajes deterministas dentro del límite; errores contractuales y replays usan IDs/eventos capturados, sin resultados construidos. **CA-3:** standalone25 CP Kafka y regresiones mantienen resultados; producción excluye código local adicional. **CA-4:** corridas y limpieza se acreditan desde clones limpios. Fuera de alcance: ClickHouse, Fury/Sandbox, OAuth/BigQueue/ACME/Entity remotos, fixes productivos, retry nuevo, PR/merge.
+
+### SPEC técnica — LOCAL-HTTP-1
+
+**Deriva de:** SPEC funcional LOCAL-HTTP-1. **Estado:** implementado en ramas nuevas; certificación física en curso.
+
+```text
+Playmaker API / servicios / dispatch [UNCHANGED]
+  → local DeploymentTriggerProducer / ActionsTriggerProducer HTTP [NEW]
+  → CP /triggers/deployments y /triggers/actions [UNCHANGED]
+  → processors / provisioners → Kafka rio-kafka:19092 [UNCHANGED]
+  → publishers reales [UNCHANGED]
+  → compose BigQueueClient HTTP [NEW]
+  → Playmaker /events/deployment/result y /events/actions/result [UNCHANGED]
+  → consumers reales → MySQL / KVS mapa local por proceso [NEW adapter]
+```
+
+**DD-1:** HTTP reemplaza únicamente el transporte de las interfaces existentes; cada adapter añade un solo envelope BigQueue al payload SDK real. CP selecciona `local.results.transport=kafka|http` con default kafka y URLs por resultado. Error/no-2xx/timeout se propaga por el contrato de cada interfaz, sin retry ni resultados fabricados; publicación de deployment permanece best effort heredada. **DD-2:** sourceSets locales adicionales y qualifiers/profiles excluyen adapters del jar productivo; producción conserva providers y flujos. En Playmaker se excluyen exclusivamente los producers/KVS locales previos al seleccionar local-http; no se activa local-integration ni su broker/listener. **DD-3:** broker dueño CP, aliases rio-kafka/rio-cp-kafka, red rio-local external para Playmaker, alias rio-playmaker y MySQL exclusivo. Puertos parametrizados CP39081/Kafka39092/PM39080/MySQL33306; imágenes compatibles fijadas, COPY del jar y healthchecks. **DD-4:** deployment dispatch sigue AFTER_COMMIT. Action dispatch/callback se audita contra transacción vigente; una carrera heredada se conserva como FAIL/BLOCKED, sin sleeps de ocultamiento. **DD-5:** fixtures sólo referencia mínima aislada; Tiger SDK local existente y validaciones normales, sin claims de auth remoto integrado. KVS mapas aislados por JVM: resultados save-upsert sin optimistic locking; locks create-only atómico con conflicto. Guía primaria Toolkit0.7.4 sustenta modos por container; no afirma configuración productiva. CAS/TTL/get/delete preservados. Cliente ACME real consulta fixture HTTP loopback fail-closed de owner grant para example/team fijo; validaciones intactas, ACME externo excluido.
+
+| Archivos / responsabilidad | Autor |
+|---|---|
+| CP src/local adapter HTTP, configuración de transporte y src/localTest | Luna CP |
+| Playmaker src/local adapters HTTP/mapas y selección local por annotations; tests correspondientes | Luna Playmaker tras discovery |
+| Build/config/Compose/launcher, contratos AT/impact/docs, matriz E2E y registro | Manager Sol |
+| Suite E2E desde Playmaker y reproducción independiente del wiring de otros autores | Sol E2E |
+| Review cruzado CP/PM/suite y comandos seriales | Luna cruzados + manager |
+
+**Verificación:** unitarios de wire/errores/mapas complementan E2E JUnit/Gradle desde APIs Playmaker; polling con deadline comprueba ambos estados y Kafka. CP standalone25 se corre en Kafka después de cambiar el único CP al transporte default. Evidencia sanitizada fuera del diff; no suites concurrentes. Rollback local: detener Playmaker/MySQL propios, luego CP/broker y red propios; VM intacta. Gap productivo GCP PEEK conserva FAILED/INVALID_PARAMS reason=unmapped sin STARTED.
+
 ### Delta Compose/Postman vigente — 08/10
 
-- [/] Consolidar Compose raíz con CP, bootstrap único y perfil compose; preservar contratos productivos.
-- [ ] Documentar requests Postman y un único camino local; eliminar supervisor del host.
+- [x] Consolidar Compose raíz con CP, bootstrap único y perfil compose; preservar contratos productivos.
+- [x] Documentar requests Postman y un único camino local; eliminar supervisor del host.
 - [ ] Check Java21 sinDocker y diez escenarios (nueve originales más duplicate) dos veces desde vacío en contexto activo.
 - [ ] Reproducción independiente desde clon limpio y entrega del review punto por punto.
 
@@ -153,6 +227,14 @@ El flujo de entrega sigue Spellbook: SPEC funcional → SPEC técnica → tasks 
 > - [ ] Ejecutar la matriz de aceptación, documentar brechas y entregar el comando reproducible #owner/me #type/dev #area/meli
 
 ## 📆 Bitácora
+
+- **2026-10-08 — inicio LOCAL-HTTP-1:** revalidadas bases por GitHub, PR85 abierto; creadas ramas aisladas y registrada SPEC funcional→técnica→tareas antes de código. Discovery acotado por gpt-6-luna, manager Sol. VM rio ya activa e inicialmente vacía; sin reinicio ni uso de default.
+
+- **2026-10-08 — cierre Codex y handoff:** owner pidió prompt maestro y cierre. Preparado [[Prompt maestro — Playmaker y CP Kafka local]], comprobada identidad/common-dir/bases y contratos del gate histórico. PR85verde8PASS/2SKIPPED/0pendientes, aa19883único, sin merge. Feedback [[2026-10-08-kafka-pr-playmaker-continuity-session-feedback]]. Sesión cerrada; siguiente agente implementa dos procesos+HTTP/realKafka/MySQL, no ClickHouse ni Sandbox.
+
+- **2026-10-08 — publicación autorizada:** rama `feature/kafka-local-small@aa19883` publicada y PR [#85](https://github.com/melisource/fury_rio-controlplane-kafka/pull/85) creado contra `develop@931893e`. Descripción en [[Descripción PR — rio-controlplane-kafka]], redactada con pr-description y human-first-technical-writing. Checks finales: 8 PASS, 2 SKIPPED, 0 pendientes. CI Fury549, CodeQL, cobertura, static-analyzer, dependencias y workflow en verde. MERGEABLE; GitHub requiere aprobación de reviewers. Sin merge ni cambios de código.
+
+- **2026-10-08 — review final del owner (Claude Code):** `aa19883` **aprobado para PR**. Reproducción independiente en `colima-rio` desde clon limpio fuera de HOME: `check` 697 PASS, `up --build --wait` OK, `localFunctionalTest` 25/25 dos veces seguidas sin `down` (57 s / 56 s), jar productivo sin clases locales, limpieza total. Nota heredada: `check` regenera `docs/specs/swagger.yaml` con servidor local si `SCOPE` no está seteado; restaurar antes de commitear. Próximo paso: push + PR; luego fase playmaker (transporte HTTP de resultados, red `rio-local` externa, sin el overlay Kafka de playmaker).
 
 - **2026-10-01 — gates y reproducción:** runtime propio creado sin activar ni reiniciar Colima compartido; Kafka RF1–5 físico PASS/cleanup. OOM detectado y corregido. CP701 tests PASS. Revisión independiente arregló precisión P/U/D GCP y fallo GCP null operation sin claim; harness corregido para claves, routing, cleanup y evidencia. Configuración sandbox/auth/runner aún bloquea suites completas.
 
@@ -337,3 +419,69 @@ Sesión cerrada, rama limpia y sin infraestructura propia activa. Los checkpoint
 ## Reanudación por revisión — 2026-10-08
 
 Owner pide evaluar los nueve puntos del review y corregir sólo lo necesario para CP local operable por Postman. Se acepta contenerización y simplificación; se descartan NoOp KVS y diseño anticipado del transporte/red del ecosistema. La base remota no pudo refrescarse hoy por IP allowlist; se conserva la base verificada 4302481 y el checkout propio eb16f5f, sin tocar original/congelado.
+
+
+## Checkpoint Compose/Postman — 2026-10-08
+
+Candidato staged sobre `feature/kafka-local-small@eb16f5f`, sin nuevo commit/PR/push. Root Compose contiene CP en JRE21 público, Kafka e init-topics; supervisor/run.sh y compose secundario eliminados. Bootstrap compartido por perfil compose y adapters; SDK usa además local y `.fury` readonly sólo appname. README raíz apunta a guía Postman. Check Java21 691 tests existentes+6 KVS PASS; compilación de los 10 escenarios PASS; bootJar productivo 0 recursos locales; cuerpos productivos idénticos a develop salvo dos anotaciones/imports Profile. Peer estático independiente sin findings materiales.
+
+CP y Kafka healthy dentro del Docker activo colima; `/ping` devuelve pong desde la VM. Acceso del host BLOCKED: Lima mata por SIGKILL sus comandos SSH forward/cancel; no listeners39081/39092. Diagnósticos sin mux/fork también terminan -9; causa no inferida. No se ejecutaron aún diez escenarios ni replay limpio del delta. Cleanup exclusivo Compose completo; VM y MySQL compartido permanecen intactos. Pregunta pendiente al owner: autorización para reiniciar VM con gRPC (interrupción temporal MySQL) o conservarla y validar Docker propio; ninguna selección predefinida equivale a aprobación. Siguiente: restaurar conectividad autorizada→dos suites vacías→reproducción independiente. Sesión activa, no cierre.
+
+
+## Gap productivo separado — actions GCP
+
+El review del owner identificó que la entrega da94c9d agregaba localGcpClusterResolver/localGcpKafkaConnectionFactory, ausentes en producción. Esos beans habilitaban PEEK GCP sólo en local; su clasificación como sustitución de infraestructura fue incorrecta. Se retiraron de esta extracción. Los deployments GCP conservan sus sustituciones legítimas de configuración/credenciales.
+
+**Propuesta de ticket para otro PR:** definir y habilitar routing/conexión productivos de actions `gcp-kafka-topic`, si ese soporte es el contrato deseado. No se abrió ticket externo ni se arregló el producto dentro de esta extracción.
+
+Reproducción: levantar el CP Compose y ejecutar `./gradlew localFunctionalTest --tests '*gcpPeekRejectsMissingClusterBeforeDispatch'`. El test crea un tópico Kafka real RF1 con tres mensajes deterministas, envía una action válida `component_template=gcp-kafka-topic`, `action_name=peek`, `environment_id=1` y verifica el resultado real `FAILED/INVALID_PARAMS`, `details.field=environment_id`, `details.reason=unmapped`, sin STARTED. El tópico queda intacto y luego el fixture se elimina.
+
+Causa: main sólo registra AwsMskClusterResolver/AwsMskConnectionFactory. ClusterConnectionProvider.connect devuelve Optional.empty cuando falta resolver o factory para GCP_KAFKA. ActionProcessor valida primero action_name, luego conexión, luego data y finalmente publica STARTED. Por eso UNKNOWN_ACTION también se puede probar en GCP, pero PEEK válido falla antes del consumer Kafka. El test acredita paridad con el fallo vigente, no éxito funcional GCP.
+
+## Transporte de resultados — delta vigente
+
+PR85 conserva Kafka como transporte standalone. LOCAL-HTTP-1 implementó selección configurable exclusivamente en ramas nuevas de integración: local.results.transport kafka/http y URLs local.results.deployment-url/local.results.actions-url. Adapters BigQueueClient locales envuelven los resultados construidos por publishers reales y los envían a callbacks Playmaker existentes; HTTP200 es recepción y los tests verifican estado y Kafka físico por separado.
+
+La propuesta previa se implementó sin modificar PR85, publishers ni DTOs. Contrato y límites actuales viven en KAFKA_HTTP.md de la rama Playmaker. El primer candidato quedó FAIL/BLOCKED por el guard terminal productivo; LOCAL-HTTP-2 autorizó y corrigió ese lifecycle, con verificación vigente en Estado actual.
+
+## Delta LOCAL-HTTP-1 — primera ejecución
+
+Adapters HTTP de ambos procesos, selección local por DI y launcher Compose implementados. CP check 691 productivos +12 locales PASS; PM adapters iniciales5 PASS y jar Java25 compilado. Primer stack falló healthcheck por curl ausente y reveló trap ERR no heredado; ambos corregidos y cleanup propio verificado, VM intacta. Segundo stack healthy; primera suite conservada FAIL5 tests +cleanup por expectativas REST uppercase frente al DTO lowercase, resultados KVS configurados create-only y fixtures sin team/grants. Kafka real creó tópicos y PM registró COMPLETED/FAILED según callbacks. No se certifica éxito desde ese ACK ni se atribuye defecto productivo a una suposición del adapter.
+
+Guía primaria exacta [Toolkit KVS0.7.4](https://github.com/melisource/fury_java-toolkit-kvs/blob/0.7.4/docs/guide/README.md) permite diferenciar save sin optimistic locking y create-only bajo locking. Mapas de resultados/locks locales separados; fixture ACME HTTP de referencia restringido, cliente real y validaciones conservados. E2E corregido por contrato y cleanup; regresión Playmaker en curso. Registro consolidado: [[2026-10-08-playmaker-cp-http-local-integration]]. Sesión activa; no push/PR/merge ni cierre.
+
+## Delta LOCAL-HTTP-1 — entrega para revisión
+
+Implementación y verificaciones autorizadas completadas; resultado funcional global FAIL/BLOCKED. Guard heredado de DeploymentResultHandlerImpl descarta undeploy tras provisión terminal del mismo deployment DB ID. CP COMPLETED y Kafka ausente comprobados en ambos casos; PMrequested/is_active. Gap GCPPEEK productivo preservado y probado como FAILED/INVALID_PARAMS/unmapped sin STARTED. No cambios productivos, dependencias, CI, PR ni merges.
+
+Clon independiente confirmó transporte/API/Kafka y modo directo Postman; root certificó la suite de otro autor. Todos los recursos propios retirados; originales/defaultVM/rio preservados. Revisión humana del diff staged y definición de alcance separado para el defecto productivo son el siguiente paso. Registro consolidado [[2026-10-08-playmaker-cp-http-local-integration]] y tres agent runs del08/10 actualizados. Sesión activa; no cierre solicitado.
+
+## Delta LOCAL-HTTP-2 — corrección y entrega verificadas
+
+El owner autorizó corregir el lifecycle DEPROVISION en Playmaker y fijó las bases: PM develop recién sincronizado; CP con el desarrollo local aprobado. PM parte de 44c2905. Durante el trabajo PR85 fue merged externamente; CP develop 6a91937 tiene exactamente el árbol de aa19883. La rama CP final parte limpia de ese develop y conserva sólo el overlay HTTP autorizado. Originales y primeros candidatos permanecen intactos.
+
+La corrección limita el guard de UNDEPLOY a la operación, rota ambas correlaciones y despacha AFTER_COMMIT. COMPLETED inactiva el deployment y termina su service slot; conserva componente global y ComponentRun previo. Fallo de envío postcommit usa REQUIRES_NEW sólo si la misma operación sigue REQUESTED, y respeta un service reemplazante cuando la fila vieja está inactiva. DEPLOY/MATERIALIZER mantiene su guard legacy; no se añadieron retries, watchdog ni providers.
+
+Fuente final certificada: PM4795 +7 locales; lifecycle131 y H2consumer9; CP691 +12 locales y standalone25. Gate12 selectores/3L0/L1 PASS. Dos E2E vivos8/8 con IDs/timestamps iguales; después down/recreación8/8; independiente desde clones con espacios8/8 y modo DIRECT PROVISION/PEEK/DEPROVISION PASS. 42PM/8CP archivos idénticos a clones tras review documental. Limpieza física propia completa, VM/contexto preservados. Todas las tareas LOCAL-HTTP-2 completadas; progreso100% del alcance local, statusactive y sesión abierta para review.
+
+Ramas staged sin commit/push/PR/merge propio. GCP PEEK exitoso y watchdog de callback perdido conservan sus gaps; AppSec/AOC NOT_EXECUTED. Cero findings estáticos nuevos, baselines conservados. Evidencia causal previa, comandos, responsabilidades y validaciones: [[2026-10-08-playmaker-cp-http-local-integration]]. Coste/tokens y modelo exacto del manager desconocidos.
+
+
+**Sincronización solicitada — 08/10, 22:22:44 UTC:** fetch y merge --ff-only de origin/develop en ambas ramas finales. PM44c2905 y CP6a91937 ya coincidían con sus develop remotos (0 ahead/0 behind); CP incluye PR85 local merged. Sin conflictos ni cambios de código. Los diffs staged de 42PM/8CP quedaron byte-idénticos; no se repiten tests al no cambiar fuentes/bases. Sesión activa; sin push/PR/merge remoto.
+
+## Diseño propuesto — LOCAL-KAFKA-1, pendiente de implementación
+
+**Solicitud vigente:** owner selecciona el patrón Kafka de Playmaker y pide diseñar primero producers/consumers locales en ambos procesos. No se ha implementado ni ejecutado esta fase. El 0% corresponde al nuevo alcance; LOCAL-HTTP-2 conserva su certificación histórica.
+
+**SPEC funcional, propuesta:** requests de Postman/front siguen entrando por APIs Playmaker existentes. Playmaker publica triggers SDK reales en los tópicos locales; CP los consume y conserva filtros, versiones, routing, idempotencia y procesamiento productivos. Publishers CP construyen resultados reales y el transporte Kafka local los publica; Playmaker consume y persiste. Éxito exige estado terminal correlacionado en ambos procesos y efecto Kafka físico. Kafka sustituye transporte BigQueue; no acredita Fury BigQueue push, auth, Entity ni OAuth. No se agregan capacidades GCP ausentes.
+
+**SPEC técnica, propuesta:**
+
+- Un broker CP, red `rio-local`, bootstrap de contenedores `rio-kafka:19092`; PM39080, CP39081, broker host39092 y MySQL33306. Producers/listeners embebidos, sin tercer proceso ni segundo broker; conservan `rio-deployment-trigger-local` y `rio-deployment-result-local`. Nombres actions se tomarán del contrato histórico verificado y se configurarán explícitamente al implementar.
+- Kafka transporta el JSON SDK crudo, como los adapters existentes; key de trigger/resultado = deployment_id o action_id. `{msg:...}` pertenece al adapter HTTP productivo, no se duplica en Kafka. Una partición RF1 por tópico de transporte inicialmente; mantiene el orden de cada correlación al publicar de forma secuencial y esperar ACK. Los tópicos de negocio usan sus propias configuraciones comprobadas por E2E. Groups CP/PM/observador separados y estables por ambiente.
+- PM reutiliza producer/listener de deployments existentes y seams de actions. CP reutiliza `LocalKafkaBigQueueClient` bajo qualifiers actuales, preservando publishers; requiere añadir key de correlación al adapter local. Sin mavenLocal ni cambios de SDK.
+- CP hoy contiene filtros/guards/routing/métricas en sus dos controllers, además de parsing raw para no perder campos de routing desconocidos por el DTO. Se propone extraer esa entrada a handlers de aplicación compartidos, manteniendo contratos HTTP y procesamiento. HTTP conserva aceptación y dispatch asíncrono; Kafka invoca la misma validación/routing con procesamiento acotado al registro. El refactor sería estructural, sin ramas local ni copia de reglas, y exige revisión de paridad. Esta propuesta modifica estructura de controllers: aún no autorizada como implementación en esta fase de diseño.
+- Publish PM sólo después de hacer visible el estado inicial necesario, incluyendo commit cuando corresponda. Producers esperan ACK broker con timeouts existentes. Consumers no usan auto-commit: resultados se confirman al volver de persistencia; triggers al completar el tratamiento del registro. El retorno de un processor no equivale a publicación exitosa: rechazos/FAILED son resultados de negocio, no retries de transporte. La política exacta de errores/DLT y el vínculo entre trabajo asíncrono/offset se fijarán explícitamente antes de código; no se agregan retries de negocio ni se asume paridad de ACK Kafka/BigQueue.
+- Límite encontrado: CP puede finalizar idempotencia antes de publicar y `DeploymentResultPublisher` absorbe errores de envío. Reentregar el trigger puede ser descartado por terminal previo sin recuperar el resultado. Native Kafka no resuelve ese hueco. Se conserva y prueba como fallo/gap; no se promete recuperación automática, exactly-once ni atomicidad Kafka/MySQL/KVS. KVS mapas por JVM conserva las limitaciones de reinicio.
+
+**Tareas propuestas:** cerrar contrato ACK/errores con las limitaciones anteriores; implementar extracción estructural y listeners locales con parity tests; conectar ambos al broker único; migrar E2E para observar registros/keys/offsets reales y efectos finales; regresión standalone25 y gates Playmaker; dos corridas vivas, recreación y reproducción independiente; limpieza física exclusiva. No se modificó código de repos, ramas, Docker ni VM en este diseño.

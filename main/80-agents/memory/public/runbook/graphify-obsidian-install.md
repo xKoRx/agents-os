@@ -88,7 +88,7 @@ del contrato: `[[agents-os]]` y `80-agents/skills/_shared/graphify-contract.md`.
 ## Validación
 
 - El compilado responde: `graphify-obsidian --help` (muestra ayuda del wrapper + flags heredados).
-- La versión actual responde `graphify 0.9.6.post2`, expone `filter` más `query --filter` y preserva bajo `relations` todas las variantes semánticas que comparten source-target.
+- La versión actual responde `graphify 0.9.81.post1`, expone `filter` más `query --filter` y preserva bajo `relations` todas las variantes semánticas que comparten source-target.
 - **Estado fuera del vault** (requisito clave): `cache-path` debe resolver bajo
   el cache home de la máquina. `GRAPHIFY_MD_VAULT_ROOT` se limita a la copia
   temporal y nunca apunta el output al vault.

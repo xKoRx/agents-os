@@ -142,3 +142,9 @@ Corrección in-place del contrato F-04: identidad del HandoffManifestV1 desde `s
 - Reconciliado [[rio-controlplane-clickhouse]] con setup standalone y launcher `local/00-integration-pipeline.sh` de Playmaker: MySQL, Kafka host 39092, HTTP 9090 y profile local-integration. Se explicita el bridge faltante y la alternativa futura de adapters Kafka scoped en el CP.
 - Nuevas fuentes [[Source — ClickHouse — Develop y setup local 2026-10-07]] y [[Source — Playmaker — Kafka local 2026-10-07]]; la captura previa de Playmaker se marca superseded sin borrar su evidencia.
 - DTOs SDK 1.5.0/1.6.1 con signatures públicas coincidentes y schema 1; serialización E2E, DDL e integración física permanecen sin ejecutar. No se continuó la rama ni se implementaron adapters.
+
+## [2026-10-08] ingest | ClickHouse — Pruebas físicas y funcionamiento standalone local
+
+- Actualizado [[rio-controlplane-clickhouse]] con [[Source — ClickHouse — Pruebas físicas locales 2026-10-08]]: 2340 tests Gradle y 14 escenarios PASS contra CP/ClickHouse físicos; cleanup contrastado en SQL.
+- Fixes sin commit: default_format HTTP, contraseñas con dígito/símbolo garantizados y ownership local con claims/release; regresiones RED→GREEN. Runner, reporte y fallback Colima guardados en el repo; MySQL preservado.
+- CP/motor/forward quedan activos. Kafka/Playmaker, Cloud y S3/Iceberg no fueron certificados; se conserva la guía de integración pendiente. Change log y agent run del segmento materializados sin cerrar sesión AGENTS OS.
