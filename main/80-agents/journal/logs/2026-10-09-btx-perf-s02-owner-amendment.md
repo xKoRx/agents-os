@@ -12,6 +12,8 @@ entities:
 related:
   - "[[BTG-PLAN]]"
   - "[[BTX-PERF-DESIGN]]"
+  - "[[BTX-PERF-ADVERSARIAL]]"
+  - "[[BTX-PERF-FINAL]]"
 aliases: []
 confidence: verified
 source_session:
@@ -25,115 +27,50 @@ tags:
   - scope/session
 ---
 
-# 2026-10-09 — BTX-PERF: adenda Owner S02 y materialización S01
+# BTX-PERF — registro consolidado de cambios de dirección
 
 ## Cambio
 
-Materialización documental de BTX-PERF-DESIGN y actualización del control único BTG-PLAN por decisión explícita Owner. Un solo despacho S02 TOP LOCAL fresh-context ONE-SHOT; no código de producto, tests, perfiles, backtests, merge o despliegue ejecutados por Primary. No cierre de Primary ni aceptación del producto.
+2026-10-10: incorporación de la autorización explícita Owner para un LAST SHOT dirigido por GOD con sus TOPs, publicación S04 ya verificada y aclaración de modelos. Se modifica BTG-PLAN y este registro existente; no código de producto, tests, scripts, perfiles o backtests ejecutados por Primary. No cierre ni feedback de la sesión Primary. Aceptación final no concedida.
 
-Archivos: `10-projects/Echo Futures/artifacts/backtester-gerard-bankroll/BTX-PERF-DESIGN.md`, `10-projects/Echo Futures/artifacts/backtester-gerard-bankroll/BTG-PLAN.md` y este change_log. En el repo Agents-OS todos llevan prefijo `main/`; las rutas anteriores son relativas a VAULT_ROOT.
+## Historia preservada
+
+El cuerpo íntegro anterior de este registro, incluidas apertura/adenda S02, recepción preliminar S03, dictamen S03 y recepción S04, se conserva en el mismo path en Git `e0be1e552b51cf005ee10e0fa67295bbf78e9476`, blob `d46f53ae5d5738ceefd3365b28dc631db0dc9de6`. Se referencia ese corte para no volver a replicar todo el diario al registrar cada despacho. Los informes de autores, RED, contrato PERF y paquetes externos no se modifican ni se eliminan; los dictámenes históricos no se convierten retrospectivamente en PASS.
 
 ## Motivo
 
-Owner acepta arquitectura/contratos S01 con excepción explícita de secuencia: repairs e integración pueden comenzar antes del contrato numérico completo; las optimizaciones no. E1 permanece PARTIAL_WITH_EVIDENCE. El bloqueo antiguo no debe producir otro diseño, otro probe exploratorio, un quinto shot ni una exigencia de CLOUD sin runner.
+Owner confirma que los TOPs que ejecuta directamente son GLM-5.3-Flash y los que despacha GOD son GPT-6.1 Sol. La elección GLM de los encargos directos es válida y no se conserva como incumplimiento por sí sola. Siguen siendo independientes las deficiencias de evidencia, requisitos o implementación. Owner reporta haber corregido un push a origin local intermedio y solicita evaluación del funcionamiento/frecuencia seguida de un único encargo final, dentro del día disponible.
 
 ## Fuentes usadas
 
-- Adenda Owner de esta sesión,9oct2026: aceptación S01, S02 LOCAL, secuencia control→contrato→optimización, límites y entrega.
-- Entrega completa BTX-PERF-DESIGN recuperada en Library, backing `file_000000009700820e8a3386507c9564dc`, versión1,55311bytes; SHA256 leído `a792532bdaead5589aa05721369f5861c1807c7989dc4b048e5b59664bde9262`. Original preservado en Library, sin sobrescritura.
-- Registro E1 leído en commit `52d17ce92321fe0673eeaf1ed59d7e8753d47af7`, sin confundirlo con su cápsula física local. No se modificó su nota ni se declaró completo el probe.
-- Control previo leído en master, blob `bd99d64ed5e42e2707601650c7f8037e3d19de9c`. HEAD Echo confirmado `50250a2b0df6106943108bf6bfe57552409f3d13`.
+- Mensaje Owner de10oct2026: modelos, publicación y autorización terminal expresa.
+- GET autenticado refs/heads/codex/btx-perf-s04: `ed31156fe251a053241044f7659c078424667348`; compare desde `bbbcc1d5dc0ed18badae46b4eba1a17822632b60`:9commits. Se resuelve el bloqueo de publicación previo. No inspección física de remotes por Primary.
+- Revisión focal de source ed31156f: ntminute.Source.Open/pumpPart/refill/Close y tests; experiment_catalog; compose/openDatasetCursor/composeStreams; E2E multistreamCLI y replay; functional_profile; composición compartida; S2. Lectura de diff del último commit.
+- BTX-PERF-FINAL, dictamenC01–C12/S03 y mandato original para separar horizon y contadores. No lectura física nueva de paquetes/outputs locales por Primary.
+- Reloj recibido por herramienta:2026-10-10T10:09:16-03:00 America/Santiago.
 
 ## Resolución aplicada
 
-Diseño materializado en master, commit `8942ee2f236d2c84b9c83cc95334588977f0bdac`, con aceptación vigente y precisiones delante del texto histórico. Estados históricos de no autorización, cápsula ausente o E1 pendiente de nuevo despacho no son instrucciones actuales. No se cambia arquitectura por iniciativa Primary.
+BTG-PLAN actualizado en master, commit `1c11e5696e562f542a77d04157e180dc6b505910`, blob `69f9c6efb7e4c33622af11d99af3147b8f5080d4`. Control anterior íntegro preservado en e0be1e55, mismo path. Se registra LAST_SHOT=EXPLICITLY_AUTHORIZED_BY_OWNER, ID BTX-PERF-LAST, prompt emitido/GOD no desarrolla, ejecución nueva no iniciada por este Primary y aceptación no concedida. La excepción expresa supera exclusivamente el máximo previo de cuatro encargos, sin abrir continuaciones automáticas.
 
-Control actualizado con protección por blob SHA, commit `1dac8fc47d5e8efab7775833ca6c44a8b715c3ed`, nuevo blob `1d95f25162adf2fb119c7ea4f0612d41f3bc5e3b`: S01_TECHNICAL_DESIGN=ACCEPTED_FOR_IMPLEMENTATION_WITH_EXPLICIT_PERF_EXCEPTION; E1=PARTIAL_WITH_EVIDENCE; S02=AUTHORIZED_REPAIR_AND_INTEGRATION; PERF_TARGET_FREEZE=REQUIRED_BEFORE_OPTIMIZATIONS; FINAL_OWNER_ACCEPTANCE=NOT_GRANTED. La ventana2026-10-09T00:00:00-03:00 se registra EXPIRED; nueva continuación autorizada sin presupuesto total inventado. S03/S04 independientes conservados; ejecución S02 todavía no observada por Primary.
+Un día se interpreta explícitamente como24h desde la recepción observada, deadline2026-10-11T10:09:16-03:00, sin reiniciar por worker. La ventana9oct sigue histórica; el nuevo plazo no es estimación de duración ni promesa asíncrona. El ejecutor debe registrar remanente al empezar.
 
-Prompt único final guardado en Library `/BTX-PERF-S02-TOP-LOCAL-PROMPT.md`, `library_file_id=libfile_ddc9a3c286c48191ad89688c82bca501`, backing `file_00000000802c820e8cf5d11c444bef7d`;24517bytes, SHA256 `eef0f184136e24dd71f2f48541248a695c45a52515b8e55debea28c2a7c4acaf`. Es transporte de ejecución mediante Owner, no artefacto IMPLEMENTATION ni prueba de worker iniciado. Contiene localizadores exactos suministrados por Owner, CPU R120s primero, repairs, referencia corregida, contrato sellado, optimizaciones condicionadas, NQZ5/replay, regresiones, entrega y cierre exclusivo del integrador.
+Evaluación funcional: seis compras pertenecen al tramo27oct→27nov2025, no a tres años ni a seis trades. NQH6consumo0 es consistente con estar fuera del horizonte; no prueba fallo por sí solo, pero tampoco rollover real. Los resultados financieros/replays de la ventana se conservan como avance. S2 source espera setup/ciclo, sin cuota diaria; se exige embudo diario y causas para validar la expectativa Owner sin inyectar operaciones.
 
-Este log consolida además el registro documental de apertura BTX-PERF que BTG-PLAN mantenía PENDING_WRITER: autoridad de cuatro shots, sustitución del antiguo despacho GOD LOCAL, baseline separado de docs/build, datos reportados frente a evidencia física y Primary abierto. Se registra ahora, no se retrofecha ni recrean sesiones. Los controles/versiones anteriores quedan en Git; no se sobrescriben RED ni el registro E1.
+Nuevos riesgos de source L1–L4, NO ejecutados aquí: starvation del pool al retener worker por stream completo con buffers acotados y3+streams; Close sin espera de workers y posible selección EOF frente a error; schedule/inicial/warmup/calendario/ReadPlan frente a horizonte completo; E2Es multistream que explícitamente no cruzan rollover. Se transforman en negativos pequeños a ejecutar primero dentro del mismo encargo y reparar cuando se confirmen, no en una nueva investigación de arquitectura ni defectos monetarios afirmados sin prueba.
+
+Prompt final creado y guardado en Library `/BTX-PERF-LAST-GOD-TOPS-PROMPT.md`, `library_file_id=libfile_4359e47e47108191ae5ae0c83ad73644`, backing `file_000000004e28820e82a6a9ff70a46ed4`;29661bytes,SHA256 `92ae19f23dcfa097a84aeee9e31b0b87d6b1a7257320c1fa2155c988e84251e9`. Máximo3TOPs de trabajo disjunto y1verificador, un integrador, GOD sólo dirección/documentos. Incluye pruebas pool/rollover, diagnóstico de actividad, catálogo2023–2026, mejoras medidas, C01–C12/pendientes, freezeúnico, replays independientes, publicación GitHub real y comandos usables. El archivo es transporte, no ejecución de agentes ni entrega final ya realizada.
 
 ## Validación
 
-Se ejecutó materialize_schema_note.py original para doc y change_log en copia documental sandbox. Se verificó igualdad de blobs Git del código/template transportados: materializador `067dbef8afca0f3918b1435b83267f547f462bc4`; validador `7f6e9227ab11f2aac8a1bec135775bbd852d016c`; doc template `c0f0aa58e007fcca52591cabcb32e091297ff437`; change_log template `5761e16f00dcf30e8ab7496331f791d96dc989ea`. Ambos comandos materializaron sin error desde sus templates; no frontmatter creado sin materializador.
+Edición de dos notas existentes schema_version1 con protección por blobSHA y preservación por Git del estado anterior; ningún materializador/contrato/template modificado, ninguna nota canónica nueva o ramificación de Agents-OS. Prompt creado en sandbox, wc29661bytes y SHA256 calculado. Files devolvió succeeded con destino e identidades arriba. Lectura de comprobación de control/log acredita persistencia documental, no ejecución local, cierre físico de workers o cumplimiento de producto.
 
-El contrato local es una proyección documental explícita de los campos consumidos por --type doc/change_log del contrato remoto blob `27e59b8b1e9044ded50e5cfef4474c6e3ed59b95`; no una copia completa ni un nuevo contrato canónico. No se ejecutó lint global ni se modificaron scripts, contratos, templates o skills remotos. La ejecución de esa herramienta documental no es implementación de producto por Primary.
-
-La persistencia se acredita mediante recibos create/update en master y lectura posterior de las rutas publicadas. No se atribuye a esos recibos sincronización del vault físico de Daedalus, validación de la cápsula local, ejecuciones E1 nuevas o aceptación de ningún gate del producto. Los consumos de modelo/cuota no expuestos permanecen UNKNOWN.
+No reejecución del backtester por Primary ni permiso LIVE/merge/deploy/PROD/ETCD/broker/cuentas/ACL. No atribuir a esta revisión las pruebas reportadas de S04. La corrección del error de asignación GLM no modifica los recibos de qué modelo efectivamente reportó cada worker.
 
 ## Compartibilidad
 
-Scope local. Sin credenciales, secretos, dumps de mercado, memoria interna ni cadena de pensamiento. Los localizadores de evidencia operativa quedan en el prompt privado y en las fuentes Owner ya existentes, no se publican permisos nuevos.
+Scope local. Sin credenciales, tokens, dumps de mercado o razonamiento privado. Localizadores operativos y referencias de repos privados sólo dentro del encargo Owner.
 
 ## Rollback
 
-Ante instrucción Owner, restaurar sólo el delta documental pertinente desde la versión previa `52d17ce92321fe0673eeaf1ed59d7e8753d47af7` del control, preservando cambios posteriores y anotando la nueva decisión. No reset/force-push, eliminación de evidencia, cambios de producto ni cierre de sesión implícitos. El diseño original de transporte permanece en Library para trazabilidad.
-
-## Adición — adjudicación Primary de la entrega S02
-
-Owner devolvió la transcripción y handoff S02 y manifestó preocupación por consumir los cuatro shots sin resultado útil. Primary contrastó informe/control publicados, HEAD de producto y source puntual; no ejecutó producto ni pruebas, no se atribuyó el probe ni reconstruyó sus perfiles locales.
-
-El control actualizado en commit `7776aff1e5464e3d0e05718180fd1319658b6738`, blob `da376b57902a1b32dfd9076ddd606e8fa8ac92d6`, conserva cuatro shots y cambia la adjudicación a `PARTIAL_IMPLEMENTATION_WITH_MATERIAL_GAPS`. La afirmación del autor READY_FOR_S03_REVIEW queda como handoff histórico, no implementación completa aceptada. S01/adenda y E1 parcial se conservan; aceptación final no concedida, Primary abierto. Control anterior íntegro en `534daa16b9e043192250b8def8adee2fca6bd800`, mismo path, preserva los deltas del autor.
-
-Source confirmado en Echo `bbbcc1d5dc0ed18badae46b4eba1a17822632b60`: cmdExperiment exige exactamente un stream; su rama CAMPAIGN no escribe manifest.Artifact, mientras reproduce --experiment exige ese campo. El test ReproduceCampaign usa fxCorpus/fxSpec y fixtureFactory, no acredita esa ruta CLI. compareLegacyCLIArtifacts abandona con Logf+return por RunID distinto antes de comprobar estado/digests/artefacto. Estos son hallazgos estáticos puntuales, no falsificación LOCAL ya ejecutada.
-
-Informe `BTX-PERF-IMPLEMENTATION` leído, blob `cec0feaede7e52cdd9b742c0ebfd63179c158207`: contrato NQU6 BASIC<=180s frente a timeout900s reportado; sólo R BASIC75,77s→34,01s tiene pareja COMPLETE; no extrapolar2,23x ni declarar no-regresión porque ambos candidatos/control excedan600s. El sello previo no basta para justificar la proyección uniforme del prefijo con warmup. NQZ5 real quedó antes de la frontera defectuosa y coverage/pruebas críticas no se completaron. El contrato y el informe originales no se alteraron para hacerlos coincidir con el dictamen.
-
-Compare autenticado584a→bbb: sólo README y nuevo test del ring; baseline control d609ca24 y binario reportado0db2feae, candidato medido584a3cd9/binarioe5d4860b conservados como identidades diferentes. El nuevo pool de preparación no se acredita por estar especificado; ownership de RecentShared y normalización109IDs se reservan a pruebas independientes.
-
-Siguiente trabajo preparado, NO ejecutado: TOP LOCAL independiente dentro de S03, primero falsificadores baratos multistream/replay público; si confirma RED estructural, no gastar horas en reruns/auditoría general de la capacidad ausente. Pruebas cortas que puedan cambiar repairs S04, omisiones NOT_RUN, dictamen GOD independiente posterior en el mismo S03. No fixes por el verificador, nuevo diseño/probe exploratorio, quinto shot o retorno a S02 cerrado.
-
-Prompt final de transporte creado y guardado exitosamente en Library `/BTX-PERF-S03-TOP-LOCAL-VERIFICATION-PROMPT.md`, `library_file_id=libfile_4bcf419d25f88191a9bc1dd65d1123f2`, backing `file_00000000a780820ea975f22bd8fbc57a`,15929bytes,SHA256 `8fb80bf567395943ce0bd4209c23408fb362585d1e3487ac3c65af780c556141`. Contiene autoridades/baselines, M1–M7 convertidos en falsificadores, límites, condiciones de corte RED, evidencia y cierre exclusivo del worker.
-
-Validación de esta adición: edición de dos notas existentes schema_version1 con blob SHA, preservación del cuerpo previo de este log y lectura posterior de las rutas. No se crearon notas canónicas nuevas ni se reejecutó materializador/lint global para esta edición. Escritura sólo master; ningún código de producto, despliegue, permiso, broker, feedback o cierre de Primary. Rollback sólo mediante delta documental preservando cambios posteriores; no reset/force-push. Las verificaciones aún no ejecutadas siguen obligatorias: un corte RED temprano no equivale a S03 completo ni anticipa que S04 logrará el objetivo total.
-
-## Adición — recepción de evidencia preliminar S03 y despacho GOD coordinador
-
-Owner devolvió la falsificación preliminar y pidió evaluar su utilidad y el siguiente prompt S03 GOD comandando TOPs, reiterando que GOD no desarrolla. Primary leyó el informe publicado completo por rangos y el control en Agents-OS `88e92e98de735dec8a0fa5832babf418c57c340c`; informe blob `cf21581c5cee5d90035e602456619e1eda2e7c0d`. Confirmó HEAD Echo `bbbcc1d5dc0ed18badae46b4eba1a17822632b60`. No ejecutó producto/tests/perfiles ni leyó los bytes locales del paquete.
-
-Recepción: ACCEPTED_INPUT_BOUNDED_WITH_QUALIFICATIONS. La evidencia es útil para S03, no cierre de S03 o aceptación de producto. Se conservan RED reportados de multistream, replay CAMPAIGN por ambas rutas CLI, portabilidad y rc0 con FAILED. Se rectifica el corte anterior de NQZ5: el ejecutor preliminar reporta registros que cruzan reemplazo18nov y pass-funded20nov2025 sin fallo de release observado, en spool censurado y con progreso posterior; eso no acredita integridad final, reconciliación completa o horizonte terminado. También se conservan los resultados favorables de ring/findSource y el fixture legacy con oráculo independiente.
-
-Reservas explícitas: el informe declara GLM-5.3-Flash/ZCode pese a titularse TOP LOCAL; no atribuir Sol ni desechar pruebas reproducibles por nombre. Clasificar109diferencias como hojas IDs/refs no demuestra biyección/referencias preservadas; queda falsificación del mapa. Mtime/publicación antes del primer commit de optimización no prueba automáticamente antes de la primera edición. Hash/hora publicados inconsistentes requieren receta y rectificación trazable sin retarget/retrofecha. Detalle de8→5fallos implica3reparados, pero encabezado/resumen dicen2: reconciliar por recibos. Separar cobertura histórica y cobertura de tests; no convertir58,1% selectivo en medición global. Proyección5h no es ejecución completa observada.
-
-Control actualizado con protección por blob en master, commit `3ca7c5347428de0ab6cf81d421100eac8c2d5055`, blob `de3753b81564eb62f64a8b5eb18f198a6a81fd27`. Control previo íntegro en88e92e98, mismo path; documentación de autores intacta. Estados: S03 preliminar recibido con reservas, dictamen GOD pendiente, S04 conservado, FINAL_OWNER_ACCEPTANCE=NOT_GRANTED, Primary abierto.
-
-Prompt final creado y guardado en Library `/BTX-PERF-S03-GOD-COORDINATOR-PROMPT.md`, `library_file_id=libfile_284cf4a81af08191b3746389ab3e2d63`, backing `file_0000000079c0820eb6c5bc9cedbc1834`;24611bytes,SHA256 `8b7f409feefaa1903b1d0dbfee80ef57f03239e737b5ab90566c6d5769c150ce`. GOD CLOUD coordina y redacta dictamen, cero código de producto/tests/scripts/integración. Uno o como máximo dos TOPs LOCAL independientes, fresh-context ONE-SHOT, cubren evidencia/identidad/NQZ5 y safety pendiente; sin corregir producto, nuevo diseño, lotes históricos repetidos ni quinto shot. Sin despacho directo real, Owner transporta prompts; ninguna ejecución nueva atribuida a este Primary.
-
-Salida esperada: BTX-PERF-ADVERSARIAL con evidencia por claim, matriz de gates, NOT_RUN y paquete de correcciones verificables S04. Workers y GOD cierran sólo sus encargos cuando corresponda, nunca Primary. Ventana histórica vencida conservada, sin180min/4h nuevos. No permisos, broker/cuentas, PROD/ETCD, órdenes, merge o deploy.
-
-Validación del delta: archivo de transporte creado en sandbox y hash calculado; Library respondió succeeded con destino e identidad exactos. Ediciones de control/log existentes schema_version1 con protección por blob, preservación de historia y readback de los contenidos publicados. No nuevas notas canónicas, materializador/lint global, pruebas de producto, feedback o cierre Primary. No se certifica sincronización física Daedalus ni verificación independiente de los recibos locales. Rollback, sólo por instrucción, restaura el delta desde88e92e98 preservando cambios posteriores; nunca reset/force-push.
-
-## Adición — recepción Primary del dictamen final acotado S03 y despacho S04
-
-Owner devolvió S03 RED/READY_FOR_PRIMARY_REVIEW, publicado en master `cf7183c2398658b5f95eced76a7b3e379b7f1b29`. Primary leyó íntegramente BTX-PERF-ADVERSARIAL por rangos, blob `45fa5af308a9999f24c1028684b3eceadf448c95`, incluido C01–C12, matrices NOT_RUN, denominadores y límites de los oráculos A/B; contrastó directamente findings B-01/B-02/B-03 con BTX-PERF-S03-TOP-B-EVIDENCE. Confirmó HEAD Echo codex/btx-perf-s02 `bbbcc1d5dc0ed18badae46b4eba1a17822632b60`. No compiló, ejecutó pruebas/backtests ni inspeccionó los bytes de paquetes/spools locales.
-
-Adjudicación: ACCEPTED_AS_BOUNDED_RED_REJECTION_AND_S04_HANDOFF. Acepta el rechazo y el paquete de remediación, no el producto ni cobertura exhaustiva. B-02 aplicar2USD tras admitir1, B-01 getter corrompe sello y B-03 sobregiro119/120 quedan defectos vigentes sustentados por ejecución atribuida a TOP B. C08/C09/C10 tienen primera prioridad; C01–C04 permanecen carencias públicas obligatorias. S04 se dirige bajo el programa Owner de cuatro shots, no como nuevo ciclo ni ampliación de scope.
-
-Se conservan avances con límites corregidos: biyección R válida en una generación con45referencias y negativo referencial; provider final sin preimagen y ALL/SKIP siguen pendientes. NQZ5 posee2764371objetos completos y batch4870–4872/cuenta2/FUNDED reconciliados en prefijo censurado; no footer íntegro, cobros finales o resume. Cinco rojos:3expectativas supersedidas,1harness ADD y1StructuralReference no resuelto. R2,2279× es run-only, no end-to-end. Sello: receta resuelta, recibo publicado inconsistente y freeze anterior al primer cambio NOT_DEMONSTRATED, sin atribuir intención ni inventar cronología. La corrección de evidencia no mueve targets ni certifica retrospectivamente su precondición.
-
-Control reemplazado con protección por blob en master, commit `1c1fc3f64ddac142f5b6f428e10c549238da3ec9`, blob `a1b215b7bc40f62f891f17bac23fc3ae352e61a3`. Versión previa íntegra de control en cf7183c2, mismo path. Estados: dictamen S03 recibido/aceptado para rechazo acotado, pruebas parciales explícitas, candidato rechazado, S04 prompt emitido para un TOP LOCAL integrador con TOP independiente dentro de S04. S04_EXECUTION=NOT_OBSERVED_BY_PRIMARY; FINAL_OWNER_ACCEPTANCE=NOT_GRANTED; Primary abierto. No otro GOD de investigación, quinto shot ni desarrollador GOD.
-
-Prompt final creado en sandbox y guardado exitosamente en Library `/BTX-PERF-S04-TOP-LOCAL-CORRECTIONS-PROMPT.md`, `library_file_id=libfile_edf3923ed4108191b0025f99527f968f`, backing `file_00000000eb7c820eab2ef260ef05956f`;26787bytes,SHA256 `cdb3fdb8ad128d6280c0f05fd131ed10225978da73fc6fd69cb9eca9d49d441d`. Contiene las12correcciones con sus IDs, fuente/paquetes exactos, criterios económicos, entradas/replay públicos, pool, provider/ALL-SKIP, expectativas históricas, performance/recibos, corridas finales, cobertura y mandato de comprobación independiente. Emitirlo no demuestra que un worker esté corriendo. Salida esperada BTX-PERF-FINAL, no aceptada anticipadamente.
-
-La ventana histórica2026-10-09T00:00:00-03:00 sigue vencida, sin180min/4h nuevos. El programa autoriza completar las correcciones y capacidad aceptadas, no otro programa de optimización del dictamen. Si un requisito no se cumple, la entrega sigue parcial con evidencia; no se rebaja multistream ni se ofrece un quinto shot automático. Modelos exactos servidos de A/B/GOD y consumo no expuestos permanecen UNKNOWN, conservando selector solicitado sin sustitución silenciosa.
-
-Validación de este delta: dos notas existentes schema_version1 editadas con protección por blob sobre master, cuerpo previo de este log conservado y control histórico íntegro en Git. Archivo de transporte creado y SHA256 calculado; Files respondió succeeded con path/identidades exactos. Lectura posterior de control/log verifica destino remoto. No nuevos templates/notas canónicas, materializador o lint global, código de producto/tests/perfiles/backtests, merge/deploy, permisos, broker/cuentas/D6/ETCD/PROD, feedback o cierre de Primary. Readback no acredita sincronización física ni ejecución S04. Un rollback futuro preservará cambios posteriores y originales, sin reset/force-push ni borrado de evidencia.
-
-## Adición — 2026-10-10: recepción S04 y adjudicación Primary del alcance real
-
-Owner devolvió la transcripción/handoff S04. Primary leyó íntegro BTX-PERF-FINAL por rangos en master `6e2b25c3637403e52cbbc9039b1240dae495c65b`, blob `9b68ea4eb3627d020cef97b79c1fe21681537181`; comparó sus afirmaciones con el mandato vigente, el control y C01–C12. No ejecutó producto/tests/perfiles/backtests ni inspeccionó paquetes Daedalus. La devolución independiente se leyó como cita del informe del integrador; no se obtuvo su paquete original ni se afirmó haberlo ejecutado.
-
-Recepción: PARTIAL_DELIVERY_WITH_USEFUL_BOUNDED_FUNCTIONAL_EVIDENCE; objetivo operativo del programa NOT_DELIVERED_IN_FULL. Se conservan GREEN monetarios C08/C09/C10 reportados con comprobación del verificador en0a6a0763, avances de interfaz/pool/replay/oráculos y corridas completas de la ventana ejecutada. BASIC reporta70307,92USD/3214366records/1025,53s; CAMPAIGN5780USD/3127905records/668,92s,6compras/5burns/1cobro1500, ecuación5000−6×120+1500=5780. Los resultados son atribuibles a esa build/ventana, no reejecución Primary ni rentabilidad certificada.
-
-Rectificación principal: la ventana trade2025-10-27T17:52Z→2025-11-27T18:00Z no es el horizonte de todos los años pedido por Owner. El propio informe reconoce NQH6obligated=null/consumed0 y ausencia de rollover real en las corridas finales. Descriptor con2streams, uno no consumido, no acredita evolución financiera a través de ambos. No se acepta MAX_WALL multianual como cumplido por1025/669s de ese mes. Se conservan E2E sintéticos/API reportados como evidencia acotada; no se afirma que el multistream siga ausente en source, que este Primary no pudo inspeccionar.
-
-Performance: NQU6completo1741,82s frente a180s incumple el umbral observado, pero quedó contaminado por otros procesos. Se registra FAIL de esa observación, medición limpiaC=1/no-regresión/speedup S04 NOT_DEMONSTRATED y ancla S02 previa fallida; no se deduce rendimiento aislado ni se convierte la contención en aprobación. El2,2279×S02 sigue R/run-only. Freeze: verificador ligado a0a6a0763/bin f80d8974; producto cambió aed31156f/bin068a8548 durante su ventana y el verificador excluye expresamente los artefactos posteriores. Replay posterior del integrador es evidencia focal, no certificado independiente transferible al HEAD final.
-
-C11 permanece parcial: el verificador afirma preimagen provider_final_state presente/tipada, pero no compara equivalencia semántica contra control. Campo presente y comparadores GREEN no cierran esa obligación. C07/floor95:76,4% global del alcance y cifras por función no prueban95% del delta; falta agregado conforme y trazabilidad de las obligaciones críticas NOT_RUN. Se rechaza «C01–C12 íntegro» y «sólo falta performance», sin inventar nuevos bugs ni descartar los GREEN reportados. Dos fallos ambientales reportados no equivalen a suite global sin fallos. El informe contiene discrepancias menores8vs9commits y modeloUNKNOWNvsGLM; handoff/límites declaran GLM-5.3-Flash para autor/verificador, cumplimiento Sol no acreditado, recibo exacto no inspeccionado por Primary.
-
-Disponibilidad de fuente comprobada: GET de refs/heads/codex/btx-perf-s04 en xKoRx/echo devolvió404; fetch_commit(ed31156f) y fetch_commit(0a6a0763) devolvieron422/No commit found. GET de refs/heads/codex/btx-perf-s02 sí devolvióbbbcc1d5dc0ed18badae46b4eba1a17822632b60. No se pudo resolver publicación S04 por esta conexión; no prueba inexistencia local, eliminación o restricción general de escritura GitHub. Publicación de informe en Agents-OS no acredita código/binarios en Echo. No se inventó diff, SHA completo, ruta con RunID abreviado o equivalencia de builds.
-
-Control actualizado en master mediante protección por blob, commit `c1c423fcd2f5226ef7f1a6fec088f2be60a37ecc`, nuevo blob `82d65441365e16d5c5d277aeab525f7578aa8b85`; versión previa íntegra en6e2b25c3/blob a1b215b7. Contiene D-S04-01..07, gates separados, resultados atribuidos, identidades y límites de acceso. S04 recibido/ejecutado reportado, verificación independiente acotada, producto no listo para aceptación; no quinto shot, worker nuevo ni reapertura de cerrados. Primary abierto, FINAL_OWNER_ACCEPTANCE=NOT_GRANTED y readiness física fuera de alcance.
-
-Validación de esta recepción: escritura de dos notas existentes schema_version1 sobre master, sin ramas/PRs/tags; registro previo conservado con esta adición y updated del10oct. Los informes S02/S03/S04, contrato y evidencias no se alteran. Recibos update/readback son la prueba de persistencia documental; no acreditan sincronización física, acceso a spools, ejecución de pruebas o aprobación de producto. No nuevos templates/notas/materializador/lint global, código/scripts/tests de producto, nuevas corridas, merge/deploy/PROD/ETCD/broker/cuentas/permisos, feedback ni cierre Primary. Rollback futuro sólo por delta documental que preserve cambios concurrentes, sin reset/force-push ni eliminación de evidencia.
+Restaurar únicamente el delta documental que Owner indique desde e0be1e55, preservando cambios posteriores mediante edición normal y nuevo registro. No reset/force-push, borrado de source/evidencia ni rollback de producto desde este change_log. La historia íntegra anterior del propio registro permanece en Git en el corte explícito de Historia preservada.
