@@ -226,3 +226,12 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 - **Memoria pública:** contratos y decisiones verificadas enlazados desde esta nota.
 - **Memoria interna:** journal de creation/discovery, sin duplicar el estado operativo en memorias generales.
 - **Motivo:** separar propuesta vigente, evidencia histórica e implementación futura.
+
+
+## F2 FULL local — ampliación vigente del owner (2026-10-10)
+
+El owner pidió terminar todos los flujos ClickHouse que existen en RIO, con implementación local transparente. La aceptación anterior de104ejecuciones conserva su subset y cleanup; no acredita este nuevo catálogo completo. Trabajo actual: transporte de runtime-status/eventos/cleanup scheduled bajo publishers productivos, routing local del conector, autorización fixture con project/grants reales y motor25.8.33.6 con Keeper/ON CLUSTER y backend de objetos local compatible. Se reutilizan las SPEC/PLAN/TASKS/VERIFICATION existentes; ningún nuevo reporte permanente ni framework. Operaciones inexistentes, callbacks exitosos ficticios y desactivar guards siguen fuera.
+
+Bases de trabajo PMf0cac94f / CH61b63808 / Kafka f8fe7671, ramas existentes aisladas. Fetch nuevo de los tres repos terminó128 por IP allowlist de GitHub; el gate de refs remotas frescas está BLOCKED, siguiente paso concreto habilitar acceso corporativo autorizado y recuperar/leer delta antes de certificar vigencia remota. No usar ls-remote como lectura ni evadir la restricción.
+
+Root mantiene autoridad exclusiva del contexto sano colima-rio-kafka-e2e-01a0f8e0. Baseline nuevo leído: daemon273d8c36,24imágenes/3redes/0containers/0volúmenes; evidencia privada /private/tmp/rio-clickhouse-full-20261010/baseline.json SHA02efa44b5a8945e411bbe500815e9d7c8b83d0a31aa9ffe02dd5023d2ba03fda. No runtime FULL iniciado todavía. Implementadores CH/PM tienen límites de escritura y builddir separados; verificador sólo lectura/candidato congelado. F1 y sus límites se conservan; KVS por JVM/KMS local/corporateauth/version parity/externalAOC-security-SDD tienen sus fronteras explícitas. F4/cincoapps y VM originaloffline36868 no se recalifican; AGENTS OS permanece abierto.
