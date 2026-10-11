@@ -12,8 +12,8 @@ related: []
 aliases: []
 agent_surface: "[[Codex]]"
 agent_model: unknown
-agent_run:
-session_goal:
+agent_run: "[[2026-10-11-codex-unknown-btx-perf-last-top-verifier]]"
+session_goal: "Independent BTX-PERF-LAST integrated frozen-build verification"
 source_session:
 confidence: high
 load_policy: manual
@@ -26,89 +26,20 @@ tags:
   - agent/system1
 ---
 
-# Session Feedback - 2026-10-10 - short-topic
+# BTX-PERF-LAST independent verification feedback
 
-## Context
+Canonical event-driven feedback. Related run: [[2026-10-11-codex-unknown-btx-perf-last-top-verifier]]. Task closure and final evidence readback remain pending. Exact served model unknown; requested gpt-6.1-sol.
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+Useful: immutable source/bin/input seals and serial financial leases made causal falsification and independent replay attributable. Full typed bijections and mutated negatives distinguish identity changes from material changes without stripping opaque data.
 
-## Scores
+Friction: case-sensitive Go test selectors and missing fixture environment variables produced omitted/no-test or prerequisite failures; preserved the original receipts and corrected only the harness. A lost BASIC graph checkpoint required an explicitly authorized forensic reread, so a checkpoint must be physically written and identity-bound before claiming it exists. Public schema inspection resolved footer and payload-type assumptions without fitting an acceptance oracle.
 
-Use 1-5, where 1 is poor and 5 is excellent.
+Reusable behavior candidate: freeze the whole-function denominator and test population before results, classify every harness failure separately, and bind forensic checkpoints to the physical artifact/request/source before unpickle. Do not use a successful targeted repair as a full-build signature.
 
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
+Internal continuity: consolidated receipts and scoped summaries helped recover after interruption; stale append-only matrix headers require one final consolidated matrix. Context high-water unknown; no invented token/cache metrics. Efficiency REVIEW: repeated broad coverage passes exposed a test-population gap, while final residual classification correctly kept unreachable hypotheses and missing hits in the denominator instead of manufacturing95%.
 
-## What Complicated The Session Most
+Issued technical certificate reports/final-verification-certificate.json concludes NOT_READY: coverage94.2016FAIL95, speedups1.4893/1.4028FAIL1.5, NQU6 time targets FAIL, real all13 missing data. Four downloaded official replays and normal held both routes PASS. L08 held used wrong experiment command for campaign input and rejected pre-drive; preserved and corrected only argv/manifest locator under L09, no fixture/oracle change. Final evidence readback remains pending and no future PASS is claimed. No transcripts, heavy logs, or model self-score.
 
-- Observation:
-- Why it was hard:
-- Proposed improvement:
+Certificate: [technical NOT_READY certificate](https://github.com/xKoRx/echo/releases/tag/btx-perf-last-20261010), distributed as final-verification-certificate.json in independent evidence. Final external readback receipt is a later separate asset; no future PASS claimed.
 
-## Most Useful Part Of Sistema 1
-
-- What helped:
-- Why it helped:
-- Keep/change:
-
-## Least Useful Or Noisy Part
-
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
-
-## Missing Support
-
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
-
-## Retrieval Feedback
-
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
-
-## Skill Feedback
-
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
-
-## Template Feedback
-
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
-
-## Memoria Interna (Internal Memory)
-
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
-
-## Pain Pattern Candidate
-
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
-
-## One Next Improvement
-
--
+Context high-water: unknown. Main context growth: evolving freezes/test population; large verification evidence; resumed-task continuity. Internal memory consulted at startup per bootstrap, with operational continuity retained through sealed local receipts and summaries; no new private vault continuity note in this scoped closeout. Efficiency REVIEW: preserving attribution is useful; stale matrices and wrong CLI/schema hypotheses caused avoidable repair work. Feedback scores: template fit4/5, retrieval usefulness4/5, closeout friction3/5 (agent observation, not owner or model-performance score). Pain pattern candidate: classify harness assumptions separately and require actual checkpoint identity before resume; promotion deferred to ROOT, no unsolicited L3 write.
