@@ -260,3 +260,10 @@ Root guard de release falló por transcripción manual del hash del handoff; nin
 Preflight real fresco `preflight-full-1334e9fe67753f6924fcd892.json`, tool6906d7/0: baseline26 imágenes/fullmeta3net0ctrs/vols/23bareports exacto, contexto configurado colima intacto, healthycontext4CPU6198427648RAM15780788KiBguestfree/1412390912Bhostfree. Probe propio exactnonce/ID retirado. Release PASS_FULL_SOURCE_CPU_NATIVE, no PASS físico.
 
 Ejecución real canónica completa invoker33a/drivera9 desde PM aislado: session89371, entry `contract-exec-entry-42bbb7d8012681a5c2e7e922` PID/PGID61421, raíz `testing-contract-dc516cc23146fbc0`, fixtures privados nuevos `full183-canonical-native-275ea0460682`. Actual iniciado y observado primeros focales Java. Fuente congelada; root única autoridad runtime/Gradle serial, sin trabajo nativo paralelo. FULL físico pendiente de suites/SQL/matriz y limpieza.
+
+
+### FULL canonical: engine bootstrap RED y corrección mínima (2026-10-11)
+
+Canonical dc516cc23146fbc0 terminó exit 1: selectors/guards, S01/S18/S19, Python183 (149.814s, cero failures/errors/skips), regresión PM y gates previos pasaron; primer stack FULL507dbd94a08c falló antes de casos físicos por engine unhealthy. CP CH quedó Created, sin iniciarse. Receipt39924a7d conserva RED; causa original NO_AISLADA, inspect tardío perdió el engine. Runner emitió CLEANUP_CERTIFIED; cierre nativo actual comprobó1734PIDs/821PGIDs y57 fixtures, sin SIG. Cleanup exacto17 imágenes propias --no-prune restauró26 imágenes/metadata,3 redes y cero containers/volumes; receipt2ff691bd.
+
+EntryPoint oficial00a6aa0e confirma creación users XML por root sin ajustar permisos: wrapper local propagaba077. Corrección estricta de dos líneas guarda/restaura máscara entrante; wrapper20598035/419B0755, cinco assets intactos. READY previo en docs CH; verificación independiente FS acad832e PASS, sin atribuir unhealthy previo ni certificar físicos. Árbol CH bfd84e59, PM fce30dbc permanecen congelados; FULL físico pendiente del canonical fresco. Runtime sigue exclusivo root; VM original offline/ledger36868 intactos NO_CERT.
