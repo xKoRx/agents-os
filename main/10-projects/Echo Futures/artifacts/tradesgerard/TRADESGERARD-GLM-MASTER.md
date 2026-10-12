@@ -31,7 +31,7 @@ Encargo maestro de etapa B para lanzamiento manual por el Owner. Preparado duran
 
 ## Contrato de entrada
 
-Resolver Agents-OS desde el workspace y cargar su bootstrap. Directorio canónico relativo a VAULT_ROOT: `10-projects/Echo Futures/artifacts/tradesgerard/`. Leer `TRADESGERARD-CONTROL.md`, `TRADESGERARD-CONTRACT.md`, `TRADESGERARD-PROP-PROFILE.md`, `TRADESGERARD-MANDATE-SNAPSHOT.md` y `catalog.json`. Resolver repo `xKoRx/echo` desde el workspace; usar exclusivamente commit/build/recetas aceptados por la evidencia A enlazada en el control. Leer AGENTS/CONSTITUTION, SDD de la feature y el manual existente `v3/backtester/README.md`. Los archivos del catálogo son autoridad de parámetros; el snapshot conserva origen, no una segunda fuente editable de estado.
+Resolver Agents-OS desde el workspace y cargar su bootstrap. Directorio canónico relativo a VAULT_ROOT: `10-projects/Echo Futures/artifacts/tradesgerard/`. Leer `TRADESGERARD-CONTROL.md`, `TRADESGERARD-CONTRACT.md`, `TRADESGERARD-PROP-PROFILE.md`, `TRADESGERARD-MANDATE-SNAPSHOT.md`, `TRADESGERARD-EVIDENCE-A.md` y `catalog.json`. Resolver repo `xKoRx/echo` desde el workspace; usar exclusivamente commit/build/recetas aceptados por la evidencia A enlazada en el control. Leer AGENTS/CONSTITUTION, SDD de la feature y el manual existente `v3/backtester/README.md`. Los archivos del catálogo son autoridad de parámetros; el snapshot conserva origen, no una segunda fuente editable de estado.
 
 ## Contrato de salida
 

@@ -35,7 +35,7 @@ Inputs inmutables: caja inicial USD 5.000; compra individual USD 120 a demanda; 
 | Catálogo finito con todos los IDs | DESIGN_VERIFIED_FOR_IMPLEMENTATION | design-2 preserva53 IDs; auditoría+corrección con59 checks PASS. Ver [[TRADESGERARD-CONTRACT]]; ninguna variante ejecutada. |
 | Motor/composición/campaña/lote compacto | IMPLEMENTATION_RUNNING | TOP integrator_a, único escritor de source en rama aislada `codex/tradesgerard-platform-a`. |
 | Verificación independiente del delta exacto | PREPARATION_ONLY | TOP verifier_a prepara casos propios sobre mandato/baseline estable; prohibido medir source mutable. Ejecución tras freeze exacto. |
-| Manual actualizado, evidencia A y prompt GLM | PENDING | Después de implementación y prueba, sin inventar flags ni rutas. |
+| Manual actualizado, evidencia A y prompt GLM | IN_PROGRESS | [[TRADESGERARD-EVIDENCE-A]] y prompt preparados; manual/recetas/identidades finales pendientes, sin inventar flags ni rutas. |
 
 Harness local: TOP inventory/prop_profile/catalog/contract_audit/catalog_repair completos; integrator_a implementa y verifier_a prepara casos en ámbito disjunto sin medir fuente mutable. Todos fresh-context ONE-SHOT, modelo solicitado `gpt-6.1-sol`; modelo servido UNKNOWN. No se asume GLM disponible en el mismo harness. No se consume CLOUD Pro.
 

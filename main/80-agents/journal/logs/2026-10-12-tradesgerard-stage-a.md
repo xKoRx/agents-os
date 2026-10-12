@@ -36,6 +36,7 @@ tags:
   - `10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-CONTRACT.md`
   - `10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-PROP-PROFILE.md`
   - `10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-GLM-MASTER.md`
+  - `10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-EVIDENCE-A.md`
   - `10-projects/Echo Futures/artifacts/tradesgerard/catalog.json`
 
 ## Motivo
