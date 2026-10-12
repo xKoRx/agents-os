@@ -51,6 +51,8 @@ El gate READY_FOR_GLM exige demostrar cada fila de §10 del mandato, no sólo in
 
 ### Siguiente acción
 
+Hallazgo de implementación en ruta sintética de22sesiones: el run llegó COMPLETE/reconciled pero el objetivo de aceptación falló (sin cobro acreditado; caja4760/dos compras). Primera causa identificada: applyContextTransition actualiza binding del Provider y deja liveConfig.Accounts con faseEVALUATION al transitar aLIVESIM; MM/admission leen fase desactualizada. Corrección en run.go y regresión en curso, log propio conservado. COMPLETE de ejecución no sustituye aprobación del contrato. Ninguna inferencia de rentabilidad desde este fixture.
+
 Recoger candidato del integrador y findings de auditoría del catálogo, verificar luego source/build exactos mediante TOP independiente del producto. Corregir gaps materiales antes de readiness; si existe bloqueo real, conservar causa, evidencia y continuidad. SDD source: `xKoRx/echo:specs/FEAT-TRADESGERARD-PLATFORM-A/`; nuevo worktree relativo a Aranea `work/tradesgerard-platform-a-20261012/echo`. Documentación Agents-OS en master con sincronización automática observada; no atribuir commits sync al manager ni afirmar push sin verificar.
 
 ## Fuentes
