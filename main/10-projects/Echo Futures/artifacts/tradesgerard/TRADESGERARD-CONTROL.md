@@ -34,7 +34,7 @@ Inputs inmutables: caja inicial USD 5.000; compra individual USD 120 a demanda; 
 | Perfil GAU50 versionado con fuentes oficiales | RESEARCH_COMPLETE_SCENARIO_REQUIRED | [[TRADESGERARD-PROP-PROFILE]] distingue hechos, supuestos y UNKNOWN; no certificación comercial. |
 | Catálogo finito con todos los IDs | DESIGN_VERIFIED_FOR_IMPLEMENTATION | design-2 preserva53 IDs; auditoría+corrección con59 checks PASS. Ver [[TRADESGERARD-CONTRACT]]; ninguna variante ejecutada. |
 | Motor/composición/campaña/lote compacto | IMPLEMENTATION_RUNNING | TOP integrator_a, único escritor de source en rama aislada `codex/tradesgerard-platform-a`. |
-| Verificación independiente del delta exacto | NOT_RUN | TOP adversarial fresh-context tras freeze. |
+| Verificación independiente del delta exacto | PREPARATION_ONLY | TOP verifier_a prepara casos propios sobre mandato/baseline estable; prohibido medir source mutable. Ejecución tras freeze exacto. |
 | Manual actualizado, evidencia A y prompt GLM | PENDING | Después de implementación y prueba, sin inventar flags ni rutas. |
 
 Harness local: TOP inventory/prop_profile/catalog retornaron artefactos físicos; integrator_a implementa y contract_audit verifica el catálogo en ámbitos disjuntos. Todos fresh-context ONE-SHOT, modelo solicitado `gpt-6.1-sol`; modelo servido UNKNOWN. No se asume GLM disponible en el mismo harness. No se consume CLOUD Pro.
@@ -59,7 +59,11 @@ Corte posterior del autor: corregido inicio funded con baseline diario propio y 
 
 Corte del autor posterior: PASS focalizado de `TestProgression_ExactBandsAndRealCandidateDenial`, `TestRisk_DailyWithdrawalsExcludePerformancePreserveAbsoluteDrawdown` y pruebas quiet/public proof del backtester (~4,1s). Lifecycle de23sesiones en ejecución con asserts permanentes: ningún DAILY_LOSS por inicio funded/retiro, min-days0 explícito en cada compra y evaluación con progreso suficiente entra a revisión. Pendientes matriz completa, cobertura, freeze y verificación independiente; estos PASS no los sustituyen.
 
-Recoger candidato del integrador y findings de auditoría del catálogo, verificar luego source/build exactos mediante TOP independiente del producto. Corregir gaps materiales antes de readiness; si existe bloqueo real, conservar causa, evidencia y continuidad. SDD source: `xKoRx/echo:specs/FEAT-TRADESGERARD-PLATFORM-A/`; nuevo worktree relativo a Aranea `work/tradesgerard-platform-a-20261012/echo`. Documentación Agents-OS en master con sincronización automática observada; no atribuir commits sync al manager ni afirmar push sin verificar.
+Último milestone autor: `lifecycle-final-dll-test.log`, PASS27,027s. Dos evaluaciones (incluida compra posterior) pasan con3090,24netos/6días y llegan aLiveSim; primer pago2250→1611CREDITED; saldo funded50325,2 sin breach DAILY_LOSS/TRAILING. Tres cuentas preservadas, una ejecutando. Asserts permanentes para los defectos precedentes. Fixture sintético público, no evidencia de rentabilidad. Fuente mutable; restantes cap/turno/terminalidad/recursos/coverage/smoke pendientes.
+
+TOP verifier_a solicitado gpt-6.1-sol, servido UNKNOWN, fresh-context: preparación disjunta en evidencia externa mediante mandato/canon y baseline estable. No compila ni ejecuta ni audita el source mutable antes del freeze; la prueba independiente del producto continúa NOT_RUN. Su matriz preparatoria no acredita aceptación.
+
+Recoger candidato del integrador y ejecutar source/build exactos mediante TOP independiente del producto. Corregir gaps materiales antes de readiness; si existe bloqueo real, conservar causa, evidencia y continuidad. SDD source: `xKoRx/echo:specs/FEAT-TRADESGERARD-PLATFORM-A/`; nuevo worktree relativo a Aranea `work/tradesgerard-platform-a-20261012/echo`. Documentación Agents-OS en master con sincronización automática observada; no atribuir commits sync al manager ni afirmar push sin verificar.
 
 ## Fuentes
 
