@@ -65,6 +65,8 @@ TOP verifier_a solicitado gpt-6.1-sol, servido UNKNOWN, fresh-context: preparaci
 
 Corte posterior del autor: pruebas focalizadas públicas de composición/perfil/paridad compacta/lote/resume/fallos PASS6,953s. Reporta stage/best-day/saldo/equity públicos para MM, pausa con costo de salida reservado, selección bloqueada por órdenes/claims pendientes, fees/renovación y conteos del lote. Gaps funcionales declarados: ruina explícita y revisión robusta de fallos tempranos/cleanup, más CLI/manual/build final. Manager prioriza cerrar esas capacidades y congelar CANDIDATE_FOR_AUDIT con tests/cobertura pendientes declarados si los hay; el verificador ejecutará su matriz propia y el integrador corregirá después. Esto no reduce el mínimo final95% ni §10 y no habilita GLM.
 
+Avance posterior: caja/ruina y search/fault/batch PASS8,946s antes de cambios finales de durabilidad. Autor confirmó/corrigió riesgos señalados por manager: readback fallido degrada a FAILED con causa durable; temporales JSON usan creación exclusiva y borrado sólo de archivo propio. Repetición postcorrección pendiente. Siguiente hito del integrador: CLI prepare/manual, regresiones actuales, cobertura honesta y freeze de auditoría.
+
 Recoger candidato del integrador y ejecutar source/build exactos mediante TOP independiente del producto. Corregir gaps materiales antes de readiness; si existe bloqueo real, conservar causa, evidencia y continuidad. SDD source: `xKoRx/echo:specs/FEAT-TRADESGERARD-PLATFORM-A/`; nuevo worktree relativo a Aranea `work/tradesgerard-platform-a-20261012/echo`. Documentación Agents-OS en master con sincronización automática observada; no atribuir commits sync al manager ni afirmar push sin verificar.
 
 ## Fuentes

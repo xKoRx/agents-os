@@ -42,6 +42,8 @@ El inventario confirmó reutilización de owners de provider, operación/MM, acc
 
 Defectos descubiertos y corregidos por el autor antes de ese milestone: fase desactualizada en `liveConfig.Accounts` tras cambiar binding; baseline diario/piso al iniciar funded; retiro contado indebidamente como pérdida diaria; compra nueva sin min-days0 explícito. El test de crédito inicial podía pasar pese a esos defectos secundarios; se añadieron asserts permanentes para ausencia de DLL espurio y aprobación de la cuenta comprada. Los logs fallidos previos permanecen en evidencia del integrador.
 
+Revisión posterior: caja/ruina y search/fault/batch PASS8,946s antes de la última corrección. Manager detectó por lectura dos riesgos de durabilidad; el autor confirmó/corrigió la transición a FAILED con firstcause si falla el readback posterior a COMPLETE, y cambió temporales JSON a creación exclusiva/cleanup sólo del archivo creado por esa llamada, preservando sentinels ajenos. Repetición sobre esas correcciones y falsificación independiente pendientes; el PASS anterior no se atribuye a la fuente posterior.
+
 ### Verificación independiente
 
 Catálogo: auditoría y reparación independientes completas. `design-2` conserva53 IDs y produce23040 configuraciones raw,7680 incompatibles,192 alias y15168 únicas compatibles;59 checks PASS. Cobertura de sentencias del generador119/121=98,3471%; no es cobertura del motor ni de branches. SHA256 del único catálogo editable `catalog.json`: `e367741ad47975e4a8b1aff3172bc10e659ed52cb9993f8db81507ceb588abd4`.
