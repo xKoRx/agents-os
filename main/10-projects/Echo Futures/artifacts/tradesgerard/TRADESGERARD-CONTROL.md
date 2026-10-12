@@ -43,6 +43,8 @@ Baseline de source informado por inspección TOP: repo `xKoRx/echo`, checkout re
 
 ### Recursos y gates
 
+Progreso del autor, todavía sin freeze ni auditoría independiente del producto: pruebas de registro preservado/relojes pausados y regresión ReplaceAccount PASS; perfil cuatro PAY/2250 inclusivo/ladder/DST+feriados PASS; Live intraday floor/withdrawal/equality/latch PASS. Ruta causal integrada de dos sesiones sintéticas COMPLETE con una compra120 y caja4880, una cuenta50000, HORIZON_CENSORED; cancelación FAILED/PLATFORM_CANCELLED conserva caja y drena Finish. Sellado/mutación de reglas por fase PASS. Pase/cobro real del pipeline todavía NOT_DEMONSTRATED a este corte; search/batch/CLI en integración. Estos resultados son reports del implementador y no acreditan READY_FOR_GLM.
+
 Preflight disco del workspace: filesystem 146G, usado 127G, disponible aproximadamente 12G (2026-10-12). Antes de ejecutar: reservar al menos 8 GiB libres, un escritor de producto y una campaña a la vez; TOP debe fijar límites medibles de temporales, outputs y logs según preflight de su ruta real. No limpieza de corpus/caches/releases/trabajo ajeno. Sin barrido de investigación completo en A.
 
 El gate READY_FOR_GLM exige demostrar cada fila de §10 del mandato, no sólo interfaces o pruebas unitarias del autor. Fixtures deterministas deben etiquetarse; smoke real sólo con corpus válido y ventanas explícitas. Cobros pendientes no son caja, datos truncados no son checkpoints, hashes no reemplazan replay detallado. El coverage nuevo mínimo es 95% sin cambiar denominadores heredados.
