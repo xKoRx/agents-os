@@ -63,6 +63,8 @@ Corte del autor posterior: PASS focalizado de `TestProgression_ExactBandsAndReal
 
 TOP verifier_a solicitado gpt-6.1-sol, servido UNKNOWN, fresh-context: preparación disjunta en evidencia externa mediante mandato/canon y baseline estable. No compila ni ejecuta ni audita el source mutable antes del freeze; la prueba independiente del producto continúa NOT_RUN. Su matriz preparatoria no acredita aceptación.
 
+Corte posterior del autor: pruebas focalizadas públicas de composición/perfil/paridad compacta/lote/resume/fallos PASS6,953s. Reporta stage/best-day/saldo/equity públicos para MM, pausa con costo de salida reservado, selección bloqueada por órdenes/claims pendientes, fees/renovación y conteos del lote. Gaps funcionales declarados: ruina explícita y revisión robusta de fallos tempranos/cleanup, más CLI/manual/build final. Manager prioriza cerrar esas capacidades y congelar CANDIDATE_FOR_AUDIT con tests/cobertura pendientes declarados si los hay; el verificador ejecutará su matriz propia y el integrador corregirá después. Esto no reduce el mínimo final95% ni §10 y no habilita GLM.
+
 Recoger candidato del integrador y ejecutar source/build exactos mediante TOP independiente del producto. Corregir gaps materiales antes de readiness; si existe bloqueo real, conservar causa, evidencia y continuidad. SDD source: `xKoRx/echo:specs/FEAT-TRADESGERARD-PLATFORM-A/`; nuevo worktree relativo a Aranea `work/tradesgerard-platform-a-20261012/echo`. Documentación Agents-OS en master con sincronización automática observada; no atribuir commits sync al manager ni afirmar push sin verificar.
 
 ## Fuentes
