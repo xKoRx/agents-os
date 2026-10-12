@@ -1,11 +1,13 @@
 {
   "schema_version": 1,
-  "catalog_version": "tradesgerard-design-1",
+  "catalog_version": "tradesgerard-design-2",
   "authority": {
-    "input_sha256": "229cd1ec5d25ff5e7d5f7a4e1cc2eef35fc421e9e7251a6259df40ca874d3468",
     "source_label": "Owner mandate PROMPT_VERSION 1, annex revision 3",
     "source_runtime_path": "supplied via --source; never operational authority by personal absolute path",
-    "scope": "Design contract; no implementation, backtests or profitability claims"
+    "scope": "Design contract; no implementation, backtests or profitability claims",
+    "input_snapshot_body_sha256": "229cd1ec5d25ff5e7d5f7a4e1cc2eef35fc421e9e7251a6259df40ca874d3468",
+    "canonical_document_sha256_receipt": "3dde5201852aa9c4ee6220366a17045d20d029f8caeb065bd38ccde9b1c25741",
+    "identity_contract": "Original attachment bytes OR byte-exact body after literal marker ## Captura literal plus LF/CRLF. No newline normalization. Body SHA is immutable meaning/provenance seal; document SHA is capture receipt only. Wrapper edits do not change source identity."
   },
   "state": "DESIGN_PROPOSAL_UNIMPLEMENTED",
   "source_registry": [
@@ -804,7 +806,15 @@
         "rule": "TP500_EQUALS_INITIAL500",
         "predicate": "ratio=STA-11 and progression=RISK-FIX and fit=FIT-EXACT-FIXED and exit=EXIT-BE200-TP500",
         "canonical": "same axes with exit=EXIT-BE200",
-        "reason": "Initial T=500; replacing it with 500 is only BE."
+        "reason": "Initial requested T500 resolves effective>=500 outward; explicit no-op/inactive TP branch emits no additional commands. Same BE trigger/stop path and ledger/grid/cost resolver. Conditional semantic alias, not coincident PnL.",
+        "conditions": {
+          "same_initial_requested_target": 500,
+          "shared_ledger_grid_cost_resolver": true,
+          "outward_tp_guarantees_effective_ge_requested": true,
+          "no_extra_tp_amendment_on_noop_or_inactive": true,
+          "same_BE_trigger_and_stop_orders": true,
+          "comparison_basis": "semantic order actions and state transitions; never coincident PnL"
+        }
       }
     ],
     "source_equivalent": [
@@ -995,7 +1005,7 @@
       "FIT-EXACT-FIXED": "R/T same preferred values on every new cycle. Explicit DESIGN_PROPOSAL overshoot envelope permits one initial T beyond current objective: objective+Tpreferred; cancel further entries at first goal crossing or phase transition. It never relaxes account/prop limits; strict objective envelope profiles are incompatible rather than silently clipped.",
       "FIT-EQUAL": "RISK-FIX only. n=max(1,ceil(g/Tpreferred)), T=g/n,R=rho*T. Recompute after every realized closure including loss/partial-cycle final settlement; R<=Rbase. Funded applies same finite objective partition.",
       "FIT-REMAINDER": "scale=min(1,g/Tpreferred,admissible_R/Rpreferred); R=scale*Rpreferred,T=scale*Tpreferred. Pause if physical quantity cannot fit.",
-      "FIT-BAND": "DESIGN_PROPOSAL tolerance10USD. Stop when realized day/phase objective is within [goal-10,goal+10], but this cannot create prop approval/withdrawal eligibility below regulatory minimum. Before next cycle T=min(Tpreferred,g+10); scale=T/Tpreferred, cap proportional R for admissible headroom. No target below or above band manufactured by fills. Funded eligibility still requires PAY gross actual.",
+      "FIT-BAND": "DESIGN_PROPOSAL tolerance10USD applies to ordinary daily stopping only. Regulatory eligibility is always evaluated first from actual ledger/profile state. An applicable terminal objective means funded withdrawal progress or evaluation residual selected to complete financial pass today; ordinary evaluation870 before that terminal day retains its ordinary band and is retried next day. Use required financial gap only for that applicable terminal objective, never the entire evaluation deficit on every ordinary day. If applicable terminal financially required approval/withdrawal gap>0 and ordinary band would stop, admission continues toward that gap; a residual target<=10 with positive gap is never satisfied at daily PnL0. Nonfinancial prerequisites alone do not manufacture a financial gap. At effective eligibility/phase transition stop immediately. Otherwise ordinary band stop requires positive realized progress and goal-10<=progress<=goal+10. Before admission T=min(Tpreferred,max(remaining ordinary objective, required financial gap)+10), with proportional R capped by admissible headroom. Unknown eligibility mapping is TECH_PENDING_INPUT. No admissible physical quantity/headroom yields PHYSICAL_PAUSE, separate from DAILY_OBJECTIVE or REGULATORY_ELIGIBLE; do not fabricate fills or reset progress.",
       "physical_realization": "Report requested/effective R,T,rho, residual, actual fills and budget utilization; no fraction contracts, perfect arithmetic claim, or fake exact daily close."
     },
     "sequence": {
@@ -1005,11 +1015,12 @@
       "strictness": "Use exact integer cents/rational comparison10*max_day<3*total at pass. Equality rejects. Profile minimum days/active conditions are separate pass gates, no first-day consistency failure."
     },
     "economic_prices": {
-      "aggregate": "For signed direction s=+1 long/-1 short, quantity Q>0, weighted open average A, multiplier m, realized partial-cycle net L, already charged cost C and projected exit cost/slippage Cexit(Q,p), net cycle liquidation N(p)=L+s*Q*m*(p-A)-C-Cexit. L/C ownership ledger must avoid double cost subtraction; derive prices from authoritative ledger rather than reaccounting fills.",
+      "aggregate": "For signed direction s=+1 long/-1 short, Q>0, weighted average A of remaining open fills and multiplier m: L is realized GROSS price PnL of closed quantities in this aggregate cycle; C is ALL actually debited cycle costs exactly once (entry/add fees, partial/final closure fees, separately debited slippage/charges). N(p)=L+s*Q*m*(p-A)-C-Cexit(Q,p). Cexit includes ONLY projected remaining liquidation costs not yet debited. Execution price slippage already reflected in A/L must not also be debited as modeled slippage. Extract L,C,Q,A from authoritative ledger entries scoped to cycle; no parallel ledger. Partial closures increase L and C, reduce Q and retain residual A; adds update Q/A and C, preserve L; neither resets original R/T. At flat Q=0, Cexit=0 and N=L-C equals authoritative realized net cycle settlement for long/short alike. Final actual fee replaces projection rather than adding both.",
       "targets": "Solve N(pSL)=-R and N(pTP)=T; BE solve N(pBE)=0. R/T are frozen net cycle envelopes. Partial fills update Q,A,L,cost estimates without resetting R/T.",
       "sizing": "Reference initial adverse price distance dref=2*ATR at known entry event. Choose largest integer Q whose conservative grid SL loss+all known roundtrip costs/slippage <=R and account-wide admission passes; actual instrument tick/value metadata required. If Q0 do not trade. After actual entry fill solve economic SL/TP subject to actual economics; ATR scale is secondary.",
       "rounding": "DESIGN_PROPOSAL: SL round toward entry (long ceil to tick, short floor) so planned loss never exceeds R; TP round away from entry (long ceil, short floor) then ensure objective envelope still permits it; if no feasible grid choose smaller Q or pause, never round through risk cap. BE round to nonnegative net side. Risk precedes ratio, which precedes exact ATR distance. Report deviations.",
-      "cost_bounds": "Stop gaps/slippage may exceed plannedR; record actual breach, enforce floor/pause on first causal event; model cannot promise stop fill price. Unknown costs/slippage are pending inputs, not zero."
+      "cost_bounds": "Stop gaps/slippage may exceed plannedR; record actual breach, enforce floor/pause on first causal event; model cannot promise stop fill price. Unknown costs/slippage are pending inputs, not zero.",
+      "reconciliation": "Reconcile ledger gross realized + open marked gross - actual debited costs - remaining exit projection to N before every admission/amendment. BE uses same N resolver and net target0; partial costs never live inside L. Unknown/unallocatable costs are TECH_PENDING_INPUT, never assumed0."
     },
     "adds": {
       "trigger": "Entry first accepted fill price E; fixed reference initial economic stop distance d0=abs(E-initial SL), not later moved stop and not ATR refreshed. Long trigger E-f*d0; short E+f*d0, f=.25/.50/.75. One add qinitial maximum, qinitial measured actual completed initial entry. No new add after BE activation.",
@@ -1019,7 +1030,7 @@
     "exits": {
       "EXIT-FIX": "Original net cycle SL/TP only; B2 recalculates prices while preserving monetaryR/T.",
       "EXIT-BE200": "When N(actual liquidation quote)>=200 on defined causal trigger event activate economicBE once; maintain originalT. If market cannot accept economicBE validly record inactive/rejected protection, never synthetic earlier stop.",
-      "EXIT-BE200-TP500": "BE event additionally requests monetaryT=500 once only if Tinitial<500 and applicable objective envelope allows500. This is sole explicit exception to originalT; R remains original and protectedBE then0planned. If Tinitial=500 equivalent; if Tinitial>500 extension inactive.",
+      "EXIT-BE200-TP500": "On the same causal BE200 event use T_requested (net monetary target) and T_effective (ledger/cost/tick-resolved reachable net value) distinctly. Resolve proposed500 with exactly the same ledger state, quote/grid/cost model and rounding used for original TP. If T_requested>=500 OR T_effective>=500: extension NO_OP/INACTIVE, preserve original TP and emit ZERO extra TP cancel/replace commands; BE stop amendment remains identical to EXIT-BE200. Otherwise request500 once only if objective envelope allows it; if resolved price/order equals original, emit ZERO extra TP amendments. Never shorten original TP. Recompute this guard after partial fills/adds with same resolver; no separate path or fee charge for alias. R remains original, protected BE then0planned.",
       "timing": "ONCLOSE samples liquidatable net value at completed1m close, amendment executable only after close+latency. INTRABAR samples ordered market events; barOHLC alone cannot assert crossing order.",
       "precedence": "For each ordered event: externally confirmed fills/account failures first; forced session/floor/internal pause next; already executable SL/TP per causal execution; phase/goal transitions next; BE then adds then new signal admission. Account transition/flat shutdown cancels pending adds. Ties without causal evidence use separately declared conservative stop-first sensitivity policy and flag, never claimed tick path. Barrier that executes before BE cannot be undone."
     },
@@ -1047,5 +1058,13 @@
       "censoring": "Distinguish data insufficient, tech failure, profileunknown, accountfailure, internalpause, waitingpayment and campaignruin. Every candidate kept with outcome. BASIC/multiphase ledgers reconcile; comparable horizon common.",
       "scope": "A must prove public execution capabilities separately. This catalog/generator proves only finite enumeration/sourcecoverage; implementation and engine readiness not implied."
     }
+  },
+  "alias_semantics": {
+    "same_initial_requested_target": 500,
+    "shared_ledger_grid_cost_resolver": true,
+    "outward_tp_guarantees_effective_ge_requested": true,
+    "no_extra_tp_amendment_on_noop_or_inactive": true,
+    "same_BE_trigger_and_stop_orders": true,
+    "comparison_basis": "semantic order actions and state transitions; never coincident PnL"
   }
 }

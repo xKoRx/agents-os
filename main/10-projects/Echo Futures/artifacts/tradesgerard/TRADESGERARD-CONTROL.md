@@ -32,7 +32,7 @@ Inputs inmutables: caja inicial USD 5.000; compra individual USD 120 a demanda; 
 |---|---|---|
 | Inventario real y diseño acotado por propietarios | REVIEWED_FOR_IMPLEMENTATION | TOP inventory completo; mapa y decisiones en [[TRADESGERARD-CONTRACT]]. |
 | Perfil GAU50 versionado con fuentes oficiales | RESEARCH_COMPLETE_SCENARIO_REQUIRED | [[TRADESGERARD-PROP-PROFILE]] distingue hechos, supuestos y UNKNOWN; no certificación comercial. |
-| Catálogo finito con todos los IDs | DESIGN_CORRECTION_RUNNING | Auditoría independiente confirmó53 IDs/conteos; corregir deadlock FIT-BAND, propiedad de fees y hash original/wrapper antes de freeze. TOP catalog_repair asignado. |
+| Catálogo finito con todos los IDs | DESIGN_VERIFIED_FOR_IMPLEMENTATION | design-2 preserva53 IDs; auditoría+corrección con59 checks PASS. Ver [[TRADESGERARD-CONTRACT]]; ninguna variante ejecutada. |
 | Motor/composición/campaña/lote compacto | IMPLEMENTATION_RUNNING | TOP integrator_a, único escritor de source en rama aislada `codex/tradesgerard-platform-a`. |
 | Verificación independiente del delta exacto | NOT_RUN | TOP adversarial fresh-context tras freeze. |
 | Manual actualizado, evidencia A y prompt GLM | PENDING | Después de implementación y prueba, sin inventar flags ni rutas. |
