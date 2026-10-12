@@ -48,6 +48,8 @@ Revisión posterior: caja/ruina y search/fault/batch PASS8,946s antes de la últ
 
 Corte posterior: TCR aplicado, suite provider completa PASS0,603s y paquete proof MM PASS0,008s; nuevas regresiones de parcial FIFO, BE long/short, claims pendientes/rechazados y conservación del exit vigente, con corrección del promedio residual del fixture. La medición multipaquete anterior usó paralelismo por defecto: no es una comparación válida de un solo carril. El integrador repite con `-p1`/paquete único y baseline idéntico. Toolkit del catálogo integrado con `--catalog`/`--source` obligatorios y sin segunda copia editable; commit de auditoría aún pendiente.
 
+Comparación posterior en carril único: baseline/actual misma selección causal heredada PASS0,080s/0,087s, y baseline de paquetes SDK focalizados completos PASS. Cobertura nueva provisional1050/1425=73,68%; queda bajo el mínimo95% y no se acredita como aceptada. Debe recibirse el mapa de bloques/denominador y repetirse después de completar los casos. Commit/build limpio y smoke CLI real de60min en preparación; ninguna identidad nueva se presupone.
+
 ### Verificación independiente
 
 Catálogo: auditoría y reparación independientes completas. `design-2` conserva53 IDs y produce23040 configuraciones raw,7680 incompatibles,192 alias y15168 únicas compatibles;59 checks PASS. Cobertura de sentencias del generador119/121=98,3471%; no es cobertura del motor ni de branches. SHA256 del único catálogo editable `catalog.json`: `e367741ad47975e4a8b1aff3172bc10e659ed52cb9993f8db81507ceb588abd4`.

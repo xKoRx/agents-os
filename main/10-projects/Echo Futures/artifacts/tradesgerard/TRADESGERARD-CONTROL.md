@@ -67,6 +67,8 @@ Corte posterior del autor: pruebas focalizadas públicas de composición/perfil/
 
 Avance posterior: caja/ruina y search/fault/batch PASS8,946s antes de cambios finales de durabilidad. Autor confirmó/corrigió riesgos señalados por manager: readback fallido degrada a FAILED con causa durable; temporales JSON usan creación exclusiva y borrado sólo de archivo propio. Repetición postcorrección pendiente. Siguiente hito del integrador: CLI prepare/manual, regresiones actuales, cobertura honesta y freeze de auditoría.
 
+Preparación de freeze: TestPlatform/TestSearch actual PASS; TCR mínimo aplicado y provider completo PASS. Baseline/actual con la misma selección causal heredada y `-p1` PASS0,080s/0,087s; paquetes SDK focalizados del baseline PASS. Coverage nuevo provisional1050/1425=73,68%, gap explícito frente al95% exigido. La medición anterior multipaquete con paralelismo por defecto no se usa como comparación válida. Toolkit canónico integrado. Integrador prepara commit/build limpio y smoke CLI real de60min; manager no modifica SDD/source durante ese freeze. Candidato para auditar y corregir, sin readiness.
+
 Recoger candidato del integrador y ejecutar source/build exactos mediante TOP independiente del producto. Corregir gaps materiales antes de readiness; si existe bloqueo real, conservar causa, evidencia y continuidad. SDD source: `xKoRx/echo:specs/FEAT-TRADESGERARD-PLATFORM-A/`; nuevo worktree relativo a Aranea `work/tradesgerard-platform-a-20261012/echo`. Documentación Agents-OS en master con sincronización automática observada; no atribuir commits sync al manager ni afirmar push sin verificar.
 
 ## Fuentes
