@@ -72,6 +72,10 @@ El Owner puede lanzar manualmente [[TRADESGERARD-GLM-MASTER]] con esta identidad
 
 all13 sigue NOT_READY por gaps/prefijos; nuevas ventanas requieren validación prospectiva. Los UNKNOWN comerciales siguen explícitos. READY_FOR_GLM es readiness técnico, no aceptación del Owner, autorización LIVE ni prueba de rentabilidad. No se ejecuta feedback ni cierre de sesión del manager sin petición explícita.
 
+### Estado B — KISS-1 gobierna (GLM LOCAL, 2026-10-12)
+
+El Owner lanzó el mandato KISS-1 (GLM-5.3-Flash, superficie LOCAL) y reemplaza la selección experimental del prompt maestro anterior: **el catálogo `catalog.json` design-2 (15.168 combinaciones) queda HISTÓRICO** — no es orden vigente de implementación; se conserva por Git/referencia con sus 53 IDs fuente y ninguna variante B del catálogo se ejecuta. La investigación vigente es la selección finita de KISS-1: 5 perfiles económicos {K01 250/250, K02 500/500, K03 500/1000÷3, K04 500/250, K05 1000/250} × {retiro2300, retiro3000} = **10 configuraciones por ventana**; iteración1 con salida fija (sin adds, sin Gerard, sin progresiones, sin BE/extensión), señal SIG-B sobre cierres 1m (estocástico lookback20, K lenta SMA3, cruce 20/80 consumido una vez), geometría TP 1×ATR / SL ρ×ATR, horario de diseño A (entradas 10:00–15:50 NY, liquidación desde 15:50, flat antes 15:55), remanente T=min(Tref, pendiente del objetivo) con R proporcional. Plan, tandas y estado: [[TRADESGERARD-B-PLAN]].
+
 ## Fuentes
 
 - [[TRADESGERARD-MANDATE-SNAPSHOT]], §§10–12; [[TRADESGERARD-CONTRACT]]; [[TRADESGERARD-EVIDENCE-A]].
