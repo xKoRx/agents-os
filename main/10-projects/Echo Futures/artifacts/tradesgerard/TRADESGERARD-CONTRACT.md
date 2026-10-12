@@ -63,4 +63,4 @@ Corpus derivado accesible: workspace Aranea `work/btx-perf-last-20261010/integra
 
 - [[TRADESGERARD-MANDATE-SNAPSHOT]], [[TRADESGERARD-PROP-PROFILE]], [[TRADESGERARD-CONTROL]].
 - TOP inventory: fuente y hashes inspeccionados, no builds/tests ejecutados. Manual leído blob `b66dacec9a0f6e0bc99ac13bde3a8e53cdb036e3`; binario histórico `49957b660e0a248cd03fc9f321461b8f8ae190856f1bd7740950807c475b64af` embebe source `48647d1ff9860bd4e1fff47e5fca7c9be273fb74`, no873.
-- TOP catalog: JSON, generador y validación inicial; auditoría de equivalencias en curso. No resultados de mercado.
+- TOP catalog y catalog_repair: JSON, generador, auditoría de equivalencias y corrección design-2 completas. La validación del toolkit integrado sobre la fuente final se documenta separadamente en [[TRADESGERARD-EVIDENCE-A]]. No resultados de mercado.
