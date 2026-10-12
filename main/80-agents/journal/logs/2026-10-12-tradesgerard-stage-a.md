@@ -48,7 +48,8 @@ tags:
 
 ## Resolución aplicada
 
-- Registro de autoridad, baseline, diseño por propietarios, perfil con UNKNOWN/escenario, catálogo finito y prompt GLM condicionado a readiness A. Modelo solicitado TOP Sol6.1; servido UNKNOWN. Evidencia de despacho no equivale a implementación. Auditoría del catálogo requiere corrección antes de congelar diseño. Echo SDD y código quedan en repo externo, sin corpus/binarios/logs pesados en vault.
+- Registro de autoridad, baseline, diseño por propietarios, perfil con UNKNOWN/escenario, catálogo finito y prompt GLM condicionado a readiness A. Modelo solicitado TOP Sol6.1; servido UNKNOWN. Evidencia de despacho no equivale a implementación. Auditoría y corrección del catálogo completas: design-2,53IDs,23040raw/7680incompatibles/192aliases/15168únicas,59checksPASS; se corrigieron FIT terminal, propiedad de costos y hash del cuerpo original. Echo SDD y código quedan en repo externo, sin corpus/binarios/logs pesados en vault.
+- Control actualizado con evidencia parcial del único integrador: ciclo público sintético23sesiones aprueba dos evaluaciones, conserva tres cuentas y acredita2250→1611 sin falso DAILY_LOSS; causas previas y logs preservados. Verifier_a despachado sólo a preparación independiente, sin medir producto antes de freeze. Readiness no declarada; faltan matriz completa, cobertura, smoke, build exacta y verificación física independiente.
 
 ## Validación
 
