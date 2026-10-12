@@ -23,7 +23,7 @@ tags:
   - echo-futures
   - algorithmic-trading
 created: "2026-09-25"
-updated: "2026-10-08"
+updated: "2026-10-12"
 ---
 
 # Echo Futures
@@ -33,6 +33,10 @@ updated: "2026-10-08"
 >
 > Este proyecto reemplaza como autoridad de producto al discovery anterior, preservado en [[Echo Futures — Prop Economics Experiment]].
 
+
+## TradesGerard — preparación del backtester
+
+El mandato GOD LOCAL de 2026-10-12 y su estado de ejecución viven exclusivamente en [[TRADESGERARD-CONTROL]]. Contrato, perfil versionado, catálogo finito y entrada GLM se enlazan desde ese control. Esta iniciativa no acepta ni reemplaza gates históricos BTG/D1–D6 y no autoriza LIVE.
 
 ## Corte vigente BTG-S05 — 2026-10-08
 

@@ -30,6 +30,7 @@ tags:
 
 - **Tipo:** created
 - **Archivo(s):**
+  - `10-projects/Echo Futures/Echo Futures.md` (puntero al control; gates históricos preservados)
   - `10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-CONTROL.md`
   - `10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-MANDATE-SNAPSHOT.md`
   - `10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-CONTRACT.md`
