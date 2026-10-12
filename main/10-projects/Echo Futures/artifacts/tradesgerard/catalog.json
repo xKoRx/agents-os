@@ -1,0 +1,1051 @@
+{
+  "schema_version": 1,
+  "catalog_version": "tradesgerard-design-1",
+  "authority": {
+    "input_sha256": "229cd1ec5d25ff5e7d5f7a4e1cc2eef35fc421e9e7251a6259df40ca874d3468",
+    "source_label": "Owner mandate PROMPT_VERSION 1, annex revision 3",
+    "source_runtime_path": "supplied via --source; never operational authority by personal absolute path",
+    "scope": "Design contract; no implementation, backtests or profitability claims"
+  },
+  "state": "DESIGN_PROPOSAL_UNIMPLEMENTED",
+  "source_registry": [
+    {
+      "id": "SIG-B",
+      "source_cells": [
+        "Recuperación del umbral 20/80 en K lenta, cierres 1m; sin filtro K/D adicional.",
+        "Owner eligió B; PENDIENTE_DE_PRUEBA."
+      ],
+      "source_status": "Owner eligió B; PENDIENTE_DE_PRUEBA.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "SIG-A",
+      "source_cells": [
+        "Entrada al encontrarse dentro de sobreventa/sobrecompra en un episodio.",
+        "Idea literal inicial; RETIRADA_POR_OWNER al elegir B. No se borra del historial."
+      ],
+      "source_status": "Idea literal inicial; RETIRADA_POR_OWNER al elegir B. No se borra del historial.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "RETIRED",
+      "implementation_stage": "NONE",
+      "aliases": []
+    },
+    {
+      "id": "VOL-20",
+      "source_cells": [
+        "ATR(20) como escala de precio y sizing económico.",
+        "Owner; base PENDIENTE_DE_PRUEBA."
+      ],
+      "source_status": "Owner; base PENDIENTE_DE_PRUEBA.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "VOL-K2",
+      "source_cells": [
+        "Multiplicador ATR inicial 2, constante en el primer barrido; semilla/suavizado/warmup por especificar.",
+        "Propuesta anterior; POR_PARAMETRIZAR. No abrir una optimización masiva del indicador ahora."
+      ],
+      "source_status": "Propuesta anterior; POR_PARAMETRIZAR. No abrir una optimización masiva del indicador ahora.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "STA-11",
+      "source_cells": [
+        "1:1",
+        "R=500; T=500.",
+        "Primera familia; PENDIENTE_DE_PRUEBA."
+      ],
+      "source_status": "Primera familia; PENDIENTE_DE_PRUEBA.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "STA-15",
+      "source_cells": [
+        "1,5:1",
+        "R=500; T≈333,33.",
+        "Primera familia; PENDIENTE_DE_PRUEBA."
+      ],
+      "source_status": "Primera familia; PENDIENTE_DE_PRUEBA.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "STA-21",
+      "source_cells": [
+        "2:1",
+        "R=500; T=250.",
+        "Primera familia; PENDIENTE_DE_PRUEBA."
+      ],
+      "source_status": "Primera familia; PENDIENTE_DE_PRUEBA.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "STA-41-CONTROL",
+      "source_cells": [
+        "4:1",
+        "R=1.000; T=250; sin adds.",
+        "Control adicional propuesto para aislar el efecto de los adds de DYN-41. No fue orden de entrada real. PENDIENTE_DE_PRUEBA como candidato propuesto."
+      ],
+      "source_status": "Control adicional propuesto para aislar el efecto de los adds de DYN-41. No fue orden de entrada real. PENDIENTE_DE_PRUEBA como candidato propuesto.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "DYN-B2",
+      "source_cells": [
+        "GerardMM B2: adds adversos, SL y TP recalculados y acercados; R/T económicos del ciclo permanecen fijados al entrar.",
+        "Owner; posterior, POR_PARAMETRIZAR. No alterar legacy."
+      ],
+      "source_status": "Owner; posterior, POR_PARAMETRIZAR. No alterar legacy.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "DYN-41",
+      "source_cells": [
+        "R=1.000; T=250; aumento de posiciones adverso y recálculo de SL/TP; riesgo:beneficio 4:1.",
+        "Nueva idea del Owner; posterior, POR_PARAMETRIZAR."
+      ],
+      "source_status": "Nueva idea del Owner; posterior, POR_PARAMETRIZAR.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "DYN-RR-CONTROLS",
+      "source_cells": [
+        "DYN-B2 comparado con STA-11/15/21 a igual política de presupuesto, para distinguir gestión del efecto de cambiar el ratio.",
+        "Comparación adicional propuesta; POR_PARAMETRIZAR."
+      ],
+      "source_status": "Comparación adicional propuesta; POR_PARAMETRIZAR.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "ADD-N1",
+      "source_cells": [
+        "Como primer nivel de complejidad, una entrada y como máximo un add.",
+        "Propuesta anterior conservada; no límite final ya aprobado."
+      ],
+      "source_status": "Propuesta anterior conservada; no límite final ya aprobado.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "ADD-D25",
+      "source_cells": [
+        "Gatillo de add a 25% de la distancia inicial de referencia adversa, respetando admisibilidad con SL económico recalculado.",
+        "Distancia propuesta; PENDIENTE_DE_PRUEBA posterior."
+      ],
+      "source_status": "Distancia propuesta; PENDIENTE_DE_PRUEBA posterior.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "ADD-D50",
+      "source_cells": [
+        "Gatillo al 50% de esa distancia.",
+        "Distancia propuesta; PENDIENTE_DE_PRUEBA posterior."
+      ],
+      "source_status": "Distancia propuesta; PENDIENTE_DE_PRUEBA posterior.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "ADD-D75",
+      "source_cells": [
+        "Gatillo al 75% de esa distancia.",
+        "Distancia propuesta; PENDIENTE_DE_PRUEBA posterior."
+      ],
+      "source_status": "Distancia propuesta; PENDIENTE_DE_PRUEBA posterior.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "ADD-SIZING",
+      "source_cells": [
+        "Magnitud y eventual curva de los adds.",
+        "POR_PARAMETRIZAR; no inventar duplicación 1→2→4 ni aumento ilimitado."
+      ],
+      "source_status": "POR_PARAMETRIZAR; no inventar duplicación 1→2→4 ni aumento ilimitado.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "ADD-FIXEDSTOP-6040",
+      "source_cells": [
+        "Stop de precio inmóvil, presupuesto reservado aproximadamente 60/40 para entrada/add.",
+        "Propuesta V2 sustituida por la aclaración económica del Owner; RETIRADA, no reintroducir como B2."
+      ],
+      "source_status": "Propuesta V2 sustituida por la aclaración económica del Owner; RETIRADA, no reintroducir como B2.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "RETIRED",
+      "implementation_stage": "NONE",
+      "aliases": []
+    },
+    {
+      "id": "RISK-FIX",
+      "source_cells": [
+        "Sin incremento financiado por ganancias; política determinista de referencia/presupuesto y ajuste de fin de objetivo identificado.",
+        "Primera familia, confirmada."
+      ],
+      "source_status": "Primera familia, confirmada.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "RISK-GAIN-RR",
+      "source_cells": [
+        "Nueva operación: R preferido = R_base + ganancias netas realizadas positivas del día; T=R/rho. alpha=1 es candidato.",
+        "Owner quiere conservar aumento después de ganar; fórmula propuesta, posterior."
+      ],
+      "source_status": "Owner quiere conservar aumento después de ganar; fórmula propuesta, posterior.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "RISK-GAIN-TP",
+      "source_cells": [
+        "Después de un TP, aumentar riesgo disponible para la siguiente operación manteniendo TP corto. Registrar precio de ambas salidas, tamaño y ratio efectivo.",
+        "Owner reitera esta hipótesis para mejorar el segundo TP y las rachas; fórmula exacta POR_PARAMETRIZAR; posterior al baseline."
+      ],
+      "source_status": "Owner reitera esta hipótesis para mejorar el segundo TP y las rachas; fórmula exacta POR_PARAMETRIZAR; posterior al baseline.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "RISK-GAIN-ADDS",
+      "source_cells": [
+        "Combinar progresión entre operaciones con B2 intratrade.",
+        "Combinación futura compatible, POR_PARAMETRIZAR; nunca autoriza aumentar R del ciclo ya abierto."
+      ],
+      "source_status": "Combinación futura compatible, POR_PARAMETRIZAR; nunca autoriza aumentar R del ciclo ya abierto.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "DAY-25",
+      "source_cells": [
+        "Target diario 750.",
+        "750.",
+        "RETIRADA_POR_OWNER al fijar 870 único; no ejecutar como comparación."
+      ],
+      "source_status": "RETIRADA_POR_OWNER al fijar 870 único; no ejecutar como comparación.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "RETIRED",
+      "implementation_stage": "NONE",
+      "aliases": []
+    },
+    {
+      "id": "DAY-29",
+      "source_cells": [
+        "Target diario ordinario fijo.",
+        "870.",
+        "OWNER_CONFIRMED; único target diario vigente."
+      ],
+      "source_status": "OWNER_CONFIRMED; único target diario vigente.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "DAY-295",
+      "source_cells": [
+        "Microtarget 885.",
+        "885.",
+        "RETIRADA_POR_OWNER; no probar ni sustituir silenciosamente."
+      ],
+      "source_status": "RETIRADA_POR_OWNER; no probar ni sustituir silenciosamente.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "RETIRED",
+      "implementation_stage": "NONE",
+      "aliases": []
+    },
+    {
+      "id": "DAY-299",
+      "source_cells": [
+        "Microtarget 897.",
+        "897.",
+        "RETIRADA_POR_OWNER; no probar ni sustituir silenciosamente."
+      ],
+      "source_status": "RETIRADA_POR_OWNER; no probar ni sustituir silenciosamente.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "RETIRED",
+      "implementation_stage": "NONE",
+      "aliases": []
+    },
+    {
+      "id": "SEQ-HIGH-RESIDUAL",
+      "source_cells": [
+        "Días de 870; cierre con remanente de aprobación.",
+        "Sin pérdidas: 870×3+390=3.000.",
+        "Idea Owner; PENDIENTE_DE_PRUEBA."
+      ],
+      "source_status": "Idea Owner; PENDIENTE_DE_PRUEBA.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "SEQ-HIGH-FULL",
+      "source_cells": [
+        "Mantener 870 también en el día terminal como contraste con ajuste por remanente, sólo mientras la fase permita seguir operando.",
+        "Sin pérdidas: 870×4=3.480.",
+        "Variante de gestión registrada, no nuevo target diario; nunca ignorar una transición efectiva de fase."
+      ],
+      "source_status": "Variante de gestión registrada, no nuevo target diario; nunca ignorar una transición efectiva de fase.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "SEQ-30-10",
+      "source_cells": [
+        "Antigua secuencia 900/900/900/300.",
+        "30% exacto.",
+        "RETIRADA como estrategia por target 870 único. Puede conservarse sólo como caso de prueba reglamentario del motor, no como backtest adicional."
+      ],
+      "source_status": "RETIRADA como estrategia por target 870 único. Puede conservarse sólo como caso de prueba reglamentario del motor, no como backtest adicional.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "RETIRED",
+      "implementation_stage": "NONE",
+      "aliases": []
+    },
+    {
+      "id": "SEQ-30-EXCESS",
+      "source_cells": [
+        "Antigua secuencia 900/900/900/310.",
+        "Target 900.",
+        "RETIRADA_POR_OWNER al fijar 870; no ejecutar."
+      ],
+      "source_status": "RETIRADA_POR_OWNER al fijar 870; no ejecutar.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "RETIRED",
+      "implementation_stage": "NONE",
+      "aliases": []
+    },
+    {
+      "id": "SEQ-REPLAN-LOSS",
+      "source_cells": [
+        "Tras pérdidas en cualquier día, recalcular remanente y consistencia con el estado real, sin comenzar artificialmente de cero.",
+        "Mayor día / PnL total <0,30; PnL total≥3.000.",
+        "Idea Owner “si fallo buscar otro día alto”; política adaptativa POR_PARAMETRIZAR."
+      ],
+      "source_status": "Idea Owner “si fallo buscar otro día alto”; política adaptativa POR_PARAMETRIZAR.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "SEQ-FIXED-LOSS-CONTROL",
+      "source_cells": [
+        "Después de una pérdida, volver al target alto fijo de la variante en lugar de planificar un día terminal menor.",
+        "Conserva target alto; puede sobrepasar el mínimo necesario.",
+        "Control propuesto frente a SEQ-REPLAN-LOSS; posterior."
+      ],
+      "source_status": "Control propuesto frente a SEQ-REPLAN-LOSS; posterior.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "EXIT-FIX",
+      "source_cells": [
+        "SL/TP económicos sin protección ni extensión.",
+        "Primera familia confirmada."
+      ],
+      "source_status": "Primera familia confirmada.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "EXIT-BE200",
+      "source_cells": [
+        "Al alcanzar +200 netos liquidables del conjunto, activar BE económico y mantener el TP correspondiente a la variante.",
+        "Propuesta conservada; posterior."
+      ],
+      "source_status": "Propuesta conservada; posterior.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "EXIT-BE200-TP500",
+      "source_cells": [
+        "Al alcanzar +200, activar BE económico y sustituir una vez el objetivo por +500.",
+        "Owner; posterior."
+      ],
+      "source_status": "Owner; posterior.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "EXIT-ONCLOSE",
+      "source_cells": [
+        "Trigger de BE conocido al cierre 1m.",
+        "Variante temporal pendiente, explícita; no equivalente a intrabar."
+      ],
+      "source_status": "Variante temporal pendiente, explícita; no equivalente a intrabar.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "EXIT-INTRABAR",
+      "source_cells": [
+        "Trigger al tocar el umbral dentro de la barra, con evento causal suficiente.",
+        "Variante temporal pendiente; OHLC no acredita ticks ni orden observado."
+      ],
+      "source_status": "Variante temporal pendiente; OHLC no acredita ticks ni orden observado.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "NY-OPEN",
+      "source_cells": [
+        "Sesión NY desde su apertura, como contraste del “quizás después de 30 minutos”.",
+        "Alternativa mencionada implícitamente; POR_PARAMETRIZAR, no habilitada ahora."
+      ],
+      "source_status": "Alternativa mencionada implícitamente; POR_PARAMETRIZAR, no habilitada ahora.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "INACTIVE_PROPOSAL",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "NY-PLUS30",
+      "source_cells": [
+        "Entrada desde 10:00 America/New_York como interpretación propuesta del retraso de 30 minutos.",
+        "Preferencia actual; fin/corte de nuevas entradas por definir."
+      ],
+      "source_status": "Preferencia actual; fin/corte de nuevas entradas por definir.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "NY-END",
+      "source_cells": [
+        "Liquidar posiciones y cancelar órdenes antes del cierre de la sesión elegida; ventana tentativa hasta 15:55 NY.",
+        "Flat obligatorio; hora 15:55 es propuesta, no hecho aprobado."
+      ],
+      "source_status": "Flat obligatorio; hora 15:55 es propuesta, no hecho aprobado.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "NY-V2-WINDOW",
+      "source_cells": [
+        "09:35–11:30 NY de V2.",
+        "Propuesta antigua sustituida; RETIRADA, no restricción silenciosa."
+      ],
+      "source_status": "Propuesta antigua sustituida; RETIRADA, no restricción silenciosa.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "RETIRED",
+      "implementation_stage": "NONE",
+      "aliases": []
+    },
+    {
+      "id": "PAY-2250",
+      "source_cells": [
+        "Objetivo de solicitud de retiro bruto 2.250; desde este importe aplica el tramo del 80% pertinente.",
+        "Primera referencia funded."
+      ],
+      "source_status": "Primera referencia funded.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "PAY-2300",
+      "source_cells": [
+        "Objetivo bruto 2.300.",
+        "Variante mencionada por Owner; posterior."
+      ],
+      "source_status": "Variante mencionada por Owner; posterior.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "PAY-2500",
+      "source_cells": [
+        "Objetivo bruto 2.500.",
+        "Variante mencionada por Owner; posterior."
+      ],
+      "source_status": "Variante mencionada por Owner; posterior.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "PAY-3000",
+      "source_cells": [
+        "Objetivo bruto 3.000.",
+        "Variante mencionada por Owner; posterior."
+      ],
+      "source_status": "Variante mencionada por Owner; posterior.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "FUND-FAST",
+      "source_cells": [
+        "Funded sin techo diario de consistencia; buscar el retiro elegible tan pronto sea posible dentro de riesgo/sesión. Pausar al quedar solicitud preparada.",
+        "Dirección Owner; POR_PARAMETRIZAR."
+      ],
+      "source_status": "Dirección Owner; POR_PARAMETRIZAR.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "FUND-PENDING",
+      "source_cells": [
+        "Política entre elegibilidad, solicitud, aprobación y cobro: pausa hasta resolución para no exponer el retiro pendiente.",
+        "Propuesta inicial; no garantía de preservación del pago."
+      ],
+      "source_status": "Propuesta inicial; no garantía de preservación del pago.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "ROT-ORDER",
+      "source_cells": [
+        "Orden estable de cuentas elegibles; usar la seleccionada hasta target/límite/sesión/fallo real, luego rotar.",
+        "Persistencia de turno confirmada; orden estable propuesto como baseline."
+      ],
+      "source_status": "Persistencia de turno confirmada; orden estable propuesto como baseline.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "ROT-NEAREST",
+      "source_cells": [
+        "Priorizar la cuenta más próxima a un primer cobro, usando fase/progreso/fecha de pago ya conocidos.",
+        "Propuesta de campaña adicional; posterior, sin información futura."
+      ],
+      "source_status": "Propuesta de campaña adicional; posterior, sin información futura.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "ROT-BALANCED",
+      "source_cells": [
+        "Alternar prioridad diaria entre las cuentas existentes elegibles, sin cohorte fija de cinco ni rotación después de cada trade.",
+        "Contraste registrado de prioridad, no condición personal; posterior."
+      ],
+      "source_status": "Contraste registrado de prioridad, no condición personal; posterior.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "FIT-EXACT-FIXED",
+      "source_cells": [
+        "R y T iguales en cada nueva operación; sólo admitir overshoot cuando el perfil declarado lo permite y contabilizar su efecto real sobre pase.",
+        "Control de riesgo realmente fijo; puede ser incompatible con banda diaria estricta."
+      ],
+      "source_status": "Control de riesgo realmente fijo; puede ser incompatible con banda diaria estricta.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "FIT-EQUAL",
+      "source_cells": [
+        "Antes de operar, distribuir el objetivo restante en tramos alcanzables, respetando el máximo de riesgo por ciclo y el ratio. Cantidad queda fija durante cada operación; sin progresión financiada por ganancias.",
+        "Alternativa registrada; comparar rachas/cobros sin privilegiarla por su reparto aritmético."
+      ],
+      "source_status": "Alternativa registrada; comparar rachas/cobros sin privilegiarla por su reparto aritmético.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "FIT-REMAINDER",
+      "source_cells": [
+        "Recortar proporcionalmente R y T de la última operación al remanente.",
+        "Propuesta de V3 conservada como control/fallback, aunque no preferida por Owner."
+      ],
+      "source_status": "Propuesta de V3 conservada como control/fallback, aunque no preferida por Owner.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    },
+    {
+      "id": "FIT-BAND",
+      "source_cells": [
+        "Cierre dentro de una banda de tolerancia declarada al objetivo diario, con ratio efectivo y consistencia calculados desde fills.",
+        "Variante compatible con el margen que menciona Owner; POR_PARAMETRIZAR."
+      ],
+      "source_status": "Variante compatible con el margen que menciona Owner; POR_PARAMETRIZAR.",
+      "origin": "SOURCE_ANNEX_VERBATIM",
+      "catalog_state": "DESIGN_DEFINED_UNIMPLEMENTED",
+      "implementation_stage": "B",
+      "aliases": []
+    }
+  ],
+  "frozen": {
+    "bankroll_usd": 5000,
+    "new_account_cost_usd": 120,
+    "evaluation_ordinary_daily_target_net_usd": 870,
+    "internal_daily_pause_net_usd": -1000,
+    "executing_accounts_max": 1,
+    "aggregate_cycles_max": 1,
+    "signal": "SIG-B",
+    "volatility": "VOL-20",
+    "no_overnight_exposure_or_executable_orders": true,
+    "instrument": "NQ actual corpus; no MNQ multiplier substitution",
+    "prop_profile": "versioned GAU50 externally verified by profile owner; no commercial facts inferred by catalog"
+  },
+  "axes": {
+    "ratio": [
+      {
+        "key": "STA-11",
+        "rho_R_div_T": 1,
+        "base_R_net_usd": 500
+      },
+      {
+        "key": "STA-15",
+        "rho_R_div_T": 1.5,
+        "base_R_net_usd": 500
+      },
+      {
+        "key": "STA-21",
+        "rho_R_div_T": 2,
+        "base_R_net_usd": 500
+      },
+      {
+        "key": "STA-41-CONTROL",
+        "rho_R_div_T": 4,
+        "base_R_net_usd": 1000
+      }
+    ],
+    "progression": [
+      "RISK-FIX",
+      "RISK-GAIN-RR",
+      "RISK-GAIN-TP"
+    ],
+    "adds": [
+      {
+        "key": "NONE",
+        "max_adds": 0
+      },
+      {
+        "key": "ADD-D25",
+        "fraction_initial_adverse_distance": 0.25,
+        "max_adds": 1,
+        "add_quantity_multiple_initial": 1
+      },
+      {
+        "key": "ADD-D50",
+        "fraction_initial_adverse_distance": 0.5,
+        "max_adds": 1,
+        "add_quantity_multiple_initial": 1
+      },
+      {
+        "key": "ADD-D75",
+        "fraction_initial_adverse_distance": 0.75,
+        "max_adds": 1,
+        "add_quantity_multiple_initial": 1
+      }
+    ],
+    "fit": [
+      "FIT-EXACT-FIXED",
+      "FIT-EQUAL",
+      "FIT-REMAINDER",
+      "FIT-BAND"
+    ],
+    "sequence": [
+      "SEQ-HIGH-RESIDUAL",
+      "SEQ-HIGH-FULL"
+    ],
+    "exit": [
+      {
+        "key": "EXIT-FIX",
+        "timing": "NONE"
+      },
+      {
+        "key": "EXIT-BE200",
+        "timing": "EXIT-ONCLOSE"
+      },
+      {
+        "key": "EXIT-BE200",
+        "timing": "EXIT-INTRABAR"
+      },
+      {
+        "key": "EXIT-BE200-TP500",
+        "timing": "EXIT-ONCLOSE"
+      },
+      {
+        "key": "EXIT-BE200-TP500",
+        "timing": "EXIT-INTRABAR"
+      }
+    ],
+    "session": [
+      "NY-PLUS30"
+    ],
+    "rotation": [
+      "ROT-ORDER",
+      "ROT-NEAREST",
+      "ROT-BALANCED"
+    ],
+    "payout": [
+      "PAY-2250",
+      "PAY-2300",
+      "PAY-2500",
+      "PAY-3000"
+    ]
+  },
+  "fixed_candidates": {
+    "authority": "DESIGN_PROPOSAL, chosen before results; manager may freeze or amend version before B",
+    "atr_multiplier": 2,
+    "stochastic_lookback": 20,
+    "K_sma": 3,
+    "D_sma": 3,
+    "atr_period": 20,
+    "atr_smoothing": "Wilder",
+    "alpha_realized_gain": 1,
+    "max_adds": 1,
+    "add_quantity_rule": "q_add=q_initial; one add only, NOT doubling sequence 1->2->4",
+    "fit_band_usd": 10,
+    "new_entries_start_ny": "10:00:00",
+    "new_entries_end_exclusive_ny": "15:50:00",
+    "flatten_begin_ny": "15:50:00",
+    "flat_deadline_exclusive_ny": "15:55:00",
+    "NY_OPEN_proposed_start_ny": "09:30:00",
+    "funded_pending_policy": "pause through request/approval until credit or rejection resolved; rejection reevaluates real account state"
+  },
+  "compatibility": {
+    "structural_incompatible": [
+      {
+        "rule": "FIT_EXACT_OR_EQUAL_WITH_GAIN",
+        "predicate": "fit in {FIT-EXACT-FIXED,FIT-EQUAL} and progression != RISK-FIX",
+        "reason": "Exact fixed promises same economic R/T on new cycles; Equal source explicitly excludes gain-financed progression."
+      }
+    ],
+    "static_equivalent": [
+      {
+        "rule": "TP500_EQUALS_INITIAL500",
+        "predicate": "ratio=STA-11 and progression=RISK-FIX and fit=FIT-EXACT-FIXED and exit=EXIT-BE200-TP500",
+        "canonical": "same axes with exit=EXIT-BE200",
+        "reason": "Initial T=500; replacing it with 500 is only BE."
+      }
+    ],
+    "source_equivalent": [
+      {
+        "id": "SEQ-REPLAN-LOSS",
+        "canonical": "SEQ-HIGH-RESIDUAL",
+        "reason": "Residual policy is recomputed from real state every day, including losses; identical deterministic adaptive policy chosen."
+      },
+      {
+        "id": "SEQ-FIXED-LOSS-CONTROL",
+        "canonical": "SEQ-HIGH-FULL",
+        "reason": "Full daily870 policy continues after losses by definition; alias preserved but no duplicate independent experiment."
+      }
+    ],
+    "source_composite": [
+      {
+        "id": "DYN-B2",
+        "predicate": "adds != NONE"
+      },
+      {
+        "id": "DYN-41",
+        "predicate": "ratio=STA-41-CONTROL and adds != NONE"
+      },
+      {
+        "id": "DYN-RR-CONTROLS",
+        "predicate": "ratio in STA-11/15/21; pair same other axes adds NONE with each enabled adds"
+      },
+      {
+        "id": "RISK-GAIN-ADDS",
+        "predicate": "progression != RISK-FIX and adds != NONE"
+      },
+      {
+        "id": "ADD-N1",
+        "predicate": "adds != NONE"
+      },
+      {
+        "id": "ADD-SIZING",
+        "predicate": "adds != NONE"
+      },
+      {
+        "id": "DAY-29",
+        "predicate": "all evaluation configs"
+      },
+      {
+        "id": "VOL-K2",
+        "predicate": "all configs"
+      },
+      {
+        "id": "NY-END",
+        "predicate": "all configs"
+      },
+      {
+        "id": "FUND-FAST",
+        "predicate": "all funded configs"
+      },
+      {
+        "id": "FUND-PENDING",
+        "predicate": "all funded configs"
+      }
+    ],
+    "runtime_inactive": [
+      {
+        "rule": "BE_UNREACHABLE",
+        "predicate": "initial effective T <=200 or permitted terminal target <=200",
+        "reason": "Initial TP/phase target preempts +200 BE; retain configuration and count inactive cycles, do not invent evidence."
+      },
+      {
+        "rule": "TP500_EXTENSION_NOT_GREATER",
+        "predicate": "effective initial T>500",
+        "reason": "Substitution500 would shorten target; DESIGN_PROPOSAL: extension inactive for this cycle, preserve initial target with BE."
+      },
+      {
+        "rule": "TP500_RUNTIME_EQUIVALENT",
+        "predicate": "effective initial T=500",
+        "reason": "Runtime extension identical to BE only."
+      },
+      {
+        "rule": "EXTENSION_HEADROOM",
+        "predicate": "500 exceeds current phase/session hard objective envelope",
+        "reason": "Do not extend; BE200 remains active if reachable. Record EXTENSION_TARGET_BLOCKED."
+      }
+    ],
+    "technical_pending": [
+      {
+        "rule": "INTRABAR_CAUSALITY",
+        "predicate": "exit timing EXIT-INTRABAR and no ordered causal market events",
+        "reason": "TECH_PENDING_NO_CAUSAL_DATA, never INCOMPATIBLE. OHLC sensitivity runs separate and labelled."
+      },
+      {
+        "rule": "STRATEGY_OR_POLICY_MODULE_MISSING",
+        "predicate": "not implemented",
+        "reason": "UNIMPLEMENTED_B; no execution readiness claim."
+      },
+      {
+        "rule": "PROFILE_HORIZON_CORPUS_MISSING",
+        "predicate": "profile, costs, corpus or common horizon not frozen",
+        "reason": "TECH_PENDING_INPUT, do not silently fill zero."
+      }
+    ],
+    "inactive_source": [
+      {
+        "id": "NY-OPEN",
+        "reason": "Source explicitly not enabled now; finite candidate09:30 exists for implementation coverage but excluded research manifest until owner changes activation."
+      }
+    ],
+    "negative_only": [
+      {
+        "id": "SEQ-30-10",
+        "reason": "900/900/900/300 only strict30% regulatory rejection fixture; never strategy, ranking or sweep."
+      }
+    ],
+    "retired_ids": [
+      "ADD-FIXEDSTOP-6040",
+      "DAY-25",
+      "DAY-295",
+      "DAY-299",
+      "NY-V2-WINDOW",
+      "SEQ-30-10",
+      "SEQ-30-EXCESS",
+      "SIG-A"
+    ],
+    "retired_numeric_alias_guards": {
+      "evaluation_ordinary_daily_targets_forbidden": [
+        750,
+        885,
+        897,
+        900
+      ],
+      "session_window_forbidden": [
+        "09:35-11:30"
+      ],
+      "intratrade_fixed_stop_6040_forbidden": true,
+      "SIG_A_under_alias_forbidden": true
+    }
+  },
+  "baseline": {
+    "selection": {
+      "progression": "RISK-FIX",
+      "adds": "NONE",
+      "fit": "FIT-EXACT-FIXED",
+      "sequence": "SEQ-HIGH-RESIDUAL",
+      "exit": "EXIT-FIX",
+      "timing": "NONE",
+      "session": "NY-PLUS30",
+      "rotation": "ROT-ORDER",
+      "payout": "PAY-2250"
+    },
+    "ratios": [
+      "STA-11",
+      "STA-15",
+      "STA-21"
+    ],
+    "count": 3,
+    "meaning": "Economic R500 reference kept exact at configuration level; realized grid/cost effects reported; overshoot profile explicit. Baseline is included in matrix, not three extra independent experiments."
+  },
+  "counts": {
+    "raw_cartesian": 23040,
+    "structural_incompatible": 7680,
+    "structural_compatible_before_equivalence": 15360,
+    "static_equivalent": 192,
+    "unique_research_configs": 15168,
+    "baseline_subset": 3,
+    "source_rows_expected": 53,
+    "retired_source_ids": 8,
+    "inactive_NY_OPEN_source_ids": 1,
+    "equivalent_sequence_source_ids": 2,
+    "scenario_multiplier": 1,
+    "note": "One frozen instrument/corpus/horizon/prop/cost/event-policy profile. Additional independently justified scenarios must explicitly multiply count; no hidden parameter grids. Runtime inactive cycles/technical pending do not reduce expected manifest count."
+  },
+  "policy_contract": {
+    "notation": "rho=R/T is risk:benefit, not reward:risk. R,T are positive net USD for complete aggregate cycle. Frozen at cycle admission; changes due to fit/progression occur before entry only. Cost model version is mandatory.",
+    "signal": {
+      "formula": "rawK_t=100*(close_t-min(low,20))/(max(high,20)-min(low,20)); slowK=SMA(rawK,3); D=SMA(slowK,3). On completed contiguous1m bars: Kprev<20 and Know>=20 LONG; Kprev>80 and Know<=80 SHORT. No K/D filter.",
+      "flat_range": "DESIGN_PROPOSAL: rawK=50 when rolling high=low; no division by zero.",
+      "atr": "TR_t=max(high-low,abs(high-prev_close),abs(low-prev_close)); first TR=high-low. ATR20 seeded SMA first20 TR; thereafter ATR=(19*prevATR+TR)/20.",
+      "warmup": "Require20 valid OHLC bars +2 for first slowK (bar22) +1 for previous/current slowK pair => earliest signal bar23. D first available bar24 and is informational, never a gating filter. ATR first available bar20. Suppress signals until K pair and ATR valid; D absence onbar23 does not suppress signal.",
+      "reset": "Preserve across NY daily boundaries with actual contiguous corpus; reset on contract/instrument roll, missing1m interval or invalid OHLC; rewarm without fabricated bars. Overnight bars may warm indicators but no execution outside NY. Session gaps must be declared trading-calendar scheduled closures or reset.",
+      "causal": "Signal timestamp is1m close; consume episode once globally. Entry only on a subsequent executable event after close plus configured latency. No same earlier OHLC price. No replay/reset when account changes. Account paused does not regain consumed signal."
+    },
+    "risk": {
+      "realized_gain": "G=max(0, account net realized daily PnL); floated PnL excluded. RISK-FIX Rpref=Rbase,Tpref=Rbase/rho.",
+      "gain_RR": "Rpref=Rbase+alpha*G; Tpref=Rpref/rho; alpha1 only.",
+      "gain_TP": "DESIGN_PROPOSAL: latch earned_gain_credit=max(0,daily realized PnL) only after a cycle closes via TP; after nonTP closure clamp credit=min(previous_credit,max(0,current realized daily PnL)); daily reset credit0. Rpref=Rbase+credit; Tpref=Rbase/rho. Effective ratio may differ from rho.",
+      "admission": "Preferred amount never bypasses internal floor, official daily loss, account floor, maximum contracts, fees or reservations. If Rpreferred not admissible reduce both R/T proportionally only for FIT policies that permit adjustment; exact-fixed pauses NO_ADMISSIBLE_CYCLE. Never fail account just to expend remainder."
+    },
+    "fit": {
+      "common": "remaining objective g is evaluation day target minus realized net daily PnL, or funded gross-withdrawal eligible progress gap converted by profile to required net cycle PnL. Requires phase-specific mapping; gross payout is not net profit/cash. Stop admission when objective reached. Cents arithmetic then physical grid.",
+      "FIT-EXACT-FIXED": "R/T same preferred values on every new cycle. Explicit DESIGN_PROPOSAL overshoot envelope permits one initial T beyond current objective: objective+Tpreferred; cancel further entries at first goal crossing or phase transition. It never relaxes account/prop limits; strict objective envelope profiles are incompatible rather than silently clipped.",
+      "FIT-EQUAL": "RISK-FIX only. n=max(1,ceil(g/Tpreferred)), T=g/n,R=rho*T. Recompute after every realized closure including loss/partial-cycle final settlement; R<=Rbase. Funded applies same finite objective partition.",
+      "FIT-REMAINDER": "scale=min(1,g/Tpreferred,admissible_R/Rpreferred); R=scale*Rpreferred,T=scale*Tpreferred. Pause if physical quantity cannot fit.",
+      "FIT-BAND": "DESIGN_PROPOSAL tolerance10USD. Stop when realized day/phase objective is within [goal-10,goal+10], but this cannot create prop approval/withdrawal eligibility below regulatory minimum. Before next cycle T=min(Tpreferred,g+10); scale=T/Tpreferred, cap proportional R for admissible headroom. No target below or above band manufactured by fills. Funded eligibility still requires PAY gross actual.",
+      "physical_realization": "Report requested/effective R,T,rho, residual, actual fills and budget utilization; no fraction contracts, perfect arithmetic claim, or fake exact daily close."
+    },
+    "sequence": {
+      "SEQ-HIGH-RESIDUAL": "At day start use actual P=total evaluation net realized profit from completed days and M=max positive completed day profit (0 if none). DESIGN_PROPOSAL cents: lower=max(3000-P, floor_cents(M/0.30-P)+0.01,0.01); upper=0.30*P/0.70 from requirement x/(P+x)<0.30. If lower<=870 and lower<upper and all profile pass prerequisites can be met today, choose target lower; otherwise870. Once selected target remains frozen for day; intraday fit uses remaining actual realized PnL. At phase approval transition stop immediately, even if chosen target not reached. Handle final-day losses via g; next day recompute from state.",
+      "SEQ-HIGH-FULL": "Daily870 even after losses; mandatory phase transition preempts goal. Four870 is arithmetic illustration only, not permission to trade after pass.",
+      "funded": "SEQ axis affects evaluation only. No inherited870 or evaluation consistency ceiling in funded.",
+      "strictness": "Use exact integer cents/rational comparison10*max_day<3*total at pass. Equality rejects. Profile minimum days/active conditions are separate pass gates, no first-day consistency failure."
+    },
+    "economic_prices": {
+      "aggregate": "For signed direction s=+1 long/-1 short, quantity Q>0, weighted open average A, multiplier m, realized partial-cycle net L, already charged cost C and projected exit cost/slippage Cexit(Q,p), net cycle liquidation N(p)=L+s*Q*m*(p-A)-C-Cexit. L/C ownership ledger must avoid double cost subtraction; derive prices from authoritative ledger rather than reaccounting fills.",
+      "targets": "Solve N(pSL)=-R and N(pTP)=T; BE solve N(pBE)=0. R/T are frozen net cycle envelopes. Partial fills update Q,A,L,cost estimates without resetting R/T.",
+      "sizing": "Reference initial adverse price distance dref=2*ATR at known entry event. Choose largest integer Q whose conservative grid SL loss+all known roundtrip costs/slippage <=R and account-wide admission passes; actual instrument tick/value metadata required. If Q0 do not trade. After actual entry fill solve economic SL/TP subject to actual economics; ATR scale is secondary.",
+      "rounding": "DESIGN_PROPOSAL: SL round toward entry (long ceil to tick, short floor) so planned loss never exceeds R; TP round away from entry (long ceil, short floor) then ensure objective envelope still permits it; if no feasible grid choose smaller Q or pause, never round through risk cap. BE round to nonnegative net side. Risk precedes ratio, which precedes exact ATR distance. Report deviations.",
+      "cost_bounds": "Stop gaps/slippage may exceed plannedR; record actual breach, enforce floor/pause on first causal event; model cannot promise stop fill price. Unknown costs/slippage are pending inputs, not zero."
+    },
+    "adds": {
+      "trigger": "Entry first accepted fill price E; fixed reference initial economic stop distance d0=abs(E-initial SL), not later moved stop and not ATR refreshed. Long trigger E-f*d0; short E+f*d0, f=.25/.50/.75. One add qinitial maximum, qinitial measured actual completed initial entry. No new add after BE activation.",
+      "admissibility": "At causal adverse crossing, simulate candidate real add fill costs/Q/A and re-solve BOTH economic SL,TP with same originalR/T. New SL must protect existing+new exposure and remain valid market side; quantity/account reservations/order state must be admissible. Reject ADD_INVALID_SL, GAP_PAST_TRIGGER, FLOOR_OR_HEADROOM, MAX_CONTRACTS, PROTECTION_UNAVAILABLE with evidence; no fill at crossed historical level.",
+      "replace": "Adapter/engine capability owns cancel/replace ordering. Pending old stops remain executable until ack, partial fills accounted once. No assumption atomic modification. During unsafe transition block add; cannot first increase exposure and hope protection follows. Add fills count against one aggregate cycle not new risk budget."
+    },
+    "exits": {
+      "EXIT-FIX": "Original net cycle SL/TP only; B2 recalculates prices while preserving monetaryR/T.",
+      "EXIT-BE200": "When N(actual liquidation quote)>=200 on defined causal trigger event activate economicBE once; maintain originalT. If market cannot accept economicBE validly record inactive/rejected protection, never synthetic earlier stop.",
+      "EXIT-BE200-TP500": "BE event additionally requests monetaryT=500 once only if Tinitial<500 and applicable objective envelope allows500. This is sole explicit exception to originalT; R remains original and protectedBE then0planned. If Tinitial=500 equivalent; if Tinitial>500 extension inactive.",
+      "timing": "ONCLOSE samples liquidatable net value at completed1m close, amendment executable only after close+latency. INTRABAR samples ordered market events; barOHLC alone cannot assert crossing order.",
+      "precedence": "For each ordered event: externally confirmed fills/account failures first; forced session/floor/internal pause next; already executable SL/TP per causal execution; phase/goal transitions next; BE then adds then new signal admission. Account transition/flat shutdown cancels pending adds. Ties without causal evidence use separately declared conservative stop-first sensitivity policy and flag, never claimed tick path. Barrier that executes before BE cannot be undone."
+    },
+    "session": {
+      "calendar": "America/New_York IANA trading calendar; prop accounting timezone/EOD separate; ownerAmerica/Santiago reporting only. DST aware. NYOPEN excluded research currently.",
+      "window": "DESIGN_PROPOSAL start10:00 inclusive, new-cycle/admission cutoff15:50 exclusive; liquidation begins15:50, all exposure/executable orders resolved before15:55. Explicit holiday/early-close: min(local proposed cutoff, official instrument/profile liquidation deadline minus5minutes); exact forced-close deadline from frozen profile. No open if insufficient causal close/fill window.",
+      "end": "Do not invent flat if cancel/close unacknowledged or market unavailable; mark forced_close_failed/technical censored with still executable state. Last-data bar is not fake liquidation. Prices from real causal execution."
+    },
+    "rotation": {
+      "ROT-ORDER": "Sort eligible existing accounts by creation sequence then stable accountID; keep selected account through cycles until applicable target/internalpause/realfailure/block/session.",
+      "ROT-NEAREST": "DESIGN_PROPOSAL lexicographic at legal turn boundary: known scheduled pending-credit eligibility/date first only if account tradable; funded remaining distance to first requestedPAY next; evaluation remaining financial pass gap next; stableID tie. Compare phase priority funded before eval. No guessed future returns/dates; nontradable pending account excluded.",
+      "ROT-BALANCED": "DESIGN_PROPOSAL at day start choose eligible account with fewest accumulated selected trading days then oldest last_selected_day then stableID. Increment at first actual cycle admission per account/day. Remain on chosen account for legal turn; recompute after pause/fail/goal with same counts; no trade-by-trade rotation.",
+      "purchase": "Existing eligible before demand purchase; no fixed inventory/cohort. Cash only actual net credited minus real debits; one purchase120 at a time respecting profile cups and future available trading window. Pause is not failure/reset. Feed/indicators shared, mutable financial/MM/account states isolated."
+    },
+    "funded": {
+      "PAY": "Gross request targets2250/2300/2500/3000; profile decides eligible profit/reserve mapping, split, fees, latencies, cutoff/process/credit. First reference2250 inclusive split governed externally verified profile.",
+      "FAST": "Trade toward earliest eligible requestedPAY under risk/session; no evaluation consistency/daily870. When ready reserve/request and pause.",
+      "PENDING": "DESIGN_PROPOSAL pause until credited or rejection fully resolved; preserve obligation and actual reservation semantics; does not guarantee payout. Withdrawals not repeatedly infinite; profile limits/transitions/finalLiveSim enforced.",
+      "cash": "Only one idempotent net credit per approved obligation; request/pass/float are not bankroll. Horizon end censors unpaid obligations; no posthorizon credit."
+    },
+    "manifest_and_results": {
+      "identity": "TG design config ID is catalog content hash only; it is NOT a completed-run cache key. B final run_signature must hash canonical complete domain configuration plus catalog version, prop profile SHA/date, cost/slippage model, actual instrument metadata/calendar/event policy, corpus SHA/common horizon, source commit/build hash and runtime runner config. Different binaries/corpus/profiles invalidate reuse. Freeze exactly one such context before research; no hidden scenario grids.",
+      "enumeration": "catalog_tools.py enumerates design tuples only (53 source IDs exact; 15168 unique). It may stream --manifest JSONL but does not run Echo or certify readiness. B materializes final full public configs/run signatures after implementation and known execution context. Structural incompatible/equivalence alias records retain reasons; technical pending and runtime inactive remain visible separately. Baseline3 is subset reused by final run_signature.",
+      "stage_order": "B implements and locally tests signal/indicators/MM/families via public owners; executes baseline3 first; then compatible matrix15168 (baseline IDs reused not duplicated); independently validate; rank actual net credited withdrawals minus real campaign costs, probability firstcredit and censored time. No profitability optimization of design inputs.",
+      "censoring": "Distinguish data insufficient, tech failure, profileunknown, accountfailure, internalpause, waitingpayment and campaignruin. Every candidate kept with outcome. BASIC/multiphase ledgers reconcile; comparable horizon common.",
+      "scope": "A must prove public execution capabilities separately. This catalog/generator proves only finite enumeration/sourcecoverage; implementation and engine readiness not implied."
+    }
+  }
+}
