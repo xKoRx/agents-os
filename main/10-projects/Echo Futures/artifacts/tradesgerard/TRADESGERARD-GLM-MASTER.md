@@ -27,13 +27,15 @@ updated: "2026-10-12"
 
 ## Propósito
 
-Encargo maestro de etapa B para lanzamiento manual por el Owner. Preparado durante A; ejecución BLOQUEADA hasta que el control canónico declare READY_FOR_GLM y el Owner lo lance. No atribuirle source/build aún no entregados. Este prompt encarga IMPLEMENTAR las variantes, no sólo ejecutar comandos.
+Encargo maestro de etapa B para lanzamiento manual por el Owner. A quedó READY_FOR_GLM según el control canónico; B no fue lanzada. Antes de ejecutar, comprobar que la identidad aceptada sigue coincidiendo y que el Owner ha iniciado este encargo. Este prompt encarga IMPLEMENTAR las variantes, no sólo ejecutar comandos.
 
 ## Contrato de entrada
 
 Resolver Agents-OS desde el workspace y cargar su bootstrap. Directorio canónico relativo a VAULT_ROOT: `10-projects/Echo Futures/artifacts/tradesgerard/`. Leer `TRADESGERARD-CONTROL.md`, `TRADESGERARD-CONTRACT.md`, `TRADESGERARD-PROP-PROFILE.md`, `TRADESGERARD-MANDATE-SNAPSHOT.md`, `TRADESGERARD-EVIDENCE-A.md` y `catalog.json`. Resolver repo `xKoRx/echo` desde el workspace; usar exclusivamente commit/build/recetas aceptados por la evidencia A enlazada en el control. Leer AGENTS/CONSTITUTION, SDD de la feature y el manual existente `v3/backtester/README.md`. Los archivos del catálogo son autoridad de parámetros; el snapshot conserva origen, no una segunda fuente editable de estado.
 
 ## Contrato de salida
+
+Identidad A entregada: source `d752b3e124386330e6f8e4b270958cc2db892734`, rama `codex/tradesgerard-platform-a`; CLI SHA256 `8abe7379483e4845f3e6f16167ac3a3d4db630d6b42b600542f4ca739fcc98ff`, Go1.27.1, VCS idéntico/modified=false. Checkout y recibos relativos a ARANEA_ROOT: `work/tradesgerard-platform-a-20261012/{echo,evidence}`. Entrada operativa comprobada: `evidence/recheck/RECIPES.md`, leída junto con `CANDIDATE-RECHECK.md`, `VERIFY-END.json` y el manual. Catálogo design-2 SHA256 `e367741ad47975e4a8b1aff3172bc10e659ed52cb9993f8db81507ceb588abd4`. Contrastar con CONTROL/EVIDENCE antes de trabajar; cualquier cambio exige nueva identidad experimental. Estas referencias no autorizan reutilizar resultados A como resultados de variantes B.
 
 Código de dominio registrado por API pública, tests verificables y commits/builds de desarrollo; plan finito con cada combinación clasificada, ejecución retomable y artefactos compactos; baseline de tres ratios y luego todas las combinaciones compatibles vigentes; validación prospectiva y análisis económico con muestra/incertidumbre. Separar completo, fallido, pendiente técnico/datos, incompatible e inactivo. Actualizar control y handoff con primera causa, completed/pending y próximo comando real.
 
