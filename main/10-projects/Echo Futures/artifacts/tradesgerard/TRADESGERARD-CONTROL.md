@@ -35,7 +35,7 @@ Inputs inmutables: caja inicial USD 5.000; compra individual USD 120 a demanda; 
 | Catálogo finito con todos los IDs | DESIGN_VERIFIED_FOR_IMPLEMENTATION | design-2 preserva53 IDs; auditoría+corrección con59 checks PASS. Ver [[TRADESGERARD-CONTRACT]]; ninguna variante ejecutada. |
 | Motor/composición/campaña/lote compacto | CANDIDATE_FOR_AUDIT | Fuente limpia congelada06ab6b12; no autorización de readiness. Integrador termina sólo recibo externo. |
 | Verificación independiente del delta exacto | RUNNING | TOP verifier_a tiene el único carril de pruebas/build/campañas sobre el freeze exacto. |
-| Cobertura nueva mínima95% | GAP_OPEN | Provisional73,68%; TOP coverage_prepare prepara tests externos sin medir ni modificar producto. |
+| Cobertura nueva mínima95% | GAP_OPEN | Recibo del candidato1081/1425=75,86%; TOP coverage_prepare prepara tests externos sin medir ni modificar producto. |
 | Manual actualizado, evidencia A y prompt GLM | IN_PROGRESS | [[TRADESGERARD-EVIDENCE-A]] y prompt preparados; manual/recetas/identidades finales pendientes, sin inventar flags ni rutas. |
 
 Harness local: TOP inventory/prop_profile/catalog/contract_audit/catalog_repair completos; integrator_a implementa y verifier_a prepara casos en ámbito disjunto sin medir fuente mutable. Todos fresh-context ONE-SHOT, modelo solicitado `gpt-6.1-sol`; modelo servido UNKNOWN. No se asume GLM disponible en el mismo harness. No se consume CLOUD Pro.
@@ -77,6 +77,8 @@ Recoger candidato del integrador y ejecutar source/build exactos mediante TOP in
 Commit `06ab6b12d2e4701d21ee8506238a481c5c47af5e`, árbol limpio verificado por manager. Binario `work/tradesgerard-platform-a-20261012/evidence/integrator/bin/echo-backtest`, SHA256 `7afb11bc32b5d5e3a0330589aa9f0b75310eb2c11193d64204fb5a7ee56951ba`; Go1.27.1, VCS embebido mismo commit, modified=false. Manager corroboró HEAD/status/hash/metadata, sin ejecutar campañas. Detalle en [[TRADESGERARD-EVIDENCE-A]].
 
 Autor reporta smoke NQZ5 real2025-10-28T14:00Z→15:00Z: catálogo COMPLETE,15008/15008minutos requeridos y60/60trading; campaña COMPLETE/conciliada/caja4880/HORIZON_CENSORED. Entrada de30contratos rechazada por cap del proveedor,0fills: prueba de pipeline/rechazo, no de ejecución financiera real ni rentabilidad. Resume exacto skipped1; BASIC replay detallado IDENTICAL94798records. Configs persistentes en evidencia/smoke. Verificador autorizado a casos propios sobre este freeze, sin escrituras de producto; especialista de cobertura prepara tests externos disjuntos, sin ejecutar. Tras findings, único integrador corregirá y se verificará nueva identidad. No READY_FOR_GLM.
+
+Recibo final del primer shot autor: `evidence/integrator/CANDIDATE-REPORT.md`, `commands-executed.md`, `coverage-delta-audit.json`, `resource-receipt.json` y `closeout-metadata.json`. Coverage1081/1425=75,85965% actualiza el provisional1050 anterior; incluye hits instrumentados parciales de suites no completadas, sin convertirlos en testPASS. Shot cerrado, fuente congelada y proyecto abierto. Primer hito independiente físico: pase exacto3×870+390, igualdad30% negativa, pérdida intermedia recuperada y8ciclos en misma cuenta hasta pase PASS. Auditoría restante en curso; hipótesis de ruina con renovación impaga pendiente de falsificación.
 
 ## Fuentes
 

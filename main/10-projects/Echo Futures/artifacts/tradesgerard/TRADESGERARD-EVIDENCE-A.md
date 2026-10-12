@@ -52,11 +52,15 @@ Corte posterior: TCR aplicado, suite provider completa PASS0,603s y paquete proo
 
 Comparación posterior en carril único: baseline/actual misma selección causal heredada PASS0,080s/0,087s, y baseline de paquetes SDK focalizados completos PASS. Cobertura nueva provisional1050/1425=73,68%; queda bajo el mínimo95% y no se acredita como aceptada. Debe recibirse el mapa de bloques/denominador y repetirse después de completar los casos. Commit/build limpio y smoke CLI real de60min en preparación; ninguna identidad nueva se presupone.
 
+El recibo cerrado del shot actualiza esa cobertura a1081/1425=75,85965% (`coverage-delta-audit.json` y analizador repetible `coverage_delta.py`); todos los bloques nuevos y bloques mixtos completos permanecen en el denominador. Incluye hits parciales de la suite con timeout como cobertura instrumentada, nunca como testPASS. Recibos finales externos: `CANDIDATE-REPORT.md`, `commands-executed.md`, `changed-files.txt`, `resource-receipt.json`, `closeout-metadata.json`. Recursos observados al cierre:11.251.548.160bytes libres,44.975.061bytes durables y99.855bytes de logs; pico temporal no muestreado continuamente. Temporales de pruebas con timeout no todos mapeados: no se borraron a ciegas y no se afirma limpieza total. Shot cerrado con candidato; trabajo del manager y auditoría continúan.
+
 ### Verificación independiente
 
 Catálogo: auditoría y reparación independientes completas. `design-2` conserva53 IDs y produce23040 configuraciones raw,7680 incompatibles,192 alias y15168 únicas compatibles;59 checks PASS. Cobertura de sentencias del generador119/121=98,3471%; no es cobertura del motor ni de branches. SHA256 del único catálogo editable `catalog.json`: `e367741ad47975e4a8b1aff3172bc10e659ed52cb9993f8db81507ceb588abd4`.
 
 Producto: TOP verifier_a preparó15 grupos de casos propios en `evidence/verifier/preparation/ADVERSARIAL-MATRIX.md` y recibió el freeze06ab6b12 y carril exclusivo. Auditoría física en ejecución; debe comprobar cada fila del §10, identidad source/binario antes y después, cobertura nueva mínima95% con baseline separado, smoke real, regresiones y fallos/limpieza. Recibo independiente final pendiente. TOP coverage_prepare lee el freeze y mapas de cobertura y prepara nuevos tests en evidencia externa; no compila, ejecuta ni modifica producto en paralelo.
+
+Primer hito físico propio del verificador: Strategy/MM independiente demuestra3×870+390=3000/best870/pase4días;16fills/8ciclos en la misma cuenta hasta pase. Caso900×3+300=3000/best900 NO pasa por igualdad30%. Pérdida intermedia−200 preserva historia y luego pasa al alcanzar3000. Identidad source/binario corroborada por el verificador. Su primer smoke real completo no tuvo fills por presupuesto insuficiente para un contrato; nueva prueba admisible y matriz restante en curso. Ningún hito parcial certifica el total.
 
 ### Datos y recursos
 
