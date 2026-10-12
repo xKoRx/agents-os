@@ -61,7 +61,7 @@ tags:
 
 - Corrector terminó y liberó el carril: freeze `d752b3e124386330e6f8e4b270958cc2db892734`, binario SHA256 `8abe7379483e4845f3e6f16167ac3a3d4db630d6b42b600542f4ca739fcc98ff`, VCS idéntico/modified=false y árbol limpio corroborados. BASIC/replay 94.798 registros idénticos; smoke real cuatro fills, sin inferir rentabilidad. Cobertura corregida por contenido: 1349/1420 = 95,00% con 20 perfiles PASS; el histórico 1425 mezclaba versiones y no era denominador válido. Agregado 420 s NOT_PASS, casos separados y recibos preservados. Auditor nuevo recompiló contra d752 y reprodujo conteo sin paths faltantes; matriz independiente en curso. CONTROL actualizado, EVIDENCE consolidado, agent-runs coverage-finish y corrector-a registrados. No READY ni lanzamiento B; manager y proyecto abiertos.
 
-- Notas creadas mediante `materialize_schema_note.py`; lectura y lint estricto dirigido PASS para documentos materializados. Source baseline limpio `873f5f1c7df25086271af1de1896095f1cade2a9`; build histórica486 no atribuida a873. Lint consolidado final pendiente mientras se completa la entrega.
+- Notas creadas mediante `materialize_schema_note.py`; lectura y lint estricto final de diez documentos/registros PASS, ERROR=0/WARN=0. Source baseline limpio `873f5f1c7df25086271af1de1896095f1cade2a9`; build histórica486 no atribuida a873. Entregables en outputs son enlaces a fuentes únicas; no se duplicó el catálogo editable ni el manual.
 
 ## Compartibilidad
 
