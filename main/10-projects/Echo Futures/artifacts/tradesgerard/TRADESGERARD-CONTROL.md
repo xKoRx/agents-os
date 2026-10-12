@@ -35,10 +35,10 @@ Inputs inmutables: caja inicial USD 5.000; compra individual USD 120 a demanda; 
 | Catálogo finito | DESIGN_VERIFIED_FOR_IMPLEMENTATION | `catalog.json` único, design-2: 53 IDs, 15.168 combinaciones únicas compatibles; auditoría y reparación con 59 checks PASS. |
 | Motor, composición, campaña y lote compacto | CORRECTION_RUNNING | TOP corrector_a es el único escritor y ejecutor sobre la rama de desarrollo. |
 | Verificación independiente | INTERIM_FINDINGS | Auditoría de 06ab6b12 terminada; tres hallazgos y filas pendientes requieren nuevo freeze y recheck. |
-| Cobertura nueva ≥95% | GAP_OPEN | Candidato auditado: 1081/1425 = 75,86%. Seis propuestas de tests ya integradas por el corrector; medición nueva pendiente. |
+| Cobertura nueva ≥95% | GAP_OPEN | Recibo histórico 1081/1425 = 75,86% bajo revisión: se detectaron perfiles de versiones distintas. Corrector recalcula denominador completo y hits compatibles de la misma fuente; propuestas de tests integradas, medición final pendiente. |
 | Manual, recibo y prompt GLM | IN_PROGRESS | [[TRADESGERARD-EVIDENCE-A]] conserva identidades y resultados; manual/recetas finales pendientes. [[TRADESGERARD-GLM-MASTER]] preparado, sin lanzamiento. |
 
-Harness local verificado. TOPs inventory, prop_profile, catalog, contract_audit, catalog_repair, integrator_a, verifier_a y coverage_prepare terminaron sus shots. corrector_a recibió RELEASE_LANE tras liberación expresa del auditor. Todos solicitados `gpt-6.1-sol`; servido UNKNOWN. No se consume CLOUD Pro ni se presupone GLM disponible en este harness.
+Harness local verificado. TOPs inventory, prop_profile, catalog, contract_audit, catalog_repair, integrator_a, verifier_a y coverage_prepare terminaron sus shots. corrector_a recibió RELEASE_LANE tras liberación expresa del auditor. top_recheck_a prepara casos externos, sin compilar ni ejecutar hasta RELEASE_VERIFY sobre nuevo freeze. Todos solicitados `gpt-6.1-sol`; servido UNKNOWN. No se consume CLOUD Pro ni se presupone GLM disponible en este harness.
 
 ### Identidad y evidencia aceptada para corrección
 
@@ -52,7 +52,7 @@ Auditoría independiente cerrada en `evidence/verifier/{CANDIDATE-AUDIT.md,COMMA
 |---|---|---|
 | F01: renovación impaga y ruina | Caja 80, única cuenta RENEWAL_UNPAID, sin pagos pendientes; devuelve censura en vez de ruina. | Reproducer confirmado; prueba pública pasa tras clasificar recuperación por costos vigentes de renovación/setup y compra admisible, conservando historia y cupos. |
 | F02: frontera temporal incompleta | Campaña de 35 sesiones falla ANALYTICS_SOURCE_FAILED; control equivalente sin campaña completa. | Regresión antes del fix demuestra SESSION_END pendiente con Deadline igual al frontier publicado. Tras completar todas las fases del instante, campaña de 35 sesiones completa; aún no alcanza el cap 5000 y sigue censurada. |
-| F03: cierre de seguridad no convergente | MM público sin SL entra, sufre breach y deja exposición residual con DRAIN_NOT_CONVERGENT. | Reproducido. Corrección/repetición pendientes. Debe permitir reducción real sin habilitar reversión o expansión. |
+| F03: cierre de seguridad no convergente | MM público sin SL entra, sufre breach y deja exposición residual con DRAIN_NOT_CONVERGENT. | Corregido y prueba pública PASS según corrector: cuenta fallida preservada, saldo 48020/stage −1980, sin residual. Pruebas de reducción long/short y negativos de reversión/sobrecierre PASS; recheck independiente pendiente. |
 
 ### Gates y recursos
 

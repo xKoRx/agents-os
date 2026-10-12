@@ -44,7 +44,7 @@ Defectos corregidos antes del freeze: fase desactualizada en liveConfig tras cam
 
 Baseline/actual con idéntica selección causal heredada y `-p1`: PASS 0,080 s / 0,087 s. SDK focalizado del baseline también PASS. Suites amplias backtester/cmd agotaron 180 s: **NOT_PASS**. La primera medición multipaquete con paralelismo por defecto no es comparación válida del carril serial.
 
-Cobertura final del primer candidato: **1081/1425 = 75,85965%**, por debajo de 95%. El denominador incluye todos los bloques nuevos y bloques mixtos completos que intersectan líneas añadidas, frente al baseline histórico. Incluye hits instrumentados de suites con timeout, sin convertirlas en testPASS. El provisional 1050/1425 queda sustituido por el recibo final.
+Recibo de cobertura del primer candidato: **1081/1425 = 75,85965%**, por debajo de 95%, actualmente bajo revisión metodológica. El método pretendía incluir todos los bloques nuevos y bloques mixtos completos que intersectan líneas añadidas, frente al baseline histórico. Incluía hits instrumentados de suites con timeout, sin convertirlas en testPASS. Durante la corrección se detectó que la unión mezcló coordenadas de proof.go de distintas versiones: perfil antiguo 137 statements/89 bloques frente a final 154/97, con unión de 210 statements. El recibo original se conserva, pero no acredita una medida exacta. Se exige recalcular desde baseline873→fuente actual y perfiles compatibles por contenido, con mapa de discrepancias y denominador completo; nunca excluir paths para lograr 95%.
 
 ### Auditoría independiente del primer candidato
 
@@ -76,6 +76,8 @@ TOP coverage_prepare entregó seis archivos promovibles en `evidence/coverage-pr
 TOP corrector_a recibió el único carril tras cerrar la auditoría. Reprodujo F01/F02/F03 contra el binario independiente congelado (`evidence/corrector/reproduce-frozen.log`), integró los seis archivos y tests promovibles conservando asserts, y modificó sólo la ruta de outputs de fixture a t.TempDir fuera de evidencia explícita.
 
 Reportes de avance, todavía no auditados sobre nuevo freeze: F01 pública pasa después de clasificar recuperación con costos de renovación/setup vigentes. F02 quedó reproducido antes del fix por SESSION_END no Fired con Deadline igual al frontier publicado; completar todas las fases de ese instante permite terminar las 35 sesiones. Ese resultado conserva censura: gross retirado 4500/4500/2250, dos credenciales esperando cupo; no alcanza todavía el cap 5000. Se amplía únicamente el fixture sintético de cap, conservando el resultado anterior y ventanas reales. F03, matriz restante, cobertura y nuevo commit/build todavía requieren recibo final.
+
+Avance posterior: F03 público PASS tras permitir reservas que reducen exposición real incluso después del breach, contando reservas pendientes hasta finality; no basta etiqueta Exit. Positivos long/short parcial/total y negativos sobrecierre/reversión/expansión/binding desconocido PASS según corrector. Cuenta fallida preservada 48020/stage −1980, sin posición residual. SDK focalizado completo PASS; primer muestreo propio pico temporal 16,65 MiB/remanente cero. Selección instrumentada de 256,3 s completó casos públicos, incluido cap5000 con fixture60; un test nuevo de compra unpaid usó una hora nocturna y requiere repetir tras corregir sólo ese input. Nuevas identidades, cobertura final y verificación independiente aún pendientes. top_recheck_a preparó matriz externa y casos propios, sin ejecutar mientras fuente cambia.
 
 ### Catálogo y datos reales
 
