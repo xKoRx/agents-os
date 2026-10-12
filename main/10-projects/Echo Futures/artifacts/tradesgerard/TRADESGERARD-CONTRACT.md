@@ -55,7 +55,7 @@ Candidatos mínimos: un add de cantidad inicial a distancia25/50/75%; alpha1 sob
 
 ### Recursos, corpus y evidencia
 
-Un escritor y una campaña financiera a la vez; source estable durante build/medición. Reserve≥8GiB, temporales propios≤2GiB, durable≤256MiB, logs≤16MiB, GOMAXPROCS4. Limitar desde el productor, no escribir todas las trazas y borrarlas después ni trasladarlas enteras a RAM. Completar/drenar→guardar→leer/verificar/conciliar→limpiar sólo temporales propios; fallos también guardan estado/cause mínima.
+Un escritor y una campaña financiera a la vez; source estable durante build/medición. Reserva ≥8 GiB, temporales propios ≤2 GiB, salida durable por lote/corrida ≤256 MiB, logs ≤16 MiB, GOMAXPROCS=4. El archivo agregado de auditorías de la iniciativa tiene presupuesto prospectivo de 384 MiB desde el corte previo al CLI/BASIC/replay independiente, documentado en [[TRADESGERARD-CONTROL]]; no cambia el límite de salida implementado en el lote. Limitar desde el productor, no escribir todas las trazas y borrarlas después ni trasladarlas enteras a RAM. Completar/drenar→guardar→leer/verificar/conciliar→limpiar sólo temporales propios; fallos también guardan estado/cause mínima.
 
 Corpus derivado accesible: workspace Aranea `work/btx-perf-last-20261010/integrator/package/corpus`, con provenance de calendario e identidades físicas. Los originales del export tienen acceso denegado desde esta superficie, sin intento de ampliar permisos. all13 sigue NOT_READY por gaps/prefijos. Validar ventana nueva antes de smoke. Las ventanas históricas disponibles no son por sí solas una validación nueva ni un split experimental aceptado.
 

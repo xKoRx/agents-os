@@ -64,6 +64,8 @@ Un carril de compilación/prueba/campaña y un escritor de producto. Límites: r
 
 ### Siguiente acción
 
+Presupuesto prospectivo del 2026-10-12, antes del bloque CLI/BASIC/replay del recheck: evidencia histórica agregada observada aproximadamente 233 MiB. Se reserva hasta 384 MiB agregados para conservar los nuevos replays necesarios y los recibos anteriores; cada lote/corrida y el directorio propio del auditor siguen limitados a 256 MiB. No cambia el límite ejecutable de salida del lote, la reserva ≥8 GiB, scratch ≤2 GiB ni logs ≤16 MiB. Es una ampliación explícita de archivo de auditoría, no permiso para generar trazas ilimitadas ni borrar binarios/historia. El recibo final distinguirá ambos scopes.
+
 recheck_a completa la matriz independiente sobre d752b3e1. Su arnés se compiló de nuevo contra ese freeze; no reutiliza el ejecutable enlazado con 06ab. Los fallos de inputs del arnés se conservan y repiten tras corregir únicamente inputs externos. Todo hallazgo material de producto requiere adjudicación y corrección antes de readiness. La ampliación sintética para llegar al cap no cambia ventanas reales ni convierte el resultado anterior en PASS del cap.
 
 Agents-OS se mantiene en master con autosync observado; no se atribuyen sus commits al manager ni se afirma push. Código, corpus y logs pesados permanecen fuera del vault. El handoff final consolidará recetas físicas, evidencia y alcance legítimo de B, dejando abierto el gate del Owner.
