@@ -2,10 +2,10 @@
 type: skill
 schema_version: 1
 name: echo-production-operational-audit
-description: Auditoría operacional E2E read-only de Echo PROD (host .71, bridges Windows, PG .220, Kafka .247-249, etcd /echo/production/, ARGUS) tras una ventana de cambios; gates G1-G10 con evidencia física, veredicto OPERATIONAL_* y comparación contra auditorías previas. Cargar para auditar funcionamiento real de Echo en producción, nunca para desarrollar ni desplegar.
+description: Auditoría operacional E2E read-only de Echo PROD (host .71, bridges Windows, PG .220, Kafka .247-249, etcd /echo/production/, ARGUS) tras una ventana de cambios; gates G1-G12 con evidencia física (incluye G11 config-flow DB→trigger Hasura→gateway→topic compactado→cache→EA y G12 consistencia de estado de trading), veredicto OPERATIONAL_* y comparación contra auditorías previas. Cargar para auditar funcionamiento real de Echo en producción, nunca para desarrollar ni desplegar.
 scope: area
 created: "2026-09-21"
-updated: "2026-09-22"
+updated: "2026-10-12"
 area: "[[Aranea]]"
 entities:
   - "[[Echo]]"
