@@ -16,78 +16,60 @@ updated: "2026-10-12"
 
 ## Propósito
 
-Fuente única de estado de la preparación TradesGerard, etapa A del mandato GOD LOCAL del Owner, recibido el 2026-10-12. Estado técnico: IN_PROGRESS, en corrección tras auditoría intermedia; no READY_FOR_GLM, aceptación final Owner pendiente. Etapa B corresponde a GLM-5.3-Flash y no se lanza automáticamente.
+Fuente única de estado de la etapa A del mandato GOD LOCAL del Owner, recibido el 2026-10-12. Estado técnico: **IN_PROGRESS / CORRECTION_RUNNING**. No READY_FOR_GLM; aceptación final del Owner pendiente. La etapa B corresponde a GLM-5.3-Flash y no se lanza automáticamente.
 
 ## Contenido
 
 ### Autoridad y límites
 
-El mandato vigente autoriza diseño técnico ordinario, desarrollo offline por TOPs, verificación independiente y corrección. El manager coordina y documenta; no escribe ni integra código, scripts, indicadores ni tests. Sin merges productivos, deploy, servicios, egress trading, compras/resets reales ni reconstrucción de cuentas personales. La aceptación final pertenece al Owner. BTG-PLAN, BTX-PERF y D1–D6 conservan sus gates históricos.
+[[TRADESGERARD-MANDATE-SNAPSHOT]] autoriza diseño ordinario, desarrollo offline por TOPs, verificación independiente y correcciones. El manager coordina y documenta; no escribe ni integra código, scripts, indicadores ni tests. Sin merges productivos, deploy, servicios, egress de trading, compras/resets reales ni reconstrucción de cuentas personales. BTG-PLAN, BTX-PERF y D1–D6 conservan sus gates históricos. Manager y proyecto permanecen abiertos; el cierre de un shot no los cierra.
 
-Inputs inmutables: caja inicial USD 5.000; compra individual USD 120 a demanda; reinversión sólo de efectivo acreditado; una cuenta operando y un ciclo agregado; turno persistente hasta target/límite/fallo/bloqueo/sesión; target ordinario evaluación USD 870 netos; pausa interna −USD 1.000 sin reset; NY flat/cancelado al cierre; funded sin heredar 870 ni consistencia de evaluación. Retiros brutos candidatos 2.250/2.300/2.500/3.000.
+Inputs inmutables: caja inicial USD 5.000; compra individual USD 120 a demanda; reinversión sólo de efectivo acreditado; una cuenta operando y un ciclo agregado; turno persistente hasta target/límite/fallo/bloqueo/sesión; target ordinario de evaluación USD 870 netos; pausa interna −USD 1.000 sin reset; NY flat/cancelado al cierre; funded sin heredar 870 ni consistencia de evaluación. Retiros brutos candidatos 2.250/2.300/2.500/3.000. Sin límite artificial de 41 cuentas durante toda la campaña ni horizonte fijo de dos semanas.
 
-### Trabajo y evidencia vigente
+### Entregas y responsables
 
-| Entrega | Estado | Responsable / siguiente acción |
+| Entrega | Estado | Evidencia o siguiente acción |
 |---|---|---|
-| Inventario real y diseño acotado por propietarios | REVIEWED_FOR_IMPLEMENTATION | TOP inventory completo; mapa y decisiones en [[TRADESGERARD-CONTRACT]]. |
-| Perfil GAU50 versionado con fuentes oficiales | RESEARCH_COMPLETE_SCENARIO_REQUIRED | [[TRADESGERARD-PROP-PROFILE]] distingue hechos, supuestos y UNKNOWN; no certificación comercial. |
-| Catálogo finito con todos los IDs | DESIGN_VERIFIED_FOR_IMPLEMENTATION | design-2 preserva53 IDs; auditoría+corrección con59 checks PASS. Ver [[TRADESGERARD-CONTRACT]]; ninguna variante ejecutada. |
-| Motor/composición/campaña/lote compacto | CORRECTION_RUNNING | TOP corrector_a tiene el único carril y escritura de producto tras auditoría06ab6b12. |
-| Verificación independiente del delta exacto | INTERIM_FINDINGS | TOP verifier_a cerró y liberó carril; F01/F02/F03 y matriz incompleta requieren corrección y recheck nuevo. |
-| Cobertura nueva mínima95% | GAP_OPEN | Candidato auditado1081/1425=75,86%; seis propuestas externas entregadas, compilación/integración y casos adicionales a cargo del corrector. |
-| Manual actualizado, evidencia A y prompt GLM | IN_PROGRESS | [[TRADESGERARD-EVIDENCE-A]] y prompt preparados; manual/recetas/identidades finales pendientes, sin inventar flags ni rutas. |
+| Inventario y diseño por propietarios | REVIEWED_FOR_IMPLEMENTATION | [[TRADESGERARD-CONTRACT]]; inventario completo recibido. |
+| Perfil GAU50 versionado | RESEARCH_COMPLETE_SCENARIO_REQUIRED | [[TRADESGERARD-PROP-PROFILE]] separa hechos oficiales, supuestos y UNKNOWN; no certificación comercial. |
+| Catálogo finito | DESIGN_VERIFIED_FOR_IMPLEMENTATION | `catalog.json` único, design-2: 53 IDs, 15.168 combinaciones únicas compatibles; auditoría y reparación con 59 checks PASS. |
+| Motor, composición, campaña y lote compacto | CORRECTION_RUNNING | TOP corrector_a es el único escritor y ejecutor sobre la rama de desarrollo. |
+| Verificación independiente | INTERIM_FINDINGS | Auditoría de 06ab6b12 terminada; tres hallazgos y filas pendientes requieren nuevo freeze y recheck. |
+| Cobertura nueva ≥95% | GAP_OPEN | Candidato auditado: 1081/1425 = 75,86%. Seis propuestas de tests ya integradas por el corrector; medición nueva pendiente. |
+| Manual, recibo y prompt GLM | IN_PROGRESS | [[TRADESGERARD-EVIDENCE-A]] conserva identidades y resultados; manual/recetas finales pendientes. [[TRADESGERARD-GLM-MASTER]] preparado, sin lanzamiento. |
 
-Harness local: TOP inventory/prop_profile/catalog/contract_audit/catalog_repair/integrator_a/verifier_a/coverage_prepare completos. TOP corrector_a, fresh-context, recibió RELEASE_LANE tras cierre de auditoría y es el único escritor/ejecutor. Todos solicitados `gpt-6.1-sol`; servido UNKNOWN. No se asume GLM disponible en el mismo harness. No se consume CLOUD Pro.
+Harness local verificado. TOPs inventory, prop_profile, catalog, contract_audit, catalog_repair, integrator_a, verifier_a y coverage_prepare terminaron sus shots. corrector_a recibió RELEASE_LANE tras liberación expresa del auditor. Todos solicitados `gpt-6.1-sol`; servido UNKNOWN. No se consume CLOUD Pro ni se presupone GLM disponible en este harness.
 
-Baseline de source inspeccionado por TOP inventory: repo `xKoRx/echo`, checkout relativo a workspace Aranea `work/btx-perf-last-20261010/integrator/echo`, rama `codex/btx-perf-last`, HEAD `873f5f1c7df25086271af1de1896095f1cade2a9`, limpio; origin apunta a clon local. Es identidad source, no build nuevo ni certificación actual. Inventario completo recibido; ningún componente no inspeccionado se considera ausente.
+### Identidad y evidencia aceptada para corrección
 
-### Recursos y gates
+Repo `xKoRx/echo`; baseline source `873f5f1c7df25086271af1de1896095f1cade2a9`. Desarrollo: rama `codex/tradesgerard-platform-a`, checkout relativo al workspace Aranea `work/tradesgerard-platform-a-20261012/echo`. SDD: `specs/FEAT-TRADESGERARD-PLATFORM-A/`.
 
-Progreso del autor, todavía sin freeze ni auditoría independiente del producto: pruebas de registro preservado/relojes pausados y regresión ReplaceAccount PASS; perfil cuatro PAY/2250 inclusivo/ladder/DST+feriados PASS; Live intraday floor/withdrawal/equality/latch PASS. Ruta causal integrada de dos sesiones sintéticas COMPLETE con una compra120 y caja4880, una cuenta50000, HORIZON_CENSORED; cancelación FAILED/PLATFORM_CANCELLED conserva caja y drena Finish. Sellado/mutación de reglas por fase PASS. Prueba pública con nueva Strategy/MM determinista: entrada1/add1/salida física2, ledger flat, cancelación real de protecciones y BE200/TP250→500; corregido churn de cancelación del exit propio del fixture. Proyección del ciclo usa gross/costos del ledger autoritativo. Paridad detallado/compacto y batch resume/retry/tamper reportados PASS. Pase→funded→crédito sintético público PASS en el milestone descrito abajo. Estos resultados son reports del implementador y no acreditan READY_FOR_GLM ni rentabilidad.
+Último freeze auditado: `06ab6b12d2e4701d21ee8506238a481c5c47af5e`; binario `work/tradesgerard-platform-a-20261012/evidence/integrator/bin/echo-backtest`, SHA256 `7afb11bc32b5d5e3a0330589aa9f0b75310eb2c11193d64204fb5a7ee56951ba`, Go1.27.1, VCS embebido idéntico y modified=false. Manager corroboró HEAD limpio/hash/metadata; no ejecutó campañas. La fuente está ahora autorizada a cambiar por el corrector: estas identidades no certifican su delta.
 
-Preflight disco del workspace: filesystem 146G, usado 127G, disponible aproximadamente 12G (2026-10-12). Antes de ejecutar: reservar al menos 8 GiB libres, un escritor de producto y una campaña a la vez; TOP debe fijar límites medibles de temporales, outputs y logs según preflight de su ruta real. No limpieza de corpus/caches/releases/trabajo ajeno. Sin barrido de investigación completo en A.
+Auditoría independiente cerrada en `evidence/verifier/{CANDIDATE-AUDIT.md,COMMANDS.md,AUDIT-METADATA.json}` bajo ese workspace. Demostró pase exacto y negativo del 30%, pérdida intermedia, turno y pausa preservados, parciales/rechazo/fill tardío, precios SL/TP y BE, paridad compacta/detallada, fallos/cancelación/cleanup/resume, smoke real con fills y BASIC replay idéntico de 94.798 registros. El recibo detalla alcance y límites; no acredita el total de §10 ni rentabilidad.
 
-El gate READY_FOR_GLM exige demostrar cada fila de §10 del mandato, no sólo interfaces o pruebas unitarias del autor. Fixtures deterministas deben etiquetarse; smoke real sólo con corpus válido y ventanas explícitas. Cobros pendientes no son caja, datos truncados no son checkpoints, hashes no reemplazan replay detallado. El coverage nuevo mínimo es 95% sin cambiar denominadores heredados.
+| Hallazgo | Evidencia del freeze | Avance del corrector, aún sin recheck independiente |
+|---|---|---|
+| F01: renovación impaga y ruina | Caja 80, única cuenta RENEWAL_UNPAID, sin pagos pendientes; devuelve censura en vez de ruina. | Reproducer confirmado; prueba pública pasa tras clasificar recuperación por costos vigentes de renovación/setup y compra admisible, conservando historia y cupos. |
+| F02: frontera temporal incompleta | Campaña de 35 sesiones falla ANALYTICS_SOURCE_FAILED; control equivalente sin campaña completa. | Regresión antes del fix demuestra SESSION_END pendiente con Deadline igual al frontier publicado. Tras completar todas las fases del instante, campaña de 35 sesiones completa; aún no alcanza el cap 5000 y sigue censurada. |
+| F03: cierre de seguridad no convergente | MM público sin SL entra, sufre breach y deja exposición residual con DRAIN_NOT_CONVERGENT. | Reproducido. Corrección/repetición pendientes. Debe permitir reducción real sin habilitar reversión o expansión. |
+
+### Gates y recursos
+
+READY_FOR_GLM exige demostrar todas las filas materiales de §10, regresiones relevantes y cobertura nueva ≥95% con baseline separado y denominador completo. Fixtures sintéticos se identifican como tales; no son resultados de rentabilidad. COMPLETE no sustituye aceptación económica, pending no es caja, hashes no sustituyen replay, y una capacidad estructural pendiente no se traslada a B.
+
+Pendientes explícitos de auditoría: compra y fondos/cupos extremos; independencia del estado de MM por cuenta y ausencia de solapamiento; relojes inactivos/calendario; cuatro targets y cap completo; terminalidad con cuenta utilizable o crédito pendiente; causalidad representada; pico temporal continuo y fallos posteriores de escritura/readback; identidad completa de lote; regresiones restantes. El corrector debe aportar casos reproducibles y un nuevo freeze; un TOP independiente comprobará el conjunto.
+
+Un carril de compilación/prueba/campaña y un escritor de producto. Límites: reserva libre ≥8 GiB, scratch propio ≤2 GiB, durable ≤256 MiB, logs ≤16 MiB, GOMAXPROCS=4 y paquetes seriales. Cada nuevo scratch tiene propietario/manifest; no borrar corpus, caches ni temporales anteriores sin atribución. Auditor anterior liberó sus procesos y registró aproximadamente 11,02 GB libres y 38,85 MB durables; no hubo muestreo continuo del pico temporal. No se ejecuta el barrido de investigación de B.
 
 ### Siguiente acción
 
-Hallazgo de implementación en ruta sintética de22sesiones: el run llegó COMPLETE/reconciled pero el objetivo de aceptación falló (sin cobro acreditado; caja4760/dos compras). Primera causa identificada: applyContextTransition actualiza binding del Provider y deja liveConfig.Accounts con faseEVALUATION al transitar aLIVESIM; MM/admission leen fase desactualizada. Corrección en run.go y regresión en curso, log propio conservado. COMPLETE de ejecución no sustituye aprobación del contrato. Ninguna inferencia de rentabilidad desde este fixture.
+corrector_a reproduce/corrige F01–F03, integra pruebas revisadas y completa los gaps de §10 y cobertura. La ampliación del fixture sintético para llegar al cap no cambia las ventanas reales ni convierte el resultado anterior en PASS del cap. Luego debe entregar commit limpio, binario/hash/VCS, configuración, comandos, cobertura y recursos para una nueva auditoría independiente. No se reutilizará el binario de tests compilado contra 06ab como verificación del siguiente commit.
 
-Repetición sintética con calendario NY declarado: mismo fallo de aceptación (cobros0/caja4760); primera cuenta observada FAILED_RULE/LIVESIM/saldo50000. Manager solicitó primera causa reglamentaria y piso exactos; investigación del integrador en curso, sin atribuir causa no probada ni aceptar COMPLETE como resultado financiero correcto. Evidencia relativa al workspace Aranea: `work/tradesgerard-platform-a-20261012/evidence/integrator/lifecycle-ny-test.log`.
-
-Corte posterior del autor: corregido inicio funded con baseline diario propio y piso48000; `lifecycle-credit-test.log` demuestra en el pipeline un retiro bruto2250/neto1611, solicitado30sep, aprobado1oct, procesado7oct y acreditado8oct, caja conciliada. La prueba encontró otro defecto: el débito de retiro afectaba indebidamente la pérdida diaria oficial (base anterior51475,2 contra saldo posterior50325,2). Se corrige el cómputo DLL para separar cashflow no comercial del PnL de trading conservando piso de drawdown y defaults legacy. También se fija min-days0 explícito en términos de cada compra nueva (nil estaba bloqueando pase). Gate completo aún abierto; ningún resultado de rentabilidad atribuido al fixture.
-
-Corte del autor posterior: PASS focalizado de `TestProgression_ExactBandsAndRealCandidateDenial`, `TestRisk_DailyWithdrawalsExcludePerformancePreserveAbsoluteDrawdown` y pruebas quiet/public proof del backtester (~4,1s). Lifecycle de23sesiones en ejecución con asserts permanentes: ningún DAILY_LOSS por inicio funded/retiro, min-days0 explícito en cada compra y evaluación con progreso suficiente entra a revisión. Pendientes matriz completa, cobertura, freeze y verificación independiente; estos PASS no los sustituyen.
-
-Último milestone autor: `lifecycle-final-dll-test.log`, PASS27,027s. Dos evaluaciones (incluida compra posterior) pasan con3090,24netos/6días y llegan aLiveSim; primer pago2250→1611CREDITED; saldo funded50325,2 sin breach DAILY_LOSS/TRAILING. Tres cuentas preservadas, una ejecutando. Asserts permanentes para los defectos precedentes. Fixture sintético público, no evidencia de rentabilidad. Fuente mutable; restantes cap/turno/terminalidad/recursos/coverage/smoke pendientes.
-
-TOP verifier_a solicitado gpt-6.1-sol, servido UNKNOWN, fresh-context: preparación disjunta en evidencia externa mediante mandato/canon y baseline estable. No compila ni ejecuta ni audita el source mutable antes del freeze; la prueba independiente del producto continúa NOT_RUN. Su matriz preparatoria no acredita aceptación.
-
-Corte posterior del autor: pruebas focalizadas públicas de composición/perfil/paridad compacta/lote/resume/fallos PASS6,953s. Reporta stage/best-day/saldo/equity públicos para MM, pausa con costo de salida reservado, selección bloqueada por órdenes/claims pendientes, fees/renovación y conteos del lote. Gaps funcionales declarados: ruina explícita y revisión robusta de fallos tempranos/cleanup, más CLI/manual/build final. Manager prioriza cerrar esas capacidades y congelar CANDIDATE_FOR_AUDIT con tests/cobertura pendientes declarados si los hay; el verificador ejecutará su matriz propia y el integrador corregirá después. Esto no reduce el mínimo final95% ni §10 y no habilita GLM.
-
-Avance posterior: caja/ruina y search/fault/batch PASS8,946s antes de cambios finales de durabilidad. Autor confirmó/corrigió riesgos señalados por manager: readback fallido degrada a FAILED con causa durable; temporales JSON usan creación exclusiva y borrado sólo de archivo propio. Repetición postcorrección pendiente. Siguiente hito del integrador: CLI prepare/manual, regresiones actuales, cobertura honesta y freeze de auditoría.
-
-Preparación de freeze: TestPlatform/TestSearch actual PASS; TCR mínimo aplicado y provider completo PASS. Baseline/actual con la misma selección causal heredada y `-p1` PASS0,080s/0,087s; paquetes SDK focalizados del baseline PASS. Coverage nuevo provisional1050/1425=73,68%, gap explícito frente al95% exigido. La medición anterior multipaquete con paralelismo por defecto no se usa como comparación válida. Toolkit canónico integrado. Integrador prepara commit/build limpio y smoke CLI real de60min; manager no modifica SDD/source durante ese freeze. Candidato para auditar y corregir, sin readiness.
-
-Recoger candidato del integrador y ejecutar source/build exactos mediante TOP independiente del producto. Corregir gaps materiales antes de readiness; si existe bloqueo real, conservar causa, evidencia y continuidad. SDD source: `xKoRx/echo:specs/FEAT-TRADESGERARD-PLATFORM-A/`; nuevo worktree relativo a Aranea `work/tradesgerard-platform-a-20261012/echo`. Documentación Agents-OS en master con sincronización automática observada; no atribuir commits sync al manager ni afirmar push sin verificar.
-
-### Último freeze auditado y corrección vigente
-
-Commit `06ab6b12d2e4701d21ee8506238a481c5c47af5e`, árbol limpio verificado por manager. Binario `work/tradesgerard-platform-a-20261012/evidence/integrator/bin/echo-backtest`, SHA256 `7afb11bc32b5d5e3a0330589aa9f0b75310eb2c11193d64204fb5a7ee56951ba`; Go1.27.1, VCS embebido mismo commit, modified=false. Manager corroboró HEAD/status/hash/metadata, sin ejecutar campañas. Detalle en [[TRADESGERARD-EVIDENCE-A]].
-
-Autor reporta smoke NQZ5 real2025-10-28T14:00Z→15:00Z: catálogo COMPLETE,15008/15008minutos requeridos y60/60trading; campaña COMPLETE/conciliada/caja4880/HORIZON_CENSORED. Entrada de30contratos rechazada por cap del proveedor,0fills: prueba de pipeline/rechazo, no de ejecución financiera real ni rentabilidad. Resume exacto skipped1; BASIC replay detallado IDENTICAL94798records. Configs persistentes en evidencia/smoke. Verificador autorizado a casos propios sobre este freeze, sin escrituras de producto; especialista de cobertura prepara tests externos disjuntos, sin ejecutar. Tras findings, único integrador corregirá y se verificará nueva identidad. No READY_FOR_GLM.
-
-Recibo final del primer shot autor: `evidence/integrator/CANDIDATE-REPORT.md`, `commands-executed.md`, `coverage-delta-audit.json`, `resource-receipt.json` y `closeout-metadata.json`. Coverage1081/1425=75,85965% actualiza el provisional1050 anterior; incluye hits instrumentados parciales de suites no completadas, sin convertirlos en testPASS. Shot cerrado, fuente congelada y proyecto abierto. Primer hito independiente físico: pase exacto3×870+390, igualdad30% negativa, pérdida intermedia recuperada y8ciclos en misma cuenta hasta pase PASS. Auditoría restante en curso; hipótesis de ruina con renovación impaga pendiente de falsificación.
-
-Finding independiente F01 confirmado y aceptado para corrección: API pública con renovación hipotética4800/día, compra120 y caja restante80, única cuentaRENEWAL_UNPAID y sin pagos pendientes. Resultado COMPLETE/conciliado pero HORIZON_CENSORED y RuinAt cero, pese a no existir cuenta utilizable. Reproducer y resultado en evidencia/verifier. Fuente permanece congelada hasta cerrar auditoría. Otro hito independiente: pausa−1000 y recuperación+870 conserva cuenta/saldo49870/stage−130/caja4880 sin breach. Smoke real propio con riesgo100/TP50 completó4fills/1operación, saldo49890,04/neto−109,96 (gross−100/costos9,96), sobre ventana validada; evidencia operativa, no rentabilidad.
-
-Auditoría intermedia terminada: `evidence/verifier/CANDIDATE-AUDIT.md`, `COMMANDS.md`, `AUDIT-METADATA.json`. F01 confirmado; F02 campaña larga falla su grid de sesión mientras control sin campaña completa35sesiones; F03 operación admitida de MM sinSL no drena tras breach y deja exposición residual. Resultados y límites en [[TRADESGERARD-EVIDENCE-A]]. PASS físicos adicionales de parciales/rechazo/fill tardío, ambos precios SL/TP después del add y BE, paridad, SIGTERM/deadline/fallos/sentinels/resume, replay BASIC y SDK acotado. Cobertura95% y filas pendientes no aprobadas. Verificador confirmó fuente limpia06ab y cero procesos propios al liberar carril.
-
-Manager autorizó RELEASE_LANE a corrector_a: reproducir y corregir F01/F02/F03, integrar pruebas promovibles y propuestas revisadas, completar §10 y cobertura ≥95% sin manipular denominadores, usar temporales propios manifestados y conservar recursos. Luego nuevo commit/build limpio y recheck independiente. F02 debe resolverse sin ampliar artificialmente calendario ni silenciar analítica; F03 exige reducción real sin reversión/expansión y sin inventar fills. No nuevos tipos de órdenes por preferencia: basta demostrar los precios económicos y la causalidad exigidos. Fuente puede cambiar únicamente por ese corrector; las pruebas del freeze anterior no se transfieren al siguiente.
+Agents-OS se mantiene en master con autosync observado; no se atribuyen sus commits al manager ni se afirma push. Código, corpus y logs pesados permanecen fuera del vault. El handoff final consolidará recetas físicas, evidencia y alcance legítimo de B, dejando abierto el gate del Owner.
 
 ## Fuentes
 
-- Mandato Owner: `ECHO FUTURES — GOD LOCAL: BACKTESTER PARA TRADESGERARD`, PROMPT_VERSION 1, snapshot de entrada adjunto a la conversación de 2026-10-12.
-- [[Echo Futures]] y `xKoRx/echo:v3/backtester/README.md` (manual existente, inspección TOP).
-- `80-agents/skills/technical-project-manager` se resuelve en `30-resources/agents/skills/technical-project-manager/SKILL.md`; el mandato actual prevalece en modelo Sol 6.1, autonomía interna, alcance y ausencia de cuota de shots.
+- [[TRADESGERARD-MANDATE-SNAPSHOT]], §§10–12; [[TRADESGERARD-CONTRACT]]; [[TRADESGERARD-EVIDENCE-A]].
+- [[Echo Futures]] y `xKoRx/echo:v3/backtester/README.md`.
+- `30-resources/agents/skills/technical-project-manager/SKILL.md`; el mandato actual prevalece en modelo Sol 6.1, autonomía interna, alcance y ausencia de cuota de shots.
