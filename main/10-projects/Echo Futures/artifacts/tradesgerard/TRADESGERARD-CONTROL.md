@@ -30,14 +30,14 @@ Inputs inmutables: caja inicial USD 5.000; compra individual USD 120 a demanda; 
 
 | Entrega | Estado | Responsable / siguiente acción |
 |---|---|---|
-| Inventario real y diseño acotado por propietarios | IN_PROGRESS | TOP inventory, lectura física; devolución pendiente. |
-| Perfil GAU50 versionado con fuentes oficiales | IN_PROGRESS | TOP prop_profile; separar hechos/supuestos/UNKNOWN. |
-| Catálogo finito con todos los IDs | IN_PROGRESS | TOP catalog; original adjunto es snapshot de autoridad, catálogo de trabajo pendiente. |
-| Motor/composición/campaña/lote compacto | NOT_IMPLEMENTED_THIS_INITIATIVE | Un integrador posterior al diseño; capacidades heredadas aún bajo inspección. |
+| Inventario real y diseño acotado por propietarios | REVIEWED_FOR_IMPLEMENTATION | TOP inventory completo; mapa y decisiones en [[TRADESGERARD-CONTRACT]]. |
+| Perfil GAU50 versionado con fuentes oficiales | RESEARCH_COMPLETE_SCENARIO_REQUIRED | [[TRADESGERARD-PROP-PROFILE]] distingue hechos, supuestos y UNKNOWN; no certificación comercial. |
+| Catálogo finito con todos los IDs | DESIGN_AUDIT_RUNNING | `catalog.json` conserva53 IDs; TOP independiente revisa equivalencias antes del freeze. |
+| Motor/composición/campaña/lote compacto | IMPLEMENTATION_RUNNING | TOP integrator_a, único escritor de source en rama aislada `codex/tradesgerard-platform-a`. |
 | Verificación independiente del delta exacto | NOT_RUN | TOP adversarial fresh-context tras freeze. |
 | Manual actualizado, evidencia A y prompt GLM | PENDING | Después de implementación y prueba, sin inventar flags ni rutas. |
 
-Harness local: tres despachos físicos aceptados por collaboration.spawn_agent, TOPs fresh-context ONE-SHOT con modelo solicitado `gpt-6.1-sol`; modelo servido UNKNOWN. No se asume GLM disponible en el mismo harness. No se consume CLOUD Pro.
+Harness local: TOP inventory/prop_profile/catalog retornaron artefactos físicos; integrator_a implementa y contract_audit verifica el catálogo en ámbitos disjuntos. Todos fresh-context ONE-SHOT, modelo solicitado `gpt-6.1-sol`; modelo servido UNKNOWN. No se asume GLM disponible en el mismo harness. No se consume CLOUD Pro.
 
 Baseline de source informado por inspección TOP: repo `xKoRx/echo`, checkout relativo a workspace Aranea `work/btx-perf-last-20261010/integrator/echo`, rama `codex/btx-perf-last`, HEAD `873f5f1c7df25086271af1de1896095f1cade2a9`, limpio; origin apunta a clon local. Es identidad source, no build nuevo ni certificación actual. Inventario completo pendiente. Ningún componente no inspeccionado se considera ausente.
 
@@ -49,7 +49,7 @@ El gate READY_FOR_GLM exige demostrar cada fila de §10 del mandato, no sólo in
 
 ### Siguiente acción
 
-Revisar las tres devoluciones, fijar diseño acotado y perfil con UNKNOWN visibles, despachar un único TOP integrador; verificar luego sobre commit/build exactos mediante otro TOP independiente. Corregir gaps materiales antes de readiness; si existe bloqueo real, conservar causa, evidencia y continuidad.
+Recoger candidato del integrador y findings de auditoría del catálogo, verificar luego source/build exactos mediante TOP independiente del producto. Corregir gaps materiales antes de readiness; si existe bloqueo real, conservar causa, evidencia y continuidad. SDD source: `xKoRx/echo:specs/FEAT-TRADESGERARD-PLATFORM-A/`; nuevo worktree relativo a Aranea `work/tradesgerard-platform-a-20261012/echo`. Documentación Agents-OS en master con sincronización automática observada; no atribuir commits sync al manager ni afirmar push sin verificar.
 
 ## Fuentes
 
