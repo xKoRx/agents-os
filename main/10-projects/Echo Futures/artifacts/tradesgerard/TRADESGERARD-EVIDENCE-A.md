@@ -62,6 +62,10 @@ Producto: TOP verifier_a preparó15 grupos de casos propios en `evidence/verifie
 
 Primer hito físico propio del verificador: Strategy/MM independiente demuestra3×870+390=3000/best870/pase4días;16fills/8ciclos en la misma cuenta hasta pase. Caso900×3+300=3000/best900 NO pasa por igualdad30%. Pérdida intermedia−200 preserva historia y luego pasa al alcanzar3000. Identidad source/binario corroborada por el verificador. Su primer smoke real completo no tuvo fills por presupuesto insuficiente para un contrato; nueva prueba admisible y matriz restante en curso. Ningún hito parcial certifica el total.
 
+Hitos posteriores: pausa−1000 y recuperación+870 dejan la misma cuenta49870, stage−130 y caja4880 sin breach. Smoke real propio con riesgo100/TP50: COMPLETE/conciliado,4fills/1operación, saldo49890,04 y neto−109,96 (gross−100/costos9,96). Artefactos `evidence/verifier/physical/real-risk100/`; ventana/corpus validados idénticos. No rentabilidad inferida.
+
+**F01, defecto material reproducido y aceptado:** `TestVerifierPublicRenewalUnpaidTrueRuin`, perfil hipotético explícito de renovación4800 cada día; compra120 y renovación4800 dejan caja80. Única cuentaRENEWAL_UNPAID, sin cuenta utilizable ni pagos pendientes; el pipeline devuelve COMPLETE/conciliado pero HORIZON_CENSORED y RuinAt cero. Evidencia bajo `evidence/verifier/physical/`: `renewal-public-ruin-result.json`, `ruin-writer.log` y `adversarial_test.go` (usado mediante overlay externo). Hipótesis originada en lectura del especialista de cobertura, confirmada por ejecución independiente. Corrección pendiente hasta finalizar auditoría del freeze; no se altera fuente mientras se mide.
+
 ### Datos y recursos
 
 Corpus legible relativo al workspace Aranea: `work/btx-perf-last-20261010/integrator/package/corpus`. La solicitud all13 permanece NOT_READY por gaps/prefijos; no se ha repetido para fingir cobertura. Los datos originales del otro workspace no son accesibles y no se cambiaron permisos.

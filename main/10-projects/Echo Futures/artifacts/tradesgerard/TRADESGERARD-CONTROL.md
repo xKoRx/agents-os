@@ -80,6 +80,8 @@ Autor reporta smoke NQZ5 real2025-10-28T14:00Z→15:00Z: catálogo COMPLETE,1500
 
 Recibo final del primer shot autor: `evidence/integrator/CANDIDATE-REPORT.md`, `commands-executed.md`, `coverage-delta-audit.json`, `resource-receipt.json` y `closeout-metadata.json`. Coverage1081/1425=75,85965% actualiza el provisional1050 anterior; incluye hits instrumentados parciales de suites no completadas, sin convertirlos en testPASS. Shot cerrado, fuente congelada y proyecto abierto. Primer hito independiente físico: pase exacto3×870+390, igualdad30% negativa, pérdida intermedia recuperada y8ciclos en misma cuenta hasta pase PASS. Auditoría restante en curso; hipótesis de ruina con renovación impaga pendiente de falsificación.
 
+Finding independiente F01 confirmado y aceptado para corrección: API pública con renovación hipotética4800/día, compra120 y caja restante80, única cuentaRENEWAL_UNPAID y sin pagos pendientes. Resultado COMPLETE/conciliado pero HORIZON_CENSORED y RuinAt cero, pese a no existir cuenta utilizable. Reproducer y resultado en evidencia/verifier. Fuente permanece congelada hasta cerrar auditoría. Otro hito independiente: pausa−1000 y recuperación+870 conserva cuenta/saldo49870/stage−130/caja4880 sin breach. Smoke real propio con riesgo100/TP50 completó4fills/1operación, saldo49890,04/neto−109,96 (gross−100/costos9,96), sobre ventana validada; evidencia operativa, no rentabilidad.
+
 ## Fuentes
 
 - Mandato Owner: `ECHO FUTURES — GOD LOCAL: BACKTESTER PARA TRADESGERARD`, PROMPT_VERSION 1, snapshot de entrada adjunto a la conversación de 2026-10-12.
