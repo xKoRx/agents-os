@@ -16,7 +16,7 @@ updated: "2026-10-12"
 
 ## Propósito
 
-Fuente única de estado de la preparación TradesGerard, etapa A del mandato GOD LOCAL del Owner, recibido el 2026-10-12. Estado técnico inicial: IN_PROGRESS; no READY_FOR_GLM, aceptación final Owner pendiente. Etapa B corresponde a GLM-5.3-Flash y no se lanza automáticamente.
+Fuente única de estado de la preparación TradesGerard, etapa A del mandato GOD LOCAL del Owner, recibido el 2026-10-12. Estado técnico: IN_PROGRESS, en corrección tras auditoría intermedia; no READY_FOR_GLM, aceptación final Owner pendiente. Etapa B corresponde a GLM-5.3-Flash y no se lanza automáticamente.
 
 ## Contenido
 
@@ -33,12 +33,12 @@ Inputs inmutables: caja inicial USD 5.000; compra individual USD 120 a demanda; 
 | Inventario real y diseño acotado por propietarios | REVIEWED_FOR_IMPLEMENTATION | TOP inventory completo; mapa y decisiones en [[TRADESGERARD-CONTRACT]]. |
 | Perfil GAU50 versionado con fuentes oficiales | RESEARCH_COMPLETE_SCENARIO_REQUIRED | [[TRADESGERARD-PROP-PROFILE]] distingue hechos, supuestos y UNKNOWN; no certificación comercial. |
 | Catálogo finito con todos los IDs | DESIGN_VERIFIED_FOR_IMPLEMENTATION | design-2 preserva53 IDs; auditoría+corrección con59 checks PASS. Ver [[TRADESGERARD-CONTRACT]]; ninguna variante ejecutada. |
-| Motor/composición/campaña/lote compacto | CANDIDATE_FOR_AUDIT | Fuente limpia congelada06ab6b12; no autorización de readiness. Integrador termina sólo recibo externo. |
-| Verificación independiente del delta exacto | RUNNING | TOP verifier_a tiene el único carril de pruebas/build/campañas sobre el freeze exacto. |
-| Cobertura nueva mínima95% | GAP_OPEN | Recibo del candidato1081/1425=75,86%; TOP coverage_prepare prepara tests externos sin medir ni modificar producto. |
+| Motor/composición/campaña/lote compacto | CORRECTION_RUNNING | TOP corrector_a tiene el único carril y escritura de producto tras auditoría06ab6b12. |
+| Verificación independiente del delta exacto | INTERIM_FINDINGS | TOP verifier_a cerró y liberó carril; F01/F02/F03 y matriz incompleta requieren corrección y recheck nuevo. |
+| Cobertura nueva mínima95% | GAP_OPEN | Candidato auditado1081/1425=75,86%; seis propuestas externas entregadas, compilación/integración y casos adicionales a cargo del corrector. |
 | Manual actualizado, evidencia A y prompt GLM | IN_PROGRESS | [[TRADESGERARD-EVIDENCE-A]] y prompt preparados; manual/recetas/identidades finales pendientes, sin inventar flags ni rutas. |
 
-Harness local: TOP inventory/prop_profile/catalog/contract_audit/catalog_repair completos; integrator_a implementa y verifier_a prepara casos en ámbito disjunto sin medir fuente mutable. Todos fresh-context ONE-SHOT, modelo solicitado `gpt-6.1-sol`; modelo servido UNKNOWN. No se asume GLM disponible en el mismo harness. No se consume CLOUD Pro.
+Harness local: TOP inventory/prop_profile/catalog/contract_audit/catalog_repair/integrator_a/verifier_a/coverage_prepare completos. TOP corrector_a, fresh-context, recibió RELEASE_LANE tras cierre de auditoría y es el único escritor/ejecutor. Todos solicitados `gpt-6.1-sol`; servido UNKNOWN. No se asume GLM disponible en el mismo harness. No se consume CLOUD Pro.
 
 Baseline de source inspeccionado por TOP inventory: repo `xKoRx/echo`, checkout relativo a workspace Aranea `work/btx-perf-last-20261010/integrator/echo`, rama `codex/btx-perf-last`, HEAD `873f5f1c7df25086271af1de1896095f1cade2a9`, limpio; origin apunta a clon local. Es identidad source, no build nuevo ni certificación actual. Inventario completo recibido; ningún componente no inspeccionado se considera ausente.
 
@@ -72,7 +72,7 @@ Preparación de freeze: TestPlatform/TestSearch actual PASS; TCR mínimo aplicad
 
 Recoger candidato del integrador y ejecutar source/build exactos mediante TOP independiente del producto. Corregir gaps materiales antes de readiness; si existe bloqueo real, conservar causa, evidencia y continuidad. SDD source: `xKoRx/echo:specs/FEAT-TRADESGERARD-PLATFORM-A/`; nuevo worktree relativo a Aranea `work/tradesgerard-platform-a-20261012/echo`. Documentación Agents-OS en master con sincronización automática observada; no atribuir commits sync al manager ni afirmar push sin verificar.
 
-### Freeze vigente y siguiente gate
+### Último freeze auditado y corrección vigente
 
 Commit `06ab6b12d2e4701d21ee8506238a481c5c47af5e`, árbol limpio verificado por manager. Binario `work/tradesgerard-platform-a-20261012/evidence/integrator/bin/echo-backtest`, SHA256 `7afb11bc32b5d5e3a0330589aa9f0b75310eb2c11193d64204fb5a7ee56951ba`; Go1.27.1, VCS embebido mismo commit, modified=false. Manager corroboró HEAD/status/hash/metadata, sin ejecutar campañas. Detalle en [[TRADESGERARD-EVIDENCE-A]].
 
@@ -81,6 +81,10 @@ Autor reporta smoke NQZ5 real2025-10-28T14:00Z→15:00Z: catálogo COMPLETE,1500
 Recibo final del primer shot autor: `evidence/integrator/CANDIDATE-REPORT.md`, `commands-executed.md`, `coverage-delta-audit.json`, `resource-receipt.json` y `closeout-metadata.json`. Coverage1081/1425=75,85965% actualiza el provisional1050 anterior; incluye hits instrumentados parciales de suites no completadas, sin convertirlos en testPASS. Shot cerrado, fuente congelada y proyecto abierto. Primer hito independiente físico: pase exacto3×870+390, igualdad30% negativa, pérdida intermedia recuperada y8ciclos en misma cuenta hasta pase PASS. Auditoría restante en curso; hipótesis de ruina con renovación impaga pendiente de falsificación.
 
 Finding independiente F01 confirmado y aceptado para corrección: API pública con renovación hipotética4800/día, compra120 y caja restante80, única cuentaRENEWAL_UNPAID y sin pagos pendientes. Resultado COMPLETE/conciliado pero HORIZON_CENSORED y RuinAt cero, pese a no existir cuenta utilizable. Reproducer y resultado en evidencia/verifier. Fuente permanece congelada hasta cerrar auditoría. Otro hito independiente: pausa−1000 y recuperación+870 conserva cuenta/saldo49870/stage−130/caja4880 sin breach. Smoke real propio con riesgo100/TP50 completó4fills/1operación, saldo49890,04/neto−109,96 (gross−100/costos9,96), sobre ventana validada; evidencia operativa, no rentabilidad.
+
+Auditoría intermedia terminada: `evidence/verifier/CANDIDATE-AUDIT.md`, `COMMANDS.md`, `AUDIT-METADATA.json`. F01 confirmado; F02 campaña larga falla su grid de sesión mientras control sin campaña completa35sesiones; F03 operación admitida de MM sinSL no drena tras breach y deja exposición residual. Resultados y límites en [[TRADESGERARD-EVIDENCE-A]]. PASS físicos adicionales de parciales/rechazo/fill tardío, ambos precios SL/TP después del add y BE, paridad, SIGTERM/deadline/fallos/sentinels/resume, replay BASIC y SDK acotado. Cobertura95% y filas pendientes no aprobadas. Verificador confirmó fuente limpia06ab y cero procesos propios al liberar carril.
+
+Manager autorizó RELEASE_LANE a corrector_a: reproducir y corregir F01/F02/F03, integrar pruebas promovibles y propuestas revisadas, completar §10 y cobertura ≥95% sin manipular denominadores, usar temporales propios manifestados y conservar recursos. Luego nuevo commit/build limpio y recheck independiente. F02 debe resolverse sin ampliar artificialmente calendario ni silenciar analítica; F03 exige reducción real sin reversión/expansión y sin inventar fills. No nuevos tipos de órdenes por preferencia: basta demostrar los precios económicos y la causalidad exigidos. Fuente puede cambiar únicamente por ese corrector; las pruebas del freeze anterior no se transfieren al siguiente.
 
 ## Fuentes
 
