@@ -31,6 +31,11 @@ tags:
 - **Tipo:** created
 - **Archivo(s):**
   - `10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-CONTROL.md`
+  - `10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-MANDATE-SNAPSHOT.md`
+  - `10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-CONTRACT.md`
+  - `10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-PROP-PROFILE.md`
+  - `10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-GLM-MASTER.md`
+  - `10-projects/Echo Futures/artifacts/tradesgerard/catalog.json`
 
 ## Motivo
 
@@ -42,11 +47,11 @@ tags:
 
 ## Resolución aplicada
 
-- Registro de autoridad, baseline, entregas pendientes y límites de recursos. Modelo solicitado TOP Sol6.1; servido UNKNOWN. Evidencia de despacho no equivale a implementación.
+- Registro de autoridad, baseline, diseño por propietarios, perfil con UNKNOWN/escenario, catálogo finito y prompt GLM condicionado a readiness A. Modelo solicitado TOP Sol6.1; servido UNKNOWN. Evidencia de despacho no equivale a implementación. Auditoría del catálogo requiere corrección antes de congelar diseño. Echo SDD y código quedan en repo externo, sin corpus/binarios/logs pesados en vault.
 
 ## Validación
 
-- Creación mediante `materialize_schema_note.py`; lectura posterior; source limpio `873f5f1c7df25086271af1de1896095f1cade2a9`; lint final pendiente mientras se completa la entrega.
+- Notas creadas mediante `materialize_schema_note.py`; lectura y lint estricto dirigido PASS para documentos materializados. Source baseline limpio `873f5f1c7df25086271af1de1896095f1cade2a9`; build histórica486 no atribuida a873. Lint consolidado final pendiente mientras se completa la entrega.
 
 ## Compartibilidad
 
