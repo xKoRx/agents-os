@@ -52,8 +52,8 @@ Geometría: TP 1×ATR / SL ρ×ATR (ATR20 Wilder, estocástico lookback20 K lent
 
 | Tanda | Alcance | Estado |
 |---|---|---|
-| T0 | Implementación `tg`+`tgmm`, pruebas críticas (oráculo indicadores, cruce/consumo único, warmup/gap/roll, sizing ATR/ρ, remanente 330 con Tref500, recorte proporcional, R/T congelados, cierre sesión, aislamiento, ambos retiros) + smoke real NQZ5 corto + recursos | PENDING |
-| T1 | Validar cobertura de la ventana común más larga disponible (requisitos reales TradesGerard; all13 NOT_READY declarado), correr las 10 configuraciones sobre el mismo intervalo, campañas continuas | PENDING |
+| T0 | Implementación `tg`+`tgmm`, pruebas críticas (oráculo indicadores, cruce/consumo único, warmup/gap/roll, sizing ATR/ρ, remanente 330 con Tref500, recorte proporcional, R/T congelados, cierre sesión, aislamiento, ambos retiros) + smoke real NQZ5 corto + recursos | COMPLETE — [[TRADESGERARD-B-T0]] (commit `67ec0099`, binario `60accecc…`, smoke reconciliado; T1 EN EJECUCIÓN) |
+| T1 | Validar cobertura de la ventana común más larga disponible (requisitos reales TradesGerard; all13 NOT_READY declarado), correr las 10 configuraciones sobre el mismo intervalo, campañas continuas | EN EJECUCIÓN — ventana validada `validate-catalog` COMPLETE: NQZ5 2025-10-13T17:51Z → 2025-11-25T23:00Z (~31 sesiones, 42.969 min, 0 huecos); 3 carriles, planes sellados con binario `60accecc…` |
 | T1-L | Hasta 3 años sobre los 2 perfiles mejor posicionados por caja neta de T1 (AMBOS retiros, máx 4 configs; criterio fijado antes de ver resultados); tramo reservado fuera de muestra si existe | PENDING |
 | I2 | PENDING_OWNER_RULE: X del add B2, rango a conservar, límite de repeticiones, criterio «no se confirma, salir»; BE +200/extensión 500 como salidas explícitas. No implementar sin decisión del Owner | BLOQUEADO |
 
