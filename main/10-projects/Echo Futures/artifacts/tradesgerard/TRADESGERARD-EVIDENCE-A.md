@@ -109,7 +109,7 @@ Hashes: NQZ5.nt `700579b3b3c78e58ccceb39bd79e8d11aa3efab3e8457d92bee1833ef268640
 
 ### Recursos y handoff
 
-Límites: reserva libre ≥8 GiB, scratch propio ≤2 GiB, durable ≤256 MiB, logs ≤16 MiB, GOMAXPROCS=4 y un carril de build/prueba/campaña. Autor: libres 11.251.548.160 bytes, durable 44.975.061 bytes, logs 99.855 bytes. Auditor: libres aproximadamente 11,02 GB, durable 38.825.944 bytes; RSS observado máximo 324.156 KiB incluyendo compilación. Sin muestreo continuo del pico temporal. Temporales históricos de timeout no totalmente atribuidos; no se borraron a ciegas ni se afirma cleanup total. Las nuevas ejecuciones usan scratch propio manifestado.
+Límites: reserva libre ≥8 GiB, scratch propio ≤2 GiB, durable ≤256 MiB, logs ≤16 MiB, GOMAXPROCS=4 y un carril de build/prueba/campaña. Recibos históricos de 06ab: autor con 11.251.548.160 bytes libres, 44.975.061 bytes durables y 99.855 bytes de logs; auditor con aproximadamente 11,02 GB libres, 38.825.944 bytes durables y RSS observado máximo 324.156 KiB incluyendo compilación. Esas corridas no tuvieron muestreo continuo del pico temporal y no se atribuyen al nuevo freeze. Temporales históricos de timeout no totalmente atribuidos; no se borraron a ciegas ni se afirma cleanup total. Los recursos de d752 se detallan en su sección de corrección y en el recibo independiente final.
 
 Manual único: `v3/backtester/README.md`. Superficies públicas: RunPlatformCampaign, ComposePlatformSpec, CompositionFactories, CLI platform-prepare/platform-batch. Reejecutar campaña detallada exige PlatformCampaignRequest completo y fábricas; un RunSpec desnudo de reproduce no reconstruye controles de admisión/cobro. Recetas finales se verificarán tras el nuevo freeze; no se inventan flags.
 
