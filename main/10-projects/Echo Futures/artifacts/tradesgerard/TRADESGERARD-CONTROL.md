@@ -50,6 +50,8 @@ SDD `specs/FEAT-TRADESGERARD-PLATFORM-A/`. Único cambio de test heredado aproba
 
 ### Alcance de la evidencia y adjudicaciones
 
+Publicación remota solicitada explícitamente por el Owner después de la entrega: rama `codex/tradesgerard-platform-a` pusheada a `git@github.com:xKoRx/echo.git` y verificada por `git ls-remote` en `d752b3e124386330e6f8e4b270958cc2db892734`. Acceso para revisión: https://github.com/xKoRx/echo/tree/codex/tradesgerard-platform-a . Push de la rama de desarrollo, sin merge ni release. Los recibos externos a Git conservan sus referencias locales.
+
 El recheck independiente demostró compra/caja/reinversión >41, turnos sin solapamiento, pausas, calendarios y cuentas inactivas/DST, pase exacto/negativo30%, cuatro targets/cap5000/fees/latencias, terminalidad, composición/aislamiento, causalidad, disco/lote y regresiones. Smoke real NQZ5: cuatro fills, neto −109,96; BASIC/replay IDENTICAL 94.798 registros. Fixtures son prueba del motor, no rentabilidad.
 
 El caso de piso antes de −1000 se acepta por readback físico ligado a source/binario: cuenta efectivamente seleccionada 50360→49860, pérdida diaria −500, piso50000 y fallo TRAILING_DRAWDOWN. El test que suponía account0 conserva rc1; no se declara suite PASS. Un probe adicional de parcial combinado con breach quedó NOT_DEMONSTRATED por su fixture; las capacidades materiales se demostraron mediante parciales/finality públicos, breach long/short público y contratos SDK de reducción/reservas. No se traslada un gap de A a B ni se oculta ese límite.

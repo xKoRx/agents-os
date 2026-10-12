@@ -24,6 +24,8 @@ Recibo de evidencia y handoff de la etapa A. El estado de iniciativa pertenece e
 
 ### Identidades y procedencia
 
+Actualización posterior a la entrega, por petición explícita del Owner: push exitoso a `git@github.com:xKoRx/echo.git`, rama `codex/tradesgerard-platform-a`; `git ls-remote` corroboró `d752b3e124386330e6f8e4b270958cc2db892734`. El source auditado está disponible remotamente para revisión. No se modificó el freeze ni se hizo merge/release. Evidencia externa/corpus/binarios permanecen locales; no se afirma que el push los incluya.
+
 Repo: `xKoRx/echo`. Baseline inspeccionado: `873f5f1c7df25086271af1de1896095f1cade2a9`, rama histórica `codex/btx-perf-last`. Desarrollo: rama `codex/tradesgerard-platform-a`, checkout relativo al workspace Aranea `work/tradesgerard-platform-a-20261012/echo`. SDD: `specs/FEAT-TRADESGERARD-PLATFORM-A/`.
 
 Primer candidato auditado: commit `06ab6b12d2e4701d21ee8506238a481c5c47af5e`, árbol limpio corroborado antes y después de la auditoría. Binario relativo a Aranea `work/tradesgerard-platform-a-20261012/evidence/integrator/bin/echo-backtest`, SHA256 `7afb11bc32b5d5e3a0330589aa9f0b75310eb2c11193d64204fb5a7ee56951ba`. Go1.27.1 linux/amd64, VCS revision idéntica, modified=false. Manager corroboró HEAD/status/SHA256/`go version -m`; no ejecutó campañas.
