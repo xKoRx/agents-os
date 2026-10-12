@@ -33,8 +33,9 @@ Inputs inmutables: caja inicial USD 5.000; compra individual USD 120 a demanda; 
 | Inventario real y diseño acotado por propietarios | REVIEWED_FOR_IMPLEMENTATION | TOP inventory completo; mapa y decisiones en [[TRADESGERARD-CONTRACT]]. |
 | Perfil GAU50 versionado con fuentes oficiales | RESEARCH_COMPLETE_SCENARIO_REQUIRED | [[TRADESGERARD-PROP-PROFILE]] distingue hechos, supuestos y UNKNOWN; no certificación comercial. |
 | Catálogo finito con todos los IDs | DESIGN_VERIFIED_FOR_IMPLEMENTATION | design-2 preserva53 IDs; auditoría+corrección con59 checks PASS. Ver [[TRADESGERARD-CONTRACT]]; ninguna variante ejecutada. |
-| Motor/composición/campaña/lote compacto | IMPLEMENTATION_RUNNING | TOP integrator_a, único escritor de source en rama aislada `codex/tradesgerard-platform-a`. |
-| Verificación independiente del delta exacto | PREPARATION_ONLY | TOP verifier_a prepara casos propios sobre mandato/baseline estable; prohibido medir source mutable. Ejecución tras freeze exacto. |
+| Motor/composición/campaña/lote compacto | CANDIDATE_FOR_AUDIT | Fuente limpia congelada06ab6b12; no autorización de readiness. Integrador termina sólo recibo externo. |
+| Verificación independiente del delta exacto | RUNNING | TOP verifier_a tiene el único carril de pruebas/build/campañas sobre el freeze exacto. |
+| Cobertura nueva mínima95% | GAP_OPEN | Provisional73,68%; TOP coverage_prepare prepara tests externos sin medir ni modificar producto. |
 | Manual actualizado, evidencia A y prompt GLM | IN_PROGRESS | [[TRADESGERARD-EVIDENCE-A]] y prompt preparados; manual/recetas/identidades finales pendientes, sin inventar flags ni rutas. |
 
 Harness local: TOP inventory/prop_profile/catalog/contract_audit/catalog_repair completos; integrator_a implementa y verifier_a prepara casos en ámbito disjunto sin medir fuente mutable. Todos fresh-context ONE-SHOT, modelo solicitado `gpt-6.1-sol`; modelo servido UNKNOWN. No se asume GLM disponible en el mismo harness. No se consume CLOUD Pro.
@@ -70,6 +71,12 @@ Avance posterior: caja/ruina y search/fault/batch PASS8,946s antes de cambios fi
 Preparación de freeze: TestPlatform/TestSearch actual PASS; TCR mínimo aplicado y provider completo PASS. Baseline/actual con la misma selección causal heredada y `-p1` PASS0,080s/0,087s; paquetes SDK focalizados del baseline PASS. Coverage nuevo provisional1050/1425=73,68%, gap explícito frente al95% exigido. La medición anterior multipaquete con paralelismo por defecto no se usa como comparación válida. Toolkit canónico integrado. Integrador prepara commit/build limpio y smoke CLI real de60min; manager no modifica SDD/source durante ese freeze. Candidato para auditar y corregir, sin readiness.
 
 Recoger candidato del integrador y ejecutar source/build exactos mediante TOP independiente del producto. Corregir gaps materiales antes de readiness; si existe bloqueo real, conservar causa, evidencia y continuidad. SDD source: `xKoRx/echo:specs/FEAT-TRADESGERARD-PLATFORM-A/`; nuevo worktree relativo a Aranea `work/tradesgerard-platform-a-20261012/echo`. Documentación Agents-OS en master con sincronización automática observada; no atribuir commits sync al manager ni afirmar push sin verificar.
+
+### Freeze vigente y siguiente gate
+
+Commit `06ab6b12d2e4701d21ee8506238a481c5c47af5e`, árbol limpio verificado por manager. Binario `work/tradesgerard-platform-a-20261012/evidence/integrator/bin/echo-backtest`, SHA256 `7afb11bc32b5d5e3a0330589aa9f0b75310eb2c11193d64204fb5a7ee56951ba`; Go1.27.1, VCS embebido mismo commit, modified=false. Manager corroboró HEAD/status/hash/metadata, sin ejecutar campañas. Detalle en [[TRADESGERARD-EVIDENCE-A]].
+
+Autor reporta smoke NQZ5 real2025-10-28T14:00Z→15:00Z: catálogo COMPLETE,15008/15008minutos requeridos y60/60trading; campaña COMPLETE/conciliada/caja4880/HORIZON_CENSORED. Entrada de30contratos rechazada por cap del proveedor,0fills: prueba de pipeline/rechazo, no de ejecución financiera real ni rentabilidad. Resume exacto skipped1; BASIC replay detallado IDENTICAL94798records. Configs persistentes en evidencia/smoke. Verificador autorizado a casos propios sobre este freeze, sin escrituras de producto; especialista de cobertura prepara tests externos disjuntos, sin ejecutar. Tras findings, único integrador corregirá y se verificará nueva identidad. No READY_FOR_GLM.
 
 ## Fuentes
 
