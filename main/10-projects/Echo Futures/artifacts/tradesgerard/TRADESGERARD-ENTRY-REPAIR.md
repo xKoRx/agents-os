@@ -162,6 +162,18 @@ Primera jornada física corregida K01:23 OPEN,23 materializaciones,3 operaciones
 
 K02 corto autor:23 OPEN,21 materializaciones,16 operaciones con fills y3 cuentas/caja4640. Esta mayor actividad incluye compra de sucesoras tras pausas y aún exige readback independiente de razones de turno, SL/TP y finality; no se presenta como gate aprobado. K03–K05 cortos fueron ejecutados; reconciliación detallada en preparación. La comparación T1 completa de10configuraciones sigue0/10 mientras cierra el gate corto.
 
+Readback agregado independiente de los cinco cortos (`verifier/operations-short-ba047469.json`), todos COMPLETE/reconciliados:
+
+| Perfil | Intentos materializados | Operaciones con fills | Registros FILL | Rechazos sizing | Cuentas | Caja |
+|---|---:|---:|---:|---:|---:|---:|
+| K01 |23|3|6|20|1|4880|
+| K02 |21|16|32|5|3|4640|
+| K03 |23|4|8|19|2|4760|
+| K04 |23|3|6|20|1|4880|
+| K05 |23|3|6|20|1|4880|
+
+El agregado usa todas las operaciones/fills del tape; `execution.summary.economics` corresponde al compartimento final y no debe usarse como total de campaña tras cambiar de cuenta. El extractor conserva duración/rachas y operación/cuenta/día, con fees exactos y slippage ya incorporado en precios físicos, sin restarlo dos veces. La comparación diagnóstica T1×r2300 puede avanzar sobre este freeze; sólo contará como comparación final si supera los gates pendientes sin cambio de fuente.
+
 Sincronización observada de Agents-OS: commit automático `a58ec551187749deaa6d3f0566e1c556d9b456b8`, master remoto igual según `git ls-remote` antes de este delta. No fue un push ejecutado por el manager; los deltas posteriores requieren nueva comprobación.
 
 ## Fuentes
