@@ -46,6 +46,8 @@ Manager: coordinación, inspección, adjudicación y documentación; sin código
 
 Evidencia nueva externa al vault: `ARANEA_ROOT/work/tradesgerard-entry-repair-20261013/{implementer,verifier}`. El implementador posee el carril Go/build/campañas; el verificador puede solapar el oráculo ligero sobre OHLC físico, sin usar `tg` como oráculo. Cada ejecución debe fijar source, build e inputs y drenar sus procesos.
 
+Resolución física LOCAL de esta ejecución: `ARANEA_ROOT=/home/kor/aranea`, `VAULT_ROOT=/home/kor/secondbrain/main`. La raíz de evidencia nueva es `/home/kor/aranea/work/tradesgerard-entry-repair-20261013`; los paths `implementer/...` y `verifier/...` del informe se resuelven desde ella. Recetas realmente ejecutadas, salidas y exit codes: `implementer/evidence/c3-executed-recipes.json` y su `campaign_commands_receipt`, junto a manifests y recibos de cada corrida. No sustituir esos comandos por una build de HEAD mutable.
+
 Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB available; es observación puntual, no permiso de consumo. Reserva disco≥8GiB, scratch≤2GiB, durable≤256MiB/lote, logs/trazas≤16MiB; presupuesto agregado y picos pendientes de recibo. No borrar corpus, caches, builds o evidencia ajena.
 
 ### Matriz de gates vigente
