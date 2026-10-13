@@ -458,6 +458,10 @@ Inspección de fuente concordante manager/implementador: `openAccountDay` entreg
 
 Manager autoriza fix mínimo en el owner de entrega/proyección diaria, preservando límite, ledger, cuenta, geometría y estrategia, con RED independiente sobre RunState real estacionado→cambio de día→restauración→nueva señal. C3 queda supersedido para aceptación funcional. Se ordena cancelar sólo K01r3000 por supersesión con drenaje y estado fallido real, conservar K05r2300 si cercano al final y mantener B observado. C4 se prepara en checkout separado, sin compilar sobre C3 mutable ni sobrescribir sus binarios; presupuesto durable agregado768MiB sigue vigente. No se propone compensar esta omisión aumentando riesgo ni forzando cantidad.
 
+RED independiente C3 (`verifier/headroom-C3-red.log`,2,325s): RunState real con cashflow ADJUSTMENT−1994,88 para crear margen5,12 sin breach; estacionamiento, timer real de cambio de día y restauración de propietarios financieros. Provider y Views conservan5,12; DeliveredEconomics tiene Fresh=true pero headroomnil. Primera entrega→grant Provider→MM TG real produce ENTRY_SIZED y una OrderRequest cuando debía declinar. El assert de margen requerido falla por la causa prevista. No se mutaron directamente OwnerState ni riskState. Este cashflow es fixture de regresión, no señal/depósito añadido a las campañas T1. Dos intentos previos con errores de firma/seam se preservan como errores del adaptador, no como RED funcional.
+
+K01r3000 C3 quedó FAILED/context canceled a16:37:34Z, exit2; wrapper2785913/hijo2785914 ausentes comprobados por implementador (`c3-V-F03-supersession.json`). Cuatro retiros3000 restantes no ejecutados por supersesión. K05r2300 seguía en21nov al corte y se conserva para censo intermedio; ninguno sustituirá las diez ejecuciones de la versión reparada.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
