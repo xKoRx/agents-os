@@ -178,6 +178,8 @@ Readback posterior independiente (`verifier/short-lifecycle-ba047469.json` y `ca
 
 La comparación diagnóstica C1 de cinco retiros2300 está en ejecución con binario inmutable. Medición del implementador: proceso Go119MB/106%CPU y campaña corta19–30MB/136%CPU, conjunto<3cores/~150MB y disco15,5GiB; se permite ese solapamiento, no benchmark. Fuente C1 permanece quieta durante Go. Tras integrar pruebas permanentes independientes habrá freeze C2 y nueva identidad/build; las diez campañas definitivas se prepararán y ejecutarán contra C2, sin atribuir recibos C1 al nuevo SHA.
 
+Presupuesto agregado fijado prospectivamente por el manager: durable de la iniciativa≤768MiB, incluyendo checkout, builds, probes, inputs y evidencia en ambos carriles; scratch global≤2GiB separado. No reemplaza256MiB por lote,16MiB por traza/log ni reserva≥8GiB. Medición al fijarlo:270MiB total (checkout220MiB, evidencia implementador3MiB, binario16MiB, inputs2,4MiB, independiente30MiB), libres16.092.397.568bytes. Las carpetas nuevas no reinician el contador global. Caches/corpus/históricos ajenos permanecen intactos.
+
 Sincronización observada de Agents-OS: commit automático `a58ec551187749deaa6d3f0566e1c556d9b456b8`, master remoto igual según `git ls-remote` antes de este delta. No fue un push ejecutado por el manager; los deltas posteriores requieren nueva comprobación.
 
 ## Fuentes
