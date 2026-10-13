@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS — C3:4/10 campañas COMPLETE; K01/K02/K03r2300 verificadas independientemente y K04 en auditoría. K05r2300/K01r3000 en ejecución. B observado K01 completo con equivalencia histórica PASS; K02 en tercer slot. Entrega final todavía abierta.
+IN_PROGRESS — C3:4/10 campañas COMPLETE, pero la auditoría de un cierre K02 detecta admisión con headroom Provider ausente al seleccionar una cuenta preservada. Nuevas admisiones C3 en HOLD mientras se confirma la primera divergencia; no hay certificación global. K05r2300/K01r3000 conservados en ejecución al corte. B observado K01 completo con equivalencia histórica PASS; K02 continúa.
 
 C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; gate independiente exacto y CLI singleton PASS. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados por completar; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
@@ -445,6 +445,12 @@ Se autoriza prospectivamente afinidad agregada0–5 (seis cores), conservando **
 Controlador `26f3459c-final-progress.json` acredita K04r2300 COMPLETE, exit0, digests y contabilidad conciliados, wall2332,11s. Censo preliminar del integrador (`c3-K04-r2300-summary.json`):34 operaciones con fills frente1 histórica; verificación independiente pendiente, no elevar todavía esta fila a VERIFIED. K05r2300 y K01r3000 están ejecutándose. El nuevo hijo K01r3000 tiene todos sus threads en0–5 según `future-campaign-affinity-readback.json`; mismo binario/plan sellado. Retiro3000 tiene ejecución propia, no se infiere desde2300.
 
 Medición posterior al cambio de afinidad (`cpu-budget-6cores-measurement.json`): tres hijos consumen4,518 cores agregados en45,004s, RSS conjunto≈70MiB, ninguno en D, lectura física delta0 y escrituras pequeñas. Host42% idle/17% iowait, sin swapin/out, disco libre14,702GB. Sin presión propia o degradación de reserva observada; se conserva presupuesto seis cores/tres jobs. La configuración efectiva por threads, con override fechado, gobierna sobre las plantillas históricas que aún dicen0–3.
+
+### Hallazgo prioritario en auditoría de cierre K02: margen omitido
+
+La reconstrucción de motivos de cierre detectó una Operation K02 el12nov10NY con EXIT neto−34,98 que no podía llamarse TP. El auditor encontró en su MATERIALIZED balance/equity48890,32 y PnL diario0 con PnLFresh=true, pero **HardMonetaryHeadroom ausente**; MM utilizó margen1000/R500/Q1. Un piso EOD48885,20 implicaría5,12 de margen, pendiente confirmar su vigencia temporal exacta y la rama de selección que omite la economía. Hay entrada física y posteriores EXIT cancelados/reemitidos, con fallo de cuenta. Se investiga `SelectPreservedAccount`/reset de riskEval; no se reduce a una etiqueta de cierre.
+
+Manager ordenó detener nuevas admisiones C3 mediante el hold del controlador, conservando las campañas en ejecución y manteniendo B observado. Fuente/build C3 permanecen congelados. Un cierre de esta primera divergencia y un nuevo gate independiente son obligatorios si se confirma defecto; los PASS acotados y resultados físicos anteriores se conservan sin convertirlos en certificación de toda la cadena.
 
 ## Fuentes
 
