@@ -17,7 +17,7 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOCAL del Owner, PROMPT_VERSION1, 2026-10-13. T0 es técnico; no acredita rentabilidad. Estado vigente **O6_INDEPENDENT_PASS / IO_COMPRESSION_PENDING**, campañas nuevas0/40. Los HOLD de abajo son cortes históricos preservados.
+Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOCAL del Owner, PROMPT_VERSION1, 2026-10-13. T0 es técnico; no acredita rentabilidad. Estado vigente **O7_INDEPENDENT_PASS / T1_RUNNING**, todavía sin campañas completas nuevas auditadas. Los HOLD y pendientes de I/O de abajo son cortes históricos preservados; [[TRADESGERARD-OPERABILITY-T1]] conserva el lanzamiento real.
 
 ## Contenido
 
