@@ -24,7 +24,7 @@ Reporte de la tanda T1 KISS-1: las diez configuraciones económicas sobre una ve
 
 ## Estado técnico y cobertura
 
-> Corrección identificable ENTRY-REPAIR-C01 (2026-10-13): COMPLETE10/10 y conciliación históricos se conservan. El readback independiente encontró755 OPEN por configuración,169 intentos/137 rechazos por cinco perfiles y338/274 para los diez;162/253 no concilia. Las afirmaciones posteriores que equiparan31 intentos K01 con todos los cruces del mes y atribuyen toda la baja actividad al sizing quedan analíticamente afectadas. El detalle, la reproducción y el reemplazo en curso están en [[TRADESGERARD-ENTRY-REPAIR]]. La tabla «Operaciones (fills)» cuenta registros FILL; por ejemplo36 corresponden a18 operaciones con fills.
+> Corrección identificable ENTRY-REPAIR-C01 (2026-10-13): COMPLETE10/10 y conciliación históricos se conservan. El readback independiente encontró755 OPEN por configuración,169 intentos/137 rechazos por cinco perfiles y338/274 para los diez;162/253 no concilia. Las afirmaciones posteriores que equiparan31 intentos K01 con todos los cruces del mes y atribuyen toda la baja actividad al sizing quedan analíticamente afectadas. El detalle, la reproducción y el reemplazo completo CORRECTED_AND_VERIFIED (C4 `88ed70d1`, diez campañas independientes) están en [[TRADESGERARD-ENTRY-REPAIR]]. La tabla «Operaciones (fills)» cuenta registros FILL; por ejemplo36 corresponden a18 operaciones con fills.
 
 | Elemento | Valor |
 |---|---|

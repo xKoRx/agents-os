@@ -26,7 +26,7 @@ Resultado final de la iteración 1 KISS-1 (I1) con su profundización T1-L, y la
 
 ## Estado de I1 (definición de terminado, mandato §11)
 
-> Corrección ENTRY-REPAIR-C01 (2026-10-13): se preservan las ejecuciones y resultados históricos. La explicación de baja frecuencia y el denominador162/253 están afectados por el censo/readback independiente; no justifican pedir un cambio de presupuesto antes de reparar el recorrido. [[TRADESGERARD-ENTRY-REPAIR]] documenta755 OPEN por configuración frente a31/36/36/31/35 intentos materializados y conduce el reemplazo. El SHA completo físico B es `f00efd668eee8b121f7efb65b1b92923620e47beaac650a99491b425027486e8`; la abreviatura mezclada de la tabla siguiente se conserva sólo como texto histórico.
+> Corrección ENTRY-REPAIR-C01 (2026-10-13): se preservan las ejecuciones y resultados históricos. La explicación de baja frecuencia y el denominador162/253 están afectados por el censo/readback independiente; no justifican pedir un cambio de presupuesto antes de reparar el recorrido. [[TRADESGERARD-ENTRY-REPAIR]] documenta755 OPEN por configuración frente a31/36/36/31/35 intentos materializados y entrega el reemplazo CORRECTED_AND_VERIFIED C4 `88ed70d1`: diez campañas independientes, operaciones0/18/7/1/6→19/24/14/34/25 por retiro, sin cambiar R/T. El SHA completo físico B es `f00efd668eee8b121f7efb65b1b92923620e47beaac650a99491b425027486e8`; la abreviatura mezclada de la tabla siguiente se conserva sólo como texto histórico.
 
 | Requisito | Estado |
 |---|---|

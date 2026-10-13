@@ -23,11 +23,11 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS / corrección parcial — C4 congelado `88ed70d1ff9910bb157f1c14c0fed1d2b8e7ec49`, binario `c8849bb6e5523e8625ead8282f0d97f98d8b02e14d72838e3c35de207c6bcd57`, gate independiente exacto PASS. Corrige V-F03 heredado de B/C3 además de los defectos anteriores. Comparación final: **8/10 COMPLETE y verificadas independientemente**: K01–K05 r2300 y K01/K02/K03 r3000. Sólo K04/K05 r3000 siguen activas, cero fallos. Las diez configuraciones se admiten secuencialmente bajo guards y máximo tres simultáneas. Forecast global corregido cumple768MiB con nuevos derivados gzip íntegros; no se amplió el techo. B observado5/5 COMPLETE y drenado, equivalencia histórica íntegra independiente y censo cerrado. C3 supersedido: cinco r2300 COMPLETE de referencia, un r3000 cancelado/FAILED y cuatro no ejecutados.
+**CORRECTED_AND_VERIFIED — funcionamiento offline.** Fuente congelada `88ed70d1ff9910bb157f1c14c0fed1d2b8e7ec49`, binario SHA256 `c8849bb6e5523e8625ead8282f0d97f98d8b02e14d72838e3c35de207c6bcd57`. Las diez configuraciones K01–K05 ×2300/3000 terminaron COMPLETE con exit0 y pasan la auditoría independiente completa sobre esa misma build: indicadores, identidades, particiones, autoridad monetaria contemporánea, ledger/caja, cierres y calendario. Cero oportunidades o cierres C4 UNKNOWN y cero findings monetarios. No se deduplicaron retiros: la igualdad entre cada par se comprobó después de sus ejecuciones y auditorías separadas.
 
-Censo completo: 42.969 barras, 755 oportunidades NY. Los cinco replays B observados están completos; quedan dos configuraciones C4 por completar y verificar. No corresponde todavía CORRECTED_AND_VERIFIED. C3 corrigió V-F02 de turnos y recuperó los cuatro pagos largos sin cambiar el oráculo, pero quedó supersedido por V-F03. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que ese largo sea sólo REFERENCE_ONLY. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
+Se reprodujeron y corrigieron pérdidas funcionales por ciclo técnico diario, finalidad incompleta, ATR/readiness, compra/selección y entrega diaria de economía incompleta. El censo independiente contiene42.969 barras físicas,10.850 barras de entrada NY y755 oportunidades en31 fechas. Cada campaña C4 observa las mismas755 identidades; la diferencia entre perfiles queda downstream, explicada por exposición y economía. Las operaciones con fills por retiro pasan de32 a116 (+84): K01–K05 de0/18/7/1/6 a19/24/14/34/25. No se cambiaron R/T, mercado, corpus, fees ni multiplicadores para producir esa recuperación.
 
-Primeras campañas finales verificadas: K02 pasa de18 a24 operaciones con fills (+6), K03 de7 a14 (+7), ambas r2300. Cada una conserva las755 identidades de cruce y los indicadores del oráculo; K02 particiona24 admisiones MM,727 rechazos de tamaño y4 cruces consumidos durante exposición; K03,14/735/6. No hay oportunidades ni cierres UNKNOWN. Los751 y749 snapshots MM respectivamente concuerdan en cuenta, revisión, tiempo y margen con la autoridad monetaria real. Recibos, digests, ledger, caja y sesiones verificados en `verifier/final-T1-receipt-readback-final-88ed70d1.json`; tabla parcial y límites en `verifier/compact-final-table-final-88ed70d1.json`. Este corte es VERIFIED_PARTIAL_NOT_GLOBAL, no aceptación de las diez.
+Dictamen independiente físico: `verifier/independent-final-progress-summary.json` VERIFIED_TEN y `verifier/final-T1-receipt-readback-final-88ed70d1.json` FULL_GATES_VERIFIED_TEN, receipt_verified=full_verified=10. Matriz de los doce casos, exact gate, recibos y derivados completos enlazados abajo. Los resultados B originales siguen preservados y COMPLETE históricamente; su explicación de frecuencia queda AFFECTED y reemplazada por esta comparación. C3 y anteriores son referencias supersedidas, no resultados finales. Aceptación del Owner separada; no se afirma rentabilidad, broker real, LIVE, release, merge productivo ni despliegue. Revisión de presentación dimensional y recibo final de recursos/drenaje en consolidación documental.
 
 El emparejamiento causal B→C4 K02/K03 r2300 conserva755 identidades, sin cruces exclusivos de ninguno de los dos lados. En K02:666 evaluaciones recuperadas desde owner abierto sin exposición,36 cruces evaluados por ambos con trayectoria económica distinta,46 admisiones ahora distintas por pausa/exposición histórica,3 recuperadas en la frontera de pausa vencida y4 sin nueva materialización por ocupación actual. K03:705/36/5/3/6 respectivamente. Las categorías son excluyentes; los efectos de latch y finalización no se suman sobre un mismo cruce. Evidencia íntegra: `verifier/causal-full-B-vs-C4-K02-r2300.json.gz` y `...-K03-r2300.json.gz`, leídas físicamente por el manager.
 
@@ -39,9 +39,9 @@ El mínimo19,98 se refiere exclusivamente al modelo de geometría positiva de un
 
 K04/K05 quedan explicados por la geometría y los límites efectivos de cada cruce, no por estar debajo de19,98. Después de la última entrada K04 (28oct14:30:00,560747663Z) hay500 cruces:1 ocupado y499 reevaluados/Q0. La pérdida geométrica neta de un contrato va de229,98 a2344,98 frente a R efectivo110,82. Después de la última entrada K05 (28oct16:14:01,224489795Z) hay494 cruces, todos reevaluados/Q0: pérdida unitaria entre444,98 y4679,98, R efectivo entre255,04 y460,46. Los extremos de esas series no se comparan entre sí: en el cruce más barato,28oct18:54Z,444,98 excede el R permitido255,04 por remanente diario interno, aunque el Hard Provider contemporáneo era355,04. Cada fila acredita por separado floor(R/pérdida unitaria)=0; no se aplican márgenes dos veces. Evidencia íntegra: `verifier/post-entry-geometry-final-88ed70d1.json.gz`, primera y última decisión conservadas. La propuesta de selección por imposibilidad mínima persistente no se extiende a K04/K05.
 
-### Comparación verificada de los cinco perfiles, retiro2300
+### Comparación final verificada de los cinco perfiles, ambos retiros
 
-Cada fila conserva755 oportunidades NY del mismo mercado e historial. Antes = B físico observado y equivalente a sus resultados históricos; después = C4 exacto. Las operaciones cuentan ciclos con fills, no tickets. Las cantidades entre paréntesis son diferencias absolutas.
+Cada fila aplica tanto a retiro2300 como a3000, comprobados mediante diez ejecuciones propias. Conserva755 oportunidades NY del mismo mercado e historial. Antes = B físico observado y equivalente a sus resultados históricos; después = C4 exacto. Las operaciones cuentan ciclos con fills, no tickets. Las cantidades entre paréntesis son diferencias absolutas.
 
 | Perfil | Evaluaciones MM antes→después | Rechazos tamaño antes→después | Operaciones antes→después | Fills después | Órdenes después | Ocupados después | Caja antes→después |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -51,9 +51,44 @@ Cada fila conserva755 oportunidades NY del mismo mercado e historial. Antes = B 
 | K04 |31→715|30→681|1→34 (+33)|68|91|40|4760→4760|
 | K05 |35→705|29→680|6→25 (+19)|50|71|50|4760→4520|
 
-Particiones exactas por perfil: admisiones MM con entrada + rechazos de tamaño + ocupado consumido =755. No hay UNKNOWN; los permisos Provider son permisos a Operation previos al MM y no equivalen a órdenes. Cuentas/caja y balances conciliados; las métricas de duración, rachas, día y autoridad monetaria permanecen en los derivados completos enlazados. K01/K02/K03 retiro3000 tienen ejecuciones y auditorías propias y confirman19/24/14 operaciones; no se infieren K04/K05 aún pendientes. Fuente leída: `verifier/final-T1-receipt-readback-final-88ed70d1.json`, corte8/10, FULL_GATES_VERIFIED_PARTIAL. Distingue receipt_verified y full_verified, ambos8 después de cerrar autoridad monetaria, ledger/caja,755 cruces, sesión y cierres. Resumen humano externo `verifier/C4-T1-independent-summary.md`, junto al detalle íntegro gzip.
+Particiones exactas por perfil: admisiones MM con entrada + rechazos de tamaño + ocupado consumido =755. No hay UNKNOWN; los permisos Provider son permisos a Operation previos al MM y no equivalen a órdenes. Las755 OPEN se emiten en cada configuración antes y después; el defecto estaba en su recepción/ciclo y en rutas económicas, no en ausencia de cruces de K. Provider denied=0 en las diez; los rechazos consignados son MM. Los cinco pares físicos concuerdan después de verificarlos individualmente: `verifier/C4-retirement-pair-measured-equivalence.json`.
 
-El controlador conserva el máximo autorizado de tres jobs, pero utiliza dos cuando la reserva transitoria de16MiB por traza más overhead no permite admitir el tercero bajo768MiB. No es fallo de campaña ni ampliación del presupuesto; pendientes continúan tras liberar reserva.
+Resumen humano externo `verifier/C4-T1-independent-summary.md`; detalle íntegro por operación, cuenta y día en `verifier/operation-account-day-aggregates-final-88ed70d1.json.gz` y matriz de31 fechas `verifier/complete-NY-entry-day-matrix-final-88ed70d1.json.gz`. Las duraciones van del primer fill al cierre físico; rachas por neto después de fees en orden de cierre, cero reinicia. Día NY de entrada y día contable permanecen separados.
+
+| Perfil | Órdenes B→C4 | Días NY con entrada B→C4 | Duración min/mediana/max s B→C4 | Racha ganadora/perdedora B→C4 | Cierres C4 |
+|---|---:|---:|---|---|---|
+|K01|0→46|0→4|—→17,41/230,55/1449,67|0/0→5/9|8 target,11 SL|
+|K02|45→61|14→5|12,63/259,43/1071,93→14,39/136,81/1294,89|2/3→4/3|11 target,13 SL|
+|K03|19→36|5→4|19,47/468,22/800,27→14,39/261,45/1163,77|3/1→3/3|6 target,7 SL,1 cierre NY|
+|K04|2→91|1→8|800,27/800,27/800,27→17,41/567,26/7502,26|0/1→8/4|22 target,11 SL,1 cierre NY|
+|K05|16→71|2→9|14,93/1486,94/2432,53→59,63/552,43/13558,97|2/1→12/2|18 target,5 SL,2 cierres NY|
+
+El histórico B conserva dos motivos MM CLOSED genéricos por retiro (uno K02 y uno K03); no se inventa TP desde su PnL. Los demás cierres B constan en el resumen independiente. Fill records C4=38/48/28/68/50; unidades ejecutadas=38/54/28/82/54, magnitudes distintas.
+
+| Perfil | Cuentas B→C4 | Neto retenido USD B→C4 | Pausas por sesión B→C4 | Pausas objetivo diario B→C4 |
+|---|---:|---:|---:|---:|
+|K01|1→1|0→−709,62|32→31|0→0|
+|K02|1→3|−1984,64→−729,46|30→91|2→2|
+|K03|1→2|690,14→−1624,72|32→61|0→1|
+|K04|1→1|−499,98→110,82|32→31|0→0|
+|K05|1→2|−979,88→−279,46|32→57|0→1|
+
+Pases y cobros=0 antes/después en los diez: fase EVALUATION, gross_paid cero y ausencia de eventos CREDIT/PAYOUT acreditados; payments:null no es prueba aislada. Pausas son transiciones reales por cuenta, no cantidad de sesiones. B incluye una PAUSED_SESSION adicional durante el prefijo de preparación13oct19:55Z, anterior a trade_start; no es un día extra de entrada ni callback repetido. Referencias `verifier/payout-pause-proof-final-88ed70d1.json.gz` y `verifier/baseline-pause-session-prefix-scope.json`.
+
+| Fecha NY de entrada | K01 | K02 | K03 | K04 | K05 |
+|---|---:|---:|---:|---:|---:|
+|2025-10-14|3|16|4|3|3|
+|2025-10-15|2|4|5|3|3|
+|2025-10-16|0|1|0|0|0|
+|2025-10-17|0|2|3|0|1|
+|2025-10-20|10|1|2|6|6|
+|2025-10-21|4|0|0|2|1|
+|2025-10-23|0|0|0|3|3|
+|2025-10-24|0|0|0|11|2|
+|2025-10-27|0|0|0|5|4|
+|2025-10-28|0|0|0|1|2|
+
+Los demás días de las31 fechas tienen cero entradas. Todos los nuevos cruces posteriores siguen evaluándose o se consumen por exposición real, sin backlog ni un intento por día.
 
 ### Hipótesis D falsificada durante la revisión final
 
@@ -80,7 +115,7 @@ Manager: coordinación, inspección, adjudicación y documentación; sin código
 
 Evidencia nueva externa al vault: `ARANEA_ROOT/work/tradesgerard-entry-repair-20261013/{implementer,verifier}`. El implementador posee el carril Go/build/campañas; el verificador puede solapar el oráculo ligero sobre OHLC físico, sin usar `tg` como oráculo. Cada ejecución debe fijar source, build e inputs y drenar sus procesos.
 
-Resolución física LOCAL de esta ejecución: `ARANEA_ROOT=/home/kor/aranea`, `VAULT_ROOT=/home/kor/secondbrain/main`. La raíz de evidencia nueva es `/home/kor/aranea/work/tradesgerard-entry-repair-20261013`; los paths `implementer/...` y `verifier/...` del informe se resuelven desde ella. Recetas realmente ejecutadas, salidas y exit codes: `implementer/evidence/c3-executed-recipes.json` y su `campaign_commands_receipt`, junto a manifests y recibos de cada corrida. No sustituir esos comandos por una build de HEAD mutable.
+Resolución física LOCAL de esta ejecución: `ARANEA_ROOT=/home/kor/aranea`, `VAULT_ROOT=/home/kor/secondbrain/main`. La raíz de evidencia nueva es `/home/kor/aranea/work/tradesgerard-entry-repair-20261013`; los paths `implementer/...` y `verifier/...` del informe se resuelven desde ella. Recetas realmente ejecutadas, salidas y exit codes: `implementer/evidence/c4-executed-recipes.json` y los recibos individuales de campaña, junto a manifests y recibos de cada corrida. No sustituir esos comandos por una build de HEAD mutable.
 
 Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB available; es observación puntual, no permiso de consumo. Reserva disco≥8GiB, scratch≤2GiB, durable≤256MiB/lote, logs/trazas≤16MiB; presupuesto agregado y picos pendientes de recibo. No borrar corpus, caches, builds o evidencia ajena.
 
@@ -91,16 +126,16 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Identidad y conservación B | PASS: source/binario/corpus físicos comprobados y preservados. |
 | Censo OHLC→indicadores→cruces | PASS independiente C2:42969 barras/755 oportunidades, tolerancia prospectiva y correspondencia por identidad. |
 | Primera pérdida y regresiones | PASS: decline/rearme LONG y SHORT, SL/TP/finality, ocupado sin backlog, warmup y compra/pausa acreditados; fixtures permanentes. |
-| Falsificación exacta y cobertura | C4 exacto INDEPENDENT_PASS: regresiones propias, CLI, paridad offline; cobertura346/350 bloques afectados y267/271 inicios AST, cero sin perfil/mapear. Backtester C4 nuevo; SDK reutilizado por identidad de bytes. Comparación larga aún pendiente. |
-| Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
-| Sizing por perfil | Aritmética documentada; V-F03 detecta snapshots presentes pero incompletos. C4 deberá acreditar completitud/autoridad de margen y nuevas decisiones; tabla final pendiente. |
-| Comparación T1 final | C4:8/10 COMPLETE y verificadas independientemente (K01–K05 r2300 y K01/K02/K03 r3000). C3 supersedido:5 COMPLETE referencia,1FAILED por cancelación,4 no ejecutadas. B observado5/5 COMPLETE y equivalencia íntegra independiente PASS; ambos retiros históricos enlazados por equivalencia comprobada. |
-| Casos largos pertinentes | BTGS04 PASS C2 compatible, lifecycle y AllFourTargets PASS C3; V-F02 causal cerrado en pagos sin alterar oráculo. CLI singleton C3 PASS119,736s. |
-| Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
+| Falsificación exacta y cobertura | C4 exacto INDEPENDENT_PASS: regresiones propias, CLI, paridad offline; cobertura346/350 bloques afectados y267/271 inicios AST, cero sin perfil/mapear. Backtester C4 nuevo; SDK reutilizado por identidad de bytes. Comparación larga10/10 independiente PASS. |
+| Observabilidad compacta | PASS de retención, extractor y particiones/métricas en10/10 campañas.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
+| Sizing por perfil | PASS: C4 acredita completitud y autoridad de cada snapshot MM. Primera admisión/rechazo de cada perfil, OHLC y unidades en `implementer/evidence/c4-sizing-presentation.md`; revisión independiente de presentación en consolidación. |
+| Comparación T1 final | C4:10/10 COMPLETE y verificadas independientemente (K01–K05 ×2300/3000). C3 supersedido:5 COMPLETE referencia,1FAILED por cancelación,4 no ejecutadas. B observado5/5 COMPLETE y equivalencia íntegra independiente PASS; ambos retiros históricos enlazados por equivalencia comprobada. |
+| Casos largos pertinentes | Lifecycle C4 PASS27,411s, AllFourTargets C4 PASS62,528s y CLI singleton C4 PASS122,157s; V-F02 causal cerrado en pagos sin alterar oráculo. Los cuatro targets heredados son regresión, no reactivación del catálogo. |
+| Recursos y cierre de procesos | Diez procesos exit0, controlador y watchdog exit0 reportados; recibo físico final de recursos/drenaje en consolidación, sin cierre de sesión del manager. |
 
 ### Adjudicación
 
-Hechos confirmados: identidad física B, censo independiente completo, before observado equivalente en los cinco perfiles, primera pérdida tras rechazo y regresiones físicas permanentes. Hipótesis refutadas: no faltaban los cruces brutos de K, el primer rechazo por sizing no explicaba el día completo y restaurar una cuenta no reseteaba su piso en V-F03. C4 corrige las causas siguientes y pasa el gate exacto; la comparación larga de diez configuraciones continúa abierta. Una nueva política para cuentas limitadas por el mínimo del sizing vigente y piso EOD permanece como propuesta no aplicada. KISS-1 conserva R/T y geometría; design-2 es histórico.
+Hechos confirmados: identidad física B, censo independiente completo, before observado equivalente en los cinco perfiles, primera pérdida tras rechazo y regresiones físicas permanentes. Hipótesis refutadas: no faltaban los cruces brutos de K, el primer rechazo por sizing no explicaba el día completo y restaurar una cuenta no reseteaba su piso en V-F03. C4 corrige las causas siguientes y pasa el gate exacto y la comparación larga de diez configuraciones. Una nueva política para cuentas limitadas por el mínimo del sizing vigente y piso EOD permanece como propuesta no aplicada. KISS-1 conserva R/T y geometría; design-2 es histórico.
 
 | Causa confirmada | Primera divergencia / reproducción | Propietario corregido y comprobación |
 |---|---|---|
@@ -115,7 +150,7 @@ Hechos confirmados: identidad física B, censo independiente completo, before ob
 
 Estos efectos no son sumables por separado: latch y finalización pueden afectar el mismo cruce; corregir selección cambia la trayectoria económica posterior. Los fixtures no se usan para fabricar fills en T1. Source C4 y regresiones permanentes están en `implementer/echo-c4` bajo el SHA congelado; los apartados de evidencia precisan cada before, test y límite.
 
-Índice independiente de los doce casos obligatorios: `verifier/mandate-12-evidence-matrix.json`, ligado a source/binario C4. Mapea rechazo LONG/SHORT, SL, TP bajo objetivo, ocupado sin backlog, parciales/cancel/tardíos, pausa/sesión, oráculo K01–K05, sizing330/headroom, compra pausada, métricas compactas y paridad offline a assets permanentes, hashes y recibos. Distingue ejecución exacta de reutilización SDK por bytes idénticos y deja la comprobación T1 pendiente donde corresponde. Negativos aislados que inyectan OwnerState/reservas se declaran como tales; el recorrido público positivo usa Run y fills físicos. Core conserva explícitamente su contexto/views simulados y admisión manual; ningún gate certifica broker ni publicador LIVE.
+Índice independiente de los doce casos obligatorios: `verifier/mandate-12-evidence-matrix.json`, ligado a source/binario C4. Mapea rechazo LONG/SHORT, SL, TP bajo objetivo, ocupado sin backlog, parciales/cancel/tardíos, pausa/sesión, oráculo K01–K05, sizing330/headroom, compra pausada, métricas compactas y paridad offline a assets permanentes, hashes y recibos. Distingue ejecución exacta de reutilización SDK por bytes idénticos y acredita la comprobación T1 completa10/10. Negativos aislados que inyectan OwnerState/reservas se declaran como tales; el recorrido público positivo usa Run y fills físicos. Core conserva explícitamente su contexto/views simulados y admisión manual; ningún gate certifica broker ni publicador LIVE.
 
 Los apartados siguientes conservan la bitácora de hitos y sus pendientes **al momento de cada corte**. El estado actual lo gobiernan el resumen y la matriz anteriores; un PASS posterior no borra fallos ni intentos supersedidos.
 

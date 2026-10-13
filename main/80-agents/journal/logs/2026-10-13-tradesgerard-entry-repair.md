@@ -43,6 +43,8 @@ tags:
 
 ## Validación
 
+- C4 FULL_GATES_VERIFIED_TEN:10/10 COMPLETE exit0 y auditoría independiente física, source88ed70d1/bin c8849bb6. Informe/control dictamen CORRECTED_AND_VERIFIED offline; métricas completas, rachas/cierres/días/cuentas, pausa de prefijo y equivalencia de retiros medidas. T1/RESULTADO conservan históricos y enlazan reemplazo final. Consolidación de presentación dimensional y recibo recursos continúa sin cambiar producto.
+
 - Corte8/10 FULL_GATES_VERIFIED_PARTIAL: r3000 K02/K03 confirman24/14 operaciones con755 cruces cada uno, autoridad/ledger/caja/sesión/cierres verificados. Reporte y CONTROL actualizados, sólo K04/K05 r3000 activos. Readback físico distingue receipt_verified=full_verified=8; no se extrapolan las dos corridas restantes.
 
 - Cierre causal posterior a última entrada K04/K05:500=1ocupado+499MM Q0 y494MM Q0. Informe incorpora pérdidas unitarias, R efectivo y ejemplo mínimo K05 con autoridad diaria contemporánea; no compara extremos de distintas horas ni extiende propuesta EOD estructural. Fuente gzip completa leída mediante proyección de campos.
