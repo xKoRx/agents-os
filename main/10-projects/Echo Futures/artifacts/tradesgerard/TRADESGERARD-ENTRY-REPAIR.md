@@ -510,6 +510,12 @@ Rerun `c4-four-targets-attempt2.log` comprobado por manager: PASS62,528s, inclui
 
 En B físico, el primer cruce histórico de esta pausa es21oct14:32Z: cuenta pausada DAILY_GOAL desde14:27, caja4880, una plaza EVAL, ninguna cuenta elegible y owner TERMINAL sin exposición/claims/admisión pendiente. La fuente B comprueba caja/horizonte antes del veto por pausa y cupo/horario después. Las reservas Provider exactas de esa barra histórica no quedaron retenidas: no se certifican a partir del owner ni se adjudican41 fills contrafactuales. La prueba pública y los negativos de reserva acreditan el comportamiento requerido; el censo histórico conserva ese límite de observación.
 
+### Baseline observacional completo y drenado
+
+`implementer/evidence/baseline-observation-progress.json` registra5/5 COMPLETE, exit0 cada campaña, último fin2026-10-13T17:23:18Z. Manager comprobó ausencia física del controlador2772595 y último wrapper2799793/hijo2799794. K04 equivalencia independiente PASS:146 registros legacy y economía íntegra,755 cruces=31 MM+719 owner sin exposición+3 expiries+2 ocupados, sin causa UNKNOWN. K05 queda pendiente de cotejo independiente, no de ejecución. Los cinco replays conservan la fuente B y usan el overlay observacional identificado; sus resultados no sustituyen ni borran los originales.
+
+La causa histórica de compra pausada está materializada en `verifier/paused-purchase-first-historical-cause.json`, con los límites de reservas ya indicados. La regresión pública permanece separada de la atribución del cruce físico.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
