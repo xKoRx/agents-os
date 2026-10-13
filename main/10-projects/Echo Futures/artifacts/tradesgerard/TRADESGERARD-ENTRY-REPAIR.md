@@ -426,7 +426,7 @@ Comparación causal K01 completa (`verifier/causal-full-B-vs-C3-K01-r2300.json`)
 
 ### Tercera campaña C3 verificada: K03 de7 a14 operaciones
 
-`verifier/final-T1-receipt-readback-26f3459c.json` acredita3/10 configuraciones, identidades/digests y conciliación exactos. K03r2300:755 cruces=14 admisiones con fills +735 rechazos MM +6 ocupados descartados;749 materializaciones, cero UNKNOWN o snapshots ausentes. Before7, after14, delta+7.28 registros fill,36 órdenes distintas y cuatro días con entrada (14oct4,15oct5,17oct3,20oct2). Duración exposición mínima14,393939s/mediana261,445055s/máxima1163,766233s; rachas3/3.
+`verifier/final-T1-receipt-readback-26f3459c.json` acredita 3/10 configuraciones, identidades/digests y conciliación exactos. K03 r2300: 755 cruces = 14 admisiones con fills + 735 rechazos MM + 6 ocupados descartados; 749 materializaciones, cero UNKNOWN o snapshots ausentes. Before 7, after 14, delta +7. Hay 28 registros fill, 36 órdenes distintas y cuatro días con entrada (14oct:4, 15oct:5, 17oct:3, 20oct:2). Duración exposición mínima 14,393939s / mediana 261,445055s / máxima 1163,766233s; rachas 3/3.
 
 Los735 rechazos K03 son55 a presupuesto de referencia,12 por remanente y668 por headroom (15 margen interno/653 Provider). Las14 admisiones se distribuyen11 referencia/1 remanente/2 headroom. Dos cuentas conservadas PAUSED_SESSION, una pausa DAILY_GOAL y61 SESSION; cero pases/cobros. Neto agregado−1624,72, caja4520=5000−dos compras120−dos renovaciones120. Se mantienen R/T500/(1000/3), fuente y ventana: más intentos no eliminan los límites ni garantizan PnL positivo.
 
