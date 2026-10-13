@@ -534,6 +534,12 @@ Continuidad operativa: después de vet se observó ausencia de procesos propios 
 
 El intento de reanudación tampoco inició CLI ni produjo un error material comunicado. Se suspendió el worker anterior y se relevó por `/root/entry_repair_integrator_c4`, TOP con contexto nuevo y el mismo modelo solicitado Sol6.1; servido UNKNOWN. Sólo el relevo posee Go/código/integración, el verificador conserva independencia. Se preservan checkout, delta, pruebas, recibos y límites; no se reinicia la investigación ni se crea otro manager. El relevo debe ejecutar CLI y completar freeze/gate/campañas desde ese estado.
 
+### C4: CLI y fuente congelada
+
+Relevo ejecutó físicamente CLI aislado; `implementer/evidence/c4-cli-singleton.log` PASS122,157s, incluidos artifact y manifest, con exit0 persistido. Vet se repitió de forma focalizada porque el exit heredado no estaba acreditado: `c4-vet-verified.exit` contiene0. No se repitió SDK ni se alteraron expectativas. Manager comprobó commit C4 `88ed70d1ff9910bb157f1c14c0fed1d2b8e7ec49` y árbol limpio. Build única, procedencia de cobertura y gate independiente exacto en preparación; todavía no se han admitido campañas C4.
+
+Controller nuevo requiere gate independiente con SHA source/bin coincidentes antes de admitir trabajo, conserva los diez pares y tres slots totales con afinidad0–5. Manager revisó los guards globales y pidió reservar también derivados del verificador, además de distinguir una reserva transitoria por concurrencia de un forecast total imposible, sin aumentar ningún techo. No se considera completada una configuración por falta de recursos ni se elimina evidencia anterior.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
