@@ -370,6 +370,10 @@ Manager inspeccionó manifest/helper B observado: sidecar selectivo, coordenada 
 
 Primer build B observado NOT_PASS (`implementer/evidence/baseline-observation-build.log`): el helper/overlay intentaba leer `SignalDelivery.NewCycle`, campo inexistente en B. Se corrige el adaptador correlacionando la señal original por SignalID; no es defecto nuevo de B ni cambio a C3. Se conserva el log; se solicitó conservar el manifest del intento y documentar si los shadows ya fueron reemplazados antes de regenerar hashes. Dos campañas C3 continúan sanas; al readback parcial K01 había procesado10nov23:00Z, sin tratar ese avance como resultado final.
 
+Precisiones independientes posteriores: los cuatro pagos C3 acreditan24sep14:00Z. Para2300, C3 solicita17sep14:15Z y B17sep14:25Z: coinciden fechas de procesamiento/crédito, no todos los timestamps ni toda la trayectoria económica. No se afirma equivalencia de resultados B/C3. El cierre causal V-F02 se basa en C2→C3 con el mismo fixture y el delta de turno, que recupera CREDITED dentro de horizonte.
+
+El intento1 del observador quedó preservado íntegro en `verifier/baseline_observation_failed_attempt1/`, incluidos manifest/shadows/helper/generador y hashes en preservation.json. El adaptador corregido retiene StrategyCycleSeq físico; NewCycle existe en el draft público, no en SignalDelivery/canonical, y su correlación desde `tg-baseline-bars.csv` deberá etiquetarse como tal, sin simular un campo observado. Los estados físicos before/after de owner/delivery gobiernan la atribución.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
