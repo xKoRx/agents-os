@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS / corrección parcial — V-F03 confirmado: entrega ACCOUNT_DAY omite headroom vigente y su cache prevalece sobre Views. C3 supersedido para aceptación funcional; resultados COMPLETE conservados con validez analítica afectada. Nuevas admisiones C3 en HOLD, cancelación dirigida de K01r3000 solicitada y K05r2300 pendiente de corte físico. C4 aislado autorizado para corregir el owner con RED/GREEN independiente; B observado continúa.
+IN_PROGRESS / corrección parcial — V-F03 confirmado en B/C3: entrega ACCOUNT_DAY omite headroom vigente y su cache prevalece sobre Views. C3 supersedido y drenado: cinco r2300 COMPLETE de referencia, un r3000 cancelado/FAILED y cuatro no ejecutados. C4 aislado tiene primer GREEN de desarrollo; freeze/gate independiente y comparación final siguen abiertos (0/10 C4). B observado continúa con dos campañas completas; K01/K02 preservan equivalencia histórica exacta.
 
 C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; gate independiente exacto y CLI singleton PASS. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados por completar; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
@@ -57,10 +57,10 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Identidad y conservación B | PASS: source/binario/corpus físicos comprobados y preservados. |
 | Censo OHLC→indicadores→cruces | PASS independiente C2:42969 barras/755 oportunidades, tolerancia prospectiva y correspondencia por identidad. |
 | Primera pérdida y regresiones | PASS: decline/rearme LONG y SHORT, SL/TP/finality, ocupado sin backlog, warmup y compra/pausa acreditados; fixtures permanentes. |
-| Falsificación exacta y cobertura | C3 exacto PASS independiente; bloques329/333 y AST259/263, procedencia de perfiles compatibles y ausencia de huecos de inventario comprobadas. |
+| Falsificación exacta y cobertura | Gates acotados C3 PASS, pero V-F03 posterior impide aceptación global. C4 requiere gate exacto y cobertura Backtester nueva; SDK sólo reutilizable por identidad de bytes. |
 | Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
-| Sizing por perfil | Aritmética y primeras causas acreditadas; snapshots efectivos finales y tabla por cinco perfiles pendientes de campañas C3 y B observado. |
-| Comparación T1 final | C3 supersedido por V-F03:4 COMPLETE conservadas, sin aceptación global; K05/estado de cancelación K01r3000 en seguimiento. Diez campañas finales deberán usar versión corregida y verificada. B observado K01 equivalencia full PASS; K02 RUNNING. |
+| Sizing por perfil | Aritmética documentada; V-F03 detecta snapshots presentes pero incompletos. C4 deberá acreditar completitud/autoridad de margen y nuevas decisiones; tabla final pendiente. |
+| Comparación T1 final | C3 supersedido:5 COMPLETE referencia,1FAILED por cancelación,4 no ejecutadas. C4:0/10 finales. B observado K01/K02 equivalencia full PASS; K03 RUNNING. |
 | Casos largos pertinentes | BTGS04 PASS C2 compatible, lifecycle y AllFourTargets PASS C3; V-F02 causal cerrado en pagos sin alterar oráculo. CLI singleton C3 PASS119,736s. |
 | Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
 
