@@ -154,6 +154,14 @@ Precisión de autoridad sobre compra: el Owner exige horario admisible, compra a
 
 Fuente `ba047469513f9120378734b1378352477755c669`, rama `codex/tradesgerard-entry-repair-20261013`, checkout `implementer/echo` limpio al readback manager. Binario `implementer/bin/echo-backtest-ba047469`, SHA256 `72490e8e0399a238865720d396c8deb6e7ced3ddcb0c63a42ca764ac1b2b198f`, metadata VCS idéntica y modified=false (`implementer/evidence/build-ba047469.txt`). B original sigue limpio e intacto. Este freeze tiene gate crítico del implementador PASS; falsificación independiente y cobertura completa pendientes. Campañas finales nuevas:0/10. El independiente recibió el carril Go para verificar este source/build exacto.
 
+### Recuperación corta C1 y falsificación independiente
+
+Contraste independiente C1 (`verifier/comparison-candidate-ba047469.json`):42969 identidades de barra,755 cruces y755 oportunidades nuevas, cero diferencias K/dirección, sin primera divergencia residual y error máximo ATR2,84217094304e−14<1e−9. Baseline tenía31 nuevas oportunidades y ATR incorrecto. E2E CLI independiente LONG/SHORT: rechazo10:01NY sin órdenes/fills→nuevo ciclo10:45NY con fill del mismo lado sin banda contraria, PASS. Fuera de horario y tape silencioso: cero compras/operaciones/fills. Probes públicos y overlays Operation/TGMM propios PASS con los mismos inputs que fallan en B bajo el carrier final. Los probes booleanos previos son REFERENCE_ONLY, no evidencia de la versión final.
+
+Primera jornada física corregida K01:23 OPEN,23 materializaciones,3 operaciones con fills y6 registros FILL, frente a1 materialización y0 operaciones con fills en B. Recibo `implementer/evidence/after-short-K01/bd4877b7e76cb776161c89307fc96b135b63d8407fd744223c8a82d511815899/receipt.json`, COMPLETE/reconciliado. La primera entrada recuperada18:12Z usa Q1, R/T250, distancia11,5 y costo244,98USD; parámetros intactos. Compra a10:33NY en primera OPEN, caja4880. El PnL corto no es criterio de aprobación.
+
+K02 corto autor:23 OPEN,21 materializaciones,16 operaciones con fills y3 cuentas/caja4640. Esta mayor actividad incluye compra de sucesoras tras pausas y aún exige readback independiente de razones de turno, SL/TP y finality; no se presenta como gate aprobado. K03–K05 cortos fueron ejecutados; reconciliación detallada en preparación. La comparación T1 completa de10configuraciones sigue0/10 mientras cierra el gate corto.
+
 Sincronización observada de Agents-OS: commit automático `a58ec551187749deaa6d3f0566e1c556d9b456b8`, master remoto igual según `git ls-remote` antes de este delta. No fue un push ejecutado por el manager; los deltas posteriores requieren nueva comprobación.
 
 ## Fuentes
