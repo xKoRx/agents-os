@@ -29,6 +29,12 @@ Censo completo: 42.969 barras, 755 oportunidades NY. Los cinco replays B observa
 
 Primeras campañas finales verificadas: K02 pasa de18 a24 operaciones con fills (+6), K03 de7 a14 (+7), ambas r2300. Cada una conserva las755 identidades de cruce y los indicadores del oráculo; K02 particiona24 admisiones MM,727 rechazos de tamaño y4 cruces consumidos durante exposición; K03,14/735/6. No hay oportunidades ni cierres UNKNOWN. Los751 y749 snapshots MM respectivamente concuerdan en cuenta, revisión, tiempo y margen con la autoridad monetaria real. Recibos, digests, ledger, caja y sesiones verificados en `verifier/final-T1-receipt-readback-final-88ed70d1.json`; tabla parcial y límites en `verifier/compact-final-table-final-88ed70d1.json`. Este corte es VERIFIED_PARTIAL_NOT_GLOBAL, no aceptación de las diez.
 
+### Hipótesis D falsificada durante la revisión final
+
+La sospecha de un suavizado adicional de D en C4 quedó **refutada**, sin modificar fuente, campañas ni admisiones. Los nombres internos indujeron una lectura incorrecta del manager y del integrador: `slowK(state)` devuelve rawK; `State.SlowK` conserva rawK; `State.SlowD` conserva K=SMA3(rawK). El promedio de sus tres valores en `details.slow_d` es precisamente D=SMA3(K), disponible desde la barra24 y ajeno al filtro de entrada.
+
+El verificador calculó D con Fraction desde los OHLC originales: los755 payloads físicos de K02 C4 coinciden exactamente. Primer cruce14oct14:33Z: D esperado/actual `2202652219150/26491928463` (83,14427627). B observado equivalente reportaba `6663741800/61752747` (107,91004650), suma de cuatro rawK dividida por3; sus755 valores difieren. Esa desviación informativa ya está corregida en C4 y no explica la recuperación de entradas. Evidencia: `verifier/informational-D-independent-falsification.json`. No se aplicó la propuesta equivocada de publicar el último State.SlowD, que habría emitido K como D. No hay asserts D en los tests TG permanentes actuales; se conserva el comparador físico independiente como regresión diagnóstica externa, con este límite explícito.
+
 ### Identidades comprobadas por el manager
 
 | Elemento | Evidencia física |
