@@ -408,6 +408,12 @@ Incluso un contrato NQ con SL positivo mínimo de un tick necesita19,98 de riesg
 
 Única decisión nueva propuesta, **NO aplicada**: considerar no seleccionable una cuenta flat, sin claims ejecutables, cuyo margen persistente por piso EOD sea inferior al riesgo mínimo de Q1 con geometría positiva y costos vigentes; seleccionar la siguiente elegible o comprar a demanda bajo los mismos controles. Conservar cuenta, saldo, piso y cupos. Esto permitiría superar este bloqueo estructural de selección; consumiría caja/cupo y cambiaría la trayectoria económica. No se extendería a un rechazo aislado por ATR ni a un margen diario temporal. Es política nueva separada del before/after, no condición para continuar la reparación autorizada.
 
+### Precisiones de admisión y economía efectiva
+
+Los contadores Provider750/749 de K01/K02 son grants para admitir/materializar la Operation **antes** de sizing MM; no significan órdenes ni contratos ejecutables. Las cantidades efectivamente admitidas se cuentan después de MM, y las órdenes/fills físicos se concilian aparte. El extractor conserva esta distinción de alcance.
+
+`verifier/first-closures-K01-arithmetic.json`, cotejado por manager: primer TP LONG compra24901→venta24914,Q1; bruto260 menos fees4,98=neto255,02 frente T250. Proyección desde el fill real reserva sólo costos de salida pendientes: precio bruto24913,999 alineado24914 implica neto proyectado250,02; la salida MARKET física posterior puede superar ese umbral. La referencia de cotización implícita24914,25 se deriva del fill/slippage declarado, no se presenta como quote observado. Primer SL SHORT vende25303,50→compra25315,75: bruto−245 menos4,98=−249,98 frente R250. Stop económico bruto25315,501 se alinea25315,50 y el fill añade0,25 de slippage de salida. Aritmética monetaria/ticks exacta, sin epsilon ni doble descuento; la tolerancia ATR es un asunto separado.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
