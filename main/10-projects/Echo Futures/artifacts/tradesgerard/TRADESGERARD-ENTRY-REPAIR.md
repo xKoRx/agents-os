@@ -264,6 +264,14 @@ Vet encontró avisos en tests heredados: literales FixtureSessionStep sin campos
 
 Commit `63fb24996d422f3dfee28e706ad1528eb948bff8`, rama de reparación `codex/tradesgerard-entry-repair-20261013`, árbol limpio al readback. Binario `implementer/bin/echo-backtest-63fb2499`, SHA256 `8eff860eca8db7d2aaf84e40903b0de4e03f367aad798a79d2c371bf1ecf8f50`, Go1.27.1, metadata VCS del mismo commit y modified=false. Contiene V-F01, retención económica/estados/supresiones y regresiones independientes permanentes; B y C1 conservados. Los ajustes mecánicos de vet pasaron sus tests afectados (`c2-vet-mechanical-tests.log`,0,091s). El cotejo final independiente sobre este SHA/binario y la procedencia de perfiles PASS están en preparación; freeze no equivale todavía a gate final ni a diez campañas realizadas.
 
+### Gate independiente exacto C2 PASS; comparación final autorizada
+
+El verificador completó sobre `63fb2499`/binario `8eff860e…` los negativos SDK/Campaign/Finish y seis tapes CLI sin regenerar input. V-F01 queda cerrado físicamente: tres operaciones sobre la misma cuenta, caja4880 y snapshot del neto previo190,08 conservado. Censo público independiente `comparison-final-63fb2499.json`:42969 identidades de barras,755 cruces y755 NewCycle, cero divergencias K/dirección/readiness; error ATR máximo2,842e−14<1e−9.
+
+Cobertura independiente validada (`coverage-audit-63fb2499.json`, `coverage-ast-audit-63fb2499.json`):320/325 sentencias de bloques afectados98,4615%; cotejo adicional de sentencias ejecutables nuevas por inicio AST250/255=98,039%, posiciones sin mapear0. Los cinco huecos son retornos de error. Inventario14 archivos productivos: tres contienen sólo campos/enum/mapa estático sin nuevas sentencias y11 tienen bloques afectados. Se verificaron hashes de tres logs/perfiles PASS y14 fuentes; corridas FAIL excluidas. Compatibilidad se acredita por paquetes/dependencias instrumentados, no con una afirmación falsa de ausencia global de ediciones entre productores. SDK productivo no cambió C1→C2. El fallo previo en dos fixtures nuevos era reloj fuera de horario (18:30NY), corregido a10:30NY conservando asserts y producto; se esperaba llegar al fallo de recorder después de admitir una compra.
+
+Diez planes C2 sellados preparados y jobs de build/preparación drenados. Manager comprobó K01r2300 B→C2: perfil, hash de corpus, config, warmup/trade_start/end, modelo de ejecución, rules, contratos/schedule e initial_state idénticos. Autorizado iniciar primera K01r2300 inmutable junto con casos largos aislados; máximo2 campañas al liberar Go, bajo presupuesto. Gate funcional/oráculo/cobertura C2 PASS; entrega global pendiente de casos largos y10/10 campañas con métricas independientes. Recursos al preparar:313MiB durable,15GiB libres.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
