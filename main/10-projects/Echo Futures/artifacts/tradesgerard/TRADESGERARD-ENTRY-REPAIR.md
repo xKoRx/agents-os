@@ -256,6 +256,10 @@ Inspección independiente y readback manager: `v3/core/internal/futuresruntime/r
 
 La hipótesis de payload StrategyDetails válido noobjeto no demuestra defecto en consumidores actuales: s1/s2/tg emiten objetos y no se halló fixture legítimo string/array. Se conserva la compatibilidad probada para ausencia y objeto sin política, con política desconocida/malformada fail-closed; no se amplía arquitectura por ese caso hipotético.
 
+Actualización de cobertura previa al freeze:320/325 sentencias de bloques afectados =98,4615% según perfiles PASS (`c2-observation-fault-green.log`,2,729s race,13 fixtures de errores de transición y3 errores de señal/hook/supresión). Inventario14 archivos productivos modificados,11 con bloques ejecutables afectados, ausentes0. Se mantiene etiqueta WORKING_TREE_DIAGNOSTIC_ONLY hasta identidad congelada y cotejo independiente AST. Quedan5 sentencias sin cobertura en ese denominador; no se las oculta.
+
+Vet encontró avisos en tests heredados: literales FixtureSessionStep sin campos nombrados y llamada fmt.Sprint sin consumir resultado. Se verifica preexistencia en B; si el gate requiere vet limpio, el manager autoriza sólo corrección mecánica preservando llamadas, inputs y asserts, nunca flags para ocultar el aviso. Freeze/build final todavía pendientes. Tras gate exacto independiente, los largos pertinentes podrán solaparse con una campaña inmutable dentro del presupuesto; una segunda campaña sólo al liberar el carril Go. Cualquier nuevo defecto funcional que cambie source obliga nueva identidad y comparación correspondiente.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
