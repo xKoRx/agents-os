@@ -120,6 +120,22 @@ El probe independiente fuera de horario usa29 barras09:31–09:59NY y trade_star
 
 TCR ON_DEMAND aprobado para tres fixtures heredados: quiet(Session999 sin OPEN en2sesiones), cancelado antes del primer input y cierre de recorder inyectado sobre quiet. Expected caja5000/cuentas0, preservando primera causa, FAILED/reconciliación y asserts financieros de los fixtures con oportunidades reales. El nuevo seam de compra debe preservar el guard público de frontier y finality; el fallo de esa integración detectado durante desarrollo no es PASS.
 
+### Sizing: rechazo inicial legítimo no equivale a día inviable
+
+`verifier/first-day-sizing-oracle.json` calcula geometría por cruce con headroom fresco explícito; no simula PnL posterior. Para K01, antes del primer fill esa hipótesis corresponde al caso observado sin operaciones previas. NQ: punto20USD, tick0,25=5USD; comisión ida/vuelta4,98USD y slippage modelado ida/vuelta10USD, total14,98USD por contrato. R/T250/250 yρ1 permanecen congelados.
+
+| K01,2025-10-14 | ATR puntos | SL técnico | Distancia puntos | Pérdida estimada1contrato | Q |
+|---|---:|---:|---:|---:|---:|
+|10:33NY SHORT|22,91274922|24719,75|22,75|469,98USD|0|
+|10:48NY SHORT|20,30336725|24719,50|20,25|419,98USD|0|
+|14:12NY LONG|11,58918830|24888,50|11,50|244,98USD|1|
+
+El primer rechazo es compatible con R250, pero la señal14:12NY del mismo día tiene cantidad geométrica1 sin cambiar R/T. Admisión/fill físico corregido aún pendiente. Para K02–K05 los cálculos con headroom fresco no sustituyen la trayectoria de pérdidas/pausas de una campaña; deben contrastarse con el estado efectivo.
+
+Ampliar un multiplicador de ATR aumenta distancia y costo por contrato y reduce la cantidad admisible a presupuesto fijo; no resuelve este bloqueo de ciclo. El ejemplo sólo demuestra por qué hay que volver a evaluar nuevas señales cuando ATR cambia, sin recomendar nuevos parámetros.
+
+El independiente observó además K02: fill de SL14:35:26Z deja exposición flat, pero la operación sólo llega a TERMINAL en15:55NY; el nuevo SHORT14:48Z queda afectado. Regresión y finality del candidato siguen pendientes.
+
 Sincronización observada de Agents-OS: commit automático `a58ec551187749deaa6d3f0566e1c556d9b456b8`, master remoto igual según `git ls-remote` antes de este delta. No fue un push ejecutado por el manager; los deltas posteriores requieren nueva comprobación.
 
 ## Fuentes
