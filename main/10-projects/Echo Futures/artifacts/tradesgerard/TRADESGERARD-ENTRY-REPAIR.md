@@ -316,6 +316,12 @@ Equivalencia de retiros B comprobada (`verifier/baseline-pair-equivalence.json`)
 
 Cobertura Campaign con race y procedencia nueva está ejecutándose; SDK podrá reutilizarse sólo si los bytes instrumentados/dependencias compatibles coinciden. Lifecycle y CLI singleton aislados todavía pendientes; C3 aún no tiene identidad final ni campañas definitivas.
 
+### Definiciones de métricas finales
+
+La duración de exposición se mide desde el primer fill hasta el último fill que deja residual final cero, con precisión de microsegundos. La demora posterior hasta el último snapshot TERMINAL se informa aparte cuando existe: no se confunde exposición flat con liberación de claims. Rachas incluyen sólo operaciones con fills físicamente cerradas, ordenadas temporalmente; netFillPnL ya descuenta fees una vez y el slippage está embebido en precios. Neto cero reinicia ambas rachas; declines sin fill no cuentan. Se verificará la ausencia de solapamiento que permite ordenar por materialización/cierre sin ambigüedad.
+
+Operaciones por día NY se atribuyen al primer fill de entrada y se separan de account_day_id contable. Los totales de campaña agregan todas las cuentas preservadas, nunca sólo la última summary. Si una campaña termina antes, su horizonte observado se separa del censo completo de755 oportunidades; no se le asignan eventos futuros.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
