@@ -474,6 +474,14 @@ Inspección runtime: los constructores productivos de AccountEconomicsUpdate enc
 
 C3 termina físicamente con cinco r2300 COMPLETE de referencia, K01r3000 FAILED/context canceled y cuatro r3000 no ejecutadas. Controlador drenado exit2, sin loop hold residual. K05 intermedio reporta25 operaciones frente6 históricas; no se presenta como comparación final reparada. B observado2/5 COMPLETE y K03 activo. Durable agregado con checkout C4≈650MB, bajo techo768MiB; builds/resultados B/C1/C2/C3 preservados.
 
+### Baseline K02: equivalencia y bloqueos separados
+
+`verifier/baseline-observed-full-K02-equivalence.json`: PASS,337 filas legacy completas y economía/cuentas/caja/pagos/revisiones sin diferencias tras normalizar únicamente IDs tipados. Sidecar2427 eventos,755 cruces/36 MM/64 transiciones. Los755 cruces se particionan en36 materializaciones MM,670 owner no terminal sin exposición,44 gate deshabilitado y cinco ocupados físicos.
+
+Los44 gate se desglosan en tres fronteras10NY con pausa vencida antes de su refresh, y41 cruces durante PAUSED_DAILY_GOAL todavía vigente en esa cuenta (18 el21oct después de14:27Z;23 el29oct después de14:45Z). Esas pausas de cuenta son legítimas. El veto global a comprar otra cuenta es una cuestión distinta, que exige caja/cupo/sesión/finality acreditados; no se atribuyen automáticamente41 fills recuperados ni todos los gates al mismo bug. Un cruce admitido después de cambiar la trayectoria económica se etiqueta como tal.
+
+De las36 materializaciones B, ocho corresponden a drafts NewCycle=false: tres primeros intentos diarios desplazados después del gate10NY y cinco reentradas con owner ya TERMINAL/flat/sin claims en el mismo StrategyCycleSeq. La rama de admisión OPEN con owner terminal explica por qué B podía superar una operación diaria aun conservando el latch defectuoso; no existía una prohibición uniforme de un trade al día. Source, estados físicos y conteos se conservan separados de cualquier contrafactual.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
