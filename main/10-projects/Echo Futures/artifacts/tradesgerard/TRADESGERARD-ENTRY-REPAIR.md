@@ -184,6 +184,12 @@ La suite amplia C1 alcanzó el timeout global Go de10minutos en backtester, con3
 
 Sincronización observada de Agents-OS: commit automático `a58ec551187749deaa6d3f0566e1c556d9b456b8`, master remoto igual según `git ls-remote` antes de este delta. No fue un push ejecutado por el manager; los deltas posteriores requieren nueva comprobación.
 
+### Hallazgo independiente V-F01: frontera de reanudación
+
+La falsificación CLI independiente confirma un defecto adicional en C1: `admitOpportunity/selectTurn` decide comprar antes de actualizar una pausa temporal vencida en ese mismo instante. En el tape de1420 barras de dos días, la cuenta válida y flat tenía PAUSED_SESSION hasta2025-10-15T14:00Z (10:00NY). La nueva OPEN exactamente a esa hora compra una segunda cuenta: caja4760 frente a4880 esperada; después el tick administrativo vuelve ELIGIBLE la anterior, cuyo stage190,08 se conserva. Primera divergencia: selección/compra antes de reconciliar elegibilidad temporal. Evidencia `verifier/finding-V-F01.json` y `verifier/synthetic/resume-boundary-candidate-ba047469/`, sobre source/binario C1 ya identificados.
+
+El manager adjudica V-F01 como defecto funcional bloqueante de C1 y autoriza el fix mínimo en Campaign: refrescar elegibilidad vencida antes de seleccionar/comprar, manteniendo ledger, piso y guardas de exposición/claims. Corrección y repetición independiente aún pendientes. El oráculo T1 contiene tres cruces exactamente10:00NY (17oct SHORT,31oct LONG,12nov LONG), por lo que no se considera un borde ajeno al corpus. C1 queda REFERENCE_ONLY para resultados largos; K01 en curso se conservará hasta COMPLETE si sigue sano y las cuatro campañas C1 restantes no se admitirán por supersesión. Si alguna alcanza ejecución/cancelación, se preservará su estado físico real. Las cinco2300 de C2 podrán ser las primeras cinco de las diez definitivas, sin duplicarlas ni reutilizar recibos C1 como si pertenecieran a C2.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
