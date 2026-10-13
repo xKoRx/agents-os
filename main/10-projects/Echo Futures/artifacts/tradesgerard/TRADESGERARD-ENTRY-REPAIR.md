@@ -190,6 +190,14 @@ La falsificación CLI independiente confirma un defecto adicional en C1: `admitO
 
 El manager adjudica V-F01 como defecto funcional bloqueante de C1 y autoriza el fix mínimo en Campaign: refrescar elegibilidad vencida antes de seleccionar/comprar, manteniendo ledger, piso y guardas de exposición/claims. Corrección y repetición independiente aún pendientes. El oráculo T1 contiene tres cruces exactamente10:00NY (17oct SHORT,31oct LONG,12nov LONG), por lo que no se considera un borde ajeno al corpus. C1 queda REFERENCE_ONLY para resultados largos; K01 en curso se conservará hasta COMPLETE si sigue sano y las cuatro campañas C1 restantes no se admitirán por supersesión. Si alguna alcanza ejecución/cancelación, se preservará su estado físico real. Las cinco2300 de C2 podrán ser las primeras cinco de las diez definitivas, sin duplicarlas ni reutilizar recibos C1 como si pertenecieran a C2.
 
+### Negativos y paridad independiente C1
+
+El verificador ejecutó `backtest-candidate-ba047469-tests.log`: PASS de caja119,999, cupo5, fronteras horarias, cierre temprano y compra bloqueada por admisión pendiente, owner activo no drenado, QExec ejecutable aun con status terminal o reserva Provider. La expectativa positiva de cuenta pausada válida/flat falla contra B por el veto global y pasa C1 (`backtest-baseline-tests.log` conserva el RED). Se aprueba su promoción como regresiones permanentes; los casos que inyectan estados de owner son fixtures de falla explícitos, no una afirmación sobre observación de broker.
+
+`parity-candidate-ba047469-tests.log`: PASS de `TestIndependent_EntryPolicySharedOwnerLiveAndBacktestParity`, mismos hechos al owner Operation compartido en modos LIVE/BACKTEST. Junto con CLI offline acredita la paridad de software afectada, sin certificar broker real ni composición externa no ejecutada. V-F01 sigue bloqueando el gate final de C1.
+
+La corrida amplia C1 quedó físicamente drenada con exit1: también CLI alcanzó su timeout global600s dentro de `TestLASTPublicExperimentCampaignSealsAndReplaysSingletonCatalog`, que llevaba7m11s, durante verificación de integridad/daily-report. Se preserva el log y no se computa como PASS. Carril Go liberado y consumido por los negativos anteriores; C2 dividirá los grupos largos sin retirar asserts. Medición manager posterior:274MiB de iniciativa y15.987.478.528bytes libres, dentro de los presupuestos vigentes.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
