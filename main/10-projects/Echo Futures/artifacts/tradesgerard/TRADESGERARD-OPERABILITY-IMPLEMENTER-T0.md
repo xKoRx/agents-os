@@ -2,8 +2,9 @@
 type: doc
 schema_version: 1
 status: active
-area: "[[Personal]]"
-related: []
+area: "[[Echo]]"
+related:
+  - "[[Echo Futures]]"
 aliases: []
 tags:
   - kind/doc
@@ -15,7 +16,7 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Recibo técnico del TOP implementador/integrador local. Modelo solicitado Sol6.1, servido UNKNOWN. Trabajo offline, sin órdenes, servicios, permisos ni merge/release. El manager conserva CONTROL y su gate; este informe no concede aceptación del Owner ni gate independiente.
+Recibo técnico del TOP implementador/integrador local. Modelo solicitado Sol6.1, servido UNKNOWN. Trabajo offline, sin órdenes, servicios, permisos ni merge/release. El manager conserva CONTROL y adjudica el estado técnico; la aceptación final pertenece al Owner. Este informe no concede aceptación final ni gate independiente.
 
 ## Contenido
 
