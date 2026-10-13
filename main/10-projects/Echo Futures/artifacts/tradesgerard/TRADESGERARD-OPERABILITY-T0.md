@@ -65,7 +65,13 @@ E2E independiente V2: seis negativos LONG/SHORT con R14,98/15,28/19,98 no genera
 
 Manager adjudicó HOLD y corrección upstream acotada de valoración/autoridad antes de callback, con reproducción de atribución y RED/GREEN en el mismo assert. No guard compensatorio TG, no alterar retrospectivamente fills/precios ni simulador para fabricar resultado. Original cb9 debe permanecer quieto; integrador único y verificador independientes continúan. T1 todavía no lanzada.
 
-### Tandas autorizadas aún pendientes
+### Atribución de la valoración stale a C4
+
+Verificador ejecutó el mismo assert monetario sobre C4 `88ed70d1`, con política nueva OFF, TGMM real resuelto por su factory y presupuesto500 que permite cantidad ATR. RED exit1 en2,027s para LONG y SHORT: OpenMark380/net370,02 publicados frente a OpenMark−15/net−24,98 exigidos por la cotización causal. `verifier/fill-authority-C4-red-attempt2.log` y resultados/traces correspondientes conservados. Primer intento usó un constructor legacy y no abrió operaciones; se conserva como error propio de harness, no evidencia del defecto.
+
+La raíz preexistente omite marcar ledger en `processNativeStep`/`markNative` cuando está flat con entrada working antes del matching. Integrador corrige sólo la autoridad upstream incluyendo obligaciones pendientes; debe conservar guards de cuenta/contrato y ausencia de efectos cuando no hay inventario ni orden. Los resultados C4 se conservan como observados; la propiedad general de valoración contemporánea tras fill tiene un contraejemplo. Esto no demuestra que todas sus755oportunidades o todos sus netos estén errados. F0 nuevo incluirá este fix además de políticas mínima/retirada; no se atribuirá toda diferencia a una única causa ni se inventará PnL contrafactual.
+
+### Tandas autorizadas por ejecutar
 
 T0 políticas y racha → T1 F0×10 → T2 F1×10 → T3 F2×10 → T4 F3×10 → clasificación de40configuraciones y ampliación disponible de hasta cuatro configuraciones activas. Hallazgos materiales se corrigen y las trayectorias afectadas se repiten. No hay garantía de cobro; cobro acreditado y caja neta se informan por separado.
 
