@@ -300,6 +300,8 @@ Actualización V-F02: el integrador añadió estado explícito de turno activo e
 
 Drenaje C2 acreditado en `implementer/evidence/c2-supersession.json`: hijo financiero SIGTERM, exit2, recibo FAILED y primera causa `context canceled`; controlador detenido terminado sólo después de drenar el hijo, exit137. Manager comprobó los tres PID ausentes. Se conserva el estado inicial del controlador y el final; las otras nueve configuraciones no se ejecutaron. No hay campañas C2 activas ni resultados parciales presentados como COMPLETE.
 
+La regresión ampliada C3 pasa5,606s (`c3-turn-and-expiry-green.log`): pausa interna producida por pérdida real, fallo oficial por riesgo real, orden de creación tras reanudar, conservación de turno tras TP y los tres vencimientos de pausa con ledger/risk/terms intactos. También pasa el negativo público de selección futura. El fixture unitario se corrigió sólo en reloj/frontier como se autorizó; pagos largos y validación independiente del freeze siguen pendientes.
+
 ### Suficiencia del before histórico y replay observacional acotado
 
 El independiente confirmó que los recibos B permiten reconstruir órdenes/fills/operaciones/días/duración/rachas/cierres/caja/pagos y estado final, pero SearchRecorder excluía SIGNAL/OPERATION_APPLY y transiciones de cuenta; MM_EVALUATION no conservaba sizing ni MMInput.Economics. Por tanto no bastan para atribuir cada supresión ni acreditar snapshots económicos reales de las primeras admisiones. No se rellenarán esos campos con headroom hipotético.
