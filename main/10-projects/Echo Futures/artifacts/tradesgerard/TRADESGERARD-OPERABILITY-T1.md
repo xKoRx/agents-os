@@ -16,11 +16,27 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **O8_RERUN_RUNNING, 0/10 completas**. O8 corrigió el bloqueo efectivo y pasó verificación independiente; se relanzaron las diez configuraciones. O7 conserva sus observaciones AFFECTED fuera del ranking definitivo. No es aceptación final del Owner.
+Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **O8_RERUN_RUNNING, 1/10 completa y auditada**. O8 corrigió el bloqueo efectivo y pasó verificación independiente; se relanzaron las diez configuraciones. O7 conserva sus observaciones AFFECTED fuera del ranking definitivo. No es aceptación final del Owner.
 
 ## Contenido
 
 ### Relanzamiento vigente O8
+
+Primer resultado corregido terminado2026-10-13T23:47:54Z y auditado independientemente: **F0–K01–r2300, ninguna útil en esta muestra**, cero pases/cobros y caja neta−1800USD. Este es1/40 de los resultados definitivos; las tandas continúan. La integridad técnica permite interpretar el resultado económico sin confundirlo con un fallo de ejecución.
+
+| Configuración | Base / pasan filtro | Ocupadas / materializadas | Operaciones / días con entrada | Fallback / Q0 / UNKNOWN | Compradas / fallidas / retiradas / pasadas | Solicitudes / créditos | Cobrado neto / costos de caja | Caja inicial / mínima / final |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| F0–K01–r2300 O8 | 755 / 755 | 36 / 719 | 719 / 31 | 550 / 0 / 0 | 15 / 0 / 13 / 0 | 0 / 0 | 0 / 1800 | 5000 / 3200 / 3200 |
+
+Caja5000−15×120=3200: no renovaciones, activaciones ni otros cargos de caja en esta trayectoria. Ledger realizado de todas las cuentas−19075,18USD separado de caja; las comisiones ya incluidas no se descuentan de nuevo. Cuentas14/15 preservadas: PAUSED_DAILY_GOAL con saldo51130,16/remanente1869,84 y PAUSED_SESSION con saldo49250,06/remanente3749,94. No pagos pendientes. Cuenta14 tiene mayor día cerrado255,02 y actual/efectivo875,14; la elegibilidad usa el efectivo. La cuenta15 aún no tiene mayor día cerrado y termina con día actual−749,94. Terminal HORIZON_CENSORED, sin sumar residual nominal de prop a caja.
+
+La reparación O8 opera causalmente en el caso que invalidó O7: cuenta3 pausa por remanente diario9,60 el23oct18:36Z, hasta24oct14Z; cuenta4 recibe los cruces18:51,19:24,19:39 y19:46. Los de19:03 y19:16 quedan ocupados por exposición/órdenes reales. No hay replay del cruce anterior, retiro EOD por pequeño objetivo ni aumento de R/T. Se eliminaron los seis Q0 previos; el cambio de trayectoria agrega seis operaciones en la campaña completa, sin mejorar aquí la caja final. Prueba independiente `verifier/o8-corrected-six-daily-crosses.json`, SHA256 `743a6c63272f62f539c61c12fb0ec9716b52fab635430373326b179700ff9e7a`.
+
+Auditoría:755 identidades SIG-B/K/ATR,719 primeros fills con marca causal actual,1438 registros de fills/1482 unidades, cero snapshots económicos ausentes. Un fill no se cuenta como una operación. Racha ganadora de campaña7/neto1665,16 y perdedora12/neto−2784,76; el derivado conserva separadamente cada cuenta/fase. Duración mínima0,408163s, mediana44,680851s, máxima3187,330827s. Eventos de pausa:19 capacidad temporal,48 sesión,13 objetivo diario,1 objetivo temporal y1 pérdida interna; no equivalen a número de cuentas únicas. R/T referencia/solicitados/admitidos/efectivos, q, geometría/costos/ATR y progresos por operación permanecen en las filas completas.
+
+Antes/después K01–r2300: C4 tuvo19 operaciones/caja4760; O8 tiene719/caja3200; ambos sin pases/cobros. La diferencia incluye corrección de valoración causal además de las políticas prospectivas de mínimo/retirada. Más operabilidad no demuestra rentabilidad. El escenario de retirada continúa siendo cierre lógico flat/drenado inmediato, sin reembolso ni cargo extra, y su liberación de plaza no se atribuye a cancelación comercial real.
+
+Evidencia relativa al root nuevo: `verifier/campaigns-T1-O8-first.json` SHA256 `42d912153a576fa76977f62a15c7ac28f20c77ef1d11b4723b0ce08646976371`; `verifier/campaign-metrics-T1-O8-first-v3.json.gz` SHA256 `de9444c8cb736c1e5c194a92e32706d674f4d391ec35d4d43bda758a05ce7a0e`; `verifier/receipt-O8-K01-r2300-verified.json` SHA256 `dfc90ebf7ab0e385f76f63e79a9613f8618da340b0c695cf7858f737e6c5ee54`. Identidad `0d0fcf01c52ca010bf1f2c200582868fb3329d821660c99c05e87a9718dc2a98`, result SHA256 `031a96014ccdceb606e25559df2ed33b96a252f29cba5a2cb5fb191f038d5ac2`, traza `868fd2192efae20acd5ec6f7d77a9a8b6f7e47a0c89bd98505d02ee1897a3c34`. Operaciones/censo completos: `verifier/operations-K01-r2300-T1-O8-first.json.gz` y `verifier/opportunities-K01-r2300-T1-O8-first.json.gz`.
 
 Source `d66bb56bccd053305c1c7dac0dc51aa292745504`, árbol limpio `0083e0d0d9854779c240971d17749593755413a8`; binario SHA256 `a70ac11e481109b036f4a7d792c9594f8c8a73c97eb7c72cd35f2c0c025de8ce`. Manifiesto `implementer/evidence/o8-freeze-manifest.json` SHA256 `9d2623df4cec968a21ab9e761f56dece0160b44e2e671dcf3532628e47795d18`, diez inputs con paridad normativa C4. Gate `verifier/independent-o8-gate.json` SHA256 `0afa455654df3a7362dc1c6e0c8a24a4e871af3e3490f24a71a348ed6f376de0`, INDEPENDENT_PASS técnico, cobertura53/54=98,1481% de bloques del deltaO7→O8. Perfil/datos/ventana C4 permanecen los descritos abajo, sin elegir otra muestra por PnL.
 
