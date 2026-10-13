@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS — C3:3/10 campañas COMPLETE y verificadas independientemente (K01/K02/K03r2300); K04/K05 en ejecución. B observado K01 completo con equivalencia histórica PASS; K02 en tercer slot serial. Entrega final todavía abierta.
+IN_PROGRESS — C3:4/10 campañas COMPLETE; K01/K02/K03r2300 verificadas independientemente y K04 en auditoría. K05r2300/K01r3000 en ejecución. B observado K01 completo con equivalencia histórica PASS; K02 en tercer slot. Entrega final todavía abierta.
 
 C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; gate independiente exacto y CLI singleton PASS. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados por completar; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
@@ -60,7 +60,7 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Falsificación exacta y cobertura | C3 exacto PASS independiente; bloques329/333 y AST259/263, procedencia de perfiles compatibles y ausencia de huecos de inventario comprobadas. |
 | Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
 | Sizing por perfil | Aritmética y primeras causas acreditadas; snapshots efectivos finales y tabla por cinco perfiles pendientes de campañas C3 y B observado. |
-| Comparación T1 final | 3/10 COMPLETE C3 y verificadas: K01/K02/K03r2300; K04/K05 RUNNING. B observado K01 equivalencia full PASS; K02 RUNNING. |
+| Comparación T1 final | 4/10 COMPLETE C3; tres verificadas, K04 en auditoría. K05r2300/K01r3000 RUNNING. B observado K01 equivalencia full PASS; K02 RUNNING. |
 | Casos largos pertinentes | BTGS04 PASS C2 compatible, lifecycle y AllFourTargets PASS C3; V-F02 causal cerrado en pagos sin alterar oráculo. CLI singleton C3 PASS119,736s. |
 | Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
 
@@ -439,6 +439,12 @@ Auditoría física de horario `verifier/physical-session-final-26f3459c.json`: l
 El techo previo de cuatro cores era decisión conservadora del manager, no una cuota externa demostrada. Readback `implementer/evidence/cpu-policy-readback.json`: README pide GOMAXPROCS4 por carril y contempla experimentos independientes con concurrencia medida; ancestros cgroup sin cuota CPU y cpuset0–23. Medición manager `vmstat 1 5`:53–57% idle,15–19% iowait y seis procesos bloqueados ajenos; nuestros tres hijos no estaban en D, su lectura física era cero, RSS conjunto≈80MiB y reserva de disco intacta. No se atribuye el iowait ajeno a estas campañas ni se intervienen procesos ajenos.
 
 Se autoriza prospectivamente afinidad agregada0–5 (seis cores), conservando **tres jobs totales**, GOMAXPROCS4 por proceso, mismos builds/inputs y todos los límites de memoria/disco/trazas. Aplicación en threads propios sin reinicios, con recibo antes/después y medición posterior; volver a0–3 si aparece presión relevante. Esto no es un benchmark de velocidad ni una expansión inferida sólo de las24CPU del host. Las duraciones de pared se conservan como datos de ejecución bajo condiciones distintas, sin compararlas como mejora de performance.
+
+### Cuarta campaña completa; retiro3000 comienza físicamente
+
+Controlador `26f3459c-final-progress.json` acredita K04r2300 COMPLETE, exit0, digests y contabilidad conciliados, wall2332,11s. Censo preliminar del integrador (`c3-K04-r2300-summary.json`):34 operaciones con fills frente1 histórica; verificación independiente pendiente, no elevar todavía esta fila a VERIFIED. K05r2300 y K01r3000 están ejecutándose. El nuevo hijo K01r3000 tiene todos sus threads en0–5 según `future-campaign-affinity-readback.json`; mismo binario/plan sellado. Retiro3000 tiene ejecución propia, no se infiere desde2300.
+
+Medición posterior al cambio de afinidad (`cpu-budget-6cores-measurement.json`): tres hijos consumen4,518 cores agregados en45,004s, RSS conjunto≈70MiB, ninguno en D, lectura física delta0 y escrituras pequeñas. Host42% idle/17% iowait, sin swapin/out, disco libre14,702GB. Sin presión propia o degradación de reserva observada; se conserva presupuesto seis cores/tres jobs. La configuración efectiva por threads, con override fechado, gobierna sobre las plantillas históricas que aún dicen0–3.
 
 ## Fuentes
 
