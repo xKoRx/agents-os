@@ -43,6 +43,8 @@ tags:
 
 ## Validación
 
+- Cierre causal posterior a última entrada K04/K05:500=1ocupado+499MM Q0 y494MM Q0. Informe incorpora pérdidas unitarias, R efectivo y ejemplo mínimo K05 con autoridad diaria contemporánea; no compara extremos de distintas horas ni extiende propuesta EOD estructural. Fuente gzip completa leída mediante proyección de campos.
+
 - Corte6/10 C4: los cinco retiro2300 y K01 retiro3000 con recibos independientes completos. Tabla before/after canónica:0/18/7/1/6→19/24/14/34/25 operaciones; particiones755, órdenes/fills/caja separadas. CONTROL actualizado, cuatro configuraciones pendientes y reducción transitoria de concurrencia documentadas. Fuente física `final-T1-receipt-readback-final-88ed70d1.json`; no se deduplican retiros.
 
 - Corte3/10: K01 r2300 independiente PASS0→19 operaciones/750MM. Informe y CONTROL actualizados; readback de autoridad monetaria/particiones y619/658/655 reevaluaciones posteriores a límites persistentes EOD en K01/K02/K03. Se mantiene separada la propuesta no aplicada de selección; mínimo19,98 limitado al modelo prefill vigente.
