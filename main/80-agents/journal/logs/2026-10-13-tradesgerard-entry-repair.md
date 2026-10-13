@@ -4,8 +4,8 @@ schema_version: 1
 scope: session
 created: "2026-10-13"
 updated: "2026-10-13"
-area:
-project:
+area: "[[Echo]]"
+project: "[[Echo Futures]]"
 application:
 entities: []
 related: []
@@ -24,35 +24,31 @@ tags:
 
 # 2026-10-13-tradesgerard-entry-repair
 
-%% Routing: area/project/application/entities/related usan links canónicos. Aliases son variantes humanas; tags/paths usan slugs. %%
-
 ## Cambio
 
-- **Tipo:** created / updated / deleted / conflict-resolution
-- **Archivo(s):**
-  - 
+- Creado [[TRADESGERARD-ENTRY-REPAIR]] y actualizado el control canónico para el mandato de reparación KISS-1.
 
 ## Motivo
 
-- 
+- Preservar la evidencia histórica y separar corrección funcional de ejecución COMPLETE y rentabilidad.
 
 ## Fuentes usadas
 
-- 
+- Mandato Owner2026-10-13, fuentes TradesGerard y comprobación local de Git/binario B.
 
 ## Resolución aplicada
 
-- 
+- Informe único materializado; dos TOP independientes en carriles separados; sin cambios de producto del manager.
 
 ## Validación
 
-- 
+- Identidad B fuente/binario comprobada; contenido y lint se verifican tras cada hito. No se atribuye push sin comprobación remota.
 
 ## Compartibilidad
 
-- **Scope:** local / team
+- **Scope:** local
 - **Redacción revisada:** sin identidad, paths locales, memoria interna ni secretos
 
 ## Rollback
 
-- 
+- Revertir sólo el delta documental propio si se requiere, preservando históricos y cambios concurrentes. No hay rollback de producto ejecutado por este manager.
