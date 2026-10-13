@@ -296,6 +296,10 @@ La reproducción pública independiente de dos días (`verifier/turn-order-C2-re
 
 El pago de B se solicita17sep y acredita24sep; C2 lo solicita25sep, aprueba28sep y programa procesamiento7oct/crédito8oct, fuera del horizonte2oct. La relación causal completa de ese retraso con V-F02 queda pendiente del rerun corregido: no se altera el assert CREDITED ni se extiende el tape. C2 pasa a diagnóstico supersedido; se ordenó guardar/readback y drenar su K01 condicional y controlador pausado sin admitir las otras nueve campañas. Nuevo freeze C3, cobertura del delta y verificación independiente todavía pendientes.
 
+Actualización V-F02: el integrador añadió estado explícito de turno activo en Campaign; una transición real fuera de ELIGIBLE termina el turno y la mera reanudación no lo restablece. Compra/selección válida lo inician. La reproducción pública de dos días pasa sobre árbol C3 en desarrollo (`implementer/evidence/c3-turn-green.log`,1,59s); no es aún freeze ni validación de los cuatro pagos. Manager inspeccionó el delta. El fixture unitario de vencimiento pedía selección un minuto por delante del frontier/reloj sin avanzar RunState; se autorizó alinear ambos en el instante exacto, preservando asserts de saldo/piso/cuenta y el negativo de selección futura pública. No se debilita el guard de selección físicamente drenada.
+
+Drenaje C2 acreditado en `implementer/evidence/c2-supersession.json`: hijo financiero SIGTERM, exit2, recibo FAILED y primera causa `context canceled`; controlador detenido terminado sólo después de drenar el hijo, exit137. Manager comprobó los tres PID ausentes. Se conserva el estado inicial del controlador y el final; las otras nueve configuraciones no se ejecutaron. No hay campañas C2 activas ni resultados parciales presentados como COMPLETE.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
