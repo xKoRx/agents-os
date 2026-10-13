@@ -528,6 +528,10 @@ Cotejo K05 posterior PASS:214 registros legacy íntegros, cero diferencias. `ver
 
 La tabla describe disposiciones reales, no fills contrafactuales. Las41 pausas son legítimas para esa cuenta y la compra global se adjudica por separado. `verifier/first-admit-reject-before-observed.json` conserva el primer rechazo y admisión real de cada perfil con snapshot MM; K01 no tiene admisión. Prueba de equivalencia de pares históricos enlaza estos cinco replays2300 con ambos retiros antiguos; las diez campañas corregidas sí requieren ejecuciones propias.
 
+`verifier/baseline-observed-causes-total.json` concilia los cinco universos:3.775 oportunidades =169 MM+3.532 owner abierto flat+15 fronteras de pausa vencida+41 pausas vigentes+18 ocupados. Dentro de los169 MM hay137 rechazos, enlazados a274 en diez configuraciones históricas. No se suman latch y lifecycle como dos pérdidas del mismo cruce ni se confunden169 materializaciones con155 drafts NewCycle.
+
+Continuidad operativa: después de vet se observó ausencia de procesos propios y ningún inicio físico de CLI durante varios avisos. Manager interrumpió y reanudó el turno del mismo integrador desde su estado persistido, sin crear otro especialista ni modificar fuente. Siguiente acción ordenada: CLI, freeze/build, gate independiente exacto. No se registra ese estancamiento de coordinación como fallo de producto ni como una prueba ejecutada.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
