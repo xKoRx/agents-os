@@ -288,6 +288,14 @@ El aislado `TestPlatformCampaign_PublicProofPassFundingAndCashCredit` pasó33,44
 
 Manager pausa nuevas admisiones del controlador final mientras se reproduce con salida persistente. K01 C2 ya iniciado puede seguir como diagnóstico condicional; no se abrirán K02–K05/otros retiros hasta adjudicar. Hipótesis a falsificar: tras pausa/fin de sesión, selectTurn reanuda cuentas y podría mantener una posterior porque vuelve ELIGIBLE antes de revisar prioridad de creación. El contrato conserva turno sólo hasta pausa/fin de sesión y exige orden de creación; esto no autoriza rotar después de cada TP. Todavía no hay primera divergencia física acreditada para esa hipótesis. El fixture de tres ciclos diarios (10:01/10:11/10:21) y pausa EVAL870 hace relevante la interacción multicuenta antes ausente en V-F01 de una sola cuenta.
 
+### V-F02 confirmado: reanudación revive un turno terminado
+
+Falsificación independiente con salida durable: el mismo subcaso2300 y horizonte2oct pasa en B (`verifier/payout-B-2300.log`,19,099s) y falla en C2 (`payout-C2-2300.log`,18,366s), preservando todos los asserts y valores. Primera divergencia contractual9sep14:01Z: ambas cuentas reanudaron14:00Z, están físicamente flat y elegibles, pero Campaign selecciona account/2, creada8sep14:21, antes que fx-acct-1, creada8sep14:01. El turno anterior terminó por PAUSED_SESSION; reanudar su estado no debe revivir su propiedad del turno.
+
+La reproducción pública independiente de dos días (`verifier/turn-order-C2-red.log`,1,722s) falla exactamente al exigir fx-acct-1 en la primera entrada del segundo día. Sus seis materializaciones/dos cuentas y la conservación de turno entre TP del primer día sí cumplen. Se adjudica V-F02 como defecto funcional de Campaign; el manager autoriza reparación mínima por el integrador, conservando turno entre trades sin pausa y sin mover relojes, saldos ni reglas.
+
+El pago de B se solicita17sep y acredita24sep; C2 lo solicita25sep, aprueba28sep y programa procesamiento7oct/crédito8oct, fuera del horizonte2oct. La relación causal completa de ese retraso con V-F02 queda pendiente del rerun corregido: no se altera el assert CREDITED ni se extiende el tape. C2 pasa a diagnóstico supersedido; se ordenó guardar/readback y drenar su K01 condicional y controlador pausado sin admitir las otras nueve campañas. Nuevo freeze C3, cobertura del delta y verificación independiente todavía pendientes.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
