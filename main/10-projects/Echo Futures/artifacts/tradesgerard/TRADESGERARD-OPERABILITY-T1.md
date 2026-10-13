@@ -16,7 +16,7 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **O8_RERUN_RUNNING, 1/10 completa y auditada**. O8 corrigió el bloqueo efectivo y pasó verificación independiente; se relanzaron las diez configuraciones. O7 conserva sus observaciones AFFECTED fuera del ranking definitivo. No es aceptación final del Owner.
+Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **O8_RERUN_RUNNING, 2/10 completas y auditadas**. O8 corrigió el bloqueo efectivo y pasó verificación independiente; se relanzaron las diez configuraciones. O7 conserva sus observaciones AFFECTED fuera del ranking definitivo. No es aceptación final del Owner.
 
 ## Contenido
 
@@ -27,6 +27,24 @@ Primer resultado corregido terminado2026-10-13T23:47:54Z y auditado independient
 | Configuración | Base / pasan filtro | Ocupadas / materializadas | Operaciones / días con entrada | Fallback / Q0 / UNKNOWN | Compradas / fallidas / retiradas / pasadas | Solicitudes / créditos | Cobrado neto / costos de caja | Caja inicial / mínima / final |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | F0–K01–r2300 O8 | 755 / 755 | 36 / 719 | 719 / 31 | 550 / 0 / 0 | 15 / 0 / 13 / 0 | 0 / 0 | 0 / 1800 | 5000 / 3200 / 3200 |
+| F0–K02–r2300 O8 | 755 / 755 | 77 / 618 | 618 / 31 | 215 / 0 / 0 | 29 / 0 / 26 / 4 | 0 / 0 | 0 / 3480 | 5000 / 1520 / 1520 |
+
+K02 agrega60 oportunidades no materializadas por `PURCHASE_EVALUATION_SLOTS_FULL`: el censo es755=77ocupadas+618operaciones+60sin plaza. Auditoría de cada rechazo: cinco o más cuentas EVALUATION conservaban plaza y ninguna era ELIGIBLE en ese instante; eran pausas temporales, no cuentas que debieran retirarse por ruina EOD. No comprar sobre el cupo no es un fallo técnico. Tres cuentas quedan preservadas y pausadas al horizonte; no hay pérdida oficial de cuenta ni pagos pendientes.
+
+K02 aprobó cuatro evaluaciones distintas, con una sola transición por cuenta EVALUATION→PASS_REVIEW→FUNDING_INSTALL_PENDING→LIVESIM elegible. Las cuatro financiadas operaron y terminaron retiradas por margen EOD permanente insuficiente antes de alcanzar el objetivo de retiro. Sus máximos usan PnL realizado al cierre y cero inicial; no ganancias flotantes ni suma de fases:
+
+| Cuenta K02 | Operaciones LIVESIM | Máximo progreso realizado | Faltante a2300 en ese máximo | Estado terminal |
+|---|---:|---:|---:|---|
+| 3 | 6 | 510,04 | 1789,96 | RETIRED_UNTRADEABLE_BY_POLICY |
+| 15 | 54 | 1616,06 | 683,94 | RETIRED_UNTRADEABLE_BY_POLICY |
+| 17 | 4 | 0 | 2300 | RETIRED_UNTRADEABLE_BY_POLICY |
+| 21 | 28 | 1025,16 | 1274,84 | RETIRED_UNTRADEABLE_BY_POLICY |
+
+K02 se clasifica **ninguna útil en esta muestra**: cuatro pases, cero solicitudes/cobros y caja neta−3480. Son29 compras de120, sin renovaciones ni otros cargos de caja realizados. Ledger agregado−20685,06 separado de caja. Racha ganadora de campaña6/neto2435,14 y perdedora10/neto−4504,62, conservando rachas por cuenta/fase aparte.1236 registros de fill/1494 unidades corresponden a618 operaciones, no a1236 operaciones.
+
+El perfil preservado descuenta `first_payout_fee=139` y `provider_fee=50` al calcular el primer pago; no son deuda upfront al pasar. No hubo pago que generara esos cargos. Las cuatro LIVESIM terminan sin pending, gross_paid0/payouts0; `stow_fee_due=false`, `stow_charged=false`, `platform_charged=true` con PlatformFee0 del DESIGN_SCENARIO existente. StowFee0 también pertenece al escenario existente y no hubo STOW. No se borra una deuda de139 al retirar ni se considera ese importe crédito: el cargo condicional nunca se generó. Este reporte mantiene esos supuestos comerciales visibles, sin presentar los ceros del escenario como hechos universales.
+
+Prueba de pases/funding/plazas K02 `verifier/o8-K02-pass-funding-slot-proof.json`, SHA256 `e75bd84949d3195c879dacb056d2a68d75fbbf5d8c0eb62b67c61560de061b1d`. Auditoría `verifier/campaigns-T1-O8-second.json` SHA256 `5e57a30aed8f9dfea45ecc979434e603d7ea0d51f2a4918fc2bd5a184622a3fe`; métricas `verifier/campaign-metrics-T1-O8-second-v3.json.gz` SHA256 `b19a9ca848ea12e07d42934700064940dabe10e8af4f59403c4de39d6bd10067`; recibo `verifier/receipt-O8-K02-r2300-verified.json` SHA256 `6783264244698ab351d3be9ac7a5e48dbb450207bdedbaba70a37e686877405d`. Identidad de campaña `af6791b444ef08f959a7714ec3f94920f1fac5028f5dfce7cef8da6060a332d3`. Dos de40 configuraciones definitivas auditadas; continúan las restantes.
 
 Caja5000−15×120=3200: no renovaciones, activaciones ni otros cargos de caja en esta trayectoria. Ledger realizado de todas las cuentas−19075,18USD separado de caja; las comisiones ya incluidas no se descuentan de nuevo. Cuentas14/15 preservadas: PAUSED_DAILY_GOAL con saldo51130,16/remanente1869,84 y PAUSED_SESSION con saldo49250,06/remanente3749,94. No pagos pendientes. Cuenta14 tiene mayor día cerrado255,02 y actual/efectivo875,14; la elegibilidad usa el efectivo. La cuenta15 aún no tiene mayor día cerrado y termina con día actual−749,94. Terminal HORIZON_CENSORED, sin sumar residual nominal de prop a caja.
 
