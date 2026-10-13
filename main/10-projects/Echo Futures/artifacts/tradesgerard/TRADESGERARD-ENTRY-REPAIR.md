@@ -58,13 +58,15 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Falsificación exacta y cobertura | C3 exacto PASS independiente; bloques329/333 y AST259/263, procedencia de perfiles compatibles y ausencia de huecos de inventario comprobadas. |
 | Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
 | Sizing por perfil | Aritmética y primeras causas acreditadas; snapshots efectivos finales y tabla por cinco perfiles pendientes de campañas C3 y B observado. |
-| Comparación T1 final | 2/10 COMPLETE C3; K02 verificada, K01 en readback; K03/K04 RUNNING. B observado K01 RUNNING tras equivalencia física corta y de los pares de retiros históricos. |
+| Comparación T1 final | 2/10 COMPLETE C3 y verificadas: K01/K02r2300; K03/K04 RUNNING. B observado K01 RUNNING tras equivalencia física corta y de los pares de retiros históricos. |
 | Casos largos pertinentes | BTGS04 PASS C2 compatible, lifecycle y AllFourTargets PASS C3; V-F02 causal cerrado en pagos sin alterar oráculo. CLI singleton C3 PASS119,736s. |
 | Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
 
 ### Adjudicación
 
-Hechos confirmados: identidad física B, censo y contraste completo de indicadores/cruces, recuperación corta y cierre físico/rearme en C1. Hipótesis refutadas: no faltaban los cruces brutos de K y no era correcto explicar todo K01 por sizing del primer intento. Defectos corregidos en C1: ciclo diario que convierte nuevas oportunidades en gestión, permanencia de operaciones sin órdenes o ya flat, semilla/feedback ATR y warmup excesivo, veto por cuentas pausadas y compra inicial fuera de horario. El alcance de cada prueba y los negativos todavía pendientes constan abajo; no se extrapola un PASS corto a la campaña completa. Decisiones nuevas pendientes: ninguna; KISS-1 sigue vigente, sin variar R/T ni geometría, y design-2 es histórico.
+Hechos confirmados: identidad física B, censo y contraste completo de indicadores/cruces, recuperación corta y cierre físico/rearme, más campañas completas K01/K02 verificadas en C3. Hipótesis refutadas: no faltaban los cruces brutos de K y no era correcto explicar todo K01 por sizing del primer intento. Defectos corregidos: ciclo diario que convierte nuevas oportunidades en gestión, permanencia de operaciones sin órdenes o ya flat, semilla/feedback ATR y warmup excesivo, veto por cuentas pausadas y compra inicial fuera de horario; las fronteras de reanudación/turno V-F01/V-F02 también quedan corregidas en C3. Las ocho campañas restantes y el before observacional completo permanecen pendientes. Una nueva política para cuentas económicamente inviables por piso EOD se propone al final, sin aplicarse. KISS-1 sigue vigente, sin variar R/T ni geometría, y design-2 es histórico.
+
+Los apartados siguientes conservan la bitácora de hitos y sus pendientes **al momento de cada corte**. El estado actual lo gobiernan el resumen y la matriz anteriores; un PASS posterior no borra fallos ni intentos supersedidos.
 
 ### Censo independiente inicial — readback verificado
 
