@@ -260,6 +260,10 @@ Actualización de cobertura previa al freeze:320/325 sentencias de bloques afect
 
 Vet encontró avisos en tests heredados: literales FixtureSessionStep sin campos nombrados y llamada fmt.Sprint sin consumir resultado. Se verifica preexistencia en B; si el gate requiere vet limpio, el manager autoriza sólo corrección mecánica preservando llamadas, inputs y asserts, nunca flags para ocultar el aviso. Freeze/build final todavía pendientes. Tras gate exacto independiente, los largos pertinentes podrán solaparse con una campaña inmutable dentro del presupuesto; una segunda campaña sólo al liberar el carril Go. Cualquier nuevo defecto funcional que cambie source obliga nueva identidad y comparación correspondiente.
 
+### Freeze C2 comprobado por el manager
+
+Commit `63fb24996d422f3dfee28e706ad1528eb948bff8`, rama de reparación `codex/tradesgerard-entry-repair-20261013`, árbol limpio al readback. Binario `implementer/bin/echo-backtest-63fb2499`, SHA256 `8eff860eca8db7d2aaf84e40903b0de4e03f367aad798a79d2c371bf1ecf8f50`, Go1.27.1, metadata VCS del mismo commit y modified=false. Contiene V-F01, retención económica/estados/supresiones y regresiones independientes permanentes; B y C1 conservados. Los ajustes mecánicos de vet pasaron sus tests afectados (`c2-vet-mechanical-tests.log`,0,091s). El cotejo final independiente sobre este SHA/binario y la procedencia de perfiles PASS están en preparación; freeze no equivale todavía a gate final ni a diez campañas realizadas.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
