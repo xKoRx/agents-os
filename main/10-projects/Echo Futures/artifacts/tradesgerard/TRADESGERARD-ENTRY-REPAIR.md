@@ -548,6 +548,8 @@ Regresiones propias exactas PASS7,081s; seis tapes CLI públicos PASS (LONG/SHOR
 
 Antes de admitir campañas, el forecast detectó un margen insuficiente: durable postgate703.379.459 bytes; al incluir overhead real de resultados/planes además de trazas y20MB derivados, la previsión supera768MiB en aproximadamente7,8MB. No se lanzó una campaña bajo esa previsión. Se está midiendo retención gzip sin pérdida para **nuevos derivados**, con lectores/manifests resolubles; no se toca evidencia histórica, fuente, límites ni parámetros. El verificador además detectó que20MB de derivados sin compresión era insuficiente y lo rectificó antes de ejecutar. Comparación C4 aún0/10; reserva de disco8GiB y techo por lote256MiB preservados.
 
+Previsión corregida y medida: `verifier/C4-derived-gzip-budget-forecast.json` conserva todos los campos y cubre operaciones, oportunidades, autoridad monetaria, sizing, primeras admisiones/rechazos, cierres, cuenta/día y causalidad. Diez veces el máximo por tipo medido en referencias C3 gzip suma3.814.110 bytes; con50% de crecimiento y1MB de metadata da6.721.165. Se autoriza reserva10.000.000 bytes, incorporada en gates/controller, con medición por campaña y lectores `.json.gz`; ningún techo se amplía. Los doce planes C4 nuevos se compactaron conservando igualdad JSON exacta, ahorrando677.884 bytes, con hashes efectivos y paridad renovados (`c4-ten-plan-compaction.json`). El forecast de campañas usa el directorio completo máximo C3, no sólo su traza. Se habilita admisión cuando la medida global posterior a estas escrituras cumple los guards.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
