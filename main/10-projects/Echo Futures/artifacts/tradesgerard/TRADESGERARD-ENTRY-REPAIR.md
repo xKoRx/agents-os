@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS — C2 congelado en `63fb24996d422f3dfee28e706ad1528eb948bff8`, gate independiente funcional/oráculo/cobertura PASS sobre SHA/binario exactos, con defectos corregidos y regresiones permanentes. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero su defecto de compras hace que el largo sea sólo REFERENCE_ONLY; V-F01 queda cerrado en C2. Diez planes finales sellados; casos largos pertinentes y diez campañas definitivas pendientes (0/10). Todavía no corresponde CORRECTED_AND_VERIFIED de entrega completa. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
+IN_PROGRESS — C2 `63fb24996d422f3dfee28e706ad1528eb948bff8` queda supersedido como candidato final por V-F02: Campaign revive el turno de una cuenta posterior tras fin de sesión, incumpliendo orden de creación entre elegibles. Su gate acotado funcional/oráculo/cobertura pasó, pero el gate largo encontró esta secuencia multicuenta; C3 está en reparación y verificación. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero su defecto de compras hace que el largo sea sólo REFERENCE_ONLY; V-F01 queda cerrado en C2. Diez campañas definitivas pendientes (0/10); no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
 ### Identidades comprobadas por el manager
 
@@ -56,8 +56,8 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Falsificación exacta y cobertura | PASS C2 `63fb2499`; dos denominadores98%+, perfiles PASS compatibles, paridad offline y wiring compartido comprobados. |
 | Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
 | Sizing por perfil | Aritmética y primeras causas acreditadas; snapshots efectivos finales y tabla por cinco perfiles pendientes de campañas C2. |
-| Comparación T1 final | K01 C2 en ejecución condicional,0/10 completas; admisión de las otras nueve pausada por fallo del gate largo. Planes idénticos a B salvo identidad/build, sin deduplicar retiros. |
-| Casos largos pertinentes | BTGS04 y public lifecycle PASS; AllFourTargets FAIL (pago APPROVED frente CREDITED), causalidad en investigación. CLI singleton pendiente. |
+| Comparación T1 final | 0/10 finales. C2 supersedido por V-F02 y drenaje ordenado; nuevo freeze/planes C3 pendientes. Planes C2 idénticos a B salvo identidad/build, sin deduplicar retiros. |
+| Casos largos pertinentes | BTGS04 y public lifecycle PASS C2; AllFourTargets FAIL (pago APPROVED frente CREDITED). V-F02 reproducido; efecto completo del fix en pagos pendiente de rerun. CLI singleton pendiente. |
 | Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
 
 ### Adjudicación
