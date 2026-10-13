@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS — defectos funcionales reproducidos y corregidos en el candidato C1, con recuperación física corta; la falsificación independiente detectó además V-F01 en la reanudación de cuenta exactamente10:00NY, pendiente de corregir en C2. Censo completo:42969 barras,755 oportunidades NY; K01 recupera3 operaciones en la primera jornada frente a0. K01 largo C1 continúa como diagnóstico REFERENCE_ONLY; faltan corrección V-F01, pruebas negativas, cobertura del delta, integración permanente, freeze final C2 y diez campañas definitivas. Todavía no corresponde CORRECTED_AND_VERIFIED de entrega completa. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
+IN_PROGRESS — C2 congelado en `63fb24996d422f3dfee28e706ad1528eb948bff8`, con defectos funcionales corregidos, regresiones permanentes y V-F01 resuelto en pruebas previas al freeze. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero su defecto de compras hace que el largo sea sólo REFERENCE_ONLY. C2 debe superar gate independiente sobre SHA/binario exactos, procedencia/cotejo de cobertura, casos largos pertinentes y diez campañas definitivas (0/10). Todavía no corresponde CORRECTED_AND_VERIFIED de entrega completa. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
 ### Identidades comprobadas por el manager
 
