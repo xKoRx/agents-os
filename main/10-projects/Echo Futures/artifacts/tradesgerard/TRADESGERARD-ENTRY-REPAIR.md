@@ -23,7 +23,9 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS — C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; gate independiente exacto y CLI singleton PASS. Comparación final iniciada con K01r2300;0/10 completas al primer corte. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados por completar; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
+IN_PROGRESS — C3:2/10 campañas COMPLETE (K01/K02r2300), K02 verificada independientemente; K03/K04 en ejecución y B observado K01 en tercer slot serial. Entrega final todavía abierta.
+
+C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; gate independiente exacto y CLI singleton PASS. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados por completar; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
 ### Identidades comprobadas por el manager
 
@@ -56,7 +58,7 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Falsificación exacta y cobertura | C3 exacto PASS independiente; bloques329/333 y AST259/263, procedencia de perfiles compatibles y ausencia de huecos de inventario comprobadas. |
 | Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
 | Sizing por perfil | Aritmética y primeras causas acreditadas; snapshots efectivos finales y tabla por cinco perfiles pendientes de campañas C3 y B observado. |
-| Comparación T1 final | K01r2300 C3 RUNNING;0/10 finales al primer corte. C2 supersedido/drenado. Cinco B observados autorizados tras equivalencia histórica de ambos retiros. |
+| Comparación T1 final | 2/10 COMPLETE C3; K02 verificada, K01 en readback; K03/K04 RUNNING. B observado K01 RUNNING tras equivalencia física corta y de los pares de retiros históricos. |
 | Casos largos pertinentes | BTGS04 PASS C2 compatible, lifecycle y AllFourTargets PASS C3; V-F02 causal cerrado en pagos sin alterar oráculo. CLI singleton C3 PASS119,736s. |
 | Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
 
@@ -381,6 +383,14 @@ B observado intento2 compiló exit0, binario distinto SHA256 `0d3f09a7469b463d20
 K02r2300 terminó COMPLETE, exit0, conciliada y terminal HORIZON_CENSORED. Recibo `implementer/evidence/candidate-26f3459c-t1-K02-r2300/57339452370034ebbe8584c685ecbf1937dc430282bd973bc55f53b2c2624b59/receipt.json`; controlador verificó digests de result/economic. Manager leyó progreso y resultado: caja4400, traza6.463.050 bytes, wall1095,407s. No se interpreta aún su frecuencia/PnL sin extracción independiente de identidades, cuentas y horizonte. K01/K03 siguen RUNNING, cero fallos finales al corte.
 
 Durable agregado informado372.234.504 bytes y libre14,726GB. B observado K02 corto físico está ejecutándose para ampliar la equivalencia; sus cinco planes están preparados pero todavía no admitidos. Se prioriza readback independiente de K02 C3 para comprobar partición completa, sizing y métricas sin esperar las diez corridas.
+
+### K02 final verificada: recuperación18→53 operaciones
+
+`verifier/T1-K02-r2300-exact-receipt.json` leído: VERIFIED_ONE_OF_TEN, build/result/event digests exactos, horizonte íntegro31sesiones.755 cruces =53 admisiones con fills +696 rechazos de tamaño +6 cruces ocupados descartados sin backlog; cero UNKNOWN y cero snapshots económicos ausentes.749 materializaciones,53 operaciones agregadas,106 registros fill y112 unidades ejecutadas. El before comparable tiene18 operaciones: diferencia absoluta+35, sin cambiar parámetros. ATR máximo error2,13e−14 respecto del oráculo.
+
+Métricas independientes K02:12días con entrada, máximo16operaciones/día; duración de exposición mínima0,25s, mediana151,745s, máxima1294,895s; rachas4ganadoras/7perdedoras. Cuatro cuentas, dos FAILED_RULE y dos PAUSED_SESSION;4pausas por objetivo y71 de sesión; cero pases/pagos. Neto fills−1378,88, cuatro balances conciliados; caja4400=5000−4×120−renovación120. Queda por desarrollar la distribución económica de los696 rechazos: no se cierra la explicación con “sizing” genérico.
+
+K01 C3 también terminó COMPLETE, exit0 y traza5.569.417 bytes:2/10 completadas, readback independiente K01 en curso. K03/K04 activos. B observado K02 corto pasó comparación de13filas legacy incluyendo órdenes/fills, finanzas/MM/consumo/residuos; sidecar76eventos completo con23cruces/4transiciones y22 entregas a ciclo abierto sin exposición física. Identidad observacional validada. Se admitió un único B observado serial full5, K01 primero, bajo el tercer slot autorizado. Medición de tres procesos (`three-campaign-resource-snapshot.json`): afinidad0–3 en todos, RSS total≈64MiB, sin espera D, durable380.581.088 bytes y libres14.715.617.280 bytes; sin presión de recursos observada.
 
 ## Fuentes
 
