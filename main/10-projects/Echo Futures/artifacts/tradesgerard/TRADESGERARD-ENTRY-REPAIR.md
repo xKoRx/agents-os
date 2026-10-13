@@ -23,9 +23,9 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS / corrección parcial — C4 congelado `88ed70d1ff9910bb157f1c14c0fed1d2b8e7ec49`, binario `c8849bb6e5523e8625ead8282f0d97f98d8b02e14d72838e3c35de207c6bcd57`, gate independiente exacto PASS. Corrige V-F03 heredado de B/C3 además de los defectos anteriores. Comparación final: **3/10 COMPLETE y verificadas independientemente**, K01/K02/K03 r2300; K04/K05 r2300 y K01 r3000 continúan, cero fallos. Las diez configuraciones se admiten secuencialmente bajo guards y máximo tres simultáneas. Forecast global corregido cumple768MiB con nuevos derivados gzip íntegros; no se amplió el techo. B observado5/5 COMPLETE y drenado, equivalencia histórica íntegra independiente y censo cerrado. C3 supersedido: cinco r2300 COMPLETE de referencia, un r3000 cancelado/FAILED y cuatro no ejecutados.
+IN_PROGRESS / corrección parcial — C4 congelado `88ed70d1ff9910bb157f1c14c0fed1d2b8e7ec49`, binario `c8849bb6e5523e8625ead8282f0d97f98d8b02e14d72838e3c35de207c6bcd57`, gate independiente exacto PASS. Corrige V-F03 heredado de B/C3 además de los defectos anteriores. Comparación final: **6/10 COMPLETE y verificadas independientemente**: K01–K05 r2300 y K01 r3000. K02/K03 r3000 activos, K04/K05 r3000 pendientes, cero fallos. Las diez configuraciones se admiten secuencialmente bajo guards y máximo tres simultáneas. Forecast global corregido cumple768MiB con nuevos derivados gzip íntegros; no se amplió el techo. B observado5/5 COMPLETE y drenado, equivalencia histórica íntegra independiente y censo cerrado. C3 supersedido: cinco r2300 COMPLETE de referencia, un r3000 cancelado/FAILED y cuatro no ejecutados.
 
-Censo completo: 42.969 barras, 755 oportunidades NY. Los cinco replays B observados están completos; quedan siete configuraciones C4 por completar y verificar. No corresponde todavía CORRECTED_AND_VERIFIED. C3 corrigió V-F02 de turnos y recuperó los cuatro pagos largos sin cambiar el oráculo, pero quedó supersedido por V-F03. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que ese largo sea sólo REFERENCE_ONLY. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
+Censo completo: 42.969 barras, 755 oportunidades NY. Los cinco replays B observados están completos; quedan cuatro configuraciones C4 por completar y verificar. No corresponde todavía CORRECTED_AND_VERIFIED. C3 corrigió V-F02 de turnos y recuperó los cuatro pagos largos sin cambiar el oráculo, pero quedó supersedido por V-F03. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que ese largo sea sólo REFERENCE_ONLY. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
 Primeras campañas finales verificadas: K02 pasa de18 a24 operaciones con fills (+6), K03 de7 a14 (+7), ambas r2300. Cada una conserva las755 identidades de cruce y los indicadores del oráculo; K02 particiona24 admisiones MM,727 rechazos de tamaño y4 cruces consumidos durante exposición; K03,14/735/6. No hay oportunidades ni cierres UNKNOWN. Los751 y749 snapshots MM respectivamente concuerdan en cuenta, revisión, tiempo y margen con la autoridad monetaria real. Recibos, digests, ledger, caja y sesiones verificados en `verifier/final-T1-receipt-readback-final-88ed70d1.json`; tabla parcial y límites en `verifier/compact-final-table-final-88ed70d1.json`. Este corte es VERIFIED_PARTIAL_NOT_GLOBAL, no aceptación de las diez.
 
@@ -36,6 +36,22 @@ K01 r2300 final verificado: **0→19 operaciones con fills**, 31→750 evaluacio
 La baja actividad posterior queda explicada en estas tres campañas, sin ciclo fantasma: K01 encuentra margen EOD15,28 desde21oct18:05Z y vuelve a evaluar619 cruces; K02,10,16 desde20oct15:01Z y658 cruces; K03,0,20 desde20oct15:29Z y655 cruces. Todos esos intentos posteriores dan Q0 por TG_SIZE_BELOW_MINIMUM con autoridad monetaria vigente; ninguno produce fill. Son primeras observaciones MM del límite, no una atribución al tick exacto en que apareció. Evidencia con ledger/pisos/revisión y cuenta: `verifier/persistent-sizing-floor-final-88ed70d1.json.gz`.
 
 El mínimo19,98 se refiere exclusivamente al modelo de geometría positiva de un tick antes del fill (5+4,98+10); no es un mínimo universal de bolsa. K02 conserva otras dos cuentas y K03 otra con margen final1100; el orden de selección contractual vuelve a la primera cuenta elegible. Saltar una cuenta cuyo margen EOD persistente ya no permite el mínimo del sizing vigente es la propuesta separada no aplicada, con efecto sobre selección/caja y sin prometer fills. Ampliar ATR no resuelve esta aritmética.
+
+### Comparación verificada de los cinco perfiles, retiro2300
+
+Cada fila conserva755 oportunidades NY del mismo mercado e historial. Antes = B físico observado y equivalente a sus resultados históricos; después = C4 exacto. Las operaciones cuentan ciclos con fills, no tickets. Las cantidades entre paréntesis son diferencias absolutas.
+
+| Perfil | Evaluaciones MM antes→después | Rechazos tamaño antes→después | Operaciones antes→después | Fills después | Órdenes después | Ocupados después | Caja antes→después |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| K01 |31→750|31→731|0→19 (+19)|38|46|5|4760→4760|
+| K02 |36→751|18→727|18→24 (+6)|48|61|4|4760→4280|
+| K03 |36→749|29→735|7→14 (+7)|28|36|6|4760→4520|
+| K04 |31→715|30→681|1→34 (+33)|68|91|40|4760→4760|
+| K05 |35→705|29→680|6→25 (+19)|50|71|50|4760→4520|
+
+Particiones exactas por perfil: admisiones MM con entrada + rechazos de tamaño + ocupado consumido =755. No hay UNKNOWN; los permisos Provider son permisos a Operation previos al MM y no equivalen a órdenes. Cuentas/caja y balances conciliados; las métricas de duración, rachas, día y autoridad monetaria permanecen en los derivados completos enlazados. K01 retiro3000 tiene ejecución y auditoría propias y confirma19 operaciones; no se infieren los cuatro retiros3000 aún pendientes. Fuente leída: `verifier/final-T1-receipt-readback-final-88ed70d1.json`, corte6/10.
+
+El controlador conserva el máximo autorizado de tres jobs, pero utiliza dos cuando la reserva transitoria de16MiB por traza más overhead no permite admitir el tercero bajo768MiB. No es fallo de campaña ni ampliación del presupuesto; pendientes continúan tras liberar reserva.
 
 ### Hipótesis D falsificada durante la revisión final
 
@@ -76,7 +92,7 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Falsificación exacta y cobertura | C4 exacto INDEPENDENT_PASS: regresiones propias, CLI, paridad offline; cobertura346/350 bloques afectados y267/271 inicios AST, cero sin perfil/mapear. Backtester C4 nuevo; SDK reutilizado por identidad de bytes. Comparación larga aún pendiente. |
 | Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
 | Sizing por perfil | Aritmética documentada; V-F03 detecta snapshots presentes pero incompletos. C4 deberá acreditar completitud/autoridad de margen y nuevas decisiones; tabla final pendiente. |
-| Comparación T1 final | C4:3/10 COMPLETE y verificadas independientemente (K01/K02/K03 r2300). C3 supersedido:5 COMPLETE referencia,1FAILED por cancelación,4 no ejecutadas. B observado5/5 COMPLETE y equivalencia íntegra independiente PASS; ambos retiros históricos enlazados por equivalencia comprobada. |
+| Comparación T1 final | C4:6/10 COMPLETE y verificadas independientemente (K01–K05 r2300 y K01 r3000). C3 supersedido:5 COMPLETE referencia,1FAILED por cancelación,4 no ejecutadas. B observado5/5 COMPLETE y equivalencia íntegra independiente PASS; ambos retiros históricos enlazados por equivalencia comprobada. |
 | Casos largos pertinentes | BTGS04 PASS C2 compatible, lifecycle y AllFourTargets PASS C3; V-F02 causal cerrado en pagos sin alterar oráculo. CLI singleton C3 PASS119,736s. |
 | Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
 
