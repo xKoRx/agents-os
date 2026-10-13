@@ -17,7 +17,7 @@ updated: "2026-10-13"
 
 ## Dictamen vigente
 
-**HOLD — candidato87e33b0c no habilita campañas.** Verificación independiente LOCAL, solicitado Sol6.1 y servido UNKNOWN. Source limpio87e33b0c333a1f2f4178dfefe06126d50691c7ad, binario físico verificado89b645fcc1ea7ca7a47ed75a5a88e05d4adbbd2d9a9d6e111d39d010b8afd89b. Los probes monetarios descubrieron un supuesto no acreditado en el mínimo económico: un tick extra llamado «nearest legal protection» no existe en validateSubmit del adapter. El implementador prepara corrección aislada; cobertura autor95,833% no reemplaza este finding ni admite T1.
+**HOLD vigente — candidatos87e33b0c y cb9cc0cd no habilitan campañas.** Verificación independiente LOCAL, solicitado Sol6.1 y servido UNKNOWN. Source limpio87e33b0c333a1f2f4178dfefe06126d50691c7ad, binario físico verificado89b645fcc1ea7ca7a47ed75a5a88e05d4adbbd2d9a9d6e111d39d010b8afd89b. Los probes monetarios descubrieron un supuesto no acreditado en el mínimo económico: un tick extra llamado «nearest legal protection» no existe en validateSubmit del adapter. El implementador prepara corrección aislada; cobertura autor95,833% no reemplaza este finding ni admite T1.
 
 ## Hallazgos y evidencia física
 
@@ -65,3 +65,17 @@ Corrección siguiente: source/build nuevo y descriptor coherente, paridad shared
 - `prospective-additional-interval.json`, SHA256 `66254848c8b0b9deb69876e069f91c7abe291d0410e088d7de55d088494d9ede`.
 
 Recibo independiente durable `work/tradesgerard-operability-20261013/verifier/independent-t0-hold-87e33b0c.json`: source/tree/bin metadata leídos físicamente, procesos propios drenados, derivados propios861.451 bytes al cierre de este corte.
+
+## Recheck C2 y RED causal compartido
+
+C2 congelado `cb9cc0cd997e78bbf7f777a5291482b6c9870bfd`, árbol limpio, binario SHA256 `34a300eecabf3baa55519fc6322cb1b524161c2c9471a8602742231c7e407a45` leído físicamente con vcs.modified=false. Mínimo V2 deriva2fees+2slip+spread estructural declarado, separa cotización corriente y retiro permanente, elimina el tick mínimo inventado y errores de overflow. El gate continúa HOLD por un segundo finding probado en el callback monetario.
+
+V-FILL-MARK: antes de un primer fill, el optimizador native OHLC conservaba la marca de ledger anterior porque aún estaba flat, aunque existía una orden working y un cursor nuevo. En la fixture LONG actual, primer fill100,75 a14:01:06,666Z; cotización causal mark100,25, exit-side100. Gross de posición esperado−15 y Cycle.net_liquidation esperado−24,98. Se publicaban gross380 y net370,02 por usar marca anterior119,75. TG con T25,28 interpreta objetivo alcanzado y cierra a siguiente cursor100 realizando−19,98, sin protección. SHORT demuestra el mismo defecto espejo. No es lookahead de un precio futuro; es valoración de exposición nueva con una marca previa superada por el cursor causal.
+
+Regresión independiente real `fill_mark_authority_regression_test.go`, SHA256 `dd2477a48d226134057a2b7762ce5fc26bb67093fc98c263d410a8401e8d3261`, compara Cycle.OpenMark y NetLiquidation con cotización disponible, fill real, metadata y costos pendientes. Política nueva OFF; R/T500 compatible con sizing C4, resolución real TGMM por fábrica pública. Misma prueba da RED C4 exacto88ed70d1 (exit1,2,027s) y C2 exactocb9 (exit1,2,051s), LONG/SHORT. Primera versión del harness llamó NewGerardMM legacy y no entró: ese intento se conserva como error propio de constructor, nunca como RED productivo. La regresión corregida usa ResolveMoneyManager y no cambia assert entre fuentes.
+
+La propiedad causal C4 queda AFFECTED por el defecto demostrado. No se extrapola desde estas cintas sintéticas que cada operación o campaña histórica C4 haya sufrido el caso ni que755 identidades cambien. Caja/ledger observados siguen siendo evidencia histórica de sus builds; la corrección upstream afectará las campañas nuevas y obliga identidad nueva. No se modifica matching del simulador ni se oculta el error con un guard en TG.
+
+Near-boundary E2E público ejecutó seis negativos R14,98/15,28/19,98 LONG/SHORT: cero fills, cero protección, sin retirar cuenta EOD viable por presupuesto pequeño. Positivos R24,98/25,28 detectaron la falsa salida inicial anterior; el segundo ciclo sí operó protegido. R500 deja una posición protegida al horizonte de la fixture REPORT_RESIDUALS, que no exige terminalidad: esa expectativa propia se corrigió explícitamente. Los inputs de ranking mantienen su EndPolicy. Se probará el mismo near-boundary E2E y ambos asserts monetarios sobre el corte causal corregido; no se suman probes aislados para declarar FULL E2E.
+
+Evidencia relativa a ARANEA_ROOT: `work/tradesgerard-operability-20261013/verifier/fill-authority-C4-red/`, `fill-authority-cb9-red/`, logs `fill-authority-C4-red-attempt2.log` y `fill-authority-cb9-red.log`, más `e2e-cb9cc0cd/*-trace.ndjson.gz` y resultados por caso. Fixtures fuera del ranking; procesos propios drenados antes de la nueva corrección aislada.

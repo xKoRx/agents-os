@@ -40,3 +40,7 @@ Readback, logs y hashes; ninguna campaña autorizada por coverage únicamente. P
 ## Rollback
 
 Reemplazar dictamen por delta sólo tras gate exacto nuevo; conservar evidencia histórica.
+
+## Delta recheck C2
+
+C2 mínimo V2 corregido, gate HOLD por V-FILL-MARK monetario causal. Misma regresión pública TG/Operation da RED sobre C4 y cb9; se preservan datos, errores propios del harness y límites de atribución. Corrección upstream aislada pendiente de recheck exacto.
