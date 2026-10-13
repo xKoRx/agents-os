@@ -110,6 +110,16 @@ El independiente ejecutó por CLI original dos reproducciones sintéticas espejo
 
 TCR `TestTG_CycleBookkeeping` aprobado: el cruce instantáneo consumido no conserva un ciclo técnico hastaEOD. Se mantiene respuesta conservadora ante estado ilegible y se exige probar que rollover/activación no relajan las barreras de exposición/finality de Operation.
 
+### Primera divergencia acreditada contra módulo público B
+
+El independiente condujo42969 barras originales por `tg.Evaluate` público y las comparó por identidad con su oráculo externo. `verifier/comparison-baseline.json` demuestra cero diferencias de dirección en755 oportunidades; sólo31 se marcan `NewCycle=true`. Primera diferencia absoluta de ATR:2025-10-13T18:11Z, línea física30570; oráculo ya sembrado8,7875 y B aún vacío. Primera diferencia de valor:18:12Z, esperado8,573125 y B8,75. Error absoluto máximo ATR en la muestra:1,35505950137 puntos. Se separan semilla desplazada y cuantización recurrente; no se atribuye toda la desviación a una sola causa.
+
+Primera diferencia de identidad de ciclo: SHORT2025-10-14T14:48Z, línea31747, K69,1052785069 correcto; B entrega `NewCycle=false`, `TG_SIG_B_CROSS_SAME_CYCLE`, ATR20,75 frente20,3033672470 independiente. La hipótesis de que faltaban los cruces brutos o cambiaban entre perfiles queda refutada en el contraste del módulo/mercado; el fallo de recuperación está downstream del cruce. La evolución bajo exposición completa aún se prueba con la cadena integrada.
+
+El probe independiente fuera de horario usa29 barras09:31–09:59NY y trade_start09:58NY, sin OPEN ni operaciones: B igualmente compra por120. Recibo `verifier/synthetic/outside-baseline-v3/c5162363206b6810cceccd934bdb462d2d4c2af99b79b19fb048e1b4bd6df357/receipt.json`. Se confirma defecto de compra inicial fuera de demanda/horario, distinto del veto por cuenta pausada.
+
+TCR ON_DEMAND aprobado para tres fixtures heredados: quiet(Session999 sin OPEN en2sesiones), cancelado antes del primer input y cierre de recorder inyectado sobre quiet. Expected caja5000/cuentas0, preservando primera causa, FAILED/reconciliación y asserts financieros de los fixtures con oportunidades reales. El nuevo seam de compra debe preservar el guard público de frontier y finality; el fallo de esa integración detectado durante desarrollo no es PASS.
+
 Sincronización observada de Agents-OS: commit automático `a58ec551187749deaa6d3f0566e1c556d9b456b8`, master remoto igual según `git ls-remote` antes de este delta. No fue un push ejecutado por el manager; los deltas posteriores requieren nueva comprobación.
 
 ## Fuentes
