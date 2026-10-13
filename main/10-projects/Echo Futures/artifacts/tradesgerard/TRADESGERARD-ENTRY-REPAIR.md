@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS / corrección parcial — V-F03 confirmado en B/C3: entrega ACCOUNT_DAY omite headroom vigente y su cache prevalece sobre Views. C3 supersedido y drenado: cinco r2300 COMPLETE de referencia, un r3000 cancelado/FAILED y cuatro no ejecutados. C4 aislado pasa completitud económica, paridad tipada Core, grupo causal Backtester y escenarios largos de pagos/ciclo de vida; freeze/gate independiente y comparación final siguen abiertos (0/10 C4). B observado tiene cuatro campañas completas y K05 en ejecución; K01/K02/K03 preservan equivalencia histórica exacta, K04 pendiente de ese cotejo.
+IN_PROGRESS / corrección parcial — V-F03 confirmado en B/C3: entrega ACCOUNT_DAY omite headroom vigente y su cache prevalece sobre Views. C3 supersedido y drenado: cinco r2300 COMPLETE de referencia, un r3000 cancelado/FAILED y cuatro no ejecutados. C4 aislado pasa completitud económica, paridad tipada Core, grupo causal Backtester, escenarios largos de pagos/ciclo de vida y regresión independiente de compra tras pausa; freeze/gate exacto y comparación final siguen abiertos (0/10 C4). B observado5/5 COMPLETE y drenado; los cinco perfiles preservan equivalencia histórica íntegra independiente y su censo está cerrado.
 
 C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; gate independiente exacto y CLI singleton PASS. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados por completar; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
@@ -60,7 +60,7 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Falsificación exacta y cobertura | Gates acotados C3 PASS, pero V-F03 posterior impide aceptación global. C4 requiere gate exacto y cobertura Backtester nueva; SDK sólo reutilizable por identidad de bytes. |
 | Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
 | Sizing por perfil | Aritmética documentada; V-F03 detecta snapshots presentes pero incompletos. C4 deberá acreditar completitud/autoridad de margen y nuevas decisiones; tabla final pendiente. |
-| Comparación T1 final | C3 supersedido:5 COMPLETE referencia,1FAILED por cancelación,4 no ejecutadas. C4:0/10 finales. B observado K01/K02/K03 equivalencia full PASS; K04 COMPLETE pendiente de cotejo, K05 RUNNING. |
+| Comparación T1 final | C3 supersedido:5 COMPLETE referencia,1FAILED por cancelación,4 no ejecutadas. C4:0/10 finales. B observado5/5 COMPLETE y equivalencia íntegra independiente PASS; ambos retiros históricos enlazados por equivalencia comprobada. |
 | Casos largos pertinentes | BTGS04 PASS C2 compatible, lifecycle y AllFourTargets PASS C3; V-F02 causal cerrado en pagos sin alterar oráculo. CLI singleton C3 PASS119,736s. |
 | Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
 
@@ -515,6 +515,18 @@ En B físico, el primer cruce histórico de esta pausa es21oct14:32Z: cuenta pau
 `implementer/evidence/baseline-observation-progress.json` registra5/5 COMPLETE, exit0 cada campaña, último fin2026-10-13T17:23:18Z. Manager comprobó ausencia física del controlador2772595 y último wrapper2799793/hijo2799794. K04 equivalencia independiente PASS:146 registros legacy y economía íntegra,755 cruces=31 MM+719 owner sin exposición+3 expiries+2 ocupados, sin causa UNKNOWN. K05 queda pendiente de cotejo independiente, no de ejecución. Los cinco replays conservan la fuente B y usan el overlay observacional identificado; sus resultados no sustituyen ni borran los originales.
 
 La causa histórica de compra pausada está materializada en `verifier/paused-purchase-first-historical-cause.json`, con los límites de reservas ya indicados. La regresión pública permanece separada de la atribución del cruce físico.
+
+Cotejo K05 posterior PASS:214 registros legacy íntegros, cero diferencias. `verifier/baseline-observed-census-full.json` cierra los cinco perfiles; cada fila suma755 oportunidades, sin desconocidos ni doble conteo:
+
+| Perfil B | Evaluados MM | Owner abierto sin exposición | Gate con pausa vencida | Pausa diaria vigente de cuenta | Ocupado físico/admisión |
+|---|---:|---:|---:|---:|---:|
+| K01 |31|721|3|0|0|
+| K02 |36|670|3|41|5|
+| K03 |36|711|3|0|5|
+| K04 |31|719|3|0|2|
+| K05 |35|711|3|0|6|
+
+La tabla describe disposiciones reales, no fills contrafactuales. Las41 pausas son legítimas para esa cuenta y la compra global se adjudica por separado. `verifier/first-admit-reject-before-observed.json` conserva el primer rechazo y admisión real de cada perfil con snapshot MM; K01 no tiene admisión. Prueba de equivalencia de pares históricos enlaza estos cinco replays2300 con ambos retiros antiguos; las diez campañas corregidas sí requieren ejecuciones propias.
 
 ## Fuentes
 
