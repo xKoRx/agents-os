@@ -41,14 +41,14 @@ A1=`btg-functional`; A2=`campaign/account/2`; fase EVALUATION en todas. Fechas U
 |8|A1 / ad-20251019|2025-10-20T15:01:01.09090909Z → 2025-10-20T15:15:40.137931034Z|255.02 / MM_CYCLE_TARGET_REACHED|1000/250|1620.14 → 1875.16|765.06|2526007/50 / 2481007/50; 1100|1124.84|
 |9|A1 / ad-20251019|2025-10-20T15:17:01.176470588Z → 2025-10-20T15:18:39.512195121Z|255.02 / MM_CYCLE_TARGET_REACHED|1000/250|1875.16 → 2130.18|765.06|2526007/50 / 2481007/50; 67751/50|869.82|
 |10|A1 / ad-20251019|2025-10-20T15:29:01.363636363Z → 2025-10-20T15:55:46.56Z|255.02 / MM_CYCLE_TARGET_REACHED|1000/250|2130.18 → 2385.20|765.06|2526007/50 / 2481007/50; 40251/25|614.80|
-|11|A1 / ad-20251019|2025-10-20T17:58:00.923076923Z → 2025-10-20T18:02:49.565217391Z|110.02 / MM_CYCLE_TARGET_REACHED|10494/25/5247/50|2385.20 → 2495.22|875.08|2526007/50 / 2481007/50; 93253/50|504.78|
+|11|A1 / ad-20251019|2025-10-20T17:58:00.923076923Z → 2025-10-20T18:02:49.565217391Z|110.02 / MM_CYCLE_TARGET_REACHED|(10494/25) / (5247/50)|2385.20 → 2495.22|875.08|2526007/50 / 2481007/50; 93253/50|504.78|
 |12|A2 / ad-20251019|2025-10-20T18:18:00.722891566Z → 2025-10-20T18:22:21.25Z|260.04 / MM_CYCLE_TARGET_REACHED|1000/250|0 → 260.04|260.04|48900 / 48000; 1100|2739.96|
 
 Cada fila tiene pase=no por target pendiente y retiro=no por fase EVALUATION. Solicitud de referencia1000/250 en todas; operación11 admite419,76/104,94 debido a remanente diario104,94 (870−765,06), conserva rho4. Su neto110,02 incluye ejecución/ticks causales; no se cambia retrospectivamente la solicitud. Operación7 admite1000/250 pero termina por NY con90,02 antes del objetivo.
 
 ## Conciliación posterior y límites
 
-Después de la racha, la pérdida13 en A2 es−999,96 y corta la campaña; pérdida14 en A1−999,98. No se usan esas pérdidas posteriores para explicar retrospectivamente el comienzo. Las25 filas completas, seis pérdidas, todas las órdenes, cuentas, días y transiciones están conservadas en el derivado. A1 final+460,46; A2 final−739,92; ledger global realizado−279,46. Balance nominal agregado99720,54 no es caja disponible.
+Después de la racha, la pérdida13 en A2 es−999,96 y corta la racha agregada; pérdida14 en A1−999,98. No se usan esas pérdidas posteriores para explicar retrospectivamente el comienzo. Las25 filas completas, seis pérdidas, todas las órdenes, cuentas, días y transiciones están conservadas en el derivado. A1 final+460,46; A2 final−739,92; ledger global realizado−279,46. Balance nominal agregado99720,54 no es caja disponible.
 
 Caja5000−2×120 compras−2×120 renovaciones=4520; cero créditos y pagos. Se conservan renovaciones13nov/19nov. Neto económico de caja−480; no se agrega el residual prop ni se debita otra vez la pérdida de trading. Los retiros2300/3000 C4 se verificaron separadamente y la equivalencia de pares está acreditada en C4; aquí el detalle físico principal es r3000.
 
