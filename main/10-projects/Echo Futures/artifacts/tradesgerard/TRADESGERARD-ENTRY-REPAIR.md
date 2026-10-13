@@ -308,6 +308,8 @@ El independiente confirmó que los recibos B permiten reconstruir órdenes/fills
 
 Se autoriza preparar observación equivalente sobre B separado e inmutable, preservando su fuente/binario originales y todas sus decisiones. Alcance propuesto: cinco replays completos, uno por perfil, sólo después de acreditar equivalencia física/económica entre los dos retiros históricos que permanecieron EVAL; si esa equivalencia no se demuestra se ampliará el alcance necesario. Esos cinco replays sustituyen los prefijos de sizing, evitando repetirlos. Las diez campañas corregidas siguen siendo individuales y obligatorias. Las primeras admisiones históricas detectadas son K02 14oct14:33Z, K03 20oct14:16Z, K04/K05 28oct14:28Z; K01 no tiene admisión en T1. Se requieren identidad del build observacional y equivalencia de resultados con B original antes de usar sus métricas como before.
 
+Equivalencia de retiros B comprobada (`verifier/baseline-pair-equivalence.json`): cinco pares PASS, cero diferencias; normalización limitada a referencias tipadas de IDs generados mediante biyección. Importes, timestamps, acciones y contadores se comparan sin normalizar; cuentas/caja/pagos/economía/MM/consumo/residuos coinciden, todas las cuentas permanecen EVAL y pagos0. Manager verificó los cinco resultados. Quedan autorizados cinco replays B observados enlazados a ambos retiros históricos; esto no permite deduplicar las diez ejecuciones corregidas.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
