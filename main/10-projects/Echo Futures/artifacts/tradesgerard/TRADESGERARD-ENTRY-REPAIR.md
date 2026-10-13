@@ -136,6 +136,14 @@ Ampliar un multiplicador de ATR aumenta distancia y costo por contrato y reduce 
 
 El independiente observó además K02: fill de SL14:35:26Z deja exposición flat, pero la operación sólo llega a TERMINAL en15:55NY; el nuevo SHORT14:48Z queda afectado. Regresión y finality del candidato siguen pendientes.
 
+### Avance del candidato, todavía sin certificación
+
+Los tests críticos del implementador pasaron en `implementer/evidence/critical-final.log` tras reparar el seam de compra: tg, tgmm, Operation y backtester afectados. Esto no sustituye la falsificación independiente ni una build congelada. La corrida race/cobertura afectada está en curso con fuente quieta; cutoff de compra y observabilidad extendida siguen en revisión antes del freeze.
+
+El independiente aisló el redondeo recurrente de ATR manteniendo la semilla tardía del baseline (`verifier/baseline-rounding-isolation.json`): a18:12Z,8,6375 sin cuantización frente8,75 real; error0,1125. El máximo1,3550595 persiste. Por tanto el defecto de feedback cuantizado no depende de adjudicar la convención del primer TR.
+
+Gates explícitos aún pendientes: build/commit final, pruebas independientes sobre ese delta, short físico corregido y recuperación K01/K02, partición completa de oportunidades, diez campañas, métricas de operación/cuenta/día y cobertura nueva compatible. No se certifica readiness ni resultado económico.
+
 Sincronización observada de Agents-OS: commit automático `a58ec551187749deaa6d3f0566e1c556d9b456b8`, master remoto igual según `git ls-remote` antes de este delta. No fue un push ejecutado por el manager; los deltas posteriores requieren nueva comprobación.
 
 ## Fuentes
