@@ -322,6 +322,20 @@ La duración de exposición se mide desde el primer fill hasta el último fill q
 
 Operaciones por día NY se atribuyen al primer fill de entrada y se separan de account_day_id contable. Los totales de campaña agregan todas las cuentas preservadas, nunca sólo la última summary. Si una campaña termina antes, su horizonte observado se separa del censo completo de755 oportunidades; no se le asignan eventos futuros.
 
+### Métricas históricas recuperadas sin reescribir T1
+
+Readback de `verifier/operations-baseline.json`; pares2300/3000 equivalentes según auditoría anterior. Duración de exposición en segundos, calculada de fills físicos; el archivo conserva cada fecha/operación y valores sin redondear.
+
+| Perfil | Operaciones con fill | Registros fill | Días NY con entrada | Mediana duración s | Máximo duración s | Máxima racha ganadora/perdedora |
+|---|---:|---:|---:|---:|---:|---:|
+| K01 |0|0|0|N/A|N/A|0/0|
+| K02 |18|36|14|259,430|1071,928|2/3|
+| K03 |7|14|5|468,220|800,267|3/1|
+| K04 |1|2|1|800,267|800,267|0/1|
+| K05 |6|12|2|1486,937|2432,534|2/1|
+
+La operación histórica no equivale a un ticket fill. Tampoco se afirma que B prohibiera absolutamente toda segunda operación diaria: K02 llegó a dos y K05 a tres en determinadas fechas. El replay observacional debe explicar esas materializaciones adicionales y el efecto concreto de NewCycle/gestión/finality, sin sustituir una cadena causal por la etiqueta “una operación al día”.
+
 ### Cobertura C3 y unidades de presupuesto
 
 Grupo explícito Campaign C3 con race PASS210,441s (`c3-platform-green.log`). Composición provisional: exclusivamente `c3-platform-green.cover` para backtester, más SDK C2 con bytes compatibles; ningún perfil backtester C2 ni remapeo de líneas. Inventario provisional B→C3:329/333 sentencias de bloques afectados=98,7988%, archivos ausentes0; cuatro retornos de error sin cobertura. El cotejo AST independiente y la identidad congelada siguen pendientes.
