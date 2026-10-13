@@ -21,6 +21,12 @@ Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOC
 
 ## Contenido
 
+### Candidato O8 — bloqueo de objetivo, verificación en curso
+
+Freeze físico comprobado por manager: source `d66bb56bccd053305c1c7dac0dc51aa292745504`, checkout causal limpio, binario `implementer/bin/echo-backtest-o8` SHA256 `a70ac11e481109b036f4a7d792c9594f8c8a73c97eb7c72cd35f2c0c025de8ce`; manifiesto `implementer/evidence/o8-freeze-manifest.json` con diez inputs. O8 reutiliza `TGMM.RequestedObjectiveBudget` tanto en entry del MM como en selección: misma autoridad para solicitud económica antes de headroom, sin fórmulas paralelas en driver. Añade pausa temporal por remanente diario insuficiente y bloqueo de objetivo de fase reevaluable por autoridad; conserva saldo, piso, plaza e historial. Un remanente de pase no recupera capacidad ficticia por reset diario.
+
+Verificador ejecutó el mismo RED O7 sobre O8 y negativos, PASS3,702s: diario9,60 libera turno, rho4/T9,60/R38,40 permanece operable, igualdad24,98 permanece admisible y pase9,60 no se retira ni se trata como pausa diaria, pero deja operar la sucesora. Un error inicial del overlay por tests duplicados tras promoción se conserva como HARNESS_ERROR, corregido reemplazando sólo los archivos de prueba existentes. Recheck SDK, cobertura, smoke e inputs exactos siguen pendientes de dictamen completo; todavía no habilita ranking. Cobertura del implementador53/54=98,1481% para deltaO7→O8, pendiente de recálculo independiente.
+
 ### Recepción y dispatch
 
 C4 source `88ed70d1ff9910bb157f1c14c0fed1d2b8e7ec49`, árbol limpio comprobado con Git; SHA256 físico del binario `c8849bb6e5523e8625ead8282f0d97f98d8b02e14d72838e3c35de207c6bcd57`. Checkout relativo a ARANEA_ROOT: `work/tradesgerard-entry-repair-20261013/implementer/echo-c4`. La evidencia final C4 acredita diez campañas completas; bitácoras anteriores no se convierten en pendientes actuales. C4 y sus resultados se preservan.
