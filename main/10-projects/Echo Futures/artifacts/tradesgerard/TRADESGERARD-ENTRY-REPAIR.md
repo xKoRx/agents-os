@@ -569,6 +569,8 @@ Controller `implementer/run_final_c4.py` iniciado, tool sesión86805; manager co
 
 `c4-ten-plan-normative-parity.json` acredita diez planes con mercado, corpus, perfil, ventanas y parámetros idénticos a B; únicamente campaign_id/model_identity/sourceSHA/binSHA excluidos del cotejo. No se deduplican2300/3000. Binario, inputs y fuente permanecen quietos. Los resultados se verificarán por identidad de cruce, autoridad monetaria completa y vigente, órdenes/fills/cierre físico, ledger y métricas; el gate corto no anticipa10/10.
 
+Chequeo temprano `verifier/C4-prefix-first-economics-readback.json`, **PREFIX_ONLY_NOT_CAMPAIGN_PASS**: primeras cuatro materializaciones K01/K02/K03 con margen presente y Fresh; primer snapshot14oct14:33Z conserva1100 en los tres. Primer ciclo con fills queda flat y se observa una nueva materialización posterior: K01 a18:34Z, K02 a14:48Z, K03 a16:25Z. K03 puede rechazar correctamente ese nuevo intento; rearme no implica admisión obligatoria. Sólo se leen filas completas, sin afirmar conciliación final ni extrapolar el censo. Verificador cotejó también los diez planes físicos en `C4-ten-plan-independent-readback.json`.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
