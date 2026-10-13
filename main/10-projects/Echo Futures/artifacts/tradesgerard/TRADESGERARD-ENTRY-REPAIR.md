@@ -46,15 +46,19 @@ Evidencia nueva externa al vault: `ARANEA_ROOT/work/tradesgerard-entry-repair-20
 
 Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB available; es observación puntual, no permiso de consumo. Reserva disco≥8GiB, scratch≤2GiB, durable≤256MiB/lote, logs/trazas≤16MiB; presupuesto agregado y picos pendientes de recibo. No borrar corpus, caches, builds o evidencia ajena.
 
-### Gates pendientes
+### Matriz de gates vigente
 
-- Censo independiente completo T1 y prefijo efectivo: OHLC/timestamps→K/ATR→identidad de cada cruce, sesiones/NY/exclusiones y tolerancia prospectiva.
-- Reproducción corta del primer rechazo K01 y cruces posteriores; cierre y nuevas señales K02/K03; primera divergencia causal.
-- Parche mínimo en propietarios, regresiones red/green, liberación tras decline/finality, evolución continua de indicadores, compra a demanda con cuenta pausada y negativos reales.
-- Observabilidad compacta: cruces, señales, supresiones, MM/Provider, órdenes, operaciones agregadas, fills, cierres, días, duración/rachas y economía conciliados. Reconciliar expresamente162/253 frente a137/274 históricos.
-- Sizing dimensional de primeros rechazos/admisiones por perfil, sin alterar R/T, instrumento, costos ni multiplicadores.
-- Comparación K01–K05 retiro2300; diez configuraciones corregidas con ambos retiros sobre T1 exacto, before reproducible y deltas absolutos.
-- Falsificación independiente del commit/build exactos, cobertura nueva≥95% con denominador compatible, paridad offline afectada, recursos y cleanup.
+| Gate | Estado y alcance |
+|---|---|
+| Identidad y conservación B | PASS: source/binario/corpus físicos comprobados y preservados. |
+| Censo OHLC→indicadores→cruces | PASS independiente C2:42969 barras/755 oportunidades, tolerancia prospectiva y correspondencia por identidad. |
+| Primera pérdida y regresiones | PASS: decline/rearme LONG y SHORT, SL/TP/finality, ocupado sin backlog, warmup y compra/pausa acreditados; fixtures permanentes. |
+| Falsificación exacta y cobertura | PASS C2 `63fb2499`; dos denominadores98%+, perfiles PASS compatibles, paridad offline y wiring compartido comprobados. |
+| Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
+| Sizing por perfil | Aritmética y primeras causas acreditadas; snapshots efectivos finales y tabla por cinco perfiles pendientes de campañas C2. |
+| Comparación T1 final | En ejecución,0/10 completas al arranque; diez planes idénticos a B salvo identidad/build. Sin deduplicar retiros. |
+| Casos largos pertinentes | BTGS04 collected/replacement PASS aislado; lifecycle targets/CLI singleton pendientes de sus recibos. |
+| Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
 
 ### Adjudicación
 
