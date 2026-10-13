@@ -16,9 +16,17 @@ updated: "2026-10-12"
 
 ## Propósito
 
-Fuente única de estado de la etapa A del mandato GOD LOCAL del Owner, recibido el 2026-10-12. Estado técnico: **READY_FOR_GLM**. Implementación y verificación independiente material de §10 completas sobre la identidad congelada de abajo. Aceptación final del Owner pendiente; manager y proyecto permanecen abiertos. GLM-5.3-Flash no fue lanzado.
+Fuente de estado de TradesGerard. Mandato vigente 2026-10-13: **OPERABILITY_T0_IN_PROGRESS**, recepción C4 y ejecución offline de mínimos económicos, retiro por política y filtros F0/F1/F2/F3. [[TRADESGERARD-OPERABILITY-T0]] conserva el delta y sus identidades. La etapa A y READY_FOR_GLM que aparecen más abajo son antecedentes históricos; no son un gate ni una acción pendiente del Owner. Aceptación final del Owner separada; manager y proyecto permanecen abiertos.
 
 ## Contenido
+
+### Mandato vigente — operabilidad, campañas y filtros KISS, 2026-10-13
+
+Dispatch LOCAL real: `/root/operability_integrator` único implementador/integrador y `/root/operability_verifier` independiente. Modelo solicitado en ambos `gpt-6.1-sol`; servido UNKNOWN. C4 preservado: source `88ed70d1ff9910bb157f1c14c0fed1d2b8e7ec49`, árbol limpio y binario `c8849bb6e5523e8625ead8282f0d97f98d8b02e14d72838e3c35de207c6bcd57` comprobados físicamente por el manager. Evidencia anterior sigue en `ARANEA_ROOT/work/tradesgerard-entry-repair-20261013`; delta nuevo en `ARANEA_ROOT/work/tradesgerard-operability-20261013`.
+
+Alcance autorizado sin aprobaciones intermedias repetidas: T0 reconstrucción K05 y operabilidad; T1 F0×10; T2 F1-TREND×10; T3 F2-SR×10; T4 F3-TREND-SR×10. Política de mínimo económico y retiro de cuentas común, SIG-B inmutable, SMA24 H1 cerrada y extremos de60velas1m previas exactamente como el mandato. Después, ampliar los dos pares activos mejor posicionados con ambos retiros si el corpus válido lo permite; intervalo nuevo intacto sólo si existe. No optimizar parámetros vecinos ni reactivar catálogo histórico. Las restricciones históricas de ATR rígido y conservación de cuentas quedan sustituidas prospectivamente, sin relabelar todos los rechazos C4 como bugs.
+
+Estado actual: recepción física C4 comprobada; racha12 y nueva implementación en ejecución, todavía sin gate nuevo ni campañas nuevas. El manager coordina/revisa/documenta y no escribe producto, tests ni scripts. Sólo offline: no LIVE, órdenes/compras/resets reales, deploy, servicios, ACL, merge o release productivo. No cierre/feedback del manager ni aceptación propia del gate final.
 
 ### Autoridad y límites
 
