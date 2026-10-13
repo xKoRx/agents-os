@@ -272,6 +272,12 @@ Cobertura independiente validada (`coverage-audit-63fb2499.json`, `coverage-ast-
 
 Diez planes C2 sellados preparados y jobs de build/preparación drenados. Manager comprobó K01r2300 B→C2: perfil, hash de corpus, config, warmup/trade_start/end, modelo de ejecución, rules, contratos/schedule e initial_state idénticos. Autorizado iniciar primera K01r2300 inmutable junto con casos largos aislados; máximo2 campañas al liberar Go, bajo presupuesto. Gate funcional/oráculo/cobertura C2 PASS; entrega global pendiente de casos largos y10/10 campañas con métricas independientes. Recursos al preparar:313MiB durable,15GiB libres.
 
+### Inicio físico de comparación C2
+
+Controlador `implementer/evidence/c2-final-progress.json`: K01r2300 RUNNING, PID/PGID2749037, build C2 inmutable;9 pendientes,0 completas/0 fallidas al primer readback. Afinidad CPU0–3 hace explícito el presupuesto de cuatro cores; archivos/recibos individuales por configuración y ningún retiro deduplicado. Libres14.952.042.496bytes en ese instante. La paridad normativa de los diez planes (`c2-ten-plan-normative-parity.json` y `c2-ten-plan-differences.json`) muestra únicamente diferencias en campaign_id, model_identity y commit/hash de build; todos los demás campos físicos/económicos del request son idénticos a B.
+
+Primer caso largo aislado PASS: `TestBTGS04CampaignCollectedTotals`,12,896s, conserva ambos subcasos collected_without_replacement y four_collected_then_replacement (`c2-btgs04-collected.log`). El timeout anterior del paquete no se borra ni transforma en PASS; este recibo nuevo resuelve ese caso sobre C2. Restantes largos siguen pendientes hasta sus resultados.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
