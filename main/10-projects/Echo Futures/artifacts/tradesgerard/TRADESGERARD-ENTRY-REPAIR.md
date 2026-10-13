@@ -96,6 +96,18 @@ T1 conserva estado de ejecución COMPLETE10/10 y contabilidad conciliada. Valide
 
 Observación adicional para adjudicar: el recibo corto baseline K01 registra compra inicial2025-10-14T13:30Z (09:30NY), anterior a la ventana10:00NY. Se pidió investigar la ruta de bootstrap y probar compra real a demanda/horario, sin dar por suficiente el test aislado de `canPurchase`.
 
+### Reproducción y corrección en curso
+
+El baseline corto K01 ejecutado con el binario B original terminó COMPLETE, intento1, recibo `implementer/evidence/baseline-short-K01/49fee730f22ec7d8545b21be2d3ddb9a9b88b079082fd66dcafcce8967e5c631/receipt.json`; resultado SHA256 `b07197241ce9e65dbe91f1c7e41e1de251936c3c5534a6391b738d15da843249`. Cero fills, una operación materializada y23 callbacks de gestión en esa jornada; caja4880. El baseline permanece sin cambios.
+
+Regresiones nuevas RED sobre fuente defectuosa (`implementer/evidence/red-tg.log`): `TestEntryRepairEveryZoneExitStartsDistinctOpportunity` falla porque la nueva salida de zona no abre nueva oportunidad; `TestEntryRepairWilderSeedAndReadiness` observa19 TR en la barra20. Esto prueba defectos de señal/preparación, aún pendiente del gate físico completo y contraste de ATR por barra.
+
+TCR adicional aprobado tras inspección: en `TestTG_CrossEmissionAndSingleConsumption`, el segundo LONG independiente debe marcar nueva oportunidad; se conservan dirección, cantidad de señales, stop y no duplicación. La supresión por operación ocupada pertenece a la capa que conoce exposición/finality y debe probar ausencia de backlog. El fixture heredado retrocede timestamps tras el segundo cruce; se autorizó corregir sólo su secuencia temporal con evidencia.
+
+La ruta `purchaseInitial()` fue confirmada como bypass que factura a trade_start antes de10NY; la corrección de compra inicial a demanda está en curso. Tests quiet sin oportunidad deben conservar caja5000; los que realmente compran mantienen su débito. Cualquier ajuste heredado adicional requiere TCR concreto y negativos, no sustitución global de expectativas.
+
+Sincronización observada de Agents-OS: commit automático `a58ec551187749deaa6d3f0566e1c556d9b456b8`, master remoto igual según `git ls-remote` antes de este delta. No fue un push ejecutado por el manager; los deltas posteriores requieren nueva comprobación.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
