@@ -240,6 +240,10 @@ La revisión previa al freeze identificó dos motivos de supresión todavía amb
 
 Falsificación independiente ejecutada sobre ese árbol todavía no congelado (`verifier/delta-C2-tests.log`, exit0,0,144s): ocho negativos de claims tanto antes como exactamente al vencimiento de pausa, caja/cupo/sesión y triple fallo de Finish partiendo de COMPLETE, con observador/cursor idempotentes. PASS de este delta; cobertura nueva y validación sobre SHA/binario final siguen pendientes. No equivale todavía a certificación C2 ni a las diez campañas.
 
+Primer fallo del grupo explícito posterior: panic en `TestCoveragePlatform_CreditRemainsPendingUntilClockAndStopsAtGrossCap`, fixture de reloj/owner puro sin RunState. El setter observacional nuevo intentaba usar recorder/coord ausente. Grupo drenado44s, NOT_PASS conservado. Manager adjudica preservar los asserts heredados y activar retención sólo cuando existe el Run real de campaña; no requerir runtime a una prueba pura de reloj. Corrección y prueba Record-only→FirstCause pendientes. Este fallo pertenece al delta de observabilidad nuevo, no explica las entradas históricas.
+
+Control de cobertura solicitado: inventario completo de archivos productivos cambiados e instrumentables, incluyendo observación/Finish/driver, y perfiles únicamente PASS de fuente compatible. El porcentaje de bloques Go afectados debe nombrar ese denominador; no se presentará como porcentaje exacto de líneas nuevas si no fue medido así. Archivos modificados sin bloques deben justificarse como declaraciones/comentarios o permanecer como cobertura faltante, nunca desaparecer del denominador en silencio.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
