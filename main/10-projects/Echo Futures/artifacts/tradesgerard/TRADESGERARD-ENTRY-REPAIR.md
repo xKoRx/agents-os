@@ -502,6 +502,8 @@ Cobertura de desarrollo `c4-coverage-delta-working.json`: CONSERVATIVE_DIFF_BLOC
 
 Primer AllFourTargets C4 terminó NOT_PASS67,522s porque el directorio propio VERIFIER_OUT no existía al guardar los resultados de los cuatro casos. Manager comprobó que `verifierSave` precede los asserts de conciliación/pagos: no pueden darse por pasados esos asserts. Se preservan log/perfil fallido y se corrige la preparación del directorio para un rerun acotado íntegro, sin cambiar producto ni expectativas. No se atribuye este error de ejecución a V-F03 ni se incluye su perfil en cobertura PASS.
 
+Rerun `c4-four-targets-attempt2.log` comprobado por manager: PASS62,528s, incluidos los cuatro objetivos heredados y sus asserts financieros íntegros. Los casos2250/2500 pertenecen exclusivamente a regresiones históricas; las configuraciones activas siguen2300/3000. Continúa lifecycle C4, con source quieta; freeze y verificación independiente exacta aún pendientes.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
