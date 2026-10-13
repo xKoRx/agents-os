@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS — C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; gate independiente exacto PASS, CLI singleton pendiente. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados pendientes; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
+IN_PROGRESS — C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; gate independiente exacto y CLI singleton PASS. Comparación final iniciada con K01r2300;0/10 completas al primer corte. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados por completar; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
 ### Identidades comprobadas por el manager
 
@@ -56,7 +56,7 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Falsificación exacta y cobertura | C3 exacto PASS independiente; bloques329/333 y AST259/263, procedencia de perfiles compatibles y ausencia de huecos de inventario comprobadas. |
 | Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
 | Sizing por perfil | Aritmética y primeras causas acreditadas; snapshots efectivos finales y tabla por cinco perfiles pendientes de campañas C3 y B observado. |
-| Comparación T1 final | 0/10 finales. C2 supersedido/drenado; C3 congelado y planes en preparación. Cinco B observados autorizados tras equivalencia histórica de ambos retiros. |
+| Comparación T1 final | K01r2300 C3 RUNNING;0/10 finales al primer corte. C2 supersedido/drenado. Cinco B observados autorizados tras equivalencia histórica de ambos retiros. |
 | Casos largos pertinentes | BTGS04 PASS C2 compatible, lifecycle y AllFourTargets PASS C3; V-F02 causal cerrado en pagos sin alterar oráculo. CLI singleton C3 PASS119,736s. |
 | Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
 
