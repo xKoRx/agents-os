@@ -49,7 +49,15 @@ Candidato congelado `87e33b0c333a1f2f4178dfefe06126d50691c7ad`, limpio comprobad
 
 Manager cuestionó que `MinimumExecutableRisk` añadiera un tick a los costos prefill y retirara una cuenta con margen15,28 al calcular19,98. Verificador inspeccionó el adapter: no acredita una distancia mínima de un tick desde mark. Ejemplo algebraico por falsar causalmente: fill LONG100,25, stop100, costos pendientes9,98 produce pérdida proyectada14,98≤15,28. Integrador reconoce que el tick adicional era un supuesto suyo, no restricción probada; se conserva el candidato y sus resultados como diagnóstico, sin campañas T1. Prueba Venue/Provider/reservas/fill/protección real y corrección acotada pendientes; no se modifica el simulador para sostener el supuesto. El mínimo definitivo deberá derivarse del contrato ejecutable y sus costos, sin hardcode ni afirmación de legalidad de broker.
 
-### Próximas tandas autorizadas
+### Adjudicación física del mínimo — V-MIN
+
+Pruebas independientes conservadas sobre87e33b0c: Venue12casos LONG/SHORT×offset0/1×precio posterior sin cambio/favorable/adverso, PASS0,007s; ProviderRisk+Ledger20casos, PASS0,639s. Con spread cero y slippage1tick por lado, salida estática neta−14,98; con offsets bid1/ask1 del descriptor C4,−24,98. No son garantías frente a movimiento/slippage. Con C4 y margen15,28, la equity tras entrada cae a47997,79 frente piso48000: breach antes de protección. Con19,98, entrada todavía válida pero salida estática deja47995 y breach. Igualdad24,98 termina exactamente en48000 y activa regla de piso hit-inclusive;25,28 deja48000,30. La igualdad de presupuesto admite riesgo de fallo al stop; no se la transforma automáticamente en cuenta permanentemente perdida si la orden y una oportunidad causal son válidas.
+
+Se rechaza el fundamento anterior tick-extra como mínimo legal demostrado. Integrador corrige desde el descriptor/costos estructurales, sin alterar el matching C4 ni endurecer el adapter. `implementer/echo-t0-corrected`, rama `codex/tradesgerard-operability-correction-20261013`, nace del candidato87; anterior quieto. El presupuesto nuevo único incluye ambos checkouts. Los probes Provider/Ledger no incluyen por sí solos Operation admission; la verificación final exigirá ese seam real además de los casos unitarios.
+
+La prueba independiente de retiro/demanda finalmente PASS0,949s tras usar `nextNYOpen` real; fallos previos eran fixtures fuera de sesión y quedan registrados, no bugs de producto. Claims y matriz cap4casos PASS. Evidencia relativa a nuevo root: `verifier/{venue-minimum-87e33b0c-attempt2.log,provider-minimum-87e33b0c.log,backtester-demand-87e33b0c-attempt6.log}`. Gate T1 continúa HOLD hasta freeze corregido y recheck exacto.
+
+### Tandas pendientes autorizadas
 
 T0 políticas y racha → T1 F0×10 → T2 F1×10 → T3 F2×10 → T4 F3×10 → clasificación de40configuraciones y ampliación disponible de hasta cuatro configuraciones activas. Hallazgos materiales se corrigen y las trayectorias afectadas se repiten. No hay garantía de cobro; cobro acreditado y caja neta se informan por separado.
 

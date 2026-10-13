@@ -4,11 +4,12 @@ schema_version: 1
 scope: session
 created: "2026-10-13"
 updated: "2026-10-13"
-area:
+area: "[[Echo]]"
 project:
 application:
 entities: []
-related: []
+related:
+  - "[[TRADESGERARD-OPERABILITY-T0-VERIFY]]"
 aliases: []
 confidence: verified
 source_session:
@@ -24,35 +25,18 @@ tags:
 
 # 2026-10-13-tradesgerard-operability-t0-verify
 
-%% Routing: area/project/application/entities/related usan links canónicos. Aliases son variantes humanas; tags/paths usan slugs. %%
-
 ## Cambio
 
-- **Tipo:** created / updated / deleted / conflict-resolution
-- **Archivo(s):**
-  - 
-
-## Motivo
-
-- 
+Creado informe independiente de T0 mediante materializador canónico, con finding mínimo estructural y HOLD para candidato87, probes monetarios y reserva adicional anterior al ranking.
 
 ## Fuentes usadas
 
-- 
-
-## Resolución aplicada
-
-- 
+Source87 exacto; Venue, Ledger y Provider reales con fixtures identificables; corpus C4 y NQZ6 físicos.
 
 ## Validación
 
-- 
-
-## Compartibilidad
-
-- **Scope:** local / team
-- **Redacción revisada:** sin identidad, paths locales, memoria interna ni secretos
+Readback, logs y hashes; ninguna campaña autorizada por coverage únicamente. Preserva errores de harness y source/producto sin modificación por verificador.
 
 ## Rollback
 
-- 
+Reemplazar dictamen por delta sólo tras gate exacto nuevo; conservar evidencia histórica.
