@@ -464,6 +464,16 @@ K01r3000 C3 quedó FAILED/context canceled a16:37:34Z, exit2; wrapper2785913/hij
 
 El mismo probe RED falla sobre **B original** en2,530s (`verifier/headroom-B-red.log`), por la misma pérdida de margen y ENTRY_SIZEDQ1. V-F03 es preexistente, no un efecto creado por la corrección C3. Censo inicial de cuatro campañas C3 completas:14 snapshots MATERIALIZED con HardMonetaryHeadroom ausente pese a existir objeto Economics: K01 uno/rechazado; K02 siete (seis sized/un rechazo); K03 cinco (uno sized/cuatro rechazos); K04 uno/rechazado. Que falte el margen demuestra entrega incompleta; no prueba que todas esas cantidades concretas excedieran el margen real. La atribución por fila debe contrastarlo con su piso/economía temporal. `missing_economic_snapshot=0` se rectifica como presencia del objeto, no completitud de sus campos requeridos.
 
+### C4: parche mínimo aislado y primer GREEN
+
+Checkout nuevo `implementer/echo-c4`, rama `codex/tradesgerard-entry-repair-c4-20261013`, desde C3. Manager inspeccionó el delta productivo: dos archivos,26 inserciones/43 eliminaciones en ese corte. `openAccountDay` proyecta primero el riesgo de la revisión actual y después entrega la economía; un constructor account-wide común sirve Views, entregas diarias y observaciones. Cycle se añade sólo en la observación específica de operación. No se añade un guard MM compensatorio ni se modifica R/T/ATR/límites. C3 permanece intacto.
+
+Implementador ejecutó la regresión independiente promovida: GREEN2,478s, Provider/Views/cache/MM conservan5,12 y TG_SIZE_BELOW_MINIMUM devuelve cero órdenes. Es un GREEN de desarrollo, todavía sin freeze/gate independiente C4 completo. El carril Go está coordinado y la cobertura Backtester se recalculará sobre las líneas C4, sin remapear perfiles C3.
+
+Inspección runtime: los constructores productivos de AccountEconomicsUpdate encontrados en v3 son el diario Backtester afectado y ohlc_driver que usa Views; Core decodifica el tipo compartido completo sin reconstruir ese literal. Se prepara prueba offline de ingreso tipado LIVE/BACKTEST con el mismo snapshot. El publicador externo LIVE no fue ejecutado ni certificado.
+
+C3 termina físicamente con cinco r2300 COMPLETE de referencia, K01r3000 FAILED/context canceled y cuatro r3000 no ejecutadas. Controlador drenado exit2, sin loop hold residual. K05 intermedio reporta25 operaciones frente6 históricas; no se presenta como comparación final reparada. B observado2/5 COMPLETE y K03 activo. Durable agregado con checkout C4≈650MB, bajo techo768MiB; builds/resultados B/C1/C2/C3 preservados.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
