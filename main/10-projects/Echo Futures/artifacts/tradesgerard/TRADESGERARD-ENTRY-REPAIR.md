@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS / corrección parcial — V-F03 confirmado en B/C3: entrega ACCOUNT_DAY omite headroom vigente y su cache prevalece sobre Views. C3 supersedido y drenado: cinco r2300 COMPLETE de referencia, un r3000 cancelado/FAILED y cuatro no ejecutados. C4 aislado tiene primer GREEN de desarrollo; freeze/gate independiente y comparación final siguen abiertos (0/10 C4). B observado continúa con dos campañas completas; K01/K02 preservan equivalencia histórica exacta.
+IN_PROGRESS / corrección parcial — V-F03 confirmado en B/C3: entrega ACCOUNT_DAY omite headroom vigente y su cache prevalece sobre Views. C3 supersedido y drenado: cinco r2300 COMPLETE de referencia, un r3000 cancelado/FAILED y cuatro no ejecutados. C4 aislado pasa completitud económica y paridad tipada Core de desarrollo; freeze/gate independiente y comparación final siguen abiertos (0/10 C4). B observado tiene tres campañas completas y K04 en ejecución; K01/K02 preservan equivalencia histórica exacta, K03 pendiente de ese cotejo.
 
 C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; gate independiente exacto y CLI singleton PASS. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados por completar; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
@@ -481,6 +481,16 @@ C3 termina físicamente con cinco r2300 COMPLETE de referencia, K01r3000 FAILED/
 Los44 gate se desglosan en tres fronteras10NY con pausa vencida antes de su refresh, y41 cruces durante PAUSED_DAILY_GOAL todavía vigente en esa cuenta (18 el21oct después de14:27Z;23 el29oct después de14:45Z). Esas pausas de cuenta son legítimas. El veto global a comprar otra cuenta es una cuestión distinta, que exige caja/cupo/sesión/finality acreditados; no se atribuyen automáticamente41 fills recuperados ni todos los gates al mismo bug. Un cruce admitido después de cambiar la trayectoria económica se etiqueta como tal.
 
 De las36 materializaciones B, ocho corresponden a drafts NewCycle=false: tres primeros intentos diarios desplazados después del gate10NY y cinco reentradas con owner ya TERMINAL/flat/sin claims en el mismo StrategyCycleSeq. La rama de admisión OPEN con owner terminal explica por qué B podía superar una operación diaria aun conservando el latch defectuoso; no existía una prohibición uniforme de un trade al día. Source, estados físicos y conteos se conservan separados de cualquier contrafactual.
+
+### C4: completitud y paridad offline en desarrollo
+
+Readback manager de `implementer/evidence/c4-economics-completeness-green.log`: tres pruebas PASS2,374s, incluida la regresión independiente promovida. Con Provider/Views/cache en5,12, MM rechaza TG_SIZE_BELOW_MINIMUM y emite cero órdenes. La prueba de perfil sin familia monetaria evita convertir un campo condicional en requisito universal. `c4-core-economics-parity-attempt4.log`: PASS0,027s para ingreso tipado LIVE/BACKTEST y TGMM real. Tres intentos anteriores del adaptador quedan documentados en `c4-core-fixture-attempts.json`; no son RED funcionales ni se borraron. Se ejecuta cobertura Backtester fresca sobre C4 antes del freeze; no se remapea cobertura C3.
+
+Auditoría independiente prospectiva `verifier/monetary-authority-final-26f3459c.json` cubre las cinco referencias C3:18 omisiones de margen (K01–K05:1/7/5/1/4). Los campos presentes concuerdan exactamente con ledger, base diaria, piso EOD vigente, cuenta, revisión y as-of aplicables. El gate C4 exigirá importe correcto además de presencia; una fecha previa sigue siendo válida si no cambió la autoridad económica. Omisión no equivale automáticamente a admisión inválida: el caso concreto K02 ya acreditado se mantiene separado.
+
+Agregados recuperados sin trazas nuevas: `verifier/operation-account-day-aggregates-baseline.json` para las diez B y `operation-account-day-aggregates-C3-reference.json` para las cinco referencias, con operaciones, ganancias/pérdidas/cero, neto, duración, rachas, fills/unidades por cuenta, fecha NY y día contable. Los motivos de cierre se auditan aparte; el rol EXIT no demuestra TP. C4 usará el mismo extractor.
+
+Durable medido662.673.149 bytes frente805.306.368 de techo global, incluidos ambos checkouts C3/C4; reserva de disco14,13GB. Se conservan fuentes/builds/evidencia y las nuevas filas machine-readable pueden serializarse compactas sin perder valores ni procedencia. Se medirá por campaña; la holgura es un presupuesto, no autorización para excederlo.
 
 ## Fuentes
 
