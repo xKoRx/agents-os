@@ -30,6 +30,8 @@ Estado actual: recepción física C4 comprobada; racha12 reconstruida en [[TRADE
 
 ### Autoridad y límites
 
+Actualización T0 vigente: candidato `87e33b0c333a1f2f4178dfefe06126d50691c7ad` queda **HOLD**, no habilita T1 por supuesto incorrectamente acreditado del mínimo de ejecución. [[TRADESGERARD-OPERABILITY-T0-VERIFY]] conserva la falsación independiente Venue/Provider/Ledger y los probes que sí pasan; sync master `fc00526d509217d41ba8fe5632b2513dae4ab336` comprobado. Corrección aislada en `ARANEA_ROOT/work/tradesgerard-operability-20261013/implementer/echo-t0-corrected`, único integrador, sin alterar el candidato anterior ni C4. Cobertura95,8333% del candidato no sustituye el gate físico. Campañas nuevas siguen0/40; no resultado económico negativo ni positivo atribuido a este bloqueo técnico.
+
 [[TRADESGERARD-MANDATE-SNAPSHOT]] autoriza desarrollo offline por TOPs, verificación independiente y correcciones. El manager coordinó, adjudicó evidencia y documentó; no escribió ni integró código, scripts de producto ni tests. Sin merge productivo, deploy, servicios, egress de trading, compras/resets reales ni reconstrucción de cuentas personales. BTG-PLAN, BTX-PERF y D1–D6 conservan sus gates históricos.
 
 Inputs preservados: caja inicial USD 5.000, compra individual USD 120 a demanda, reinversión sólo de efectivo acreditado, una cuenta y una operación agregada ejecutando, turno persistente. Evaluación con target ordinario USD 870 netos y pausa −USD 1.000 sin reset; fallo oficial previo prevalece. NY flat/cancelado al cierre. Funded no hereda 870 ni consistencia de evaluación. Retiros brutos 2.250/2.300/2.500/3.000. Sin límite vitalicio de 41 cuentas ni horizonte fijo de dos semanas.
