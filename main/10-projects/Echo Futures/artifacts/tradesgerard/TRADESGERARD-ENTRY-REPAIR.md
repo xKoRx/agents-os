@@ -462,6 +462,8 @@ RED independiente C3 (`verifier/headroom-C3-red.log`,2,325s): RunState real con 
 
 K01r3000 C3 quedó FAILED/context canceled a16:37:34Z, exit2; wrapper2785913/hijo2785914 ausentes comprobados por implementador (`c3-V-F03-supersession.json`). Cuatro retiros3000 restantes no ejecutados por supersesión. K05r2300 seguía en21nov al corte y se conserva para censo intermedio; ninguno sustituirá las diez ejecuciones de la versión reparada.
 
+El mismo probe RED falla sobre **B original** en2,530s (`verifier/headroom-B-red.log`), por la misma pérdida de margen y ENTRY_SIZEDQ1. V-F03 es preexistente, no un efecto creado por la corrección C3. Censo inicial de cuatro campañas C3 completas:14 snapshots MATERIALIZED con HardMonetaryHeadroom ausente pese a existir objeto Economics: K01 uno/rechazado; K02 siete (seis sized/un rechazo); K03 cinco (uno sized/cuatro rechazos); K04 uno/rechazado. Que falte el margen demuestra entrega incompleta; no prueba que todas esas cantidades concretas excedieran el margen real. La atribución por fila debe contrastarlo con su piso/economía temporal. `missing_economic_snapshot=0` se rectifica como presencia del objeto, no completitud de sus campos requeridos.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
