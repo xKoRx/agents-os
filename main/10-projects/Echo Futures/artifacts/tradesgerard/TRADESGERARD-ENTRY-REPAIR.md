@@ -430,6 +430,14 @@ Comparación causal K01 completa (`verifier/causal-full-B-vs-C3-K01-r2300.json`)
 
 Los735 rechazos K03 son55 a presupuesto de referencia,12 por remanente y668 por headroom (15 margen interno/653 Provider). Las14 admisiones se distribuyen11 referencia/1 remanente/2 headroom. Dos cuentas conservadas PAUSED_SESSION, una pausa DAILY_GOAL y61 SESSION; cero pases/cobros. Neto agregado−1624,72, caja4520=5000−dos compras120−dos renovaciones120. Se mantienen R/T500/(1000/3), fuente y ventana: más intentos no eliminan los límites ni garantizan PnL positivo.
 
+### Recursos: ampliación medida del presupuesto agregado
+
+Auditoría física de horario `verifier/physical-session-final-26f3459c.json`: las86 operaciones con fills de las tres configuraciones verificadas entran desde10NY y antes15:50, quedan flat en la misma fecha NY y antes15:55. Último cierre K03 a15:50:00,176991 es confirmación física posterior al acto de liquidación15:50; no es una nueva entrada ni overnight. No se certifica broker/runtime real.
+
+El techo previo de cuatro cores era decisión conservadora del manager, no una cuota externa demostrada. Readback `implementer/evidence/cpu-policy-readback.json`: README pide GOMAXPROCS4 por carril y contempla experimentos independientes con concurrencia medida; ancestros cgroup sin cuota CPU y cpuset0–23. Medición manager `vmstat 1 5`:53–57% idle,15–19% iowait y seis procesos bloqueados ajenos; nuestros tres hijos no estaban en D, su lectura física era cero, RSS conjunto≈80MiB y reserva de disco intacta. No se atribuye el iowait ajeno a estas campañas ni se intervienen procesos ajenos.
+
+Se autoriza prospectivamente afinidad agregada0–5 (seis cores), conservando **tres jobs totales**, GOMAXPROCS4 por proceso, mismos builds/inputs y todos los límites de memoria/disco/trazas. Aplicación en threads propios sin reinicios, con recibo antes/después y medición posterior; volver a0–3 si aparece presión relevante. Esto no es un benchmark de velocidad ni una expansión inferida sólo de las24CPU del host. Las duraciones de pared se conservan como datos de ejecución bajo condiciones distintas, sin compararlas como mejora de performance.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
