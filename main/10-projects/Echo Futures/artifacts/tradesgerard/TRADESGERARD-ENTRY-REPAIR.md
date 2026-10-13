@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS / corrección parcial — V-F03 confirmado en B/C3: entrega ACCOUNT_DAY omite headroom vigente y su cache prevalece sobre Views. C3 supersedido y drenado: cinco r2300 COMPLETE de referencia, un r3000 cancelado/FAILED y cuatro no ejecutados. C4 aislado pasa completitud económica y paridad tipada Core de desarrollo; freeze/gate independiente y comparación final siguen abiertos (0/10 C4). B observado tiene tres campañas completas y K04 en ejecución; K01/K02 preservan equivalencia histórica exacta, K03 pendiente de ese cotejo.
+IN_PROGRESS / corrección parcial — V-F03 confirmado en B/C3: entrega ACCOUNT_DAY omite headroom vigente y su cache prevalece sobre Views. C3 supersedido y drenado: cinco r2300 COMPLETE de referencia, un r3000 cancelado/FAILED y cuatro no ejecutados. C4 aislado pasa completitud económica, paridad tipada Core, grupo causal Backtester y escenarios largos de pagos/ciclo de vida; freeze/gate independiente y comparación final siguen abiertos (0/10 C4). B observado tiene cuatro campañas completas y K05 en ejecución; K01/K02/K03 preservan equivalencia histórica exacta, K04 pendiente de ese cotejo.
 
 C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; gate independiente exacto y CLI singleton PASS. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados por completar; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
@@ -60,7 +60,7 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Falsificación exacta y cobertura | Gates acotados C3 PASS, pero V-F03 posterior impide aceptación global. C4 requiere gate exacto y cobertura Backtester nueva; SDK sólo reutilizable por identidad de bytes. |
 | Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
 | Sizing por perfil | Aritmética documentada; V-F03 detecta snapshots presentes pero incompletos. C4 deberá acreditar completitud/autoridad de margen y nuevas decisiones; tabla final pendiente. |
-| Comparación T1 final | C3 supersedido:5 COMPLETE referencia,1FAILED por cancelación,4 no ejecutadas. C4:0/10 finales. B observado K01/K02 equivalencia full PASS; K03 COMPLETE pendiente de cotejo, K04 RUNNING. |
+| Comparación T1 final | C3 supersedido:5 COMPLETE referencia,1FAILED por cancelación,4 no ejecutadas. C4:0/10 finales. B observado K01/K02/K03 equivalencia full PASS; K04 COMPLETE pendiente de cotejo, K05 RUNNING. |
 | Casos largos pertinentes | BTGS04 PASS C2 compatible, lifecycle y AllFourTargets PASS C3; V-F02 causal cerrado en pagos sin alterar oráculo. CLI singleton C3 PASS119,736s. |
 | Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
 
@@ -502,7 +502,7 @@ Cobertura de desarrollo `c4-coverage-delta-working.json`: CONSERVATIVE_DIFF_BLOC
 
 Primer AllFourTargets C4 terminó NOT_PASS67,522s porque el directorio propio VERIFIER_OUT no existía al guardar los resultados de los cuatro casos. Manager comprobó que `verifierSave` precede los asserts de conciliación/pagos: no pueden darse por pasados esos asserts. Se preservan log/perfil fallido y se corrige la preparación del directorio para un rerun acotado íntegro, sin cambiar producto ni expectativas. No se atribuye este error de ejecución a V-F03 ni se incluye su perfil en cobertura PASS.
 
-Rerun `c4-four-targets-attempt2.log` comprobado por manager: PASS62,528s, incluidos los cuatro objetivos heredados y sus asserts financieros íntegros. Los casos2250/2500 pertenecen exclusivamente a regresiones históricas; las configuraciones activas siguen2300/3000. Continúa lifecycle C4, con source quieta; freeze y verificación independiente exacta aún pendientes.
+Rerun `c4-four-targets-attempt2.log` comprobado por manager: PASS62,528s, incluidos los cuatro objetivos heredados y sus asserts financieros íntegros. Los casos2250/2500 pertenecen exclusivamente a regresiones históricas; las configuraciones activas siguen2300/3000. `c4-lifecycle.log` PASS27,411s acredita pase, funding y crédito físico de caja del fixture original; no es un cobro de T1. Freeze y verificación independiente exacta aún pendientes.
 
 ## Fuentes
 
