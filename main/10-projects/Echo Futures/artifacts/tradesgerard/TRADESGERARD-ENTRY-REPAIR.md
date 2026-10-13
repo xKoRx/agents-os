@@ -376,6 +376,12 @@ El intento1 del observador quedó preservado íntegro en `verifier/baseline_obse
 
 B observado intento2 compiló exit0, binario distinto SHA256 `0d3f09a7469b463d20ca49cf9ea601b985ad8ce1ec69be42bef636fb8e7d502b`. Primera equivalencia corta independiente PASS (`verifier/baseline-observation-short-equivalence.json`), pero sólo cubre dos filas legacy de rechazo/ghost y ocho eventos sidecar, sin órdenes/fills. No basta para habilitar full5: se pidió repetir la jornada K02 histórica que sí contiene ejecución física y pausa, con comparación exacta. Los archivos de este build se identifican mediante manifest de overlay además de metadata B; B original sigue intacto.
 
+### Primera campaña final C3 completa:1/10
+
+K02r2300 terminó COMPLETE, exit0, conciliada y terminal HORIZON_CENSORED. Recibo `implementer/evidence/candidate-26f3459c-t1-K02-r2300/57339452370034ebbe8584c685ecbf1937dc430282bd973bc55f53b2c2624b59/receipt.json`; controlador verificó digests de result/economic. Manager leyó progreso y resultado: caja4400, traza6.463.050 bytes, wall1095,407s. No se interpreta aún su frecuencia/PnL sin extracción independiente de identidades, cuentas y horizonte. K01/K03 siguen RUNNING, cero fallos finales al corte.
+
+Durable agregado informado372.234.504 bytes y libre14,726GB. B observado K02 corto físico está ejecutándose para ampliar la equivalencia; sus cinco planes están preparados pero todavía no admitidos. Se prioriza readback independiente de K02 C3 para comprobar partición completa, sizing y métricas sin esperar las diez corridas.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
