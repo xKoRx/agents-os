@@ -180,6 +180,8 @@ La comparación diagnóstica C1 de cinco retiros2300 está en ejecución con bin
 
 Presupuesto agregado fijado prospectivamente por el manager: durable de la iniciativa≤768MiB, incluyendo checkout, builds, probes, inputs y evidencia en ambos carriles; scratch global≤2GiB separado. No reemplaza256MiB por lote,16MiB por traza/log ni reserva≥8GiB. Medición al fijarlo:270MiB total (checkout220MiB, evidencia implementador3MiB, binario16MiB, inputs2,4MiB, independiente30MiB), libres16.092.397.568bytes. Las carpetas nuevas no reinician el contador global. Caches/corpus/históricos ajenos permanecen intactos.
 
+La suite amplia C1 alcanzó el timeout global Go de10minutos en backtester, con378 tests en su selección y sin fallo de assert informado antes del timeout. Estaba ejecutando `TestBTGS04CampaignCollectedTotals` (~1minuto), subcaso `four_collected_then_replacement` (~1segundo), stack en ordenación de fuente sintética9700filas. Evidencia/stack: `implementer/evidence/candidate-ba047469-tests.log`. Estado NOT_PASS, nunca equivalente a378 tests aprobados. Cinco paquetes SDK completaron race PASS, pero la cobertura nueva final se recalculará exclusivamente con perfiles PASS compatibles C2. Se ejecutarán grupos causales acotados; collectedTotals/replacement sigue siendo relevante y no se exime por preexistencia. No se repite una escalera de timeouts sobre el mismo comando.
+
 Sincronización observada de Agents-OS: commit automático `a58ec551187749deaa6d3f0566e1c556d9b456b8`, master remoto igual según `git ls-remote` antes de este delta. No fue un push ejecutado por el manager; los deltas posteriores requieren nueva comprobación.
 
 ## Fuentes
