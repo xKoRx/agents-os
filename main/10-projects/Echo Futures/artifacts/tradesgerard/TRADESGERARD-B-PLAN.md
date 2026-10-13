@@ -54,8 +54,8 @@ Geometría: TP 1×ATR / SL ρ×ATR (ATR20 Wilder, estocástico lookback20 K lent
 |---|---|---|
 | T0 | Implementación `tg`+`tgmm`, pruebas críticas (oráculo indicadores, cruce/consumo único, warmup/gap/roll, sizing ATR/ρ, remanente 330 con Tref500, recorte proporcional, R/T congelados, cierre sesión, aislamiento, ambos retiros) + smoke real NQZ5 corto + recursos | COMPLETE — [[TRADESGERARD-B-T0]] (commit `67ec0099`, binario `60accecc…`, smoke reconciliado; T1 EN EJECUCIÓN) |
 | T1 | Validar cobertura de la ventana común más larga disponible (requisitos reales TradesGerard; all13 NOT_READY declarado), correr las 10 configuraciones sobre el mismo intervalo, campañas continuas | COMPLETE 10/10 conciliadas — [[TRADESGERARD-B-T1]]; ventana NQZ5 2025-10-13→11-25 validada (0 huecos); 0 cobros; binario `f00efd66…` (fix `10d406b3`) |
-| T1-L | Hasta 3 años sobre los 2 perfiles mejor posicionados por caja neta de T1 (AMBOS retiros, máx 4 configs; criterio fijado antes de ver resultados); tramo reservado fuera de muestra si existe | EN EJECUCIÓN — criterio frozen: caja empatada → ID estable → K01+K02 × 2 retiros sobre el tramo reservado validado 2025-11-30→2025-12-15 (11 sesiones; «hasta 3 años» imposible con este corpus, carencia declarada) |
-| I2 | PENDING_OWNER_RULE: X del add B2, rango a conservar, límite de repeticiones, criterio «no se confirma, salir»; BE +200/extensión 500 como salidas explícitas. No implementar sin decisión del Owner | BLOQUEADO |
+| T1-L | Hasta 3 años sobre los 2 perfiles mejor posicionados por caja neta de T1 (AMBOS retiros, máx 4 configs; criterio fijado antes de ver resultados); tramo reservado fuera de muestra si existe | COMPLETE 4/4 fuera de muestra — [[TRADESGERARD-B-T1L]] (2025-11-30→12-15; K01 0 ops; K02 −1.714,80; 0 cobros) |
+| I2 | PENDING_OWNER_RULE: X del add B2, rango a conservar, límite de repeticiones, criterio «no se confirma, salir»; BE +200/extensión 500 como salidas explícitas. No implementar sin decisión del Owner | BLOQUEADO — preguntas formuladas en [[TRADESGERARD-B-RESULTADO]] §Pendientes |
 
 ## Ventanas y corpus
 
