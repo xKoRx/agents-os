@@ -374,6 +374,8 @@ Precisiones independientes posteriores: los cuatro pagos C3 acreditan24sep14:00Z
 
 El intento1 del observador quedó preservado íntegro en `verifier/baseline_observation_failed_attempt1/`, incluidos manifest/shadows/helper/generador y hashes en preservation.json. El adaptador corregido retiene StrategyCycleSeq físico; NewCycle existe en el draft público, no en SignalDelivery/canonical, y su correlación desde `tg-baseline-bars.csv` deberá etiquetarse como tal, sin simular un campo observado. Los estados físicos before/after de owner/delivery gobiernan la atribución.
 
+B observado intento2 compiló exit0, binario distinto SHA256 `0d3f09a7469b463d20ca49cf9ea601b985ad8ce1ec69be42bef636fb8e7d502b`. Primera equivalencia corta independiente PASS (`verifier/baseline-observation-short-equivalence.json`), pero sólo cubre dos filas legacy de rechazo/ghost y ocho eventos sidecar, sin órdenes/fills. No basta para habilitar full5: se pidió repetir la jornada K02 histórica que sí contiene ejecución física y pausa, con comparación exacta. Los archivos de este build se identifican mediante manifest de overlay además de metadata B; B original sigue intacto.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
