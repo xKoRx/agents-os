@@ -496,6 +496,12 @@ Durable medido662.673.149 bytes frente805.306.368 de techo global, incluidos amb
 
 B observado K03: `verifier/baseline-observed-full-K03-equivalence.json` PASS,229 filas legacy cotejadas, cero diferencias;755 cruces y36 MM. Se acredita equivalencia de tres de cinco replays. C4 grupo causal Backtester PASS229,159s (`c4-platform-green.log`);45,6% es cobertura del paquete completo durante ese selector, no cobertura del delta. El cálculo nuevo≥95% y su procedencia permanecen pendientes. Readback de sincronización Agents-OS anterior a estas últimas líneas: master local limpio y remoto ambos `f6f44eb804c64b416abf887cfbb3aa3319a321b6`.
 
+### Gate C4 en curso: cobertura provisional y fallo de preparación
+
+Cobertura de desarrollo `c4-coverage-delta-working.json`: CONSERVATIVE_DIFF_BLOCKS_V1,346/350=98,8571%,15 archivos productivos cambiados y12 con bloques instrumentables, cero ausentes. Procedencia `c4-coverage-provenance-working.json`: SDK C2 PASS por identidad de bytes y Backtester C4 nuevo PASS; fuente aún WORKING_TREE_DIAGNOSTIC_ONLY, no aceptación de un SHA C4 congelado.
+
+Primer AllFourTargets C4 terminó NOT_PASS67,522s porque el directorio propio VERIFIER_OUT no existía al guardar los resultados de los cuatro casos. Manager comprobó que `verifierSave` precede los asserts de conciliación/pagos: no pueden darse por pasados esos asserts. Se preservan log/perfil fallido y se corrige la preparación del directorio para un rerun acotado íntegro, sin cambiar producto ni expectativas. No se atribuye este error de ejecución a V-F03 ni se incluye su perfil en cobertura PASS.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
