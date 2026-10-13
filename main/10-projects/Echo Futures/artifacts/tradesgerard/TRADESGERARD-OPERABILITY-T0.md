@@ -29,8 +29,6 @@ TOP LOCAL implementador único `/root/operability_integrator`; TOP LOCAL verific
 
 Nueva evidencia relativa a ARANEA_ROOT: `work/tradesgerard-operability-20261013/{implementer,verifier}`. CONTROL pertenece al manager; cada worker conserva un informe propio. Escrituras canónicas por materializador y sincronización separada de su mera existencia local.
 
-### Recursos y fronteras
-
 ### Hallazgo K05 entregado
 
 [[TRADESGERARD-OPERABILITY-K05-STREAK]] reconstruye doce operaciones desde C4 físico: sin pérdidas previas; once ganancias cuenta1=2495,22 y faltante504,78, una ganancia cuenta2=260,04. La racha agregada2755,26 cruza dos cuentas de evaluación; no existe pase/pago omitido en ese corte. El cambio proviene de pausa diaria y compra causal siguiente cruce. Caja4520 y neto de ledger−279,46 conciliados por separado. Readback manager y sync remoto `5ef845ce923d37e7025c506f54756f659663eba2`; la barrera TP económica postfill no retenida queda como límite de evidencia, sin inferirla del neto.
