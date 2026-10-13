@@ -81,6 +81,8 @@ Hechos confirmados: identidad física B, censo independiente completo, before ob
 
 Estos efectos no son sumables por separado: latch y finalización pueden afectar el mismo cruce; corregir selección cambia la trayectoria económica posterior. Los fixtures no se usan para fabricar fills en T1. Source C4 y regresiones permanentes están en `implementer/echo-c4` bajo el SHA congelado; los apartados de evidencia precisan cada before, test y límite.
 
+Índice independiente de los doce casos obligatorios: `verifier/mandate-12-evidence-matrix.json`, ligado a source/binario C4. Mapea rechazo LONG/SHORT, SL, TP bajo objetivo, ocupado sin backlog, parciales/cancel/tardíos, pausa/sesión, oráculo K01–K05, sizing330/headroom, compra pausada, métricas compactas y paridad offline a assets permanentes, hashes y recibos. Distingue ejecución exacta de reutilización SDK por bytes idénticos y deja la comprobación T1 pendiente donde corresponde. Negativos aislados que inyectan OwnerState/reservas se declaran como tales; el recorrido público positivo usa Run y fills físicos. Core conserva explícitamente su contexto/views simulados y admisión manual; ningún gate certifica broker ni publicador LIVE.
+
 Los apartados siguientes conservan la bitácora de hitos y sus pendientes **al momento de cada corte**. El estado actual lo gobiernan el resumen y la matriz anteriores; un PASS posterior no borra fallos ni intentos supersedidos.
 
 ### Censo independiente inicial — readback verificado
