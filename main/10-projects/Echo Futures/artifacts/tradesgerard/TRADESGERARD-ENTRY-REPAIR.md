@@ -282,6 +282,12 @@ Controlador `implementer/evidence/c2-final-progress.json`: K01r2300 RUNNING, PID
 
 Primer caso largo aislado PASS: `TestBTGS04CampaignCollectedTotals`,12,896s, conserva ambos subcasos collected_without_replacement y four_collected_then_replacement (`c2-btgs04-collected.log`). El timeout anterior del paquete no se borra ni transforma en PASS; este recibo nuevo resuelve ese caso sobre C2. Restantes largos siguen pendientes hasta sus resultados.
 
+### Nuevo fallo del gate largo: entrega todavía abierta
+
+El aislado `TestPlatformCampaign_PublicProofPassFundingAndCashCredit` pasó33,448s (`c2-platform-lifecycle.log`). En cambio `TestPlatformPublic_AllFourTargetsCreditWithoutDailyEvalCeiling` terminó con cuatro subcasos FAIL: esperaba primer pago CREDITED y observó APPROVED (`c2-all-four-targets.log`,80,49s según readback independiente). Este es fallo de assert real, distinto de los timeouts anteriores. No se reduce ni se alarga su fixture por conveniencia; tampoco se exime por posible preexistencia.
+
+Manager pausa nuevas admisiones del controlador final mientras se reproduce con salida persistente. K01 C2 ya iniciado puede seguir como diagnóstico condicional; no se abrirán K02–K05/otros retiros hasta adjudicar. Hipótesis a falsificar: tras pausa/fin de sesión, selectTurn reanuda cuentas y podría mantener una posterior porque vuelve ELIGIBLE antes de revisar prioridad de creación. El contrato conserva turno sólo hasta pausa/fin de sesión y exige orden de creación; esto no autoriza rotar después de cada TP. Todavía no hay primera divergencia física acreditada para esa hipótesis. El fixture de tres ciclos diarios (10:01/10:11/10:21) y pausa EVAL870 hace relevante la interacción multicuenta antes ausente en V-F01 de una sola cuenta.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
