@@ -27,6 +27,7 @@ tags:
 ## Cambio
 
 - Creado [[TRADESGERARD-ENTRY-REPAIR]] y actualizado el control canónico para el mandato de reparación KISS-1.
+- Añadida nota ENTRY-REPAIR-C01 a [[TRADESGERARD-B-T1]] y [[TRADESGERARD-B-RESULTADO]], conservando el texto histórico y COMPLETE; incorporada sección Contenido requerida por el schema vigente.
 
 ## Motivo
 

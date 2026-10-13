@@ -20,7 +20,11 @@ updated: "2026-10-13"
 
 Reporte de la tanda T1 KISS-1: las diez configuraciones económicas sobre una ventana común continua, campañas completas y conciliadas. Resultado: **T1 COMPLETE 10/10** — **ninguna configuración cobró**; ninguna alcanzó aprobación de evaluación. La caja neta de campaña empató en 4.760 USD para las diez.
 
+## Contenido
+
 ## Estado técnico y cobertura
+
+> Corrección identificable ENTRY-REPAIR-C01 (2026-10-13): COMPLETE10/10 y conciliación históricos se conservan. El readback independiente encontró755 OPEN por configuración,169 intentos/137 rechazos por cinco perfiles y338/274 para los diez;162/253 no concilia. Las afirmaciones posteriores que equiparan31 intentos K01 con todos los cruces del mes y atribuyen toda la baja actividad al sizing quedan analíticamente afectadas. El detalle, la reproducción y el reemplazo en curso están en [[TRADESGERARD-ENTRY-REPAIR]]. La tabla «Operaciones (fills)» cuenta registros FILL; por ejemplo36 corresponden a18 operaciones con fills.
 
 | Elemento | Valor |
 |---|---|

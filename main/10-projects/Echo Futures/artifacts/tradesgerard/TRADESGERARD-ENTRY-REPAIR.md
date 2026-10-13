@@ -78,6 +78,24 @@ Inspección de fuente corroborada por manager: `tg/tg.go:242–249` mantiene exp
 
 TCR adjudicado por manager dentro del mandato del Owner: `specs/FEAT-TRADESGERARD-ENTRY-REPAIR/TEST_CHANGE_REQUEST.md` en el checkout de reparación. Se autoriza sustituir sólo la expectativa de ATR cuantizado por Wilder independiente (semilla20 y tolerancia1e−12), manteniendo asserts de K/replay; y la expectativa de veto por cuenta pausada por admisión con caja/cupo/sesión reales más negativos. El fixture heredado tiene una cuenta, no una quinta; descripción corregida solicitada. No se autoriza saltar tests ni debilitar límites.
 
+### Rectificación I1 — ENTRY-REPAIR-C01
+
+Readback independiente de los diez resultados físicos conservados: `verifier/baseline-reconciliation.json`. Todas las configuraciones emitieron755 señales OPEN, coincidentes en total con las755 oportunidades NY del oráculo. No se acredita todavía identidad uno a uno sólo con ese total; el contraste individual sigue en curso. Los números históricos llamados «cruces» eran intentos materializados, no el censo de cruces de mercado.
+
+| Perfil, por retiro | OPEN emitidas | Operaciones creadas | Con fills | Registros FILL | Rechazos sizing |
+|---|---:|---:|---:|---:|---:|
+| K01 |755|31|0|0|31|
+| K02 |755|36|18|36|18|
+| K03 |755|36|7|14|29|
+| K04 |755|31|1|2|30|
+| K05 |755|35|6|12|29|
+
+La suma es169 operaciones creadas y137 rechazos para cinco perfiles con un retiro;338 y274 al incluir ambos retiros. La cifra162/253 no concilia con esta población. No se publica un porcentaje sustitutivo mezclando cruces, intentos y callbacks. La baja actividad no queda explicada por los31 rechazos K01:724 señales emitidas no llegaron a una nueva materialización; su clasificación causal exacta está en reproducción. Los36 FILL de K02 pertenecen a18 operaciones con fill, no36 operaciones.
+
+T1 conserva estado de ejecución COMPLETE10/10 y contabilidad conciliada. Validez analítica: AFFECTED para frecuencia, denominadores y explicación de oportunidades; reemplazo en este informe todavía IN_PROGRESS. T1-L conserva su selección histórica K01/K02 y COMPLETE4/4; no se reejecuta ni se transfiere automáticamente el nuevo resultado.
+
+Observación adicional para adjudicar: el recibo corto baseline K01 registra compra inicial2025-10-14T13:30Z (09:30NY), anterior a la ventana10:00NY. Se pidió investigar la ruta de bootstrap y probar compra real a demanda/horario, sin dar por suficiente el test aislado de `canPurchase`.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.

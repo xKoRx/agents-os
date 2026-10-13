@@ -22,7 +22,11 @@ updated: "2026-10-13"
 
 Resultado final de la iteración 1 KISS-1 (I1) con su profundización T1-L, y las decisiones pendientes del Owner para activar I2. **Dictamen: ninguna configuración de la tabla frozen deja evidencia suficiente para recomendar campaña con objetivo de caja.**
 
+## Contenido
+
 ## Estado de I1 (definición de terminado, mandato §11)
+
+> Corrección ENTRY-REPAIR-C01 (2026-10-13): se preservan las ejecuciones y resultados históricos. La explicación de baja frecuencia y el denominador162/253 están afectados por el censo/readback independiente; no justifican pedir un cambio de presupuesto antes de reparar el recorrido. [[TRADESGERARD-ENTRY-REPAIR]] documenta755 OPEN por configuración frente a31/36/36/31/35 intentos materializados y conduce el reemplazo. El SHA completo físico B es `f00efd668eee8b121f7efb65b1b92923620e47beaac650a99491b425027486e8`; la abreviatura mezclada de la tabla siguiente se conserva sólo como texto histórico.
 
 | Requisito | Estado |
 |---|---|
