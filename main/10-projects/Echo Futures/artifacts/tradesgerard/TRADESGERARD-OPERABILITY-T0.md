@@ -39,7 +39,11 @@ Lectura física inicial del manager:13.190.447.104 bytes libres y aproximadament
 
 Sólo trabajo offline aislado. Ningún resultado económico nuevo todavía. No LIVE, cambios de servicios/permisos, operaciones reales ni promoción productiva. Aceptación final del Owner separada; el mandato permite continuar automáticamente entre las tandas acotadas después de su verificación técnica.
 
-### Secuencia comprometida
+### Finding independiente en desarrollo — cap residual
+
+El verificador identificó en `xKoRx/echo:v3/backtester/platform_campaign.go`, working tree T0, que `maybeRequest` todavía recorta `PayoutTarget` al remanente del cap. Ejemplos:3000→2000 después de un pago3000, o2300→400 después de4600. El mandato nuevo exige conservar el objetivo2300/3000 y no presentar un cobro menor como logro. Manager adjudicó corrección acotada del contrato nuevo, preservando C4; reproducer determinista independiente y corrección/gate pendientes. No es una pérdida de trading ni un resultado de las cuarenta campañas.
+
+### Continuidad de tandas
 
 T0 políticas y racha → T1 F0×10 → T2 F1×10 → T3 F2×10 → T4 F3×10 → clasificación de40configuraciones y ampliación disponible de hasta cuatro configuraciones activas. Hallazgos materiales se corrigen y las trayectorias afectadas se repiten. No hay garantía de cobro; cobro acreditado y caja neta se informan por separado.
 
