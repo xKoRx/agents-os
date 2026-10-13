@@ -216,6 +216,12 @@ Actualización de ejecución: los seis tapes permanentes E2E pasaron en9,841s (`
 
 El host presenta24CPUonline, pero no se toma como permiso de concurrencia. El techo agregado4cores es presupuesto conservador de esta reparación, no una quota kernel demostrada. Se mantiene máximo2campañas concurrentes bajo medición; GOMAXPROCS4 por proceso no equivale a reservar4cores en cada campaña.
 
+### K01 largo C1: partición diagnóstica completa, no resultado final
+
+Extracción independiente `verifier/campaigns-reference-C1-K01.json`, contrastada por el manager:755 cruces de referencia y755 señales físicas, partición sin UNKNOWN =650 rechazos de tamaño +85 operaciones con fills +20 cruces consumidos por exposición.735 operaciones materializadas,735 admisiones Provider,0 rechazos Provider;205 órdenes distintas,170 registros fill y186 contratos ejecutados, con entradas en13 fechas NY. B tenía31 materializaciones,31 rechazos y0 operaciones con fills; la diferencia de operaciones con fill es+85, sin porcentaje sobre cero. Los735 snapshots económicos de MM faltan en C1 y se marcaron ausentes explícitamente.
+
+V-F01 sí afectó este corpus: las tres compras sucesoras coinciden exactamente con los cruces10:00NY del17oct,31oct y12nov. Las cuatro cuentas terminan válidas PAUSED_SESSION; caja4280 incluye compras/renovaciones. Por tanto85 NO se presenta como resultado corregido final ni como promesa para C2: reutilizar la cuenta válida cambia su riesgo y trayectoria posteriores. Esta corrida valida el extractor y demuestra recuperación de recepción, manteniendo el defecto de compra identificado. Diez campañas finales C2 siguen0/10.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
