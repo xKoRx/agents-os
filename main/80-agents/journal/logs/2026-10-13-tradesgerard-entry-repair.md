@@ -43,6 +43,8 @@ tags:
 
 ## Validación
 
+- Corte3/10: K01 r2300 independiente PASS0→19 operaciones/750MM. Informe y CONTROL actualizados; readback de autoridad monetaria/particiones y619/658/655 reevaluaciones posteriores a límites persistentes EOD en K01/K02/K03. Se mantiene separada la propuesta no aplicada de selección; mínimo19,98 limitado al modelo prefill vigente.
+
 - Causalidad B→C4 K02/K03 r2300:755 identidades emparejadas por perfil, cero exclusivas,666/705 evaluaciones recuperadas desde ciclo abierto sin exposición. Informe añade particiones excluyentes y enlaces gzip íntegros, sin atribuir cambios económicos posteriores a un único fix. Readback de ambos JSON físicos.
 
 - Hipótesis de doble suavizado D en C4 refutada por755 coincidencias racionales independientes desde OHLC. Informe registra mapping rawK/K/D, error informativo B ya corregido, ausencia de assert D permanente TG y comparador externo. Ninguna mutación de producto ni pausa de campañas por esta sospecha; fuente `verifier/informational-D-independent-falsification.json` leída físicamente.
