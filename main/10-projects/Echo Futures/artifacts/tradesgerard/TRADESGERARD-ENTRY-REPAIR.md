@@ -322,6 +322,12 @@ La duración de exposición se mide desde el primer fill hasta el último fill q
 
 Operaciones por día NY se atribuyen al primer fill de entrada y se separan de account_day_id contable. Los totales de campaña agregan todas las cuentas preservadas, nunca sólo la última summary. Si una campaña termina antes, su horizonte observado se separa del censo completo de755 oportunidades; no se le asignan eventos futuros.
 
+### Cobertura C3 y unidades de presupuesto
+
+Grupo explícito Campaign C3 con race PASS210,441s (`c3-platform-green.log`). Composición provisional: exclusivamente `c3-platform-green.cover` para backtester, más SDK C2 con bytes compatibles; ningún perfil backtester C2 ni remapeo de líneas. Inventario provisional B→C3:329/333 sentencias de bloques afectados=98,7988%, archivos ausentes0; cuatro retornos de error sin cobertura. El cotejo AST independiente y la identidad congelada siguen pendientes.
+
+Se aclaran unidades tras inspeccionar `platform_search.go`: SearchRecorder tiene límite16MiB por campaña/archivo económico, porque se instancia para cada ejecución. Los logs stdout/stderr propios tienen techo agregado16MiB separado. Todas las trazas económicas sí se contabilizan en durable de la iniciativa≤768MiB y por lote/corrida≤256MiB; scratch propio≤2GiB y reserva libre≥8GiB. Crear carpetas no reinicia ningún agregado. Medición del manager en este corte:322.083.467 bytes durables de iniciativa y14.826.213.376 bytes libres; no es un máximo instantáneo. Procesos/servicios ajenos permanecen intactos.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
