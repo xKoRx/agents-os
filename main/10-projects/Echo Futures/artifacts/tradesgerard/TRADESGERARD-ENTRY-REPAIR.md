@@ -234,6 +234,12 @@ Actualización del grupo Go: timeout900s y exit1, drenado. Primera causa localiz
 
 La revisión previa al freeze identificó dos motivos de supresión todavía ambiguos: CAMPAIGN_UNAVAILABLE sin causa específica y absorción stageSettled posterior a CAMPAIGN_ALLOWED. Se autorizó retener la razón decisoria real por OPEN, sin cambiar la decisión ni contar dos veces el cruce. El independiente confirmó que el resto de datos requeridos tiene fuente: sizing, órdenes, fills, finality, cash, pagos y días. Quedan por verificar las retenciones nuevas y su propagación de errores; una hipótesis del manager sobre sobrescritura de closeErr en el seam final se envió a prueba de fallos, todavía no se declara defecto reproducido.
 
+### Delta observacional C2 comprobado antes de freeze
+
+`implementer/evidence/c2-observation.log`: PASS8,575s de transiciones reales sin duplicación, pre-seal idempotente, errores simultáneos observer/cursor/recorder con primera causa conservada, STAGE_SETTLED compacto y los seis tapes E2E permanentes. El integrador corrigió `closeErr` mediante composición de errores y degradación de éxito previo a FAILED cuando corresponde. El caso no se atribuye retrospectivamente a B: era un riesgo introducido en el seam nuevo, cerrado durante revisión.
+
+Falsificación independiente ejecutada sobre ese árbol todavía no congelado (`verifier/delta-C2-tests.log`, exit0,0,144s): ocho negativos de claims tanto antes como exactamente al vencimiento de pausa, caja/cupo/sesión y triple fallo de Finish partiendo de COMPLETE, con observador/cursor idempotentes. PASS de este delta; cobertura nueva y validación sobre SHA/binario final siguen pendientes. No equivale todavía a certificación C2 ni a las diez campañas.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
