@@ -452,6 +452,8 @@ La reconstrucción de motivos de cierre detectó una Operation K02 el12nov10NY c
 
 Manager ordenó detener nuevas admisiones C3 mediante el hold del controlador, conservando las campañas en ejecución y manteniendo B observado. Fuente/build C3 permanecen congelados. Un cierre de esta primera divergencia y un nuevo gate independiente son obligatorios si se confirma defecto; los PASS acotados y resultados físicos anteriores se conservan sin convertirlos en certificación de toda la cadena.
 
+Inspección de fuente concordante manager/implementador: `openAccountDay` entrega ACCOUNT_ECONOMICS antes de `projectEconomics`; `deliverDayEconomics` construye un snapshot con Balance/Equity/PnL pero sin HardMonetaryHeadroom. Operation guarda ese snapshot incluso sin operación activa y `DeliveredEconomics` sustituye íntegramente la economía de Views al decidir. `SelectPreservedAccount` restaura riskEval preservado; no es correcto afirmar que lo resetea. La ruta incompleta está en la entrega/proyección diaria y su cache de owner; falta cerrar el enlace temporal de piso/revisión en la reproducción física antes de adjudicar el parche. PnLFresh=true y snapshot presente no bastan para acreditar que todos sus campos de riesgo están completos.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
