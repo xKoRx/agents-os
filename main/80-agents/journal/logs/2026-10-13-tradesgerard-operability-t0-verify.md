@@ -44,3 +44,5 @@ Reemplazar dictamen por delta sólo tras gate exacto nuevo; conservar evidencia 
 ## Delta recheck C2
 
 C2 mínimo V2 corregido, gate HOLD por V-FILL-MARK monetario causal. Misma regresión pública TG/Operation da RED sobre C4 y cb9; se preservan datos, errores propios del harness y límites de atribución. Corrección upstream aislada pendiente de recheck exacto.
+
+- Corte C3/O4: ALL/skip semántico independiente PASS con referencias previamente vinculadas; originales históricos FAIL preservados. E2E12 y temporal/sucesor/caja80 PASS. O4 HOLD por missing mandatory DayFloor RED; O5 acotado delegado al integrador único. Artefactos/readback en TRADESGERARD-OPERABILITY-T0-VERIFY.
