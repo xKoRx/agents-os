@@ -17,7 +17,7 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOCAL del Owner, PROMPT_VERSION1, 2026-10-13. T0 es técnico; no acredita rentabilidad. Estado vigente **O7_INDEPENDENT_PASS / T1_RUNNING**, todavía sin campañas completas nuevas auditadas. Los HOLD y pendientes de I/O de abajo son cortes históricos preservados; [[TRADESGERARD-OPERABILITY-T1]] conserva el lanzamiento real.
+Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOCAL del Owner, PROMPT_VERSION1, 2026-10-13. T0 es técnico; no acredita rentabilidad. Estado vigente **HOLD_CORRECTION / T1_O7_AFFECTED**: la campaña completa reveló que un remanente diario9,60 bloqueaba otras dos cuentas operables; falta liberar el turno por bloqueo efectivo temporal. [[TRADESGERARD-OPERABILITY-T1]] conserva evidencia, resultados observados e instrucción de cancelar/drenar y repetir F0 tras corrección independiente. El PASS O7 y los HOLD anteriores de abajo son cortes históricos preservados, no el gate vigente.
 
 ## Contenido
 

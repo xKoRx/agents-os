@@ -16,19 +16,29 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado **RUNNING, 1/10 auditada**: F0–K01–r2300 terminó sin pase ni cobro y con caja3200USD. No es aprobación económica ni aceptación final del Owner.
+Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **HOLD_CORRECTION: selección bloqueada por remanente diario insuficiente**. La primera configuración O7 fue auditada contablemente, pero queda AFFECTED y fuera del ranking definitivo por el hallazgo posterior descrito debajo. Cero configuraciones definitivas aceptadas de esta tanda; se repetirán después de corrección y verificación independiente. No es aceptación final del Owner.
 
 ## Contenido
 
+### Hallazgo posterior: bloqueo efectivo de otras cuentas
+
+La cuenta3 conservó el turno en los seis Q0 del23oct2025 con R/T9,60/9,60, inferior al mínimo ejecutable24,98 de estos descriptores. La auditoría posterior probó que cuentas4 y5 estaban ELIGIBLE desde el reset23oct14Z, flat y drenadas, con q_exec_max0 y sin obligaciones financieras pendientes que lo impidieran. Cuenta4 tenía saldo48385,52; su pausa por capacidad del22oct había vencido. Cuenta5 tenía50100,10; su pausa de sesión también había vencido. Ambas tenían capacidad EOD y diaria restablecida y remanentes de evaluación amplios. La primera cuenta bloqueó a las otras por orden de creación, sin clasificación de pausa por remanente diario ni liberación del turno por bloqueo efectivo.
+
+Esto contradice el mandato vigente de turno hasta bloqueo efectivo y de no permitir que una cuenta inoperable bloquee globalmente a otra utilizable. No invalida la conciliación de la corrida antigua, pero sí su uso como control definitivo de la política autorizada. Corrección requerida: pausa/clasificación temporal por objetivo diario incompatible con la operación mínima, selección causal de otra cuenta, recuperación de la primera cuando corresponda; nunca retiro EOD por ese motivo, incremento de R/T ni reutilización retrospectiva de un cruce ya consumido. Diferenciar remanente diario de remanente real del pase y usar rho/costos/metadata vigentes.
+
+Manager solicitó detener únicamente el harness O7 y sus campañas propias mediante cancelación y drenaje, preservando K01 COMPLETE como AFFECTED y cualquier resultado/recibo de K02. El siguiente freeze repetirá F0×10 tras RED/GREEN y gate independiente; la concurrencia podrá ser2 sólo con medición y presupuesto global. La evidencia de parada efectiva se añadirá cuando llegue el recibo; no se atribuye todavía una parada no confirmada. El trabajo H1 aislado no convierte esta versión en válida para ranking.
+
+### Ejecución O7 anterior, preservada y AFFECTED
+
 Lanzamiento real supervisado con concurrencia1. Primer proceso PID/PGID2924374, F0–K01–r2300, terminó exit0 y COMPLETE íntegro; `implementer/inputs/o7-F0-K01-r2300-plan.json`. F0–K02–r2300 continúa con PID/PGID2933506 y ocho configuraciones siguen en cola. Harness del integrador mantiene grupo, exit code, recibos y límites; no daemon ni promesa de ejecución fuera de esta sesión. Desarrollo H1 en checkout distinto del source/build congelado de T1; auditor consume únicamente COMPLETE íntegros con escritores drenados.
 
-### Primera entrega económica parcial, 1/10
+### Primera entrega económica observada, AFFECTED
 
 | Configuración | Base / pasan filtro | Ocupadas / materializadas | Operaciones cerradas / días | Fallback mínimo / rechazos | Compradas / fallidas / retiradas / pasadas | Solicitudes / créditos | Cobrado neto / costos de caja | Caja inicial / mínima / final |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | F0–K01–r2300 | 755 / 755 | 36 / 719 | 713 / 31 | 549 / 6 | 15 / 0 / 13 / 0 | 0 / 0 | 0 / 1800 | 5000 / 3200 / 3200 |
 
-Clasificación individual: **ninguna útil en esta muestra**, caja neta−1800USD y cero cobros. Las otras nueve configuraciones aún no se clasifican. Los1800USD son quince compras de120, sin renovaciones, activaciones ni otros débitos de caja observados. El ledger realizado agregado de las quince cuentas es−18825,32USD; no se suma a caja ni se debita otra vez. Dos cuentas quedan preservadas al horizonte: cuenta14 PAUSED_DAILY_GOAL, saldo51130,16 y remanente de evaluación1869,84; cuenta15 PAUSED_SESSION, saldo49250,06 y remanente3749,94. No hay pagos pendientes. Terminal HORIZON_CENSORED; residual nominal de prop no es caja.
+Clasificación vigente: **evidencia técnica afectada**, fuera del ranking definitivo. En esta versión se observaron caja neta−1800USD y cero cobros; la clasificación económica inicial «ninguna útil en esta muestra» queda subordinada al hallazgo de selección posterior. Las otras nueve configuraciones aún no se clasifican. Los1800USD son quince compras de120, sin renovaciones, activaciones ni otros débitos de caja observados. El ledger realizado agregado de las quince cuentas es−18825,32USD; no se suma a caja ni se debita otra vez. Dos cuentas quedan preservadas al horizonte: cuenta14 PAUSED_DAILY_GOAL, saldo51130,16 y remanente de evaluación1869,84; cuenta15 PAUSED_SESSION, saldo49250,06 y remanente3749,94. No hay pagos pendientes. Terminal HORIZON_CENSORED; residual nominal de prop no es caja.
 
 Los seis rechazos Q0 son cuenta3 el23oct2025 entre18:51–19:46Z: remanente diario9,60USD, R/T admitidos9,60/9,60, inferior al mínimo ejecutable24,98 de estos descriptores; headroom interno1000 y progreso de evaluación1531,86. Es un objetivo diario temporalmente incómodo, no ruina EOD ni dato faltante. La cuenta se preservó. Las36 oportunidades ocupadas se consumen causalmente por exposición/órdenes sin drenar. UNKNOWN0; no se reutilizan esos cruces.
 
