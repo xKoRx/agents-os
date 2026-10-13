@@ -57,7 +57,7 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
 | Sizing por perfil | Aritmética y primeras causas acreditadas; snapshots efectivos finales y tabla por cinco perfiles pendientes de campañas C3 y B observado. |
 | Comparación T1 final | 0/10 finales. C2 supersedido/drenado; C3 congelado y planes en preparación. Cinco B observados autorizados tras equivalencia histórica de ambos retiros. |
-| Casos largos pertinentes | BTGS04 PASS C2, lifecycle y AllFourTargets PASS C3; V-F02 causal cerrado en pagos sin alterar oráculo. CLI singleton pendiente. |
+| Casos largos pertinentes | BTGS04 PASS C2 compatible, lifecycle y AllFourTargets PASS C3; V-F02 causal cerrado en pagos sin alterar oráculo. CLI singleton C3 PASS119,736s. |
 | Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
 
 ### Adjudicación
@@ -353,6 +353,12 @@ Procedencia `implementer/evidence/c3-coverage-provenance.json` leída: productor
 Independiente sobre `26f3459c`/binario `92e27ef7…`: pruebas de pausa por objetivo/sesión/interna, fallo oficial y conservación de turno tras TP PASS3,890s (`verifier/final-26f3459c-backtester-tests.log`); seis tapes CLI exactos PASS y V-F01 permanece cerrado. Cobertura recalculada:329/333 sentencias de bloques afectados98,7988%, AST259/263 sentencias nuevas98,4791%; inventario14 archivos, instrumentables ausentes0 y sentencias sin mapa0. Los resultados/cotejos de perfil tienen procedencia explícita C3 para Campaign y SDK C2 compatible.
 
 El censo completo42969/755 se reutiliza por identidad de bytes del SDK entre C2 y C3; no se afirma una nueva ejecución del oráculo C3. Las diez campañas contrastarán sus señales físicas contra esas identidades. El manager autorizó CLI singleton aislado y, al comprobar inicio sano, K01 C3 inmutable en paralelo; una segunda campaña al drenar Go y medición antes de ampliar concurrencia. Cualquier nuevo fallo funcional mantiene abierta la entrega. B observado se prepara en superficie separada, sin bloquear el freeze ni mutar B.
+
+### Inicio físico de comparación final C3 y CLI completo
+
+Manager leyó `c3-cli-singleton.log`: `TestLASTPublicExperimentCampaignSealsAndReplaysSingletonCatalog` PASS119,736s, incluidos artifact y manifest; resuelve el caso antes interrumpido por timeout sin alterar asserts. `26f3459c-final-progress.json` acredita K01r2300 RUNNING con SHA/binario C3, PID/PGID2765357, afinidad0–3,0 completas/0 fallidas y9 pendientes al corte. Reserva libre14.780.788.736 bytes. Tras drenaje Go puede admitirse segunda campaña; concurrencia superior sigue requiriendo medición, no se deriva de las24CPU del host.
+
+El recibo independiente `verifier/exact-gate-26f3459c.json` y `coverage-provenance-readback-26f3459c.json` quedaron materializados y leídos: FUNCTIONAL_COVERAGE_EXACT_GATE_PASS_FINAL_CAMPAIGNS_PENDING y PASS_READBACK, con hashes físicos de dos perfiles/logs y14 fuentes. Auditorías AST/bloques enlazan ahora esa validación explícita; no conservan una plantilla de compatibilidad sin resolver.
 
 ## Fuentes
 
