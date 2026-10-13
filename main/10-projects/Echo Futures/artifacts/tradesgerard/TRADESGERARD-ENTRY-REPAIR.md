@@ -244,6 +244,12 @@ Primer fallo del grupo explícito posterior: panic en `TestCoveragePlatform_Cred
 
 Control de cobertura solicitado: inventario completo de archivos productivos cambiados e instrumentables, incluyendo observación/Finish/driver, y perfiles únicamente PASS de fuente compatible. El porcentaje de bloques Go afectados debe nombrar ese denominador; no se presentará como porcentaje exacto de líneas nuevas si no fue medido así. Archivos modificados sin bloques deben justificarse como declaraciones/comentarios o permanecer como cobertura faltante, nunca desaparecer del denominador en silencio.
 
+### Grupo explícito PASS y cobertura pendiente concreta
+
+La incompatibilidad del fixture sin RunState quedó corregida preservando asserts. Grupo explícito C2 race PASS210,352s (`c2-platform-green.log`), más cinco SDK PASS. Auditoría preliminar del integrador (`coverage-delta-working.json`):285/325 sentencias de bloques afectados =87,69%, no gate≥95. Archivos instrumentables ausentes0. Huecos localizados:36 sentencias Campaign (transiciones funding/payout/compra y propagación de error),3 retornos driver y1 error de TR persistido. Se preparan casos puntuales; no se excluye código observacional para subir el porcentaje. Cotejo AST independiente y freeze todavía pendientes.
+
+El independiente alineó las338 materializaciones históricas de las diez configuraciones a timestamps/cruces físicos (`baseline-opportunity-map.json`), sin unmatched. Amplió la conciliación por cuenta usando cashflows aplicados de ACCOUNT_CASHFLOW; cuatro balances C1 K01 concilian. La fórmula documental debe expresar grossFillPnL−fees+cashflows o netFillPnL+cashflows, sin restar fees dos veces; slippage permanece incorporado una vez en fillprice. El seam Finish nuevo se prueba como regresión de C2, no mediante un compile-red atribuido falsamente a B.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
