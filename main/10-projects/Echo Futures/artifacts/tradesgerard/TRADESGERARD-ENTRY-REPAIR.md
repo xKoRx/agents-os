@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS — C3:2/10 campañas COMPLETE (K01/K02r2300), K02 verificada independientemente; K03/K04 en ejecución y B observado K01 en tercer slot serial. Entrega final todavía abierta.
+IN_PROGRESS — C3:2/10 campañas COMPLETE y verificadas independientemente (K01/K02r2300); K03/K04 en ejecución y B observado K01 en tercer slot serial. Entrega final todavía abierta.
 
 C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; gate independiente exacto y CLI singleton PASS. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados por completar; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
@@ -391,6 +391,18 @@ Durable agregado informado372.234.504 bytes y libre14,726GB. B observado K02 cor
 Métricas independientes K02:12días con entrada, máximo16operaciones/día; duración de exposición mínima0,25s, mediana151,745s, máxima1294,895s; rachas4ganadoras/7perdedoras. Cuatro cuentas, dos FAILED_RULE y dos PAUSED_SESSION;4pausas por objetivo y71 de sesión; cero pases/pagos. Neto fills−1378,88, cuatro balances conciliados; caja4400=5000−4×120−renovación120. Queda por desarrollar la distribución económica de los696 rechazos: no se cierra la explicación con “sizing” genérico.
 
 K01 C3 también terminó COMPLETE, exit0 y traza5.569.417 bytes:2/10 completadas, readback independiente K01 en curso. K03/K04 activos. B observado K02 corto pasó comparación de13filas legacy incluyendo órdenes/fills, finanzas/MM/consumo/residuos; sidecar76eventos completo con23cruces/4transiciones y22 entregas a ciclo abierto sin exposición física. Identidad observacional validada. Se admitió un único B observado serial full5, K01 primero, bajo el tercer slot autorizado. Medición de tres procesos (`three-campaign-resource-snapshot.json`): afinidad0–3 en todos, RSS total≈64MiB, sin espera D, durable380.581.088 bytes y libres14.715.617.280 bytes; sin presión de recursos observada.
+
+### K01 final verificada y límite económico residual acreditado
+
+Readback independiente `verifier/final-T1-receipt-readback-26f3459c.json`: dos configuraciones verificadas, sin extender ese estado a las ocho pendientes. K01:755 cruces =19 operaciones admitidas con fills +731 rechazos MM +5 cruces ocupados.750 materializaciones,38 registros fill, cero UNKNOWN o economía ausente. Before0, after19, diferencia absoluta+19; una cuenta, caja4760=5000−compra120−renovación120. El resultado no se compara como objetivo contra las85 operaciones C1, cuya trayectoria contenía compras indebidas.
+
+`verifier/sizing-distribution-final-26f3459c.json` descompone las750 materializaciones K01:113 con presupuesto de referencia (19 admisiones/94 rechazos), cinco recortadas por remanente (todas rechazadas) y632 recortadas por headroom (20 por margen interno restante,612 por mínimo monetario Provider; todas rechazadas). K02:87 de referencia (45/42),201 por remanente (8/193),461 por headroom (83 interno/378 Provider, todos rechazos). “Margen interno1000−pérdida realizada” es una restricción de presupuesto, no una transición PAUSED_INTERNAL_LOSS; las pausas físicas se cuentan sólo desde transiciones reales.
+
+La baja actividad posterior de K01 tiene prueba específica en `verifier/headroom-K01-analysis.json`: al cierre contable15oct21:00Z el saldo51275,10 fija piso EOD49275,10 (trailing2000). Después del último fill del21oct17:50:05,882Z queda saldo/equity49290,38; el piso no desciende. El margen EOD es15,28. Al final el límite diario permite1100, pero el mínimo Provider sigue15,28, con posición/reservas cero. Ledger: bruto−615 menos94,62 de comisiones ya debitadas =neto−709,62, sin doble cobro.
+
+Incluso un contrato NQ con SL positivo mínimo de un tick necesita19,98 de riesgo neto:5 de movimiento +4,98 de comisiones futuras +10 de slippage modelado.15,28 no alcanza. Es una limitación física/económica bajo instrumento y costos congelados, no sólo un ATR excesivo ni un ciclo fantasma. Aumentar la distancia ATR no cura este Q=0. La cuenta sigue formalmente elegible al reanudar sesión, y el contrato vigente conserva su turno/selección; no autoriza retirarla por insuficiencia económica persistente.
+
+Única decisión nueva propuesta, **NO aplicada**: considerar no seleccionable una cuenta flat, sin claims ejecutables, cuyo margen persistente por piso EOD sea inferior al riesgo mínimo de Q1 con geometría positiva y costos vigentes; seleccionar la siguiente elegible o comprar a demanda bajo los mismos controles. Conservar cuenta, saldo, piso y cupos. Esto permitiría superar este bloqueo estructural de selección; consumiría caja/cupo y cambiaría la trayectoria económica. No se extendería a un rechazo aislado por ATR ni a un margen diario temporal. Es política nueva separada del before/after, no condición para continuar la reparación autorizada.
 
 ## Fuentes
 
