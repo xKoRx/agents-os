@@ -56,8 +56,8 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Falsificación exacta y cobertura | PASS C2 `63fb2499`; dos denominadores98%+, perfiles PASS compatibles, paridad offline y wiring compartido comprobados. |
 | Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
 | Sizing por perfil | Aritmética y primeras causas acreditadas; snapshots efectivos finales y tabla por cinco perfiles pendientes de campañas C2. |
-| Comparación T1 final | En ejecución,0/10 completas al arranque; diez planes idénticos a B salvo identidad/build. Sin deduplicar retiros. |
-| Casos largos pertinentes | BTGS04 collected/replacement PASS aislado; lifecycle targets/CLI singleton pendientes de sus recibos. |
+| Comparación T1 final | K01 C2 en ejecución condicional,0/10 completas; admisión de las otras nueve pausada por fallo del gate largo. Planes idénticos a B salvo identidad/build, sin deduplicar retiros. |
+| Casos largos pertinentes | BTGS04 y public lifecycle PASS; AllFourTargets FAIL (pago APPROVED frente CREDITED), causalidad en investigación. CLI singleton pendiente. |
 | Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
 
 ### Adjudicación
