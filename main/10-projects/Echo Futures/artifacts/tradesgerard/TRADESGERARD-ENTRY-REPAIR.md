@@ -504,6 +504,12 @@ Primer AllFourTargets C4 terminó NOT_PASS67,522s porque el directorio propio VE
 
 Rerun `c4-four-targets-attempt2.log` comprobado por manager: PASS62,528s, incluidos los cuatro objetivos heredados y sus asserts financieros íntegros. Los casos2250/2500 pertenecen exclusivamente a regresiones históricas; las configuraciones activas siguen2300/3000. `c4-lifecycle.log` PASS27,411s acredita pase, funding y crédito físico de caja del fixture original; no es un cobro de T1. Freeze y verificación independiente exacta aún pendientes.
 
+### Compra tras pausa: RED/GREEN público independiente
+
+`verifier/paused-demand-red-green-receipt.json`: el mismo fixture y asserts sobre B producen RED exit1,0,700s, dos materializaciones/una cuenta/caja4880; C4 working tree produce GREEN exit0,0,790s, tres materializaciones/dos cuentas/caja4760. Dos operaciones reales del fixture ganan435 cada una: el primer TP conserva la cuenta, el segundo llega a870 y la pausa; la nueva demanda10:21NY compra una sola sucesora después de finalización física. No hay mutación directa de OwnerState/risk ni estrategia diagnóstica productiva nueva. Asset permanente SHA256 `cc1ceb5b02c522d4f3136c3f74aeebf1d22f1bb112f1c6b65e7c803b256b7d82`, promoción por integrador antes del freeze y gate exacto pendientes.
+
+En B físico, el primer cruce histórico de esta pausa es21oct14:32Z: cuenta pausada DAILY_GOAL desde14:27, caja4880, una plaza EVAL, ninguna cuenta elegible y owner TERMINAL sin exposición/claims/admisión pendiente. La fuente B comprueba caja/horizonte antes del veto por pausa y cupo/horario después. Las reservas Provider exactas de esa barra histórica no quedaron retenidas: no se certifican a partir del owner ni se adjudican41 fills contrafactuales. La prueba pública y los negativos de reserva acreditan el comportamiento requerido; el censo histórico conserva ese límite de observación.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
