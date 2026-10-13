@@ -206,6 +206,12 @@ El independiente encontró que la retención C1 incluía sizing pero no el snaps
 
 Sincronización comprobada posterior: Agents-OS local/remoto master `9458ea52cac539429122881e6e6fa812d26725f1`, árbol limpio antes de este delta. La sincronización fue automática, no push ejecutado por el manager.
 
+### Desarrollo C2 anterior al freeze
+
+V-F01 tiene regresión RED sobre C1 para PAUSED_SESSION, PAUSED_DAILY_GOAL y PAUSED_INTERNAL_LOSS (`implementer/evidence/red-expiry-c1.log`). El delta en desarrollo extrae sólo `resumeExpiredPlatformPause` y lo aplica antes de seleccionar, bajo la guarda de quiescence; no adelanta renovación, pagos ni transición funded. La prueba comprueba un nanosegundo antes y el vencimiento exacto, misma cuenta/caja/ledger/risk/terms. El grupo crítico posterior pasa backtester, Operation, tg y tgmm (`c2-critical-green.log`), todavía sin identidad C2 congelada ni aprobación final independiente.
+
+Las pruebas independientes de Operation, TGMM, public TG y negativos Campaign se han promovido sin cambiar sus asserts. La adaptación portable de seis tapes E2E encontró un error de compilación DatasetManifest→Ref del adaptador de prueba, que el implementador está reparando; no se atribuye a producto ni se llama PASS. Cobertura delta y freeze pendientes. K01 largo C1 sigue RUNNING sano al24nov23:00Z, wall32m47/RSS28,6MB; restantes C1 aún no iniciadas.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
