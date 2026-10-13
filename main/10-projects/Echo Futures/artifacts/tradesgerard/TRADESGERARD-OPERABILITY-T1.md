@@ -16,9 +16,17 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **HOLD_CORRECTION: selección bloqueada por remanente diario insuficiente**. La primera configuración O7 fue auditada contablemente, pero queda AFFECTED y fuera del ranking definitivo por el hallazgo posterior descrito debajo. Cero configuraciones definitivas aceptadas de esta tanda; se repetirán después de corrección y verificación independiente. No es aceptación final del Owner.
+Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **O8_RERUN_RUNNING, 0/10 completas**. O8 corrigió el bloqueo efectivo y pasó verificación independiente; se relanzaron las diez configuraciones. O7 conserva sus observaciones AFFECTED fuera del ranking definitivo. No es aceptación final del Owner.
 
 ## Contenido
+
+### Relanzamiento vigente O8
+
+Source `d66bb56bccd053305c1c7dac0dc51aa292745504`, árbol limpio `0083e0d0d9854779c240971d17749593755413a8`; binario SHA256 `a70ac11e481109b036f4a7d792c9594f8c8a73c97eb7c72cd35f2c0c025de8ce`. Manifiesto `implementer/evidence/o8-freeze-manifest.json` SHA256 `9d2623df4cec968a21ab9e761f56dece0160b44e2e671dcf3532628e47795d18`, diez inputs con paridad normativa C4. Gate `verifier/independent-o8-gate.json` SHA256 `0afa455654df3a7362dc1c6e0c8a24a4e871af3e3490f24a71a348ed6f376de0`, INDEPENDENT_PASS técnico, cobertura53/54=98,1481% de bloques del deltaO7→O8. Perfil/datos/ventana C4 permanecen los descritos abajo, sin elegir otra muestra por PnL.
+
+Lanzamiento real2026-10-13T23:26Z: K01–r2300 PID/PGID2963265 y K02–r2300 PID/PGID2963280, concurrencia2; ocho en cola. Harness supervisado session36796, progreso versionado `implementer/evidence/T1-o8-progress.json`. Snapshot O7 inmutable `implementer/evidence/T1-o7-progress-frozen.json` SHA256 `bb86933efb6036d15321e8ae13d661bcd2c524ba8c0c5ade659b0b335901524b`. No se sobrescriben ni se cuentan COMPLETE de otra política/source.
+
+Admisión nueva observada: disco libre10.317.283.328bytes, RAM available64.096.010.240, load1,23/2,47/3,31, evidencia nueva867.852.790bytes y forecast agregado1.102.717.430≤1.610.612.736. La reserva física8GiB, scratch global2GiB, lote256MiB y traza/log16MiB continúan. Recursos incluyen la evidencia O7 retenida; cambiar de directorio no reinicia presupuesto. Concurrencia2 es admisión medida, no benchmark de velocidad bajo contención. Desarrollo H1 aislado continúa y heredará O8 antes de su gate/ejecuciones definitivas.
 
 ### Hallazgo posterior: bloqueo efectivo de otras cuentas
 
