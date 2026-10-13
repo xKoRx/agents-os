@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS — C3:2/10 campañas COMPLETE y verificadas independientemente (K01/K02r2300); K03/K04 en ejecución y B observado K01 en tercer slot serial. Entrega final todavía abierta.
+IN_PROGRESS — C3:3/10 campañas COMPLETE y verificadas independientemente (K01/K02/K03r2300); K04/K05 en ejecución. B observado K01 completo con equivalencia histórica PASS; K02 en tercer slot serial. Entrega final todavía abierta.
 
 C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; gate independiente exacto y CLI singleton PASS. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados por completar; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
@@ -58,7 +58,7 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Falsificación exacta y cobertura | C3 exacto PASS independiente; bloques329/333 y AST259/263, procedencia de perfiles compatibles y ausencia de huecos de inventario comprobadas. |
 | Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
 | Sizing por perfil | Aritmética y primeras causas acreditadas; snapshots efectivos finales y tabla por cinco perfiles pendientes de campañas C3 y B observado. |
-| Comparación T1 final | 2/10 COMPLETE C3 y verificadas: K01/K02r2300; K03/K04 RUNNING. B observado K01 RUNNING tras equivalencia física corta y de los pares de retiros históricos. |
+| Comparación T1 final | 3/10 COMPLETE C3 y verificadas: K01/K02/K03r2300; K04/K05 RUNNING. B observado K01 equivalencia full PASS; K02 RUNNING. |
 | Casos largos pertinentes | BTGS04 PASS C2 compatible, lifecycle y AllFourTargets PASS C3; V-F02 causal cerrado en pagos sin alterar oráculo. CLI singleton C3 PASS119,736s. |
 | Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
 
@@ -423,6 +423,12 @@ Primera oportunidad posterior al rechazo, SHORT14oct14:48Z: owner físico **CREA
 K02 observado continúa bajo equivalencia completa individual obligatoria. C3 mantiene2/10 verificadas y K03/K04 en ejecución en este corte.
 
 Comparación causal K01 completa (`verifier/causal-full-B-vs-C3-K01-r2300.json`):755 identidades alineadas, cero exclusivas de before o after. B particiona31 evaluaciones MM +721 cruces con owner CREATED/flat/sin claims +3 ROLLOVER_GATE_DISABLED en las fronteras exactas10NY. C3 recupera **719 intentos MM adicionales**:716 desde el owner fantasma y tres desde el gate; cinco de aquellos721 se descartan legítimamente por exposición en la nueva trayectoria. De los31 intentos comunes, sólo uno conserva la misma economía y30 tienen trayectoria económica distinta. No es válido atribuir esas30 diferencias exclusivamente al ATR ni sumar latch/finality como recuperaciones independientes. Las19 entradas K01 se acreditan con fills, separadas de los719 intentos recuperados.
+
+### Tercera campaña C3 verificada: K03 de7 a14 operaciones
+
+`verifier/final-T1-receipt-readback-26f3459c.json` acredita3/10 configuraciones, identidades/digests y conciliación exactos. K03r2300:755 cruces=14 admisiones con fills +735 rechazos MM +6 ocupados descartados;749 materializaciones, cero UNKNOWN o snapshots ausentes. Before7, after14, delta+7.28 registros fill,36 órdenes distintas y cuatro días con entrada (14oct4,15oct5,17oct3,20oct2). Duración exposición mínima14,393939s/mediana261,445055s/máxima1163,766233s; rachas3/3.
+
+Los735 rechazos K03 son55 a presupuesto de referencia,12 por remanente y668 por headroom (15 margen interno/653 Provider). Las14 admisiones se distribuyen11 referencia/1 remanente/2 headroom. Dos cuentas conservadas PAUSED_SESSION, una pausa DAILY_GOAL y61 SESSION; cero pases/cobros. Neto agregado−1624,72, caja4520=5000−dos compras120−dos renovaciones120. Se mantienen R/T500/(1000/3), fuente y ventana: más intentos no eliminan los límites ni garantizan PnL positivo.
 
 ## Fuentes
 
