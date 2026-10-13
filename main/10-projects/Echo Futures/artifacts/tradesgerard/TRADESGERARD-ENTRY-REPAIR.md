@@ -360,6 +360,14 @@ Manager leyó `c3-cli-singleton.log`: `TestLASTPublicExperimentCampaignSealsAndR
 
 El recibo independiente `verifier/exact-gate-26f3459c.json` y `coverage-provenance-readback-26f3459c.json` quedaron materializados y leídos: FUNCTIONAL_COVERAGE_EXACT_GATE_PASS_FINAL_CAMPAIGNS_PENDING y PASS_READBACK, con hashes físicos de dos perfiles/logs y14 fuentes. Auditorías AST/bloques enlazan ahora esa validación explícita; no conservan una plantilla de compatibilidad sin resolver.
 
+### Paridad de los diez planes C3 y ampliación medida
+
+Readback `c3-ten-plan-normative-parity.json`/`c3-ten-plan-differences.json`: las diez solicitudes difieren de B únicamente en campaign_id, model_identity y commit/hash de build. Corpus, perfil, ventana, historial, contratos, horarios, initial_state, R/T y modelo de ejecución se conservan. K01 y K02 C3 r2300 están RUNNING,0/10 completas al corte; no se deduplican retiros.
+
+Medición manager de los dos hijos financieros a6m33/3m28: CPU acumulada152%/137%, RSS24.140/23.452KiB, read_bytes físico0 en ambos (lectura cacheada), write_bytes2.572.288/1.433.600 y sin estado de espera D. RAM disponible66.192.052.224 bytes y disco libre aproximadamente14,77GB. Se autoriza prospectivamente un tercer slot total para un B observado serial, sólo después de build/equivalencia corta, manteniendo afinidad globalCPU0–3 y presupuesto durable768MiB. El controlador corregido permanece máximo2; no se autorizan cuatro slots ni más cores. Habrá medición bajo tres procesos y menor admisión si aparecen presión/degradación o reservas insuficientes.
+
+Manager inspeccionó manifest/helper B observado: sidecar selectivo, coordenada leída sin incrementar StepSeq, inputs MM reales y errores que invalidan evidencia observacional. Identidad necesaria: SHA B más hashes de overlay/shadows/helper y binario nuevo; metadata VCS de un build con overlay no basta para atribuirlo a B original. Equivalencia corta y completa todavía pendientes.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
