@@ -3,7 +3,7 @@ type: runbook
 schema_version: 1
 scope: area
 created: "2026-09-11"
-updated: "2026-10-06"
+updated: "2026-10-13"
 area: "[[Aranea]]"
 project: "[[AGENT-PLATFORM - MCP Access Plane]]"
 application:
@@ -53,6 +53,7 @@ Inspección y operación remota de hosts Aranea por `aranea-ssh` (endpoint `http
 | `sqx-kronos` | Linux SQX Kronos | `echo-dev` | operator writable no-root |
 | `mt5-kronos` | Windows worker-kronos | `echo-dev` | viewer RO, tool allowlist limitada; **NO `sftp-download` Windows** (POLICY_DENIED comprobado) |
 | `mt5-kronos-operator` | Windows worker-kronos | `worker-kronos\echo-dev` | operator writable **no-admin**; upload/compile y lectura del evidence JSON de SYSTEM |
+| `mt5-kronos-admin` | Windows worker-kronos `.128` | `worker-kronos\ariadna-win` | **operator full-DEV + admin OS local (2026-10-13, mandato owner)**: mismo contrato que `dev-win-operator` (`approvalPolicy="auto"`, `timeout=600000`, `maxChars=0`, `maxOutputBytes=125829120`, 8 sesiones/idle 1h/bg 8h). Identidad en grupo `administrators`; no eleva a SYSTEM ni toca la sesión interactiva KoR. Creado por petición explícita de admin para agentes; los perfiles `mt5-kronos` / `mt5-kronos-operator` quedan intactos |
 | `docker-echo-dev-operator` | Linux `docker-echo-dev`, `.75` | `root` | root-equivalent únicamente DEV; filesystem/Docker/lifecycle, seguir runbook Flink |
 | `echo-runtime-prod` | Echo PROD `.71` | `echo-dev` | viewer RO, sin sudo; procesos/listeners/fs-meta, no restart/deploy |
 | `dev-win` | Windows dev-win `.132` (alias owner: win-dev) | `dev-win\echo-dev` | viewer RO, control de lectura (whoami/hostname); `run-command` POLICY_DENIED, NO `sftp-download` Windows |
