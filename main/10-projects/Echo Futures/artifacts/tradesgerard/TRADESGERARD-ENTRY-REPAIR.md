@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS — C2 `63fb24996d422f3dfee28e706ad1528eb948bff8` queda supersedido como candidato final por V-F02: Campaign revive el turno de una cuenta posterior tras fin de sesión, incumpliendo orden de creación entre elegibles. Su gate acotado funcional/oráculo/cobertura pasó, pero el gate largo encontró esta secuencia multicuenta; C3 está en reparación y verificación. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero su defecto de compras hace que el largo sea sólo REFERENCE_ONLY; V-F01 queda cerrado en C2. Diez campañas definitivas pendientes (0/10); no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
+IN_PROGRESS — C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; verificación independiente exacta y CLI singleton pendientes. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados pendientes; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
 ### Identidades comprobadas por el manager
 
@@ -341,6 +341,12 @@ La operación histórica no equivale a un ticket fill. Tampoco se afirma que B p
 Grupo explícito Campaign C3 con race PASS210,441s (`c3-platform-green.log`). Composición provisional: exclusivamente `c3-platform-green.cover` para backtester, más SDK C2 con bytes compatibles; ningún perfil backtester C2 ni remapeo de líneas. Inventario provisional B→C3:329/333 sentencias de bloques afectados=98,7988%, archivos ausentes0; cuatro retornos de error sin cobertura. El cotejo AST independiente y la identidad congelada siguen pendientes.
 
 Se aclaran unidades tras inspeccionar `platform_search.go`: SearchRecorder tiene límite16MiB por campaña/archivo económico, porque se instancia para cada ejecución. Los logs stdout/stderr propios tienen techo agregado16MiB separado. Todas las trazas económicas sí se contabilizan en durable de la iniciativa≤768MiB y por lote/corrida≤256MiB; scratch propio≤2GiB y reserva libre≥8GiB. Crear carpetas no reinicia ningún agregado. Medición del manager en este corte:322.083.467 bytes durables de iniciativa y14.826.213.376 bytes libres; no es un máximo instantáneo. Procesos/servicios ajenos permanecen intactos.
+
+### Freeze C3 comprobado
+
+Source `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a`, rama `codex/tradesgerard-entry-repair-20261013`; manager verificó árbol limpio y commit. Binario `implementer/bin/echo-backtest-26f3459c`, SHA256 `92e27ef71d22bc9897af7f3c26d1fbe980f5f591b749224258747fd40c2584c9`, Go1.27.1, VCS del mismo commit y modified=false. Vet PASS informado por integrador; lifecycle aislado PASS30,937s leído por manager. Cuatro pagos y regresiones de turno pasan sobre los mismos bytes productivos congelados.
+
+Procedencia `implementer/evidence/c3-coverage-provenance.json` leída: productor nuevo backtester PASS210,441s, perfiles/logs con hashes y comando exacto; SDK C2 reutilizado sólo porque el diff SDK C2→C3 está vacío. Perfiles C2 de backtester excluidos. Auditor recibió fuente/build para gate independiente exacto y cotejo AST; diez planes C3 en preparación y CLI singleton pendiente. Freeze no equivale a entrega completa.
 
 ## Fuentes
 
