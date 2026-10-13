@@ -224,6 +224,12 @@ V-F01 sí afectó este corpus: las tres compras sucesoras coinciden exactamente 
 
 Readback corto ampliado (`implementer/evidence/short-comparison.json`): los cinco baselines cortos y cinco C1 cortos están COMPLETE/reconciliados con23 OPEN en cada fila. Operaciones con fills primera jornada B→C1: K01 0→3, K02 1→16, K03 0→4, K04 0→3, K05 0→3. Cada baseline materializó sólo1 intento; C1 materializa23/21/23/23/23, con2 cruces ocupados explicados en K02. Esta comparación sigue siendo corta y C1; no reemplaza la tabla T1 C2 exigida.
 
+### Retención compacta de pausas y cierre
+
+El independiente acreditó otro hueco de observabilidad antes del freeze: `result.accounts` conserva estado final, pero no todas las transiciones de pausa/reanudación. El mandato exige métricas por cuenta/día y no corresponde inferirlas desde PnL. Se autoriza para C2 un registro tipado PLATFORM_ACCOUNT_STATE por cambio causal real, sin filas por tick. El estado de fallo derivado en finish se registrará antes de sellar el recorder, con razón FINAL_RISK_RECONCILIATION y timestamp observado al cierre; no fingirá ser el instante anterior de breach. El seam privado pre-close debe ser idempotente, preservar primera causa si falla el recorder y no mover clocks, selección ni ledger. Integración y pruebas pendientes mientras drena el grupo Go activo.
+
+La selección Go C2 previa a ese delta pasó los cinco paquetes SDK con race; backtester sigue activo bajo límite15min. El patrón amplio incluye lifecycle de Platform/TestF, pero no BTGS04 ni CLI singleton, que permanecen pendientes aislados. No se confunde la ausencia de salida de fallo con PASS ni se mezclan perfiles de distintos bloques de source sin demostrar compatibilidad.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
