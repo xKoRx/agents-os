@@ -150,6 +150,10 @@ Actualización: esa corrida fue terminada deliberadamente con SIGTERM, exit143 y
 
 Precisión de autoridad sobre compra: el Owner exige horario admisible, compra a demanda y no comprar todas las plazas anticipadamente; no fija literalmente si la compra dentro de sesión ocurre a10:00 o al primer cruce. Comprar en la primera OPEN admisible es la resolución técnica elegida y aceptada por el manager para este fix, no una nueva cita atribuida al Owner. El RED contractual inequívoco sigue siendo la compra09:58NY fuera de horario; el tape silencioso verifica el comportamiento elegido sin cobro innecesario.
 
+### Freeze candidato corto C1
+
+Fuente `ba047469513f9120378734b1378352477755c669`, rama `codex/tradesgerard-entry-repair-20261013`, checkout `implementer/echo` limpio al readback manager. Binario `implementer/bin/echo-backtest-ba047469`, SHA256 `72490e8e0399a238865720d396c8deb6e7ced3ddcb0c63a42ca764ac1b2b198f`, metadata VCS idéntica y modified=false (`implementer/evidence/build-ba047469.txt`). B original sigue limpio e intacto. Este freeze tiene gate crítico del implementador PASS; falsificación independiente y cobertura completa pendientes. Campañas finales nuevas:0/10. El independiente recibió el carril Go para verificar este source/build exacto.
+
 Sincronización observada de Agents-OS: commit automático `a58ec551187749deaa6d3f0566e1c556d9b456b8`, master remoto igual según `git ls-remote` antes de este delta. No fue un push ejecutado por el manager; los deltas posteriores requieren nueva comprobación.
 
 ## Fuentes
