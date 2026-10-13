@@ -106,6 +106,10 @@ TCR adicional aprobado tras inspección: en `TestTG_CrossEmissionAndSingleConsum
 
 La ruta `purchaseInitial()` fue confirmada como bypass que factura a trade_start antes de10NY; la corrección de compra inicial a demanda está en curso. Tests quiet sin oportunidad deben conservar caja5000; los que realmente compran mantienen su débito. Cualquier ajuste heredado adicional requiere TCR concreto y negativos, no sustitución global de expectativas.
 
+El independiente ejecutó por CLI original dos reproducciones sintéticas espejo, LONG y SHORT, con rechazo inicial10:01NY y un nuevo cruce de la misma dirección10:45NY tras descenso de ATR, sin visitar la banda contraria. Resultados baseline en `verifier/synthetic/{long-baseline,short-baseline}`: COMPLETE/conciliados, una operación materializada, cero fills; el segundo cruce llega como gestión. Estas series prueban funcionamiento y no sustituyen el censo real ni una campaña económica. Gate corregido pendiente.
+
+TCR `TestTG_CycleBookkeeping` aprobado: el cruce instantáneo consumido no conserva un ciclo técnico hastaEOD. Se mantiene respuesta conservadora ante estado ilegible y se exige probar que rollover/activación no relajan las barreras de exposición/finality de Operation.
+
 Sincronización observada de Agents-OS: commit automático `a58ec551187749deaa6d3f0566e1c556d9b456b8`, master remoto igual según `git ls-remote` antes de este delta. No fue un push ejecutado por el manager; los deltas posteriores requieren nueva comprobación.
 
 ## Fuentes
