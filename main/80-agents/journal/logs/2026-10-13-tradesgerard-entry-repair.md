@@ -43,6 +43,8 @@ tags:
 
 ## Validación
 
+- Consolidación final: readback dictamen independiente VERIFIED10/10, tabla dimensional20filas incorporada con distinción pre/postfill y TP no retenido; recibos físicos de drenaje y recursos, comandos C4 exactos y rama local incorporados. Producto sin push afirmado. Sin cierre ni feedback del manager.
+
 - C4 FULL_GATES_VERIFIED_TEN:10/10 COMPLETE exit0 y auditoría independiente física, source88ed70d1/bin c8849bb6. Informe/control dictamen CORRECTED_AND_VERIFIED offline; métricas completas, rachas/cierres/días/cuentas, pausa de prefijo y equivalencia de retiros medidas. T1/RESULTADO conservan históricos y enlazan reemplazo final. Consolidación de presentación dimensional y recibo recursos continúa sin cambiar producto.
 
 - Corte8/10 FULL_GATES_VERIFIED_PARTIAL: r3000 K02/K03 confirman24/14 operaciones con755 cruces cada uno, autoridad/ledger/caja/sesión/cierres verificados. Reporte y CONTROL actualizados, sólo K04/K05 r3000 activos. Readback físico distingue receipt_verified=full_verified=8; no se extrapolan las dos corridas restantes.

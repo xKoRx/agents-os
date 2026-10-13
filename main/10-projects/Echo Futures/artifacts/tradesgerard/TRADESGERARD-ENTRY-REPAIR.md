@@ -27,11 +27,11 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 Se reprodujeron y corrigieron pérdidas funcionales por ciclo técnico diario, finalidad incompleta, ATR/readiness, compra/selección y entrega diaria de economía incompleta. El censo independiente contiene42.969 barras físicas,10.850 barras de entrada NY y755 oportunidades en31 fechas. Cada campaña C4 observa las mismas755 identidades; la diferencia entre perfiles queda downstream, explicada por exposición y economía. Las operaciones con fills por retiro pasan de32 a116 (+84): K01–K05 de0/18/7/1/6 a19/24/14/34/25. No se cambiaron R/T, mercado, corpus, fees ni multiplicadores para producir esa recuperación.
 
-Dictamen independiente físico: `verifier/independent-final-progress-summary.json` VERIFIED_TEN y `verifier/final-T1-receipt-readback-final-88ed70d1.json` FULL_GATES_VERIFIED_TEN, receipt_verified=full_verified=10. Matriz de los doce casos, exact gate, recibos y derivados completos enlazados abajo. Los resultados B originales siguen preservados y COMPLETE históricamente; su explicación de frecuencia queda AFFECTED y reemplazada por esta comparación. C3 y anteriores son referencias supersedidas, no resultados finales. Aceptación del Owner separada; no se afirma rentabilidad, broker real, LIVE, release, merge productivo ni despliegue. Revisión de presentación dimensional y recibo final de recursos/drenaje en consolidación documental.
+Dictamen independiente físico: `verifier/independent-final-progress-summary.json` VERIFIED_TEN y `verifier/final-T1-receipt-readback-final-88ed70d1.json` FULL_GATES_VERIFIED_TEN, receipt_verified=full_verified=10. Matriz de los doce casos, exact gate, recibos y derivados completos enlazados abajo. Los resultados B originales siguen preservados y COMPLETE históricamente; su explicación de frecuencia queda AFFECTED y reemplazada por esta comparación. C3 y anteriores son referencias supersedidas, no resultados finales. Aceptación del Owner separada; no se afirma rentabilidad, broker real, LIVE, release, merge productivo ni despliegue. Dictamen final `verifier/independent-final-dictamen.json`: VERIFIED10/10, cero findings productivos abiertos. Presentación dimensional revisada y procesos propios drenados; límites de evidencia explícitos más abajo.
 
 El emparejamiento causal B→C4 K02/K03 r2300 conserva755 identidades, sin cruces exclusivos de ninguno de los dos lados. En K02:666 evaluaciones recuperadas desde owner abierto sin exposición,36 cruces evaluados por ambos con trayectoria económica distinta,46 admisiones ahora distintas por pausa/exposición histórica,3 recuperadas en la frontera de pausa vencida y4 sin nueva materialización por ocupación actual. K03:705/36/5/3/6 respectivamente. Las categorías son excluyentes; los efectos de latch y finalización no se suman sobre un mismo cruce. Evidencia íntegra: `verifier/causal-full-B-vs-C4-K02-r2300.json.gz` y `...-K03-r2300.json.gz`, leídas físicamente por el manager.
 
-K01 r2300 final verificado: **0→19 operaciones con fills**, 31→750 evaluaciones MM,38 registros de fill,46 órdenes distintas,731 rechazos de tamaño y5 cruces consumidos durante exposición. Sus755 identidades/indicadores y750 snapshots monetarios concilian, cero cierres UNKNOWN:8 por target de ciclo y11 por stop. Cuatro días con entradas (3/2/10/4 operaciones), duración mínima/mediana/máxima17,409/230,547/1449,675 segundos, rachas máximas ganadora5/perdedora9. Fuente: `verifier/independent-final-progress-summary.json`, corte3/10.
+K01 r2300 final verificado: **0→19 operaciones con fills**, 31→750 evaluaciones MM,38 registros de fill,46 órdenes distintas,731 rechazos de tamaño y5 cruces consumidos durante exposición. Sus755 identidades/indicadores y750 snapshots monetarios concilian, cero cierres UNKNOWN:8 por target de ciclo y11 por stop. Cuatro días con entradas (3/2/10/4 operaciones), duración mínima/mediana/máxima17,409/230,547/1449,675 segundos, rachas máximas ganadora5/perdedora9. Fuente: `verifier/independent-final-progress-summary.json`, consolidación10/10.
 
 La baja actividad posterior queda explicada en estas tres campañas, sin ciclo fantasma: K01 encuentra margen EOD15,28 desde21oct18:05Z y vuelve a evaluar619 cruces; K02,10,16 desde20oct15:01Z y658 cruces; K03,0,20 desde20oct15:29Z y655 cruces. Todos esos intentos posteriores dan Q0 por TG_SIZE_BELOW_MINIMUM con autoridad monetaria vigente; ninguno produce fill. Son primeras observaciones MM del límite, no una atribución al tick exacto en que apareció. Evidencia con ledger/pisos/revisión y cuenta: `verifier/persistent-sizing-floor-final-88ed70d1.json.gz`.
 
@@ -90,6 +90,94 @@ Pases y cobros=0 antes/después en los diez: fase EVALUATION, gross_paid cero y 
 
 Los demás días de las31 fechas tienen cero entradas. Todos los nuevos cruces posteriores siguen evaluándose o se consumen por exposición real, sin backlog ni un intento por día.
 
+### Sizing final: primeras decisiones físicas antes/después
+
+Presentación del integrador revisada independientemente: `verifier/sizing-presentation-independent-readback.json`. Fuente íntegra con hashes y las trazas de cada fila: `implementer/evidence/c4-sizing-presentation.md`. Se conserva aquí la tabla de lectura, derivada de los mismos artefactos; el manager no escribió código diagnóstico.
+
+NQZ5: tick 0.25 puntos, 5 USD/tick, 20 USD/punto. Comisión 2.49 USD por lado y contrato; deslizamiento de un tick por lado. Coste de ida y vuelta: 2×2.49 + 2×5 = 14.98 USD/contrato. USD en presupuestos y costes; ATR/distancias en puntos. R=riesgo, T=objetivo, A=primera admisión MM y R en la identidad de fila=primer rechazo MM. Fechas de 2025, hora de Nueva York.
+
+La tabla muestra las primeras decisiones observadas de cada perfil r2300, tomadas de los extractos auditados. B tiene equivalencia histórica 2300/3000 probada en su recibo; C4 ejecuta las diez identidades por separado. Esta presentación no sustituye sus recibos individuales. K01 B no admite ninguna entrada en el horizonte completo observado.
+
+**OHLC y postfill:** los extractos se enriquecen por identidad y timestamp exactos con oráculo físico y trazas originales. No se usa balance final. `mark` es el precio usado por MM; antes se observó después de la evaluación dentro del mismo alcance inmutable de decisión. ATR B y ATR C4 son los valores físicos de cada versión, no un único ATR sustituido.
+
+#### Geometría y múltiplos efectivos
+
+Pérdida SL y ganancia TP son por contrato, netas del coste común. Los múltiplos geométricos mSL=ΔSL/ATR y mTP=ΔSL/(rho×ATR) son aritmética de los campos retenidos; mTP no es una barrera postfill ni una orden de precio acreditada.
+
+| Versión/perfil/caso | NY; dirección; OHLC O/H/L/C | ATR; rho | mark → ancla SL; ΔSL | SL neto / TP neto por contrato | mSL / mTP |
+|---|---|---|---|---|---|
+| B K01 A | sin admisión en el horizonte B completo | — | — | — | — |
+| B K01 R | 10-14 10:33; SHORT; **24684.5/24706.25/24684.5/24697.0** (NT#31732) | 22.75; 1 | 24697 → 24719.75; 22.75 | 469.98 / 440.02 | 1.000000 / 1.000000 |
+| C4 K01 A | 10-14 14:12; LONG; **24892.5/24903.5/24891.5/24900.0** (NT#31951) | 11.5891883; 1 | 24900 → 24888.5; 11.5 | 244.98 / 215.02 | 0.992304 / 0.992304 |
+| C4 K01 R | 10-14 10:33; SHORT; **24684.5/24706.25/24684.5/24697.0** (NT#31732) | 22.91274922; 1 | 24697 → 24719.75; 22.75 | 469.98 / 440.02 | 0.992897 / 0.992897 |
+| B K02 A | 10-14 10:33; SHORT; **24684.5/24706.25/24684.5/24697.0** (NT#31732) | 22.75; 1 | 24697 → 24719.75; 22.75 | 469.98 / 440.02 | 1.000000 / 1.000000 |
+| B K02 R | 10-16 10:27; SHORT; **25100.0/25100.5/25046.25/25050.5** (NT#34486) | 24; 1 | 25050.5 → 25074.5; 24 | 494.98 / 465.02 | 1.000000 / 1.000000 |
+| C4 K02 A | 10-14 10:33; SHORT; **24684.5/24706.25/24684.5/24697.0** (NT#31732) | 22.91274922; 1 | 24697 → 24719.75; 22.75 | 469.98 / 440.02 | 0.992897 / 0.992897 |
+| C4 K02 R | 10-14 12:25; SHORT; **24851.75/24862.25/24848.25/24851.75** (NT#31844) | 17.44378046; 1 | 24851.75 → 24869; 17.25 | 359.98 / 330.02 | 0.988891 / 0.988891 |
+| B K03 A | 10-20 10:16; SHORT; **25238.0/25238.75/25219.25/25227.75** (NT#37235) | 14.5; 1.5 | 25227.75 → 25249.5; 21.75 | 449.98 / 275.02 | 1.500000 / 1.000000 |
+| B K03 R | 10-14 10:33; SHORT; **24684.5/24706.25/24684.5/24697.0** (NT#31732) | 22.75; 1.5 | 24697 → 24731; 34 | 694.98 / 65753/150 (≈438.353333) | 1.494505 / 0.996337 |
+| C4 K03 A | 10-14 12:12; LONG; **24772.75/24796.75/24772.75/24795.5** (NT#31831) | 16.26249087; 1.5 | 24795.5 → 24771.25; 24.25 | 499.98 / 46253/150 (≈308.353333) | 1.491161 / 0.994108 |
+| C4 K03 R | 10-14 10:33; SHORT; **24684.5/24706.25/24684.5/24697.0** (NT#31732) | 22.91274922; 1.5 | 24697 → 24731.25; 34.25 | 699.98 / 66253/150 (≈441.686667) | 1.494801 / 0.996534 |
+| B K04 A | 10-28 10:28; LONG; **26044.5/26047.0/26033.5/26041.25** (NT#45527) | 12; 2 | 26041.25 → 26017.25; 24 | 494.98 / 225.02 | 2.000000 / 1.000000 |
+| B K04 R | 10-14 10:33; SHORT; **24684.5/24706.25/24684.5/24697.0** (NT#31732) | 22.75; 2 | 24697 → 24742.5; 45.5 | 924.98 / 440.02 | 2.000000 / 1.000000 |
+| C4 K04 A | 10-14 14:12; LONG; **24892.5/24903.5/24891.5/24900.0** (NT#31951) | 11.5891883; 2 | 24900 → 24877; 23 | 474.98 / 215.02 | 1.984608 / 0.992304 |
+| C4 K04 R | 10-14 10:33; SHORT; **24684.5/24706.25/24684.5/24697.0** (NT#31732) | 22.91274922; 2 | 24697 → 24742.75; 45.75 | 929.98 / 442.52 | 1.996705 / 0.998352 |
+| B K05 A | 10-28 10:28; LONG; **26044.5/26047.0/26033.5/26041.25** (NT#45527) | 12; 4 | 26041.25 → 25993.25; 48 | 974.98 / 225.02 | 4.000000 / 1.000000 |
+| B K05 R | 10-14 10:33; SHORT; **24684.5/24706.25/24684.5/24697.0** (NT#31732) | 22.75; 4 | 24697 → 24788; 91 | 1834.98 / 440.02 | 4.000000 / 1.000000 |
+| C4 K05 A | 10-14 14:12; LONG; **24892.5/24903.5/24891.5/24900.0** (NT#31951) | 11.5891883; 4 | 24900 → 24853.75; 46.25 | 939.98 / 216.27 | 3.990789 / 0.997697 |
+| C4 K05 R | 10-14 10:33; SHORT; **24684.5/24706.25/24684.5/24697.0** (NT#31732) | 22.91274922; 4 | 24697 → 24788.5; 91.5 | 1844.98 / 442.52 | 3.993410 / 0.998352 |
+
+#### Presupuesto, cociente y cantidad
+
+H dueño es el hard headroom realmente presente en la instantánea; ausencia permanece explícita. H usado es el headroom efectivo del sizing, que incorpora los límites propios de MM. Los cocientes BEFORE se presentan como división exacta de los presupuestos/costes ya auditados, sin ejecutar nuevamente MM; AFTER usa los cocientes reales retenidos. `floor R/T; ladder → Q` muestra ambos floors y el cap. `SL/R ; TP/T` muestra múltiplos monetarios netos por contrato sobre presupuestos efectivos, antes de fills.
+
+| Versión/perfil/caso | R/T preferidos → efectivos | Remanente; H dueño / H usado | R/SL; T/TP → floors; ladder → Q | SL/R; TP/T | Límite prefill retenido; postfill |
+|---|---|---|---|---|---|
+| B K01 A | — | — | — | — | ninguna entrada; no aplica postfill |
+| B K01 R | 250/250 → 250/250 | 870; no retenido / 1000 | 12500/23499 (≈0.531938); 12500/22001 (≈0.568156) → 0/0; 2 → **0** | 1.879920; 1.760080 | TG_SIZE_BELOW_MINIMUM; Q0; sin fill de entrada ni stop postfill |
+| C4 K01 A | 250/250 → 250/250 | 870; 1100 / 1000 | 12500/12249 (≈1.020491); 12500/10751 (≈1.162683) → 1/1; 2 → **1** | 0.979920; 0.860080 | TG_ENTRY_SIZED; fill 24901 → stop enviado 24889; proyección SL 249.98 ≤ R 250.00; TP postfill no retenido |
+| C4 K01 R | 250/250 → 250/250 | 870; 1100 / 1000 | 12500/23499 (≈0.531938); 12500/22001 (≈0.568156) → 0/0; 2 → **0** | 1.879920; 1.760080 | TG_SIZE_BELOW_MINIMUM; Q0; sin fill de entrada ni stop postfill |
+| B K02 A | 500/500 → 500/500 | 870; no retenido / 1000 | 25000/23499 (≈1.063875); 25000/22001 (≈1.136312) → 1/1; 2 → **1** | 0.939960; 0.880040 | TG_ENTRY_SIZED; fill 24696.75 → stop enviado 24721.25; proyección SL 499.98 ≤ R 500.00; TP postfill no retenido |
+| B K02 R | 500/500 → 364.98/364.98 | 364.98; 1505.06 / 1000 | 18249/24749 (≈0.737363); 18249/23251 (≈0.784869) → 0/0; 2 → **0** | 1.356184; 1.274097 | TG_SIZE_BELOW_MINIMUM; Q0; sin fill de entrada ni stop postfill |
+| C4 K02 A | 500/500 → 500/500 | 870; 1100 / 1000 | 25000/23499 (≈1.063875); 25000/22001 (≈1.136312) → 1/1; 2 → **1** | 0.939960; 0.880040 | TG_ENTRY_SIZED; fill 24696.75 → stop enviado 24721.25; proyección SL 499.98 ≤ R 500.00; TP postfill no retenido |
+| C4 K02 R | 500/500 → 349.86/349.86 | 349.86; 1620.14 / 1000 | 17493/17999 (≈0.971887); 17493/16501 (≈1.060118) → 0/1; 2 → **0** | 1.028926; 0.943292 | TG_SIZE_BELOW_MINIMUM; Q0; sin fill de entrada ni stop postfill |
+| B K03 A | 500/(1000/3) (T≈333.333333) → 500/(1000/3) (T≈333.333333) | 870; 1100 / 1000 | 25000/22499 (≈1.111160); 50000/41253 (≈1.212033) → 1/1; 2 → **1** | 0.899960; 0.825060 | TG_ENTRY_SIZED; fill 25227.5 → stop enviado 25252; proyección SL 499.98 ≤ R 500.00; TP postfill no retenido |
+| B K03 R | 500/(1000/3) (T≈333.333333) → 500/(1000/3) (T≈333.333333) | 870; no retenido / 1000 | 25000/34749 (≈0.719445); 50000/65753 (≈0.760422) → 0/0; 2 → **0** | 1.389960; 1.315060 | TG_SIZE_BELOW_MINIMUM; Q0; sin fill de entrada ni stop postfill |
+| C4 K03 A | 500/(1000/3) (T≈333.333333) → 500/(1000/3) (T≈333.333333) | 870; 1100 / 1000 | 25000/24999 (≈1.000040); 50000/46253 (≈1.081011) → 1/1; 2 → **1** | 0.999960; 0.925060 | TG_ENTRY_SIZED; fill 24796 → stop enviado 24771.5; proyección SL 499.98 ≤ R 500.00; TP postfill no retenido |
+| C4 K03 R | 500/(1000/3) (T≈333.333333) → 500/(1000/3) (T≈333.333333) | 870; 1100 / 1000 | 25000/34999 (≈0.714306); 50000/66253 (≈0.754683) → 0/0; 2 → **0** | 1.399960; 1.325060 | TG_SIZE_BELOW_MINIMUM; Q0; sin fill de entrada ni stop postfill |
+| B K04 A | 500/250 → 500/250 | 870; 1100 / 1000 | 25000/24749 (≈1.010142); 12500/11251 (≈1.111012) → 1/1; 2 → **1** | 0.989960; 0.900080 | TG_ENTRY_SIZED; fill 26042 → stop enviado 26017.5; proyección SL 499.98 ≤ R 500.00; TP postfill no retenido |
+| B K04 R | 500/250 → 500/250 | 870; no retenido / 1000 | 25000/46249 (≈0.540552); 12500/22001 (≈0.568156) → 0/0; 2 → **0** | 1.849960; 1.760080 | TG_SIZE_BELOW_MINIMUM; Q0; sin fill de entrada ni stop postfill |
+| C4 K04 A | 500/250 → 500/250 | 870; 1100 / 1000 | 25000/23749 (≈1.052676); 12500/10751 (≈1.162683) → 1/1; 2 → **1** | 0.949960; 0.860080 | TG_ENTRY_SIZED; fill 24901 → stop enviado 24876.5; proyección SL 499.98 ≤ R 500.00; TP postfill no retenido |
+| C4 K04 R | 500/250 → 500/250 | 870; 1100 / 1000 | 25000/46499 (≈0.537646); 6250/11063 (≈0.564946) → 0/0; 2 → **0** | 1.859960; 1.770080 | TG_SIZE_BELOW_MINIMUM; Q0; sin fill de entrada ni stop postfill |
+| B K05 A | 1000/250 → 1000/250 | 870; 1100 / 1000 | 50000/48749 (≈1.025662); 12500/11251 (≈1.111012) → 1/1; 2 → **1** | 0.974980; 0.900080 | TG_ENTRY_SIZED; fill 26042 → stop enviado 25992.5; proyección SL 999.98 ≤ R 1000.00; TP postfill no retenido |
+| B K05 R | 1000/250 → 1000/250 | 870; no retenido / 1000 | 50000/91749 (≈0.544965); 12500/22001 (≈0.568156) → 0/0; 2 → **0** | 1.834980; 1.760080 | TG_SIZE_BELOW_MINIMUM; Q0; sin fill de entrada ni stop postfill |
+| C4 K05 A | 1000/250 → 1000/250 | 870; 1100 / 1000 | 50000/46999 (≈1.063852); 25000/21627 (≈1.155962) → 1/1; 2 → **1** | 0.939980; 0.865080 | TG_ENTRY_SIZED; fill 24901 → stop enviado 24851.5; proyección SL 999.98 ≤ R 1000.00; TP postfill no retenido |
+| C4 K05 R | 1000/250 → 1000/250 | 870; 1100 / 1000 | 50000/92249 (≈0.542011); 6250/11063 (≈0.564946) → 0/0; 2 → **0** | 1.844980; 1.770080 | TG_SIZE_BELOW_MINIMUM; Q0; sin fill de entrada ni stop postfill |
+
+La ancla técnica y los costes de sizing no autorizan forzar Q=1. El caso C4 K02 R reduce R/T de 500/500 a 349.86/349.86 por remanente: el SL neto por contrato es 359.98, su cociente R/SL=17493/17999 y floor=0. El hard headroom dueño de ese caso es 1620.14 y H usado 1000; el rechazo proviene del presupuesto/remanente, no de sustituir headroom por otro campo.
+
+C4 K03 A: prefill SL neto 499.98 y R=500. Fill real 24796 y stop físico enviado 24771.5, distinto de la ancla prefill 24771.25. Su proyección SL neta es 499.98 ≤ R=500. Se usa la protección posterior real, no se conserva por inferencia la ancla inicial.
+
+La proyección posterior al fill usa el precio real de entrada y el primer stop enviado por esa operación: distancia×20 + fees4,98 + slippage de salida5. La entrada ya incorpora su slippage; no se cobra dos veces. Esta proyección no garantiza el precio efectivo del futuro fill SL. El umbral TP posterior al fill no se conserva en estos eventos; no se inventa a partir del rol de la orden de salida. Los presupuestos y resultados netos sí están acreditados por la autoridad y ledger completos.
+
+### Entrega física, recursos y reproducción
+
+Fuente en rama local `codex/tradesgerard-entry-repair-c4-20261013`, checkout `implementer/echo-c4`, commit `88ed70d1ff9910bb157f1c14c0fed1d2b8e7ec49`, árbol `935e74d6056ffb3593f5a9a5deb8771ea6214bcd`. Los1848 archivos congelados conservan hashes, árbol limpio. Binario `implementer/bin/echo-backtest-88ed70d1`, Go1.27.1, vcs.modified=false, SHA256 `c8849bb6e5523e8625ead8282f0d97f98d8b02e14d72838e3c35de207c6bcd57`. Fuente de producto local recuperable; no se afirma push de Echo ni integración en rama estable.
+
+Diff y regresiones permanentes: comparar B `10d406b3cddbd9c738dbc64b5db38c16ff7527b9` con ese C4 en el checkout. Los owners y RED/GREEN están en la adjudicación y `verifier/mandate-12-evidence-matrix.json`; TCR en `specs/FEAT-TRADESGERARD-ENTRY-REPAIR/TEST_CHANGE_REQUEST.md`. El TASKS congelado conserva su corte anterior al largo; el estado final externo evita modificar source después de verificarlo.
+
+Entrega del integrador: `implementer/evidence/c4-implementation-handoff.json`; dictamen independiente: `verifier/independent-final-dictamen.json`. Recetas realmente ejecutadas: `implementer/evidence/c4-executed-recipes.json`, con argv/cwd/env de build, vet, tests y diez campañas, source/bin/corpus/planes y exit codes. `implementer/evidence/commands.ndjson` conserva cada invocación de campaña. Controlador ejecutado:
+
+```text
+taskset -c 0-5 python3 /home/kor/aranea/work/tradesgerard-entry-repair-20261013/implementer/run_final_c4.py /home/kor/aranea/work/tradesgerard-entry-repair-20261013/implementer/bin/echo-backtest-88ed70d1 88ed70d1 88ed70d1ff9910bb157f1c14c0fed1d2b8e7ec49 c8849bb6e5523e8625ead8282f0d97f98d8b02e14d72838e3c35de207c6bcd57
+```
+
+Entorno GOMAXPROCS=4, cwd del chat local explicitado en el recibo. El controlador terminó exit0, al igual que watchdog y diez campañas; no relanzar sobre directorios de resultados ya ocupados. Para reproducción, usar los argv de cada receipt con nueva salida propia y los mismos inputs congelados, sin recompilar sobre fuente mutable.
+
+Drenaje físico:20 PIDs wrapper/child de las diez campañas ausentes; cero procesos propios Go/campaña/controlador/watchdog y cero scratch pendiente. Directorios temporales Go autolimpiados; no se borraron corpus, builds, source, resultados, caches ni trabajo ajeno. Medición final de `c4-drain-resource-manifest.json`:770.330.483 bytes durables globales de805.306.368 permitidos; lote62.426.424 de268.435.456; stdio253.065 de16.777.216; disco libre13.405.282.304 por encima de reserva8.589.934.592. Traza máxima observada5.913.207 bytes, límite16MiB. Las mediciones tienen timestamp, no pretenden congelar el tamaño de futuras notas de evidencia.
+
+Máximo observado tres campañas; reserva conservadora redujo a dos las últimas admisiones sin cancelar campañas ni ampliar límites. Afinidad0–5/GOMAXPROCS4 verificados por proceso. GNU time-v conserva CPU/RSS por campaña en el manifiesto; pico RSS simultáneo agregado NO_MEDIDO, no se suma el máximo de cada proceso para inventarlo. No hubo budget stop ni first cause de recursos. Benchmarks de velocidad no reclamados.
+
 ### Hipótesis D falsificada durante la revisión final
 
 La sospecha de un suavizado adicional de D en C4 quedó **refutada**, sin modificar fuente, campañas ni admisiones. Los nombres internos indujeron una lectura incorrecta del manager y del integrador: `slowK(state)` devuelve rawK; `State.SlowK` conserva rawK; `State.SlowD` conserva K=SMA3(rawK). El promedio de sus tres valores en `details.slow_d` es precisamente D=SMA3(K), disponible desde la barra24 y ajeno al filtro de entrada.
@@ -105,7 +193,7 @@ El verificador calculó D con Fraction desde los OHLC originales: los755 payload
 | Binario B | `ARANEA_ROOT/work/tradesgerard-b-glm-20261012/bin/echo-backtest`, SHA256 `f00efd668eee8b121f7efb65b1b92923620e47beaac650a99491b425027486e8`. |
 | Metadata ejecutable | `go version -m`: Go1.27.1, linux/amd64, vcs.revision igual al HEAD B, vcs.modified=false. |
 | Evidencia histórica | `work/tradesgerard-b-glm-20261012/{inputs,prepared,runs}`, relativa a ARANEA_ROOT; T0/T1/T1-L/RESULTADO leídos. COMPLETE histórico no prueba corrección de señal. |
-| Agents-OS | `xKoRx/agents-os`, checkout local master limpio al arranque. Escritura canónica mediante materializador; sincronización del nuevo informe todavía no verificada. |
+| Agents-OS | `xKoRx/agents-os`, checkout local master limpio al arranque. Escritura canónica mediante materializador; último corte remoto comprobado `1784eb39e68244805dcde286655f2910b6f18784`. La sincronización del delta documental final se verifica separadamente por Git, sin atribuir push al archivo local. |
 
 La abreviatura `f00efd66…c4fed` de RESULTADO no es identidad válida del binario T1: el SHA completo físico anterior gobierna. No se ha recompilado ni modificado B.
 
@@ -117,7 +205,7 @@ Evidencia nueva externa al vault: `ARANEA_ROOT/work/tradesgerard-entry-repair-20
 
 Resolución física LOCAL de esta ejecución: `ARANEA_ROOT=/home/kor/aranea`, `VAULT_ROOT=/home/kor/secondbrain/main`. La raíz de evidencia nueva es `/home/kor/aranea/work/tradesgerard-entry-repair-20261013`; los paths `implementer/...` y `verifier/...` del informe se resuelven desde ella. Recetas realmente ejecutadas, salidas y exit codes: `implementer/evidence/c4-executed-recipes.json` y los recibos individuales de campaña, junto a manifests y recibos de cada corrida. No sustituir esos comandos por una build de HEAD mutable.
 
-Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB available; es observación puntual, no permiso de consumo. Reserva disco≥8GiB, scratch≤2GiB, durable≤256MiB/lote, logs/trazas≤16MiB; presupuesto agregado y picos pendientes de recibo. No borrar corpus, caches, builds o evidencia ajena.
+Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB available; es observación puntual, no permiso de consumo. Reserva disco≥8GiB, scratch≤2GiB, durable≤256MiB/lote, logs/trazas≤16MiB; el recibo final más abajo acredita presupuesto agregado; pico RSS simultáneo histórico no medido. No borrar corpus, caches, builds o evidencia ajena.
 
 ### Matriz de gates vigente
 
@@ -128,10 +216,10 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Primera pérdida y regresiones | PASS: decline/rearme LONG y SHORT, SL/TP/finality, ocupado sin backlog, warmup y compra/pausa acreditados; fixtures permanentes. |
 | Falsificación exacta y cobertura | C4 exacto INDEPENDENT_PASS: regresiones propias, CLI, paridad offline; cobertura346/350 bloques afectados y267/271 inicios AST, cero sin perfil/mapear. Backtester C4 nuevo; SDK reutilizado por identidad de bytes. Comparación larga10/10 independiente PASS. |
 | Observabilidad compacta | PASS de retención, extractor y particiones/métricas en10/10 campañas.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
-| Sizing por perfil | PASS: C4 acredita completitud y autoridad de cada snapshot MM. Primera admisión/rechazo de cada perfil, OHLC y unidades en `implementer/evidence/c4-sizing-presentation.md`; revisión independiente de presentación en consolidación. |
+| Sizing por perfil | PASS: C4 acredita completitud y autoridad de cada snapshot MM. Primera admisión/rechazo de cada perfil, OHLC y unidades en `implementer/evidence/c4-sizing-presentation.md`; readback independiente semántico PASS de20 filas,19 decisiones reales. |
 | Comparación T1 final | C4:10/10 COMPLETE y verificadas independientemente (K01–K05 ×2300/3000). C3 supersedido:5 COMPLETE referencia,1FAILED por cancelación,4 no ejecutadas. B observado5/5 COMPLETE y equivalencia íntegra independiente PASS; ambos retiros históricos enlazados por equivalencia comprobada. |
 | Casos largos pertinentes | Lifecycle C4 PASS27,411s, AllFourTargets C4 PASS62,528s y CLI singleton C4 PASS122,157s; V-F02 causal cerrado en pagos sin alterar oráculo. Los cuatro targets heredados son regresión, no reactivación del catálogo. |
-| Recursos y cierre de procesos | Diez procesos exit0, controlador y watchdog exit0 reportados; recibo físico final de recursos/drenaje en consolidación, sin cierre de sesión del manager. |
+| Recursos y cierre de procesos | PASS físico:10 campañas, controlador y watchdog exit0;20 PIDs wrapper/child ausentes, jobs propios0, scratch0. Recibo `implementer/evidence/c4-drain-resource-manifest.json`; sin cierre de sesión del manager. |
 
 ### Adjudicación
 
