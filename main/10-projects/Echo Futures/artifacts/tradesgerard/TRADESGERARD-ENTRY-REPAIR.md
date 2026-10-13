@@ -62,9 +62,9 @@ Hechos confirmados: identidad física B y disponibilidad local; el censo indepen
 
 ### Censo independiente inicial — readback verificado
 
-`verifier/oracle-summary.json`, `oracle-bars.csv`, `oracle-crosses.csv` y `oracle.py`, relativos a la raíz de evidencia nueva. Archivo físico SHA256 `700579b3b3c78e58ccceb39bd79e8d11aa3efab3e8457d92bee1833ef2686406`; Python stdlib lee filas originales y calcula indicadores sin llamar `tg` ni Echo. Resultado:42969 barras físicas,2959 cruces brutos,755 cruces dentro de la ventana operable del plan en31 fechas NY. Hay350 barras de entrada por fecha:10850 en total. El prefijo efectivo y los límites de horizonte del plan se están reconciliando explícitamente con la fecha abreviada del reporte histórico.
+`verifier/oracle-summary.json`, `oracle-bars.csv`, `oracle-crosses.csv` y `oracle.py`, relativos a la raíz de evidencia nueva. Archivo físico SHA256 `700579b3b3c78e58ccceb39bd79e8d11aa3efab3e8457d92bee1833ef2686406`; Python stdlib lee filas originales y calcula indicadores sin llamar `tg` ni Echo. Resultado:42969 barras físicas,2959 cruces brutos,755 cruces dentro de la ventana operable del plan en31 fechas NY. Hay350 barras de entrada por fecha:10850 en total. El plan fija `trade_start=2025-10-14T13:30Z` (09:30NY), con entradas desde10:00NY; el prefijo efectivo contiene1118 barras y68 cruces. Quedan2891 cruces brutos posteriores a trade_start. La frontera de fuente es2025-10-13T17:51Z, primera barra cerrada17:52Z; último cierre físico2025-11-25T22:00Z, horizonte del plan23:00Z. Las horas restantes son cierre del calendario, no barras fabricadas.
 
-Tolerancia fijada por el independiente:1e−9 absoluta para K/ATR; no cambia decisiones estrictas20/80. Warmup matemático: rawK desde barra20, K desde22, primer par comparable23; ATR semilla20; D informativa desde24 sin gate. Tabla por sesión conserva preparación y exclusiones.
+Tolerancia inicial fijada por el independiente:1e−9 absoluta para K/ATR; no cambia decisiones estrictas20/80. El oráculo se fortaleció con aritmética racional exacta para K y los umbrales: conserva755 oportunidades; ATR usa float64 y tolerancia1e−9. Warmup matemático: rawK desde barra20, K desde22, primer par comparable23; primer TR=H−L si no existe cierre previo entregado, ATR semilla20; D informativa desde24 sin gate. Tabla por sesión conserva preparación y exclusiones.
 
 | Oportunidad inicial | K previa → actual | ATR puntos |
 |---|---:|---:|
@@ -75,6 +75,8 @@ Tolerancia fijada por el independiente:1e−9 absoluta para K/ATR; no cambia dec
 El independiente localizó sólo la primera evaluación MM de K01 en el histórico de esa jornada;14:48Z es la primera oportunidad posterior cuya omisión se investiga. Esto no declara todavía que el primer rechazo debiera haberse admitido ni que la primera divergencia de indicador ocurra en14:48Z.
 
 Inspección de fuente corroborada por manager: `tg/tg.go:242–249` mantiene explícitamente un ciclo técnico por día y deriva `NewCycle` de `CycleOpen`; `tg.go:295/306` realimenta ATR cuantizado al tick; `platform_campaign.go:492` mantiene el veto global de compra por cualquier cuenta pausada. Las tres ramas contradicen aspectos del contrato actual. El implementador debe demostrar cada impacto con input mínimo, primera divergencia y regresión baseline/fix; el independiente conserva su propio oráculo.
+
+TCR adjudicado por manager dentro del mandato del Owner: `specs/FEAT-TRADESGERARD-ENTRY-REPAIR/TEST_CHANGE_REQUEST.md` en el checkout de reparación. Se autoriza sustituir sólo la expectativa de ATR cuantizado por Wilder independiente (semilla20 y tolerancia1e−12), manteniendo asserts de K/replay; y la expectativa de veto por cuenta pausada por admisión con caja/cupo/sesión reales más negativos. El fixture heredado tiene una cuenta, no una quinta; descripción corregida solicitada. No se autoriza saltar tests ni debilitar límites.
 
 ## Fuentes
 
