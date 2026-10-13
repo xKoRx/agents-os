@@ -222,6 +222,8 @@ Extracción independiente `verifier/campaigns-reference-C1-K01.json`, contrastad
 
 V-F01 sí afectó este corpus: las tres compras sucesoras coinciden exactamente con los cruces10:00NY del17oct,31oct y12nov. Las cuatro cuentas terminan válidas PAUSED_SESSION; caja4280 incluye compras/renovaciones. Por tanto85 NO se presenta como resultado corregido final ni como promesa para C2: reutilizar la cuenta válida cambia su riesgo y trayectoria posteriores. Esta corrida valida el extractor y demuestra recuperación de recepción, manteniendo el defecto de compra identificado. Diez campañas finales C2 siguen0/10.
 
+Readback corto ampliado (`implementer/evidence/short-comparison.json`): los cinco baselines cortos y cinco C1 cortos están COMPLETE/reconciliados con23 OPEN en cada fila. Operaciones con fills primera jornada B→C1: K01 0→3, K02 1→16, K03 0→4, K04 0→3, K05 0→3. Cada baseline materializó sólo1 intento; C1 materializa23/21/23/23/23, con2 cruces ocupados explicados en K02. Esta comparación sigue siendo corta y C1; no reemplaza la tabla T1 C2 exigida.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
