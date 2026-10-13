@@ -57,7 +57,15 @@ Se rechaza el fundamento anterior tick-extra como mínimo legal demostrado. Inte
 
 La prueba independiente de retiro/demanda finalmente PASS0,949s tras usar `nextNYOpen` real; fallos previos eran fixtures fuera de sesión y quedan registrados, no bugs de producto. Claims y matriz cap4casos PASS. Evidencia relativa a nuevo root: `verifier/{venue-minimum-87e33b0c-attempt2.log,provider-minimum-87e33b0c.log,backtester-demand-87e33b0c-attempt6.log}`. Gate T1 continúa HOLD hasta freeze corregido y recheck exacto.
 
-### Tandas pendientes autorizadas
+### Freeze V2 y finding de valoración stale en callback
+
+Source corregido `cb9cc0cd997e78bbf7f777a5291482b6c9870bfd`, árbol limpio comprobado; binario `implementer/bin/echo-backtest-c2` SHA256 `34a300eecabf3baa55519fc6322cb1b524161c2c9471a8602742231c7e407a45`, hash físico leído. Políticas `ECONOMIC_MINIMUM_V2` y `ECONOMIC_MINIMUM_RETIRE_V2`; perfil comercial y horizon C4 preservados. Delta cobertura177/181=97,790055% bloques completos; SDK, money/policy/NT físico, Core typed LIVE/BACKTEST offline y vet del autor PASS. No certificación de LIVE ni gate independiente final.
+
+E2E independiente V2: seis negativos LONG/SHORT con R14,98/15,28/19,98 no generan fills. Al investigar positivos cercanos al mínimo, el verificador halló un defecto monetario: primer fill LONG14:01:06.666 a100,75 con cursor actual100,25, pero MM_FILL recibe equity50377,51 y Cycle.open_mark380/net_liquidation370,02 desde mark anterior119,75/cierre120. MM considera TP25,28 logrado y la salida siguiente a100 realiza−19,98. No se acepta como cierre inmediato legítimo; el supuesto de marca contemporánea está contradicho. Evidencia `verifier/e2e-cb9cc0cd/long-R25.28-trace.ndjson.gz` y resultado propio. Caso de fixture, no PnL del ranking; aún no se extrapola a todas las campañas C4.
+
+Manager adjudicó HOLD y corrección upstream acotada de valoración/autoridad antes de callback, con reproducción de atribución y RED/GREEN en el mismo assert. No guard compensatorio TG, no alterar retrospectivamente fills/precios ni simulador para fabricar resultado. Original cb9 debe permanecer quieto; integrador único y verificador independientes continúan. T1 todavía no lanzada.
+
+### Tandas autorizadas aún pendientes
 
 T0 políticas y racha → T1 F0×10 → T2 F1×10 → T3 F2×10 → T4 F3×10 → clasificación de40configuraciones y ampliación disponible de hasta cuatro configuraciones activas. Hallazgos materiales se corrigen y las trayectorias afectadas se repiten. No hay garantía de cobro; cobro acreditado y caja neta se informan por separado.
 
