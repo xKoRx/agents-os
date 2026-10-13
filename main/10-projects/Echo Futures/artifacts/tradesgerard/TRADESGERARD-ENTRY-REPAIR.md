@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS — C3:4/10 campañas COMPLETE, pero la auditoría de un cierre K02 detecta admisión con headroom Provider ausente al seleccionar una cuenta preservada. Nuevas admisiones C3 en HOLD mientras se confirma la primera divergencia; no hay certificación global. K05r2300/K01r3000 conservados en ejecución al corte. B observado K01 completo con equivalencia histórica PASS; K02 continúa.
+IN_PROGRESS / corrección parcial — V-F03 confirmado: entrega ACCOUNT_DAY omite headroom vigente y su cache prevalece sobre Views. C3 supersedido para aceptación funcional; resultados COMPLETE conservados con validez analítica afectada. Nuevas admisiones C3 en HOLD, cancelación dirigida de K01r3000 solicitada y K05r2300 pendiente de corte físico. C4 aislado autorizado para corregir el owner con RED/GREEN independiente; B observado continúa.
 
 C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; gate independiente exacto y CLI singleton PASS. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados por completar; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
@@ -60,7 +60,7 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Falsificación exacta y cobertura | C3 exacto PASS independiente; bloques329/333 y AST259/263, procedencia de perfiles compatibles y ausencia de huecos de inventario comprobadas. |
 | Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
 | Sizing por perfil | Aritmética y primeras causas acreditadas; snapshots efectivos finales y tabla por cinco perfiles pendientes de campañas C3 y B observado. |
-| Comparación T1 final | 4/10 COMPLETE C3; tres verificadas, K04 en auditoría. K05r2300/K01r3000 RUNNING. B observado K01 equivalencia full PASS; K02 RUNNING. |
+| Comparación T1 final | C3 supersedido por V-F03:4 COMPLETE conservadas, sin aceptación global; K05/estado de cancelación K01r3000 en seguimiento. Diez campañas finales deberán usar versión corregida y verificada. B observado K01 equivalencia full PASS; K02 RUNNING. |
 | Casos largos pertinentes | BTGS04 PASS C2 compatible, lifecycle y AllFourTargets PASS C3; V-F02 causal cerrado en pagos sin alterar oráculo. CLI singleton C3 PASS119,736s. |
 | Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
 
@@ -453,6 +453,10 @@ La reconstrucción de motivos de cierre detectó una Operation K02 el12nov10NY c
 Manager ordenó detener nuevas admisiones C3 mediante el hold del controlador, conservando las campañas en ejecución y manteniendo B observado. Fuente/build C3 permanecen congelados. Un cierre de esta primera divergencia y un nuevo gate independiente son obligatorios si se confirma defecto; los PASS acotados y resultados físicos anteriores se conservan sin convertirlos en certificación de toda la cadena.
 
 Inspección de fuente concordante manager/implementador: `openAccountDay` entrega ACCOUNT_ECONOMICS antes de `projectEconomics`; `deliverDayEconomics` construye un snapshot con Balance/Equity/PnL pero sin HardMonetaryHeadroom. Operation guarda ese snapshot incluso sin operación activa y `DeliveredEconomics` sustituye íntegramente la economía de Views al decidir. `SelectPreservedAccount` restaura riskEval preservado; no es correcto afirmar que lo resetea. La ruta incompleta está en la entrega/proyección diaria y su cache de owner; falta cerrar el enlace temporal de piso/revisión en la reproducción física antes de adjudicar el parche. PnLFresh=true y snapshot presente no bastan para acreditar que todos sus campos de riesgo están completos.
+
+**V-F03 confirmado y adjudicado después de ese corte**: PROVIDER_FACT físico del11nov22:00Z de la cuenta2 fija EODfloor48885,20, margen5,12 y outcomeOK. DAY_OPEN rev10035 mantiene balance48890,32/PnL diario0; MATERIALIZED usa esa misma revisión pero pierde HardMonetaryHeadroom y admiteR500/Q1. La primera divergencia está en la entrega económica incompleta, no en el precio del fill ni en un supuesto reset de piso. El resultado económico conciliado no valida esa entrada.
+
+Manager autoriza fix mínimo en el owner de entrega/proyección diaria, preservando límite, ledger, cuenta, geometría y estrategia, con RED independiente sobre RunState real estacionado→cambio de día→restauración→nueva señal. C3 queda supersedido para aceptación funcional. Se ordena cancelar sólo K01r3000 por supersesión con drenaje y estado fallido real, conservar K05r2300 si cercano al final y mantener B observado. C4 se prepara en checkout separado, sin compilar sobre C3 mutable ni sobrescribir sus binarios; presupuesto durable agregado768MiB sigue vigente. No se propone compensar esta omisión aumentando riesgo ni forzando cantidad.
 
 ## Fuentes
 
