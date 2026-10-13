@@ -43,6 +43,8 @@ tags:
 
 ## Validación
 
+- Corte C4 18:09Z: informe y CONTROL pasan de0/10 a2/10 COMPLETE verificadas (K02/K03 r2300), con identidad exacta,755 cruces cada una,24/14 operaciones, autoridad/ledger/caja/sesión conciliados. Fuente: `verifier/final-T1-receipt-readback-final-88ed70d1.json`; no se declara PASS global ni se reescribe el histórico. Readback y lint estricto aplicados al delta documental.
+
 - Identidad B fuente/binario comprobada; contenido y lint se verifican tras cada hito. No se atribuye push sin comprobación remota.
 
 ## Compartibilidad
