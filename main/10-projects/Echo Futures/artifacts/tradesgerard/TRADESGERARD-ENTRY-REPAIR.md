@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS — C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; verificación independiente exacta y CLI singleton pendientes. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados pendientes; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
+IN_PROGRESS — C3 congelado `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a` corrige V-F02 de turnos y recupera los cuatro pagos largos sin cambiar el oráculo. Binario/metadata/árbol limpio comprobados por manager; gate independiente exacto PASS, CLI singleton pendiente. C2 queda supersedido. Censo completo:42969 barras,755 oportunidades NY. C1 recuperó K01 de0 a3 operaciones en primera jornada y0 a85 en T1, pero sus compras indebidas hacen que el largo sea sólo REFERENCE_ONLY. Diez campañas definitivas y cinco replays B observados pendientes; no corresponde CORRECTED_AND_VERIFIED. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
 ### Identidades comprobadas por el manager
 
@@ -53,7 +53,7 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Identidad y conservación B | PASS: source/binario/corpus físicos comprobados y preservados. |
 | Censo OHLC→indicadores→cruces | PASS independiente C2:42969 barras/755 oportunidades, tolerancia prospectiva y correspondencia por identidad. |
 | Primera pérdida y regresiones | PASS: decline/rearme LONG y SHORT, SL/TP/finality, ocupado sin backlog, warmup y compra/pausa acreditados; fixtures permanentes. |
-| Falsificación exacta y cobertura | Gate acotado C2 PASS pero supersedido por V-F02; C3 congelado, cobertura de bloques98,7988% del integrador, cotejo independiente exacto pendiente. |
+| Falsificación exacta y cobertura | C3 exacto PASS independiente; bloques329/333 y AST259/263, procedencia de perfiles compatibles y ausencia de huecos de inventario comprobadas. |
 | Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
 | Sizing por perfil | Aritmética y primeras causas acreditadas; snapshots efectivos finales y tabla por cinco perfiles pendientes de campañas C3 y B observado. |
 | Comparación T1 final | 0/10 finales. C2 supersedido/drenado; C3 congelado y planes en preparación. Cinco B observados autorizados tras equivalencia histórica de ambos retiros. |
@@ -347,6 +347,12 @@ Se aclaran unidades tras inspeccionar `platform_search.go`: SearchRecorder tiene
 Source `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a`, rama `codex/tradesgerard-entry-repair-20261013`; manager verificó árbol limpio y commit. Binario `implementer/bin/echo-backtest-26f3459c`, SHA256 `92e27ef71d22bc9897af7f3c26d1fbe980f5f591b749224258747fd40c2584c9`, Go1.27.1, VCS del mismo commit y modified=false. Vet PASS informado por integrador; lifecycle aislado PASS30,937s leído por manager. Cuatro pagos y regresiones de turno pasan sobre los mismos bytes productivos congelados.
 
 Procedencia `implementer/evidence/c3-coverage-provenance.json` leída: productor nuevo backtester PASS210,441s, perfiles/logs con hashes y comando exacto; SDK C2 reutilizado sólo porque el diff SDK C2→C3 está vacío. Perfiles C2 de backtester excluidos. Auditor recibió fuente/build para gate independiente exacto y cotejo AST; diez planes C3 en preparación y CLI singleton pendiente. Freeze no equivale a entrega completa.
+
+### Gate independiente exacto C3 PASS; comparación vuelve a habilitarse
+
+Independiente sobre `26f3459c`/binario `92e27ef7…`: pruebas de pausa por objetivo/sesión/interna, fallo oficial y conservación de turno tras TP PASS3,890s (`verifier/final-26f3459c-backtester-tests.log`); seis tapes CLI exactos PASS y V-F01 permanece cerrado. Cobertura recalculada:329/333 sentencias de bloques afectados98,7988%, AST259/263 sentencias nuevas98,4791%; inventario14 archivos, instrumentables ausentes0 y sentencias sin mapa0. Los resultados/cotejos de perfil tienen procedencia explícita C3 para Campaign y SDK C2 compatible.
+
+El censo completo42969/755 se reutiliza por identidad de bytes del SDK entre C2 y C3; no se afirma una nueva ejecución del oráculo C3. Las diez campañas contrastarán sus señales físicas contra esas identidades. El manager autorizó CLI singleton aislado y, al comprobar inicio sano, K01 C3 inmutable en paralelo; una segunda campaña al drenar Go y medición antes de ampliar concurrencia. Cualquier nuevo fallo funcional mantiene abierta la entrega. B observado se prepara en superficie separada, sin bloquear el freeze ni mutar B.
 
 ## Fuentes
 
