@@ -414,6 +414,14 @@ Los contadores Provider750/749 de K01/K02 son grants para admitir/materializar l
 
 `verifier/first-closures-K01-arithmetic.json`, cotejado por manager: primer TP LONG compra24901→venta24914,Q1; bruto260 menos fees4,98=neto255,02 frente T250. Proyección desde el fill real reserva sólo costos de salida pendientes: precio bruto24913,999 alineado24914 implica neto proyectado250,02; la salida MARKET física posterior puede superar ese umbral. La referencia de cotización implícita24914,25 se deriva del fill/slippage declarado, no se presenta como quote observado. Primer SL SHORT vende25303,50→compra25315,75: bruto−245 menos4,98=−249,98 frente R250. Stop económico bruto25315,501 se alinea25315,50 y el fill añade0,25 de slippage de salida. Aritmética monetaria/ticks exacta, sin epsilon ni doble descuento; la tolerancia ATR es un asunto separado.
 
+### Baseline K01 observado completo: equivalencia preservada
+
+`verifier/baseline-observed-full-K01-equivalence.json`: PASS independiente. Las138 filas legacy completas coinciden con B original tras normalizar exclusivamente IDs tipados; también coinciden finanzas/MM/daily/cuentas/caja/pagos/consumo/residuos. Sidecar completo:2422 eventos,755 cruces,31 evaluaciones MM y64 transiciones de cuenta. El replay mantiene0 operaciones con fills,31 rechazos y caja4760. Es evidencia observacional de B, con overlay/binario identificados, no una recompilación atribuida al hash binario histórico.
+
+Primera oportunidad posterior al rechazo, SHORT14oct14:48Z: owner físico **CREATED**, no ACTIVE, sin exposición, claims ni admisión pendiente, mismo CycleSeq1. La operación fantasma sin órdenes persiste y el cruce se entrega al mismo ciclo; el defecto queda demostrado en el recorrido físico, además de la regresión aislada. La clasificación causal incluye estados no terminales como CREATED, sin cambiar los hechos ni llamarlos exposición real. C3, sobre los mismos755 cruces K01, llega a750 materializaciones y19 operaciones con fills. La atribución por identidad se completa con la comparación de trayectorias; no se suman por separado los efectos del latch y de la falta de finalización sobre el mismo cruce.
+
+K02 observado continúa bajo equivalencia completa individual obligatoria. C3 mantiene2/10 verificadas y K03/K04 en ejecución en este corte.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
