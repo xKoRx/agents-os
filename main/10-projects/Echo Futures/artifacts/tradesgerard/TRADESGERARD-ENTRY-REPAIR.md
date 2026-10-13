@@ -300,6 +300,12 @@ Actualización V-F02: el integrador añadió estado explícito de turno activo e
 
 Drenaje C2 acreditado en `implementer/evidence/c2-supersession.json`: hijo financiero SIGTERM, exit2, recibo FAILED y primera causa `context canceled`; controlador detenido terminado sólo después de drenar el hijo, exit137. Manager comprobó los tres PID ausentes. Se conserva el estado inicial del controlador y el final; las otras nueve configuraciones no se ejecutaron. No hay campañas C2 activas ni resultados parciales presentados como COMPLETE.
 
+### Suficiencia del before histórico y replay observacional acotado
+
+El independiente confirmó que los recibos B permiten reconstruir órdenes/fills/operaciones/días/duración/rachas/cierres/caja/pagos y estado final, pero SearchRecorder excluía SIGNAL/OPERATION_APPLY y transiciones de cuenta; MM_EVALUATION no conservaba sizing ni MMInput.Economics. Por tanto no bastan para atribuir cada supresión ni acreditar snapshots económicos reales de las primeras admisiones. No se rellenarán esos campos con headroom hipotético.
+
+Se autoriza preparar observación equivalente sobre B separado e inmutable, preservando su fuente/binario originales y todas sus decisiones. Alcance propuesto: cinco replays completos, uno por perfil, sólo después de acreditar equivalencia física/económica entre los dos retiros históricos que permanecieron EVAL; si esa equivalencia no se demuestra se ampliará el alcance necesario. Esos cinco replays sustituyen los prefijos de sizing, evitando repetirlos. Las diez campañas corregidas siguen siendo individuales y obligatorias. Las primeras admisiones históricas detectadas son K02 14oct14:33Z, K03 20oct14:16Z, K04/K05 28oct14:28Z; K01 no tiene admisión en T1. Se requieren identidad del build observacional y equivalencia de resultados con B original antes de usar sus métricas como before.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
