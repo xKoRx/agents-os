@@ -368,7 +368,7 @@ Medición manager de los dos hijos financieros a6m33/3m28: CPU acumulada152%/137
 
 Manager inspeccionó manifest/helper B observado: sidecar selectivo, coordenada leída sin incrementar StepSeq, inputs MM reales y errores que invalidan evidencia observacional. Identidad necesaria: SHA B más hashes de overlay/shadows/helper y binario nuevo; metadata VCS de un build con overlay no basta para atribuirlo a B original. Equivalencia corta y completa todavía pendientes.
 
-Primer build B observado NOT_PASS (`implementer/evidence/baseline-observation-build.log`): el helper/overlay intentaba leer `SignalDelivery.NewCycle`, campo inexistente en B. Se corrige el adaptador correlacionando la señal original por SignalID; no es defecto nuevo de B ni cambio a C3. Se conservan log y hashes del intento, y se regenerarán los del observador corregido. Dos campañas C3 continúan sanas; al readback parcial K01 había procesado10nov23:00Z, sin tratar ese avance como resultado final.
+Primer build B observado NOT_PASS (`implementer/evidence/baseline-observation-build.log`): el helper/overlay intentaba leer `SignalDelivery.NewCycle`, campo inexistente en B. Se corrige el adaptador correlacionando la señal original por SignalID; no es defecto nuevo de B ni cambio a C3. Se conserva el log; se solicitó conservar el manifest del intento y documentar si los shadows ya fueron reemplazados antes de regenerar hashes. Dos campañas C3 continúan sanas; al readback parcial K01 había procesado10nov23:00Z, sin tratar ese avance como resultado final.
 
 ## Fuentes
 
