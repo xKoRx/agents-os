@@ -422,6 +422,8 @@ Primera oportunidad posterior al rechazo, SHORT14oct14:48Z: owner físico **CREA
 
 K02 observado continúa bajo equivalencia completa individual obligatoria. C3 mantiene2/10 verificadas y K03/K04 en ejecución en este corte.
 
+Comparación causal K01 completa (`verifier/causal-full-B-vs-C3-K01-r2300.json`):755 identidades alineadas, cero exclusivas de before o after. B particiona31 evaluaciones MM +721 cruces con owner CREATED/flat/sin claims +3 ROLLOVER_GATE_DISABLED en las fronteras exactas10NY. C3 recupera **719 intentos MM adicionales**:716 desde el owner fantasma y tres desde el gate; cinco de aquellos721 se descartan legítimamente por exposición en la nueva trayectoria. De los31 intentos comunes, sólo uno conserva la misma economía y30 tienen trayectoria económica distinta. No es válido atribuir esas30 diferencias exclusivamente al ATR ni sumar latch/finality como recuperaciones independientes. Las19 entradas K01 se acreditan con fills, separadas de los719 intentos recuperados.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
