@@ -45,6 +45,7 @@ tags:
 ## Resolución aplicada
 
 - Estado vigente antepuesto conservando íntegros los antecedentes; T0 materializado por contrato canónico. Manager coordina, TOPs implementan/verifican. No aceptación final ni cierre del manager.
+- Actualizado el HOLD vigente a V2 y la corrección causal en curso; separado el alcance actual2300/3000 de targets históricos. Registrados prefijo H1 causal e intervalo adicional reservado antes del ranking, con independencia histórica no certificada.
 
 ## Validación
 

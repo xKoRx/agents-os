@@ -9,7 +9,7 @@ aliases: []
 tags:
   - kind/doc
 created: "2026-10-12"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 
 # TRADESGERARD-CONTROL
@@ -30,7 +30,9 @@ Estado actual: recepción física C4 comprobada; racha12 reconstruida en [[TRADE
 
 ### Autoridad y límites
 
-Actualización T0 vigente: candidato `87e33b0c333a1f2f4178dfefe06126d50691c7ad` queda **HOLD**, no habilita T1 por supuesto incorrectamente acreditado del mínimo de ejecución. [[TRADESGERARD-OPERABILITY-T0-VERIFY]] conserva la falsación independiente Venue/Provider/Ledger y los probes que sí pasan; sync master `fc00526d509217d41ba8fe5632b2513dae4ab336` comprobado. Corrección aislada en `ARANEA_ROOT/work/tradesgerard-operability-20261013/implementer/echo-t0-corrected`, único integrador, sin alterar el candidato anterior ni C4. Cobertura95,8333% del candidato no sustituye el gate físico. Campañas nuevas siguen0/40; no resultado económico negativo ni positivo atribuido a este bloqueo técnico.
+Actualización T0 vigente: candidatos `87e33b0c` y `cb9cc0cd` quedan **HOLD**; no habilitan T1. V2 corrigió el fundamento del mínimo estructural, pero el E2E independiente descubrió valoración con mark anterior durante el callback del primer fill. El mismo assert falla también en C4 con la política nueva desactivada. Corrección upstream aislada en `ARANEA_ROOT/work/tradesgerard-operability-20261013/implementer/echo-t0-causal`; RED y GREEN reproducidos, freeze y gate independiente aún pendientes. [[TRADESGERARD-OPERABILITY-T0-VERIFY]] conserva la falsación y sus límites; sync master `515259f26f80c4429259a561119d237603bd5f17` comprobado. Campañas nuevas siguen0/40; no resultado económico negativo ni positivo atribuido a este bloqueo técnico. En el mandato vigente sólo se ensayan solicitudes brutas2300/3000; otros targets y catálogos de las secciones siguientes son antecedentes.
+
+### Antecedentes de autoridad e inputs
 
 [[TRADESGERARD-MANDATE-SNAPSHOT]] autoriza desarrollo offline por TOPs, verificación independiente y correcciones. El manager coordinó, adjudicó evidencia y documentó; no escribió ni integró código, scripts de producto ni tests. Sin merge productivo, deploy, servicios, egress de trading, compras/resets reales ni reconstrucción de cuentas personales. BTG-PLAN, BTX-PERF y D1–D6 conservan sus gates históricos.
 
