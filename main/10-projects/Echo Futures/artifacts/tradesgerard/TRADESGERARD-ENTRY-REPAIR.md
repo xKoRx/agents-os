@@ -144,6 +144,8 @@ El independiente aisló el redondeo recurrente de ATR manteniendo la semilla tar
 
 Gates explícitos aún pendientes: build/commit final, pruebas independientes sobre ese delta, short físico corregido y recuperación K01/K02, partición completa de oportunidades, diez campañas, métricas de operación/cuenta/día y cobertura nueva compatible. No se certifica readiness ni resultado económico.
 
+La ampliación race/cobertura encontró una incompatibilidad de la propuesta inicial con el contrato de separación `SignalDetails` (exactamente technical_stop + strategy_details). No se debilita ese assert: el implementador retirará el campo nuevo y expresará la política de descarte por ocupado en el carrier técnico existente con interpretación tipada, ausencia compatible y valor desconocido fail-closed. Los perfiles de esa corrida con fallo no se admitirán como cobertura PASS. Se conserva primera causa en `implementer/evidence/affected-test.log` y se revalida tras el delta.
+
 Sincronización observada de Agents-OS: commit automático `a58ec551187749deaa6d3f0566e1c556d9b456b8`, master remoto igual según `git ls-remote` antes de este delta. No fue un push ejecutado por el manager; los deltas posteriores requieren nueva comprobación.
 
 ## Fuentes
