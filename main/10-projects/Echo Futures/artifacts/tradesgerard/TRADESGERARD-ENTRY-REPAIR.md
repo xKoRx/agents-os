@@ -310,6 +310,12 @@ Se autoriza preparar observación equivalente sobre B separado e inmutable, pres
 
 Equivalencia de retiros B comprobada (`verifier/baseline-pair-equivalence.json`): cinco pares PASS, cero diferencias; normalización limitada a referencias tipadas de IDs generados mediante biyección. Importes, timestamps, acciones y contadores se comparan sin normalizar; cuentas/caja/pagos/economía/MM/consumo/residuos coinciden, todas las cuentas permanecen EVAL y pagos0. Manager verificó los cinco resultados. Quedan autorizados cinco replays B observados enlazados a ambos retiros históricos; esto no permite deduplicar las diez ejecuciones corregidas.
 
+### V-F02: pagos largos recuperados sin cambiar el oráculo
+
+`implementer/evidence/c3-four-targets-green.log`: cuatro subcasos2250/2300/2500/3000 PASS74,624s sobre árbol C3 quieto, con los mismos precios, horizonte y asserts. Manager leyó el recibo2300: primer pago solicitado17sep14:15Z, acreditado24sep14:00Z, estado CREDITED y neto1651; recupera el calendario B que C2 había retrasado fuera de la ventana. Esto cierra la relación causal del fallo de pagos con el turno revivido, sin exigir rentabilidad a TradesGerard ni reactivar2250/2500 en su catálogo. Resultados completos en `c3-four-target-results/`.
+
+Cobertura Campaign con race y procedencia nueva está ejecutándose; SDK podrá reutilizarse sólo si los bytes instrumentados/dependencias compatibles coinciden. Lifecycle y CLI singleton aislados todavía pendientes; C3 aún no tiene identidad final ni campañas definitivas.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
