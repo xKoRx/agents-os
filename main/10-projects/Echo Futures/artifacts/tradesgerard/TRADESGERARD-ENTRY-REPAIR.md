@@ -230,6 +230,10 @@ El independiente acreditó otro hueco de observabilidad antes del freeze: `resul
 
 La selección Go C2 previa a ese delta pasó los cinco paquetes SDK con race; backtester sigue activo bajo límite15min. El patrón amplio incluye lifecycle de Platform/TestF, pero no BTGS04 ni CLI singleton, que permanecen pendientes aislados. No se confunde la ausencia de salida de fallo con PASS ni se mezclan perfiles de distintos bloques de source sin demostrar compatibilidad.
 
+Actualización del grupo Go: timeout900s y exit1, drenado. Primera causa localizada en `TestPlatformPublic_AllFourTargetsCreditWithoutDailyEvalCeiling`, total4m24 y subcaso2300 activo1m22; sin assert previo informado. SDK5 PASS, backtester NOT_PASS. La selección amplia queda descartada para el siguiente intento; casos/targets explícitos y límites propios, sin escalera de paquetes completos. Los valores2250/2500 de compatibilidad en tests heredados no reactivan el catálogo de campañas.
+
+La revisión previa al freeze identificó dos motivos de supresión todavía ambiguos: CAMPAIGN_UNAVAILABLE sin causa específica y absorción stageSettled posterior a CAMPAIGN_ALLOWED. Se autorizó retener la razón decisoria real por OPEN, sin cambiar la decisión ni contar dos veces el cruce. El independiente confirmó que el resto de datos requeridos tiene fuente: sizing, órdenes, fills, finality, cash, pagos y días. Quedan por verificar las retenciones nuevas y su propagación de errores; una hipótesis del manager sobre sobrescritura de closeErr en el seam final se envió a prueba de fallos, todavía no se declara defecto reproducido.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
