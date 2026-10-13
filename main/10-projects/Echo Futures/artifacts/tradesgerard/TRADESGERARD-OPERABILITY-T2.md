@@ -16,11 +16,13 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Tanda F1-TREND × K01–K05 × solicitudes brutas2300/3000. Estado **F1_PRE_FREEZE, 0/10 campañas definitivas lanzadas**. El módulo compartido y su preparación causal están en verificación; no hay todavía un gate independiente del build final F1. La política común debe incorporar O8 antes de ejecutar T2. No es aceptación final del Owner.
+Tanda F1-TREND × K01–K05 × solicitudes brutas2300/3000. Estado **F1_FROZEN_AWAITING_INDEPENDENT_GATE, 0/10 campañas definitivas lanzadas**. El módulo compartido y su preparación causal están congelados; no hay todavía un gate independiente del build final F1. La política común O8 ya está incorporada. No es aceptación final del Owner.
 
 ## Contenido
 
 ### Contrato del experimento
+
+Freeze físico comprobado por manager: source `f4643aefce49876ed40bb4fd1efefe1894cb1520`, árbol limpio `7390209adb42dea4000b5e6750cc0656616376ce`, binario SHA256 `201edd9b22a08b60b9b06b6e7411449e0515eaba48b4be6571d6794c9977a4a6`. Manifiesto `implementer/evidence/f1-freeze-manifest.json` SHA256 `e5d45ebed793c8b53483ebaf7a215920a0fbce7c86401d6497e67a88139a781e`, diez inputs y perfil común O8 `d66bb56b`. Cobertura del integrador300/312=96,1538% de bloques afectados, referencia `534ca1c7`; el verificador comprobará identidad/denominador y caminos críticos contra el build exacto. Coincidencia de blobs monetarios O8 registrada por integrador; no se declara gate PASS sólo por disponer de manifiesto.
 
 SIG-B conserva K lenta20/SMA3 y los cruces causales en cierre1m. F1 admite LONG sólo con SMA24 de cierres H1 actual mayor que anterior, y SHORT sólo con pendiente menor; igualdad no aporta dirección. Se necesitan25 cierres H1 válidos y totalmente publicados. No hay filtro de posición del precio respecto a la media, pendiente mínima ni otra confirmación. F0 no depende del readiness H1. Los indicadores siguen actualizándose cuando la entrada no es admisible.
 
