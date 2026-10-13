@@ -43,7 +43,7 @@ Primera cuenta11 ganancias2495,22; segunda260,04; campaña12 ganancias2755,26. N
 
 ## Validación
 
-Readback local del informe y JSON; hashes retenidos. Sync coordinado manager preserva cambios concurrentes.
+Readback local del informe y JSON; hashes retenidos. Delta adicional: doce proyecciones SL desde fills/primeras órdenes reales:999,98 para1–10,414,98 para11 y999,96 para12; TP activo no retenido permanece límite explícito. Sync coordinado manager preserva cambios concurrentes.
 
 ## Compartibilidad
 
