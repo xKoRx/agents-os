@@ -58,6 +58,8 @@ tags:
 
 ## Compartibilidad
 
+Actualización23:52Z: primer resultado corregido O8 K01–r2300 COMPLETE y conciliado independientemente,755base/719operaciones/550fallback/0Q0/UNKNOWN, caja3200 después de1800 en compras, cero pases/cobros. Se comprobó la pausa por pequeño objetivo diario y selección causal de cuenta4; conserva cuenta3 y no reutiliza cruces. InformeT1 actualizado con identidad, hashes, ledger separado y resultado «ninguna útil en esta muestra»; las otras39 configuraciones siguen pendientes/en ejecución. K02 terminó con cuatro eventos de pase que se están trazando antes de clasificar; no se confunden con cobros. F1source congelado, build/gate aún en curso. Medición23:48Z permite admisión global4 campañas bajo afinidad6CPU, sujeta a nueva comprobación de recursos al lanzamiento; sin benchmark bajo contención.
+
 - **Scope:** local
 - **Redacción revisada:** sin identidad, paths locales, memoria interna ni secretos
 
