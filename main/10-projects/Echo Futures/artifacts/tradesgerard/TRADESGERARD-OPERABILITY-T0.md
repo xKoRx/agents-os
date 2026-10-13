@@ -103,6 +103,8 @@ Antes del ranking se reservó un intervalo adicional por fecha/cobertura, sin mi
 
 T0 políticas y racha → T1 F0×10 → T2 F1×10 → T3 F2×10 → T4 F3×10 → clasificación de40configuraciones y ampliación disponible de hasta cuatro configuraciones activas. Hallazgos materiales se corrigen y las trayectorias afectadas se repiten. No hay garantía de cobro; cobro acreditado y caja neta se informan por separado.
 
+Regla operativa del ranking declarada antes de completarlo: ordenar configuraciones con al menos una operación real por caja neta, luego neto acreditado, evaluaciones aprobadas e ID estable; tomar los primeros dos pares únicos(filtro,perfil económico) y mantener ambos retiros en la ampliación, máximo cuatro configuraciones. No repetir variantes inactivas por ganar un empate vacío ni sumar los pares de retiro como mercados independientes. El primer resultado parcial F0–K01–r2300 no modifica esta regla.
+
 ## Fuentes
 
 - Mandato Owner TRADESGERARD — GOD LOCAL: OPERABILIDAD, CAMPAÑAS Y FILTROS KISS, PROMPT_VERSION1,2026-10-13.
