@@ -12,7 +12,7 @@ related: []
 aliases: []
 agent_surface: "[[Codex]]"
 agent_model: unknown
-agent_run:
+agent_run: "[[2026-10-13-codex-unknown-tradesgerard-independent-verifier]]"
 session_goal:
 source_session:
 confidence: high
@@ -26,89 +26,13 @@ tags:
   - agent/system1
 ---
 
-# Session Feedback - 2026-10-13 - short-topic
+# Feedback — verificación independiente TradesGerard
 
-## Context
+Solicitado gpt-6.1-sol, servido UNKNOWN. Registro enlazado, CLOUD Pro delta 0.
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+- Fricción real: publicación transitoria de receipt_verified antes del resto de gates confundió avance. Se separó receipt-stage y full_verified; el manager corrigió la interpretación.
+- Continuidad interna y checkpoint externo preservaron corpus, identidad, hallazgos y límites tras compactación; utilidad 4/5. La presentación tardó mientras controles físicos avanzaban; priorizar recibos completos evitó bloquear el freeze.
+- Sistema 1: bootstrap/autoridades y cierre por delta fueron claros (4/5); no faltó soporte nuevo. La hipótesis D por nombres se refutó con 755 comparaciones independientes, sin cambio cosmético de producto.
+- Context high-water unknown; crecimiento: evidencias y mensajes de hitos. Eficiencia REVIEW: mantener índices pequeños y distinguir fases cerradas; no reducir verificación. Un candidato: publicación atómica de full_verified sólo tras todos los gates; evidencia en summarize-c4.py. Impacto MEDIUM, riesgo LOW. No promoción automática L3.
 
-## Scores
-
-Use 1-5, where 1 is poor and 5 is excellent.
-
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
-
-## What Complicated The Session Most
-
-- Observation:
-- Why it was hard:
-- Proposed improvement:
-
-## Most Useful Part Of Sistema 1
-
-- What helped:
-- Why it helped:
-- Keep/change:
-
-## Least Useful Or Noisy Part
-
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
-
-## Missing Support
-
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
-
-## Retrieval Feedback
-
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
-
-## Skill Feedback
-
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
-
-## Template Feedback
-
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
-
-## Memoria Interna (Internal Memory)
-
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
-
-## Pain Pattern Candidate
-
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
-
-## One Next Improvement
-
--
+Cierre propio autorizado; no toca continuidad ni reporte del manager. por favor gracias
