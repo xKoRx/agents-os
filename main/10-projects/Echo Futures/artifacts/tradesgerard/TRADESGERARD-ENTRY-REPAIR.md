@@ -53,11 +53,11 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 | Identidad y conservación B | PASS: source/binario/corpus físicos comprobados y preservados. |
 | Censo OHLC→indicadores→cruces | PASS independiente C2:42969 barras/755 oportunidades, tolerancia prospectiva y correspondencia por identidad. |
 | Primera pérdida y regresiones | PASS: decline/rearme LONG y SHORT, SL/TP/finality, ocupado sin backlog, warmup y compra/pausa acreditados; fixtures permanentes. |
-| Falsificación exacta y cobertura | PASS C2 `63fb2499`; dos denominadores98%+, perfiles PASS compatibles, paridad offline y wiring compartido comprobados. |
+| Falsificación exacta y cobertura | Gate acotado C2 PASS pero supersedido por V-F02; C3 congelado, cobertura de bloques98,7988% del integrador, cotejo independiente exacto pendiente. |
 | Observabilidad compacta | PASS de retención y extractor; cierre de particiones/métricas de10campañas pendiente de ejecución.162/253 histórico no respaldado;338 materializaciones/274 rechazos en diez configuraciones acreditados. |
-| Sizing por perfil | Aritmética y primeras causas acreditadas; snapshots efectivos finales y tabla por cinco perfiles pendientes de campañas C2. |
-| Comparación T1 final | 0/10 finales. C2 supersedido por V-F02 y drenaje ordenado; nuevo freeze/planes C3 pendientes. Planes C2 idénticos a B salvo identidad/build, sin deduplicar retiros. |
-| Casos largos pertinentes | BTGS04 y public lifecycle PASS C2; AllFourTargets FAIL (pago APPROVED frente CREDITED). V-F02 reproducido; efecto completo del fix en pagos pendiente de rerun. CLI singleton pendiente. |
+| Sizing por perfil | Aritmética y primeras causas acreditadas; snapshots efectivos finales y tabla por cinco perfiles pendientes de campañas C3 y B observado. |
+| Comparación T1 final | 0/10 finales. C2 supersedido/drenado; C3 congelado y planes en preparación. Cinco B observados autorizados tras equivalencia histórica de ambos retiros. |
+| Casos largos pertinentes | BTGS04 PASS C2, lifecycle y AllFourTargets PASS C3; V-F02 causal cerrado en pagos sin alterar oráculo. CLI singleton pendiente. |
 | Recursos y cierre de procesos | Presupuestos medidos y controlador activo; drenaje/cleanup finales pendientes, sin cierre de sesión del manager. |
 
 ### Adjudicación
