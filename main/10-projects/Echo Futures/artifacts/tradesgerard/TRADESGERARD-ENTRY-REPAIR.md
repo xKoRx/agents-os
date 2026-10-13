@@ -250,6 +250,12 @@ La incompatibilidad del fixture sin RunState quedó corregida preservando assert
 
 El independiente alineó las338 materializaciones históricas de las diez configuraciones a timestamps/cruces físicos (`baseline-opportunity-map.json`), sin unmatched. Amplió la conciliación por cuenta usando cashflows aplicados de ACCOUNT_CASHFLOW; cuatro balances C1 K01 concilian. La fórmula documental debe expresar grossFillPnL−fees+cashflows o netFillPnL+cashflows, sin restar fees dos veces; slippage permanece incorporado una vez en fillprice. El seam Finish nuevo se prueba como regresión de C2, no mediante un compile-red atribuido falsamente a B.
 
+### Composición runtime: alcance comprobado
+
+Inspección independiente y readback manager: `v3/core/internal/futuresruntime/runtime.go` resuelve Strategy y MM con CompositionFactories y el RunMode configurado; `v3/sdk/futures/config/composition.go` registra ModuleTG→tg.New y MMModuleTG→NewTGMM→tgmm.New. No hay rama de modo en tg/tgmm ni wiring nuevo pendiente para hacer configurables esos módulos. La prueba de Operation compara hechos iguales LIVE/BACKTEST, las regresiones públicas tg usan ProvenanceLive y se contrastan con CLI OHLC offline/oráculo. Esto acredita módulos compartidos y los puntos de conexión afectados, no feed/red/broker real ni confirmaciones externas. No se arrancó ni desplegó runtime LIVE. El controlador de caja/campaña multiaccount sigue siendo backtester; no se certifica una plataforma runtime real equivalente a esa campaña.
+
+La hipótesis de payload StrategyDetails válido noobjeto no demuestra defecto en consumidores actuales: s1/s2/tg emiten objetos y no se halló fixture legítimo string/array. Se conserva la compatibilidad probada para ausencia y objeto sin política, con política desconocida/malformada fail-closed; no se amplía arquitectura por ese caso hipotético.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
