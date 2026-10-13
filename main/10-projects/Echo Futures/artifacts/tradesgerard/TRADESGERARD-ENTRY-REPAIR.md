@@ -212,6 +212,10 @@ V-F01 tiene regresión RED sobre C1 para PAUSED_SESSION, PAUSED_DAILY_GOAL y PAU
 
 Las pruebas independientes de Operation, TGMM, public TG y negativos Campaign se han promovido sin cambiar sus asserts. La adaptación portable de seis tapes E2E encontró un error de compilación DatasetManifest→Ref del adaptador de prueba, que el implementador está reparando; no se atribuye a producto ni se llama PASS. Cobertura delta y freeze pendientes. K01 largo C1 sigue RUNNING sano al24nov23:00Z, wall32m47/RSS28,6MB; restantes C1 aún no iniciadas.
 
+Actualización de ejecución: los seis tapes permanentes E2E pasaron en9,841s (`implementer/evidence/permanent-e2e.log`), incluido borde de dos días con una cuenta/caja4880 y neto acumulado450,12 conservado. El error del adaptador quedó resuelto. K01 C1 largo terminó COMPLETE/reconciliado, resultado HORIZON_CENSORED y caja4280; sigue REFERENCE_ONLY por V-F01. El watcher verificó hashes antes de SIGTERM (`c1-supersession-watch.log/json`). K02 alcanzó a iniciar y su recibo real `bd0e53756beccb8e7b33d990711a405db25dc9ca9d4a6e1c12854d95d758ebc3` queda FAILED por `context canceled`, no “no ejecutado”; K03–K05 no admitidos por supersesión. Procesos C1/Go drenados según integrador. Las métricas largas se extraen independientemente antes de atribuir recuperación total.
+
+El host presenta24CPUonline, pero no se toma como permiso de concurrencia. El techo agregado4cores es presupuesto conservador de esta reparación, no una quota kernel demostrada. Se mantiene máximo2campañas concurrentes bajo medición; GOMAXPROCS4 por proceso no equivale a reservar4cores en cada campaña.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
