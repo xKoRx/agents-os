@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS — identidad B comprobada; censo independiente y diagnóstico/reparación delegados a dos TOP LOCAL fresh-context. No hay aún defecto demostrado, corrección certificada ni comparación nueva. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
+IN_PROGRESS — identidad B comprobada y primer censo independiente terminado; diagnóstico/reparación y falsificación siguen activos. Restricciones contradictorias localizadas en fuente, pendientes de cerrar reproducción causal y regresiones. No hay corrección certificada ni comparación nueva. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
 ### Identidades comprobadas por el manager
 
@@ -58,7 +58,23 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 
 ### Adjudicación
 
-Hechos confirmados: identidad física B y disponibilidad local. Hipótesis refutadas: ninguna todavía. Defectos corregidos: ninguno todavía. Decisiones nuevas pendientes: ninguna identificada; KISS-1 sigue vigente y design-2 es histórico.
+Hechos confirmados: identidad física B y disponibilidad local; el censo independiente y las ramas causales inspeccionadas abajo. Hipótesis refutadas: ninguna todavía. Defectos corregidos: ninguno todavía. Decisiones nuevas pendientes: ninguna identificada; KISS-1 sigue vigente y design-2 es histórico.
+
+### Censo independiente inicial — readback verificado
+
+`verifier/oracle-summary.json`, `oracle-bars.csv`, `oracle-crosses.csv` y `oracle.py`, relativos a la raíz de evidencia nueva. Archivo físico SHA256 `700579b3b3c78e58ccceb39bd79e8d11aa3efab3e8457d92bee1833ef2686406`; Python stdlib lee filas originales y calcula indicadores sin llamar `tg` ni Echo. Resultado:42969 barras físicas,2959 cruces brutos,755 cruces dentro de la ventana operable del plan en31 fechas NY. Hay350 barras de entrada por fecha:10850 en total. El prefijo efectivo y los límites de horizonte del plan se están reconciliando explícitamente con la fecha abreviada del reporte histórico.
+
+Tolerancia fijada por el independiente:1e−9 absoluta para K/ATR; no cambia decisiones estrictas20/80. Warmup matemático: rawK desde barra20, K desde22, primer par comparable23; ATR semilla20; D informativa desde24 sin gate. Tabla por sesión conserva preparación y exclusiones.
+
+| Oportunidad inicial | K previa → actual | ATR puntos |
+|---|---:|---:|
+| SHORT2025-10-14T14:33Z /10:33NY |82,5927452264→75,5520430532|22,9127492199|
+| SHORT2025-10-14T14:48Z /10:48NY |82,6870807816→69,1052785069|20,3033672470|
+| LONG2025-10-14T14:55Z /10:55NY |11,6913385991→22,8282828283|20,0757086495|
+
+El independiente localizó sólo la primera evaluación MM de K01 en el histórico de esa jornada;14:48Z es la primera oportunidad posterior cuya omisión se investiga. Esto no declara todavía que el primer rechazo debiera haberse admitido ni que la primera divergencia de indicador ocurra en14:48Z.
+
+Inspección de fuente corroborada por manager: `tg/tg.go:242–249` mantiene explícitamente un ciclo técnico por día y deriva `NewCycle` de `CycleOpen`; `tg.go:295/306` realimenta ATR cuantizado al tick; `platform_campaign.go:492` mantiene el veto global de compra por cualquier cuenta pausada. Las tres ramas contradicen aspectos del contrato actual. El implementador debe demostrar cada impacto con input mínimo, primera divergencia y regresión baseline/fix; el independiente conserva su propio oráculo.
 
 ## Fuentes
 
