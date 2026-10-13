@@ -78,7 +78,7 @@ El Owner lanzó el mandato KISS-1 (GLM-5.3-Flash, superficie LOCAL) y reemplaza 
 
 ### Reparación de entradas — 2026-10-13
 
-IN_PROGRESS bajo el nuevo mandato GOD LOCAL: [[TRADESGERARD-ENTRY-REPAIR]] es el único informe de diagnóstico, corrección y verificación de oportunidades KISS-1. B físico confirmado en `10d406b3cddbd9c738dbc64b5db38c16ff7527b9`, binario completo `f00efd668eee8b121f7efb65b1b92923620e47beaac650a99491b425027486e8`. Censo independiente y reproducción delegados; ningún fix ni gate nuevo declarado todavía. T1/T1-L conservan COMPLETE histórico y su validez analítica está bajo revisión. Design-2 permanece histórico; no se activan I2 ni nuevos parámetros.
+IN_PROGRESS bajo el nuevo mandato GOD LOCAL: [[TRADESGERARD-ENTRY-REPAIR]] es el único informe de diagnóstico, corrección y verificación de oportunidades KISS-1. B físico confirmado en `10d406b3cddbd9c738dbc64b5db38c16ff7527b9`, binario completo `f00efd668eee8b121f7efb65b1b92923620e47beaac650a99491b425027486e8`. Censo42969 barras/755 oportunidades NY; candidato C1 `ba047469513f9120378734b1378352477755c669` corrige ciclo diario, finalización, ATR/warmup y compra a demanda. Independiente confirma recuperación corta K01 de0a3 operaciones con fills, indicadores idénticos y secuencias SL/TP→nuevo cruce sin solapamiento ni backlog. Diagnóstico T1 en curso; faltan negativos/cobertura/integración permanente, freeze final y diez campañas antes de CORRECTED_AND_VERIFIED. T1/T1-L conservan COMPLETE histórico; ENTRY-REPAIR-C01 marca afectada la explicación de frecuencia/denominadores de I1. Design-2 permanece histórico; no se activan I2 ni nuevos parámetros.
 
 ## Fuentes
 

@@ -23,7 +23,7 @@ Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el ma
 
 ### Estado vigente
 
-IN_PROGRESS — identidad B comprobada y primer censo independiente terminado; diagnóstico/reparación y falsificación siguen activos. Restricciones contradictorias localizadas en fuente, pendientes de cerrar reproducción causal y regresiones. No hay corrección certificada ni comparación nueva. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
+IN_PROGRESS — defectos funcionales reproducidos y corregidos en el candidato C1, con recuperación física corta y falsificación independiente favorable. Censo completo:42969 barras,755 oportunidades NY; K01 recupera3 operaciones en la primera jornada frente a0. Comparación diagnóstica T1 en ejecución; falta completar pruebas negativas, cobertura del delta, integración permanente, freeze final C2 y diez campañas definitivas. Todavía no corresponde CORRECTED_AND_VERIFIED de entrega completa. Aceptación final del Owner pendiente; ninguna autorización LIVE, release, merge productivo o despliegue.
 
 ### Identidades comprobadas por el manager
 
@@ -58,7 +58,7 @@ Lectura inicial de recursos: disco aproximadamente16GiB disponibles y RAM64GiB a
 
 ### Adjudicación
 
-Hechos confirmados: identidad física B y disponibilidad local; el censo independiente y las ramas causales inspeccionadas abajo. Hipótesis refutadas: ninguna todavía. Defectos corregidos: ninguno todavía. Decisiones nuevas pendientes: ninguna identificada; KISS-1 sigue vigente y design-2 es histórico.
+Hechos confirmados: identidad física B, censo y contraste completo de indicadores/cruces, recuperación corta y cierre físico/rearme en C1. Hipótesis refutadas: no faltaban los cruces brutos de K y no era correcto explicar todo K01 por sizing del primer intento. Defectos corregidos en C1: ciclo diario que convierte nuevas oportunidades en gestión, permanencia de operaciones sin órdenes o ya flat, semilla/feedback ATR y warmup excesivo, veto por cuentas pausadas y compra inicial fuera de horario. El alcance de cada prueba y los negativos todavía pendientes constan abajo; no se extrapola un PASS corto a la campaña completa. Decisiones nuevas pendientes: ninguna; KISS-1 sigue vigente, sin variar R/T ni geometría, y design-2 es histórico.
 
 ### Censo independiente inicial — readback verificado
 
