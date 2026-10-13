@@ -43,7 +43,13 @@ Sólo trabajo offline aislado. Ningún resultado económico nuevo todavía. No L
 
 El verificador identificó en `xKoRx/echo:v3/backtester/platform_campaign.go`, working tree T0, que `maybeRequest` todavía recorta `PayoutTarget` al remanente del cap. Ejemplos:3000→2000 después de un pago3000, o2300→400 después de4600. El mandato nuevo exige conservar el objetivo2300/3000 y no presentar un cobro menor como logro. Manager adjudicó corrección acotada del contrato nuevo, preservando C4; reproducer determinista independiente y corrección/gate pendientes. No es una pérdida de trading ni un resultado de las cuarenta campañas.
 
-### Continuidad de tandas
+### Candidato T0 y HOLD del mínimo ejecutable
+
+Candidato congelado `87e33b0c333a1f2f4178dfefe06126d50691c7ad`, limpio comprobado por manager. Cobertura de desarrollo `CONSERVATIVE_DIFF_BLOCKS_V1`:115/120=95,8333%, bloques Go completos que intersectan líneas productivas añadidas/reemplazadas; no cobertura AST ni global. Primer overlay independiente SDK PASS, pero no habilita T1 por sí solo.
+
+Manager cuestionó que `MinimumExecutableRisk` añadiera un tick a los costos prefill y retirara una cuenta con margen15,28 al calcular19,98. Verificador inspeccionó el adapter: no acredita una distancia mínima de un tick desde mark. Ejemplo algebraico por falsar causalmente: fill LONG100,25, stop100, costos pendientes9,98 produce pérdida proyectada14,98≤15,28. Integrador reconoce que el tick adicional era un supuesto suyo, no restricción probada; se conserva el candidato y sus resultados como diagnóstico, sin campañas T1. Prueba Venue/Provider/reservas/fill/protección real y corrección acotada pendientes; no se modifica el simulador para sostener el supuesto. El mínimo definitivo deberá derivarse del contrato ejecutable y sus costos, sin hardcode ni afirmación de legalidad de broker.
+
+### Próximas tandas autorizadas
 
 T0 políticas y racha → T1 F0×10 → T2 F1×10 → T3 F2×10 → T4 F3×10 → clasificación de40configuraciones y ampliación disponible de hasta cuatro configuraciones activas. Hallazgos materiales se corrigen y las trayectorias afectadas se repiten. No hay garantía de cobro; cobro acreditado y caja neta se informan por separado.
 
