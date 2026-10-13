@@ -16,7 +16,7 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Fuente de estado de TradesGerard. Mandato vigente 2026-10-13: **OPERABILITY_T0_IN_PROGRESS**, recepción C4 y ejecución offline de mínimos económicos, retiro por política y filtros F0/F1/F2/F3. [[TRADESGERARD-OPERABILITY-T0]] conserva el delta y sus identidades. La etapa A y READY_FOR_GLM que aparecen más abajo son antecedentes históricos; no son un gate ni una acción pendiente del Owner. Aceptación final del Owner separada; manager y proyecto permanecen abiertos.
+Fuente de estado de TradesGerard. Mandato vigente 2026-10-13: **OPERABILITY_T0_TECHNICAL_PASS_IO_PENDING**, operabilidad verificada sobre O6 y delta de compresión de salida pendiente antes de campañas F0/F1/F2/F3. [[TRADESGERARD-OPERABILITY-T0]] conserva el delta y sus identidades. La etapa A y READY_FOR_GLM que aparecen más abajo son antecedentes históricos; no son un gate ni una acción pendiente del Owner. Aceptación final del Owner separada; manager y proyecto permanecen abiertos.
 
 ## Contenido
 
@@ -30,7 +30,7 @@ Estado actual: recepción física C4 comprobada; racha12 reconstruida en [[TRADE
 
 ### Autoridad y límites
 
-Actualización T0 vigente: candidatos `87e33b0c` y `cb9cc0cd` quedan **HOLD**; no habilitan T1. V2 corrigió el fundamento del mínimo estructural, pero el E2E independiente descubrió valoración con mark anterior durante el callback del primer fill. El mismo assert falla también en C4 con la política nueva desactivada. Corrección upstream aislada en `ARANEA_ROOT/work/tradesgerard-operability-20261013/implementer/echo-t0-causal`; RED y GREEN reproducidos, freeze y gate independiente aún pendientes. [[TRADESGERARD-OPERABILITY-T0-VERIFY]] conserva la falsación y sus límites; sync master `515259f26f80c4429259a561119d237603bd5f17` comprobado. Campañas nuevas siguen0/40; no resultado económico negativo ni positivo atribuido a este bloqueo técnico. En el mandato vigente sólo se ensayan solicitudes brutas2300/3000; otros targets y catálogos de las secciones siguientes son antecedentes.
+Actualización T0 vigente: **INDEPENDENT_PASS** O6 source `74034811df66beb23f9e8bc8431fbfc7db7f00f0`, binario `dd9a528db292fdfd2646319f0115b1dfcbdd144106810278b6fd30c0b27ab214`. Gate físico, hashes de sus cinco logs y árbol limpio comprobados por manager; [[TRADESGERARD-OPERABILITY-T0-VERIFY]] conserva el dictamen y límites. Cubre mínimo económico, retiro EOD, pausa por capacidad diaria, error ante piso obligatorio ausente, marca contable causal previa al fill, demanda/claims/cap, reconstrucción compacta y paridad de los diez inputs. Cobertura227/233=97,4249% de bloques afectados, no global. Smoke independiente23cruces/23entradas/23cierres/17fallbacks, caja4760, UNKNOWN0 y conciliación ledger/caja; diagnóstico, no ranking. Antes de T1 se verifica un delta de compresión streaming sin pérdida para respetar cap16MiB de traza, con fuente/binario nuevos y recheck de I/O; dinero sólo se transfiere por identidad de seams. Campañas nuevas siguen0/40. En el mandato vigente sólo se ensayan solicitudes brutas2300/3000; otros targets y catálogos de las secciones siguientes son antecedentes.
 
 ### Antecedentes de autoridad e inputs
 

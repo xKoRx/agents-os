@@ -46,6 +46,7 @@ tags:
 
 - Estado vigente antepuesto conservando íntegros los antecedentes; T0 materializado por contrato canónico. Manager coordina, TOPs implementan/verifican. No aceptación final ni cierre del manager.
 - Actualizado el HOLD vigente a V2 y la corrección causal en curso; separado el alcance actual2300/3000 de targets históricos. Registrados prefijo H1 causal e intervalo adicional reservado antes del ranking, con independencia histórica no certificada.
+- O6 recibió INDEPENDENT_PASS físico exacto: mínimos/retirada/pausa/autoridad monetaria, paridad y cobertura227/233; CONTROL y T0 actualizados conservando HOLD previos. Campañas0/40, delta de salida comprimida pendiente; no gate final del Owner ni aceptación económica.
 
 ## Validación
 

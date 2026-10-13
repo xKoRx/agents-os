@@ -46,3 +46,5 @@ Reemplazar dictamen por delta sólo tras gate exacto nuevo; conservar evidencia 
 C2 mínimo V2 corregido, gate HOLD por V-FILL-MARK monetario causal. Misma regresión pública TG/Operation da RED sobre C4 y cb9; se preservan datos, errores propios del harness y límites de atribución. Corrección upstream aislada pendiente de recheck exacto.
 
 - Corte C3/O4: ALL/skip semántico independiente PASS con referencias previamente vinculadas; originales históricos FAIL preservados. E2E12 y temporal/sucesor/caja80 PASS. O4 HOLD por missing mandatory DayFloor RED; O5 acotado delegado al integrador único. Artefactos/readback en TRADESGERARD-OPERABILITY-T0-VERIFY.
+
+- O6 exact source74034811/bin dd9a528d: INDEPENDENT_PASS técnico, plataforma/SDK/fillmonetary/compactparity/identitynegativesPASS, coverage227/233, inputparityTEN, smoke23closed/17fallback/cash4760. Gate JSON SHA65c90be... Lease liberado para O7gzip lossless autorizado; no campaña T1 certificada aún.

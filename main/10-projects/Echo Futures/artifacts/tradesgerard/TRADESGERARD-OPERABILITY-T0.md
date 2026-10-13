@@ -17,7 +17,7 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOCAL del Owner, PROMPT_VERSION1, 2026-10-13. T0 es técnico; no acredita rentabilidad. Estado inicial **IN_PROGRESS**.
+Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOCAL del Owner, PROMPT_VERSION1, 2026-10-13. T0 es técnico; no acredita rentabilidad. Estado vigente **O6_INDEPENDENT_PASS / IO_COMPRESSION_PENDING**, campañas nuevas0/40. Los HOLD de abajo son cortes históricos preservados.
 
 ## Contenido
 
@@ -84,6 +84,14 @@ Presupuesto nuevo agregado mantiene1.610.612.736bytes, separado de evidencia C4 
 Los mismos dos asserts ALL/skip fallan idénticamente en cb9 en0,159s y en C4 en0,177s. Verificador identificó una referencia `OPERATION_APPLY` de `SIGNAL_DELIVERY.signal_id` comparada como literal aunque un SIGNAL previo ya establece la biyección: RunID difiere legítimamente por modo, mientras eval_seq,signal_seq,trigger ytimestamp coinciden. Se conserva el fallo histórico; no se adjudica como regresión monetaria de C3. Overlay externo independiente comprobará relaciones referenciales tipadas previamente definidas y todas las aserciones semánticas; no se cambian ni debilitan los tests históricos. C3 manifiesto ya disponible, cobertura nueva185/188=98,4043%, con los fallos heredados de la suite explícitos.
 
 Smoke C3 físico CLI COMPLETE/reconciled:6operaciones con entrada,12fills,6fallbacks,23materializaciones; caja4880 y traza265678bytes. Diagnóstico de una sesión, no ranking. Manager detectó17rechazos posteriores con neto diario−994,88; verificador e integrador confirmaron políticaV2 activa, margen diario5,12<24,98 y margen EOD1005,12. Sin exposición ni órdenes, la cuenta permanecía ELIGIBLE y consumía cruces16:12–19:40Z. Finding **V-DAY: política temporal incompleta**, no ruina EOD ni ausencia de señales. Se corrige pausa por capacidad diaria insuficiente tras drenaje, con recuperación en próximo día sin regenerar piso y selección/demanda causal de otra cuenta. Candidato0db/bin6ed y smoke se preservan; T1 sigue pendiente de freeze corregido y gate independiente exacto.
+
+### O6 verificado y delta de salida acotado
+
+Source O6 `74034811df66beb23f9e8bc8431fbfc7db7f00f0`, árbol `65aa13fa6f128840eb37534f3b67b88368f40dfd`, limpio; binario `implementer/bin/echo-backtest-o6` SHA256 `dd9a528db292fdfd2646319f0115b1dfcbdd144106810278b6fd30c0b27ab214`, lectura física manager. Gate independiente `verifier/independent-o6-gate.json` SHA256 `65c90be21776fed3543277b66e0f6d08b39fb1a53c331dc67ea69c953e6cf14c`: **INDEPENDENT_PASS**. Sus cinco logs coinciden físicamente con hashes del recibo. Platform2,353s, SDK0,008s, same-assert de marca monetaria GREEN, tee detailed→expandedcompact LONG/SHORT1,428s y ALL/skip con negativos de identidad0,215s PASS. Cobertura independiente227/233=97,4248927%, bloques completos que intersectan líneas nuevas/reemplazadas; diez inputs preservan perfil, datos y horizonte C4 fuera de cambios autorizados explícitos.
+
+Smoke independiente de ese binario:23cruces,23entradas,23cierres,17fallbacks, UNKNOWN0, ledger/caja conciliados y caja4760. Cuenta1 pausada por capacidad diaria insuficiente, preserva saldo49005,12 y EOD; cuenta2 compra causal y saldo50295,34. No retiros acreditados en este diagnóstico y no reemplaza las diez campañas completas F0. Frente a C3 smoke, se eliminó el bloqueo de17rechazos diarios repetidos; frente a C4 completa la comparación sigue pendiente y estará afectada también por el fix de marca, no sólo por mínimo/retiro.
+
+O6 reduce repetición de sizing mediante schema explícito `MM_SIZING_ANCHOR_DELTA_V1`, anchor de materialización, deltas y remociones reconstructibles. Consumidor independiente rechaza versión desconocida, delta huérfano y remoción inexistente. Traza smoke561518bytes frente624912O4, pero extrapolar máxima actividad755 daría18,43MB y supera16MiB. Manager autoriza delta mínimo de gzip streaming lossless con stdlib/ruta I/O existente, receipt encoding/path versionado y hash de bytes durables después de Flush/Close; C4 plain compatible. Cap físico16MiB y lectura descomprimida acotada≤256MiB, sin carga completa a RAM. Recheck incluirá paridad, integridad/resume, error/cancelación y pronóstico agregado. No framework nuevo ni poda de dinero/finality para cumplir disco. O6 se conserva; lease liberado después de drenar Go independiente, siguiente freeze de salida separado antes de T1.
 
 ### Preparación causal de filtros e intervalo adicional
 
