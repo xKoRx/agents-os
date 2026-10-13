@@ -492,6 +492,10 @@ Agregados recuperados sin trazas nuevas: `verifier/operation-account-day-aggrega
 
 Durable medido662.673.149 bytes frente805.306.368 de techo global, incluidos ambos checkouts C3/C4; reserva de disco14,13GB. Se conservan fuentes/builds/evidencia y las nuevas filas machine-readable pueden serializarse compactas sin perder valores ni procedencia. Se medirá por campaña; la holgura es un presupuesto, no autorización para excederlo.
 
+`verifier/nil-headroom-invalid-sizing-C3.json` separa las18 omisiones de las admisiones realmente incompatibles con su margen: dos en K02. El31oct10NY Q1 tiene pérdida geométrica modelada369,98 frente margen real10,16; el12nov10NY439,98 frente5,12. Las demás omisiones no se convierten por inferencia en órdenes inválidas. El primer caso cerró por SAFETY_FLATTEN explícito; el segundo motivó la investigación del cierre inicialmente UNKNOWN. Ambos pertenecen a la misma causa V-F03. No se afirma el PnL contrafactual de haber rechazado correctamente.
+
+B observado K03: `verifier/baseline-observed-full-K03-equivalence.json` PASS,229 filas legacy cotejadas, cero diferencias;755 cruces y36 MM. Se acredita equivalencia de tres de cinco replays. C4 grupo causal Backtester PASS229,159s (`c4-platform-green.log`);45,6% es cobertura del paquete completo durante ese selector, no cobertura del delta. El cálculo nuevo≥95% y su procedencia permanecen pendientes. Readback de sincronización Agents-OS anterior a estas últimas líneas: master local limpio y remoto ambos `f6f44eb804c64b416abf887cfbb3aa3319a321b6`.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
