@@ -42,7 +42,7 @@ La abreviatura `f00efd66…c4fed` de RESULTADO no es identidad válida del binar
 
 ### Ejecución y aislamiento
 
-Manager: coordinación, inspección, adjudicación y documentación; sin código ni integración. Implementador único: `/root/entry_repair_implementer`; independiente: `/root/entry_repair_verifier`. Modelo solicitado para ambos `gpt-6.1-sol`; servido UNKNOWN mientras no exista metadata fiable. Primer dispatch del implementador falló por capacidad; el único reintento con el mismo modelo arrancó correctamente. Sin sustitución de modelo, sin consumo CLOUD Pro.
+Manager: coordinación, inspección, adjudicación y documentación; sin código ni integración. Implementador inicial `/root/entry_repair_implementer`, suspendido en el relevo operativo posterior a vet C4; integrador único vigente `/root/entry_repair_integrator_c4`, con contexto nuevo y continuidad física preservada. Independiente `/root/entry_repair_verifier`. Modelo solicitado para los especialistas `gpt-6.1-sol`; servido UNKNOWN mientras no exista metadata fiable. Primer dispatch inicial falló por capacidad; su reintento con el mismo modelo arrancó correctamente. Sin sustitución de modelo ni integradores concurrentes, sin consumo CLOUD Pro.
 
 Evidencia nueva externa al vault: `ARANEA_ROOT/work/tradesgerard-entry-repair-20261013/{implementer,verifier}`. El implementador posee el carril Go/build/campañas; el verificador puede solapar el oráculo ligero sobre OHLC físico, sin usar `tg` como oráculo. Cada ejecución debe fijar source, build e inputs y drenar sus procesos.
 
@@ -531,6 +531,8 @@ La tabla describe disposiciones reales, no fills contrafactuales. Las41 pausas s
 `verifier/baseline-observed-causes-total.json` concilia los cinco universos:3.775 oportunidades =169 MM+3.532 owner abierto flat+15 fronteras de pausa vencida+41 pausas vigentes+18 ocupados. Dentro de los169 MM hay137 rechazos, enlazados a274 en diez configuraciones históricas. No se suman latch y lifecycle como dos pérdidas del mismo cruce ni se confunden169 materializaciones con155 drafts NewCycle.
 
 Continuidad operativa: después de vet se observó ausencia de procesos propios y ningún inicio físico de CLI durante varios avisos. Manager interrumpió y reanudó el turno del mismo integrador desde su estado persistido, sin crear otro especialista ni modificar fuente. Siguiente acción ordenada: CLI, freeze/build, gate independiente exacto. No se registra ese estancamiento de coordinación como fallo de producto ni como una prueba ejecutada.
+
+El intento de reanudación tampoco inició CLI ni produjo un error material comunicado. Se suspendió el worker anterior y se relevó por `/root/entry_repair_integrator_c4`, TOP con contexto nuevo y el mismo modelo solicitado Sol6.1; servido UNKNOWN. Sólo el relevo posee Go/código/integración, el verificador conserva independencia. Se preservan checkout, delta, pruebas, recibos y límites; no se reinicia la investigación ni se crea otro manager. El relevo debe ejecutar CLI y completar freeze/gate/campañas desde ese estado.
 
 ## Fuentes
 
