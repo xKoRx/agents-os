@@ -174,6 +174,10 @@ Readback agregado independiente de los cinco cortos (`verifier/operations-short-
 
 El agregado usa todas las operaciones/fills del tape; `execution.summary.economics` corresponde al compartimento final y no debe usarse como total de campaña tras cambiar de cuenta. El extractor conserva duración/rachas y operación/cuenta/día, con fees exactos y slippage ya incorporado en precios físicos, sin restarlo dos veces. La comparación diagnóstica T1×r2300 puede avanzar sobre este freeze; sólo contará como comparación final si supera los gates pendientes sin cambio de fuente.
 
+Readback posterior independiente (`verifier/short-lifecycle-ba047469.json` y `campaign-crosses-short-ba047469.json`): cinco cortos PASS por identidad de las23 oportunidades, error máximo ATR7,11e−15, todos flat, sin solapamiento de exposición ni materialización diferida. K02 descarta explícitamente los cruces17:28Z y17:32Z con exposición1/claim ejecutable1; se conservan como consumidos, no backlog. La matriz restante de finality/adaptadores y promoción de pruebas se mantiene explícita en el handoff independiente.
+
+La comparación diagnóstica C1 de cinco retiros2300 está en ejecución con binario inmutable. Medición del implementador: proceso Go119MB/106%CPU y campaña corta19–30MB/136%CPU, conjunto<3cores/~150MB y disco15,5GiB; se permite ese solapamiento, no benchmark. Fuente C1 permanece quieta durante Go. Tras integrar pruebas permanentes independientes habrá freeze C2 y nueva identidad/build; las diez campañas definitivas se prepararán y ejecutarán contra C2, sin atribuir recibos C1 al nuevo SHA.
+
 Sincronización observada de Agents-OS: commit automático `a58ec551187749deaa6d3f0566e1c556d9b456b8`, master remoto igual según `git ls-remote` antes de este delta. No fue un push ejecutado por el manager; los deltas posteriores requieren nueva comprobación.
 
 ## Fuentes
