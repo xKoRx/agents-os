@@ -198,6 +198,14 @@ El verificador ejecutó `backtest-candidate-ba047469-tests.log`: PASS de caja119
 
 La corrida amplia C1 quedó físicamente drenada con exit1: también CLI alcanzó su timeout global600s dentro de `TestLASTPublicExperimentCampaignSealsAndReplaysSingletonCatalog`, que llevaba7m11s, durante verificación de integridad/daily-report. Se preserva el log y no se computa como PASS. Carril Go liberado y consumido por los negativos anteriores; C2 dividirá los grupos largos sin retirar asserts. Medición manager posterior:274MiB de iniciativa y15.987.478.528bytes libres, dentro de los presupuestos vigentes.
 
+### Warmup físico y economía observada
+
+El nuevo tape independiente `verifier/synthetic/warmup23-candidate-ba047469/` prueba por CLI público23 callbacks de warmup, OPEN y fill exactamente10:00NY, COMPLETE/reconciliado. El mismo input contra B (`warmup23-baseline-v3`) falla WARMUP_INCOMPLETE. Se descarta un gate oculto de26 en el wrapper corregido: Requirements.Lookback26 conserva capacidad/preparación conservadora y ReadyFromState23 gobierna elegibilidad. El prefijo histórico T1 no se modifica. Caso autorizado para promoción a regresión permanente.
+
+El independiente encontró que la retención C1 incluía sizing pero no el snapshot económico real recibido por MM. El manager autorizó retener `MMInput.Economics` en la única fila MATERIALIZED de cada intento; sin registrar todos los callbacks/ticks ni alterar decisiones. Este delta observacional entra en C2 para contrastar Balance, día, stage y revisión disponibles sin reconstruirlos como si fueran snapshots. La regeneración final no atribuirá ese detalle a los recibos C1 que no lo guardaban.
+
+Sincronización comprobada posterior: Agents-OS local/remoto master `9458ea52cac539429122881e6e6fa812d26725f1`, árbol limpio antes de este delta. La sincronización fue automática, no push ejecutado por el manager.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
