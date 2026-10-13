@@ -146,6 +146,10 @@ Gates explícitos aún pendientes: build/commit final, pruebas independientes so
 
 La ampliación race/cobertura encontró una incompatibilidad de la propuesta inicial con el contrato de separación `SignalDetails` (exactamente technical_stop + strategy_details). No se debilita ese assert: el implementador retirará el campo nuevo y expresará la política de descarte por ocupado en el carrier técnico existente con interpretación tipada, ausencia compatible y valor desconocido fail-closed. Los perfiles de esa corrida con fallo no se admitirán como cobertura PASS. Se conserva primera causa en `implementer/evidence/affected-test.log` y se revalida tras el delta.
 
+Actualización: esa corrida fue terminada deliberadamente con SIGTERM, exit143 y drenaje físico confirmado por el implementador; no fue PASS. El carrier booleano adicional fue retirado; el enum técnico vive en StrategyDetails existente y mantiene intacto el assert de separación. `implementer/evidence/carrier-critical.log` pasa tg/tgmm/Operation/domain/backtester afectados. El corte de compra se expresa como máximo(10:00,apertura del perfil) y mínimo(15:50,cierre del perfil), con pruebas de cierre temprano; no se usa resta arbitraria de5minutos.
+
+Precisión de autoridad sobre compra: el Owner exige horario admisible, compra a demanda y no comprar todas las plazas anticipadamente; no fija literalmente si la compra dentro de sesión ocurre a10:00 o al primer cruce. Comprar en la primera OPEN admisible es la resolución técnica elegida y aceptada por el manager para este fix, no una nueva cita atribuida al Owner. El RED contractual inequívoco sigue siendo la compra09:58NY fuera de horario; el tape silencioso verifica el comportamiento elegido sin cobro innecesario.
+
 Sincronización observada de Agents-OS: commit automático `a58ec551187749deaa6d3f0566e1c556d9b456b8`, master remoto igual según `git ls-remote` antes de este delta. No fue un push ejecutado por el manager; los deltas posteriores requieren nueva comprobación.
 
 ## Fuentes
