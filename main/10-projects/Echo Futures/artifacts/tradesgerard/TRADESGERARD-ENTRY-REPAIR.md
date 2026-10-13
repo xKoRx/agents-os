@@ -571,6 +571,10 @@ Controller `implementer/run_final_c4.py` iniciado, tool sesión86805; manager co
 
 Chequeo temprano `verifier/C4-prefix-first-economics-readback.json`, **PREFIX_ONLY_NOT_CAMPAIGN_PASS**: primeras cuatro materializaciones K01/K02/K03 con margen presente y Fresh; primer snapshot14oct14:33Z conserva1100 en los tres. Primer ciclo con fills queda flat y se observa una nueva materialización posterior: K01 a18:34Z, K02 a14:48Z, K03 a16:25Z. K03 puede rechazar correctamente ese nuevo intento; rearme no implica admisión obligatoria. Sólo se leen filas completas, sin afirmar conciliación final ni extrapolar el censo. Verificador cotejó también los diez planes físicos en `C4-ten-plan-independent-readback.json`.
 
+### V-F03: primera entrada indebida evitada en mercado físico
+
+`verifier/C4-V-F03-first-invalid-entry-prefix.json`: K02,31oct2025 a10NY/14Z, misma identidad de cruce y mismo balance48885,32/PnL diario antes de entrar en C3 y C4. Piso diario47785,32, piso EOD48875,16, margen efectivo10,16. C3 omite ese campo y admiteQ1 con pérdida geométrica modelada369,98; C4 entrega margen10,16 en la misma revisión DAY20534, recorta R/T proporcionalmente a10,16 y rechazaQ0 con TG_SIZE_BELOW_MINIMUM. Cero comandos de entrada, cero fills y owner terminal flat. Primera divergencia económica cerrada con fuente/binario final; estado **PREFIX_ONLY**, sin extrapolar igualdad de trayectorias posteriores ni aceptación de la campaña completa.
+
 ## Fuentes
 
 - Mandato del Owner `ECHO FUTURES — GOD LOCAL: DIAGNÓSTICO Y CORRECCIÓN DE ENTRADAS TRADESGERARD`, PROMPT_VERSION1, 2026-10-13.
