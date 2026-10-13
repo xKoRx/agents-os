@@ -17,7 +17,7 @@ updated: "2026-10-13"
 
 ## Dictamen vigente
 
-**HOLD — candidato87e33b0c no habilita campañas.** Verificación independiente LOCAL, solicitado Sol6.1 y servido UNKNOWN. Source limpio87e33b0c333a1f2f4178dfefe06126d50691c7ad, binario declarado89b645fcc1ea7ca7a47ed75a5a88e05d4adbbd2d9a9d6e111d39d010b8afd89b. Los probes monetarios descubrieron un supuesto no acreditado en el mínimo económico: un tick extra llamado «nearest legal protection» no existe en validateSubmit del adapter. El implementador prepara corrección aislada; cobertura autor95,833% no reemplaza este finding ni admite T1.
+**HOLD — candidato87e33b0c no habilita campañas.** Verificación independiente LOCAL, solicitado Sol6.1 y servido UNKNOWN. Source limpio87e33b0c333a1f2f4178dfefe06126d50691c7ad, binario físico verificado89b645fcc1ea7ca7a47ed75a5a88e05d4adbbd2d9a9d6e111d39d010b8afd89b. Los probes monetarios descubrieron un supuesto no acreditado en el mínimo económico: un tick extra llamado «nearest legal protection» no existe en validateSubmit del adapter. El implementador prepara corrección aislada; cobertura autor95,833% no reemplaza este finding ni admite T1.
 
 ## Hallazgos y evidencia física
 
@@ -63,3 +63,5 @@ Corrección siguiente: source/build nuevo y descriptor coherente, paridad shared
 - `provider-minimum-87e33b0c.log`, SHA256 `bdeeba5f0c5646d0f4d872b7535095e47f46bd68e42d880afc131b263014bc65`.
 - `filter-oracle-long-h1-prefix.json.gz`, SHA256 `40cae17e715ad791a8d469df9d514585406d4c4dd387069ab5ac293702d44a32`.
 - `prospective-additional-interval.json`, SHA256 `66254848c8b0b9deb69876e069f91c7abe291d0410e088d7de55d088494d9ede`.
+
+Recibo independiente durable `work/tradesgerard-operability-20261013/verifier/independent-t0-hold-87e33b0c.json`: source/tree/bin metadata leídos físicamente, procesos propios drenados, derivados propios861.451 bytes al cierre de este corte.
