@@ -21,6 +21,12 @@ Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOC
 
 ## Contenido
 
+### O9 congelado — verificación independiente pendiente
+
+Continuación del Owner recibida; ambos TOP retomaron ejecución. Source `cf855c7a3cffd276d5bf24458417a4dd7940863b`, árbol `1bf69f984eb4ea5b7ef948b1e2aa733fde923d5d`, checkout `implementer/echo-t0-corrected` limpio comprobado. Binario `implementer/bin/echo-backtest-o9` SHA256 `3ed52db8d418f7ff23b8074c932d75b59c1aeee8a1ad22093ca8edeaba4dee4f`; manifiesto `implementer/evidence/o9-freeze-manifest.json` SHA256 `30ef1d3b9eef0539db0dd9d30f9184b833577d400854340a06ee682e96cceffa`, veinte inputs F0/F1 bajo una política común. O9 añade espera `OBJECTIVE_MET_WAITING_TRANSITION`, pausa diaria ante objetivo completado y guard que restringe offsets OHLC modelados a BACKTEST explícito. Conserva las fechas de elegibilidad y pago.
+
+El integrador entrega smokes exactos reconciliados: F0 23cruces/23aceptados/23operaciones/17fallback/caja4760; F1 23cruces/14aceptados/9rechazados/14operaciones/10fallback/caja4640. Recibo `implementer/evidence/o9-frozen-smoke-receipt.json`. Son diagnósticos de una sesión, no filas económicas finales. Gate independiente O9 aún pendiente; no se han relanzado las veinte campañas por estos smokes solamente. Cobertura del autor19/19 bloques afectados pendiente de recálculo independiente.
+
 ### HOLD posterior — objetivo alcanzado y espera de cumplimiento
 
 K03 O8 cuenta11 LIVESIM alcanzó2305,36USD realizados, superior al objetivo2300, pero siguió ELIGIBLE y consumió seis cruces12nov19:18–20:38Z con `OBJECTIVE_ALREADY_MET` y ningún fill. Cuatro cuentas EVALUATION16–19 estaban elegibles desde15Z, flat y drenadas; cuenta16 tenía saldo51640,26/progreso1640,26/headroom1975,16. La cuenta financiada debía esperar `CompliantAt=2025-11-13T15:01:06.114649681Z`, los dos días hábiles del perfil, y ceder turno mientras tanto. No faltaban ganancias ni se debe inventar un nuevo requisito de días operados.
@@ -47,7 +53,7 @@ Dependencia runtime comprobada después del gate offline F1: `SnapshotViews.Mark
 
 Finding independiente adicional: `config.NewTGMM` en sourceF1 `f4643aef` ignora RunMode y admite offsets OHLC modelados incluso con LIVE, EXACT_REPLAY, vacío o UNKNOWN. Probe de construcción de configuración, sin servicios ni órdenes, produjo RED exacto en esos cuatro negativos; el positivo BACKTEST y la ausencia de quote-source en SnapshotViews quedaron comprobados. Evidencia `verifier/runtime-operability-dependencies-and-mode-RED.json`, SHA256 `77edf7a977774df38fee65dcdb2fd5f332dcffdaa4d254bb979087d1a30b04d5`.
 
-Adjudicación manager: integrador único debe restringir offsets OHLC modelados a BACKTEST explícito en el próximo corte F2, con mismo RED/GREEN independiente y prueba de semántica BACKTEST conservada. No fabricar BBO, no cambiar matching ni abrir un adapter nuevo. F0/O8 y F1 congelados continúan sus campañas offline; sus gates OFFLINE siguen vigentes porque el defecto está en la admisión de otra modalidad, sujeto a comprobación de que la corrección no cambie el camino ensayado. No se declara la política lista para operar con broker.
+Adjudicación manager ejecutada en candidato O9: restringir offsets OHLC modelados a BACKTEST explícito, con mismo RED/GREEN independiente y prueba de semántica BACKTEST conservada. No fabricar BBO, no cambiar matching ni abrir un adapter nuevo. Las campañas O8/F1 se drenaron por el defecto económico de selección descrito arriba; el guard de modalidad por sí solo no invalida el camino offline. No se declara la política lista para operar con broker.
 
 ### Recepción y dispatch
 
