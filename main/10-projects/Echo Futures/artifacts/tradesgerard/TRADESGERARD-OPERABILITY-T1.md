@@ -22,6 +22,12 @@ Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y a
 
 ### Relanzamiento vigente O8
 
+**Primer cobro simulado acreditado observado y conciliado:** F0–K03–r2300, cuenta11, fase LIVESIM. Solicitud2025-11-13T15:01:06.114649681Z, aprobación14nov a la misma hora, procesamiento19nov15:00Z y crédito real de simulación20nov15:00Z. Bruto2300; split80%=1840, menos proveedor50 y cargo de primer pago139: **neto acreditado1651USD**. El evento `PAYOUT_COLLECTED` lleva caja2360→4011 exactamente al crédito; no se anticipó caja al solicitar, aprobar o procesar.
+
+La campaña K03 terminó con caja3531=5000−26×120+1651, mínimo2360 y cambio neto de caja−1469USD. Cobrar una vez no recuperó todas las compras:3120USD de compras frente a1651 netos cobrados. Se observaron cinco pases y un crédito. El recibo COMPLETE y el dinero están auditados; **el dictamen completo de la fila K03 sigue pendiente de explicar seis `OBJECTIVE_ALREADY_MET` y un cruce con owner sin materialización**. No se presentan estos diagnósticos como siete pérdidas ni se omiten del censo. Las otras campañas continúan y el hallazgo no cierra el proyecto ni valida rentabilidad general.
+
+Evidencia del crédito: campaña `519b8f0d236ff98079a956362a8d9dde6b988a426c9844d6c9ee7b1276550263`, recibo verificado `verifier/receipt-O8-K03-r2300-verified.json` SHA256 `27bc02734eff10a5669c00af0b83bea8ecfc50858e076e2d66ace24fb5d681e9`; auditoría `verifier/campaigns-T1-O8-third.json` SHA256 `1e3148e37c8cfb493f7e0419e9aff15957b50fb77b765379147fb24345245d2c`; métricas completas `verifier/campaign-metrics-T1-O8-third-v3.json.gz` SHA256 `64fdaa828932e73ee2b34615a6abd161aad03fe758cffcca5af99304f4b0597c`. Result SHA256 `67e88c2497d4a4c3d403acf288aac08c547189f4e1920139edefd52c8fc8451a`; traza `6a0d769890f6522383bfa303603c40ec0e4e24b62e9542af1754cbde8040ef15`. El pago pertenece a una campaña real del harness, no a un fixture del ranking.
+
 Primer resultado corregido terminado2026-10-13T23:47:54Z y auditado independientemente: **F0–K01–r2300, ninguna útil en esta muestra**, cero pases/cobros y caja neta−1800USD. Este es1/40 de los resultados definitivos; las tandas continúan. La integridad técnica permite interpretar el resultado económico sin confundirlo con un fallo de ejecución.
 
 | Configuración | Base / pasan filtro | Ocupadas / materializadas | Operaciones / días con entrada | Fallback / Q0 / UNKNOWN | Compradas / fallidas / retiradas / pasadas | Solicitudes / créditos | Cobrado neto / costos de caja | Caja inicial / mínima / final |
