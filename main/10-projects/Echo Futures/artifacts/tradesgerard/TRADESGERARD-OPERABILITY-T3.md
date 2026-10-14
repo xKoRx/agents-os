@@ -17,9 +17,13 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Ejecutar F2-SR × K01–K05 × retiro bruto2300/3000: diez campañas de la misma ventana C4, con política económica común corregida O10. Estado **FROZEN_AWAITING_INDEPENDENT_GATE**, ninguna campaña T3 lanzada. No hay resultados económicos finales todavía; el smoke sin actividad no es candidata ni fila del ranking.
+Ejecutar F2-SR × K01–K05 × retiro bruto2300/3000: diez campañas de la misma ventana C4, con política económica común corregida O10. Estado **INDEPENDENT_PASS_OFFLINE / AWAITING_RESOURCE_ADMISSION**, ninguna campaña T3 lanzada al emitir el gate. No hay resultados económicos finales todavía; el smoke sin actividad no es candidata ni fila del ranking.
 
 ## Contenido
+
+### Gate independiente
+
+`verifier/independent-f2-gate.json` SHA256 físico `8350ac5f9095de2b22d37bad996cb8c8d61ef837ae0a88a4bcd00d35a7fa7a59`, INDEPENDENT_PASS OFFLINE_OHLC_F2. Source/binario/10inputs íntegros, paridad normativa respecto O10/F0 con delta sólo filtro/identidades/build; dinero común comprobado por blobs conserva gate O10. Coverage104/104 recalculada, oráculo136fronteras variables/exclusión propia y futura PASS0,422s; calendario/DST/gaps/contrato/epoch/readiness PASS0,053s. Smoke23base coincide con oráculo K/ATR/SR60previas,23rechazos de zona/0operaciones/caja5000; receipt sealed COMPLETE e identidad/digests verificados. Manager comprobó hash del gate y sus identidades. Permite iniciar sólo con admisión de recursos global; no certifica runtime ni rentabilidad.
 
 ### Freeze y semántica
 
