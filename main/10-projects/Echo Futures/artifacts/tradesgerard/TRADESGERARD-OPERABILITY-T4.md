@@ -17,6 +17,8 @@ updated: "2026-10-13"
 
 ## Propósito
 
+**Estado vigente: HOLD_STALE_FUNDED_AUTHORITY / AFFECTED / SIN CAMPAÑAS ACTIVAS.** Defecto de autoridad común O10 demostrado en K04 F0 requiere corrección y repetición. T4 conserva cero COMPLETE, dos CANCELLED_DRAINEDexit2 y ocho no lanzadas; no resultados económicos atribuibles. CONTROL documenta prueba SHA256 `5d6dda573a84bf7832cc55738f4c81853938974ca68a997264788d9908a15e88` y drenaje de todos los procesos propios. Las descripciones RUNNING/PASS posteriores conservan historia previa al HOLD.
+
 Ejecutar F3-TREND-SR × K01–K05 × retiro bruto2300/3000: diez campañas que completan la matriz cerrada de cuarenta. Estado **INDEPENDENT_PASS_OFFLINE / RUNNING,0/10 COMPLETE al lanzamiento03:00Z**. No existe todavía ranking final válido. Comparte la política económica O10 y la ventana/perfil C4.
 
 ## Contenido

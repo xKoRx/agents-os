@@ -17,6 +17,8 @@ updated: "2026-10-13"
 
 ## Propósito
 
+**Estado vigente: HOLD_STALE_FUNDED_AUTHORITY / AFFECTED / SIN CAMPAÑAS ACTIVAS.** Defecto común de autoridad O10 demostrado en K04 F0 afecta el corte compartido. T3 conserva dos COMPLETE auditadas, dos CANCELLED_DRAINEDexit2 y seis no lanzadas en este intento. Sus saldos, costos y faltante4,76 se preservan como observación conciliada, fuera del ranking definitivo hasta corrección y repetición. Prueba SHA256 `5d6dda573a84bf7832cc55738f4c81853938974ca68a997264788d9908a15e88`, parada y alcance en CONTROL. Los estados RUNNING/PASS siguientes son históricos.
+
 **Estado actual: RESOURCE_RETRY1_RUNNING,2/10 COMPLETE auditadas.** K01/K02-r2300 pasaron recibos/censo/oráculos/ledger/caja; caja4760/4520 y cero créditos. K03/K04 continúan. F2 jobs2 CPU6–8, sesión70412, mismo source/bin/gate/inputs, `retry1-F2-*` y `T3-f2-resource-retry1-progress.json`. Ocho campañas globales con T1/T2/T4; admisión y forecast en CONTROL. El intento anterior permanece preservado: a01:53:42Z el supervisor drenó K01/K02-r2300 por reserva física inferior8GiB; ambos exit2/FAILED, ocho no lanzados. Gate F2 conserva validez técnica; parciales no son pérdidas de trading ni filas del ranking. El lanzamiento original descrito abajo es histórico.
 
 Ejecutar F2-SR × K01–K05 × retiro bruto2300/3000: diez campañas de la misma ventana C4, con política económica común corregida O10. Estado **INDEPENDENT_PASS_OFFLINE / RUNNING_0_OF_10** al lanzamiento. No hay resultados económicos finales todavía; el smoke sin actividad no es candidata ni fila del ranking.

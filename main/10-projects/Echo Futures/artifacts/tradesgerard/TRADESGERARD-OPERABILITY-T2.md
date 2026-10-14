@@ -16,6 +16,8 @@ updated: "2026-10-13"
 
 ## Propósito
 
+**Estado vigente: HOLD_STALE_FUNDED_AUTHORITY / AFFECTED / SIN CAMPAÑAS ACTIVAS.** Defecto común O10 demostrado en K04 F0 obliga a corregir autoridad al cambiar de cuenta y repetir las trayectorias afectadas. T2 conserva cero COMPLETE, dos CANCELLED_DRAINEDexit2 y ocho no lanzadas en este intento; cancelación técnica, no pérdida económica. CONTROL contiene prueba SHA256 `5d6dda573a84bf7832cc55738f4c81853938974ca68a997264788d9908a15e88` y drenaje. Las ejecuciones/PASS descritos abajo son historia anterior al HOLD.
+
 **Estado actual: RESOURCE_RETRY1_RUNNING,0/10COMPLETE al lanzamiento02:29Z.** Mismos O10/inputs/gate; sesión82581, K01/K02-r2300 PID/PGID3053759/3053765, salidas nuevas `retry1-F1-*` y progreso `T2-o10-resource-retry1-progress.json`. Cuatro campañas globales con T1, admisión y forecast en CONTROL. El intento anterior permanece preservado: a01:53:43Z el supervisor drenó K01/K02-r2300 por reserva física inferior8GiB; ambos exit2/FAILED, ocho no lanzados. Cancelación técnica, no resultado económico ni invalidación del gate O10/F1. La descripción del lanzamiento original siguiente es histórica.
 
 Tanda F1-TREND × K01–K05 × solicitudes brutas2300/3000. Estado **O10_INDEPENDENT_PASS / RUNNING_0_OF_10** al relanzamiento. Se ejecutan diez trayectorias nuevas con política económica O10 verificada. El gate original de matemática/causalidad F1 OHLC conserva su evidencia; las dos campañas de la política O8 canceladas y ocho no lanzadas permanecen AFFECTED, fuera del ranking. No es aceptación final del Owner.

@@ -17,6 +17,8 @@ updated: "2026-10-13"
 
 ## Propósito
 
+**Estado vigente: HOLD_STALE_FUNDED_AUTHORITY.** El hallazgo O10 K04 demuestra lectura MM de evaluación antigua1h47después de financiación autoritativa. Prueba independiente SHA256 `5d6dda573a84bf7832cc55738f4c81853938974ca68a997264788d9908a15e88`, ruta `verifier/o10-K04-stale-funded-authority-finding.json`. Campañas drenadas; diagnóstico/RED del cambio de cuenta antes de corrección común y nuevo gate. CONTROL conserva parada y alcance. Los PASS y ejecuciones descritos a continuación son evidencia anterior, no habilitación vigente del corte afectado.
+
 Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOCAL del Owner, PROMPT_VERSION1, 2026-10-13. T0 es técnico; no acredita rentabilidad. Estado vigente **O10_INDEPENDENT_PASS_OFFLINE / F0_F1_LAUNCH_AUTHORIZED**. El caso autoritativo de consistencia que fallaba en O9 pasa con el mismo test en O10; dinero, selección, calendario y modalidad verificados independientemente. Gate permite ejecutar F0/F1, no constituye aceptación final del Owner ni certificación de runtime. Campañas O8/F1 drenadas permanecen AFFECTED; no se lanzaron campañas O9. F2/F3 congelados esperan gates propios.
 
 ## Contenido
