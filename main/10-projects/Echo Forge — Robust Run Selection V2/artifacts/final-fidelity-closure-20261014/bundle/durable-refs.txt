@@ -1,0 +1,13 @@
+# Refs durables del cierre de fidelidad (2026-10-14)
+wave2b FlowRunRef: 0cbd0f34-c4f2-459e-b670-242bddd35b85
+wave3q FlowRunRef: 42229366-b172-464c-bc65-455dc9a07230   workflow: sqx-main-v1-2bc8405d-8565-4838-a78c-4d41cf95bb02   COMPLETED
+wave3r FlowRunRef: 37b4be10-2d77-493e-b839-93853d83b63c   workflow: sqx-main-v1-ce7ac6e9-1039-4015-af35-20d80e00f505   COMPLETED
+wave3s FlowRunRef: cd697133-4d2a-49d3-bd24-45c391b404d8   workflow: sqx-main-v1-348b7cbd-e535-4165-8d55-935997422c91   COMPLETED
+RankingSnapshotRef (wave3s, GLOBAL): sha256:359de45b6a401cb94ff4e7149dec25311b6eefac51beff6eccbf896083e857d8  requested=5 effective=1
+ScoreRef (f8719ecf, COMPUTED 96.69): sha256:8e4599f56b710de753974f978c506ad1c06d1e6e25d9cd9c76f9a96da8be2590
+Promotion DecisionRef (finalist_promotion@1.0.0, ENFORCE, COMPLETED): sha256:61760e33f7716467b93e31d3ef0151792b15717f0b604417d0e3e0cd01482c3c
+MT5 TradeSet (f8719ecf): durable/mt5-export/v1/cd697133-4d2a-49d3-bd24-45c391b404d8/.../07_mt5_backtest/final-f8719ecf-07f7-45de-9601-45c75cdd444b.htm
+Score wave3q (863d5c81, COMPUTED 86.18): sha256:82889348b9d7fbafa99fa137ba0d5158dc89df347fa618d148fcf96348f19823
+Release 0.2.138 worker SHA256: 7dc1932e74d4b4ea6dcb3a72b3d5f52e737c69369f67c65548236761e63ac2cf (ver manifest-0.2.138.json; rollout 3/3)
+CFX reretesterfull.cfx SHA256: a51c1cc32d576281 (ver SHA256SUMS)
+Plugin sources aggregate SHA (3/3 hosts): ff0968c9c280a5dc243c1293aacbf533ba404dad821baf27fbe0442b1b2e836b

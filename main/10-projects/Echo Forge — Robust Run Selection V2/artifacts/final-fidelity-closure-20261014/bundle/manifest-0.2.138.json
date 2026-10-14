@@ -1,0 +1,69 @@
+{
+  "app": "symphony",
+  "feature": "sqx-worker-minio",
+  "version": "0.2.138",
+  "artifacts": {
+    "linux-amd64": {
+      "mode": "files",
+      "files": [
+        {
+          "path": "bin/symphony",
+          "object_key": "worker/sqx/0.2.138/linux-amd64/symphony",
+          "size": 40726688,
+          "sha256": "7dc1932e74d4b4ea6dcb3a727a5b66e6e75118ec401c2026c3ff4b33ffd853fa",
+          "executable": true
+        },
+        {
+          "path": "bin/sqx-watcher",
+          "object_key": "worker/sqx/0.2.138/linux-amd64/sqx-watcher",
+          "size": 33009824,
+          "sha256": "f77af24eaaf8de8211b508c538abffd39ea103caa006cfea042310203f1ed567",
+          "executable": true
+        },
+        {
+          "path": "bin/start-symphony-worker.sh",
+          "object_key": "worker/sqx/0.2.138/linux-amd64/start-symphony-worker.sh",
+          "size": 310,
+          "sha256": "9f95638441dcb1d60d5c9475f0f95755dd48a09528c326b2ce36063b7ff50849",
+          "executable": true
+        },
+        {
+          "path": "bin/run-symphony",
+          "object_key": "worker/sqx/0.2.138/linux-amd64/run-symphony",
+          "size": 233,
+          "sha256": "8f240eb20a17d70c22512a6f6f689591f7078c7a8ee23b210aaf766bc459c062",
+          "executable": true
+        },
+        {
+          "path": "etc/promtail-worker.yaml",
+          "object_key": "worker/sqx/0.2.138/linux-amd64/promtail-worker.yaml",
+          "size": 355,
+          "sha256": "eaa4e1b21ace4d34202ff6185b9c76710a6ff48274d4d57ba752ea13e532cbd9"
+        }
+      ],
+      "entrypoint": "bin/symphony",
+      "binary": "deploy/worker/sqx/0.2.138/linux-amd64/symphony",
+      "watcher": "deploy/worker/sqx/0.2.138/linux-amd64/sqx-watcher",
+      "runner": "deploy/worker/sqx/0.2.138/linux-amd64/start-symphony-worker.sh",
+      "promtail_yaml": "deploy/worker/sqx/0.2.138/linux-amd64/promtail-worker.yaml"
+    },
+    "windows-amd64": {
+      "mode": "files",
+      "files": [
+        {
+          "path": "bin/sqx-mt5-worker.exe",
+          "object_key": "worker/sqx/0.2.138/windows-amd64/sqx-mt5-worker.exe",
+          "size": 37259264,
+          "sha256": "10564dd906d49e043dfde50af107ab82271bf89e1c22b54ff8d0804a018d1b08"
+        }
+      ],
+      "entrypoint": "bin/sqx-mt5-worker.exe"
+    }
+  },
+  "update": {
+    "strategy": "stage_mark_pending",
+    "pending_file": "/var/lib/symphony/PENDING",
+    "notes": "El binario hace quiesce y drena (Temporal) antes de reiniciar."
+  },
+  "notes": "SQX worker & watcher 0.2.138. Published by deploy_release.sh."
+}
