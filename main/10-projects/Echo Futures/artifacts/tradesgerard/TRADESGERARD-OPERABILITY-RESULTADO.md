@@ -53,6 +53,51 @@ Orden provisional de las seis por caja final: K05/2300(3771), K03/2300(3531), K0
 
 Tabla y métricas completas en `verifier/final-comparison-o11-incomplete-40.json.gz`, SHA256 `959ce944b20c838c9d5deab35c25d4150d11f6551f768aec9914b4c1e5fe1af0`,41.762B, readback40/40. Estados:6 `AUDITED_COMPLETE`,4 `FAILED_TECHNICAL_RESOURCE`,30 `NOT_RUN_RESOURCE`. Las34incompletas tienen economía NA, no ceros fabricados. Recibo independiente de los cuatro fallos `verifier/o11-four-failed-independent-final.json.gz`, SHA256 `cb6146eec4ca69a778272caccf5c5cc06f1dbd616c62c8462d451875eb5ed086`: identidad/request/source/binario/exit2/context canceled y ausencia de PID comprobados; no certifica PnL parcial.
 
+F1/F2/F3 abrevían F1-TREND/F2-SR/F3-TREND-SR. Compras en USD; NA significa evidencia económica incompleta. Los costos restantes y el censo completo de las seis filas están en T1 y en el JSON vinculado.
+
+| Filtro | Perfil | Retiro bruto | Estado técnico | Ops | Neto acreditado | Compras USD | Caja final | Neto caja |
+|---|---|---:|---|---:|---:|---:|---:|---:|
+| F0 | K01 |2300|AUDITED_COMPLETE|719|0|1800|3200|−1800|
+| F0 | K02 |2300|AUDITED_COMPLETE|618|0|3480|1520|−3480|
+| F0 | K03 |2300|AUDITED_COMPLETE|647|1651|3120|3531|−1469|
+| F0 | K04 |2300|AUDITED_COMPLETE|651|0|2160|2840|−2160|
+| F0 | K05 |2300|AUDITED_COMPLETE|543|1651|2880|3771|−1229|
+| F0 | K01 |3000|AUDITED_COMPLETE|719|0|1800|3200|−1800|
+| F0 | K02 |3000|FAILED_TECHNICAL_RESOURCE|NA|NA|NA|NA|NA|
+| F0 | K03 |3000|FAILED_TECHNICAL_RESOURCE|NA|NA|NA|NA|NA|
+| F0 | K04 |3000|FAILED_TECHNICAL_RESOURCE|NA|NA|NA|NA|NA|
+| F0 | K05 |3000|FAILED_TECHNICAL_RESOURCE|NA|NA|NA|NA|NA|
+| F1 | K01 |2300|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F1 | K02 |2300|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F1 | K03 |2300|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F1 | K04 |2300|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F1 | K05 |2300|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F1 | K01 |3000|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F1 | K02 |3000|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F1 | K03 |3000|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F1 | K04 |3000|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F1 | K05 |3000|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F2 | K01 |2300|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F2 | K02 |2300|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F2 | K03 |2300|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F2 | K04 |2300|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F2 | K05 |2300|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F2 | K01 |3000|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F2 | K02 |3000|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F2 | K03 |3000|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F2 | K04 |3000|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F2 | K05 |3000|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F3 | K01 |2300|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F3 | K02 |2300|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F3 | K03 |2300|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F3 | K04 |2300|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F3 | K05 |2300|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F3 | K01 |3000|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F3 | K02 |3000|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F3 | K03 |3000|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F3 | K04 |3000|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+| F3 | K05 |3000|NOT_RUN_RESOURCE|NA|NA|NA|NA|NA|
+
 ### Antes y después de operabilidad
 
 | Perfil, retiro2300 | Operaciones C4 → O11 | Caja final C4 → O11 |
@@ -85,7 +130,7 @@ Intervalo adicional reservado antes del ranking: NQZ6, warmup2026-09-21T00Z, tra
 
 Runtime sigue **FUNCTIONALLY_BLOCKED** para mínimos económicos F0–F3: falta `ExecutableQuoteSource` fresco en SnapshotViews/readModelMarket; offsets OHLC sólo son válidos en BACKTEST. F1/F3 además requieren autoridad de completitud H1 en startup/reconexión/epoch; F2/F3, minutos cerrados válidos. No se iniciaron ni certificaron quote/fill/cancel/finality/márgenes de NinjaTrader/broker. Compartir matemática no demuestra operabilidad LIVE. No órdenes, compras/resets reales, deploy, permisos, servicios, merge ni release.
 
-La siguiente acción queda limitada a recuperar capacidad y completar la matriz definida. No hay evidencia suficiente para añadir otra hipótesis de trading o más indicadores, ni para declarar ninguna variante generalmente rentable.
+La siguiente acción queda limitada a recuperar capacidad y completar la matriz definida. No hay evidencia suficiente para añadir otra hipótesis de trading o más indicadores, ni para declarar ninguna variante generalmente rentable. Quedan diferidos sin implementar addsB2, martingala, aumento deR tras ganancias, BE, extensión, nuevos ratios/horarios y selección de cuentas por rendimiento. No se reactivó el catálogo15.168.
 
 ## Fuentes
 
