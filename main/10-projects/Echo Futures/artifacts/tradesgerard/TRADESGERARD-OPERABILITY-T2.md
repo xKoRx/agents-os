@@ -40,6 +40,8 @@ Derivado independiente relativo al root `ARANEA_ROOT/work/tradesgerard-operabili
 
 ### Frontera runtime
 
+La política común de mínimo económico requiere además una quote ejecutable fresca. `SnapshotViews.Market()` no implementa `ExecutableQuoteSource` en la ruta runtime actual: todas las versiones F0–F3 de la nueva política quedan funcionalmente bloqueadas allí, y F1/F3 tienen el bloqueo H1 adicional. No se confunde esta ausencia concreta con falta de todos los datos del adapter. Un RED independiente mostró que la factory admitía offsets de simulación fuera de BACKTEST; el integrador corregirá esa admisión en F2 sin alterar el camino offline. [[TRADESGERARD-OPERABILITY-T0]] y [[TRADESGERARD-OPERABILITY-T0-VERIFY]] conservan evidencia y adjudicación. El gate F1 sigue limitado a OHLC offline.
+
 La ruta actual de ticks `ApplyTrade` no acredita la completitud de la H1 tras inicio o cambio de época. Muchos trades no equivalen a cobertura del intervalo. F1/F3 quedan funcionalmente bloqueados en esa ruta con `H1_LIVE_COMPLETENESS_UNVERIFIED`, incluso si existe una seed histórica válida y luego aparece una H1 nueva sin autoridad. Una snapshot antigua no puede borrar esa frontera. El backtest OHLC con cobertura de minutos fuente verificada sí puede ejecutar el filtro. Compartir matemática y guardas no demuestra que el feed runtime proporcione la autoridad que falta.
 
 El negativo independiente del freeze exacto pasó: una seed válida no permite ignorar la nueva H1 sin autoridad y una snapshot antigua no la restaura. F0 sigue operable sin H1. No se inicia ningún servicio ni operación real para resolver la limitación. Esta dependencia debe mantenerse visible en el informe final.
