@@ -21,6 +21,12 @@ Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOC
 
 ## Contenido
 
+### O10 congelado — remanente efectivo compartido, gate pendiente
+
+Source `76a1e69e5a0a67b94b920e2ffb983fd226eb127a`, árbol `aebf5e8724147b343e525e2594fbed7f42fafff4`, checkout limpio comprobado por manager. Binario `implementer/bin/echo-backtest-o10` SHA256 físico `3c66a1b091fde81a7804e38eb265f16078005c1fc211db46e62f690cb04426bf`. Manifiesto `implementer/evidence/o10-freeze-manifest.json` SHA256 físico `f8168673e089d8ed9be9a9535ba46209a54c073aec33fbe5ddc5a36490c1cb6c`, veinte inputs F0/F1. Helper de provider deriva el objetivo efectivo con su comparador de consistencia estricto y grid USD0,01 del perfil; MM y selección comparten ese remanente. Usa max(mejor día cerrado, día actual); mantiene target nominal si no hay regla de consistencia. No modifica lifecycle ni costos ni acredita pagos.
+
+Integrador reporta GREEN del fixture real3,601s, SDK/provider/TGMM/config y críticos PASS, cobertura delta48/50=96%. Estos son resultados del autor; verificación independiente exacta todavía pendiente. Reserva física del manifiesto9.818.783.744B, presupuesto agregado nuevo1.610.612.736B incluyendo evidencia afectada; admisión se medirá de nuevo antes de lanzar. Cuarenta trayectorias siguen pendientes de validación económica final.
+
 ### O9 congelado — HOLD confirmado por consistencia autoritativa
 
 Recibo independiente durable `verifier/independent-o9-HOLD.json`, SHA256 `83503df1c9e6d1dda555f6f97a2679156ba45415f5c9b9d76ecd1152bfda723d`, identifica source/binario/fixture/logs y separa expresamente el primer error de harness. Manager comprobó físicamente su hash. Lease O9 liberado; próximo corte común O10 en implementación, sin campañas lanzadas todavía.
