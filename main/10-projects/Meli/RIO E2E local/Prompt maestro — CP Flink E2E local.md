@@ -1,7 +1,7 @@
 ---
 type: prompt
 schema_version: 1
-status: active
+status: archived
 area: "[[Meli]]"
 target: "Agente de desarrollo local con revisión independiente"
 prompt_version: 1
@@ -10,12 +10,12 @@ outputs: ["SPEC y tareas READY", "Integración física local", "Verificación y 
 application: "[[rio-controlplane-flink]]"
 project: "[[RIO E2E local]]"
 aliases: []
-related: ["[[RIO E2E local — Diseño revisado]]", "[[rio-playmaker]]", "[[rio-controlplane-kafka]]", "[[Descripción PR — rio-playmaker]]", "[[Descripción PR — rio-controlplane-kafka]]"]
+related: ["[[CP Flink local]]", "[[RIO E2E local — Diseño revisado]]", "[[rio-playmaker]]", "[[rio-controlplane-kafka]]", "[[Descripción PR — rio-playmaker]]", "[[Descripción PR — rio-controlplane-kafka]]"]
 tags:
   - kind/prompt
   - project/rio-e2e-local
 created: "2026-10-09"
-updated: "2026-10-09"
+updated: "2026-10-13"
 ---
 
 # Prompt maestro — CP Flink E2E local

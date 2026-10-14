@@ -1,15 +1,15 @@
 ---
 type: doc
 schema_version: 1
-status: active
+status: archived
 area: "[[Meli]]"
-related: ["[[RIO E2E local]]", "[[RIO E2E local — Diseño revisado]]", "[[rio-controlplane-flink]]", "[[rio-playmaker]]", "[[rio-controlplane-kafka]]"]
+related: ["[[CP Flink local]]", "[[RIO E2E local]]", "[[RIO E2E local — Diseño revisado]]", "[[rio-controlplane-flink]]", "[[rio-playmaker]]", "[[rio-controlplane-kafka]]"]
 aliases: []
 tags:
   - kind/doc
   - project/rio-e2e-local
 created: "2026-10-09"
-updated: "2026-10-10"
+updated: "2026-10-13"
 ---
 
 # F3 Flink — Discovery y gates bloqueados

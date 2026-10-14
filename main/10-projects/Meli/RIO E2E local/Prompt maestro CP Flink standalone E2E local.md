@@ -1,7 +1,7 @@
 ---
 type: prompt
 schema_version: 1
-status: active
+status: archived
 area: "[[Meli]]"
 target: "Agente de desarrollo del CP Flink"
 prompt_version: 1
@@ -10,12 +10,12 @@ outputs: ["SPEC funcional y técnica", "Stack Flink Docker standalone", "Suite E
 application: "[[rio-controlplane-flink]]"
 project: "[[RIO E2E local]]"
 aliases: []
-related: ["[[rio-controlplane-kafka]]", "[[rio-controlplane-clickhouse]]", "[[RIO E2E local — Diseño revisado]]", "[[Prompt maestro — CP Flink E2E local]]"]
+related: ["[[CP Flink local]]", "[[rio-controlplane-kafka]]", "[[rio-controlplane-clickhouse]]", "[[RIO E2E local — Diseño revisado]]", "[[Prompt maestro — CP Flink E2E local]]"]
 tags:
   - kind/prompt
   - project/rio-e2e-local
 created: "2026-10-09"
-updated: "2026-10-09"
+updated: "2026-10-13"
 ---
 
 # Prompt maestro CP Flink standalone E2E local

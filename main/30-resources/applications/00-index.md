@@ -7,7 +7,7 @@ slug: applications-index
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-02
-updated: 2026-10-08
+updated: 2026-10-14
 reviewed: 2026-07-04
 aliases:
   - applications index
@@ -28,8 +28,8 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Páginas:** 14 aplicaciones (catálogo raíz) + subdominio `echo/`
-- **Última ingesta:** 2026-10-07 (ClickHouse: baseline develop, preflight local y estado de integración Playmaker).
+- **Páginas:** 15 aplicaciones (catálogo raíz) + subdominio `echo/`
+- **Última ingesta:** 2026-10-14 (Lore: operación local y límites verificados).
 - **Estado:** active
 
 ## 📂 Catálogo
@@ -51,6 +51,8 @@ tags:
 | [[rio-controlplane-observability]] | Automatiza monitores Datadog, subscription filters de CloudWatch y cuotas de logs para apps Flink. | [[Meli]] | Java |
 | [[rio-controlplane-signals]] | ⚠️ Repo scaffold Fury vacío (placeholder, propósito por definir); "Signals" = otro nombre de RIO, no un sub-dominio. | [[Meli]] | Java |
 | [[rio-sdk-events]] | SDK/librería de eventos RIO: publica vía BigQueue + Fury Streams; contratos alineados a topics Kafka. | [[Meli]] | Java |
+
+| [[lore]] | E2E agéntico en navegador; local web/runner verificados, journeys RIO blocked por instalación parcial (last_verified 2026-10-14). | [[Meli]] | TypeScript |
 
 ## Arquitectura de producto
 

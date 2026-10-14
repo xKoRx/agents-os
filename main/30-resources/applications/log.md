@@ -148,3 +148,7 @@ Corrección in-place del contrato F-04: identidad del HandoffManifestV1 desde `s
 - Actualizado [[rio-controlplane-clickhouse]] con [[Source — ClickHouse — Pruebas físicas locales 2026-10-08]]: 2340 tests Gradle y 14 escenarios PASS contra CP/ClickHouse físicos; cleanup contrastado en SQL.
 - Fixes sin commit: default_format HTTP, contraseñas con dígito/símbolo garantizados y ownership local con claims/release; regresiones RED→GREEN. Runner, reporte y fallback Colima guardados en el repo; MySQL preservado.
 - CP/motor/forward quedan activos. Kafka/Playmaker, Cloud y S3/Iceberg no fueron certificados; se conserva la guía de integración pendiente. Change log y agent run del segmento materializados sin cerrar sesión AGENTS OS.
+
+## [2026-10-14] ingest | Lore — Verificación local RIO
+
+- Actualizado [[lore]] e índice con [[Source — Lore — Verificación local 2026-10-14]]: dev-all con estado/evidencia externos, puerto real, logging sensible, dependencias y binario SDK opcional. RIO 0 passed/0 failed/3 blocked/9 skipped; sin navegación ni acceso efectivo al modelo. CA confiada pero vencida; no confundir confianza con vigencia.
