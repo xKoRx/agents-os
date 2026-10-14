@@ -16,13 +16,17 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Tanda F1-TREND × K01–K05 × solicitudes brutas2300/3000. Estado **F1_FROZEN_AWAITING_INDEPENDENT_GATE, 0/10 campañas definitivas lanzadas**. El módulo compartido y su preparación causal están congelados; no hay todavía un gate independiente del build final F1. La política común O8 ya está incorporada. No es aceptación final del Owner.
+Tanda F1-TREND × K01–K05 × solicitudes brutas2300/3000. Estado **F1_INDEPENDENT_PASS_OFFLINE_OHLC, lanzamiento T2 en preparación**. El módulo compartido y su preparación causal están congelados y pasaron verificación independiente contra el build exacto. La política común O8 está incorporada. Ninguna campaña económica F1 completa todavía; no es aceptación final del Owner.
 
 ## Contenido
 
 ### Contrato del experimento
 
-Freeze físico comprobado por manager: source `f4643aefce49876ed40bb4fd1efefe1894cb1520`, árbol limpio `7390209adb42dea4000b5e6750cc0656616376ce`, binario SHA256 `201edd9b22a08b60b9b06b6e7411449e0515eaba48b4be6571d6794c9977a4a6`. Manifiesto `implementer/evidence/f1-freeze-manifest.json` SHA256 `e5d45ebed793c8b53483ebaf7a215920a0fbce7c86401d6497e67a88139a781e`, diez inputs y perfil común O8 `d66bb56b`. Cobertura del integrador300/312=96,1538% de bloques afectados, referencia `534ca1c7`; el verificador comprobará identidad/denominador y caminos críticos contra el build exacto. Coincidencia de blobs monetarios O8 registrada por integrador; no se declara gate PASS sólo por disponer de manifiesto.
+Freeze físico comprobado por manager: source `f4643aefce49876ed40bb4fd1efefe1894cb1520`, árbol limpio `7390209adb42dea4000b5e6750cc0656616376ce`, binario SHA256 `201edd9b22a08b60b9b06b6e7411449e0515eaba48b4be6571d6794c9977a4a6`. Manifiesto `implementer/evidence/f1-freeze-manifest.json` SHA256 `e5d45ebed793c8b53483ebaf7a215920a0fbce7c86401d6497e67a88139a781e`, diez inputs y perfil común O8 `d66bb56b`. Gate independiente `verifier/independent-f1-gate.json` SHA256 `0a876028c0caf8c13a65781d3738d6c24611a76b5921503ec1a19d82a32552ac`, **INDEPENDENT_PASS**, alcance técnico F1/OHLC offline. Manager comprobó el gate y los hashes físicos de sus siete evidencias.
+
+Cobertura300/312=96,1538% de bloques afectados recalculada independientemente, referencia `534ca1c7`, sin cambiar denominadores. Diez inputs idénticos a O8 salvo filtro/prefijo/build/identidades; blobs monetarios comunes byte-identical. El prefijo25H1 fue contrastado directamente con NT: cierres válidos, mismo contrato, epoch0 y as-of causal. SDK PASS y negativos independientes de completitud runtime, seed stale, F0 sin H1 y rechazo explícito de F2/F3 aún no implementados. Pruebas DST31oct/3nov con UTC14/15 y offsetsNY−04/−05 aprobadas. El cotejo de witnesses de las755 señales del productor se hará sobre las campañas completas; el smoke de un día no acredita por sí mismo toda esa ventana.
+
+Smoke del build exacto:23cruces base K/ATR idénticos,14aceptados y9rechazados por dirección,14operaciones cerradas con marca causal correcta al primerfill, UNKNOWN0 y snapshots económicos ausentes0. Caja4640 conciliada con ledger; diagnóstico, no una configuración del ranking. La falta de autoridad H1 del runtime sigue explícita y no queda subsanada por este PASS offline.
 
 SIG-B conserva K lenta20/SMA3 y los cruces causales en cierre1m. F1 admite LONG sólo con SMA24 de cierres H1 actual mayor que anterior, y SHORT sólo con pendiente menor; igualdad no aporta dirección. Se necesitan25 cierres H1 válidos y totalmente publicados. No hay filtro de posición del precio respecto a la media, pendiente mínima ni otra confirmación. F0 no depende del readiness H1. Los indicadores siguen actualizándose cuando la entrada no es admisible.
 
@@ -38,7 +42,7 @@ Derivado independiente relativo al root `ARANEA_ROOT/work/tradesgerard-operabili
 
 La ruta actual de ticks `ApplyTrade` no acredita la completitud de la H1 tras inicio o cambio de época. Muchos trades no equivalen a cobertura del intervalo. F1/F3 quedan funcionalmente bloqueados en esa ruta con `H1_LIVE_COMPLETENESS_UNVERIFIED`, incluso si existe una seed histórica válida y luego aparece una H1 nueva sin autoridad. Una snapshot antigua no puede borrar esa frontera. El backtest OHLC con cobertura de minutos fuente verificada sí puede ejecutar el filtro. Compartir matemática y guardas no demuestra que el feed runtime proporcione la autoridad que falta.
 
-El negativo independiente está preparado para el freeze exacto; su preparación no es todavía un PASS de ese build. No se inicia ningún servicio ni operación real para resolver la limitación. Esta dependencia debe mantenerse visible en el informe final.
+El negativo independiente del freeze exacto pasó: una seed válida no permite ignorar la nueva H1 sin autoridad y una snapshot antigua no la restaura. F0 sigue operable sin H1. No se inicia ningún servicio ni operación real para resolver la limitación. Esta dependencia debe mantenerse visible en el informe final.
 
 ### Continuidad y recursos
 
