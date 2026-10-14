@@ -16,9 +16,15 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Fuente de estado de TradesGerard. Mandato vigente 2026-10-13: **ALL_FILTERS_INDEPENDENT_PASS_OFFLINE / T1_T2_T3_RESOURCE_RETRY1_RUNNING**. Tras recuperar espacio propio, F0/F1/F2 reanudadas con seis campañas supervisadas globales, cero COMPLETE nuevos al lanzamiento; T4 espera admisión. Los seis intentos cancelados por reserva física están preservados por separado. Gates O10/F2/F3 válidos. No se reducen límites ni se borran recursos ajenos. Las cuarenta configuraciones y ampliación acotada siguen autorizadas; la tarea no está completa. O8/F1 anteriores permanecen AFFECTED, el crédito histórico no es resultado del corte corregido. Aceptación final del Owner separada; manager y proyecto permanecen abiertos, sin feedback/cierre.
+Fuente de estado de TradesGerard. Mandato vigente 2026-10-13: **ALL_FILTERS_INDEPENDENT_PASS_OFFLINE / T1_T2_T3_RESOURCE_RETRY1_RUNNING,2/40 AUDITADAS**. Tras recuperar espacio propio, F0/F1/F2 reanudadas con seis campañas supervisadas globales; T4 espera admisión. F0 K01/K02-r2300 terminaron y pasaron auditoría independiente: caja3200/1520, cero cobros, ambas negativas; K03/K04 ocupan sus plazas. Los seis intentos cancelados por reserva física están preservados por separado. Gates O10/F2/F3 válidos. No se reducen límites ni se borran recursos ajenos. Las cuarenta configuraciones y ampliación acotada siguen autorizadas; la tarea no está completa. O8/F1 anteriores permanecen AFFECTED, el crédito histórico no es resultado del corte corregido. Aceptación final del Owner separada; manager y proyecto permanecen abiertos, sin feedback/cierre.
 
 ## Contenido
+
+### Primeras filas actuales verificadas
+
+[[TRADESGERARD-OPERABILITY-T1]] publica las dos primeras filas O10 y todos sus denominadores, rachas por campaña/cuenta, geometría, ledger/caja y costos. K01:755base=719operaciones+36ocupadas,550fallbacks,15compras/13retiros de política/0pases/cobros, caja5000→3200. K02:755=618operaciones+77ocupadas+60cupo,215fallbacks,29compras/26retiros/4pases/0cobros, caja5000→1520. UNKNOWN0. Las cuatro funded K02 operaron, pero fueron retiradas antes del objetivo; mejor progreso1616,06/faltante683,94. Snapshot inmutable `verifier/final-comparison-first-two-o10.json` SHA256 `4984309e7a91c838d6c14b3b050fdba9177ad62c485a4f9f22a4f98a2f9662d3`. Ambas ninguna útil en muestra; no selección final con sólo2/40.
+
+La propuesta8global llegó a aprobación condicionada de recursos, pero el dry-run F3 encontró load≥16,8 y rechazó lanzamiento: **siguen6global, F3 QUEUED, ningún hijo F3 iniciado**. No se relajó el guard ni se repite hasta una nueva frontera real. Forecast recalibrado6MiB porconfiguración completa×40 y×8extensión/sensibilidad, scratch100.663.296B/bin20.971.520B, descontando sólo bytes ya escritos; además reserva16MiB para derivados independientes. Fuente/build no restaurados. CPU9–10 se propone para F3 cuando sea admisible;12–23 quedan fuera de nuestra afinidad, no se afirma que estén ociosas en el homelab.
 
 ### Ampliación anual: comprobación actual acotada
 
