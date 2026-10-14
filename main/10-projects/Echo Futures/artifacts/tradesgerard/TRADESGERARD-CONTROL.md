@@ -16,11 +16,17 @@ updated: "2026-10-14"
 
 ## Propósito
 
-**Estado vigente 2026-10-14 06:33Z: O11 INDEPENDENT_PASS; 6/40 auditadas y las cuatro F0 restantes RUNNING.** Recuperación propia terminada y lanzamiento `f0-stage3` físicamente comprobado: supervisor3118487/sesión87792, K02/K03/K04/K05-r3000 PID3118599/3118610/3118621/3118634. Progreso `implementer/evidence/O11-F0-f0-stage3-progress.json`; seis COMPLETE recuperadas una vez. Fuente/binario/gate O11 intactos. F1/F2/F3, ampliación y sensibilidad todavía pendientes. Los siguientes estados describen la frontera anterior, no una nueva detención.
+**Estado vigente 2026-10-14: BLOQUEO DE RECURSOS; 6/40 auditadas, cuatro FAILED técnicos y30 no ejecutadas.** O11 conserva gate independiente PASS, pero el alcance económico NO está completo. El guard físico drenó `f0-stage3` a26min43s: supervisor e hijos exit2, `RUNTIME_RESOURCE_LIMIT`, todos los PID propios ausentes. Seis resultados auditados preservados; ninguno de los cuatro parciales entra al ranking. [[TRADESGERARD-OPERABILITY-RESULTADO]] consolida la racha C4, operabilidad, resultados disponibles, cobertura40 y límites de ampliación/runtime. Admisión F0 vigente requiere al menos8.650.752.000B libres, además de los demás controles; lecturas posteriores fluctúan y no la satisfacen. Sin reintento ciego, selección final, aceptación del Owner, feedback ni cierre de proyecto. Los estados RUNNING siguientes son historia.
 
 Fuente de estado de TradesGerard. Mandato vigente2026-10-13: **O11 INDEPENDENT_PASS / 6 de40 auditadas; supervisor drenado en frontera de recursos.** Fuente común `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`. F0 K01 ambos retiros y K02–K05/r2300 auditadas. K03 y K05 acreditan1651USD cada una en campañas independientes, caja final3531/3771 y pérdida neta1469/1229; ninguna de las seis tiene caja neta positiva. Paridad completa de los dos K01 verificada. El supervisor y su único hijo nuevo están drenados; recuperación propia y readmisión física pendientes. Las34configuraciones restantes, extensión y sensibilidad no están completas. O10/F2/F3 siguen AFFECTED y excluidas. Sin operaciones reales, aceptación propia ni cierre de proyecto.
 
 ## Contenido
+
+### Drenaje final de esta ejecución y alcance pendiente
+
+Snapshot `implementer/evidence/O11-F0-f0-stage3-progress-RESOURCE_DRAIN-frozen.json` SHA256 `57d9b0a09ef8d8e84c92c62122255af23cd22787d40811790c35a2f1af2c81ca`. Sesión87792/supervisor3118487 e hijos3118599/3118610/3118621/3118634 cerrados; K02–K05/r3000 FAILED/context canceled. El evento bajo piso8GiB fue real; free posterior del recibo8.553.541.632B, otra lectura manager8.607.608.832B y posterior integrador8.583.467.008B. No se afirma déficit permanente ni causa de un proceso externo concreto. Futuro físico F0 vigente60.817.408B, por lo que una lectura apenas sobre8GiB tampoco autoriza otro intento. La propuesta de colchón extra4MiB quedó sin aplicar; no se modifica retrospectivamente el contrato que drenó.
+
+K03/K05-r2300 mantienen cobros simulados1651/caja3531 y3771, ambas cajas netas negativas. No hay nuevo resultado económico en esta reanudación. F1/F2/F3 no se ejecutaron con O11 completo; extensión y sensibilidad NOT_RUN_RESOURCE, preflight anual NOT_READY. Informes y recetas durables en [[TRADESGERARD-OPERABILITY-RESULTADO]], [[TRADESGERARD-OPERABILITY-IMPLEMENTER-T0]] y `implementer/evidence/O11-PARTIAL-RESOURCE-HANDOFF.md`. El proyecto permanece abierto.
 
 ### Recuperación durable y continuación por tanda — 2026-10-14 06:33Z
 
