@@ -17,11 +17,13 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOCAL del Owner, PROMPT_VERSION1, 2026-10-13. T0 es técnico; no acredita rentabilidad. Estado vigente **O8_F1_ECONOMIC_HOLD / O9_CORRECTION**: el caso de objetivo ya alcanzado mientras espera elegibilidad de retiro bloqueaba alternativas operables. Campañas de esa política drenadas; sus resultados se preservan AFFECTED fuera del ranking. El integrador corrige O9 sin nueva aprobación intermedia. Los PASS técnicos de O8/F1 conservan el alcance probado, pero no sustituyen el nuevo HOLD económico.
+Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOCAL del Owner, PROMPT_VERSION1, 2026-10-13. T0 es técnico; no acredita rentabilidad. Estado vigente **O9_PENDING_INDEPENDENT_GATE**: la espera de objetivo completado quedó corregida en O9; el caso adicional de consistencia requiere prueba con ledger autoritativo. El primer intento fue HARNESS_AUTHORITY_ERROR, no RED de producto. No se lanzaron campañas O9. Campañas O8/F1 drenadas; sus resultados se preservan AFFECTED fuera del ranking. Sus PASS técnicos conservan el alcance probado y no sustituyen la nueva verificación.
 
 ## Contenido
 
-### O9 congelado — verificación independiente pendiente
+### O9 congelado — caso de consistencia en verificación
+
+El primer intento `TestVerifierEvaluationConsistencyPreventsFalseCompletedObjective`, log `verifier/o9-completed-objective-independent.log`, FAIL1,870s, fue corregido de atribución por el verificador: el fixture modificaba BestDay en lastRev, pero `accountEconomicsFromRevision/platformBestDay` lo sustituye desde ledger closed/current, donde todavía era0. Se conserva como HARNESS_AUTHORITY_ERROR, no como RED de producto. Manager había atribuido prematuramente el log; se corrigió también en chat. El verificador prepara el caso con dos días de operaciones reales de fixture en ledger antes de emitir dictamen. Sólo si ese caso demuestra el defecto se corregirá el objetivo efectivo compartido, sin forzar aprobación. O9 permanece quieto; los smokes siguientes no habilitan campañas. SR avanza en un checkout separado.
 
 Continuación del Owner recibida; ambos TOP retomaron ejecución. Source `cf855c7a3cffd276d5bf24458417a4dd7940863b`, árbol `1bf69f984eb4ea5b7ef948b1e2aa733fde923d5d`, checkout `implementer/echo-t0-corrected` limpio comprobado. Binario `implementer/bin/echo-backtest-o9` SHA256 `3ed52db8d418f7ff23b8074c932d75b59c1aeee8a1ad22093ca8edeaba4dee4f`; manifiesto `implementer/evidence/o9-freeze-manifest.json` SHA256 `30ef1d3b9eef0539db0dd9d30f9184b833577d400854340a06ee682e96cceffa`, veinte inputs F0/F1 bajo una política común. O9 añade espera `OBJECTIVE_MET_WAITING_TRANSITION`, pausa diaria ante objetivo completado y guard que restringe offsets OHLC modelados a BACKTEST explícito. Conserva las fechas de elegibilidad y pago.
 

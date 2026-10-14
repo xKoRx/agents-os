@@ -16,7 +16,7 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Fuente de estado de TradesGerard. Mandato vigente 2026-10-13: **O8_F1_ECONOMIC_HOLD / O9_CORRECTION**. Probado bloqueo de alternativas al alcanzar objetivo funded mientras espera fecha de cumplimiento. Campañas O8/F1 drenadas y conservadas AFFECTED; integrador corrige O9 con regresión independiente y repetirá F0/F1. Los cuatro filtros y la ampliación acotada siguen autorizados, sin aprobación intermedia pendiente del Owner. El primer crédito observado se conserva con caja neta negativa, fuera del ranking por el defecto de selección. La etapa A y READY_FOR_GLM de abajo son antecedentes históricos. Aceptación final del Owner separada; manager y proyecto permanecen abiertos.
+Fuente de estado de TradesGerard. Mandato vigente 2026-10-13: **O9_PENDING_INDEPENDENT_GATE**. O9 corrigió el turno durante la espera de cumplimiento; el verificador comprueba el caso adicional de consistencia con ledger autoritativo. El primer intento fallido fue HARNESS_AUTHORITY_ERROR y no prueba un defecto de producto. No se lanzaron campañas O9. F0/F1 esperan el gate exacto; F2 avanza aislado. Campañas O8/F1 drenadas y conservadas AFFECTED. Los cuatro filtros y la ampliación acotada siguen autorizados, sin aprobación intermedia pendiente del Owner. El primer crédito observado se conserva con caja neta negativa, fuera del ranking por el defecto de selección. La etapa A y READY_FOR_GLM de abajo son antecedentes históricos. Aceptación final del Owner separada; manager y proyecto permanecen abiertos.
 
 ## Contenido
 
