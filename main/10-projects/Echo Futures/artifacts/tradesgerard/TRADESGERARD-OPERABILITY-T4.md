@@ -17,9 +17,13 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Ejecutar F3-TREND-SR × K01–K05 × retiro bruto2300/3000: diez campañas que completan la matriz cerrada de cuarenta. Estado **INDEPENDENT_PASS_OFFLINE / QUEUED_FOR_CAPACITY**, ninguna campaña T4 lanzada al emitir el gate. No existe todavía ranking final válido. Comparte la política económica O10 y la ventana/perfil C4.
+Ejecutar F3-TREND-SR × K01–K05 × retiro bruto2300/3000: diez campañas que completan la matriz cerrada de cuarenta. Estado **INDEPENDENT_PASS_OFFLINE / RUNNING,0/10 COMPLETE al lanzamiento03:00Z**. No existe todavía ranking final válido. Comparte la política económica O10 y la ventana/perfil C4.
 
 ## Contenido
+
+### Lanzamiento03:00Z tras frontera F2
+
+La primera admisión de8procesos había fallado por load≥16,8 sin lanzar hijos F3. En la frontera real de primera F2 COMPLETE pasó el guard: F3 sesión19487, K01/K02-r2300 PID/PGID3061172/3061182, afinidadCPU9–10/GOMAXPROCS4, máximo8global con T1/T2/T3. `T4-f3-resource-retry1-progress.json` y salidas `retry1-F3-*`; mismo source/bin/gate/10inputs. Admisión `T4-f3-resource-retry1-admission-frontier-F2.json` SHA256 `8814aba427068ddabd826aa2f535581b8923403642229242114c16d9682a2932`; free9.093.853.184B, forecast íntegro incluye configuración completa, auditoría, scratch y futuro binario, reserva8GiB. Sin nuevas ampliaciones, compilaciones ni cambios de fuentes primarias. Los párrafos de cola siguientes documentan el estado anterior al lanzamiento.
 
 ### Gate independiente y cola
 
