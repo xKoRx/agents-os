@@ -17,7 +17,21 @@ updated: "2026-10-14"
 
 ## Dictamen vigente
 
-**O10/F0–F3: HOLD económico común por autoridad MM stale tras financiación/reselección. O11 está en corrección, todavía sin gate integrado independiente.** Resultados observados, incluido crédito simulado K03, se conservan AFFECTED y fuera del ranking vigente. Código y pruebas anteriores no se borran; ver el counterexample exacto y sus hashes al final. Verificador LOCAL: Sol6.1 solicitado, servido UNKNOWN.
+**O11: INDEPENDENT_PASS exacto para investigación offline F0–F3. Investigación económica técnicamente incompleta por recursos: 6 AUDITED_COMPLETE, 4 FAILED_TECHNICAL_RESOURCE y 30 NOT_RUN_RESOURCE.** Fuente `5de33134311f3a23a306d12d1c8fabbf5222c502`; binario SHA256 `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`. Recibo de gate `verifier/independent-o11-gate.json`, SHA256 `ecb199bad5e32eefcfa87fa7cf73e72ed10451aedf0a106f2b8447d002dddd87`. El PASS técnico no certifica rentabilidad, ejecución de broker ni runtime operativo. Verificador LOCAL: Sol6.1 solicitado, servido UNKNOWN.
+
+Artefactos finales relativos a `/home/kor/aranea/work/tradesgerard-operability-20261013/`:
+
+- [Tabla exacta 40](/home/kor/aranea/work/tradesgerard-operability-20261013/verifier/final-comparison-o11-incomplete-40.json.gz): `verifier/final-comparison-o11-incomplete-40.json.gz`, SHA256 `959ce944b20c838c9d5deab35c25d4150d11f6551f768aec9914b4c1e5fe1af0`. Todas las columnas obligatorias se conservan; economía NA para las 34 filas incompletas, sin PnL parcial al ranking.
+- [Recibo de los cuatro FAILED](/home/kor/aranea/work/tradesgerard-operability-20261013/verifier/o11-four-failed-independent-final.json.gz): `verifier/o11-four-failed-independent-final.json.gz`, SHA256 `cb6146eec4ca69a778272caccf5c5cc06f1dbd616c62c8462d451875eb5ed086`. Identidades, requests congelados, fuente/binario, exit2/context canceled, artefactos durables y PIDs ausentes comprobados.
+- [Snapshot inmutable seis completas](/home/kor/aranea/work/tradesgerard-operability-20261013/verifier/final-comparison-o11-six-complete.json.gz): `verifier/final-comparison-o11-six-complete.json.gz`, SHA256 `038d3bcd3df61ecbdb32320ecc1b0d23135b5d8ac5214533399023b365bfbd03`.
+
+Fragmento final de cuarenta filas: `verifier/notes/FINAL-O11-40-INCOMPLETE.md`, SHA256 `7465cf759b6f848a262a2136702fb39742e158e4a9f3bccfc0c08c3b3f51ef45`. K03 y K05 acreditaron 1.651 USD cada una, con cajas finales 3.531 y 3.771 USD; ninguna completa tiene caja neta positiva. La segunda solicitud aprobada K05 permanece pendiente, fuera de caja. Ranking sólo provisional de seis; no hay selección definitiva de dos pares, extensión ni sensibilidad ejecutadas. Runtime V2 sigue funcionalmente bloqueado por autoridad BBO ausente y dependencias específicas de indicadores.
+
+El recibo posterior al drenaje midió free 8.553.541.632 B. La lectura posterior del manager, 8.607.608.832 B, supera 8 GiB pero no admite el futuro F0 vigente de 60.817.408 B: umbral 8.650.752.000 B. Espacio externo fluctuante, no afirmación de escasez permanente. Colchón de 4 MiB propuesto, no aplicado. No nuevas campañas, Go, aceptación final ni cierre de proyecto.
+
+### Antecedente O10 común (AFFECTED, fuera del ranking vigente)
+
+**O10/F0–F3: HOLD económico por autoridad MM stale tras financiación/reselección**, corregido y verificado en O11. Resultados observados históricos, incluido crédito simulado K03, se conservan AFFECTED; no se mezclan con las seis campañas O11 válidas. Código, pruebas y counterexample exacto permanecen en las secciones siguientes.
 
 ### Antecedente inicial de recepción y mínimo (superado por cortes posteriores)
 

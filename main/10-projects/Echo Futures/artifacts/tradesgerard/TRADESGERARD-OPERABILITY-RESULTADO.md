@@ -122,6 +122,8 @@ La recuperación propia ya ejecutada preserva todo: archivos históricos gzip, c
 
 Reejecución verificable: `implementer/evidence/REEXECUTION-O10-FILTERS.md` comienza por O11 vigente; su sección posterior O10/F2/F3 es historia AFFECTED. Usar el binario O11 retenido y gate exacto, un attempt-id nuevo y el supervisor parametrizable `run_o11_scoped.py`; hacer dry-run con medición actual, luego ejecución sólo si pasa. Reanuda únicamente COMPLETE con identidad/request/digests/CRC íntegros; conserva los FAILED anteriores. El source está archivado, no hace falta restaurarlo para correr el binario. Recompilar produciría otra identidad y requeriría nueva verificación; no se hizo durante esta tanda. Las recetas y mapas están en workspace, con referencias y hashes en Agents-OS.
 
+Readback documental final de la receta SHA256 `9b2268a2b70add989eb4d2f2faed88eb7e9db52dae0ef9f21cb9dc84bc695c6c`. Es instrucción de reanudación condicionada, no una nueva ejecución prometida fuera de esta sesión. Snapshot independiente inmutable de las seis completas `verifier/final-comparison-o11-six-complete.json.gz` SHA256 `038d3bcd3df61ecbdb32320ecc1b0d23135b5d8ac5214533399023b365bfbd03`.
+
 ### Datos adicionales y límite de runtime
 
 Inventario físico:13contratos NQZ3…NQZ6, alrededor de1,2millones de barras1m,2023-10-01…2026-10-06. No equivale a un año listo para backtest. El preflight anual fijado2025-10-02…2026-10-02 falló `ANNUAL_NOT_READY_UNDER_PINNED_MODEL_CALENDAR`: hueco físico NQZ5 del13oct2025 y calendario semanal sin overrides suficientes de festivos/cierres. No se rellenaron precios ni se inventó una corrección de calendario; no se probó rentabilidad anual ni de tres años.
