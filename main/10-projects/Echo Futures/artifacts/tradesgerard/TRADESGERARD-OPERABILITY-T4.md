@@ -17,7 +17,9 @@ updated: "2026-10-14"
 
 ## Propósito
 
-**Estado vigente: HOLD_STALE_FUNDED_AUTHORITY / AFFECTED / SIN CAMPAÑAS ACTIVAS.** Defecto de autoridad común O10 demostrado en K04 F0 requiere corrección y repetición. T4 conserva cero COMPLETE, dos CANCELLED_DRAINEDexit2 y ocho no lanzadas; no resultados económicos atribuibles. CONTROL documenta prueba SHA256 `5d6dda573a84bf7832cc55738f4c81853938974ca68a997264788d9908a15e88` y drenaje de todos los procesos propios. Las descripciones RUNNING/PASS posteriores conservan historia previa al HOLD.
+**Estado vigente: O11 verificada; F3×10 en cola autorizada del supervisor común.** Source `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`; gate independiente `ecb199bad5e32eefcfa87fa7cf73e72ed10451aedf0a106f2b8447d002dddd87`. Conjunción e inputs iguales normativamente, smoke F3 sin operaciones/caja5000 auditado; no es resultado económico de la ventana completa. Cero campañas nuevas completas por ahora. CONTROL registra recursos y dependencia runtime.
+
+Antecedente AFFECTED preservado: T4 anterior conserva cero COMPLETE, dos CANCELLED_DRAINEDexit2 y ocho no lanzadas. Prueba de autoridad común SHA256 `5d6dda573a84bf7832cc55738f4c81853938974ca68a997264788d9908a15e88`. Las descripciones RUNNING/PASS siguientes conservan historia anterior a O11.
 
 Ejecutar F3-TREND-SR × K01–K05 × retiro bruto2300/3000: diez campañas que completan la matriz cerrada de cuarenta. Estado **INDEPENDENT_PASS_OFFLINE / RUNNING,0/10 COMPLETE al lanzamiento03:00Z**. No existe todavía ranking final válido. Comparte la política económica O10 y la ventana/perfil C4.
 

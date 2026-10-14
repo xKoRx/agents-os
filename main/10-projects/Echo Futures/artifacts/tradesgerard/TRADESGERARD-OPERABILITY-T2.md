@@ -16,7 +16,9 @@ updated: "2026-10-14"
 
 ## Propósito
 
-**Estado vigente: HOLD_STALE_FUNDED_AUTHORITY / AFFECTED / SIN CAMPAÑAS ACTIVAS.** Defecto común O10 demostrado en K04 F0 obliga a corregir autoridad al cambiar de cuenta y repetir las trayectorias afectadas. T2 conserva cero COMPLETE, dos CANCELLED_DRAINEDexit2 y ocho no lanzadas en este intento; cancelación técnica, no pérdida económica. CONTROL contiene prueba SHA256 `5d6dda573a84bf7832cc55738f4c81853938974ca68a997264788d9908a15e88` y drenaje. Las ejecuciones/PASS descritos abajo son historia anterior al HOLD.
+**Estado vigente: O11 verificada; F1×10 en cola autorizada del supervisor común.** Source `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`; gate independiente `ecb199bad5e32eefcfa87fa7cf73e72ed10451aedf0a106f2b8447d002dddd87`. Inputs sin cambios normativos y smoke F1 14ops/caja4640 auditado; cero campañas completas nuevas por ahora. CONTROL registra lanzamiento real cuando ocurra, recursos y dependencias runtime.
+
+Antecedente AFFECTED preservado: defecto común O10 probado en K04 F0, SHA256 `5d6dda573a84bf7832cc55738f4c81853938974ca68a997264788d9908a15e88`. T2 anterior conserva cero COMPLETE, dos CANCELLED_DRAINEDexit2 y ocho no lanzadas; cancelación técnica, no pérdida económica. Las ejecuciones/PASS siguientes son historia anterior a O11.
 
 **Estado actual: RESOURCE_RETRY1_RUNNING,0/10COMPLETE al lanzamiento02:29Z.** Mismos O10/inputs/gate; sesión82581, K01/K02-r2300 PID/PGID3053759/3053765, salidas nuevas `retry1-F1-*` y progreso `T2-o10-resource-retry1-progress.json`. Cuatro campañas globales con T1, admisión y forecast en CONTROL. El intento anterior permanece preservado: a01:53:43Z el supervisor drenó K01/K02-r2300 por reserva física inferior8GiB; ambos exit2/FAILED, ocho no lanzados. Cancelación técnica, no resultado económico ni invalidación del gate O10/F1. La descripción del lanzamiento original siguiente es histórica.
 

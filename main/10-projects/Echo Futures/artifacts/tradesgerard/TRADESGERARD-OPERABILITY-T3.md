@@ -17,7 +17,9 @@ updated: "2026-10-14"
 
 ## Propósito
 
-**Estado vigente: HOLD_STALE_FUNDED_AUTHORITY / AFFECTED / SIN CAMPAÑAS ACTIVAS.** Defecto común de autoridad O10 demostrado en K04 F0 afecta el corte compartido. T3 conserva dos COMPLETE auditadas, dos CANCELLED_DRAINEDexit2 y seis no lanzadas en este intento. Sus saldos, costos y faltante4,76 se preservan como observación conciliada, fuera del ranking definitivo hasta corrección y repetición. Prueba SHA256 `5d6dda573a84bf7832cc55738f4c81853938974ca68a997264788d9908a15e88`, parada y alcance en CONTROL. Los estados RUNNING/PASS siguientes son históricos.
+**Estado vigente: O11 verificada; F2×10 en cola autorizada del supervisor común.** Source `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`; gate independiente `ecb199bad5e32eefcfa87fa7cf73e72ed10451aedf0a106f2b8447d002dddd87`. Inputs sin cambios normativos, smoke F2 sin operaciones/caja5000 auditado; no se atribuye a rendimiento de la ventana completa. Cero campañas nuevas completas por ahora; CONTROL contiene recursos y dependencia runtime.
+
+Antecedente AFFECTED preservado: T3 anterior conserva dos COMPLETE auditadas, dos CANCELLED_DRAINEDexit2 y seis no lanzadas. Saldos, costos y faltante4,76 son observación conciliada fuera del ranking nuevo. Prueba de autoridad común SHA256 `5d6dda573a84bf7832cc55738f4c81853938974ca68a997264788d9908a15e88`; las ejecuciones/PASS siguientes son historia anterior a O11.
 
 **Estado actual: RESOURCE_RETRY1_RUNNING,2/10 COMPLETE auditadas.** K01/K02-r2300 pasaron recibos/censo/oráculos/ledger/caja; caja4760/4520 y cero créditos. K03/K04 continúan. F2 jobs2 CPU6–8, sesión70412, mismo source/bin/gate/inputs, `retry1-F2-*` y `T3-f2-resource-retry1-progress.json`. Ocho campañas globales con T1/T2/T4; admisión y forecast en CONTROL. El intento anterior permanece preservado: a01:53:42Z el supervisor drenó K01/K02-r2300 por reserva física inferior8GiB; ambos exit2/FAILED, ocho no lanzados. Gate F2 conserva validez técnica; parciales no son pérdidas de trading ni filas del ranking. El lanzamiento original descrito abajo es histórico.
 
