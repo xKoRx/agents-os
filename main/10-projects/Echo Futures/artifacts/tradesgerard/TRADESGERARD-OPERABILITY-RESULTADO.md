@@ -49,6 +49,10 @@ El snapshot económico completo `verifier/notes/F0-5de33134-audited-6-rows-v2.js
 
 Orden provisional de las seis por caja final: K05/2300(3771), K03/2300(3531), K01/2300 y3000(3200), K04/2300(2840), K02/2300(1520). **No es selección final de pares:** faltan todas las campañas F1/F2/F3 y cuatro F0. No se profundiza un candidato por ganar un empate sin actividad ni se recomienda operar con estos datos.
 
+### Cobertura exacta de las40 configuraciones
+
+Tabla y métricas completas en `verifier/final-comparison-o11-incomplete-40.json.gz`, SHA256 `959ce944b20c838c9d5deab35c25d4150d11f6551f768aec9914b4c1e5fe1af0`,41.762B, readback40/40. Estados:6 `AUDITED_COMPLETE`,4 `FAILED_TECHNICAL_RESOURCE`,30 `NOT_RUN_RESOURCE`. Las34incompletas tienen economía NA, no ceros fabricados. Recibo independiente de los cuatro fallos `verifier/o11-four-failed-independent-final.json.gz`, SHA256 `cb6146eec4ca69a778272caccf5c5cc06f1dbd616c62c8462d451875eb5ed086`: identidad/request/source/binario/exit2/context canceled y ausencia de PID comprobados; no certifica PnL parcial.
+
 ### Antes y después de operabilidad
 
 | Perfil, retiro2300 | Operaciones C4 → O11 | Caja final C4 → O11 |
