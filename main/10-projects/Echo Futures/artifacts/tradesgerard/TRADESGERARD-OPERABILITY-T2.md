@@ -16,7 +16,7 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Tanda F1-TREND × K01–K05 × solicitudes brutas2300/3000. Estado **F1_INDEPENDENT_PASS_OFFLINE_OHLC, lanzamiento T2 en preparación**. El módulo compartido y su preparación causal están congelados y pasaron verificación independiente contra el build exacto. La política común O8 está incorporada. Ninguna campaña económica F1 completa todavía; no es aceptación final del Owner.
+Tanda F1-TREND × K01–K05 × solicitudes brutas2300/3000. Estado **T2_F1_RUNNING, 0/10 completas**, lanzamiento real23:58Z tras INDEPENDENT_PASS_OFFLINE_OHLC. El módulo compartido y su preparación causal están congelados y pasaron verificación independiente contra el build exacto. La política común O8 está incorporada. Ninguna campaña económica F1 completa todavía; no es aceptación final del Owner.
 
 ## Contenido
 
@@ -45,6 +45,10 @@ La ruta actual de ticks `ApplyTrade` no acredita la completitud de la H1 tras in
 El negativo independiente del freeze exacto pasó: una seed válida no permite ignorar la nueva H1 sin autoridad y una snapshot antigua no la restaura. F0 sigue operable sin H1. No se inicia ningún servicio ni operación real para resolver la limitación. Esta dependencia debe mantenerse visible en el informe final.
 
 ### Continuidad y recursos
+
+Lanzamiento comprobado2026-10-13T23:58:59Z: harness session26817, K01–r2300 PID/PGID2979660 y K02–r2300 PID/PGID2979671; ocho pendientes. Progreso durable `implementer/evidence/T2-f1-progress.json`, jobs2. Junto con T1 O8 jobs2 son cuatro campañas activas supervisadas; no daemon ni promesa fuera de la sesión. Source/bin/inputs F1 quedan inmutables. El integrador reutiliza el checkout antiguo cb9 ya quieto y preservado para F2, evitando otra copia del repo.
+
+Admisión real T2: disco libre10.155.454.464bytes, RAMavailable63.409.938.432, load8,02/6,98/6,05; evidencia nueva897.204.353, scratch propio agregado1.017.476 y forecast1.132.068.993≤1.610.612.736bytes. Reserva física8.589.934.592, scratch global2GiB, lote256MiB y traza/log16MiB permanecen vigentes. Cambio de concurrencia3→4 documentado por medición, no benchmark bajo contención. PIDs de T1 y T2 verificados vivos por manager después del lanzamiento.
 
 T1 O8 mantiene concurrencia dos. La admisión inicial prevista para T2 era una campaña adicional, máximo global tres. Medición manager23:48Z: load5,67/5,98/5,52 en24CPU, RAMavailable64.265.498.624bytes, disco libre10.196.152.320 y evidencia nueva872.950.013. Con esos recursos se habilitó admisión máxima global cuatro campañas, todas dentro de afinidad6CPU, GOMAXPROCS4 por hijo y presupuesto/reservas previos intactos. F1 podrá lanzar dos junto a las dos F0 sólo tras gate independiente y nueva medición al lanzamiento; no se afirma que ya estén ejecutándose ni un benchmark bajo contención. Fuente F1 aislada del build F0 en uso. El integrador continuará F2 durante T2 y reutilizará ambos filtros para F3; no hay aprobación intermedia pendiente del Owner. Los recibos COMPLETE íntegros y su auditoría determinarán las filas económicas, sin convertir fixtures o diagnósticos en resultados de campaña.
 
