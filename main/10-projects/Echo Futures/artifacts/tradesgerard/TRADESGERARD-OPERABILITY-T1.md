@@ -16,7 +16,7 @@ updated: "2026-10-14"
 
 ## Propósito
 
-**Estado vigente: O11 verificada; F0 1/10 auditada, supervisor detenido por carrera de medición.** Source `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`; gate independiente `ecb199bad5e32eefcfa87fa7cf73e72ed10451aedf0a106f2b8447d002dddd87`,40inputs y cuatro smokes aprobados técnicamente. K04-r2300 auditada; K03-r2300 tiene exit0/recibo COMPLETE pendiente de auditoría; K01-r2300 cancelada técnicamente. El supervisor y sus hijos están drenados. CONTROL registra la carrera glob/stat durante rename final y la corrección del harness requerida antes de reanudar. Ningún resultado AFFECTED entra en este ranking.
+**Estado vigente: O11 verificada; F0 2/10 auditadas, supervisor detenido por carrera de medición.** Source `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`; gate independiente `ecb199bad5e32eefcfa87fa7cf73e72ed10451aedf0a106f2b8447d002dddd87`,40inputs y cuatro smokes aprobados técnicamente. K04-r2300 y K03-r2300 auditadas; K03 acredita1651 y termina con caja3531/neto−1469. K01-r2300 cancelada técnicamente. El supervisor y sus hijos están drenados. CONTROL registra la carrera glob/stat durante rename final y la corrección del harness requerida antes de reanudar. Ningún resultado AFFECTED entra en este ranking.
 
 Antecedente AFFECTED preservado: K04 O10 leyó revisión EVAL vieja tras funding instalado1h47antes. Prueba SHA256 `5d6dda573a84bf7832cc55738f4c81853938974ca68a997264788d9908a15e88`. T1 anterior conserva cuatro COMPLETE de productor, tres auditadas, dos cancelaciones técnicas y cuatro no lanzadas. Crédito K03 observado y conciliado, fuera del ranking definitivo. Los estados RUNNING/PASS siguientes son historia anterior a O11.
 
@@ -25,6 +25,16 @@ Antecedente AFFECTED preservado: K04 O10 leyó revisión EVAL vieja tras funding
 Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **O10_INDEPENDENT_PASS / RUNNING_0_OF_10** al relanzamiento. Source O10 corrige selección y objetivo efectivo de consistencia; inicia diez trayectorias nuevas. O8 conserva cuatro COMPLETE históricos, dos canceladas y cuatro no lanzadas, todos fuera del ranking corregido; O7 también AFFECTED. El crédito anterior no anticipa resultados O10. No es aceptación final del Owner.
 
 ## Contenido
+
+### Segundo resultado O11: crédito real de simulación K03–2300
+
+**2/10 F0 auditadas; K03 cobró, con caja neta negativa.** K03 terminó exit0 y recibo COMPLETE aunque el finalizer del supervisor la etiquetara CANCELLED_DRAINED tras la carrera de medición. Auditoría independiente física completa:755base=647operaciones+102ocupadas+6rechazos por cupo,442fallbacks,31días,UNKNOWN0.26compras/1fallo oficial/20retiros por política/26pausadas únicas/5pases. Una solicitud/un crédito; compras3120/renovación0/otros débitos de caja0. Caja inicial5000/mínima2240/final3531, diferencia−1469, sin pagos pendientes.
+
+Cuenta11/LIVESIM, solicitud13nov2025 15:01:06.114649681Z, aprobación14nov, procesamiento19nov y crédito20nov15Z. Bruto2300×80%=1840−50proveedor−139primer pago=1651USD netos. PAYOUT_COLLECTED acredita2240→3891; tres compras posteriores360 dejan3531. Débito prop único2300 aplicado19nov15:00:25.964912281Z; residual5,36 y retiro posterior no crean caja ni borran el crédito. Primer pase13,129398días/primer crédito37,0625días desde trade_start. No se mezclan importes de O8/O10, aunque algunos coincidan.
+
+R solicitado29,49–500/T19,66–1000/3; pérdida proyectada24,98–499,98/ganancia proyectada20,02–340,04,q1–2; SL≈0,0432–3,3222ATR/TP≈0,0801–2,4916ATR. Duración0,327869/124,588235/6585,472028s mínima/mediana/máxima. Racha campaña9ganadoras/net2565,18 y8perdedoras/net−3524,72; cuenta19/EVALUATION9ganadoras/net2915,18 y cuenta13/EVALUATION5perdedoras/net−2089,90.647/647entradas pasan auditoría de autoridad/pisos; una revisión de header flat anterior es monetariamente equivalente, cero mismatches.
+
+Identidad `27e85c2ce64b402a3f6acdc54d7664b2c82d7ed581a98f42c1df213133c28ead`, source/binario O11 y mismo perfil/datos/ventana C4. Recibo `verifier/receipt-F0-5de33134-FINAL-K03-r2300.json` SHA256 `c1a1e01d82263580711060e3c7b8bb0108a8869dc1e738a659e103f269c2650d`; prueba `verifier/o11-K03-payment-authority-proof.json` SHA256 `d201a92eb8bd41a405ba741a3b6abb135970e49d45f5c21e6a942c603ce58852`. Snapshot completo de ambas filas `verifier/notes/F0-5de33134-audited-2-rows-v2.json` SHA256 `f43100ba40d7fe622af87458cf722d74d9a0eaa2a3332d2824557b615ff05097`. Ranking final y selección de pares todavía pendientes de40filas.
 
 ### Primera fila O11 auditada: K04–2300
 
