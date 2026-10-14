@@ -16,6 +16,8 @@ updated: "2026-10-14"
 
 ## Propósito
 
+**Estado vigente 2026-10-14 06:33Z: F0 6/10 auditadas y cuatro RUNNING.** Recuperación propia completada, harness revisado y lanzamiento `f0-stage3` confirmado: supervisor3118487/sesión87792; K02/K03/K04/K05-r3000 PID3118599/3118610/3118621/3118634. Progreso `implementer/evidence/O11-F0-f0-stage3-progress.json`. Las seis filas siguientes se recuperan por identidad exacta, no se repiten. Mismo O11/source/binario/gate; no resultados nuevos proclamados antes de auditoría. El estado drenado siguiente es histórico.
+
 **Estado vigente: O11 verificada; F0 6/10 auditadas, supervisor drenado en frontera de recursos.** Fuente `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`, gate independiente `ecb199bad5e32eefcfa87fa7cf73e72ed10451aedf0a106f2b8447d002dddd87`. Completas: K01 ambos retiros y K02–K05 para2300. K03 y K05 acreditaron1651USD cada una en sus trayectorias independientes; ambas terminan con caja neta negativa. K05 tiene otro pago aprobado cuyo crédito queda fuera del horizonte y no se suma a caja. Supervisor3100054 e hijo nuevo3110002 ausentes tras drenaje controlado; K02-r3000 debe repetirse en otro intento. Recuperación propia y admisión actual antes de continuar. Ningún resultado AFFECTED entra en estas seis filas.
 
 Antecedente AFFECTED preservado: K04 O10 leyó revisión EVAL vieja tras funding instalado1h47antes. Prueba SHA256 `5d6dda573a84bf7832cc55738f4c81853938974ca68a997264788d9908a15e88`. T1 anterior conserva cuatro COMPLETE de productor, tres auditadas, dos cancelaciones técnicas y cuatro no lanzadas. Crédito K03 observado y conciliado, fuera del ranking definitivo. Los estados RUNNING/PASS siguientes son historia anterior a O11.

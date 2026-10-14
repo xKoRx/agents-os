@@ -16,11 +16,15 @@ updated: "2026-10-14"
 
 ## Propósito
 
+**Estado vigente 2026-10-14 06:33Z: O11 INDEPENDENT_PASS; 6/40 auditadas y las cuatro F0 restantes RUNNING.** Recuperación propia terminada y lanzamiento `f0-stage3` físicamente comprobado: supervisor3118487/sesión87792, K02/K03/K04/K05-r3000 PID3118599/3118610/3118621/3118634. Progreso `implementer/evidence/O11-F0-f0-stage3-progress.json`; seis COMPLETE recuperadas una vez. Fuente/binario/gate O11 intactos. F1/F2/F3, ampliación y sensibilidad todavía pendientes. Los siguientes estados describen la frontera anterior, no una nueva detención.
+
 Fuente de estado de TradesGerard. Mandato vigente2026-10-13: **O11 INDEPENDENT_PASS / 6 de40 auditadas; supervisor drenado en frontera de recursos.** Fuente común `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`. F0 K01 ambos retiros y K02–K05/r2300 auditadas. K03 y K05 acreditan1651USD cada una en campañas independientes, caja final3531/3771 y pérdida neta1469/1229; ninguna de las seis tiene caja neta positiva. Paridad completa de los dos K01 verificada. El supervisor y su único hijo nuevo están drenados; recuperación propia y readmisión física pendientes. Las34configuraciones restantes, extensión y sensibilidad no están completas. O10/F2/F3 siguen AFFECTED y excluidas. Sin operaciones reales, aceptación propia ni cierre de proyecto.
 
 ## Contenido
 
-### Recuperación durable y preparación por tanda — 2026-10-14 06:33Z
+### Recuperación durable y continuación por tanda — 2026-10-14 06:33Z
+
+El nuevo intento `f0-stage3` sí está lanzado: cuatro campañas independientes simultáneas, afinidadCPU0–8/GOMAXPROCS4, sin recompilación. Admisión live free8.688.640.000B menos futuro físico60.792.832B deja margen37.912.576B sobre8GiB; forecast global368.906.960B<1,5GiB. El verificador incorpora sólo resultados COMPLETE íntegros al registro. Siguiente familia tras10/10F0 auditadas y nueva admisión, sin reutilizar ledger entre configuraciones.
 
 La recuperación posterior al drenaje sí terminó. Los 213 inputs/coberturas históricos propios quedaron comprimidos con verificación de recuperación: ahorro neto13.571.859B, mapa SHA256 `d674f852e7f1232fafd637ae82edebd2b0e25daa2a6b081c6874ae4f7811d1a0`. El checkout O11 limpio se archivó manteniendo commit, árbol, branch y bundle: mapa `implementer/evidence/o11-source-sparse-recovery-map.json` SHA256 `fad45451acc3680ac9825ac99d6ccaf4f35f3d52874ebb7da418e9e7bec7ecc5`; fuente recuperable, ya no checkout presente. Binario O11 e inputs40 siguen activos. Comprobación transitiva40planes/41JSON/corpus físico PASS, cero referencias runtime faltantes; recibo SHA256 `e746c7669874c1c1b3801cc0a62393c4f6a4844f6c849563026a4f0f8ab76efe`.
 
