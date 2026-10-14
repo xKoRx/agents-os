@@ -17,9 +17,13 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Ejecutar F2-SR × K01–K05 × retiro bruto2300/3000: diez campañas de la misma ventana C4, con política económica común corregida O10. Estado **INDEPENDENT_PASS_OFFLINE / AWAITING_RESOURCE_ADMISSION**, ninguna campaña T3 lanzada al emitir el gate. No hay resultados económicos finales todavía; el smoke sin actividad no es candidata ni fila del ranking.
+Ejecutar F2-SR × K01–K05 × retiro bruto2300/3000: diez campañas de la misma ventana C4, con política económica común corregida O10. Estado **INDEPENDENT_PASS_OFFLINE / RUNNING_0_OF_10** al lanzamiento. No hay resultados económicos finales todavía; el smoke sin actividad no es candidata ni fila del ranking.
 
 ## Contenido
+
+### Lanzamiento real
+
+T3 inició2026-10-14T01:31:52Z, supervisor `run_t3_f2.py`, sesión6868; K01/K02-r2300 PID/PGID3021107/3021155, comprobados por manager. Dos campañas en CPU6–8/GOMAXPROCS4; máximo global6 con F0/F1. Admisión libre9,656GB/owned976MB/forecast40≈1,211GB/scratch620KB, conservando≥8GiB y presupuesto nuevo1,5GiB. Progreso `implementer/evidence/T3-f2-progress.json`; ninguna fila económica definitiva al lanzamiento. F3 queda en cola durable y sólo usará plazas libres bajo el mismo máximo.
 
 ### Gate independiente
 
@@ -39,7 +43,7 @@ Recibo `implementer/evidence/f2-frozen-smoke-receipt.json`: primera sesión,23 c
 
 ### Recursos y continuación
 
-Medición del integrador:958.281.533B de evidencia nueva total incluyendo cortes afectados,9.736.310.784B libres, forecast1.193.162.557B≤1,5GiB. Conserva reserva≥8GiB, traza/log≤16MiB, lote≤256MiB y presupuesto agregado sin reinicio por carpeta. Revalidar antes de ejecutar. F0/F1 deben pasar gate común y empezar antes; T3 usa capacidad global≤4 sólo después de su verificación exacta. F3 será la conjunción y no añade parámetros.
+Medición inicial del integrador:958.281.533B de evidencia nueva total incluyendo cortes afectados,9.736.310.784B libres, forecast1.193.162.557B≤1,5GiB. Conserva reserva≥8GiB, traza/log≤16MiB, lote≤256MiB y presupuesto agregado sin reinicio por carpeta. Revalidar en cada admisión. F0/F1 pasaron gate e iniciaron antes; T3 se incorporó después del gate propio y de la expansión medida4→6 global descrita en CONTROL. F3 es la conjunción y no añade parámetros.
 
 ## Fuentes
 
