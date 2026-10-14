@@ -10,14 +10,18 @@ aliases: []
 tags:
   - kind/doc
 created: "2026-10-13"
-updated: "2026-10-13"
+updated: "2026-10-14"
 ---
 
 # TRADESGERARD-OPERABILITY-T0-VERIFY
 
 ## Dictamen vigente
 
-**HOLD vigente — candidatos87e33b0c y cb9cc0cd no habilitan campañas.** Verificación independiente LOCAL, solicitado Sol6.1 y servido UNKNOWN. Source limpio87e33b0c333a1f2f4178dfefe06126d50691c7ad, binario físico verificado89b645fcc1ea7ca7a47ed75a5a88e05d4adbbd2d9a9d6e111d39d010b8afd89b. Los probes monetarios descubrieron un supuesto no acreditado en el mínimo económico: un tick extra llamado «nearest legal protection» no existe en validateSubmit del adapter. El implementador prepara corrección aislada; cobertura autor95,833% no reemplaza este finding ni admite T1.
+**O10/F0–F3: HOLD económico común por autoridad MM stale tras financiación/reselección. O11 está en corrección, todavía sin gate integrado independiente.** Resultados observados, incluido crédito simulado K03, se conservan AFFECTED y fuera del ranking vigente. Código y pruebas anteriores no se borran; ver el counterexample exacto y sus hashes al final. Verificador LOCAL: Sol6.1 solicitado, servido UNKNOWN.
+
+### Antecedente inicial de recepción y mínimo (superado por cortes posteriores)
+
+**HOLD inicial — candidatos87e33b0c y cb9cc0cd no habilitaban campañas.** Verificación independiente LOCAL, solicitado Sol6.1 y servido UNKNOWN. Source limpio87e33b0c333a1f2f4178dfefe06126d50691c7ad, binario físico verificado89b645fcc1ea7ca7a47ed75a5a88e05d4adbbd2d9a9d6e111d39d010b8afd89b. Los probes monetarios descubrieron un supuesto no acreditado en el mínimo económico: un tick extra llamado «nearest legal protection» no existe en validateSubmit del adapter. El implementador prepara corrección aislada; cobertura autor95,833% no reemplaza este finding ni admite T1.
 
 ## Hallazgos y evidencia física
 
@@ -198,3 +202,12 @@ Cuenta2 recibió RESET_ADJUSTMENT−3005.92 a24Oct14:18:30.535714286Z y ACCOUNT_
 Manager adjudicó HOLD común F0/F1/F2/F3 y drenaje de propios procesos; no pérdida de trading por fallos técnicos. Tabla cincofilas congelada `final-comparison-five-o10-AFFECTED.json`, SHA256 `547e28dc21893e5bbe085e205c34450df47e13e689af52c1c3560fff741d459f`. Crédito K03 observado2300bruto/1651neto acreditado20Nov, caja final3531/netcampaña−1469, ledger/caja/calendario conciliados se preservan como AFFECTED, no ranking válido. Recibo exacto `o10-K03-payment-selector-proof.json` SHA256 `15597f6546b4ac593ecb5ccc0b6fcb4e2cdeb6f5d63553017801ac8e1e6fee05`; sus seis antiguos cruces bloqueados ahora materializan cuentas16/17.
 
 Probe independiente determinista preparado y promovido byteidéntico: `inactive_funding_authority_adversarial_test.go` SHA256 `be7a7e11002d5eb646d439f43d855793fd07c18717cd5a8b8d670456a84b18b6`. Cuatro días con fills ledger reales750.02/día, financiación inactiva mediante controles, reselección y MM materialization real deben consumir LIVESIM50000/stage0/revisiónúltima. No modifica caches/OwnerState para fabricar stale. Aún NO ejecutado: admisión Go bloqueada por reserva de disco y presupuesto agregado; no reclamar RED ni GREEN. Fuente correctora intacta mientras se resuelve recurso.
+
+
+### O11 — reproducción autoritativa RED/GREEN aún sin gate integrado
+
+Probe de financiación inactiva SHAbe7a7e11 promovido sin cambios: RED5.306s contra base466 y GREEN6.007s tras delta upstream. En RED, latestrev10230/contextLIVESIM/balance50000 frente MM EVALUATION/balance52250.06/rev8298; Views tiene balance/revactual pero phaseEVALUATION. Los dos seams son identidad instalada después de proyección y falta de entrega AccountEconomicsUpdate a Owner.DeliveredEconomics. GREEN conserva assertions completas y entrega normal, sin prioridadSDKhack ni cambiar políticas económicas. Recepción sparse/imports fallida fue HARNESS, no REDproducto.
+
+Débito real adicional: tras timer de nuevo día efectivamente procesado, Delivered50000 afirmado antes de PAYOUT_DEBIT−100; fuente real commitrev2770/balance49900 vsOwnerrev2764/balance50000 fue RED7.977s. Corrección entrega snapshot completo después de riskprojection. Ensayo posterior con dinero ya correcto49900 comparó latest de markflat un minuto después (rev2770) con revision exacta del débito (rev2768), sólo versión/AsOf distintos: frontera de fixture en corrección, no obligación de publicar todosmarksflat ni debilitar asserts monetarios. Igualdad completa se verifica en la causa exacta; autoridad a ENTRY se audita aparte.
+
+Auditor independiente reconstruido desde fills/fees una vez +cashflow/context/day: detecta sólo el contraejemplo1/649 enK04 y0mismatches en719K01,647K03,59F2K02. RawcompactECONOMICS es lowerbound de revisión porque omite eventosordinarios; primer prototipo se conserva HARNESS_INCOMPLETE_ECONOMICS, sin atribuir falsosbugs. Actualmoney/context/day/best efectivo se concilian; faltan floors absolutas publicadas porENTRY para comparación independiente, por lo que se solicitó anchor mínimo MATERIALIZED versionado/account/context/day/currentrevision/DayFloor/EODFloor y regla diaria requerida, sin nuevoSDK ni trazas por evento. Revisión equivalente por markflat no se confunde con autoridad posterior a débito/funding/día/floor. Próximo gate exige freeze/build/inputs y recheck exactos.
