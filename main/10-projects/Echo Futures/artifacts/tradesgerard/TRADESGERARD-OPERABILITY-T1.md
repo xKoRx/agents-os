@@ -16,6 +16,8 @@ updated: "2026-10-13"
 
 ## Propósito
 
+**Estado actual: RESOURCE_HOLD,0/10COMPLETE.** A01:53:43Z el supervisor drenó K01/K02-r2300 por reserva física inferior8GiB; ambos exit2/FAILED, ocho no lanzados. Cancelación técnica, no resultado de trading ni invalidación del gate O10. Recibo independiente de las seis cancelaciones entre T1/T2/T3 en CONTROL; se preservarán intentos antes de cualquier reintento. La descripción del relanzamiento siguiente es histórica.
+
 Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **O10_INDEPENDENT_PASS / RUNNING_0_OF_10** al relanzamiento. Source O10 corrige selección y objetivo efectivo de consistencia; inicia diez trayectorias nuevas. O8 conserva cuatro COMPLETE históricos, dos canceladas y cuatro no lanzadas, todos fuera del ranking corregido; O7 también AFFECTED. El crédito anterior no anticipa resultados O10. No es aceptación final del Owner.
 
 ## Contenido

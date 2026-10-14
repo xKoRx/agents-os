@@ -16,6 +16,8 @@ updated: "2026-10-13"
 
 ## Propósito
 
+**Estado actual: RESOURCE_HOLD,0/10COMPLETE.** A01:53:43Z el supervisor drenó K01/K02-r2300 por reserva física inferior8GiB; ambos exit2/FAILED, ocho no lanzados. Cancelación técnica, no resultado económico ni invalidación del gate O10/F1. Se conservan recibos/resultados parciales fuera del ranking. La descripción del relanzamiento siguiente es histórica; recuperación/reintento se registrarán separadamente.
+
 Tanda F1-TREND × K01–K05 × solicitudes brutas2300/3000. Estado **O10_INDEPENDENT_PASS / RUNNING_0_OF_10** al relanzamiento. Se ejecutan diez trayectorias nuevas con política económica O10 verificada. El gate original de matemática/causalidad F1 OHLC conserva su evidencia; las dos campañas de la política O8 canceladas y ocho no lanzadas permanecen AFFECTED, fuera del ranking. No es aceptación final del Owner.
 
 ## Contenido

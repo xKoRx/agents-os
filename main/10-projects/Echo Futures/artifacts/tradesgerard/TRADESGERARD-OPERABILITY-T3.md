@@ -17,6 +17,8 @@ updated: "2026-10-13"
 
 ## Propósito
 
+**Estado actual: RESOURCE_HOLD,0/10COMPLETE.** A01:53:42Z el supervisor drenó K01/K02-r2300 por reserva física inferior8GiB; ambos exit2/FAILED, ocho no lanzados. Gate F2 conserva validez técnica; parciales no son pérdidas de trading ni filas del ranking. Se preservan intentos antes de recuperación/reintento; el lanzamiento descrito abajo es histórico.
+
 Ejecutar F2-SR × K01–K05 × retiro bruto2300/3000: diez campañas de la misma ventana C4, con política económica común corregida O10. Estado **INDEPENDENT_PASS_OFFLINE / RUNNING_0_OF_10** al lanzamiento. No hay resultados económicos finales todavía; el smoke sin actividad no es candidata ni fila del ranking.
 
 ## Contenido

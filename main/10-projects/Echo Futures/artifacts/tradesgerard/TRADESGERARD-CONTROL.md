@@ -16,7 +16,7 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Fuente de estado de TradesGerard. Mandato vigente 2026-10-13: **ALL_FILTERS_INDEPENDENT_PASS_OFFLINE / CAMPAIGNS_RUNNING**. O10 corrigió el remanente de evaluación según la autoridad de consistencia y pasó verificación independiente exacta. F0×10 y F1×10 relanzadas; F2/F3 también pasaron gates propios. F2 habilitada para sumar dos campañas tras expansión medida a6 globales, F3 en cola por capacidad. No se lanzaron campañas O9; O8/F1 anteriores drenadas y conservadas AFFECTED. Los cuatro filtros y la ampliación acotada siguen autorizados, sin aprobación intermedia pendiente del Owner. El primer crédito histórico observado se conserva con caja neta negativa, fuera del ranking por el defecto de selección; todavía no se infiere resultado de O10. La etapa A y READY_FOR_GLM de abajo son antecedentes históricos. Aceptación final del Owner separada; manager y proyecto permanecen abiertos.
+Fuente de estado de TradesGerard. Mandato vigente 2026-10-13: **ALL_FILTERS_INDEPENDENT_PASS_OFFLINE / RESOURCE_HOLD**. La reserva física de8GiB provocó el drenaje técnico de las seis campañas activas; cero COMPLETE nuevos, ningún backtest propio activo. Gates O10/F2/F3 válidos, recuperación de espacio propio en curso antes de reintentar. No se reducen límites ni se borran recursos ajenos. Las cuarenta configuraciones y ampliación acotada siguen autorizadas; la tarea no está completa. O8/F1 anteriores permanecen AFFECTED, el crédito histórico no es resultado del corte corregido. Aceptación final del Owner separada; manager y proyecto permanecen abiertos, sin feedback/cierre.
 
 ## Contenido
 
