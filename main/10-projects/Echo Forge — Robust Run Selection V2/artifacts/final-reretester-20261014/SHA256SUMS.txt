@@ -1,0 +1,7 @@
+b4657d90dcf8635e FINAL-NDX-SQX144-MT5-E2E.csv
+9405b03ba8c9cfe0 FINAL-NDX-SQX144-MT5-E2E.md
+2c4eb55385fb532d flow_wave3o.json
+837230024ffd7fcf flow_wave3p.json
+2e0c19ccf786bd4f owner_RetestFull_windows_original.cfx
+a51c1cc32d576281 reretesterfull.cfx
+5baf878dd49f7192 wave2b_selected_21.tsv

@@ -1,0 +1,106 @@
+{
+  "wave": "wave3p",
+  "version": "v1",
+  "strategy": "SQX",
+  "direction": "L",
+  "timeframe": "H1",
+  "instrument": "NDX",
+  "sqx_version": "144",
+  "tasks": [
+    {
+      "name": "01_robust_group",
+      "type": "group",
+      "batch_size": 1,
+      "max_parallel": 3,
+      "source_folder": "03_optimizer",
+      "cohort_wave": "wave2b",
+      "cohort_flow_run": "0cbd0f34-c4f2-459e-b670-242bddd35b85",
+      "folder": "01_robust",
+      "tasks": [
+        { "name": "01_select", "type": "select_robust_run", "folder": "01_robust" }
+      ]
+    },
+    {
+      "name": "02_apply",
+      "type": "apply_selected_run",
+      "source_folder": "01_robust",
+      "folder": "02_applied",
+      "apply_selected_run": { "magic_number": 888111, "symmetric_variables": true }
+    },
+    {
+      "name": "03_final_reretester",
+      "type": "project",
+      "stage": "final_reretester",
+      "config": "reretesterfull.cfx",
+      "source_folder": "02_applied",
+      "folder": "03_reretester",
+      "sqx_version": "144"
+    },
+    {
+      "name": "04_trade_list",
+      "type": "trade_list_exporter",
+      "source_folder": "03_reretester",
+      "folder": "04_tradelist",
+      "stage": "tick_retest",
+      "variant": "optimized",
+      "sqx_version": "144"
+    },
+    {
+      "name": "05_mt5_export",
+      "type": "mt5_exporter",
+      "source_folder": "03_reretester",
+      "folder": "05_mt5_mq5",
+      "sqx_version": "144"
+    },
+    {
+      "name": "06_mt5_compile",
+      "type": "mt5_compiler",
+      "source_folder": "05_mt5_mq5",
+      "folder": "06_mt5_ex5"
+    },
+    {
+      "name": "07_mt5_backtest",
+      "type": "mt5_backtesting",
+      "name": "mt5-final",
+      "source_folder": "06_mt5_ex5",
+      "folder": "07_mt5_backtest",
+      "mt5": {
+        "symbol": "NDX_SQX",
+        "period": "H1",
+        "from": "2025.07.01",
+        "to": "2026.10.09",
+        "model": 4,
+        "execution_mode": 0,
+        "deposit": 100000,
+        "currency": "USD",
+        "leverage": 100,
+        "server_timezone": "GMT"
+      }
+    }
+  ],
+  "scores": [
+    {
+      "name": "mt5-final-fidelity",
+      "algorithm": "mt5_fidelity_shadow.v1",
+      "inputs": [
+        { "role": "baseline", "task": "04_trade_list", "metric_set": "SQX_NATIVE" },
+        { "role": "candidate", "task": "mt5-final", "metric_set": "MT5_NATIVE" }
+      ]
+    }
+  ],
+  "rankings": [
+    {
+      "name": "mt5-final-fidelity-ranking",
+      "score_spec_name": "mt5-final-fidelity",
+      "algorithm": "score_descending.v1",
+      "implementation_version": "1.0.0",
+      "params": { "schema_version": "score-descending-params.v1", "direction": "DESC" },
+      "top_n": 5
+    }
+  ],
+  "promotion": {
+    "policy": "finalist_promotion",
+    "version": "1.0.0",
+    "source_ranking": "mt5-final-fidelity-ranking"
+  }
+}
