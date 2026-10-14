@@ -16,7 +16,7 @@ updated: "2026-10-14"
 
 ## Propósito
 
-**Estado vigente: O11 verificada; F0×10 RUNNING jobs2.** Source `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`; gate independiente `ecb199bad5e32eefcfa87fa7cf73e72ed10451aedf0a106f2b8447d002dddd87`,40inputs y cuatro smokes aprobados técnicamente. K04-r2300/K03-r2300 ejecutándose con PID/PGID3088212/3088223, supervisor3088177/sesión61055 y progreso `implementer/evidence/O11-common-progress.json`; ambas rutas nuevas incluyen fuente5de33134. Las diez configuraciones se completarán;0/10COMPLETE todavía. CONTROL registra admisión real, recursos, frontera de autoridad y dependencia runtime. Ningún resultado AFFECTED entra en este ranking.
+**Estado vigente: O11 verificada; F0 1/10 auditada, supervisor detenido por carrera de medición.** Source `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`; gate independiente `ecb199bad5e32eefcfa87fa7cf73e72ed10451aedf0a106f2b8447d002dddd87`,40inputs y cuatro smokes aprobados técnicamente. K04-r2300 auditada; K03-r2300 tiene exit0/recibo COMPLETE pendiente de auditoría; K01-r2300 cancelada técnicamente. El supervisor y sus hijos están drenados. CONTROL registra la carrera glob/stat durante rename final y la corrección del harness requerida antes de reanudar. Ningún resultado AFFECTED entra en este ranking.
 
 Antecedente AFFECTED preservado: K04 O10 leyó revisión EVAL vieja tras funding instalado1h47antes. Prueba SHA256 `5d6dda573a84bf7832cc55738f4c81853938974ca68a997264788d9908a15e88`. T1 anterior conserva cuatro COMPLETE de productor, tres auditadas, dos cancelaciones técnicas y cuatro no lanzadas. Crédito K03 observado y conciliado, fuera del ranking definitivo. Los estados RUNNING/PASS siguientes son historia anterior a O11.
 
@@ -25,6 +25,14 @@ Antecedente AFFECTED preservado: K04 O10 leyó revisión EVAL vieja tras funding
 Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **O10_INDEPENDENT_PASS / RUNNING_0_OF_10** al relanzamiento. Source O10 corrige selección y objetivo efectivo de consistencia; inicia diez trayectorias nuevas. O8 conserva cuatro COMPLETE históricos, dos canceladas y cuatro no lanzadas, todos fuera del ranking corregido; O7 también AFFECTED. El crédito anterior no anticipa resultados O10. No es aceptación final del Owner.
 
 ## Contenido
+
+### Primera fila O11 auditada: K04–2300
+
+755cruces base/755pasan F0=651operaciones+103ocupadas+1rechazo de cupo,31días con entrada,525fallbacks,UNKNOWN0/Q0guard0.18compras/0fallos oficiales/14retiros por política/18cuentas pausadas únicas/2pases. Solicitudes0/créditos0/neto cobrado0. Compra2160/renovación0/otros costos de caja0; caja inicial5000/mínima2840/final2840, cambio−2160. Sin pagos pendientes. Los residuales nominales no son caja. Clasificación: ninguna útil en esta muestra.
+
+R solicitado29,56–500/T14,78–250; pérdida proyectada24,98–499,98/ganancia proyectada15,02–250,04, q1–2. SL≈0,0505–4,2521ATR/TP≈0,0505–2,2562ATR; duración mínima0,388979/mediana82,972222/máxima7502,255813s. Rangos por campo, no una orden sintética. Racha de campaña13ganadoras/net2870,26 y7perdedoras/net−3254,86; máximo por cuenta/fase11ganadoras/net2515,22 en cuenta10/EVALUATION y6perdedoras/net−2264,88 en cuenta11/EVALUATION. Primer pase8,033687días calendario; ningún crédito.
+
+Comparación C4 K04:34→651operaciones y caja4760→2840, incluyendo nuevas políticas y correcciones causales comunes; más operabilidad no produjo rentabilidad. Identidad `1e6b64225406ffaa3044a0e4298d88d04c409120a57656b3533b3c318ab6bbe7`, mismo perfil/datos/ventana C4. Las651entradas verificadas usan autoridad actual; el contraejemplo24oct16:06 ahora entra en LIVESIM/balance50000/rev27403. Recibo `verifier/receipt-F0-5de33134-FINAL-K04-r2300.json` SHA256 `045631308f1ee29fef8f7870607ff153da24998f055627cca57ab330ac748e90`. Snapshot completo `verifier/notes/F0-audited-1-rows-v2.json` SHA256 `5989e954a02b8145e505b7615d39c72c5d133a7c74d2932c468508f1d3e83f87`, con cuentas/días, economía por operación y bloqueos. Los apartados siguientes conservan historia AFFECTED anterior a O11.
 
 ### Primer cobro corregido: F0–K03–2300
 
