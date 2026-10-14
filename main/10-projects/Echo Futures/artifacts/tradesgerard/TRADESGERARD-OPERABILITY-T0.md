@@ -17,7 +17,7 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOCAL del Owner, PROMPT_VERSION1, 2026-10-13. T0 es técnico; no acredita rentabilidad. Estado vigente **O9_PENDING_INDEPENDENT_GATE**: la espera de objetivo completado quedó corregida en O9; el caso adicional de consistencia requiere prueba con ledger autoritativo. El primer intento fue HARNESS_AUTHORITY_ERROR, no RED de producto. No se lanzaron campañas O9. Campañas O8/F1 drenadas; sus resultados se preservan AFFECTED fuera del ranking. Sus PASS técnicos conservan el alcance probado y no sustituyen la nueva verificación.
+Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOCAL del Owner, PROMPT_VERSION1, 2026-10-13. T0 es técnico; no acredita rentabilidad. Estado vigente **O9_CONSISTENCY_HOLD / COMMON_POLICY_CORRECTION**: el segundo test con ledger autoritativo confirmó el bloqueo erróneo al alcanzar3000 sin cumplir consistencia. El primer intento permanece HARNESS_AUTHORITY_ERROR y no sustenta la atribución. No se lanzaron campañas O9; integrador corrige la autoridad compartida mientras F2 avanza aislado. Campañas O8/F1 drenadas; sus resultados se preservan AFFECTED fuera del ranking. Sus PASS técnicos conservan el alcance probado y no sustituyen la nueva verificación.
 
 ## Contenido
 
