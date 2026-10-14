@@ -16,11 +16,37 @@ updated: "2026-10-13"
 
 ## Propósito
 
-**Estado actual: RESOURCE_RETRY1_RUNNING,0/10COMPLETE al lanzamiento02:19Z.** Mismos O10/inputs/gate, dos campañas supervisadas K01/K02-r2300, salidas `retry1-F0-*` y progreso `T1-o10-resource-retry1-progress.json`. Sesión3890, PID/PGID3051163/3051188. Recuperación, forecast agregado y revisión de recursos en CONTROL. El intento anterior se conserva: a01:53:43Z el supervisor drenó K01/K02-r2300 por reserva física inferior8GiB; ambos exit2/FAILED, ocho no lanzados. Cancelación técnica, no resultado de trading ni invalidación del gate O10. La descripción del lanzamiento original siguiente es histórica.
+**Estado actual: RESOURCE_RETRY1_RUNNING,2/10 COMPLETE auditadas.** K01/K02-r2300 terminaronexit0 y pasaron conciliación independiente; ambas caja negativa y cero cobros. K03/K04-r2300 ya ejecutan en sus plazas. Mismos O10/inputs/gate, salidas `retry1-F0-*` y progreso `T1-o10-resource-retry1-progress.json`. Recuperación, forecast agregado y revisión de recursos en CONTROL. El intento anterior se conserva: a01:53:43Z el supervisor drenó K01/K02-r2300 por reserva física inferior8GiB; ambos exit2/FAILED, ocho no lanzados. Cancelación técnica, no resultado de trading ni invalidación del gate O10. Los lanzamientos anteriores se conservan como historia.
 
 Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **O10_INDEPENDENT_PASS / RUNNING_0_OF_10** al relanzamiento. Source O10 corrige selección y objetivo efectivo de consistencia; inicia diez trayectorias nuevas. O8 conserva cuatro COMPLETE históricos, dos canceladas y cuatro no lanzadas, todos fuera del ranking corregido; O7 también AFFECTED. El crédito anterior no anticipa resultados O10. No es aceptación final del Owner.
 
 ## Contenido
+
+### Primeras dos campañas O10 completas y auditadas
+
+Misma fuente O10/binario/gate identificados debajo. Warmup2025-10-13T17:51Z; trade_start2025-10-14T13:30Z; fin exclusivo2025-11-25T23Z. NQ real y perfil `E2T_GAU50_PURCHASE_GE_20260706_OBS_20261012_SCENARIO_V1`, idénticos C4; ambos objetivos brutos2300. Base755/filtradas755 en F0,31días con entrada, cero oportunidades UNKNOWN y cero rechazosQ0. Lectura independiente de recibos, hashes físicos, señalK/ATR, marca causal previa al fill, ledger y caja: **INDEPENDENT_AUDITED_COMPLETE**. Son2/40 filas vigentes, sin cerrar ranking ni elegir finalistas todavía.
+
+| Configuración | Operaciones / ocupadas / otros rechazos | Fallback mínimo | Compradas / fallidas oficiales / retiradas política / pasadas | Pausadas únicas durante campaña | Solicitudes / créditos / neto cobrado | Compras / renovación / otros costos de caja | Caja inicial / mínima / final | Cambio de caja | Clasificación |
+|---|---|---:|---|---:|---|---|---|---:|---|
+| F0–K01–2300 | 719 /36 /0 | 550 | 15 /0 /13 /0 | 15 | 0 /0 /0 | 1800 /0 /0 | 5000 /3200 /3200 | −1800 | Ninguna útil en esta muestra |
+| F0–K02–2300 | 618 /77 /60 cupo evaluación | 215 | 29 /0 /26 /4 | 29 | 0 /0 /0 | 3480 /0 /0 | 5000 /1520 /1520 | −3480 | Ninguna útil en esta muestra |
+
+No hay pagos pendientes. Pausadas únicas no significa pausadas al final ni suma adicional a compradas: incluye historia de la misma cuenta. K01 termina con13retiradas, cuenta14 PAUSED_DAILY_GOAL/saldo51130,16 y cuenta15 PAUSED_SESSION/49250,06. K02 termina con26retiradas y cuentas26 PAUSED_TEMPORARY_CAPACITY/50705,48,27 PAUSED_DAILY_GOAL/49875,20,29 PAUSED_SESSION/48500,08. Saldos nominales, remanentes de fase y cuentas retiradas se conservan en evidencia y **no se añaden a caja**. Ledger realizado global separado: K01−19075,18; K02−20685,06. Los60rechazos de K02 corresponden a cupo comercial, no a Q0 ni ausencia de señal.
+
+Los cuatro pases K02 no llegaron al retiro: cuentas3/15/17/21 hicieron6/54/4/28operaciones funded; mejor progreso realizado510,04/1616,06/0/1025,16, faltantes1789,96/683,94/2300/1274,84 a la solicitud2300. Todas terminaron retiradas por política EOD, sin solicitud ni crédito. Prueba sobre las operaciones O10 actuales `verifier/o10-K02-four-funded-block-proof.json` SHA256 `5b115a6571fc11cef36e2573bf910e333835249dec2f85fb8dd83a4314c595c5`, sin extrapolar O8. Snapshot inmutable de las dos filas completas: `verifier/final-comparison-first-two-o10.json` SHA256 `4984309e7a91c838d6c14b3b050fdba9177ad62c485a4f9f22a4f98a2f9662d3`.
+
+| Configuración | R/T solicitados | R/T admitidos | R pérdida proyectada / T ganancia proyectada | q | SL / TP puntos | SL / TP múltiplos ATR | Duración mínima / mediana / máxima segundos |
+|---|---|---|---|---|---|---|---|
+| F0–K01–2300 | ambos69,66–250 | ambos25,28–250 | 24,98–249,98 /30,02–250,04 | 1–2 | 0,75–12 /2–13 | ≈0,0208–2,2549 /0,0554–2,4428 | 0,408 /44,681 /3187,331 |
+| F0–K02–2300 | ambos64,96–500 | ambos35,44–500 | 34,98–499,98 /40,02–510,06 | 1–3 | 1,25–24,5 /2,5–25,5 | ≈0,0785–3,3222 /0,1110–3,5990 | 1,111 /150,040 /3187,331 |
+
+Rangos resumidos por campo, no una orden sintética que combina extremos de operaciones distintas. El excedente realizable de TP procede de grid/costos y se conserva por operación; no aumenta el presupuesto R/T ni garantiza pérdida física máxima ante slippage. R/T exactos, netos, cuenta/fase, causalidad y costos están en las filas completas. Pausas por objetivo diario870:13eventos K01 y59 K02; no es garantía de realizar870 exactos al cerrar. K01 no pasó; K02 primer pase≈9,037días calendario desde trade_start, y sus cuatro cuentas necesitaron15/52/31/21operaciones respectivamente hasta pase. Cero días hasta cobro disponibles porque no hubo crédito.
+
+Rachas netas separadas: campaña K01 máximo7ganadoras/net1665,16 y12perdedoras/net−2784,76; máximo por cuenta/fase también7 en cuenta3/EVALUATION. Campaña K02 máximo6ganadoras/net2435,14 y10perdedoras/net−4504,62; por cuenta/fase máximo8ganadoras/net3215,18 en cuenta3/EVALUATION. Secuencias intercaladas entre cuentas pueden diferir; cero neto reinicia racha y ciclos sin fill se excluyen. Ninguna cifra cuenta fills como operaciones.
+
+Frente C4, K01 pasa19→719operaciones y caja4760→3200; K02 pasa24→618 y caja4280→1520. La operabilidad mejoró; la caja empeoró. La comparación incluye también la corrección de marca contable causal demostrada sobre C4, por lo que no atribuye todo el cambio económico únicamente a la nueva política. El retiro lógico inmediato flat/drained continúa siendo DESIGN_SCENARIO, no cierre comercial real.
+
+Identidades: K01 `1f64d8081a27bd6cdb6504cd4f6bf6363467e87cc8ae37e2bd0f0f85a65b7db0`; K02 `ad6d27cd28946d944f748073cf1d6b12d193f3aa349b0d47f9d6ff94959c3a9a`, bajo `implementer/evidence/retry1-F0-76a1e69e-K0{1,2}-r2300/`. Auditorías `verifier/campaigns-F0-FINAL-K01-r2300.json` SHA256 `03f32cdadd659422cdc36f2782a991d2cbe05d236b669feab54a59c826d1c1c2` y K02 SHA256 `60cc9724d6f1d0120ebe2ee8f1853efef71ca85f8ac6b5d821b9f5d0cc1ed1e7`; recibos `receipt-F0-FINAL-K0{1,2}-r2300.json`, métricas `campaign-metrics-F0-FINAL-K0{1,2}-r2300-v3.json.gz`, operaciones y censo referenciados allí. Campos obligatorios ampliados de las dos filas en `verifier/final-comparison-audited.json`, tabla incremental cuya versión crecerá al completar otras campañas.
 
 ### Ejecución vigente O10
 
