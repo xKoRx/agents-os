@@ -20,6 +20,12 @@ Fuente de estado de TradesGerard. Mandato vigente 2026-10-13: **ALL_FILTERS_INDE
 
 ## Contenido
 
+### Ampliación anual: comprobación actual acotada
+
+Una única preflight sin PnL sobre2025-10-02T21Z→2026-10-02T21Z, warmup2025-09-29T00Z, terminóexit2 **ANNUAL_NOT_READY_UNDER_PINNED_MODEL_CALENDAR**. Request SHA256 `1edad4b677a65b3f364c7ede309092c53278e93f99988db30128b7972a236ffa`, resultado `3656f7491f76d87e9a403572471fd726ff36eb0347b55241a0cc8b26f599640f`; readback independiente `verifier/annual-current-date-independent-readback.json` SHA256 `6c39b7b177b702717af3c2b7d0cd040c5244fd77c8d95e0ff43e902f0a150826`. NQZ5 está seleccionado en el primer hueco13oct2025 17:50→17:51Z: hay endstamps17:50/17:52, falta17:51 físicamente. No es sólo prefijo heredado. Los conteos grandes de contratos sucesores sí mezclan preparación y actividad; no se presentan como minutos perdidos del mercado seleccionado.
+
+El calendario semanal sellado carece de overrides de festivos/cierres tempranos; las fuentes CME puntuales consultadas no prueban la autoridad Globex exacta del minuto señalado. No se modifica calendario ni se rellenan precios; H1 anual no certificada. Esto bloquea esa solicitud anual actual, no demuestra que no exista ningún año válido en otro corpus. Sin otras ventanas ni descarga. Se mantiene la ampliación corta reservada antes del ranking, exploratoria y con prefijo H1 físico contrastado; se ejecutará para los dos pares activos mejor clasificados y ambos retiros después de las40.
+
 ### Reintento supervisado tras recuperación — 2026-10-14T02:19Z
 
 A02:29Z se amplió2→4 globales al incorporar T2 F1 jobs2, sesión82581, PID/PGID3053759/3053765, `T2-o10-resource-retry1-progress.json` y salidas nuevas `retry1-F1-*`. F0 permanece intacta. Snapshot10min `resource-retry1-ten-minute.json` SHA256 `3a909af5b90249db07d940a5040314975be93bacf2861cd5453889b5e80358fd`: free9.162.792.960B, owned217.587.954B, load4,71 y RAM≈64GB. PSI global I/O alto no coincidía con saturación del disco raíz:0lecturas físicas, escritura0,07–0,94MB/s, util3,15–28,6%, cola0,04–0,37; nuestros procesos escribieron229.376B cada uno/197s. Margen del forecast completo≈182MB sobre8GiB. No build/restauración. Se autorizó una única preflight anual de cobertura, fechas fijas2025-10-02T21Z→2026-10-02T21Z, distinguiendo prefijo heredado, minutos trading y25H1 cerradas; no es backtest económico ni certificación automática de readiness.
