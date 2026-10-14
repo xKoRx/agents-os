@@ -3,7 +3,7 @@ type: learning
 schema_version: 1
 scope: application
 created: "2026-10-09"
-updated: "2026-10-09"
+updated: "2026-10-13"
 area: "[[Meli]]"
 project: "[[RIO E2E local]]"
 application: "[[rio-controlplane-kafka]]"
@@ -27,7 +27,7 @@ tags:
 
 Un listener pequeño con Spring Kafka conserva el contrato sólo si se prueba el container configurado. Con RECORD y auto commit apagado, la fuente se confirma tras aceptación productiva o publicación DLT confirmada. Una DLT fallida/pendiente retiene el offset; ACK de entrada no acredita completion de trabajo async. Un presupuesto de dos retries necesita impedir el reset por cambio de tipo de excepción; poison no reintenta y FAILED de negocio es resultado normal.
 
-La configuración aislada no demuestra retry/seek/rebalance/shutdown: verificar esos caminos con el framework real y clientes de frontera controlados. Readiness debe detectar container detenido y falta de assignment. El shutdown debe superar el wait de ACK y drenar trabajo propio antes del teardown.
+La configuración aislada no demuestra retry/seek/rebalance/shutdown: verificar esos caminos con el framework real y clientes de frontera controlados. Readiness debe detectar container detenido y exigir assignment de todos los tópicos requeridos configurados; una asignación parcial no acredita ambos streams. IDs obligatorios sin correlación válida deben ser poison antes de claims/controller: UUID según el SDK para deployments, String no blank para actions. Esa frontera local debe declararse como excepción a la paridad HTTP si el controller productivo aún acepta/ignora esos payloads. El shutdown debe superar el wait de ACK y drenar trabajo propio antes del teardown.
 
 ## Aplicabilidad
 
@@ -39,6 +39,8 @@ La configuración aislada no demuestra retry/seek/rebalance/shutdown: verificar 
 [[rio-playmaker]], [[rio-controlplane-kafka]], [[rio-controlplane-clickhouse]] y [[rio-controlplane-flink]].
 
 ## Evidencia
+
+- [[2026-10-13-rio-e2e-local-pr-comments]] — partial rebalance real→503, recovery→200, ID poison antes de intake y ACK/DLT con bytes/key originales;62 locales PASS.
 
 - [[2026-10-09-rio-e2e-local-f1-implementation]] — simplificación challengeada, framework tests, cobertura y reproducción física independiente.
 - CP Kafka: `src/localTest/` y `meli/features/20261009-rio-e2e-local/4-implementation/VERIFICATION.md`; PM: transporte local compartido y su suite permanente. PR fuente: https://github.com/melisource/fury_rio-controlplane-kafka/pull/86.
