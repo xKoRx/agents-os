@@ -16,9 +16,17 @@ updated: "2026-10-14"
 
 ## Propósito
 
-Fuente de estado de TradesGerard. Mandato vigente2026-10-13: **O11 INDEPENDENT_PASS OFFLINE_F0_F1_F2_F3 / 2 de 40 auditadas; supervisor detenido por carrera de medición**. Fuente común `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`. F0K04-r2300 auditada:651operaciones,525fallbacks,2pases,0cobros, caja2840/neto−2160. K03 COMPLETE/exit0 auditada: crédito neto1651/caja3531/neto−1469; K01 cancelada técnicamente. El supervisor y sus hijos están drenados. Financiación, reselección y débito entregan economía vigente;40inputs,29pruebas independientes, cobertura36/37 y cuatro smokes verificados. Campañas anteriores O10/F2/F3 siguen AFFECTED y fuera del ranking. Las40configuraciones nuevas, extensión y sensibilidad no están completas. Sin operaciones reales ni aceptación propia; manager y proyecto abiertos.
+Fuente de estado de TradesGerard. Mandato vigente2026-10-13: **O11 INDEPENDENT_PASS OFFLINE_F0_F1_F2_F3 / RUNNING jobs4, 2 de 40 auditadas**. Fuente común `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`. F0K04-r2300 auditada:651operaciones,525fallbacks,2pases,0cobros, caja2840/neto−2160. K03 COMPLETE/exit0 auditada: crédito neto1651/caja3531/neto−1469; K01 cancelada técnicamente. Supervisor nuevo3100054/sesión26287 activo con cuatro campañas; el anterior y sus hijos están drenados. Financiación, reselección y débito entregan economía vigente;40inputs,29pruebas independientes, cobertura36/37 y cuatro smokes verificados. Campañas anteriores O10/F2/F3 siguen AFFECTED y fuera del ranking. Las40configuraciones nuevas, extensión y sensibilidad no están completas. Sin operaciones reales ni aceptación propia; manager y proyecto abiertos.
 
 ## Contenido
+
+### Reanudación O11 con cuatro campañas supervisadas
+
+Lanzamiento real05:20Z: `run_o11_common_resume.py` SHA256 `fe25312abc2d7a6ee2aa8243f9a41c2f017ee7e58550021ebd5e81f94d4aed9b`, supervisor PID/PGID3100054/sesión26287. F0K01/K02/K05-r2300 y K01-r3000 PID/PGID3100098/3100112/3100125/3100138; manager comprobó procesos/comandos vivos. Afinidad live0–8, jobs4; dry-run inicial0–5 no se confunde con afinidad efectiva. Progreso `implementer/evidence/O11-resume1-progress.json`:2COMPLETE_RESUMED_EXACT(K04/K03) +4RUNNING +34pendientes. Mismo source/binario/gate; outputs nuevos resume1, intento K01FAILED preservado. Registro independiente deduplica las dos filas recuperadas.
+
+Causa y reparación de harness: recibo de fallo SHA256 `4289514b7b96f1992a6b1cd3e19223e7e613228c133e4420663b8b660c61a353`. Prueba independiente fuerza rename entre enumeración y stat: ENOENT temporal propio registrado, un rescan cuenta destino100B exactamente una vez; faltante durable/EACCES/EIO siguen siendo errores y cap real sigue detectándose. Recibo `verifier/o11-resume-toctou-independent.json` SHA256 `800e2f29552e768fa176794528f74e16ea82600c270a6ab5c4fc562259e835cc`. No cambio de producto ni recompilación. Caps individuales3/4/6MiB ahora se comprueban durante RUNNING, además de límites agregados.
+
+Admisión actual: free8.874.807.296B, owned243.015.589B, futuro282.072.759B, proyectado8.592.734.537B; margen estrecho2.799.945B sobre8GiB. Agregado final previsto525.088.348B<1,5GiB; RAM disponible64.365.481.984B/load3,41. Reserva conserva38configuraciones pendientes, ocho ejecuciones adicionales/sensibilidad y scratch/derivados; bytes actuales se cuentan una vez. No Go durante40. Subir concurrencia requiere nuevas mediciones; no se afirma benchmark bajo contención.
 
 ### Dos campañas O11 auditadas y carrera del supervisor
 
