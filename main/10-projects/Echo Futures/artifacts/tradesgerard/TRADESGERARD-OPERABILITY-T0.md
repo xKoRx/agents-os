@@ -17,15 +17,19 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOCAL del Owner, PROMPT_VERSION1, 2026-10-13. T0 es técnico; no acredita rentabilidad. Estado vigente **O9_CONSISTENCY_HOLD / COMMON_POLICY_CORRECTION**: el segundo test con ledger autoritativo confirmó el bloqueo erróneo al alcanzar3000 sin cumplir consistencia. El primer intento permanece HARNESS_AUTHORITY_ERROR y no sustenta la atribución. No se lanzaron campañas O9; integrador corrige la autoridad compartida mientras F2 avanza aislado. Campañas O8/F1 drenadas; sus resultados se preservan AFFECTED fuera del ranking. Sus PASS técnicos conservan el alcance probado y no sustituyen la nueva verificación.
+Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOCAL del Owner, PROMPT_VERSION1, 2026-10-13. T0 es técnico; no acredita rentabilidad. Estado vigente **O10_INDEPENDENT_PASS_OFFLINE / F0_F1_LAUNCH_AUTHORIZED**. El caso autoritativo de consistencia que fallaba en O9 pasa con el mismo test en O10; dinero, selección, calendario y modalidad verificados independientemente. Gate permite ejecutar F0/F1, no constituye aceptación final del Owner ni certificación de runtime. Campañas O8/F1 drenadas permanecen AFFECTED; no se lanzaron campañas O9. F2/F3 congelados esperan gates propios.
 
 ## Contenido
 
-### O10 congelado — remanente efectivo compartido, gate pendiente
+### O10 — gate independiente PASS para F0/F1 offline
+
+Recibo durable `verifier/independent-o10-gate.json`, SHA256 físico `2155593e9eca093126c579bb34ab67c3b3c904b0b91da55ed3664ada93414693`, **INDEPENDENT_PASS**, scope OFFLINE_OHLC_F0_F1. Manager comprobó hash, source/binario, tres hashes de logs,20inputs con paridad normativa y cobertura48/50=96%. Pruebas independientes: mismo real-ledger RED→GREEN y cesión funded5,223s; calendario de pago/pending/crédito y pausa diaria11,376s; modo BACKTEST exclusivo0,012s. Primer intento de pago heredó perfil2250 y se clasifica HARNESS_PROFILE_MISMATCH:2250×0,8−50−139=1611 era correcto; el fixture definitivo preflight2300 produce1651. No se atribuye ese primer fallo al producto.
+
+Smokes exactos sealed COMPLETE, digests y auditoría streaming independiente: F0 23base/23operaciones/caja4760; F1 23base/14operaciones/9rechazos filtro/caja4640. UNKNOWN0, K/ATR contrastados y marca contemporánea de fill/ledger/caja conciliados. Son diagnóstico, no ranking. Lanzamiento F0×10/F1×10 autorizado sin otra aprobación, sujeto a admisión física y máximo global4. Runtime continúa FUNCTIONALLY_BLOCKED según dependencias documentadas; los offsets OHLC no sustituyen cotización observada.
 
 Source `76a1e69e5a0a67b94b920e2ffb983fd226eb127a`, árbol `aebf5e8724147b343e525e2594fbed7f42fafff4`, checkout limpio comprobado por manager. Binario `implementer/bin/echo-backtest-o10` SHA256 físico `3c66a1b091fde81a7804e38eb265f16078005c1fc211db46e62f690cb04426bf`. Manifiesto `implementer/evidence/o10-freeze-manifest.json` SHA256 físico `f8168673e089d8ed9be9a9535ba46209a54c073aec33fbe5ddc5a36490c1cb6c`, veinte inputs F0/F1. Helper de provider deriva el objetivo efectivo con su comparador de consistencia estricto y grid USD0,01 del perfil; MM y selección comparten ese remanente. Usa max(mejor día cerrado, día actual); mantiene target nominal si no hay regla de consistencia. No modifica lifecycle ni costos ni acredita pagos.
 
-Integrador reporta GREEN del fixture real3,601s, SDK/provider/TGMM/config y críticos PASS, cobertura delta48/50=96%. Estos son resultados del autor; verificación independiente exacta todavía pendiente. Reserva física del manifiesto9.818.783.744B, presupuesto agregado nuevo1.610.612.736B incluyendo evidencia afectada; admisión se medirá de nuevo antes de lanzar. Cuarenta trayectorias siguen pendientes de validación económica final.
+Integrador reportó GREEN del fixture real3,601s, SDK/provider/TGMM/config y críticos PASS, cobertura delta48/50=96%; el gate independiente posterior se registra arriba. Reserva física del manifiesto9.818.783.744B, presupuesto agregado nuevo1.610.612.736B incluyendo evidencia afectada; admisión se medirá de nuevo antes de lanzar. Cuarenta trayectorias siguen pendientes de validación económica final.
 
 ### O9 congelado — HOLD confirmado por consistencia autoritativa
 
