@@ -31,7 +31,7 @@ Source `a9c4505914e897bd3587e3158a3ff9f205dd4948`, árbol `ab0da96849a55c7a15ead
 
 SIG-B se conserva. En señal t, S=min(low t−60…t−1), U=max(high t−60…t−1), ancho=ATR20 conocido en t; LONG S≤close≤S+ancho, SHORT U−ancho≤close≤U. La barra propia queda excluida. Epoch/contrato/huecos no explicados reinician disponibilidad; sólo el calendario SDK puede explicar cierre diario, fin de semana o DST. ATR no válido produce causa explícita. No convierte niveles SR en stops ni cambia los SL/TP económicos. F0 no depende de readiness SR.
 
-Integrador reporta blobs monetarios idénticos a O10, suite TG PASS0,158s, delta104/104 y regresión CLI/prefijo3,226s. Gate independiente F2 todavía pendiente, separado del gate monetario O10.
+Integrador reportó blobs monetarios idénticos a O10, suite TG PASS0,158s, delta104/104 y regresión CLI/prefijo3,226s; el gate independiente posterior se registra arriba, separado del gate monetario O10.
 
 ### Smoke del productor
 
