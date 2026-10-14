@@ -17,11 +17,21 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOCAL del Owner, PROMPT_VERSION1, 2026-10-13. T0 es técnico; no acredita rentabilidad. Estado vigente **O8_INDEPENDENT_PASS / T1_RERUN_RUNNING**: corregido el bloqueo de turnos por capacidad del objetivo, F0×10 relanzada con dos campañas concurrentes bajo límites medidos. [[TRADESGERARD-OPERABILITY-T1]] conserva lanzamiento nuevo y evidencia O7 AFFECTED, que no entra al ranking. El PASS O7 y los HOLD anteriores de abajo son cortes históricos preservados, no el gate vigente.
+Recibir C4 y verificar el cambio prospectivo de operabilidad del mandato GOD LOCAL del Owner, PROMPT_VERSION1, 2026-10-13. T0 es técnico; no acredita rentabilidad. Estado vigente **O8_F1_ECONOMIC_HOLD / O9_CORRECTION**: el caso de objetivo ya alcanzado mientras espera elegibilidad de retiro bloqueaba alternativas operables. Campañas de esa política drenadas; sus resultados se preservan AFFECTED fuera del ranking. El integrador corrige O9 sin nueva aprobación intermedia. Los PASS técnicos de O8/F1 conservan el alcance probado, pero no sustituyen el nuevo HOLD económico.
 
 ## Contenido
 
-### O8 — bloqueo de objetivo, verificado técnicamente
+### HOLD posterior — objetivo alcanzado y espera de cumplimiento
+
+K03 O8 cuenta11 LIVESIM alcanzó2305,36USD realizados, superior al objetivo2300, pero siguió ELIGIBLE y consumió seis cruces12nov19:18–20:38Z con `OBJECTIVE_ALREADY_MET` y ningún fill. Cuatro cuentas EVALUATION16–19 estaban elegibles desde15Z, flat y drenadas; cuenta16 tenía saldo51640,26/progreso1640,26/headroom1975,16. La cuenta financiada debía esperar `CompliantAt=2025-11-13T15:01:06.114649681Z`, los dos días hábiles del perfil, y ceder turno mientras tanto. No faltaban ganancias ni se debe inventar un nuevo requisito de días operados.
+
+La causa compartida: `RequestedObjectiveBudget` devuelve Rref/Tref cuando remaining≤0 y la clasificación COMPLETED no libera selección antes del MM. El pago posterior1651 está conciliado y se conserva como observado; la trayectoria no es un resultado definitivo del experimento corregido. Dictamen independiente `verifier/o8-K03-completed-objective-selection-HOLD.json`, SHA256 `8adeca2cfa8dd5207cf6256677773aba222cdb7f01b5e54130d98f5743e4efd1`.
+
+Adjudicación: pausa/espera de objetivo completado con reevaluación desde autoridad y selección causal de alternativa; no retiro EOD, ni liberación de plaza comercial falsa, ni crédito anticipado, ni reset de saldo/piso. Verificación independiente RED/GREEN debe cubrir el caso positivo de payout diferido, la alternativa elegible, y la tabla diario/evaluación/funded con objetivo real y consistencia. El mismo build O9 podrá ejecutar F0/F1; sus veinte configuraciones se repetirán antes de ranking. SR/F2 y F3 siguen dentro del mandato.
+
+Parada verificada00:22:07Z: manager identificó los supervisores propios2963227/2979615 y envió un SIGINT a cada uno. Sus bloques finally drenaron los cuatro hijos, preservaron recibos parciales y salieron; procesos ya ausentes. T1 O8 conserva cuatro COMPLETE, dos CANCELLED_DRAINEDexit2 y cuatro no lanzadas; T2 F1 conserva dos CANCELLED_DRAINEDexit2 y ocho no lanzadas. Cancelaciones técnicas, no pérdidas de trading. Integrador recopila snapshots/versionado de invalidación y presupuesto agregado, conservando toda la evidencia.
+
+### O8 — bloqueo de capacidad del objetivo, gate técnico histórico
 
 Freeze físico comprobado por manager: source `d66bb56bccd053305c1c7dac0dc51aa292745504`, checkout causal limpio, binario `implementer/bin/echo-backtest-o8` SHA256 `a70ac11e481109b036f4a7d792c9594f8c8a73c97eb7c72cd35f2c0c025de8ce`; manifiesto `implementer/evidence/o8-freeze-manifest.json` con diez inputs. O8 reutiliza `TGMM.RequestedObjectiveBudget` tanto en entry del MM como en selección: misma autoridad para solicitud económica antes de headroom, sin fórmulas paralelas en driver. Añade pausa temporal por remanente diario insuficiente y bloqueo de objetivo de fase reevaluable por autoridad; conserva saldo, piso, plaza e historial. Un remanente de pase no recupera capacidad ficticia por reset diario.
 

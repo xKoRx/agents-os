@@ -16,11 +16,13 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Tanda F1-TREND × K01–K05 × solicitudes brutas2300/3000. Estado **T2_F1_RUNNING, 0/10 completas**, lanzamiento real23:58Z tras INDEPENDENT_PASS_OFFLINE_OHLC. El módulo compartido y su preparación causal están congelados y pasaron verificación independiente contra el build exacto. La política común O8 está incorporada. Ninguna campaña económica F1 completa todavía; no es aceptación final del Owner.
+Tanda F1-TREND × K01–K05 × solicitudes brutas2300/3000. Estado **F1_O8_COMMON_POLICY_AFFECTED_DRAINED / O9_CORRECTION**,0/10completas. El gate de matemática/causalidad F1 OHLC conserva su evidencia, pero un defecto de selección en la política común O8 exige corregir y repetir la tanda económica con O9. Dos campañas canceladas y drenadas, ocho no lanzadas. No es aceptación final del Owner.
 
 ## Contenido
 
 ### Contrato del experimento
+
+HOLD posterior común O8: una cuenta funded con objetivo alcanzado seguía consumiendo cruces mientras esperaba fecha de cumplimiento, bloqueando alternativas operables. Prueba SHA256 `8adeca2cfa8dd5207cf6256677773aba222cdb7f01b5e54130d98f5743e4efd1`, [[TRADESGERARD-OPERABILITY-T0]]/[[TRADESGERARD-OPERABILITY-T1]]. Parada00:22:07Z por SIGINT del manager al supervisor propio2979615, que drenó K01/K02–r2300 con exit2 y preservó resultados parciales; los tres procesos están ausentes. La nueva tanda F1×10 usará la corrección común O9 después del gate. No se invalida el oráculo H1 ni se cambia SMA24; sí se retira cualquier resultado de esta política del ranking económico.
 
 Freeze físico comprobado por manager: source `f4643aefce49876ed40bb4fd1efefe1894cb1520`, árbol limpio `7390209adb42dea4000b5e6750cc0656616376ce`, binario SHA256 `201edd9b22a08b60b9b06b6e7411449e0515eaba48b4be6571d6794c9977a4a6`. Manifiesto `implementer/evidence/f1-freeze-manifest.json` SHA256 `e5d45ebed793c8b53483ebaf7a215920a0fbce7c86401d6497e67a88139a781e`, diez inputs y perfil común O8 `d66bb56b`. Gate independiente `verifier/independent-f1-gate.json` SHA256 `0a876028c0caf8c13a65781d3738d6c24611a76b5921503ec1a19d82a32552ac`, **INDEPENDENT_PASS**, alcance técnico F1/OHLC offline. Manager comprobó el gate y los hashes físicos de sus siete evidencias.
 

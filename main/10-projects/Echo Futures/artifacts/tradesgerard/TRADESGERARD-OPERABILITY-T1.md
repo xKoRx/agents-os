@@ -16,11 +16,17 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **O8_RERUN_RUNNING, 2/10 completas y auditadas**. O8 corrigió el bloqueo efectivo y pasó verificación independiente; se relanzaron las diez configuraciones. O7 conserva sus observaciones AFFECTED fuera del ranking definitivo. No es aceptación final del Owner.
+Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **O8_AFFECTED_DRAINED / O9_CORRECTION**. Hallazgo posterior de objetivo completado sin ceder turno invalida el ranking económico O8: cuatro campañas COMPLETE preservadas, dos canceladas y cuatro no lanzadas. Las conciliaciones de dinero y el primer crédito observado permanecen como evidencia de esa versión, no como resultado definitivo de la política corregida. O7 también se conserva AFFECTED. No es aceptación final del Owner.
 
 ## Contenido
 
-### Relanzamiento vigente O8
+### Hallazgo posterior y parada de O8
+
+Los seis `OBJECTIVE_ALREADY_MET` de K03 revelaron defecto de selección: cuenta11 funded con progreso2305,36 y objetivo2300 seguía tomando el turno el12nov mientras esperaba `CompliantAt=13nov15:01:06.114649681Z`; cuentas16–19 estaban elegibles, flat y drenadas. La fecha de cumplimiento procede de dos días hábiles del perfil, no de falta de ganancias. `COMPLETED` debe ceder turno durante la espera. HOLD independiente `verifier/o8-K03-completed-objective-selection-HOLD.json`, SHA256 `8adeca2cfa8dd5207cf6256677773aba222cdb7f01b5e54130d98f5743e4efd1`. El crédito posterior está conciliado, pero **K03 y el corte económico O8 quedan AFFECTED y fuera del ranking** hasta repetir con O9.
+
+Parada real00:22:07Z por SIGINT al supervisor propio2963227: cuatro COMPLETE conservados (K01–K04/r2300), K05/r2300 y K01/r3000 CANCELLED_DRAINEDexit2, cuatro no lanzadas. Supervisor y children ausentes. No se cuenta la cancelación como pérdida de cuenta ni se borra historia. Corrección O9, RED/GREEN y nuevo freeze en curso; F0×10 se repetirá. Los siguientes párrafos y tablas son observaciones históricas O8, aunque sus conciliaciones hayan pasado.
+
+### Relanzamiento O8 anterior, ahora AFFECTED
 
 **Primer cobro simulado acreditado observado y conciliado:** F0–K03–r2300, cuenta11, fase LIVESIM. Solicitud2025-11-13T15:01:06.114649681Z, aprobación14nov a la misma hora, procesamiento19nov15:00Z y crédito real de simulación20nov15:00Z. Bruto2300; split80%=1840, menos proveedor50 y cargo de primer pago139: **neto acreditado1651USD**. El evento `PAYOUT_COLLECTED` lleva caja2360→4011 exactamente al crédito; no se anticipó caja al solicitar, aprobar o procesar.
 
