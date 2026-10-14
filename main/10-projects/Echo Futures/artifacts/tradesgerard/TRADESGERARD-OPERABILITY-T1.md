@@ -16,9 +16,15 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **O8_AFFECTED_DRAINED / O9_CORRECTION**. Hallazgo posterior de objetivo completado sin ceder turno invalida el ranking económico O8: cuatro campañas COMPLETE preservadas, dos canceladas y cuatro no lanzadas. Las conciliaciones de dinero y el primer crédito observado permanecen como evidencia de esa versión, no como resultado definitivo de la política corregida. O7 también se conserva AFFECTED. No es aceptación final del Owner.
+Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **O10_INDEPENDENT_PASS / RUNNING_0_OF_10** al relanzamiento. Source O10 corrige selección y objetivo efectivo de consistencia; inicia diez trayectorias nuevas. O8 conserva cuatro COMPLETE históricos, dos canceladas y cuatro no lanzadas, todos fuera del ranking corregido; O7 también AFFECTED. El crédito anterior no anticipa resultados O10. No es aceptación final del Owner.
 
 ## Contenido
+
+### Ejecución vigente O10
+
+Source `76a1e69e5a0a67b94b920e2ffb983fd226eb127a`, binario `3c66a1b091fde81a7804e38eb265f16078005c1fc211db46e62f690cb04426bf`, gate `verifier/independent-o10-gate.json` SHA256 `2155593e9eca093126c579bb34ab67c3b3c904b0b91da55ed3664ada93414693`, INDEPENDENT_PASS OFFLINE_OHLC. Mismo request C4 de fechas y perfil; identidad nueva por software. Los diez inputs F0 están sellados en `implementer/evidence/o10-freeze-manifest.json` junto a los diez F1.
+
+Supervisor `run_t1_o10.py`, sesión85629, jobs2; primeros K01/K02-r2300 PID/PGID3018544/3018576 comprobados vivos por manager. Progreso `implementer/evidence/T1-o10-progress.json`. Comparte máximo4 procesos globales con T2, con admisión física y presupuesto global descritos en CONTROL. Cero COMPLETE al lanzamiento; no tabla económica nueva hasta resultado durable, conciliación y censo independiente. Los párrafos siguientes son historia O8 afectada.
 
 ### Hallazgo posterior y parada de O8
 

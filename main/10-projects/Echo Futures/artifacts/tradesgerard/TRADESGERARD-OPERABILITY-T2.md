@@ -16,9 +16,17 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Tanda F1-TREND × K01–K05 × solicitudes brutas2300/3000. Estado **F1_O8_COMMON_POLICY_AFFECTED_DRAINED / O9_CORRECTION**,0/10completas. El gate de matemática/causalidad F1 OHLC conserva su evidencia, pero un defecto de selección en la política común O8 exige corregir y repetir la tanda económica con O9. Dos campañas canceladas y drenadas, ocho no lanzadas. No es aceptación final del Owner.
+Tanda F1-TREND × K01–K05 × solicitudes brutas2300/3000. Estado **O10_INDEPENDENT_PASS / RUNNING_0_OF_10** al relanzamiento. Se ejecutan diez trayectorias nuevas con política económica O10 verificada. El gate original de matemática/causalidad F1 OHLC conserva su evidencia; las dos campañas de la política O8 canceladas y ocho no lanzadas permanecen AFFECTED, fuera del ranking. No es aceptación final del Owner.
 
 ## Contenido
+
+### Ejecución vigente O10
+
+Source `76a1e69e5a0a67b94b920e2ffb983fd226eb127a`, binario `3c66a1b091fde81a7804e38eb265f16078005c1fc211db46e62f690cb04426bf`, gate `verifier/independent-o10-gate.json` SHA256 `2155593e9eca093126c579bb34ab67c3b3c904b0b91da55ed3664ada93414693`, INDEPENDENT_PASS OFFLINE_OHLC. Mismo request C4, prefijo25H1 separado idéntico F1, perfil comercial y diez configuraciones; sólo software/política común corregidos. Smoke independiente23base/14operaciones/9rechazos filtro/caja4640, UNKNOWN0; no fila de ranking.
+
+Supervisor `run_t2_o10.py`, sesión57628, jobs2; primeros K01/K02-r2300 PID/PGID3018587/3018601 comprobados por manager. Lanzamiento01:26:51Z, progreso `implementer/evidence/T2-o10-progress.json`; comparte máximo4 procesos globales con T1, presupuesto agregado y reserva≥8GiB. Cero COMPLETE al lanzamiento. Se auditarán las755 identidades base y el oráculo F1 sobre resultados durables, sin equiparar fills de trayectorias con exposición distinta.
+
+Los siguientes párrafos registran el corte histórico F1/O8 afectado; no representan la política vigente ni resultados reutilizables.
 
 ### Contrato del experimento
 

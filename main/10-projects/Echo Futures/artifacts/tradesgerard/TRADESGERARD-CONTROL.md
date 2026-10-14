@@ -16,9 +16,15 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Fuente de estado de TradesGerard. Mandato vigente 2026-10-13: **O9_CONSISTENCY_HOLD / COMMON_POLICY_CORRECTION**. O9 corrigió el turno durante la espera de cumplimiento; el segundo test independiente con ledger autoritativo confirmó que el objetivo nominal3000 bloquea una evaluación que todavía incumple consistencia. El primer intento fallido permanece HARNESS_AUTHORITY_ERROR y no sustenta el defecto. No se lanzaron campañas O9. Integrador corrige la autoridad compartida de objetivo efectivo antes de repetir F0/F1; F2 avanza aislado. Campañas O8/F1 drenadas y conservadas AFFECTED. Los cuatro filtros y la ampliación acotada siguen autorizados, sin aprobación intermedia pendiente del Owner. El primer crédito observado se conserva con caja neta negativa, fuera del ranking por el defecto de selección. La etapa A y READY_FOR_GLM de abajo son antecedentes históricos. Aceptación final del Owner separada; manager y proyecto permanecen abiertos.
+Fuente de estado de TradesGerard. Mandato vigente 2026-10-13: **O10_INDEPENDENT_PASS_OFFLINE / T1_T2_RUNNING**. O10 corrigió el remanente de evaluación según la autoridad de consistencia y pasó verificación independiente exacta. F0×10 y F1×10 relanzadas, cuatro campañas globales; F2/F3 congelados esperan gates propios. No se lanzaron campañas O9; O8/F1 anteriores drenadas y conservadas AFFECTED. Los cuatro filtros y la ampliación acotada siguen autorizados, sin aprobación intermedia pendiente del Owner. El primer crédito histórico observado se conserva con caja neta negativa, fuera del ranking por el defecto de selección; todavía no se infiere resultado de O10. La etapa A y READY_FOR_GLM de abajo son antecedentes históricos. Aceptación final del Owner separada; manager y proyecto permanecen abiertos.
 
 ## Contenido
+
+### Relanzamiento vigente O10
+
+Source `76a1e69e5a0a67b94b920e2ffb983fd226eb127a`, binario `3c66a1b091fde81a7804e38eb265f16078005c1fc211db46e62f690cb04426bf`, gate independiente `verifier/independent-o10-gate.json` SHA256 `2155593e9eca093126c579bb34ab67c3b3c904b0b91da55ed3664ada93414693`. Cobertura48/50=96%, RED real-ledger anterior pasa sin cambiar test; pago/pending/daily/modo PASS,20inputs íntegros y smokes conciliados. Sólo OFFLINE_OHLC; runtime continúa funcionalmente bloqueado según [[TRADESGERARD-OPERABILITY-T0]].
+
+Lanzamiento real: T1 F0 sesión85629, primeros K01/K02-r2300 PID/PGID3018544/3018576; T2 F1 sesión57628, primeros K01/K02-r2300 PID/PGID3018587/3018601. Manager comprobó procesos y comandos exactos. Concurrencia4 global, afinidadCPU0–5/GOMAXPROCS4. Admisión física≈9,676GB libres/RAM63,86GB/load1,54; owned≈975MB y forecast40≈1,210GB≤presupuesto1,5GiB, reserva8GiB. Progresos `implementer/evidence/T1-o10-progress.json` y `T2-o10-progress.json`; nada afectado se reutiliza. Informes [[TRADESGERARD-OPERABILITY-T1]] y [[TRADESGERARD-OPERABILITY-T2]]. [[TRADESGERARD-OPERABILITY-T3]] y [[TRADESGERARD-OPERABILITY-T4]] registran freezes y gates pendientes de SR/conjunción.
 
 ### Mandato vigente — operabilidad, campañas y filtros KISS, 2026-10-13
 

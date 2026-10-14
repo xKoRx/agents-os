@@ -27,7 +27,7 @@ Source `466e4f17b5b311adc74302417307452bc462d54a`, árbol `34607beaf86f5b59f74df
 
 F3 llama la conjunción exacta de F1 y F2 existentes: dirección de SMA24 sobre H1 totalmente cerradas y zona de extremos de60velas1m previas con ancho ATR20. Conserva ambos testigos de aceptación/rechazo. No añade condición de precio frente a la media, umbral de pendiente ni otro indicador. Prefijo H1 idéntico a F1; blobs monetarios idénticos a O10 según recibo del integrador. Debe verificarse independientemente la igualdad de identidades base y que sus aprobaciones sean subconjunto de F1 y F2.
 
-Integrador reporta suite TG PASS0,177s y cobertura delta23/23. Smoke físico en curso al recibir este freeze; no se infiere su resultado. Gate independiente exacto pendiente y lanzamiento sujeto a capacidad global≤4, reserva≥8GiB y presupuesto nuevo agregado1,5GiB incluyendo cortes anteriores.
+Integrador reporta suite TG PASS0,177s y cobertura delta23/23. Smoke físico posterior COMPLETE:23cruces base/0aprobados/0operaciones/caja5000, con ambos motivos de filtro por cruce; recibo `implementer/evidence/f3-frozen-smoke-receipt.json`. Diagnóstico de primera sesión sin actividad, no candidata ni fila de ranking. Gate independiente exacto pendiente y lanzamiento sujeto a capacidad global≤4, reserva≥8GiB y presupuesto nuevo agregado1,5GiB incluyendo cortes anteriores.
 
 ### Persistencia y límites
 
