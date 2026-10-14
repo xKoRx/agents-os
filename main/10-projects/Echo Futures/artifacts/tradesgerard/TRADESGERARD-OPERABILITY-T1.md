@@ -16,7 +16,7 @@ updated: "2026-10-14"
 
 ## Propósito
 
-**Estado vigente: O11 verificada; repetición F0×10 autorizada, pendiente de PID confirmado.** Source `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`; gate independiente `ecb199bad5e32eefcfa87fa7cf73e72ed10451aedf0a106f2b8447d002dddd87`,40inputs y cuatro smokes aprobados técnicamente. Primeras dos configuraciones previstas K04-r2300/K03-r2300 revisan financiación/pago; las diez se ejecutarán completas. Cero resultados nuevos certificados por ahora; CONTROL registra recursos y dependencia runtime.
+**Estado vigente: O11 verificada; F0×10 RUNNING jobs2.** Source `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`; gate independiente `ecb199bad5e32eefcfa87fa7cf73e72ed10451aedf0a106f2b8447d002dddd87`,40inputs y cuatro smokes aprobados técnicamente. K04-r2300/K03-r2300 ejecutándose con PID/PGID3088212/3088223, supervisor3088177/sesión61055 y progreso `implementer/evidence/O11-common-progress.json`; ambas rutas nuevas incluyen fuente5de33134. Las diez configuraciones se completarán;0/10COMPLETE todavía. CONTROL registra admisión real, recursos, frontera de autoridad y dependencia runtime. Ningún resultado AFFECTED entra en este ranking.
 
 Antecedente AFFECTED preservado: K04 O10 leyó revisión EVAL vieja tras funding instalado1h47antes. Prueba SHA256 `5d6dda573a84bf7832cc55738f4c81853938974ca68a997264788d9908a15e88`. T1 anterior conserva cuatro COMPLETE de productor, tres auditadas, dos cancelaciones técnicas y cuatro no lanzadas. Crédito K03 observado y conciliado, fuera del ranking definitivo. Los estados RUNNING/PASS siguientes son historia anterior a O11.
 
