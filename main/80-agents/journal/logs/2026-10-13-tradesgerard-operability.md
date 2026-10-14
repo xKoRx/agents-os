@@ -3,7 +3,7 @@ type: change_log
 schema_version: 1
 scope: session
 created: "2026-10-13"
-updated: "2026-10-13"
+updated: "2026-10-14"
 area: "[[Echo]]"
 project: "[[Echo Futures]]"
 application:
@@ -53,6 +53,10 @@ tags:
 - Parada O7 confirmada23:11Z y snapshot inmutable; dos COMPLETE afectados, K03 cancelada con resultado durable, siete pendientes no lanzadas y scratch0. O8 source d66bb56b/bin a70ac11e verificado independientemente con RED→GREEN, negativos/rho/igualdad, E2E12, lifecycle, SDK, paridad diez inputs y cobertura53/54; smoke CLI23operaciones auditado aparte. F0×10 relanzada23:26Z conjobs2/PIDs2963265/2963280 y presupuesto agregado medido. Filtros continúan aislados; sin aceptación final/cierre.
 
 ## Validación
+
+- Delta2026-10-14: O11 fuente5de33134/bin734c9238/gateecb199 exactos; cobertura independiente36/37, seis F0 auditadas. K03/K05-r2300 acreditan1651 cada una, caja3531/3771, ambas netas negativas. Racha C4 de12 explicada y conciliada:11operaciones en cuenta1 suman2495,22 y la12ª en cuenta2 gana260,04; sin pase ni pérdida previa que justifique otra interpretación.
+- Recuperación propia lossless con hashes/readback: fuentes/bundles, inputs/coberturas y16binarios históricos en archivo solid64.492.288B; ahorro de binarios70.902.742B contado una vez. C4/corpus/ajenos intactos. Harness por tanda revisado; fixes de forecastglobal, strictresume y directorio previo aPopen conservan guard físico8GiB. Cuatro F0-r3000 iniciadas realmente en f0-stage3 fueron drenadas técnicamente a26min43s porRUNTIME_RESOURCE_LIMIT; supervisor e hijos ausentes. SeisCOMPLETE preservadas, cuatroFAILED técnicos,30NOT_RUN_RESOURCE; no hay cola activa.
+- Materializado por schema-contract `TRADESGERARD-OPERABILITY-RESULTADO.md` y actualizados CONTROL/T1–T4 con alcance incompleto, matriz40, ranking sólo provisional6, anualNOT_READY, extensión/sensibilidadNOT_RUN_RESOURCE y runtimeFUNCTIONALLY_BLOCKED. Receta de reejecución y condición de admisión real documentadas. No aceptación final, no feedback/session-close ni cierre de proyecto. Históricos AFFECTED fuera del ranking. Readback y sincronización Git de este delta se verifican al terminar la persistencia.
 
 - C4 HEAD/hash concuerdan y árbol limpio; readback documental y sync se verifican después de la escritura. No se atribuye ejecución de campañas nuevas.
 
