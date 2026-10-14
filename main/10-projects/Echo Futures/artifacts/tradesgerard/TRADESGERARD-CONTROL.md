@@ -16,9 +16,13 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Fuente de estado de TradesGerard. Mandato vigente 2026-10-13: **ALL_FILTERS_INDEPENDENT_PASS_OFFLINE / RESOURCE_HOLD**. La reserva física de8GiB provocó el drenaje técnico de las seis campañas activas; cero COMPLETE nuevos, ningún backtest propio activo. Gates O10/F2/F3 válidos, recuperación de espacio propio en curso antes de reintentar. No se reducen límites ni se borran recursos ajenos. Las cuarenta configuraciones y ampliación acotada siguen autorizadas; la tarea no está completa. O8/F1 anteriores permanecen AFFECTED, el crédito histórico no es resultado del corte corregido. Aceptación final del Owner separada; manager y proyecto permanecen abiertos, sin feedback/cierre.
+Fuente de estado de TradesGerard. Mandato vigente 2026-10-13: **ALL_FILTERS_INDEPENDENT_PASS_OFFLINE / T1_RESOURCE_RETRY1_RUNNING**. Tras recuperar espacio propio, F0 reanudada con dos campañas supervisadas, cero COMPLETE nuevos; T2/T3/T4 esperan nueva admisión. Los seis intentos cancelados por reserva física están preservados por separado. Gates O10/F2/F3 válidos. No se reducen límites ni se borran recursos ajenos. Las cuarenta configuraciones y ampliación acotada siguen autorizadas; la tarea no está completa. O8/F1 anteriores permanecen AFFECTED, el crédito histórico no es resultado del corte corregido. Aceptación final del Owner separada; manager y proyecto permanecen abiertos, sin feedback/cierre.
 
 ## Contenido
+
+### Reintento supervisado tras recuperación — 2026-10-14T02:19Z
+
+Un reintento autorizado con los mismos binarios/inputs/gate, sin builds ni restauración de fuentes: T1 F0 jobs2 global, sesión3890, K01/K02-r2300 PID/PGID3051163/3051188. Supervisor `run_t1_o10_resource_retry1.py`, progreso `T1-o10-resource-retry1-progress.json`, salidas nuevas `retry1-F0-*`; los seis fallidos anteriores no se sobrescriben. Snapshot de lanzamiento: free9.174.618.112B, owned216.389.052B, RAM disponible64.037.130.240B, load3,28. Forecast adicional390.070.272B conserva reserva8GiB; guard físico sigue activo. Tres muestras previas mostraron caída externa3.997.696B/121s, no inmovilidad del filesystem: se admite vigilancia acotada, revisión a5min/primer COMPLETE y drenaje si desaparece el margen. Otras tandas, preflight y sensibilidad todavía no relanzados.
 
 ### Pausa técnica por reserva física — 2026-10-14T01:53Z
 

@@ -16,7 +16,7 @@ updated: "2026-10-13"
 
 ## Propósito
 
-**Estado actual: RESOURCE_HOLD,0/10COMPLETE.** A01:53:43Z el supervisor drenó K01/K02-r2300 por reserva física inferior8GiB; ambos exit2/FAILED, ocho no lanzados. Cancelación técnica, no resultado de trading ni invalidación del gate O10. Recibo independiente de las seis cancelaciones entre T1/T2/T3 en CONTROL; se preservarán intentos antes de cualquier reintento. La descripción del relanzamiento siguiente es histórica.
+**Estado actual: RESOURCE_RETRY1_RUNNING,0/10COMPLETE al lanzamiento02:19Z.** Mismos O10/inputs/gate, dos campañas supervisadas K01/K02-r2300, salidas `retry1-F0-*` y progreso `T1-o10-resource-retry1-progress.json`. Sesión3890, PID/PGID3051163/3051188. Recuperación, forecast agregado y revisión de recursos en CONTROL. El intento anterior se conserva: a01:53:43Z el supervisor drenó K01/K02-r2300 por reserva física inferior8GiB; ambos exit2/FAILED, ocho no lanzados. Cancelación técnica, no resultado de trading ni invalidación del gate O10. La descripción del lanzamiento original siguiente es histórica.
 
 Ejecutar F0 sin filtros con mínimos económicos, retiro EOD, pausa temporal y autoridad monetaria corregidos. Diez configuraciones: K01–K05 × solicitudes brutas2300/3000, misma ventana y perfil C4. Estado vigente **O10_INDEPENDENT_PASS / RUNNING_0_OF_10** al relanzamiento. Source O10 corrige selección y objetivo efectivo de consistencia; inicia diez trayectorias nuevas. O8 conserva cuatro COMPLETE históricos, dos canceladas y cuatro no lanzadas, todos fuera del ranking corregido; O7 también AFFECTED. El crédito anterior no anticipa resultados O10. No es aceptación final del Owner.
 
@@ -42,7 +42,7 @@ La campaña K03 terminó con caja3531=5000−26×120+1651, mínimo2360 y cambio 
 
 Evidencia del crédito: campaña `519b8f0d236ff98079a956362a8d9dde6b988a426c9844d6c9ee7b1276550263`, recibo verificado `verifier/receipt-O8-K03-r2300-verified.json` SHA256 `27bc02734eff10a5669c00af0b83bea8ecfc50858e076e2d66ace24fb5d681e9`; auditoría `verifier/campaigns-T1-O8-third.json` SHA256 `1e3148e37c8cfb493f7e0419e9aff15957b50fb77b765379147fb24345245d2c`; métricas completas `verifier/campaign-metrics-T1-O8-third-v3.json.gz` SHA256 `64fdaa828932e73ee2b34615a6abd161aad03fe758cffcca5af99304f4b0597c`. Result SHA256 `67e88c2497d4a4c3d403acf288aac08c547189f4e1920139edefd52c8fc8451a`; traza `6a0d769890f6522383bfa303603c40ec0e4e24b62e9542af1754cbde8040ef15`. El pago pertenece a una campaña real del harness, no a un fixture del ranking.
 
-Primer resultado corregido terminado2026-10-13T23:47:54Z y auditado independientemente: **F0–K01–r2300, ninguna útil en esta muestra**, cero pases/cobros y caja neta−1800USD. Este es1/40 de los resultados definitivos; las tandas continúan. La integridad técnica permite interpretar el resultado económico sin confundirlo con un fallo de ejecución.
+Observación histórica O8, ahora AFFECTED y fuera de las40 definitivas: resultado terminado2026-10-13T23:47:54Z y conciliado independientemente **F0–K01–r2300**, cero pases/cobros y caja neta−1800USD. La conciliación preserva el dinero observado; el defecto posterior de selección exige repetir con O10.
 
 | Configuración | Base / pasan filtro | Ocupadas / materializadas | Operaciones / días con entrada | Fallback / Q0 / UNKNOWN | Compradas / fallidas / retiradas / pasadas | Solicitudes / créditos | Cobrado neto / costos de caja | Caja inicial / mínima / final |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
