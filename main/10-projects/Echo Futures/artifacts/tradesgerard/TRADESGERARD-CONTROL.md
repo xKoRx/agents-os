@@ -20,6 +20,14 @@ Fuente de estado de TradesGerard. Mandato vigente 2026-10-13: **ALL_FILTERS_INDE
 
 ## Contenido
 
+### Pausa técnica por reserva física — 2026-10-14T01:53Z
+
+Estado operativo vigente **RESOURCE_HOLD / NO_RUNNING_CAMPAIGNS**. Los supervisores T1/T2/T3 detectaron free8.508–8.521GB, inferior a8GiB=8.589.934.592B, y drenaron los seis hijos con exit2. Cero COMPLETE nuevos; seis cancelaciones técnicas y ocho configuraciones todavía pendientes en cada una de esas tres tandas. F3 no se lanzó. Gates O10/F2/F3 conservan validez técnica; no se transforma este fallo en pérdida de trading ni en ausencia económica de cobro.
+
+Recibo independiente `verifier/runtime-resource-failed-campaigns-20261014.json` SHA256 físico `77f2c082a6794d3bd3a5ac9738bd508f4603090990ad297e6f2453fa399f948c`: conserva hashes/resultados parciales terminalFAILED y distingue `context canceled` de los recibos de la atribución `RUNTIME_RESOURCE_LIMIT` del supervisor. Resultados parciales no entran al ranking. Directorio nuevo≈1,201GB dentro de su cap; la reserva física falló por crecimiento fuera de ese root. No se reintentará antes de explicar y recuperar margen.
+
+Lecturas de diagnóstico: caché Go compartida≈5,65GB, con1.493.278.041B modificados en últimos30min y artefactos de propiedad mezclada, incluido ejecutable ajeno. Es candidato principal al crecimiento, no atribución completa de propiedad. `/tmp` está en tmpfs separado y no explica la caída de `/`; no hay compilación/backtest/supervisor propio activo. No se borra caché compartida ni tmp histórico ni se detienen servicios ajenos. Se prepara archivo/retirada recuperable de tres worktrees propios congelados, después de verificar bundle/refs/identidades, ausencia de escritor y dependencias de inputs. WIP sensibilidad, builds, inputs y evidencia mínima se conservan. No se reduce el umbral8GiB ni se reinicia presupuesto por mover carpetas.
+
 ### Relanzamiento vigente O10
 
 Se conserva máximo6 tras evaluar y rechazar expansión8 a01:42Z: CPU global47,56% y CPU9–11 poco ocupadas, pero load21,13 supera guard16,8; manager observó PSI CPU some≈18,5% e I/O some≈39%/full≈20%. Topología24cores/2sockets confirmada. CPU libre no justifica ignorar presión; no se cambió el guard ni se interrumpieron campañas. F3 sigue en cola y la próxima admisión se revisa en una frontera de finalización real, sin reintentos continuos.
