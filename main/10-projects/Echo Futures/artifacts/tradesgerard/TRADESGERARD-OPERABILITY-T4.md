@@ -17,9 +17,15 @@ updated: "2026-10-13"
 
 ## Propósito
 
-Ejecutar F3-TREND-SR × K01–K05 × retiro bruto2300/3000: diez campañas que completan la matriz cerrada de cuarenta. Estado **FROZEN_AWAITING_INDEPENDENT_GATE**, ninguna campaña T4 lanzada. No existe todavía ranking final válido. Comparte la política económica O10 y la ventana/perfil C4.
+Ejecutar F3-TREND-SR × K01–K05 × retiro bruto2300/3000: diez campañas que completan la matriz cerrada de cuarenta. Estado **INDEPENDENT_PASS_OFFLINE / QUEUED_FOR_CAPACITY**, ninguna campaña T4 lanzada al emitir el gate. No existe todavía ranking final válido. Comparte la política económica O10 y la ventana/perfil C4.
 
 ## Contenido
+
+### Gate independiente y cola
+
+`verifier/independent-f3-gate.json` SHA256 físico `1922ab03e9ac2513ce345229cba7735292efe809a61b92fe1cd2c3f67e4008e3`, INDEPENDENT_PASS OFFLINE. Fuente limpia, binario/10inputs verificados, prefijo de los diez inputs idéntico F1/O10 y blobs monetarios comunes. Tabla de verdad independiente144casos pendiente+/−/igual, zonas LONG/SHORT, ausencia H1/ATR PASS0,323s; cobertura delta23/23. Smoke23base/0aprobados coincide con oráculo SMA∧SR, mismas K/ATR/extremos/SMA, caja5000sinactividad y receipt sealed íntegro. Manager comprobó hash del gate; no es validación económica ni runtime.
+
+Manager habilita la cola F3×10 sin nueva aprobación del Owner. Límite global vigente6 después de medición de recursos, F0/F1 conservan CPU0–5 y F2 usa CPU6–8; F3 espera plazas reales sin interrumpir campañas saludables. La admisión original4 y la expansión medida se mantienen en recibos separados; no se afirma velocidad bajo contención.
 
 ### Freeze
 
