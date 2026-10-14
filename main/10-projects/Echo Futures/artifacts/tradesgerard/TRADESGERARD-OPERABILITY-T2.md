@@ -16,6 +16,8 @@ updated: "2026-10-14"
 
 ## Propósito
 
+**Estado final de esta ejecución: F1 O11 0/10 ejecutadas, NOT_RUN_RESOURCE.** No hay supervisor ni cola activa. F0 terminó con6auditadas y4FAILED técnicos por piso físico de disco; no hubo admisión para esta tanda. Las diez filas F1 conservan identidad de input, pero señales, operaciones, costos y caja de la ventana completa son NA, no cero ni resultados de los smokes. Implementación/gate O11 válidos; alcance económico incompleto. [[TRADESGERARD-OPERABILITY-RESULTADO]] contiene cobertura40 y condición de reanudación. Los estados de cola/RUNNING siguientes son antecedentes.
+
 **Estado vigente: O11 verificada; F1×10 en cola autorizada del supervisor común.** Source `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7`; gate independiente `ecb199bad5e32eefcfa87fa7cf73e72ed10451aedf0a106f2b8447d002dddd87`. Inputs sin cambios normativos y smoke F1 14ops/caja4640 auditado; cero campañas completas nuevas por ahora. CONTROL registra lanzamiento real cuando ocurra, recursos y dependencias runtime.
 
 Antecedente AFFECTED preservado: defecto común O10 probado en K04 F0, SHA256 `5d6dda573a84bf7832cc55738f4c81853938974ca68a997264788d9908a15e88`. T2 anterior conserva cero COMPLETE, dos CANCELLED_DRAINEDexit2 y ocho no lanzadas; cancelación técnica, no pérdida económica. Las ejecuciones/PASS siguientes son historia anterior a O11.
