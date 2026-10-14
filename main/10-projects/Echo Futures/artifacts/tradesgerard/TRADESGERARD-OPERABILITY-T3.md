@@ -17,7 +17,7 @@ updated: "2026-10-13"
 
 ## Propósito
 
-**Estado actual: RESOURCE_HOLD,0/10COMPLETE.** A01:53:42Z el supervisor drenó K01/K02-r2300 por reserva física inferior8GiB; ambos exit2/FAILED, ocho no lanzados. Gate F2 conserva validez técnica; parciales no son pérdidas de trading ni filas del ranking. Se preservan intentos antes de recuperación/reintento; el lanzamiento descrito abajo es histórico.
+**Estado actual: RESOURCE_RETRY1_RUNNING,0/10COMPLETE al lanzamiento02:35Z.** F2 jobs2 CPU6–8, sesión70412, K01/K02-r2300 PID/PGID3055424/3055430; mismo source/bin/gate/inputs, nuevos `retry1-F2-*` y `T3-f2-resource-retry1-progress.json`. Seis campañas globales con T1/T2; admisión y forecast en CONTROL. El intento anterior permanece preservado: a01:53:42Z el supervisor drenó K01/K02-r2300 por reserva física inferior8GiB; ambos exit2/FAILED, ocho no lanzados. Gate F2 conserva validez técnica; parciales no son pérdidas de trading ni filas del ranking. El lanzamiento original descrito abajo es histórico.
 
 Ejecutar F2-SR × K01–K05 × retiro bruto2300/3000: diez campañas de la misma ventana C4, con política económica común corregida O10. Estado **INDEPENDENT_PASS_OFFLINE / RUNNING_0_OF_10** al lanzamiento. No hay resultados económicos finales todavía; el smoke sin actividad no es candidata ni fila del ranking.
 
