@@ -16,9 +16,93 @@ updated: "2026-10-14"
 
 ## Propósito
 
+**Estado vigente 2026-10-14 (noche): MATRIZ 40/40 COMPLETE — verificación del supervisor `COMPLETE 40 0`, cero fallidos.** Las 40 configuraciones del manifiesto congelado (F0/F1-TREND/F2-SR/F3-TREND-SR × K01–K05 × retiros2300/3000, fuente `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario `734c9238…`) terminaron con recibo COMPLETE, digests verificados y fila económica compacta. Aplicación uniforme de la liquidación de retiros generados (sección8, regla congelada): **3 filas positivas tras liquidación: F2-SR/K02/3000 +1851, F0/K05/2300 +422, F1/K05/2300 +91; las 37 restantes negativas** (peor F0/K02 ambas −3480). Censo de pagos de la matriz: 6 CREDITED + 1 APPROVED (K05/2300, crédito28-nov). La ejecución ocurrió en el volumen de datos `/srv/echo-work` tras el incidente de borrado externo del corpus (recuperación byte-idéntica documentada en [[TRADESGERARD-STORAGE-20261014]]). Este reporte es investigación offline sobre una trayectoria por configuración del mismo mercado: no es selección final de estrategia, no certifica robustez, no es aceptación del Owner ni autoriza LIVE. El detalle mecánico previo (6 filas, drenajes, guards) se conserva en las secciones siguientes como historia.
+
+## Contenido
+
+### PRUEBA40/40 — tabla completa con liquidación uniforme (2026-10-14)
+
+Caja inicial5000 por configuración; cada fila es una trayectoria independiente del mismo mercado/ventana (no se suman cajas ni señales). Liquidación: caja al corte + netos APPROVED con crédito posterior al corte (CREDITED ya está en caja; REQUESTED condicional no suma; nunca el bruto). Regla congelada antes de comparar. CSV completo con censo/rechazos/rachas/costos por fila: `/srv/echo-work/results/o11-matrix-40-final.csv`; JSON: `verifier/o11-matrix-aggregate.json` y `verifier/o11-liquidation-derived.json`.
+
+| Config | Ops | Días | Caja corte | Pend. | Tras liquidar | vs5000 |
+|---|---:|---:|---:|---:|---:|---:|
+| F0/K01/2300 |719|31|3200|0|3200|−1800|
+| F0/K01/3000 |719|31|3200|0|3200|−1800|
+| F0/K02/2300 |618|31|1520|0|1520|−3480|
+| F0/K02/3000 |618|31|1520|0|1520|−3480|
+| F0/K03/2300 |647|31|3531|0|3531|−1469|
+| F0/K03/3000 |647|31|4091|0|4091|−909|
+| F0/K04/2300 |651|31|2840|0|2840|−2160|
+| F0/K04/3000 |651|31|2840|0|2840|−2160|
+| **F0/K05/2300** |543|31|3771|1651|**5422**|**+422**|
+| F0/K05/3000 |550|31|4571|0|4571|−429|
+| F1/K01/2300 |325|31|4040|0|4040|−960|
+| F1/K01/3000 |325|31|4040|0|4040|−960|
+| F1/K02/2300 |306|31|2720|0|2720|−2280|
+| F1/K02/3000 |306|31|2720|0|2720|−2280|
+| F1/K03/2300 |304|31|3080|0|3080|−1920|
+| F1/K03/3000 |305|31|3080|0|3080|−1920|
+| F1/K04/2300 |307|31|3080|0|3080|−1920|
+| F1/K04/3000 |307|31|3080|0|3080|−1920|
+| **F1/K05/2300** |262|31|5091|0|**5091**|**+91**|
+| F1/K05/3000 |263|31|3320|0|3320|−1680|
+| F2/K01/2300 |59|29|4760|0|4760|−240|
+| F2/K01/3000 |59|29|4760|0|4760|−240|
+| **F2/K02/3000** |59|29|6851|0|**6851**|**+1851**|
+| F2/K02/2300 |59|29|4520|0|4520|−480|
+| F2/K03/2300 |57|29|4520|0|4520|−480|
+| F2/K03/3000 |57|29|4520|0|4520|−480|
+| F2/K04/2300 |57|29|4760|0|4760|−240|
+| F2/K04/3000 |57|29|4760|0|4760|−240|
+| F2/K05/2300 |57|29|4640|0|4640|−360|
+| F2/K05/3000 |57|29|4640|0|4640|−360|
+| F3/K01/2300 |15|12|4760|0|4760|−240|
+| F3/K01/3000 |15|12|4760|0|4760|−240|
+| F3/K02/2300 |15|12|4880|0|4880|−120|
+| F3/K02/3000 |15|12|4880|0|4880|−120|
+| F3/K03/2300 |15|12|4760|0|4760|−240|
+| F3/K03/3000 |15|12|4760|0|4760|−240|
+| F3/K04/2300 |15|12|4760|0|4760|−240|
+| F3/K04/3000 |15|12|4760|0|4760|−240|
+| F3/K05/2300 |15|12|4760|0|4760|−240|
+| F3/K05/3000 |15|12|4760|0|4760|−240|
+
+F1/F2/F3 abrevian F1-TREND/F2-SR/F3-TREND-SR. Los filtros cambian el conjunto admitido sobre los mismos755 cruces base (F1 filtra a ~262–325 entradas, F2 a57–59, F3 a15): la pérdida de oportunidades es el diseño del filtro, no una falla; tasa de operaciones ≠ rentabilidad de campaña.
+
+### Ranking por caja liquidada y cobertura (sección11.6)
+
+1. F2-SR/K02/3000: 6851 (+1851) — 1 pase, crédito neto2211 el20-nov (cuenta btg-functional), racha8/+3760,20, 3 cuentas compradas/360USD.
+2. F0/K05/2300: 5422 (+422) — 2 solicitudes (1651 cobrado el20-nov cuenta11 + 1651 aprobado crédito28-nov cuenta12), 24 cuentas, racha14/+3540,28.
+3. F1/K05/2300: 5091 (+91) — crédito1651 el13-nov (el más temprano), 13 cuentas, 2 pases, racha11/+2510,22.
+4. F3/K02 ambas 4880 (−120); 5. F2/K01, F2/K04, F3/K01, K03, K04, K05 ambas 4760 (−240); … (tabla completa arriba). Últimas: F1/K02 ambas 2720 (−2280), F0/K02 ambas 1520 (−3480).
+
+Cobertura e incertidumbre: una sola trayectoria por configuración sobre el mismo mercado (NQZ5, 31 fechas validadas); **ninguna probabilidad fiable**, sin independencia estadística entre filas (mercado compartido), sin distribución de escenarios. Los tres positivos comparten rasgo exploratorio (K05 en F0/F1, K02/3000 en F2) — es cribado, no selección. Diferencias entre retiros2300/3000 dentro del mismo perfil/filtro muestran la sensibilidad del calendario de retiros: F0/K03 (−1469 vs −909), F2/K02 (−480 vs +1851 — el cobro sólo ocurrió en la variante3000), F1/K05 (+91 vs −1680).
+
+### Pagos, liquidación y calendario (secciones8 y 11.2)
+
+Censo de la matriz: **6 créditos CREDITED + 1 solicitud APPROVED pendiente** (K05/2300, neto1651, crédito28-nov-2025 15Z, posterior al corte25-nov23Z — derecho de cobro ya producido, reportado como caja después de liquidar, no como pérdida por calendario). Los 6 CREDITED: K03/2300 (1651, 20-nov), K05/2300 (1651, 20-nov), K05/3000 (2211, 20-nov), F0/K03/3000 (1651, 20-nov), F1/K05/2300 (1651, 13-nov), F2/K02/3000 (2211, 20-nov). Todos con neto = bruto×80%−50−139 aplicado una vez; sin doble débito/crédito; cero eventos de caja posteriores al corte (sin compras/operaciones/señales nuevas en la cola). Los estados REQUESTED/REJECTED no aparecieron en ninguna trayectoria: la regla de liquidación los cubre (condicional/cero) pero la muestra no ejercitó esos casos — limitación declarada. Terminales HORIZON_CENSORED; cuentas restantes en estados de política (pausas/retiros lógicos), sin saldos nominales incorporados a caja.
+
+### K05 detallado (sección11.3)
+
+F0/2300: 543ops/31días, 24 cuentas compradas (2880USD), 4 pases, 2 solicitudes → caja3771, liquidada5422, **+422**. F0/3000: 550ops, 22 cuentas, 4 pases, crédito2211 → 4571, **−429**. F1/2300: 262ops, 13 cuentas, 2 pases, crédito temprano13-nov → 5091, **+91**; F1/3000: 263ops idéntico filtro con mejor racha pero sin créditos → 3320. F2 ambas: 57ops/29días, 3 cuentas, sin pases → 4640. F3 ambas: 15ops/12días, 1 cuenta (compra+renovación240), → 4760. Rachas mayores: F0/3000 17ops/+4240,34; F2 15/+3600,30; F0/2300 14/+3540,28. El par F0 muestra que el segundo retiro2300 de K05 (aprobado post-corte) decide su signo: sin liquidación se leería −1229.
+
+### Recursos y ejecución (sección11.5)
+
+Raíz antes130,9G/7,1G libres (90%) → al cierre 94G/45G libres (69%): el delta liberado corresponde a la limpieza externa del Owner (~48G, incluido btx-perf-last), no a este encargo; escritura propia en raíz ≈0 (salidas y temporales en `/srv/echo-work`). Volumen: ext4 150G, uso final de campañas ≈0,5G en `runs/O11` (34 dirs nuevos + logs), corpus 55MB en `data/corpus`, backup 161MB en `archives/`. Máximos observados: 4 campañas concurrentes × ~140%CPU, logs por corrida <250KB, sin incumplir caps (5/4/2/1MiB por config). Wave wallclock total ≈11h (16:12–23:16Z de ejecución efectiva en dos tramos, 4 campañas simultáneas). Identidades de attempt: `workvol1` (K05+K02–K04 F0), `workvolsmoke` (F1 K01–K04), `workvol5` (resto); los intentos `workvol3`/`workvol4` (4+4 F1 FAILED técnicos por el corpus ausente) y `f0-stage3`/`resume1-K02-r3000` históricos permanecen preservados con su causa; ninguna fila del ranking proviene de un parcial. Reejecuciones desde inputs originales con identity nueva: 4 FAILED técnicos de F0 (f0-stage3) y F1/K01–K04 r2300 (incidente corpus).
+
+### Ampliación y sensibilidad (sección10) — estado
+
+Base de datos verificada: NQZ6.nt restaurado con el SHA256 `2176dce8…` que fija el template de preparación de mercado; binding NQZ6 ya apuntado al volumen (cambio de path sólo). La ventana corta reservada (warmup2026-09-21T00Z, trading2026-09-22T14Z→2026-10-02T21Z, 13.680min, prefijo37 H1) requiere generar planes O11 nuevos para los dos pares finalistas (K05/F0 y K05/F1 por el ranking líquido; ambos retiros = 4 campañas) — el estado de esa preparación y su gate se documentan al concluir; las 4 comparaciones de sensibilidad intrabar (fallback O-H-L-C vs O-L-H-C) requieren un delta de código sobre el source congelado con gate propio: si no alcanza dentro del alcance, queda explícito como límite, sin certificar robustez intrabar.
+
+### Recomendación para la próxima iteración K05 (sólo recomendación, sin implementación)
+
+Mantendría: la operabilidad O11 (mínimo económico + retiro EOD) y la geometría vigente — las tres filas positivas no exigen cambios de estrategia. Revisaría: (1) la variante K02/3000 de F2 — única fila donde el retiro3000 cambia el signo — verificando si su crédito es reproducible o un artefacto de una trayectoria (una sola muestra no recomienda nada); (2) el coste de oportunidad de F1 sobre K05 (mejor fila temprana de crédito, +91) frente a su retiro3000 (−1680): el calendario de retiro domina el resultado; (3) la consistencia del objetivo diario contra las rachas observadas (mayor día/racha vs pases). Evidencia faltante antes de GerardMM/B2: repetición de las filas positivas en la ventana NQZ6 (ampliación) y una alternativa intrabar verificada — sin eso, cualquier cambio de parámetros se ajustaría al ruido de una trayectoria.
+
+### Historia previa a la matriz completa (no vigente)
+
 **La racha C4 de12 ganancias no aprobó una cuenta:** las primeras11 fueron de la cuenta1/EVALUATION y sumaron2495,22USD; faltaban504,78 para3000. La operación12 ganó260,04 en la cuenta2/EVALUATION. La racha agregada sumó2755,26, pero ninguna cuenta alcanzó su objetivo. No hubo pérdidas anteriores a la racha; las pérdidas13/14 ocurrieron después. Nueve ganancias255,02, un cierre NY90,02 y un parcial110,02 explican los importes de cuenta1. El mayor día875,08 habría sido29,17% de3000: la consistencia no exigía elevar ese objetivo. La cuenta1 quedó pausada tras cumplir el objetivo diario y la cuenta2 se compró en un cruce posterior, sin reutilizar retrospectivamente la señal. Reconstrucción de las12 filas, pisos, R/T y estados: [[TRADESGERARD-OPERABILITY-K05-STREAK]].
 
-**Estado del alcance: EVIDENCIA TÉCNICA E HISTÓRICA INCOMPLETA POR RECURSOS.** Producto O11 y los cuatro filtros están implementados y verificados offline; sólo6 de40 campañas tienen resultado económico completo auditado. Cuatro intentos F0 adicionales fueron drenados por el guard físico de disco y30 configuraciones permanecen sin ejecutar. No se presenta un ranking final de40, no se seleccionan finalistas y no se declara aceptación del Owner ni cierre del proyecto.
+**Estado histórico (superado): EVIDENCIA TÉCNICA E HISTÓRICA INCOMPLETA POR RECURSOS.** Producto O11 y los cuatro filtros están implementados y verificados offline; sólo6 de40 campañas tenían resultado económico completo auditado. Cuatro intentos F0 adicionales fueron drenados por el guard físico de disco y30 configuraciones permanecían sin ejecutar.
 
 ## Contenido
 
