@@ -34,6 +34,14 @@ Consolidar el backtester y runtime sobre una lógica de dominio compartida, corr
 
 Evidencia externa: volumen de datos existente, `runs/consolidation-20261015/god-reception.md` y `implementer-reception.log`; artefactos O11 en `runs/O11`. Las rutas físicas resueltas quedan en el recibo externo. El presupuesto permanece cerrado hasta integración con master, pruebas pequeñas y plan validado de exactamente F1-TREND/K05/2300.
 
+### Avance y gate de corrección
+
+- Fixes parciales conservados en la rama: Operation `f8d8420e`, Ledger `e834ad59`, memo Strategy `3a5c1d4b`. El implementador reporta paquetes Operation/Accounting verdes y race focalizado Operation verde; aún no es certificación del candidato final.
+- Verificador independiente real: ZCode/GLM-5.3-Flash, sesión `sess_17615423-0f35-463b-a04d-b1ecffff59eb` acreditada por metadata. Primera recepción sólo sobre commits inmutables, sin pruebas contra el árbol móvil; mapa de ascendencia y restauración literal del test original D1 verificados por inspección. Informe `verifier-reception.md`; corrección de su ruta de vault y revisión adicional del memo solicitadas.
+- GOD detectó una desviación de D4 en WIP: Evaluate llamaba al kernel mediante un fallback runtime/standalone y la consulta exponía la tabla preparada completa. Interrumpió sólo su invocación GLM propia (SIGINT, exit 130), conservó WIP y reanudó la misma sesión con `correction-gate-analytics.md`. No se aceptó ese diseño como separación de analytics.
+- D3 también requiere verificar cambios de envelope fuera de Params: TG.DecodeConfig consume StreamID/CalendarDatasets, mientras la memo inicial comprueba sólo puntero y Params. La revisión y corrección quedan antes de congelar el candidato.
+- Presupuesto durable en datos: `campaign-budget.json`, consumidas 0, máximo 1, launch gate cerrado. Sin campañas nuevas, push de Echo, merge, deploy ni retiro de copias.
+
 ## Fuentes
 
 - Mandato Owner «ECHO FUTURES — GOD ONE-SHOT: CONSOLIDAR EL BACKTESTER Y MERGEAR A MASTER», versión 1, 2026-10-15.
