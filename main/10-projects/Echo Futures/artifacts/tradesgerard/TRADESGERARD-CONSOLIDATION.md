@@ -22,12 +22,13 @@ Consolidar el backtester y runtime sobre una lógica de dominio compartida, corr
 
 ## Contenido
 
-**Estado: RECEIVED / recepción GLM en curso. Campañas nuevas consumidas: 0/1.** No hay candidato validado ni autorización técnica de merge. Esta nota no reemplaza ni acepta los resultados económicos históricos.
+**Estado: IMPLEMENTING / diseño adjudicado por GOD. Campañas nuevas consumidas: 0/1.** No hay candidato validado ni autorización técnica de merge. Esta nota no reemplaza ni acepta los resultados económicos históricos.
 
 - `master` GitHub observado: `372af59a7b83604781346613da01e3d510ea1360`; rama optimizada `glm/tradesgerard-perf-memory-20261015`: `5b9a7ac86137377baf9882e03d468a31d4f7775e`, ambos comprobados con `ls-remote` al recibir el encargo.
-- Un único GLM implementador se invocó realmente mediante ZCode CLI 0.16.9, selector explícito `account:zai-individual-coding-plan/GLM-5.3-Flash`. Probe concluido exit 0. Modelo servido: UNKNOWN; no inferido desde su respuesta. No se lanzaron agentes Sol/TOP/GOD adicionales.
+- Un único GLM implementador se invocó realmente mediante ZCode CLI 0.16.9, selector explícito `account:zai-individual-coding-plan/GLM-5.3-Flash`. Probe concluido exit 0. Metadata posterior de respuesta del harness reporta `modelId: GLM-5.3-Flash`; sesión propia `sess_ffce8b59-37d2-4253-8607-d87df4fe7056`. No se lanzaron agentes Sol/TOP/GOD adicionales.
 - Checkout existente seleccionado: `xKoRx/echo`, workspace `tradesgerard-perf-memory-20261015/echo`; HEAD limpio al recibirlo. Su origin local de probe no es destino autorizado de publicación. El checkout canónico se conserva en su ubicación actual.
-- Primera entrega delegada: recepción/diseño read-only; sin código, tests, campañas, ramas ni limpieza. GOD conserva el gate previo a implementación y el gate previo a consumir la única campaña.
+- Primera entrega read-only completada. GOD adjudicó D1–D6 con correcciones sobre imports, orden causal, inmutabilidad, memo, comparador versionado y ascendencia. Reanudó la misma sesión como único escritor para implementar y probar fixtures pequeños; campaña/merge/limpieza siguen cerrados hasta gate. Evidencia: `reception-design.md`, `design-gate.md`, `acceptance-contract.md` y `implementer-implementation.log` en el directorio de datos de esta consolidación.
+- Master remoto es ancestro del candidato: 271 commits nuevos para master, 753 archivos cambiados. La rama contiene el dominio Futures, runtime, bridge/projector y backtester previos; no sólo el delta perf. La revisión debe clasificar toda esa incorporación. Workflows no modificados y hooks locales sólo de ejemplo; no se ejecutó despliegue.
 - Revisión propia confirma `Evaluate → syncTrend/advance`, excepciones de aliasing en la prueba de clonación de Operation, devolución directa de Snapshot memoizado y normalización indiscriminada de hashes en el comparador. Son defectos pendientes; el rótulo histórico IMPLEMENTED_VERIFIED no certifica esta consolidación.
 - Oráculo F1/K05/2300: recibo COMPLETE con identidad `b2fbdd5a2f5e7d0bf9cf2ae0328556c2cf0a271b8517e55aab8b7d06fcf3c95e`; hashes recalculados coinciden con recibo para resultado `9d150b298e0cc59c012ca7ae25b36b7820ff13a4ace3e938eabe0db08ced6a6d` y eventos comprimidos `03028fdf45010b1e342ddb5bc2e3ee25458abb1e8ab353f15edd7b0229f1391f`. No se reejecutó mercado.
 

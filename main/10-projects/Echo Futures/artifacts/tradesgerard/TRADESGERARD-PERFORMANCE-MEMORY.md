@@ -16,7 +16,13 @@ updated: "2026-10-15"
 
 ## Propósito
 
+**Revisión posterior 2026-10-15 — consolidación en curso:** el rótulo IMPLEMENTED_VERIFIED siguiente corresponde a la entrega anterior de rendimiento. La inspección actual confirma analytics aún dentro de Strategy, aliasing de Operation con una prueba exceptuada, Snapshot público memoizado y normalización de cualquier hash hexadecimal en el comparador. Por eso la equivalencia material completa y el aislamiento quedan pendientes de nueva verificación; las cajas históricas y los recibos conservados no se invalidan por esta observación. El mandato actual permite sólo una campaña nueva y su autoridad de avance vive en [[TRADESGERARD-CONSOLIDATION]].
+
 **Estado vigente 2026-10-15: IMPLEMENTED_VERIFIED — objetivos de rendimiento cumplidos (≥5× en el corto F1 y en el lote corto), equivalencia económica demostrada contra O11 en las 8 regresiones de ventana completa, clon JSON del Provider y carga repetida de zonas horarias eliminados, dataset preparado en memoria reutilizado por el lote.** El mandato GLM one-shot (GLM-5.3-Flash, superficie LOCAL) entregó una plataforma de iteración más rápida sin cambiar una sola decisión de trading: los ocho streams de eventos completos son idénticos a los sellados de O11 salvo los tokens de identidad del binario declarado (exclusión permitida y enumerada). Sin operaciones reales, sin LIVE, sin merge a master, sin selección de estrategia y sin aceptación de resultados de trading.
+
+## Contenido
+
+Las secciones siguientes conservan identidad, arquitectura reportada, mediciones y recetas de la entrega de rendimiento; las correcciones posteriores se siguen en [[TRADESGERARD-CONSOLIDATION]].
 
 ## Identidad exacta
 

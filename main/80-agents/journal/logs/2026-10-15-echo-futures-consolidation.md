@@ -28,7 +28,7 @@ tags:
 ## Cambio
 
 - **Tipo:** created / updated.
-- **Archivos:** [[TRADESGERARD-CONSOLIDATION]], [[TRADESGERARD-CONTROL]], [[TRADESGERARD-OPERABILITY-RESULTADO]].
+- **Archivos:** [[TRADESGERARD-CONSOLIDATION]], [[TRADESGERARD-CONTROL]], [[TRADESGERARD-OPERABILITY-RESULTADO]], [[TRADESGERARD-PERFORMANCE-MEMORY]].
 
 ## Motivo
 
@@ -40,7 +40,7 @@ tags:
 
 ## Resolución aplicada
 
-- Registrar recepción, delegación real GLM, defectos pendientes y presupuesto 0/1. Corregir neto F0/K03/3000 a USD 2211, acreditado por resultado sellado; sin alterar plan, recibo ni caja final USD 4091.
+- Registrar recepción, delegación real GLM, diseño adjudicado, defectos pendientes y presupuesto 0/1. Acotar el alcance probatorio de la afirmación anterior de equivalencia, preservando los resultados económicos existentes. Corregir neto F0/K03/3000 a USD 2211, acreditado por resultado sellado; sin alterar plan, recibo ni caja final USD 4091.
 
 ## Validación
 
