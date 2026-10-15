@@ -1,5 +1,17 @@
 # WINDOWS-HANDOFF-KRONOS — Estado operacional efectivo del worker MT5 (2026-10-15)
 
+> **ACTUALIZACIÓN 2026-10-15 (posterior):** el mecanismo de arranque documentado
+> aquí (`C:\Temp\session_worker.ps1`, deudas sin watchdog/update) fue REGULARIZADO
+> la misma fecha por el runtime hardening: supervisor versionado
+> `deploy/windows/session-worker/` en `C:\ProgramData\Stager\bin\`, tarea
+> `\EchoForgeMT5WorkerSession` re-registrada (sin límite 72h), `C:\Temp` eliminado,
+> causa de la degradación session 0 resuelta como degradación transitoria
+> recurrente (probe SYSTEM PASS) y certificación de ciclo de vida A–E. Estado
+> vigente y evidencia: **WINDOWS-RUNTIME-HARDENING-20261015.md** (mismo
+> directorio) y `worker-troubleshooting` §10. El estado físico del worker,
+> layout, identidades de release y perfiles de acceso de este documento siguen
+> vigentes.
+
 **STATUS: OPERATIONAL_DOCUMENTED** — inspección read-only (perfiles `mt5-kronos-admin`, `mt5-kronos-operator`); no se reinició el host, no se alteró el worker, no se ejecutó ninguna hipótesis destructiva. Host: `WORKER-KRONOS` (VM 135, `mt5-kronos.lab.aranea.cl`), ambiente operacional único de Forge (`production`, contrato §0 de [[Echo + Echo Forge — Environment Contract]]).
 
 ## Estado efectivo verificado
