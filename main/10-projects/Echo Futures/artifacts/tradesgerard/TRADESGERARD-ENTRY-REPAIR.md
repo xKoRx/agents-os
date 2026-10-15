@@ -10,7 +10,7 @@ aliases: []
 tags:
   - kind/doc
 created: "2026-10-13"
-updated: "2026-10-13"
+updated: "2026-10-15"
 ---
 
 # TRADESGERARD-ENTRY-REPAIR
@@ -20,6 +20,18 @@ updated: "2026-10-13"
 Reparar y verificar el recorrido de oportunidades TradesGerard KISS-1 bajo el mandato del Owner del 2026-10-13. El objetivo es funcionamiento correcto, no rentabilidad. Este es el único informe de reparación; los resultados históricos permanecen conservados.
 
 ## Contenido
+
+### Recuperación de archivos y Git — 2026-10-15
+
+Estado de recuperación: **SOURCE_BYTES_VERIFIED / GIT_LINEAGE_RECOVERY_IN_PROGRESS**. Este estado describe la recuperación posterior al borrado del repositorio común, no una repetición de las campañas del13-oct. El resultado funcional histórico siguiente conserva sus recibos y alcance.
+
+El rescate en `/srv/echo-work/rescate-20261014-rootdisk/tradesgerard-entry-repair-20261013` conserva los1848 archivos del scope del manifiesto C4:1848/1848 coinciden físicamente en `implementer/echo-c4`, cero ausentes o diferentes. Binario C4 conservado:15.886.491 bytes, SHA256 `c8849bb6e5523e8625ead8282f0d97f98d8b02e14d72838e3c35de207c6bcd57`. Readback independiente `/srv/echo-work/recovery-verify-20261015/source-integrity.json`. El scope incluye archivos regulares versionados v3 y workspace; por sí solo no acredita aún el tree Git de todo el repositorio ni los objetos commit perdidos.
+
+El árbol Git completo C4 y el objeto commit ya se reconstruyeron exactamente en el repositorio aislado: tree `935e74d6056ffb3593f5a9a5deb8771ea6214bcd`, commit `88ed70d1ff9910bb157f1c14c0fed1d2b8e7ec49`. Manager comprobó `git cat-file -t/-p`: objeto commit, padre `26f3459cba47fd05f5ef9aed3d205c3c5bbad81a`, epoch1791913284 y timezone−0300. La coincidencia del hash acredita bytes completos del objeto; la conectividad de padres todavía se reconstruye y no se declara repositorio completo.
+
+Corrección al reporte de reconstrucción recibido: los dos archivos productivos distintos y cuatro tests ausentes describen la comparación entre los dos árboles rescatados, no el delta acumulado B→C4. El handoff original acredita15 archivos productivos acumulados. La metadata de directorio09:31/13:39 no fecha el contenido final de todos sus archivos. Tampoco TASKS pendiente al freeze invalida las tareas5–7 ejecutadas después: existen los recibos de diez campañas finales y su verificación independiente, sin necesidad de repetirlas para recuperar Git.
+
+Se reconstruye en un repositorio nuevo bajo `/srv/echo-work/recovery-entry-20261015`; rescate, repos temporales de otras sesiones y rollouts permanecen sólo lectura. Verificador independiente separado bajo `/srv/echo-work/recovery-verify-20261015`. Prioridad: objetos y árboles exactos, padres/autor/committer/fechas/mensaje; los mensajes y timestamps de rollout por sí solos no garantizan el SHA original. Los bundles downstream requieren ancestros perdidos: no se presentan como autónomos hasta resolverlos. No se ejecuta nuevo tallado del disco ni se afirma imposibilidad universal de recuperación ext4 a partir del intento fallido reportado. Sin push ni mutación de refs ajenas en esta fase.
 
 ### Estado vigente
 
