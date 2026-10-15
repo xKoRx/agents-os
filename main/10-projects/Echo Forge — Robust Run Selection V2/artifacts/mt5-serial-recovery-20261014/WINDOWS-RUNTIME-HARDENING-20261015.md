@@ -120,14 +120,29 @@ Sin nueva wave de 21; sin reboot del host; sin nueva release del worker.
   relanzó desde la ruta nueva en ≤30s; reversión idéntica; release de prueba
   eliminada; reconcile re-habilitado y CURRENT en `0.2.141`.
 - **E — Backtest MT5 real de aceptación:** workflow `MT5BacktestArtifactWorkflow`
-  (namespace `sqx-prop`, cola `sqx-main-queue` → activity `sqx-mt5-queue`)
+  `smoke-hardening-01-20261015` (run `01a14007-7ef7-78d1-8419-a0cff55427d1`,
+  namespace `sqx-prop`, cola `sqx-main-queue` → activity `sqx-mt5-queue`)
   despachado con EX5 durable auténtico del finalista 89171ea6 (cohort wave2b,
   key `durable/mt5-export/v1/cd697133-…/06_mt5_ex5/final-89171ea6-….ex5`,
   220.836 B, SHA256 `92b025f2642b894e00c15fc7686a730be2238591d190dec378d04a4d538b7f20`
   verificado por descarga+hash local — coincide byte-exacto con SMOKE-SERIAL-3OF3.md).
   Ejecutado por el worker relanzado por el supervisor (PID 30840,
-  `releases\0.2.141`). Resultado y evidencias: ver §3-E al final (se completa
-  en el cierre de la sesión).
+  `releases\0.2.141`). Resultado: `Tester last test passed "successfully
+  finished" in 0:01:02.231` (12:28:11 local), `exit with code 0`, terminal en
+  build 6182, **`activity.ok status=success` 15:28:23Z**; 5/5 evidencias
+  durables publicadas 15:28:21–23Z bajo el prefijo nuevo
+  `…/07_smoke_runtime_hardening_20261015/` (sin tocar `07_mt5_backtest/` de
+  wave3t): `.htm` 787.084 B + `.tester.ini` 454 B + `.terminal.log` 7.164 B +
+  `.tester.log` 4.429.154 B + `.agent.log` 5.531.638 B. El helper efímero de
+  despacho (`sqx/tools/dispatchmt5smoke`, patrón `di.InitSelective("sqx-watcher")`)
+  fue borrado tras la corrida; el repo quedó sin delta de herramientas. Nota:
+  el ini del smoke usó `Symbol=NDX` con rango 2024-H1 (no la config certificada
+  `NDX_SQX` 2025.07–2026.10): prueba de ciclo de vida, no de fidelidad; la
+  descarga de historia completa (~40 min) no afecta la validez del ciclo
+  worker→HTM→journals.
+- NO probado físicamente: reboot del host (gate owner, ventana de
+  mantenimiento) y update con una release real nueva (la ruta de swap es la
+  misma probada en D; el primer rollout real la ejercita end-to-end).
 
 ## 4. Hallazgo nuevo: LiveUpdate de MT5 puede cambiar el build certificado
 
