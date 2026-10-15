@@ -32,5 +32,5 @@ tags:
   histórica de `final-fidelity-closure-20261014/` no fue modificada.
 - Procedimientos operativos reusables (release Windows, serial INFRA-1, fix de
   sesión para HTM) documentados en el repo `xKoRx/symphony`
-  (`.agents/skills/worker-troubleshooting/SKILL.md` §9, commit `eab4302`).
+  (`.agents/skills/worker-troubleshooting/SKILL.md` §9, commit `eab4302`; fix serial `5eaeaa2`, gitignore `11436e7`, release 0.2.141 `1a48cb3`+manifest).
 - Sin cambios a constitución, perfil, skills del vault ni memoria pública.
