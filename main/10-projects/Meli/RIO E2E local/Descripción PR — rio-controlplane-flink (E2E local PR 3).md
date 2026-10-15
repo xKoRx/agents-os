@@ -18,9 +18,7 @@ updated: "2026-10-15"
 
 # Descripción PR — rio-controlplane-flink (E2E local PR 3)
 
-Repo fury_rio-controlplane-flink · rama feature/rio-e2e-local-flink-pr3 @ aaec54bd82d6dc0c20e60ad25844d99739dabab9 · base feature/rio-e2e-local-flink-pr2 @ 0728044c (#211) · 3 commits sobre la base · diff base...HEAD: 12 archivos/+310/−29; diff origin/develop...HEAD: 30 archivos/+3566/−0 (refs de origin del último fetch) · src/main y src/test sin diff contra ambas referencias · 1937 tests productivos/22 locales/pre-commit PASS · E2E físico completo PASS en aaec54bd, una corrida, cleanup 0 contenedores/0 redes rio-* · verificado 2026-10-15.
-
-> [!warning] **Push pendiente.** La rama no está en origin: el push falló por IP allow list de GitHub (GlobalProtect desconectado). El PR se abre como draft contra `feature/rio-e2e-local-flink-pr2` después del push.
+Repo fury_rio-controlplane-flink · rama feature/rio-e2e-local-flink-pr3 @ aaec54bd82d6dc0c20e60ad25844d99739dabab9 · base feature/rio-e2e-local-flink-pr2 @ 0728044c (#211) · 3 commits sobre la base · diff base...HEAD: 12 archivos/+310/−29; diff origin/develop...HEAD: 30 archivos/+3566/−0 · src/main y src/test sin diff contra ambas referencias · 1937 tests productivos/22 locales/pre-commit PASS · E2E físico completo PASS en aaec54bd, una corrida, cleanup 0 contenedores/0 redes rio-* · PR draft [#213](https://github.com/melisource/fury_rio-controlplane-flink/pull/213) · verificado 2026-10-15.
 
 ## Propósito
 
