@@ -9,12 +9,14 @@ aliases: []
 tags:
   - kind/doc
 created: "2026-10-12"
-updated: "2026-10-14"
+updated: "2026-10-15"
 ---
 
 # TRADESGERARD-CONTROL
 
 ## Propósito
+
+**Recuperación de fuente 2026-10-15: EXACT_GIT_LINEAGE_RECOVERED.** C1/C2/C3/C4 recuperados con SHA originales, cinco bundles downstream conectados, O11 y sensibilidad accesibles. Repositorio aislado `/srv/echo-work/recovery-entry-20261015/repo` y bundle autónomo193.798.837B, SHA256 `7cd5abb0e892adb33e878ed4cb508c876888ed67bb4bb13e22d5d014f3640455`, con clon/fsck exitosos. Los50 resultados C4+O11 y sus trazas conservan digests; sin nuevo backtest ni push de producto. [[TRADESGERARD-ENTRY-REPAIR]] contiene cadena, ubicaciones y límites, incluida referencia5eba365e no acreditada. La entrega funcional/económica del14-oct siguiente no cambia por esta recuperación.
 
 **Estado vigente 2026-10-14 (cierre): ENCARGO REV2 COMPLETO — disco de datos operativo, matriz 40/40 COMPLETE con liquidación uniforme, ampliación NQZ6 4/4 y cierre operativo limpio.** Ranking líquido de la matriz: F2-SR/K02/3000 +1851, F0/K05/2300 +422, F1/K05/2300 +91, 37 restantes negativas. Ampliación exploratoria: **las 4 campañas NQZ6 (K05/F0 y K05/F1, ambos retiros) negativas** (F0 3680, F1 4160) — los positivos de la ventana primaria no se repitieron fuera de la muestra. Sensibilidad intrabar: NO EJECUTADA, límite declarado (requeriría delta de código con gate propio). Procesos propios drenados (cero), scratch propio retirado (529M), contenedor LXD eliminado (por la limpieza externa del Owner; el volumen permanece montado, fstab cubre el arranque). Reportes: [[TRADESGERARD-OPERABILITY-RESULTADO]] (tabla completa, ranking, K05, ampliación), [[TRADESGERARD-STORAGE-20261014]] (disco, incidente corpus, mapa de ubicaciones). CSV por fila: `/srv/echo-work/results/o11-matrix-40-final.csv`. Recomendación para la próxima iteración K05 en el RESULTADO (sólo recomendación). Sin operaciones reales, sin GerardMM/adds/BE, sin selección final de estrategia, sin aceptación del Owner, sin cierre de proyecto/sesión Agents-OS. Los estados RUNNING siguientes son historia.
 

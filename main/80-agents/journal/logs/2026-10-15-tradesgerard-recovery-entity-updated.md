@@ -27,7 +27,7 @@ tags:
 ## Cambio
 
 - **Tipo:** updated
-- **Archivo(s):** `10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-ENTRY-REPAIR.md`.
+- **Archivo(s):** `10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-ENTRY-REPAIR.md` y `TRADESGERARD-CONTROL.md`.
 
 ## Motivo
 
@@ -43,7 +43,7 @@ El Owner solicita recuperación posterior al borrado. Separar bytes preservados,
 
 ## Validación
 
-- Manager leyó recibo1848/1848 y SHA binario exacto. Tree C4 y objeto commit88ed70d1 exactos comprobados por cat-file; cadena B→C1→C2→C3→C4 comprobada con git log;3080 blobs físicos coinciden, integración bundles/fsck final pendiente. Lint/readback tras editar.
+- Manager leyó recibo1848/1848 y SHA binario exacto. Tree C4 y objeto commit88ed70d1 exactos comprobados por cat-file; cadena B→C1→C2→C3→C4 comprobada con git log;3080 blobs físicos coinciden, cinco bundles integrados, fsck0, clon autónomo verificado. Readback independiente40/40O11 y10/10C4 resultados/trazas con digests. Bundle outputsSHA confirmado por manager. Lint/readback tras editar.
 
 ## Compartibilidad
 
