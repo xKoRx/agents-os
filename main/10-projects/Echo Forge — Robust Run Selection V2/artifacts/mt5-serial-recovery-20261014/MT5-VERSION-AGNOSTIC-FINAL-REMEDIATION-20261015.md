@@ -1,29 +1,13 @@
----
-type: artifact
-schema_version: 1
-created: "2026-10-15"
-updated: "2026-10-15"
-area: "[[Aranea]]"
-project: "[[Echo Forge — Robust Run Selection V2]]"
-entities: []
-related: []
-aliases: []
-artifact_of: "[[Echo Forge — Robust Run Selection V2]]"
-confidence: verified
-load_policy: manual
-indexable: true
-index_priority: low
-tags:
-  - kind/artifact
-  - tech/mt5
-  - area/echo
----
+# MT5 VERSION-AGNOSTIC — FINAL REMEDIATION (2026-10-15)
 
-# MT5 Version-Agnostic — Final Remediation (2026-10-15)
+**STATUS: MT5_VERSION_AGNOSTIC_FINAL_PASS_WITH_DEPLOY_BLOCKED**
 
-Estado: **MT5_VERSION_AGNOSTIC_FINAL_PASS_WITH_DEPLOY_BLOCKED** (código y tests
-cerrados; despliegue efectivo de 0.2.143 a worker-kronos pendiente de decisión
-owner por bloqueo preexistente del stager).
+Sesión one-shot ZCode/GLM-5.3-Flash sobre el mandato "ECHO FORGE — MT5
+VERSION-AGNOSTIC FINAL REMEDIATION" (manager GPT-6). Base: release 0.2.142 /
+`f1d29e0` (allow-list eliminada y smoke 6230 ya ACEPTADOS). Host operacional:
+`WORKER-KRONOS`. Sin rediseño, sin allow-list, sin repetir wave3t ni campaña
+de 21 estrategias; sin tocar fórmula Fidelity, ranking, Robust V2, datos ni
+integración Echo.
 
 ## Qué cerró (symphony master `5046650`, sobre release 0.2.142 / `f1d29e0`)
 
@@ -73,4 +57,4 @@ owner por bloqueo preexistente del stager).
   slot-1..4 (sin contratos) fuerza una revalidación (re-smoke) en el primer
   backtest de cada slot, que asciende la evidencia al formato estricto.
 
-Run: [[2026-10-15-zcode-glm53-echo-forge-mt5-gateb-final-remediation]]
+Run: `80-agents/journal/agent-runs/2026-10-15-zcode-glm53-echo-forge-mt5-gateb-final-remediation.md`
