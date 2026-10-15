@@ -43,7 +43,7 @@ El Owner solicita recuperación posterior al borrado. Separar bytes preservados,
 
 ## Validación
 
-- Manager leyó recibo1848/1848 y SHA binario exacto. Tree C4 y objeto commit88ed70d1 exactos comprobados por cat-file; conectividad de ancestros pendiente. Lint/readback tras editar.
+- Manager leyó recibo1848/1848 y SHA binario exacto. Tree C4 y objeto commit88ed70d1 exactos comprobados por cat-file; cadena B→C1→C2→C3→C4 comprobada con git log;3080 blobs físicos coinciden, integración bundles/fsck final pendiente. Lint/readback tras editar.
 
 ## Compartibilidad
 
