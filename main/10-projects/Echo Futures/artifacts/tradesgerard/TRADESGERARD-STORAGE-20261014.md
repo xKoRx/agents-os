@@ -51,3 +51,13 @@ kor pertenece a sudo (con password no disponible para el agente) y a `lxd`; moun
 ## Recepción de encargo (sección0.2)
 
 No se recibió ni ejecutó la revisión1: `/srv/echo-work` no existía, sdb estaba virgen, sin mounts ni enlaces de migración; se continuó directamente con la revisión2.
+
+## Cierre del encargo (2026-10-14 noche)
+
+- Procesos propios: 0 (supervisores, hijos, loops y snapshotter drenados y verificados ausentes).
+- Scratch propio abandonado: retirado (`aranea/work/tmp` 336M + `aranea/gotmp` 193M; sin consumidores, sin actividad desde el 12-oct).
+- Volumen final: 278MB usados (`runs/O11` 50M, `archives/o11-backup-20261014` 161M, `data/corpus` 55M, `results` 1M) de 157G útiles.
+- Raíz final: 102G usados / 46G libres (69%) — liberado por la limpieza externa del Owner, no por este encargo; escritura propia en raíz ≈0.
+- El contenedor LXD `tg-diskops` fue eliminado por la limpieza externa del Owner durante la sesión; sin impacto operativo: el volumen permanece montado y fstab cubre el arranque. Para remontajes ad-hoc sin root queda documentado el mecanismo (contenedor LXD efímero + udisksd vía D-Bus) en esta misma página y en la memoria del agente.
+- Scripts y logs de las operaciones de disco conservados en `aranea/work/tradesgerard-operability-20261013/storage/`; los auxiliares de `/home/kor/` fueron movidos allí.
+- Los intentos fallidos `workvol3`/`workvol4` (F1 ×4 + ×4, corpus ausente/binding roto antes del fix) permanecen preservados en `/srv/echo-work/runs/O11` con su causa; ninguna fila del ranking proviene de ellos.
