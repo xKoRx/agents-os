@@ -1,0 +1,17 @@
+{
+  "02ca621f": {
+    "key": "durable/mt5-export/v1/cd697133-4d2a-49d3-bd24-45c391b404d8/02ca621f-100d-4e74-8769-967a96450061/sha256:a191b19b33180b1e845e8ccca6db87f79fcfe7d605af5371f5d94948691adf18/06_mt5_ex5/final-02ca621f-100d-4e74-8769-967a96450061.ex5",
+    "size": 218748,
+    "sha256": "sha256:ab2de4db45d444156c7aad8af67af8a74e7ab15f5788044499c8e9dff3e7f6e3"
+  },
+  "3bf04cb9": {
+    "key": "durable/mt5-export/v1/cd697133-4d2a-49d3-bd24-45c391b404d8/3bf04cb9-5c35-4e4a-b58e-f1e284ee84e9/sha256:85cb6ef869b478bf1daa77969a76df914e2b9fe3a784aaa3896cd687d92fd285/06_mt5_ex5/final-3bf04cb9-5c35-4e4a-b58e-f1e284ee84e9.ex5",
+    "size": 218734,
+    "sha256": "sha256:48a263c359738ec5b733fa59c7b46bd111027870441ef2e6c5ab9f74ac8544f2"
+  },
+  "89171ea6": {
+    "key": "durable/mt5-export/v1/cd697133-4d2a-49d3-bd24-45c391b404d8/89171ea6-9ece-4f15-acee-c79da3abc288/sha256:30d938effaed529ac019f9ad7d17717efc9cc9eac25cef45ca5d8b8ec961ea3b/06_mt5_ex5/final-89171ea6-9ece-4f15-acee-c79da3abc288.ex5",
+    "size": 220836,
+    "sha256": "sha256:92b025f2642b894e00c15fc7686a730be2238591d190dec378d04a4d538b7f20"
+  }
+}

@@ -74,3 +74,48 @@ El bloqueo restante es exclusivamente de la fase `mt5_backtesting`: en cada wave
 1. **f8719ecf-07f7-45de-9601-45c75cdd444b** — Fidelity **96.69** (trades 101↔101, net 3766.21→3298.79) — Decision finalista `sha256:61760e33…`.
 
 No se inventan finalistas: con 1 elegible COMPUTED, el contrato entrega TOP-1.
+
+
+---
+
+# ENMIENDA 2026-10-15 — MT5_SERIAL_RECOVERY_PASS → FORGE_PRE_ECHO_PASS
+
+**STATUS PREVIO**: FORGE_PRE_ECHO_BLOCKED_INFRA (INFRA-1 bloqueaba 20/21 backtests MT5 por wave).
+**STATUS ACTUAL**: **FORGE_PRE_ECHO_PASS** — INFRA-1 remediado por serialización de activities; funnel wave3t 21/21 con MT5 real, scores COMPUTED, ranking GLOBAL TOP-5 real y promoción local @1.0.0. Evidencia completa en `artifacts/mt5-serial-recovery-20261014/`.
+
+## Remediación INFRA-1 (serial)
+
+- Fix de producto (`sqx-mt5-worker/main.go`): `MaxConcurrentActivityExecutionSize` ya no deriva de `SlotAllocator.Capacity()`; es la constante física `mt5ActivityConcurrency=1`. El pool conserva 4 slots con identidad/lease (`mt5/slot_count=4`). Commits symphony `5eaeaa2` (fix+tests) y `11436e7` (gitignore staging para `vcs.modified=false`).
+- Release **0.2.141** publicada (windows `bf247d61…`, linux `57537674…`, `vcs.modified=false`, desde `1a48cb3`); rollout Linux 3/3 verificado por SHA; worker Windows activado 0.2.107→0.2.141 vía el stager canónico reparado (tarea `StagerReconcile` + `stager.exe` de xKoRx/stager HEAD; el binario 8/13 rechazaba `shutdown_timeout: infinite` y la tarea no existía — por eso 0.2.107 estaba estancado desde el 24-sep).
+- Smoke **MT5_SERIAL_SMOKE_3_OF_3_PASS** con 3 EX5 auténticos del cohort (02ca621f, 3bf04cb9, 89171ea6): 3× success, HTM durable bajo `07_smoke_serial_20261014/`, journals frescos, inputs reconciliados por SHA256, slot-2, un solo terminal a la vez (watcher 2 s, nunca >1).
+- Defecto ambiental adicional detectado y remediado durante el smoke: desde ~16:42 local del 14-oct, session 0 del host worker-kronos no materializaba el `.htm` del tester (tester passed, sin reporte) con cualquier launcher; logs con `MDI create failed` y sin precarga del experto. Fix: `tscon 2 /dest:console` (sesión KoR Disc→Active), zombie `MetaEditor64` (C:\MT5\test, desde 12-oct, puerto 22345) terminado, y worker movido a tarea interactiva `EchoForgeMT5WorkerSession` (misma resolución de release vía CURRENT del stager). `StagerRuntime` quedó Disabled mientras dure esta modalidad. La causa raíz exacta de la degradación de session 0 quedó sin determinar (ver UNRESOLVED).
+
+## Wave3t (E2E final, identidad libre)
+
+- Fuente: wave2b FlowRunRef `0cbd0f34-c4f2-459e-b670-242bddd35b85` (contrato de continuación reutilizado; 21/21 decisiones V2 re-derivadas idénticas — demostrado en wave3p/r/s con output byte-idéntico).
+- FlowRunRef wave3t: `7f2efabe-3778-4981-8135-5893bdd23875` (workflow `sqx-main-v1-4c491359-ff12-4ab4-8664-0e40b4786e94`), COMPLETED 2026-10-15T03:28:19Z. Duración ≈ 2 h 17 min (21 backtests serializados + compiles).
+- Determinismo cross-wave: f8719ecf HTM wave3t **byte-idéntico** a wave3s (etag `6cb04dcf…`, net 3298.79, 101 trades) y fidelity 96.6920 == 96.69 wave3s.
+- **21/21 backtests MT5 técnicamente completados** (21 HTM durables publicados; cero fallos de infraestructura; paridad de trades SQX↔MT5 1:1 en las 21).
+- **21/21 Score COMPUTED** (`mt5_fidelity_shadow.v1`); **ranking GLOBAL** `mt5-final-fidelity-ranking` (score_descending.v1): requested 5, **effective 5**; RankingSnapshotRef `sha256:8afa7b12afc8f9fb9dc29555a2df4ffe02a4df20a31dcffa5fd126879b0eb979`.
+- **Promoción** `finalist_promotion@1.0.0` AVAILABLE: Decision `sha256:20dcf02b1a0ebb09e51c6226c77baaa6fd845c13e57b63e3f588a02079c83963`, 5 finalistas (TOP_PROJECTION_PROMOTED).
+
+## TOP 5 final (GLOBAL)
+
+1. **3e1762b9-629f-4273-ad03-f71439bb02c1** — fidelity **99.6911** (MT5 net 1756.74 / 95 trades)
+2. **89171ea6-9ece-4f15-acee-c79da3abc288** — 99.4237 (3998.18 / 146)
+3. **93413f58-76cf-4d7f-ba6b-e172d940937a** — 98.4042 (2103.83 / 52)
+4. **ddd47d26-be00-49cd-879c-478787d58152** — 98.0092 (1961.41 / 113)
+5. **0cb29320-7838-4a1f-b401-ec5bab293166** — 97.5077 (2175.36 / 43)
+
+(f8719ecf, la TOP-1 de la wave anterior con cohort incompleto, queda rank 8 con 96.6920 — el TOP-5 anterior no certificaba los mejores de la cohorte; éste sí.)
+
+## Frontera pre-Echo
+
+- `echo.ingest_configured=false`; 0 llamadas HTTP a Echo; `forge_seal_handoff` no ejecutado; `finalist_promotion@2.0.0` no configurada; 0 deployments de EAs.
+- CSV 21/21: `FINAL-NDX-FIDELITY-CLOSURE-21.csv`. Bundle raw + SHA256SUMS en `bundle/`.
+
+## UNRESOLVED
+
+1. **Degradación de session 0 en worker-kronos** (root cause sin determinar): el `.htm` del tester dejó de materializarse desde session 0 a partir del ~16:42 local del 14-oct; reproducible (worker 0.2.107-era sessions OK por la mañana; manual + worker fallan por la tarde; sesión interactiva OK siempre). Workaround operativo vigente (worker en sesión interactiva); el host requerirá un reboot de mantenimiento o investigación de window stations cuando la ventana operativa lo permita.
+2. **Hang del worker con `mt5/slot_count=1`** (defecto de producto, sin diagnosticar): no bloquea (la serialización vive en el worker, no en el pool).
+3. `78225ff4` fidelity 50.0000: net SQX negativo (−199.03) hace degenerar el componente de net; trades 117↔117. Revisión de negocio opcional, no defecto.

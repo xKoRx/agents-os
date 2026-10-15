@@ -1,0 +1,8 @@
+Refs durables wave3t (2026-10-15)
+wave2b FlowRunRef: 0cbd0f34-c4f2-459e-b670-242bddd35b85
+wave3t FlowRunRef: 7f2efabe-3778-4981-8135-5893bdd23875   workflow: sqx-main-v1-4c491359-ff12-4ab4-8664-0e40b4786e94   COMPLETED 2026-10-15T03:28:19Z
+RankingSnapshotRef (GLOBAL): sha256:8afa7b12afc8f9fb9dc29555a2df4ffe02a4df20a31dcffa5fd126879b0eb979  requested=5 effective=5
+Promotion DecisionRef (finalist_promotion@1.0.0): sha256:20dcf02b1a0ebb09e51c6226c77baaa6fd845c13e57b63e3f588a02079c83963  AVAILABLE, 5 finalistas
+Release 0.2.141: windows bf247d6167421dc7182dece9633ac15162b27a1f91a2a6e3a9cf86121aaefc96 ; linux 575376746aae84cbd8068e781aaf69d9ea0c5ea287af1cc89a9927cdce3bb1dc ; commit 1a48cb3 (fix serial 5eaeaa2) ; vcs.modified=false
+Smokes r3: smoke-serial-0{1,2,3}-r3-20261014 (COMPLETED, success 3/3)
+Evidencia smoke: durable/mt5-export/v1/cd697133-.../<strategyRef>/sha256:.../07_smoke_serial_20261014/
