@@ -56,16 +56,17 @@ Costos confirmados en O11 y su corrección:
 
 ## Benchmark comparable (host exclusivo, misma toolchain, GOMAXPROCS por defecto)
 
-Corto representativo (5 primeras sesiones NY 14–20 oct 2025, K05/r2300, F0/F1/F2/F3 en un proceso, cold incluye preparación; warm = campañas 2–4 del mismo proceso sobre la preparación existente). n=3 por lado:
+Corto representativo (5 primeras sesiones NY 14–20 oct 2025, K05/r2300, F0/F1/F2/F3 en un proceso; cold incluye carga y preparación del corpus; warm = campañas 2–4 del mismo proceso sobre la preparación existente). Primaria = par medido secuencialmente en ventana tranquila del host; réplicas adicionales con contexto de carga explícito.
 
-| Medición (5 sesiones) | Baseline O11 (n=3) | Dev `67e7ecf7` (n=3) | Speedup |
+| Medición (5 sesiones, total del lote) | Baseline O11 | Dev `67e7ecf7` | Speedup |
 |---|---|---|---|
-| F0/K05/2300 | 515,1 s (n=1; REP_PEND) | 91,0 s | **5,66×** |
-| F1/K05/2300 | 476,9 s | 77,3 s | **6,17×** |
-| F2-SR/K05/2300 | 231,4 s | 49,9 s | 4,64× |
-| F3-TREND-SR/K05/2300 | 148,4 s | 55,2 s | 2,69× |
-| **Total lote corto** | **1372,7 s** | **273,5 s** | **5,02×** |
-| Peak RSS | 47 MB | 235 MB (corpus en RAM) | — |
+| **Primaria (ventana tranquila)** | 1372,7 s | 273,5 s | **5,02×** |
+| Réplica 1 (load externo ≥8) | 1772,5 s | 458,0 s | 3,87× |
+| Réplica 2 (load externo ≥8) | 1767,9 s | 315,2 s | 5,61× |
+
+Por campaña (par primario): F0/K05/2300 515,1 → 91,0 s (**5,66×**); F1/K05/2300 476,9 → 77,3 s (**6,17×**); F2-SR/K05/2300 231,4 → 49,9 s (4,64×); F3-TREND-SR/K05/2300 148,4 → 55,2 s (2,69×). Peak RSS: 47 MB → 235 MB (el corpus preparado vive en RAM — presupuesto explícito, una imagen por lote).
+
+Contexto de medición (honestidad sobre el ruido): durante las réplicas el host sostuvo load 8–10 por trabajo de OTROS procesos (otras sesiones/escritorio del Owner, verificado con `uptime`/`ps`, no atribuido a este encargo); ambas réplicas de cada lado corrieron dentro de esa ventana pero separadas ~1 h, por lo que la razón por réplica (3,87×–5,61×) es ruidosa. La comparación primaria es el par secuencial en ventana tranquila; el CPU-time por réplica no se capturó (límite declarado de la medición). El speedup de ventana completa (~8×) se ESTIMA desde el corto; las condiciones selladas de O11 (4 campañas concurrentes) no son comparables y no se usan como baseline.
 
 Ventana completa O11 (31 sesiones, 8 regresiones, un proceso, preparación única):
 
@@ -94,7 +95,7 @@ Los «~85 min del chat» no se usan como baseline directo (condiciones distintas
 
 ## Recetas ejecutadas
 
-Todo comando fue ejecutado tal cual; los artefactos viven en `/srv/echo-work/runs/perf-memory-20261015/` (enlazado abajo).
+Todo comando fue ejecutado tal cual; planes, comparadores, recibos, perfiles y evidencia quedaron en `/srv/echo-work/runs/perf-memory-20261015/` (46 MB; binarios de medición en `bin/`, resultados de las 8 regresiones en `results-regression8/`, par primario del corto en `out-{base-short5-run0,dev4-short5}`).
 
 Un experimento (fila aislada):
 
