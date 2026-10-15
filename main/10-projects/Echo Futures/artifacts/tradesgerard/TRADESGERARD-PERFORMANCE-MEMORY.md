@@ -21,7 +21,7 @@ updated: "2026-10-15"
 ## Identidad exacta
 
 - Base: `xKoRx/echo` rama `codex/tradesgerard-authority-handover-20261014`, commit O11 `5de33134311f3a23a306d12d1c8fabbf5222c502`, binario sellado `734c923804fff719b1037953a387b715cc57e41f988775970b48038cea1b55a7` (intacto, usado como baseline de medición).
-- Rama de desarrollo publicada: **`glm/tradesgerard-perf-memory-20261015` @ `67e7ecf7ca3b892c438be613833ae0ad6b5b8c84`** en `git@github.com:xKoRx/echo.git` (SHA remoto verificado por `git ls-remote`). Ocho commits; sin force-push, sin merge, sin release.
+- Rama de desarrollo publicada: **`glm/tradesgerard-perf-memory-20261015` @ `5b9a7ac86137377baf9882e03d468a31d4f7775e`** en `git@github.com:xKoRx/echo.git` (SHA remoto verificado por `git ls-remote`). Nueve commits (siete de código/medición hasta `67e7ecf7…` — el binario dev medido se construyó en ese commit — más un commit documental final); sin force-push, sin merge, sin release.
 - Toolchain: Go 1.27.1 linux/amd64 (la reportada, sin actualización). Host: 24 CPU / 64 GiB; mediciones con proceso exclusivo, GOMAXPROCS por defecto, sin `-race`, caché del SO intacta.
 - Binarios de medición: baseline `f852bff39da076ab…` (build del source O11), dev final `ce415e3d20436b6a…` (build de `67e7ecf7`).
 
@@ -58,7 +58,7 @@ Costos confirmados en O11 y su corrección:
 
 Corto representativo (5 primeras sesiones NY 14–20 oct 2025, K05/r2300, F0/F1/F2/F3 en un proceso; cold incluye carga y preparación del corpus; warm = campañas 2–4 del mismo proceso sobre la preparación existente). Primaria = par medido secuencialmente en ventana tranquila del host; réplicas adicionales con contexto de carga explícito.
 
-| Medición (5 sesiones, total del lote) | Baseline O11 | Dev `67e7ecf7` | Speedup |
+| Medición (5 sesiones, total del lote) | Baseline O11 | Dev (binario `67e7ecf7`) | Speedup |
 |---|---|---|---|
 | **Primaria (ventana tranquila)** | 1372,7 s | 273,5 s | **5,02×** |
 | Réplica 1 (load externo ≥8) | 1772,5 s | 458,0 s | 3,87× |
@@ -70,7 +70,7 @@ Contexto de medición (honestidad sobre el ruido): durante las réplicas el host
 
 Ventana completa O11 (31 sesiones, 8 regresiones, un proceso, preparación única):
 
-| Config | Sellado O11 (referencia) | Dev `67e7ecf7` | Caja (dev = sellada) |
+| Config | Sellado O11 (referencia) | Dev (binario `67e7ecf7`) | Caja (dev = sellada) |
 |---|---|---|---|
 | F0/K05/2300 | ~85 min (histórico, condiciones distintas) | 618,3 s | 3771 ✓ |
 | F0/K05/3000 | — | 632,8 s | 4571 ✓ |
@@ -131,6 +131,6 @@ PERFORMANCE_READY_FOR_ITERATION parcial: IMPLEMENTED_VERIFIED con los objetivos 
 
 ## Fuentes
 
-- Rama: `xKoRx/echo@glm/tradesgerard-perf-memory-20261015` (`67e7ecf7ca3b892c438be613833ae0ad6b5b8c84`), base `5de33134311f3a23a306d12d1c8fabbf5222c502`.
+- Rama: `xKoRx/echo@glm/tradesgerard-perf-memory-20261015` (`5b9a7ac86137377baf9882e03d468a31d4f7775e`; binario medido construido en `67e7ecf7ca3b892c438be613833ae0ad6b5b8c84`), base `5de33134311f3a23a306d12d1c8fabbf5222c502`.
 - Artefactos: `/srv/echo-work/runs/perf-memory-20261015/` (planes, recibos, perfiles CPU/allocs, evidencia de contadores, comparadores).
 - [[TRADESGERARD-CONTROL]], [[TRADESGERARD-OPERABILITY-RESULTADO]] (matriz sellada y oráculos).
