@@ -22,6 +22,18 @@ Terminar un refactor mantenible de Echo: analytics compartido, responsabilidades
 
 ## Contenido
 
+**Estado vigente — CIERRE OPERATIVO (2026-10-16, segundo one-shot): causa del comportamiento cuestionado confirmada, corregida y validada; BACKTESTER_READY_FOR_OFFLINE_ITERATION.** Publicado en GitHub/master `0c4aae552176fda005c44766e24dd70e8c48e589` (fast-forward desde 7f7d4953, verificado por ls-remote).
+
+### Causa de la corrida cuestionada y corrección
+
+**Causa confirmada por el request ejecutado** (no por la hipótesis a secas): la campaña 7f7d4953 corrió SIN `--operability-policy`; el plan no llevaba `operability_policy` y `retireUntradeableAccounts` no-op sin `ECONOMIC_MINIMUM_RETIRE_V2` (el valor vacío del flag es legal: versión histórica deliberada). Reconstrucción desde los eventos existentes: tras el 6º trade (15-oct, cierre SELL 25027) la pérdida diaria cruzó −1000; desde el 16-oct el margen EOD permanente quedó en 0.12 (balance 48000.12 − piso EOD 48000) contra un mínimo ejecutable 24.98; la cuenta volvía a ELIGIBLE cada sesión (62 estados), TGMM denegó toda entrada por mínimo económico (cero comandos desde el 15-oct pese a 329 admisiones ALLOW), y `renewAccount` — que sí excluye retiradas — renovó el 13-nov (−120) porque la cuenta nunca fue retirada. No era política ignorada del motor: era la política AUSENTE del request.
+
+**Corrección (en el dueño correcto, sin tocar el significado del vacío)**: preset versionado `tools/tradesgerard/PRESET-F1-K05-2300.json` (identidad completa + políticas obligatorias) + `platform-prepare --preset` (conserva la política EN el request, valida identidad completa con rechazos nombrados ANTES del plan/motor, valor contradictorio explícito es error) + `PresetID` en el request con rechazo de admisión si un plan que alega preset pierde la política. Tests: cadena preset→prepare→request (CLI), 9 clases de rechazo, identidad-sin-política; la suite de comportamiento (retiro/pausa/reanudación/pending/ledger, protección física) sigue verde.
+
+### Validación histórica única (corrida corregida)
+
+`campaign-f1-k05-2300-9330fe15/` — commit `9330fe15`, binario `6c7d0de3…`, plan `2eca39ef…` con `operability_policy=ECONOMIC_MINIMUM_RETIRE_V2` y `preset_id=F1-K05-2300` conservados; COMPLETE exit0 reconciled=true (intento financiero 1/3 usado). **362 señales (331 OPEN + 31 CLOSE_ALL), 262 trades cerrados (524 fills), 978 comandos; 13 cuentas: 12 RETIRED_UNTRADEABLE_BY_POLICY con evidencia (margen < mínimo, flat, sin reembolso, cupo liberado) y rotación por orden de creación (13 compras ×120), 1 LIVESIM con pago bruto 2300/neto 1651 (requested 31-oct → credited 13-nov); caja 5000 − 1560 + 1651 = 5091 final.** Antecedentes O11 reproducidos sin forzarlos (262 trades, 13 compras, cobro 1651, caja 5091). Contadores: `tg_preparations=1`, `tg_kernel_feeds_runtime=0`; wall 11m23s, CPU 1169s, RSS 390 MiB. Recibo `campaign-result.md` SHA256 `7a0284ea…`. Catálogo de intentos: `tools/tradesgerard/CAMPAIGNS.md`; receta con preset: `tools/tradesgerard/TG-FLOW.md`.
+
 **Estado vigente — C1–C4 cerrados y campaña funcional COMPLETE (2026-10-16, GLM one-shot).** El cierre de las cuatro fronteras y la campaña autorizada se ejecutaron sobre el mismo checkout en la rama `glm/tradesgerard-c1c4-closure-20261016` @ `7f7d4953ddd585d1f6f3b228ce04ef89bb9aab13` (base `e0e67f8c`, fast-forward). Resultado: **CORRECTED_AND_FUNCTIONALLY_VALIDATED** dentro del alcance declarado; publicación a master verificada por `git ls-remote`. Presupuesto histórico (intento 91fe559f 1/1) se conserva como antecedente; el encargo del Owner autorizó UN intento financiero nuevo (consumido 1/1, exit0) y máximo dos preparaciones (1/2 usada).
 
 ### Cierre C1–C4 (commit 7f7d4953)
