@@ -25,6 +25,8 @@ Consolidar el backtester y runtime sobre lógica compartida, preservar aislamien
 
 ### Delta vinculante del Owner — refactor y consumo de cuota
 
+**Estado más reciente: la única invocación funcional de `91fe559f` falló en TGPrepare antes del motor financiero (SOURCE_AGGREGATE_CLOSED). Presupuesto consumido1/1.** GLM corrige el orden de cierre de sesión mediante regla compartida y fixture pequeño; sin rerun ni merge. La prueba fallida no valida la versión posterior. Evidencia: `/srv/echo-work/runs/consolidation-20261015/one-campaign-result.md`.
+
 El Owner corrigió la prioridad después del cierre parcial: **terminar un diseño modular, mantenible, SOLID/clean y KISS/YAGNI para continuar iterando; probar el cambio final con UNA campaña. No certificar campañas históricas.** La reconstrucción de preimágenes O11 y certificación de ocho pares dejan de ser gates. Las secciones anteriores de investigación se conservan debajo como evidencia de la sesión previa, no como trabajo adicional obligatorio.
 
 Se mantiene un GLM escritor, el checkout existente y el máximo global de una campaña (consumidas 0). El mismo caso F1 conocido servirá para comprobar el refactor, sin forzar sus cifras antiguas ni vender equivalencia histórica. Prioridad restante: defectos concretos runtime/ownership, contratos claros, documentación/catálogo desde evidencia ya disponible, integración de master, pruebas pequeñas afectadas, una revisión final y una campaña sobre el candidato estable. Sin nuevos frameworks ni auditorías expansivas.
