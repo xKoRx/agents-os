@@ -16,6 +16,8 @@ updated: "2026-10-16"
 
 ## Propósito
 
+**Reserva presupuestaria vigente (16-oct, encargo C1–C4 GLM):** un intento financiero nuevo autorizado (F1/K05/2300 sobre el candidato corregido; MAX_NEW_FINANCIAL_CAMPAIGN_ATTEMPTS=1) y como máximo DOS intentos de preparación con plan histórico (1/2 consumido: plan generado exitoso para `campaign-f1-k05-2300-7f7d4953`, binario SHA256 `1dc82bd065a0dedfa3201d5c18e50cb66c2d4b84d5e99fb6c63227eea4aa5565`, plan SHA256 `d630e36caa984e7e3fe33dfeba801b286100e45626cbdfa97956d927002c1f5c`). El intento 91fe559f fallido queda registrado; ni la evidencia anterior ni su presupuesto se redefinen.
+
 **Refactor publicado 16-oct: GitHub/master y rama de integración en e0e67f8c, verificados remotamente.** Push normal del integrador GLM por orden explícita del Owner. Pruebas pequeñas verdes; campaña del candidato final pendiente. La única invocación de 91fe559f falló en preparación antes de finanzas; contador 1/1, sin rerun. Sin deploy ni retiro de copias. Detalle: [[TRADESGERARD-CONSOLIDATION]].
 
 **Nota de alcance:** el párrafo siguiente conserva la entrega histórica reportada; su afirmación de equivalencia no certifica estado Provider completo ni acepta los cambios de consolidación. La auditoría vigente deja los ocho pares con Provider UNRESOLVED y el comparador pendiente de corrección.
