@@ -1,0 +1,41 @@
+{
+ "RetestPrecision_144.cfx": {
+  "src_sha": "99eaf5a22c0e3d9fc8f44a644b7532f7b2e55ad4e39c059ebe99c432485eb568",
+  "dst_sha": "2cd587f0bb15dd7f5d854f69e39ae30dcf1ee7539d561efc2a9f87ea379a7f9e",
+  "chart_swaps": 2,
+  "resources_removed": 1,
+  "darwinex_leftovers": 0
+ },
+ "RetestFull_144.cfx": {
+  "src_sha": "91ca1ac05d0295b40b23372c36ead52a15bd12677d94f0b366b0aac1970bc202",
+  "dst_sha": "14d55e9879fcfec718d4c97b3f6b83d1e6eda59d83d49d27ffffc0ee16a83389",
+  "chart_swaps": 2,
+  "resources_removed": 1,
+  "darwinex_leftovers": 0
+ },
+ "Optimizer_144.cfx": {
+  "src_sha": "4b282d8b73f3c88fb262f73707f70c65bbba4bbe57bba3fa9fe8be5baa85bdf0",
+  "dst_sha": "d4d9c0aa5123fd8792b0d1654bf7d63e9a96d00a29c0fc45c0b561f6b678b988",
+  "chart_swaps": 1,
+  "resources_removed": 1,
+  "darwinex_leftovers": 0
+ },
+ "Build_BR_G1_H1_144.cfx": {
+  "src_sha": "786cdaea03a0b43122d3983e39bfc07c134a36e399a39227933de40e4e7eefed",
+  "dst_sha": "507507c53829e5aee40753ac4f2520c9d8ce226628f7028ec23ee96475d4f675",
+  "chart_swaps": 1,
+  "resources_removed": true,
+  "stopcondition": "never (GUI-only) -> databank-full passedStrategies=750 en el artefacto probe; el CFX de campa\u00f1a conserva adaptaci\u00f3n databank-full 750 y MaxStrategies 1000 del owner",
+  "note": "La StopCondition type=never del owner solo es v\u00e1lida en GUI; sqcli headless la rechaza (Custom project misconfiguration). Adaptaci\u00f3n headless registrada."
+ },
+ "_probe_evidence": {
+  "precision_zeus_144": "PASS Task finished 10.14s tras remediaci\u00f3n de cach\u00e9 (probe-prec144c.log)",
+  "builder_zeus_144": "PASS mecanismo headless: 1000 estrategias generadas ~30min a 2500% CPU (probe-build144c.log + Results=1000)",
+  "chart_only_control": "PASS (sweep-chart.log)",
+  "resources_removed_control": "PASS (sweep-nores.log)"
+ },
+ "_remediation": {
+  "datasets_144_3hosts": "USATECHIDXUSD{,_darwinex} rsync root->144 + filas DATA (IDs 213/214) + data.db.bak-20261016-precfix",
+  "testfiles_cache_3hosts": "chmod -R a+rwX /home/kor/sqx/144/internal/testfiles (causa NPE loadedData null)"
+ }
+}

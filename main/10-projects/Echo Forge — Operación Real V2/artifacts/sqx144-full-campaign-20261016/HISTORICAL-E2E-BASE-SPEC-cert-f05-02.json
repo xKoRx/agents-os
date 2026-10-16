@@ -1,0 +1,236 @@
+{
+ "wave": "forge-0ce72173-b629-4ca4-bf4c-e7e586792e72-w000001",
+ "tasks": [
+  {
+   "name": "builder-main",
+   "type": "project",
+   "stage": "builder",
+   "config": "builder_test.cfx",
+   "folder": "01_builder"
+  },
+  {
+   "type": "overview_exporter",
+   "folder": "metadata",
+   "source_folder": "01_builder"
+  },
+  {
+   "type": "group",
+   "tasks": [
+    {
+     "type": "project",
+     "stage": "retester",
+     "config": "retester_test.cfx",
+     "folder": "02_retester",
+     "source_folder": "01_builder"
+    },
+    {
+     "type": "project",
+     "stage": "optimizer",
+     "config": "optimizer_test.cfx",
+     "folder": "03_optimizer",
+     "source_folder": "02_retester",
+     "upload_prefix_filter": "WF_Matrix"
+    }
+   ],
+   "folder": "02_retester",
+   "source": {
+    "type": "ranking_snapshot",
+    "ranking_name": "builder-early-per-type"
+   },
+   "batch_size": 1
+  },
+  {
+   "type": "evaluate_wfm",
+   "folder": "metadata",
+   "source_folder": "03_optimizer"
+  },
+  {
+   "type": "select_robust_run",
+   "folder": "",
+   "source_folder": "03_optimizer"
+  },
+  {
+   "type": "apply_selected_run",
+   "folder": "04_optimizer_robust",
+   "source_folder": "03_optimizer",
+   "apply_selected_run": {
+    "magic_number": 0,
+    "symmetric_variables": true
+   }
+  },
+  {
+   "type": "project",
+   "stage": "final_reretester",
+   "config": "reretester_test.cfx",
+   "folder": "05_reretester",
+   "source_folder": "04_optimizer_robust"
+  },
+  {
+   "name": "final-reretester-trades",
+   "type": "trade_list_exporter",
+   "stage": "tick_retest",
+   "folder": "06_trade_list",
+   "variant": "optimized",
+   "source_folder": "05_reretester"
+  },
+  {
+   "type": "generate_report",
+   "folder": "metadata"
+  },
+  {
+   "type": "mt5_exporter",
+   "folder": "07_mt5_mq5",
+   "source_folder": "05_reretester"
+  },
+  {
+   "type": "mt5_compiler",
+   "folder": "08_mt5_ex5",
+   "source_folder": "07_mt5_mq5"
+  },
+  {
+   "mt5": {
+    "to": "2026.06.05",
+    "from": "2016.01.04",
+    "model": 4,
+    "period": "H1",
+    "symbol": "XAUUSD",
+    "deposit": 10000,
+    "timeout": "",
+    "currency": "USD",
+    "leverage": 100,
+    "execution_mode": -1,
+    "server_timezone": "GMT"
+   },
+   "name": "mt5-final",
+   "type": "mt5_backtesting",
+   "folder": "09_mt5_backtest",
+   "source_folder": "08_mt5_ex5"
+  }
+ ],
+ "scores": [
+  {
+   "name": "mt5-final-fidelity",
+   "inputs": [
+    {
+     "role": "baseline",
+     "task": "final-reretester-trades",
+     "metric_set": "SQX_NATIVE"
+    },
+    {
+     "role": "candidate",
+     "task": "mt5-final",
+     "metric_set": "MT5_NATIVE"
+    }
+   ],
+   "algorithm": "mt5_fidelity_shadow.v1"
+  }
+ ],
+ "version": "v1",
+ "rankings": [
+  {
+   "name": "mt5-final-fidelity-ranking",
+   "top_n": 5,
+   "params": {
+    "direction": "DESC",
+    "schema_version": "score-descending-params.v1"
+   },
+   "algorithm": "score_descending.v1",
+   "score_spec_name": "mt5-final-fidelity",
+   "implementation_version": "1.0.0"
+  }
+ ],
+ "strategy": "cert-f05-02",
+ "direction": "L",
+ "promotion": {
+  "policy": "finalist_promotion",
+  "version": "2.0.0",
+  "source_ranking": "mt5-final-fidelity-ranking"
+ },
+ "timeframe": "H1",
+ "instrument": "XAUUSD",
+ "request_id": "forge-campaign-0ce72173-b629-4ca4-bf4c-e7e586792e72-wave-000001",
+ "wave_config": {
+  "ranking": {
+   "weights": {
+    "drawdown": 40,
+    "sharpe_ratio": 30,
+    "profit_factor": 30
+   },
+   "algorithm": "weighted_combination_v1"
+  },
+  "pool_max": 10000,
+  "wave_key": "forge-0ce72173-b629-4ca4-bf4c-e7e586792e72-w000001",
+  "batch_size": 10,
+  "wfm_params": {
+   "params": {
+    "param_permutation_max_pct": 20,
+    "param_permutation_min_pct": 10
+   },
+   "algorithm": "wfm_3x3_v1",
+   "max_dispersion": 0.2,
+   "metric_filters": {
+    "profit_factor": {
+     "min": 1.2
+    }
+   },
+   "min_pass_cells": 6
+  },
+  "target_tops": 5,
+  "deviation_tol": {
+   "metrics": {
+    "drawdown": 15
+   }
+  }
+ },
+ "config_folder": "00_configs",
+ "path_strategy": "default",
+ "early_rankings": [
+  {
+   "name": "builder-early-per-type",
+   "top_n": 2,
+   "params": {
+    "metrics": [
+     {
+      "code": "drawdown",
+      "weight": 40,
+      "direction": "COST"
+     },
+     {
+      "code": "profit_factor",
+      "weight": 30,
+      "direction": "BENEFIT"
+     },
+     {
+      "code": "sharpe_ratio",
+      "weight": 30,
+      "direction": "BENEFIT"
+     }
+    ],
+    "schema_version": "weighted-combination-minmax-params.v1"
+   },
+   "algorithm": "weighted_combination_minmax.v1",
+   "input_task_name": "builder-main",
+   "classification_name": "builder-indicator-signature",
+   "implementation_version": "1.0.0"
+  }
+ ],
+ "classifications": [
+  {
+   "name": "builder-indicator-signature",
+   "params": {
+    "schema_version": "indicator-signature-params.v1"
+   },
+   "algorithm": "indicator_signature.v1",
+   "input_task_name": "builder-main",
+   "implementation_version": "1.0.0"
+  }
+ ],
+ "config_source_wave": "cert-f05-02",
+ "forge_campaign_wave": {
+  "schema": "sqx-forge-campaign-replenishment.v1",
+  "wave_number": 1,
+  "campaign_ref": "0ce72173-b629-4ca4-bf4c-e7e586792e72",
+  "builder_supply_batch_ref": "0ce72173-b629-4ca4-bf4c-e7e586792e72:g000001",
+  "max_builder_candidates_per_wave": 10000
+ }
+}
