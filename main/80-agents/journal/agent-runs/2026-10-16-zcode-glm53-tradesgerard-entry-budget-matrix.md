@@ -54,8 +54,8 @@ campañas nuevas terminadas y explicadas.
   camino raw de 16MiB), `d74b6525` (docs + RESULTS-20261016.csv).
 - Lote: binario congelado `bce583e7d88f59af…` sobre `95e9d105` árbol
   limpio, 40 planes validados (cruces completos, R/T/rho exactos, política en
-  los 40, sin residuos S2). Las corridas previas (`a4af2554…`, 5 filas
-  13\*\+7\*) se descartaron y TODO el lote se reejecutó bajo el corte final.
+  los 40, sin residuos S2). Las corridas previas (binario `a4af2554…`,
+  13+7 filas) se descartaron y TODO el lote se reejecutó bajo el corte final.
   Secuencia mandato: F1/K05/2300 → 7 K05 → 32 restantes; concurrencia ≤6
   procesos, 1 preparación TG por clave, `tg_kernel_feeds_runtime=0`.
 
