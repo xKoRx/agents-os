@@ -27,38 +27,46 @@ tags:
 
 ## Cambio
 
-Creación y actualización documental de `10-projects/Echo Futures/artifacts/runtime/ECHO-FUTURES-RUNTIME-POOL-DESIGN.md` por mandato Owner del 2026-10-16. Estado inicial CANDIDATO_INICIAL / NO_ACEPTADO; estado vigente CANDIDATO_R2 / DISEÑO_NO_ACEPTADO. No cambia la aceptación del proyecto, el código ni los controles del carril local. Escrituras sobre master, sin rama ni PR.
+Creación y actualización documental de `10-projects/Echo Futures/artifacts/runtime/ECHO-FUTURES-RUNTIME-POOL-DESIGN.md` por mandato Owner del 2026-10-16. R1 CANDIDATO_INICIAL / NO_ACEPTADO; R2 CANDIDATO_R2 / DISEÑO_NO_ACEPTADO; vigente **CANDIDATO_R3 / DISEÑO_NO_ACEPTADO**. No cambia aceptación del proyecto, producto ni controles del carril local. Escrituras sobre master, sin rama ni PR.
 
 ## Motivo
 
-Conservar AS-IS localizado y decisiones progresivas en una nota separada del control de TradesGerard. No duplicar catálogo de cuentas ni estado de campañas. El segundo turno corrige el alcance de exclusión y elimina asignaciones manuales de Strategy/MM por cuenta consumible.
+Conservar AS-IS localizado y decisiones progresivas en la autoridad runtime, sin duplicar catálogo de cuentas ni estado de campañas. R2 eliminó asignación manual de Strategy/MM por cuenta y corrigió exclusividad por pool. R3 confirma afinidad permanente, retira cuenta/MM del contexto de Strategy, exige el intento con presupuesto completo pese a remanente menor y fija la entrega en cinco cuentas.
 
 ## Fuentes usadas
 
-Mandato Owner PROMPT_VERSION 1 y segundo turno explícito del 2026-10-16; source Echo fijado y revalidado sin delta en `0c4aae552176fda005c44766e24dd70e8c48e589`. Lectura R2 acotada de `v3/backtester/platform_campaign.go` (blob `1bdbd20f4abf9aa89d4044fa77332d2a9801d04f`) y del inicio de `TG-FLOW.md`. Documentación primaria de Apache sobre direcciones/estado y serialización de invocaciones de StateFun; no certifica wiring de Echo. La investigación comercial R1 se retira del alcance vigente por instrucción explícita del Owner; no se repitió en R2.
+Mandato inicial adjunto PROMPT_VERSION 1 y los tres turnos explícitos del Owner del 2026-10-16. R1/R2: Echo `0c4aae552176fda005c44766e24dd70e8c48e589`, incluyendo platform_campaign.go blob `1bdbd20f4abf9aa89d4044fa77332d2a9801d04f` y TG-FLOW. Fuentes Apache sobre owners/direcciones citadas en R2 son fundamento histórico, no verificación del wiring de Echo. La investigación comercial R1 se retiró del alcance por el Owner; no se repitió en R2/R3.
+
+R3: master resuelto en `95e9d105182af99d03700f4b5def24bf9fc6b5fd`, compare con base indica dos commits. Lecturas: `v3/sdk/futures/strategies/tgmm/tgmm.go` líneas1–305, blob `eb2824a470d27d63d93c856f4a0829d4526d367b`; `v3/backtester/platform_operability.go` líneas1–240, blob `52710c0494dd375745aeb8c3dce85386ec36265e`; minimum_policy.go completo, blob `9ace5fdbff3f6b2d506c9e769cc29236de9d54cf`; TG-FLOW.md, blob `7af1b9a9fe1a471ebe0f5e048379c8c0400dd7fb`. Documentación oficial NinjaTrader OnOrderUpdate consultada para distinguir Submitted/Accepted/Rejected/Filled y rechazo por riesgo, no para permisos ni para mover la Strategy a NinjaTrader.
 
 ## Resolución aplicada
 
-R2 establece configuración pool–Strategy–MM, una cuenta por asociación y varias asociaciones concurrentes dentro del mismo pool, turno persistente, selección por creación, contexto de fase para MM/elegibilidad y NinjaTrader gateway-only. AccountStrategy se propone como binding efectivo automático, no alta manual por cuenta. Se reemplazan las recomendaciones R1 contradichas, conservando AS-IS y referencias de source.
+R2 estableció pool–Strategy–MM, una cuenta por asociación y varias asociaciones concurrentes dentro del mismo pool, turno persistente, FIFO y gateway-only. AccountStrategy se mantiene propuesto como binding efectivo automático. R3 conserva esas decisiones y corrige las siguientes:
 
-Afinidad persistente entre turnos se identifica como interpretación propuesta de la prohibición de cambiar de Strategy a una cuenta ya operada; no se presenta como aprobación adicional del Owner. Arbitraje determinista, generación de claim y aislamiento de estado por asociación son propuestas técnicas. La entrega útil objetivo incluye pool compartido/rotación/múltiples módulos; probar una cuenta primero no sustituye esa entrega. Parámetros/Strategies finales siguen por decisión del Owner. No hay prompt de implementación, dispatch de agentes ni cierre.
+- Afinidad A→A a través de días/pausas confirmada expresamente; ya no es sólo interpretación propuesta. I1 no introduce migraciones entre asociaciones/pools.
+- Strategy pasa a ser completamente agnóstica a cuenta y MM. La sugerencia R2 de contexto de cuenta para ambos consumidores se reemplaza por contexto económico sólo en MM/owners financieros; señales y ciclo técnico compartibles. No duplicar Operation financiera para llamar canónicas a las intenciones.
+- El presupuesto solicitado no se reduce ni se rechaza/retira sólo porque el remanente positivo sea inferior. El piso y su breach real siguen observándose; se distinguen presupuesto, orden, fill y PnL. Cantidad/ticks/capacidad reales no se falsifican.
+- Divergencia publicada observada: EntryBudgetV1 de TGMM rechaza por headroom y platform_operability retira por presupuesto. No cumple el nuevo mandato de entrar completo. Se registra como punto de integración con el delta local, sin cambiar producto, detener al GLM ni afirmar haber visto su WIP.
+- Cohorte requerida CINCO cuentas, no entrega de una. Tres asociaciones sólo habilitan tres turnos simultáneos; cinco candidatas no garantizan cinco operaciones en una semana. Se propone configuración de cinco asociaciones con Strategies reutilizadas entre pools distintos para dar cinco turnos desde el inicio; propuesta, no cambio de configuración ejecutado. No se fabrican señales para completar uso.
+
+El diseño permanece candidato. La fecha objetivo domingo2026-10-18 noche no se presenta como promesa ni estimación. No hay prompt de implementación, dispatch ni cierre.
 
 ## Validación
 
-Creación R1 efectuada mediante el conector GitHub, no mediante ejecución del materializador canónico. Se leyeron la skill de entity-update, el contrato de schema, los templates doc/change_log y el source de materialize_schema_note.py y validate_schema_contract.py. Leer esos scripts no equivale a ejecutarlos: materialización canónica, gate por tipo y lint automatizado = NOT_RUN. La conformidad procedimental de creación queda pendiente; no hay una comparación byte a byte contra una nota materializada localmente ni una reconstrucción local ejecutada del contrato.
+**Límite R1 conservado:** creación mediante conector GitHub, no mediante ejecución del materializador canónico. Se leyeron skill de entity-update, contrato, templates y scripts canónicos, pero materialización, gate por tipo y lint automatizado = NOT_RUN. No comparación local byte a byte ni reconstrucción local ejecutada del contrato. La primera versión del registro atribuía por error esas validaciones; se corrigió en la misma sesión y esta limitación no se oculta.
 
-Readback R1 del encabezado y estado candidato del diseño en master: commit de creación `b9eb613dcb5cb6c33408bff5e72f4dfa2c295f9e`, blob remoto `015e02a29ee96d88f8c907da2772ad1060411d92`. Readback completo de la primera versión de este registro: commit de creación `9b0839c2ed22167daeb0429ddf9f63ad2f7c5276`, blob `e70598bdce6a68283f82350b930ef7c65dd5557c`.
+Readback R1: diseño creado en `b9eb613dcb5cb6c33408bff5e72f4dfa2c295f9e`, blob `015e02a29ee96d88f8c907da2772ad1060411d92`, encabezado/estado leído. Primera versión del registro creada en `9b0839c2ed22167daeb0429ddf9f63ad2f7c5276`, blob `e70598bdce6a68283f82350b930ef7c65dd5557c`, leída completa antes de su corrección.
 
-Corrección de evidencia R1 conservada: la primera versión del registro atribuía por error materialización, validaciones y equivalencia byte-identical no realizadas. Esas afirmaciones fueron sustituidas por los pasos efectivamente observados; R2 no cambia ese límite.
+Readback R2: diseño actualizado con SHA de concurrencia, commit `e076fdeb5231f50ce74481cf1459191ac94ff50c`, blob `09f66b257d9d176960af8d8a0e04a4df3c4dfa7d`; encabezado y rango inicial verificados. Registro R2 actualizado en `c5643616b0326ed3ad7a348489e86a9e4e193e8b`, blob `e40314245fc69bbd2aa5a2b0496b4c98f356afc1`; leído nuevamente completo en R3 antes de modificarlo.
 
-Actualización R2 del documento existente mediante SHA de concurrencia leído; commit `e076fdeb5231f50ce74481cf1459191ac94ff50c`, blob `09f66b257d9d176960af8d8a0e04a4df3c4dfa7d`. Readback de las líneas 1–85 en master confirma encabezado R2, decisiones Owner, AS-IS y modelo compartido; SHA devuelto coincide con el de la actualización. No se afirma comparación local byte a byte ni lint automatizado. Este registro existente se actualiza por delta y conserva la trazabilidad anterior; su respuesta de escritura y readback posterior identificarán la revisión.
+R3: nota existente leída en dos rangos1–110 y111–230 con el mismo blob R2; actualización conservadora por ese SHA, commit `3dc493ecbe38c6738c6737720922df8d24d244a7`, blob `deca8de9c5555285c884f66d5cdd96890a8652fa`. Readback1–50 en master confirma encabezado R3 y decisiones de afinidad, Strategy, presupuesto y cinco cuentas; blob coincide con la respuesta de actualización. El registro existente se actualiza por su SHA leído. No se afirma comparación local byte a byte, lint ni ejecución de fixtures.
 
-No se ejecutó código de producto, scripts, campañas ni tests de trading. La publicación documental no certifica comportamiento físico ni acepta el diseño.
+No se ejecutaron código de producto, scripts, campañas, tests de trading, infraestructura ni órdenes. La publicación documental no certifica el runtime físico ni acepta el diseño.
 
 ## Compartibilidad
 
-Scope local. Sin credenciales, tokens ni endpoints operativos. Sin memoria interna privada ni transcript de razonamiento.
+Scope local. Sin credenciales, tokens, endpoints operativos, memoria interna privada ni transcript de razonamiento. Alias C01..C05 son ficticios; se conserva el conteo de cinco dado por el Owner, no un descubrimiento de sus identidades.
 
 ## Rollback
 
-Para R2, restaurar sólo el contenido anterior de la nota/registro mediante una actualización conservadora que preserve cambios concurrentes. Para la creación R1, revertir únicamente las dos notas correspondientes. No afecta producto ni los controles de TradesGerard. No cerrar sesión ni generar feedback automáticamente.
+Restaurar sólo el contenido anterior de nota/registro por actualización conservadora que preserve cambios concurrentes. Las versiones R1/R2 quedan en Git. No afecta producto ni controles TradesGerard. No cerrar sesión ni generar feedback automáticamente.
