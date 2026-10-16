@@ -29,7 +29,7 @@ El Owner corrigió la prioridad después del cierre parcial: **terminar un dise�
 
 Se mantiene un GLM escritor, el checkout existente y el máximo global de una campaña (consumidas 0). El mismo caso F1 conocido servirá para comprobar el refactor, sin forzar sus cifras antiguas ni vender equivalencia histórica. Prioridad restante: defectos concretos runtime/ownership, contratos claros, documentación/catálogo desde evidencia ya disponible, integración de master, pruebas pequeñas afectadas, una revisión final y una campaña sobre el candidato estable. Sin nuevos frameworks ni auditorías expansivas.
 
-Consumo: evitar relecturas amplias, revisión continua de WIP y repeticiones de pruebas sin cambio/fallo. Se reintentó el mismo GLM autorizado con ese alcance; disponibilidad de cuota pendiente de respuesta del proveedor. Handoff vigente: `/srv/echo-work/runs/consolidation-20261015/owner-refactor-priority-20261016.md`.
+Consumo: evitar relecturas amplias, revisión continua de WIP y repeticiones de pruebas sin cambio/fallo. El mismo GLM autorizado fue reanudado con ese alcance y el proveedor respondió correctamente; implementación en curso. Handoff vigente: `/srv/echo-work/runs/consolidation-20261015/owner-refactor-priority-20261016.md`.
 
 **Cierre de sesión: PARTIAL / BLOCKED_GLM_QUOTA, 16-oct-2026. Campañas nuevas: 0/1. No hay merge ni push de Echo. Proyecto abierto.** No existe candidato final congelado ni equivalencia histórica certificada para los cambios de esta sesión.
 
