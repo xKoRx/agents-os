@@ -3,7 +3,7 @@ type: change_log
 schema_version: 1
 scope: session
 created: "2026-10-15"
-updated: "2026-10-15"
+updated: "2026-10-16"
 area: "[[Echo]]"
 project: "[[Echo Futures]]"
 application:
@@ -54,3 +54,12 @@ tags:
 ## Rollback
 
 - Revertir únicamente el delta documental de este encargo mediante un commit normal, preservando evidencia histórica y trabajo concurrente.
+
+
+## Cierre de sesión 16-oct-2026
+
+- Estado final PARTIAL / BLOCKED_GLM_QUOTA: HTTP429 demostrado, sin sustitución de modelo/cuenta; D4 runtime, D5 comparador/captura y D6 pendientes. Campaña 0/1, sin merge/push Echo, deploy ni LIVE. Proyecto sigue abierto.
+- Informe canónico reescrito como estado vigente, CONTROL actualizado. WIP y commits preservados mediante base autónoma + bundle incremental + patch/tar, con hashes y comparación byte a byte de 15 archivos. No se retiraron copias; cero bytes liberados.
+- Evidencia de pruebas pequeñas verdes y fallos retenida en `/srv/echo-work/runs/consolidation-20261015/`; no aceptar suite global ni equivalencia histórica final.
+- Feedback: [[2026-10-16-echo-consolidation-session-feedback]]. Registros atribuibles: [[2026-10-16-codex-unknown-echo-consolidation-review]], [[2026-10-16-zcode-glm-5-3-flash-echo-consolidation-writer]], [[2026-10-16-zcode-glm-5-3-flash-echo-consolidation-verifier]]. Modelo ROOT unknown; GLM confirmado por harness. Sin L0/L1 por falta de transcript y ausencia de valor adicional.
+- Cierre autorizado explícitamente por el mandato. Procesos propios de implementación/verificación drenados; scratch de pruebas temporales del repo retirado por el escritor; evidencia útil preservada. No se detuvieron procesos ajenos.
