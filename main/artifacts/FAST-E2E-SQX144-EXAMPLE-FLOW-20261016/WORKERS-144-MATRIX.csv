@@ -1,0 +1,5 @@
+host,build_144,licencia,dataset_ndx,cfx_custom,builder,retester_precision,retester_full,optimizer,mt5,release_0.2.146,notas
+zeus,PASS (w6 24/24),PASS EA6F8A,PASS USATECHIDXUSD_dukascopy_UTC02,PASS staging custom,PASS,PASS (probe mañana + w6),PASS (batch 20.5min durable),NOT_EJERCITADO,no aplica (linux),VERIFICADO sha e94c38d3 proceso+hash,host primario Flow A
+kronos,PASS (w4),PASS,PASS,PASS,PASS,PASS (probe mañana + w4/w6),EN CURSO al corte (sin fallo),NOT_EJERCITADO,no aplica (linux),VERIFICADO sha e94c38d3 proceso+hash,host máquin pesada (66 cores)
+hera,NO_DISPONIBLE,NO_DISPONIBLE (host caído ~15:20Z EHOSTUNREACH/ICMP loss; probes mañana PASS 20.88s),NO_DISPONIBLE,NO_DISPONIBLE,NO_DISPONIBLE,probe mañana PASS,NO_DISPONIBLE,NO_DISPONIBLE,no aplica,PENDIENTE (stager aplicará al volver),caída ambiental sin intervención; matriz incompleta 2/3
+worker-kronos-win,no aplica (MT5),no ejercitado esta sesión,NDX_SQX history verificada mañana por sesión previa,no aplica,no aplica,no aplica,no aplica,no aplica,NOT_EJERCITADO (MT5 NOT_EXECUTED),pendiente verificación,PID 5308 poller vivo según matriz de la mañana

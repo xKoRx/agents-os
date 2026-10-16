@@ -1,0 +1,19 @@
+stage,task,input,output,status,host,evidencia
+builder,project builder-main (Build_BR_G1_H1_144_fast 07321f99),spec w6,01_builder 24 sqx + overview.ndjson 496KB,PASS,kronos,MinIO wave_6/.../01_builder; global_log_20261016_164649 (80966 gen/26 acc)
+overview,overview_exporter (EchoForgeOverviewExporter 1.1.0),01_builder,metadata durable,PASS,kronos,db_register wave_6 18:23:49Z
+classify,indicator_signature.v1,precision-retester,classification_snapshot 24 entradas 8 tipos,PASS,kronos,Mongo forge.classification_snapshots flow 7a4dbd09
+early_ranking,weighted_combination_minmax.v1 40/30/30 top5,classification,8 ranking_snapshots PER_LOGICAL_TYPE,PASS,kronos,Mongo forge.ranking_snapshots flow 7a4dbd09
+selection,select-top-per-type per_logical_type top2,ranking precision-per-type,selection_snapshot sha256:7eb3ee41,PASS,kronos,Mongo forge.selection_snapshots flow 7a4dbd09
+group_full_fanout,group 04_full batch10 max_parallel 3 (sin source; cohort selection_cohort),selection_cohort sha256:7eb3ee41,2 children Zeus+Kronos,PASS (fanout demostrado),zeus+kronos,flowkit stages 2x project@sqx-retester.v1 RUNNING simultáneos
+retester_full_zeus,project full-retester (RetestFull_144 14d55e98),batch ~7,batch durable COMPLETED 20.5min,PASS,zeus,flowkit stage COMPLETED 19:12:15Z
+retester_full_kronos,project full-retester (RetestFull_144 14d55e98),batch ~6,en curso al corte (sin error),CANCELLED,kronos,CancelWorkflow 19:33Z; 0 sqcli post-drain
+optimizer,group 05_optimizer (Optimizer_144 d4d9c0aa + evaluate_wfm + select_robust V2 0.35/0.01/0.01),04_full,-,NOT_EXECUTED,-,cancelado por control owner
+apply,apply_selected_run magic 888333,05_optimizer,-,NOT_EXECUTED,-,-
+final_reretester,project (reretesterfull_144 a51c1cc3 NDXm tick),08_applied,-,NOT_EXECUTED,-,-
+tradelist,trade_list_exporter,09_reretester,-,NOT_EXECUTED,-,-
+mq5,mt5_exporter,09_reretester,-,NOT_EXECUTED,-,-
+ex5,mt5_compiler,11_mt5_mq5,-,NOT_EXECUTED,-,-
+mt5,mt5_backtesting NDX_SQX H1 2025.07.01-2026.10.09 model4,12_mt5_ex5,-,NOT_EXECUTED,-,-
+fidelity,mt5_fidelity_shadow.v1,tradelist vs mt5,-,NOT_EXECUTED,-,-
+final_ranking,score_descending.v1 top20,fidelity,-,NOT_EXECUTED,-,-
+per_type_projection,proyección exacta por pertenencia + score vigente,ranking final,-,NOT_EXECUTED,-,-
