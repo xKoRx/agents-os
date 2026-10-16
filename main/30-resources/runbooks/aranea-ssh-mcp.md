@@ -63,7 +63,7 @@ Inspección y operación remota de hosts Aranea por `aranea-ssh` (endpoint `http
 
 ## Tool surface y procedimiento
 
-Surface `ssh-mcp` v2.8.0 (patches locales acumulados: `h2fix` + `idlereap`, imagen canónica `local/ssh-mcp:2.8.0-d2d7696-idlereap`): `list-connections`, `list-sessions`, `open-session`, `close-session`, `read-session-output`, `read-command`, `run-command`, `privileged-command`, `signal-process`, `sftp-upload`, `sftp-download` (disponibilidad efectiva por policy/profile; listado no equivale a permiso).
+Surface `ssh-mcp` v2.8.0 (patches locales acumulados: `h2fix` + `idlereap` + `caps512`, imagen canónica `local/ssh-mcp:2.8.0-d2d7696-idlereap-caps512` desde 2026-10-16; precedida por `-idlereap` y `-h2fix`, tags retenidos como rollback): `list-connections`, `list-sessions`, `open-session`, `close-session`, `read-session-output`, `read-command`, `run-command`, `privileged-command`, `signal-process`, `sftp-upload`, `sftp-download` (disponibilidad efectiva por policy/profile; listado no equivale a permiso).
 
 1. Descubrir conexión exacta por `list-connections`; confirmar identidad remota (`whoami`/`id`) con lectura autorizada y no inferir root.
 2. Inspección: `read-command`, preferentemente comando único allowlisted (`ls`, `cat`, `grep`, `find`, `stat`, `df`, etc. según profile). Compuestos/pipelines/clases 'safe' pueden ser denegados: dividir, no cambiar a operator o saltarse policy.
