@@ -17,128 +17,155 @@ updated: "2026-10-16"
 
 ## Propósito
 
-Diseñar con KoR una extensión pequeña del runtime existente. Estado del diseño: **CANDIDATO_INICIAL / NO_ACEPTADO**. La nota está activa como documento de trabajo; no representa aceptación de arquitectura, autorización LIVE, implementación ni cierre de sesión.
+Diseñar con KoR una extensión pequeña del runtime existente. Estado: **CANDIDATO_R2 / DISEÑO_NO_ACEPTADO**. R2 incorpora las decisiones explícitas del segundo turno del Owner del 2026-10-16; las recomendaciones técnicas y las interpretaciones señaladas siguen como propuestas. No representa implementación, autorización de ejecución ni cierre de sesión/proyecto.
 
-Mandato Owner: `Markdown pegado(3).md`, PROMPT_VERSION 1, 2026-10-16. Producto leído: `xKoRx/echo@0c4aae552176fda005c44766e24dd70e8c48e589`, master resuelto y vuelto a comprobar en esta recepción. Autoridad del proyecto: [[Echo Futures]]. Carril local: [[TRADESGERARD-CONTROL]] y [[TRADESGERARD-CONSOLIDATION]]. No se modificaron producto, campañas ni esos controles.
+Mandato inicial: `Markdown pegado(3).md`, PROMPT_VERSION 1. Sus propuestas se actualizan por las decisiones posteriores del Owner. Producto leído: `xKoRx/echo@0c4aae552176fda005c44766e24dd70e8c48e589`; master revalidado sin delta en el segundo turno. Autoridad del proyecto: [[Echo Futures]]. Carril local: [[TRADESGERARD-CONTROL]] y [[TRADESGERARD-CONSOLIDATION]], sin modificaciones desde este análisis.
 
 ## Contenido
 
-### 1. Autoridades y alcance
+### 1. Decisiones Owner y correcciones a R1
 
-- **CONFIRMADO_OWNER:** dominio único runtime/backtest; NinjaTrader como primer adaptador; Strategy y MM consumen observaciones causales; mercado compartido y economía aislada; Futures-first; no LLM en trading; no implementación ni operación desde este carril.
-- **OBSERVADO_EN_CÓDIGO:** hechos de los símbolos citados abajo en el SHA fijado. No equivalen a despliegue o ejecución física.
-- **PROBADO_EN_FIXTURE:** únicamente lo reportado por los artefactos de consolidación consultados; no se ejecutaron ni se revalidaron suites en esta sesión.
-- **PROBADO_FÍSICAMENTE:** se utiliza evidencia histórica fechada y acotada, no una inspección actual del terminal.
-- **PROPUESTA:** todo modelo, tarea y decisión inicial de esta nota, pendiente de aceptación del Owner.
-- **DESCONOCIDO:** disponibilidad actual de cuentas/feed, recorrido físico completo de economía/quote, transporte distribuido suficiente para MM y permisos comerciales específicos no recuperados.
-
-La consolidación del 16 de octubre ya publica cierre del backtester para iteración offline y explica la ausencia de operability_policy en el intento anterior. No se usa ese resultado para certificar runtime ni se reabre la campaña. Hay documentación histórica rezagada: el README del bridge se declara D5/SIM, aunque el source actual contiene adaptador y AddOn NinjaTrader; sus límites históricos no describen por sí solos el HEAD.
-
-### 2. AS-IS y delta localizado
-
-| Recorrido | Evidencia material | Dictamen inicial |
+| Decisión | Opción acordada | Consecuencia / pendiente real |
 |---|---|---|
-| Cuenta/conexión | D6 2026-10-05 resuelve `E2T-GAU50-01` contra la cuenta provider cuyo sufijo es 1551 y NT Account.Id `3`. El AddOn usa nombre provider como identidad de negocio y el ID como hint de sesión. | Reutilizar alta explícita; revalidar identidad, conexión, fase y economía en la futura prueba. No descubrir/comprar cuentas por inferencia. |
-| Feed y autoridad | `FuturesMarketStreamFn` es keyed por stream; delega canonicalización, dedup, secuencia, epoch y freshness al engine SDK de market. | Reutilizar. Validar feed vivo y recuperación; heartbeat del transporte no basta. |
-| Barras/analytics | `FuturesMarketAnalyticsFn` usa engine compartido; TG persiste checkpoint por key y transporta snapshot en BarClosedDelivery. H1/SR live tienen límites de completitud documentados. | Reutilizar kernels/checkpoint. Completar/validar datos causales de arranque y reconexión, sólo para indicadores requeridos. |
-| Strategy/fanout | `Compose` resuelve Strategies[]; `FuturesSignalFanoutFn.handleSignal` linealiza targets AccountStrategy y entrega por owner account:binding. | Reutilizar. El fanout existente es distribución, no selección de una cuenta de un pool. |
-| MM | Compose resuelve un único MM. `MMConfigSnapshot(account,strategy)` ya permite config por binding. TG Manager mantiene config y usa MMState de operación; no se ha observado aquí un singleton mutable de balances. | Extender resolución/versionado por binding al necesitar distintos MM/configs en una composición. No clonar el proceso. |
-| Reglas/riesgo | Provider owner es serializado por account_id. Pero `SnapshotViews.EffectiveRuleSet(accountID)` devuelve el Provider.RuleSet global. | Reutilizar provider engine/reservas; resolver regla efectiva por binding de cuenta/programa/fase. No confundir owner aislado con reglas heterogéneas ya conectadas. |
-| Egress físico | `Bridge.Run` crea N sesiones por cuenta. `EchoExecutionAddOn.ExecuteCommand` sólo opera `resolvedAccount` y rechaza provider_ref distinta de expectedAccountName. | Primera cuenta: reutilizar. Pool físico: extender allowlist/routing/subscripciones y protocolo de sesión, preservando M2 por cuenta. No cambiar un puntero global de cuenta mientras quedan órdenes. |
-| ACK/fill/acciones | Operation tiene ingress de fills/órdenes y actualizaciones tipadas de quote/economía. Bridge dispone de journal PREPARED/SUBMITTING/BOUND/AMBIGUOUS, reconciliación e identidades por cuenta. | Reutilizar contratos; probar recorrido físico y pérdida de ACK. No deducir exactly-once físico de checkpoint Core. |
-| Turnos | El fanout inspeccionado mantiene targets/dedup, no una política de rotación. El turno de campaña pertenece a aquella simulación. | Añadir únicamente selección/turno de runtime acordado, reutilizando criterios puros que encajen, sin compras ni cobros simulados. |
+| Unidad de configuración | Tripleta pool de cuentas + Strategy configurada + MM/configuración. | No asignación manual Strategy/MM a cada cuenta consumible. La cuenta concreta se resuelve en runtime. |
+| Concurrencia | Una cuenta por asociación pool–Strategy; varias asociaciones del mismo pool y pools independientes pueden operar simultáneamente. | Se descarta el límite R1 de una cuenta por pool. Un pool con tres asociaciones puede mantener tres cuentas distintas. |
+| Exclusividad | Una cuenta no puede operar simultáneamente para dos asociaciones/pools; una cuenta que ya operó con una Strategy no debe pasar automáticamente a otra. | La afinidad después de terminar un turno se precisa en §4 como interpretación conservadora, no queda escondida en un lock temporal. |
+| Turno | Persistente entre operaciones, como campañas; rotar por objetivo, pausa o desenlace aplicable tras drenaje. | No round-robin por trade, no rewarmup del mercado ni reproducción de una señal consumida. |
+| Orden de selección | Cuenta más antigua primero. | Ordenar por creación real y desempatar por identidad estable; filtrar compatibilidad/disponibilidad antes. No priorizar por rentabilidad. |
+| Analytics | Echo calcula indicadores entre barras y consumidores; Strategy y MM los consultan. | Observación causal es el resultado publicado, no el componente que calcula. |
+| Cuenta/fase | Strategy y MM deben disponer del contexto de la cuenta; MM diferencia challenge/funded y PoolManager utiliza fase/estado para elegibilidad. | Reglas, fase y economía mantienen una autoridad por hecho; ningún if por nombre de empresa en Strategy. |
+| NinjaTrader | Feed y gateway de operaciones exclusivamente. | Sin selección de cuentas, turnos, indicadores de estrategia, MM ni reglas en el AddOn. |
+| Primera entrega útil | Pool compartido con varias Strategies/MM y rotación automática, no sólo una asociación fija. | Una cuenta sirve como paso de prueba, no como sustituto del producto pedido. Objetivo Owner: domingo 2026-10-18; no es promesa de plazo. |
+| Estrategias iniciales | Se decidirán con resultados de hoy/mañana; K05 con soportes/resistencias es candidato, no selección final. Se esperan nuevos módulos Strategy/MM. | No congelar S2/Gerard ni TG/TGMM como única combinación; no hardcodear tres/cinco en producto. |
+| Permisos comerciales de automatización | Fuera de este análisis por instrucción explícita del Owner; los gestiona el Owner. | Se retira la investigación/gate documental R1 de ese asunto. Se mantienen identidad, reglas económicas configuradas y seguridad técnica del envío. |
 
-**Límite de una cuenta:** se localiza de forma concreta en el AddOn/config/protocolo de esa integración. No es un límite global del shell Bridge ni prueba de que todo Core sea ya multiprop. NinjaTrader expone Account.All y métodos por cuenta; eso permite plantear el delta de adaptador, no certifica nuestro routing físico.
+### 2. AS-IS conservado y delta observado de campañas
 
-**Límites adicionales que importan:**
+**Clasificación:** OBSERVADO_EN_CÓDIGO no significa probado físicamente. Los tests/fixtures históricos se reportan como antecedentes, no ejecutados en este turno. La salud actual de terminal, feed y cuentas es DESCONOCIDA desde esta lectura cloud.
 
-1. `SnapshotViews.AnalyticsView → TGOwnerViewFor` consulta `tgPublished`, un puntero local sin identidad de stream en la firma. La persistencia de checkpoint por key y el transporte de snapshots hacia Strategy no acreditan que MM en otra réplica consulte la publicación correcta. Propuesta: entregar/publicar una observación inmutable acotada por el transporte existente de StateFun, con identidad de stream/epoch/versión y frontera causal; no introducir un bus/RPC nuevo ni recalcular indicadores por cuenta.
-2. `SnapshotViews` no implementa en el archivo inspeccionado ExecutableQuoteSource; Market.Mark lee last. La conexión exacta de bid/ask ejecutable y economía account-wide fresca queda por completar/verificar, no declarada inexistente en todo el repo. No sustituirla por last ni offsets OHLC.
-3. `tgmm.pending` y `ladderCap` restan GAU50InitialBalance=50000; `config.NewTGMM` restringe payout a 2300/3000. Son límites del escenario actual. Antes de extenderlo a otros programas, utilizar referencias económicas reales explícitas y objetivos versionados sin duplicar fórmulas. La referencia de progreso no se reinicia al arrancar proceso/cambiar turno y no se infiere de una demo.
-4. La última certificación física localizada, 2026-10-05, quedó ENVIRONMENTAL_BLOCKED por feed stale y con cero submits/fills. Certificaciones de transporte/reportes de fixtures no completan el ladder físico pendiente. La salud actual no se conoce desde esta sesión cloud.
+| Recorrido | Evidencia material en el SHA fijado | Delta localizado |
+|---|---|---|
+| Mercado | `FuturesMarketStreamFn`, keyed por stream, delega canonicalización/dedup/orden/epoch/freshness al SDK. | Reutilizar y validar alimentación/restauración del camino real. |
+| Barras e indicadores | `FuturesMarketAnalyticsFn` usa engine compartido; TG tiene kernels en `sdk/futures/analytics/tg`, checkpoint y snapshots por delivery. | Completar demanda y publicación a ambos consumidores, no crear otro motor de indicadores. |
+| Strategy y distribución | `Compose` resuelve Strategies[]; `FuturesSignalFanoutFn` linealiza targets AccountStrategy y entrega por owner account:binding. | Separar asociaciones de pool de bindings efectivos; entrega de OPEN sólo a la cuenta seleccionada de cada asociación. No broadcast a todas las cuentas del pool. |
+| MM | Compose resuelve un único MM desde cfg.MM. `MMConfigSnapshot` ya permite configuración por cuenta/Strategy. TGMM conserva configuración; estado de ciclo en MMState. | Resolver módulo/config por asociación y fase; pin de configuración por operación. No afirmar contaminación de balances por un singleton no demostrada. |
+| Reglas | Provider owner serializado por account_id; `SnapshotViews.EffectiveRuleSet(accountID)` devuelve Provider.RuleSet global. | Resolver RuleSet efectivo según cuenta/programa/fase y binding real; preservar reservas/revalidación account-wide. |
+| Ejecución | `Bridge.Run` crea N sesiones; `EchoExecutionAddOn` configura una cuenta y ejecuta sobre resolvedAccount. | Extender routing/observaciones multiaccount del AddOn y wiring del bridge, conservando M2 y correlación. No poner PoolManager en NinjaTrader. |
+| Economía y ejecución de vuelta | Operation admite fill/order/quote/economics tipados; bridge tiene journal M2 y reconciliación. | Trazar productor físico y entrega causal; APIs presentes no prueban recorrido físico completo. |
+| Campañas | `platformCampaign` contiene accounts[], selected y turnActive. `selectTurn` exige quiescencia para cambiar, conserva selected elegible y luego recorre cuentas elegibles por orden del slice. `purchase` añade al final. | Reutilizar semántica de turno/selección, no copiar el driver financiero completo. El pool compartido añade competencia entre asociaciones ausente del caso de una campaña. |
 
-### 3. Modelo candidato
+**Lectura adicional R2:** `v3/backtester/platform_campaign.go`, blob `1bdbd20f4abf9aa89d4044fa77332d2a9801d04f`, símbolos `PlatformCampaignRequest.Validate`, `platformCampaign.selectTurn`, `admitOpportunity`, `checkpoint`, `tickAccount`, `purchase`. Validate requiere una cuenta inicial con un AccountStrategy y el escenario GAU50; el driver también simula compras, pagos y transiciones. Nada de eso se transforma en compras o funding reales por reutilizar su selección.
 
-No elegir entre una cuenta que contiene código de Strategy y una Strategy propietaria de balances: definición reusable + instancia configurada + AccountStrategy existente + cuenta real. Un pool es una lista declarada de candidatas; no posee saldo.
+**Gaps materiales conservados, sin nueva certificación:** (a) MM obtiene TG por `SnapshotViews.AnalyticsView → TGOwnerViewFor → tgPublished`, publicación Go local sin stream en la firma; checkpoint por key no acredita entrega a otra réplica. (b) `readModelMarket.Mark` consulta last, no demuestra bid/ask ejecutable; wiring físico de ExecutableQuoteSource y economía debe trazarse. (c) TGMM `pending`/`ladderCap` usan GAU50InitialBalance=50000 y `NewTGMM` restringe payouts2300/3000; no generalizar esos números a otros programas. (d) D6 físico localizado del 2026-10-05 quedó bloqueado por feed stale y sin órdenes; su interrupción histórica no es un nuevo diagnóstico de producto ni estado actual.
+
+### 3. Modelo R2: pool compartido, asociación persistente, cuenta automática
+
+**PROPUESTA técnica derivada de las decisiones Owner:** mantener el catálogo de cuentas existente y añadir la asociación durable pool–Strategy–MM. El pool sólo agrupa recursos; cada asociación se comporta como una campaña en cuanto a turno, no como un segundo ledger ni como propietario de todas las cuentas.
 
 ```text
-Market compartido por identidad/cálculo
-    ├─ Strategy TG@versión → instancia TG-NQ
-    └─ Strategy S2@versión → instancia S2-NQ
-                         ↓ asociaciones explícitas
-        pool A [A-01,A-02]      pool B [B-01,B-02]
-               ↓ turno                ↓ turno
-        AccountStrategy         AccountStrategy
-        Strategy + MM@versión + ExecutionAccount
-                                  ↓
-            Provider/Program/fase → RuleSet efectivo
-            Connection/Adapter → locator físico cuenta/contrato
-                                  ↓
-                  Operation → provider → M1/M2 → AddOn
+Pool P: C01, C02, C03, C04, C05 (antiguas primero)
+    A = P + Strategy-A@config + MM-A@config  → turno C01
+    B = P + Strategy-B@config + MM-B@config  → turno C02
+    C = P + Strategy-C@config + MM-C@config  → turno C03
+    C04/C05 quedan disponibles para cualquiera de A/B/C compatible
+
+A pausa/drena C01 → A toma C04
+B/C mantienen sus cuentas; ninguna opera C01
 ```
 
-Ejemplo **enteramente ficticio**, sin cuentas ni permisos inferidos:
+Ejemplo ficticio, no inventario real. Con tres asociaciones y cinco cuentas, como máximo tres cuentas en operación simultánea por esta regla, no cinco ni una. Incorporar dos asociaciones más puede utilizar las restantes si están elegibles. La misma Strategy en otro pool tiene su propia asociación y turno; no reparte cada OPEN entre todas las candidatas.
 
-| Binding | Instancia | MM/config | Cuenta | Programa |
-|---|---|---|---|---|
-| BA1 | TG-NQ | TGMM-config-A@1 | A-01 | Empresa A / Programa A |
-| BA2 | TG-NQ | TGMM-config-A2@1 | A-02 | Empresa A / Programa A |
-| BB1 | S2-NQ | Gerard-config-B@1 | B-01 | Empresa B / Programa B |
-| BB2 | S2-NQ | Gerard-config-B@1 | B-02 | Empresa B / Programa B |
+Una asociación tiene ID estable, pool, referencia de instancia/config de Strategy, referencia de módulo/config MM y control enabled. MM/version son configuración, no parte cambiante de una clave primaria que cree otra asociación al actualizar parámetros. Para I1, una asociación por pareja pool–instancia de Strategy; otro MM simultáneo de la misma Strategy se expresa mediante otro pool, como indicó el Owner.
 
-Pool A puede mantener A-01/TG mientras pool B mantiene B-01/S2, sólo si los scopes de concurrencia y compatibilidades lo permiten. La misma instancia Strategy puede asociarse explícitamente a otro pool mediante bindings adicionales; no se duplica su cálculo. Más de un binding por cuenta sigue representable aunque la primera entrega proponga exclusividad de turno.
+`AccountStrategy` continúa siendo el binding efectivo consumido por Operation. El runtime lo materializa/reutiliza automáticamente al adjudicar una cuenta; no obliga al Owner a mantenerlos manualmente y no reinventa otra entidad equivalente de cuenta→estrategia. Guarda vínculo a la asociación y la generación de asignación. IDs deterministas/idempotentes permiten restaurar el mismo binding, no duplicarlo al reiniciar.
 
-**Dos serializaciones distintas:** el turno debe tener autoridad persistente por scope de selección (inicialmente pool); el owner provider existente arbitra la reclamación de cada cuenta. Un lock por cuenta no evita que dos candidatos diferentes sean activados a la vez dentro de un pool limitado a uno. La extensión de asignación dentro de Core necesita esa clave única de turno, reutilizando StateFun, sin otro servicio ni ledger. Dos pools que comparten cuenta deben obtener el mismo claim account-wide. Un límite común de programa/prop no puede eludirse dividiéndolo en varios pools: comparte scope de turno o la configuración se rechaza hasta soportarlo explícitamente. La política histórica E2T de una cuenta activa no se convierte en mutex de todo Echo.
+El alta de una cuenta sigue necesitando su identidad, programa/fase, creación/vencimiento cuando corresponda, economía/pisos y conexión real. El catálogo entrega estos datos; el Owner sólo incorpora la cuenta al pool o usa un criterio de pertenencia explícito existente. No reconfigura Strategy/MM ni parámetros financieros en cada alta.
 
-El claim/version de asignación se valida junto con reservas/admisión y ReservationRevalidate, no mediante un mapa previo a enviar. Ningún TTL libera cuentas con órdenes inciertas. Las gestiones de una Operation conservan su cuenta/contrato original aunque cambie la lista del pool.
+### 4. Selección, afinidad y concurrencia
 
-### 4. Secuencia mínima propuesta
+**Selección propuesta:** al habilitar una asociación o quedar sin cuenta, solicitar una candidata; mantener turno si sigue elegible. En ausencia de turno, filtrar estado/compatibilidad/fase/destino y afinidad, ordenar por `(account_created_at, account_id)` y reclamar la primera. La fecha es de la cuenta real, no de descubrimiento ni de una sesión de NinjaTrader. FIFO no equivale a vencimiento más cercano: se aplica la prioridad por creación pedida por el Owner, excluyendo cuentas ya vencidas.
+
+**Arbitraje mínimo:** orden durable de recepción de solicitudes; desempate estable en activaciones admitidas como un mismo lote. No optimización, ranking de Strategies ni preasignación manual. Serializar brevemente la adjudicación no serializa la operativa: el PoolManager puede conservar simultáneamente varios turnos, uno por asociación. El owner existente de cuenta valida/rechaza el claim exclusivo global, también cuando dos pools comparten candidatas. Como mínimo, un claim pendiente por asociación y una generación de asignación validada antes de nueva exposición; guardar solicitudes pendientes y respuestas de forma idempotente. Una respuesta tardía de otra generación no autoriza órdenes. No TTL que libere una cuenta incierta, ni transacción cross-key inventada.
+
+**Interpretación propuesta explícita de “una vez que una estrategia opera una cuenta ninguna otra debería poder operarla”:** separar afinidad de cuenta y turno activo. Cuando empieza un intento real de operación, fijar afinidad a la asociación pool–Strategy; conservarla al pausar y al rotar. Una cuenta recuperada vuelve a ser candidata sólo para su asociación, no para otra Strategy. La reclamación provisional anterior a toda orden puede liberarse cuando está probado que no produjo efectos; un envío incierto ya retiene identidad/claim. No hay mecanismo de reasignación automática de afinidad en I1. Esta interpretación estricta no se presenta como una decisión adicional confirmada por el Owner.
+
+Una cuenta temporalmente pausada puede seguir retenida por afinidad, mientras otra de esa misma asociación mantiene el turno activo. Al reabrir la primera no se interrumpe un turno vigente elegible: FIFO se aplica a la siguiente selección. Esto evita tanto robar cuentas como rotaciones sorpresivas al cambiar el día.
+
+| Situación | Acción propuesta |
+|---|---|
+| Objetivo/pausa diaria | Bloquear nueva exposición según política, gestionar/drenar órdenes y posición; terminar turno después de confirmar drenaje. Cuenta pausada con condición de reanudación. |
+| Inoperabilidad económica permanente / desenlace terminal | Excluir de nuevas selecciones con causa; conservar historia/identidades. La asociación pide otra cuenta. |
+| Funding/review/pago pendientes | Cuenta no elegible según estado; no inferir transición real por PnL. Confirmación real habilita contexto/fase posteriores. |
+| Setup rechazado, quote temporalmente inválida o indicador no listo | Rechazo de oportunidad o suspensión acotada, no jubilación permanente de la cuenta por defecto. |
+| Orden o exposición incierta | Conservar claim/turno bloqueado de esa asociación hasta reconciliar; otros turnos independientes continúan. |
+| Sin candidatas | Asociación sin cuenta con motivo y reintento de selección ante cambios relevantes; ninguna compra ni cola de señales caducadas. |
+
+El paso de C01 a C04 nunca migra posición, órdenes, PnL ni MMState financiero. Una nueva señal posterior puede usar C04; gestiones/fills de C01 siempre se resuelven por su identidad original. El MM decide sizing/SL/TP/reducciones/adds que implemente; Provider conserva los límites obligatorios. PoolManager selecciona, bloquea entradas y espera resultado de drenaje, sin calcular cierres ni enviar directamente órdenes. Una parada operativa que exija cerrar invoca el mecanismo existente de intención de cierre/seguridad; no redefine cada pausa como flatten implícito.
+
+### 5. Barras → indicadores → observaciones para Strategy y MM
 
 ```text
-señal S1 nueva → turno A-01 → binding BA1 → MM/admisión → orden/fills
-A-01 llega a pausa → impedir entradas y entrar en drenaje
-órdenes/exposición/incertidumbre reconciliadas → liberar turno
-señal S2 posterior, misma sesión → turno A-02 → binding BA2
+NinjaTrader: feed observado
+  → mercado canónico / orden / epochs
+  → barras compartidas
+  → analytics: kernels incrementales de indicadores requeridos
+  → observaciones versionadas y causales
+       ├─ Strategy de asociación: señal y estado técnico
+       └─ MM de cuenta/operación: gestión según sus triggers
+  → Operation / Provider → bridge → gateway NinjaTrader
+  ← quotes, órdenes, fills, posiciones y economía por cuenta
 ```
 
-S1 permanece consumida; no reiniciar mercado ni enviarla a A-02. Si el ACK se pierde tras SUBMITTING, conservar identidad y estado incierto, consultar/reconciliar usando M2 y seguir atendiendo fills tardíos. No liberar por timeout ni reintentar a ciegas. Intervención manual no reconocida: pausa/exclusión de nueva exposición y reconciliación explícita, no coexistencia automática implícita. Deshabilitar entradas, drenar y flatten autorizado son acciones distintas.
+Calculador y publicación son responsabilidades distintas, aunque puedan vivir en el mismo owner `market_analytics`. Strategy/MM declaran dependencias y leen resultados: no contienen kernels. Reutilizar el motor actual y compartir cálculos por stream/contrato/timeframe/parámetros/calendario/seed/epoch/versión efectiva. El siguiente módulo real determina nuevos indicadores necesarios; no imponer TG como API universal ni crear una DSL.
 
-Congelar módulo/config de MM y presupuesto de la operación al abrirla. Una configuración nueva se aplica a próximas operaciones; restricciones oficiales de seguridad efectivas se reevalúan de inmediato por provider y no quedan desactivadas por la versión de entrada. Mantener separadas la configuración fijada y la regla efectiva observada.
+Backtest prepara/consulta tablas causales; runtime avanza los mismos kernels incrementalmente. Ambas rutas conservan disponibilidad temporal y orden same-instant. Quote cambia aunque el último indicador de barra cerrada no cambie: MM puede gestionar sin esperar una señal nueva.
 
-### 5. Primera porción útil y pruebas posteriores
+**Contexto de cuenta:** read-only para los dos consumidores cuando lo necesiten, con identidad, programa/fase, referencias a reglas, economía y generación del turno disponibles causalmente. Strategy no elige otra cuenta ni asume cálculo de riesgo por recibir contexto. Si ese contexto afecta su decisión o estado, su instancia lógica debe aislarse por asociación. Compartir código e indicadores no permite compartir ciegamente una sola ejecución/OwnerState entre dos pools con economías distintas. Mantener el estado técnico/mercado al rotar; contexto y estado monetario permanecen por cuenta/operación. Un cambio de cuenta es un hecho explícito, no un reset global de Strategy.
 
-| Paso propuesto | Delta implementable | Prueba de aceptación |
+Distribución requerida: observaciones/referencias resolubles mediante mensajes/estado existente de StateFun, no lectura de un puntero local como garantía de producción. Cada consumidor debe poder identificar el corte servido y rechazar ausencia con motivo; no recalcular el indicador para cubrir un hueco de transporte.
+
+### 6. Programas y challenge/funded: tres responsabilidades
+
+**Cuenta/Provider:** fuente de programa, fase, límites, términos y estado económico reales. Resolver reglas por referencia/version efectiva, nunca desde el único Provider global para cuentas heterogéneas. El pool puede mezclar programas si los contratos requeridos están soportados y la asociación es compatible.
+
+**MM de la asociación:** un módulo con configuración/contexto por fase; decide cómo operar challenge frente a funded. Recibe objetivos, progreso, margen y términos aplicables. No necesita una clase por empresa ni overrides manuales por cuenta. Quitar las constantes GAU50 sólo donde el nuevo programa las ejercite, reemplazándolas por datos de la autoridad existente; no copiar una segunda fórmula.
+
+**PoolManager:** utiliza fase/estado y resultado de operabilidad para seleccionar, pausar o rotar. No calcula drawdown ni determina por sí mismo un pase/payout. El rechazo de un setup no significa que ningún setup futuro sea ejecutable; distinguir denegación local de incapacidad permanente. Políticas internas de turno pertenecen a la asociación, con el pool como inventario; no duplicar la fase de cuenta en otra autoridad editable.
+
+Configuración nueva de MM aplica a próximas operaciones; operación abierta conserva módulo/config y presupuesto aplicables. Las actualizaciones efectivas de seguridad del Provider siguen reevaluándose. Tras funding confirmado en flat se resuelve el perfil funded. Si hay operaciones vivas durante un cambio de fase/config, bloquear nuevas entradas y procesar la transición de contexto sin reemplazar el MM de una operación en caliente.
+
+### 7. Cambios implementables y primera aceptación funcional
+
+| Bloque | Propietarios afectados | Cambio necesario y prueba |
 |---|---|---|
-| Una asociación fija | Conectar Strategy/MM elegidos a una cuenta explícita del adaptador existente; resolver feed, analytics para ambos consumidores, quote y economía reales. No pool requerido. | Fixture de causalidad/restart y ejecución en SIM/demo autorizada: cuenta/contrato, entrada, protección, fill, cancelación y reconexión sin duplicados. Shadow por sí solo no acredita órdenes. |
-| Pool mínimo de dos candidatas del mismo programa | Turno persistente/claim account-wide y routing físico multiaccount con sesiones/identidades separadas; ninguna compra ni reset automático. | A-01 pausa y A-02 toma una señal posterior en la misma sesión; atraso de ACK/fill retiene A-01; reinicio no pierde turno ni ejecuta señales anteriores. |
-| Segundo boundary | Resolver MM/config por binding, RuleSet por programa/fase y quitar dependencias económicas GAU50 cuando el nuevo caso las ejercite. Incorporar segunda Strategy y luego programa concreto sólo si necesario. | Misma señal/config kernel, dos bindings con MM distintos y dos RuleSets distintos sin contaminar estado; pools independientes concurrentes; incompatibilidad de B no bloquea A. |
+| Configuración | Catálogo/config Views + runtime composition | Asociaciones pool–Strategy–MM; binding AccountStrategy automático; RuleSet por cuenta/programa/fase; IDs estables. Añadir una cuenta no exige configurar Strategy/MM y actualizar MM no crea otro turno. |
+| Turnos compartidos | Pequeño owner PoolManager en Core + owner de cuenta existente | Turnos por asociación, FIFO elegible, claim/generación/idempotencia y afinidad propuesta. Tres asociaciones/cinco cuentas toman tres distintas; una rota sin mover las otras; pools solapados no duplican claim. |
+| Dominio reutilizable | SDK de selección/operabilidad que se extraiga sólo donde encaje + adaptador de campaña | Extraer lógica pura mínima de turno/selección, sin importar cashBook ni driver de simulación en Core. Fixture de la campaña actual conserva turno, orden y drenaje; no reejecutar las40. |
+| Strategy/MM/Provider | Owners existentes + factories/View/contexto | MM por asociación/fase, contexto causal de cuenta y estado de Strategy aislado cuando corresponda, economía/quote por cuenta. Dos programas y dos MM distintos no comparten estado; nueva Strategy no modifica scheduler/bridge. |
+| Analytics | market_analytics + serving de Strategy/Operation | Reutilizar kernels, demanda y publicación causal a ambos consumidores, incluida otra réplica/restart. H1/SR y quotes reales cubiertos por los datos requeridos. |
+| Ejecución | Bridge/adaptador/ExecutionAddOn | Multiplexar comandos y hechos por cuenta/contrato con M2 independiente. Probar dos cuentas simultáneas, fill tardío, ACK perdido, cancelación y reconexión sin cruces ni duplicados. |
 
-Cada oportunidad debe dejar causa trazable: analytics no disponible, señal descartada, binding incompatible, turno ocupado, provider denegado, orden rechazada, orden incierta o fill. No exigir rentabilidad ni 200 cuentas para aceptar el recorrido técnico.
+Estos son bloques de cambio, no seis servicios ni un calendario de shots. Lo nuevo central es asignación/turnos; las dependencias de analytics, economía y routing físico existen como gaps independientemente del pool. La primera entrega útil debe demostrar pool compartido y módulos intercambiables. La prueba empieza por una cuenta para localizar fallos y luego ejercita concurrencia/rotación: no se declara terminado al pasar únicamente la primera cuenta.
 
-### 6. Permiso comercial y hechos actuales
+**Suite pequeña propuesta:** tres asociaciones/cinco cuentas; empate por creación; incompatibilidad de una candidata sin bloquear las otras; pausa y rotación en la misma sesión; recuperación de pausada sin robo ni preemption; invariantes de cuenta única incluso en pools solapados; rechazo de generaciones viejas; reinicio/ACK incierto/fill tardío; profiles challenge/funded; Strategy/MM en consumidores distintos; indicadores compartidos sin estado monetario compartido; alta de nueva cuenta sin binding manual. Verificar caminos críticos antes de cobertura numérica; no declarar PASS por mera existencia del fixture.
 
-El Help Center E2T consultado el 2026-10-16 permite varias evaluaciones y prohíbe trade copiers; la recomendación de operar una cuenta no debe presentarse como prohibición universal de multicuenta. No se recuperó una autorización first-party específica para la automatización de Echo: los términos incluyen restricciones generales a bots/acceso automatizado y software que pueda manipular el entorno. Estado de esa compatibilidad: **PENDIENTE_DE_EVIDENCIA**, no permiso presumido ni prohibición inventada. El `entitlement=ALLOWED` documentado en ETCD para D6 no es por sí mismo fuente contractual. Esto limita el armado comercial de E2T, no el diseño ni la prueba en un entorno SIM autorizado. Llamar fanout a la ejecución independiente no concede una excepción al copier policy.
+**Diferido:** MM arbitrario por cuenta, varias Strategies dentro de una misma cuenta, dos cuentas simultáneas de una asociación, optimizador/asignación por rendimiento, presupuesto/hedging/netting de portfolio entre cuentas, UI nueva, más adaptadores, nuevas modalidades de gestión de exposición ajenas a los MM elegidos. La misma Strategy en pools distintos sí pertenece al modelo actual.
 
-### 7. Decisiones pendientes del Owner
+### 8. Límites de la asociación y continuidad
 
-| Decisión | Opción recomendada, aún no acordada | Consecuencia |
-|---|---|---|
-| Destino de una misma señal | Una cuenta por cada pool expresamente asociado y autorizado, no todas las cuentas ni una global accidental. | Permite programas/pools independientes concurrentes; conserva el scope E2T limitado. |
-| Uso inicial de cada cuenta | Un solo binding Strategy/MM propietario durante el turno persistente, sin borrar la cardinalidad multibinding futura. | Reduce arbitraje/gestión concurrente inicial sin rediseñar el dominio. |
-| Combinación de primera prueba | TG + TGMM en SIM/demo como integración del camino actual; S2 + GerardMM es alternativa si el Owner prioriza retomar el D6 anterior. | TG ejercita ahora las nuevas dependencias de analytics/economía; no implica escoger estrategia rentable ni heredar importes del backtest. |
+`1 campaña–1 Strategy–N cuentas` representa bien el consumo secuencial individual. No representa por sí sola tres campañas compitiendo por un catálogo común: falta la adjudicación compartida. R2 conserva la campaña como analogía de asociación/turno y agrega el pool como inventario compartido, sin copiar el controlador financiero offline.
 
-No hay aceptación de estas opciones todavía. No se genera prompt LOCAL ni se despachan implementadores. El siguiente turno actualiza esta tabla por delta y resuelve el diseño técnico derivado, sin repetir bootstrap ni auditoría histórica.
+Una cuenta es consumible comercialmente, no una identidad desechable: excluirla del pool no elimina journal/fills/economía ni permite aceptar comandos viejos contra otra cuenta. No se persigue proteger indefinidamente cuentas inoperables; se clasifica el desenlace y se rota.
 
-### 8. Continuidad y límites de la recepción
+Pendientes reales: parámetros y módulos ganadores los resolverá el Owner; alcance técnico exacto del transporte de contexto/analytics distribuido, wiring económico/quote, registration/dispatch de múltiples instancias y protocolo multiaccount deben cerrarse al escribir el contrato técnico. Afinidad persistente entre turnos y orden determinista de adjudicación son propuestas R2 explícitas; no fingir aprobación final. No volver a preguntar concurrencia, turno, FIFO ni gateway-only ya confirmados.
 
-Se inspeccionaron los owners/contratos aquí citados, no todo el repo ni el deployment vivo. Quedan por trazar al detalle antes de un handoff: registration/dispatch de producción multikey, productor físico de economía y quote, selección causal multi-réplica de analytics, y protocolo NT multiprop/multiaccount completo. La localización del Environment Contract de Echo/Forge por búsqueda no produjo una fuente utilizable; no se deduce su ausencia. Ninguna operación de infraestructura depende de esa laguna porque no se ejecutó infraestructura.
-
-Releer únicamente los diffs pertinentes de master antes de implementar. Las nuevas decisiones se incorporan aquí; el catálogo de cuentas y control de campañas siguen en sus autoridades existentes. No se cierra sesión ni se registra feedback de cierre.
+La autoridad Environment Contract no se recuperó en R1; no se deduce ausencia y no hubo infraestructura. Antes de un handoff que emita instrucciones de operación se debe resolver esa autoridad, sin reiniciar ahora discovery general. No se ejecutó producto, campañas, scripts, despliegues ni órdenes en R2. No se genera prompt LOCAL, no se despachan agentes y no se cierra sesión.
 
 ## Fuentes
 
-### Source de producto, todo en xKoRx/echo@0c4aae552176fda005c44766e24dd70e8c48e589
+### Source de producto en xKoRx/echo@0c4aae552176fda005c44766e24dd70e8c48e589
 
+- `v3/backtester/platform_campaign.go`: PlatformCampaignRequest.Validate, selectTurn, admitOpportunity, checkpoint, tickAccount, purchase; blob `1bdbd20f4abf9aa89d4044fa77332d2a9801d04f`. Lectura adicional R2.
 - `v3/core/internal/futuresruntime/runtime.go`: Compose, WithTGAnalyticsOwner, BridgeCommandEnvelope; blob `f4fdefe7a1efb7fb29fb7593e708e86a2be321e0`.
 - `v3/sdk/futures/config/snapshot.go`: ConfigSnapshot, StrategyDef, AccountDef; blob `89c1bf67580555914bdf05f4275d1e2fdb607d92`.
 - `v3/sdk/futures/config/views.go`: EffectiveRuleSet, MMConfigSnapshot, AnalyticsView, AccountEconomics, readModelMarket.Mark; blob `3670051e354c3f61e3389ec06691beeb606640de`.
@@ -152,15 +179,13 @@ Releer únicamente los diffs pertinentes de master antes de implementar. Las nue
 - `v3/core/internal/functions/futures_provider_rules.go`: Invoke/account owner; blob `e4361f331c511b9f8b5e2caa328e9621b12055c0`.
 - `v3/futures-bridge/core/bridge.go`: Bridge.Run; blob `17874301ffd9296a2426806ff5b9c5188904756b`.
 - `v3/futures-bridge/addon-ninjatrader/EchoExecutionAddOn.cs`: LoadConfig, ExecuteCommand, ExecuteSubmit; blob `dedd6dcdd14abefee00f087ff23e574ca3cdfd3f`.
-- `v3/futures-bridge/README.md`: M2 semantics, documentation drift; blob `350166d5ba49c6c55f61c417306c61272c014dae`.
-- `v3/backtester/tools/tradesgerard/TG-FLOW.md`: consumers, completeness, preset; blob `112243641564d372ac0725263f0451ab11365814`.
+- `v3/futures-bridge/README.md`: M2 semantics y documentación histórica D5; blob `350166d5ba49c6c55f61c417306c61272c014dae`.
+- `v3/backtester/tools/tradesgerard/TG-FLOW.md`: kernels, consumidores y completitud; blob `112243641564d372ac0725263f0451ab11365814`.
 
 ### Autoridades documentales
 
 - [[10-projects/Echo Futures/Echo Futures|Echo Futures]].
-- [[10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-CONTROL|TRADESGERARD-CONTROL]] y [[10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-CONSOLIDATION|TRADESGERARD-CONSOLIDATION]], secciones vigentes del 2026-10-16.
-- [[10-projects/Echo Futures/artifacts/d6-final-physical-certification-20261005/D6-FINAL-PHYSICAL-CERTIFICATION|D6 Final Physical Certification 2026-10-05]], blob `6fd72dceb517a730647c5dec27dc714bbb55797c`.
-- [E2T: múltiples cuentas](https://help.earn2trade.com/en/articles/5660666-can-i-have-multiple-trader-career-path-gauntlet-mini-and-live-livesim-accounts), consulta 2026-10-16.
-- [E2T: trade copiers](https://help.earn2trade.com/en/articles/12034590-am-i-allowed-to-copy-trades-across-multiple-accounts), consulta 2026-10-16.
-- [E2T: términos](https://www.earn2trade.com/terms-and-conditions), consulta 2026-10-16.
-- [NinjaTrader: Account](https://ninjatrader.com/support/helpGuides/nt8/account_class.htm) y [Account.All](https://ninjatrader.com/support/helpguides/nt8/all.htm), consulta 2026-10-16.
+- [[10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-CONTROL|TRADESGERARD-CONTROL]] y [[10-projects/Echo Futures/artifacts/tradesgerard/TRADESGERARD-CONSOLIDATION|TRADESGERARD-CONSOLIDATION]], secciones vigentes consultadas del 2026-10-16.
+- [[10-projects/Echo Futures/artifacts/d6-final-physical-certification-20261005/D6-FINAL-PHYSICAL-CERTIFICATION|D6 Final Physical Certification 2026-10-05]], blob `6fd72dceb517a730647c5dec27dc714bbb55797c`, sólo evidencia histórica.
+- Mandato inicial adjunto y decisiones explícitas del segundo turno del Owner del 2026-10-16; R2 prevalece sobre las propuestas R1 contradichas. Se retiran de este documento operativo las fuentes de permisos comerciales excluidas por el Owner; la versión anterior permanece en Git.
+- Apache Flink, `Monitoring and Controlling Networks of IoT Devices with Flink Stateful Functions`, 2020-08-18: invocaciones serializables por dirección. Apache Flink, `Logical Functions`: direcciones e independencia de estado lógico. Consulta 2026-10-16; fundamento del uso de owners existentes, no prueba del wiring de Echo.
