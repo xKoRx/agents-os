@@ -16,9 +16,7 @@ updated: "2026-10-16"
 
 ## Propósito
 
-**Prioridad corregida por Owner (16-oct): terminar refactor modular/KISS/YAGNI y probarlo con una campaña; no certificar históricos. Consumo acotado, sin repetir auditorías.** Gate histórico D5 sustituido por aceptación funcional del candidato final; presupuesto sigue 0/1. Delta vigente en [[TRADESGERARD-CONSOLIDATION]].
-
-**Consolidación 2026-10-16: PARTIAL / BLOCKED_GLM_QUOTA; campañas nuevas 0/1.** GLM-5.3-Flash agotó la cuota de cinco horas (HTTP429); ambos contextos están inactivos. HEAD parcial `1fe712c1` y15 archivos WIP preservados; D4 runtime, D5 comparador/captura y D6 siguen abiertos. Sin merge/push de Echo ni retiro de copias. Pruebas focalizadas verdes no equivalen a aceptación final. Estado, recuperación y siguiente paso: [[TRADESGERARD-CONSOLIDATION]].
+**Refactor vigente16-oct: candidato corregido e0e67f8c, pruebas pequeñas verdes; validación pendiente de autorización adicional.** La única invocación de91fe559f falló en preparación antes de finanzas; contador1/1. El fix de orden de cierre tiene RED/GREEN sintético y build/plan nuevo sin ejecutar. No merge/push ni retiro de copias. Objetivo Owner: diseño modular/KISS/YAGNI y una campaña funcional, sin certificar históricos ni ampliar auditorías. Estado y siguiente paso: [[TRADESGERARD-CONSOLIDATION]].
 
 **Nota de alcance:** el párrafo siguiente conserva la entrega histórica reportada; su afirmación de equivalencia no certifica estado Provider completo ni acepta los cambios de consolidación. La auditoría vigente deja los ocho pares con Provider UNRESOLVED y el comparador pendiente de corrección.
 
