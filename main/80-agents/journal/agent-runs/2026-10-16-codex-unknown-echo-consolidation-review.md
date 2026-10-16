@@ -49,3 +49,8 @@ Sin scores comparativos de modelos; evaluación basada en evidencia observable.
 ## Resultado
 
 Outcome: partial; verificación parcial. Evaluador: agent (GOD). Rework posterior del Owner: unknown. Sin scores comparativos: la evidencia no permite separar rendimiento del modelo, revisión y cuota.
+
+
+## Continuación atribuible — prioridad y aceptación
+
+GOD retiró gates de certificación histórica por instrucción Owner, revisó candidato concreto y autorizó una invocación. Su fallo de preparación llevó a identificar la diferencia con driver.go y el filtro completeNativeBar; también encontró el fixture de invierno con offset incorrecto y exigió RED/GREEN real. Candidato posterior e0e67f8c respaldado y probado con fixtures; autorización de ejecución adicional solicitada después de build/plan verificables. Sin implementación personal ni merge. Cuota compartida observada62% y después67%; no es medida atribuible exclusivamente a este turno/modelo.

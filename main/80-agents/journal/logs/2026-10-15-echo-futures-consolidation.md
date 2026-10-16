@@ -65,3 +65,12 @@ tags:
 - Cierre autorizado explícitamente por el mandato. Procesos propios de implementación/verificación drenados; scratch de pruebas temporales del repo retirado por el escritor; evidencia útil preservada. No se detuvieron procesos ajenos.
 
 - Recuperación final: Graphify ausente en este host (wrapper exit42); búsqueda exacta/lectura Markdown como fallback, confianza alta en el estado documentado y grafo no actualizado. Lint inicial detectó nueve headings obligatorios ausentes en los tres agent_runs; corregidos conservando los cuerpos. Validación final y sync remoto se registran en el recibo externo de cierre.
+
+
+## Continuación por prioridad Owner — 16-oct
+
+- Owner reorientó a terminar refactor modular/KISS/YAGNI y probar el cambio con una campaña; certificación histórica/preimágenes y ocho pares salieron de los gates. Advertencia explícita de consumo semanal. Mismo GLM, sin sustitución de modelo.
+- Implementación hasta e0e67f8c: composición/owner, registro completo, aislamiento, documentación y catálogo. Se retiró sólo el binario ROOT incorporado por la rama; binarios ajenos restaurados. La revisión acotada independiente conserva límites adjudicados por GOD.
+- Única invocación de91fe559f FAILED/exit2 en TGPrepare, antes de finanzas; contador1/1. Fallo de orden de finalizador de sesión corregido en2c318dcf; fixtures de zona y RED/GREEN en e0e67f8c. La primera versión del fixture no tocaba el cierre real por usar UTC-5 en enero; se corrigió y verificó el fallo antiguo. No se ocultaron intentos ni se relanzó.
+- Candidato corregido limpio, binario/plan un-item verificados y sin ejecutar. Solicitada autorización adicional después del trabajo concreto; pendiente, no aprobada por silencio. Sin merge/push Echo ni limpieza de copias.
+- Respaldo incremental actual verificado en recovery-refactor-20261016; evidencia previa preservada. Medidor de cuenta al cierre de esta unidad:67% semanal consumido/33% disponible, total compartido sin atribución exacta al turno. ROOT no inventa tokens ni consumo por agente.

@@ -84,3 +84,10 @@ Repetición observada: sí, reporte de completitud antes de verificar la conexi�
 ## One Next Improvement
 
 Exigir evidencia de caller, registro y aislamiento en la entrega de la próxima unidad; retomar con los defectos ya localizados, sin reiniciar diseño ni ejecutar otra campaña.
+
+
+## Delta de la continuación
+
+- El Owner rechazó el consumo dedicado a certificar el pasado. Se acotó el objetivo a refactor y una campaña; no se promovieron nuevos gates históricos.
+- La campaña detectó un defecto real del nuevo precálculo en3,39s antes de finanzas. El primer fixture correctivo usó un offset estacional incorrecto y era vacuo; RED sobre la versión anterior y GREEN sobre el fix dieron evidencia útil tras corregir la zona.
+- Una revisión independiente no sustituye readback: contenía una afirmación falsa sobre archivos no cambiados. Corregir el alcance del informe evitó convertirla en aceptación global. El contador1/1 se conserva y una ejecución adicional requiere autorización explícita, no reinterpretación del fallo.
