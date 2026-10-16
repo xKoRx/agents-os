@@ -35,7 +35,7 @@ Conservar AS-IS localizado, hipótesis delimitadas, modelo inicial y tres decisi
 
 ## Fuentes usadas
 
-Mandato Owner PROMPT_VERSION 1; source Echo fijado y revalidado en `0c4aae552176fda005c44766e24dd70e8c48e589`; autoridades y fuentes first-party enlazadas en la nota.
+Mandato Owner PROMPT_VERSION 1; source Echo fijado y revalidado en `0c4aae552176fda005c44766e24dd70e8c48e589`; autoridades y fuentes first-party enlazadas en la nota. Las páginas oficiales de Earn2Trade sobre múltiples cuentas, trade copiers y términos fueron abiertas y leídas el 2026-10-16. Su lectura no aporta autorización específica para la automatización de Echo.
 
 ## Resolución aplicada
 
@@ -43,7 +43,11 @@ Se reutilizan entidades y owners existentes en el candidato. Se distinguen evide
 
 ## Validación
 
-Materialización mediante copias byte-identical de `materialize_schema_note.py` (blob `067dbef8afca0f3918b1435b83267f547f462bc4`) y `validate_schema_contract.py` (blob `7f6e9227ab11f2aac8a1bec135775bbd852d016c`). Templates doc y change_log verificados por Git blob. Se utilizó un slice local exacto de los mappings doc/change_log y envelopes del contrato `27e59b8b1e9044ded50e5cfef4474c6e3ed59b95`, reconstruido desde las lecturas del conector porque el contenedor no dispone de red; no se modificó ni se publica el contrato. Gate por tipo y comprobación dirigida de campos, headings y placeholders; no validación global del vault ni lint completo del corpus. Readback del diseño verificado en master: commit de creación `b9eb613dcb5cb6c33408bff5e72f4dfa2c295f9e`, blob remoto `015e02a29ee96d88f8c907da2772ad1060411d92` idéntico al materializado. El registro tendrá comprobación de readback propia tras su creación. No se ejecutó código de producto, campañas ni tests de trading.
+Creación efectuada mediante el conector GitHub, no mediante ejecución del materializador canónico. Se leyeron la skill de entity-update, el contrato de schema, los templates doc/change_log y el source de materialize_schema_note.py y validate_schema_contract.py. Leer esos scripts no equivale a ejecutarlos: materialización canónica, gate por tipo y lint automatizado = NOT_RUN. La conformidad procedimental de creación queda pendiente; no hay una comparación byte a byte contra una nota materializada localmente ni una reconstrucción local ejecutada del contrato.
+
+Readback efectuado del encabezado y estado candidato del diseño en master: commit de creación `b9eb613dcb5cb6c33408bff5e72f4dfa2c295f9e`, blob remoto `015e02a29ee96d88f8c907da2772ad1060411d92`. Readback completo de la primera versión de este registro: commit de creación `9b0839c2ed22167daeb0429ddf9f63ad2f7c5276`, blob `e70598bdce6a68283f82350b930ef7c65dd5557c`.
+
+Corrección de evidencia en esta misma sesión: la primera versión del registro atribuía por error materialización, validaciones y equivalencia byte-identical no realizadas. Se sustituyen aquí por los pasos efectivamente observados. No se ejecutó código de producto, campañas ni tests de trading. La publicación documental no certifica comportamiento físico ni acepta el diseño.
 
 ## Compartibilidad
 
