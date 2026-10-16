@@ -4,16 +4,16 @@ schema_version: 1
 scope: session
 created: 2026-10-16
 updated: 2026-10-16
-area: "[[Personal]]"
-project: "[[AGENTS OS]]"
+area: "[[Echo]]"
+project: "[[Echo Futures]]"
 entities:
   - "[[AGENTS OS]]"
 related: []
 aliases: []
 agent_surface: "[[Codex]]"
 agent_model: unknown
-agent_run:
-session_goal:
+agent_run: "[[2026-10-16-codex-unknown-echo-consolidation-review]]"
+session_goal: Consolidar Echo y publicar sólo tras validación
 source_session:
 confidence: high
 load_policy: manual
@@ -26,89 +26,61 @@ tags:
   - agent/system1
 ---
 
-# Session Feedback - 2026-10-16 - short-topic
+# Session Feedback — Echo consolidation
 
 ## Context
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+Codex × unknown; coordinación/revisión de Echo Futures. Implementación y revisión independiente: ZCode × GLM-5.3-Flash. Skills: bootstrap una vez, recuperación contextual, verificación SDD/anti-masking y cierre/feedback/agent-run-register. Resultado y fuentes: [[TRADESGERARD-CONSOLIDATION]].
 
 ## Scores
 
-Use 1-5, where 1 is poor and 5 is excellent.
-
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
+Autoevaluación: claridad de arranque4/5, utilidad de recuperación4/5, ajuste de skills4/5, plantilla4/5, facilidad del cierre3/5, confianza en la entrega completa2/5. La cuota bloqueó el resultado; estos scores no comparan modelos.
 
 ## What Complicated The Session Most
 
-- Observation:
-- Why it was hard:
-- Proposed improvement:
+- Entregas declaradas completas carecían de callers, registro runtime o garantías comprobadas. Readback mostró diferencias entre reporte y producto; conservar la revisión de composición pública antes de aceptar cada unidad.
+- El comparador aceptaba corrupción material. Sus resultados económicos coincidentes no sustituyen una prueba estricta de identidad/estado.
+- HTTP429 agotó la cuota de cinco horas después de pruebas pequeñas; preservar WIP y cerrar PARTIAL sin sustituir el modelo ni gastar la campaña.
 
 ## Most Useful Part Of Sistema 1
 
-- What helped:
-- Why it helped:
-- Keep/change:
+CONTROL y un informe canónico enlazado conservaron límites, identidades y estado. La continuidad durable permitió preservar el presupuesto0/1 entre compactaciones.
 
 ## Least Useful Or Noisy Part
 
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
+El checkpoint cronológico creció con deltas contradictorios. Se reemplazó su entrada vigente por un estado compacto, conservando la historia aparte.
 
 ## Missing Support
 
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
+El protocolo no puede resolver cuota del proveedor. Necesita sólo un recibo claro y recuperación verificable; no otro supervisor ni cambio de modelo.
 
 ## Retrieval Feedback
 
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
+Fuentes primarias útiles: código concreto, hashes/recibos y logs focalizados. Los resultados antiguos sin dump Provider requieren límite explícito de certificación. No reconstruir conversaciones completas para retomar.
 
 ## Skill Feedback
 
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
+El cierre por delta y materializador permiten registros atribuibles sin inventar modelo, transcript o aceptación. No se propone cambiar contratos por una sesión.
 
 ## Template Feedback
 
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
+Campos útiles: outcome/verification y source_session. Se eliminaron placeholders del cuerpo, sin fabricar puntuaciones de modelos ni conteos de tokens.
 
 ## Memoria Interna (Internal Memory)
 
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
+Se cargó continuidad en el bootstrap; no se necesita citar contenido interno aquí. No se escribió otro checkpoint privado: la continuidad operativa vive en el informe canónico y evidencia externa. Valor observable de continuidad4/5; evitar duplicar estados editables.
+
+## Context Efficiency
+
+- context_high_water_mark: unknown. main_context_growth_sources: revisiones sucesivas de WIP; reportes cronológicos acumulados; salidas largas de documentos/logs.
+- avoidable_context_growth: relecturas amplias y salidas truncadas exigieron repetir lecturas focalizadas. compaction_opportunity: después de cerrar una unidad con evidencia durable. efficiency_assessment: REVIEW.
+- Candidato1: mantener un estado vigente compacto con enlaces a historia. Evidencia: coordinación acumulada contenía múltiples estados ACTIVO ya vencidos. Impacto HIGH, riesgo LOW.
+- Candidato2: inspeccionar metadata/readback acotado antes de abrir logs grandes. Evidencia: salidas truncadas durante cierre. Impacto MEDIUM, riesgo LOW. No reducir pruebas ni autoridad.
 
 ## Pain Pattern Candidate
 
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
+Repetición observada: sí, reporte de completitud antes de verificar la conexión pública. Severidad high; owner de aceptación: GOD. Promoción L3: defer; queda evidencia ligada al proyecto sin convertir feedback en política general.
 
 ## One Next Improvement
 
--
+Exigir evidencia de caller, registro y aislamiento en la entrega de la próxima unidad; retomar con los defectos ya localizados, sin reiniciar diseño ni ejecutar otra campaña.
