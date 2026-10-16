@@ -22,7 +22,7 @@ Terminar un refactor mantenible de Echo: analytics compartido, responsabilidades
 
 ## Contenido
 
-**Estado: refactor corregido y probado con fixtures; validación funcional pendiente de autorización adicional.** Candidato `e0e67f8c8a115aa2cbd0944ab0d614de85a07df6`, árbol limpio `0cd0ef93432a90389c74c1281be3c07f65b2370a`. Presupuesto **1/1 consumido**: el intento de `91fe559f` falló en preparación, antes del motor financiero. Sin merge/push de Echo ni eliminación de copias. Proyecto abierto.
+**Estado: publicado en GitHub/master por instrucción explícita del Owner.** `master` y `codex/tradesgerard-consolidation-20261015` verificados remotamente en `e0e67f8c8a115aa2cbd0944ab0d614de85a07df6`, árbol limpio `0cd0ef93432a90389c74c1281be3c07f65b2370a`. Push normal fast-forward desde 372af59a, ejecutado por el integrador GLM autorizado. Pruebas pequeñas verdes; campaña funcional del candidato final pendiente. Presupuesto **1/1 consumido**: el intento de 91fe559f falló en preparación antes del motor financiero. No hubo otra campaña, deploy ni eliminación de copias.
 
 ### Cambios implementados
 
@@ -42,11 +42,11 @@ Causa: el precálculo cerraba analytics en fase 3 antes de incorporar el último
 
 También pasaron build/vet y pruebas focalizadas de kernels, Strategy, fuente, CLI, composición y restauración; evidencia externa conserva comandos/exits, errores previos y correcciones. No se afirma suite global verde ni equivalencia histórica completa. El test de registro enumera el conjunto actual; no descubre automáticamente cualquier campo futuro.
 
-### Candidato concreto para autorizar
+### Candidato publicado y validación pendiente
 
 Directorio `/srv/echo-work/runs/consolidation-20261015/campaign-f1-k05-2300-e0e67f8c/`: binario Go 1.27.1 vinculado al commit limpio, SHA256 `b4b76c0ad4ed340e0abf42648604510e8cbc40ebd75d30abf2706d441af897e4`; plan de EXACTAMENTE un item, SHA256 `33c90684c2a4ba907536407cd0ead3feacd7f7bed56f0dfc0c3fa95f46567648`. Out vacío. Preparado, **no ejecutado**.
 
-Se solicitó al Owner UNA invocación adicional sólo después de tener fix, pruebas, build y plan verificables. El mandato original limita invocaciones y prohíbe relanzar tras fallo: silencio o tiempo transcurrido no autorizan otra. Si la autoriza, registrar el nuevo máximo/consumo antes de lanzar, comprobar funcionamiento y contabilidad sin forzar cifras antiguas; publicar sólo el árbol validado. Si mantiene el límite, conservar PARTIAL_VALIDATION y no mergear como verificado.
+Tras la solicitud de una invocación adicional, el Owner ordenó explícitamente publicar de inmediato. Esa instrucción sustituye la espera para publicación; no autoriza otra campaña. Se publicó el candidato corregido sin declarar validación funcional completa. Recibo: `publication-result.md`; verificación independiente mediante `git ls-remote` de ambas ramas.
 
 ### Límites y conservación
 
@@ -54,7 +54,7 @@ Runtime queda desactivado por defecto; no LIVE/deploy. SR necesita autoridad OHL
 
 Un GLM-5.3-Flash implementador real mediante ZCode, mismo checkout `/home/kor/aranea/work/tradesgerard-perf-memory-20261015/echo`, rama `codex/tradesgerard-consolidation-20261015`. Un contexto GLM independiente revisó alcance acotado; GOD verificó/corrigió límites de sus afirmaciones. Sin nuevos clones/worktrees ni implementación personal de GOD. La cuota GLM que bloqueó la sesión previa volvió a permitir ejecución; no hubo sustitución de modelo/cuenta. El Owner advirtió cuota semanal: se suprimieron reconstrucción de preimágenes, certificación de ocho pares, relecturas amplias y auditorías históricas como gates.
 
-Origin del escritor ahora apunta a GitHub xKoRx/echo; master 372af59a fue comprobado ancestro. Revalidar antes de publicar. Ruta canónica `/home/kor/go`, vault y procesos ajenos preservados. Copias retiradas 0, bytes liberados 0: publicación no realizada y dependencias/refs locales conservadas.
+Origin del escritor apunta a GitHub xKoRx/echo; master avanzó por fast-forward de 372af59a a e0e67f8c. Ruta canónica `/home/kor/go`, vault y procesos ajenos preservados. Copias retiradas 0, bytes liberados 0; dependencias y refs locales conservadas.
 
 Respaldo actual verificado: `/srv/echo-work/runs/consolidation-20261015/recovery-refactor-20261016/README.md`, bundle incremental hasta e0e67f8c con base autónoma previamente comprobada; hashes de evidencia y checkout limpio. El respaldo de WIP anterior sigue como historia. No se hizo restauración destructiva de prueba. Los informes de cierre/cuota anteriores son estados históricos, no sustituyen este estado vigente.
 

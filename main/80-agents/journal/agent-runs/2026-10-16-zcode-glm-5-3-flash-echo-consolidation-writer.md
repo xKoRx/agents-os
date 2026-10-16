@@ -54,3 +54,8 @@ Outcome: blocked; verificación parcial. Evaluador: agent (GOD). Rework posterio
 ## Continuación atribuible — refactor acotado
 
 Mismo contexto/modelo reanudado cuando el proveedor volvió a responder. Candidato e0e67f8c limpio, build y plan preparados. La única invocación funcional de91fe559f falló antes de finanzas por orden de cierre en TGPrepare; no rerun. Fix2c318dcf y fixtures e0e67f8c con RED exit1/GREEN exit0. GOD corrigió fixture de timezone vacuo e imprecisiones del reporte; límites en refactor-review-adjudication.md. Resultado actual partial, verificación parcial; falta autorización/ejecución adicional antes de merge. Ningún proceso de esta unidad queda activo al concluir la entrega.
+
+
+### Publicación explícita del Owner — 2026-10-16
+
+El Owner ordenó publicar inmediatamente. El mismo integrador GLM hizo push normal fast-forward de 372af59a a e0e67f8c en GitHub/master y publicó la rama codex/tradesgerard-consolidation-20261015. ROOT verificó ambas referencias con git ls-remote y árbol local limpio. Pruebas pequeñas verdes; validación funcional final sigue parcial, sin otra campaña (1/1 consumido), deploy ni retirada de copias. Recibo externo: publication-result.md. Esta actualización sustituye el estado previo de espera para publicación.

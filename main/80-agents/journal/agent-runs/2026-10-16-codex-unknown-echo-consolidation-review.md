@@ -54,3 +54,8 @@ Outcome: partial; verificación parcial. Evaluador: agent (GOD). Rework posterio
 ## Continuación atribuible — prioridad y aceptación
 
 GOD retiró gates de certificación histórica por instrucción Owner, revisó candidato concreto y autorizó una invocación. Su fallo de preparación llevó a identificar la diferencia con driver.go y el filtro completeNativeBar; también encontró el fixture de invierno con offset incorrecto y exigió RED/GREEN real. Candidato posterior e0e67f8c respaldado y probado con fixtures; autorización de ejecución adicional solicitada después de build/plan verificables. Sin implementación personal ni merge. Cuota compartida observada62% y después67%; no es medida atribuible exclusivamente a este turno/modelo.
+
+
+### Publicación explícita del Owner — 2026-10-16
+
+El Owner ordenó publicar inmediatamente. El mismo integrador GLM hizo push normal fast-forward de 372af59a a e0e67f8c en GitHub/master y publicó la rama codex/tradesgerard-consolidation-20261015. ROOT verificó ambas referencias con git ls-remote y árbol local limpio. Pruebas pequeñas verdes; validación funcional final sigue parcial, sin otra campaña (1/1 consumido), deploy ni retirada de copias. Recibo externo: publication-result.md. Esta actualización sustituye el estado previo de espera para publicación.

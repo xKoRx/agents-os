@@ -74,3 +74,8 @@ tags:
 - Única invocación de91fe559f FAILED/exit2 en TGPrepare, antes de finanzas; contador1/1. Fallo de orden de finalizador de sesión corregido en2c318dcf; fixtures de zona y RED/GREEN en e0e67f8c. La primera versión del fixture no tocaba el cierre real por usar UTC-5 en enero; se corrigió y verificó el fallo antiguo. No se ocultaron intentos ni se relanzó.
 - Candidato corregido limpio, binario/plan un-item verificados y sin ejecutar. Solicitada autorización adicional después del trabajo concreto; pendiente, no aprobada por silencio. Sin merge/push Echo ni limpieza de copias.
 - Respaldo incremental actual verificado en recovery-refactor-20261016; evidencia previa preservada. Medidor de cuenta al cierre de esta unidad:67% semanal consumido/33% disponible, total compartido sin atribución exacta al turno. ROOT no inventa tokens ni consumo por agente.
+
+
+### Publicación explícita del Owner — 2026-10-16
+
+El Owner ordenó publicar inmediatamente. El mismo integrador GLM hizo push normal fast-forward de 372af59a a e0e67f8c en GitHub/master y publicó la rama codex/tradesgerard-consolidation-20261015. ROOT verificó ambas referencias con git ls-remote y árbol local limpio. Pruebas pequeñas verdes; validación funcional final sigue parcial, sin otra campaña (1/1 consumido), deploy ni retirada de copias. Recibo externo: publication-result.md. Esta actualización sustituye el estado previo de espera para publicación.

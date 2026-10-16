@@ -16,7 +16,7 @@ updated: "2026-10-16"
 
 ## Propósito
 
-**Refactor vigente 16-oct: candidato corregido e0e67f8c, pruebas pequeñas verdes; validación pendiente de autorización adicional.** La única invocación de 91fe559f falló en preparación antes de finanzas; contador 1/1. El fix de orden de cierre tiene RED/GREEN sintético y build/plan nuevo sin ejecutar. No merge/push ni retiro de copias. Objetivo Owner: diseño modular/KISS/YAGNI y una campaña funcional, sin certificar históricos ni ampliar auditorías. Estado y siguiente paso: [[TRADESGERARD-CONSOLIDATION]].
+**Refactor publicado 16-oct: GitHub/master y rama de integración en e0e67f8c, verificados remotamente.** Push normal del integrador GLM por orden explícita del Owner. Pruebas pequeñas verdes; campaña del candidato final pendiente. La única invocación de 91fe559f falló en preparación antes de finanzas; contador 1/1, sin rerun. Sin deploy ni retiro de copias. Detalle: [[TRADESGERARD-CONSOLIDATION]].
 
 **Nota de alcance:** el párrafo siguiente conserva la entrega histórica reportada; su afirmación de equivalencia no certifica estado Provider completo ni acepta los cambios de consolidación. La auditoría vigente deja los ocho pares con Provider UNRESOLVED y el comparador pendiente de corrección.
 
