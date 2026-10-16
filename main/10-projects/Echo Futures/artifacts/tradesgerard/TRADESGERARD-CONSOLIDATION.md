@@ -22,7 +22,20 @@ Terminar un refactor mantenible de Echo: analytics compartido, responsabilidades
 
 ## Contenido
 
-**Estado: publicado en GitHub/master por instrucción explícita del Owner.** `master` y `codex/tradesgerard-consolidation-20261015` verificados remotamente en `e0e67f8c8a115aa2cbd0944ab0d614de85a07df6`, árbol limpio `0cd0ef93432a90389c74c1281be3c07f65b2370a`. Push normal fast-forward desde 372af59a, ejecutado por el integrador GLM autorizado. Pruebas pequeñas verdes; campaña funcional del candidato final pendiente. Presupuesto **1/1 consumido**: el intento de 91fe559f falló en preparación antes del motor financiero. No hubo otra campaña, deploy ni eliminación de copias.
+**Estado vigente — C1–C4 cerrados y campaña funcional COMPLETE (2026-10-16, GLM one-shot).** El cierre de las cuatro fronteras y la campaña autorizada se ejecutaron sobre el mismo checkout en la rama `glm/tradesgerard-c1c4-closure-20261016` @ `7f7d4953ddd585d1f6f3b228ce04ef89bb9aab13` (base `e0e67f8c`, fast-forward). Resultado: **CORRECTED_AND_FUNCTIONALLY_VALIDATED** dentro del alcance declarado; publicación a master verificada por `git ls-remote`. Presupuesto histórico (intento 91fe559f 1/1) se conserva como antecedente; el encargo del Owner autorizó UN intento financiero nuevo (consumido 1/1, exit0) y máximo dos preparaciones (1/2 usada).
+
+### Cierre C1–C4 (commit 7f7d4953)
+
+- **C1** — la entrega H1 declarada (F1/F3) es no-decisional: el gate de timeframe precede a la consulta de analytics en `tg.Evaluate`; sin snapshot no aborta ni falsea el espejo de readiness, y el corte 1m sigue fail-closed estricto. RED→GREEN (`TestEvaluate_H1DeliveryWithoutSnapshotDoesNotAbort`, `TestEvaluate_H1DeliveryAfterReadyMirrorKeepsMirror`, `TestEvaluate_1mDeliveryWithoutViewStillFailsClosed`, orden causal en frontera compartida).
+- **C2** — Operation/MM accede a las MISMAS observaciones vía la extensión opcional `operation.AnalyticsViewSource`; el engine pinza UNA vista congelada por decisión (`buildMMInput`). El runtime publica el owner persistido en el bar seam (`TGOwnerViewFor` en `echo/market_analytics`, atado al switch `WithTGAnalyticsOwner`); el backtest sirve cortes de la tabla preparada (`Table.FrontierSeqAt` conserva el orden same-instant) o del owner. Pruebas de pinning por el Apply público, congelación (nueva observación visible sólo en la siguiente decisión), ausencia que no bloquea reducciones y wiring de composición.
+- **C3** — `Table.lookupH1` sustituye el barrido hacia atrás por búsqueda binaria sobre el prefijo de visibilidad monótono (Seq estrictamente creciente, PublishedAt no decreciente); la metadata de indisponibilidad viaja con la snapshot visible más nueva; benchmark del peor caso 87 ns/op sobre 8760 snapshots; equivalencia contra el algoritmo de referencia en grillas de cortes.
+- **C4** — la key de preparación (schema `echo.tg.prepared.v2`) lleva sólo identidad de CÁLCULO: rho/tick quedan en el manifiesto del experimento y dos perfiles que sólo cambian riesgo:beneficio comparten UNA preparación. Evidencia de contadores en el lote CLI: 3 items (gemelo risk-90 y variante rho-2 con demanda F1 idéntica) → `tg_preparations=1`. Negativos intactos: fuente/semilla/calendario/demanda/ventana dividen la key.
+
+Fallos preexistentes contrastados en la BASE limpia (no introducidos, no tocados): 5×BTG-S05 y `TestTGWiring_OwnerFeedsAtSeamAndViewPerTrigger` (dependencia de orden del contador global) en la suite completa del backtester; `TestTGFilterSharedTypedLiveBacktestFactoryParity` (config) y `TestEconomicMinimumCoreTypedConfigAndProtectionParity/LIVE` (el guard OHLC-only-BACKTEST de `cb9cc0cd` vs el fixture cross-mode) — ambos reproducen en `e0e67f8c`.
+
+### Campaña funcional del candidato corregido
+
+**COMPLETE exit0, reconciled=true** — F1/K05/2300, NQZ5, ventana O11 2025-10-14→2025-11-25, un item, intento financiero 1/1. Directorio `/srv/echo-work/runs/consolidation-20261015/campaign-f1-k05-2300-7f7d4953/` (binario `1dc82bd0…`, plan `d630e36c…`, recibo `campaign-result.md`). Operaciones reales: 329 operaciones, 362 señales (331 OPEN + 31 CLOSE_ALL), 12 fills (6 entradas 2025-10-14/15 con sus cierres), 18 comandos. Cuenta `btg-functional`: compra 120 (14-oct) + renovación 120 (13-nov), 48000.12/50000 (neto −1999.88 = bruto −1970 − costos 29.88 exactos), pausa interna activa al horizonte (`HORIZON_CENSORED`), 0 retiros/0 pases/**0 cobros**; caja 5000→4760. Contadores: `tg_preparations=1`, `tg_kernel_feeds_runtime=0` (cero feeds de kernels durante la simulación). Wall 10m41s, CPU 1366.4s, RSS máx 372 MiB (proceso completo). La caja O11 5091 y el cobro 1651 siguen siendo antecedentes, no aserciones.
 
 ### Cambios implementados
 
@@ -42,11 +55,9 @@ Causa: el precálculo cerraba analytics en fase 3 antes de incorporar el último
 
 También pasaron build/vet y pruebas focalizadas de kernels, Strategy, fuente, CLI, composición y restauración; evidencia externa conserva comandos/exits, errores previos y correcciones. No se afirma suite global verde ni equivalencia histórica completa. El test de registro enumera el conjunto actual; no descubre automáticamente cualquier campo futuro.
 
-### Candidato publicado y validación pendiente
+### Candidato e0e67f8c (antecedente)
 
-Directorio `/srv/echo-work/runs/consolidation-20261015/campaign-f1-k05-2300-e0e67f8c/`: binario Go 1.27.1 vinculado al commit limpio, SHA256 `b4b76c0ad4ed340e0abf42648604510e8cbc40ebd75d30abf2706d441af897e4`; plan de EXACTAMENTE un item, SHA256 `33c90684c2a4ba907536407cd0ead3feacd7f7bed56f0dfc0c3fa95f46567648`. Out vacío. Preparado, **no ejecutado**.
-
-Tras la solicitud de una invocación adicional, el Owner ordenó explícitamente publicar de inmediato. Esa instrucción sustituye la espera para publicación; no autoriza otra campaña. Se publicó el candidato corregido sin declarar validación funcional completa. Recibo: `publication-result.md`; verificación independiente mediante `git ls-remote` de ambas ramas.
+Directorio `/srv/echo-work/runs/consolidation-20261015/campaign-f1-k05-2300-e0e67f8c/` quedó **sin ejecutar** (out vacío; su presupuesto de campaña no se consumió). Tras la solicitud de una invocación adicional, el Owner ordenó publicar de inmediato el candidato corregido sin validación funcional; esa instrucción no autorizaba otra campaña. Recibo: `publication-result.md`. El encargo del 16-oct (sección anterior) consumió después el único intento financiero nuevo sobre `7f7d4953`.
 
 ### Límites y conservación
 
