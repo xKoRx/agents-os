@@ -1,0 +1,20 @@
+task_stage,mandate_stage,flow_run,wave,status,host,duration,input,output,evidence_ref
+project builder (builder_test.cfx),ETAPA 1 BUILDER,0f28eea9-4f2d-4874-ad99-25677eae92c8,3,PASS,sqx-zeus (PID 3876600 /home/kor/sqx/144/sqcli),20m24s (21:12:24Z->21:32:48Z),CFX 81497aba + dataset USATECHIDXUSD_dukascopy_UTC02 H1 2023.01.01->2026.10.12,777 estrategias + overview metadata durable,stage project@sqx-overview.v2 COMPLETED; cfgID NDX_flow_example_2_v1_w3
+overview / extraction,ETAPA 2 OVERVIEW,0f28eea9,3,PASS (via builder durable V1),sqx-zeus,(incluida en builder),777 estrategias,overview.ndjson metadata durable,"task overview_exporter omitida por contrato: ""el Builder durable ya produce el overview metadata en durable V1"" (log worker Zeus)"
+classification indicator_signature.v1,ETAPA 3 CLASSIFICATION,0f28eea9,3,PASS,sqx-zeus (post-builder 21:32:50Z),2s,evaluations builder-main 777,ClassificationSnapshot 7 tipos logicos,sha256:f2326c4d793e96c2668563bc0423cc06f979c38bd8e5c921f5eea4a63c1ded72
+early ranking weighted_combination_minmax.v1,ETAPA 4 EARLY RANKING,0f28eea9,3,PASS,sqx-zeus,2s,classification f2326c4d,7 RankingSnapshots PER_LOGICAL_TYPE (DD40/PF30/SH30) top5,ranking_snapshots mongo (7 docs flow_run 0f28eea9)
+selection + snapshot,ETAPA 5 SELECTION,0f28eea9,3,PASS,sqx-zeus,2s,rankings per-type,SelectionSnapshot 30 estrategias (top5/tipo; tipos con <5 aportan todas),"sha256:f7dd10aaa006762e775f61fcfc053ee8818c958c9f95836ffa01ce7f76d16a33; task select-top-per-type"
+group routing (selection_cohort seed),ETAPA 5 GROUPING,e2d29ff8-30f7-470d-b036-ef2bf5580204,4,PASS,fleet fan-out 3 batches (child workflows),21:41:03Z dispatch,selection_cohort sha256:f7dd10aa...,3 children project@sqx-retester.v1 en sqx-main-queue,cfgID NDX_flow_example_2_v1_w4; cohort seeded sin re-import
+project retester (retester_test.cfx),ETAPA 6 RETESTER,e2d29ff8,4,PASS,3 children fleet (fan-out durable),~4 min (21:41:03->21:45),30 StrategyRefs de la seleccion,retest 30/30 COMPLETED,boundaries: 3/3 COMPLETED 0 FAILED
+project optimizer (optimizer_test.cfx),ETAPA 7 OPTIMIZER,e2d29ff8,4,PARTIAL (18/30) — parada controlada T+40,3 children fleet (fan-out batch 1),21:41->21:52:34Z,30 retested strategies,18 optimizer runs COMPLETED 12 NOT_EXECUTED,boundaries: 18 COMPLETED 0 FAILED
+evaluate_wfm + select_robust_run,ETAPA 8 WFM/ROBUST V2,e2d29ff8,4,PARTIAL (15/30) — parada controlada T+40,fleet,21:45->21:52:34Z,WF_Matrix uploads (prefix filter),15 evaluate_wfm COMPLETED + 15 select_robust_run COMPLETED robust_run_selection_v2 0.35/0.01/0.01,1 stage row evaluate_wfm queda RUNNING no-terminal por la cancelacion (documentado)
+apply_selected_run (magic 888111),ETAPA 9 APPLY,e2d29ff8,4,NOT_EXECUTED,-,-,-,-,no alcanzado por parada controlada
+project final_reretester (retesterfull_test.cfx),ETAPA 10 FULL PRECISION,e2d29ff8,4,NOT_EXECUTED,-,-,-,-,CFX verificado: fechas reales 2026.01.01->2026.10.12 precision 2 = autoridad Owner (coincide; sin bloqueo de fechas)
+trade_list_exporter + generate_report,ETAPA 11 TRADELIST,e2d29ff8,4,NOT_EXECUTED,-,-,-,-,-
+mt5_exporter,ETAPA 12 MQ5,e2d29ff8,4,NOT_EXECUTED,-,-,-,-,-
+mt5_compiler,ETAPA 13 EX5,e2d29ff8,4,NOT_EXECUTED,-,-,-,-,-
+mt5_backtesting (NDX_SQX H1 2026.01.01->2026.10.12 model 4),ETAPA 14 MT5,e2d29ff8,4,NOT_EXECUTED,-,-,-,-,bloque MT5 certificado wave3q/r/s (14-oct) con fechas de la autoridad retesterfull
+mt5_fidelity_shadow.v1,ETAPA 15 FIDELITY,e2d29ff8,4,NOT_EXECUTED,-,-,-,-,-
+score_descending.v1,ETAPA 16 FINAL RANKING,e2d29ff8,4,NOT_EXECUTED,-,-,-,-,spec configurado top_n 100 (ranking completo)
+seleccion final por tipo,ETAPA 17,e2d29ff8,4,PROJECTION_ONLY,-,-,-,-,FINALISTS-BY-TYPE.csv = SelectionSnapshot Run A por tipo (30) SIN ScoreEvidence MT5
+stop pre-echo,ETAPA 18,-,-,RESPECTED,-,-,-,-,cero integraciones Echo (sin seal handoff / ingest / deployments / trading)

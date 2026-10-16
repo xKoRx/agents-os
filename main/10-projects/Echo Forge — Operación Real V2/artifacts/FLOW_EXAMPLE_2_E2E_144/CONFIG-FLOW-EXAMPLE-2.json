@@ -1,0 +1,113 @@
+{
+    "instrument": "NDX",
+    "direction": "L",
+    "timeframe": "H1",
+    "strategy": "flow_example_2",
+    "version": "v1",
+    "wave": "3",
+    "request_id": "flow-example-2-20261016T212000Z-run-a-w3",
+    "path_strategy": "default",
+    "config_folder": "00_configs",
+    "sqx_version": "144",
+    "wave_config": {
+        "wave_key": "",
+        "pool_max": 0,
+        "batch_size": 0,
+        "target_tops": 0,
+        "ranking": {
+            "algorithm": "",
+            "weights": null
+        },
+        "wfm_params": {
+            "algorithm": "robust_run_selection_v2",
+            "min_pass_cells": 0,
+            "max_dispersion": 0,
+            "metric_filters": null,
+            "params": {
+                "cliff_threshold": 0.35,
+                "epsilon_ret": 0.01,
+                "epsilon_aux": 0.01
+            }
+        },
+        "deviation_tol": {
+            "metrics": null
+        }
+    },
+    "tasks": [
+        {
+            "type": "project",
+            "name": "builder-main",
+            "stage": "builder",
+            "folder": "01_builder",
+            "config": "builder_test.cfx"
+        },
+        {
+            "type": "overview_exporter",
+            "name": "builder-overview",
+            "source_folder": "01_builder",
+            "folder": "metadata"
+        },
+        {
+            "type": "selection",
+            "name": "select-top-per-type",
+            "source_folder": "01_builder",
+            "folder": "03_selection"
+        }
+    ],
+    "classifications": [
+        {
+            "name": "builder-indicator-signature",
+            "input_task_name": "builder-main",
+            "algorithm": "indicator_signature.v1",
+            "implementation_version": "1.0.0",
+            "params": {
+                "schema_version": "indicator-signature-params.v1"
+            }
+        }
+    ],
+    "early_rankings": [
+        {
+            "name": "builder-per-type",
+            "input_task_name": "builder-main",
+            "classification_name": "builder-indicator-signature",
+            "algorithm": "weighted_combination_minmax.v1",
+            "implementation_version": "1.0.0",
+            "params": {
+                "schema_version": "weighted-combination-minmax-params.v1",
+                "metrics": [
+                    {
+                        "code": "drawdown",
+                        "direction": "COST",
+                        "weight": 40
+                    },
+                    {
+                        "code": "profit_factor",
+                        "direction": "BENEFIT",
+                        "weight": 30
+                    },
+                    {
+                        "code": "sharpe_ratio",
+                        "direction": "BENEFIT",
+                        "weight": 30
+                    }
+                ]
+            },
+            "top_n": 5
+        }
+    ],
+    "selections": [
+        {
+            "name": "select-top-per-type-selection",
+            "task_name": "select-top-per-type",
+            "source_ranking": "builder-per-type",
+            "policy": {
+                "schema_version": "selection-policy.v1",
+                "scope": "per_logical_type",
+                "top_n": 5
+            }
+        }
+    ],
+    "scores": [],
+    "rankings": [],
+    "promotion": null
+}
