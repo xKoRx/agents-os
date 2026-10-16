@@ -63,3 +63,5 @@ tags:
 - Evidencia de pruebas pequeñas verdes y fallos retenida en `/srv/echo-work/runs/consolidation-20261015/`; no aceptar suite global ni equivalencia histórica final.
 - Feedback: [[2026-10-16-echo-consolidation-session-feedback]]. Registros atribuibles: [[2026-10-16-codex-unknown-echo-consolidation-review]], [[2026-10-16-zcode-glm-5-3-flash-echo-consolidation-writer]], [[2026-10-16-zcode-glm-5-3-flash-echo-consolidation-verifier]]. Modelo ROOT unknown; GLM confirmado por harness. Sin L0/L1 por falta de transcript y ausencia de valor adicional.
 - Cierre autorizado explícitamente por el mandato. Procesos propios de implementación/verificación drenados; scratch de pruebas temporales del repo retirado por el escritor; evidencia útil preservada. No se detuvieron procesos ajenos.
+
+- Recuperación final: Graphify ausente en este host (wrapper exit42); búsqueda exacta/lectura Markdown como fallback, confianza alta en el estado documentado y grafo no actualizado. Lint inicial detectó nueve headings obligatorios ausentes en los tres agent_runs; corregidos conservando los cuerpos. Validación final y sync remoto se registran en el recibo externo de cierre.

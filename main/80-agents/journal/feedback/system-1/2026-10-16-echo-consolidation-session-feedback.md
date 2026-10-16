@@ -56,7 +56,7 @@ El protocolo no puede resolver cuota del proveedor. Necesita sólo un recibo cla
 
 ## Retrieval Feedback
 
-Fuentes primarias útiles: código concreto, hashes/recibos y logs focalizados. Los resultados antiguos sin dump Provider requieren límite explícito de certificación. No reconstruir conversaciones completas para retomar.
+Fuentes primarias útiles: código concreto, hashes/recibos y logs focalizados. Los resultados antiguos sin dump Provider requieren límite explícito de certificación. No reconstruir conversaciones completas para retomar. Al cierre Graphify no está instalado en este host (wrapper canónico exit42); fallback a búsqueda focalizada y lectura directa Markdown, sin instalar herramientas ni afirmar auto-refresh.
 
 ## Skill Feedback
 
