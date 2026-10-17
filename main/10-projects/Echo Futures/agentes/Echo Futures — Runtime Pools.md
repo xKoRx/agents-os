@@ -322,8 +322,8 @@ Handoff común obligatorio: base SHA, source SHA, rama/worktree relativo, estado
 
 | Worker | Tarea | Estado | Base→Result SHA | Tests/evidencia |
 |---|---|---|---|---|
-| W0 | T2.1 contratos + P0-NT | DESPACHADO | d74b6525→(doc vault, sin producto) | freeze S02-W0-CONTRACT-FREEZE.md |
-| W1 | T2.2+provider T2.4 | pending | — | — |
+| W0 | T2.1 contratos + P0-NT | **INTEGRADO** | d74b6525→doc vault `S02-W0-CONTRACT-FREEZE.md` sha256 d0296352…3f7a (850 líneas); producto intacto (status limpio verificado) | freeze revisado contra R6 §12B–§15 por submanager; OQ(1–3) adoptadas (pairing EconomicMinimumV1→V2 en TGMM unclipped; ResumeBoundary=account_day_id; LastFactRevision por (account,context)); P0-NT: matriz contractual 5 bindings + PHYSICAL_NOT_DEMONSTRATED, 0/2 intentos (sin toolchain C#/assemblies en host); 0 PLAN_CONFLICT |
+| W1 | T2.2+provider T2.4 | DESPACHADO | d74b6525→ | — |
 | W2 | T2.3 fanout | pending | — | — |
 | W3 | T2.4 operation/MM | pending | — | — |
 | W4 | T2.5 analytics | pending | — | — |
@@ -331,7 +331,7 @@ Handoff común obligatorio: base SHA, source SHA, rama/worktree relativo, estado
 | W6 | T2.7 composición + base T2.8 | pending | — | — |
 | W7 | T2.8 QA falsificación | pending | — | — |
 
-Orden delegación: W0 → W1 → W4 → W2 → W3 → W5 → W6 → W7 (secuencial; sin aislamiento de worktrees disjuntos, máximo 1 writer simultáneo sobre producto). Cada worker commitea su trabajo en la rama; submanager verifica diff/allowlist/tests ANTES de aceptar el commit como integrado.
+Orden delegación: W0 → W1 → W4 → W2 → W3 → W5 → W6 → W7 (secuencial; sin aislamiento de worktrees disjuntos, máximo 1 writer simultáneo sobre producto). Cada worker commitea su trabajo en la rama; submanager verifica diff/allowlist/tests ANTES de aceptar el commit como integrado. **Delta de orquestación del submanager (sin ampliar mapa §15):** W1 crea additivamente las filas Config/EXTEND de `v3/sdk/futures/config/snapshot.go` (PoolDef/PoolAssociationDef/ValidateAssociationIdentity + campos ConfigSnapshot/AccountDef + validación referencial) y `v3/sdk/futures/operation/account_policy.go` verbatim del freeze W0 §1.10 (interface pura sin integración en engine), porque W3/W6 consumen ambos y la delegación es secuencial; todo permanece dentro del allowlist §15 y del freeze W0. W6 hereda config y no reescribe lo validado por W1.
 
 ## Evidencia S03
 
