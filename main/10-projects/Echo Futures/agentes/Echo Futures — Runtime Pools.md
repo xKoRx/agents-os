@@ -301,7 +301,37 @@ Handoff común obligatorio: base SHA, source SHA, rama/worktree relativo, estado
 
 ## Evidencia S02
 
-S02 no iniciado. Nuevo mandato Owner: submanager LOCAL con W0–W7 GLM one-shot y QA de falsificación interna; el prompt anterior de implementador GLM solitario está SUPERSEDED y no debe ejecutarse. G1 accepted, G2 pending; ningún código ni subagente ejecutados por esta actualización.
+**Paso 0 del submanager (2026-10-16):** baseline verificado — worktree `/home/kor/go/src/github.com/xKoRx/echo-runtime-pools`, branch `feature/ef-runtime-pools`, HEAD `d74b652500e673fc2bf4289f9f195f11960ba26e`, status limpio, sin drift; G1 `accepted` vigente en este planner. Subagentes directos disponibles (Agent tool local, modelo GLM-5.3-Flash); delegación OBLIGATORIA activa. Build baseline `go build ./v3/sdk/... ./v3/core/... ./v3/futures-bridge/...` EXIT=0. Test baseline (salida fuera de producto, registro aquí): `sdk/futures/config` FAIL TestTGFilterSharedTypedLiveBacktestFactoryParity; `core/internal/functions` FAIL TestEconomicMinimumCoreTypedConfigAndProtectionParity; `core/internal/futuresvertical` FAIL TestBTGS05PublicFiniteExecutionDifferential, TestFuturesVertical_UnknownManualPosition, TestFuturesVertical_ThreePathSplitAtTheHarnessSeam; bridge paquetes ok; resto sdk/futures ok. Estos 5 fallos son la **línea base heredada** (d74b6525 limpio): regresión nueva = cualquier FAIL distinto. Toolchain C# y assemblies NinjaTrader ausentes en host ⇒ P0-NT contratado como inspección + matriz, resultado esperado `PHYSICAL_NOT_DEMONSTRATED` (sin fingir compile).
+
+**Matriz AC congelada (R6 §16 → owner → oráculo):**
+
+| AC | Invariante | Owner módulo | Oráculo independiente |
+|---|---|---|---|
+| A Continuidad Strategy | pausa de cuenta nunca detiene evaluación/timers/indicadores | W4+W6 | señal y strategy_eval_seq byte-idénticos pre/post pausa; sin rewarmup |
+| B Rotación diaria | C01→C04 misma sesión; retorno día siguiente a más antigua propia | W1+W6 | PAUSED sólo por AccountAvailability de autoridad; orden FIFO (created_at,id); trade cerrado sin pausa no rota |
+| C Concurrencia | sin doble claim account-wide; pools solapados serializados | W1 | permutaciones: ≤1 claim activo/cuenta, ≤1 ACTIVE/asociación; perdedor prueba siguiente candidata |
+| D Afinidad | cuenta de A jamás a B (release/rollover/restart/config) | W1 | AFFINITY_MISMATCH en todo claim cruzado; epoch tombstone conservado |
+| E Fanout | señal consumida no re-ejecuta tras rotación; no-target decidido; CLOSE al ciclo correcto | W2 | 0 deliveries duplicados por asociación; decisión journalizada con causa; cursor avanza sin target |
+| F Riesgo | 53/300 y 1/1000 sin recorte/rechazo por remanente; breach real efecto | W3 | presupuesto solicitado = R exacto; sin rama headroom; PAUSE≠terminal; day reset no borra latch |
+| G Recovery | crash en claim/install/activate/pause/fence/drain/release; lost ACK; late fill | W1+W3+W5 | misma solicitud re-enviada no crea segundo epoch; release bloqueado con incertidumbre; late fill refuta drenaje y reabre cuenta original |
+| H Analytics | kernels una vez, corte causal entre owners, golden S2 intacto | W4 | S2 byte-identical; MM consume observación publicada, no recomputa; unión demandas sin multiplicar por cuenta |
+| I Gateway físico | 5 bindings distinguibles; comando↔callback cuenta exacta; cancel/replace/restart sin contaminación | W5 | matriz command→account→ACK/fill→M2 contractual; SIM≠físico; lane reconnect no adopta cuenta por runtime ID |
+| J Integración | registro único por TypeName, bootstrap idempotente, E2E atraviesa componentes | W6 | roundtrip ValueSpecs; 7 secuencias §13; 200 cuentas sintéticas; legacy fixed compat |
+
+**Registro de workers W0–W7** (DESPACHADO→RECIBIDO→REVISADO→INTEGRADO | RECHAZADO | BLOCKED), modelo GLM-5.3-Flash, superficie LOCAL, one-shot:
+
+| Worker | Tarea | Estado | Base→Result SHA | Tests/evidencia |
+|---|---|---|---|---|
+| W0 | T2.1 contratos + P0-NT | DESPACHADO | d74b6525→(doc vault, sin producto) | freeze S02-W0-CONTRACT-FREEZE.md |
+| W1 | T2.2+provider T2.4 | pending | — | — |
+| W2 | T2.3 fanout | pending | — | — |
+| W3 | T2.4 operation/MM | pending | — | — |
+| W4 | T2.5 analytics | pending | — | — |
+| W5 | T2.6 bridge/NT | pending | — | — |
+| W6 | T2.7 composición + base T2.8 | pending | — | — |
+| W7 | T2.8 QA falsificación | pending | — | — |
+
+Orden delegación: W0 → W1 → W4 → W2 → W3 → W5 → W6 → W7 (secuencial; sin aislamiento de worktrees disjuntos, máximo 1 writer simultáneo sobre producto). Cada worker commitea su trabajo en la rama; submanager verifica diff/allowlist/tests ANTES de aceptar el commit como integrado.
 
 ## Evidencia S03
 
