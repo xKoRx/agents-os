@@ -42,6 +42,10 @@ El mandato GOD LOCAL de 2026-10-12 y su estado de ejecución viven exclusivament
 
 READY_FOR_FINAL_ACCEPTANCE sobre fuente `d1b1446d401f88cfa42dee2eb959120305f5a372`, misma S05: BASIC/CAMPAIGN finales y replays completos PASS independiente. BASIC saldo56594,16; CAMPAIGN caja4640/3compras/2reemplazos/cobros0. Primary favorable sólo IDs informado por Owner; PRIMARY_FINAL_REVIEW=PENDING/GATE_ACCEPTED=false/PROMOTION=NOT_ACCEPTED. Raw final completo publicado/verificado, nueva fase privada inmutable; sesión Root/especialistas cerrada por Owner, Primary permanece abierto y revisa aceptación final. D6 físico NOT_DEMONSTRATED/no transferencia; ninguna acción física, merge o deploy. Detalle, hashes, receta y límites en [[BTG-S05-REMEDIATION-AND-RESULTS]].
 
+## Runtime pools — supervisión
+
+- [/] [[Echo Futures — Runtime Pools]] revisar diseño S01 y gates S02–S04 con Manager; aceptación global pendiente. #owner/me #type/supervision #area/echo
+
 ## 🎯 Objetivo
 
 Extender Echo para operar **futuros algorítmicamente desde Echo Core**, con generación central de estrategias/señales, gestión de capital desacoplada, market data de baja latencia, ejecución multi-prop y replay/backtest sobre la misma semántica de runtime.
