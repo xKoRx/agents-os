@@ -23,7 +23,7 @@ tags:
   - echo-futures
   - algorithmic-trading
 created: "2026-09-25"
-updated: "2026-10-12"
+updated: "2026-10-16"
 ---
 
 # Echo Futures
@@ -44,7 +44,7 @@ READY_FOR_FINAL_ACCEPTANCE sobre fuente `d1b1446d401f88cfa42dee2eb959120305f5a37
 
 ## Runtime pools — supervisión
 
-- [/] [[Echo Futures — Runtime Pools]] revisar diseño S01 y gates S02–S04 con Manager; aceptación global pendiente. #owner/me #type/supervision #area/echo
+- [r] [[Echo Futures — Runtime Pools]] revisar diseño S01 y gates S02–S04 con Manager; aceptación global pendiente. #owner/me #type/supervision #area/echo
 
 ## 🎯 Objetivo
 
