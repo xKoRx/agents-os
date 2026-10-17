@@ -4,10 +4,11 @@ schema_version: 1
 scope: session
 created: "2026-10-16"
 updated: "2026-10-16"
-area:
-project:
+area: "[[Echo]]"
+project: "[[Echo Futures — Runtime Pools]]"
 application:
-entities: []
+entities:
+  - "[[Echo Futures]]"
 related: []
 aliases: []
 confidence: verified
@@ -22,37 +23,31 @@ tags:
   - scope/session
 ---
 
-# 2026-10-16-echo-futures-runtime-pools-s01
-
-%% Routing: area/project/application/entities/related usan links canónicos. Aliases son variantes humanas; tags/paths usan slugs. %%
+# Echo Futures runtime pools — cierre S01
 
 ## Cambio
 
-- **Tipo:** created / updated / deleted / conflict-resolution
-- **Archivo(s):**
-  - 
+- Actualizado [[ECHO-FUTURES-RUNTIME-POOL-DESIGN]] por delta R6 (§12–18); creado canónicamente [[Echo Futures — Runtime Pools]] como planificador único, tarea puente en padre. Diseño técnico candidato y cuatro shots, G1 review sin autoaceptación.
+- Rama producto feature/ef-runtime-pools creada y publicada desde origin/master d74b652500e673fc2bf4289f9f195f11960ba26e en worktree externo echo-runtime-pools. Ningún archivo de producto cambiado.
 
 ## Motivo
 
-- 
+Mandato Owner RUNTIME-POOL-S01. Separar Strategy técnica, MM/Provider económicos y PoolManager asignador; cerrar afinidad/turnos, cursor anti-replay, fencing/drenaje y seams distribuidos.
 
 ## Fuentes usadas
 
-- 
-
-## Resolución aplicada
-
-- 
+R5, contratos técnicos seleccionados y código HEAD listado en diseño §15. No historia completa D1–D6, campañas ni fuentes financieras externas.
 
 ## Validación
 
-- 
+- validate_plan.py: phases=4, gates=4, dispatches=4, local_refs=4, errors=0, warnings=0.
+- lint.py --strict sobre diseño y planner: ERROR=0/WARN=0. Lint del padre devuelve cinco defectos de schema heredados; comparación con 00caab0d confirma baseline=5/current=5/new=0. No se declara PASS estricto del padre ni se reestructura proyecto ajeno.
+- Referencias de producto verificadas contra SHA base; create explícitos separados. Estado Git y readback remoto al finalizar registrados en planner. Tests producto/NT/infra: NOT_RUN en S01, no certificación física.
 
 ## Compartibilidad
 
-- **Scope:** local / team
-- **Redacción revisada:** sin identidad, paths locales, memoria interna ni secretos
+Scope local. Sin secretos, dumps, paths absolutos de máquina ni cadena de pensamiento. Estado durable en proyecto, sin checkpoint interno paralelo.
 
 ## Rollback
 
-- 
+Revertir sólo delta documental S01 con revisión de concurrencia y mantener evidencia de gates. Rama producto sin commits nuevos puede conservarse para revisión; no borrarla automáticamente ni tocar backtester. Ningún rollback operacional necesario porque no hubo deployment ni egress.

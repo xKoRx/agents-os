@@ -4,15 +4,15 @@ schema_version: 1
 scope: session
 created: 2026-10-16
 updated: 2026-10-16
-area: "[[Personal]]"
-project: "[[AGENTS OS]]"
+area: "[[Echo]]"
+project: "[[Echo Futures — Runtime Pools]]"
 entities:
   - "[[AGENTS OS]]"
 related: []
 aliases: []
 agent_surface: "[[Codex]]"
-agent_model: unknown
-agent_run:
+agent_model: GPT-6
+agent_run: "[[2026-10-16-codex-gpt-6-runtime-pools-s01]]"
 session_goal:
 source_session:
 confidence: high
@@ -26,89 +26,38 @@ tags:
   - agent/system1
 ---
 
-# Session Feedback - 2026-10-16 - short-topic
+# Echo Futures runtime pools — feedback S01
 
 ## Context
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+- Solicitud explícita Owner; sesión local one-shot de diseño/auditoría, sin producto implementado ni delegación. Entidad [[Echo Futures]], entrega [[Echo Futures — Runtime Pools]] y [[ECHO-FUTURES-RUNTIME-POOL-DESIGN]].
+- Skills: bootstrap/retrieval, implementation-planning, agent-project-workflow, router Aranea scoped, session-close, session-feedback y agent-run-register. Búsqueda enfocada rg; Graphify CLI ausente de PATH.
 
 ## Scores
 
-Use 1-5, where 1 is poor and 5 is excellent.
+- Claridad startup 4/5; utilidad retrieval 4/5; adecuación skills 4/5; templates 3/5; fluidez cierre 3/5; confianza documental 4/5. Autoevaluación; no score de ejecución física ni código implementado.
 
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
+## Valor y memoria interna
 
-## What Complicated The Session Most
+La continuidad global ayudó a separar estado lógico de efecto físico y a exigir readback tras resultado incierto. No fue necesario crear otra memoria interna: el planner contiene continuidad de este proyecto. R5 y símbolos concretos evitaron reconstruir historia.
 
-- Observation:
-- Why it was hard:
-- Proposed improvement:
+## Fricciones reales
 
-## Most Useful Part Of Sistema 1
+- Algunos comandos agruparon demasiado contenido y truncaron output; se corrigió con lecturas por símbolo. Un wildcard inicial leyó preferencias scoped innecesarias; no se utilizaron para decidir fuera de su dominio. El primer path de phase-plan-contract se intentó en _shared y se corrigió al references/ indicado por la skill. Mejor resolver rutas antes de abrir y filtrar sólo perfil global.
+- Graphify no disponible; fallback rg suficiente para fuentes exactas. Template project incluye scaffolding largo y ejemplos que se retiraron al materializar. Cron sincronizó borradores durante la sesión: se conservó y verificó por contenido, sin deshacer commits ajenos.
+- Lint estricto del padre muestra 5 defectos heredados; se comprobó baseline/new=0 sin ampliar a saneamiento de proyecto. No es PASS estricto del corpus.
 
-- What helped:
-- Why it helped:
-- Keep/change:
+## Economía de contexto
 
-## Least Useful Or Noisy Part
+context_high_water_mark: unknown. No se expuso consumo semanal efectivo ni caché/tokens; no inventar ahorro porcentual. Fuentes de crecimiento: bootstrap/dependencias, source contractual, diseño/paquetes. avoidable_context_growth: outputs agrupados y wildcard inicial. compaction_opportunity: tras congelar source y diseño, pero no se ejecutó compaction. efficiency_assessment: REVIEW.
 
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
-
-## Missing Support
-
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
-
-## Retrieval Feedback
-
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
-
-## Skill Feedback
-
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
-
-## Template Feedback
-
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
-
-## Memoria Interna (Internal Memory)
-
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
+- change: priorizar salida de símbolos y rangos menores; evidence: truncamientos observados; expected_impact MEDIUM; risk_to_quality LOW, conservando todas las lecturas necesarias.
+- change: extraer metadata del template sin imprimir todo el scaffolding; evidence: plantilla proyecto extensa; expected_impact LOW; risk_to_quality LOW.
 
 ## Pain Pattern Candidate
 
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
+Validar delta de una nota padre con deuda histórica necesita comparación explícita de findings; una salida integrada baseline/current/new reduciría fricción. No promover policy ni alterar skills por esta única observación.
 
-## One Next Improvement
+## Cierre
 
--
+Skills de cierre/feedback ejecutadas sólo para S01 por autorización explícita. Continuidad en planner, log consolidado y agent_run por auditoría source; sin L0/L1 duplicados. Manager y proyecto global siguen abiertos. Valor entregado: contrato revisable y paquetes autónomos; comportamiento nuevo y física aún deben probarse en sus etapas.
