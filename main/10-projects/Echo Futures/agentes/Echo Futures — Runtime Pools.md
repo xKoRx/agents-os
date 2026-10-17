@@ -30,7 +30,7 @@ Entregar extensión runtime de pools y asociaciones pool–Strategy–MM mediant
 
 ## 📊 Estado actual
 
-S01 completado para revisión del Manager; G1 `review`, **READY_FOR_MANAGER_REVIEW**; validación y readback registrados abajo. S02 no iniciado ni autorizado. Proyecto sigue activo; sesión S01 se cierra por mandato Owner, sesión Manager y proyecto Echo Futures siguen abiertos. Próxima acción: Manager revisa R6, acepta o rechaza G1 y prepara el prompt S02. Ningún agente acepta su gate ni ejecuta el siguiente shot.
+S01 revisado y **G1 `accepted` por Manager GPT-6** sobre R6 publicada en Agents-OS commit `6d73673ca4573d25e4552ad7a58a23f7b55ca69c`; producto branch `feature/ef-runtime-pools@d74b652500e673fc2bf4289f9f195f11960ba26e` confirmado remotamente idéntico a master en el gate. **S02 GLM autorizado sólo para implementación local en la rama runtime** conforme a §12–18 del diseño y al paquete Fase 2. G2 permanece pending. Cierre S01 ya ejecutado; Manager y proyecto global abiertos. No egress real ni certificación física autorizados. La demostración NinjaTrader multicuenta y el productor contable LIVE continúan `NOT_DEMONSTRATED`; fallas materiales → G2 blocked, no aceptación ficticia.
 
 Base **HEAD** de producto: `xKoRx/echo@d74b652500e673fc2bf4289f9f195f11960ba26e`, `origin/master` después de fetch no destructivo. Checkout original `master@3596fc48` limpio se conserva; worktrees históricos/prunables no se limpiaron. Sin rama local/remota `feature/ef-runtime-pools` antes de crearla. Worktree externo `echo-runtime-pools` relativo a [[echo-go-workspace]], creado con `git worktree add -b feature/ef-runtime-pools <workspace>/echo-runtime-pools d74b652500e673fc2bf4289f9f195f11960ba26e`. HEAD inicial idéntico a base, sin diff ni untracked de producto. El tool de worktree de la app habría operado sobre el repo Agents-OS de este chat; se usó Git dirigido al repo producto. No reset/stash/clean/merge/rebase/cherry-pick ni alteración de rama backtester.
 
@@ -85,7 +85,7 @@ Cuatro contextos/shot como contrato Owner. S02 concentra la implementación en o
 
 | Gate | current state | phase agent responsibility | owner acceptance evidence | enables |
 |---|---|---|---|---|
-| G1 | review | GOD S01 entrega diseño/rama/paquetes/validaciones y cierra sólo S01 | Pendiente Manager, sin autoaceptación | S02 sólo tras accepted |
+| G1 | accepted | GOD S01 entregó diseño/rama/paquetes/validaciones y cerró S01 | Manager GPT-6: revisión independiente documental R6 §§12–18, plan T1–T4, fuente selectiva; GitHub branch/master comparados idénticos `d74b6525` y commit documental `6d73673c`. Se acepta la implementabilidad del diseño, NO el runtime ni el egress físico. | S02 habilitado |
 | G2 | pending | GLM S02 entrega implementación/fixtures/limitaciones verificadas en review o blocked | Pendiente Manager sobre SHA exacto | S03 sólo tras accepted |
 | G3 | pending | GLM S03 entrega dictamen reproducible sin autocorregir en review o blocked | Pendiente Manager sobre hallazgos | S04 sólo tras accepted |
 | G4 | pending | GLM S04 entrega fixes/tests y residual explícito en review o blocked | Pendiente Manager; egress real requiere Owner aparte | Fin del plan, no quinto shot |
@@ -285,6 +285,8 @@ Pendiente corrección tras G3 accepted; ningún fix atribuido.
 ## 📆 Bitácora
 
 - 2026-10-16 — S01: bootstrap una vez, R5 y límites fuente seleccionados; master remoto d74b6525, branch/worktree limpio. Diseño R6 y paquetes congelados para Manager, sin producto editado ni siguiente shot iniciado.
+
+- 2026-10-16 — Manager G1: `accepted` sobre R6/plan, después de verificar en GitHub base/branch sin delta, AS-IS, paquetes/gates y cierre S01. S02 queda autorizado en rama runtime con pruebas aisladas; no acceso a trading LIVE, despliegue ni cuentas reales. P0-NT/economía LIVE siguen no demostrados. Antes de S02 revisar HEAD y cambios concurrentes, sin reset. No se ejecutaron tests de producto desde esta revisión.
 
 ## Sesión S01 cerrada
 
