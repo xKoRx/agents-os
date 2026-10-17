@@ -42,7 +42,7 @@ R5, contratos técnicos seleccionados y código HEAD listado en diseño §15. No
 
 - validate_plan.py: phases=4, gates=4, dispatches=4, local_refs=4, errors=0, warnings=0.
 - lint.py --strict sobre diseño y planner: ERROR=0/WARN=0. Lint del padre devuelve cinco defectos de schema heredados; comparación con 00caab0d confirma baseline=5/current=5/new=0. No se declara PASS estricto del padre ni se reestructura proyecto ajeno.
-- Referencias de producto verificadas contra SHA base; create explícitos separados. Estado Git y readback remoto al finalizar registrados en planner. Tests producto/NT/infra: NOT_RUN en S01, no certificación física.
+- Referencias R6 verificadas contra SHA base: 65 paths existentes, 11 create explícitos, cero ausencias sin marcar; 17 tareas únicas. Estado Git y readback remoto al finalizar registrados en planner. Tests producto/NT/infra: NOT_RUN en S01, no certificación física.
 
 ## Compartibilidad
 

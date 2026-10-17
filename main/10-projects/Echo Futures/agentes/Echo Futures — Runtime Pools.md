@@ -30,7 +30,7 @@ Entregar extensión runtime de pools y asociaciones pool–Strategy–MM mediant
 
 ## 📊 Estado actual
 
-S01 completado para revisión del Manager; G1 `review`, **READY_FOR_MANAGER_REVIEW** condicionado a readback/validación registrados abajo. S02 no iniciado ni autorizado. Proyecto sigue activo; sesión S01 se cierra por mandato Owner, sesión Manager y proyecto Echo Futures siguen abiertos. Próxima acción: Manager revisa R6, acepta o rechaza G1 y prepara el prompt S02. Ningún agente acepta su gate ni ejecuta el siguiente shot.
+S01 completado para revisión del Manager; G1 `review`, **READY_FOR_MANAGER_REVIEW**; validación y readback registrados abajo. S02 no iniciado ni autorizado. Proyecto sigue activo; sesión S01 se cierra por mandato Owner, sesión Manager y proyecto Echo Futures siguen abiertos. Próxima acción: Manager revisa R6, acepta o rechaza G1 y prepara el prompt S02. Ningún agente acepta su gate ni ejecuta el siguiente shot.
 
 Base **HEAD** de producto: `xKoRx/echo@d74b652500e673fc2bf4289f9f195f11960ba26e`, `origin/master` después de fetch no destructivo. Checkout original `master@3596fc48` limpio se conserva; worktrees históricos/prunables no se limpiaron. Sin rama local/remota `feature/ef-runtime-pools` antes de crearla. Worktree externo `echo-runtime-pools` relativo a [[echo-go-workspace]], creado con `git worktree add -b feature/ef-runtime-pools <workspace>/echo-runtime-pools d74b652500e673fc2bf4289f9f195f11960ba26e`. HEAD inicial idéntico a base, sin diff ni untracked de producto. El tool de worktree de la app habría operado sobre el repo Agents-OS de este chat; se usó Git dirigido al repo producto. No reset/stash/clean/merge/rebase/cherry-pick ni alteración de rama backtester.
 
@@ -96,7 +96,7 @@ Cada ítem define objetivo | archivos/símbolos | precondición | implementació
 
 - [x] T1.1 Preparar rama | Git producto | checkout/refs inspeccionados | fetch y crear desde SHA exacto en worktree aislado | rev-parse/status/diff | base=HEAD y estado limpio. #owner/agent
 - [x] T1.2 Cerrar diseño | R6 §12–18 y símbolos §15 | R5/contratos | auditoría localizada y resolución técnica | matriz requisitos/source refs | autoridad actualizada, sin producto editado. #owner/agent
-- [r] T1.3 Validar y cerrar S01 | este planner, log/feedback/run | T1.1–2 | validadores/readback/commit/push/cierre | schema/plan/refs/Git | G1 review + evidencias cierre. #owner/agent
+- [x] T1.3 Validar y cerrar S01 | este planner, log/feedback/run | T1.1–2 | validadores/readback/commit/push/cierre | schema/plan/refs/Git | G1 review + evidencias cierre. #owner/agent
 - [ ] T2.1 Spikes y contratos | R6 §15 NTX/AddOn, domain/config/pool | G1 accepted | P0-NT local, input contable serializado y contratos v1 | dos lanes/account identity, schema invalid | matriz de capacidades, decisión sobre ejecución verificable. #owner/agent
 - [ ] T2.2 Asignación account-wide | pool, provider, futures_pool_manager | T2.1 | reducer claim/affinity/availability, account policy reusando MM | FIFO, day, concurrencia y restart | tests e invariantes S01 casos 1–4/7. #owner/agent
 - [ ] T2.3 Fanout | domain/fanout, strategy/fanout, futures_signal_fanout | T2.2 | merge por asociación, cursores/no-target y manage-only | replay antes/después de rotar/evicción | una decisión por asociación/señal. #owner/agent
@@ -263,7 +263,11 @@ Handoff común obligatorio: base SHA, source SHA, rama/worktree relativo, estado
 ## Evidencia S01 y cierre
 
 - Source: inspección localizada de archivos/símbolos §15 en d74b6525; presupuesto TGMM y single-account NT comprobados en fuente; no tests de producto ni pruebas físicas ejecutadas.
-- Validación documental: pendiente registro de ejecución final abajo. El validador mecánico no certifica arquitectura ni comportamiento de producto.
+- `python3 80-agents/skills/agents-os-implementation-planning/scripts/validate_plan.py <este-proyecto>`: phases=4/gates=4/dispatches=4/local_refs=4/errors=0/warnings=0. Reconciliación adicional: 17 tareas únicas (3+8+3+3), sin quinto shot.
+- `python3 80-agents/skills/agents-os-entity-lifecycle/scripts/lint.py --strict <diseño> <planner> <log> <feedback> <agent_run>`: ERROR=0/WARN=0, cinco notas. Padre: lint estricto NO PASS (5 defectos históricos); función canónica lint_note comparada contra parent@00caab0d confirma baseline=5/current=5/new=0. No se saneó historia no solicitada.
+- Referencias R6: expansión de paths con braces y comprobación de existencia en worktree d74b6525: 65 existentes y 11 create explícitos, cero paths inexistentes sin marcar. Referencias VAULT_ROOT resueltas por validate_plan. Query enfocada por ruta/título confirma fuente canónica; Graphify CLI no disponible, no se declara index PASS.
+- `git diff --check`: sin defectos de whitespace. Producto: status --porcelain=v1 --untracked-files=all vacío, diff base vacío; HEAD=origin/master=origin/feature/ef-runtime-pools=d74b652500e673fc2bf4289f9f195f11960ba26e. Push rama exitoso y ls-remote confirma master/feature en el mismo SHA. Checkout original conserva 3596fc48daab93d58d29ab658f371f40e76f3e55 y estado limpio. Sin archivos Go/C#/test/script/config modificados por S01.
+- Readback de Agents-OS: contenidos diseño/planner/gate/puente/closeout comprobados en master local y snapshot remoto al cierre; cron generó commits intermedios, no fueron alterados. Identificar snapshot final con `git log -1 --format=%H -- main/10-projects/Echo\ Futures/artifacts/runtime/ECHO-FUTURES-RUNTIME-POOL-DESIGN.md` desde raíz repo o historial del diseño; SHA final comunicado al Manager. El validador mecánico no certifica arquitectura ni comportamiento de producto.
 - Cierre explícito autorizado: `agents-os-session-close` por delta sobre este proyecto/diseño + change_log; no cerrar Manager ni Echo Futures; `agents-os-session-feedback` solicitado. Agent run aplicable por auditoría material de código que produjo contrato implementable (task_type planning), sin claim de coding generado. No L0/L1 duplicados ni checkpoint interno paralelo al proyecto.
 
 ## Evidencia S02
@@ -281,3 +285,7 @@ Pendiente corrección tras G3 accepted; ningún fix atribuido.
 ## 📆 Bitácora
 
 - 2026-10-16 — S01: bootstrap una vez, R5 y límites fuente seleccionados; master remoto d74b6525, branch/worktree limpio. Diseño R6 y paquetes congelados para Manager, sin producto editado ni siguiente shot iniciado.
+
+## Sesión S01 cerrada
+
+Cierre explícito ejecutado mediante agents-os-session-close por delta: diseño/planner/puente + [[2026-10-16-echo-futures-runtime-pools-s01]], sin duplicación de continuidad interna. Feedback ejecutado y persistido en [[2026-10-16-echo-futures-runtime-pools-session-feedback]]; evaluación material de source registrada en [[2026-10-16-codex-gpt-6-runtime-pools-s01]]. No se cierra Manager ni proyecto Echo Futures, no S02, no gate accepted. Próximo actor Manager; por favor gracias.
