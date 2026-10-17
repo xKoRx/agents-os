@@ -164,6 +164,33 @@ Lee bootstrap canónico una vez y el paquete ASIGNADO de este proyecto. Usa dise
 
 **Handoff a Fase 3:** Manager acepta G2 sobre SHA; auditor recibe base/HEAD y comandos reproducibles, no una conclusión de autoaprobación. STOP sin disparar S03.
 
+
+#### S02 — Matriz obligatoria de submanager y subagentes (decisión posterior del Owner)
+
+**Alcance:** ocho workers one-shot LOCAL GLM bajo un SUBMANAGER LOCAL persistente exclusivamente para S02. No son ocho shots adicionales, no crean gates G5+, no cambian T2.1–T2.8. El submanager registra y revisa cada handoff, integra los cambios y presenta G2; no implementa todo por sí solo. Ningún worker acepta G2. Si el harness no ofrece subagentes directos: SUBAGENTS_UNAVAILABLE, G2 blocked; sin inventar delegación ni volver a ejecución solitaria. No consumir cuota GOD/TOP sin nuevo permiso del Manager.
+
+| Worker | Task y ownership de escritura EXCLUSIVO dentro de R6 §15 | Entrada necesaria | Entrega/test obligatorio |
+|---|---|---|---|
+| W0 — CONTRATOS | T2.1; spike read-only NTX/AddOn y economía/revisión, sin product mutation | G1 accepted | Freeze de contratos de mensajes, identidad, schema, source revision, P0-NT máximo dos pruebas locales/compile; capacidad real vs no demostrada. |
+| W1 — POOL/PROVIDER | T2.2 y provider de T2.4; sdk/futures/pool, sdk/futures/provider, functions/futures_pool_manager.go y futures_provider_rules.go | W0 | Test de claims/afinidad, FIFO/day, policy-fact ingest/restart, stale epochs, exclusividad account-wide y estado serializado; sin PnL/target en PoolManager. |
+| W2 — SIGNAL/FANOUT | T2.3; sdk/futures/domain/fanout.go, strategy/fanout.go, functions/futures_signal_fanout.go | W1 claim API | Tests de cursor durable, dedup por asociación a través de rotación/evicción/restart, management del destino anterior, no-target, targets unidos para dos pools. Signal byte-identical. |
+| W3 — OPERATION/MM | T2.4; sdk/futures/operation, gerardmm, strategies/tgmm, domain/admission.go, reservation.go, operation.go, functions/futures_operation.go | W0, W1/W2 contratos | MM pin/contexto, policy económico puro, 53/300 y 1/1000, reservation revalidate/epoch, drain proofs y tests de idempotencia. NO escribir provider ni config. |
+| W4 — ANALYTICS | T2.5; sdk/futures/analytics, marketctx, strategies/s2, functions/futures_market_analytics.go y futures_strategy_engine.go | W0 contrato observación | Compartir kernels, golden S2 igual, unión demandas Strategy/MM, snapshot causal entre owners/restart, no datos futuros; NO escribir config/views.go. |
+| W5 — BRIDGE/NT | T2.6; únicamente futures-bridge allowlist §15 incluyendo NTX y AddOn C# | W0 P0-NT + fence contrato W1/W3 | Harness 2/5 lanes, identidad de cuenta, M2 lost ACK/ambiguous/late fill, cancel/replace y reconexión; API compile si disponible, evidencia PHYSICAL_NOT_DEMONSTRATED si no. |
+| W6 — COMPOSICIÓN/INTEGRACIÓN | T2.7 y base T2.8; sdk/futures/config, core/internal/futuresruntime, core/cmd/echo-core, sdk/statefun, source module.yaml; integración/E2E | W1–W5 integrados y revisados | Dispatcher por TypeName/key, bootstrap idempotente, config/RuleSet/MM por cuenta, fixed compatibility, siete secuencias, tests StateFun serializados y 200 cuentas sintéticas. No rediseñar contratos. |
+| W7 — QA FRESCA INDEPENDIENTE | T2.8; añadir sólo tests nuevos y reproductores, nunca modificar source productivo | SHA W6 integrado fijado | Pruebas de falsificación R6 §16 sin confiar en tests anteriores: no pausa Strategy, claim conflict, restarts, rotación/signal replay, stale epoch, wrong-account, presupuesto y drenaje físico; findings reproducibles con archivo, comando y salida. No sustituye S03. |
+
+**Orden/dependencias:** W0 primero. W1, W4 y W5 pueden ejecutarse con máximo dos simultáneos sólo en worktrees/ramas temporales disjuntos, con ownership de paths no solapado y commits independientes; si no hay aislamiento, delegación SECUENCIAL. W2 depende de W1; W3 depende de W1/W2. W6 después de W1–W5 integrados. W7 después de W6, fresh context con SHA exacto. El submanager valida cada diff/test/contrato antes de integrar; rechazos se corrigen por worker con un mandato delimitado. Ningún concurrent writer en un mismo archivo; no merge destructivo, no force-push, no tocar ramas/worktrees ajenos.
+
+**Antes del primer worker:** submanager congela una matriz R6 §16 (AC/invariante → módulo owner → test ejecutable → oráculo independiente → evidencia requerida) y un registro de interfaces compartidas/owner de archivos; asigna IDs W0–W7 y deja estado en este planner. Luego redacta **un prompt exacto one-shot por worker**, con ROLE=NORMAL, SURFACE=LOCAL, WORK_FUNCTION, tarea T2.*, base SHA, archivos permitidos/prohibidos, condiciones de inicio, implementación, test por contrato, criterios PASS/FAIL, evidencia, salida y cierre/feedback Agents-OS. No da libertad para rediseñar arquitectura, cambiar fórmulas ni ampliar scope. Subagentes no subdelegan ni ejecutan otro shot.
+
+**Control de entregas:** para cada worker registrar DESPACHADO → RECIBIDO → REVISADO → INTEGRADO | RECHAZADO | BLOCKED en tareas y bitácora del mismo proyecto, con modelo/superficie reales, commits, SHA base/HEAD, changed-files, pruebas ejecutadas (comando, resultado y artefacto), coverage, limitaciones, readback, agent_run y cierre/feedback si procede. Un worker con tests ausentes no cuenta como integrado; un fallo crítico obliga a corrección/retorno acotado dentro de S02 o G2 blocked. No mantener ocho planificadores competidores ni mentir sobre runs.
+
+**Foco de pruebas:** primero RED/green y tests que falsen invariantes de cuenta única, afinidad, rotación diaria, continuidad de Signal, presupuesto no clipeado, fencing, lost ACK/fill tardío y causalidad distribuida; después coverage >=95% de código nuevo. Test E2E debe atravesar serialización y dispatch reales, no sólo harness in-process. W7 construye nuevos casos negativos como auditor interno distinto del implementador. Submanager vuelve a correr tests integrados y verifica regresiones respecto baseline, no acepta un PASS de unit aislada. Sin E2E físico no declarar LIVE; PHYSICAL_NOT_DEMONSTRATED explícito.
+
+**Handoff worker obligatorio:** WORKER_ID; ROLE/SURFACE/MODEL; TAREA; BASE_SHA; RESULT_SHA; paths; COMMANDS+RESULTS; CRITICAL_ASSERTS; NEGATIVE_TESTS; UNVERIFIED; BLOCKERS; AGENTS_OS_RUN; SESSION_CLOSE; FEEDBACK; STOP. Handoff de submanager al Manager sólo al final de S02: estado W0–W7, matriz AC→evidencia, SHA integrado, tests/coverage/race, bugs corregidos o residuales, límites físicos y G2 review/blocked. Submanager tiene prohibido aceptar G2, iniciar S03, desplegar o enviar órdenes reales.
+
+
 ### Paquete autónomo Fase 3 — S03 GLM adversarial independiente
 
 **Misión exacta:** dictamen read-only de producto S02; buscar violaciones, sin autocorregir ni autoaprobar.
@@ -289,6 +316,8 @@ Pendiente corrección tras G3 accepted; ningún fix atribuido.
 - 2026-10-16 — S01: bootstrap una vez, R5 y límites fuente seleccionados; master remoto d74b6525, branch/worktree limpio. Diseño R6 y paquetes congelados para Manager, sin producto editado ni siguiente shot iniciado.
 
 - 2026-10-16 — Manager G1: `accepted` sobre R6/plan, después de verificar en GitHub base/branch sin delta, AS-IS, paquetes/gates y cierre S01. S02 queda autorizado en rama runtime con pruebas aisladas; no acceso a trading LIVE, despliegue ni cuentas reales. P0-NT/economía LIVE siguen no demostrados. Antes de S02 revisar HEAD y cambios concurrentes, sin reset. No se ejecutaron tests de producto desde esta revisión.
+
+- 2026-10-16 — Owner cambió S02 tras G1: obligatoriedad de SUBMANAGER LOCAL + W0–W7 GLM one-shot y QA interna; anterior prompt GLM solitario superseded. Cuatro shots/gates, 17 tareas, G1 accepted y G2 pending sin implementación iniciada.
 
 ## Sesión S01 cerrada
 
