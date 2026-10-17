@@ -24,9 +24,14 @@
 | TradeSets SQX (tick_retest/optimized FULL) | Mongo `forge.trade_sets` flow `8248f7fa` + MinIO `durable/trade-list/v1/8248f7fa/` |
 | MT5 exports | MinIO `durable/mt5-export/v1/8248f7fa/<uuid>` (30 keys) |
 | Decisiones robust (30) | PG `sqx.decisions` OPTIMIZER_SELECTION SELECTED policy `wfm_robust_selection` (DecisionRefs sha256 en CSV) |
-| Decisión promoción | PG `sqx.decisions` FLOW `finalist_promotion` 2.0.0 **STRUCTURAL_PROMOTED** 2026-10-17T04:17:09.095Z |
+| Decisión promoción | PG `sqx.decisions` FLOW `finalist_promotion` 2.0.0 **STRUCTURAL_PROMOTED** 2026-10-17T04:17:09.095Z — decision_ref `sha256:082447fa36ffd26f093bb41225d12c13e07aa715c63e04a4595bc2a7de92fd90`, outcome=COMPLETED, mode=ENFORCE |
 | Mágicas | PG `sqx.strategy_magic` 26100091054..26100091083 (30, asignadas 03:09-03:10Z) |
+| **StrategyVersions selladas** | PG `sqx.strategy_versions`: **30 filas** (30 canonical_strategy_id distintos, target_platform=MetaTrader5), version_refs sha256 |
+| **Handoff manifests** | PG `sqx.handoff_manifests`: **30 creados 04:17Z (w9)** + 30 creados 02:02Z (reset diagnóstico w8, mismos strategy_ref, SIN delivery rows — del intento, no del FlowRun certificado) |
+| **Delivery states** | PG `sqx.handoff_deliveries`: **30 filas, todas `HANDOFF_CREATED`**, attempts=2, last_error `echo ingest base url / bearer not configured: echo ingest ingress fail-closed: ingress_not_configured` (04:17:09.3–0.7Z) ⇒ **0 entregadas** |
+| **Entrega real a Echo (read-back RO)** | Echo PROD: **0 `strategy_versions`** con los 30 version_ref sellados · **0 `promotion_records`** (total histórico 0) ⇒ cero entrega real |
 | Stage executions | PG `sqx.stage_executions` flow `8248f7fa`: overview 1/1, retester 30/30, optimizer 30/30, wfm 30/30, robust 30/30, apply 30/30, reretester 30/30, compile 30/30, mt5_backtest 30/30, baseline_materialize 30/30, promote_finalists 1/1 — **todas COMPLETED** |
+| **Temporal (eventos clave)** | wf run `01a1479d-6a50-787a-8229-c204f3236e67` Completed, 2027 eventos: `rank_snapshot_v1` 2002–2004 → `promote_finalists` 2008–2010 → **`forge_seal_handoff_v1` 2014–2016 (COMPLETED)** → `flow_run_seal` 2020–2022 → WorkflowExecutionCompleted 2026 |
 | Estado terminal | PG `sqx.flow_runs` id `8248f7fa` **status=COMPLETED** (updated 04:17:11.877Z) |
 
 ## CFX del Owner (byte-exactos, sin modificación)
