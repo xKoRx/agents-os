@@ -323,7 +323,8 @@ Handoff común obligatorio: base SHA, source SHA, rama/worktree relativo, estado
 | Worker | Tarea | Estado | Base→Result SHA | Tests/evidencia |
 |---|---|---|---|---|
 | W0 | T2.1 contratos + P0-NT | **INTEGRADO** | d74b6525→doc vault `S02-W0-CONTRACT-FREEZE.md` sha256 d0296352…3f7a (850 líneas); producto intacto (status limpio verificado) | freeze revisado contra R6 §12B–§15 por submanager; OQ(1–3) adoptadas (pairing EconomicMinimumV1→V2 en TGMM unclipped; ResumeBoundary=account_day_id; LastFactRevision por (account,context)); P0-NT: matriz contractual 5 bindings + PHYSICAL_NOT_DEMONSTRATED, 0/2 intentos (sin toolchain C#/assemblies en host); 0 PLAN_CONFLICT |
-| W1 | T2.2+provider T2.4 | DESPACHADO | d74b6525→ | — |
+| W1 | T2.2+provider T2.4 | **INTEGRADO** | d74b6525→`32d86ed1` (18 archivos, +6610/−12; allowlist exacta verificada por submanager) | verificación independiente: build EXIT=0; pool 27/27 PASS; provider PASS; race pool+provider PASS; únicos fallos = 2 baseline heredados; spot-check invariantes (affinity@primer permiso admission.go:91, epoch++ sólo claim nuevo engine.go:545, stale ack absorbido); coverage pool 94.3% stmt (justificado, brazos defensivos), reportado; decisiones W1 registradas (campos additive PoolState/OwnerState read models; release sin Drain fabricado; egress provider→pool con tabla account→pools para W6) |
+| W4 | T2.5 analytics | DESPACHADO | 32d86ed1→ | — |
 | W2 | T2.3 fanout | pending | — | — |
 | W3 | T2.4 operation/MM | pending | — | — |
 | W4 | T2.5 analytics | pending | — | — |
