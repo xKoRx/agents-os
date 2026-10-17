@@ -51,3 +51,7 @@ Scope local. Sin secretos, dumps, paths absolutos de máquina ni cadena de pensa
 ## Rollback
 
 Revertir sólo delta documental S01 con revisión de concurrencia y mantener evidencia de gates. Rama producto sin commits nuevos puede conservarse para revisión; no borrarla automáticamente ni tocar backtester. Ningún rollback operacional necesario porque no hubo deployment ni egress.
+
+## Enmienda documental posterior a S01 — mandato Owner para S02
+
+Tras la aceptación G1 por el Manager, el Owner sustituyó el despacho solitario GLM de S02 por **SUBMANAGER LOCAL obligatorio** con W0–W7 subagentes GLM one-shot, ownership de archivos, dependencias y pruebas de comportamiento en el planificador único [[Echo Futures — Runtime Pools]]. G1 continúa accepted, G2 pending; permanecen cuatro shots, cuatro gates y 17 tareas. El prompt anterior de S02 GLM solitario queda SUPERSEDED. W7 realiza QA fresca dentro de S02; S03 sigue siendo revisión adversarial independiente y S04 corrección. No hay código ni subagentes ejecutados por esta escritura, ni nuevas modificaciones a R6 o backtester. El Manager verificó readback del planificador en Agents-OS master en su SHA de blob `e870166b96ed56626e01f1bb9d63f8361188d27f`, con W0–W7, G1 accepted, G2 pending, cuatro despachos y 17 tareas. Las pruebas de validación canónicas de plan/schema no se ejecutaron en esta superficie cloud tras el cambio; el submanager debe revalidarlas antes de implementar. Sin despliegue ni egress real.
