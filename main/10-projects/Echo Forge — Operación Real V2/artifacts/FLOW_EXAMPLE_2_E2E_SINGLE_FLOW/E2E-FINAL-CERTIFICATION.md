@@ -41,26 +41,44 @@ El intento w8 (FlowRun `c6a18689`, 2026-10-16T22:43Z) ejecutó el pipeline físi
 
 ## Resultado final por tipo lógico (6 tipos reales, 5 finalistas c/u — proyección read-only exacta del ranking durable)
 
+Corregido en reconciliación final 2026-10-17 (contraste contra el CSV durable, ver §Corrección de cifras): **16/30 finalistas con CERO trades MT5, 14/30 con trades y 0/30 con beneficio MT5 positivo** (los 14 net_profit MT5 con trades son negativos). La versión inicial de esta tabla afirmaba 5/5 trades en todos los grupos — dato erróneo, corregido sin tocar el CSV.
+
 | logical_type | n | mejor fidelidad | finalistas con trades MT5 > 0 |
 |---|---|---|---|
 | RANGE_CLOSE,HIGH,LOW,OPEN_RANGE | 5 | **66.89** | 5/5 |
-| RANGE_CLOSE,HIGH,LOW_RANGE | 5 | 48.51 | 5/5 |
-| RANGE_CLOSE,LOW,OPEN_RANGE | 5 | **83.76** | 5/5 |
-| RANGE_CLOSE,LOW_RANGE | 5 | 0.0 | 5/5 |
-| RANGE_CLOSE,OPEN_RANGE | 5 | 0.0 | 5/5 |
-| RANGE_CLOSE_RANGE | 5 | 1.91 | 5/5 |
+| RANGE_CLOSE,HIGH,LOW_RANGE | 5 | 48.51 | 4/5 |
+| RANGE_CLOSE,LOW,OPEN_RANGE | 5 | **83.76** | 4/5 |
+| RANGE_CLOSE,LOW_RANGE | 5 | 0.0 | 0/5 |
+| RANGE_CLOSE,OPEN_RANGE | 5 | 0.0 | 0/5 |
+| RANGE_CLOSE_RANGE | 5 | 1.91 | 1/5 |
+| **total** | **30** | — | **14/30** |
 
-Detalle completo (final_rank, StrategyRef, canonical_id, mágica, ScoreRef, fidelidad, SQX net_profit/trades vs MT5 net_profit/trades, DecisionRef) en `FINALISTS-BY-LOGICAL-TYPE.csv`. **La selección final por tipo se materializa como proyección read-only** del RankingSnapshot `sha256:de770a6d…` agrupado por la clasificación del SelectionSnapshot `sha256:d15af7f9…`; la decisión durable de promoción existente es la FLOW-level `finalist_promotion 2.0.0` (STRUCTURAL_PROMOTED) — no se inventan PromotionDecisionRefs adicionales. Fidelidad 0.0 con trades MT5 > 0 es el resultado real de la fórmula `mt5_fidelity_shadow.v1` intacta (baja comparabilidad SQX↔MT5 en esos tipos), registrado sin manipulación.
+Detalle completo (final_rank, StrategyRef, canonical_id, mágica, ScoreRef, fidelidad, SQX net_profit/trades vs MT5 net_profit/trades, DecisionRef) en `FINALISTS-BY-LOGICAL-TYPE.csv`. Los 16 finalistas con 0 trades MT5 tienen fidelidad 0.0 por definición de `mt5_fidelity_shadow.v1` (sin candidato comparable). La selección final por tipo se materializa como proyección read-only del RankingSnapshot `sha256:de770a6d…` agrupado por la clasificación del SelectionSnapshot `sha256:d15af7f9…`; la decisión durable de promoción existente es la FLOW-level `finalist_promotion 2.0.0` — no se inventan PromotionDecisionRefs adicionales.
+
+## Alcance: tres planos distintos (no intercambiables)
+
+- **Certificación técnica E2E = PASS.** Certifica que el pipeline físico (21 etapas, 30/30 en las particionadas) ejecutó de punta a punta con FlowRun terminal COMPLETED. No certifica calidad ni rentabilidad de las estrategias producidas.
+- **Promoción estructural = EXECUTED.** La decisión durable `FINALIST_PROMOTION` (decision_ref `sha256:082447fa36ffd26f093bb41225d12c13e07aa715c63e04a4595bc2a7de92fd90`, outcome=COMPLETED, mode=ENFORCE, reasons=["STRUCTURAL_PROMOTED"], 04:17:09.095Z) selló 30 StrategyVersions (target_platform=MetaTrader5) y 30 handoff manifests y dejó 30 delivery records. Es estructural: no valida operación rentable.
+- **Viabilidad operativa de las estrategias = NO CERTIFICADA.** 16/30 sin trades MT5 en la ventana 2026.01.01→2026.10.12, 14/30 con trades pero net_profit MT5 negativo, 0 con beneficio positivo. Ninguna finalista demuestra hoy rentabilidad MT5; esa evaluación es trabajo futuro del owner, no parte de este veredicto.
+
+## Top-5 por tipo: proyección read-only, no decisión durable
+
+Verificado en control plane (2026-10-17): `sqx.decisions` contiene exactamente 1 decisión `FINALIST_PROMOTION` (FLOW-level) + 30 `OPTIMIZER_SELECTION`; `sqx.forge_campaign_finalists` tiene 0 filas para este flow. No existe decisión durable per-type: el Top-5 por tipo es una proyección read-only del ranking global `sha256:de770a6d…` agrupado por tipo, reproducible desde los snapshots durables.
+
+## Corrección de cifras y PRE_ECHO (reconciliación final 2026-10-17, read-only)
+
+- La versión original de este informe afirmaba "5/5" trades MT5 en los 6 grupos y "forge_seal_handoff: ZERO". Ambas afirmaciones eran erróneas y quedan corregidas aquí; el CSV, scores y decisiones originales NO fueron modificados.
+- **forge_seal_handoff_v1 SÍ se ejecutó**: historia Temporal del wf raíz (run `01a1479d-6a50-787a-8229-c204f3236e67`, 2027 eventos, status Completed) muestra la secuencia `promote_finalists` (eventos 2008–2010) → `forge_seal_handoff_v1` (2014–2016, COMPLETED) → `flow_run_seal` (2020–2022) → WorkflowExecutionCompleted.
+- **Control plane del sello (PG trading_systems_test, esquema sqx):** 30 `strategy_versions` selladas (30 canonical ids, target_platform=MetaTrader5); 30 `handoff_manifests` creados 04:17Z por w9 (+30 creados 02:02Z por el reset diagnóstico de w8 sobre los mismos strategy_ref, sin delivery rows — artefacto durable del intento, no del FlowRun certificado); 30 `handoff_deliveries` en estado `HANDOFF_CREATED`, attempts=2, `last_error="echo ingest base url / bearer not configured: echo ingest ingress fail-closed: ingress_not_configured"` (04:17:09.3–0.7Z).
+- **Entrega real a Echo = CERO, corroborada en ambos lados:** ningún delivery superó `HANDOFF_CREATED`, y lectura RO en la BD de Echo PROD muestra 0 `strategy_versions` con esos 30 version_ref y 0 `promotion_records` (total histórico 0).
+- Mongo `forge.scores`: 30 docs `mt5-score.v1` COMPUTED @ 04:17:08Z (fidelidades del CSV).
+- EchoDeployments: ZERO · TradingOrders: ZERO.
 
 ## Rechazos legítimos registrados
 
 - 729 estrategias excluidas por `RANK_BEYOND_TOP_N` en la selección (listadas con rank en el SelectionSnapshot).
 - Cohort builder: 760 generadas → 745 aceptadas al databank → 30 seleccionadas (top5 × 6 tipos; ningún tipo aportó más de 5).
 - Mágica solicitada 888111 ≠ autoridad durable (2610009105x): comportamiento contractual certificado de `apply_selected_run` durable (la TaskSpec magic nunca overridea la asignación).
-
-## PRE_ECHO
-
-EchoIngress: ZERO · EchoDeployments: ZERO · TradingOrders: ZERO · forge_seal_handoff: ZERO
 
 ## Baseline y release
 
