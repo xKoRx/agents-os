@@ -30,7 +30,7 @@ Entregar extensión runtime de pools y asociaciones pool–Strategy–MM mediant
 
 ## 📊 Estado actual
 
-S01 revisado y **G1 `accepted` por Manager GPT-6** sobre R6 publicada en Agents-OS commit `6d73673ca4573d25e4552ad7a58a23f7b55ca69c`; producto branch `feature/ef-runtime-pools@d74b652500e673fc2bf4289f9f195f11960ba26e` confirmado remotamente idéntico a master en el gate. **S02 GLM autorizado sólo para implementación local en la rama runtime** conforme a §12–18 del diseño y al paquete Fase 2. G2 permanece pending. Cierre S01 ya ejecutado; Manager y proyecto global abiertos. No egress real ni certificación física autorizados. La demostración NinjaTrader multicuenta y el productor contable LIVE continúan `NOT_DEMONSTRATED`; fallas materiales → G2 blocked, no aceptación ficticia.
+S01 revisado y **G1 `accepted` por Manager GPT-6** sobre R6 publicada en Agents-OS commit `6d73673ca4573d25e4552ad7a58a23f7b55ca69c`; producto branch `feature/ef-runtime-pools@d74b652500e673fc2bf4289f9f195f11960ba26e` confirmado remotamente idéntico a master en el gate. **S02 autorizado exclusivamente con SUBMANAGER LOCAL obligatorio y subagentes GLM one-shot en la rama runtime** conforme a §12–18 del diseño y al paquete Fase 2. G2 permanece pending. Cierre S01 ya ejecutado; Manager y proyecto global abiertos. No egress real ni certificación física autorizados. La demostración NinjaTrader multicuenta y el productor contable LIVE continúan `NOT_DEMONSTRATED`; fallas materiales → G2 blocked, no aceptación ficticia.
 
 Base **HEAD** de producto: `xKoRx/echo@d74b652500e673fc2bf4289f9f195f11960ba26e`, `origin/master` después de fetch no destructivo. Checkout original `master@3596fc48` limpio se conserva; worktrees históricos/prunables no se limpiaron. Sin rama local/remota `feature/ef-runtime-pools` antes de crearla. Worktree externo `echo-runtime-pools` relativo a [[echo-go-workspace]], creado con `git worktree add -b feature/ef-runtime-pools <workspace>/echo-runtime-pools d74b652500e673fc2bf4289f9f195f11960ba26e`. HEAD inicial idéntico a base, sin diff ni untracked de producto. El tool de worktree de la app habría operado sobre el repo Agents-OS de este chat; se usó Git dirigido al repo producto. No reset/stash/clean/merge/rebase/cherry-pick ni alteración de rama backtester.
 
@@ -81,12 +81,12 @@ Arquitectura actual/objetivo, secuencia, contratos versionados, ejemplos, fórmu
 
 ## Roadmap, carga y gates
 
-Cuatro contextos/shot como contrato Owner. S02 concentra la implementación en ocho tareas ordenadas; no se divide en nuevos shots/gates. Su mayor carga está en concurrencia/wiring y fixtures, no en operaciones reales. S03 es independiente y read-only; S04 sólo hallazgos, regresión e integración local. Ningún despliegue se traslada silenciosamente: certificación física/egress posterior requiere autorización Owner y queda reportada como obligación no ejecutada, fuera de estos cuatro shots. Si S02 no completa su alcance, entrega G2 blocked en lugar de pasar deuda escondida a S04.
+Cuatro shots/gates como contrato Owner. S02 mantiene las ocho tareas T2.1–T2.8, pero requiere SUBMANAGER LOCAL obligatorio y subagentes GLM especializados dentro del mismo shot, por mandato Owner posterior a S01. No se crean otros shots/gates. Su mayor carga está en concurrencia/wiring y fixtures, no en operaciones reales. S03 es independiente y read-only; S04 sólo hallazgos, regresión e integración local. Ningún despliegue se traslada silenciosamente: certificación física/egress posterior requiere autorización Owner y queda reportada como obligación no ejecutada, fuera de estos cuatro shots. Si S02 no completa su alcance, entrega G2 blocked en lugar de pasar deuda escondida a S04.
 
 | Gate | current state | phase agent responsibility | owner acceptance evidence | enables |
 |---|---|---|---|---|
 | G1 | accepted | GOD S01 entregó diseño/rama/paquetes/validaciones y cerró S01 | Manager GPT-6: revisión independiente documental R6 §§12–18, plan T1–T4, fuente selectiva; GitHub branch/master comparados idénticos `d74b6525` y commit documental `6d73673c`. Se acepta la implementabilidad del diseño, NO el runtime ni el egress físico. | S02 habilitado |
-| G2 | pending | GLM S02 entrega implementación/fixtures/limitaciones verificadas en review o blocked | Pendiente Manager sobre SHA exacto | S03 sólo tras accepted |
+| G2 | pending | SUBMANAGER LOCAL S02 integra subagentes GLM con tests y evidencias por worker; entrega G2 review o blocked | Pendiente Manager sobre SHA integrado; implementación solitaria no aceptable | S03 sólo tras accepted |
 | G3 | pending | GLM S03 entrega dictamen reproducible sin autocorregir en review o blocked | Pendiente Manager sobre hallazgos | S04 sólo tras accepted |
 | G4 | pending | GLM S04 entrega fixes/tests y residual explícito en review o blocked | Pendiente Manager; egress real requiere Owner aparte | Fin del plan, no quinto shot |
 
@@ -114,7 +114,7 @@ Cada ítem define objetivo | archivos/símbolos | precondición | implementació
 
 ## Prompt común del ejecutor
 
-Lee bootstrap canónico una vez y el paquete ASIGNADO de este proyecto. Usa diseño R6 como autoridad única y revisa sólo símbolos allowlisted §15; no reconstruyas historia ni controles TradesGerard. Resuelve worktree desde echo-go-workspace y verifica branch/base/HEAD/cleanliness antes de tocarlo; preserva WIP ajeno. Una sola fase por contexto y sin subagentes salvo mandato futuro explícito. HEAD/code → contratos → reports; nunca tests/interfaces como prueba física. Invariantes: Signal intacta, Strategy siempre técnica, MM/Provider únicos dueños económicos, PoolManager sólo selección/facts, afinidad permanente, exclusividad account-wide, cursor anti-replay, drenaje/fence, no migración MMState/PnL, analytics compartido causal y NinjaTrader dummy. Respeta mandato sin egress real. Toda tarea progresa en esta nota; evidencia portable y SHA exacto. Test failure no se oculta cambiando tests/expectativas: nueva regresión y finding; cualquier cambio legítimo de test requiere motivo trazable a R6. Fuera de allowlist o semántica contradictoria ⇒ PLAN_CONFLICT/Gn blocked al Manager. No force-push ni reset/stash/clean. Ningún agente acepta su gate ni inicia otro shot. Devuelve gate review/blocked, evidencia ejecutada, límites y STOP.
+Lee bootstrap canónico una vez y el paquete ASIGNADO de este proyecto. Usa diseño R6 como autoridad única y revisa sólo símbolos allowlisted §15; no reconstruyas historia ni controles TradesGerard. Resuelve worktree desde echo-go-workspace y verifica branch/base/HEAD/cleanliness antes de tocarlo; preserva WIP ajeno. Una sola fase por contexto; excepción explícita S02: SUBMANAGER LOCAL y subagentes GLM obligatorios, dentro de S02. S03/S04 mantienen independencia y no se delegan implícitamente. HEAD/code → contratos → reports; nunca tests/interfaces como prueba física. Invariantes: Signal intacta, Strategy siempre técnica, MM/Provider únicos dueños económicos, PoolManager sólo selección/facts, afinidad permanente, exclusividad account-wide, cursor anti-replay, drenaje/fence, no migración MMState/PnL, analytics compartido causal y NinjaTrader dummy. Respeta mandato sin egress real. Toda tarea progresa en esta nota; evidencia portable y SHA exacto. Test failure no se oculta cambiando tests/expectativas: nueva regresión y finding; cualquier cambio legítimo de test requiere motivo trazable a R6. Fuera de allowlist o semántica contradictoria ⇒ PLAN_CONFLICT/Gn blocked al Manager. No force-push ni reset/stash/clean. Ningún agente acepta su gate ni inicia otro shot. Devuelve gate review/blocked, evidencia ejecutada, límites y STOP.
 
 ### Paquete autónomo Fase 1 — S01 GOD LOCAL diseño
 
@@ -140,17 +140,17 @@ Lee bootstrap canónico una vez y el paquete ASIGNADO de este proyecto. Usa dise
 
 **Handoff a Fase 2:** Manager acepta G1 y envía prompt común + despacho 2 con SHA/artefactos; GOD STOP.
 
-### Paquete autónomo Fase 2 — S02 GLM implementación
+### Paquete autónomo Fase 2 — S02 SUBMANAGER LOCAL con subagentes GLM
 
-**Misión exacta:** implementar íntegramente R6 aprobado en branch runtime, tests/evidencia local; no operación real.
+**Misión exacta:** submanager LOCAL obligatorio coordina especialistas GLM one-shot W0–W7, integra R6 en branch runtime y verifica suites/evidencias para G2. Submanager orquesta, revisa e integra mecánicamente; no absorbe por sí solo las implementaciones. Sin operaciones reales.
 
-**Precondiciones verificables:** G1 accepted por Manager en esta tabla con referencia de aceptación; HEAD descendiente de base S01, worktree propio; ningún drift no atribuido. Leer contrato del ambiente antes de cualquier acceso físico.
+**Precondiciones verificables:** G1 accepted por Manager, HEAD descendiente de S01, worktree sin drift y Environment Contract antes de cualquier acceso físico. Confirmar capacidad de lanzar subagentes LOCAL; si no existe, G2 blocked/SUBAGENTS_UNAVAILABLE sin ejecución solitaria.
 
 **Lectura obligatoria:** este proyecto decisiones/tasks/gates; `VAULT_ROOT/10-projects/Echo Futures/artifacts/runtime/ECHO-FUTURES-RUNTIME-POOL-DESIGN.md` §12–18; repository AGENTS/CONSTITUTION y reglas de módulos/config/tests; source exacto §15 por tarea. No reabrir fuentes de campañas excepto seam declarado.
 
 **Decisiones cerradas:** D1–D10, en especial distinguir account policy de TerminationIntent y clamp por piso de otras reglas de MM.
 
-**Implementación paso a paso:** ejecutar T2.1→T2.8 en orden. Antes de implementation económica verificar schema y provenance de accounting.Revision; preparar reducers/facts primero, luego fanout/ejecución, analytics, gateway y composición. Mantener atomicidad state+egress y probar restart antes de integrar. Registrar work-in-progress en este planner.
+**Implementación paso a paso:** ejecutar T2.1→T2.8 mediante workers W0–W7, según la matriz obligatoria aquí registrada. Congelar contratos W0, delegar owners disjuntos, integrar cada entrega sólo tras pruebas/inspección, luego integración W6 y QA fresca W7. Mantener atomicidad state+egress y prueba de restart; registrar progreso, evidencias y rechazo/rework por worker en este único planner.
 
 **Archivos esperados:** modify/create exactos R6 §15; nuevos tests runtime_pool_test.go por paquete; ningún archivo de backtester driver ni infraestructura aplicada. Si un helper adicional exige otro archivo, proponer delta al mapa al Manager antes de ampliar. Los artefactos de prueba pesados viven fuera del vault; guardar comando/hash/resumen/ubicación portable.
 
@@ -160,7 +160,7 @@ Lee bootstrap canónico una vez y el paquete ASIGNADO de este proyecto. Usa dise
 
 **Tests y asserts:** R6 §16 (todos); nuevos tests safety/concurrency/causality primero, race + ≥95% nuevo código después. Ejecutar `go test -race -coverprofile=<external-output> ./futures/...` desde v3/sdk sólo tras confirmar ausencia de efectos externos; Core suites explícitas internal/functions/internal/futuresruntime/internal/futuresvertical y bridge paquetes locales seleccionados; vet/staticcheck sobre mismo scope. Tests de integration no pueden alcanzar endpoints reales. Reutilizar harness SDK StateFun y luego builder real; SIM no certifica NT. Añadir tests C# contractuales y compilar si toolchain autorizado presente.
 
-**Entregables/Gate G2:** SHA commits/push runtime, diff inventory, matriz tests→requisito con comandos/resultados y coverage, matriz P0-NT, siete secuencias, limits físicos y residual, G2 review o blocked. No omitir una obligación S02 para delegarla a S04. No accepted.
+**Entregables/Gate G2:** SHA integrado runtime, handoffs verificables W0–W7, diff, matriz criterio→test ejecutado/comando/cobertura, matriz P0-NT, siete secuencias, findings QA interna y límites físicos. Cada T2.* con owner/handoff/evidencia. G2 review o blocked, nunca accepted; no trasladar obligaciones sin resolver a S04.
 
 **Handoff a Fase 3:** Manager acepta G2 sobre SHA; auditor recibe base/HEAD y comandos reproducibles, no una conclusión de autoaprobación. STOP sin disparar S03.
 
@@ -227,10 +227,12 @@ STOP=G1 review|blocked; prohibido iniciar S02
 **Despacho Fase 2**
 ```text
 FASE_ASIGNADA=2
+WORK_FUNCTION=SUBMANAGER_IMPLEMENTACION_LOCAL_OBLIGATORIO
+SUBAGENTS=GLM_ONE_SHOT_W0_W7_OBLIGATORIOS
 PAQUETE_CANONICO=Paquete autónomo Fase 2
 GATE_REQUERIDO=G1 accepted por Manager
 TAREAS=T2.1-T2.8
-SALIDA=SHA implementación runtime, pruebas, matriz física, límites
+SALIDA=SHA integrado + handoffs W0–W7, matriz de comportamiento probado, QA fresca, límites físicos
 STOP=G2 review|blocked; prohibido iniciar S03 o desplegar
 ```
 
@@ -272,7 +274,7 @@ Handoff común obligatorio: base SHA, source SHA, rama/worktree relativo, estado
 
 ## Evidencia S02
 
-Pendiente ejecución por GLM tras G1 accepted; ninguna ejecución atribuida.
+S02 no iniciado. Nuevo mandato Owner: submanager LOCAL con W0–W7 GLM one-shot y QA de falsificación interna; el prompt anterior de implementador GLM solitario está SUPERSEDED y no debe ejecutarse. G1 accepted, G2 pending; ningún código ni subagente ejecutados por esta actualización.
 
 ## Evidencia S03
 
