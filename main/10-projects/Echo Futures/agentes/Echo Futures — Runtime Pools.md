@@ -10,7 +10,7 @@ parent: "[[Echo Futures]]"
 sprint:
 start:
 due:
-progress: 25
+progress: 50
 repo: "xKoRx/echo"
 jira:
 prs:
@@ -19,7 +19,7 @@ tags:
   - kind/project
   - area/echo
 created: "2026-10-16"
-updated: "2026-10-16"
+updated: "2026-10-17"
 ---
 
 # Echo Futures — Runtime Pools
@@ -402,6 +402,8 @@ Pendiente ejecución independiente tras G2 accepted; ningún dictamen atribuido.
 Pendiente corrección tras G3 accepted; ningún fix atribuido.
 
 ## 📆 Bitácora
+
+- 2026-10-17 — MR1 CIERRE: reparación consolidada `695c33d5→2595934d` (10 commits, MR-A/B/B-R1/B-R2/C/C-R1/D/E/E-R1), push verificado en remoto (sin force; master intacto d74b6525). MR01–MR06 corregidos y probados; H1 (regresión del propio delta, detectada por MR-E) reparada en el mismo encargo; 12/12 E2E con oráculos y sensibilidad; race 0; únicos fallos = 5 baseline heredados por caso/causa. G2 = `review` entregado al Primary Manager; S03 NO INICIADO; PHYSICAL_NOT_DEMONSTRATED vigente. Residuales no bloqueantes documentados en «Consolidación MR1».
 
 - 2026-10-17 — MR1: Manager GPT-6 revisó la entrega S02 (`695c33d5`) y ordenó reparación (MR01–MR06: composición TGMM/planes, recomputación S2, unclipped global, E2E de ejecución, siete residuales, evidencia/cobertura). G2 `blocked` REPAIR_REQUIRED_BY_MANAGER; T2.2–T2.5/T2.7/T2.8 reabiertas; registro de workers MR-A..MR-E creado. Bootstrap Agents-OS reutilizado en sesión warm del submanager.
 - 2026-10-16/17 — S02: submanager LOCAL ejecutó Paso 0 (matriz AC + ownership congelados), despachó y verificó W0–W7 one-shot más 4 reparaciones acotadas (W1-R1/W2-R1/W3-R1/W6-R1) y corrección de los 7 hallazgos del QA (W7-R1). SHA integrado `695c33d5` pusheado y verificado en remoto; 10/10 secuencias §13 PASS; 5 baseline heredadas intactas; PHYSICAL_NOT_DEMONSTRATED preservado; G2 `review` entregado al Primary Manager, no accepted; S03 no iniciado.
