@@ -16,7 +16,15 @@ updated: "2026-10-16"
 
 ## Propósito
 
-## Corte de continuidad — 2026-10-18 · cierre de auditoría
+## Corte de continuidad — 2026-10-18 · CHALLENGE FIRST implementado y lote ejecutado
+
+**Estado:** la separación por fases dejó de ser propuesta y pasó a implementación en rama de producto aislada `xKoRx/echo` `experiment/challenge-first-20261018` (desde el linaje V2.2 exacto `3f63944a`; HEAD de implementación `d0a5df44` + docs). Tres modalidades sobre el MISMO motor (sin duplicar engine ni Strategy): `CHALLENGE_ONLY` corta en el primer pase físico (terminal `FIRST_PASS`, cuentas supervivientes `CAMPAIGN_STOPPED_BY_POLICY`, drenaje safety-plane), `FUNDED_ONLY` siembra con el control canónico `ACCOUNT_CONTEXT_TRANSITION` (`SeededFunded`, sin compras), `FULL_JOURNEY` intocado (invariancia del prefijo probada en test). MM por fase: perfil funded opcional (`funded_risk_ref/target_ref`) aplicado sólo en fases funded; `payout_target` omitido/inactivo en challenge (rechazo nombrado si se declara). Reparaciones RL-2 (ventana de compra = identidad de preset verificada contra perfil) y RL-3 (la reconciliación final nunca re-etiqueta veredictos policy-terminal) cerradas RED→GREEN. Diez estrategias MR B0 §6 implementadas con kernels exactos + owner analytics demand-gated (defecto de semilla EMA50 cazado por test y corregido; cuantización recursiva a 17 dígitos, convención tgk). Journey E2E del módulo mr sin fábricas sustitutas. Regresión de plataforma verde; fallos preexistentes contrastados en `3f63944a` (5×BTG-S05, parity sdk, LAST CLI).
+
+**Lote:** 26 configuraciones (4 TG + 4 FBC + 3 ORB-CH300 + 10 MR + 5 ORB nativas 500/250) × 2 ventanas (W0 NQZ5 31 sesiones; W1 NQZ6 18 sesiones — F1-TREND/F3-TREND-SR/MR-08 en W1 = DATA_REQUIRED: el corpus NQZ6 empieza en el warmup y no existe prefijo H1 sellable antes). Run root `/srv/echo-work/runs/challenge-first-20261018/`; binario sha256 `aeb441fe…` @ `d0a5df44`. Tablas/oráculo: `analyze.py` contra el oráculo local `68acf960…`. Manifiesto y contratos: `v3/backtester/tools/tradesgerard/challenge-first/{MANIFEST,SETUP-CONTRACTS,README}.md`. Smokes: F0 pasa el challenge el 24-oct (coherente con A03/A04 V2.2), MR-08 pasa el 07-nov, C04 el 25-nov 14:46 (pase del último día V2.2), todos reconciled.
+
+**NO hecho aquí:** probabilidades de pase (una ventana + censura FIRST_PASS = muestreo adaptativo; protocolo §9.3 del mandato para después), matriz funded, calibración de tarifa 170, merge a master, LIVE. La aceptación final es del Owner.
+
+## Corte anterior — 2026-10-18 · cierre de auditoría
 
 **Prioridad vigente del Owner:** detener el ajuste de estrategias para “hacerlas ganar” y verificar primero la credibilidad de Campaign/Backtester. Tras la revisión, iniciar **experimentación separada CHALLENGE_ONLY / FUNDED_ONLY / FULL_JOURNEY**, con MM seleccionable por fase y **sin duplicar engine ni Strategy**. Este corte prevalece sobre las referencias históricas posteriores.
 
