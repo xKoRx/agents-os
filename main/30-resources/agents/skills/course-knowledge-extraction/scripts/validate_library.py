@@ -88,6 +88,34 @@ def check_wiki_targets(text, source_label, vault, rel_check_dir, bad):
                     bad("W02", f"{source_label}: heading inexistente en {os.path.basename(path)}: {full}")
 
 
+def check_wiki_balance(text, source_label, bad):
+    """W10: los wikilinks del documento están equilibrados — sin `[[` sin
+    cerrar, sin `]]` huérfano, sin anidamiento. Detecta Markdown mal formado
+    tras la transformación de citas a wikilinks."""
+    for ln_no, line in enumerate(text.splitlines(), 1):
+        i, open_wl, err = 0, False, None
+        while i <= len(line) - 2:
+            two = line[i:i + 2]
+            if two == "[[":
+                if open_wl:
+                    err = "wikilink anidado sin cerrar"
+                    break
+                open_wl = True
+                i += 2
+            elif two == "]]":
+                if not open_wl:
+                    err = "']]' sin apertura"
+                    break
+                open_wl = False
+                i += 2
+            else:
+                i += 1
+        if err is None and open_wl:
+            err = "wikilink sin cerrar"
+        if err:
+            bad("W10", f"{source_label}:{ln_no}: {err}: {line.strip()[:90]}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("library")
@@ -229,11 +257,9 @@ def main():
         # frames: base/on-demand si el README los declara
         mb = re.search(r"\|\s*Frames base[^|]*\|\s*(\d+)", rd)
         mo = re.search(r"\|\s*Frames bajo demanda\s*\|\s*(\d+)", rd)
-        n_base = sum(1 for f in frames if hhmmss_to_s(f) is not None and f.endswith("59.png")
-                     and hhmmss_to_s(f) % 60 == 59 and (hhmmss_to_s(f) // 60) % 60 in range(17)
-                     and hhmmss_to_s(f) < 1100 and hhmmss_to_s(f) % 3600 == 59 * 1 and False)
-        # base frames no se deducen sin convención del capítulo: si README los declara,
-        # se valida coherencia total = base + on_demand y que existan tantos archivos.
+        # frames: base/on-demand si el README los declara. La clase base NO se
+        # deduce desde nombres (autoridad = frames/.base_frames); si README los
+        # declara, se valida coherencia total = base + on_demand.
         if mb and mo:
             b, o = int(mb.group(1)), int(mo.group(1))
             if b + o != len(frames):

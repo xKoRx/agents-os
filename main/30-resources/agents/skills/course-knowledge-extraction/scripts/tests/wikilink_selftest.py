@@ -2,8 +2,11 @@
 """wikilink_selftest.py — red-green de los checks W del validador.
 
 Construye un mini-vault (con marker de AGENTS OS) con una biblioteca mínima
-navegable y 7 variantes defectuosas; assertiona que el validador detecte cada
-defecto con el check esperado y que la base pase.
+navegable y 11 variantes defectuosas; assertiona que el validador detecte cada
+defecto con el check esperado y que la base pase. Cubre: links rotos, headings
+y block ids inexistentes, PNG ambiguo, anchors duplicados y sin bloque propio,
+proyección CLAIMS.md stale (heading/verdict/statement/epistemic) y wikilinks
+desequilibrados.
 
 Uso:  python3 wikilink_selftest.py
 """
@@ -15,6 +18,7 @@ VALIDATOR = os.path.join(HERE, "..", "validate_library.py")
 TRANSCRIPT = """# t
 
 s-000010 [00:00:10-00:00:20] texto uno ^s-000010
+
 s-000030 [00:00:30-00:00:40] texto dos ^s-000030
 """
 CLAIMS = [
@@ -27,13 +31,17 @@ CLAIMS = [
 ]
 
 
-def claims_md(claims, missing=None, wrong_verdict=False):
+def claims_md(claims, missing=None, wrong_verdict=False, wrong_statement=False,
+              wrong_epistemic=False):
     out = []
     for c in claims:
         if c["id"] == missing:
             continue
         v = "UNCERTAIN" if (wrong_verdict and c["id"] == "c-0002") else c["verdict"]
-        out.append(f"### {c['id']}\n\n**Statement:** {c['statement']}\n\n**Verdict:** {v}\n")
+        st = "otra cosa" if (wrong_statement and c["id"] == "c-0001") else c["statement"]
+        ep = "model_inference" if (wrong_epistemic and c["id"] == "c-0002") else c["epistemic"]
+        out.append(f"### {c['id']}\n\n**Statement:** {st}\n\n**Verdict:** {v} ·"
+                   f" **Epistemic:** {ep}\n")
     return "# CLAIMS\n\n" + "\n".join(out) + "\n"
 
 
@@ -114,6 +122,25 @@ def main():
     def m_stale_verdict(d):
         open(os.path.join(d, "CLAIMS.md"), "w", encoding="utf-8").write(claims_md(CLAIMS, wrong_verdict=True))
     ok &= expect("stale claims projection (verdict)", variant(base, "bad-stale-verdict", m_stale_verdict), False, {"W09"})
+
+    def m_stale_statement(d):
+        open(os.path.join(d, "CLAIMS.md"), "w", encoding="utf-8").write(claims_md(CLAIMS, wrong_statement=True))
+    ok &= expect("stale claims projection (statement)", variant(base, "bad-stale-statement", m_stale_statement), False, {"W09"})
+
+    def m_stale_epistemic(d):
+        open(os.path.join(d, "CLAIMS.md"), "w", encoding="utf-8").write(claims_md(CLAIMS, wrong_epistemic=True))
+    ok &= expect("stale claims projection (epistemic)", variant(base, "bad-stale-epistemic", m_stale_epistemic), False, {"W09"})
+
+    def m_unbalanced(d):
+        open(os.path.join(d, "rules.md"), "w", encoding="utf-8").write("ver [[lib/CLAIMS#c-0001|c-0001 y [[sin cerrar\n")
+    ok &= expect("wikilink desequilibrado (anidado)", variant(base, "bad-unbalanced", m_unbalanced), False, {"W10"})
+
+    def m_unseparated(d):
+        p = os.path.join(d, "transcript.md")
+        open(p, "w", encoding="utf-8").write(
+            "# t\n\ns-000010 [00:00:10-00:00:20] texto uno ^s-000010\n"
+            "s-000030 [00:00:30-00:00:40] texto dos ^s-000030\n")
+    ok &= expect("anchors sin bloque propio (sin línea en blanco)", variant(base, "bad-unseparated", m_unseparated), False, {"W05"})
 
     shutil.rmtree(tmp)
     print("WIKILINK_SELFTEST =", "PASS" if ok else "FAIL")
