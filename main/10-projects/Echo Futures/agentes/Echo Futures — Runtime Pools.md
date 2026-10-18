@@ -90,7 +90,7 @@ Cuatro shots/gates como contrato Owner. S02 mantiene las ocho tareas T2.1–T2.8
 | Gate | current state | phase agent responsibility | owner acceptance evidence | enables |
 |---|---|---|---|---|
 | G1 | accepted | GOD S01 entregó diseño/rama/paquetes/validaciones y cerró S01 | Manager GPT-6: revisión independiente documental R6 §§12–18, plan T1–T4, fuente selectiva; GitHub branch/master comparados idénticos `d74b6525` y commit documental `6d73673c`. Se acepta la implementabilidad del diseño, NO el runtime ni el egress físico. | S02 habilitado |
-| G2 | review (cierre MR1-Closure entregado) | SUBMANAGER LOCAL S02 integra subagentes GLM con tests y evidencias por worker; MR1 repara los hallazgos del Manager antes de re-review | MR1 consolidado en `2595934d` (REMOTE_VERIFIED, MR-E-R1 VERIFIED); pendiente re-review del Manager GPT-6 | S03 sólo tras accepted |
+| G2 | blocked (PHYSICAL_DRAIN_INGRESS_NOT_WIRED) | SUBMANAGER LOCAL S02 integra subagentes GLM con tests y evidencias por worker; MR1 repara los hallazgos del Manager antes de re-review | MR1 consolidado en `2595934d` (REMOTE_VERIFIED, MR-E-R1 VERIFIED); pendiente re-review del Manager GPT-6 | S03 sólo tras accepted |
 | G3 | pending | GLM S03 entrega dictamen reproducible sin autocorregir en review o blocked | Pendiente Manager sobre hallazgos | S04 sólo tras accepted |
 | G4 | pending | GLM S04 entrega fixes/tests y residual explícito en review o blocked | Pendiente Manager; egress real requiere Owner aparte | Fin del plan, no quinto shot |
 
@@ -418,11 +418,20 @@ Base: `2595934d80c084694a31619fac8a3ecf1e0454d1` (HEAD local == remoto al inicia
 
 **NEW_CODE_COVERAGE:** universo canónico estricto = 3676 statements del delta productivo d74b6525..61ad54ec; **3506/3676 = 95.38% ≥ 95%** (pre 91.21%). Perfiles completos del SHA final con -coverpkg cruzado; script de vista estricta persistido (`/tmp/mr1c-c/strict_cov.py`); 7/7 GAPs sustantivos al 100%; residuo 170 statements clasificado (validación 59, defensiva 20, I/O 13, entrada-de-proceso 9, guardas 1-2 stmt 69) — nada excluido del denominador. Vista A (cuerpos completos de 413 funciones delta, incluye legacy de funciones modificadas): 91.30%, referencia.
 
-**KNOWN_DEFECTS:** ninguno del alcance abierto. **PHYSICAL_LIMITATIONS:** PHYSICAL_NOT_DEMONSTRATED vigente (AddOn C# sin toolchain, terminal NT real, productor contable LIVE); el consumidor W6 del topic `echo.futures.physical-drain.v1` en el ejecutable es wiring de despliegue declarado; piernas de proceso de cmd/echo-core (main/os.Exit/señales) documentadas como entrada de proceso. Ambientales fuera de scope: sdk/postgres y sdk/telemetry (infra viva ausente, 0 archivos del delta).
+**KNOWN_DEFECTS:** ninguno del alcance abierto. **PHYSICAL_LIMITATIONS:** PHYSICAL_NOT_DEMONSTRATED vigente (AddOn C# sin toolchain, terminal NT real, productor contable LIVE); CORRECCIÓN (2026-10-18, mandato drain-ingress): el consumidor del topic `echo.futures.physical-drain.v1` NO estaba declarado en los manifiestos (la frase anterior era falsa); ver «Registro MR1-DrainIngress»; piernas de proceso de cmd/echo-core (main/os.Exit/señales) documentadas como entrada de proceso. Ambientales fuera de scope: sdk/postgres y sdk/telemetry (infra viva ausente, 0 archivos del delta).
 
 **G2: review** — MR1-Closure entregado al Primary Manager sobre `61ad54ec` (REMOTE_VERIFIED, MR1-C-R1 VERIFIED); NO accepted. S03 NO INICIADO; sin deploy, sin egress real.
 
 **Agent runs MR1-Closure (GLM-5.3-Flash, LOCAL):** MR1-A agent_c5341037-3e7c-44c3-b4d3-dba82b3aa9d8; MR1-B/B-R1 agent_88be0fda-a9fd-44a1-b456-faf0ddfe4e92; MR1-C/C-R1 agent_af347459-e263-40cc-9e63-fa759a6f0970; MR1-D agent_0dd65e2c-45a1-48df-8dab-770c198ed87b. Run del submanager: `80-agents/journal/agent-runs/2026-10-18-zcode-glm53-echo-runtime-pools-mr1-closure.md`.
+
+## Registro MR1-DrainIngress — cierre del ingress de drenaje (mandato Primary Manager, 2026-10-18)
+
+**Finding del Manager sobre `61ad54ec`:** (1) el ejecutable publica `provider.Input{PhysicalDrainEvidence}` a `echo.futures.physical-drain.v1` (key = AccountID); (2) NINGÚN `module.yaml` (develop/production) declara la suscripción de ese topic hacia `echo/provider_rules`; (3) el harness `publishPhysicalDrain` entrega directo al owner vía `a.enqueue`, sin depender de la ruta declarada. G2 = `blocked` PHYSICAL_DRAIN_INGRESS_NOT_WIRED. Base `61ad54ec` (HEAD == remoto al iniciar, árbol limpio). Dos especialistas one-shot: A (ruta declarada + prueba dependiente del manifiesto), B (verificación fresca + cobertura con metodología reconciliada, sin cambiar denominador).
+
+| Especialista | Responsabilidad | Estado | Base→Result SHA | Evidencia |
+|---|---|---|---|---|
+| A | Declarar el ingress en ambos module.yaml, factorizar el publisher para reutilizar el camino productivo, prueba que enruta por el manifiesto, negativos de ruta | DESPACHADO | — | — |
+| B | Verificación fresca del SHA integrado: repro rojo en 61ad54ec, sensibilidad de ruta, regresión E2E, cobertura delta d74b6525 (denominador intacto) | pending | — | — |
 
 ## Evidencia S03
 
