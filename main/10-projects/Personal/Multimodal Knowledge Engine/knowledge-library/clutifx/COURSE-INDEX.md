@@ -19,7 +19,7 @@ Fuentes físicas de los videos (locales, NO en Git): `/home/kor/mke/course/epNN-
 - **Reglas relevantes**: ver `ch01-introduccion/documentation.md` (motor MKE V2; grounding parcial — 1.140/1.527 claims SUPPORTED cuando se abortó la revisión).
 - **Prerrequisitos declarados**: curso intermedio anterior ("sirvió para sentar la base").
 - **Referencias**: anuncia ampliación de todo en este curso; enlaza hacia adelante con los temas por episodio.
-- **Links**: `ch01-introduccion/README.md` · `ch01-introduccion/documentation.md` · `ch01-introduccion/claims.jsonl`.
+- **Links**: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/README.md|README]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/documentation.md|documentation]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/claims.jsonl|claims.jsonl]] *(legacy MKE V2: granularidad por ventana wNNNN, sin anchors por claim — navegación por documento y sección)*.
 
 ## Capítulo 02 — Time (`ch02-time/`)
 
@@ -28,7 +28,7 @@ Fuentes físicas de los videos (locales, NO en Git): `/home/kor/mke/course/epNN-
 - **Reglas relevantes**: 16 reglas en `ch02-time/rules.md` (R1–R16), todas citadas.
 - **Prerrequisitos declarados**: los conceptos del capítulo 1 (usa "el rango pendiente que os he enseñado antes", "el Turtle Soup", "Power of 3", "SMT" sin redefinirlos).
 - **Referencias**: hacia atrás → capítulo 1 (explícito ×2); hacia delante → "el episodio siguiente de la estrategia" (explícito) y el contexto para entrar fuera de horas clave (explícito, capítulo no nombrado).
-- **Links**: `ch02-time/README.md` (provenance y métricas) · `ch02-time/documentation.md` · `ch02-time/rules.md` · `ch02-time/concepts.md` · `ch02-time/examples.md` · `ch02-time/study-guide.md` · `ch02-time/review-notes.md` · `ch02-time/claims.jsonl` · `ch02-time/transcript.md` · `ch02-time/frames/`.
+- **Links**: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/README.md|README (provenance y métricas)]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/documentation.md|documentation]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/rules.md|rules]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/concepts.md|concepts]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/examples.md|examples]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/study-guide.md|study-guide]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/review-notes.md|review-notes]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS.md|CLAIMS (proyección navegable por claim)]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/FRAMES.md|FRAMES (inventario)]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/OPEN-QUESTIONS.md|OPEN-QUESTIONS]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/AMENDMENTS.md|AMENDMENTS]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/claims.jsonl|claims.jsonl (autoridad)]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/transcript.md|transcript]] · frames/
 
 ## Cómo consultar la biblioteca (preguntas tipo)
 
@@ -37,4 +37,4 @@ Fuentes físicas de los videos (locales, NO en Git): `/home/kor/mke/course/epNN-
 - ¿Es una afirmación confirmada? → `claims.jsonl` del capítulo (verdict + evidence).
 - Corrección puntual → mecanismo de complemento de la skill: re-consultar el frame/transcript citado; nunca re-procesar el video.
 
-Metodología vigente: `30-resources/agents/skills/course-knowledge-extraction/SKILL.md`. Feedback de método por capítulo: `METHODOLOGY-FEEDBACK.md`.
+Metodología vigente: [[30-resources/agents/skills/course-knowledge-extraction/SKILL.md|course-knowledge-extraction (V1.2)]] · [[30-resources/agents/skills/course-knowledge-worker/SKILL.md|course-knowledge-worker]]. Feedback de método por capítulo: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/METHODOLOGY-FEEDBACK.md|METHODOLOGY-FEEDBACK]].

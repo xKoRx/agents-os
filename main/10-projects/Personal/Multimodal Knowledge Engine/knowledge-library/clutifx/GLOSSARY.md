@@ -1,6 +1,6 @@
 # Clutifx — Glosario compartido del curso
 
-Índice liviano término → capítulos. NO fusiona definiciones: si un capítulo amplía o refina una definición anterior, la relación se registra con citas de ambos. La definición autoritativa vive en el `concepts.md` (o `documentation.md`) de cada capítulo.
+Índice liviano término → capítulos. NO fusiona definiciones: si un capítulo amplía o refina una definición anterior, la relación se registra con citas de ambos. La definición autoritativa vive en el [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/concepts.md|concepts.md]] (o [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/documentation.md|documentation.md]]) de cada capítulo.
 
 Formato: **término** — capítulos donde aparece; nota de relación si la hay.
 
@@ -15,7 +15,7 @@ Formato: **término** — capítulos donde aparece; nota de relación si la hay.
 - **Objetivo (de rango)** — ch01 (el precio "va a completar" el rango); ch02 añade convenciones: completado ⇒ se borra [c-0037]; objetivos en TF alta con rangos intermedios [c-0052].
 - **Order block** — ch01 (definido); no aparece en ch02.
 - **Power of 3** — ch01 (definido); ch02 lo usa operativamente (aperturas de horas clave [c-0024]; entradas en el power 3 de la vela de las 5 [c-0083]).
-- **Rango** — ch01 (definición base: toma un extremo y cierra dentro; el precio va a completarlo; invalidación por cierre fuera). **ch02 REFINA**: tras Turtle Soup + reacción, no hace falta que cierre [c-0035] — relación registrada con citas de ambos capítulos (ch01 `documentation.md` §1; ch02 `concepts.md` §Rango). Convenciones nuevas ch02: "no tenemos nada" = sin rango en esa TF [c-0049].
+- **Rango** — ch01 (definición base: toma un extremo y cierra dentro; el precio va a completarlo; invalidación por cierre fuera; ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/documentation.md|ch01 documentation §1]], formato legacy sin anchors por claim). **ch02 REFINA**: tras Turtle Soup + reacción, no hace falta que cierre (ch02 [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0035|c-0035]] + [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/transcript#^s-000521|s-000521]]). Convenciones nuevas ch02: "no tenemos nada" = sin rango en esa TF ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0049|c-0049]]).
 - **Rango pendiente** — ch01 (definido, a favor del objetivo); ch02 lo identifica en 12 h durante el recorrido [c-0044].
 - **Rango reiniciado** — ch01 (definido, en contra); ch02 ejemplo en 6 h [c-0053] y regla de completado previo [c-0052].
 - **Sesiones (Londres · London Lunch · New York)** — ch02 [c-0062, c-0071, c-0067]: el día leído en velas de 4 h/6 h.
