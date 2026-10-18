@@ -7,7 +7,7 @@ los IDs; no reescribe conocimiento semántico.
 
 Uso:  render_claims_md.py <vault_root> <library_dir>
 """
-import json, os, re, sys, datetime
+import json, os, re, sys
 
 V = "{}"
 
@@ -38,7 +38,7 @@ def main():
     L.append("# CLAIMS — proyección navegable")
     L.append("")
     L.append(f"> Generado deterministamente desde `claims.jsonl` por"
-             f" `render_claims_md.py` ({datetime.date.today().isoformat()})."
+             f" `render_claims_md.py` (sin fecha dinámica: misma entrada => mismos bytes)."
              f" NO es una segunda fuente de verdad: para scripts y agentes la autoridad es el JSONL.")
     L.append("> Navegación: cada claim enlaza sus segmentos de transcript (anchors `^s-`) y sus frames.")
     L.append("")
