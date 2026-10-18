@@ -69,7 +69,9 @@ def main():
         "video_seconds": [lo, hi],
         "boundary_segments_included": sorted(boundary),
         "transcript": "\n".join(lines),
-        "claims": sorted(mine, key=lambda c: c["id"]),
+        # clave local de review (`key`): el contrato del worker la exige y
+        # validate_review.py la consume; `id` global viaja también por trazabilidad.
+        "claims": [dict(c, key=c["id"]) for c in sorted(mine, key=lambda c: c["id"])],
     }
     json.dump(payload, open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"minute {minute}: {len(mine)} claims, {len(in_ids)} segmentos del minuto, "

@@ -26,9 +26,10 @@ def main():
     review = json.load(open(sys.argv[2], encoding="utf-8"))
     findings = []
 
-    want = [c["key"] for c in payload.get("claims", [])]
+    want = [c["key"] for c in payload.get("claims", []) if "key" in c] or \
+           [c["id"] for c in payload.get("claims", [])]
     results = review.get("results", [])
-    got = [r.get("key") for r in results]
+    got = [r.get("claim_key") or r.get("key") for r in results]
 
     dupes = sorted({k for k in got if got.count(k) > 1})
     missing = sorted(set(want) - set(got))
