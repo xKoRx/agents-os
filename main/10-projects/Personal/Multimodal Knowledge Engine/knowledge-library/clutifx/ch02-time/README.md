@@ -34,7 +34,7 @@ pipeline MKE V2).
 | Contradicciones marcadas | 0 |
 | Frames base (fin de minuto) | 18 |
 | Frames bajo demanda | 47 |
-| Referencias visuales sin resolver | 1 pregunta abierta (q-ch02-001: referente del rectángulo descartado en c-0056 — ver OPEN-QUESTIONS.md); la regla del claim mantiene soporte independiente |
+| Referencias visuales sin resolver | 1 pregunta abierta (q-ch02-001: referente del rectángulo descartado en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0056|c-0056]] — ver OPEN-QUESTIONS.md); la regla del claim mantiene soporte independiente |
 | Rules / concepts / examples documentados | 16 / 17 / 11 |
 | Coverage | 18/18 minutos de video con claims y revisión |
 | Checkpoint 5 min | PASS (proyección ≈ objetivo; continuar automático) |
@@ -58,7 +58,7 @@ Contrato base del mandato: `id`, `minute`, `kind`, `statement`, `evidence`, `ver
 
 Extensiones usadas en esta biblioteca (declaran lo que el mandato exige distinguir):
 
-- `epistemic`: `instructor_statement` (afirma el instructor) · `visual_observation` (muestra el gráfico) · `model_inference` (interpretación del modelo; 0 casos vigentes — c-0066 fue reclasificada a instructor_statement en la remediación P4).
+- `epistemic`: `instructor_statement` (afirma el instructor) · `visual_observation` (muestra el gráfico) · `model_inference` (interpretación del modelo; 0 casos vigentes — [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0066|c-0066]] fue reclasificada a instructor_statement en la remediación P4).
 - `visual_hint`: `{second, what}` cuando el claim depende de algo visual concreto.
 - `source_key`: key original del bloque de extracción (A-/B-/C-), para trazabilidad.
 
@@ -67,7 +67,7 @@ Kinds usados: `concept`, `rule`, `parameter`, `procedure`, `observation`, `examp
 ## Limitaciones
 
 - El ASR garblea términos del glosario ("tartle sub"=Turtle Soup, "el dol"=el DXY, "Pablo III"=Power of 3); los claims lo preservan y anotan (`notes: "ASR: ..."`).
-- La enumeración de aperturas de la vela de 4h que da el instructor en 02:22 omite la de la 1 p.m.; el claim c-0011 conserva la enumeración literal, la pirámide SÍ incluye la vela de la 1 (f-000240) y el instructor usa esa vela después (c-0060, c-0096). Ver `review-notes.md`.
+- La enumeración de aperturas de la vela de 4h que da el instructor en 02:22 omite la de la 1 p.m.; el claim [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0011|c-0011]] conserva la enumeración literal, la pirámide SÍ incluye la vela de la 1 ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/frames/f-000240.png|f-000240]]) y el instructor usa esa vela después ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0060|c-0060]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0096|c-0096]]). Ver `review-notes.md`.
 - Los frames viven en este repositorio (17 MB, 65 archivos); el video original NO está en Git: su ubicación física es `/home/kor/mke/course/ep02-time.mp4` y su SHA queda arriba para verificar identidad.
 - Para corregir/ampliar un punto: operar SIEMPRE sobre los recursos citados (transcript + frames), nunca re-procesando el video (contrato de la skill).
 
