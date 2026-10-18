@@ -286,21 +286,42 @@ def main():
             if got != want:
                 miss = sorted(set(want) - set(got)); extra = sorted(set(got) - set(want))
                 bad("W04", f"CLAIMS.md desincronizada con claims.jsonl (stale projection): missing={miss} extra={extra}")
-            # W09: coherencia de verdict por sección
+            # W09: coherencia de statement/epistemic/verdict por sección
+            # (proyección stale: cualquier campo desalineado con claims.jsonl
+            # se detecta, no sólo headings y veredictos)
             cm = open(claims_path_md, encoding="utf-8").read()
             for c in claims:
                 sec = re.search(r"### " + re.escape(c["id"]) + r"\b.*?(?=\n### |\Z)", cm, re.S)
-                if sec and (f"**Verdict:** {c['verdict']}" not in sec.group(0)):
+                if not sec:
+                    continue
+                body = sec.group(0)
+                if f"**Verdict:** {c['verdict']}" not in body:
                     bad("W09", f"CLAIMS.md: verdict desalineado para {c['id']}")
+                if f"**Statement:** {c.get('statement','')}" not in body:
+                    bad("W09", f"CLAIMS.md: statement desalineado para {c['id']}")
+                if f"**Epistemic:** {c.get('epistemic','')}" not in body:
+                    bad("W09", f"CLAIMS.md: epistemic desalineado para {c['id']}")
         else:
             bad("W04", "falta CLAIMS.md (proyección obligatoria v1.2)")
-        # W05: anchors únicos de transcript
+        # W05: anchors únicos de transcript y cada anchor cerrando SU propio
+        # bloque (línea en blanco / heading / EOF antes y después): en Obsidian,
+        # un block id a mitad de párrafo es texto literal, no anchor.
         anchors = re.findall(r"\^(s-\d{6}[a-z]?)\b", t_text)
         seg_ids = set(sids)
         if len(set(anchors)) != len(anchors):
             bad("W05", "transcript: block ids duplicados")
         if set(anchors) != seg_ids or len(anchors) != len(sids):
             bad("W05", f"transcript: anchors ({len(anchors)}) != segmentos ({len(sids)})")
+        t_lines = t_text.splitlines()
+        for li, ln in enumerate(t_lines):
+            if not re.search(r"\^(s-\d{6}[a-z]?)\s*$", ln):
+                continue
+            prev_l = t_lines[li - 1] if li > 0 else None
+            next_l = t_lines[li + 1] if li + 1 < len(t_lines) else None
+            if (prev_l is not None and prev_l.strip() != "" and not prev_l.lstrip().startswith("#")) \
+                    or (next_l is not None and next_l.strip() != "" and not next_l.lstrip().startswith("#")):
+                bad("W05", f"transcript línea {li + 1}: anchor sin bloque propio "
+                           f"(separación de párrafo ausente)")
         # W06: FRAMES.md cubre todos los frames
         frames_md = os.path.join(lib, "FRAMES.md")
         if os.path.exists(frames_md):
@@ -310,11 +331,13 @@ def main():
                 bad("W06", f"FRAMES.md no cubre {len(missing_frames)} frames: {missing_frames[:6]}")
         else:
             bad("W06", "falta FRAMES.md")
-        # W01-W03/W07 sobre docs del capítulo + W08 sobre curso
+        # W01-W03/W07 sobre docs del capítulo + W08 sobre curso + W10 balance
         for d in WIKI_DOCS:
             pth = os.path.join(lib, d)
             if os.path.exists(pth):
-                check_wiki_targets(open(pth, encoding="utf-8").read(), d, vault, lib, bad)
+                text = open(pth, encoding="utf-8").read()
+                check_wiki_targets(text, d, vault, lib, bad)
+                check_wiki_balance(text, d, bad)
         for d in ("COURSE-INDEX.md", "GLOSSARY.md"):
             pth = os.path.join(os.path.dirname(lib), d)
             if os.path.exists(pth):
