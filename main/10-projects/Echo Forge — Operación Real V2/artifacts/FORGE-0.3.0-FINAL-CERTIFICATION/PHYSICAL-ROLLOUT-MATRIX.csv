@@ -1,0 +1,6 @@
+host,rol,release,sha256_binario,estado,evidencia
+sqx-zeus (192.168.31.101),SQX worker,0.3.1,a4117aac3391fe6bc5615bc24771bd696ccc857bf73f94a2d37dc068f1212e28,PASS,pgrep /opt/stager/releases/0.3.1/bin/symphony PID 4010886; sha256sum byte-exacto; poller sqx-main-queue
+sqx-hera (192.168.31.111),SQX worker,0.3.1,a4117aac3391fe6bc5615bc24771bd696ccc857bf73f94a2d37dc068f1212e28,PASS,PID 114169 (restart 1753 a las 05:07Z por churn systemd — ver reporte); SHA byte-exacto
+sqx-kronos (192.168.31.121),SQX worker,0.3.1,a4117aac3391fe6bc5615bc24771bd696ccc857bf73f94a2d37dc068f1212e28,PASS,PID 2362360; SHA byte-exacto
+worker-kronos (192.168.31.128),MT5 worker Windows,0.3.1,6c7b08f26e789dfd652fb9e3c6b23cb30e6826bf3b87664f90e2b52f71653bac,PASS,CURRENT=0.3.1; RUNNING releases/0.3.1/bin/sqx-mt5-worker.exe PID 36028; supervisor drain 0.3.0->0.3.1 probado (04:10:14-30Z)
+plugin EchoForgeAutomator.jar (3/3 Linux),SQX plugin,fix long magic,3b0063e43735f9457f71c0c4208f060777cc5a3828ec4145b261b38d37ad847c,PASS,JAR uniforme en /home/kor/sqx/144/user/libs/ + snippet fuente 1599f1be… + clase compilada 4fd6b481… 3/3; canario 3/3 PASS

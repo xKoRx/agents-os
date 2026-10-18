@@ -1,0 +1,24 @@
+#,etapa,ventana_utc_inicio,ventana_utc_fin,resultado,evidencia
+1,builder (project sqx-overview.v2),2026-10-18T04:36:25Z,2026-10-18T06:21:26Z,COMPLETED,"stage row 1/1; sqcli intento3 Kronos 05:11:27->~06:17 (66m, 649 estrategias en output); intentos 1-2 documentados en E2E-UNATTENDED-REPORT"
+2,overview/metadata,~06:15-06:21Z,(dentro del project),COMPLETED,overview.ndjson/monthly.ndjson + EchoForgeOverviewExporter (sin stage row por contrato)
+3,classification indicator_signature.v1,2026-10-18T~06:21:27Z,,COMPLETED,ClassificationSnapshot sha256:86000d0a… (indicator_signature.v1)
+4,early ranking weighted_combination_minmax.v1,2026-10-18T~06:21:28Z,,COMPLETED,5 RankingSnapshots PER_LOGICAL_TYPE (5 tipos reales del cohort)
+5,selection per_logical_type top5,2026-10-18T~06:21:29Z,,COMPLETED,SelectionSnapshot sha256:ae2697dc… 22 seleccionadas
+6,GROUP interno source=ranking_snapshot,2026-10-18T06:21:29Z,2026-10-18T06:47:02Z,COMPLETED,"22 children GroupSQXWorkflow batch1, max_parallel 3"
+7,retester x22,2026-10-18T06:21:29Z,2026-10-18T06:43:25Z,COMPLETED 22/22,stage rows project@sqx-retester.v1
+8,optimizer x22 (WF_Matrix),2026-10-18T06:22:38Z,2026-10-18T06:45:16Z,COMPLETED 22/22,stage rows project@sqx-optimizer.v1
+9,evaluate_wfm x22 (robust 0.35/0.01/0.01),2026-10-18T06:24:25Z,2026-10-18T06:47:02Z,COMPLETED 22/22,stage rows evaluate_wfm@sqx-wfm.v1
+9b,deep warnings evaluate_strategy (shadow) x22,2026-10-18T06:2xZ,2026-10-18T06:47Z,EJECUTADO 22/22,22 StrategyEvaluations shadow en Mongo; verdict INSUFFICIENT_DATA; ver WARNINGS-EVALUATION.md
+10,select_robust_run x22,2026-10-18T06:26:02Z,2026-10-18T06:47:02Z,COMPLETED 22/22,stage rows; 22 SELECTED
+11,apply_selected_run (mágica durable),2026-10-18T06:47:02Z,2026-10-18T06:49:59Z,COMPLETED 22/22,sqx.strategy_magic 26100091082..26100091103
+12,final reretester 2026.01.01->2026.10.12 model4,2026-10-18T06:49:59Z,2026-10-18T06:53:05Z,COMPLETED 22/22,stage rows project@sqx-final-reretester.v1
+13,tradelist + report,2026-10-18T~06:53Z,2026-10-18T~07:00Z,COMPLETADO,durable/trade-list/v1/79385c32/ (22 TradeSets) + metadata report
+14,MQ5 export (plugin con fix long),2026-10-18T~07:00Z,2026-10-18T07:0xZ,COMPLETADO 22/22,durable/mt5-export/v1/79385c32/ 22 .mq5 con 'input long MagicNumber'
+15,EX5 compile (MetaEditor real),2026-10-18T07:01:48Z,2026-10-18T~07:30Z,COMPLETADO 22/22,stage rows mt5_compiler@mt5-compile.v1 COMPLETED; 0 errores MetaEditor
+16,MT5 backtest x22 NDX_SQX H1 model 4,2026-10-18T~07:01Z,2026-10-18T07:39:19Z,COMPLETADO 22/22,terminal64 serial en worker-kronos; 22 HTM en durable/mt5-export/…/13_mt5_backtest/
+17,fidelity mt5_fidelity_shadow.v1,2026-10-18T07:39:19Z,2026-10-18T07:39:25Z,COMPUTED 22/22,Mongo scores mt5-score.v1 22 docs COMPUTED 07:39:25Z
+17b,gate mágica efectiva (mt5_reconcile_v1),por cada HTM,,PASÓ 22/22,'Mágica efectiva MT5 verificada' 7+8+7=22 en logs de workers; HTM==strategy_magic
+18,ranking final score_descending.v1,2026-10-18T07:39:2xZ,,COMPLETADO,RankingSnapshot sha256:96412fda… (22 ordered_entries)
+19,resultado por tipo lógico (max 5),read-only,,PROYECTADO,FINALISTS-BY-TYPE.csv desde ranking durable + SelectionSnapshot; 5 tipos x <=5
+20,promoción finalist_promotion 2.0.0,2026-10-18T07:39:25Z,,STRUCTURAL_PROMOTED,decision_ref sha256:4dc03690… (FLOW-level)
+21,sello terminal,2026-10-18T07:39:25Z,2026-10-18T07:39:27Z,COMPLETED,PG sqx.flow_runs config_id 098d606e status=COMPLETED (updated 07:39:27.56Z)

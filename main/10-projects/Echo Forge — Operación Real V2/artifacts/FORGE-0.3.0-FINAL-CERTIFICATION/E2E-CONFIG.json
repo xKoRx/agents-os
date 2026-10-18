@@ -1,0 +1,248 @@
+{
+ "instrument": "NDX",
+ "direction": "L",
+ "timeframe": "H1",
+ "strategy": "flow_example_2",
+ "version": "v1",
+ "wave": "10",
+ "request_id": "forge-030-e2e-20261018T040000Z-e2e-w10",
+ "path_strategy": "default",
+ "config_folder": "00_configs",
+ "sqx_version": "144",
+ "wave_config": {
+  "wave_key": "",
+  "pool_max": 0,
+  "batch_size": 0,
+  "target_tops": 0,
+  "ranking": {
+   "algorithm": "",
+   "weights": null
+  },
+  "wfm_params": {
+   "algorithm": "robust_run_selection_v2",
+   "min_pass_cells": 0,
+   "max_dispersion": 0,
+   "metric_filters": null,
+   "params": {
+    "cliff_threshold": 0.35,
+    "epsilon_ret": 0.01,
+    "epsilon_aux": 0.01
+   }
+  },
+  "deviation_tol": {
+   "metrics": null
+  }
+ },
+ "tasks": [
+  {
+   "type": "project",
+   "name": "builder-main",
+   "stage": "builder",
+   "folder": "01_builder",
+   "config": "builder_test.cfx"
+  },
+  {
+   "type": "overview_exporter",
+   "name": "builder-overview",
+   "source_folder": "01_builder",
+   "folder": "metadata"
+  },
+  {
+   "type": "selection",
+   "name": "select-top-per-type",
+   "source_folder": "01_builder",
+   "folder": "03_selection"
+  },
+  {
+   "type": "group",
+   "name": "e2e-group",
+   "folder": "04_group",
+   "batch_size": 1,
+   "max_parallel": 3,
+   "source": {
+    "type": "ranking_snapshot",
+    "ranking_name": "builder-per-type"
+   },
+   "tasks": [
+    {
+     "type": "project",
+     "name": "group-retester",
+     "stage": "retester",
+     "folder": "04_group",
+     "config": "retester_test.cfx"
+    },
+    {
+     "type": "project",
+     "name": "group-optimizer",
+     "stage": "optimizer",
+     "folder": "05_optimizer",
+     "config": "optimizer_test.cfx",
+     "upload_prefix_filter": "WF_Matrix"
+    },
+    {
+     "type": "evaluate_wfm",
+     "name": "evaluate-wfm",
+     "folder": "06_wfm"
+    },
+    {
+     "type": "evaluate_strategy",
+     "name": "deep-warnings-shadow",
+     "folder": "06b_warnings"
+    },
+    {
+     "type": "select_robust_run",
+     "name": "select-robust",
+     "folder": "07_robust"
+    }
+   ]
+  },
+  {
+   "type": "apply_selected_run",
+   "name": "apply-selected",
+   "folder": "08_applied",
+   "apply_selected_run": {
+    "magic_number": 888111,
+    "symmetric_variables": true
+   }
+  },
+  {
+   "type": "project",
+   "name": "final-reretester",
+   "stage": "final_reretester",
+   "folder": "09_reretester",
+   "config": "retesterfull_test.cfx"
+  },
+  {
+   "type": "trade_list_exporter",
+   "name": "final-reretester-trades",
+   "source_folder": "09_reretester",
+   "folder": "10_tradelist",
+   "stage": "tick_retest",
+   "variant": "optimized"
+  },
+  {
+   "type": "generate_report",
+   "name": "final-report",
+   "folder": "metadata"
+  },
+  {
+   "type": "mt5_exporter",
+   "name": "mt5-export",
+   "source_folder": "09_reretester",
+   "folder": "11_mt5_mq5"
+  },
+  {
+   "type": "mt5_compiler",
+   "name": "mt5-compile",
+   "source_folder": "11_mt5_mq5",
+   "folder": "12_mt5_ex5"
+  },
+  {
+   "type": "mt5_backtesting",
+   "name": "mt5-final",
+   "source_folder": "12_mt5_ex5",
+   "folder": "13_mt5_backtest",
+   "mt5": {
+    "symbol": "NDX_SQX",
+    "period": "H1",
+    "from": "2026.01.01",
+    "to": "2026.10.12",
+    "model": 4,
+    "execution_mode": 0,
+    "deposit": 100000,
+    "currency": "USD",
+    "leverage": 100,
+    "server_timezone": "GMT"
+   }
+  }
+ ],
+ "classifications": [
+  {
+   "name": "builder-indicator-signature",
+   "input_task_name": "builder-main",
+   "algorithm": "indicator_signature.v1",
+   "implementation_version": "1.0.0",
+   "params": {
+    "schema_version": "indicator-signature-params.v1"
+   }
+  }
+ ],
+ "early_rankings": [
+  {
+   "name": "builder-per-type",
+   "input_task_name": "builder-main",
+   "classification_name": "builder-indicator-signature",
+   "algorithm": "weighted_combination_minmax.v1",
+   "implementation_version": "1.0.0",
+   "params": {
+    "schema_version": "weighted-combination-minmax-params.v1",
+    "metrics": [
+     {
+      "code": "drawdown",
+      "direction": "COST",
+      "weight": 40
+     },
+     {
+      "code": "profit_factor",
+      "direction": "BENEFIT",
+      "weight": 30
+     },
+     {
+      "code": "sharpe_ratio",
+      "direction": "BENEFIT",
+      "weight": 30
+     }
+    ]
+   },
+   "top_n": 5
+  }
+ ],
+ "selections": [
+  {
+   "name": "select-top-per-type-selection",
+   "task_name": "select-top-per-type",
+   "source_ranking": "builder-per-type",
+   "policy": {
+    "schema_version": "selection-policy.v1",
+    "scope": "per_logical_type",
+    "top_n": 5
+   }
+  }
+ ],
+ "scores": [
+  {
+   "name": "mt5-final-fidelity",
+   "algorithm": "mt5_fidelity_shadow.v1",
+   "inputs": [
+    {
+     "role": "baseline",
+     "task": "final-reretester-trades",
+     "metric_set": "SQX_NATIVE"
+    },
+    {
+     "role": "candidate",
+     "task": "mt5-final",
+     "metric_set": "MT5_NATIVE"
+    }
+   ]
+  }
+ ],
+ "rankings": [
+  {
+   "name": "mt5-final-fidelity-ranking",
+   "score_spec_name": "mt5-final-fidelity",
+   "algorithm": "score_descending.v1",
+   "implementation_version": "1.0.0",
+   "params": {
+    "schema_version": "score-descending-params.v1",
+    "direction": "DESC"
+   },
+   "top_n": 100
+  }
+ ],
+ "promotion": {
+  "policy": "finalist_promotion",
+  "version": "2.0.0",
+  "source_ranking": "mt5-final-fidelity-ranking"
+ }
+}
