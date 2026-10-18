@@ -9,7 +9,7 @@
 Antes de entrar de lleno en la estrategia, el capítulo fija **qué timeframes se usan, a qué hora abre cada vela y qué momentos del día son los más importantes** [00:00, c-0005]. Tres bloques:
 
 1. **La lista base de timeframes** — el enfoque es un algoritmo (cualquier timeframe valdría), pero se fija una lista base para limitar y dar una base común [00:00–01:58, c-0003, c-0004, c-0007].
-2. **La pirámide de horarios de apertura** — cada vela abre a una hora concreta en horario New York (UTC-4); las horas donde se concentran aperturas (5 a.m./p.m., 3 a.m., 8–9 a.m.) son "momentos muy importantes para el precio" porque ahí se abren nuevos rangos y nuevos Power of 3 [02:00–04:44, c-0012, c-0015, c-0024].
+2. **La pirámide de horarios de apertura** — cada vela abre a una hora concreta en horario New York (UTC-4); las horas donde se concentran aperturas (5 a.m./p.m., 3 a.m., 8–9 a.m.) son "momentos muy importantes para el precio" porque ahí se pueden abrir nuevos rangos y nuevos Power of 3 [02:00–04:44, c-0012, c-0015, c-0024].
 3. **El recorrido multi-timeframe en vivo sobre EURUSD** — de 12 meses a 4 horas marcando rangos: si todos apuntan en la misma dirección, esa es la dirección del precio; y los rangos en dirección contraria deben completarse antes [04:25–09:06, c-0054, c-0045, c-0052]. Cierra con la regla **"High Time Frame manda"** y sus ejemplos [14:01–17:05, c-0088, c-0092].
 
 El capítulo usa los conceptos del capítulo 1 (rango, rango pendiente/reiniciado, Turtle Soup, SMT/failure swing, Power of 3) y añade una precisión a la definición de rango (no hace falta esperar el cierre tras Turtle Soup + reacción) [05:21, c-0035].
@@ -38,7 +38,7 @@ La imagen que enseña ("esta foto es muy importante") indica **a qué hora se ab
 Horas de apertura declaradas (en hora NY):
 - **12 horas**: 5 p.m. y 5 a.m. [02:09, c-0014]
 - **8 horas**: 5 p.m., 1 a.m. y 9 a.m. [02:09, c-0013]
-- **4 horas**: 5 p.m., 9 p.m., 1 a.m. (sesión de Londres), 5 a.m. (London Lunch e inicio de New York) y 9 a.m. (sesión de New York) [02:22, c-0011]. Nota: la enumeración oral omite la vela de la 1 p.m., que el propio instructor usa después (ver §4 y `review-notes.md`).
+- **4 horas**: 5 p.m., 9 p.m., 1 a.m. (sesión de Londres), 5 a.m. (London Lunch e inicio de New York) y 9 a.m. (sesión de New York) [02:22, c-0011]. Nota: la enumeración oral omite la vela de la 1 p.m.; la pirámide SÍ la incluye (4H: 1700, 2100, 0100, 0500, 0900, 1300 — f-000240) y el instructor usa esa vela después (ver §6 y `review-notes.md`).
 - **A las 5** abren las velas de 90 min, 2 h, 3 h, 4 h, 6 h y 12 h [02:56, c-0010].
 - **A las 3 a.m.** abren la vela de 1 h y la de 2 h [03:39, c-0020].
 - **A las 9 a.m.** abre la nueva vela de 4 horas y de 8 horas [03:55, c-0016]; el tema de las **8 a.m.** son las aperturas de mercados de USA y las noticias de las 8:30 [03:55, c-0017].
@@ -81,7 +81,7 @@ Para operar "vamos a necesitar un objetivo y necesitamos un Turtle Soup para ir 
 
 A las 5 quieres ver: "que haga el Turtle Soup, se te crea el rango a favor de tu dirección" (ejemplo alcista) y, "si crea rango, tus entradas ideales son en el **power 3 de esa vela de las 5**, por abajo" [13:08–13:21, c-0084, c-0083, f-001308, f-001316].
 
-Si el Turtle Soup no está hecho y ya se llegó al objetivo, "a lo mejor el precio no tiene por qué moverse": en ese caso toca "intentar pillar la expansión de New York y no estar pegado intentando pillar una expansión en London cuando simplemente no va a pasar" [13:41–14:00, c-0079, c-0078].
+Si el Turtle Soup no está hecho y ya se llegó al objetivo, "a lo mejor el precio no tiene por qué moverse": en ese caso, "a lo mejor", toca "intentar pillar la expansión de New York y no estar pegado intentando pillar una expansión en London cuando simplemente no va a pasar" [13:41–14:00, c-0079, c-0078].
 
 ### 1.10 High Time Frame manda
 
@@ -101,7 +101,7 @@ Si el Turtle Soup no está hecho y ya se llegó al objetivo, "a lo mejor el prec
 - **Objetivo**: anticipar dónde pueden abrirse nuevos rangos y Power of 3, y dónde es "mejor entrar en los movimientos". **Acción**: concentrar la atención en las horas de apertura concentrada (§1.4). **Excepción**: se puede entrar a otras horas "bajo un contexto". **Evidencia**: [02:46–04:44, c-0010..c-0030].
 
 ### R4 · Salir con precaución en horas clave (minuto 59)
-- **Acción**: "muchas veces, ni que nos parezca muy clara la dirección, es mejor salir con precaución en estas horas clave —59— y asegurar" [10:22–10:35, c-0064]. **Confirmación (caso en vivo)**: estando en short, toma parciales y se sale en el nuevo bajo por precaución ante la vela de las 5 [10:17, c-0065]. **Lógica explícita**: "en estas horas, al tomar el alto o el bajo, lo que hace es crearnos un rango a favor o en contra de nuestra dirección" [10:41, c-0063].
+- **Acción**: "muchas veces, ni que nos parezca muy clara la dirección, es mejor salir con precaución en estas horas clave —59— y asegurar" [10:22–10:35, c-0064]. **Caso en vivo (anunciado en prospectiva)**: estando en short desde arriba con parciales ya tomados, anuncia que se saldrá en el nuevo bajo por precaución ante la vela de las 5 [10:17, c-0065]. **Lógica explícita**: "en estas horas, al tomar el alto o el bajo, lo que hace es crearnos un rango a favor o en contra de nuestra dirección" [10:41, c-0063].
 
 ### R5 · Un rango queda formado sin esperar el cierre (tras Turtle Soup + reacción)
 - **Condición**: Turtle Soup hecho y vela ya reaccionada. **Acción**: considerarlo rango aunque no cierre. **Evidencia**: [05:21, c-0035]. (Refina ch01.)
@@ -138,7 +138,7 @@ Si el Turtle Soup no está hecho y ya se llegó al objetivo, "a lo mejor el prec
 Todos son casos mostrados en el video (no inventados); detalle completo en `examples.md`:
 
 1. **Recorrido EURUSD 12 M → 4 h** [04:54–09:06]: rangos y objetivos TF a TF, failure swing/SMT en semanal con Libra, "todo bullish", rango reiniciado en 6 h, invalidación por cierre fuera en 8 h (c-0026..c-0056).
-2. **Vela de la 1 p.m. con intra Turtle Soup** [09:06–10:05]: rango bajista de 4 h, vela de London, escenarios a las 5 según el DXY (c-0057..c-0061, c-0066).
+2. **Vela de la 1 p.m. con intra Turtle Soup** [09:06–10:10]: rango bajista de 4 h, vela de London, escenarios a las 5 según el DXY (c-0057..c-0061, c-0066).
 3. **Short gestionado por precaución** [10:17]: parciales + salida en el nuevo bajo antes de la hora clave (c-0065).
 4. **Día feo con noticia de 8:30** [12:43]: London lateral, rango alcista en NY, impulso con la noticia (c-0073).
 5. **Esquema de entrada a las 5** [13:06]: Turtle Soup + rango a favor + entradas en el power 3 (c-0084, c-0083).
@@ -150,10 +150,10 @@ Todos son casos mostrados en el video (no inventados); detalle completo en `exam
 
 - No tomar la lista de timeframes como dogma cerrado: el algoritmo admite desvíos puntuales [00:09, c-0004].
 - "12 meses... pocas veces rentable" [00:20, c-0002].
-- Que 5 a.m./9 a.m. sean las mejores horas **no significa** que no puedas entrar a las 4: se puede, bajo contexto [04:13, c-0029].
+- Que 8 a.m./9 a.m. sean las mejores horas **no significa** que no puedas entrar a las 4: se puede, bajo contexto [04:13, c-0029].
 - No forzar la expansión en tu sesión cuando el Turtle Soup no está hecho y el objetivo ya se alcanzó [13:41, c-0079, c-0078].
 - No fiarte del rango de la TF inferior cuando la TF superior está por crear su rango ("por mucho que en una hora...") [15:35, 15:52, c-0092, c-0090].
-- Salir con precaución en horas clave aunque la dirección parezca clara [10:22, c-0064].
+- Salir con precaución en horas clave: "muchas veces" conviene hacerlo aunque la dirección parezca clara [10:22, c-0064].
 
 ## 5. Relaciones con otros capítulos
 
@@ -163,5 +163,5 @@ Todos son casos mostrados en el video (no inventados); detalle completo en `exam
 ## 6. Conocimiento no resuelto
 
 - **Deíctico en 8 horas** [07:58–08:05, c-0056]: cuál rectángulo concreto queda invalidado ("este no") y cuál queda válido ("este rango de aquí") no es 100 % concluyente en frame estático (f-000800, f-000806); la regla sí está clara. Registrado en `review-notes.md` como único visual sin resolver.
-- La enumeración oral de aperturas de la vela de 4 h omite la de la 1 p.m. (c-0011 vs c-0060/c-0096): no se resolvió si es un olvido del instructor o una peculiaridad de su pirámide; los frames f-000240/f-000255/f-000258 muestran la imagen parcialmente tapada por el cursor/diálogo.
+- ~~La enumeración oral de aperturas de la vela de 4 h omite la de la 1 p.m.~~ **Resuelto en la verificación final**: la pirámide SÍ incluye la vela de la 1 p.m. — 4H: 1700, 2100, 0100, 0500, 0900, **1300** (f-000240, imagen legible sin oclusión relevante). La omisión fue del instructor al hablar, no de la imagen; c-0011 preserva la enumeración oral literal y c-0060/c-0096 usan la vela de la 1. La pirámide confirma además 12H: 1700/0500, 8H: 1700/0100/0900, 6H: 1700/2300/0500/1100 y la cuenta de aperturas de las 05:00 (90m, 2, 3, 4, 6, 12).
 - Todo lo demás publicado está soportado por claims SUPPORTED; las 4 dudas que la revisión dejó UNCERTAIN se adjudicaron contra los recursos ya citados (ver `review-notes.md`), sin re-procesar el video.
