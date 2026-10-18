@@ -32,6 +32,8 @@ Entregar extensión runtime de pools y asociaciones pool–Strategy–MM mediant
 
 S01 revisado y **G1 `accepted` por Manager GPT-6** sobre R6 publicada en Agents-OS commit `6d73673ca4573d25e4552ad7a58a23f7b55ca69c`; producto branch `feature/ef-runtime-pools@d74b652500e673fc2bf4289f9f195f11960ba26e` confirmado remotamente idéntico a master en el gate. **S02 autorizado exclusivamente con SUBMANAGER LOCAL obligatorio y subagentes GLM one-shot en la rama runtime** conforme a §12–18 del diseño y al paquete Fase 2. G2 permanece pending. Cierre S01 ya ejecutado; Manager y proyecto global abiertos. No egress real ni certificación física autorizados. La demostración NinjaTrader multicuenta y el productor contable LIVE continúan `NOT_DEMONSTRATED`; fallas materiales → G2 blocked, no aceptación ficticia.
 
+**MR1-Closure (2026-10-18):** el Primary Manager devolvió la entrega MR1 (`2595934d`): faltan fronteras funcionales pendientes de wiring local — drenaje end-to-end SIN evidencia sustitutiva (publicación real PhysicalDrainEvidence bridge→Provider + FenceStore/DrainSink en el harness; el E2E no puede fabricar la evidencia), S2 parametrizada (hoy identidad congelada 50/20@2.0), cobertura ≥95% del código nuevo desde d74b6525 con perfiles completos, y strat-D resuelto contra §17 (no basta BINDING_DISABLED). **G2 = `blocked`, motivo `MR1_CLOSURE_REQUIRED`.** Tres especialistas one-shot: A (bridge/drenaje/E2E), B (S2 parametrizada), C (verificación fresca + cobertura). Preserva MR01–MR06 ya realizados. Registro en «Registro MR1-Closure» abajo.
+
 **MR1 (2026-10-17):** la revisión del Primary Manager GPT-6 sobre la entrega S02 (`695c33d5`) detectó incumplimientos de R6 y ordenó reparación funcional antes de re-review (mandato RUNTIME-POOLS-S02-MR1, Submanager local, subagentes one-shot MR-A..MR-E). **G2 = `blocked`, motivo `REPAIR_REQUIRED_BY_MANAGER`** al iniciar; **al cierre: G2 = `review`** con la reparación consolidada en `2595934d80c084694a31619fac8a3ecf1e0454d1` (REMOTE_VERIFIED, MR-E-R1 VERIFIED). G1 permanece `accepted`; G3/G4 pendientes y no autorizados; nunca autoaceptar G2 ni iniciar S03. Detalle en «Consolidación MR1» abajo. Hallazgos a corregir: MR01 composición TGMM/planes, MR02 recomputación de indicadores en S2, MR03 unclipped global vs explícito, MR04 E2E de ejecución real, MR05 siete residuales individualizados, MR06 evidencia/cobertura reconciliada. Detalle de alcance en mandato; registro de ejecución en «Registro MR1» abajo.
 
 Base **HEAD** de producto: `xKoRx/echo@d74b652500e673fc2bf4289f9f195f11960ba26e`, `origin/master` después de fetch no destructivo. Checkout original `master@3596fc48` limpio se conserva; worktrees históricos/prunables no se limpiaron. Sin rama local/remota `feature/ef-runtime-pools` antes de crearla. Worktree externo `echo-runtime-pools` relativo a [[echo-go-workspace]], creado con `git worktree add -b feature/ef-runtime-pools <workspace>/echo-runtime-pools d74b652500e673fc2bf4289f9f195f11960ba26e`. HEAD inicial idéntico a base, sin diff ni untracked de producto. El tool de worktree de la app habría operado sobre el repo Agents-OS de este chat; se usó Git dirigido al repo producto. No reset/stash/clean/merge/rebase/cherry-pick ni alteración de rama backtester.
@@ -88,7 +90,7 @@ Cuatro shots/gates como contrato Owner. S02 mantiene las ocho tareas T2.1–T2.8
 | Gate | current state | phase agent responsibility | owner acceptance evidence | enables |
 |---|---|---|---|---|
 | G1 | accepted | GOD S01 entregó diseño/rama/paquetes/validaciones y cerró S01 | Manager GPT-6: revisión independiente documental R6 §§12–18, plan T1–T4, fuente selectiva; GitHub branch/master comparados idénticos `d74b6525` y commit documental `6d73673c`. Se acepta la implementabilidad del diseño, NO el runtime ni el egress físico. | S02 habilitado |
-| G2 | review (reparación MR1 entregada) | SUBMANAGER LOCAL S02 integra subagentes GLM con tests y evidencias por worker; MR1 repara los hallazgos del Manager antes de re-review | MR1 consolidado en `2595934d` (REMOTE_VERIFIED, MR-E-R1 VERIFIED); pendiente re-review del Manager GPT-6 | S03 sólo tras accepted |
+| G2 | blocked (MR1_CLOSURE_REQUIRED) | SUBMANAGER LOCAL S02 integra subagentes GLM con tests y evidencias por worker; MR1 repara los hallazgos del Manager antes de re-review | MR1 consolidado en `2595934d` (REMOTE_VERIFIED, MR-E-R1 VERIFIED); pendiente re-review del Manager GPT-6 | S03 sólo tras accepted |
 | G3 | pending | GLM S03 entrega dictamen reproducible sin autocorregir en review o blocked | Pendiente Manager sobre hallazgos | S04 sólo tras accepted |
 | G4 | pending | GLM S04 entrega fixes/tests y residual explícito en review o blocked | Pendiente Manager; egress real requiere Owner aparte | Fin del plan, no quinto shot |
 
@@ -392,6 +394,16 @@ Base de reparación: `695c33d5b85b7e6a9e3fb3b70e341e285ba61c51` (idéntico a HEA
 **G2: review** — MR1 entregado al Primary Manager sobre SHA `2595934d` (REMOTE_VERIFIED); NO accepted (el submanager no acepta). S03 permanece NO INICIADO; sin deploy, sin egress real, sin cuentas reales.
 
 **Agent runs MR1 (GLM-5.3-Flash, LOCAL, one-shot con retornos acotados):** MR-A agent_6e93a22b-e79b-4e1b-906c-f1fb06b88053; MR-B/MR-B-R1/MR-B-R2 agent_fd6e20dc-ce7c-42af-8de5-7f9faf290163; MR-C/MR-C-R1 agent_86b06825-1445-4dc7-871b-911631d3354e; MR-D agent_8634251d-49ec-4c1b-a259-875415f2d0bd; MR-E/MR-E-R1 agent_04a1ad29-c129-430d-8ac0-d17e50699d19. Submanager persistente: esta sesión. Run del submanager en `80-agents/journal/agent-runs/2026-10-17-zcode-glm53-echo-runtime-pools-mr1-repair.md`.
+
+## Registro MR1-Closure — continuación del mandato MR1 (2026-10-18)
+
+Base: `2595934d80c084694a31619fac8a3ecf1e0454d1` (HEAD local == remoto al iniciar; árbol limpio). Especialistas one-shot secuenciales (un writer sobre producto); C verifica después de integrar A/B. G2 permanece `blocked` hasta cumplir /verify del mandato.
+
+| Especialista | Responsabilidad | Estado | Base→Result SHA | Evidencia |
+|---|---|---|---|---|
+| A | BRIDGE/DRENAJE/E2E: publicación real de PhysicalDrainEvidence bridge→Provider, FenceStore+DrainSink en harness, negativos de sensibilidad, strat-D §17 | DESPACHADO | — | — |
+| B | ANALYTICS S2 PARAMETRIZADA: serving por parámetros efectivos, coexistencia, CERO kernels | pending | — | — |
+| C | VERIFICACIÓN FRESCA del SHA final + cobertura ≥95% del código nuevo desde d74b6525 (perfiles completos, cross-package) | pending | — | — |
 
 ## Evidencia S03
 

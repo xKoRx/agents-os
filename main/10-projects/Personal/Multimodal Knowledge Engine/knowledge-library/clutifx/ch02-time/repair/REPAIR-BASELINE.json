@@ -1,0 +1,89 @@
+{
+ "frozen_at": "2026-10-18T09:58:16",
+ "purpose": "Baseline físico previo a la remediación P1-P10 (mandato 2026-10-18). No modificar tras la reparación.",
+ "source": {
+  "file": "ep02-time.mp4",
+  "sha256": "fb8b3de48535bdf43a09bf820c27512d2f021f63b7c12391484b4304c6337bfb",
+  "duration_s": 1029.387
+ },
+ "owner_reported": {
+  "claims": 98,
+  "frames": 62,
+  "subagents": 21,
+  "wall_time_owner_observed": "2h06m"
+ },
+ "reproduced_from_published_files": {
+  "claims_total": 98,
+  "verdicts": {
+   "SUPPORTED": 98,
+   "UNCERTAIN": 0,
+   "UNVERIFIED": 0
+  },
+  "structured_transcript_evidence_refs": 215,
+  "structured_frame_evidence_refs": 0,
+  "visual_observation_claims": 27,
+  "visual_observation_ids": [
+   "c-0015",
+   "c-0026",
+   "c-0027",
+   "c-0028",
+   "c-0031",
+   "c-0032",
+   "c-0033",
+   "c-0034",
+   "c-0036",
+   "c-0038",
+   "c-0039",
+   "c-0042",
+   "c-0043",
+   "c-0044",
+   "c-0045",
+   "c-0046",
+   "c-0047",
+   "c-0048",
+   "c-0051",
+   "c-0053",
+   "c-0055",
+   "c-0057",
+   "c-0059",
+   "c-0061",
+   "c-0077",
+   "c-0095",
+   "c-0097"
+  ],
+  "claims_with_visual_hint": 38,
+  "frames_present": 62,
+  "base_frames": 18,
+  "on_demand_frames": 44,
+  "rules_md": 16,
+  "concepts_md": 17,
+  "examples_md": 11,
+  "readme_reported": {
+   "rules": 14,
+   "concepts": 13,
+   "examples": 11
+  },
+  "transcript_ids_unique": true,
+  "claim_ids_unique": true,
+  "broken_evidence_refs": 0
+ },
+ "findings_confirmed": [
+  "P1: 27/27 visual_observation sin frame en evidence estructurado; 38/38 visual_hint sin frame en evidence",
+  "P2: f-170903.png nomenclatura inválida (parsea 17h09m03s=61743s > duración 1029.387s); nombre canónico f-001703.png",
+  "P2: 5 nombres históricos inválidos documentados (f-044000,f-045000,f-004800,f-004806,f-004823) — ya renombrados físicamente en la sesión original",
+  "P3: README rules=14 vs rules.md=16; README concepts=13 vs concepts.md=17",
+  "P3: wall time: owner 2h06m vs reconstrucción agente ~1h40-1h50 (conciliar, no sobrescribir)",
+  "P4: c-0066 epistemic=model_inference con verdict=SUPPORTED (adjudicar A/B/C); c-0056 deíctico 8h abierto"
+ ],
+ "file_hashes_pre_repair": {
+  "claims.jsonl": "f9ad55f91131f89134cd8aa7a8bcc627d19e85b81c47202970c2ef3c5d442114",
+  "transcript.md": "1ba2fc63cf8a2873f450dc60697b15047e67881afed809cb0cc07569799f3ca1",
+  "README.md": "5aaa5295eb48a5a747b8209e3bd7c06207e373235e25ce7080c5b4c351f522bb",
+  "documentation.md": "8c2d481c3823abdee9d4950396c152d363b9ac3f073998500dafc9e179299737",
+  "rules.md": "0e38d6482aedb47cae5a63a291aea0ec0ead8bb3eeecd536a9ce7a265a0b884f",
+  "concepts.md": "0e317479c3a4a03a63e1a7690eb2b1f882aa64b157806ffdcf9569e3602f6b67",
+  "examples.md": "603b360e67b1392372e8c4043a5a97f07f23c7787d7f023f04d8121978ddc357",
+  "review-notes.md": "c3f6c0f92899cb98904ace202bd1c5861ecc0d60917fd1fe1bd7c675f6870dcc",
+  "study-guide.md": "67c37e5c5a0d93c0c06976fc05052a8c5ec06d59142afe1fdc5f4009b0da4dec"
+ }
+}
