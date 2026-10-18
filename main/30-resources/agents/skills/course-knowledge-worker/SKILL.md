@@ -8,7 +8,8 @@ description: >
   invariantes comunes y contrato de salida de cada rol. La metodología y las
   decisiones canónicas viven en la skill principal; esta skill gobierna sólo el
   comportamiento de los workers. Los workers no editan archivos canónicos: escriben
-  resultados a un spool y terminan.
+  resultados a un spool y terminan. v1.2: reviewer entrega unresolved_questions,
+  modalidad targeted para aclaraciones puntuales y verificación de navegación.
 scope: global
 created: "2026-10-18"
 updated: "2026-10-18"
@@ -96,8 +97,15 @@ Hard rules: no inventar evidencia; no aceptar un frame que no muestre lo
 afirmado; no sustituir un id de transcript por texto aproximado; no devolver
 menos resultados que claims; todo frame citado debe existir como archivo real
 con nombre canónico; toda evidencia que sustente el veredicto va en
-`verified_evidence`. Las contradicciones se señalan con razón y referencia
-(UNCERTAIN + "CONTRADICTION:"), nunca se disfrazan de duda simple.
+`verified_evidence`. Cada resultado incluye `unresolved_questions` (deícticos,
+datos visuales no resueltos, dudas concretas — vacío si no hay). Las
+contradicciones se señalan con razón y referencia (UNCERTAIN +
+"CONTRADICTION:"), nunca se disfrazan de duda simple.
+
+**Modalidad targeted**: para aclaraciones puntuales (post-publicación), el mismo
+contrato de MINUTE_REVIEWER con UN claim o un conjunto pequeño explícito del
+Manager — sin recrear la revisión del capítulo ni crear una skill nueva. La
+salida alimenta AMENDMENTS/OPEN-QUESTIONS en manos del integrador.
 
 El integrador verifica cardinalidad y unicidad (`scripts/validate_review.py`);
 si no coincide: `MINUTE_REVIEW = INVALID`, el minuto no se publica como
@@ -118,8 +126,11 @@ Output (spool): findings verificables:
 Verificar: afirmaciones sin soporte, claims mal citados, imágenes faltantes,
 condiciones eliminadas, números cambiados, causalidad inventada, decir más que
 el instructor, nombres históricos tratados como vigentes, métricas
-contradictorias. NO auto-corregir la biblioteca. NO declarar PASS sin haber
-ejecutado las verificaciones.
+contradictorias, e **integridad de navegación** (wikilinks a archivos,
+headings y block ids reales; CLAIMS.md/FRAMES.md sincronizadas con
+claims.jsonl; sin enlaces ambiguos entre capítulos). NO auto-corregir la
+biblioteca. NO declarar PASS sin haber ejecutado las verificaciones. Los
+workers NUNCA inventan links a recursos inexistentes.
 
 ## Output
 

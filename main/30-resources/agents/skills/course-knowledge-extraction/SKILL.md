@@ -47,6 +47,11 @@ el error de diseño que mató ese run.
 v1.1 (2026-10-18): hardening tras Chapter 02 — evidencia visual estructurada,
 contexto de frontera, naming determinista de frames, glosario como input,
 checkpoint total vs agentes y validación final obligatoria (ver §Hardening v1.1).
+v1.2 (2026-10-18): navegación Obsidian y conocimiento iterativo — CLAIMS.md/FRAMES.md
+como proyecciones deterministas, anchors de bloque en transcript, wikilinks con
+ruta completa desde vault root, identidad permanente de claims, AMENDMENTS/
+OPEN-QUESTIONS, protocolo de aclaración acotada y contrato de consulta para
+agentes (ver §Navegación e iteración).
 
 ## Minimal Read
 
@@ -218,11 +223,64 @@ scripts/validate_library.py <lib> [--duration-seconds N]  # V01-V13; PASS|FAIL
 scripts/validate_review.py <payload.json> <review.json>   # cardinalidad R01-R04
 scripts/make_minute_payload.py <transcript.md> <claims> <min> <out>
 scripts/tests/fixtures_selftest.py                        # red-green del validador
+scripts/add_block_anchors.py <transcript.md>              # anchors ^s- idempotentes
+scripts/render_claims_md.py <vault> <lib>                 # proyección CLAIMS.md
+scripts/render_frames_md.py <vault> <lib>                 # inventario FRAMES.md
+scripts/wikilink_docs.py <vault> <lib> <doc.md>           # enlaza docs (--all-tokens|--bracketed)
+scripts/tests/wikilink_selftest.py                        # red-green de checks W
 ```
 
-### Subagentes
+## Navegación e iteración (v1.2)
 
-Antes de despachar workers: cargar
+**Wikilinks reales**: la biblioteca vive en un vault Obsidian. Todo enlace usa
+ruta completa relativa al vault root ([[curso/capitulo/CLAIMS#c-0048|c-0048]],
+[[…/transcript#^s-000716|07:16]], [[…/frames/f-000716.png|f-000716]]) — nunca
+basenames ambiguos (cada capítulo tendrá transcript.md, CLAIMS.md y frames con
+los mismos nombres). Los embeds ![[…]] se reservan para donde la imagen aporta
+comprensión (principalmente examples/documentation); nunca masivos.
+
+**Proyecciones deterministas** (no son segunda fuente de verdad; claims.jsonl
+sigue siendo la autoridad máquina-legible y NO lleva sintaxis Obsidian):
+- `transcript.md` con block id ` ^s-HHMMSS` por segmento (`add_block_anchors.py`,
+  idempotente; parte del setup).
+- `CLAIMS.md` por claim (`render_claims_md.py`): heading estable `### c-XXXX`,
+  verdict/epistemic/tiempo derivado de evidencia real, links a segmentos y frames.
+- `FRAMES.md` por frame (`render_frames_md.py`): timestamp + claims que lo citan;
+  los frames contextuales no fuerzan relaciones.
+
+**Identidad permanente**: un `c-NNNN` publicado jamás se renumera por agregar
+claims; los nuevos toman IDs nuevos. Correcciones que preservan la proposición
+actualizan el claim (nota enmendada); si cambian materialmente la proposición,
+el Manager adjudica claim nuevo y el anterior queda superseded sin romper
+backlinks.
+
+**Correcciones y dudas**: `AMENDMENTS.md` por capítulo (append-only:
+amendment_id, claim_id, fecha, motivo, antes/después, evidencia, resultado —
+sólo correcciones materiales, no regeneraciones cosméticas) y
+`OPEN-QUESTIONS.md` por capítulo (ID estable `q-<curso>-NNN`, claim, pregunta,
+evidencia, estado OPEN|RESOLVED). Una pregunta abierta NO degrada una regla
+correctamente sustentada.
+
+**Aclaración acotada** (sin reprocesar el capítulo): resolver claim por ID →
+abrir statement y provenance ([[CLAIMS]]) → consultar segmentos citados →
+inspeccionar frames citados → extraer sólo frames puntuales nuevos si hacen
+falta → proponer aclaración → revisión acotada (worker MINUTE_REVIEWER targeted)
+→ actualizar claims.jsonl → regenerar proyecciones afectadas → registrar
+amendment → validar (validate_library.py). Nunca 18 revisiones de minuto por una
+duda.
+
+**Consulta por agentes** ("¿Qué enseña el curso sobre X?"): recorrer
+COURSE-INDEX → GLOSSARY → documentación del capítulo → CLAIMS.md/claim exacto →
+transcript/frame. Distinguir SUPPORTED / UNCERTAIN / UNVERIFIED / OPEN QUESTION /
+instructor_statement / visual_observation. Si falta conocimiento, decirlo: los
+vacíos NO se rellenan con conocimiento general; el contexto externo se etiqueta
+explícitamente como no del curso.
+
+**Validación de navegación**: validate_library.py incluye checks W (links a
+archivos/headings/blocks existentes, anchors únicos, proyecciones sincronizadas,
+PNG sin ambigüedad, índices de curso resolubles) — PASS antes de publicar.
+
+## Anti-patrones (leitmotiv del run ch01 caro)
 `30-resources/agents/skills/course-knowledge-worker/SKILL.md` e incluirlo en
 cada paquete con `ROLE = EXTRACTOR|MINUTE_REVIEWER|DOCUMENTATION_VERIFIER`,
 ONE-SHOT, FRESH CONTEXT. El Manager pasa skill + rol + recursos concretos +
