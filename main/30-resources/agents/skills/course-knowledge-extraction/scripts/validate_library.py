@@ -82,11 +82,6 @@ def main():
     frames = set(os.listdir(frames_dir))
     dur = args.duration_seconds
     if dur is None:
-        ends = [int(a) * 3600 + int(b) * 60 + int(c) for a, b, c in
-                re.findall(r"\[\d{2}:\d{2}:(\d{2})|\[(\d{2}):(\d{2}):(\d{2})", "")]  # no-op guard
-        ends = [int(h) * 3600 + int(m) * 60 + int(s) for h, m, s in
-                re.findall(r"\[(\d{2}):(\d{2}):(\d{2})-(\d{2}):(\d{2}):(\d{2})\]", t_text)]
-        # usa el extremo final (grupo 4..6)
         ends = [int(h) * 3600 + int(m) * 60 + int(s) for _, _, _, h, m, s in
                 re.findall(r"\[(\d{2}):(\d{2}):(\d{2})-(\d{2}):(\d{2}):(\d{2})\]", t_text)]
         dur = max(ends) if ends else None
