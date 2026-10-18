@@ -153,7 +153,7 @@ def main():
         dupes = sorted({s for s in sids if sids.count(s) > 1})
         bad("V02", f"ids de transcript duplicados: {dupes}")
 
-    frames = set(os.listdir(frames_dir))
+    frames = {f for f in os.listdir(frames_dir) if f.endswith(".png")}
     dur = args.duration_seconds
     if dur is None:
         ends = [int(h) * 3600 + int(m) * 60 + int(s) for _, _, _, h, m, s in
