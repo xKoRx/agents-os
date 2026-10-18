@@ -29,7 +29,7 @@ tags:
 ## 📊 De un vistazo
 
 - **Core AGENTS OS:** 28 skills de comportamiento del sistema.
-- **Federadas transversales:** 18 skills curadas en `30-resources/agents/skills/`.
+- **Federadas transversales:** 19 skills curadas en `30-resources/agents/skills/`.
 - **Domain/app-owned:** se descubren mediante el registro de routers y el repo owner; no forman parte del índice always-load.
 - **Regla de lugar:** una skill vive en el core sólo si cambia el comportamiento de AGENTS OS itself; todo lo demás vive federado y se enlaza, no se copia.
 
@@ -95,6 +95,7 @@ skills de una aplicación viven y se descubren en su repo owner.
 | [[30-resources/agents/skills/echo-production-operational-audit/SKILL.md|echo-production-operational-audit]] | Auditoría operacional E2E read-only de Echo PROD: gates G1–G12 (incluye config-flow trigger→gateway→topic→cache y consistencia de estado), trazas E2E reales y veredicto OPERATIONAL_*. | Al auditar el funcionamiento real de Echo PROD tras una ventana de cambios. |
 | [[30-resources/agents/skills/echo-prod-deploy/SKILL.md|echo-prod-deploy]] | Despliegue autorizado de Echo a PROD (BD, ETCD, Hasura, deploy-prod.sh, front) con verificación y rollback. **Owner-gated**: sólo por pedido explícito del owner de usarla. | Única vía para mutar PROD Echo desde el agente; requiere autorización y secretos de cada corrida. |
 | [[30-resources/agents/skills/course-knowledge-extraction/SKILL.md|course-knowledge-extraction]] | Extrae conocimiento de videos de curso a una biblioteca por capítulo (transcript citable + 1 frame/min + frames bajo demanda + revisión POR MINUTO); prohíbe explícitamente el grind MKE por claim (44 h/video medidos). | Al procesar videos de cursos (Clutifx 2 y siguientes) o generar knowledge libraries desde video. |
+| [[30-resources/agents/skills/course-knowledge-worker/SKILL.md|course-knowledge-worker]] | Contrato de los subagentes ONE-SHOT de la skill anterior (EXTRACTOR / MINUTE_REVIEWER / DOCUMENTATION_VERIFIER): paquete de entrada, invariantes y contrato de salida por rol; workers sin acceso a archivos canónicos. | Al despachar workers de extracción/revisión/verificación de un capítulo; lo carga el orquestador y se incluye en cada paquete. |
 
 ## 🔗 Links
 
