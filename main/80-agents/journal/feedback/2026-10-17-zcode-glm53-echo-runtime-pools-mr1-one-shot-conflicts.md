@@ -9,8 +9,7 @@ project: "[[Echo Futures — Runtime Pools]]" "[[AGENTS OS]]"
 entities:
   - "[[AGENTS OS]]"
 related:
-  - "[[agents-os-agent-project-workflow]]"
-  - "[[2026-10-17-zcode-glm53-echo-runtime-pools-mr1-repair]]"
+  - "[[technical-project-manager]]"
 aliases: []
 agent_surface: "[[Codex]]"
 agent_model: unknown
@@ -28,23 +27,71 @@ tags:
   - agent/system1
 ---
 
+# Session Feedback - 2026-10-18 - short-topic
 
-# Feedback — mandatos one-shot sin autoridad de adjudicación de conflictos
+## Context
+Sesión MR1 del submanager local del proyecto [[Echo Futures — Runtime Pools]]: reparación MR01–MR06 de la entrega S02 con 5 subagentes one-shot (MR-A..MR-E) y 4 retornos acotados. Related run: [[2026-10-17-zcode-glm53-echo-runtime-pools-mr1-repair]].
 
-## Observación
+## Scores
 
-En MR1, los mandatos one-shot con allowlist de archivos estricta produjeron dos fricciones recurrentes: (1) MR-A se encontró un conflicto real mandato-vs-código (la política TGMM congelada exigía un campo que el allowlist no cubría) y quedó bloqueado intentando preguntar (AskUserQuestion sin usuario disponible) — acabó decidiendo "por mejor juicio" y declarando PLAN_CONFLICT a posteriori; (2) la misma estructura obligó a retornos acotados adicionales (MR-B-R1 serving faltante, MR-C-R1 regresión H1, MR-B-R2 código muerto) que el diseño de un solo pase no contemplaba.
+Use 1-5, where 1 is poor and 5 is excellent.
 
-## Por qué importa
+- Startup clarity:
+- Retrieval usefulness:
+- Skill fit:
+- Template fit:
+- Closeout friction:
+- Overall confidence:
 
-Un mandato que dice "otro archivo ⇒ STOP + PLAN_CONFLICT" sin declarar QUIÉN resuelve el conflicto y con qué autoridad deja al worker sin camino legítimo en un entorno no interactivo: o se detiene (pérdida de un pase completo) o desvía sin autoridad (riesgo de sobre-alcance). En S02/MR1 la práctica que funcionó fue: el worker declara la desviación con evidencia y el submanager la ratifica o revierte antes de integrar.
+## What Complicated The Session Most
+Mandatos one-shot con allowlist estricta ante conflictos reales mandato-vs-código: MR-A encontró que la política TGMM congelada exigía un campo fuera de su allowlist y no tenía camino legítimo (preguntar no era posible en contexto desatendido); terminó decidiendo por mejor juicio y declarando PLAN_CONFLICT a posteriori. La misma estructura produjo retornos adicionales (MR-B-R1, MR-C-R1, MR-B-R2). La defensa que funcionó: el oráculo preexistente (MR-E) cazó la regresión H1 del propio delta.
 
-## Sugerencia
+## Most Useful Part Of Sistema 1
 
-En la plantilla de mandato one-shot (skill technical-project-manager §"Build the one-shot master mandate", y el patrón del proyecto Echo Futures), añadir una sección explícita `/conflicts`: el worker clasifica el conflicto (wiring mínimo vs rediseño vs contrato congelado), aplica el wiring mínimo con evidencia cuando sea reversible y trazable, y reporta la desviación como campo obligatorio del handoff; el submanager ratifica/revierte antes de integrar. Dejar de depender de AskUserQuestion en contextos desatendidos.
+- What helped:
+- Why it helped:
+- Keep/change:
 
-## Evidencia
+## Least Useful Or Noisy Part
 
-- MR-A handoff: PLAN_CONFLICT declarado con 6 desviaciones, todas ratificadas por el submanager (registro en el planner).
-- MR-E detectó la regresión H1 (el oráculo existente sí la cazó — la defensa funcionó) y MR-C-R1 la cerró en el mismo encargo.
-- Registro completo: [[Echo Futures — Runtime Pools]], sección «Registro MR1».
+- What did not help:
+- Why it was weak/noisy:
+- Proposed cleanup:
+
+## Missing Support
+La plantilla de mandato one-shot (technical-project-manager, sección de mandato maestro) no declara quién resuelve un PLAN_CONFLICT ni con qué autoridad en contextos no interactivos. Sugerencia: sección `/conflicts` explícita — clasificar (wiring mínimo vs rediseño vs contrato congelado), aplicar wiring mínimo reversible con evidencia cuando proceda y reportar la desviación como campo obligatorio del handoff, con ratificación/reversión del submanager antes de integrar. No depender de AskUserQuestion en ejecución desatendida.
+
+## Retrieval Feedback
+
+- Useful query or source:
+- Missing context:
+- Duplicate/noisy result:
+- Better future query:
+
+## Skill Feedback
+
+- Skill that worked well:
+- Skill that was confusing:
+- Trigger/routing gap:
+- Suggested contract change:
+
+## Template Feedback
+
+- Template used:
+- Field that helped:
+- Field that felt redundant:
+- Missing field:
+
+## Memoria Interna (Internal Memory)
+
+- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
+- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
+- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
+- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
+
+## Pain Pattern Candidate
+"Otro archivo ⇒ STOP + PLAN_CONFLICT" sin ruta de resolución convierte un guard de ownership en un bloqueo silencioso o en una desviación sin autoridad. Patrón visto 1× con resolución buena (ratificación); vigilar en próximos mandatos one-shot.
+
+## One Next Improvement
+
+-
