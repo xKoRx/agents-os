@@ -18,9 +18,11 @@ archivos publicados).
 - 41 claims auditados (27 visual_observation ∪ 38 visual_hint; cada frame leído
   por el worker antes de adjuntarse).
 - Resultado: 23 visual_observation con frame en `evidence`; 17 reclasificadas a
-  `instructor_statement` (sustancia hablada; 12 conservan frames verificados
-  como contexto); c-0070 sin frame (hint no material, verificado: f-001104 y
-  f-001110 no muestran el solape).
+  `instructor_statement` en P1 (+c-0066 adjudicada en P4 = 18 en total); de las
+  18, 13 conservan frames verificados como contexto y 5 quedan sin frame
+  (c-0031, c-0045, c-0055, c-0059, c-0070), cada una documentada en su nota
+  (c-0059: f-000926 leído y descartado, no resuelve el deíctico "este low o
+  este"; c-0070: f-001104 y f-001110 no muestran el solape).
 - 48 referencias f- estructuradas (antes 0). 0 cambios de veredicto: ningún
   SUPPORTED se preservó por comodidad — los visuales indemostrables resultaron
   ser hablados.
@@ -86,6 +88,7 @@ quedan registrados aquí si los hubo).
 ## Estado post-reparación
 
 CLAIMS = 98 (IDs preservados) · veredictos 98 SUPPORTED · visual_observation 23
-(23/23 con frame) · visual_hint 38 (37 con frame, 1 instructor_statement no
+(23/23 con frame) · visual_hint 38 (36 con frame; 2 sin frame — c-0059 y
+c-0070, instructor_statement con hint contextual documentado en la nota)
 material documentado) · refs f- estructuradas 48 · frames 65 (18+47) ·
 LIBRARY_VALIDATION = PASS · Chapter 01 intacto.
