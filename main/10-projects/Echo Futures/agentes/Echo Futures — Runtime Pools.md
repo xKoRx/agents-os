@@ -366,8 +366,8 @@ Base de reparación: `695c33d5b85b7e6a9e3fb3b70e341e285ba61c51` (idéntico a HEA
 
 | Worker | Responsabilidad | Estado | Base→Result SHA | Evidencia |
 |---|---|---|---|---|
-| MR-A | MR01 + MR03: composición TGMM/planes y unclipped explícito | DESPACHADO | — | — |
-| MR-B | MR02 + residuales analytics de MR05 | pending | — | — |
+| MR-A | MR01 + MR03: composición TGMM/planes y unclipped explícito | **INTEGRADO** | 695c33d5→`9d5432a9` (commits a9698e4c fix + 9d5432a9 test; 13 archivos +965/−124) | Verificación independiente del submanager: build EXIT=0; config único fallo = baseline TGFilter; tgmm/gerardmm/futuresruntime ok; E2E 11/11 PASS (incl. TGMM nuevo con orden+fill SIM); vertical completo = exactamente 3 baseline; race provider+operation PASS; gofmt/vet limpios en archivos tocados. TDD con repros en rojo sobre 695c33d5 (/tmp/mr1-a/repro/). PLAN_CONFLICT declarado y RATIFICADO por submanager como wiring autorizado del mandato: (1) provider/engine.go policyInput proyecta Balance de la revisión ya autorizada (TGMM UNAVAILABLE sin balance); (2) provider/reservation.go revalidación conserva AccountStrategyID de la reserva (sin ello NINGUNA entry de pool pasaba el provider gate BINDING_DISABLED — defecto real de S02 ahora cerrado con fill demostrado); (3–6) re-punteo mínimo de 4 tests que codificaban la interpretación rechazada (default silencioso/una fila), sin asserts debilitados. agent_6e93a22b-e79b-4e1b-906c-f1fb06b88053 |
+| MR-B | MR02 + residuales analytics de MR05 | DESPACHADO | — | — |
 | MR-C | Residuales Provider/Pool/Fanout de MR05 | pending | — | — |
 | MR-D | MR04: E2E completos, integración y negativos | pending | — | — |
 | MR-E | Verificación fresca SHA + MR06 cobertura | pending | — | — |
