@@ -1,0 +1,17 @@
+stage,host,ventana_utc,duracion,cpu_cores_prom,categoria_paralelismo,evidencia
+builder_killed_by_reboot,hera,2026-10-18T04:36:25Z→05:05:43Z,~29 min (interrumpido),1.0-4.2 (sar %user 1.6-6.6 de 64),sqcli interno: genético paralelo + CustomAnalysis secuencial,worker log Hera activity 04:36:24Z; sar sa18 01:40-02:00 local; sin línea de fin (reboot)
+builder_retry_fastfail,hera,2026-10-18T05:09:25Z→05:09:27Z,2105 ms,n/a (no computa),"sqcli exit 0, output contenía 'Project stopped' (error marker) → 'success markers not found'",worker log Hera sqx_executor.go:89
+builder_e2e_w10,kronos,2026-10-18T05:11:27Z→06:20:42Z,69.2 min (4154640 ms),1.05 sostenido (sar %user 1.39 de 76),mixto: ver desglose,worker log Kronos cmd_executor.go:338; sar sa18
+builder_e2e_boot,kronos,02:11:30→02:11:52 local (~24 s),24 s,~1,secuencial (JVM+licencia+data 4.6s+proyectos 8.6s),log SQX log_2026_10_18 02:11:xx
+builder_e2e_genetic,kronos,02:11:52→02:13:58 local,126 s,trabajo corto sobre 76 executors preparados,paralelo (islas 4 x pop 20; corto a 1000 estrategias),log SQX "Build finished because totally 1000 strategies were generated"
+builder_e2e_customanalysis,kronos,02:14:00→03:14:10 local,~60 min,~1.05,secuencial (overview producer Forge iterando 649 estrategias ~5.5 s c/u),log SQX Custom analysis + sar; databank output 649 archivos
+builder_e2e_databank_sync,kronos,03:14:10→(145.5 s),145.5 s,~1 (I/O),secuencial,log SQX "saved 649 … in 145.50 s"
+builder_e2e_teardown,kronos,03:20:36→03:20:41 local,5 s,~1,secuencial,log SQX "All tasks completed"
+retest_individual_promedio,zeus+hera+kronos,2026-10-18T06:45→06:58Z (picos),17-30 s por estrategia,2-3 cores por host durante ventana,serial por host (1 actividad a la vez); paralelo entre hosts (cola Temporal),worker logs 3 hosts (runs ~25 s back-to-back); sar Zeus 03:30-03:50 local 5-11% de 28; Hera 3.2-4.4% de 64; Kronos 2.9-3.9% de 76
+retest_fixed_boot_overhead,(transversal),por run,~10-15 s,1,secuencial (JVM boot+licencia+data+proyecto dentro de cada run de 17-30 s),log SQX: data 3.1-4.6 s + proyectos 8.6 s por arranque
+overview_exporter,hera,2026-10-18T06:22→06:41Z (7 runs),56-72 s por run,~1-2,secuencial por host,worker log Hera EchoForgeOverviewExporter duration_ms
+wfm_exporter,hera,2026-10-18T06:25→06:43Z (6 runs),69-76 s por run,~1-2,secuencial por host,worker log Hera EchoForgeWFMExporter duration_ms
+robustrun_exporter,hera+zeus,06:45→06:48Z / 03:10-03:13Z,17-26 s por run,~1,secuencial,worker logs
+tradelist_exporter,hera+zeus,06:53→06:56Z / 03:18-03:22Z,17-26 s por run,~1,secuencial,worker logs
+mt5_exporter,hera+kronos,06:56→06:58Z,24-29 s por run,~1,secuencial,worker logs ambos hosts
+builder_grande_referencia,(histórico),2026-09-28T22:04Z,4510473 ms (75.2 min),n/m (sin sar retenido),mixto igual que w10,worker log Hera 2026-09-28
