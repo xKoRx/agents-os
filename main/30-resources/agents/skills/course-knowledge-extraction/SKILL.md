@@ -16,7 +16,7 @@ created: "2026-10-18"
 updated: "2026-10-18"
 entities: []
 related:
-  - "[[mke-clutifx-ch01-agent-vlm-run]]"
+  - "[[Multimodal Knowledge Engine]]"
 aliases:
   - extraccion de conocimiento de cursos
   - course video knowledge
