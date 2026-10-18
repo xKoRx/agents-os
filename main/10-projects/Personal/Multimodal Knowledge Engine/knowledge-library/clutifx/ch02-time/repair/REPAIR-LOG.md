@@ -89,8 +89,8 @@ quedan registrados aquí si los hubo).
 
 CLAIMS = 98 (IDs preservados) · veredictos 98 SUPPORTED · visual_observation 23
 (23/23 con frame) · visual_hint 38 (36 con frame; 2 sin frame — c-0059 y
-c-0070, instructor_statement con hint contextual documentado en la nota)
-material documentado) · refs f- estructuradas 48 · frames 65 (18+47) ·
+c-0070, instructor_statement con hint contextual documentado en la nota) ·
+refs f- estructuradas 48 · frames 65 (18+47) ·
 LIBRARY_VALIDATION = PASS · Chapter 01 intacto.
 
 
@@ -114,3 +114,12 @@ Adicionalmente, el estado de c-0056 se recalifica de RESOLVED a
 PARTIALLY_RESOLVED (nota estructurada B2 en el claim; interpretación vigente vs
 lectura histórica M8 invertida — hoy refutada; referente del rectángulo
 descartado queda como q-ch02-001 en OPEN-QUESTIONS.md).
+
+## ERRATA 2 (v1.2, mismo día)
+
+La incorporación de los checks W al validador introdujo una regresión transitoria:
+`fixtures_selftest.py` bajó a 8/10 porque las bibliotecas fixture viven fuera de
+un vault y el validador emitía ERROR al no resolver el vault root. Corregido: la
+ausencia de vault root ahora es SKIP (los checks W no aplican fuera de Obsidian)
+y los selftests vuelven a 10/10 y 8/8. FRAMES.md se regeneró tras arreglar el
+regex de clasificación base/on-demand del renderer (18 base + 47 demanda).

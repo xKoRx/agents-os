@@ -27,8 +27,9 @@ ASR.
 - **Provenance visual estructurada**: los claims visuales citaban solo transcript;
   tras auditar físicamente 41 claims (27 visual_observation ∪ 38 visual_hint),
   `claims.jsonl.evidence` contiene 48 refs a frames verificados (antes 0).
-  23/23 visual_observation con frame; 18 reclasificadas a instructor_statement
-  (sustancia hablada; 5 de ellas sin frame, documentadas en su nota).
+  23/23 visual_observation con frame; epistemic realmente cambiada en 5 claims
+  (4 visual_observation→instructor_statement + 1 model_inference→instructor_statement;
+  41 auditadas, 36 con frames — errata B3 en repair/REPAIR-LOG).
 - **Naming de frames**: f-170903→f-001703 + 5 históricos declarados en
   `.deprecated_frame_names` (el validador distingue `historical_invalid_name`
   de cita vigente). 65/65 nombres canónicos y dentro de duración.
@@ -45,10 +46,12 @@ ASR.
   cardinalidad de reviews (`validate_review.py`, R01–R04) + payload builder con
   contexto de frontera (`make_minute_payload.py`) + selftest 10/10. RED capturado
   antes de reparar; `LIBRARY_VALIDATION = PASS` después.
-- **Skills**: principal en v1.1 (7 contratos nuevos integrados al flujo
-  aprobado); nueva `course-knowledge-worker` (EXTRACTOR / MINUTE_REVIEWER /
-  DOCUMENTATION_VERIFIER, spool-only, cardinalidad obligatoria) registrada en el
-  INDEX federado.
+- **Skills**: principal en **v1.2** (v1.1: 7 contratos; v1.2 mismo día: navegación
+  Obsidian, proyecciones deterministas CLAIMS/FRAMES, identidad permanente,
+  AMENDMENTS/OPEN-QUESTIONS, aclaración acotada, consulta por agentes, checks W);
+  `course-knowledge-worker` (EXTRACTOR / MINUTE_REVIEWER / DOCUMENTATION_VERIFIER,
+  spool-only, cardinalidad obligatoria, unresolved_questions, modalidad targeted)
+  registrada en el INDEX federado.
 - **Revisión independiente (P10)**: 10/10 puntos sustantivos PASS; 3 findings de
   registro (1 MATERIAL de libro de conteos, 2 MENOR editoriales) corregidos
   in-mission y re-validados.
@@ -64,7 +67,7 @@ ASR.
    candidatos se inspeccionaron y no muestran lo afirmado). Aceptables como
    contexto; si el Owner los quiere visuales, habría que redibujar/demostrar en
    el video — no hecho.
-4. **Epistemic en extracción**: 18 reclasificaciones post-hoc eran evitables si
+4. **Epistemic en extracción**: las 5 reclasificaciones post-hoc eran evitables si
    los extractores aplicaran la distinción instructor/visual/inferencia con más
    rigor al proponer (el glosario y la v1.1 lo piden; no verificado en un run
    nuevo).
