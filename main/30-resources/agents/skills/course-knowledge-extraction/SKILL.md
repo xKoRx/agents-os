@@ -280,7 +280,9 @@ explícitamente como no del curso.
 archivos/headings/blocks existentes, anchors únicos, proyecciones sincronizadas,
 PNG sin ambigüedad, índices de curso resolubles) — PASS antes de publicar.
 
-## Anti-patrones (leitmotiv del run ch01 caro)
+### Subagentes
+
+Antes de despachar workers: cargar
 `30-resources/agents/skills/course-knowledge-worker/SKILL.md` e incluirlo en
 cada paquete con `ROLE = EXTRACTOR|MINUTE_REVIEWER|DOCUMENTATION_VERIFIER`,
 ONE-SHOT, FRESH CONTEXT. El Manager pasa skill + rol + recursos concretos +

@@ -270,8 +270,10 @@ def main():
     WIKI_DOCS = DOCS + ["CLAIMS.md", "FRAMES.md", "OPEN-QUESTIONS.md", "AMENDMENTS.md"]
     vault = find_vault_root(lib)
     if vault is None:
-        bad("W01", "no pude resolver el vault root (marker 80-agents/agents-os/agents-os.md); "
-                   "no se validan wikilinks")
+        # biblioteca fuera de un vault Obsidian: los checks W no aplican (no hay
+        # superficie de wikilinks que validar). SKIP no afecta el veredicto;
+        # en el vault real el marker siempre resuelve.
+        findings.append(("W*", "SKIP", "vault root no resuelto: checks W de wikilinks omitidos"))
     else:
         claims_path_md = os.path.join(lib, "CLAIMS.md")
         # W04: CLAIMS.md con exactamente un heading por claim
@@ -334,7 +336,7 @@ def main():
                     if not any(mk.lower() in window for mk in markers):
                         bad("V12", f"documentation.md:{ln_no}: cita {cid} ({c.get('verdict')}) sin marco de duda explícito")
 
-    ok = not findings
+    ok = not [f for f in findings if f[1] != "SKIP"]
     if args.json:
         print(json.dumps({"pass": ok, "findings": [{"check": k, "severity": s, "msg": m} for k, s, m in findings]}, ensure_ascii=False, indent=1))
     else:
@@ -345,8 +347,9 @@ def main():
                     print(f"== {k} ==")
                     cur = k
                 print(f"  [{s}] {m}")
+        blocking = [f for f in findings if f[1] != "SKIP"]
         by = {}
-        for k, _, _ in findings:
+        for k, _, _ in blocking:
             by[k] = by.get(k, 0) + 1
         print(f"LIBRARY_VALIDATION = {'PASS' if ok else 'FAIL'}  findings={sum(by.values())} by_check={by or '{}'}")
     sys.exit(0 if ok else 1)

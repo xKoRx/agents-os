@@ -29,12 +29,14 @@ def main():
              f" Timestamp codificado en el nombre (f-HHMMSS.png)."
              f" \"Contextual\" = sin claims asociados; no se fuerzan relaciones.")
     L.append("")
-    base_re = re.compile(r"^f-\d{6}59\.png$")
     for f in frames:
         stem = f[:-4]
         h, m, s = int(stem[2:4]), int(stem[4:6]), int(stem[6:8])
         ts = f"{h:02d}:{m:02d}:{s:02d}"
-        kind = "base (fin de minuto)" if base_re.match(f) or stem == "f-001703" and h == 0 and m == 17 else "bajo demanda"
+        # base = fin de cada minuto completo (HH=00, SS=59, MM 00-16) o el
+        # último instante válido del minuto parcial final del capítulo.
+        is_base = (h == 0 and s == 59 and 0 <= m <= 16) or stem == "f-001703"
+        kind = "base (fin de minuto)" if is_base else "bajo demanda"
         who = ", ".join(f"[[{rel}/CLAIMS#{cid}|{cid}]]" for cid in cited.get(stem, []))
         L.append(f"- [[{rel}/frames/{f}|{stem}]] · {ts} · {kind} · "
                  + (f"citado por: {who}" if who else "contextual"))
