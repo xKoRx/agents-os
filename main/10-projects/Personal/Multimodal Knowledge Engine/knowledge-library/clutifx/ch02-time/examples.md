@@ -1,0 +1,58 @@
+# ch02-time — Ejemplos enseñados por el instructor
+
+Todos los ejemplos son casos mostrados en el video. Cada uno indica qué ilustra y dónde está (timestamp + frames). Ninguno es inventado ni "mejorado".
+
+## E1 · Recorrido multi-timeframe completo EURUSD (12 M → 4 h)
+- **Dónde**: [04:54–09:06]. Frames: f-000514, f-000535, f-000545 (6M), f-000608 (2M), f-000640 (1M), f-000716 (1W), f-000727 (3D), f-000730 (2D), f-000746 (12H), f-000800/f-000806 (8H), f-000823 (6H), f-000859 (4H).
+- **Qué muestra**: rangos y objetivos TF a TF (12 M con su Turtle Soup y objetivo "alto anual" [c-0025, c-0026]; 6 M otro rango [c-0034, c-0036]; 3 M [c-0032]; 2 M [c-0042]; 1 M — el de abajo servía, arriba no hay rango [c-0039]; 3 S objetivo completado que se borra [c-0038]; 2 S "no tenemos nada" [c-0049]; 1 S failure swing/SMT con Libra [c-0048]; 3 D/2 D/1 D objetivos arriba [c-0047, c-0046]; 12 H rango pendiente [c-0044]; 8 H rangos, uno descartado por cierre fuera [c-0043, c-0056]; 6 H rango reiniciado contrario [c-0053]; 4 H bajista hasta rangos bajistas nuevos [c-0051]).
+- **Qué ilustra**: R10 (marcar rangos en todas las TFs alineadas ⇒ dirección) y R9 (rangos contrarios primero). Conclusión del instructor: "todo nos indicaba Bullish otra vez para el día de hoy" [c-0055]; "era muy claro que íbamos a tener un bias alcista" [c-0031].
+
+## E2 · "Por si alguien no se creía que en 3 días se puede operar"
+- **Dónde**: [04:44–04:54]. Frames: f-000444, f-000450.
+- **Qué muestra**: un rango operativo en la parte alta del gráfico de 3 días [c-0027, c-0028].
+- **Qué ilustra**: R2 — la lista de timeframes es real y operable en las TF grandes.
+
+## E3 · Vela de la 1 p.m.: intra Turtle Soup y expectativa para las 5
+- **Dónde**: [09:06–10:10]. Frames: f-000906, f-000926, f-000954.
+- **Qué muestra**: rango bajista de 4 h; la vela de la 1 (Londres) hizo intra Turtle Soup [c-0061, c-0060]; a las 5 (15 minutos después) probablemente tome uno de los lows [c-0059]; a la 1 ya hizo el Turtle Soup del bajo de la vela anterior y reaccionó [c-0057].
+- **Qué ilustra**: R3/R14 (hora clave como disparador) y la lectura condicional de escenarios: "si el DXY está bearish va a seguir para abajo; si está bullish va a tomar el low, crear un rango bullish y subir" [c-0066].
+
+## E4 · Short gestionado con precaución antes de la hora clave
+- **Dónde**: [10:10–10:35]. Frame: f-001018, f-001030.
+- **Qué muestra**: instructor en short desde arriba, parciales ya tomados, salida en el nuevo bajo "por precaución a que pueda pasar esto" en la vela de las 5 [c-0065, c-0064].
+- **Qué ilustra**: R4 (precaución/minuto 59) y su lógica (R4: horas clave crean rangos a favor o en contra [c-0063]).
+
+## E5 · "Día feo" con noticia de 8:30
+- **Dónde**: [12:43–13:00]. Frame: f-001259 (base de fin de minuto con el esquema dibujado).
+- **Qué muestra**: durante London consolida; en New York crea el rango alcista; sube un poco y la noticia de las 8:30 lo impulsa [c-0073]; causa explícita: "la noticia trae la volatilidad" [c-0072].
+- **Qué ilustra**: R13 (operar la vela que contiene la noticia; "la de la 1 te la ahorras").
+
+## E6 · Esquema de entrada en la vela de las 5
+- **Dónde**: [13:06–13:21]. Frames: f-001308, f-001316, f-001320.
+- **Qué muestra**: Turtle Soup + rango creado a favor (alcista) en la vela de las 5 ⇒ entradas ideales en el power 3 de esa vela, por abajo [c-0084, c-0083].
+- **Qué ilustra**: R14 (condiciones de entrada) y la mecánica de sesiones (R11/R12).
+
+## E7 · Compra en 4 h frenada por la vela de 12 h
+- **Dónde**: [14:15–14:54]. Frames: f-001415, f-001439.
+- **Qué muestra**: comprar "por aquí" en 4 h terminó en stop loss "porque High Time Frame manda"; la vela de 12 h aún no había creado su rango; no se podía comprar arriba hasta que la creó [c-0088, c-0087, c-0086].
+- **Qué ilustra**: R16 (HTF manda / rangos superiores).
+
+## E8 · Diario de la Libra: venta con stop arriba
+- **Dónde**: [15:03–15:52]. Frames: f-001512, f-001522, f-001532.
+- **Qué muestra**: venta en diario con stop loss arriba; por mucho que en 1 h se vea un rango bajista, "va a crear el rango en diario y luego va a bajar" [c-0093, c-0092, c-0091].
+- **Qué ilustra**: R16 aplicado a diario/1 h.
+
+## E9 · Diario abriendo vela nueva: primero el alto, luego la caída
+- **Dónde**: [15:52–16:19]. Frames: f-001602.
+- **Qué muestra**: si en diario/2 días abre vela nueva y "tiene que tomar el alto para crear el rango", la reacción llega después de crear el rango diario bajista; intentar antes falla [c-0090, c-0097].
+- **Qué ilustra**: R16 (y la advertencia "por mucho que en una hora...").
+
+## E10 · Long a las 12 vs vela de 4 h de la 1
+- **Dónde**: [16:19–17:05]. Frames: f-001640, f-001651.
+- **Qué muestra**: long planeado a las 12; la vela de 4 h abre a la 1, toma el low de la vela anterior creando el rango, y "luego es cuando el precio da su movimiento alcista"; viendo ese día: toma el low y empieza a subir; "ni que en una hora te parezca que ya podía subir: no estaba listo el precio" [c-0096, c-0095, c-0094].
+- **Qué ilustra**: R16 + R3 (la apertura de la vela cambia el contexto).
+
+## E11 · Objetivo anual en 12 M (euro) y objetivo 6 M ya completado
+- **Dónde**: [04:54–05:48] (y adelanto en [00:20, c-0001]). Frames: f-000514, f-000535, f-000545.
+- **Qué muestra**: mientras el Turtle Soup estaba hecho y el precio subía, el rango/objetivo mensual ("alto anual") era el objetivo importante [c-0026, c-0025]; el objetivo de 6 M ya completado se menciona al inicio y se muestra al bajar a 6 M [c-0001, c-0034].
+- **Qué ilustra**: R7 (objetivos completados se borran) y el anclaje de objetivos en TF altas.
