@@ -44,6 +44,10 @@ conocimiento; las imágenes aportan en dos casos acotados — resolver deíctico
 timeframe en pantalla) — y la verificación por claim con llamada individual es
 el error de diseño que mató ese run.
 
+v1.1 (2026-10-18): hardening tras Chapter 02 — evidencia visual estructurada,
+contexto de frontera, naming determinista de frames, glosario como input,
+checkpoint total vs agentes y validación final obligatoria (ver §Hardening v1.1).
+
 ## Minimal Read
 
 1. Esta skill completa (es autocontenida).
@@ -79,10 +83,20 @@ Extracción de frame puntual (determinística, sin herramientas pesadas):
 ffmpeg -ss <HH:MM:SS[.ms]> -i <video.mp4> -frames:v 1 -q:v 2 frames/f-<HHMMSS>.png
 ```
 
+El HHMMSS se genera SIEMPRE por fórmula desde los segundos reales (jamás
+concatenado a mano — 2/18 workers de ch02 escribieron horas en vez de minutos):
+
+```python
+filename = f"f-{seconds // 3600:02d}{(seconds % 3600) // 60:02d}{seconds % 60:02d}.png"
+```
+
 Frames bajo demanda: SOLO cuando el transcript dice "esto de aquí / pinto esto
 / miren el gráfico / nombra un nivel numérico / cambia de timeframe" y el frame
 de minuto no despeja la referencia. Presupuesto orientativo: ≤1 frame/minuto
-obligatorio + ~0,5-1 bajo demanda. Un video de 1 h ⇒ 60-120 frames total.
+obligatorio + ~0,5-1 bajo demanda (un video de 1 h ⇒ 60-120 frames), SIN tope
+rígido cuando el instructor cambia de gráfico/temporalidad o dibuja estructuras:
+se registra el exceso y su justificación en review-notes. En cursos con recorrido
+de gráfico continuo (ch02: 2,6/min) el presupuesto se declara por bloque, no global.
 
 ## Estructura de la biblioteca (por capítulo)
 
@@ -108,15 +122,21 @@ obligatorio + ~0,5-1 bajo demanda. Un video de 1 h ⇒ 60-120 frames total.
 1. **Setup** (minutos): crear el directorio del capítulo. Extraer transcript
    (faster-whisper o equivalente; el MKE repo tiene `asr/` reutilizable en
    `/home/kor/mke/multimodal-knowledge-engine`) → escribir `transcript.md` con
-   ids `s-<HHMMSS>`. Guardar sha256 del video en el README.
+   ids `s-<HHMMSS>`. Guardar sha256 del video en el README. Cargar el
+   `GLOSSARY.md` del curso y su tabla de garbles ASR conocidos como input de
+   extractores y revisores (contexto, no permiso para sustituir palabras
+   parecidas sin respaldo).
 2. **Frames base** (minutos): 1 frame por minuto SIEMPRE (fin de minuto,
    `-ss MM:59.5`) → `frames/f-<HHMMSS>.png`. No deduplicar agresivamente: 60
    frames/h pesan poco y son la red de re-consulta.
 3. **CHECKPOINT TEMPRANO** (obligatorio): procesar los primeros 5 minutos de
-   video completos (pasos 4-5). Medir tiempo real. Reportar al owner el ETA
-   para el video completo. Si se desvía >2× del objetivo (≤2 h subagentes /
-   ~15 min API por hora de video), PARAR y re-decidir. Este control existe
-   porque el run caro se detectó 12 horas tarde.
+   video completos (pasos 4-5). Medir tiempo real POR SEPARADO: throughput de
+   subagentes (extracción+revisión) y tiempo total del proceso (ASR,
+   orquestación, integración y publicación NO se esconden — ch02: pipeline
+   99 min/h-video ✓ pero total observado por el owner 2h06 para 17 min,
+   dominado por ASR). Reportar ambos al owner. Si el proyectado se desvía >2×
+   del objetivo (≤2 h subagentes / ~15 min API por hora de video), PARAR y
+   re-decidir. Este control existe porque el run caro se detectó 12 horas tarde.
 4. **Knowledge desde transcript** (el corazón): en bloques de ~5-10 min,
    extraer claims atómicos pero sensatos (separar reglas de parámetros y de
    observaciones; NO micro-fragmentar: ~10-25 claims/minuto de clase densa,
@@ -124,18 +144,27 @@ obligatorio + ~0,5-1 bajo demanda. Un video de 1 h ⇒ 60-120 frames total.
    ("esto", "este rango") se marcan para el paso 5 si el contexto textual no
    los resuelve.
 5. **Frames bajo demanda + revisión POR MINUTO** (una llamada por minuto): un
-   solo llamado recibe el transcript del minuto + el frame de ese minuto + los
-   claims propuestos, extrae los frames específicos que necesite, y emite el
+   solo llamado recibe el transcript del minuto UNIÓN todos los segmentos
+   citados por sus claims (contexto de frontera: jamás truncar evidencia en el
+   límite del minuto — en ch02 produjo 4 UNCERTAIN artificiales; usar
+   `scripts/make_minute_payload.py`) + el frame de ese minuto + los claims
+   propuestos, extrae los frames específicos que necesite, y emite UN
    veredicto por claim: SUPPORTED / UNCERTAIN (dudoso, no adivinar) — y
-   CORRIGE causalidad inventada y deícticos sin resolver. Con API/modelo local
-   es una llamada estructurada; con subagentes, un subagente por minuto
-   (paralelizables 5-10 en vuelo).
+   CORRIGE causalidad inventada y deícticos sin resolver. El integrador
+   verifica cardinalidad entrada=salida (`scripts/validate_review.py`); si no
+   coincide, `MINUTE_REVIEW = INVALID`. Con API/modelo local es una llamada
+   estructurada; con subagentes, un subagente por minuto (5-10 en vuelo).
 6. **Composición**: `documentation.md` — síntesis por conceptos del capítulo,
    cada afirmación con su cita `[mm:ss]` y `[f-<HHMMSS>]` cuando es visual.
    Construida SOLO sobre claims SUPPORTED; los UNCERTAIN pueden mencionarse
    explícitamente como dudosos, nunca como hechos.
-7. **Publicación**: README con provenance (video sha256, herramienta, modelo,
-   fecha, conteos) + claim counts por veredicto. La biblioteca se considera
+7. **Publicación + validación final**: README con provenance (video sha256,
+   herramienta, modelo, fecha, conteos RECONCILIADOS contra los artefactos) +
+   claim counts por veredicto. DONE exige: evidencia estructurada válida,
+   provenance visual válida (todo visual_observation con frame verificado en
+   `evidence`; una nota textual no sustituye la cita), conteos reconciliados,
+   revisión semántica ejecutada y `scripts/validate_library.py` = PASS.
+   "Todo SUPPORTED" NO basta para declarar DONE. La biblioteca se considera
    entregable con UNCERTAINs visibles; NO se re-trabaja sin pedido del owner.
 
 Costo objetivo verificado: video de 1 h ⇒ **≤2 h con subagentes, ~10-15 min y
@@ -161,6 +190,44 @@ frames: n obligatorios + n bajo demanda
 throughput: <min de video>/min real vs objetivo
 biblioteca: <ruta absoluta>
 ```
+
+## Hardening v1.1 — contratos añadidos tras Chapter 02 (2026-10-18)
+
+1. **Contrato de evidencia**: toda observación visual material lleva frame
+   DENTRO de `claims.jsonl.evidence` (además del s-id). `visual_hint` señala
+   dónde mirar; el frame verificado es la cita. Chequeos V07/V08 del validador.
+2. **Contexto de frontera**: payload del minuto = segmentos del minuto ∪
+   segmentos citados por sus claims (contract test C de ch02 lo demuestra con
+   los casos reales c-0067/c-0072).
+3. **Naming determinista**: fórmula sobre segundos reales; los nombres
+   históricos inválidos se declaran en `<biblioteca>/.deprecated_frame_names`
+   (un `historical_invalid_name` es registro de auditoría, no cita vigente).
+4. **Densidad visual**: sin tope rígido por minuto cuando el contenido lo pide;
+   exceso registrado y justificado.
+5. **Glosario como input**: GLOSSARY.md del curso + garbles conocidos entran en
+   cada paquete de extractor y revisor.
+6. **Checkpoint doble**: throughput de subagentes Y tiempo total, por separado,
+   desde el checkpoint de 5 minutos.
+7. **Validación final**: validate_library.py PASS + conteos reconciliados +
+   revisión semántica antes de DONE.
+
+### Scripts auxiliares (deterministas, stdlib-only)
+
+```text
+scripts/validate_library.py <lib> [--duration-seconds N]  # V01-V13; PASS|FAIL
+scripts/validate_review.py <payload.json> <review.json>   # cardinalidad R01-R04
+scripts/make_minute_payload.py <transcript.md> <claims> <min> <out>
+scripts/tests/fixtures_selftest.py                        # red-green del validador
+```
+
+### Subagentes
+
+Antes de despachar workers: cargar
+`30-resources/agents/skills/course-knowledge-worker/SKILL.md` e incluirlo en
+cada paquete con `ROLE = EXTRACTOR|MINUTE_REVIEWER|DOCUMENTATION_VERIFIER`,
+ONE-SHOT, FRESH CONTEXT. El Manager pasa skill + rol + recursos concretos +
+contrato de salida; no duplica las reglas largas en cada subprompt. Los workers
+escriben a su spool; sólo el integrador toca los archivos canónicos.
 
 ## Anti-patrones (leitmotiv del run ch01 caro)
 
