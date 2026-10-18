@@ -1,0 +1,38 @@
+# SHA256SUMS — FORGE-0.3.0-FINAL-CERTIFICATION (2026-10-18)
+# Release canónica 0.3.1 (source 66dd8cdbfc144e82553cf69cb79f438f4775eebe, vcs.modified=false)
+a4117aac3391fe6bc5615bc24771bd696ccc857bf73f94a2d37dc068f1212e28  deploy/0.3.1/linux-amd64/symphony
+c2b883e2f578d921a4de756b041e47e157680f07c0f3a4fdc9a711b90f56a4b3  deploy/0.3.1/linux-amd64/sqx-watcher
+6c7b08f26e789dfd652fb9e3c6b23cb30e6826bf3b87664f90e2b52f71653bac  deploy/0.3.1/windows-amd64/sqx-mt5-worker.exe
+# Plugin SQX (deploy paralelo 3/3, fuente d67244b)
+3b0063e43735f9457f71c0c4208f060777cc5a3828ec4145b261b38d37ad847c  sqx/exporter-plugin/target/EchoForgeAutomator.jar
+1599f1bedffaca61deb6ad5106ce7607e8ed8b00499921c234c3a349b1b0d0cb  sqx/exporter-plugin/src/SQ/CustomAnalysis/EchoForgeMT5Exporter.java (snippet flota)
+4fd6b4810099ec1d6d35dade93ec4b44b0f44049fb56208323465f2c3cc311d0  internal/tmp/compiled/SQ/CustomAnalysis/EchoForgeMT5Exporter.class (3/3 hosts)
+# CFX del Owner (byte-exactos, sin cambios)
+81497ababb8e632e58241e64f43c8d83ff3a31c5eafb43f908fcfde087cadf6a  cfx/builder_test.cfx
+a15124cbfc9cd9b86ca5f7d036aa94316320a921ecafd9a0d3936fbf9387761d  cfx/optimizer_test.cfx
+094f409e5395cb140fc67d4612477af93c4f37009204453b7fc15f6f9f0003d3  cfx/retester_test.cfx
+420a4f88cd52628129f83027552e818aece5b8480e5fd57f49d378108d7b35af  cfx/retesterfull_test.cfx
+# Canary focalizado (MQ5 con input long MagicNumber = 26100091079)
+0b19e1d0ef588537ae4fb537e49086ec65f05b7e8a35bfb439787053bcc93ebc  canary zeus /tmp/canary-evidence/canary_magic64.mq5
+df79a06aed8d1fb3201cdbf09be6538b37c81bf3c8acb98605f205a88a8e1860  canary hera /tmp/canary-evidence/canary_magic64.mq5
+42dc93c10435a40ff3085561bc05bd67e7da2e6e602956361750bf17d967b687  canary kronos /tmp/canary-evidence/canary_magic64.mq5
+# MQ5 durable del E2E (ejemplo verificado: input long MagicNumber = 26100091085)
+aaffa7dead4b62aa2223dd6cf23ff55f  (etag MinIO) durable/mt5-export/v1/79385c32-52d0-4358-95a7-090ca4bbb30f/c842ce88-2313-4c04-864c-49fbf8ce61cf/sha256:f33e1679dcea8f965eee3627d76e5484ed37466bc360bce435dbd4f054834149/final-c842ce88-2313-4c04-864c-49fbf8ce61cf.mq5
+# Release 0.3.0 CUARENTENADA (bitácora; NO usar)
+1b0842476cd339f4755f3f63e08ee480a550ebf0a362d511b909aac7b10bf8ec  deploy/0.3.0/linux-amd64/symphony (vcs.modified=true)
+84d9d6139e46a470b09c45304325398e60dba587a00066817ca5522b6cb9f9d0  deploy/0.3.0/windows-amd64/sqx-mt5-worker.exe (vcs.modified=true)
+3cf08138dcd32c3f488b46e2a03f5c41c1f0bd3425cf0217a86d49831b0c36c1  deploy/0.3.0/linux-amd64/sqx-watcher (vcs.modified=true)
+# Evidencias durable del E2E w10 (refs, no archivos locales)
+# ranking final: sha256:96412fda3e858dc386829cbb8a0dfa4fdda5b6cb7e80c86619ae1097c67a78bf
+# selection snapshot: sha256:ae2697dce0f4eea0f52b50aabe116c666cf4e5168df8cc0ece9b08fbcf558fa8
+# classification snapshot: sha256:86000d0aed3e65b4e9dc61d001f06d1a21a9bee182b3dda9fa8e7750af02122d
+# promotion decision: sha256:4dc03690d40368e833d4eba171e27b600dd65fe66e63213bb0ed6fb5721cce13
+eb5a9455b9277fcd00297d71ea630f5f7ba232f3be55728dbfcfba69ce3f1dd7  FINALISTS-BY-TYPE.csv
+ebf4f67abc93b54b735df9689bf5863005d5ea36607cb2ffe28e1222e252d527  E2E-CONFIG.json
+47ea00c849cb62a1903e1f3ba6edb284ca54c43ad0f06f543fdae70c9a72779b  E2E-STAGES-MATRIX.csv
+f1c7cb17cff035d75ebaa403e2b62de0d75f05b8e993a72c16d36ad581d4c9c2  PHYSICAL-ROLLOUT-MATRIX.csv
+b8a3ad2dfbc41fb8f67faaf9419fef51fc713da034c2fdb8f6019e4db28e755d  MASTER-INTEGRATION.md
+331ad6e1db2a258dedf597c9ffa96e5458fed10b64d8b934f10ab137c3f1212e  RELEASE-0.3.0-MANIFEST.md
+d55c59980d1fc2f5f8181be72ba1e39fb7f58c34471fcea9b6bbaf93670ae611  MAGIC-NUMBER-VERIFICATION.md
+167d98fe52551738ca551f765dbcc5564b0511172329919ebf07073abaff2502  WARNINGS-EVALUATION.md
+2029846edb938a0907c842cc1acc2356344fbac796f2e8b205345bd4abe32c6a  E2E-UNATTENDED-REPORT.md
