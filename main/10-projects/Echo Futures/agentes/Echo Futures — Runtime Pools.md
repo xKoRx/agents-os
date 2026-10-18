@@ -99,14 +99,14 @@ Cada ítem define objetivo | archivos/símbolos | precondición | implementació
 - [x] T1.1 Preparar rama | Git producto | checkout/refs inspeccionados | fetch y crear desde SHA exacto en worktree aislado | rev-parse/status/diff | base=HEAD y estado limpio. #owner/agent
 - [x] T1.2 Cerrar diseño | R6 §12–18 y símbolos §15 | R5/contratos | auditoría localizada y resolución técnica | matriz requisitos/source refs | autoridad actualizada, sin producto editado. #owner/agent
 - [x] T1.3 Validar y cerrar S01 | este planner, log/feedback/run | T1.1–2 | validadores/readback/commit/push/cierre | schema/plan/refs/Git | G1 review + evidencias cierre. #owner/agent
-- [ ] T2.1 Spikes y contratos | R6 §15 NTX/AddOn, domain/config/pool | G1 accepted | P0-NT local, input contable serializado y contratos v1 | dos lanes/account identity, schema invalid | matriz de capacidades, decisión sobre ejecución verificable. #owner/agent
-- [ ] T2.2 Asignación account-wide | pool, provider, futures_pool_manager | T2.1 | reducer claim/affinity/availability, account policy reusando MM | FIFO, day, concurrencia y restart | tests e invariantes S01 casos 1–4/7. #owner/agent
-- [ ] T2.3 Fanout | domain/fanout, strategy/fanout, futures_signal_fanout | T2.2 | merge por asociación, cursores/no-target y manage-only | replay antes/después de rotar/evicción | una decisión por asociación/señal. #owner/agent
-- [ ] T2.4 Ejecución y economía | operation/provider/MM/config y wrappers Core | T2.2–3 | epochs/reservas/revalidate, MM registry/pin, policy presupuesto y revisión causal | 53/300, 1/1000, breach real, no falsa pausa | aislamiento de estado y budget. #owner/agent
-- [ ] T2.5 Analytics | analytics/TG/S2/marketctx/wrappers | T2.1 contratos | demandas unidas/snapshots/consumidores, kernels S2 extraídos | proceso separado, corte causal, equivalencia | Strategy/MM sin cálculo duplicado. #owner/agent
-- [ ] T2.6 Física contractual | bridge/main/session/NTX/AddOn | T2.1/4 | lanes per binding, fence M2/drain, cancel/replace/recovery | ACK incierto, crash, late fill, identidad | SIM/API compile separados de físico real. #owner/agent
-- [ ] T2.7 Composición y migración | futuresruntime/main/statefun/module.yaml source | T2.2–6 | dispatcher único por tipo, bootstrap idempotente, compat fixed/pool | builder real, roundtrip states, legacy claim, 200 cuentas | integración local de siete escenarios. #owner/agent
-- [ ] T2.8 Validación y entrega | nuevos tests §15 + evidencia en planner | T2.1–7 | vet/staticcheck/race/coverage y SHA final | R6 §16 completo | G2 review/blocked, sin S03 ni deploy. #owner/agent
+- [x] T2.1 Spikes y contratos | R6 §15 NTX/AddOn, domain/config/pool | G1 accepted | P0-NT local, input contable serializado y contratos v1 | dos lanes/account identity, schema invalid | matriz de capacidades, decisión sobre ejecución verificable. #owner/agent
+- [/] T2.2 Asignación account-wide | pool, provider, futures_pool_manager | T2.1 | reducer claim/affinity/availability, account policy reusando MM | FIFO, day, concurrencia y restart | tests e invariantes S01 casos 1–4/7. #owner/agent — **REABIERTA por MR1**: residuales QA-05 (replay contexto no-último) y ACCOUNT_FACTS_UNAVAILABLE/ASSOCIATION_DISABLED (MR-C).
+- [/] T2.3 Fanout | domain/fanout, strategy/fanout, futures_signal_fanout | T2.2 | merge por asociación, cursores/no-target y manage-only | replay antes/después de rotar/evicción | una decisión por asociación/señal. #owner/agent — **REABIERTA por MR1**: residual target legacy pool-slot con deliveries espurias (MR-C).
+- [/] T2.4 Ejecución y economía | operation/provider/MM/config y wrappers Core | T2.2–3 | epochs/reservas/revalidate, MM registry/pin, policy presupuesto y revisión causal | 53/300, 1/1000, breach real, no falsa pausa | aislamiento de estado y budget. #owner/agent — **REABIERTA por MR1**: MR01 (TGMM por composición) y MR03 (unclipped explícito) (MR-A).
+- [/] T2.5 Analytics | analytics/TG/S2/marketctx/wrappers | T2.1 contratos | demandas unidas/snapshots/consumidores, kernels S2 extraídos | proceso separado, corte causal, equivalencia | Strategy/MM sin cálculo duplicado. #owner/agent — **REABIERTA por MR1**: MR02 (S2 recomputa vía wrappers) + residuales unión de demandas y libro/checkpoint (MR-B).
+- [x] T2.6 Física contractual | bridge/main/session/NTX/AddOn | T2.1/4 | lanes per binding, fence M2/drain, cancel/replace/recovery | ACK incierto, crash, late fill, identidad | SIM/API compile separados de físico real. #owner/agent — sin hallazgos MR1; PHYSICAL_NOT_DEMONSTRATED vigente.
+- [/] T2.7 Composición y migración | futuresruntime/main/statefun/module.yaml source | T2.2–6 | dispatcher único por tipo, bootstrap idempotente, compat fixed/pool | builder real, roundtrip states, legacy claim, 200 cuentas | integración local de siete escenarios. #owner/agent — **REABIERTA por MR1**: MR01 (composición TGMM/planes en wirePoolComposition) (MR-A).
+- [/] T2.8 Validación y entrega | nuevos tests §15 + evidencia en planner | T2.1–7 | vet/staticcheck/race/coverage y SHA final | R6 §16 completo | G2 review/blocked, sin S03 ni deploy. #owner/agent — **REABIERTA por MR1**: MR04 (E2E de ejecución) y MR06 (evidencia/cobertura) (MR-D/MR-E).
 - [ ] T3.1 Auditoría semántica | diff base→SHA S02, R6 §12–17 | G2 accepted | trazar cada invariante y detectar gaps/bypass | escenarios reproducibles de señales/affinity/budget | findings con archivo/símbolo/severidad. #owner/agent
 - [ ] T3.2 Auditoría concurrencia/recovery | fanout/provider/operation/analytics/bridge | T3.1 | permutar orden y restart; repetir suites en sandbox | duplicados, stale epochs, física y causalidad | evidencia independiente sobre SHA S02. #owner/agent
 - [ ] T3.3 Dictamen | sección S03 de este planner | T3.1–2 | priorizar hallazgos y cobertura real; separar baseline/delta/no demostrado | reproducibilidad y revisión read-only | G3 review/blocked; no fixes ni autoaprobar. #owner/agent
@@ -337,12 +337,8 @@ Handoff común obligatorio: base SHA, source SHA, rama/worktree relativo, estado
 | W3-R1 | REPARACIÓN acotada (sizing MM camino pool) | **INTEGRADO** | 456db920→`7058e48f` (2 archivos, +275/−1; materializationMMConfig por identidad del assignment, miss fail-visible tipado; legacy intacto) | verificación: TestPoolMaterialization* PASS (incl. negative pre-fix fallaba/stash), 10/10 E2E PASS, paridad operation PASS, race PASS, build 10 módulos EXIT=0; coverage nuevo 100%; **SHA INTEGRADO FINAL = 7058e48f10120fe9e4d5d42c21d527a8666dfa7e** |
 | W7 | T2.8 QA falsificación independiente | **INTEGRADO (hallazgos)** | 7058e48f→`449d78cc` (6 archivos test nuevos, 1285 líneas; source productivo intacto) | 26 escenarios diseñados/implementados, 18 PASS, 8 tests documentan 7 findings; veredicto REQUIERE_CORRECCIÓN; los 5 fallos baseline reproducidos en SHA exacto; findings: QA-01 conflicto availability incompleto (MAJOR), QA-02 wedge permanente disable-en-CLAIMING (MAJOR), QA-03 carrera PAUSED/INSTALLING abre OPEN sobre pausada (MAJOR), QA-04 afinidad inferida de INELIGIBLE (MINOR), QA-05 replay revisión multi-contexto wedgea owner (MAJOR), QA-06 política unclipped inexponible por composición (MAJOR), QA-07 colisión versión-payload fanout (NOTE); tests de regresión commiteados |
 | W7-R1 | Corrección hallazgos QA | **INTEGRADO** | 449d78cc→`695c33d5` (8 archivos productivos mínimos + 1 test; tests W7 byte-idénticos) | 7/7 findings CLOSED; 23/23 tests QA PASS; 10/10 E2E PASS; exactamente los 5 fallos baseline; race pool/provider/strategy PASS; QA-06 wiring end-to-end probado (catálogo sellado); decisión interpretativa a ratificar por Manager: campo entry_budget_policy AUSENTE en MM de pool ⇒ compone unclipped (cualquier valor explícito ≠ unclipped sí falla composición); residual QA-05: redelivery de contexto no-último con payload corrupto se absorbe sin verificación (state.go fuera de alcance) |
-| W2 | T2.3 fanout | pending | — | — |
-| W3 | T2.4 operation/MM | pending | — | — |
-| W4 | T2.5 analytics | pending | — | — |
-| W5 | T2.6 bridge/NT | pending | — | — |
-| W6 | T2.7 composición + base T2.8 | pending | — | — |
-| W7 | T2.8 QA falsificación | pending | — | — |
+
+(Filas duplicadas W2–W7 "pending" de la plantilla original eliminadas el 2026-10-17 por contradecir la entrega real; su historia permanece en Git.)
 
 Orden delegación: W0 → W1 → W4 → W2 → W3 → W5 → W6 → W7 (secuencial; sin aislamiento de worktrees disjuntos, máximo 1 writer simultáneo sobre producto). Cada worker commitea su trabajo en la rama; submanager verifica diff/allowlist/tests ANTES de aceptar el commit como integrado. **Delta de orquestación del submanager (sin ampliar mapa §15):** W1 crea additivamente las filas Config/EXTEND de `v3/sdk/futures/config/snapshot.go` (PoolDef/PoolAssociationDef/ValidateAssociationIdentity + campos ConfigSnapshot/AccountDef + validación referencial) y `v3/sdk/futures/operation/account_policy.go` verbatim del freeze W0 §1.10 (interface pura sin integración en engine), porque W3/W6 consumen ambos y la delegación es secuencial; todo permanece dentro del allowlist §15 y del freeze W0. W6 hereda config y no reescribe lo validado por W1.
 
@@ -364,6 +360,18 @@ Orden delegación: W0 → W1 → W4 → W2 → W3 → W5 → W6 → W7 (secuenci
 
 **Agent runs reales (modelo GLM-5.3-Flash, superficie LOCAL, one-shot):** W0 agent_22166106; W1 agent_493406f4; W4 agent_82e005bc; W2 agent_9340270a; W3 agent_9d1e3685; W5 agent_beb56422; W6 agent_6c1c0ac0; W1-R1 agent_20f0273a; W2-R1 agent_28cd0b76; W6-R1 agent_8e962817; W3-R1 agent_b22e16a3; W7 agent_25601daa; W7-R1 agent_abd7cc51. Submanager persistente: esta sesión (bootstrap Agents-OS cold-start ejecutado; entidad [[Echo Futures — Runtime Pools]]). Run persistido en `80-agents/journal/agent-runs/2026-10-17-zcode-glm53-echo-runtime-pools-w7r1-qa-remediation.md` (por W7-R1).
 
+## Registro MR1 — reparación S02 (mandato Primary Manager, 2026-10-17)
+
+Base de reparación: `695c33d5b85b7e6a9e3fb3b70e341e285ba61c51` (idéntico a HEAD local y remoto al iniciar; build baseline EXIT=0). Workers one-shot secuenciales, sin archivos compartidos; MR-D integra después de los fixes; MR-E verifica el SHA consolidado sin corregir producto.
+
+| Worker | Responsabilidad | Estado | Base→Result SHA | Evidencia |
+|---|---|---|---|---|
+| MR-A | MR01 + MR03: composición TGMM/planes y unclipped explícito | DESPACHADO | — | — |
+| MR-B | MR02 + residuales analytics de MR05 | pending | — | — |
+| MR-C | Residuales Provider/Pool/Fanout de MR05 | pending | — | — |
+| MR-D | MR04: E2E completos, integración y negativos | pending | — | — |
+| MR-E | Verificación fresca SHA + MR06 cobertura | pending | — | — |
+
 ## Evidencia S03
 
 Pendiente ejecución independiente tras G2 accepted; ningún dictamen atribuido.
@@ -374,6 +382,7 @@ Pendiente corrección tras G3 accepted; ningún fix atribuido.
 
 ## 📆 Bitácora
 
+- 2026-10-17 — MR1: Manager GPT-6 revisó la entrega S02 (`695c33d5`) y ordenó reparación (MR01–MR06: composición TGMM/planes, recomputación S2, unclipped global, E2E de ejecución, siete residuales, evidencia/cobertura). G2 `blocked` REPAIR_REQUIRED_BY_MANAGER; T2.2–T2.5/T2.7/T2.8 reabiertas; registro de workers MR-A..MR-E creado. Bootstrap Agents-OS reutilizado en sesión warm del submanager.
 - 2026-10-16/17 — S02: submanager LOCAL ejecutó Paso 0 (matriz AC + ownership congelados), despachó y verificó W0–W7 one-shot más 4 reparaciones acotadas (W1-R1/W2-R1/W3-R1/W6-R1) y corrección de los 7 hallazgos del QA (W7-R1). SHA integrado `695c33d5` pusheado y verificado en remoto; 10/10 secuencias §13 PASS; 5 baseline heredadas intactas; PHYSICAL_NOT_DEMONSTRATED preservado; G2 `review` entregado al Primary Manager, no accepted; S03 no iniciado.
 
 - 2026-10-16 — S01: bootstrap una vez, R5 y límites fuente seleccionados; master remoto d74b6525, branch/worktree limpio. Diseño R6 y paquetes congelados para Manager, sin producto editado ni siguiente shot iniciado.
