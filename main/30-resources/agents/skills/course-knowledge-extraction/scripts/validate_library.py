@@ -133,6 +133,9 @@ def main():
             hint_no_frame.append(cid)
         if c.get("verdict") not in VERDICTS:
             bad("V09", f"{cid}: veredicto fuera de vocabulario: {c.get('verdict')!r}")
+        if c.get("epistemic") == "model_inference" and c.get("verdict") == "SUPPORTED":
+            bad("V13", f"{cid}: model_inference con SUPPORTED — requiere adjudicación semántica explícita "
+                       f"(instructor_statement vs incertidumbre); no publicar inferencia como conocimiento del curso")
     if vis_no_frame:
         bad("V07", f"visual_observation sin frame en evidence ({len(vis_no_frame)}): {vis_no_frame}")
     if hint_no_frame:
