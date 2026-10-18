@@ -13,9 +13,9 @@ Todas las dudas fueron artefactos de frontera (evidencia citada que cae fuera de
 3. **c-0047 (B-15)** — rango y objetivo en 3D: confirmado visualmente con f-000727 (extraído por el integrador sobre la duda del revisor; el revisor había capturado f-000730, ya en 2D).
 4. **c-0048 (B-14)** — failure swing/SMT en semanal: f-000716 (00:07:16, chart 1W) muestra el bajo tomado (~1,4442) y el completado arriba; la causal "porque es un SMT que en Libra sí se llevó el bajo" es textual (s-000706) y la comparación con GBP es verbal — no visible en un frame único de EURUSD; anotado en el claim.
 
-## Referencias visuales sin resolver (1)
+## Referencias visuales sin resolver (0)
 
-- **Deíctico en 8 horas** [07:58–08:05, c-0056]: qué rectángulo exacto es el descartado ("este no") y cuál el válido ("este rango de aquí") no queda 100 % concluyente en frame estático (f-000758, f-000800, f-000806). La REGLA (cierre fuera ⇒ inválido) sí está clara y SUPPORTED. Ampliable con el mecanismo de complemento de la skill: `ffmpeg -ss 00:07:58 …` y re-juicio puntual del claim.
+El único caso abierto (deíctico de 8 horas de c-0056) quedó **resuelto en la remediación P4** por comparación de estados: f-000758 (07:58, primera caja en curso, ancla en ~1,5803) vs f-000806 (08:06, rango válido persistente **1,4748–1,5803** sobre las velas del 17–20 de junio en 8H). Matiz conservado en la nota del claim: el borde inferior del rectángulo descartado (~zona 1,52) se lee de un still en pleno dibujo — consistente, sin prueba de la caja completa. La regla de invalidación (cierre fuera ⇒ inválido) conserva su soporte textual independiente.
 
 ## Particularidades del transcript preservadas
 
@@ -45,6 +45,15 @@ Todas las dudas fueron artefactos de frontera (evidencia citada que cae fuera de
 
 Tres frames extraídos por revisores nacieron con nombres fuera del contrato (`f-044000`/`f-045000` del minuto 4; `f-004800`/`f-004806`/`f-004823` del minuto 8 — horas en lugar de minutos). Fueron re-extraídos/renombrados determinísticamente a `f-000444`, `f-000450`, `f-000800`, `f-000806`, `f-000823` y los `frames_extracted` de esos reviews fueron corregidos con nota. Los revisores del resto de minutos nombraron correctamente.
 
+En la remediación P2 se detectó y corrigió un sexto caso: el frame final parcial `f-170903.png` parseaba como 17h09m (fuera de duración); renombrado a `f-001703.png` (00:17:03) con referencias actualizadas. Los cinco nombres históricos inválidos quedan declarados en `.deprecated_frame_names` (un `historical_invalid_name` en los .md es registro de auditoría, no cita vigente; el validador los distingue).
+
 ## Leve exceso de frames bajo demanda
 
-Presupuesto orientativo de la skill: ~0,5–1 frame/minuto bajo demanda. Aquí fueron 44 en 17 min (~2,6/min): los revisores de minutos con gráfico en pantalla usan su tope (3) casi siempre. Coste asumible (16 MB total); registrado como punto de metodología en `../METHODOLOGY-FEEDBACK.md`.
+Presupuesto orientativo de la skill: ~0,5–1 frame/minuto bajo demanda. Aquí fueron 44 en 17 min (~2,6/min) más 3 añadidos por la remediación P1 (f-000440, f-000735, f-001110) = 47 on-demand, 65 total: los revisores de minutos con gráfico en pantalla usan su tope (3) casi siempre. Coste asumible (17 MB total); registrado como punto de metodología en `../METHODOLOGY-FEEDBACK.md`.
+
+## Remediación P1–P4 (2026-10-18, post-review del Owner)
+
+- **P1 provenance visual**: 41 claims auditados físicamente (27 visual_observation ∪ 38 visual_hint). Resultado: 23 permanecen visual_observation con frame verificado en `evidence`; 17 reclasificadas a `instructor_statement` (sustancia hablada: c-0031, c-0045, c-0055, c-0059, c-0056, c-0062, c-0065, c-0066, c-0070, c-0071, c-0073, c-0076, c-0083, c-0084, c-0086, c-0088, c-0093, c-0096 — de ellas, 12 conservan frames verificados como contexto); 48 referencias f- estructuradas en total; 0 cambios de veredicto (ningún SUPPORTED se mantuvo por comodidad: los visuales indemostrables resultaron ser hablados). Frames nuevos: f-000440, f-000735, f-001110 (este último se extrajo para c-0070, se verificó que NO muestra lo afirmado y NO se adjuntó como evidencia).
+- **P4 c-0066**: adjudicación A — el condicional DXY es proyección hablada del instructor (s-001005/s-001010): reclasificada instructor_statement, SUPPORTED se mantiene por fidelidad textual.
+- **P4 c-0056**: resuelto (ver sección anterior).
+- **Validador**: `course-knowledge-extraction/scripts/validate_library.py` — RED capturado sobre el estado pre-reparación (V07×27, V08×38, V05 f-170903, V10 conteos, V11 históricos) y PASS esperado tras la reparación; manifiesto en `repair/REPAIR-BASELINE.json`.
