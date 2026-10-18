@@ -1,6 +1,6 @@
 # CLAIMS — proyección navegable
 
-> Generado deterministamente desde `claims.jsonl` por `render_claims_md.py` (2026-10-18). NO es una segunda fuente de verdad: para scripts y agentes la autoridad es el JSONL.
+> Generado deterministamente desde `claims.jsonl` por `render_claims_md.py` (sin fecha dinámica: misma entrada => mismos bytes). NO es una segunda fuente de verdad: para scripts y agentes la autoridad es el JSONL.
 > Navegación: cada claim enlaza sus segmentos de transcript (anchors `^s-`) y sus frames.
 
 ### c-0001

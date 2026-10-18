@@ -16,7 +16,7 @@ Casos:
 
 Uso:  python3 anchors_selftest.py
 """
-import os, shutil, subprocess, sys, tempfile
+import os, re, shutil, subprocess, sys, tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ANCHORS = os.path.join(HERE, "..", "add_block_anchors.py")
@@ -113,16 +113,25 @@ def main():
         open(os.path.join(v, "80-agents", "agents-os", "agents-os.md"), "w").close()
         shutil.copy(t, os.path.join(lib, "transcript.md"))
         open(os.path.join(lib, "frames", "f-000010.png"), "w").close()
+        claim = {"id": "c-0001", "minute": 0, "kind": "rule", "statement": "x",
+                 "evidence": ["s-000010"], "verdict": "SUPPORTED", "notes": "",
+                 "epistemic": "instructor_statement"}
+        import json
         with open(os.path.join(lib, "claims.jsonl"), "w", encoding="utf-8") as f:
-            f.write('{"id":"c-0001","minute":0,"kind":"rule","statement":"x",'
-                    '"evidence":["s-000010"],"verdict":"SUPPORTED","notes":"",'
-                    '"epistemic":"instructor_statement"}\n')
+            f.write(json.dumps(claim) + "\n")
+        open(os.path.join(lib, "CLAIMS.md"), "w", encoding="utf-8").write(
+            "# CLAIMS\n\n### c-0001\n\n**Statement:** x\n\n"
+            "**Verdict:** SUPPORTED · **Epistemic:** instructor_statement\n")
+        open(os.path.join(lib, "FRAMES.md"), "w", encoding="utf-8").write(
+            "# FRAMES\n\n- [[lib/frames/f-000010.png|f-000010]] · 00:00:10\n")
         rv = subprocess.run([sys.executable, VALIDATOR, lib, "--duration-seconds", "120", "--json"],
                             capture_output=True, text=True)
-        import json
         out = json.loads(rv.stdout)
         ok &= check("7 validador: W05 verde sobre el formato producido",
                     rv.returncode == 0 and out["pass"])
+        if not ok and out.get("findings"):
+            for f_ in out["findings"]:
+                print(f"      [{f_['check']}] {f_['msg']}")
     finally:
         shutil.rmtree(tmp)
     print("ANCHORS_SELFTEST =", "PASS" if ok else "FAIL")

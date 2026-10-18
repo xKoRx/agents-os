@@ -1,6 +1,6 @@
 # FRAMES — inventario navegable
 
-> Generado deterministamente por `render_frames_md.py` (2026-10-18). Timestamp codificado en el nombre (f-HHMMSS.png). "Contextual" = sin claims asociados; no se fuerzan relaciones.
+> Generado deterministamente por `render_frames_md.py` desde `frames/` + `frames/.base_frames` (autoridad de la clase base). Timestamp codificado en el nombre (f-HHMMSS.png). "Contextual" = sin claims asociados; no se fuerzan relaciones.
 
 - [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/frames/f-000055.png|f-000055]] · 00:00:55 · bajo demanda · contextual
 - [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/frames/f-000059.png|f-000059]] · 00:00:59 · base (fin de minuto) · contextual
