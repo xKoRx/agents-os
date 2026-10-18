@@ -1,74 +1,98 @@
-# METHODOLOGY-FEEDBACK — Clutifx Chapter 02 (2026-10-18)
+# METHODOLOGY-FEEDBACK — Clutifx (Course Intelligence)
 
-Feedback de la primera ejecución completa de la skill `course-knowledge-extraction`.
-NO se modificó la skill canónica durante la ejecución (contrato del mandato): estas son las observaciones y propuestas para decidir mañana con el Owner.
+Feedback de método del curso Clutifx. Objetivo: mejorar Chapter 03 y los ~200
+videos siguientes, no justificar decisiones pasadas. Estado tras la extracción
+de Chapter 02 (2026-10-18) y su remediación autorizada por el Owner el mismo
+día. La skill canónica quedó en v1.1; NO se toca aquí la decisión de.Owner sobre
+ASR.
 
-## Números del run
+## OBSERVED (lo medido en Chapter 02, sin corregir)
 
 | Métrica | Valor |
 |---|---|
-| Duración del video | 17:09 (17,2 min) |
-| Tiempo real total de sesión | ~1 h 40 min (02:54–04:35) |
-| — ASR (faster-whisper large-v3, int8 CPU) | **45,1 min** (0,38× realtime) — cuello de botella dominante |
-| — Setup (identificación, SHA, frames base, payloads) | ~8 min |
-| — Extracción (3 subagentes paralelos) | 8,6 min |
-| — Revisión (18 subagentes, olas de 5/7/6) | 19,8 min |
-| — Integración + publicación biblioteca | ~15 min (manual del orquestador) |
-| Inferencias/subagentes | 3 extracción + 18 revisión = 21 ONE-SHOT |
-| Claims | 98 total (~5,7/min de video); 4–9 claims/minuto |
-| Veredictos | inicial 94 SUPPORTED / 4 UNCERTAIN → final 98/0/0 tras 4 adjudicaciones documentadas |
-| Contradicciones marcadas por revisión | 0 |
-| Frames | 18 base + 44 bajo demanda (~2,6/min, sobre el presupuesto ~1/min) |
-| Minutos de alta complejidad visual | 5–9 (recorrido de gráfico casi continuo) y 13–16 (esquemas dibujados) |
-| Checkpoint 5 min | PASS: proyección pipeline ≈ 99 min/h-video (objetivo ≤120) |
-| Throughput total incl. ASR | ~5,8 h/h-video — FUERA de objetivo si el ASR cuenta |
+| Video | ep02-time.mp4 · 17:09 · SHA `fb8b3de4…` |
+| OWNER_OBSERVED_ELAPSED | **2h06m** (medida del Owner; autoridad para el total end-to-end) |
+| AGENT_RECONSTRUCTED_ELAPSED | ≈1h40–1h50 (02:54–04:35, mtimes/epoch) — la diferencia es ventana de observación + overhead de orquestación; se reportan ambas |
+| ASR_WALL_TIME | 45,1 min (faster-whisper large-v3 int8 CPU, 0,38× realtime) — partida dominante |
+| EXTRACTION_WALL_TIME | 8,6 min (3 subagentes ONE-SHOT paralelos) |
+| REVIEW_WALL_TIME | 19,8 min (18 subagentes, olas 5/7/6) |
+| INTEGRATION_WALL_TIME | ~20 min (primera publicación) + ~35 min (remediación P1–P10) |
+| Subagentes | 21 (extracción+revisión) + 3 auditores visuales + 1 revisión independiente + 1 verificación documental |
+| Claims | 98 (4–9/min) · frames 18 base + 47 demanda · 65 archivos |
+| Throughput subagentes (extracción+revisión) | ~28,4 min / 17,2 min video ≈ 99 min/h-video (objetivo ≤120 ✓) — NO es el tiempo end-to-end |
+| Hallazgos del Owner sobre la primera publicación | 6 (provenance visual, naming, conteos README, wall time, c-0066, c-0056) — todos reproducidos 1:1 desde los archivos |
 
-## Casos en que la revisión agrupada detectó errores
+## REPAIRED (verificado, con prueba)
 
-- 4 claims UNCERTAIN: todos por evidencia citada que caía en el minuto contiguo (payload de frontera). La revisión POR MINUTO hizo su trabajo (no aceptó silenciosamente); el coste fue 4 re-adjudicaciones baratas con recursos ya existentes.
-- Nomenclatura de frames: 2 de 18 revisores nombraron frames con horas en vez de minutos (`f-044000`, `f-0048xx`) a pesar del ejemplo en el prompt. Detectado y corregido en integración.
+- **Provenance visual estructurada**: los claims visuales citaban solo transcript;
+  tras auditar físicamente 41 claims (27 visual_observation ∪ 38 visual_hint),
+  `claims.jsonl.evidence` contiene 48 refs a frames verificados (antes 0).
+  23/23 visual_observation con frame; 18 reclasificadas a instructor_statement
+  (sustancia hablada; 5 de ellas sin frame, documentadas en su nota).
+- **Naming de frames**: f-170903→f-001703 + 5 históricos declarados en
+  `.deprecated_frame_names` (el validador distingue `historical_invalid_name`
+  de cita vigente). 65/65 nombres canónicos y dentro de duración.
+- **Conteos reconciliados**: README (14/13) vs artefactos (16/17) resuelto —
+  README = artefactos en claims/veredictos/rules/concepts/examples/frames.
+- **Wall time**: el reporting distingue OBSERVED (owner, 2h06) de tramos del
+  agente; el README ya no presenta los 28,4 min como tiempo total.
+- **c-0066**: adjudicación A — el condicional DXY es textual del instructor →
+  `instructor_statement` (era `model_inference`+SUPPORTED, inaceptable tal cual).
+- **c-0056**: deíctico de 8h resuelto con comparación de estados
+  (f-000758/f-000806, rango válido 1,4748–1,5803); matiz del borde inferior del
+  rectángulo descartado conservado en la nota.
+- **Validador determinista** (`scripts/validate_library.py`, V01–V13) +
+  cardinalidad de reviews (`validate_review.py`, R01–R04) + payload builder con
+  contexto de frontera (`make_minute_payload.py`) + selftest 10/10. RED capturado
+  antes de reparar; `LIBRARY_VALIDATION = PASS` después.
+- **Skills**: principal en v1.1 (7 contratos nuevos integrados al flujo
+  aprobado); nueva `course-knowledge-worker` (EXTRACTOR / MINUTE_REVIEWER /
+  DOCUMENTATION_VERIFIER, spool-only, cardinalidad obligatoria) registrada en el
+  INDEX federado.
+- **Revisión independiente (P10)**: 10/10 puntos sustantivos PASS; 3 findings de
+  registro (1 MATERIAL de libro de conteos, 2 MENOR editoriales) corregidos
+  in-mission y re-validados.
 
-## Errores que sobrevivieron
+## REMAINING (abierto, honesto)
 
-- Ninguno conocido tras la verificación de citas (script + revisión adversarial de `documentation.md` contra claims).
-- 1 deíctico quedó honestamente sin resolver (rango descartado en 8h, c-0056) — visible en `review-notes.md`, no "resuelto" a la fuerza.
+1. **ASR local lento** (45 min/video en CPU): sin decidir. Opciones ya
+   identificadas (beam 1, modelo menor, GPU); requiere decisión Owner porque
+   cambia la herramienta de transcripción.
+2. **c-0056**: el borde inferior del rectángulo descartado (~zona 1,52) se lee
+   de un still en pleno dibujo — consistente, no probado como caja completa.
+3. **c-0059 y c-0070**: visual_hints sin frame (sustancia hablada; los frames
+   candidatos se inspeccionaron y no muestran lo afirmado). Aceptables como
+   contexto; si el Owner los quiere visuales, habría que redibujar/demostrar en
+   el video — no hecho.
+4. **Epistemic en extracción**: 18 reclasificaciones post-hoc eran evitables si
+   los extractores aplicaran la distinción instructor/visual/inferencia con más
+   rigor al proponer (el glosario y la v1.1 lo piden; no verificado en un run
+   nuevo).
+5. **`documentation-verifier` agent type no disponible en esta cuenta**
+   (provider zai-start-plan ausente): las verificaciones se ejecutaron con
+   `general-purpose` + prompt adversarial. Gap de plataforma, no de método.
 
-## Cuellos de botella (ordenado)
+## PROPOSED_FOR_NEXT_CHAPTER (ep03-bias y sucesivos)
 
-1. **ASR local (45 min)** — 47 % de la sesión. large-v3 int8 CPU con beam 5 es desproporcionado para el pipeline (el transcript es el 85-90 % del conocimiento).
-2. **Publicación manual** (~15 min): escribir 8 documentos a mano. Es calidad, no desperdicio, pero es la segunda partida.
-3. Revisión (19,8 min) > extracción (8,6 min): esperado; los revisores leen frames (imágenes = tokens).
-
-## Partes del procedimiento que sobran
-
-- Ninguna fase completa sobra. Ajustes finos:
-  - El doble chequeo de cobertura que hice tras cada ola (validar keys de review vs payload) debería ser parte estándar de la integración, no un extra.
-  - El frame base del último minuto parcial (`f-170903`) es casi idéntico al anterior; mantener por contrato, pero no es load-bearing.
-
-## Partes que faltan (detectadas en este run)
-
-1. **Payloads de frontera**: el payload de cada minuto debe incluir SIEMPRE los segmentos citados por sus claims, aunque pertenezcan al minuto contiguo (hubo 2 UNCERTAIN y 1 nota por esto). Regla propuesta: payload = segmentos del minuto ∪ segmentos citados por los claims del minuto.
-2. **Contrato de naming para revisores**: dar la regla de naming como fórmula explícita (`f-00` + MM + SS, horas siempre `00`) o mejor, un mini-script `frame.sh MM:SS` que los revisores invoquen. 2/18 fallaron con ejemplo; con fórmula debería bajar a 0.
-3. **Presupuesto de frames por tipo de minuto**: en capítulos de recorrido de gráfico, ~1 frame/min bajo demanda se queda corto; sugerencia: presupuesto por minuto declarado en el payload (base + tope on-demand) según densidad visual estimada del bloque.
-4. **Glosario acumulado como entrada de extracción**: los 3 extractores tuvieron que adivinar garbles ("tartle sub") con la lista que les di en el prompt. Con la biblioteca creciendo, pasar `GLOSSARY.md` + tabla de garbles conocidos como input estándar asegura consistencia entre capítulos.
-5. **Métricas automáticas de sesión**: los tiempos los reconstruí de mtimes; un `run-log.jsonl` (evento, timestamp) escrito por el orquestador eliminaría la reconstrucción.
-
-## Propuestas concretas para Chapter 03 (ep03-bias, 182 MB)
-
-1. **ASR**: medir en los primeros 2 min del video `large-v3 beam 1` (y opcionalmente `medium`) contra `large-v3 beam 5`; si el texto es equivalente, usar el rápido para el resto del curso. Ahorro potencial: ~30-40 min/video. (Decisión Owner: cambia ligeramente la herramienta de transcripción, no la metodología.)
-2. **Aplicar los 5 fixes de "partes que faltan"** (payloads con segmentos citados, frame.sh, presupuesto visual, glosario como input, run-log).
-3. **Publicación semi-generada**: generar de forma determinista el esqueleto de `rules.md`/`concepts.md` desde claims (campos ya estructurados) y reservar la escritura manual para `documentation.md` y `study-guide.md`.
-4. **Mantener**: checkpoint a los 5 min, revisión por minuto en olas de 5-7, adjudicación documentada en el propio claim, verificación de citas por script + revisión adversarial.
-
-## Datos para comparar con Chapter 01 (mismo curso)
-
-| | ch01 (MKE V2 agent-VLM) | ch02 (skill, este run) |
-|---|---|---|
-| Video | 34 min | 17,2 min |
-| Wall extracción+revisión | 44 h (abortada al 63 % de grounding) | 28,4 min (completa) |
-| Claims | 1.527 (~45/min) | 98 (~5,7/min) |
-| Revisión | 1 llamada/claim (1.200 ejecutadas) | 18 llamadas (1/minuto) |
-| Coste frames | inspección densa por ventana | 61 frames |
-| Resultado | PARTIAL (biblioteca con 3 archivos) | DONE (biblioteca completa) |
-
-La comparación no es 1:1 (objetivos distintos: MKE V2 era certificación de motor; esto es extracción de conocimiento), pero el ratio costo/cobertura del mismo video fuente cae ~2 órdenes de magnitud.
+1. **Ejecutar el pipeline v1.1 tal cual**: paquetes de worker con
+   `course-knowledge-worker/SKILL.md` + ROLE; payload por
+   `make_minute_payload.py`; integración con `validate_review.py`; cierre con
+   `validate_library.py` = PASS + conteos reconciliados. Nada de esto requiere
+   nueva construcción.
+2. **Decidir ASR** con un test de 2 minutos (large-v3 beam 5 vs beam 1 vs
+   medium) comparado contra el transcript actual de ch02. Ahorro potencial
+   ~30–40 min/video. (Decisión Owner.)
+3. **Presupuesto de frames por bloque** declarado en el paquete según densidad
+   visual estimada (recorrido de gráfico ⇒ más que 1/min), con exceso
+   justificado en review-notes (ya es contrato v1.1; aplicar el presupuesto
+   inicial desde la planificación).
+4. **Epistemic estricta en EXTRACTOR**: si el statement se sostiene con citar al
+   instructor, es `instructor_statement`; `visual_observation` sólo si la
+   sustancia requiere mirar el gráfico; `model_inference` nunca llega a
+   SUPPORTED sin adjudicación explícita (V13 lo bloquea).
+5. **MINUTE_REVIEWER devuelve `verified_evidence` completo** (s- y f-), de modo
+   que la integración de evidencia sea mecánica y no requiera segunda auditoría
+   visual (en ch02 hizo falta una ronda P1 completa).
+6. **Mantener**: checkpoint doble a los 5 min (subagentes vs total), revisión
+   POR MINUTO (nunca por claim), adjudicaciones documentadas en el claim,
+   `repair/` con baseline+log por capítulo.
