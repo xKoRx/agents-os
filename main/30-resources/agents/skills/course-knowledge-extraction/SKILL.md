@@ -224,11 +224,20 @@ scripts/validate_review.py <payload.json> <review.json>   # cardinalidad R01-R04
 scripts/make_minute_payload.py <transcript.md> <claims> <min> <out>
 scripts/tests/fixtures_selftest.py                        # red-green del validador
 scripts/add_block_anchors.py <transcript.md>              # anchors ^s- idempotentes
-scripts/render_claims_md.py <vault> <lib>                 # proyección CLAIMS.md
-scripts/render_frames_md.py <vault> <lib>                 # inventario FRAMES.md
+                                                          # + bloques Obsidian independientes
+scripts/render_claims_md.py <vault> <lib>                 # proyección CLAIMS.md (sin fecha)
+scripts/render_frames_md.py <vault> <lib>                 # inventario FRAMES.md (clase base
+                                                          # = frames/.base_frames, sin fecha)
 scripts/wikilink_docs.py <vault> <lib> <doc.md>           # enlaza docs (--all-tokens|--bracketed)
-scripts/tests/wikilink_selftest.py                        # red-green de checks W
+scripts/tests/wikilink_selftest.py                        # red-green de checks W (11 casos)
+scripts/tests/anchors_selftest.py                         # red-green de anchors/bloques (7 casos)
 ```
+
+Checks W (desde v1.2 + hardening ch03): links a archivos/headings/blocks
+existentes (W01–W03), anchors únicos Y en bloques propios (W05), FRAMES.md
+cubre frames (W06), PNG sin ruta completa inválido (W07), proyección CLAIMS.md
+sincronizada en heading + statement + epistemic + verdict (W04/W09), wikilinks
+equilibrados sin Markdown mal formado (W10).
 
 ## Navegación e iteración (v1.2)
 
@@ -242,11 +251,17 @@ comprensión (principalmente examples/documentation); nunca masivos.
 **Proyecciones deterministas** (no son segunda fuente de verdad; claims.jsonl
 sigue siendo la autoridad máquina-legible y NO lleva sintaxis Obsidian):
 - `transcript.md` con block id ` ^s-HHMMSS` por segmento (`add_block_anchors.py`,
-  idempotente; parte del setup).
+  idempotente; parte del setup). Cada segmento debe ser un BLOQUE Obsidian
+  independiente (línea en blanco/heading antes y después del anchor): un block
+  id a mitad de párrafo es texto literal, no anchor — el validador lo exige (W05)
+  y el script separa párrafos automáticamente.
 - `CLAIMS.md` por claim (`render_claims_md.py`): heading estable `### c-XXXX`,
   verdict/epistemic/tiempo derivado de evidencia real, links a segmentos y frames.
+  Sin fecha dinámica: misma entrada => mismos bytes cualquier día.
 - `FRAMES.md` por frame (`render_frames_md.py`): timestamp + claims que lo citan;
-  los frames contextuales no fuerzan relaciones.
+  los frames contextuales no fuerzan relaciones. La clase base/bajo demanda es
+  autoridad del manifiesto `frames/.base_frames` (capturas realmente ejecutadas),
+  nunca una regla sobre nombres — sin manifiesto el renderer falla cerrado.
 
 **Identidad permanente**: un `c-NNNN` publicado jamás se renumera por agregar
 claims; los nuevos toman IDs nuevos. Correcciones que preservan la proposición

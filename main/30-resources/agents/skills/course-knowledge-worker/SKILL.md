@@ -56,6 +56,9 @@ Invariantes (nunca negociables):
 - ONE-SHOT, FRESH CONTEXT: una tarea, sin conversación posterior.
 - NO editar archivos canónicos (claims.jsonl, transcript.md, documentación): el
   worker escribe SOLO en su spool. Sólo el integrador aplica cambios.
+- El transcript llega con segmentos ya direccionables (anchor `^s-` por segmento,
+  cada uno bloque Obsidian independiente); los workers CITAN ids `s-`, jamás
+  reescriben ni re-anchorean transcript.
 - NO asignar IDs globales `c-NNNN` (los pone el integrador); usar claves locales.
 - NO inventar evidence ids, frames ni contenido; NO crear causalidad no dicha.
 - NO marcar SUPPORTED sin respaldo suficiente; NO silenciar contradicciones.
