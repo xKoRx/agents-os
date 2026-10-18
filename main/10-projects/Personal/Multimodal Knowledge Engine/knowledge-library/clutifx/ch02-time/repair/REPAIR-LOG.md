@@ -92,3 +92,25 @@ CLAIMS = 98 (IDs preservados) · veredictos 98 SUPPORTED · visual_observation 2
 c-0070, instructor_statement con hint contextual documentado en la nota)
 material documentado) · refs f- estructuradas 48 · frames 65 (18+47) ·
 LIBRARY_VALIDATION = PASS · Chapter 01 intacto.
+
+
+## ERRATA (2026-10-18, B3 — append-only, el texto previo no se altera)
+
+El conteo de esta bitácora ("17 reclasificadas en P1 (+c-0066 en P4 = 18)") mezcló
+dos categorías: claims AUDITADOS cuya epistemic se CONFIRMÓ sin cambio, y claims
+cuya epistemic CAMBIÓ. El diff git pre (03c3e860) vs post de claims.jsonl es
+autoritativo:
+
+```text
+claims audited            = 41
+claims receiving frames   = 36
+claims reclassified       = 5
+  c-0031, c-0045, c-0055, c-0059 : visual_observation -> instructor_statement
+  c-0066                          : model_inference   -> instructor_statement
+statements/verdicts alterados = 0
+```
+
+Adicionalmente, el estado de c-0056 se recalifica de RESOLVED a
+PARTIALLY_RESOLVED (nota estructurada B2 en el claim; interpretación vigente vs
+lectura histórica M8 invertida — hoy refutada; referente del rectángulo
+descartado queda como q-ch02-001 en OPEN-QUESTIONS.md).
