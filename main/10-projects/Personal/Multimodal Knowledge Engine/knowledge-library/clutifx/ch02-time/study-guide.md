@@ -18,7 +18,7 @@ Qué dominar de este capítulo y cómo comprobarlo. Cada respuesta está sustent
 El enfoque es un algoritmo y "podrías utilizar cualquier timeframe", pero la lista existe "para dar una base y obviamente limitar": "no vamos a estar todo el día en rangos de 48 minutos, 93 minutos" [01:31–01:48, c-0007]. Fuera de lista "se puede utilizar también, si quieres", pero el instructor "personalmente ahora nunca baja de 15" [01:12–01:22, c-0009].
 
 **P2. ¿Por qué el gráfico debe estar en hora New York?**
-Porque todo el método (aperturas de velas, horas clave, noticias) está definido en esa zona: "que quede clarísimo... horario New York, que es UTC-4" [02:22, c-0012]. (El video lo exige como configuración; no da una razón causal beyond la coordinación de aperturas.)
+Porque todo el método (aperturas de velas, horas clave, noticias) está definido en esa zona: "que quede clarísimo... horario New York, que es UTC-4" [02:22, c-0012]. (El video lo exige como configuración; no da una razón causal más allá de la coordinación de aperturas.)
 
 **P3. ¿Qué velas abren a las 5 a.m. y por qué es una hora clave?**
 90 min, 2 h, 3 h, 4 h, 6 h y 12 h [02:56, c-0010]. Al abrir nuevas velas "se nos pueden abrir nuevos rangos, nuevos Power of 3... momentos muy importantes para el precio" [03:04, c-0024]; muchas veces hay reversión, retracement o continuación [03:13, c-0023]; y es "zona sensible muy propensa a que pasen los Turtle Soups" [03:33, c-0021].
@@ -42,10 +42,10 @@ Que esperes: "High Time Frame manda" — el precio "antes de subir" crea el rang
 Definición de ch01: sí (toma de extremo + cierre dentro). **Refinamiento de este capítulo**: tras Turtle Soup + reacción visible, "no hace falta que cierre para que se considere un rango" [05:21, c-0035]. Y la invalidación sigue: cierre por fuera ⇒ rango inválido [08:00, c-0056].
 
 **P10. Estoy en short y se acerca una hora clave con la dirección "clara". ¿Qué recomienda el instructor?**
-Salir con precaución y asegurar: "muchas veces, ni que nos parezca muy clara la dirección, es mejor salir con precaución en estas horas clave —59—" [10:22, c-0064]; él mismo cerró su short en el nuevo bajo con parciales tomados [10:17, c-0065]. Lógica: en horas clave el alto/bajo tomado crea un rango a favor o en contra de tu dirección [10:41, c-0063].
+Salir con precaución y asegurar: "muchas veces, ni que nos parezca muy clara la dirección, es mejor salir con precaución en estas horas clave —59—" [10:22, c-0064]; anunció que se saldría de su short en el nuevo bajo, con parciales ya tomados [10:17, c-0065]. Lógica: en horas clave el alto/bajo tomado crea un rango a favor o en contra de tu dirección [10:41, c-0063].
 
 ## Errores de estudio a evitar
 
 - Confundir "pocas veces rentable" de 12 M con "prohibido": es una advertencia del instructor [00:20, c-0002].
-- Creer que fuera de horas clave no se puede entrar: se puede, "bajo un contexto" que se verá más adelante del curso [04:13, c-0029].
+- Creer que fuera de horas clave no se puede entrar: se puede, "bajo un contexto" que se verá "más tarde" [04:13, c-0029] — el video no precisa cuándo; `documentation.md` §5 lo marca como hipótesis.
 - Tomar el power 3 como entrada automática: las entradas ideales van ahí SOLO tras Turtle Soup + rango a favor [13:08–13:21, c-0084, c-0083].

@@ -2,7 +2,7 @@
 
 > Source: `ep02-time.mp4` (sha256 `fb8b3de48535bdf43a09bf820c27512d2f021f63b7c12391484b4304c6337bfb`, 17:09).
 > Extraído con la skill `course-knowledge-extraction` (subagentes GLM ONE-SHOT, sin API pagada), 2026-10-18.
-> 98 claims SUPPORTED (0 UNCERTAIN publicados como hecho, 0 UNVERIFIED) · 18 frames base + 43 bajo demanda · citas `[mm:ss]` → `transcript.md`, `[c-NNNN]` → `claims.jsonl`, `[f-HHMMSS]` → `frames/`.
+> 98 claims SUPPORTED (0 UNCERTAIN publicados como hecho, 0 UNVERIFIED) · 18 frames base + 44 bajo demanda · citas `[mm:ss]` → `transcript.md`, `[c-NNNN]` → `claims.jsonl`, `[f-HHMMSS]` → `frames/`.
 
 ## 0. Resumen ejecutivo
 

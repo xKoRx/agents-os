@@ -3,7 +3,7 @@
 Todos los ejemplos son casos mostrados en el video. Cada uno indica qué ilustra y dónde está (timestamp + frames). Ninguno es inventado ni "mejorado".
 
 ## E1 · Recorrido multi-timeframe completo EURUSD (12 M → 4 h)
-- **Dónde**: [04:54–09:06]. Frames: f-000514, f-000535, f-000545 (6M), f-000608 (2M), f-000640 (1M), f-000716 (1W), f-000727 (3D), f-000730 (2D), f-000746 (12H), f-000800/f-000806 (8H), f-000823 (6H), f-000859 (4H).
+- **Dónde**: [04:54–09:06]. Frames: f-000545 (12M, objetivo anual abajo), f-000514, f-000535 (6M), f-000608 (2M), f-000640 (1M), f-000716 (1W), f-000727 (3D), f-000730 (2D), f-000746 (12H), f-000800/f-000806 (8H), f-000823 (6H), f-000859 (4H).
 - **Qué muestra**: rangos y objetivos TF a TF (12 M con su Turtle Soup y objetivo "alto anual" [c-0025, c-0026]; 6 M otro rango [c-0034, c-0036]; 3 M [c-0032]; 2 M [c-0042]; 1 M — el de abajo servía, arriba no hay rango [c-0039]; 3 S objetivo completado que se borra [c-0038]; 2 S "no tenemos nada" [c-0049]; 1 S failure swing/SMT con Libra [c-0048]; 3 D/2 D/1 D objetivos arriba [c-0047, c-0046]; 12 H rango pendiente [c-0044]; 8 H rangos, uno descartado por cierre fuera [c-0043, c-0056]; 6 H rango reiniciado contrario [c-0053]; 4 H bajista hasta rangos bajistas nuevos [c-0051]).
 - **Qué ilustra**: R10 (marcar rangos en todas las TFs alineadas ⇒ dirección) y R9 (rangos contrarios primero). Conclusión del instructor: "todo nos indicaba Bullish otra vez para el día de hoy" [c-0055]; "era muy claro que íbamos a tener un bias alcista" [c-0031].
 
@@ -53,6 +53,6 @@ Todos los ejemplos son casos mostrados en el video. Cada uno indica qué ilustra
 - **Qué ilustra**: R16 + R3 (la apertura de la vela cambia el contexto).
 
 ## E11 · Objetivo anual en 12 M (euro) y objetivo 6 M ya completado
-- **Dónde**: [04:54–05:48] (y adelanto en [00:20, c-0001]). Frames: f-000514, f-000535, f-000545.
-- **Qué muestra**: mientras el Turtle Soup estaba hecho y el precio subía, el rango/objetivo mensual ("alto anual") era el objetivo importante [c-0026, c-0025]; el objetivo de 6 M ya completado se menciona al inicio y se muestra al bajar a 6 M [c-0001, c-0034].
+- **Dónde**: [04:54–05:48] (y adelanto en [00:20, c-0001]). Frames: f-000545 (12M), f-000514, f-000535 (6M).
+- **Qué muestra**: mientras el Turtle Soup estaba hecho y el precio subía, el rango/objetivo mensual ("alto anual") era el objetivo importante [c-0026, c-0025]; el objetivo de 6 M ya completado se menciona al inicio [c-0001]; que el objetivo mostrado al bajar a 6 M [05:33, c-0034] sea el mismo anunciado en el minuto 0 es una hipótesis del agente (la fuente no lo explicita).
 - **Qué ilustra**: R7 (objetivos completados se borran) y el anclaje de objetivos en TF altas.

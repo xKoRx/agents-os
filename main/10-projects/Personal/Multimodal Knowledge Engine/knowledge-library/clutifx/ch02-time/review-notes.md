@@ -19,7 +19,7 @@ Todas las dudas fueron artefactos de frontera (evidencia citada que cae fuera de
 
 ## Particularidades del transcript preservadas
 
-- **Enumeración de aperturas de 4 h** [02:22, c-0011]: el instructor lista 5 p.m., 9 p.m., 1 a.m., 5 a.m., 9 a.m. — omite la vela de la 1 p.m.; después usa esa vela dos veces ("la de 4 horas nos abre a la 1" [09:24, c-0060]; "abre una nueva vela de 4 horas a la 1" [16:32, c-0096]). Los claims conservan ambas cosas; no se resolvió si es olvido o si la pirámide lo marca (imagen parcialmente tapada por el diálogo "Cambiar intervalo" en f-000240/f-000255/f-000258).
+- **Enumeración de aperturas de 4 h** [02:22, c-0011]: el instructor lista 5 p.m., 9 p.m., 1 a.m., 5 a.m., 9 a.m. — omite la vela de la 1 p.m.; después usa esa vela dos veces ("la de 4 horas nos abre a la 1" [09:24, c-0060]; "abre una nueva vela de 4 horas a la 1" [16:32, c-0096]). **Resuelto en la verificación final**: la pirámide en pantalla SÍ incluye la 1 p.m. — 4H: 1700, 2100, 0100, 0500, 0900, 1300 (f-000240, legible; el diálogo "Cambiar intervalo" sólo tapa una esquina inferior en f-000258). La omisión fue oral del instructor; los claims conservan la enumeración hablada literal y la imagen corrige el dato.
 - **c-0051 (B-25)**: se preserva literal "hasta que no se formaron rangos bajistas otra vez, no volvió a subir el precio" aunque la formulación suene invertida; el revisor confirmó fidelidad textual y la dejó sin "corregir" para no inventar.
 - **s-000548, s-001552**: frases truncadas por el instructor; el segundo se continúa en s-001602 y c-0090 une ambas sin añadir contenido (verificado por el revisor del minuto 16).
 - **c-0066 (C-01)**: único claim con `epistemic: model_inference` (escenario DXY); el condicional "si el DXY está bearish/bullish" es textual, pero parte de la proyección del precio es del extractor. El revisor lo dejó SUPPORTED por fidelidad al condicional; la etiqueta de epistemic conserva la distinción.
@@ -47,4 +47,4 @@ Tres frames extraídos por revisores nacieron con nombres fuera del contrato (`f
 
 ## Leve exceso de frames bajo demanda
 
-Presupuesto orientativo de la skill: ~0,5–1 frame/minuto bajo demanda. Aquí fueron 43 en 17 min (~2,5/min): los revisores de minutos con gráfico en pantalla usan su tope (3) casi siempre. Coste asumible (16 MB total); registrado como punto de metodología en `../METHODOLOGY-FEEDBACK.md`.
+Presupuesto orientativo de la skill: ~0,5–1 frame/minuto bajo demanda. Aquí fueron 44 en 17 min (~2,6/min): los revisores de minutos con gráfico en pantalla usan su tope (3) casi siempre. Coste asumible (16 MB total); registrado como punto de metodología en `../METHODOLOGY-FEEDBACK.md`.

@@ -33,7 +33,7 @@ pipeline MKE V2).
 | SUPPORTED / UNCERTAIN / UNVERIFIED | 98 / 0 / 0 (4 UNCERTAIN iniciales adjudicados en integración con recursos ya citados; ver `review-notes.md`) |
 | Contradicciones marcadas | 0 |
 | Frames base (fin de minuto) | 18 |
-| Frames bajo demanda | 43 |
+| Frames bajo demanda | 44 |
 | Referencias visuales sin resolver | 1 (deíctico de rango en 8h, ver `review-notes.md`) |
 | Rules / concepts / examples documentados | 14 / 13 / 11 |
 | Coverage | 18/18 minutos de video con claims y revisión |

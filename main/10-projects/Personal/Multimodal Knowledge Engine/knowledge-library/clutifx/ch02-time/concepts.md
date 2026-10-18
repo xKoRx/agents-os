@@ -45,10 +45,10 @@ Conceptos de ch01. Aquí aparecen una vez, en semanal: "tuvimos un failure swing
 Principio rector del final del capítulo: "High Time Frame manda" [14:20, c-0088]; el precio crea primero el rango de la TF superior y después se mueve [14:27, c-0087]; en TF inferior puede que "no podías comprar ahí arriba hasta que en 12 horas creó su rango" [14:43, c-0086]. Relación: rango, timeframe.
 
 ## Bias
-Palabra usada dos veces: "muy claro que íbamos a tener un bias alcista para llegar a completar estos rangos" [05:54, c-0031]; "no me quiero adaptar tampoco al del bias" [08:09, dentro de c-0054/c-0055]. (El capítulo de bias/estrategia es posterior; ver Relaciones en `documentation.md` §5.)
+Palabra usada dos veces: "muy claro que íbamos a tener un bias alcista para llegar a completar estos rangos" [05:54, c-0031]; "no me quiero adaptar tampoco al del bias" [08:09, c-0055]. (El capítulo de bias/estrategia es posterior; ver Relaciones en `documentation.md` §5.)
 
 ## Objetivo (de rango)
 Nivel al que el precio "va" según el rango pendiente; los ya completados se borran [06:56, c-0037]; puede estar en TF alta (p.ej. semanal) mientras los rangos intermedios se resuelven [08:38, c-0052]; el del 12M del euro era "un alto anual" [05:12, c-0025].
 
 ## Noticia
-Fuente de volatilidad anclada a la vela que la contiene [12:25, c-0075]; la de las 8:30 activation la vela de las 5 [12:32, c-0074]. Relación: sesión, hora clave.
+Fuente de volatilidad anclada a la vela que la contiene [12:25, c-0075]; la de las 8:30 activa la vela de las 5 [12:32, c-0074]. Relación: sesión, hora clave.

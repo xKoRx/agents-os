@@ -18,7 +18,7 @@ NO se modificó la skill canónica durante la ejecución (contrato del mandato):
 | Claims | 98 total (~5,7/min de video); 4–9 claims/minuto |
 | Veredictos | inicial 94 SUPPORTED / 4 UNCERTAIN → final 98/0/0 tras 4 adjudicaciones documentadas |
 | Contradicciones marcadas por revisión | 0 |
-| Frames | 18 base + 43 bajo demanda (~2,5/min, sobre el presupuesto ~1/min) |
+| Frames | 18 base + 44 bajo demanda (~2,6/min, sobre el presupuesto ~1/min) |
 | Minutos de alta complejidad visual | 5–9 (recorrido de gráfico casi continuo) y 13–16 (esquemas dibujados) |
 | Checkpoint 5 min | PASS: proyección pipeline ≈ 99 min/h-video (objetivo ≤120) |
 | Throughput total incl. ASR | ~5,8 h/h-video — FUERA de objetivo si el ASR cuenta |
