@@ -29,7 +29,8 @@ CID_RE = re.compile(r"^c-\d{4}$")
 SID_RE = re.compile(r"^s-\d{6}[a-z]?$")
 VERDICTS = {"SUPPORTED", "UNCERTAIN", "UNVERIFIED"}
 DOCS = ["documentation.md", "rules.md", "concepts.md", "examples.md",
-        "review-notes.md", "study-guide.md", "README.md"]
+        "review-notes.md", "study-guide.md", "README.md",
+        "CLAIMS.md", "FRAMES.md", "OPEN-QUESTIONS.md", "AMENDMENTS.md"]
 
 
 def hhmmss_to_s(name):
@@ -40,6 +41,51 @@ def hhmmss_to_s(name):
     if m.group(2) > "59" or m.group(3) > "59":
         return None
     return h * 3600 + mi * 60 + s
+
+
+WIKI_RE = re.compile(r"!?\[\[([^\]|#^]+)(#[^\]|]*)?(?:\|([^\]]*))?\]\]")
+
+
+def find_vault_root(start):
+    d = os.path.dirname(os.path.abspath(start))
+    for _ in range(8):
+        if os.path.exists(os.path.join(d, "80-agents", "agents-os", "agents-os.md")):
+            return d
+        nxt = os.path.dirname(d)
+        if nxt == d:
+            return None
+        d = nxt
+    return None
+
+
+def check_wiki_targets(text, source_label, vault, rel_check_dir, bad):
+    """W01/W02/W03/W07: cada wikilink resuelve a archivo, heading o block id;
+    los links a .png exigen ruta completa (nada de basename ambiguo)."""
+    for m in WIKI_RE.finditer(text):
+        target, anchor = m.group(1).strip(), (m.group(2) or "").strip()
+        full = m.group(0)
+        if target.endswith(".png") and "/" not in target:
+            bad("W07", f"{source_label}: link a PNG sin ruta completa (ambiguo entre capítulos): {full}")
+            continue
+        cand = os.path.join(vault, target) if vault else target
+        path = None
+        for c in (cand, cand + ".md"):
+            if os.path.exists(c):
+                path = c
+                break
+        if path is None:
+            bad("W01", f"{source_label}: wikilink a destino inexistente: {full}")
+            continue
+        if anchor:
+            body = open(path, encoding="utf-8", errors="replace").read()
+            if anchor.startswith("#^"):
+                bid = anchor[2:]
+                if not re.search(r"\^" + re.escape(bid) + r"\b", body):
+                    bad("W03", f"{source_label}: block id inexistente en {os.path.basename(path)}: {full}")
+            else:
+                head = anchor[1:].strip()
+                if not re.search(r"^#+\s+" + re.escape(head) + r"\s*$", body, re.M):
+                    bad("W02", f"{source_label}: heading inexistente en {os.path.basename(path)}: {full}")
 
 
 def main():
@@ -219,6 +265,58 @@ def main():
                 sid = f"s-{m[0]}" + (m[1] or "")
                 if sid not in sid_set:
                     bad("V11", f"{d}:{ln_no}: referencia a segmento inexistente {sid}")
+
+    # --- W: navegación wiki (Parte E del contrato v1.2)
+    WIKI_DOCS = DOCS + ["CLAIMS.md", "FRAMES.md", "OPEN-QUESTIONS.md", "AMENDMENTS.md"]
+    vault = find_vault_root(lib)
+    if vault is None:
+        bad("W01", "no pude resolver el vault root (marker 80-agents/agents-os/agents-os.md); "
+                   "no se validan wikilinks")
+    else:
+        claims_path_md = os.path.join(lib, "CLAIMS.md")
+        # W04: CLAIMS.md con exactamente un heading por claim
+        if os.path.exists(claims_path_md):
+            heads = re.findall(r"^### (c-\d{4})\s*$", open(claims_path_md, encoding="utf-8").read(), re.M)
+            want = sorted(c.get("id") for c in claims)
+            got = sorted(heads)
+            if len(set(heads)) != len(heads):
+                bad("W04", "CLAIMS.md: headings de claim duplicados")
+            if got != want:
+                miss = sorted(set(want) - set(got)); extra = sorted(set(got) - set(want))
+                bad("W04", f"CLAIMS.md desincronizada con claims.jsonl (stale projection): missing={miss} extra={extra}")
+            # W09: coherencia de verdict por sección
+            cm = open(claims_path_md, encoding="utf-8").read()
+            for c in claims:
+                sec = re.search(r"### " + re.escape(c["id"]) + r"\b.*?(?=\n### |\Z)", cm, re.S)
+                if sec and (f"**Verdict:** {c['verdict']}" not in sec.group(0)):
+                    bad("W09", f"CLAIMS.md: verdict desalineado para {c['id']}")
+        else:
+            bad("W04", "falta CLAIMS.md (proyección obligatoria v1.2)")
+        # W05: anchors únicos de transcript
+        anchors = re.findall(r"\^(s-\d{6}[a-z]?)\b", t_text)
+        seg_ids = set(sids)
+        if len(set(anchors)) != len(anchors):
+            bad("W05", "transcript: block ids duplicados")
+        if set(anchors) != seg_ids or len(anchors) != len(sids):
+            bad("W05", f"transcript: anchors ({len(anchors)}) != segmentos ({len(sids)})")
+        # W06: FRAMES.md cubre todos los frames
+        frames_md = os.path.join(lib, "FRAMES.md")
+        if os.path.exists(frames_md):
+            fm = open(frames_md, encoding="utf-8").read()
+            missing_frames = sorted(f for f in frames if f[:-4] not in fm)
+            if missing_frames:
+                bad("W06", f"FRAMES.md no cubre {len(missing_frames)} frames: {missing_frames[:6]}")
+        else:
+            bad("W06", "falta FRAMES.md")
+        # W01-W03/W07 sobre docs del capítulo + W08 sobre curso
+        for d in WIKI_DOCS:
+            pth = os.path.join(lib, d)
+            if os.path.exists(pth):
+                check_wiki_targets(open(pth, encoding="utf-8").read(), d, vault, lib, bad)
+        for d in ("COURSE-INDEX.md", "GLOSSARY.md"):
+            pth = os.path.join(os.path.dirname(lib), d)
+            if os.path.exists(pth):
+                check_wiki_targets(open(pth, encoding="utf-8").read(), d, vault, lib, bad)
 
     # V12: dudosos citados como hechos en documentation.md
     docp = os.path.join(lib, "documentation.md")
