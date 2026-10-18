@@ -65,7 +65,7 @@ Kinds usados: `concept`, `rule`, `parameter`, `procedure`, `observation`, `examp
 ## Limitaciones
 
 - El ASR garblea términos del glosario ("tartle sub"=Turtle Soup, "el dol"=el DXY, "Pablo III"=Power of 3); los claims lo preservan y anotan (`notes: "ASR: ..."`).
-- La enumeración de aperturas de la vela de 4h que da el instructor en 02:22 omite la de la 1 p.m.; el claim c-0011 conserva la enumeración literal y más adelante el propio instructor usa la vela de la 1 (c-0060, c-0096). Ver `review-notes.md`.
+- La enumeración de aperturas de la vela de 4h que da el instructor en 02:22 omite la de la 1 p.m.; el claim c-0011 conserva la enumeración literal, la pirámide SÍ incluye la vela de la 1 (f-000240) y el instructor usa esa vela después (c-0060, c-0096). Ver `review-notes.md`.
 - Los frames viven en este repositorio (16 MB); el video original NO está en Git: su ubicación física es `/home/kor/mke/course/ep02-time.mp4` y su SHA queda arriba para verificar identidad.
 - Para corregir/ampliar un punto: operar SIEMPRE sobre los recursos citados (transcript + frames), nunca re-procesando el video (contrato de la skill).
 
