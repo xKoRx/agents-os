@@ -1977,7 +1977,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003053|30:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003101|31:01]]
 
-**Notes:** Nexo explícito ('porque no es London') para borrar la marca. "lleve" = ASR literal (s-003020); probablemente "tome/toque el nivel" (interpretación).
+**Notes:** Nexo explícito ('porque no es London') para borrar la marca. "lleve" = ASR literal (s-003101); probablemente "tome/toque el nivel" (interpretación).
 
 ### c-0162
 
