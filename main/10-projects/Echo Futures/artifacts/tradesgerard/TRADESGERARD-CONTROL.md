@@ -9,14 +9,24 @@ aliases: []
 tags:
   - kind/doc
 created: "2026-10-12"
-updated: "2026-10-16"
+updated: "2026-10-18"
 ---
 
 # TRADESGERARD-CONTROL
 
 ## Propósito
 
-## Corte de continuidad — 2026-10-18 · CHALLENGE FIRST implementado y lote ejecutado
+## Corte de continuidad — 2026-10-18 (v2) · CHALLENGE CONTINUOUS: FIRST_PASS revocado y lote completo re-ejecutado
+
+**Estado:** el Owner revocó el corte FIRST_PASS (decisión introducida por el Manager CLOUD, no requisito del Owner): aprobar o perder termina ESA cuenta, nunca la campaña. `CHALLENGE_ONLY` es CONTINUO bajo identidad obligatoria `challenge_policy=CONTINUOUS_V1` en toda la cadena preset→spec→plan→request (rechazos nombrados; la identidad FIRST_PASS ya no es valor aceptado). Motor @ `02980b82` (RED capturado @ `cf5909c6` sobre `ce09ba4f`: el fixture multi-pase moría en `FIRST_PASS`; GREEN: ≥2 pases en UNA campaña con compras/señales/fills tras el primer pase, pérdida→sucesora→pase→continuación, supervivientes del horizonte = pendientes, nunca pérdidas; cuenta aprobada `CHALLENGE_PASSED` retirada con historial y plaza liberada; FUNDED_ONLY y FULL_JOURNEY intactos — invariancia de prefijo re-probada). Regresión completa del paquete: 6 fallos TODOS pre-existentes contrastados en baseline (5×BTG-S05 + matrix-preset). Rama `experiment/challenge-first-20261018` pulsada a `2b467ad5` (remoto verificado; sin merge a master).
+
+**Reporting/oráculo (§2.1, RED→GREEN):** el analizador FIRST_PASS restaba USD 4.98 a puntos×contratos SIN multiplicador — sus expectativas/win-rates no son comparables. Ahora USD de ciclo = −(flujo firmado) × point_value del instrumento del request − fee real por lado·contrato; ciclos por Operation y cuenta; defecto de signo en SHORT cazado por igualdad FIFO↔Operación (16/25 operaciones F2-SR/W0) y fijado en fixtures (1 punto NQ 1 contrato = 15,02 netos; 2 contratos = 30,04; parcial preserva base; add agrupado). Oráculo con veredicto estructurado + exit codes (0 sólo OK/EMPTY_CONSISTENT, 2 FAIL, 3 datos ausentes; negativo sembrado en caja → exit 2); el lote viejo sigue conciliando 49/49 con el oráculo nuevo; FIFO de la copia ahora preserva coste base en cierres parciales (original auditoría `68acf960…` intacto).
+
+**Lote CONTINUO (49/49 reconciled, oráculo 49 OK/0 FAIL, terminal `CONTINUOUS_HORIZON_COMPLETE` 49/49 con horizonte exacto):** mismas 26 identidades × 2 ventanas (W0 31 sesiones NQZ5; W1 18 sesiones NQZ6; 3 filas W1 DATA_REQUIRED sin prefijo H1). **114 cuentas compradas, 7 aprobadas, 57 perdidas por presupuesto, 0 FAILED_RULE, 50 pendientes al corte; proporción observada 7/114 = 6,1% (W0 6/80 = 7,5%, W1 1/34 = 2,9%); gasto 14.880 USD (compras 13.680 + 10 renovaciones); costo/pase 2.125,71 USD; 2.402 ciclos.** El flujo continuo encontró 7 pases, no 6: TG-F0/W0 produjo un SEGUNDO pase (14-nov) que el corte revocado nunca dejó ocurrir (21 cuentas, 10,5 compras/pase) y TG-F0/W1 siguió comprando tras su pase (6 cuentas). MR-08 W0 confirmó mejor entrada nueva (pase, win 59%, +38,15 USD/ciclo en USD reales). Bloque ORB nativo 500/250 W0: 3 pases/16 compras pero EL MISMO instante del último día (no eventos independientes). Run root `/srv/echo-work/runs/challenge-first-continuous-20261018/`; binario sha256 `2ae5807a…`; resultados: `RESULTS-CONTINUOUS.md` + `executive-table.md`/`executive-rows.csv`/`pass-sequence.csv`/`accounts-detail.csv`/`oracle-receipts.json` en `v3/backtester/tools/tradesgerard/challenge-first/`. El lote FIRST_PASS queda histórico (`SUPERSEDED_FOR_CONTINUOUS_OBJECTIVE` en MANIFEST/RESULTS).
+
+**NO hecho aquí:** P(pase) futura (mismo mercado, cuentas correlacionadas, exposición distinta por compra y pérdida terminal como competidor — exige protocolo temporal §9.3 posterior), matriz funded, contraste comercial 170, merge a master, LIVE. Aceptación final del Owner.
+
+## Corte anterior — 2026-10-18 · CHALLENGE FIRST implementado y lote ejecutado
 
 **Estado:** la separación por fases dejó de ser propuesta y pasó a implementación en rama de producto aislada `xKoRx/echo` `experiment/challenge-first-20261018` (desde el linaje V2.2 exacto `3f63944a`; HEAD de implementación `d0a5df44` + docs). Tres modalidades sobre el MISMO motor (sin duplicar engine ni Strategy): `CHALLENGE_ONLY` corta en el primer pase físico (terminal `FIRST_PASS`, cuentas supervivientes `CAMPAIGN_STOPPED_BY_POLICY`, drenaje safety-plane), `FUNDED_ONLY` siembra con el control canónico `ACCOUNT_CONTEXT_TRANSITION` (`SeededFunded`, sin compras), `FULL_JOURNEY` intocado (invariancia del prefijo probada en test). MM por fase: perfil funded opcional (`funded_risk_ref/target_ref`) aplicado sólo en fases funded; `payout_target` omitido/inactivo en challenge (rechazo nombrado si se declara). Reparaciones RL-2 (ventana de compra = identidad de preset verificada contra perfil) y RL-3 (la reconciliación final nunca re-etiqueta veredictos policy-terminal) cerradas RED→GREEN. Diez estrategias MR B0 §6 implementadas con kernels exactos + owner analytics demand-gated (defecto de semilla EMA50 cazado por test y corregido; cuantización recursiva a 17 dígitos, convención tgk). Journey E2E del módulo mr sin fábricas sustitutas. Regresión de plataforma verde; fallos preexistentes contrastados en `3f63944a` (5×BTG-S05, parity sdk, LAST CLI).
 
