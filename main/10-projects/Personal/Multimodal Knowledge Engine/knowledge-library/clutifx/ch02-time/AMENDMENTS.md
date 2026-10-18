@@ -5,7 +5,7 @@ sobre los claims del capítulo. Formato por entrada: `amendment_id` · `claim_id
 · fecha · motivo · anotación anterior · anotación nueva · evidencia revisada ·
 resultado. Los IDs de claim NUNCA se renumeran; si una corrección cambia
 materialmente la proposición, se crea un claim nuevo y el anterior queda
-superseded (ver contrato en [[CLAIMS]] y en la skill principal).
+superseded (ver contrato en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS.md|CLAIMS]] y en la skill principal).
 Regeneraciones cosméticas de proyecciones NO se registran aquí (para eso está
 git).
 
