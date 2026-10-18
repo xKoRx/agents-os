@@ -1,9 +1,10 @@
 # Nombres históricos INVALIDOS (incidente de nomenclatura de revisores, ch02 2026-10-18).
 # Corregidos físicamente: f-044000->f-000444, f-045000->f-000450, f-004800->f-000800,
-# f-004806->f-000806, f-004823->f-000823. Un nombre de esta lista en un .md es
+# f-004806->f-000806, f-004823->f-000823, f-170903->f-001703 (P2: parseaba 17h09m, fuera de duracion). Un nombre de esta lista en un .md es
 # historical_invalid_name (registro de auditoría), NO una cita vigente.
 f-044000
 f-045000
 f-004800
 f-004806
 f-004823
+f-170903
