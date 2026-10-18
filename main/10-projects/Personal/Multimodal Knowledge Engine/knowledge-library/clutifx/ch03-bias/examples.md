@@ -56,7 +56,7 @@ Cada ejemplo con su ventana de tiempo, qué muestra y su evidencia. Los timestam
 
 ## E14 · Directo: short de euro con la vela de las 3 como clave
 
-24:20–29:59. Aplicación en tiempo real: 3D completado y posible reacción; rango bajista compartido 8h→2h; la venta ideal estaba donde se creó el rango; el rango perfecto ocurre en extremos; a las 3 (distribución en London) toma el alto y crea el rango pendiente; stop sobre el Turtle Soup; primer objetivo ratio 2; parciales en nuevos bajos; refinamiento hasta un rango de 2h; todo alineado bajista. Claims [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0133|c-0133]]..[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0155|c-0155]] · frames f-002501, f-002509, f-002520, f-002559, f-002621, f-002806, f-002922, f-002933, f-002959.
+24:20–31:57. Aplicación en tiempo real: 3D completado y posible reacción; rango bajista compartido 8h→2h; la venta ideal estaba donde se creó el rango; el rango perfecto ocurre en extremos; a las 3 (distribución en London) toma el alto y crea el rango pendiente; stop sobre el Turtle Soup; primer objetivo ratio 2; parciales en nuevos bajos de nuevas velas; refinamiento hasta un rango de 2h; todo alineado bajista. Claims [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0133|c-0133]]..[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0167|c-0167]] · frames f-002501, f-002509, f-002520, f-002559, f-002621, f-002806, f-002922, f-002933, f-002959.
 
 ## E15 · Ejemplo alcista: escalera de targets, mea culpa y flip short→long
 
