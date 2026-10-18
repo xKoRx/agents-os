@@ -56,4 +56,4 @@ frames. Citas: `[mm:ss]` → transcript; `c-NNNN` → [[10-projects/Personal/Mul
 - **Unión de evidencia**: `evidence` = s-ids del extractor ∪ `verified_evidence` del revisor (ordenado, sin duplicados). Las adiciones puntuales del revisor (p. ej. s-000148 en c-0011, s-003355 en c-0174, s-003920 en c-0202, s-004014 en c-0205) cerraban frases citadas.
 - **Correcciones de statement aplicadas** (12): garbles restaurados o interpretados a notes (c-0014, c-0034, c-0154, c-0161, c-0183), deícticos literales (c-0125, c-0133, c-0196, c-0202), modalidad/restauración literal (c-0015, c-0023, c-0124, c-0131, c-0205). Ninguna cambió la proposición; sólo fidelidad al dicho.
 - **Reclassificaciones epistemic** (35 claims a visual_observation): todas con frame verificado dentro de `verified_evidence`; el revisor del minuto las propuso explícitamente. c-0043 se revirtió a instructor_statement (el revisor lo mandó mantener; el frame es corroboración de contexto).
-- **1 UNCERTAIN adjudicado** (c-0154) con nota en el claim; 0 UNVERIFIED; 0 contradicciones.
+- **2 UNCERTAIN adjudicados** (c-0061, c-0154) con nota en cada claim; 0 UNVERIFIED; 0 contradicciones.

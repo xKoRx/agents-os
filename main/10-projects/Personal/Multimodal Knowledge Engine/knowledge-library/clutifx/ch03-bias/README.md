@@ -31,12 +31,12 @@ pipeline MKE V2).
 | Métrica | Valor |
 |---|---|
 | Claims totales | 211 |
-| SUPPORTED / UNCERTAIN / UNVERIFIED | 211 / 0 / 0 (1 UNCERTAIN del review —c-0154— adjudicado en integración: el statement se corrigió al dicho literal de [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002948|s-002948]] y la interpretación del garble quedó en notes; ver el propio claim) |
+| SUPPORTED / UNCERTAIN / UNVERIFIED | 211 / 0 / 0 (2 UNCERTAIN del review —c-0061 y c-0154— adjudicados en integración con los recursos ya citados: c-0061 separando citas literales, c-0154 corrigiendo el statement al dicho literal de [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002948|s-002948]]; ver las notas de ambos claims) |
 | Epistemic | 176 instructor_statement · 35 visual_observation (todas con frame verificado en `evidence`) · 0 model_inference |
 | Contradicciones marcadas | 0 |
 | Frames base (fin de minuto) | 42 (minutos 0–40 en MM:59.5 + fin del minuto parcial f-004150; manifiesto `frames/.base_frames`) |
 | Frames bajo demanda | 79 (extraídos y verificados visualmente por los MINUTE_REVIEWERs, nombres por fórmula desde segundos reales) |
-| Referencias visuales sin resolver | ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/OPEN-QUESTIONS|OPEN-QUESTIONS]] (3 preguntas abiertas) |
+| Referencias visuales sin resolver | ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/OPEN-QUESTIONS|OPEN-QUESTIONS]] (4 preguntas abiertas) |
 | Rules / concepts / examples documentados | 18 / 13 / 15 |
 | Coverage | 42/42 minutos de video con claims y revisión |
 | Checkpoint 5 min | PASS (VALID 5/5; continuar automático) |

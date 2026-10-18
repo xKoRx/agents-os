@@ -32,7 +32,7 @@ Cada ejemplo con su ventana de tiempo, qué muestra y su evidencia. Los timestam
 
 ## E8 · Entrada en el Power 3 de la vela de las 23 y red flag de entrada tardía
 
-11:31–15:53. La entrada del miércoles estaba en el Power 3 de la vela de las 23; perdida esa, toca esperar rango a favor en 1h para vender; entrar abajo era "un poco de red flag" (tomando lows de 4h), pero 1h decía que la de 4h no se revertía. Claims [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0082|c-0082]]..[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0087|c-0087]] · frames f-001450, f-001525.
+11:31–15:53. La entrada del miércoles estaba en el Power 3 de la vela de las 23; perdida esa, toca esperar rango a favor en 1h para vender; entrar abajo era "un poco de red flag" (tomando lows de 4h), pero 1h decía que la de 4h no se revertía. Claims [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0082|c-0082]]..[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0087|c-0087]] · frame f-001450.
 
 ## E9 · PDM en 6h con reacción alcista y objetivos incompletos
 
@@ -48,7 +48,7 @@ Cada ejemplo con su ventana de tiempo, qué muestra y su evidencia. Los timestam
 
 ## E12 · 2D y 1D: el primer rango bajista habilita; NFP del viernes
 
-20:21–22:36. 2D: se puede vender cuando se forma el primer rango bajista; 1D sin rango bajista aún; 12h mismo objetivo; 8h/6h sin nada → "os marcháis"; viernes 5 = NFP: la semana reinicia rangos a favor y llega al DOL con la noticia (llegada "en FB", no limpia). Claims [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0111|c-0111]]..[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0127|c-0127]] · frames f-002028, f-002118, f-002124, f-002145.
+20:21–22:36. 2D: se puede vender cuando se forma el primer rango bajista; 1D sin rango bajista aún; 12h mismo objetivo; 8h/6h sin nada → "os marcháis"; viernes 5 = NFP: la semana reinicia rangos a favor y llega al DOL con la noticia (llegada "en FB", no limpia). Claims [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0111|c-0111]]..[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0127|c-0127]] · frames f-002028, f-002118, f-002124.
 
 ## E13 · Trade del día del NFP: rango por apertura + entrada con confirmación
 
@@ -60,6 +60,6 @@ Cada ejemplo con su ventana de tiempo, qué muestra y su evidencia. Los timestam
 
 ## E15 · Ejemplo alcista: escalera de targets, mea culpa y flip short→long
 
-32:39–39:59. La vela toma el low de la anterior → posible rango alcista; parciales por precaución; escalera de targets 4h→6h→8h→1D eliminados uno a uno; mea culpa: anticipó bearish, ignoró los rangos bullish de 8h/12h/6h y le saltó el stop ("tenéis que entrar con los rangos a favor"); noticia a las 8 con entrada antes de la volatilidad; "pendiente de manual": abre por debajo creando el bullish → siguiente vela, entras; flip short→long al ver todo alcista: "compras bastante fáciles". Claims [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0168|c-0168]]..[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0204|c-0204]] · frames f-003244, f-003304, f-003324, f-003337, f-003355, f-003401, f-003414, f-003426, f-003446, f-003626, f-003659, f-003817, f-003853, f-003855, f-003903, f-003930.
+32:39–39:59. La vela toma el low de la anterior → posible rango alcista; parciales por precaución; escalera de targets 4h→6h→8h→1D eliminados uno a uno; mea culpa: anticipó bearish, ignoró los rangos bullish de 8h/12h/6h y le saltó el stop ("tenéis que entrar con los rangos a favor"); noticia a las 8 con entrada antes de la volatilidad; "pendiente de manual": abre por debajo creando el bullish → siguiente vela, entras; flip short→long al ver todo alcista: "compras bastante fáciles". Claims [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0168|c-0168]]..[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0204|c-0204]] · frames f-003304, f-003324, f-003337, f-003355, f-003401, f-003414, f-003426, f-003446, f-003626, f-003659, f-003817, f-003853, f-003855, f-003930.
 
 Conteo: 15 ejemplos (E1–E15).
