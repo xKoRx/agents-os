@@ -98,7 +98,8 @@ def main():
 
     def m_broken_ev(d):
         p = os.path.join(d, "claims.jsonl")
-        open(p, "w", encoding="utf-8").write(open(p, encoding="utf-8").read().replace("s-000010", "s-999999"))
+        t = open(p, encoding="utf-8").read()
+        open(p, "w", encoding="utf-8").write(t.replace("s-000010", "s-999999"))
     ok &= expect("evidencia inexistente", variant(base, "bad-broken-evidence", m_broken_ev), False, {"V02"})
 
     def m_dup(d):
