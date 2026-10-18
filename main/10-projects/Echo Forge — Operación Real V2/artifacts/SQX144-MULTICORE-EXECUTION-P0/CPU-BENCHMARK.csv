@@ -1,0 +1,55 @@
+---
+type: evidence_data
+schema_version: 1
+status: final
+created: "2026-10-18"
+area: "[[Echo]]"
+project: "[[Echo Forge — Operación Real V2]]"
+baseline: "xKoRx/symphony 492a271e (release 0.3.1), SQX 144.2953 y 142, host sqx-kronos (76 vCPU), install candidate-local /home/echo-dev/forge-multicore-p0/{sqx144-p0,sqx142-p0}"
+tags:
+  - kind/evidence
+  - area/echo
+  - tech/performance
+---
+
+# CPU-BENCHMARK — matriz de runs físicos (Kronos, 1 sqcli por VM, medición /proc 200 ms group-jiffies + 1 s per-tid)
+
+mean_hot = media de cores activos en muestras >0,5 core; peak5 = mejor media de ventana 5 s; task = `Retest/Optimize : Task finished in N s` del log SQX; thr = estrategias/s de task. Corpus retest = overview1117 (823 .sqx auténticos de campaña, subset ordenado); seed = corpus-pristine (24). Instrumentación cruda: `/home/echo-dev/forge-multicore-p0/rec/` (Kronos, candidate-local, 15 MB: `-cpu.csv`, `-threads.csv`, `-console.log`, `-time.txt`).
+
+## SQX 144 (settings.xml coreUsage=100%, highPriority=true, threadAffinity=false; JVM JTO -Xms34g/-Xmx55g → efectivo -Xms4g; ParallelGC; "Using: 72 cores" / "Preparing thread executors: 72")
+
+| run | workload | task/wall | mean_hot | peak5 | throughput | notas |
+|---|---|---|---:|---:|---:|---|
+| build144-r3 | Builder genético (Builder_G1: islands 8, pop 400, StopCondition databank-full 6000, UTC02 H1 tick-precision) | cortado SIGTERM a 40 min | **68,46** | **77,6** | — | mediana RUNNABLE 72; 150 threads con ticks; fracción de muestras hot = 1,00; la fase genética sostiene ~68-70 cores todo el run |
+| retest144-n10 | Retest databank N=10 | task 2,21 s | 3,31 | 4,8 | 4,5 str/s | "Batch size computed to: 5 … totalCores: 72" |
+| retest144-n30 | Retest N=30 | 2,85 s | 4,30 | 9,3 | 10,5 str/s | |
+| retest144-n90 | Retest N=90 | 4,34 s | 5,79 | 19,8 | 20,7 str/s | |
+| retest144-n150 | Retest N=150 | 6,51 s | 7,19 | 31,7 | 23,0 str/s | |
+| retest144-n300 | Retest N=300 | 10,20 s | 9,94 | 58,7 | 29,4 str/s | |
+| retest144-n450 | Retest N=450 | 13,00 s | 10,79 | **72,6** | 34,6 str/s | pico ≈ todos los cores |
+| retest144-n600 | Retest N=600 | 16,35 s | 11,49 | **74,1** | 36,7 str/s | throughput sigue subiendo sin meseta hasta N=600 |
+| retest144-n300-td | repetibilidad N=300 | — | 7,71 | 56,9 | — | consistente con n300 |
+| retest144-n30-r2 | repetibilidad N=30 | — | 3,48 | 9,9 | — | consistente con n30 y con n3b(144): 3,22/9,5 |
+| opt144-r3 | Optimizer 1 estrategia (Optimize142: WFO type=2 period 10 optim 15, brute-force maxSteps 20, maxOptimizations 15000, UTC02 H1) | wall 37,15 s | **20,62** | **72,6** | — | max RUNNABLE 67; 82 threads con ticks; MaxRSS 18,2 GB; el WFO mono-estrategia toca todos los cores en fase caliente |
+
+## SQX 142 (mismo host, mismo corpus, settings 100%/ON en el candidate; j64 compartido = misma Zulu 25.0.2)
+
+| run | workload | task/wall | mean_hot | peak5 | resultado |
+|---|---|---|---:|---:|---|
+| retest144d-n30 | Retest darwinex N=30 (workload equivalente) | wall 26,87 s | 2,40 | 3,4 | OK |
+| retest142d-n30 | Retest darwinex N=30 | wall 25,95 s | 3,31 | 5,2 | OK — 142 ≈ 144 (±3,5 % wall, mismo perfil) |
+| retest142-n90b | Retest UTC02 N=90 | 6,67 s | 3,0 | 5,5 | **NPE BacktestDataFeed.loadDataForFeed (loadedData null)** — los datos UTC02 adaptados el 16-oct para 144 NO cargan en 142 (incompatibilidad de datos documentada) |
+
+## Runs INVALIDADOS (no usar como evidencia)
+
+| run | causa |
+|---|---|
+| retest142-n3/n10/n90 (ladder) | prep con path hardcodeado sqx144-p0 → databank 142 vacío ("No strategies to retest"); defecto del harness, corregido (p0-prep-retest.sh respeta SQXROOT) |
+| smoke-n3/smoke2/smoke3 | proyecto sin recursos/data.db stale (pre-fix); sólo sirvieron para calibrar el harness |
+| build144-r1/r2 | sin StopCondition válido ("never stop") / configs previas al fix de recursos |
+| opt144-r1/r2 | "Nothing to optimize" (Source sin databank declarado en proyecto) |
+| snapshots jcmd | attach falló (9-byte files); evidencia por hilo proviene de /proc per-tid (3 canales independientes: group-jiffies, per-tid ticks, RUNNABLE + throughput/wall) |
+
+## Semilla del ladder retest (coste por estrategia)
+
+overview1117 en 144: N=600 → 16,35 s task a pico ~74 cores ≈ ~2 core-s/estrategia (estrategias livianas). corpus-pristine (24 estr auténticas w10) en smoke5-n3: 3 estr → 2,01 s task. La curva de ESCALADO es el objeto medido; el coste absoluto por estrategia depende del corpus.
