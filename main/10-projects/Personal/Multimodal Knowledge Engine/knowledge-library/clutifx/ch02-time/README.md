@@ -48,7 +48,7 @@ pipeline MKE V2).
 - `rules.md`, `concepts.md`, `examples.md` — vistas operativas del mismo conocimiento.
 - `review-notes.md` — incertidumbres, adjudicaciones, garbles ASR, visual no resuelto.
 - `study-guide.md` — guía de estudio con preguntas y respuestas con evidencia.
-- `frames/` — `f-<HHMMSS>.png`; los 18 frames base son fin de minuto (`f-00MM59.png`, y `f-170903.png` al final parcial); el resto son bajo demanda citados desde claims y documentos.
+- `frames/` — `f-<HHMMSS>.png`; los 18 frames base son fin de minuto (`f-00MM59.png`, y `f-001703.png` al final parcial); el resto son bajo demanda citados desde claims y documentos.
 
 ## Schema de claims (y extensiones documentadas)
 
