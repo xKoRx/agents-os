@@ -33,12 +33,13 @@ pipeline MKE V2).
 | SUPPORTED / UNCERTAIN / UNVERIFIED | 98 / 0 / 0 (4 UNCERTAIN iniciales adjudicados en integración con recursos ya citados; ver `review-notes.md`) |
 | Contradicciones marcadas | 0 |
 | Frames base (fin de minuto) | 18 |
-| Frames bajo demanda | 44 |
-| Referencias visuales sin resolver | 1 (deíctico de rango en 8h, ver `review-notes.md`) |
-| Rules / concepts / examples documentados | 14 / 13 / 11 |
+| Frames bajo demanda | 47 |
+| Referencias visuales sin resolver | 0 (el deíctico de 8h de c-0056 se resolvió en la remediación P4 con f-000758+f-000806; matiz documentado en el claim) |
+| Rules / concepts / examples documentados | 16 / 17 / 11 |
 | Coverage | 18/18 minutos de video con claims y revisión |
 | Checkpoint 5 min | PASS (proyección ≈ objetivo; continuar automático) |
-| Throughput subagentes (extracción+revisión) | ~28,4 min wall para 17,2 min de video ≈ 99 min/h-video (objetivo ≤120) |
+| Wall time total observado por el Owner | 2h06m (incluye ASR 45,1 min, orquestación, integración y publicación) |
+| Throughput subagentes (solo extracción+revisión) | ~28,4 min wall para 17,2 min de video ≈ 99 min/h-video (objetivo ≤120); NO es el tiempo end-to-end |
 
 ## Archivos
 
@@ -46,6 +47,7 @@ pipeline MKE V2).
 - `claims.jsonl` — 98 claims con veredicto, evidencia y notas (schema abajo).
 - `transcript.md` — transcript completo ordenado y citable (ids `s-<HHMMSS>`).
 - `rules.md`, `concepts.md`, `examples.md` — vistas operativas del mismo conocimiento.
+- `repair/` — manifiesto baseline pre-reparación y registro de la remediación P1–P10 (2026-10-18).
 - `review-notes.md` — incertidumbres, adjudicaciones, garbles ASR, visual no resuelto.
 - `study-guide.md` — guía de estudio con preguntas y respuestas con evidencia.
 - `frames/` — `f-<HHMMSS>.png`; los 18 frames base son fin de minuto (`f-00MM59.png`, y `f-001703.png` al final parcial); el resto son bajo demanda citados desde claims y documentos.
@@ -66,7 +68,7 @@ Kinds usados: `concept`, `rule`, `parameter`, `procedure`, `observation`, `examp
 
 - El ASR garblea términos del glosario ("tartle sub"=Turtle Soup, "el dol"=el DXY, "Pablo III"=Power of 3); los claims lo preservan y anotan (`notes: "ASR: ..."`).
 - La enumeración de aperturas de la vela de 4h que da el instructor en 02:22 omite la de la 1 p.m.; el claim c-0011 conserva la enumeración literal, la pirámide SÍ incluye la vela de la 1 (f-000240) y el instructor usa esa vela después (c-0060, c-0096). Ver `review-notes.md`.
-- Los frames viven en este repositorio (16 MB); el video original NO está en Git: su ubicación física es `/home/kor/mke/course/ep02-time.mp4` y su SHA queda arriba para verificar identidad.
+- Los frames viven en este repositorio (17 MB, 65 archivos); el video original NO está en Git: su ubicación física es `/home/kor/mke/course/ep02-time.mp4` y su SHA queda arriba para verificar identidad.
 - Para corregir/ampliar un punto: operar SIEMPRE sobre los recursos citados (transcript + frames), nunca re-procesando el video (contrato de la skill).
 
 ## Método (resumen)

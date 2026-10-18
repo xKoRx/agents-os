@@ -125,7 +125,11 @@ def main():
         has_frame = any(e.startswith("f-") for e in ev)
         if c.get("epistemic") == "visual_observation" and not has_frame:
             vis_no_frame.append(cid)
-        if "visual_hint" in c and not has_frame:
+        if ("visual_hint" in c and not has_frame
+                and c.get("epistemic") != "instructor_statement"):
+            # un visual_hint sobre sustancia hablada (instructor_statement) es
+            # contextual: señala dónde mirar, no exige frame. En cualquier otra
+            # epistemic, un hint sin frame rompe la trazabilidad visual.
             hint_no_frame.append(cid)
         if c.get("verdict") not in VERDICTS:
             bad("V09", f"{cid}: veredicto fuera de vocabulario: {c.get('verdict')!r}")
