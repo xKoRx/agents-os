@@ -1,12 +1,42 @@
 # METHODOLOGY-FEEDBACK — Clutifx (Course Intelligence)
 
-Feedback de método del curso Clutifx. Objetivo: mejorar Chapter 03 y los ~200
+Feedback de método del curso Clutifx. Objetivo: mejorar Chapter 04 y los ~200
 videos siguientes, no justificar decisiones pasadas. Estado tras la extracción
-de Chapter 02 (2026-10-18) y su remediación autorizada por el Owner el mismo
-día. La skill canónica quedó en v1.1; NO se toca aquí la decisión de.Owner sobre
-ASR.
+de Chapter 03 (2026-10-18). Los bloques OBSERVED/REPAIRED de Chapter 02 se
+conservan abajo (§Ch02). La skill canónica quedó en v1.2 con hardening ch03;
+NO se toca aquí la decisión de Owner sobre ASR.
 
-## OBSERVED (lo medido en Chapter 02, sin corregir)
+## CH03 OBSERVED (medido en Chapter 03, sin corregir)
+
+| Métrica | Valor |
+|---|---|
+| Video | ep03-bias.mp4 · 41:50.8 · SHA `c52dafa8…` |
+| ASR_WALL | **3h18m** (0,21× realtime; más lento que ch02's 0,38× — 96 % de habla y 506 segmentos) — partida dominante |
+| EXTRACT_WALL | 10,9 min (5 EXTRACTORs paralelos, 211 claims) |
+| REVIEW_WALL | ~146 min (42 MINUTE_REVIEWERs, 6 olas de 5–8; cada revisor extrae y verifica visualmente sus frames) |
+| AGENT_WALL (extracción+revisión) | ~157 min / 41,8 min video ≈ **225 min/h-video** (objetivo ≤120; banda 2× = 240 → continúa; el exceso viene de la verificación visual frame-a-frame del contrato v1.1+) |
+| Claims | 211 (todos SUPPORTED; 2 UNCERTAIN del review adjudicados en integración con nota) · 176 instructor_statement + 35 visual_observation · 0 model_inference |
+| Frames | 42 base + 79 bajo demanda = 121; 74 citados en evidence |
+| Revisión independiente (DOCVERIFY) | 0 MATERIAL + 5 MENOR (conteos y citas cruzadas), todos corregidos in-mission |
+| Checkpoint 5 min | PASS (30/30 VALID; proyección inicial ~80 min/h-video subestimó las olas reales de ~13 min) |
+
+## CH03 REPAIRED (defectos de contrato encontrados en vuelo, con prueba)
+
+- **`make_minute_payload.py` emitía `id` pero `validate_review.py` esperaba `key`** (y los reviewers v1.2 devuelven `claim_key`): el checkpoint lo cazó antes de dañar nada. Fix en ambos helpers + test de regresión nuevo `scripts/tests/review_pipeline_selftest.py` (5 casos, rojo-verde).
+- **Frame base del minuto parcial**: la captura usa el fin real del video (f-004150 a 41:50.5); sin regla de nombre: lo decide el manifiesto.
+- **Naming de frames a mano falla**: el integrador generó `f-00059` (5 dígitos) por concatenación manual en el primer lote; re-hecho con la fórmula. Confirma el contrato: SIEMPRE fórmula desde segundos reales, jamás printf a mano.
+- **V11 es chapter-local**: los refs `s-` de OTRO capítulo en los docs disparan V11 falso-positivo. Los W-checks sí los resuelven (cross-file). Para ch04: citar cross-chapter con enlace a archivo + timestamp en la etiqueta (o extender V11 si Owner lo quiere).
+- **5 MENOR del DOCVERIFY** corregidos: conteos README (preguntas abiertas 3→4; UNCERTAIN adjudicados 1→2), cita de ch02 atribuida a claim inexistente (→ segmentos reales sin claim, declarado), 4 frames listados en examples sin citación real (→ quitados), fórmula de rango atribuida al claim equivocado (→ c-0118/c-0100).
+
+## CH03 LEARNED (para Chapter 04)
+
+1. **ASR sigue siendo el cuello** (3h18m para 42 min de video): el test de 2 min (beam 1/medium vs large-v3) sigue en PROPOSED-2 esperando decisión Owner. Con ep04 (~similar duración) el ahorro potencial es >1 h/video.
+2. **La verificación visual frame-a-frame es el nuevo centro de costo del review** (146 min vs 19,8 en ch02 por 2,3× video): es el precio del provenance visual v1.1+ y compró 35 visual_observation con frame verificado y 0 MATERIAL en el DOCVERIFY. Alternativa a proponer a Owner: reviewers SIN extracción propia (sólo transcript + base frame) + una sola pasada visual del integrador sobre los visual_hints; medir calidad antes de adoptar.
+3. **Olas de 8 con colas de 14–16 min desperdician paralelismo**: despachar por tamaño de payload (claims×segmentos) en vez de por minuto reduces el makespan.
+4. **El glosario de garbles por capítulo funciona**: ~10 garbles nuevos de ch03 ya están en review-notes para reutilizar en ch04 (ep04-entradas reutilizará el vocabulario DOL/bias/rangos).
+5. **Integración por olas en background** (reviewers async + integración del integrador entre olas) funcionó sin bloquear: mantener.
+
+## Ch02 OBSERVED (medido en Chapter 02, sin corregir)
 
 | Métrica | Valor |
 |---|---|
@@ -75,16 +105,16 @@ ASR.
    (provider zai-start-plan ausente): las verificaciones se ejecutaron con
    `general-purpose` + prompt adversarial. Gap de plataforma, no de método.
 
-## PROPOSED_FOR_NEXT_CHAPTER (ep03-bias y sucesivos)
+## PROPOSED_FOR_NEXT_CHAPTER (ep04-entradas y sucesivos)
 
-1. **Ejecutar el pipeline v1.1 tal cual**: paquetes de worker con
+1. **Ejecutar el pipeline v1.2+hardening ch03 tal cual**: paquetes de worker con
    `course-knowledge-worker/SKILL.md` + ROLE; payload por
    `make_minute_payload.py`; integración con `validate_review.py`; cierre con
    `validate_library.py` = PASS + conteos reconciliados. Nada de esto requiere
    nueva construcción.
 2. **Decidir ASR** con un test de 2 minutos (large-v3 beam 5 vs beam 1 vs
-   medium) comparado contra el transcript actual de ch02. Ahorro potencial
-   ~30–40 min/video. (Decisión Owner.)
+   medium) comparado contra el transcript actual de ch02/ch03. Ahorro potencial
+   >1 h/video (ch03: 3h18m de ASR para 42 min). (Decisión Owner, sigue abierta.)
 3. **Presupuesto de frames por bloque** declarado en el paquete según densidad
    visual estimada (recorrido de gráfico ⇒ más que 1/min), con exceso
    justificado en review-notes (ya es contrato v1.1; aplicar el presupuesto
