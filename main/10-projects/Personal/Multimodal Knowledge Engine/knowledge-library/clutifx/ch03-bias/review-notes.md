@@ -39,7 +39,7 @@ frames. Citas: `[mm:ss]` → transcript; `c-NNNN` → [[10-projects/Personal/Mul
 | "me curso intermedio" | (en) el curso intermedio (s-002348) |
 | "te cuentas" | te encuentras (s-003745) |
 | "lleve esto" | probablemente "tome/toque esto" (s-003101) — preservado literal |
-| "sentí" | ¿semanal? (s-000188 aprox.) — sin lectura confirmada |
+| "sentí" | ¿semanal? (s-000213) — sin lectura confirmada |
 | "el turn" | ¿target? (s-000749) — sin lectura confirmada |
 | "en chip" (s-002509) / "FB" (s-002217) / "es después de la vez" (s-002319) / "ahí es en ti con libro de" (s-001902) | sin recuperación fiable |
 | "para doble ya la sesión" (s-004056) | la pizarra de m40 (f-004059) resuelve el sentido: "12h–8h–6h–4h = DOL sesión" |
