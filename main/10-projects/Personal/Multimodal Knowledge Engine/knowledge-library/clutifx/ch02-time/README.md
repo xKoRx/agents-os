@@ -34,7 +34,7 @@ pipeline MKE V2).
 | Contradicciones marcadas | 0 |
 | Frames base (fin de minuto) | 18 |
 | Frames bajo demanda | 47 |
-| Referencias visuales sin resolver | 0 (el deíctico de 8h de c-0056 se resolvió en la remediación P4 con f-000758+f-000806; matiz documentado en el claim) |
+| Referencias visuales sin resolver | 1 pregunta abierta (q-ch02-001: referente del rectángulo descartado en c-0056 — ver OPEN-QUESTIONS.md); la regla del claim mantiene soporte independiente |
 | Rules / concepts / examples documentados | 16 / 17 / 11 |
 | Coverage | 18/18 minutos de video con claims y revisión |
 | Checkpoint 5 min | PASS (proyección ≈ objetivo; continuar automático) |
@@ -58,7 +58,7 @@ Contrato base del mandato: `id`, `minute`, `kind`, `statement`, `evidence`, `ver
 
 Extensiones usadas en esta biblioteca (declaran lo que el mandato exige distinguir):
 
-- `epistemic`: `instructor_statement` (afirma el instructor) · `visual_observation` (muestra el gráfico) · `model_inference` (interpretación del modelo; 1 caso, c-0066).
+- `epistemic`: `instructor_statement` (afirma el instructor) · `visual_observation` (muestra el gráfico) · `model_inference` (interpretación del modelo; 0 casos vigentes — c-0066 fue reclasificada a instructor_statement en la remediación P4).
 - `visual_hint`: `{second, what}` cuando el claim depende de algo visual concreto.
 - `source_key`: key original del bloque de extracción (A-/B-/C-), para trazabilidad.
 
