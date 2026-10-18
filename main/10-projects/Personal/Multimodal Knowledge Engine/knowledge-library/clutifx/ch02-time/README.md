@@ -43,14 +43,18 @@ pipeline MKE V2).
 
 ## Archivos
 
-- `documentation.md` — síntesis del capítulo por conceptos, construida SOLO sobre claims SUPPORTED, todo citado.
-- `claims.jsonl` — 98 claims con veredicto, evidencia y notas (schema abajo).
-- `transcript.md` — transcript completo ordenado y citable (ids `s-<HHMMSS>`).
-- `rules.md`, `concepts.md`, `examples.md` — vistas operativas del mismo conocimiento.
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/documentation.md|documentation.md]] — síntesis del capítulo por conceptos, construida SOLO sobre claims SUPPORTED, todo citado.
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/claims.jsonl|claims.jsonl]] — 98 claims con veredicto, evidencia y notas (schema abajo).
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/transcript.md|transcript.md]] — transcript completo ordenado y citable (ids `s-<HHMMSS>`).
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/rules.md|rules.md]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/concepts.md|concepts.md]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/examples.md|examples.md]] — vistas operativas del mismo conocimiento.
 - `repair/` — manifiesto baseline pre-reparación y registro de la remediación P1–P10 (2026-10-18).
-- `review-notes.md` — incertidumbres, adjudicaciones, garbles ASR, visual no resuelto.
-- `study-guide.md` — guía de estudio con preguntas y respuestas con evidencia.
-- `frames/` — `f-<HHMMSS>.png`; los 18 frames base son fin de minuto (`f-00MM59.png`, y `f-001703.png` al final parcial); el resto son bajo demanda citados desde claims y documentos.
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/review-notes.md|review-notes.md]] — incertidumbres, adjudicaciones, garbles ASR, visual no resuelto.
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/study-guide.md|study-guide.md]] — guía de estudio con preguntas y respuestas con evidencia.
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS.md|CLAIMS.md]] — proyección navegable de los 98 claims (generada desde claims.jsonl; no es segunda fuente de verdad).
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/FRAMES.md|FRAMES.md]] — inventario de los 65 frames con timestamps y claims que los citan.
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/OPEN-QUESTIONS.md|OPEN-QUESTIONS.md]] — preguntas abiertas con ID estable.
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/AMENDMENTS.md|AMENDMENTS.md]] — historial append-only de correcciones materiales.
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/FRAMES.md|FRAMES.md]] + frames/ — `f-<HHMMSS>.png`; los 18 frames base son fin de minuto (`f-00MM59.png`, y `f-001703.png` al final parcial); el resto son bajo demanda citados desde claims y documentos.
 
 ## Schema de claims (y extensiones documentadas)
 

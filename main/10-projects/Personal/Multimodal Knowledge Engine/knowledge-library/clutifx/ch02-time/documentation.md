@@ -35,6 +35,9 @@ Matices (todos del instructor):
 
 La imagen que enseña ("esta foto es muy importante") indica **a qué hora se abre cada vela del día**, y su lado derecho permite empezar a ver qué horas serán las más importantes [02:00, 02:46, [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0015|c-0015]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/frames/f-000259.png|f-000259]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/frames/f-000240.png|f-000240]].
 
+![[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/frames/f-000240.png|520]]
+*La pirámide de aperturas tal como se muestra en el video (00:02:40; incluye 4H: 1700, 2100, 0100, 0500, 0900, 1300 y el recuento de aperturas por hora a la derecha).*
+
 Horas de apertura declaradas (en hora NY):
 - **12 horas**: 5 p.m. y 5 a.m. [02:09, [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0014|c-0014]]
 - **8 horas**: 5 p.m., 1 a.m. y 9 a.m. [02:09, [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0013|c-0013]]
