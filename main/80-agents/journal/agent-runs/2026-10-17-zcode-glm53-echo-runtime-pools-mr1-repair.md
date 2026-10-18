@@ -18,7 +18,7 @@ model_source: host
 task_type: coding
 task_complexity: high
 outcome: success
-verification: full_suite
+verification: passed
 evaluator: agent
 user_rework: unknown
 source_session:

@@ -4,8 +4,8 @@ schema_version: 1
 scope: session
 created: 2026-10-18
 updated: 2026-10-18
-area: "[[Echo]]" "[[Personal]]"
-project: "[[Echo Futures — Runtime Pools]]" "[[AGENTS OS]]"
+area: "[[Echo]]"
+project: "[[Echo Futures — Runtime Pools]]"
 entities:
   - "[[AGENTS OS]]"
 related:
