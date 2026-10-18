@@ -1,0 +1,49 @@
+# ch02-time — Reglas operativas del capítulo
+
+Vista operativa: cada regla con condiciones, excepciones e invalidación **según el instructor**. Los campos que la fuente no sustenta no aparecen. Citas: `[mm:ss]` → `transcript.md`; `[c-NNNN]` → `claims.jsonl`; `[f-HHMMSS]` → `frames/`.
+
+## Configuración
+
+**R1 · Gráfico en hora New York (UTC-4).** "Que quede clarísimo" [02:22]. Todos los horarios del método (aperturas, horas clave, noticias) viven en esta zona horaria. [c-0012]
+
+**R2 · Lista base de timeframes.** 3M, 1M, 6M, 3S, 2S, 1S, 3D, 2D, 1D, 12h, 8h, 6h, 5h, 4h, 3h, 2h, 1h, 90m, 144m, 45m, 30m, 15m [00:20–01:12, c-0003].
+- Excepciones y matices: 12M "pocas veces rentable" [c-0002] · fuera de lista (5/10/20) permitido, él nunca baja de 15 [c-0009] · 7h/9h válidas (algoritmo) [c-0008] · 4–5 días si en la lista "no se ve nada" [c-0006] · la lista existe para limitar, no es dogma [c-0004, c-0007].
+
+## Horas clave
+
+**R3 · Horas clave del día.** 5 a.m. (abren 90m/2h/3h/4h/6h/12h → nuevos rangos y Power of 3; propensa a Turtle Soups; reversión/retracement/continuación), 5 p.m. (igual + vela de 8h), 3 a.m. (1h+2h; intrasesión/London; expansión), 8 a.m. (aperturas USA, noticias 8:30), 9 a.m. (nueva vela 4h y 8h) [02:46–04:12, c-0010..c-0024]. Normalmente "las horas donde va a ser mejor entrar en los movimientos" [04:13, c-0030].
+- Excepción: entrar a otras horas (p.ej. las 4) es posible "bajo un contexto" [04:13, c-0029].
+
+**R4 · Precaución y salida en horas clave.** Aunque la dirección parezca clara, "es mejor salir con precaución en estas horas clave —59— y asegurar" [10:22, c-0064]. Lógica explícita: al tomar el alto/bajo en horas clave "se crea un rango a favor o en contra de tu dirección" [10:41, c-0063].
+
+## Rangos (aplicados a timeframes)
+
+**R5 · Rango formado sin cierre (refina ch01).** Turtle Soup hecho + vela ya reaccionada ⇒ no hace falta que cierre para considerarlo rango [05:21, c-0035].
+
+**R6 · Invalidación por cierre fuera.** Vela que cierra por fuera ⇒ ese rango no vale; usar el rango alternativo [08:00, c-0056]. (Regla heredada de ch01.)
+
+**R7 · Objetivos completados se borran** [06:56, c-0037, c-0038].
+
+**R8 · "No tenemos nada" = sin rango formado en esa temporalidad** [07:06, c-0049].
+
+**R9 · Rangos contrarios antes del objetivo.** Objetivo en TF alta + rangos contrarios formándose en TFs inferiores (p.ej. rango reiniciado bajista en 6h) ⇒ el precio no va directo al objetivo: "tiene que completar los bajistas primero" [08:38, c-0052, c-0053]. Caso 4h: no subió hasta formarse otra vez rangos bajistas [08:46, c-0051].
+
+**R10 · Procedimiento multi-timeframe.** Marcar los rangos en todas las temporalidades y comprobar que "estén en dirección a lo mismo"; eso da la dirección del precio [08:15, c-0054, c-0040]. Confirmación: alineación completa = "todo nos indicaba Bullish" [07:40, c-0045, c-0055].
+
+## Sesiones, noticias y entrada
+
+**R11 · El día en velas de 4h = sesiones.** Londres / London Lunch / New York; el inicio de NY está dentro de la vela de las 5 (el movimiento puede darse ya ahí) [10:53–11:24, c-0062, c-0071, c-0070]. En 6h: vela de las 23 engloba London, vela de las 5 engloba NY [11:51–12:04, c-0067].
+
+**R12 · Tras objetivo completado en London.** Esperar: toma del low → nuevo rango → reversión en New York [11:24, c-0068]. Operativa: objetivo bajista completado + nuevo low + reacción en la vela de las 5 ⇒ esa es la vela a operar para NY [12:11, c-0076].
+
+**R13 · Noticias: operar la vela que las contiene.** Noticia 8:30 ⇒ vela con volatilidad = la de las 5; "la de la 1 te la ahorras" [12:25–13:06, c-0075, c-0074, c-0072]. Causa explícita: "la noticia trae la volatilidad".
+
+**R14 · Condiciones de entrada en la vela de las 5.** Turtle Soup + rango a favor creados ⇒ entradas ideales en el Power of 3 de esa vela [13:06–13:21, c-0084, c-0083]. Siempre se quiere un Turtle Soup a favor de la tendencia [13:30, c-0081].
+
+**R15 · Coger la expansión, no forzarla.** Sin Turtle Soup y con objetivo ya alcanzado, el precio puede no moverse: pillar la expansión de NY en vez de forzar London [13:35–14:00, c-0080, c-0079, c-0078].
+
+**R16 · High Time Frame manda.** Comprar en TF inferior con la vela de la TF superior sin rango creado ⇒ stop loss; el precio crea primero el rango superior y luego se mueve [14:15–14:54, c-0088, c-0087, c-0086]. Se aplica a todo (8h igual) [14:01, c-0089]; verificado con diario de Libra (venta), diario abriendo vela nueva, y long a las 12 con vela de 4h de la 1 [15:03–17:05, c-0093, c-0092, c-0090, c-0096, c-0094].
+
+---
+
+Conteo: 16 reglas (R1–R16; `documentation.md` las agrupa en 14 bloques). Toda regla conserva su fuente; nada aquí está inventado ni generalizado más allá del capítulo.
