@@ -83,7 +83,7 @@ tags:
 ## Skill Feedback
 
 - Skill that worked well: bootstrap cold start y session-close por delta (clasificador claro).
-- Skill that was confusing: materialize_schema_note exig/types slug distintos del nombre de archivo de template (session vs session-summary) — menor, resuelto leyendo el contrato.
+- Skill that was confusing: materialize_schema_note expone slugs distintos del nombre de archivo de template (session vs session-summary) — menor, resuelto leyendo el contrato.
 - Trigger/routing gap: ninguno.
 - Suggested contract change: ninguno.
 
