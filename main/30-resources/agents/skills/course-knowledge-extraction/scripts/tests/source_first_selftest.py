@@ -144,15 +144,15 @@ def main():
         rc9, out9 = run(lib9)
         ok &= check("9 adjudicación [ASR] explícita -> PASS", rc9 == 0 and out9["findings"] == [])
 
-        # 10: aliases custom con formato rico por --groups
+        # 10: formato rico por --groups (términos con y sin aliases)
         lib10 = build_lib(tmp + "10", [
             {"id": "c-0001", "statement": "el NFP lleva el precio con esa volatilidad",
              "evidence": ["s-000030"], "verdict": "SUPPORTED"}])
-        rc10, out10 = run(lib10, ("--groups",
-                                  json.dumps([{"term": "NFP", "aliases": ["en cepe"]}])
-                                  .replace("en cepe", "NCP")))
-        ok &= check("10 aliases custom (formato rico) -> MATERIAL",
-                    rc10 == 1 and out10["findings"][0]["published"] == "NFP")
+        rc10, out10 = run(lib10, ("--groups", json.dumps(
+            [{"term": "NFP", "aliases": []}, {"term": "NCP", "aliases": []}])))
+        ok &= check("10 formato rico -> MATERIAL",
+                    rc10 == 1 and out10["findings"][0]["published"] == "NFP"
+                    and out10["findings"][0]["source_has"] == ["NCP"])
     finally:
         shutil.rmtree(tmp)
     print("SOURCE_FIRST_SELFTEST =", "PASS" if ok else "FAIL")
