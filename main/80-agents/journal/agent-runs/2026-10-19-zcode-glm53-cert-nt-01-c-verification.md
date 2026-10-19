@@ -11,12 +11,12 @@ entities: []
 related: []
 aliases: []
 agent_surface: "[[Codex]]"
-agent_model: unknown
+agent_model: GLM-5.3-Flash
 model_source: unknown
-task_type: coding
-task_complexity: unknown
-outcome: partial
-verification: not_run
+task_type: review
+task_complexity: high
+outcome: success
+verification: passed
 evaluator: agent
 user_rework: unknown
 source_session:
@@ -32,19 +32,16 @@ tags:
 
 ## Trabajo
 
-- **Objetivo:**
-- **Alcance atribuible a esta combinación superficie×modelo:**
-- **Artefactos afectados:**
+- **Objetivo:** Especialista C (VERIFICACION_INDEPENDIENTE, READ-ONLY) del mandato CERT-NT-01: re-verificación independiente V1–V6 del despliegue y del estado final seguro; clasificación de casos C4 laboratorio vs físicos; spot-check del ledger y del checklist Owner. ONE-SHOT, sin mutaciones.
+- **Alcance:** release identity (HEAD/remoto/binario en ejecución), composición y ruta aplicada (7 owners, bootstraps consumidos, retention drain, job 38/38 sin excepciones, FX lag 0), controles de bloqueo (clave de armado ABSENTE por cliente crudo, 0 procesos bridge, sin :9771, snapshot byte-verificado con asociación disabled y cero cuentas del Owner, sin consumidores de órdenes), incidentes (credencial restaurada sha/mod_rev verificados, ventana FX acotada), ledger vs realidad (todo consistente).
 
 ## Evidencia
 
-- **Validaciones ejecutadas:**
-- **Resultado observable:**
-- **Limitaciones de la evidencia:**
+- **Validaciones:** verificaciones propias re-ejecutadas con comandos y salidas en `~/aranea/work/cert-nt-01-c/HANDOFF-C.md` (+ snapshot verificado byte a byte).
+- **Resultado observable:** veredicto C5_READY con findings no bloqueantes F1–F5 (F1: alineación de provider_account_ref a Sim101 al armar C3; F2: grupo drain sin mensajes aún; F3: re-inspección de procesos .132 al recuperar sesión MCP; F5: nota stale en BUILD.md). 1 UNKNOWN acotado: procesos .132 por sesión MCP expirada — evidencia indirecta fuerte (frames del relay con orders/positions vacíos).
+- **Limitaciones:** no re-verificó el terminal .132 directamente (sesión MCP expirada a nivel servidor); lo marcó UNKNOWN sin inventar acceso.
 
 ## Evaluación
-
-%% Scores opcionales 1–5: agregar al frontmatter sólo cuando exista evidencia suficiente. Si son autoevaluados, conservar evaluator: agent. %%
 
 - **Correctness:**
 - **Autonomy:**
@@ -54,6 +51,5 @@ tags:
 
 ## Resultado
 
-- **Outcome:**
-- **Rework posterior:**
-- **Aprendizaje para comparar herramientas:**
+- **Outcome:** success — verificación independiente completa de lo ejecutable; estado «observación activa segura» confirmado con 5 capas de bloqueo de egress.
+- **Rework posterior:** unknown.
