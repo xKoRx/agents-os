@@ -111,7 +111,7 @@ def main():
         validate = os.path.join(here, "validate_review.py")
     minutes = a.minutes
     if not minutes:
-        minutes = sorted({int(m[7:-5].lstrip("0") or "0")
+        minutes = sorted({int(m[len("review-min"):-5].lstrip("0") or "0")
                           for m in os.listdir(os.path.join(a.run, "reviews"))
                           if m.startswith("review-min") and m.endswith(".json")})
     sys.exit(integrate(a.run, a.lib, minutes, dry=a.dry_run, validate=validate))
