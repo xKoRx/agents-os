@@ -45,6 +45,10 @@ tags:
 - **Resultado observable:** `STATUS: S03_READY_FOR_MANAGER_REVIEW`; **VERDICT: REQUIERE_CORRECCION**; **G3 = `review`** (nunca accepted). STOP: S04 NO INICIADO; sin deploy/egress/correcciones.
 - **Limitaciones de la evidencia:** PHYSICAL_NOT_DEMONSTRATED vigente (AddOn C#, terminal NT real, productor contable LIVE, runtime contra clúster Kafka/StateFun real); mi variación integrada se ejercitó a nivel reducer (los E2E del implementador se ejecutaron, no se reescribieron).
 
+## Resultado
+
+`STATUS: S03_READY_FOR_MANAGER_REVIEW` — **VERDICT: REQUIERE_CORRECCION** (S03-F01 P1 confirmado con repro rojo; S03-O01/O02 documentadas). **G3 = `review`**, nunca accepted. Producto sin cambios; master intacto. STOP: S04 NO INICIADO.
+
 ## Evaluación
 
 %% Scores opcionales 1–5: agregar al frontmatter sólo cuando exista evidencia suficiente. Si son autoevaluados, conservar evaluator: agent. %%

@@ -455,7 +455,7 @@ Base: `2595934d80c084694a31619fac8a3ecf1e0454d1` (HEAD local == remoto al inicia
 
 ## Evidencia S03
 
-**Auditoría ejecutada 2026-10-18 (GLM-5.3-Flash, LOCAL, one-shot, sin subagentes; WORK_FUNCTION: verificador adversarial; PRIMARY MANAGER: GPT-6; OWNER: KoR).** Candidato `36e5b27c7de9ad7be5a5b78b3f74e4b8129fd3aa` fijado en checkout aislado `/home/kor/aranea/work/ef-rp-s03-audit-20261018/echo` (HEAD == candidato, rama sin avanzar, árbol de producto intacto: `git status` = sólo untracked de auditoría; master remoto intacto `d74b6525`; backtester sin delta). Delta auditado: COMPLETO `d74b6525..36e5b27c` (109 archivos, +32.696/−705; 58 productivos + tests).
+**Auditoría ejecutada 2026-10-18 (GLM-5.3-Flash, LOCAL, one-shot, sin subagentes; WORK_FUNCTION: verificador adversarial; PRIMARY MANAGER: GPT-6; OWNER: KoR).** Candidato `36e5b27c7de9ad7be5a5b78b3f74e4b8129fd3aa` fijado en checkout aislado `aranea/work/ef-rp-s03-audit-20261018/echo` del workspace de agente (HEAD == candidato, rama sin avanzar, árbol de producto intacto: `git status` = sólo untracked de auditoría; master remoto intacto `d74b6525`; backtester sin delta). Delta auditado: COMPLETO `d74b6525..36e5b27c` (109 archivos, +32.696/−705; 58 productivos + tests).
 
 ### Dictamen
 
@@ -487,7 +487,7 @@ SOURCE_OBSERVED: estructura del delta vs mapa §15 (1:1, sin archivos fuera de a
 
 ### Artefactos durables
 
-Workspace de auditoría: `/home/kor/aranea/work/ef-rp-s03-audit-20261018/` — `echo/` checkout del candidato (producto intacto) con `v3/sdk/futures/pool/s03_audit_test.go` (reproductores S03-F01, untracked); `s03_strict_cov.py`; `suites_full.log`; `e2e_named.log`; `cov.prof` (perfil 36 MB). Clasificación /reuse: repros S03-F01 = **PERMANENT_REGRESSION** (oráculo contractual rojo→verde para S04); `s03_strict_cov.py` = **HARNESS_TOOLKIT_CANDIDATE**; logs = evidencia. Sin nuevo framework.
+Workspace de auditoría: `aranea/work/ef-rp-s03-audit-20261018/` (raíz del workspace de agente; workspace externo, no vault) — `echo/` checkout del candidato (producto intacto) con `v3/sdk/futures/pool/s03_audit_test.go` (reproductores S03-F01, untracked); `s03_strict_cov.py`; `suites_full.log`; `e2e_named.log`; `cov.prof` (perfil 36 MB). Clasificación /reuse: repros S03-F01 = **PERMANENT_REGRESSION** (oráculo contractual rojo→verde para S04); `s03_strict_cov.py` = **HARNESS_TOOLKIT_CANDIDATE**; logs = evidencia. Sin nuevo framework.
 
 ### /improve (fricciones reales)
 
@@ -505,7 +505,7 @@ Pendiente corrección tras G3 accepted; ningún fix atribuido.
 
 - 2026-10-18 — S03 CIERRE: auditoría adversarial independiente ejecutada sobre `36e5b27c` en checkout aislado (producto intacto, rama sin avanzar). **VERDICT: REQUIERE_CORRECCION** — S03-F01 (P1, DEFECTO_CONFIRMADO): respuesta CONFIRMED atrasada tras disable→re-enable se absorbe como stale y el claim provisional del provider queda sin revocador (cuenta enclavada); repro contractual ROJO en el candidato, listo para S04. +S03-O01 (supuesto de retención del topic de drenaje no demostrado) +S03-O02 (DRAINING sin autorecuperación ante ack ABORTED por pérdida de estado, conforme). Verificación: suites completas = exactamente 5 baseline por nombre; E2E 20/20 nominales PASS 0 skips; race 0; cobertura del delta reproducida con metodología propia 3820/4004 = 95.40% (converge con 95.38% del implementador). T3.1–T3.3 `[x]`; **G3 = `review`**; S04 NO INICIADO; sin deploy/egress/correcciones.
 
-- 2026-10-18 — S03 INICIO: despacho del Primary Manager registra **G2 = `accepted`** sobre `36e5b27c7de9ad7be5a5b78b3f74e4b8129fd3aa` (autoridad Primary Manager GPT-6, SHA exacto; habilita exclusivamente S03). Decisión persistida en estado actual/gates/bitácora; T3.1–T3.3 `[/]`. Auditor GLM (GLM-5.3-Flash, LOCAL, one-shot, sin subagentes); checkout aislado `/home/kor/aranea/work/ef-rp-s03-audit-20261018/echo` en HEAD == candidato, árbol limpio. Dictamen en «Evidencia S03» al cierre; G3 nunca accepted.
+- 2026-10-18 — S03 INICIO: despacho del Primary Manager registra **G2 = `accepted`** sobre `36e5b27c7de9ad7be5a5b78b3f74e4b8129fd3aa` (autoridad Primary Manager GPT-6, SHA exacto; habilita exclusivamente S03). Decisión persistida en estado actual/gates/bitácora; T3.1–T3.3 `[/]`. Auditor GLM (GLM-5.3-Flash, LOCAL, one-shot, sin subagentes); checkout aislado `aranea/work/ef-rp-s03-audit-20261018/echo` en HEAD == candidato, árbol limpio. Dictamen en «Evidencia S03» al cierre; G3 nunca accepted.
 
 - 2026-10-18 — MR1-DrainIngress CIERRE: el Manager encontró que NINGÚN manifiesto declaraba la ruta del topic de drenaje hacia echo/provider_rules (el harness entregaba directo — la frase «wiring de despliegue declarado» del cierre anterior era falsa, corregida). Ruta declarada en ambos module.yaml (earliest, at-least-once idempotente), publisher factorizado (drainpublish compartido ejecutable+harness), prueba dependiente del manifiesto (pin rojo-en-base + 5 negativos de ruta), mensaje consumido exigido (stored==publicado). Cobertura 95.38% estricta (3615/3790, −2 de la factorización contabilizado y aceptado por B-R1). SHA final `36e5b27c` pusheado y verificado; G2 = `review`; S03 NO INICIADO.
 
