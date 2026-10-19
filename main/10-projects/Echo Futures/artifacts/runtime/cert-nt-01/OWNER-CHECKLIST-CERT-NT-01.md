@@ -16,24 +16,27 @@ updated: "2026-10-19"
 
 # OWNER CHECKLIST — CERT-NT-01 (desbloqueo de gates C2/C3/C4)
 
-Estado de la certificación al 2026-10-19: release `feature/ef-runtime-pools@b13ef43d` desplegado y probado en el entorno canónico DEV (ledger «Certificación operativa CERT-NT-01» del planner). Quedan bloqueadas las fronteras físicas de NinjaTrader por dos dependencias que sólo el Owner puede ejecutar (ACL del terminal y market data de NT). Ninguna de las dos acciones arma ejecución: la sesión SIM se arma aparte, con el submanager, después.
+Actualizado 2026-10-19 tarde (RESUME-01): las dos acciones Owner originales YA FUERON EJECUTADAS y verificadas por canales del agente (feed vivo real; AddOn instalado y NT reiniciado). Quedan UN bloqueo del Manager (defecto P1 del release, abajo) y UNA única acción Owner puntual para C3 (el JSON de configuración del AddOn). Ninguna acción pendiente arma ejecución: la sesión SIM se arma aparte, con el submanager, después.
 
-## Acción 1 — Reconectar market data de NinjaTrader (desbloquea C2 completo)
+## Estado de las acciones originales (2026-10-19 RESUME-01)
 
-Síntoma verificado: el AddOn de feed reporta `market_events` congelado (15.451.883) desde ≤10:00Z; heartbeats y eventos de cuenta/órdenes sí fluyen. Es el mismo modo de fallo certificado en D6: la conexión **"Simulación"** de NT no se resuscribió tras el cierre de fin de semana y NT no reconecta solo.
+- **Acción 1 (reconectar «Simulación»): HECHA y verificada** — frames NQ 12-26 QUOTE/TRADE frescos llegan a Kafka (~90–234 msg/s, event_ts <2 min). El primer dato vivo reveló el **defecto P1 del release** (typename de market_stream rechazado por StateFun → crash-loop del job); el submanager ejecutó el rollback documentado del module (FX-only, estable). **El pipeline futures NO enruta market data hasta que el Manager corrija el typename y re-despliegue el module** (`module.yaml.certnt01` preservado en dev .75). Esta corrección es del Manager, NO del Owner.
+- **Acción 2 (cargar AddOn de ejecución): HECHA por el Owner** — NT reiniciado (PID 8556), el Custom assembly está vivo tras el restart (el AddOn de feed sigue publicando) y el Owner reporta compilación exitosa tras resolver los duplicados. Matiz técnico (UNKNOWN V8): desde los canales del agente NO es demostrable QUÉ versión quedó instalada (NT conserva el último ensamblado bueno si la compilación fallara); si el Owner quiere cerrarlo, basta ejecutar UNA vez en su sesión: `Get-FileHash "C:\Users\KoR\Documents\NinjaTrader 8\bin\Custom\AddOns\**\EchoExecutionAddOn.cs"` y compartir el/los hash(es) con el submanager (esperado `a93a6a1e…` del release, una sola copia).
 
-1. En NinjaTrader (dev-win .132, sesión `KoR`): Control Center → Connections → reconectar **"Simulación"** (o botón derecho sobre la conexión → Connect).
-2. Confirmar datos de **NQ 12-26** vivos (ventana de mercado cotizando).
-3. Señal observable sin tocar nada más: en ~1 minuto, `journalctl --user -u echo-nt-feed-relay -f | grep market_events` (en Daedalus) vuelve a avanzar, y el offset de `echo.futures.market-feed-candidates.v1` (grupo `echo-statefun-futures-market-feed`) avanza con datos frescos. Con eso, el pipeline desplegado (feed → barras → analytics → Strategy) entra en observación con datos utilizables por sí solo; no se requiere ninguna otra acción del Owner.
+## Única acción Owner pendiente para C3 — JSON de configuración del AddOn
 
-## Acción 2 — Cargar el AddOn de ejecución (desbloquea C3-ready)
+El archivo `echo-execution-addon.json` **nunca fue entregado** (el staging `C:\Users\TEMP\certnt01` ya no existe). Sin ese archivo el AddOn de ejecución queda fail-closed con sus lanes caídas (estado SEGURO actual: cero capacidad de orden). El submanager preparará el JSON (con token real y binding `Sim101 → 192.168.31.161:9771`) al momento de armar la sesión SIM, y en ese momento pedirá al Owner la copia puntual a `C:\Users\KoR\Documents\NinjaTrader 8\echo\echo-execution-addon.json` + un reinicio de NT. NO entregar ni copiar JSONs con tokens por canales no acordados.
 
-El release trae `EchoExecutionAddOn.cs` (multi-binding, ya compilado sin errores contra las assemblies reales de NT 8.1.8.3; evidencia en el ledger). El sandbox del agente NO puede escribir en `C:\Users\KoR\Documents` (verificado `WRITE_DENIED`), por lo que la copia y el reinicio de NT son del Owner.
+## Qué queda PROHIBIDO para cualquiera (vigente)
 
-1. Verificar antes de reiniciar NT (terminal compartido): sin posiciones ni órdenes activas del Owner en las cuentas RJARA del terminal. El reinicio de NT no toca los bridges MT4/MT5 (procesos separados) y el relay de feed tolera la reconexión (~segundos).
-2. Copiar `C:\Users\TEMP\certnt01\EchoExecutionAddOn.cs` → `C:\Users\KoR\Documents\NinjaTrader 8\bin\Custom\AddOns\EchoExecution\EchoExecutionAddOn.cs` (crear la carpeta `EchoExecution`).
-3. (Opcional ahora, obligatorio antes de armar SIM) Copiar también `C:\Users\TEMP\certnt01\echo-execution-addon.json` → `C:\Users\KoR\Documents\NinjaTrader 8\echo\echo-execution-addon.json`. El archivo entregado por el submanager llevará el token real y el binding SIM (`Sim101` → lane `192.168.31.161:9771`). Mientras no exista el puente escuchando, el AddOn queda con sus lanes caídas y sin efecto (sólo reintentos en log).
-4. Reiniciar NinjaTrader. NT compila el `Custom` folder al arrancar e instancia el AddOn (sin ventana ni interacción). Si algo fallara al compilar, NT arranca igual y lo reporta en su log — avisar al submanager con ese log.
+- Habilitar `futures-bridge/accounts` (clave de armado), iniciar `futures-bridge`, o poner `enabled=true` en la asociación `certnt01-a1` sin un despacho explícito del Manager (eso ES armar ejecución).
+- Ejecutar/cancelar órdenes en cuentas RJARA\*/E2T del Owner. SIM autorizada para esta certificación: **Sim101** exclusivamente.
+- Mergear `feature/ef-runtime-pools` a master o tocar Echo PROD.
+
+## Reanudación de la certificación
+
+Orden de desbloqueo: (1) Manager corrige el typename de `market_stream` (+ test de gramática de typename) y re-despliega el module verbatim; (2) submanager arma la sesión SIM: token + binding + `futures-bridge/accounts` SOLO con la cuenta de certificación, entrega del JSON al Owner, verificación de binding Sim101; (3) smoke del gateway y recorrido Strategy→MM→NT/SIM (C3); (4) rotación/recuperación/economía (C4, con `MULTIACCOUNT_NT_NOT_EXECUTED` si no hay más cuentas NT SIM autorizadas); (5) verificación independiente (C5) y estado final seguro (ejecución automática deshabilitada).
+
 
 ## Qué queda PROHIBIDO para cualquiera (vigente)
 
