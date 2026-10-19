@@ -34,7 +34,7 @@ Biblioteca de conocimiento del cuarto video del curso Clutifx, extraída con la 
 | Claims totales | 119 |
 | SUPPORTED / UNCERTAIN / UNVERIFIED | 111 / 8 / 0 (los UNCERTAIN son garbles ASR irresolubles o deícticos sin frame; visibles en documentación y [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/OPEN-QUESTIONS|OPEN-QUESTIONS]]) |
 | Claims activos / superseded | 119 / 0 (sin supersessions en este capítulo) |
-| Epistemic | 109 instructor_statement · 9 visual_observation (todas con frame verificado en `evidence`) · 0 model_inference (c-0016 adjudicada) |
+| Epistemic | 110 instructor_statement · 9 visual_observation (todas con frame verificado en `evidence`) · 0 model_inference (c-0016 adjudicada V13) |
 | Contradicciones marcadas | 1 (c-0078 TP arriba/abajo → UNCERTAIN) |
 | Frames base (fin de minuto) | 28 (minutos 0–26 en MM:59.5 + fin del parcial f-002734, pantalla negra; manifiesto `frames/.base_frames`) |
 | Frames bajo demanda | 77 (extraídos y verificados visualmente por los MINUTE_REVIEWERs, nombres por fórmula desde segundos reales) |
