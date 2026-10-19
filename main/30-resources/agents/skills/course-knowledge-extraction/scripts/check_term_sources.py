@@ -37,8 +37,10 @@ Exit 0 = PASS, 1 = FINDINGS (MATERIAL o REVIEW), 2 = uso/IO.
 import argparse, json, os, re, sys
 
 DEFAULT_GROUPS = [
-    {"term": "DOL", "aliases": ["el doble", "doble", "doll", "dole", "dolls"]},
-    {"term": "DXY", "aliases": []},
+    # UN grupo crítico: DOL (objetivo de liquidez) vs DXY (índice del dólar),
+    # con los garbles ambiguos conocidos del ASR como aliases de grupo.
+    [{"term": "DOL", "aliases": ["el doble", "doble", "doll", "dole", "dolls"]},
+     {"term": "DXY", "aliases": []}],
 ]
 WORD = lambda t: re.compile(r"\b" + re.escape(t) + r"\b")          # case-sensitive: siglas
 WORD_I = lambda t: re.compile(r"\b" + re.escape(t) + r"\b", re.I)  # fuente: el ASR no capitaliza
@@ -70,7 +72,7 @@ def main():
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args()
     lib = args.library
-    groups = normalize_groups(json.loads(args.groups)) if args.groups else DEFAULT_GROUPS
+    groups = normalize_groups(json.loads(args.groups)) if args.groups else normalize_groups(DEFAULT_GROUPS)
 
     segs = {}
     for line in open(os.path.join(lib, "transcript.md"), encoding="utf-8"):
