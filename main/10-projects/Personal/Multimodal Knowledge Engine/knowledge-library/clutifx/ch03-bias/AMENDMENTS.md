@@ -119,6 +119,16 @@ git).
 - **Evidencia revisada:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001229|s-001229]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-004059.png|f-004059]]
 - **Resultado:** notes alineadas; statements intactos.
 
+## amend-ch03-12
+
+- **Claim:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0080|c-0080]] (ID preservado)
+- **Fecha:** 2026-10-18
+- **Motivo:** la note y el review_reason interpretaban "el doble está bearish = el DXY está bearish (glosario)"; el referente correcto es DOL (el objetivo/liquidez apunta abajo; contexto s-001405–s-001417 — depende de dónde están los objetivos de TF alta; s-001229 + f-004059). Hallado por la verificación independiente post-remediation (DVR-02).
+- **Anotación anterior:** notes con equivalencia DXY.
+- **Anotación nueva:** notes con lectura DOL + marcador de corrección en review_reason; statement (garble preservado) intacto.
+- **Evidencia revisada:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001411|s-001411]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001229|s-001229]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-004059.png|f-004059]]
+- **Resultado:** notes corregidas; verdict/epistemic intactos.
+
 ---
 
 Nota de contexto: las correcciones de fidelidad hechas durante la integración
