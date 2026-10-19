@@ -1,10 +1,41 @@
 # METHODOLOGY-FEEDBACK — Clutifx (Course Intelligence)
 
-Feedback de método del curso Clutifx. Objetivo: mejorar Chapter 04 y los ~200
-videos siguientes, no justificar decisiones pasadas. Estado tras la extracción
-de Chapter 03 (2026-10-18). Los bloques OBSERVED/REPAIRED de Chapter 02 se
-conservan abajo (§Ch02). La skill canónica quedó en v1.2 con hardening ch03;
-NO se toca aquí la decisión de Owner sobre ASR.
+Feedback de método del curso Clutifx. Objetivo: mejorar los videos siguientes,
+no justificar decisiones pasadas. Estado tras Chapter 04 (2026-10-19), que
+incluyó el preflight de continuidad (supersession safety + remediation DOL/DXY
+de ch02 + hardening SOURCE-FIRST). Los bloques OBSERVED/REPAIRED de Chapters
+02/03 se conservan abajo (§Ch03, §Ch02). La skill canónica quedó en v1.2 con
+hardening ch03+ch04; NO se toca aquí la decisión de Owner sobre ASR.
+
+## PREFLIGHT (2026-10-19, obligatorio antes de Chapter 04 — PASS 5/5)
+
+- **Supersession safety**: los 6 históricos de ch03 mantenían `verdict: SUPPORTED` y la proyección CLAIMS.md los mostraba como vigentes → contaminación de consultas. Contrato nuevo: GROUNDING_VERDICT (SUPPORTED/…) ≠ LIFECYCLE_STATUS (activo/superseded derivable de `superseded_by`; SIN propiedad redundante). Renderer marca `SUPERSEDED — HISTORICAL, NOT ACTIVE` + `Replacement:` navegable; validador V14 (superseded_by/supersedes bidireccional, sin ciclos), V15 (proyección con lifecycle), V16 (docs pedagógicos sin WIKILINKS a reemplazados — la mención histórica en texto plano es rastro de auditoría permitido), V10 (fila `Claims activos / superseded` obligatoria con reemplazos). Contract tests: `lifecycle_selftest.py` (10 casos). ch03 aplicado: 211/6, VALIDATION PASS.
+- **DOL/DXY en ch02**: la remediation de ch03 dejó ch02 intacta "para no tocar sin evidencia"; el preflight la adjudicó con la fuente de ch02: c-0066 y c-0089 publicaban DXY donde la fuente dice "el doble"/"dol" (s-001005/s-001010) y "a por tu dol, perdón, a por tu objetivo" (s-001401) → DOL_CONFIRMED ×2, 2 supersessions (c-0099/c-0100), amend-0003/0004, docs/glosario/índice actualizados. ch03 semánticamente intacto; ch01 intacto.
+- **SOURCE-FIRST hardening**: `check_term_sources.py` ahora es case-insensitive en el lado fuente (un "dol" minúscula del ASR cuenta como canónico) y trata los garbles ambiguos ("el doble", "doll", "dole", "dolls") como aliases de grupo: canónico en statement + alias en fuente sin marca `[ASR]` ⇒ `TERM_DISAMBIGUATION_REQUIRED` (REVIEW; el chequeo no decide el término). Selftest 10 casos con los casos REALES de ch03 y ch02. La verificación determinista detecta la necesidad de revisión; el reviewer adjudica.
+
+## CH04 OBSERVED (medido en Chapter 04, sin corregir)
+
+| Métrica | Valor |
+|---|---|
+| Video | ep04-entradas.mp4 · 27:35.4 · SHA `f69f7d62…` |
+| ASR_WALL | **4h10m** (0,11× realtime; máquina compartida con jobs de backtest ~400 % CPU — el rate canónico era 0,21–0,38×; la carga externa dominó el total) |
+| EXTRACT_WALL | 15,3 min (6 EXTRACTORs paralelos, 119 claims) |
+| REVIEW_WALL | 91,9 min (28 MINUTE_REVIEWERs, 4 olas de 5/7/7/9; verificación visual frame-a-frame) |
+| AGENT_WALL | 107,2 min / 27,6 min video ≈ **233 min/h-video** (objetivo ≤120; banda 2× = 240 → continúa; igual que ch03) |
+| Claims | 119 (111 SUPPORTED / 8 UNCERTAIN / 0 UNVERIFIED) · 109 instructor_statement (incluye c-0016 adjudicada) + 9 visual_observation · 0 model_inference · 33 con preguntas sin resolver |
+| Frames | 28 base + 77 bajo demanda = 105; 97 citados en evidence |
+| Revisión independiente (DOCVERIFY) | ver handoff; ejecutada sobre la biblioteca publicada con puntos de contraste SOURCE-FIRST obligatorios |
+| Checkpoint 5 min | PASS (21/21 VALID; proyección 152 min/h-video; real 233 — dentro de banda) |
+
+## CH04 LEARNED (para ep05+)
+
+1. **La corrección de statement por el reviewer funciona**: 7 corrections_suggested aplicadas en integración (marcas [ASR], género literal, niveles leídos con zoom); el flujo "reviewer propone, integrador aplica al pool, validate_review por minuto" evitó toda edición manual canónica.
+2. **El reviewer puede RECHAZAR evidencia del extractor** (c-0083: frame mostraba 4h, no 1h): la regla "no aceptar un frame que no muestre lo afirmado" operó de verdad; los visual_hints erróneos del extractor (3) quedaron documentados en reasons sin contaminar statements.
+3. **Los UNCERTAIN son productivos**: 8/119 (6,7 %) por garbles/deícticos, todos con pregunta abierta trazada (19 q-ch04-*). Mejor dudoso visible que falso SUPPORTED.
+4. **Las colas de las olas dominan el makespan**: la ola de 9 tardó ~31 min (los reviewers pesados ~1,5-1,9 h de subagente con muchas lecturas de frames). Para ep05+ considerar despacho por tamaño de payload ya probado en ch03.
+5. **El ASR sigue siendo el cuello absoluto** (4h10m para 28 min por carga externa): la decisión Owner (GPU/modelo menor) sigue abierta; con la máquina despejada el rate vuelve a ~0,2-0,38×.
+6. **Normalizar refs `f-` en el integrador**: los reviewers escribieron 6 evidencias como `f-XXXXXX.png` (con sufijo); el integrador ahora las normaliza (el fix se hizo post-integración; incorporarlo a integrate_reviews.py).
+
 
 ## REMEDIATION (2026-10-18 noche — DOL/DXY + probe ASR, mandato Primary Manager)
 
