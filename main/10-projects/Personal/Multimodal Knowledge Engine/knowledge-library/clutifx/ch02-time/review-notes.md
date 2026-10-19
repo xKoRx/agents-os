@@ -57,3 +57,9 @@ Presupuesto orientativo de la skill: ~0,5–1 frame/minuto bajo demanda. Aquí f
 - **P4 c-0066**: adjudicación A — el condicional DXY es proyección hablada del instructor (s-001005/s-001010): reclasificada instructor_statement, SUPPORTED se mantiene por fidelidad textual.
 - **P4 c-0056**: parcialmente resuelto (PARTIALLY_RESOLVED tras la recalificación B2 — ver sección anterior y q-ch02-001).
 - **Validador**: `course-knowledge-extraction/scripts/validate_library.py` — RED capturado sobre el estado pre-reparación (V07×27, V08×38, V05 f-170903, V10 conteos, V11 históricos) y PASS esperado tras la reparación; manifiesto en `repair/REPAIR-BASELINE.json`.
+
+## Remediation terminológica DOL/DXY (2026-10-19, preflight ch04)
+
+- **Alcance**: la auditoría SOURCE-FIRST extendida (chequeo case-insensitive + garbles ambiguos) demostró que las dos lecturas DXY del capítulo no tienen respaldo en la fuente: c-0066 publicaba "el DXY" donde la fuente dice "el doble" (s-001005) y "dol" (s-001010); c-0089 publicaba "a por tu DXY" donde la fuente dice "a por tu dol, perdón, a por tu objetivo" (s-001401, con autocorrección del instructor). En todo el transcript de ch02 no hay ninguna mención literal de DXY/índice/dólar: los únicos referentes son garbles de DOL.
+- **Adjudicación**: DOL_CONFIRMED en ambos (amend-0003/amend-0004). La semántica del draw (DOL bearish → sigue para abajo; DOL bullish → toma el low y sube), el frame f-001030 (sólo gráfico EURUSD 1h, sin panel de índice) y la correlación EURUSD/DXY descartan la lectura de índice en la rama bearish de c-0066.
+- **Las tablas de garbles históricas de este documento ("el dol"→el DXY) registran lo que la revisión ORIGINAL hizo; quedan como historia.** El mapeo vigente es "el dol/el doble"→DOL (ver GLOSSARY.md del curso), y los claims vigentes son c-0099/c-0100.

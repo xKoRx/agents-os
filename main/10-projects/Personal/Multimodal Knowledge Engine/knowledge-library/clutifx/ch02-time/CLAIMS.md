@@ -875,6 +875,10 @@
 
 ### c-0066
 
+**SUPERSEDED — HISTORICAL, NOT ACTIVE**
+
+**Replacement:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0099|c-0099]]
+
 **Statement:** A las 5 seguramente va a tomar el low de este y, si el DXY está bearish, va a seguir para abajo; si el DXY está bullish, va a tomar el low, crear un rango bullish y subir.
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** observation · **Minute:** 10 · **Source key:** C-01
@@ -887,7 +891,7 @@
 
 **Visual hint:** 10:05 — Gráfico en vivo: low candidato de la vela de las 5 y los dos escenarios proyectados según el DXY.
 
-**Notes:** Fidelidad: statement replica s-001005/s-001010 casi literal ('seguramente va a tomar el low de este...'). El condicional ES textual en el ASR ('y si el doble está veris va a seguir para abajo y si el dol está bullish va a tomar el low crear un rango bullish y subir'): no está aplanado; solo los términos del DXY se reconstruyen vía glosario ('el doble está veris'='el DXY está bearish', 'el dol'=DXY), lo que justifica el epistemic model_inference. 'A las 5' proviene textualmente de s-000954 ('que va a hacer a las 5'). Deíctico 'el low de este' preservado sin resolverlo a un objeto específico, igual que el original. Soporte visual (f-001006, f-001018, f-001030): gráfico 1h EURUSD con low candidato por debajo (~1.5802) y en f-001030 el escenario se dibuja en pantalla: bajada al low y flecha amplia al alza (~1.65), es decir 'tomar el low, crear un rango bullish y subir'; la rama DXY-bearish ('seguir para abajo') es verbal, no dibujada por separado. Sin duplicaciones. | P1: Escenario condicional hablado por el instructor, textual en el ASR (s-001005/s-001010: 'si el dol esta bearish va a seguir para abajo y si el dol esta bullish va a tomar el low crear un rango bullish y subir'); solo los terminos del DXY se reconstruyen por glosario. La rama DXY-bearish ('seguir para abajo') no esta dibujada por separado. f-001030 muestra el low candidato marcado (linea+punto en ~1,5802) y la rama bullish dibujada (bajada al low y flecha al alza hasta ~1,65), consistente con 'tomar el low, crear un rango bullish y subir'. | P4: adjudicación A — el condicional 'si el DXY está bearish... si está bullish...' es textual del instructor (s-001005/s-001010, proyección hablada); frame f-001030 adjunto como contexto del low candidato, no como prueba de la proyección.
+**Notes:** Fidelidad: statement replica s-001005/s-001010 casi literal ('seguramente va a tomar el low de este...'). El condicional ES textual en el ASR ('y si el doble está veris va a seguir para abajo y si el dol está bullish va a tomar el low crear un rango bullish y subir'): no está aplanado; solo los términos del DXY se reconstruyen vía glosario ('el doble está veris'='el DXY está bearish', 'el dol'=DXY), lo que justifica el epistemic model_inference. 'A las 5' proviene textualmente de s-000954 ('que va a hacer a las 5'). Deíctico 'el low de este' preservado sin resolverlo a un objeto específico, igual que el original. Soporte visual (f-001006, f-001018, f-001030): gráfico 1h EURUSD con low candidato por debajo (~1.5802) y en f-001030 el escenario se dibuja en pantalla: bajada al low y flecha amplia al alza (~1.65), es decir 'tomar el low, crear un rango bullish y subir'; la rama DXY-bearish ('seguir para abajo') es verbal, no dibujada por separado. Sin duplicaciones. | P1: Escenario condicional hablado por el instructor, textual en el ASR (s-001005/s-001010: 'si el dol esta bearish va a seguir para abajo y si el dol esta bullish va a tomar el low crear un rango bullish y subir'); solo los terminos del DXY se reconstruyen por glosario. La rama DXY-bearish ('seguir para abajo') no esta dibujada por separado. f-001030 muestra el low candidato marcado (linea+punto en ~1,5802) y la rama bullish dibujada (bajada al low y flecha al alza hasta ~1,65), consistente con 'tomar el low, crear un rango bullish y subir'. | P4: adjudicación A — el condicional 'si el DXY está bearish... si está bullish...' es textual del instructor (s-001005/s-001010, proyección hablada); frame f-001030 adjunto como contexto del low candidato, no como prueba de la proyección. SUPERSEDED por c-0099 (2026-10-19, amend-0003): el statement publicaba 'el DXY' donde la fuente dice 'el doble' (s-001005) y 'dol' (s-001010) — la normalización DXY era incorrecta; el referente es DOL (objetivo de liquidez al que va el precio). El claim histórico se preserva sin renumerar; ver AMENDMENTS.md del capítulo.
 
 ### c-0067
 
@@ -1189,6 +1193,10 @@
 
 ### c-0089
 
+**SUPERSEDED — HISTORICAL, NOT ACTIVE**
+
+**Replacement:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0100|c-0100]]
+
 **Statement:** Esto se puede aplicar a todo: en 8 horas lo que vas a querer ver es lo mismo, un rango a favor para ir a por tu tendencia —a por tu DXY, perdón, a por tu objetivo—.
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** rule · **Minute:** 14 · **Source key:** C-24
@@ -1197,7 +1205,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/transcript#^s-001401|14:01]]
 
-**Notes:** Evidence s-001401 pertinente y suficiente.
+**Notes:** Evidence s-001401 pertinente y suficiente. SUPERSEDED por c-0100 (2026-10-19, amend-0004): el statement publicaba 'a por tu DXY' donde la fuente dice 'a por tu dol, perdón, a por tu objetivo' — la normalización DXY era incorrecta; el instructor dice 'dol' y se autocorrige a 'objetivo'; el referente es DOL. El claim histórico se preserva sin renumerar; ver AMENDMENTS.md del capítulo.
 
 ### c-0090
 
@@ -1322,4 +1330,36 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/transcript#^s-001700|17:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/transcript#^s-001704|17:04]]
 
 **Notes:** Reformulación prácticamente literal de s-001700 ('O sea, el tema TimeFrames es muy importante por eso'), reforzada por el cierre s-001704 ('¿Vale?'). Es una declaración directa del instructor (cierre/conclusión del capítulo), no un hecho técnico verificable externamente; el veredicto se basa en fidelidad al audio, que es exacta. El frame f-001703 es pantalla negra con cursor (fin del video) y no aporta ni contradice contenido.
+
+### c-0099
+
+**Supersedes:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0066|c-0066]] (versión histórica preservada)
+
+**Statement:** A las 5 seguramente va a tomar el low de este y, si el DOL [ASR: 'el doble'/'dol'] está bearish, va a seguir para abajo; si el DOL está bullish, va a tomar el low, crear un rango bullish y subir.
+
+**Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** observation · **Minute:** 10 · **Source key:** C-01+remed
+
+**Tiempo:** [10:05–10:17]
+
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/transcript#^s-001005|10:05]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/transcript#^s-001010|10:10]]
+
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/frames/f-001030.png|f-001030]]
+
+**Visual hint:** 10:05 — Gráfico en vivo: low candidato de la vela de las 5 y los dos escenarios proyectados según el DOL.
+
+**Notes:** REMEDIACIÓN TERMINOLÓGICA (2026-10-19, amend-0003): sustituye a c-0066, que publicaba 'el DXY' donde la fuente dice 'el doble' (s-001005) y 'dol' (s-001010). Referente DOL (objetivo de liquidez) confirmado por: la palabra literal 'dol' en el ASR del instructor (s-001010), la autocorrección 'a por tu dol, perdón, a por tu objetivo' (s-001401, mismo capítulo), la estructura paralela del condicional (mismo referente en dos estados), la semántica del draw (DOL bearish → sigue para abajo; DOL bullish → toma el low y sube; la lectura DXY invertiría la correlación EURUSD/DXY en la rama bearish), el frame f-001030 (sólo gráfico EURUSD 1h con la rama alcista dibujada desde el low candidato, sin panel de índice) y la ausencia de cualquier mención literal de DXY/índice/dólar en todo el transcript de ch02. El veredicto SUPPORTED cubre el statement corregido; la revisión por minuto original validó la sustancia.
+
+### c-0100
+
+**Supersedes:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0089|c-0089]] (versión histórica preservada)
+
+**Statement:** Esto se puede aplicar a todo: en 8 horas lo que vas a querer ver es lo mismo, un rango a favor para ir a por tu tendencia —a por tu DOL [ASR: 'dol'], perdón, a por tu objetivo—.
+
+**Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** rule · **Minute:** 14 · **Source key:** C-24+remed
+
+**Tiempo:** [14:01–14:15]
+
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/transcript#^s-001401|14:01]]
+
+**Notes:** REMEDIACIÓN TERMINOLÓGICA (2026-10-19, amend-0004): sustituye a c-0089, que publicaba 'a por tu DXY' donde la fuente dice 'a por tu dol, perdón, a por tu objetivo' — el instructor dice 'dol' y se autocorrige a 'objetivo'; DXY no aparece en la fuente. Referente DOL confirmado además por s-001010 ('dol' literal en el ASR del instructor) y por la semántica del objetivo de precio del curso. El veredicto SUPPORTED cubre el statement corregido; la revisión por minuto original validó la sustancia.
 
