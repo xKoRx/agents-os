@@ -45,3 +45,7 @@ Actualización enfocada, sin reestructurar el proyecto. Se explicitan el fallo a
 ## Rollback
 
 Eliminar la entrada vigente de 2026-10-19 relativa a MV y restituir la fecha previa del frontmatter si se revoca este estado. El commit del repo se revierte mediante un commit normal, sin reescribir historia.
+
+## Delta de CI solicitado por el owner
+
+La primera entrega no comprobó el resultado final del pipeline; CI 6321 falló en una aserción prematura de un despacho asíncrono en x86. El commit test-only `e0c91cb8e` está publicado y pasó hooks y regresión completa local. Se actualiza el proyecto con CI pendiente, sin declarar entrega completa antes de observar el resultado remoto.

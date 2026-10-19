@@ -15,10 +15,10 @@ agent_model: unknown
 model_source: unknown
 task_type: debugging
 task_complexity: medium
-outcome: complete
+outcome: partial
 verification: partial
-evaluator: agent
-user_rework: unknown
+evaluator: mixed
+user_rework: required
 source_session:
 load_policy: manual
 indexable: false
@@ -50,3 +50,9 @@ Sin scores. Modelo exacto no expuesto de forma fiable por el host; se conserva `
 ## Resultado
 
 Corrección completa y publicada; verificación parcial por hallazgos estáticos heredados y fallo del runner agregado, conservados explícitamente. Toda la evidencia física de esta entrega es L0/L1 local; no acredita F1, navegador ni cinco aplicaciones.
+
+## Corrección solicitada por el owner — pipeline verde
+
+El owner señaló que el resultado debía incluir CI verde. El pipeline 6321 sobre `5be401023` terminó rojo: ARM PASS; x86 falló en `DeploymentFlowAcceptanceCriteria.restCallbackCompleted_whenResultReplayed_thenRunAndExecutionCompleted`, verificando el mock antes de que ocurriera la llamada asíncrona. Coverage/dependencies se abortaron por ese fallo. La condición está también en develop; el fix autorizado es test-only y conserva los conteos Mockito y las aserciones de negocio.
+
+Publicado `e0c91cb8ebe2497e6b3471a8c4fea8f0b56856e5`: espera acotada de cinco segundos en las dos verificaciones de despacho REST de la clase. Los cinco hooks aplicables PASS, focused 4/4 y regresión fresca 4889 casos/0 fallos/0 errores/2 skips heredados. El contrato staged declara correctamente que no cambió una superficie de comportamiento observable. Pendiente: resultado remoto del nuevo pipeline; no declarar entrega completa hasta comprobarlo.
