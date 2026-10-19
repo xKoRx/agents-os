@@ -1,0 +1,14 @@
+surface,host,estado_antes_incidente_20261019T1803Z,estado_durante_incidente_1803Z_1822Z,estado_despues_1822Z,estado_final_gates_20261019T23xxZ
+source_echoforgeoverviewexporter,zeus,03106b81 (sep-06 10:13:10, echo-dev:echo-dev 664),03106b81 — swap EACCES omitido (NUNCA reemplazado),b5f85c4e @ 18:22:43.495992Z (echo-dev:echo-dev 664),b5f85c4e PASS
+jar_user_libs_clase_main,zeus,S01-era (oct-18 01:21) 3b0063e4-era base,S02 3ec6e112 (swap kor OK @ 18:03:34.425Z),S02 3ec6e112,S02 3ec6e112 PASS
+snippets_jar_interno_clase_main,zeus,S01-era (oct-18 09:46),S02 3ec6e112 (swap kor OK @ 18:03:34.429Z),S02 — y re-escrito per-run desde fuente S02,S02 3ec6e112 PASS (ultimo rewrite 19:49:41Z)
+cache_compiled_clase_main,zeus,viejo 50876B (respaldado 18:04-18:08Z),viejo — canaries 1/2 recompilan fuente sep-6,S02 57804B,S02 3ec6e112 PASS
+bytecode_efectivo_ejecutado,zeus,n/a,exporter v1.2 canary1 @ 18:04Z y canary2 @ 18:09Z (0 markers),S02 canary3 @ 18:23Z marker 'Parallel workers: 3',S02 — E2E w11 + cert CPU + runs MT5Exporter
+source_echoforgeoverviewexporter,kronos,03106b81 (pre-deploy),b5f85c4e (swap kor OK, sello 175624Z live=src),b5f85c4e @ 16:31:22Z (kor:kor 664),b5f85c4e PASS
+jar_user_libs_clase_main,kronos,3b0063e4-era (pre-S02),S02 3ec6e112,S02 3ec6e112,S02 3ec6e112 PASS
+snippets_jar_interno_clase_main,kronos,pre-S02,S02 3ec6e112,S02,S02 3ec6e112 PASS
+cache_compiled_clase_main,kronos,AUSENTE (creado por canary 17:56Z),n/a,S02 3ec6e112,S02 3ec6e112 PASS
+source_echoforgeoverviewexporter,hera,03106b81 (pre-deploy),b5f85c4e (swap kor OK, sello 175925Z live=src),b5f85c4e @ 16:31:22Z (kor:kor 664),b5f85c4e PASS
+jar_user_libs_clase_main,hera,3b0063e4-era (pre-S02),S02 3ec6e112,S02 3ec6e112,S02 3ec6e112 PASS
+snippets_jar_interno_clase_main,hera,pre-S02,S02 3ec6e112,S02,S02 3ec6e112 PASS
+cache_compiled_clase_main,hera,AUSENTE (creado por canary 17:59Z),n/a,S02 3ec6e112,S02 3ec6e112 PASS
