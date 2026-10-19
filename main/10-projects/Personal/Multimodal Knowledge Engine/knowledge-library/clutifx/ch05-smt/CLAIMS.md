@@ -643,13 +643,13 @@
 
 **Statement:** En Euro sí que nos crea rangos pendientes.
 
-**Verdict:** SUPPORTED · **Epistemic:** visual_observation · **Kind:** observation · **Minute:** 9 · **Source key:** 
+**Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** observation · **Minute:** 9 · **Source key:** 
 
 **Tiempo:** [09:11–09:15]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-000911|09:11]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-000912|09:12]]
 
-**Notes:** Contraste explícito con libra sin rango a favor (B2-K24).
+**Notes:** Contraste explícito con libra sin rango a favor (B2-K24). | epistemic re-adjudicada visual_observation->instructor_statement en integración (la sustancia es la palabra dicha; razón del reviewer literal)
 
 ### c-0052
 
@@ -725,25 +725,25 @@
 
 **Statement:** En el ejemplo del día analizado, Euro bajó 100 pips.
 
-**Verdict:** SUPPORTED · **Epistemic:** visual_observation · **Kind:** observation · **Minute:** 10 · **Source key:** 
+**Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** observation · **Minute:** 10 · **Source key:** 
 
 **Tiempo:** [09:56–10:04]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-001000|10:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-001002|10:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-000956a|09:56]]
 
-**Notes:** La palabra 'pips' no se dice dentro del intervalo ('y Euro bajó' + '100', s-001000/s-001002); la unidad procede del segmento inmediatamente previo s-000956a [09:56, fuera de intervalo, bloque 2: 'Libra bajó 164 pips']. El contraste completo 164 (Libra) vs 100 (Euro) queda en el minuto 9 (bloque 2).
+**Notes:** La palabra 'pips' no se dice dentro del intervalo ('y Euro bajó' + '100', s-001000/s-001002); la unidad procede del segmento inmediatamente previo s-000956a [09:56, fuera de intervalo, bloque 2: 'Libra bajó 164 pips']. El contraste completo 164 (Libra) vs 100 (Euro) queda en el minuto 9 (bloque 2). | epistemic re-adjudicada visual_observation->instructor_statement en integración (la sustancia es la palabra dicha; razón del reviewer literal)
 
 ### c-0058
 
 **Statement:** En este caso la Libra fue el par más débil y sí que fue el par que estaba fallando en hacer el nuevo alto.
 
-**Verdict:** SUPPORTED · **Epistemic:** visual_observation · **Kind:** observation · **Minute:** 10 · **Source key:** 
+**Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** observation · **Minute:** 10 · **Source key:** 
 
 **Tiempo:** [10:02–10:08]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-001002|10:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-001004|10:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-001006|10:06]]
 
-**Notes:** El 'sí que fue' contrasta con la generalización anterior del capítulo (esa correspondencia 'a veces se cumple y a veces no', s-000321, min 3, fuera de intervalo): aquí se dio el caso en que se cumplió.
+**Notes:** El 'sí que fue' contrasta con la generalización anterior del capítulo (esa correspondencia 'a veces se cumple y a veces no', s-000321, min 3, fuera de intervalo): aquí se dio el caso en que se cumplió. | epistemic re-adjudicada visual_observation->instructor_statement en integración (la sustancia es la palabra dicha; razón del reviewer literal)
 
 ### c-0059
 
