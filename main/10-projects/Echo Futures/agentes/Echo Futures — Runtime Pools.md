@@ -10,7 +10,7 @@ parent: "[[Echo Futures]]"
 sprint:
 start:
 due:
-progress: 55
+progress: 95
 repo: "xKoRx/echo"
 jira:
 prs:
@@ -19,7 +19,7 @@ tags:
   - kind/project
   - area/echo
 created: "2026-10-16"
-updated: "2026-10-17"
+updated: "2026-10-19"
 ---
 
 # Echo Futures — Runtime Pools
@@ -537,7 +537,7 @@ Registrada y EJECUTADA dentro de este shot: las pruebas de disable ahora cubren 
 
 ### Límites, defectos y evidencia durable
 
-**KNOWN_DEFECTS:** ninguno del alcance abierto. **REGRESSIONS:** 0 nuevas; 5 baseline heredadas idénticas por caso/causa. **PHYSICAL_LIMITATIONS:** sin cambios — PHYSICAL_NOT_DEMONSTRATED (AddOn C# sin toolchain, terminal NT real, productor contable LIVE, runtime contra clúster Kafka/StateFun real); sin egress real. **DURABLE_EVIDENCE:** workspace `aranea/work/ef-rp-s04-fix-20261019/` (raíz del workspace de agente, fuera del vault): `red_repro_36e5b27c.log`, `originals_on_fixed_tree.log`, `s04_regressions_red_on_36e5b27c.log`, `s04_e2e_red_on_36e5b27c.log`, `suites_final_3684eaba.log`, `race_final_3684eaba.log`, `cov_final_b13ef43d.prof`, `coverage_strict_result.txt`, `s04_strict_cov.py`, `delta_packages.txt`, `diffstats_evidencia.txt`, `originales_s03/` (reproductores originales + SHA256SUMS). Delta S04: 5 archivos, +697/−9 (engine.go fix+docs, 2 tests nuevos, 2 module.yaml comentarios). Normalización autorizada por el mandato (referencia absoluta heredada S02 en validate_plan): aplicada — la única referencia `/home/…` del planner (worktree del Paso 0 de S02, línea del registro histórico) se reescribió a la referencia canónica `echo-runtime-pools` relativa a [[echo-go-workspace]], conservando el hecho histórico y registrando el cambio aquí; ningún otro path fue tocado.
+**KNOWN_DEFECTS:** ninguno del alcance abierto. **REGRESSIONS:** 0 nuevas; 5 baseline heredadas idénticas por caso/causa. **PHYSICAL_LIMITATIONS:** sin cambios — PHYSICAL_NOT_DEMONSTRATED (AddOn C# sin toolchain, terminal NT real, productor contable LIVE, runtime contra clúster Kafka/StateFun real); sin egress real. **DURABLE_EVIDENCE:** workspace `aranea/work/ef-rp-s04-fix-20261019/` (raíz del workspace de agente, fuera del vault): `red_repro_36e5b27c.log`, `originals_on_fixed_tree.log`, `s04_regressions_red_on_36e5b27c.log`, `s04_e2e_red_on_36e5b27c.log`, `suites_final_3684eaba.log`, `race_final_3684eaba.log`, `cov_final_b13ef43d.prof`, `coverage_strict_result.txt`, `s04_strict_cov.py`, `delta_packages.txt`, `diffstats_evidencia.txt`, `originales_s03/` (reproductores originales + SHA256SUMS). Delta S04: 5 archivos, +697/−9 (engine.go fix+docs, 2 tests nuevos, 2 module.yaml comentarios). Normalización autorizada por el mandato (referencia absoluta de máquina heredada de S02 que bloqueaba validate_plan): aplicada — la única ruta absoluta del planner (el worktree del Paso 0 de S02, registro histórico) se reescribió a la referencia canónica `echo-runtime-pools` relativa a [[echo-go-workspace]], conservando el hecho histórico y registrando el cambio aquí; ningún otro path fue tocado.
 
 ## 📆 Bitácora
 
