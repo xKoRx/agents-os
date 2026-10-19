@@ -43,6 +43,8 @@ R6 §12–18 del diseño; planificador (D1–D10, paquete Fase 3, T3.*, consolid
 - Build EXIT=0 del candidato; suites completas: exactamente los 5 fallos baseline por nombre/causa, 0 nuevas (40 paquetes ok).
 - E2E nominales 20/20 PASS 0 skips; race 0; cobertura del delta reproducida con metodología propia: 3820/4004 = 95.40% (implementador 3615/3790 = 95.38%; convergen ≥95%).
 - Reproductores S03-F01 ROJOS sobre el candidato (oráculo contractual R6 §12D.1): `go test ./v3/sdk/futures/pool/ -run 'TestS03F01' -count=1`.
+- `validate_plan.py` sobre el planner: phases=4/gates=4/dispatches=4/local_refs=4, **errors=1 PREEXISTENTE** (ruta absoluta `/home/kor/...` del registro histórico S02 «Paso 0 del submanager», regla `/(?:Users|home)/`; no saneada por S03 sin mandato — precedente S01 con el lint del padre). El delta S03 introdujo tres rutas de máquina y las normalizó a forma relativa al workspace antes del cierre: el error restante es 100% heredado.
+- `lint.py --strict` sobre agent-run/log/feedback nuevos: ERROR=0/WARN=0.
 - Verificación final de producto: `git status` = sólo untracked de auditoría; `git diff` vacío; HEAD == `36e5b27c`.
 - PHYSICAL_NOT_DEMONSTRATED vigente (AddOn C#, terminal NT real, productor contable LIVE, clúster Kafka/StateFun real). Sin deploy, sin egress, sin campañas.
 
