@@ -50,6 +50,21 @@ def main():
         t0, t1 = (min(a for a, _ in times), max(b for _, b in times)) if times else (None, None)
         L.append(f"### {cid}")
         L.append("")
+        # Lifecycle: un claim con superseded_by es historia preservada, no
+        # conocimiento vigente. La marca va PRIMERO, antes del statement, y el
+        # reemplazo es siempre navegable. (superseded_by => SUPERSEDED; no hay
+        # campo de lifecycle redundante.)
+        if c.get("superseded_by"):
+            sup = c["superseded_by"]
+            L.append("**SUPERSEDED — HISTORICAL, NOT ACTIVE**")
+            L.append("")
+            L.append(f"**Replacement:** [[{V.format(rel)}/CLAIMS#{sup}|{sup}]]")
+            L.append("")
+        if c.get("supersedes"):
+            prev = c["supersedes"]
+            L.append(f"**Supersedes:** [[{V.format(rel)}/CLAIMS#{prev}|{prev}]]"
+                     f" (versión histórica preservada)")
+            L.append("")
         L.append(f"**Statement:** {c['statement']}")
         L.append("")
         L.append(f"**Verdict:** {c['verdict']} · **Epistemic:** {c.get('epistemic','')} ·"

@@ -18,6 +18,12 @@ Chequeos (V01..V12, el número = hallazgo que cierra):
   V11  referencias c-/f-/s- en los .md resuelven (nombres históricos
        invalidados se declaran en <library>/.deprecated_frame_names)
   V12  ningún claim UNCERTAIN/UNVERIFIED citado en documentation.md como hecho
+  V14  integridad de supersession: superseded_by/supersedes apuntan a claims
+       reales, sin ciclos ni auto-reemplazo, y la relación es bidireccional
+  V15  CLAIMS.md muestra el lifecycle: todo claim con superseded_by aparece
+       como "SUPERSEDED — HISTORICAL, NOT ACTIVE" con Replacement navegable
+  V16  los documentos pedagógicos no citan claims reemplazados como evidencia
+       vigente (la discusión histórica vive en AMENDMENTS/review-notes)
 
 El validador NO corrige nada y NO juzga verdad semántica: detecta; la verdad
 la establecen los revisores. Exit 0 = PASS, 1 = FINDINGS, 2 = uso/IO.
@@ -232,10 +238,18 @@ def main():
         n_rules = len(re.findall(r"^\*\*R\d+", open(os.path.join(lib, "rules.md"), encoding="utf-8").read(), re.M)) if os.path.exists(os.path.join(lib, "rules.md")) else 0
         n_concepts = len(re.findall(r"^## ", open(os.path.join(lib, "concepts.md"), encoding="utf-8").read(), re.M)) if os.path.exists(os.path.join(lib, "concepts.md")) else 0
         n_examples = len(re.findall(r"^## E\d+", open(os.path.join(lib, "examples.md"), encoding="utf-8").read(), re.M)) if os.path.exists(os.path.join(lib, "examples.md")) else 0
+        # ACTIVE KNOWLEDGE = claims SIN superseded_by. Los veredictos que
+        # publica el README cuentan conocimiento VIGENTE; los superseded se
+        # declaran aparte (la fila activos/superseded es obligatoria cuando
+        # hay reemplazos, así los conteos distinguen registros, activos e
+        # históricos).
+        active = [c for c in claims if not c.get("superseded_by")]
+        superseded = [c for c in claims if c.get("superseded_by")]
         counts_artifact = {"claims": len(claims),
-                           "SUPPORTED": sum(1 for c in claims if c.get("verdict") == "SUPPORTED"),
-                           "UNCERTAIN": sum(1 for c in claims if c.get("verdict") == "UNCERTAIN"),
-                           "UNVERIFIED": sum(1 for c in claims if c.get("verdict") == "UNVERIFIED"),
+                           "active": len(active), "superseded": len(superseded),
+                           "SUPPORTED": sum(1 for c in active if c.get("verdict") == "SUPPORTED"),
+                           "UNCERTAIN": sum(1 for c in active if c.get("verdict") == "UNCERTAIN"),
+                           "UNVERIFIED": sum(1 for c in active if c.get("verdict") == "UNVERIFIED"),
                            "rules": n_rules, "concepts": n_concepts, "examples": n_examples,
                            "total_frames": len(frames)}
         def reported(pattern, label):
