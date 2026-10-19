@@ -40,7 +40,7 @@ La vela de las 3 "es una vela clave y normalmente es cuando la distribución se 
 
 ## NFP / noticias
 
-En día de NFP/CPI el precio llega al DOL usando esa volatilidad [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0121|c-0121]]; la semana se prepara reiniciando rangos a favor [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0122|c-0122]]; con noticia a las 8, la entrada va justo antes [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0189|c-0189]].
+En día de NFP/CPI el precio llega al DOL usando esa volatilidad [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0215|c-0215]]; la semana se prepara reiniciando rangos a favor [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0216|c-0216]]; la llegada en "FB" no es limpia [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0217|c-0217]]; con noticia a las 8, la entrada va justo antes [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0189|c-0189]].
 
 ## Failure swing (mención)
 
@@ -48,7 +48,7 @@ Un "fellow swing" [ASR] se menciona como lectura posible de la estructura del d�
 
 ## "Solo time-based" (anti-concepto)
 
-Operar por tiempo puro (esperar Turtle Soup y girar) se rechaza como concepto: sin el componente bias/DOL es "ir en ciego, operar como un patrón" [26:56–27:21, [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0144|c-0144]].
+Operar por tiempo puro (esperar Turtle Soup y girar) se rechaza como concepto: sin el componente bias/DOL es "ir en ciego, operar como un patrón" [26:56–27:28, [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0144|c-0144]].
 
 ## Jerarquía de temporalidades
 
