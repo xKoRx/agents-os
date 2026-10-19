@@ -27,7 +27,8 @@ def build_lib(root, claims):
     open(os.path.join(lib, "frames", "f-000010.png"), "w").close()
     open(os.path.join(lib, "transcript.md"), "w", encoding="utf-8").write(
         "# t\n\ns-000010 [00:00:10-00:00:20] es muy normal que se llegue al DOL utilizando esa volatilidad\n\n"
-        "s-000020 [00:00:20-00:00:30] si el DXY está bearish el precio va a seguir\n")
+        "s-000020 [00:00:20-00:00:30] si el DXY está bearish el precio va a seguir\n\n"
+        "s-000030 [00:00:30-00:00:40] cuando hay día de NCP o algo así\n")
     with open(os.path.join(lib, "claims.jsonl"), "w", encoding="utf-8") as f:
         for c in claims:
             f.write(json.dumps(c) + "\n")
@@ -76,7 +77,7 @@ def main():
 
         # 5: grupo extendido
         lib5 = build_lib(tmp + "5", [
-            {"id": "c-0001", "statement": "opera el NFP con cuidado", "evidence": ["s-000010"],
+            {"id": "c-0001", "statement": "cuando hay día de NFP es muy normal", "evidence": ["s-000030"],
              "verdict": "SUPPORTED"}])
         rc5, out5 = run(lib5, ("--groups", '[["DOL","DXY"],["NFP","NCP"]]'))
         ok &= check("5 grupo extendido detecta sustitución", rc5 == 1
