@@ -20,7 +20,7 @@ tags:
   - area/meli
   - project/rio-e2e-local
 created: "2026-10-08"
-updated: "2026-10-14"
+updated: "2026-10-19"
 slug: rio-e2e-local
 entities: ["[[rio-playmaker]]", "[[rio-controlplane-kafka]]", "[[rio-controlplane-clickhouse]]", "[[rio-controlplane-flink]]"]
 related: ["[[ads-signals-frontend]]", "[[rio-frontend]]", "[[Kafka — Ambiente local con servicios reales]]", "[[Ambientes locales RIO — Comparativa de implementaciones]]"]
@@ -38,6 +38,8 @@ Diseñar y luego implementar un entorno local reproducible con cinco aplicacione
 Base fijada por el owner: rio-deployment-trigger-local y rio-deployment-result-local, sin bridge Kafka→HTTP externo ni embebido. Minimizar cambios productivos, conservar contratos y usar Clean, SOLID, KISS y YAGNI para justificar cada pieza nueva. El challenge y el consenso están completos; en el HEAD actual de PM #1286, los siete E2E del stack local pasan. Los flujos de undeploy/DEPROVISION que dependen del comportamiento defectuoso de develop permanecen etiquetados develop-gap (ver bitácora). El alcance posterior conserva CH/Flink/front.
 
 ## Estado vigente
+
+- **2026-10-19 — PM #1288, comentario de MV atendido:** `feature/rio-e2e-local-clickhouse-kiss` @ `5be401023`, base `develop`. El E2E usa `stop`/`start` y `schema_name`, conserva SQL/estado persistido y no modifica lógica productiva. Sobre el SHA final: ClickHouse 5/5 y subset Kafka 5/5 PASS; cleanup de proyectos/volúmenes/redes/JVM/credenciales certificado. LocalTest 53 y aislamiento PASS; 113 selectores y tres checks L0 PASS. El runner agregado falló en el preflight del cuarto check por puerto ocupado; el check de ecosistema Kafka aislado pasó después de verificar los puertos libres. Formato/Checkstyle/PMD mantienen hallazgos heredados, sin nuevos. [Hilo respondido y resuelto](https://github.com/melisource/fury_rio-playmaker/pull/1288#discussion_r4318283767). [[2026-10-19-codex-unknown-rio-e2e-pr1288-mv-actions]].
 
 - **2026-10-14 — CP Flink #211, alineación y comentarios publicados:** `feature/rio-e2e-local-flink-pr2` @ `39937680`, base `feature/rio-e2e-local-flink-kiss` @ `c0cabe72`. Dos merges normales; SQL UPDATE/CRUD/JAR conservan las regresiones del #209. Gates 1937 productivos + 19 locales y hooks PASS; src/main/src/test vacíos contra base y develop. Tres hilos corregidos, respondidos en español y resueltos. E2E completo PASS en 278b4a1a y cleanup sin contenedores/redes rio-*; el fix final de adjuntos reemplazados 39937680 tiene tests locales verdes y queda pendiente de recertificación física por el límite de tres iteraciones. Descripción del vault/GitHub actualizada. [[CP Flink local]] · [[Descripción PR — rio-controlplane-flink (E2E local PR 2)]] · [[2026-10-14-rio-flink-pr211-alignment-close]].
 

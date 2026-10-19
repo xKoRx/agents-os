@@ -4,19 +4,19 @@ schema_version: 1
 scope: session
 created: "2026-10-19"
 updated: "2026-10-19"
-area:
-project:
-application:
-entities: []
+area: "[[Meli]]"
+project: "[[RIO E2E local]]"
+application: "[[rio-playmaker]]"
+entities: ["[[RIO E2E local]]", "[[rio-playmaker]]"]
 related: []
 aliases: []
 agent_surface: "[[Codex]]"
 agent_model: unknown
 model_source: unknown
-task_type: coding
-task_complexity: unknown
-outcome: partial
-verification: not_run
+task_type: debugging
+task_complexity: medium
+outcome: complete
+verification: partial
 evaluator: agent
 user_rework: unknown
 source_session:
@@ -28,32 +28,25 @@ tags:
   - scope/session
 ---
 
-# Agent Run — 2026-10-19-codex-unknown-rio-e2e-pr1288-mv-actions
+# Agent Run — RIO E2E local, comentario de MV en PR #1288
 
 ## Trabajo
 
-- **Objetivo:**
-- **Alcance atribuible a esta combinación superficie×modelo:**
-- **Artefactos afectados:**
+- Corregir el comentario 4317863023 de PM #1288. Commit `5be4010237bcfb78f3b41efe06b430c02ba5a44b` publicado en `feature/rio-e2e-local-clickhouse-kiss`, base `develop`; HEAD previo `f2779d7ee`.
+- Cambios atribuibles: nombres `stop`/`start`, campo canónico `schema_name` y constante compartida en `src/localIntegrationTest/java/com/mercadolibre/rio/playmaker/localkafka/PlaymakerClickHouseE2ETest.java`; documentación en `local/RIO_E2E.md` y trazabilidad en `.testing/impact.json`. Tres archivos, +9/−8; lógica productiva sin delta.
 
 ## Evidencia
 
-- **Validaciones ejecutadas:**
-- **Resultado observable:**
-- **Limitaciones de la evidencia:**
+- `localTest` 53 casos sin fallos y `verifyLocalArtifactIsolation` PASS; CP ClickHouse `localBootJar localTest` PASS.
+- `scripts/run-agentic-testing-contract.sh`: 113 selectores y tres checks L0 PASS; la ejecución agregada terminó 1 en el preflight del cuarto check por EADDRINUSE, antes de crear estado o recursos. Tras comprobar los puertos libres, `scripts/run-local-kafka-ecosystem-check.sh` pasó de forma aislada con dos matrices normales, dos de publication-gap y cleanup certificado. No se declara PASS del comando agregado.
+- Primera suite ClickHouse: 4/5 PASS y MV FAILED por `database` rechazado por el CP. Se corrigió a `schema_name`; la corrida siguiente pasó 5/5. Sobre el commit final se repitieron `localClickHouseIntegrationTest` 5/5 y el subset Kafka 5/5, sin errores/skips y con cleanup certificado; contenedores, volúmenes y redes iguales al baseline, JVM y archivo privado retirados.
+- Formato/Checkstyle/PMD no quedan verdes. Comparación contra el archivo anterior: 50→49 hallazgos Checkstyle y 12→12 PMD, sin nuevas reglas infringidas. Los hooks de credenciales y PII pasaron sobre el ajuste.
+- GitHub confirma HEAD final y el hilo respondido/resuelto: [respuesta](https://github.com/melisource/fury_rio-playmaker/pull/1288#discussion_r4318283767). Fuente Java probada SHA256 `816c2719cd3ee72dcccb2f6159782a349e04d7614988e33661339ffb55fc80b5`.
 
 ## Evaluación
 
-%% Scores opcionales 1–5: agregar al frontmatter sólo cuando exista evidencia suficiente. Si son autoevaluados, conservar evaluator: agent. %%
-
-- **Correctness:**
-- **Autonomy:**
-- **Efficiency:**
-- **Tool use:**
-- **Overall:**
+Sin scores. Modelo exacto no expuesto de forma fiable por el host; se conserva `unknown`. Rework del owner desconocido.
 
 ## Resultado
 
-- **Outcome:**
-- **Rework posterior:**
-- **Aprendizaje para comparar herramientas:**
+Corrección completa y publicada; verificación parcial por hallazgos estáticos heredados y fallo del runner agregado, conservados explícitamente. Toda la evidencia física de esta entrega es L0/L1 local; no acredita F1, navegador ni cinco aplicaciones.
