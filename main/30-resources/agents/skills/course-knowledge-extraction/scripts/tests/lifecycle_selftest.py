@@ -87,18 +87,12 @@ def main():
         rc, out = run_validate(lib)
         ok &= check("1 superseded_by a claim inexistente -> V14", "V14" in codes(out))
 
-        # 2: ciclo A->B->A
+        # 2: ciclo A->B->A (bidireccional en cada arista, para aislar el ciclo)
         lib = build_lib(tmp + "2", [
-            dict(base, id="c-0001", statement="x", superseded_by="c-0002"),
+            dict(base, id="c-0001", statement="x", superseded_by="c-0002", supersedes="c-0002"),
             dict(base, id="c-0002", statement="y", superseded_by="c-0001", supersedes="c-0001")])
-        # repara bidireccionalidad parcial para aislar el ciclo
-        lib2 = build_lib(tmp + "2b", [
-            dict(base, id="c-0001", statement="x", superseded_by="c-0002", supersedes=None),
-            dict(base, id="c-0002", statement="y", superseded_by="c-0001", supersedes="c-0001")])
-        rc, out = run_validate(lib2)
-        ok &= check("2 ciclo A->B->A -> V14", "V14" in codes(out)) if False else \
-            check("2 ciclo A->B->A -> V14", "V14" in codes(out))
-        del lib
+        rc, out = run_validate(lib)
+        ok &= check("2 ciclo A->B->A -> V14", "V14" in codes(out))
 
         # 3: CLAIMS.md sin marca SUPERSEDED (proyección stale, renderer viejo)
         stale_md = "# CLAIMS\n\n### c-0001\n\n**Statement:** x\n\n**Verdict:** SUPPORTED\n"
