@@ -196,6 +196,14 @@ throughput: <min de video>/min real vs objetivo
 biblioteca: <ruta absoluta>
 ```
 
+## Términos especializados — normalización y desambiguación (hardening ch03, 2026-10-18)
+
+1. **Una normalización de términos especializados NO está soportada por el hecho de aparecer en el glosario.** El glosario es contexto, no regla de sustitución ciega. Defecto real (ch03 c-0121): el ASR dice "al DOL" y el claim publicó "al DXY" "porque el glosario lo decía" — MATERIAL, corregido por supersession.
+2. **TERM_DISAMBIGUATION_REQUIRED**: cuando un mismo garble del ASR admite dos o más términos con significados distintos (p.ej. "el doble" → DOL objetivo de liquidez vs DXY índice del dólar), el EXTRACTOR preserva la palabra dicha en el statement (con marca `[ASR]`) y anota los candidatos; el MINUTE_REVIEWER los contrasta contra el segmento citado, frames y contexto (¿es un nivel del gráfico? ¿un índice externo?); si no puede decidir, devuelve incertidumbre — jamás publica la interpretación como término.
+3. **El statement publica la palabra dicha; la interpretación vive en notes/unresolved_questions.** Sustituir el término en el statement cambia materialmente la proposición → supersession (contrato v1.2).
+4. **Chequeo SOURCE-FIRST determinista**: `scripts/check_term_sources.py <lib>` — por claim vivo, si el statement publica un término canónico de un grupo crítico (default: DOL/DXY; extensible con `--groups`) y la evidencia citada no lo contiene pero sí otro miembro del grupo → MATERIAL FINDING. Verificar con `scripts/tests/source_first_selftest.py` (el caso 1 es el defecto real).
+5. La verificación documental (DOCUMENTATION_VERIFIER) debe incluir este chequeo: que documentation.md concuerde con claims.jsonl NO basta, porque ambos pueden contener el mismo error.
+
 ## Hardening v1.1 — contratos añadidos tras Chapter 02 (2026-10-18)
 
 1. **Contrato de evidencia**: toda observación visual material lleva frame
@@ -233,6 +241,9 @@ scripts/tests/wikilink_selftest.py                        # red-green de checks 
 scripts/tests/anchors_selftest.py                         # red-green de anchors/bloques (7 casos)
 scripts/tests/review_pipeline_selftest.py                 # payload emite key; validate_review
                                                           # acepta claim_key|key (5 casos)
+scripts/check_term_sources.py <lib> [--groups JSON]       # SOURCE-FIRST: normalización de términos
+                                                          # sin respaldo en la fuente = MATERIAL
+scripts/tests/source_first_selftest.py                    # red-green del chequeo (caso real DOL/DXY)
 ```
 
 Checks W (desde v1.2 + hardening ch03): links a archivos/headings/blocks
