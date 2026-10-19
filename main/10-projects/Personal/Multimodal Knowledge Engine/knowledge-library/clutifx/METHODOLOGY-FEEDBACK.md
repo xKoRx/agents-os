@@ -1,11 +1,35 @@
 # METHODOLOGY-FEEDBACK — Clutifx (Course Intelligence)
 
 Feedback de método del curso Clutifx. Objetivo: mejorar los videos siguientes,
-no justificar decisiones pasadas. Estado tras Chapter 04 (2026-10-19), que
-incluyó el preflight de continuidad (supersession safety + remediation DOL/DXY
-de ch02 + hardening SOURCE-FIRST). Los bloques OBSERVED/REPAIRED de Chapters
-02/03 se conservan abajo (§Ch03, §Ch02). La skill canónica quedó en v1.2 con
-hardening ch03+ch04; NO se toca aquí la decisión de Owner sobre ASR.
+no justificar decisiones pasadas. Estado tras Chapter 05 (2026-10-19), que
+ejecutó el pipeline v1.2+hardening con el integrador generalizado. Los bloques
+OBSERVED/REPAIRED de Chapters 02/03/04 se conservan abajo (§Ch04, §Ch03, §Ch02).
+La skill canónica quedó en v1.2 con hardening ch03+ch04; NO se toca aquí la
+decisión de Owner sobre ASR.
+
+## CH05 OBSERVED (medido en Chapter 05, sin corregir)
+
+| Métrica | Valor |
+|---|---|
+| Video | ep05-smt.mp4 · 18:29.7 · SHA `072f669d…` |
+| ASR_WALL | **92,5 min** (0,20× realtime; rate canónico — máquina despejada, verificado con probe 28 s en preflight: 0,21×) |
+| EXTRACT_WALL | 9,7 min (4 EXTRACTORs paralelos, 100 claims) |
+| REVIEW_WALL | 34,1 min (19 MINUTE_REVIEWERs, 3 olas de 5/7/7) |
+| AGENT_WALL | ≈44 min / 18,5 min video ≈ **143 min/h-video** (objetivo ≤120; banda 2× = 240 → PASS; el mejor capítulo del curso: ch03 225, ch04 233) |
+| Claims | 100 (99 SUPPORTED / 1 UNCERTAIN / 0 UNVERIFIED) · 83 instructor_statement + 17 visual_observation · 0 model_inference · 3 re-adjudicaciones de epistemic en integración (sustancia verbal, patrón P1 de ch02) |
+| Frames | 19 base + 62 bajo demanda = 81; 66 citados en evidence |
+| Revisión independiente (DOCVERIFY) | ejecutada sobre la biblioteca publicada; ver handoff del run |
+| Checkpoint 5 min | PASS (26/26 VALID; proyección ~162 min/h-video; real 143) |
+| Preflight | GO por probe (no se arrancó el ASR full a ciegas); integrate_reviews.py de ch04 generalizado + integrator_selftest 5/5 |
+
+## CH05 LEARNED (para ep06+)
+
+1. **El integrador generalizado funciona**: `scripts/integrate_reviews.py` (paths por argumento + normalización f-.png) se usó tal cual; el selftest cazó un bug de índice antes de producción. Los run dirs ya no necesitan copiar el integrador.
+2. **El briefing de términos críticos dentro del prompt del reviewer** (no sólo en el context pack) evitó el defecto DOL/DXY: 0 sustituciones indebidas; DXY quedó documentado como término genuino con sus garbles propios. Mantener en ep06+ (los términos críticos cambian por capítulo: el de ep06 será failure swing vs "Felux Swing").
+3. **Los reviewers propusieron 6 correcciones de statement y 1 de metadato** y todas se aplicaron vía pool sin edición manual canónica; el flujo "reviewer propone → integrador revisa → pool → integrador mecánico" maduró (en ch04 el fix de normalización fue post-integración; ahora está en el script).
+4. **Olas de 7 con payloads homogéneos (~5-6 claims/minuto) dieron el makespan más bajo del curso** (34,1 min); la video-duración corta ayudó, pero el despacho plano por minutos ya no necesita optimización.
+5. **El ASR sigue dominando el total** (92,5 min para 18,5 min de video); la decisión Owner (GPU/modelo menor) sigue abierta y es la única palanca grande que queda.
+6. **Los frames extraídos y descartados por los reviewers** (no citados, quedan como auditoría contextual) sumaron 15: el presupuesto por bloque funcionó sin tope rígido.
 
 ## PREFLIGHT (2026-10-19, obligatorio antes de Chapter 04 — PASS 5/5)
 
