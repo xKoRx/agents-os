@@ -1115,7 +1115,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001621|16:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001625|16:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001627|16:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001629|16:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001631|16:31]]
 
-**Notes:** ASR 'tema vallas' = 'tema bayas' (bias). 'El doble' = el DXY (garble conocido del curso). SUPERSEDED por c-0212 (2026-10-18, amend-ch03-01): el statement publicaba 'el DXY' donde la fuente dice 'el doble aquí abajo' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver [[AMENDMENTS]].
+**Notes:** ASR 'tema vallas' = 'tema bayas' (bias). 'El doble' = el DXY (garble conocido del curso). SUPERSEDED por c-0212 (2026-10-18, amend-ch03-01): el statement publicaba 'el DXY' donde la fuente dice 'el doble aquí abajo' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver AMENDMENTS.md del capítulo.
 
 ### c-0090
 
@@ -1167,7 +1167,7 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-001719.png|f-001719]]
 
-**Notes:** ASR 'tu doble' = tu DXY. SUPERSEDED por c-0213 (2026-10-18, amend-ch03-02): el statement publicaba 'tu DXY' donde la fuente dice 'tu doble' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver [[AMENDMENTS]].
+**Notes:** ASR 'tu doble' = tu DXY. SUPERSEDED por c-0213 (2026-10-18, amend-ch03-02): el statement publicaba 'tu DXY' donde la fuente dice 'tu doble' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver AMENDMENTS.md del capítulo.
 
 ### c-0094
 
@@ -1443,7 +1443,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002104|21:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002108|21:08]]
 
-**Notes:** ASR 'el doble' = el DXY (garble conocido). SUPERSEDED por c-0214 (2026-10-18, amend-ch03-03): el statement publicaba 'el DXY' donde la fuente dice 'el doble' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver [[AMENDMENTS]].
+**Notes:** ASR 'el doble' = el DXY (garble conocido). SUPERSEDED por c-0214 (2026-10-18, amend-ch03-03): el statement publicaba 'el DXY' donde la fuente dice 'el doble' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver AMENDMENTS.md del capítulo.
 
 ### c-0117
 
@@ -1499,7 +1499,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002156|21:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002159|21:59]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002201|22:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002203|22:03]]
 
-**Notes:** ASR 'al DOL' = 'al DXY' (garble conocido). SUPERSEDED por c-0215 (2026-10-18, amend-ch03-04): el statement publicaba 'al DXY' donde la fuente dice 'al DOL' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver [[AMENDMENTS]].
+**Notes:** ASR 'al DOL' = 'al DXY' (garble conocido). SUPERSEDED por c-0215 (2026-10-18, amend-ch03-04): el statement publicaba 'al DXY' donde la fuente dice 'al DOL' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver AMENDMENTS.md del capítulo.
 
 ### c-0122
 
@@ -1511,7 +1511,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002205|22:05]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002207|22:07]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002209|22:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002211|22:11]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002213|22:13]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002215|22:15]]
 
-**Notes:** ASR 'el doll' = 'el DXY' (garble conocido). SUPERSEDED por c-0216 (2026-10-18, amend-ch03-05): el statement publicaba 'al DXY / hacia el DXY' donde la fuente dice 'al doll / hacia el doll' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver [[AMENDMENTS]].
+**Notes:** ASR 'el doll' = 'el DXY' (garble conocido). SUPERSEDED por c-0216 (2026-10-18, amend-ch03-05): el statement publicaba 'al DXY / hacia el DXY' donde la fuente dice 'al doll / hacia el doll' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver AMENDMENTS.md del capítulo.
 
 ### c-0123
 
@@ -1523,7 +1523,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002217|22:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002220|22:20]]
 
-**Notes:** SUPERSEDED por c-0217 (2026-10-18, amend-ch03-06): el statement publicaba '(La llegada al DXY)' donde la fuente dice '(la llegada al DOL)' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver [[AMENDMENTS]].
+**Notes:** SUPERSEDED por c-0217 (2026-10-18, amend-ch03-06): el statement publicaba '(La llegada al DXY)' donde la fuente dice '(la llegada al DOL)' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver AMENDMENTS.md del capítulo.
 
 ### c-0124
 
