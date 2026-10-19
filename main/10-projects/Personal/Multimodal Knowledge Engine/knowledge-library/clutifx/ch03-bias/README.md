@@ -32,6 +32,7 @@ pipeline MKE V2).
 | Métrica | Valor |
 |---|---|
 | Claims totales | 217 (211 originales + 6 de la remediation terminológica 2026-10-18) |
+| Claims activos / superseded | 211 / 6 (ACTIVE KNOWLEDGE = claims sin `superseded_by`; los 6 históricos —c-0089, c-0093, c-0116, c-0121, c-0122, c-0123— preservan su evidencia y en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS|CLAIMS]] aparecen marcados SUPERSEDED con link Replacement a su reemplazo) |
 | SUPPORTED / UNCERTAIN / UNVERIFIED | 211 / 0 / 0 vigentes (2 UNCERTAIN del review —c-0061 y c-0154— adjudicados en integración; ver las notas de ambos claims) **+ 6 SUPERSEDED** (c-0089, c-0093, c-0116, c-0121, c-0122, c-0123: normalización incorrecta DXY donde la fuente dice DOL — reemplazados por c-0212..c-0217, ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/AMENDMENTS|AMENDMENTS]]) |
 | Epistemic | 182 instructor_statement (176 + 6 nuevos) · 35 visual_observation (todas con frame verificado en `evidence`) · 0 model_inference |
 | Contradicciones marcadas | 0 |

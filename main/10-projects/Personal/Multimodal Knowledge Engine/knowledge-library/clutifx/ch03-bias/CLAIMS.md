@@ -1107,6 +1107,10 @@
 
 ### c-0089
 
+**SUPERSEDED — HISTORICAL, NOT ACTIVE**
+
+**Replacement:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0212|c-0212]]
+
 **Statement:** Aunque se tenga el DXY ahí abajo, en esos días no se podía estar vendiendo: todos esos días eran de compras (tema bias).
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** rule · **Minute:** 16 · **Source key:** C-02
@@ -1156,6 +1160,10 @@
 **Visual hint:** 16:51 — Precio apoyándose en el low del rango de 6 h sin romperlo y reacción alcista (PDM)
 
 ### c-0093
+
+**SUPERSEDED — HISTORICAL, NOT ACTIVE**
+
+**Replacement:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0213|c-0213]]
 
 **Statement:** Si te levantas, ves el PDM y la reacción alcista hacia el rango, ya sabes que, por mucho que tu DXY esté ahí abajo, no vas a poder vender ahí.
 
@@ -1435,6 +1443,10 @@
 
 ### c-0116
 
+**SUPERSEDED — HISTORICAL, NOT ACTIVE**
+
+**Replacement:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0214|c-0214]]
+
 **Statement:** Ese día era una venta clarísima para llegar hasta ahí, porque este rango alcista ya no hace falta que se complete, ya que se ha formado un (rango) bajista y el DXY sigue intacto ahí abajo.
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** rule · **Minute:** 21 · **Source key:** C-29
@@ -1491,6 +1503,10 @@
 
 ### c-0121
 
+**SUPERSEDED — HISTORICAL, NOT ACTIVE**
+
+**Replacement:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0215|c-0215]]
+
 **Statement:** Cuando hay día de NFP, CPI o algo así, es muy normal que se llegue al DXY utilizando esa volatilidad.
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** rule · **Minute:** 21 · **Source key:** C-34
@@ -1503,6 +1519,10 @@
 
 ### c-0122
 
+**SUPERSEDED — HISTORICAL, NOT ACTIVE**
+
+**Replacement:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0216|c-0216]]
+
 **Statement:** Por eso, durante la semana, en lugar de llegar al DXY lo que hizo fue crear — es decir, reiniciar — rangos y crearlos a favor, para, con la noticia, ya llegar hacia el DXY (el lunes).
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** example · **Minute:** 22 · **Source key:** C-35
@@ -1514,6 +1534,10 @@
 **Notes:** ASR 'el doll' = 'el DXY' (garble conocido). SUPERSEDED por c-0216 (2026-10-18, amend-ch03-02): el statement publicaba 'al DXY / hacia el DXY' donde la fuente dice 'al doll / hacia el doll' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver AMENDMENTS.md del capítulo.
 
 ### c-0123
+
+**SUPERSEDED — HISTORICAL, NOT ACTIVE**
+
+**Replacement:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0217|c-0217]]
 
 **Statement:** (La llegada al DXY) fue en FB y, por lo tanto, no es muy limpia.
 
@@ -2605,6 +2629,8 @@
 
 ### c-0212
 
+**Supersedes:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0089|c-0089]] (versión histórica preservada)
+
 **Statement:** Aunque se tenga el DOL [ASR: 'el doble'] ahí abajo, en esos días no se podía estar vendiendo: todos esos días eran de compras (tema bias).
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** rule · **Minute:** 16 · **Source key:** C-02+remed
@@ -2618,6 +2644,8 @@
 **Notes:** REMEDIACIÓN TERMINOLÓGICA (2026-10-18, amend-ch03-04): sustituye a c-0089, que publicaba 'el DXY' donde la fuente dice 'el doble aquí abajo'. Referente DOL confirmado por: s-001229 ('el tema DOL', literal en ASR), s-002201 ('al DOL', literal), pizarra final f-004059 ('DOL sesión'/'DOL medio plazo'), y contexto de destino de precio. DXY (índice del dólar, lectura de ch02) es un concepto distinto y NO aparece dicho en este capítulo. El veredicto SUPPORTED cubre el statement corregido; la revisión por minuto original validó la sustancia.
 
 ### c-0213
+
+**Supersedes:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0093|c-0093]] (versión histórica preservada)
 
 **Statement:** Si te levantas, ves el PDM y la reacción alcista hacia el rango, ya sabes que, por mucho que tu DOL [ASR: 'tu doble'] esté ahí abajo, no vas a poder vender ahí.
 
@@ -2633,6 +2661,8 @@
 
 ### c-0214
 
+**Supersedes:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0116|c-0116]] (versión histórica preservada)
+
 **Statement:** Ese día era una venta clarísima para llegar hasta ahí, porque este rango alcista ya no hace falta que se complete, ya que se ha formado un (rango) bajista y el DOL [ASR: 'el doble'] sigue intacto ahí abajo.
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** rule · **Minute:** 21 · **Source key:** C-29+remed
@@ -2646,6 +2676,8 @@
 **Notes:** REMEDIACIÓN TERMINOLÓGICA (2026-10-18, amend-ch03-06): sustituye a c-0116, que publicaba 'el DXY' donde la fuente dice 'el doble'. Referente DOL confirmado por: s-001229 ('el tema DOL', literal en ASR), s-002201 ('al DOL', literal), pizarra final f-004059 ('DOL sesión'/'DOL medio plazo'), y contexto de destino de precio. DXY (índice del dólar, lectura de ch02) es un concepto distinto y NO aparece dicho en este capítulo. El veredicto SUPPORTED cubre el statement corregido; la revisión por minuto original validó la sustancia.
 
 ### c-0215
+
+**Supersedes:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0121|c-0121]] (versión histórica preservada)
 
 **Statement:** Cuando hay día de NFP, CPI o algo así, es muy normal que se llegue al DOL utilizando esa volatilidad.
 
@@ -2661,6 +2693,8 @@
 
 ### c-0216
 
+**Supersedes:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0122|c-0122]] (versión histórica preservada)
+
 **Statement:** Por eso, durante la semana, en lugar de llegar al DOL [ASR: 'doll'] lo que hizo fue crear — es decir, reiniciar — rangos y crearlos a favor, para, con la noticia, ya llegar hacia el DOL (el lunes).
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** example · **Minute:** 22 · **Source key:** C-35+remed
@@ -2674,6 +2708,8 @@
 **Notes:** REMEDIACIÓN TERMINOLÓGICA (2026-10-18, amend-ch03-02): sustituye a c-0122, que publicaba 'al DXY / hacia el DXY' donde la fuente dice 'al doll / hacia el doll'. Referente DOL confirmado por: s-001229 ('el tema DOL', literal en ASR), s-002201 ('al DOL', literal), pizarra final f-004059 ('DOL sesión'/'DOL medio plazo'), y contexto de destino de precio. DXY (índice del dólar, lectura de ch02) es un concepto distinto y NO aparece dicho en este capítulo. El veredicto SUPPORTED cubre el statement corregido; la revisión por minuto original validó la sustancia.
 
 ### c-0217
+
+**Supersedes:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0123|c-0123]] (versión histórica preservada)
 
 **Statement:** (La llegada al DOL [ASR: 'doll']) fue en FB y, por lo tanto, no es muy limpia.
 
