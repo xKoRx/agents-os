@@ -23,14 +23,16 @@ pipeline MKE V2).
 | Extracción | 3 subagentes GLM ONE-SHOT en paralelo (bloques 0–5:12, 5:12–10:05, 10:05–17:05), 98 claims propuestos en ~8,6 min |
 | Revisión | 18 subagentes ONE-SHOT — UNA revisión por minuto de video (5–7 workers paralelos, 3 olas), ~19,8 min totales |
 | Modelo | GLM (subagentes locales de agente; sin API pagada, sin cambio de modelo) |
+| Remediation | 2026-10-19: remediation terminológica DOL/DXY (preflight ch04) — 2 supersessions (c-0066→c-0099, c-0089→c-0100, amend-0003/amend-0004), docs y glosario actualizados; ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/AMENDMENTS|AMENDMENTS]] |
 | Run dir | `/home/kor/mke/clutifx-ch02-20261018/` |
 
 ## Métricas
 
 | Métrica | Valor |
 |---|---|
-| Claims totales | 98 |
-| SUPPORTED / UNCERTAIN / UNVERIFIED | 98 / 0 / 0 (4 UNCERTAIN iniciales adjudicados en integración con recursos ya citados; ver `review-notes.md`) |
+| Claims totales | 100 (98 originales + 2 de la remediation terminológica 2026-10-19) |
+| Claims activos / superseded | 98 / 2 (ACTIVE KNOWLEDGE = claims sin `superseded_by`; los históricos c-0066 y c-0089 preservan su evidencia y aparecen marcados SUPERSEDED en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS|CLAIMS]]) |
+| SUPPORTED / UNCERTAIN / UNVERIFIED | 98 / 0 / 0 vigentes (4 UNCERTAIN iniciales adjudicados en integración con recursos ya citados; ver `review-notes.md`) |
 | Contradicciones marcadas | 0 |
 | Frames base (fin de minuto) | 18 |
 | Frames bajo demanda | 47 |
@@ -71,7 +73,7 @@ Kinds usados: `concept`, `rule`, `parameter`, `procedure`, `observation`, `examp
 
 ## Limitaciones
 
-- El ASR garblea términos del glosario ("tartle sub"=Turtle Soup, "el dol"=el DXY, "Pablo III"=Power of 3); los claims lo preservan y anotan (`notes: "ASR: ..."`).
+- El ASR garblea términos del glosario ("tartle sub"=Turtle Soup, "Pablo III"=Power of 3); los claims lo preservan y anotan (`notes: "ASR: ..."`). El garble "el dol/el doble" fue publicado como DXY en la extracción original y corregido a DOL por la remediation terminológica 2026-10-19 (amend-0003/amend-0004: c-0066→[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0099|c-0099]], c-0089→[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0100|c-0100]]); el glosario del curso quedó desambiguado.
 - La enumeración de aperturas de la vela de 4h que da el instructor en 02:22 omite la de la 1 p.m.; el claim [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0011|c-0011]] conserva la enumeración literal, la pirámide SÍ incluye la vela de la 1 ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/frames/f-000240.png|f-000240]]) y el instructor usa esa vela después ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0060|c-0060]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0096|c-0096]]). Ver `review-notes.md`.
 - Los frames viven en este repositorio (17 MB, 65 archivos); el video original NO está en Git: su ubicación física es `/home/kor/mke/course/ep02-time.mp4` y su SHA queda arriba para verificar identidad.
 - Para corregir/ampliar un punto: operar SIEMPRE sobre los recursos citados (transcript + frames), nunca re-procesando el video (contrato de la skill).

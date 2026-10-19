@@ -547,7 +547,7 @@ Registrada y EJECUTADA dentro de este shot: las pruebas de disable ahora cubren 
 
 | Gate | Objetivo | Estado | Evidencia |
 |---|---|---|---|
-| C0 | Inventario, aislamiento y estado inicial; matriz componente→host→versión→config→permiso; separación RunMode/adaptador/cuenta física/controles | EN CURSO | (por completar) |
+| C0 | Inventario, aislamiento y estado inicial; matriz componente→host→versión→config→permiso; separación RunMode/adaptador/cuenta física/controles | **PASS** (2026-10-19, evidencia abajo) | Ledger C0 en esta sección |
 | C1 | Release y despliegue demostrados desde `b13ef43d` (Go + AddOn compilado contra assemblies NT reales); runtime version proof; ruta drain declarada aplicada | PENDIENTE | (por completar) |
 | C2 | Observación sin ejecución (`OBSERVACION_SIN_EGRESO` vía mecanismos reales); feed usable, reloj de dominio, barras/indicadores; bloqueo verificable de órdenes | PENDIENTE | (por completar) |
 | C3 | NinjaTrader real; ejecución exclusivamente SIM (allowlist exacta; smoke gateway + recorrido Strategy→MM→NT/SIM→retorno) | PENDIENTE | (por completar) |
