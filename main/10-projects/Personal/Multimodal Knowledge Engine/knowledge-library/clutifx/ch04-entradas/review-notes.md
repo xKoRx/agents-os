@@ -13,7 +13,7 @@ Notas del proceso de extracción y revisión (2026-10-19). La autoridad es [[10-
 ## Veredictos y adjudicaciones
 
 - **119 claims: 111 SUPPORTED / 8 UNCERTAIN / 0 UNVERIFIED** (33 con preguntas sin resolver registradas). Los 8 UNCERTAIN son garbles ASR irresolubles o deícticos no identificables en frames — dudosos visibles, no forzados.
-- **c-0016 (V13)**: el EXTRACTOR la propuso como `model_inference` (síntesis del orden de entradas); el revisor la dio SUPPORTED; el integrador la adjudicó `instructor_statement` — el orden es contenido enseñado (s-000423/s-000442/s-000451ss) y verificado visualmente en c-0020 (f-000507/f-000514/f-000535). Nota de adjudicación dentro del claim.
+- **c-0016 (V13)**: el EXTRACTOR la propuso como `model_inference` (síntesis del orden de entradas); el revisor la dio SUPPORTED; el integrador la adjudicó `instructor_statement` — el orden es contenido enseñado (s-000423/s-000444/s-000451ss) y verificado visualmente en c-0020 (f-000507/f-000514/f-000535). Nota de adjudicación dentro del claim.
 - **c-0078 (min 18) UNCERTAIN por CONTRADICTION**: el ASR dice "Take profit aquí abajo" pero la posición dibujada (f-001833) es larga con TP arriba y stop abajo; correction propuesta preserva la palabra dicha con [ASR].
 - **c-0083 (min 19)**: el reviewer RECHAZÓ el frame citado por el extractor (f-002059 es gráfico 4h, no 1h como decía la nota) y lo sustituyó por f-001959 — regla "no aceptar un frame que no muestre lo afirmado" en acción.
 - **c-0102 (min 24) UNCERTAIN**: niveles 1D mal leídos por el extractor (1,4645/1,4565 → reales 1,15145/1,14565 verificados con zoom en f-002459); corrección aplicada.
