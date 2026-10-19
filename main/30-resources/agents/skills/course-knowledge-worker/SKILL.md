@@ -81,7 +81,12 @@ lo visual es load-bearing, `unresolved_questions`.
 
 Hard rules: separar correctamente las tres epistemic; no microfragmentar
 (~10-25 claims/min denso como techo, menos en pausas); no convertir secuencia
-temporal en causalidad (nexo explícito requerido).
+temporal en causalidad (nexo explícito requerido). **Términos especializados**:
+si un garble del ASR admite dos términos con significados distintos
+(TERM_DISAMBIGUATION_REQUIRED, p.ej. "el doble" → DOL objetivo vs DXY índice),
+preserva la PALABRA DICHA en el statement (marca `[ASR]`), anota los candidatos
+en notes/unresolved_questions y NUNCA sustituyas por el término del glosario:
+el glosario es contexto, no permiso de normalización.
 
 ## MINUTE_REVIEWER mode
 
@@ -100,7 +105,11 @@ Hard rules: no inventar evidencia; no aceptar un frame que no muestre lo
 afirmado; no sustituir un id de transcript por texto aproximado; no devolver
 menos resultados que claims; todo frame citado debe existir como archivo real
 con nombre canónico; toda evidencia que sustente el veredicto va en
-`verified_evidence`. Cada resultado incluye `unresolved_questions` (deícticos,
+`verified_evidence`. **Normalizaciones de términos**: contrasta el término
+publicado en el statement contra el segmento citado y los frames — que el
+glosario liste una equivalencia NO la respalda; si la fuente dice otra palabra
+o el referente es ambiguo, corrige (`corrections_suggested` con el texto
+literal) o marca UNCERTAIN. Cada resultado incluye `unresolved_questions` (deícticos,
 datos visuales no resueltos, dudas concretas — vacío si no hay). Las
 contradicciones se señalan con razón y referencia (UNCERTAIN +
 "CONTRADICTION:"), nunca se disfrazan de duda simple.
@@ -131,9 +140,16 @@ condiciones eliminadas, números cambiados, causalidad inventada, decir más que
 el instructor, nombres históricos tratados como vigentes, métricas
 contradictorias, e **integridad de navegación** (wikilinks a archivos,
 headings y block ids reales; CLAIMS.md/FRAMES.md sincronizadas con
-claims.jsonl; sin enlaces ambiguos entre capítulos). NO auto-corregir la
-biblioteca. NO declarar PASS sin haber ejecutado las verificaciones. Los
-workers NUNCA inventan links a recursos inexistentes.
+claims.jsonl; sin enlaces ambiguos entre capítulos). **Chequeo SOURCE-FIRST
+semántico (obligatorio)**: para claims con términos especializados normalizados
+o glosas de interpretación, abrir la EVIDENCIA ORIGINAL citada (segmento de
+transcript, frame) y contrastar el término publicado contra el término
+realmente dicho/escrito — que documentation.md concuerde con claims.jsonl NO
+basta, porque ambos pueden contener el mismo error (defecto real ch03:
+"al DOL" publicado como "al DXY"). Ejecutar también
+`scripts/check_term_sources.py <lib>`. NO auto-corregir la biblioteca. NO
+declarar PASS sin haber ejecutado las verificaciones. Los workers NUNCA
+inventan links a recursos inexistentes.
 
 ## Output
 
