@@ -4,7 +4,7 @@ schema_version: 1
 scope: session
 created: "2026-10-19"
 updated: "2026-10-19"
-area: "[[Work]]"
+area:
 project: "RIO E2E local"
 application: GitHub Enterprise
 entities:
@@ -38,7 +38,7 @@ tags:
 
 - **Objetivo:** Regularizar los PRs #342 (ClickHouse), #1288 (Playmaker) y revisar/aplicar los comentarios de #209 (Flink).
 - **Alcance atribuible a esta combinación superficie×modelo:** Sincronizar ramas, resolver conflicto, corregir hallazgos de revisión, ejecutar validaciones focalizadas, publicar cambios y resolver los hilos atendidos.
-- **Artefactos afectados:** ramas `feature/rio-e2e-local-clickhouse-kiss`, `feature/rio-e2e-local-kiss`/stack de Playmaker y `feature/rio-e2e-local-flink-kiss`; PRs enlazados en `entities`.
+- **Artefactos afectados:** ClickHouse `feature/rio-e2e-local-clickhouse-kiss`; Playmaker `feature/rio-e2e-local-clickhouse-kiss` (stack sobre `feature/rio-e2e-local-kafka`); Flink `feature/rio-e2e-local-flink-kiss`; PRs enlazados en `entities`.
 
 ## Evidencia
 
