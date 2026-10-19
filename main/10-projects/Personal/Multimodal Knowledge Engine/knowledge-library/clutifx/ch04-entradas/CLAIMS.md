@@ -231,7 +231,7 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-000459.png|f-000459]]
 
-**Notes:** Síntesis propia del enumerado del instructor, que cierra con 'Este sería un poco el orden' (s-000451); cada elemento está trazado a su segmento. No es conocimiento nuevo. | ADJUDICACIÓN DEL INTEGRADOR (2026-10-19, V13): reclasificada de model_inference a instructor_statement — el orden de entradas (Turtle Soup → PDM/order block → PO3 + rango pendiente) es contenido enseñado por el instructor en el esquema (s-000423/s-000442 y s-000451ss) y verificado visualmente en el minute 5 (f-000507, f-000514, f-000535, claims c-0020/c-0045); la síntesis del extractor no añade inferencia externa.
+**Notes:** Síntesis propia del enumerado del instructor, que cierra con 'Este sería un poco el orden' (s-000451); cada elemento está trazado a su segmento. No es conocimiento nuevo. | ADJUDICACIÓN DEL INTEGRADOR (2026-10-19, V13): reclasificada de model_inference a instructor_statement — el orden de entradas (Turtle Soup → PDM/order block → PO3 + rango pendiente) es contenido enseñado por el instructor en el esquema (s-000423/s-000444 y s-000451ss) y verificado visualmente en el minute 5 (f-000507, f-000514, f-000535, claims c-0020/c-0045); la síntesis del extractor no añade inferencia externa.
 
 ### c-0017
 
