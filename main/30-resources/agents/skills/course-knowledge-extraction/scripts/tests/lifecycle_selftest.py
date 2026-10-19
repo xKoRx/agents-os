@@ -61,6 +61,7 @@ def default_readme(claims):
     rows = [f"| Claims totales | {len(claims)} |"]
     if n_sup:
         rows.append(f"| Claims activos / superseded | {n_act} / {n_sup} |")
+    rows.append("| Rules / concepts / examples documentados | 0 / 0 / 0 |")
     return "# README\n\n| Métrica | Valor |\n|---|---|\n" + "\n".join(rows) + "\n"
 
 
@@ -145,7 +146,8 @@ def main():
                   dict(base, id="c-0002", statement="y", supersedes="c-0001")]
         lib = build_lib(tmp + "7", claims)
         open(os.path.join(lib, "README.md"), "w", encoding="utf-8").write(
-            "# README\n\n| Métrica | Valor |\n|---|---|\n| Claims totales | 2 |\n")
+            "# README\n\n| Métrica | Valor |\n|---|---|\n| Claims totales | 2 |\n"
+            "| Rules / concepts / examples documentados | 0 / 0 / 0 |\n")
         rc, out = run_validate(lib)
         ok &= check("7 README sin fila activos/superseded -> V10", "V10" in codes(out))
     finally:
