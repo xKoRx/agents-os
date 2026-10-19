@@ -45,16 +45,22 @@ WORD_I = lambda t: re.compile(r"\b" + re.escape(t) + r"\b", re.I)  # fuente: el 
 
 
 def normalize_groups(raw):
-    """Acepta [["DOL","DXY"]] y [{"term":..,"aliases":[..]}]; devuelve dicts."""
-    out = []
+    """Acepta [["DOL","DXY"]], ["DOL", ...], [{"term":..,"aliases":[..]}] y
+    listas mixtas; devuelve lista de GRUPOS, cada grupo = lista de entradas
+    {"term", "aliases"}. Los aliases son del GRUPO: un garble ambiguo puede
+    resolver a cualquier miembro."""
+    groups = []
     for g in raw:
-        if isinstance(g, str):
-            out.append({"term": g, "aliases": []})
-        elif isinstance(g, list):
-            out.extend({"term": t, "aliases": []} for t in g)
-        elif isinstance(g, dict) and g.get("term"):
-            out.append({"term": g["term"], "aliases": list(g.get("aliases", []))})
-    return out
+        entries = []
+        items = g if isinstance(g, list) else [g]
+        for it in items:
+            if isinstance(it, str):
+                entries.append({"term": it, "aliases": []})
+            elif isinstance(it, dict) and it.get("term"):
+                entries.append({"term": it["term"], "aliases": list(it.get("aliases", []))})
+        if entries:
+            groups.append(entries)
+    return groups
 
 
 def main():
@@ -84,8 +90,9 @@ def main():
         statement = c.get("statement", "")
         cited_texts = [segs[e] for e in c.get("evidence", []) if e in segs]
         for group in groups:
-            terms = [group["term"]] + [g["term"] for g in groups if g is not group]
-            in_stmt = [t for t in [group["term"]] if WORD(t).search(statement)]
+            terms = [e["term"] for e in group]
+            group_aliases = sorted({a for e in group for a in e.get("aliases", [])})
+            in_stmt = [t for t in terms if WORD(t).search(statement)]
             if len(in_stmt) < 1:
                 continue
             for t_pub in in_stmt:
@@ -103,7 +110,7 @@ def main():
                     })
                     continue
                 # sin canónico en fuente: ¿garble ambiguo del grupo sin adjudicación?
-                aliases_hit = sorted({a for a in group.get("aliases", [])
+                aliases_hit = sorted({a for a in group_aliases
                                       for s in cited_texts if WORD_I(a).search(s)})
                 if aliases_hit and "[ASR" not in statement:
                     findings.append({
