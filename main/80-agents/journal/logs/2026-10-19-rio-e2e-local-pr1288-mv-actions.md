@@ -48,4 +48,4 @@ Eliminar la entrada vigente de 2026-10-19 relativa a MV y restituir la fecha pre
 
 ## Delta de CI solicitado por el owner
 
-La primera entrega no comprobó el resultado final del pipeline; CI 6321 falló en una aserción prematura de un despacho asíncrono en x86. El commit test-only `e0c91cb8e` está publicado y pasó hooks y regresión completa local. Se actualiza el proyecto con CI pendiente, sin declarar entrega completa antes de observar el resultado remoto.
+La primera entrega no comprobó el resultado final del pipeline; CI 6321 falló en una aserción prematura de un despacho asíncrono en x86. El commit test-only `e0c91cb8e` está publicado y pasó hooks y regresión completa local. Se actualiza el proyecto tras verificar el [pipeline 6324](https://rp-ci-java.furycloud.io/blue/organizations/jenkins/rio-playmaker/detail/rio-playmaker/6324/pipeline/) y los cinco checks remotos de calidad COMPLETED/SUCCESS sobre el HEAD exacto `e0c91cb8e`. Se conserva la corrección del owner en el agent run, sin mezclarla con una nueva sesión.
