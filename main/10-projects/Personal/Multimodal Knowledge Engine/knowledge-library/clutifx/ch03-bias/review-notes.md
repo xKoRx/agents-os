@@ -18,7 +18,7 @@ frames. Citas: `[mm:ss]` → transcript; `c-NNNN` → [[10-projects/Personal/Mul
 | ASR | Real |
 |---|---|
 | "GDP" / "GVP" | GBP (libra esterlina; confirmado por el par en pantalla en f-000042/f-000659) |
-| "el doble" / "dole" / "dolls" / "el dol" | el DOL (draw on liquidity; ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/OPEN-QUESTIONS#q-ch03-001|q-ch03-001]] sobre DOL vs DXY) |
+| "el doble" / "dole" / "dolls" / "el dol" | DOL (draw on liquidity) EN ESTE CAPÍTULO — confirmado 2026-10-18: el ASR escribe "DOL" literal en s-001229 y s-002201, y la pizarra f-004059 rotula "DOL sesión"/"DOL medio plazo". **TERM_DISAMBIGUATION_REQUIRED**: el mismo garble se publicó como "el DXY" en 6 claims de ch03 (corregidos por supersession, AMENDMENTS amend-ch03-01..06) y como "DXY" en ch02 (c-0066), donde se conserva sin corrección retroactiva. El garble NO se normaliza ciegamente desde el glosario. |
 | "vallas" / "el vayas" / "bayas" | bias |
 | "power free" / "Pablo III" | Power of 3 |
 | "load" / "logo" | low |
@@ -50,6 +50,10 @@ frames. Citas: `[mm:ss]` → transcript; `c-NNNN` → [[10-projects/Personal/Mul
 - 74 frames citados en `claims.jsonl.evidence`; los 35 claims `visual_observation` tienen frame verificado (check V07).
 - Frames extraídos e inspeccionados pero NO citados por no resolver el deíctico: f-000103 (c-0007), f-000135, f-001450/f-002238, f-001935 (c-0106), f-002145, f-003059/3005/3009/3014, f-003501. Registro honesto: un frame que no muestra lo afirmado no se cita.
 - "Cambiar intervalo" (diálogo del replay) tapa parte del gráfico en algunos stills de 30:05–30:14; los claims de ese tramo quedan soportados por transcript.
+
+## Remediation terminológica DOL/DXY (2026-10-18, post-publicación)
+
+El Primary Manager detectó un MATERIAL que la verificación documental dejó pasar: c-0121 publicaba "al DXY" donde la fuente dice "al DOL" (s-002201 literal). Auditoría completa de 104 ocurrencias del garble en 20 claims: **0 menciones genuinas de DXY en ch03** — todas las ocurrencias son DOL (evidencia: s-001229 "el tema DOL" literal, s-002201 "al DOL" literal, f-004059 "DOL sesión"/"DOL medio plazo", y contexto de destino de precio en cada caso). Correcciones: 6 supersessions (c-0089→c-0212, c-0093→c-0213, c-0116→c-0214, c-0121→c-0215, c-0122→c-0216, c-0123→c-0217), glosas inline retiradas (c-0144, c-0184) y notas alineadas (c-0055, c-0074, c-0142, c-0146, c-0208, c-0031). Detalle completo en AMENDMENTS amend-ch03-01..11. La verificación documental original contrastó docs↔claims pero no claims↔fuente: el contrato DOCVERIFY ahora exige el chequeo SOURCE-FIRST (skills actualizadas).
 
 ## Decisiones de integración
 
