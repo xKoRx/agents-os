@@ -7,7 +7,7 @@ area: "[[Echo]]"
 project: "[[Echo Forge — Operación Real V2]]"
 application: "[[xKoRx/symphony]]"
 baseline: "xKoRx/symphony 492a271e (release 0.3.1); SQX 144.2953 (binario SHA 7d312106 idéntico en los 3 hosts); hosts sqx-zeus (27 cores SQX/28 vCPU), sqx-hera (60/64), sqx-kronos (72/76)"
-verdict: "SQX144_FULL_MULTICORE_CERTIFIED (scope: CustomAnalysis del builder de producción NO certificada aquí — ver alcance)"
+verdict: "SQX144_FULL_MULTICORE_CERTIFIED (motor, con exclusión de alcance original) → CIERRE DE GAPS 2026-10-19: ECHO_FORGE_FULL_CPU_CERTIFICATION = NOT_CERTIFIED (CA del builder de producción FAIL; retest N=10 FAIL; lineage Retester→Optimizer FAIL — ver CPU-GAP-CLOSURE-20261019.md)"
 tags:
   - kind/acceptance
   - area/echo
@@ -65,3 +65,17 @@ tags:
 - peaks >nproc en Kronos: artefacto de VM documentado; medias integrales siempre ≤nproc.
 - Un workflow productivo ajeno (wave3f NDX, GenericSQXWorkflow `sqx-main-v1-ab32f685`) lleva atascado a nivel workflow-task desde 2026-10-14; no despacha SQX (0 actividades, 0 procesos) y no fue tocado. Preflight de colisión antes de cada lanzamiento: 0 procesos SQX ajenos en toda la campaña (guard: 0 `FC_PREFLIGHT_FAIL`).
 - Crudo preservado por host en `/home/echo-dev/forge-cert-20261018/` (`rec/` ~samplers 200 ms/1 s, `analysis/*.json`, `state/` sellos, `logs/campaign.log`). Referencias exactas en WORKLOAD-PROVENANCE.md.
+
+---
+
+## CIERRE DE GAPS (2026-10-19) — veredicto final de certificación
+
+Los 3 gaps obligatorios se cerraron con medición/verificación física (`CPU-GAP-CLOSURE-20261019.md`):
+
+| Veredicto | Resultado |
+|---|---|
+| `SQX_ENGINE_MULTICORE` | **PASS** (sin cambios; no re-benchmarked) |
+| `PRODUCTION_BUILDER_CUSTOMANALYSIS` | **FAIL** — CA reconstruida con el mecanismo canónico 0.3.1 (funciones verbatim de `steps.go` @ 492a271e) sobre 300 estrategias auténticas: 1,059 cores medios, UN thread con el 96% del CPU, 72 cores disponibles |
+| `RETESTER_10_STRATEGIES` | **FAIL** — sin trabajo paralelo real en N=10 (0,05–0,6 CPU-s observados vs ≈4,6 requeridos; ruta `SingleOptims:false` para N ≤ totalCores); la ventana de medición fue adecuada |
+| `RETESTER_TO_OPTIMIZER_LINEAGE` | **FAIL** — los 10 optimizers consumieron los bytes PRE-retest del cohort en los 3 hosts; el output real del retester (0/10 bytes coincidentes) nunca entró al optimizer (defecto de seed del harness del cert, `fc-stage.sh` S5) |
+| `ECHO_FORGE_FULL_CPU_CERTIFICATION` | **NOT_CERTIFIED** — persisten gaps obligatorios sin aprobar |
