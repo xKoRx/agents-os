@@ -1,0 +1,37 @@
+<Settings>
+  <CustomAnalysis>
+    <PerStrategy1>none</PerStrategy1>
+    <PerStrategy2>none</PerStrategy2>
+    <FullDatabank1>EchoForgeOverviewExporter</FullDatabank1>
+    <FullDatabank2>none</FullDatabank2>
+    <RemoveFailedStrategies>false</RemoveFailedStrategies>
+    <Filter>false</Filter>
+    <InputArgsPerStrategy1 />
+    <InputArgsPerStrategy2 />
+    <InputArgsFullDatabank1 />
+    <InputArgsFullDatabank2 />
+  </CustomAnalysis>
+  <Databanks>
+    <Databank label="Input databank" name="Input" value="output" />
+    <Databank label="Output databank" name="Output" value="output" />
+  </Databanks>
+  <CrossChecks>
+    <RetestOnAdditionalMarkets />
+    <WhatIf />
+    <MonteCarloManipulation />
+    <MonteCarloRetest />
+    <OptProfileSysParamPermutation />
+    <WalkForwardOptimization />
+    <WalkForwardMatrix />
+    <SequentialOptimization />
+    <RetestWithHigherPrecision />
+  </CrossChecks>
+  <Resources>
+    <Symbols />
+    <Brokers />
+    <Instruments />
+    <Sessions />
+    <CustomIndicators />
+    <CustomBlocks />
+  </Resources>
+</Settings>

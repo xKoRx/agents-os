@@ -1,0 +1,10 @@
+<Project name="custom" version="142.2399">
+  <Tasks>
+    <Task name="Custom analysis" type="CustomAnalysis" taskXMLFile="CustomAnalysis-Task1.xml" active="true" />
+</Tasks>
+  <Databanks>
+    <Databank name="Results" view="Default - Main data" syncType="Auto-sync never" position="10" />
+    <Databank name="input" view="Default - Main data" syncType="Auto-sync every 1 hour" position="200" />
+    <Databank name="output" view="Default - Main data" syncType="Auto-sync every 1 hour" position="105" />
+  </Databanks>
+</Project>
