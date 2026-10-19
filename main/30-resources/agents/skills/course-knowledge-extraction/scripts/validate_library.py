@@ -278,6 +278,17 @@ def main():
             b, o = int(mb.group(1)), int(mo.group(1))
             if b + o != len(frames):
                 bad("V10", f"README frames base({b}) + on-demand({o}) != archivos en frames/ ({len(frames)})")
+        # lifecycle: con >=1 claim reemplazado, el README debe distinguir
+        # activos vs superseded y reconciliar con los artefactos.
+        if superseded:
+            mls = re.search(r"\|\s*Claims activos\s*/\s*superseded\s*\|\s*(\d+)\s*/\s*(\d+)", rd)
+            if not mls:
+                bad("V10", "README: falta la fila '| Claims activos / superseded | A / S |' (la biblioteca tiene claims reemplazados)")
+            else:
+                a, s = int(mls.group(1)), int(mls.group(2))
+                if (a, s) != (counts_artifact["active"], counts_artifact["superseded"]):
+                    bad("V10", f"README activos/superseded = {(a, s)} pero artefactos = "
+                               f"{(counts_artifact['active'], counts_artifact['superseded'])}")
 
     # V11: referencias en docs
     tok_f = re.compile(r"\bf-(\d{6})(\.png)?\b")
@@ -398,6 +409,77 @@ def main():
                     window = ctx[max(0, ctx.find(cid) - 400): ctx.find(cid) + 400].lower()
                     if not any(mk.lower() in window for mk in markers):
                         bad("V12", f"documentation.md:{ln_no}: cita {cid} ({c.get('verdict')}) sin marco de duda explícito")
+
+    # --- V14: integridad del lifecycle de supersession
+    by_id = {c.get("id"): c for c in claims}
+    sup_ids = {cid for cid, c in by_id.items() if c.get("superseded_by")}
+    for c in claims:
+        cid = c.get("id", "?")
+        sb, ss = c.get("superseded_by"), c.get("supersedes")
+        if sb:
+            if sb not in by_id:
+                bad("V14", f"{cid}: superseded_by apunta a claim inexistente: {sb}")
+            elif sb == cid:
+                bad("V14", f"{cid}: superseded_by apunta a sí mismo")
+            elif (by_id[sb] or {}).get("supersedes") != cid:
+                bad("V14", f"{cid}: reemplazo no bidireccional: superseded_by={sb} pero "
+                           f"{sb} no declara supersedes={cid}")
+        if ss:
+            if ss not in by_id:
+                bad("V14", f"{cid}: supersedes apunta a claim inexistente: {ss}")
+            elif ss == cid:
+                bad("V14", f"{cid}: supersedes apunta a sí mismo")
+            elif (by_id[ss] or {}).get("superseded_by") != cid:
+                bad("V14", f"{cid}: reemplazo no bidireccional: supersedes={ss} pero "
+                           f"{ss} no declara superseded_by={cid}")
+    # ciclos: seguir la cadena superseded_by desde cada claim
+    for c in claims:
+        origin, cur, visited = c.get("id"), c, set()
+        while isinstance(cur, dict) and cur.get("superseded_by"):
+            nxt = cur["superseded_by"]
+            if nxt == origin or nxt in visited:
+                bad("V14", f"{origin}: ciclo de reemplazo en la cadena superseded_by")
+                break
+            visited.add(nxt)
+            cur = by_id.get(nxt)
+            if cur is None:
+                break  # target inexistente: ya reportado por V14
+
+    # --- V15: CLAIMS.md representa el lifecycle (proyección sincronizada)
+    claims_md_path = os.path.join(lib, "CLAIMS.md")
+    if sup_ids and os.path.exists(claims_md_path):
+        cm = open(claims_md_path, encoding="utf-8").read()
+        for cid in sorted(sup_ids):
+            sec = re.search(r"### " + re.escape(cid) + r"\b.*?(?=\n### |\Z)", cm, re.S)
+            if not sec:
+                continue
+            body = sec.group(0)
+            succ = by_id[cid].get("superseded_by")
+            if "SUPERSEDED — HISTORICAL, NOT ACTIVE" not in body:
+                bad("V15", f"CLAIMS.md: {cid} es superseded pero la proyección no lo marca "
+                           f"(regenerar con render_claims_md.py)")
+            if succ and "CLAIMS#" + str(succ) not in body:
+                bad("V15", f"CLAIMS.md: {cid} sin link Replacement navegable a {succ}")
+        for c in claims:
+            prev = c.get("supersedes")
+            if not prev:
+                continue
+            sec = re.search(r"### " + re.escape(c.get("id", "?")) + r"\b.*?(?=\n### |\Z)", cm, re.S)
+            if sec and "CLAIMS#" + str(prev) not in sec.group(0):
+                bad("V15", f"CLAIMS.md: {c.get('id')} sin link Supersedes a {prev}")
+
+    # --- V16: los docs pedagógicos no citan claims reemplazados como vigentes
+    PEDAGOGICAL = ["documentation.md", "rules.md", "concepts.md",
+                   "examples.md", "study-guide.md"]
+    for d in PEDAGOGICAL:
+        p = os.path.join(lib, d)
+        if not os.path.exists(p) or not sup_ids:
+            continue
+        for ln_no, line in enumerate(open(p, encoding="utf-8"), 1):
+            for cid in sup_ids:
+                if re.search(r"\b" + re.escape(cid) + r"\b", line):
+                    bad("V16", f"{d}:{ln_no}: cita el claim reemplazado {cid} como evidencia "
+                               f"vigente (la historia vive en AMENDMENTS/review-notes; citar {by_id[cid].get('superseded_by')})")
 
     ok = not [f for f in findings if f[1] != "SKIP"]
     if args.json:
