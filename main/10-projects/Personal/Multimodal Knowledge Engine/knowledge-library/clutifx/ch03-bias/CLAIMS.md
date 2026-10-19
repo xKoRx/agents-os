@@ -375,7 +375,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000502|05:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000518|05:18]]
 
-**Notes:** Al inicio del segmento retira marcas del gráfico: 'dejamos esto como los dolls... esto de aquí y esto de aquí, lo quito'.
+**Notes:** Al inicio del segmento retira marcas del gráfico: 'dejamos esto como los dolls... esto de aquí y esto de aquí, lo quito'. Nota (2026-10-18): 'los dolls' = los niveles/DOL dibujados que se retiran del gráfico; garble preservado sin uso en el statement.
 
 ### c-0032
 
@@ -695,7 +695,7 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-000959.png|f-000959]]
 
-**Notes:** «Dole» = DOL; el glosario interpreta «el dol»/«el doble» como el DXY. «Por lo tanto» vincula el rango alcista con ser el rango operativo; «y ahí ya sí puede» es habilitación explícita.
+**Notes:** REMEDIACIÓN (2026-10-18, amend-ch03-11): la nota anterior citaba la lectura antigua del glosario ('el dol/el doble = el DXY'); el referente vigente es DOL («Dole» = garble de DOL; s-001229 literal + f-004059). «Por lo tanto» vincula el rango alcista con ser el rango operativo.
 
 ### c-0056
 
@@ -927,7 +927,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001308|13:08]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001316|13:16]]
 
-**Notes:** «el doble» = el DXY según el glosario. Nexo explícito «para poder coger el movimiento».
+**Notes:** REMEDIACIÓN (2026-10-18, amend-ch03-10): la nota anterior decía '«el doble» = el DXY según el glosario'; el referente correcto en este capítulo es DOL (destino del movimiento; s-001229 'el tema DOL' literal + pizarra f-004059). El statement preserva el garble y no cambia.
 
 ### c-0075
 
@@ -1115,7 +1115,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001621|16:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001625|16:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001627|16:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001629|16:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001631|16:31]]
 
-**Notes:** ASR 'tema vallas' = 'tema bayas' (bias). 'El doble' = el DXY (garble conocido del curso).
+**Notes:** ASR 'tema vallas' = 'tema bayas' (bias). 'El doble' = el DXY (garble conocido del curso). SUPERSEDED por c-0212 (2026-10-18, amend-ch03-01): el statement publicaba 'el DXY' donde la fuente dice 'el doble aquí abajo' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver [[AMENDMENTS]].
 
 ### c-0090
 
@@ -1167,7 +1167,7 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-001719.png|f-001719]]
 
-**Notes:** ASR 'tu doble' = tu DXY.
+**Notes:** ASR 'tu doble' = tu DXY. SUPERSEDED por c-0213 (2026-10-18, amend-ch03-02): el statement publicaba 'tu DXY' donde la fuente dice 'tu doble' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver [[AMENDMENTS]].
 
 ### c-0094
 
@@ -1443,7 +1443,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002104|21:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002108|21:08]]
 
-**Notes:** ASR 'el doble' = el DXY (garble conocido).
+**Notes:** ASR 'el doble' = el DXY (garble conocido). SUPERSEDED por c-0214 (2026-10-18, amend-ch03-03): el statement publicaba 'el DXY' donde la fuente dice 'el doble' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver [[AMENDMENTS]].
 
 ### c-0117
 
@@ -1499,7 +1499,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002156|21:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002159|21:59]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002201|22:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002203|22:03]]
 
-**Notes:** ASR 'al DOL' = 'al DXY' (garble conocido).
+**Notes:** ASR 'al DOL' = 'al DXY' (garble conocido). SUPERSEDED por c-0215 (2026-10-18, amend-ch03-04): el statement publicaba 'al DXY' donde la fuente dice 'al DOL' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver [[AMENDMENTS]].
 
 ### c-0122
 
@@ -1511,7 +1511,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002205|22:05]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002207|22:07]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002209|22:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002211|22:11]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002213|22:13]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002215|22:15]]
 
-**Notes:** ASR 'el doll' = 'el DXY' (garble conocido).
+**Notes:** ASR 'el doll' = 'el DXY' (garble conocido). SUPERSEDED por c-0216 (2026-10-18, amend-ch03-05): el statement publicaba 'al DXY / hacia el DXY' donde la fuente dice 'al doll / hacia el doll' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver [[AMENDMENTS]].
 
 ### c-0123
 
@@ -1522,6 +1522,8 @@
 **Tiempo:** [22:17–22:21]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002217|22:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002220|22:20]]
+
+**Notes:** SUPERSEDED por c-0217 (2026-10-18, amend-ch03-06): el statement publicaba '(La llegada al DXY)' donde la fuente dice '(la llegada al DOL)' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver [[AMENDMENTS]].
 
 ### c-0124
 
@@ -1751,7 +1753,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002640|26:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002642|26:42]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002643|26:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002646|26:46]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002648|26:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002650|26:50]]
 
-**Notes:** Cifra literal dicha por el instructor: 120 pips.
+**Notes:** Cifra literal dicha por el instructor: 120 pips. REMEDIACIÓN (2026-10-18): 'doll' = DOL (el próximo objetivo de liquidez), consistente con s-001229 y f-004059; el claim ya lo preservaba sin adjudicar y la pizarra permite adjudicar el referente.
 
 ### c-0143
 
@@ -1765,7 +1767,7 @@
 
 ### c-0144
 
-**Statement:** El solo time-based no existe como concepto: ahí es solo esperar un Turtle Soup y operar en la dirección contraria; pero hay que añadir el componente del doll (DXY), del bias, porque si no eso es ir en ciego, es operar como un patrón.
+**Statement:** El solo time-based no existe como concepto: ahí es solo esperar un Turtle Soup y operar en la dirección contraria; pero hay que añadir el componente del doll [ASR], del bias, porque si no eso es ir en ciego, es operar como un patrón.
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** rule · **Minute:** 26 · **Source key:** D-13
 
@@ -1773,7 +1775,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002656|26:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002704|27:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002721|27:21]]
 
-**Notes:** Nexo causal explícito ('porque si no'). 'Del doll' = del DXY según glosario. Claim central del capítulo: sin el componente bias, operar el Turtle Soup es operar a ciegas como un patrón.
+**Notes:** Nexo causal explícito ('porque si no'). 'Del doll' = del DXY según glosario. Claim central del capítulo: sin el componente bias, operar el Turtle Soup es operar a ciegas como un patrón. REMEDIACIÓN (2026-10-18, amend-ch03-07): la glosa inline '(DXY)' era una interpretación incorrecta y se retiró del statement; 'del doll' = del DOL (s-001229 literal, f-004059). La palabra dicha ('doll') se preserva.
 
 ### c-0145
 
@@ -1797,7 +1799,7 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-002745.png|f-002745]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-002759.png|f-002759]]
 
-**Notes:** Nexo explícito ('por lo tanto') entre la toma del alto y su posición en shorts.
+**Notes:** Nexo explícito ('por lo tanto') entre la toma del alto y su posición en shorts. REMEDIACIÓN (2026-10-18): 'hasta el doble' = hasta el DOL bajista (el objetivo de los shorts, cf. s-002758 '12 horas objetivo bearish casi completado'); consistente con s-001229 y f-004059.
 
 ### c-0147
 
@@ -2263,7 +2265,7 @@
 
 ### c-0184
 
-**Statement:** Fue un poco eso, mi culpa: al saber sí o sí que normalmente se completa mi doble [DXY], ignoré un poco eso [los rangos bullish de 8 h, 12 h y 6 h].
+**Statement:** Fue un poco eso, mi culpa: al saber sí o sí que normalmente se completa mi doble [ASR], ignoré un poco eso [los rangos bullish de 8 h, 12 h y 6 h].
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** warning · **Minute:** 35 · **Source key:** E-18
 
@@ -2271,7 +2273,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003541|35:41]]
 
-**Notes:** 'Mi doble' = 'mi DXY' (glosario). Advertencia: la certeza sobre el objetivo del DXY no justifica ignorar los rangos de las TF intermedias.
+**Notes:** 'Mi doble' = 'mi DXY' (glosario). Advertencia: la certeza sobre el objetivo del DXY no justifica ignorar los rangos de las TF intermedias. REMEDIACIÓN (2026-10-18, amend-ch03-08): la glosa '[DXY]' se retira (interpretación incorrecta); 'mi doble' = mi DOL (objetivo cuya finalización daba por segura el instructor, s-001229 + f-004059).
 
 ### c-0185
 
@@ -2569,7 +2571,7 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-004059.png|f-004059]]
 
-**Notes:** 'Doble' = DXY (glosario). Interpretación probable: bias para el DXY y la sesión (intradía).
+**Notes:** REMEDIACIÓN (2026-10-18, amend-ch03-09): la nota anterior interpretaba 'Doble' = DXY (glosario antiguo); la pizarra del propio minuto 40 (f-004059, tercera línea '12h - 8h - 6h - 4h = DOL sesión') resuelve el referente: 'para doble ya la sesión' = 'para el DOL ya, la sesión'. Interpretación probable previa descartada.
 
 ### c-0209
 
@@ -2600,4 +2602,88 @@
 **Tiempo:** [41:28–41:40]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-004128|41:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-004130|41:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-004132|41:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-004133|41:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-004136|41:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-004138|41:38]]
+
+### c-0212
+
+**Statement:** Aunque se tenga el DOL [ASR: 'el doble'] ahí abajo, en esos días no se podía estar vendiendo: todos esos días eran de compras (tema bias).
+
+**Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** rule · **Minute:** 16 · **Source key:** C-02+remed
+
+**Tiempo:** [16:21–16:33]
+
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001621|16:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001625|16:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001627|16:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001629|16:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001631|16:31]]
+
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-004059.png|f-004059]]
+
+**Notes:** REMEDIACIÓN TERMINOLÓGICA (2026-10-18, amend-ch03-01): sustituye a c-0089, que publicaba 'el DXY' donde la fuente dice 'el doble aquí abajo'. Referente DOL confirmado por: s-001229 ('el tema DOL', literal en ASR), s-002201 ('al DOL', literal), pizarra final f-004059 ('DOL sesión'/'DOL medio plazo'), y contexto de destino de precio. DXY (índice del dólar, lectura de ch02) es un concepto distinto y NO aparece dicho en este capítulo. El veredicto SUPPORTED cubre el statement corregido; la revisión por minuto original validó la sustancia.
+
+### c-0213
+
+**Statement:** Si te levantas, ves el PDM y la reacción alcista hacia el rango, ya sabes que, por mucho que tu DOL [ASR: 'tu doble'] esté ahí abajo, no vas a poder vender ahí.
+
+**Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** rule · **Minute:** 17 · **Source key:** C-06+remed
+
+**Tiempo:** [17:13–17:24]
+
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001713|17:13]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001719|17:19]]
+
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-001719.png|f-001719]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-004059.png|f-004059]]
+
+**Notes:** REMEDIACIÓN TERMINOLÓGICA (2026-10-18, amend-ch03-02): sustituye a c-0093, que publicaba 'tu DXY' donde la fuente dice 'tu doble'. Referente DOL confirmado por: s-001229 ('el tema DOL', literal en ASR), s-002201 ('al DOL', literal), pizarra final f-004059 ('DOL sesión'/'DOL medio plazo'), y contexto de destino de precio. DXY (índice del dólar, lectura de ch02) es un concepto distinto y NO aparece dicho en este capítulo. El veredicto SUPPORTED cubre el statement corregido; la revisión por minuto original validó la sustancia.
+
+### c-0214
+
+**Statement:** Ese día era una venta clarísima para llegar hasta ahí, porque este rango alcista ya no hace falta que se complete, ya que se ha formado un (rango) bajista y el DOL [ASR: 'el doble'] sigue intacto ahí abajo.
+
+**Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** rule · **Minute:** 21 · **Source key:** C-29+remed
+
+**Tiempo:** [21:04–21:13]
+
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002104|21:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002108|21:08]]
+
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-004059.png|f-004059]]
+
+**Notes:** REMEDIACIÓN TERMINOLÓGICA (2026-10-18, amend-ch03-03): sustituye a c-0116, que publicaba 'el DXY' donde la fuente dice 'el doble'. Referente DOL confirmado por: s-001229 ('el tema DOL', literal en ASR), s-002201 ('al DOL', literal), pizarra final f-004059 ('DOL sesión'/'DOL medio plazo'), y contexto de destino de precio. DXY (índice del dólar, lectura de ch02) es un concepto distinto y NO aparece dicho en este capítulo. El veredicto SUPPORTED cubre el statement corregido; la revisión por minuto original validó la sustancia.
+
+### c-0215
+
+**Statement:** Cuando hay día de NFP, CPI o algo así, es muy normal que se llegue al DOL utilizando esa volatilidad.
+
+**Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** rule · **Minute:** 21 · **Source key:** C-34+remed
+
+**Tiempo:** [21:56–22:05]
+
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002156|21:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002159|21:59]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002201|22:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002203|22:03]]
+
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-004059.png|f-004059]]
+
+**Notes:** REMEDIACIÓN TERMINOLÓGICA (2026-10-18, amend-ch03-04): sustituye a c-0121, que publicaba 'al DXY' donde la fuente dice 'al DOL'. Referente DOL confirmado por: s-001229 ('el tema DOL', literal en ASR), s-002201 ('al DOL', literal), pizarra final f-004059 ('DOL sesión'/'DOL medio plazo'), y contexto de destino de precio. DXY (índice del dólar, lectura de ch02) es un concepto distinto y NO aparece dicho en este capítulo. El veredicto SUPPORTED cubre el statement corregido; la revisión por minuto original validó la sustancia.
+
+### c-0216
+
+**Statement:** Por eso, durante la semana, en lugar de llegar al DOL [ASR: 'doll'] lo que hizo fue crear — es decir, reiniciar — rangos y crearlos a favor, para, con la noticia, ya llegar hacia el DOL (el lunes).
+
+**Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** example · **Minute:** 22 · **Source key:** C-35+remed
+
+**Tiempo:** [22:05–22:17]
+
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002205|22:05]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002207|22:07]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002209|22:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002211|22:11]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002213|22:13]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002215|22:15]]
+
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-004059.png|f-004059]]
+
+**Notes:** REMEDIACIÓN TERMINOLÓGICA (2026-10-18, amend-ch03-05): sustituye a c-0122, que publicaba 'al DXY / hacia el DXY' donde la fuente dice 'al doll / hacia el doll'. Referente DOL confirmado por: s-001229 ('el tema DOL', literal en ASR), s-002201 ('al DOL', literal), pizarra final f-004059 ('DOL sesión'/'DOL medio plazo'), y contexto de destino de precio. DXY (índice del dólar, lectura de ch02) es un concepto distinto y NO aparece dicho en este capítulo. El veredicto SUPPORTED cubre el statement corregido; la revisión por minuto original validó la sustancia.
+
+### c-0217
+
+**Statement:** (La llegada al DOL [ASR: 'doll']) fue en FB y, por lo tanto, no es muy limpia.
+
+**Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** warning · **Minute:** 22 · **Source key:** C-36+remed
+
+**Tiempo:** [22:17–22:21]
+
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002217|22:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002220|22:20]]
+
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-004059.png|f-004059]]
+
+**Notes:** REMEDIACIÓN TERMINOLÓGICA (2026-10-18, amend-ch03-06): sustituye a c-0123, que publicaba '(La llegada al DXY)' donde la fuente dice '(la llegada al DOL)'. Referente DOL confirmado por: s-001229 ('el tema DOL', literal en ASR), s-002201 ('al DOL', literal), pizarra final f-004059 ('DOL sesión'/'DOL medio plazo'), y contexto de destino de precio. DXY (índice del dólar, lectura de ch02) es un concepto distinto y NO aparece dicho en este capítulo. El veredicto SUPPORTED cubre el statement corregido; la revisión por minuto original validó la sustancia.
 
