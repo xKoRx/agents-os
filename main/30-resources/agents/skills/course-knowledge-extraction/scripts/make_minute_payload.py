@@ -64,22 +64,21 @@ def main():
         tag = "" if s["id"] in in_ids else (" [citado-frontera]" if s["id"] in boundary else " [contexto]")
         lines.append(f"{s['id']} [{s['start']//60:02d}:{s['start']%60:02d}-{s['end']//60:02d}:{s['end']%60:02d}]{tag} {s['text']}")
 
+    # clave local de review (`key`): el contrato del worker la exige y
+    # validate_review.py la consume. El pool integrado viaja con `id` global
+    # (c-NNNN, asignada por el integrador ANTES del payload); el output crudo
+    # del EXTRACTOR sólo tiene `local_source_key` — se acepta como key para
+    # no romper el flujo pre-integración.
+    def ckey(c):
+        return c.get("id") or c.get("local_source_key") or ""
+
     payload = {
         "minute": minute,
         "video_seconds": [lo, hi],
         "boundary_segments_included": sorted(boundary),
         "transcript": "\n".join(lines),
-        # clave local de review (`key`): el contrato del worker la exige y
-        # validate_review.py la consume. El pool integrado viaja con `id` global
-        # (c-NNNN, asignada por el integrador ANTES del payload); el output crudo
-        # del EXTRACTOR sólo tiene `local_source_key` — se acepta como key para
-        # no romper el flujo pre-integración.
-        def ckey(c):
-            return c.get("id") or c.get("local_source_key") or ""
-        "claims_placeholder": None,
+        "claims": [dict(c, key=ckey(c)) for c in sorted(mine, key=ckey)],
     }
-    payload["claims"] = [dict(c, key=ckey(c)) for c in sorted(mine, key=ckey)]
-    del payload["claims_placeholder"]
     json.dump(payload, open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"minute {minute}: {len(mine)} claims, {len(in_ids)} segmentos del minuto, "
           f"{len(boundary)} citados-frontera {sorted(boundary)} -> {out}")
