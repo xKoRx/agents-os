@@ -16,7 +16,7 @@ agent_model: unknown
 model_source: unknown
 task_type: review
 task_complexity: high
-outcome: blocked
+outcome: success
 verification: partial
 evaluator: agent
 user_rework: unknown
@@ -39,12 +39,12 @@ tags:
 
 ## Evidencia
 
-- **Validaciones ejecutadas:** Seis suites existentes con Java 25 y Gradle: 33 pruebas, cero fallas, errores y skips. Dos probes temporales reutilizaron los mocks y clases compiladas del PR. Se contrastaron los diffs dependientes SDK 57 y Playmaker 1298, la fuente oficial RIO y los comentarios existentes.
-- **Resultado observable:** Dos acciones STOP con claves distintas recibieron HTTP 200, con una sola intención durable y dos registros de polling en memoria. Un Describe atrasado reemplazó READY por STOPPING y produjo la secuencia runtime STOPPING, STOPPED, STOPPING. Ambos casos pertenecen al código nuevo.
-- **Limitaciones de la evidencia:** Sin AWS, Fury KVS o broker reales. El primer intento offline no pudo resolver el SDK de prueba; la ejecución con descarga de la dependencia exacta pasó. Zord terminó con sus ocho revisores fallidos: Claude CLI sin autenticación y el modelo configurado `gpt-5.6-sol` rechazado por la cuenta Codex. El usuario autorizó el envío de los tres diffs; está pendiente su decisión sobre una configuración temporal de ejecución con `gpt-6.1-sol`. No se completó la revisión independiente requerida.
+- **Validaciones ejecutadas:** Java 25 y Gradle sobre 77 suites existentes del núcleo lifecycle/acciones/monitor: 417 pruebas, cero fallas, errores y skips. Cinco escenarios adicionales se reprodujeron con probes temporales, mocks del PR y la clase real de binding del consumidor Playmaker. Los tres mensajes MQ producidos coinciden byte por byte con las fixtures del consumidor. Se contrastaron los diffs dependientes SDK 57 y Playmaker 1298, documentación oficial RIO y comentarios existentes. Head y base remotos revalidados sin cambios.
+- **Resultado observable:** Cinco regresiones confirmadas: F1 segundo STOP confirmado sin intención durable; F2 Describe atrasado revierte STOPPED a STOPPING; F3 alta exitosa pierde ARN y su runtime es rechazado por Playmaker; F4 apps preexistentes quedan fuera del fallback al activar lifecycle; F5 READY de una generación anterior omite STOP después de un START aceptado. No se publicaron comentarios; textos por ID preparados para aprobación del owner.
+- **Limitaciones de la evidencia:** Sin suite completa, AWS, Fury KVS o broker reales; SPEC remota de Spellbook no recuperada. El primer intento offline no resolvió el SDK de prueba; la ejecución con descarga de la dependencia exacta pasó. El primer Zord falló por Claude sin autenticación y `gpt-5.6-sol` no admitido. Rodrigo autorizó el envío de los tres diffs y luego el modelo `gpt-6.1-sol` para ocho revisores; la segunda corrida completó sin errores y se registra por separado. El revisor RIO no resolvió el vault; el coordinador recuperó las fuentes y verificó los riesgos en código actual.
 
 ## Resultado
 
-- **Outcome:** BLOCKED para la revisión completa; dos hallazgos directos confirmados y listos para reconciliar con Zord.
+- **Outcome:** Revisión completada con cinco comentarios propuestos y gate humano de publicación pendiente. Checkout original preservado en `develop@7c645ea9`, con el mismo derivado no trackeado `graphify-out/`.
 - **Rework posterior:** unknown.
 - **Aprendizaje para comparar herramientas:** La ausencia de GlobalProtect en `scutil --nc list` no prueba desconexión; el acceso autenticado a GitHub funcionó. Los fallos de Zord no equivalen a cero findings; los probes verificaron regresiones que las suites seleccionadas no detectaron.
