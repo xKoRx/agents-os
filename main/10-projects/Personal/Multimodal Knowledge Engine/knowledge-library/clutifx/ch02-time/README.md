@@ -62,7 +62,8 @@ Contrato base del mandato: `id`, `minute`, `kind`, `statement`, `evidence`, `ver
 
 Extensiones usadas en esta biblioteca (declaran lo que el mandato exige distinguir):
 
-- `epistemic`: `instructor_statement` (afirma el instructor) · `visual_observation` (muestra el gráfico) · `model_inference` (interpretación del modelo; 0 casos vigentes — [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0066|c-0066]] fue reclasificada a instructor_statement en la remediación P4).
+- `epistemic`: `instructor_statement` (afirma el instructor) · `visual_observation` (muestra el gráfico) · `model_inference` (interpretación del modelo; 0 casos vigentes — [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0099|c-0099]], sucesor del histórico c-0066, fue reclasificado a instructor_statement en la remediación P4).
+- `superseded_by` / `supersedes`: lifecycle de supersession (contrato V1.2 + hardening 2026-10-19) — ACTIVE KNOWLEDGE = claims sin `superseded_by`; los históricos preservan ID/evidencia y aparecen marcados SUPERSEDED con link Replacement en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS|CLAIMS]].
 - `visual_hint`: `{second, what}` cuando el claim depende de algo visual concreto.
 - `source_key`: key original del bloque de extracción (A-/B-/C-), para trazabilidad.
 
