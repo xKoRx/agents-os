@@ -1,0 +1,263 @@
+{
+    "instrument": "NDX",
+    "direction": "L",
+    "timeframe": "H1",
+    "strategy": "example_flow_fast",
+    "version": "v1",
+    "wave": "5",
+    "request_id": "forge-fast-e2e-exampleflow-20261016T173000Z",
+    "path_strategy": "default",
+    "config_folder": "00_configs",
+    "sqx_version": "144",
+    "wave_config": {
+        "wave_key": "",
+        "pool_max": 0,
+        "batch_size": 0,
+        "target_tops": 0,
+        "ranking": {
+            "algorithm": "",
+            "weights": null
+        },
+        "wfm_params": {
+            "algorithm": "robust_run_selection_v2",
+            "min_pass_cells": 0,
+            "max_dispersion": 0,
+            "metric_filters": null,
+            "params": {
+                "cliff_threshold": 0.35,
+                "epsilon_ret": 0.01,
+                "epsilon_aux": 0.01
+            }
+        },
+        "deviation_tol": {
+            "metrics": null
+        }
+    },
+    "tasks": [
+        {
+            "type": "project",
+            "name": "builder-main",
+            "stage": "builder",
+            "folder": "01_builder",
+            "config": "Build_BR_G1_H1_144_fast.cfx"
+        },
+        {
+            "type": "overview_exporter",
+            "name": "builder-overview",
+            "source_folder": "01_builder",
+            "folder": "metadata"
+        },
+        {
+            "type": "group",
+            "name": "precision-group",
+            "folder": "02_precision",
+            "batch_size": 24,
+            "max_parallel": 3,
+            "tasks": [
+                {
+                    "type": "project",
+                    "name": "precision-retester",
+                    "stage": "retester",
+                    "folder": "02_precision",
+                    "config": "RetestPrecision_144.cfx"
+                }
+            ]
+        },
+        {
+            "type": "selection",
+            "name": "select-top-per-type",
+            "source_folder": "02_precision",
+            "folder": "03_selection"
+        },
+        {
+            "type": "group",
+            "name": "full-group",
+            "folder": "04_full",
+            "batch_size": 10,
+            "max_parallel": 3,
+            "source": {
+                "type": "ranking_snapshot",
+                "ranking_name": "precision-per-type"
+            },
+            "tasks": [
+                {
+                    "type": "project",
+                    "name": "full-retester",
+                    "stage": "retester",
+                    "folder": "04_full",
+                    "config": "RetestFull_144.cfx"
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "name": "optimizer-group",
+            "folder": "05_optimizer",
+            "batch_size": 1,
+            "max_parallel": 3,
+            "tasks": [
+                {
+                    "type": "project",
+                    "name": "optimizer",
+                    "stage": "optimizer",
+                    "folder": "05_optimizer",
+                    "config": "Optimizer_144.cfx",
+                    "upload_prefix_filter": "WF_Matrix"
+                },
+                {
+                    "type": "evaluate_wfm",
+                    "name": "evaluate-wfm",
+                    "folder": "06_wfm"
+                },
+                {
+                    "type": "select_robust_run",
+                    "name": "select-robust",
+                    "folder": "07_robust"
+                }
+            ]
+        },
+        {
+            "type": "apply_selected_run",
+            "name": "apply-selected",
+            "folder": "08_applied",
+            "apply_selected_run": {
+                "magic_number": 888333,
+                "symmetric_variables": true
+            }
+        },
+        {
+            "type": "project",
+            "name": "final-reretester",
+            "stage": "final_reretester",
+            "folder": "09_reretester",
+            "config": "reretesterfull_144.cfx"
+        },
+        {
+            "type": "trade_list_exporter",
+            "name": "final-reretester-trades",
+            "source_folder": "09_reretester",
+            "folder": "10_tradelist",
+            "stage": "tick_retest",
+            "variant": "optimized"
+        },
+        {
+            "type": "mt5_exporter",
+            "name": "mt5-export",
+            "source_folder": "09_reretester",
+            "folder": "11_mt5_mq5"
+        },
+        {
+            "type": "mt5_compiler",
+            "name": "mt5-compile",
+            "source_folder": "11_mt5_mq5",
+            "folder": "12_mt5_ex5"
+        },
+        {
+            "type": "mt5_backtesting",
+            "name": "mt5-final",
+            "source_folder": "12_mt5_ex5",
+            "folder": "13_mt5_backtest",
+            "mt5": {
+                "symbol": "NDX_SQX",
+                "period": "H1",
+                "from": "2025.07.01",
+                "to": "2026.10.09",
+                "model": 4,
+                "execution_mode": 0,
+                "deposit": 100000,
+                "currency": "USD",
+                "leverage": 100,
+                "server_timezone": "GMT"
+            }
+        }
+    ],
+    "classifications": [
+        {
+            "name": "ndx-indicator-signature",
+            "input_task_name": "precision-retester",
+            "algorithm": "indicator_signature.v1",
+            "implementation_version": "1.0.0",
+            "params": {
+                "schema_version": "indicator-signature-params.v1"
+            }
+        }
+    ],
+    "early_rankings": [
+        {
+            "name": "precision-per-type",
+            "input_task_name": "precision-retester",
+            "classification_name": "ndx-indicator-signature",
+            "algorithm": "weighted_combination_minmax.v1",
+            "implementation_version": "1.0.0",
+            "params": {
+                "schema_version": "weighted-combination-minmax-params.v1",
+                "metrics": [
+                    {
+                        "code": "drawdown",
+                        "direction": "COST",
+                        "weight": 40
+                    },
+                    {
+                        "code": "profit_factor",
+                        "direction": "BENEFIT",
+                        "weight": 30
+                    },
+                    {
+                        "code": "sharpe_ratio",
+                        "direction": "BENEFIT",
+                        "weight": 30
+                    }
+                ]
+            },
+            "top_n": 5
+        }
+    ],
+    "selections": [
+        {
+            "name": "select-top-per-type-selection",
+            "task_name": "select-top-per-type",
+            "source_ranking": "precision-per-type",
+            "policy": {
+                "schema_version": "selection-policy.v1",
+                "scope": "per_logical_type",
+                "top_n": 2
+            }
+        }
+    ],
+    "scores": [
+        {
+            "name": "mt5-final-fidelity",
+            "algorithm": "mt5_fidelity_shadow.v1",
+            "inputs": [
+                {
+                    "role": "baseline",
+                    "task": "final-reretester-trades",
+                    "metric_set": "SQX_NATIVE"
+                },
+                {
+                    "role": "candidate",
+                    "task": "mt5-final",
+                    "metric_set": "MT5_NATIVE"
+                }
+            ]
+        }
+    ],
+    "rankings": [
+        {
+            "name": "mt5-final-fidelity-ranking",
+            "score_spec_name": "mt5-final-fidelity",
+            "algorithm": "score_descending.v1",
+            "implementation_version": "1.0.0",
+            "params": {
+                "schema_version": "score-descending-params.v1",
+                "direction": "DESC"
+            },
+            "top_n": 20
+        }
+    ],
+    "promotion": {
+        "policy": "finalist_promotion",
+        "version": "1.0.0",
+        "source_ranking": "mt5-final-fidelity-ranking"
+    }
+}
