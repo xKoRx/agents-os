@@ -55,3 +55,16 @@ Todos los "el doble" del capítulo quedaron preservados como palabra dicha con [
 
 - 28 base (fin de minuto, manifiesto `frames/.base_frames`; minuto 27 parcial en f-002734, pantalla negra al cierre del video) + 77 bajo demanda extraídos y verificados visualmente por los revisores = 105.
 - Nota: f-002734 (fin del video) es pantalla negra — sin observación visual posible al cierre.
+
+## Revisión independiente (DOCVERIFY, 2026-10-19)
+
+Verificador adversarial ONE-SHOT contra las fuentes (7 findings: 2 MATERIAL + 5 MENOR), todos confirmados y corregidos in-mission:
+
+- **DV-01 MATERIAL**: README contaba 109 instructor_statement (stale de la adjudicación de c-0016; la fila sumaba 118, no 119) → 110/9/0.
+- **DV-02 MATERIAL**: la cita de c-0060 en documentation §8 y rules R14 alteraba el dicho ("no cambia el desenlace" en vez de "con un rango pendiente, no cambia mucho, porque...") → cita literal restaurada.
+- DV-03: 4 anclas temporales desalineadas (~20–40 s) + 1 malformed → recalibradas contra la evidencia (c-0009, c-0013, c-0014, c-0074, c-0101) + c-0050/c-0104/c-0105/c-0106 por precisión.
+- DV-04: 3 citas recortadas sin elipsis → texto literal completo (c-0044, c-0067) y paráfrasis marcada como tal (c-0024).
+- DV-05: especificidad no dicha en c-0081 ("donde la vela de 15m creó su rango") → sustituida por lo dicho.
+- DV-06: examples E1 atribuía el R:R 2,75 que pertenece al trade de E2/c-0050 → título corregido.
+- DV-07: garble "target sub" normalizado sin marca [ASR] en la cita de c-0027 → garble preservado con marca.
+- Chequeos del verificador: TERM_SOURCE_CHECK PASS, LIBRARY_VALIDATION PASS, 14 puntos de contraste SOURCE-FIRST sin violaciones, 9 frames verificados visualmente.
