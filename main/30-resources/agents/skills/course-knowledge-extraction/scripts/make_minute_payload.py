@@ -70,9 +70,16 @@ def main():
         "boundary_segments_included": sorted(boundary),
         "transcript": "\n".join(lines),
         # clave local de review (`key`): el contrato del worker la exige y
-        # validate_review.py la consume; `id` global viaja también por trazabilidad.
-        "claims": [dict(c, key=c["id"]) for c in sorted(mine, key=lambda c: c["id"])],
+        # validate_review.py la consume. El pool integrado viaja con `id` global
+        # (c-NNNN, asignada por el integrador ANTES del payload); el output crudo
+        # del EXTRACTOR sólo tiene `local_source_key` — se acepta como key para
+        # no romper el flujo pre-integración.
+        def ckey(c):
+            return c.get("id") or c.get("local_source_key") or ""
+        "claims_placeholder": None,
     }
+    payload["claims"] = [dict(c, key=ckey(c)) for c in sorted(mine, key=ckey)]
+    del payload["claims_placeholder"]
     json.dump(payload, open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"minute {minute}: {len(mine)} claims, {len(in_ids)} segmentos del minuto, "
           f"{len(boundary)} citados-frontera {sorted(boundary)} -> {out}")
