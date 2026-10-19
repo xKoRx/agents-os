@@ -36,14 +36,3 @@ El archivo `echo-execution-addon.json` **nunca fue entregado** (el staging `C:\U
 ## Reanudación de la certificación
 
 Orden de desbloqueo: (1) Manager corrige el typename de `market_stream` (+ test de gramática de typename) y re-despliega el module verbatim; (2) submanager arma la sesión SIM: token + binding + `futures-bridge/accounts` SOLO con la cuenta de certificación, entrega del JSON al Owner, verificación de binding Sim101; (3) smoke del gateway y recorrido Strategy→MM→NT/SIM (C3); (4) rotación/recuperación/economía (C4, con `MULTIACCOUNT_NT_NOT_EXECUTED` si no hay más cuentas NT SIM autorizadas); (5) verificación independiente (C5) y estado final seguro (ejecución automática deshabilitada).
-
-
-## Qué queda PROHIBIDO para cualquiera (vigente)
-
-- Habilitar `futures-bridge/accounts` (clave de armado), iniciar `futures-bridge`, o poner `enabled=true` en la asociación `certnt01-a1` sin un despacho explícito del Manager (eso ES armar ejecución).
-- Ejecutar/cancelar órdenes en cuentas RJARA\*/E2T del Owner. SIM autorizada para esta certificación: **Sim101** exclusivamente.
-- Mergear `feature/ef-runtime-pools` a master o tocar Echo PROD.
-
-## Reanudación de la certificación
-
-Con las dos acciones hechas, el submanager retoma el mandato CERT-NT-01: verifica feed vivo → completa C2 (barras/indicadores/señales naturales) → arma la sesión SIM con el puente (token + binding + `futures-bridge/accounts` apuntando SOLO a la cuenta de certificación) → smoke del gateway y recorrido Strategy→MM→NT/SIM (C3) → rotación/recuperación/economía (C4) → verificación independiente (C5) → estado final seguro (ejecución automática deshabilitada).
