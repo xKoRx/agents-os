@@ -8,7 +8,7 @@ Rango de la definición: la SMT clásica (llevarse un alto/bajo → posible reve
 
 ## C2 — Pares correlacionados y Myfxbook
 
-La SMT ocurre entre pares correlacionados [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0004|c-0004]]. Herramienta: Myfxbook (garble "MyForexBook" resuelto visualmente, [00:42] [[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000042.png|f-000042]]]), sección correlación del mercado, cualquier par [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0006|c-0006]]; ejemplo AUDUSD/NZDUSD [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0007|c-0007]].
+La SMT ocurre entre pares correlacionados [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0004|c-0004]]. Herramienta: Myfxbook (garble "MyForexBook" resuelto visualmente, [00:42] [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000042.png|f-000042]]]), sección correlación del mercado, cualquier par [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0006|c-0006]]; ejemplo AUDUSD/NZDUSD [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0007|c-0007]].
 
 ## C3 — Los tres casos de SMT
 
@@ -32,7 +32,7 @@ La heurística popular (el par que no hace el alto es el débil) "a veces se va 
 
 ## C8 — Correlación +1/−1 con DXY
 
-"Si estos dos están a correlación más 1, dxi va a correlación menos 1" [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0085|c-0085]]; los mismos casos, invertidos [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0088|c-0088]]. Primera mención literal de DXY en el curso procesado (rótulo en el esquema del instructor, [15:59] [[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001559.png|f-001559]]]).
+"Si estos dos están a correlación más 1, dxi va a correlación menos 1" [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0085|c-0085]]; los mismos casos, invertidos [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0088|c-0088]]. Primera mención literal de DXY en el curso procesado (rótulo en el esquema del instructor, [15:59] [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001559.png|f-001559]]]).
 
 ## C9 — El DXY como otro par
 
@@ -40,4 +40,4 @@ La heurística popular (el par que no hace el alto es el débil) "a veces se va 
 
 ## C10 — La esencia de la SMT
 
-Formulación compacta del instructor: "(el par) se tendría que haber hecho el nuevo bajo y eso no ha pasado — es una SMT" [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0089|c-0089]] (con dibujo euro-DXY, [16:35] [[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001635.png|f-001635]]]).
+Formulación compacta del instructor: "(el par) se tendría que haber hecho el nuevo bajo y eso no ha pasado — es una SMT" [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0089|c-0089]] (con dibujo euro-DXY, [16:35] [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001635.png|f-001635]]]).
