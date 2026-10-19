@@ -6,6 +6,21 @@ de Chapter 03 (2026-10-18). Los bloques OBSERVED/REPAIRED de Chapter 02 se
 conservan abajo (§Ch02). La skill canónica quedó en v1.2 con hardening ch03;
 NO se toca aquí la decisión de Owner sobre ASR.
 
+## REMEDIATION (2026-10-18 noche — DOL/DXY + probe ASR, mandato Primary Manager)
+
+- **Defecto MATERIAL que la verificación documental dejó pasar**: c-0121 publicaba "al DXY" donde la fuente dice "al DOL" (s-002201 literal). Causa raíz: el glosario mapeaba el garble "el doble/dol" a DXY globalmente y extractores/revisores lo trataron como permiso de sustitución. Auditoría completa: 104 ocurrencias en 20 claims — **0 menciones genuinas de DXY en ch03**; el término del capítulo es DOL (s-001229 "el tema DOL" literal, pizarra f-004059).
+- **Corrección con contrato de identidad V1.2**: 6 supersessions (c-0089→c-0212, c-0093→c-0213, c-0116→c-0214, c-0121→c-0215, c-0122→c-0216, c-0123→c-0217 — el statement publicado cambió de referente ⇒ claim nuevo + anterior superseded sin renumerar), 2 glosas inline retiradas in-place (c-0144, c-0184), notas corregidas (c-0055, c-0074, c-0080, c-0142, c-0146, c-0208, c-0031), q-ch03-001 RESUELTA, 12 amendments. ch02 NO se toca (sus lecturas DXY quedan como publicadas; el glosario queda desambiguado).
+- **Contrato nuevo (skills)**: TERM_DISAMBIGUATION_REQUIRED — el statement publica la palabra dicha ([ASR]), la interpretación vive en notes; que el glosario liste una equivalencia NO la respalda. Chequeo SOURCE-FIRST determinista `check_term_sources.py` + `source_first_selftest.py` (el caso 1 es el defecto real) + obligación SOURCE-FIRST en DOCUMENTATION_VERIFIER (docs↔claims no basta: ambos pueden contener el mismo error).
+- **Verificación independiente post-remediation**: 2 MATERIAL (c-0116 citado como vivo en documentation; c-0080 con nota DXY no cubierta) + 6 MENOR (numeración de amendments intercambiada en notes, FRAMES.md desincronizada, rangos de examples, remanentes DXY en review_reasons, evidence de c-0217 sin s-002215, q-ch03-001 con claim inexistente) — los 8 corregidos in-mission; re-validado (LIBRARY_VALIDATION PASS, TERM_SOURCE_CHECK PASS 211 vivos / 0 findings).
+- **Lección de proceso**: el DOCVERIFY del run original contrastó docs↔claims (coherencia interna) pero no claims↔fuente (verdad). El SOURCE-FIRST es ahora mandatorio; el caso real quedó como contract test.
+
+## ASR PROBE (2026-10-18, acotado — 36,9 min de presupuesto 45)
+
+- 6 fragmentos × 28 s (168 s) con términos/garbles, negaciones, números/TFs y DOL/doble. A = large-v3 beam5: 1161s (0,14× fragmento) · B = beam1: 970s (0,17×) · C = medium NO EJECUTADO (no cacheado; descarga prohibida por mandato).
+- Calidad: aciertos idénticos 72 % (31/43) con las MISMAS ausencias en A y B; "DOL" 3/6 en ambos; "DXY" 0/6 en ambos (correcto). Las ausencias se explican por cortes de ventana/VAD, no por beam.
+- **ASR_RECOMMENDATION = KEEP_LARGE_V3_BEAM5**: beam1 sólo 1,20× más rápido (≈3 min/h de audio) — nada del 2-5× esperado — y sin medición de comportamiento full-audio. Nota: los benchmarks por fragmentos subestiman el throughput (0,14-0,17× vs 0,21× full-run) por reinicios de VAD/contexto. La palanca real sigue siendo modelo/GPU (decisión Owner).
+- Detalle: `/home/kor/mke/clutifx-ch03-20261018/asr-probe/` (RECOMMENDATION.md, verdict.json, probe-report.json).
+
 ## CH03 OBSERVED (medido en Chapter 03, sin corregir)
 
 | Métrica | Valor |
