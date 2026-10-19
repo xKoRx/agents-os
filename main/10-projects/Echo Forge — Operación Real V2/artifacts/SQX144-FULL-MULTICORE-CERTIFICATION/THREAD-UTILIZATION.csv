@@ -1,0 +1,13 @@
+host,cores_sqx,run_label,threads_jvm_preparadas,threads_con_ticks_positivos,median_runnable_ventana_calc,cores_medios_calc,lectura
+sqx-zeus,27,build-r1,"Preparing thread executors: 27","n/d (muestreo 1s)","3-4",23.77,~24 threads corriendo en mediana; pico 26,95 cores = 100% de la asignacion
+sqx-zeus,27,retest-n600,"27","58 threads con ticks","25",24.18,25 RUNNABLE en mediana durante el calculo; 90% de los cores
+sqx-zeus,27,opt-02,"27","64","24",23.56,24 RUNNABLE sostenido = saturacion de la VM
+sqx-zeus,27,integ-opt-02,"27","63","24",21.38,24 RUNNABLE; contrato 1 estrategia/SQX respetado
+sqx-hera,60,build-r1,"Preparing thread executors: 60","129","26",40.76,129 threads del grupo con ticks; 26 RUNNABLE mediano en ventana corta
+sqx-hera,60,retest-n600,"60","129 threads con ticks","63",53.24,63 RUNNABLE en mediana = 105% nominal (jitter) ~ saturacion
+sqx-hera,60,opt-02,"60","123","60",55.97,60 RUNNABLE mediano = todos los cores ocupados
+sqx-hera,60,integ-opt-02,"60","129","57",51.48,57 RUNNABLE; WFO del cohort del builder
+sqx-kronos,72,build-r1,"Preparing thread executors: 72","144","21",49.15,144 threads con ticks; ventana calc corta (9,85s) a 68% medio / 95% pico
+sqx-kronos,72,retest-n600,"72","140 threads con ticks","37.5",62.91,mediana RUNNABLE 37,5 con media integral 62,9 cores (87%)
+sqx-kronos,72,opt-02,"72","144","72",67.61,72 RUNNABLE mediano = todos los cores; media 67,6 (94%)
+sqx-kronos,72,integ-opt-02,"72","145","71.5",64.93,71,5 RUNNABLE; WFO del cohort del builder
