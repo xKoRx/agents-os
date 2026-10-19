@@ -2,26 +2,33 @@
 type: learning
 schema_version: 1
 scope: area
-area: "[[Echo]]"
 created: "2026-10-19"
 updated: "2026-10-19"
-confidence: verified
+area: "[[Echo]]"
+project: "[[Echo Forge — Operación Real V2]]"
+application: "[[xKoRx/symphony]]"
 entities:
   - "[[Echo Forge — Operación Real V2]]"
 related:
-  - "[[Echo Forge — Operación Real V2]]"
+  - "[[CPU-GAP-CLOSURE-RESOLUTION-20261019]]"
 aliases:
   - sqx task window dating
   - sqx global log timestamps
+confidence: verified
+source_session: ZCode (GLM-5.3-Flash)
 load_policy: manual
 indexable: true
-index_priority: normal
+index_priority: high
 tags:
   - kind/learning
-  - area/echo
+  - scope/echo
   - tech/sqx
   - tech/measurement
 ---
+
+# sqx144-window-dating-console-buffering
+
+## Aprendizaje
 
 # La ventana canónica de una tarea SQX es el `global_log`, no la consola ni el perfil CPU
 
