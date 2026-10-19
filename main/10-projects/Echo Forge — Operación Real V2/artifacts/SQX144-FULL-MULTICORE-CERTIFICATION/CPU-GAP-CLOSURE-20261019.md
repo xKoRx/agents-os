@@ -16,6 +16,9 @@ tags:
 
 # CPU GAP CLOSURE — cierre de los 3 gaps de la certificación SQX144 FULL MULTICORE (2026-10-19)
 
+> [!warning] RESUELTO (2026-10-19, sesión posterior)
+> Los tres veredictos FAIL de este documento fueron resueltos y dos de ellos re-clasificados con evidencia física: GAP 1 remediado con el candidato S01+S02 (13,4×, paridad FULL, no desplegado); GAP 2 era un **artefacto de datación** (la medición canónica da 22,5 CPU-s reales en N=10, no 0,05); GAP 3 corregido en el harness con los diez saltos verificados. Ver [[CPU-GAP-CLOSURE-RESOLUTION-20261019]].
+
 ## Veredictos separados (mandato Top Local Physical Verifier, ONE-SHOT)
 
 | Veredicto | Resultado |
