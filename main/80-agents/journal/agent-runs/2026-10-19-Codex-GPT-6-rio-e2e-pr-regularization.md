@@ -42,9 +42,9 @@ tags:
 
 ## Evidencia
 
-- **Validaciones ejecutadas:** ClickHouse: 13 pruebas locales focalizadas, pre-commit y CI/Jenkins (7 exitosos, 1 neutral, 2 omitidos). Playmaker: 116 selectores declarados y cuatro comprobaciones de ejecución local/E2E; pre-commit y checks remotos. Flink: 15 pruebas focalizadas y pre-commit.
-- **Resultado observable:** #342 sincronizado con `develop` y corrección de limpieza parcial del productor publicada (`dbc02775`); sus checks pasan, pero permanece un review activo de cambios solicitados. #1288 publicó la corrección de validación de source sets (`15a09f3b`), tiene dos approvals, todos sus checks pasan y no tiene conflictos. #209 publicó correcciones a los comentarios revisados (`8abd28f6`, `01a712a9`); los hilos atendidos quedaron resueltos.
-- **Limitaciones de la evidencia:** #209 aún requiere approval humano; al consultar GitHub, CI seguía en curso y `code-coverage`, `dependencies` y `static-analyzer` figuraban como esperados; Code Reviewer fue omitido. En #342 la revisión de Florencia sigue bloqueando el merge pese a los checks aprobados. No se mergeó ningún PR. `aoc-management update-internal` no estaba disponible en el entorno. No se ejecutó Zord: la revisión automática de aprobación rechazó enviar el diff interno a ocho revisores externos.
+- **Validaciones ejecutadas:** ClickHouse: 13 pruebas locales focalizadas, pre-commit y CI/Jenkins (7 exitosos, 1 neutral, 2 omitidos). Playmaker: 116 selectores declarados y cuatro comprobaciones de ejecución local/E2E; pre-commit y checks remotos. Flink: 15 pruebas focalizadas y pre-commit. Tras el sync de #1288: cero archivos sin resolver, manifiesto JSON válido y `git diff --check` sin errores; no ejecuté tests nuevos para este merge.
+- **Resultado observable:** #342 sincronizado con `develop` y corrección de limpieza parcial del productor publicada (`dbc02775`); sus checks pasan, pero permanece un review activo de cambios solicitados. #1288 sincronizado con `develop@34efd36e` y publicado en `f2779d7e`; GitHub reporta `MERGEABLE` y el conflicto quedó resuelto. #209 publicó correcciones a los comentarios revisados (`8abd28f6`, `01a712a9`); los hilos atendidos quedaron resueltos.
+- **Limitaciones de la evidencia:** #1288 aún muestra `REVIEW_REQUIRED`; la lectura de sus checks después del merge falló por conexión a GitHub. #209 aún requiere approval humano; al consultarlo, CI seguía en curso y `code-coverage`, `dependencies` y `static-analyzer` figuraban como esperados; Code Reviewer fue omitido. En #342 la revisión de Florencia sigue bloqueando el merge pese a los checks aprobados. No se mergeó ningún PR. `aoc-management update-internal` no estaba disponible en el entorno. No se ejecutó Zord: la revisión automática de aprobación rechazó enviar el diff interno a ocho revisores externos.
 
 ## Evaluación
 
@@ -58,6 +58,6 @@ tags:
 
 ## Resultado
 
-- **Outcome:** Parcial: cambios y verificaciones publicados; #1288 está listo según el estado observado, mientras #342 y #209 requieren pasos de revisión humana y #209 aún requiere checks remotos.
+- **Outcome:** Parcial: cambios y sync publicados; #1288 ya no tiene conflictos, pero mantiene aprobación pendiente, mientras #342 y #209 requieren pasos de revisión humana y #209 aún requiere checks remotos.
 - **Rework posterior:** Desconocido.
 - **Aprendizaje para comparar herramientas:** La evidencia local focalizada y los comentarios del PR detectaron fallos de ciclo de vida que no cubrían las primeras pasadas; el estado final del merge depende de approvals/checks de GitHub.
