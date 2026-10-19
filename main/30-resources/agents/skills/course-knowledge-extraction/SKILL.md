@@ -241,6 +241,8 @@ scripts/tests/wikilink_selftest.py                        # red-green de checks 
 scripts/tests/anchors_selftest.py                         # red-green de anchors/bloques (7 casos)
 scripts/tests/review_pipeline_selftest.py                 # payload emite key; validate_review
                                                           # acepta claim_key|key (5 casos)
+scripts/tests/lifecycle_selftest.py                       # red-green de supersession safety
+                                                          # (V14/V15/V16; 10 casos)
 scripts/check_term_sources.py <lib> [--groups JSON]       # SOURCE-FIRST: normalización de términos
                                                           # sin respaldo en la fuente = MATERIAL
 scripts/tests/source_first_selftest.py                    # red-green del chequeo (caso real DOL/DXY)
@@ -281,6 +283,22 @@ claims; los nuevos toman IDs nuevos. Correcciones que preservan la proposición
 actualizan el claim (nota enmendada); si cambian materialmente la proposición,
 el Manager adjudica claim nuevo y el anterior queda superseded sin romper
 backlinks.
+
+**Supersession safety y contrato de consulta** (hardening ch04, 2026-10-19):
+distinguir GROUNDING_VERDICT (SUPPORTED/UNCERTAIN/UNVERIFIED — cómo se sostiene
+el claim con la fuente) de LIFECYCLE_STATUS (activo vs reemplazado — si es
+conocimiento vigente). No hay propiedad redundante: `superseded_by` presente
+⇒ el claim es SUPERSEDED (historia preservada: conserva ID, evidencia y
+adjudicación original, y siempre navega a su reemplazo). El reemplazo es
+bidireccional (`superseded_by` ↔ `supersedes`, validado). **ACTIVE KNOWLEDGE =
+claims WITHOUT `superseded_by`**: consultas, síntesis y documentación por
+defecto usan sólo claims activos; los históricos se recuperan sólo para
+auditoría o cuando el usuario pide expresamente versiones anteriores. El
+renderer marca los reemplazados (`SUPERSEDED — HISTORICAL, NOT ACTIVE` +
+`Replacement:` navegable) y el validador lo exige (V14 integridad, V15
+proyección, V16 docs pedagógicos sin citas de reemplazados como vigentes,
+V10 fila `Claims activos / superseded` en el README). Contract tests:
+`scripts/tests/lifecycle_selftest.py`.
 
 **Correcciones y dudas**: `AMENDMENTS.md` por capítulo (append-only:
 amendment_id, claim_id, fecha, motivo, antes/después, evidencia, resultado —

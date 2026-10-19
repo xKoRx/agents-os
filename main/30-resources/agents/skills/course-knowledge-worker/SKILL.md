@@ -138,7 +138,10 @@ Output (spool): findings verificables:
 Verificar: afirmaciones sin soporte, claims mal citados, imágenes faltantes,
 condiciones eliminadas, números cambiados, causalidad inventada, decir más que
 el instructor, nombres históricos tratados como vigentes, métricas
-contradictorias, e **integridad de navegación** (wikilinks a archivos,
+contradictorias, **lifecycle de supersession** (un claim con `superseded_by`
+es historia, no conocimiento vigente: los docs pedagógicos no pueden
+wikilinkearlo como evidencia — ACTIVE KNOWLEDGE = claims sin `superseded_by`),
+e **integridad de navegación** (wikilinks a archivos,
 headings y block ids reales; CLAIMS.md/FRAMES.md sincronizadas con
 claims.jsonl; sin enlaces ambiguos entre capítulos). **Chequeo SOURCE-FIRST
 semántico (obligatorio)**: para claims con términos especializados normalizados
