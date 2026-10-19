@@ -1,0 +1,47 @@
+{
+ "e2e": "ECHO-FORGE-FINAL-RELEASE-E2E",
+ "release": "0.3.2",
+ "source_commit": "619c3b6f71a0d8198783a7ab5684767b6ddf15d9",
+ "manifest_commit": "daded14cbe0bc85f6fafda8d079e94036f715b47",
+ "plugin_source_sha256": "b5f85c4ed0b37a8551f017210a29da2f36611c0bf52739f31008887dceffb0c8",
+ "instrument": "NDX",
+ "direction": "L",
+ "timeframe": "H1",
+ "strategy": "flow_example_2",
+ "version": "v1",
+ "wave": "11",
+ "request_id": "forge-032-e2e-20261019T195000Z-e2e-w11",
+ "path_strategy": "default",
+ "config_folder": "00_configs",
+ "sqx_version": "144",
+ "identity": {
+  "flow_run_ref": "561267ed-224b-48b5-a803-9f7665927998",
+  "workflow_id": "sqx-main-v1-67dd5b4e-be13-4020-ac31-63f6b167ccc8",
+  "temporal_first_run_id": "01a1557c-0871-7849-9453-df5f72a45b38",
+  "durable_config_id": "7307aee6-adcb-4147-992f-7f5f37130a93",
+  "cfgid_derivado": "NDX_flow_example_2_v1_w11",
+  "temporal_namespace": "sqx-prop",
+  "task_queue": "sqx-main-queue",
+  "minio_output_namespace": "wave_11/ndx/l_h1/flow_example_2/v1/",
+  "t0_utc": "2026-10-19T18:45:54Z",
+  "terminal_utc": "2026-10-19T20:52Z",
+  "duracion": "2h06m"
+ },
+ "novedad_vs_w10": "SOLO identidad (wave 11 + request_id nuevo). El resto del spec es byte-equivalente al E2E w10 certificado (verificado por diff estructural).",
+ "wave_config": {
+  "wfm_params": {"algorithm": "robust_run_selection_v2", "params": {"cliff_threshold": 0.35, "epsilon_ret": 0.01, "epsilon_aux": 0.01}},
+  "batch_size_group": 1,
+  "max_parallel_group": 3,
+  "group_source": "ranking_snapshot",
+  "retester_supply_note": "batch_size:1 congelado del group productivo; la optimización de suministro del Retester (lotes mayores) es deuda de rendimiento PENDIENTE, no parte de esta release"
+ },
+ "cfx_owner_byte_exactos": {
+  "builder_test.cfx": "81497ababb8e632e58241e64f43c8d83ff3a31c5eafb43f908fcfde087cadf6a",
+  "optimizer_test.cfx": "a15124cbfc9cd9b86ca5f7d036aa94316320a921ecafd9a0d3936fbf9387761d",
+  "retester_test.cfx": "094f409e5395cb140fc67d4612477af93c4f37009204453b7fc15f6f9f0003d3",
+  "retesterfull_test.cfx": "420a4f88cd52628129f83027552e818aece5b8480e5fd57f49d378108d7b35af"
+ },
+ "mt5_window": {"symbol": "NDX_SQX", "period": "H1", "from": "2026.01.01", "to": "2026.10.12", "model": 4, "deposit": 100000, "currency": "USD", "leverage": 100, "server_timezone": "GMT"},
+ "magic_number": {"apply_value": 888111, "rango_asignado": "26100091104-26100091138", "allocator": "sin tocar"},
+ "dispatch": {"mechanism": "watcher candidate-local Daedalus (screen forge-watcher-w11, binario release 0.3.2 SHA 491d3894…, workdir fuera del repo, paquete config.json+4 CFX)", "preflight": "cfgID libre en sqx.configs (w11_count=0); sqcli idle 3/3; sqcli -v licencia OK; disco 521-537G libre; RAM 123G disponible; terminal64 y worker MT5 operativos; sin templateFiles externos en los CFX; SPEC_VALID por el watcher"}
+}

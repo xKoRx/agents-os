@@ -1,0 +1,23 @@
+#,etapa,ventana_utc_inicio,ventana_utc_fin,resultado,evidencia
+1,dispatch,2026-10-19T18:45:52Z,2026-10-19T18:45:58Z,COMPLETED,watcher candidate-local; SPEC_VALID; FlowRun 561267ed creado en PG (sqx-prop); paquete movido a input/processed
+2,builder (project custom; builder_test.cfx),2026-10-19T18:45:54Z,2026-10-19T18:53:48Z,COMPLETED,stage project@sqx-overview.v2 1/1; TASK Build 1m27s: 1572 generadas / 1000 aceptadas / 846 en databank; TASK Custom analysis 2m10s (ruta paralela S02)
+3,overview/metadata,2026-10-19T18:51:57Z,2026-10-19T18:53:13Z,COMPLETED,cohort subido a MinIO wave_11/.../01_builder/ (846 .sqx); databank_metadata run_id forge-032-e2e-...w11
+4,classification indicator_signature.v1,2026-10-19T~18:53:5Z,,COMPLETED,classification_snapshot sellada; databank_metadata 846 estrategias con firma de indicadores
+5,early ranking builder-per-type,2026-10-19T18:53:57Z,,COMPLETED,8 ranking_snapshots PER_LOGICAL_TYPE (7-8 tipos reales del cohort)
+6,selection per_logical_type top5,2026-10-19T18:53:58Z,,COMPLETED,SelectionSnapshot sha256:d86dd49902ff8e3d607f38a69505c6ebb26ba4074a2fb283197b5706a46e645b; 35 seleccionadas
+7,GROUP interno source=ranking_snapshot (batch 1, max_parallel 3),2026-10-19T18:54:00Z,2026-10-19T~19:35Z,COMPLETED,35 children GroupSQXWorkflow; 105-35=70 children restantes = apply(35)+mt5(35)
+8,retester x35,2026-10-19T18:54:04Z,2026-10-19T~19:20Z,COMPLETED 35/35,stage rows project@sqx-retester.v1=35 COMPLETED
+9,optimizer WFO x35,2026-10-19T18:55:36Z,2026-10-19T~19:30Z,COMPLETED 35/35,stage rows project@sqx-optimizer.v1=35 COMPLETED
+10,evaluate_wfm x35,2026-10-19T18:58:10Z,2026-10-19T~19:33Z,COMPLETED 35/35,stage rows evaluate_wfm@sqx-wfm.v1=35 COMPLETED
+11,select_robust_run x35,2026-10-19T~18:59Z,2026-10-19T~19:35Z,COMPLETED 35/35,stage rows select_robust_run@sqx-robust-selection.v1=35; 35 decisiones OPTIMIZER_SELECTION en sqx.decisions
+12,apply_selected_run x35 (magic 888111 durable),2026-10-19T~19:35Z,2026-10-19T~19:45Z,COMPLETED 35/35,stage rows apply_selected_run=35; mágicas int64 26100091104-26100091138 en sqx.strategy_magic; artefactos durable/apply-selected-run/v1
+13,final reretester x35 (retesterfull_test.cfx),2026-10-19T~19:45Z,2026-10-19T~20:00Z,COMPLETED 35/35,stage rows project@sqx-final-reretester.v1=35 COMPLETED
+14,trade_list_exporter + generate_report,2026-10-19T~20:00Z,2026-10-19T~19:46Z,COMPLETED,trade lists y reporte (sin stage rows por contrato, como w10)
+15,mt5_export x35 (MQ5),2026-10-19T19:46:48Z,2026-10-19T19:48:xxZ,COMPLETED 35/35,durable/mt5-export/v1/561267ed…/<uuid>/final-<uuid>.mq5 (322 KB c/u; input long MagicNumber)
+16,mt5_compile x35 (EX5),2026-10-19T19:50:09Z,2026-10-19T19:54:57Z,COMPLETED 35/35,stage rows mt5_compiler@mt5-compile.v1=35; compile.log + .ex5 por estrategia; 0 errores de compilación
+17,mt5_backtesting x35,2026-10-19T19:56Z,2026-10-19T20:51:18Z,COMPLETED 35/35,35 child workflows MT5; artefactos por estrategia: .htm (40 KB), tester.log (4.2 MB), agent.log (5.5 MB), terminal.log, tester.ini, tradeset ndjson.gz
+18,fidelity mt5_fidelity_shadow.v1,2026-10-19T20:45Z,2026-10-19T20:52Z,COMPLETED 35/35,35 scores COMPUTED en forge.scores (valores 18.99-87.12); scope MT5 OBSERVED (real ticks 72.2M, 4593 bars, Darwinex-Demo build 6230)
+19,ranking final score_descending,2026-10-19T20:51:35Z,,COMPLETED,ranking_snapshot mt5-final-fidelity-ranking sha256:0356f6b70266c348f65946d776d0e989c29edf2fee051a8a1c303e1caa840950
+20,promotion finalist_promotion@2.0.0,2026-10-19T20:51Z,2026-10-19T20:52Z,COMPLETED,decisión FINALIST_PROMOTION outcome=COMPLETED decision_ref=sha256:b325fd29965cc45c55ed9f06c2c3e04bcfa4e4d85111950a20a82238f12c3b62 en sqx.decisions
+21,handoff PRE_ECHO x35,2026-10-19T~20:51Z,,COMPLETED (estructural),35/35 handoff_deliveries estado HANDOFF_CREATED; last_error=ingress_not_configured (fail-closed ANTES de HTTP; 0 POSTs a Echo)
+22,FlowRun terminal,,,COMPLETED,sqx.flow_runs status=COMPLETED; Temporal 105/105 child workflows completados; 0 failed; duración total 2h06m
