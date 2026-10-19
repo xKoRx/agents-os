@@ -9,7 +9,7 @@ Fuentes físicas de los videos (locales, NO en Git): `/home/kor/mke/course/epNN-
 | # | Carpeta | Video | SHA-256 (prefijo) | Duración | Biblioteca | Estado |
 |---|---|---|---|---|---|---|
 | 01 | `ch01-introduccion/` | `ep01-intro.mp4` | `4de8f12d…` | 34:04 | README · claims.jsonl · documentation.md (extracción MKE V2 histórica, 1.527 claims) | PUBLICADA (motor anterior; ver su README) |
-| 02 | `ch02-time/` | `ep02-time.mp4` | `fb8b3de4…` | 17:09 | biblioteca completa (skill course-knowledge-extraction, 98 claims SUPPORTED) | DONE 2026-10-18 |
+| 02 | `ch02-time/` | `ep02-time.mp4` | `fb8b3de4…` | 17:09 | biblioteca completa (skill course-knowledge-extraction, 98 claims SUPPORTED vigentes + 2 superseded por remediation DOL/DXY 2026-10-19) | DONE 2026-10-18 (remediated 2026-10-19) |
 | 03 | `ch03-bias/` | `ep03-bias.mp4` | `c52dafa8…` | 41:51 | biblioteca completa (skill course-knowledge-extraction, 211 claims SUPPORTED + 6 superseded por remediation DOL/DXY) | DONE 2026-10-18 (remediated) |
 | 04–12 | — | `ep04-entradas.mp4` … `ep12-psicotrading.mp4` | sin procesar | — | — | PENDIENTE (secuencia local verificable por nombre de archivo) |
 
