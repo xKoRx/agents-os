@@ -57,6 +57,7 @@ tags:
 ## Retrieval Feedback
 
 - La nota canónica de la aplicación y `git worktree list` resolvieron ubicación y rama; para comentarios bastaba recuperar la sugerencia opcional vigente de Karla. No hubo necesidad de cargar sesiones raw históricas.
+- Graphify resolvió [[CP Flink local]] tras refrescar su caché fuera del sandbox; el lint global reportó deuda no relacionada. Se mantuvo el alcance del cierre sin sanear notas ajenas.
 
 ## Skill Feedback
 

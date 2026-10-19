@@ -46,7 +46,8 @@ tags:
 
 ## Validación
 
-- Publicación y respuesta retornaron IDs/URLs concretos. Pendiente completar lectura posterior y consulta enfocada de Graphify antes del reporte final.
+- Lectura posterior PASS: cuerpo de #209 idéntico al candidato y al vault; seguimiento #211 y respuesta en el hilo de Karla idénticos a los textos enviados, con enlace cruzado verificado. HEAD permanece `05d46cfd`; Fury y CodeQL PASS, Code Reviewer NEUTRAL.
+- `graphify-obsidian explain 'CP Flink local.md'` resolvió el control tras refrescar la caché local con permisos de escritura. El lint global informó deuda ajena al delta; el índice derivado se actualizó y no se modificaron notas no relacionadas.
 
 ## Compartibilidad
 
