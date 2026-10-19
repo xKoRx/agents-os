@@ -49,8 +49,10 @@ WORD_I = lambda t: re.compile(r"\b" + re.escape(t) + r"\b", re.I)  # fuente: el 
 def normalize_groups(raw):
     """Acepta [["DOL","DXY"]], ["DOL", ...], [{"term":..,"aliases":[..]}] y
     listas mixtas; devuelve lista de GRUPOS, cada grupo = lista de entradas
-    {"term", "aliases"}. Los aliases son del GRUPO: un garble ambiguo puede
-    resolver a cualquier miembro."""
+    {"term", "aliases"}. Una lista plana de dicts = UN grupo. Los aliases son
+    del GRUPO: un garble ambiguo puede resolver a cualquier miembro."""
+    if raw and all(isinstance(g, dict) for g in raw):
+        raw = [raw]  # lista plana de entradas: un solo grupo
     groups = []
     for g in raw:
         entries = []
