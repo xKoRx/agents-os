@@ -1065,7 +1065,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-001651|16:51]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001659.png.png|f-001659.png]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001659.png|f-001659]]
 
 **Notes:** Segmento largo 16:51-17:24 (cruza la frontera min 16→17). Frame verificado (f-001659, seg. 16:59): gráfico EURUSD 12h (720M) con nivel horizontal marcado en los máximos (~1,16148), coherente con 'el doble ahí arriba'. 'vallas [ASR]' = bias según glosario (contexto: 'estoy limitándome solo en las entradas' lo confirma).
 
@@ -1079,7 +1079,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-001724|17:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-001744|17:44]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001746.png.png|f-001746.png]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001750.png.png|f-001750.png]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001746.png|f-001746]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001750.png|f-001750]]
 
 ### c-0076
 
@@ -1091,7 +1091,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-001753|17:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-001801|18:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-001806|18:06]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-001812|18:12]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-001818|18:18]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001659.png.png|f-001659.png]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001759.png.png|f-001759.png]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001802.png.png|f-001802.png]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001659.png|f-001659]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001759.png|f-001759]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001802.png|f-001802]]
 
 **Notes:** Frame verificado (f-001759, seg. 17:59): gráfico EURUSD 2h (120M) con rangos anidados dibujados, visualiza la compresión por TFs descendentes.
 
