@@ -104,14 +104,25 @@ def main():
         rc, out = run_validate(lib)
         ok &= check("3 CLAIMS.md sin lifecycle -> V15", "V15" in codes(out))
 
-        # 4: doc pedagógica cita el claim reemplazado
+        # 4: doc pedagógica cita el claim reemplazado como evidencia VIGENTE
+        # (wikilink a CLAIMS#c-0001); la mención en texto plano histórico NO cuenta
         lib = build_lib(tmp + "4",
                         [dict(base, id="c-0001", statement="x", superseded_by="c-0002"),
                          dict(base, id="c-0002", statement="y", supersedes="c-0001")])
         open(os.path.join(lib, "documentation.md"), "w", encoding="utf-8").write(
-            "# Doc\n\nSegún c-0001 el precio...\n")
+            "# Doc\n\nSegún [[lib/CLAIMS#c-0001|c-0001]] el precio... "
+            "(historia: supersede a c-0001, amend-01)\n")
         rc, out = run_validate(lib)
-        ok &= check("4 documentation cita claim reemplazado -> V16", "V16" in codes(out))
+        ok &= check("4 documentation wikilinkea claim reemplazado -> V16", "V16" in codes(out))
+        lib = build_lib(tmp + "4b",
+                        [dict(base, id="c-0001", statement="x", superseded_by="c-0002"),
+                         dict(base, id="c-0002", statement="y", supersedes="c-0001")])
+        open(os.path.join(lib, "documentation.md"), "w", encoding="utf-8").write(
+            "# Doc\n\nEl rango ya no hace falta [[lib/CLAIMS#c-0002|c-0002]] "
+            "(supersede a c-0001, amend-ch03-06)\n")
+        rc, out = run_validate(lib)
+        ok &= check("4b mención histórica en texto plano -> sin V16",
+                    "V16" not in codes(out))
 
         # 5: GREEN — reemplazo bien formado, renderer regenerado, README con fila
         claims = [dict(base, id="c-0001", statement="x", superseded_by="c-0002"),

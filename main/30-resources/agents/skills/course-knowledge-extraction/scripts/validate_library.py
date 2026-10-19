@@ -468,18 +468,31 @@ def main():
             if sec and "CLAIMS#" + str(prev) not in sec.group(0):
                 bad("V15", f"CLAIMS.md: {c.get('id')} sin link Supersedes a {prev}")
 
-    # --- V16: los docs pedagógicos no citan claims reemplazados como vigentes
+    # --- V16: los docs pedagógicos no citan claims reemplazados como vigentes.
+    # La cita vigente en esta biblioteca es el WIKILINK [[…/CLAIMS#c-XXXX|…]];
+    # las menciones en texto plano ("supersede a c-0116") son el rastro de
+    # auditoría que el contrato de supersession exige preservar y no se
+    # flaggean. Los ids son por-capítulo: sólo cuentan los wikilinks que
+    # apuntan a la CLAIMS.md de ESTA biblioteca.
     PEDAGOGICAL = ["documentation.md", "rules.md", "concepts.md",
                    "examples.md", "study-guide.md"]
-    for d in PEDAGOGICAL:
-        p = os.path.join(lib, d)
-        if not os.path.exists(p) or not sup_ids:
-            continue
-        for ln_no, line in enumerate(open(p, encoding="utf-8"), 1):
-            for cid in sup_ids:
-                if re.search(r"\b" + re.escape(cid) + r"\b", line):
-                    bad("V16", f"{d}:{ln_no}: cita el claim reemplazado {cid} como evidencia "
-                               f"vigente (la historia vive en AMENDMENTS/review-notes; citar {by_id[cid].get('superseded_by')})")
+    lib_base = os.path.basename(os.path.normpath(lib))
+    if sup_ids:
+        for d in PEDAGOGICAL:
+            p = os.path.join(lib, d)
+            if not os.path.exists(p):
+                continue
+            text = open(p, encoding="utf-8").read()
+            for m in WIKI_RE.finditer(text):
+                target, anchor = m.group(1).strip(), (m.group(2) or "").strip()
+                am = re.match(r"^#(c-\d{4})$", anchor)
+                if not am or am.group(1) not in sup_ids:
+                    continue
+                if lib_base not in target:
+                    continue  # wikilink a otra biblioteca: ids ajenos
+                bad("V16", f"{d}: cita como evidencia vigente el claim reemplazado {am.group(1)} "
+                           f"(wikilink {m.group(0)[:60]}…); citar {by_id[am.group(1)].get('superseded_by')} "
+                           f"— la historia vive en AMENDMENTS/review-notes")
 
     ok = not [f for f in findings if f[1] != "SKIP"]
     if args.json:
