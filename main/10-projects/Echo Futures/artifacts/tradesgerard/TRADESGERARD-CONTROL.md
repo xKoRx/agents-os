@@ -9,12 +9,21 @@ aliases: []
 tags:
   - kind/doc
 created: "2026-10-12"
-updated: "2026-10-18"
+updated: "2026-10-20"
 ---
 
 # TRADESGERARD-CONTROL
 
 ## Propósito
+
+## Corte — 2026-10-20 · hefesto declarado host oficial del backtest + prueba mínima de máquina
+
+**Estado:** 13/26 `COMPLETE_RECONCILED` (12 en r4 + MR-03 en r5; snapshot `RESULTS-SNAPSHOT.md` 2026-10-19 en `challenge-history/verification/history-execution-20261019/`); cierre final 26/26 pendiente. Las 13 filas restantes (MR-02, MR-04..MR-10, ORB-NATIVE-C01..C05) murieron en vuelo en r5 al retirarse el host anterior de 96 GB (`daedalus` 192.168.31.141, sin ruta al 2026-10-20 00:20 CLT). `/srv/echo-work` (r4+ r5 + backup de corpus `~/echo-backtest-873/package/corpus/`) sólo existe en ese host: verificado read-only que zeus/hera/kronos/docker-echo-dev/echo-prod no lo tienen. Recuperación del cierre: (a) encender el host anterior y copiar `/srv/echo-work` a hefesto — ahorra re-ejecutar ~13 trayectorias FULL — o (b) RUTA B del runbook: bajar el asset r4 del release GitHub `challenge-history-20261018-evidence` (repo privado ⇒ requiere `gh` + token) y re-ejecutar aquí.
+
+- **hefesto (192.168.31.164, 16 GB RAM) es el host oficial del backtest Echo Futures desde el 2026-10-20 por decisión del Owner.** Raíz de campaña local: `~/echo-work/runs/challenge-history-20261018-hefesto/` (el launcher exige `--root`/`--base` explícitos). Gate de memoria: `2 × RSS_medido × jobs ≤ MemAvailable` (~8,5 GB ahora) ⇒ partir con jobs=1 y medir canario antes de subir concurrencia; sin sudo para crear `/srv/echo-work` canónica (pendiente del dueño, opcional).
+- **Prueba mínima ejecutada en hefesto (2026-10-20 ~00:20 CLT): PASS con un hallazgo ambiental.** Repo en `experiment/challenge-history-20261018` @ `48aaf5f7` (== HEAD congelado); build `-p 1` exit0 de `echo-backtest` (sha256 local `4fd0f823…`, go no es byte-reproducible entre máquinas: actualizar `critical-gates.json` con hash local al re-ejecutar), `ntdigest` y `planfix`; suite Go del gate `ok v3/backtester 8.563s`; tests Python de challenge-history 37/37 OK.
+- **Hallazgo ambiental:** `/tmp` en hefesto es tmpfs de 7,0 GiB y la plataforma exige reserva de 8 GiB (`platform: free disk below8GiB reserve`, `platform_search.go:213`) — en el host de 96 GB nunca se vio. Mitigación aplicada en tests: `TMPDIR=/home/kor/tmp` (disco). Para las corridas usar out en disco; opción durable: ampliar/remontar `/tmp`.
+- **Canario MR-08 con datos reales bloqueado en esta máquina:** la preparación sellada (`b72ff90b…`) no está aquí; vive en el release GitHub (token) o en el host anterior. Todo lo demás de la prueba mínima está verde.
 
 ## Corte de continuidad — 2026-10-18 (v2) · CHALLENGE CONTINUOUS: FIRST_PASS revocado y lote completo re-ejecutado
 
