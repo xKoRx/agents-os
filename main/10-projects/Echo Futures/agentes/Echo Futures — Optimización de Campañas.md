@@ -10,7 +10,7 @@ parent: "[[Echo Futures]]"
 sprint:
 start:
 due:
-progress: 0
+progress: 28
 repo: "xKoRx/echo"
 jira:
 prs:
