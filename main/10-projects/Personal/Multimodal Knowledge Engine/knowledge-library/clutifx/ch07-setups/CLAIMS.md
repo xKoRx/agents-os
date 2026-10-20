@@ -2059,13 +2059,13 @@
 
 **Verdict:** SUPPORTED · **Epistemic:** visual_observation · **Kind:** example · **Minute:** 33 · **Source key:** 
 
-**Tiempo:** [33:02–33:34]
+**Tiempo:** [33:02–33:39]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003302|33:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003328|33:28]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003302|33:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003328|33:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003336|33:36]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-003328.png|f-003328]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-003328.png|f-003328]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-003336.png|f-003336]]
 
-**Visual hint:** 33:28 — 4h de EUR con 'el doble' (objetivo bajista) marcado abajo y rangos bajistas visibles
+**Visual hint:** 33:28 — f-003336 (4H de EUR, niveles horizontales abajo = 'el doble'/objetivo) corrobora el gráfico de 4 horas; f-003328 (12H de EUR, caja de rango bajo el precio) corrobora el objetivo en 12 horas
 
 **Notes:** ASR literal: 'Pero en el 8, en 12 tenemos este' (¿objetivo en 8h y en 12h?).
 
@@ -2785,13 +2785,15 @@
 
 ### c-0230
 
-**Statement:** Solo haciéndote estas cuatro preguntas puedes determinar ya si tu vela va a ser la que manipula, la que distribuye, un reversal o una continuación.
+**Statement:** 'Yo creo que' solo haciéndote estas cuatro preguntas puedes determinar ya si tu vela va a ser la que manipula, la que distribuye, un reversal o una continuación.
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** rule · **Minute:** 44 · **Source key:** 
 
 **Tiempo:** [44:04–44:16]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004404|44:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004410|44:10]]
+
+**Notes:** Hedge literal restaurado (s-004404: 'Yo creo que solo haciéndoos estas cuatro preguntas podéis determinar…') — enmienda 2026-10-20: el statement original omitía la modalización del instructor.
 
 ### c-0231
 
