@@ -186,7 +186,7 @@ def main():
             bad("V01", f"id duplicado: {cid} ({n}x)")
 
     # --- V02/V06/V07/V08/V09 por claim
-    vis_no_frame, hint_no_frame = [], []
+    vis_no_frame, hint_no_frame, hint_out_of_duration = [], [], []
     for c in claims:
         cid = c.get("id", "?")
         ev = c.get("evidence")
@@ -211,6 +211,14 @@ def main():
             # contextual: señala dónde mirar, no exige frame. En cualquier otra
             # epistemic, un hint sin frame rompe la trazabilidad visual.
             hint_no_frame.append(cid)
+        vh = c.get("visual_hint")
+        if isinstance(vh, dict) and dur is not None:
+            sec = vh.get("second")
+            # defecto real ch05 (DV-04): el extractor escribió el timestamp
+            # HHMMSS como segundos crudos (p.ej. 1635 por 16:35 -> 995 s).
+            # visual_hint.second es SIEMPRE segundos reales del video.
+            if isinstance(sec, (int, float)) and not (0 <= sec < dur):
+                hint_out_of_duration.append((cid, sec))
         if c.get("verdict") not in VERDICTS:
             bad("V09", f"{cid}: veredicto fuera de vocabulario: {c.get('verdict')!r}")
         if c.get("epistemic") == "model_inference" and c.get("verdict") == "SUPPORTED":
@@ -220,6 +228,9 @@ def main():
         bad("V07", f"visual_observation sin frame en evidence ({len(vis_no_frame)}): {vis_no_frame}")
     if hint_no_frame:
         bad("V08", f"visual_hint sin frame en evidence ({len(hint_no_frame)}): {hint_no_frame}")
+    if hint_out_of_duration:
+        bad("V08", f"visual_hint.second fuera de la duración de la fuente ({len(hint_out_of_duration)}): "
+                   f"{hint_out_of_duration} — second es en segundos reales, jamás HHMMSS pegado")
 
     # --- V04/V05 nombres de frame del directorio
     for f in sorted(frames):

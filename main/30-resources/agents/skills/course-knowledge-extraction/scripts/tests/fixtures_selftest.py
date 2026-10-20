@@ -125,6 +125,13 @@ def main():
         open(p, "w", encoding="utf-8").write(t)
     ok &= expect("E model_inference SUPPORTED sin adjudicar", variant(base, "bad-inference", m_inference), False, {"V13"})
 
+    def m_hint_seconds(d):
+        # defecto real ch05 (DV-04): HHMMSS pegado como segundos crudos
+        p = os.path.join(d, "claims.jsonl")
+        t = open(p, encoding="utf-8").read().replace('"visual_hint": {"second": 30,', '"visual_hint": {"second": 1635,')
+        open(p, "w", encoding="utf-8").write(t)
+    ok &= expect("G visual_hint.second fuera de duración (HHMMSS pegado)", variant(base, "bad-hint-seconds", m_hint_seconds), False, {"V08"})
+
     shutil.rmtree(tmp)
     print("FIXTURES_SELFTEST =", "PASS" if ok else "FAIL")
     sys.exit(0 if ok else 1)
