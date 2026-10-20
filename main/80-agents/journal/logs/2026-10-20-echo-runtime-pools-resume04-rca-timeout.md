@@ -1,0 +1,6 @@
+# Change Log — 2026-10-20 Echo Futures Runtime Pools RESUME-04 (RCA timeout + JSON SIM)
+
+- `10-projects/Echo Futures/agentes/Echo Futures — Runtime Pools.md`: nueva sección «RESUME-04» (RCA del timeout transporte DEMONSTRADA: batch 1001 × handler ~6,2 ev/s ≈161 s > call timeout 2min; clasificación PRODUCT×CONFIG; config efectiva registrada; dependencias RESUME-05), «Estado final CERT-NT-01» actualizado, gate C2 actualizado, bitácora con entrada 2026-10-20. Sin cambios en gates históricos G1–G4.
+- `10-projects/Echo Futures/artifacts/runtime/cert-nt-01/`: creados `RESUME04-ADDON-JSON-SIM101-FINAL.json` (sha256 4579fa32…; token y ID de Sim101 como placeholders para el Owner; `ntx_port: 0` deshabilita la lane de mercado del AddOn de ejecución) y `RESUME04-ADDON-JSON-SIM101.md` (validación campo a campo contra `ParseBindings`, diff único y acción Owner de un solo dato). Copias de trabajo en `~/aranea/work/cert-nt-01-mgr/`.
+- `80-agents/journal/agent-runs/2026-10-19-zcode-glm53-echo-runtime-pools-resume04-timeout-rca.md`: creado.
+- Sin cambios en repos de producto (feature/ef-runtime-pools sigue `c37d1351`; master `d74b6525` intacto), sin mutaciones al runtime DEV (module PRE, job 6ecfa30b 28/28, core c37d1351) y sin órdenes.
