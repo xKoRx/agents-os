@@ -61,15 +61,15 @@ def integrate(run, lib, minutes, dry=False, validate="validate_review.py"):
         for res in rev["results"]:
             c = pool[res["claim_key"]]
             c["verdict"] = res["verdict"]
-            ve = [_normalize_ref(e) for e in res.get("verified_evidence", []) if e]
+            raw = [e for e in res.get("verified_evidence", []) if e]
+            ve = [_normalize_ref(e) for e in raw]
+            normalized += sum(1 for a, b in zip(raw, ve) if a != b)
             base = [e for e in c.get("evidence", []) if e.startswith("s-")]
             merged = list(base)
             for e in ve:
                 if e.startswith("s-") and e in merged:
                     continue
                 if e not in merged:
-                    if _F_PNG.match(e):
-                        normalized += 1
                     merged.append(e)
             c["evidence"] = merged
             if res.get("corrections_suggested"):

@@ -10,6 +10,8 @@ Casos:
   3  cardinalidad rota (falta un claim) -> INVALID, NO escribe claims.jsonl
   4  --dry-run no escribe aunque todos los reviews sean válidos
   5  s- originales se preservan delante y sin duplicar s- verificados
+  6  contador "refs f-.png normalizadas" cuenta SOLO refs que tenían sufijo
+     (defecto real ch05: contaba toda ref f- añadida aunque ya fuera canónica)
 
 Uso:  python3 integrator_selftest.py
 """
@@ -112,12 +114,30 @@ def main():
         if r.returncode != 0 or not os.path.exists(os.path.join(lib, "claims.jsonl")):
             fails.append(f"caso5: auto-descubrimiento de minutos: {r.stdout}{r.stderr}")
 
+    # Caso 6: contador de normalización cuenta sólo refs que traían ".png"
+    with tempfile.TemporaryDirectory() as root:
+        run, lib = build_run(root)
+        rp = os.path.join(run, "reviews", "review-min0.json")
+        rev = json.load(open(rp, encoding="utf-8"))
+        rev["results"][0]["verified_evidence"] = [
+            "s-000010", "f-000123.png", "f-000456"]
+        json.dump(rev, open(rp, "w", encoding="utf-8"))
+        r = subprocess.run([sys.executable, INTEGRATE, "--run", run, "--lib", lib,
+                            "--validate", VALIDATE, "0"],
+                           capture_output=True, text=True)
+        if r.returncode != 0:
+            fails.append(f"caso6: exit {r.returncode}")
+        else:
+            line = [l for l in r.stdout.splitlines() if "normalizadas" in l]
+            if not line or not line[0].rstrip().endswith(": 1"):
+                fails.append(f"caso6: contador esperado 1, stdout: {r.stdout.strip()!r}")
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         sys.exit(1)
-    print("PASS (5 casos)")
+    print("PASS (6 casos)")
 
 
 if __name__ == "__main__":
