@@ -36,3 +36,12 @@ Notas de la revisión por minuto (14/14 `MINUTE_REVIEW = VALID`) y del proceso. 
 | Revisión wall | ~11,5 min (ola 1: minutos 0–4, 5 revisores, 5,3 min; ola 2: minutos 5–13, 9 revisores en paralelo, ~8,5 min) |
 | Agent wall (extracción+revisión) | ≈22 min para 13,5 min de video ≈ **98 min/h-video** (objetivo ≤120 → PASS; mejor capítulo del curso; ch05: 143) |
 | Checkpoint 5 min | PASS (20/20 VALID; proyección ~140 min/h-video con olas de 5 → mejorada con ola única de 9) |
+
+## Verificación documental independiente (DOCVERIFY)
+
+Ejecutada tras la composición con rol DOCUMENTATION_VERIFIER adversarial (el tipo de agente `documentation-verifier` sigue ligado a un provider ausente en esta cuenta — gap de plataforma ya registrado desde ch03; se ejecutó con `general-purpose` + prompt adversarial). Veredicto: **PASS_WITH_FINDINGS — 8 findings (2 MATERIAL + 6 MENOR), los 8 confirmados y corregidos in-mission**:
+
+- MATERIAL F-01: upgrade de certeza en el order block ("podría ser el cambio en la tendencia" c-0038 estaba publicado como "marca/funciona como señal del cambio") → corregido en rules R12, concepts C7 y documentation §4.
+- MATERIAL F-02: C6 eliminaba "se puede considerar" + "en algunos casos" de c-0028 y universalizaba la activación → restaurado (también en el título de R5).
+- MENOR: [07:39]→[04:59] para f-000459 (el nombre del frame es HHMMSS, no segundos); "AMENDMENTS de ch05"→"OPEN-QUESTIONS de ch05" (dónde vive la resolución de q-ch05-009); hedges "lo mejor"/"es como que" de c-0010 restaurados en documentation; lectura "rango contrario" de c-0059 marcada como probable (q-ch06-013) en rules R14/documentation/examples; "'load' (=low)"→"'load' (¿low?)" en examples E2; aritmética del review wall del README corregida con los epoch files (13,8 min de revisores + integración).
+- Re-validado tras correcciones: `validate_library.py` PASS, `check_term_sources.py` PASS.
