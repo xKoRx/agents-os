@@ -61,7 +61,7 @@ Tres shots/gates globales, no cinco fases implícitas. S1 carga alta: dos línea
 
 ## ✅ Tareas
 
-- [ ] T1.1 Congelar mapping de contratos, ownership y baseline; inspeccionar SDK pinneado y superficie MT/NT real. Dep: mandato Owner. #owner/agent #type/dev #area/echo
+- [x] T1.1 Congelar mapping de contratos, ownership y baseline; inspeccionar SDK pinneado y superficie MT/NT real. Dep: mandato Owner. #owner/agent #type/dev #area/echo — DONE S1 2026-10-20: baseline verificado (HEAD=origin=112ccccd, limpio, sin RESUME-06 concurrente), validadores PASS, tarea puente agregada al padre, SDK v3.3.0 inspeccionado (sin hook fin-de-request; unidad transaccional = request HTTP), anexo T1.1 con contratos C1–C6 y ownership W1–W4 en el diseño.
 - [ ] T1.2 Implementar lote Core, semántica estado/efectos/retry y medición con estado maduro; representación compacta sólo si necesaria. Dep: T1.1. #owner/agent #type/dev #area/echo
 - [ ] T1.3 Extender configuración/negociación común, colas/sender NT, ALL y LAST independientes de flush. Dep: T1.1. #owner/agent #type/dev #area/echo
 - [ ] T1.4 Implementar cierres/revisiones nativos por timeframe, cobertura/backfill y única autoridad. Dep: T1.3. #owner/agent #type/dev #area/echo
@@ -175,6 +175,7 @@ S1: NOT_RUN. S2: NOT_RUN. S3: NOT_RUN. Fuente leída y planificación no equival
 ## 📆 Bitácora
 
 - 2026-10-20 — Owner solicita nuevo proyecto completo y diseño de batching + Execution NT. Manager crea esta autoridad, diseño, matriz de pruebas y prompt S1; no toca producto ni CERT-NT desplegado. Tres fases congeladas; documentación registrada en master de Agents-OS. Validación documental y readback constan en [[2026-10-20-echo-futures-execution-feed-batching-created]].
+- 2026-10-20 — S1 submanager (GLM-5.3-Flash, LOCAL) ejecuta preflight T1.1: baseline `112ccccd` revalidado (local=origin, worktree limpio, cero ejecutores RESUME-06 concurrentes); `validate_plan` PASS en vault real (phases=3 gates=3 dispatches=3 errors=0) y linter canónico sin hallazgos en las notas FEFB; tarea puente única agregada a [[Echo Futures]] preservando historia; SDK StateFun Go v3.3.0 inspeccionado en module cache (request=un batch de UN address, error descarta request completa, sin hook fin-de-request → lote por invocación es el camino obligatorio); anexo T1.1 congelado en el diseño (mapping símbolos, contratos C1–C6, ownership W1–W4, notas de verificación). Despacho W1+W2 en paralelo a continuación.
 
 ## 🧭 Decisiones
 
