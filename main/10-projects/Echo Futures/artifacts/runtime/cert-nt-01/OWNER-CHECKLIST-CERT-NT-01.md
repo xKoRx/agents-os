@@ -11,12 +11,21 @@ tags:
   - kind/doc
   - area/echo
 created: "2026-10-19"
-updated: "2026-10-19"
+updated: "2026-10-20"
 ---
 
 # OWNER CHECKLIST — CERT-NT-01 (desbloqueo de gates C2/C3/C4)
 
-Actualizado 2026-10-19 noche (RESUME-03): el defecto P1 del typename fue **CORREGIDO, publicado (`c37d1351`) y demostrado en vivo** (el job con el fix registró los 10 specs de `market_stream` y consumió ~375K mensajes frescos sin ninguna `IllegalArgumentException`). El module volvió a PRE por un defecto NUEVO distinto (timeout del transporte StateFun→core bajo burst del feed, ver abajo). El feed de las 21:00Z resultó ser la **pausa ordinaria de NQ (16:00 CT)**: reanudó solo a las 22:00Z. El contenido del JSON fue confirmado por el Owner y **NO es armable** (apunta a una cuenta comercial real). Ninguna acción pendiente arma ejecución.
+Actualizado 2026-10-20 (RESUME-05): la sección «RESUME-05» de abajo es la vigente para el arming C3.
+
+## RESUME-05 (2026-10-20) — timeout CORREGIDO y demostrado; JSON COMPLETO; acción Owner única para arming C3
+
+- Estado runtime vigente: core `112ccccd` (fix del timeout, release `~/opt/echo-dev/releases/112ccccd…`, MainPID 2936052) + module verbatim `aa7a019c` en .75 ACTIVOS; job Flink `faf27ca3` RUNNING 38/38. Prueba sostenida real 31,7 min con feed vivo: **ESTABILIDAD PASS** (0 timeouts/restarts/excepciones, 14 checkpoints COMPLETED, FX lag 0, ETCD intacto, entorno DESARMADO). Hallazgo abierto que NO bloquea el arming: servicio 20,5 rec/s vs ingress 46,1 rec/s ⇒ la edad del evento procesado crece por sobre la cota `FreshnessBound=30s` (FreshnessStale; la admisión continúa por diseño D6); la paridad de ingress requiere palanca arquitectural (estado shardado/incremental del sequencer — shot futuro). Detalle: `~/aranea/work/cert-nt-01-c-resume5/HANDOFF-C-RESUME5.md`.
+- JSON a instalar: `RESUME05-ADDON-JSON-SIM101-COMPLETO.json` (en este directorio; sha256 `7a06d643fa6d98679ecb429ea1d38b16d14b4f7922e72de330b4435fd28501c9`, 510 B). El ID de plataforma de Sim101 **ya está resuelto: "2"** — obtenido del evidence-log del relay de feed (`~/opt/echo-dev/var/nt-feed/evidence.jsonl`, frame `account` con `discovered[{"id":"2","name":"Sim101"}]`) y verificado contra el source byte-exacto de ambos AddOns (`EchoFeedAddOn.cs:615` y el drift-check `EchoExecutionAddOn.cs:1037` comparan el mismo `Account.Id`). El ÚNICO dato que el Owner sustituye al instalar es el `auth_token` (el vigente del perfil; jamás transita por chat).
+- Validación con el parser REAL del AddOn (lógica verbatim de `EchoExecutionAddOn.cs` sha `a93a6a1e…` compilada con csc .NET 4.8 en .132): `config loaded: bindings=1 contracts=1`, account_id=2/Sim101, ntx_port=0 deshabilita la lane sin invalidar — **ALL_PASS 7/7** + test negativo fail-closed (port=0 → INVALID). La confirmación definitiva es la carga en vivo (log `bindings=1 RESOLVED` tras reiniciar NT).
+- **Acción Owner EXACTA (arming C3):** (1) cerrar NinjaTrader 8; (2) reemplazar por completo `C:\Users\KoR\Documents\NinjaTrader 8\echo\echo-execution-addon.json` con el contenido del JSON COMPLETO sustituyendo el placeholder del `auth_token` por el token vigente (copiarlo del archivo actual antes de sobrescribir); (3) iniciar NT. Verificación esperada: log `config loaded: bindings=1 contracts=1` + binding RESOLVED (Sim101, id "2"); CERO intentos de dial hacia :9770 (ntx_port=0); dial hacia :9771 sólo cuando exista el listener del bridge. Después de este ciclo, el arming C3 lo ejecuta el submanager en un despacho nuevo. Referencia completa: `~/aranea/work/cert-nt-01-mgr-resume5/OWNER-CHECKLIST-RESUME5-DELTA.md`.
+
+Actualizado 2026-10-19 noche (RESUME-03): el defecto P1 del typename fue **CORREGIDO, publicado (`c37d1351`) y demostrado en vivo** (el job con el fix registró los 10 specs de `market_stream` y consumió ~375K mensajes frescos sin ninguna `IllegalArgumentException`). El module volvió a PRE por un defecto NUEVO distinto (timeout del transporte StateFun→core bajo burst del feed, RESUELTO en RESUME-05 — ver arriba). El feed de las 21:00Z resultó ser la **pausa ordinaria de NQ (16:00 CT)**: reanudó solo a las 22:00Z. El contenido del JSON fue confirmado por el Owner y **NO es armable** (apunta a una cuenta comercial real). Ninguna acción pendiente arma ejecución.
 
 ## Estado de las acciones originales (2026-10-19 RESUME-01)
 
@@ -30,7 +39,7 @@ Actualizado 2026-10-19 noche (RESUME-03): el defecto P1 del typename fue **CORRE
 - **Defecto NUEVO (bloquea la estabilidad de C2):** a los 12 min bajo burst del feed, 3× `RequestTimeoutException` del cliente netty de StateFun invocando `echo/market_stream` (batch acumulado 1001 mensajes / 2,5 MB), "Checkpoint Coordinator suspending", FixedDelay 5s×3 agotado → job FAILED. Rollback del module ejecutado íntegro (PRE 28/28 estable, FX lag 0). El core sano responde; el análisis del call-timeout/capacidad del clúster StateFun (worker 2048 MB, async max-per-task 8) es el SIGUIENTE paso antes de reintentar el verbatim — fuera del alcance de RESUME-03. Evidencia: `~/aranea/work/cert-nt-01-c-resume3/HANDOFF-C-RESUME3.md`.
 - **Nota ETCD:** las claves `futures/enabled` + `futures/config_snapshot` fueron borradas por un actor externo a las 22:31Z (rev 61252) y re-provisionadas byte-exacto por el submanager (22:39Z). Si al armar no están, re-provisionar desde `~/aranea/work/cert-nt-01-a/config_snapshot.json` (validar con el parser del release) antes de cualquier restart del core.
 
-## JSON de configuración del AddOn — CONTENIDO CONFIRMADO por el Owner y NO CONFORME (acción requerida)
+## JSON de configuración del AddOn — CONTENIDO CONFIRMADO por el Owner y NO CONFORME (SUPERSEDED 2026-10-20 por el JSON COMPLETO de RESUME-05, sección arriba)
 
 El JSON provisto (token enmascarado) usa la forma legacy plana, que el AddOn (`ParseBindings`, source `a93a6a1e…`) convierte en **UNA asociación de EJECUCIÓN** con `account_name="RJARA114411201551"` — **cuenta comercial real del Owner** — en `.161:9771`, y apunta además la lane de mercado al mismo 9771. Con ese JSON el armado queda PROHIBIDO (Sim101 exclusivamente; resolución de cuenta Name-primary; los comandos Sim101 serían RECHAZADOS fail-closed, pero la configuración no es la autorizada).
 
