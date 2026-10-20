@@ -24,6 +24,7 @@ Biblioteca de conocimiento del sexto video del curso Clutifx, extraída con la m
 | Revisión | 14 subagentes ONE-SHOT — UNA revisión por minuto (ola 1: minutos 0–4 = checkpoint; ola 2: minutos 5–13), 14/14 `MINUTE_REVIEW = VALID` (cardinalidad exacta) |
 | Integración | mecánica (`integrate_reviews.py` + `validate_review.py` por minuto); contador de normalización reportó 6 refs `.png` reales; 10 `corrections_suggested` revisadas y aplicadas por el integrador (statements literales, visual_hint corregido, hedge restaurado) |
 | Modelo | GLM (subagentes locales de agente; sin API pagada, sin cambio de modelo) |
+| Aclaración acotada | 2026-10-20 (preflight de ch07): revisión targeted de c-0053/c-0058/c-0059 con 12 frames nuevos y worker MINUTE_REVIEWER targeted (3/3 SUPPORTED, statements intactos, sin amendments); ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/review-notes|review-notes]] y [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/AMENDMENTS|AMENDMENTS]] |
 | Checkpoint 5 min | PASS (20/20 VALID tras minutos 0–4; proyección ~140 min/h-video → continuar; resultó 98 con ola única) |
 
 ## Métricas
@@ -36,8 +37,8 @@ Biblioteca de conocimiento del sexto video del curso Clutifx, extraída con la m
 | Epistemic | 62 instructor_statement · 2 visual_observation (con frame verificado en `evidence`) · 0 model_inference |
 | Contradicciones marcadas | 0 |
 | Frames base (fin de minuto) | 14 (minutos 0–12 en MM:59.5 + fin del parcial [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001327.png|f-001327]], fade negro del cierre; manifiesto `frames/.base_frames`) |
-| Frames bajo demanda | 5 ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-000204.png|f-000204]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-000212.png|f-000212]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-000239.png|f-000239]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-000419.png|f-000419]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001002.png|f-001002]]; extraídos y verificados visualmente por los MINUTE_REVIEWERs, nombres por fórmula desde segundos reales); 17 frames citados en total |
-| Preguntas abiertas | 13 (q-ch06-001..013, ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/OPEN-QUESTIONS|OPEN-QUESTIONS]]) |
+| Frames bajo demanda | 17 (5 del run original: f-000204, f-000212, f-000239, f-000419, f-001002 + 12 de la aclaración acotada del preflight de ch07, 2026-10-20: f-001047, f-001050, f-001053, f-001208, f-001212, f-001216, f-001220, f-001224, f-001227, f-001230, f-001233, f-001236 — nombres por fórmula desde segundos reales, verificados visualmente); 27 frames citados en total |
+| Preguntas abiertas | 13 registradas (q-ch06-001..013): 11 OPEN · q-ch06-008 RESUELTA (2026-10-20, "a las 7" = las 17) · q-ch06-010 RESUELTA PARCIAL (2026-10-20); ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/OPEN-QUESTIONS|OPEN-QUESTIONS]] |
 | Rules / concepts / examples documentados | 16 / 10 / 6 |
 | Coverage | 14/14 minutos de video con claims y revisión |
 
