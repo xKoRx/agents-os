@@ -77,7 +77,9 @@ Output (spool, JSONL): propuestas con `local_source_key`, `minute`, `kind`
 (concept|rule|parameter|procedure|observation|example|warning), `statement`
 fiel (negaciones, números, condiciones, excepciones), `epistemic`, `evidence`
 (s-ids reales del transcript), `visual_hint` opcional `{second, what}` sólo si
-lo visual es load-bearing, `unresolved_questions`.
+lo visual es load-bearing — `second` es SIEMPRE segundos reales del video por
+fórmula desde el timestamp (16:35 → 995), JAMÁS HHMMSS pegado (defecto real
+ch05, cazado por V08) —, `unresolved_questions`.
 
 Hard rules: separar correctamente las tres epistemic; no microfragmentar
 (~10-25 claims/min denso como techo, menos en pausas); no convertir secuencia

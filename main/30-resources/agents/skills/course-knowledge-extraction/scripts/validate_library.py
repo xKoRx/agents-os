@@ -12,7 +12,9 @@ Chequeos (V01..V12, el número = hallazgo que cierra):
   V05  timestamp del frame dentro de la duración del source
   V06  evidence arrays no vacíos y con refs que resuelven (s- | f-)
   V07  visual_observation => >=1 frame en evidence (provenance visual)
-  V08  visual_hint => >=1 frame en evidence
+  V08  visual_hint => >=1 frame en evidence; y visual_hint.second dentro de
+       la duración de la fuente (si --duration-seconds: second es segundos
+       reales, jamás HHMMSS pegado — defecto real ch05)
   V09  veredictos dentro del vocabulario SUPPORTED|UNCERTAIN|UNVERIFIED
   V10  conteos del README == conteos reales de los artefactos
   V11  referencias c-/f-/s- en los .md resuelven (nombres históricos
