@@ -581,11 +581,13 @@
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** example · **Minute:** 10 · **Source key:** 
 
-**Tiempo:** [10:49–11:00]
+**Tiempo:** [10:25–11:50]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001049|10:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001053|10:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001054|10:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001055|10:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001058|10:58]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001025|10:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001040|10:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001043|10:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001047|10:47]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001048|10:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001049|10:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001053|10:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001054|10:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001055|10:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001058|10:58]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001123|11:23]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001059.png|f-001059]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001047.png|f-001047]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001050.png|f-001050]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001053.png|f-001053]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001059.png|f-001059]]
+
+**Notes:** Aclaración acotada 2026-10-20 (preflight ch07, revisión targeted 3/3 SUPPORTED): deíctico 'a las 7' [ASR] (s-001049) — lectura operativa 'a las 17'. El propio instructor corrige la apertura de la vela de 8h en juego: 'A las 9 abre esta. Perdón, a las 17' (s-001025); el low previo queda en 16.20 como final de la hora de esa vela de 8h (s-001040/s-001043/s-001047/s-001048); frames 5m del 23-abr-25: low ~16:35 (f-001047), subida directa tras la apertura de 17:00 (f-001050, f-001059) y low intacto a las 20:15 (f-001053); s-001123 confirma la cadena de aperturas 8h (low a las 00 → la siguiente abre a las 01). Palabra exacta del audio no recuperable; q-ch06-008 RESUELTA en lo operativo.
 
 ### c-0054
 
@@ -641,15 +643,25 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001206|12:06]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001226|12:26]]
 
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001159.png|f-001159]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001208.png|f-001208]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001212.png|f-001212]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001216.png|f-001216]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001220.png|f-001220]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001227.png|f-001227]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001233.png|f-001233]]
+
+**Visual hint:** 12:20 — f-001220: gráfico EURUSD 1h (FOREX.com) con la herramienta de long dibujada: etiquetas 'Objetivo: 0,00436 (0,38%)', 'Stop: 0,00196' y 'Relación riesgo/beneficio: 2,22'; zona azul de beneficio hasta ~1,3903 con la línea 1,3941 inmediatamente encima y el nivel 1,4123 mucho más arriba
+
+**Notes:** Aclaración acotada 2026-10-20 (preflight ch07, revisión targeted): deícticos de s-001206 — (1) 'objetivo de aquí en una hora, que es bastante grande' = el objetivo de la herramienta de long dibujada (f-001220: Objetivo 0,00436, zona azul hasta ~1,3903, línea 1,3941 encima; 'mejor que no sea muy arriba' = no el 1,4123); dibujada sobre 28-abr 06:00-10:00 y desplazada después a la derecha (f-001224, f-001227, f-001236). (2) 'algún rango a favor por aquí, por ejemplo, este' = el rectángulo 1h dibujado a continuación, ~28-abr 02:00-13:00, ~1,3745-1,3296 (f-001216 eje resaltado 02:00-13:00 y extremos 1,3745/1,3296; f-001227/f-001233 rectángulo terminado); NO confundir con el 06:00-10:00 de la herramienta de long. (3) 'este fellow swing aquí' queda sin marcado explícito en los frames de 12:06-12:26; referente probable: el low + reacción en el borde izquierdo del rectángulo (~28-abr 02:00-03:00, ~1,3296-1,3300), coherente con s-001247 ('el failure swing aquí creando el rango de 1 hora'); PROBABLE, no cierto. q-ch06-010 RESUELTA PARCIAL.
+
 ### c-0059
 
 **Statement:** 'A favor' quiere decir: ya sea que se reinicie uno [ASR] contrario —como esta vela que señala— o que se cree un rango a favor.
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** concept · **Minute:** 12 · **Source key:** 
 
-**Tiempo:** [12:26–12:37]
+**Tiempo:** [12:26–12:47]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001226|12:26]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001226|12:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001237|12:37]]
+
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001227.png|f-001227]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001230.png|f-001230]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001233.png|f-001233]]
+
+**Notes:** Aclaración acotada 2026-10-20 (preflight ch07, revisión targeted): deícticos de s-001226 — (1) 'esta vela que os marco ahora' = la vela interior del rectángulo 1h hacia las 07:00-08:00, marcada con círculo y línea sobre su low ~1,3449 (f-001230, crosshair 08:00). (2) 'un rango a favor, como sería este de aquí' = el rectángulo 1h (~28-abr 02:00-13:00, ~1,3745-1,3296; f-001227/f-001233). La lectura probable del garble 'ya sea que reinicie uno o contrario' como 'que se reinicie un rango contrario' refuerza el vocabulario del propio instructor en s-001237 ('rangos pendientes... rangos reiniciados'); confirmación literal por audio no disponible. q-ch06-013 permanece OPEN en lo literal; referentes visuales RESUELTOS.
 
 ### c-0060
 
