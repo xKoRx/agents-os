@@ -2,6 +2,8 @@
 
 Registro append-only de correcciones materiales post-publicación. Sin entradas todavía: las 10 correcciones de statements aplicadas durante la integración (reviewer propone → integrador aplica) son parte del pipeline de esta metodología y quedan documentadas en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/review-notes|review-notes]], no aquí. La resolución de la pregunta q-ch05-009 de ch05 ("Felux Swing" = failure swing) se registra en el OPEN-QUESTIONS de ch05 con evidencia de este capítulo — no es una corrección material de un claim.
 
+**2026-10-20 — aclaración acotada del preflight de ch07 (sin amendments):** revisión targeted de c-0053, c-0058 y c-0059 con 12 frames puntuales nuevos (10:47–10:53 y 12:06–12:37) y un worker MINUTE_REVIEWER targeted (3/3 SUPPORTED, cardinalidad exacta; spool `~/mke/clutifx-ch06-20261019/targeted-review/review-targeted.json`). Resultado: NINGÚN statement cambió (preservan la palabra dicha/deixis), así que no procede fila de amendment (el contrato reserva AMENDMENTS para correcciones materiales); lo resuelto se registró como evidencia ampliada + notas en claims.jsonl y estados en OPEN-QUESTIONS (q-ch06-008 RESUELTA en lo operativo: "a las 7" = las 17; q-ch06-010 RESUELTA PARCIAL: objetivo = herramienta de long hacia 1,3941 y rango a favor = rectángulo 1h ~02:00–13:00, queda "este fellow swing aquí" como probable; q-ch06-013 sigue OPEN en lo literal con referentes visuales confirmados; q-ch06-009 sigue OPEN con nota del frame f-001047).
+
 | amendment_id | claim_id | fecha | motivo | antes | después | evidencia | resultado |
 |---|---|---|---|---|---|---|---|
 | — | — | — | (vacío: sin correcciones materiales post-publicación) | — | — | — | — |
