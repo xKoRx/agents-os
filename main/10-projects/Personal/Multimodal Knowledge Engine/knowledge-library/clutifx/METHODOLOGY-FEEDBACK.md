@@ -1,11 +1,37 @@
 # METHODOLOGY-FEEDBACK — Clutifx (Course Intelligence)
 
 Feedback de método del curso Clutifx. Objetivo: mejorar los videos siguientes,
-no justificar decisiones pasadas. Estado tras Chapter 06 (2026-10-19) y la
-aclaración acotada de su preflight (2026-10-20). Los bloques OBSERVED de
-Chapters 02–05 se conservan abajo (§Ch05, §Ch04, §Ch03, §Ch02). La skill
-canónica quedó en v1.2 con hardening ch03+ch04+ch05; NO se toca aquí la
-decisión de Owner sobre ASR.
+no justificar decisiones pasadas. Estado tras Chapter 07 (2026-10-20; run
+reanudado tras doble reboot del host y ejecutado en modo híbrido por
+agotamiento de cuota del proveedor). Los bloques OBSERVED de Chapters 02–06
+se conservan abajo (§Ch06, §Ch05, §Ch04, §Ch03, §Ch02). La skill canónica
+quedó en v1.2 con hardening ch03–ch06; NO se toca aquí la decisión de Owner
+sobre ASR.
+
+## CH07 OBSERVED (medido en Chapter 07, con incidentes)
+
+| Métrica | Valor |
+|---|---|
+| Video | ep07-setups.mp4 · 45:35.17 · SHA `b20ce8f7…` |
+| Incidente 1 — reboot | El ASR del intento 1 (09:51) murió en un doble reboot del host (~15:10 y ~15:34) SIN escribir transcript; los 46 frames base + manifiesto + scripts del workspace sobrevivieron y se reutilizaron íntegros. Relanzado 17:01 tras verificar proceso/log/transcript (sin duplicación) |
+| ASR_WALL | **68,3 min (0,68× realtime — el rate más rápido del curso; máquina despejada post-reboot)** · 480 segmentos, 98 % habla |
+| EXTRACTION_WALL | 11 min (6 EXTRACTORs paralelos, 238 claims; 5,2 claims/min promedio) |
+| Incidente 2 — cuota | `[1310] Weekly/Monthly Limit Exhausted` a las ~19:00 (reset 2026-10-25) mató los reintentos de 3 revisores; el DOCVERIFY subagente quedó imposible |
+| REVIEW_WALL | 45 min totales: 23 minutos por subagentes ONE-SHOT (olas 1–3) + **23 minutos por el integrador-revisor (fallback)**: mismo contrato (SOURCE-FIRST, frames por fórmula verificados visualmente vía análisis VLM, cardinalidad validada); independencia preservada (el integrador nunca extrajo) |
+| AGENT_WALL | ≈56 min / 45,6 min video ≈ **74 min/h-video** (objetivo ≤120 → PASS, el mejor del curso) |
+| Claims | 238 (238 SUPPORTED / 0 UNCERTAIN / 0 UNVERIFIED) · 226 instructor_statement + 12 visual_observation · 0 model_inference · 1 re-adjudicación honesta de epistemic (c-0167) |
+| Frames | 46 base (reutilizados) + 80 bajo demanda = 126; 64 citados en evidence |
+| Revisión independiente (DOCVERIFY) | **FALLBACK** por cuota: check_term_sources PASS + contraste SOURCE-FIRST puntual + validate_library PASS (0 findings) ejecutados por el integrador; sin contraparte subagente independiente — el Owner puede pedirla post-reset |
+| Checkpoint 5 min | PASS (23/23 VALID; proyección ~89 → real 74 min/h-video) |
+
+## CH07 LEARNED (para ep08+)
+
+1. **El fallback integrador-revisor funciona pero degrada la independencia del DOCVERIFY**: la revisión por minuto la pudo cubrir el integrador (que no extrajo claims) sin romper el contrato; el DOCVERIFY en cambio quedó sin contraparte independiente. Para ep08+: si la cuota vuelve a agotarse, la revisión por minuto puede continuar en modo híbrido, pero el DOCVERIFY subagente debería re-programarse para después del reset en vez de sustituirse.
+2. **Los reboots del host matan el ASR silenciosamente**: el intento 1 dejó log truncado y ningún transcript. Para ep08+: tras cualquier incidente del host, verificar transcript.json + última línea del log ANTES de relanzar (protocolo aplicado aquí y documentado en el README del capítulo).
+3. **El rate ASR mejoró 3× con la máquina despejada** (0,68× vs 0,21–0,23× canónico): la contención de CPU era la causa dominante del rate lento histórico, no el modelo. Proyección para ep08+: ~65–70 min/h-video de ASR con máquina limpia.
+4. **wikilink_docs.py --all-tokens re-enlaza tokens dentro de links ya completos** (doble anidación `[[path/path|label]]`, 69 enlaces rotos en ch07): los docs que ya traen wikilinks de ruta completa NO deben pasar por --all-tokens, o el integrador debe reparar colapsando la doble anidación (regex iterativo, hecho aquí). Candidato a fix del script (chequear si el token ya está dentro de `[[...]]`).
+5. **El validador V10 exige reglas al inicio de línea** (`^\*\*R\d+`): las listas con viñeta `- **R1**` cuentan 0. Formato correcto observado en ch07 tras el fix.
+6. **83 preguntas de revisión se agruparon en 18 q-ch07-***: la agrupación temática (familia DOL, familia TS, garbles sueltos, deícticos) escala mejor que una pregunta por instancia cuando el capítulo es garble-denso (98 % habla).
 
 ## PREFLIGHT ch07 sobre ch06 (2026-10-20) — GATE 4/4 PASS
 
