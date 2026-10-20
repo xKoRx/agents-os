@@ -50,6 +50,10 @@ Auditoría NORMAL acotada (una sesión GLM, corte `07cca9d3`) al cierre `PASS_26
 
 - [r] [[Echo Futures — Runtime Pools]] revisar diseño S01 y gates S02–S04 con Manager; aceptación global pendiente. #owner/me #type/supervision #area/echo
 
+## Execution Client y Feed Batching — supervisión
+
+- [ ] [[Echo Futures — Execution Client y Feed Batching]] implementar + seguimiento de los tres shots #owner/me #type/supervision #area/echo
+
 ## 🎯 Objetivo
 
 Extender Echo para operar **futuros algorítmicamente desde Echo Core**, con generación central de estrategias/señales, gestión de capital desacoplada, market data de baja latencia, ejecución multi-prop y replay/backtest sobre la misma semántica de runtime.
