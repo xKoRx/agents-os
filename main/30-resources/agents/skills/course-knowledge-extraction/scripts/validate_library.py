@@ -406,6 +406,34 @@ def main():
             pth = os.path.join(os.path.dirname(lib), d)
             if os.path.exists(pth):
                 check_wiki_targets(open(pth, encoding="utf-8").read(), d, vault, lib, bad)
+        # W11: cada pregunta de OPEN-QUESTIONS enlaza claim(s) reales (contrato v1.2
+        # "pregunta → claims"; defecto real ch07: 18 preguntas con refs en texto plano)
+        oqp = os.path.join(lib, "OPEN-QUESTIONS.md")
+        if os.path.exists(oqp):
+            oq_text = open(oqp, encoding="utf-8").read()
+            q_secs = re.split(r"^#{2,3} (q-[^\n]+)$", oq_text, flags=re.M)
+            # split => [pre, h1, body1, h2, body2, ...]
+            qn = 0
+            for i in range(1, len(q_secs) - 1, 2):
+                qn += 1
+                body = q_secs[i + 1]
+                claim_links = re.findall(r"\[\[[^\]]*CLAIMS#c-\d{4}[^\]]*\]\]", body)
+                if not claim_links:
+                    bad("W11", f"OPEN-QUESTIONS '{q_secs[i].strip()}': sin wikilinks a CLAIMS#c-XXXX "
+                               f"(las referencias a claims deben ser navegables)")
+            if qn == 0 and re.search(r"q-" + re.escape(os.path.basename(lib).split("-")[0]) + r"-\d{3}", oq_text):
+                bad("W11", "OPEN-QUESTIONS: preguntas sin headings propios (anclas no navegables)")
+        # W12: study-guide enlaza claims y reglas que justifican los temas (defecto
+        # real ch07: sólo enlazaba documentation general)
+        sgp = os.path.join(lib, "study-guide.md")
+        if os.path.exists(sgp):
+            sg = open(sgp, encoding="utf-8").read()
+            if not re.search(r"\[\[[^\]]*CLAIMS#c-\d{4}[^\]]*\]\]", sg):
+                bad("W12", "study-guide.md: sin wikilinks a CLAIMS#c-XXXX (cada tema importante "
+                           "debe justificarse con claims)")
+            if not re.search(r"\[\[[^\]]*/rules#[^\]]*\]\]", sg):
+                bad("W12", "study-guide.md: sin wikilinks a rules# (la guía debe apuntar a las "
+                           "reglas que soportan sus temas)")
 
     # V12: dudosos citados como hechos en documentation.md
     docp = os.path.join(lib, "documentation.md")
