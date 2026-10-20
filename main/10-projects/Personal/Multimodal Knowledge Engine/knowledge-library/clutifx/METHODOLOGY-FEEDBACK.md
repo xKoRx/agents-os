@@ -1,11 +1,41 @@
 # METHODOLOGY-FEEDBACK — Clutifx (Course Intelligence)
 
 Feedback de método del curso Clutifx. Objetivo: mejorar los videos siguientes,
-no justificar decisiones pasadas. Estado tras Chapter 05 (2026-10-19), que
-ejecutó el pipeline v1.2+hardening con el integrador generalizado. Los bloques
-OBSERVED/REPAIRED de Chapters 02/03/04 se conservan abajo (§Ch04, §Ch03, §Ch02).
-La skill canónica quedó en v1.2 con hardening ch03+ch04; NO se toca aquí la
+no justificar decisiones pasadas. Estado tras Chapter 06 (2026-10-19) y la
+aclaración acotada de su preflight (2026-10-20). Los bloques OBSERVED de
+Chapters 02–05 se conservan abajo (§Ch05, §Ch04, §Ch03, §Ch02). La skill
+canónica quedó en v1.2 con hardening ch03+ch04+ch05; NO se toca aquí la
 decisión de Owner sobre ASR.
+
+## PREFLIGHT ch07 sobre ch06 (2026-10-20) — GATE 4/4 PASS
+
+- **CH06_TARGETED_REVIEW = PASS**: aclaración acotada v1.2 sobre c-0053/c-0058/c-0059 con 12 frames puntuales (10:47–10:53, 12:06–12:37) y 1 worker MINUTE_REVIEWER targeted (3/3 SUPPORTED, cardinalidad exacta, 14 frames verificados). Statements intactos (preservan palabra dicha/deixis) → sin amendments (el contrato reserva AMENDMENTS para correcciones materiales); lo resuelto vive como evidencia ampliada + notas en claims.jsonl y estados en OPEN-QUESTIONS: q-ch06-008 RESUELTA en lo operativo ("a las 7" = las 17), q-ch06-010 RESUELTA PARCIAL (objetivo = herramienta de long hacia 1,3941; rango a favor = rectángulo 1h ~02:00–13:00; "este fellow swing aquí" queda probable), q-ch06-013 OPEN en lo literal con referentes visuales confirmados, q-ch06-009 OPEN con nota de f-001047.
+- **q-ch05-009 (contrato)**: verificado que NO exige fila de amendment — la resolución ("Felux Swing" = failure swing) no modificó ningún statement (c-0100 ya preservaba la palabra dicha) y vive registrado en el OPEN-QUESTIONS de ch05 con backlinks a ch06 c-0001/c-0064; el AMENDMENTS de ch06 ya lo documentaba así.
+- **CH06_NAVIGATION = PASS** (`validate_library.py` 0 findings tras integrar) · **CH06_SOURCE_FIRST = PASS** (64 vivos / 0 findings) · **CH06_METHOD_FEEDBACK = UPDATED** (este bloque).
+- **Cobertura visual**: la densidad del run (19 frames para 13,5 min de pizarra) fue suficiente SALVO un hueco real: el instructor SEÑALA deícticos en 12:06–12:26 y dibuja el rectángulo recién 12:27+, y el frame base de fin de minuto no muestra el estado previo. Resuelto con captura puntual bajo demanda del preflight (sin imponer mínimo artificial); lección registrada en CH06 LEARNED #3. Sin cambios en skills: no hay defecto reproducible de contrato (la captura puntual ya es contrato vigente; fue un gap de juicio del revisor, cubierto por el mecanismo targeted).
+
+## CH06 OBSERVED (medido en Chapter 06, sin corregir) — walls conciliadas con epochs+mtimes
+
+| Métrica | Valor |
+|---|---|
+| Video | ep06-failure-swing.mp4 · 13:27.98 · SHA `470ff3c0…` |
+| ASR_WALL | **59,6 min** (0,23× realtime, rate canónico; epochs 22:06:31→23:06:07) con el grind r5 de Echo en la máquina (load ~10/24) |
+| EXTRACTION_WALL | 10,6 min (3 EXTRACTORs paralelos, 64 claims; spools 23:19:08–23:21:49; inicio sin epoch, cifra del run) |
+| REVIEW_WALL | **13,8 min de revisores** (ola 1 min 0–4: 5,3; ola 2 min 5–13: ≈8,5; medición por dispatch) **+ 10,6 min de integración/validación entre olas** (por epochs: checkpoint 23:30:59 → fin 23:41:36). La cifra "~11,5" que quedó impresa en review-notes era una estimación previa superada por la medición por epochs (13,8) |
+| AGENT_WALL | **≈22 min reportado** (10,6 + ~11,5 previo) ≈ 98 min/h-video; con la medición final la suma de runtimes de agente es 24,4 min ≈ 108 min/h-video; el muro físico observable post-ASR fue 35,5 min (23:06:07→23:41:36, incluye construcción de payloads, checkpoint e integración). Las tres lecturas ≤ objetivo 120 → PASS sin cambio de veredicto |
+| Superposición real | **NINGUNA entre extracción y revisión**: los 14 payloads se construyeron a las 23:23:03, después del último spool de extracción (23:21:49); la brecha 24,4 vs 22 proviene de la cifra previa de revisión, no de solapamiento |
+| Claims | 64 (64 SUPPORTED / 0 UNCERTAIN / 0 UNVERIFIED) · 62 instructor_statement + 2 visual_observation · 0 model_inference |
+| Frames | 14 base + 5 bajo demanda (run) → **+12 bajo demanda en la aclaración acotada 2026-10-20 = 31; 27 citados** |
+| Revisión independiente (DOCVERIFY) | PASS_WITH_FINDINGS — 8 findings (2 MATERIAL + 6 MENOR), los 8 corregidos in-mission y re-validados |
+| Checkpoint 5 min | PASS (20/20 VALID; proyección ~140 min/h-video → real 98–108 con ola única de 9) |
+
+## CH06 LEARNED (para ep07+)
+
+1. **El rate ASR canónico (0,23×) se sostiene con el grind r5 de Echo en la máquina** (probe de preflight + epochs). Para ep07 (45:35, el más largo desde ch03) proyectar ASR ~3,3–3,8 h y solapar el preflight del capítulo con el ASR del siguiente en vez de esperar: el ASR es mecánico, reversible y no toca la biblioteca.
+2. **La aclaración acotada targeted funciona como contrato de preflight**: 1 worker + 12 frames puntuales resolvieron referentes y confirmaron una lectura operativa en ~15 min sin re-procesar nada (contrato v1.2 ejecutado tal cual; los statements preservaron la palabra dicha y NO generaron amendments).
+3. **Captura en el momento del SEÑALAMIENTO, no sólo del dibujo**: el frame de fin de minuto acumula dibujos pero no muestra el estado previo cuando el instructor señala deícticos antes de dibujar (hueco 12:06–12:26 de ch06). Para ep07+: si un deíctico queda sin resolver y el dibujo ocurre después dentro del mismo minuto, el reviewer debe pedir la captura del segundo del señalamiento.
+4. **La revisión targeted no rubber-stampea**: el worker corrigió al Manager la extensión del rectángulo (02:00–13:00 vs el 06:00–10:00 de la herramienta de long) — independencia real demostrada en un paquete de 3 claims.
+5. **La medición por epochs+mtimes es la autoridad de las walls**: las cifras previas ("~11,5", AGENT_WALL "22") eran estimaciones de dispatch; conciliadas declarando las tres lecturas (runtimes 24,4 / reportado 22 / muro físico 35,5) sin inventar tiempos ni ocultar la ausencia de solapamiento.
 
 ## CH05 OBSERVED (medido en Chapter 05, sin corregir)
 

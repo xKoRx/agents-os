@@ -13,7 +13,7 @@ Fuentes físicas de los videos (locales, NO en Git): `/home/kor/mke/course/epNN-
 | 03 | `ch03-bias/` | `ep03-bias.mp4` | `c52dafa8…` | 41:51 | biblioteca completa (skill course-knowledge-extraction, 211 claims SUPPORTED + 6 superseded por remediation DOL/DXY) | DONE 2026-10-18 (remediated) |
 | 04 | `ch04-entradas/` | `ep04-entradas.mp4` | `f69f7d62…` | 27:35 | biblioteca completa (skill course-knowledge-extraction, 111 claims SUPPORTED + 8 UNCERTAIN) | DONE 2026-10-19 |
 | 05 | `ch05-smt/` | `ep05-smt.mp4` | `072f669d…` | 18:29.7 | biblioteca completa (skill course-knowledge-extraction, 99 claims SUPPORTED + 1 UNCERTAIN) | DONE 2026-10-19 |
-| 06 | `ch06-failure-swing/` | `ep06-failure-swing.mp4` | `470ff3c0…` | 13:27.98 | biblioteca completa (skill course-knowledge-extraction, 64 claims SUPPORTED) | DONE 2026-10-19 |
+| 06 | `ch06-failure-swing/` | `ep06-failure-swing.mp4` | `470ff3c0…` | 13:27.98 | biblioteca completa (skill course-knowledge-extraction, 64 claims SUPPORTED; aclaración acotada 2026-10-20: q-ch06-008 resuelta, q-ch06-010 parcial, 12 frames nuevos) | DONE 2026-10-19 (preflight ch07 2026-10-20) |
 | 07–12 | — | `ep07-setups.mp4` … `ep12-psicotrading.mp4` | sin procesar | — | — | PENDIENTE (secuencia local verificable por nombre de archivo) |
 
 ## Capítulo 01 — Introducción (`ch01-introduccion/`)
