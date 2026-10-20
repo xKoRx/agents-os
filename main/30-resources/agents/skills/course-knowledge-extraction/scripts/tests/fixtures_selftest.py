@@ -132,6 +132,37 @@ def main():
         open(p, "w", encoding="utf-8").write(t)
     ok &= expect("G visual_hint.second fuera de duración (HHMMSS pegado)", variant(base, "bad-hint-seconds", m_hint_seconds), False, {"V08"})
 
+    # --- W11/W12 (navegación de preguntas y study-guide): los checks W sólo
+    # corren dentro de un vault (marker 80-agents), así que este fixture
+    # construye un mini-vault con proyecciones reales y muta la navegación.
+    vroot = os.path.join(tmp, "vault")
+    lib_v = os.path.join(vroot, "course", "ch00-fx")
+    os.makedirs(os.path.join(vroot, "80-agents", "agents-os"))
+    open(os.path.join(vroot, "80-agents", "agents-os", "agents-os.md"), "w").close()
+    shutil.copytree(base, lib_v)
+    open(os.path.join(lib_v, "transcript.md"), "w", encoding="utf-8").write(
+        "# t\n\ns-000010 [00:00:10-00:00:20] texto uno ^s-000010\n\n"
+        "s-000030 [00:00:30-00:00:40] texto dos ^s-000030\n")
+    open(os.path.join(lib_v, "frames", ".base_frames"), "w").write("f-000010\n")
+    for script, args in (("render_claims_md.py", None), ("render_frames_md.py", None)):
+        subprocess.run([sys.executable, os.path.join(HERE, "..", script), vroot, lib_v], check=True)
+    rel = "course/ch00-fx"
+    open(os.path.join(lib_v, "OPEN-QUESTIONS.md"), "w", encoding="utf-8").write(
+        "# oq\n\n### q-ch00-001\nPregunta uno.\nClaims: [[%s/CLAIMS#c-0001|c-0001]]\n\n"
+        "### q-ch00-002\nPregunta dos.\nClaims: [[%s/CLAIMS#c-0002|c-0002]]\n" % (rel, rel))
+    open(os.path.join(lib_v, "study-guide.md"), "w", encoding="utf-8").write(
+        "# sg\n\nTema: ver [[%s/CLAIMS#c-0001|c-0001]] y [[%s/rules|rules R1]].\n" % (rel, rel))
+    ok &= expect("H base navegable (mini-vault) W11/W12", lib_v, True)
+
+    v_plain = os.path.join(tmp, "vault", "ch00-plain-links")
+    shutil.copytree(lib_v, v_plain)
+    open(os.path.join(v_plain, "OPEN-QUESTIONS.md"), "w", encoding="utf-8").write(
+        "# oq\n\n### q-ch00-001\nPregunta uno. Claims: c-0001, c-0002 (texto plano).\n")
+    open(os.path.join(v_plain, "study-guide.md"), "w", encoding="utf-8").write(
+        "# sg\n\nTema general; ver [[%s/documentation|documentation]].\n" % rel)
+    ok &= expect("H preguntas sin links a claims (W11) + guía sin claims/reglas (W12)",
+                 v_plain, False, {"W11", "W12"})
+
     shutil.rmtree(tmp)
     print("FIXTURES_SELFTEST =", "PASS" if ok else "FAIL")
     sys.exit(0 if ok else 1)
