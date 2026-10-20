@@ -1,4 +1,4 @@
-# transcript — ep04 (Clutifx · Chapter 04)
+# transcript — ep06 (Clutifx · Chapter 06)
 
 Fuente: `ep06-failure-swing.mp4` · sha256 `470ff3c0c188e9959a357f89c5495fbfd8b5830fe3b08e7daca85ca0c0e25620`
 Schema: `mke.transcript.v1` (faster-whisper large-v3, es). Ids `s-<HHMMSS>` con sufijo a/b/c cuando dos segmentos inician en el mismo segundo.
