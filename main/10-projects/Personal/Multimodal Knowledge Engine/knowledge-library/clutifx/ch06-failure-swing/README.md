@@ -47,7 +47,7 @@ Biblioteca de conocimiento del sexto video del curso Clutifx, extraída con la m
 |---|---|
 | ASR wall | 59,5 min (0,23× realtime; partida dominante del total, rate canónico) |
 | Extracción wall | 10,6 min (3 subagentes paralelos) |
-| Revisión wall | ≈11,5 min (ola 1: 5 revisores, 5,3 min; ola 2: 9 revisores en paralelo, ≈8,5 min) |
+| Revisión wall | ≈13,8 min de revisores (ola 1: 5 revisores, 5,3 min; ola 2: 9 revisores en paralelo, ≈8,5 min) + integración/validación entre olas (ola 2 completa con validación: 10,6 min por epochs) |
 | Agent wall (extracción+revisión) | ≈22 min para 13,5 min de video ≈ **98 min/h-video** (objetivo ≤120 → PASS; el mejor capítulo del curso: ch05 143, ch04 233, ch03 225) |
 
 ## Estructura

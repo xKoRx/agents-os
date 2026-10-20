@@ -18,7 +18,7 @@ El precio no puede hacer un nuevo alto (p. ej. para crear un nuevo rango), falla
 
 Sirve "para saber mejor qué está pasando"; concepto a entender sin obsesión [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0003|c-0003]].
 
-**R5 · La vela del failure swing es un rango: target válido aunque no se tomara el extremo.**
+**R5 · La vela del failure swing se puede ver como rango: target aunque en algunos casos no se tomara el extremo.**
 
 La vela que no llega al nuevo alto se puede ver como un rango igualmente e ir para allí de target [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0007|c-0007]]; "el rango se puede considerar activado ni que en algunos casos no haya tomado el High, porque ha sido un fellow swing [ASR]" [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0028|c-0028]]; y sabes que eso de ahí es un rango y por lo tanto un target [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0063|c-0063]].
 
@@ -46,7 +46,7 @@ En 'forex con' [ASR] no se lo lleva por poquísimo y en 'fxm' [ASR] sí → el r
 
 Vela subiendo, reacciona para abajo creando rango bajista + motivo visible → "dices failure swing y puedes entrar" [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0029|c-0029]]; en espejo: reacción alcista + order block → "ha fallado en hacer el nuevo low, vamos para arriba directamente" [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0046|c-0046]].
 
-**R12 · El order block creado tras el fallo marca el cambio de tendencia.**
+**R12 · El order block creado tras el fallo: podría ser el cambio de tendencia.**
 
 Se observa dónde está hecho el bajo y que se crea un order block que podría ser el cambio en la tendencia [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0038|c-0038]] [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0041|c-0041]]; en 15 m puedes esperar al order block si quieres [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0047|c-0047]].
 
@@ -56,7 +56,7 @@ El motivo "sólo se va a ver en una hora" (creencia del instructor: las otras ve
 
 **R14 · Rangos a favor para operar el failure swing; pendientes antes que reiniciados.**
 
-Se buscan rangos a favor para comprar; 'a favor' = se reinicia un rango contrario ['reinicie uno o contrario' ASR] o se crea un rango a favor [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0058|c-0058]] [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0059|c-0059]]; "me gustan más rangos pendientes que rangos reiniciados" [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0060|c-0060]].
+Se buscan rangos a favor para comprar; 'a favor' = se reinicia ['reinicie uno o contrario' ASR; lectura probable: 'un rango contrario' — q-ch06-013] o se crea un rango a favor [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0058|c-0058]] [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0059|c-0059]]; "me gustan más rangos pendientes que rangos reiniciados" [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0060|c-0060]].
 
 **R15 · Los failure swings habilitan objetivos que sin el concepto no se pueden marcar.**
 
