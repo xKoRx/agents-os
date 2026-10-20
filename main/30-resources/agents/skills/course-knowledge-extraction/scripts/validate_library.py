@@ -431,7 +431,7 @@ def main():
             if not re.search(r"\[\[[^\]]*CLAIMS#c-\d{4}[^\]]*\]\]", sg):
                 bad("W12", "study-guide.md: sin wikilinks a CLAIMS#c-XXXX (cada tema importante "
                            "debe justificarse con claims)")
-            if not re.search(r"\[\[[^\]]*/rules#[^\]]*\]\]", sg):
+            if not re.search(r"\[\[[^\]]*/rules(?:#[^\]]*)?\]\]", sg):
                 bad("W12", "study-guide.md: sin wikilinks a rules# (la guía debe apuntar a las "
                            "reglas que soportan sus temas)")
 
