@@ -238,6 +238,8 @@ scripts/render_frames_md.py <vault> <lib>                 # inventario FRAMES.md
                                                           # = frames/.base_frames, sin fecha)
 scripts/wikilink_docs.py <vault> <lib> <doc.md>           # enlaza docs (--all-tokens|--bracketed)
 scripts/tests/wikilink_selftest.py                        # red-green de checks W (11 casos)
+scripts/tests/wikilinker_selftest.py                      # red-green del script wikilink_docs:
+                                                          # absorción de citas, sin [[[, idempotencia
 scripts/tests/anchors_selftest.py                         # red-green de anchors/bloques (7 casos)
 scripts/tests/review_pipeline_selftest.py                 # payload emite key; validate_review
                                                           # acepta claim_key|key (5 casos)
