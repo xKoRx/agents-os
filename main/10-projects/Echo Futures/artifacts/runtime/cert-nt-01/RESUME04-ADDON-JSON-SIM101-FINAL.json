@@ -1,0 +1,21 @@
+{
+  "auth_token": "<SIN CAMBIOS: conservar el auth_token vigente del archivo actual del perfil KoR>",
+  "contracts": [
+    {"contract_id": "NQZ6", "nt_name": "NQ 12-26"}
+  ],
+  "snapshot_seconds": 5,
+  "heartbeat_seconds": 5,
+  "bindings": [
+    {
+      "physical_binding": "CERTNT01-SIM01",
+      "host": "192.168.31.161",
+      "port": 9771,
+      "account_id": "<DATO-OWNER: ID de plataforma de Sim101, Control Center > Accounts, columna ID>",
+      "account_name": "Sim101"
+    }
+  ],
+  "ntx_host": "192.168.31.161",
+  "ntx_port": 0,
+  "account_id": "<DATO-OWNER: mismo ID de Sim101 (inerte: lane de mercado deshabilitada)>",
+  "account_name": "Sim101"
+}
