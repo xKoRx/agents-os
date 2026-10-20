@@ -18,7 +18,7 @@ model_source: host
 task_type: coding
 task_complexity: high
 outcome: success
-verification: full_suite
+verification: passed
 evaluator: agent
 user_rework: unknown
 source_session:
@@ -43,6 +43,13 @@ tags:
 - **Verificación independiente (B agent inactivo-kill sin id + B' agent_8833ea21-a458-45b1-b4f8-d6715aa60d86):** VERIFIED — rojo/verde replicado en worktrees separados; suites fix = patrón EXACTO de baseline (5 heredadas, 0 nuevas); diferencial base↔fix byte-idéntico salvo duración; 7/7 ataques adversariales PASS (staleness memo, fallo mid-batch all-or-nothing, equivalencia memo↔round-trip, tick real interleaved, overflow cap, protocolo SDK v3.3.0 storage-fresco-por-request); `-race` 0; ventana dedup 4096+4096 y criterio intactos (sólo cambia CUÁNDO se serializa). Sustained: +18,4 env/s (b1000) / +21,1 env/s (b100) de pendiente a 47 env/s live ⇒ MITIGACION_INSUFICIENTE sin C2 PASS. Config batch 100: throughput idéntico ⇒ NO aprobada.
 - **Despliegue y prueba sostenida (C, agent_5d7f3d1a-7f59-4e6b-9212-c92e4b18b4ca):** preflight VERDE; core 112ccccd (owners:7, health 200, FX lag→0); verbatim → job `faf27ca3` 38/38 en 65 s, 0 excepciones; **ESTABILIDAD PASS**: 31,7 min con feed vivo (ingress 46,1 rec/s): 0 timeouts/restarts/excepciones, 14 checkpoints COMPLETED, ETCD intacto (revs 61253/61254), armado ausente. **FRESQUEZA FAIL confirmado**: servicio real 20,5 rec/s ⇒ pendiente +25,6 rec/s; edad del evento 129→1.334 s ≫ `DefaultFreshnessBounds{30s/60s/5s}` (FreshnessStale; admisión continúa por diseño D6). Monitoreo CSV en `~/aranea/work/cert-nt-01-c-resume5/monitor/`.
 - **Spot-check final del submanager:** job 38/38 running, 19 chk COMPLETED/0 failed (REST .75:8082), core PID 2936052 health ok, ls-remote feature==112ccccd/master==d74b6525.
+
+## Resultado
+
+- **Timeout StateFun→Core CERRADO con corrección demostrada:** fix `112ccccd` desplegado en DEV; 31,7 min sostenidos con feed vivo SIN timeouts/restarts/excepciones y con 14 checkpoints COMPLETED (el modo de fallo RequestTimeout→retry→FAILED quedó eliminado en runtime Flink real).
+- **Paridad de ingress NO alcanzada (MITIGACION_INSUFICIENTE):** servicio real 20,5 rec/s vs ingress 46,1 rec/s; edad del evento procesado 129→1.334 s sobre la cota FreshnessBound=30 s (FreshnessStale). Requiere palanca arquitectural futura (sequencer shardado/compacto).
+- **JSON SIM COMPLETO:** Sim101→ID "2" (evidence-log verificado contra source de ambos AddOns), validado con el parser REAL (ALL_PASS 7/7 + negativo fail-closed); pendiente sólo la sustitución local del auth_token por el Owner (acción exacta en checklist).
+- **Estado final seguro:** ejecución DESARMADA, cero órdenes, FX sin degradación, ETCD intacto, master `d74b6525` sin merge.
 
 ## Evaluación
 
