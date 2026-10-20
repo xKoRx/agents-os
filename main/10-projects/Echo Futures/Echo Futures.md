@@ -42,6 +42,10 @@ El mandato GOD LOCAL de 2026-10-12 y su estado de ejecución viven exclusivament
 
 READY_FOR_FINAL_ACCEPTANCE sobre fuente `d1b1446d401f88cfa42dee2eb959120305f5a372`, misma S05: BASIC/CAMPAIGN finales y replays completos PASS independiente. BASIC saldo56594,16; CAMPAIGN caja4640/3compras/2reemplazos/cobros0. Primary favorable sólo IDs informado por Owner; PRIMARY_FINAL_REVIEW=PENDING/GATE_ACCEPTED=false/PROMOTION=NOT_ACCEPTED. Raw final completo publicado/verificado, nueva fase privada inmutable; sesión Root/especialistas cerrada por Owner, Primary permanece abierto y revisa aceptación final. D6 físico NOT_DEMONSTRATED/no transferencia; ninguna acción física, merge o deploy. Detalle, hashes, receta y límites en [[BTG-S05-REMEDIATION-AND-RESULTS]].
 
+## Auditoría baseline 26/26 — 2026-10-20
+
+Auditoría NORMAL acotada (una sesión GLM, corte `07cca9d3`) al cierre `PASS_26OF26`: `READY_FOR_OWNER_REVIEW_FOR_OFFLINE_RESEARCH` condicionado a hallazgos H1–H5. Motor sin defecto material en lo auditado; hallazgos de reporte: costo real 226.320 USD (compra 143.760 + renovación 82.560; el "Gasto 143.760" publicado es sólo compra), las 8 `other_terminal` son `BLOCKED_OBJECTIVE_CAPACITY` (5 llegaron al target y fueron correctamente no aprobadas por consistencia ≥30%), y TG-F0 quedó en livelock de 5 cupos desde 19-08-2026 (sin compras pese a señales; renovación de bloqueadas $120/mes). 95/95 pases recomputados independientes (realizado ≥ target, share <30%). Abiertas: MR-02/MR-10 sin autoridad B0; MR-03 inerte (warmup nunca ready, funnel sólo en tests). Artefactos en rama experimental, commit `20c73fd4` (`verification/history-execution-20261020/AUDIT-NORMAL-20261020/`). No autoriza LIVE ni nuevas campañas por sí sola.
+
 ## Runtime pools — supervisión
 
 - [r] [[Echo Futures — Runtime Pools]] revisar diseño S01 y gates S02–S04 con Manager; aceptación global pendiente. #owner/me #type/supervision #area/echo
