@@ -52,7 +52,7 @@ Auditoría NORMAL acotada (una sesión GLM, corte `07cca9d3`) al cierre `PASS_26
 
 ## Optimización de Campañas — supervisión
 
-- [/] [[Echo Futures — Optimización de Campañas]] implementar y revisar el laboratorio por shots #owner/me #type/supervision #area/echo
+- [r] [[Echo Futures — Optimización de Campañas]] implementar y revisar el laboratorio por shots #owner/me #type/supervision #area/echo
 
 ## Execution Client y Feed Batching — supervisión
 
