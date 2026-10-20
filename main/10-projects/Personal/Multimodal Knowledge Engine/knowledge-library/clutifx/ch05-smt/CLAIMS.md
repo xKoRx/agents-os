@@ -1013,9 +1013,9 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001415.png|f-001415]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001431.png|f-001431]]
 
-**Visual hint:** 14:00 — Esquema del tercer caso: vela que abre por arriba creando el rango pendiente en euro; en GBP no se crea
+**Visual hint:** 14:31 — Esquema del tercer caso: vela que abre por arriba creando el rango pendiente en euro; en GBP no se crea
 
-**Notes:** Tercer caso diferenciado por ser 'rango pendiente' lo que se crea en un par y no en el otro.
+**Notes:** Tercer caso diferenciado por ser 'rango pendiente' lo que se crea en un par y no en el otro. | visual_hint.second corregido 840->871 (extractor escribió HHMMSS como segundos crudos; DOCVERIFY DV-04)
 
 ### c-0079
 
@@ -1057,7 +1057,9 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001501.png|f-001501]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001525.png|f-001525]]
 
-**Visual hint:** 25:01 — Esquema dibujado de los tres casos de SMT (euro y libra) en pantalla, dispuesto para captura.
+**Visual hint:** 15:01 — Esquema dibujado de los tres casos de SMT (euro y libra) en pantalla, dispuesto para captura.
+
+**Notes:** visual_hint.second corregido 1501->901 (extractor escribió HHMMSS como segundos crudos; DOCVERIFY DV-04)
 
 ### c-0082
 
@@ -1127,7 +1129,9 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001559.png|f-001559]]
 
-**Visual hint:** 25:47 — Dibujo del caso de SMT entre euro y DXY ('se vería así').
+**Visual hint:** 15:47 — Dibujo del caso de SMT entre euro y DXY ('se vería así').
+
+**Notes:** visual_hint.second corregido 1547->947 (extractor escribió HHMMSS como segundos crudos; DOCVERIFY DV-04)
 
 ### c-0087
 
@@ -1181,9 +1185,9 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001635.png|f-001635]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001659.png|f-001659]]
 
-**Visual hint:** 27:15 — Nivel dibujado en el esquema marcado como objetivo en el DXY.
+**Visual hint:** 16:35 — Nivel dibujado en el esquema marcado como objetivo en el DXY.
 
-**Notes:** statement corregido en integración (correction_suggested del reviewer, revisada por el integrador)
+**Notes:** statement corregido en integración (correction_suggested del reviewer, revisada por el integrador) | visual_hint.second corregido 1635->995 (extractor escribió HHMMSS como segundos crudos; DOCVERIFY DV-04)
 
 ### c-0091
 
@@ -1285,7 +1289,9 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001754.png|f-001754]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001757.png|f-001757]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001759.png|f-001759]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001801.png|f-001801]]
 
-**Visual hint:** 29:17 — Dibujo con el primer objetivo alcanzado y otro objetivo por encima ('otro aquí arriba').
+**Visual hint:** 17:57 — Dibujo con el primer objetivo alcanzado y otro objetivo por encima ('otro aquí arriba').
+
+**Notes:** visual_hint.second corregido 1757->1077 (extractor escribió HHMMSS como segundos crudos; DOCVERIFY DV-04)
 
 ### c-0099
 

@@ -7,10 +7,10 @@ Ejemplos del capítulo con timestamps y frames verificados. Los embeds se reserv
 Día del ejemplo ("el lunes, el jueves de la semana pasada" — contradicción en el ASR, ver q-ch05-002). Libra sí tomó el alto; euro no: en euro el nivel se convierte en rango [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0011|c-0011]]. Visible en 4 h, 12 h y diario [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0014|c-0014]]. El objetivo de euro (que "visto así puede parecer que no") acabó cumpliéndose [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0015|c-0015]].
 
 ![[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000206.png]]
-*4 h: alto de GBP superado, euro sin tomar el suyo ([03:26], f-000206).*
+*4 h: alto de GBP superado, euro sin tomar el suyo ([02:06], f-000206).*
 
 ![[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000230.png]]
-*Diario: llegada de euro al objetivo marcado ([03:50], f-000230).*
+*Diario: llegada de euro al objetivo marcado ([02:30], f-000230).*
 
 ## E2 — Caso bearish con rango bullish de 8 h (min 4–6)
 

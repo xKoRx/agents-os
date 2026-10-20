@@ -8,7 +8,7 @@ La SMT "es algo que se va a dar entre pares correlacionados" [[10-projects/Perso
 
 **R2 · Pasa en todos los pares correlacionados.**
 
-El instructor menciona euro, "JP [ASR]" (JPY) y DXY, pero "pasa en todas": lo explicado para euro/libra se aplica igual a otros pares correlacionados (ej. AUDUSD/NZDUSD) [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0005|c-0005]] [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0008|c-0008]].
+El instructor menciona euro, "JP [ASR]" (¿JPY? — q-ch05-001) y DXY, pero "pasa en todas": lo explicado para euro/libra se aplica igual a otros pares correlacionados (ej. AUDUSD/NZDUSD) [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0005|c-0005]] [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0008|c-0008]].
 
 **R3 · La SMT de esta estrategia no es un adivinador de bias.**
 

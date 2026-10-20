@@ -1,6 +1,6 @@
 # review-notes — Clutifx Chapter 05 (SMT)
 
-Notas de la revisión por minuto (19/19 `MINUTE_REVIEW = VALID`) y del proceso. Estado final: **100 claims: 99 SUPPORTED / 1 UNCERTAIN / 0 UNVERIFIED** · 80 instructor_statement + 20 visual_observation · 0 model_inference.
+Notas de la revisión por minuto (19/19 `MINUTE_REVIEW = VALID`) y del proceso. Estado final: **100 claims: 99 SUPPORTED / 1 UNCERTAIN / 0 UNVERIFIED** · 83 instructor_statement + 17 visual_observation · 0 model_inference.
 
 ## ASR y provenance
 

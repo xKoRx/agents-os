@@ -33,7 +33,7 @@ Biblioteca de conocimiento del quinto video del curso Clutifx, extraída con la 
 | Claims totales | 100 |
 | SUPPORTED / UNCERTAIN / UNVERIFIED | 99 / 1 / 0 (la UNCERTAIN es c-0073: deíctico 'la de sentido arriba' sin resolver con contradicción de frames; visibles en documentación y [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/OPEN-QUESTIONS|OPEN-QUESTIONS]]) |
 | Claims activos / superseded | 100 / 0 (sin supersessions en este capítulo) |
-| Epistemic | 80 instructor_statement · 20 visual_observation (todas con frame verificado en `evidence`) · 0 model_inference |
+| Epistemic | 83 instructor_statement · 17 visual_observation (todas con frame verificado en `evidence`) · 0 model_inference |
 | Contradicciones marcadas | 1 (c-0073 → UNCERTAIN: el dibujo del caso 2 no pasa a velas alcistas) |
 | Frames base (fin de minuto) | 19 (minutos 0–17 en MM:59.5 + fin del parcial f-001829, diapositiva "GRACIAS"; manifiesto `frames/.base_frames`) |
 | Frames bajo demanda | 62 (extraídos y verificados visualmente por los MINUTE_REVIEWERs, nombres por fórmula desde segundos reales) |
