@@ -7,6 +7,9 @@ Modos:
 
 Nombres en .deprecated_frame_names nunca se enlazan (historical_invalid_name).
 Los tokens ya enlazados o dentro de [[...]] no se re-procesan. Idempotente.
+Tokens pegados a '[' (citas tipo [c-0001]) no generan [[[ : en --all-tokens
+las citas de sólo tokens se absorben ([c-0001, c-0002] -> links con '·') y las
+citas mixtas ([c-0001 [ASR]]) quedan en texto plano (válido, sin link).
 
 Uso:  wikilink_docs.py <vault_root> <library_dir> <doc.md> [--bracketed]
 """
@@ -21,14 +24,16 @@ WIKI = re.compile(r"\[\[[^\]]+\]\]")
 CITE = re.compile(r"\[((?:[cfs]-\d{4,6}[a-z]?(?:,\s*)?)+)\]")
 
 
-def protect(text):
+def protect(text, saved=None):
     """Sustituye regiones a no tocar por marcadores y devuelve la lista.
 
     El código inline se protege ANTES que los wikilinks: un link dentro de
     backticks debe quedar dentro de UNA sola región salvada (proteger el link
     primero y el código después anidaba marcadores y `restore` dejaba basura
-    \x00N\x00, destruyendo el link)."""
-    saved = []
+    \x00N\x00, destruyendo el link). `saved` acumulable permite re-proteger
+    tras crear links nuevos (CITE) sin colisionar marcadores."""
+    if saved is None:
+        saved = []
 
     def keep(m):
         saved.append(m.group(0))
@@ -75,7 +80,10 @@ def main():
 
     if mode == "--all-tokens":
         def link_cite(m):
-            # [c-0001, c-0002] -> links con separador '·' (corchetes absorbidos)
+            # [c-0001, c-0002] -> links con separador '·' (corchetes absorbidos).
+            # Corre ANTES de CID/FID/SID y sus links se re-protegen: así las
+            # citas de sólo tokens se resuelven completas sin crear [[[ y sin
+            # que CID re-enlace los tokens de los links recién creados.
             toks = re.findall(r"[cfs]-\d{4,6}[a-z]?", m.group(1))
             outs = []
             for t in toks:
@@ -87,6 +95,7 @@ def main():
                     outs.append(f"[[{rel}/transcript#^{t}|{t}]]")
             return " · ".join(outs)
         text = CITE.sub(link_cite, text)
+        text, saved = protect(text, saved)
         text = CID.sub(link_c, text)
         text = FID.sub(link_f, text)
         text = SID.sub(link_s, text)
