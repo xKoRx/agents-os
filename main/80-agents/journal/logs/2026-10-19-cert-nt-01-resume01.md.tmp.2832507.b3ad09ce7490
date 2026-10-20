@@ -1,0 +1,30 @@
+---
+type: change_log
+schema_version: 1
+scope: session
+created: "2026-10-19"
+updated: "2026-10-19"
+area: "[[Echo]]"
+project: "[[Echo Futures — Runtime Pools]]"
+entities:
+  - "[[Echo Futures — Runtime Pools]]"
+related: []
+aliases: []
+confidence: high
+source_session: ZCode (GLM-5.3-Flash, submanager CERT-NT-01 RESUME-01)
+load_policy: manual
+indexable: false
+index_priority: low
+tags:
+  - kind/change-log
+  - scope/session
+---
+
+# 2026-10-19-cert-nt-01-resume01
+
+- `10-projects/Echo Futures/agentes/Echo Futures — Runtime Pools.md`: gates C2/C3 actualizados (feed vivo demostrado; bloqueo P1 productivo), nueva sección «RESUME-01 (2026-10-19, tarde)» con defecto/rollback/evidencia/dependencias, 2 entradas de bitácora (INICIO/CIERRE RESUME-01).
+- `10-projects/Echo Futures/artifacts/runtime/cert-nt-01/OWNER-CHECKLIST-CERT-NT-01.md`: reescritura por delta (acciones Owner 1-2 marcadas hechas/verificadas; única acción pendiente = JSON al armar; nuevo bloqueo P1 del Manager; orden de desbloqueo).
+- `80-agents/journal/sessions/2026-10-19-cert-nt-01-resume01-summary.md` (L1 nueva).
+- `80-agents/journal/feedback/system-1/2026-10-19-1610-echo-futures-cert-nt-01-resume01-session-feedback.md` (feedback nueva; colisión de nombre con el feedback del turno anterior resuelta con sufijo HHMM).
+- Evidencia durable fuera del vault: `~/aranea/work/cert-nt-01-mgr/RESUME01-P1-DEFECT-EVIDENCE.md`, `resume01-p1-extract.log`, `mcp_call.sh`; `~/aranea/work/cert-nt-01-b/HANDOFF-B.md`; `~/aranea/work/cert-nt-01-c-resume/HANDOFF-C-RESUME.md`.
+- Sin cambios en código de producto, ETCD (más allá del rollback documentado del module en .75), ni entidades canónicas de Sistema 2.
