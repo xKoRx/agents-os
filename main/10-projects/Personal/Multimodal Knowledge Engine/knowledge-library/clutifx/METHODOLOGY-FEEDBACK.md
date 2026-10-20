@@ -30,6 +30,7 @@ decisión de Owner sobre ASR.
 4. **Olas de 7 con payloads homogéneos (~5-6 claims/minuto) dieron el makespan más bajo del curso** (34,1 min); la video-duración corta ayudó, pero el despacho plano por minutos ya no necesita optimización.
 5. **El ASR sigue dominando el total** (92,5 min para 18,5 min de video); la decisión Owner (GPU/modelo menor) sigue abierta y es la única palanca grande que queda.
 6. **Los frames extraídos y descartados por los reviewers** (no citados, quedan como auditoría contextual) sumaron 15: el presupuesto por bloque funcionó sin tope rígido.
+7. **Defecto reproducible → skill endurecida (FINDING→FIX→TEST→SKILL→FEEDBACK)**: los extractores de ch05 escribieron `visual_hint.second` como HHMMSS pegado (5 casos, p.ej. 1635 por 16:35). Fix: V08 de `validate_library.py` ahora marca hints fuera de duración (con `--duration-seconds`), caso red-green G en `fixtures_selftest` (11/11), contrato EXTRACTOR actualizado en `course-knowledge-worker` (second = segundos reales por fórmula). Sin impacto en ch02–ch04 (0 hints fuera de duración).
 
 ## PREFLIGHT (2026-10-19, obligatorio antes de Chapter 04 — PASS 5/5)
 
