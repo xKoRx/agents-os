@@ -16,3 +16,12 @@
 - **Evidencia**: Go coverage 97,7% (piso 95); Python 26/26 (18 originales preservados); `validate`/`materialize` deterministas con manifest `489a7c06…` sin cambios.
 - **Planner**: fila G1 ahora `delivered: S01+S01-R1 en review @ 8f2a8252` (sin aceptación del ejecutor); estado y bitácora por delta. Auditoría pre-research en `20c73fd4` registrada, conclusiones intactas.
 - **Estado**: `S01-R1 COMPLETE / G1=review`. STOP sin S02 ni campañas.
+
+## Delta S01 residual (2026-10-20, canonicalización exacta)
+
+- **Cambio**: commit `41d5d577` en `experiment/campaign-lab-s01` (sobre `8f2a8252`), push con readback. Alcance: `campaign_lab.py` + tests + delta documental.
+- **Problema**: `Decimal.normalize()` dependía del contexto decimal (precisión 28) y redondeaba — `1.0000000000000000000000000001` colapsaba a `1`; y `Decimal` aceptaba exponentes (`5e2`) que el SDK (`units.ParsePrice`) rechaza.
+- **Corrección**: gramática exacta de `parseDecimalString` + canonicalización por string sin contexto (sólo ceros insignificantes/signo/ceros a la izquierda); sin floats ni framework; units intacto.
+- **Evidencia**: RED 4/5 contra la versión anterior; 31/31 tests; manifest shipped `489a7c06…` estable; Go sin cambios (sin suites Go repetidas).
+- **Planner**: frases obsoletas corregidas (`implementación nueva NO ejecutada`, `S01 por ejecutar`); tabla G1 conserva `current state = review`.
+- **Estado**: `S01 residual COMPLETE / G1=review`. STOP sin S02 ni campañas.
