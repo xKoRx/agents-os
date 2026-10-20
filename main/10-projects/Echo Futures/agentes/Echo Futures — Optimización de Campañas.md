@@ -40,6 +40,8 @@ Repositorio remoto histórico observado: `experiment/challenge-history-20261018@
 
 La entrega histórica existente es referencia, no resultado de esta metodología: 26 configuraciones, horizonte 2023-10-02→2026-10-06, cobertura parcial declarada. El piloto antiguo `ce09ba4f/FIRST_PASS` y el log adjunto no gobiernan continuidad, selección ni aceptación de este plan.
 
+**S01 EJECUTADO 2026-10-20 (G1 = review, sin aceptación propia):** rama `experiment/campaign-lab-s01` creada desde `20c73fd4` (descendiente verificado de `07cca9d3` vía `merge-base --is-ancestor`, auditoría acotada previa preservada; WIP previo vacío). Commit `e5af38eb` pusheado con readback (`origin == HEAD`). Entrega: kernel puro `v3/sdk/futures/riskgeometry` (SizingProfileV1/SizingInputV1/SizingProposalV1, consumidor de observaciones tipadas ATR14-Wilder/stdev20-ddof0 causal, sizing decimal exacto, ceil conservador a ticks, folding a lot_step, cap estructural explícito, rechazos nombrados sin fallback; coverage del paquete 96.7%, piso 95) y `v3/backtester/tools/tradesgerard/campaign-lab/` (catalog26 importado exacto de `challenge-first/generate.py`: 4TG+4FBC+3ORB-CH300+10MR+5ORB-NATIVE con 300/300 y 500/250 netos intactos, descriptores `SG-*` DECLARED_NOT_EXECUTED con bruto 500 USD separado del legacy, perfiles-v1, experiments-v1 DECLARATION_ONLY con `budget_semantics_ref`/`campaign_policy_ref`, validador/materializador stdlib fail-closed con digest estable ante path/host/attempt; 18 tests). Comandos probados: `validate` (VALID 26/2/1), `materialize --out $TMPDIR/...` (manifest `489a7c06…`, sin efectos económicos), `go test -cover ./v3/sdk/futures/riskgeometry/` PASS 96.7%, `python3 -m unittest test_campaign_lab` 18/18. Cero campañas ejecutadas; TGMM/Signal/Provider/ledger intactos; sin proyección de aprobaciones.
+
 Tarea puente humana: `[[Echo Futures — Optimización de Campañas]] implementar y revisar el laboratorio por shots #owner/me #type/supervision #area/echo`. Debe permanecer única en el proyecto padre; no crear otro control ni marcarla Done por el ejecutor.
 
 ## 🧱 Entrega de desarrollo
@@ -289,11 +291,11 @@ Ningún ejecutor acepta su gate ni inicia el siguiente. Dos reintentos correctiv
 
 Cada fila es objetivo | símbolos | precondición | implementación | test | evidencia. No tareas en otros planners.
 
-- [ ] T1.1 Identidad/puente | HEAD/Units/catalog | pedido Owner | mapear delta y bridge | sin cambios ajenos | BASELINE.md #owner/agent
-- [ ] T1.2 Kernel puro | riskgeometry (create) | T1.1 | perfiles/fórmulas§4.1 | fixtures/causalidad/rounding | tests+coverage #owner/agent
-- [ ] T1.3 Manifiesto26 | campaign-lab (create) | T1.1 | identidad y validación§4.2 |26únicos/drift/no I/O económico | catálogo sellado #owner/agent
-- [ ] T1.4 Compatibilidad | tests kernel+manifest | T1.2–3 | serialización/matriz R6 | aislamiento/sin side effects | recibo #owner/agent
-- [ ] T1.5 Entrega | planner/artefactos | T1.4 | revisar diff/publicar evidencia | readback | G1 review #owner/agent
+- [x] T1.1 Identidad/puente | HEAD/Units/catalog | pedido Owner | mapear delta y bridge | sin cambios ajenos | BASELINE.md #owner/agent
+- [x] T1.2 Kernel puro | riskgeometry (create) | T1.1 | perfiles/fórmulas§4.1 | fixtures/causalidad/rounding | tests+coverage #owner/agent
+- [x] T1.3 Manifiesto26 | campaign-lab (create) | T1.1 | identidad y validación§4.2 |26únicos/drift/no I/O económico | catálogo sellado #owner/agent
+- [x] T1.4 Compatibilidad | tests kernel+manifest | T1.2–3 | serialización/matriz R6 | aislamiento/sin side effects | recibo #owner/agent
+- [x] T1.5 Entrega | planner/artefactos | T1.4 | revisar diff/publicar evidencia | readback | G1 review #owner/agent
 - [ ] T2.1 Analytics causal | owners existentes | G1 accepted | demands ATR/stdev | referencia manual/futuro | recibo #owner/agent
 - [ ] T2.2 MM ópt-in | registry/Operation | T2.1 | kernel→órdenes/protección | fills/partials/close | E2E #owner/agent
 - [ ] T2.3 Integración corta | runner | T2.2 | <=6 ensayos | invariancias | G2 review #owner/agent
@@ -337,3 +339,4 @@ El experimento antiguo de moneda permanece benchmark educativo. Ninguna implemen
 ## 📆 Bitácora
 
 - **2026-10-20** — PlanV1 creado por pedido Owner: piso25%, riesgo/geometría separados, 26 entradas preservadas, runtime R6 contrastado, cinco paquetes con gates. S01 acotado a contratos+kernel+manifiesto; cero pruebas económicas. Manager abierto.
+- **2026-10-20 — SHOT1 ejecutado (T1.1–T1.5), STOP en G1** — Un GLM LOCAL en Hefesto, sin subagentes, cero campañas. Preflight: HEAD local `20c73fd4` confirmado como descendiente del corte verificado `07cca9d3` (preservado), WIP vacío, blobs citados por el planner verificados idénticos por `git hash-object` (tgmm `59437bb8`, config/mm `c5b0fa44`, operation/mm `9ec1b50f`). Rama propia `experiment/campaign-lab-s01` + commit `e5af38eb` pusheado y releído (`origin == HEAD`). Decisiones aplicadas: D05–D08 (kernel/manifests sin matriz histórica, geometría fija separada de TGMM, baseline bruto 500 ATR×1 1:1 con stdev como alternativa, sin cambio de timeframes). Mapeo de nombres propuestos a tipos reales: instrument → `domain.ContractSnapshot`/`InstrumentSpecFromSnapshot`, dinero → `units.Money/Price` (big.Rat, sin floats), dirección LONG/SHORT propia (domain.Side es BUY/SELL físico). Hallazgo de implementación: el ratio efectivo 4/3 no es decimal finito ⇒ se reporta como racional exacto (`"4/3"`), sin aproximación. Ramas muertas eliminadas en vez de testeadas (regla de cobertura). Tests: Go 10 funciones (fixtures planner exactos: 10p→40t/q2/400/400/100; 30p→SIZE_BELOW_MIN; monotonicidad de presupuesto; roundtrip/inmutabilidad/aislamiento; digests; causalidad stale/future/not-available/wrong-stream/wrong-model sin fallback) coverage 96.7%; Python 18 (26 únicos, familias exactas, nativas preservadas C04/C05 ADD, digest inmune a path/host/attempt y sensible a significado, fail-closed ×9, materializar determinista y sin efectos). Tarea puente `[/]`→`[r]`; pendiente Owner: aceptar G1 (revisión de recibos S01) para habilitar S02.
