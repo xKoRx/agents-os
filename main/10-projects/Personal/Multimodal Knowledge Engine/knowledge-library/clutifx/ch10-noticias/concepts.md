@@ -1,0 +1,59 @@
+# concepts — ch10-noticias (Clutifx · Chapter 10)
+
+Conceptos del capítulo (kind `concept` en `claims.jsonl` más los instrumentos nuevos que el capítulo define; orden de fuente). Los garbles se citan como palabras dichas [ASR] con su lectura CANDIDATA, no como hecho.
+
+## C1 — Whipsaw (definición)
+
+«Whipsaw significa látigo: manipular a una dirección para luego ir para la otra» [c-0004]. Es uno de los cinco campos de cada noticia en el Excel (probabilidad de que la haga) [c-0003] y reaparece como riesgo en la vela inside con noticias [c-0192].
+
+## C2 — Blow acc / probabilidad de quemar la cuenta
+
+La probabilidad de quemar la cuenta si te equivocas es un campo de cada noticia [c-0003] y «obviamente esto depende del riesgo»: «si le metes un 2%, a lo mejor te saca mucho más allá y te la quema» [c-0006].
+
+## C3 — El Excel «NEWS - ONE TO ONE ENG» (instrumento nuevo)
+
+Tabla por noticia (NFP, CPI GBP/USA/CAD, MANUF. PMI GERMANY, ISM SERVICES PMI, GDP USA/CAD, FOMC…) con filas Time, Clarity, Difficulty, Whipsaw y Blow acc, y horas en «TIME (NY | UTC-4)» [c-0005] · [f-000059]. Cada noticia lleva su par/divisa («CAT» [ASR; candidato CAD] en las de Canadá; sin marca = dólar; algunas de libra o euro) [c-0002]. Criterio de selección: más claridad, menos dificultad, menos whipsaw [c-0011]; repasar, apuntarlas y hacerles «bytesting» [ASR; ¿backtesting?] [c-0010] · [c-0044].
+
+## C4 — Clasificación dicha de noticias concretas
+
+PMI de Alemania «era muy buena» (no whipsaws, fácil de ver, no quema cuenta) [c-0012]; el CPI «se puede ver bien, pero muy peligrosa»; el NFP «más de lo mismo» [c-0014]; el «FOM» [ASR; candidato FOMC] con claridad 25% «te hace látigos, te puede quemar la cuenta… la típica que hay que evitarla» [c-0015] · [f-000159]; «GDP» «difícil de ver» [c-0016] · [f-000248]. La noticia de las 10 del 4 de junio (ISM Services PMI) «sí está» en el Excel y «es bastante clean normalmente» [c-0143]; el ADP «no sé si está en el Excel» [c-0142].
+
+## C5 — Forex Factory como calendario de noticias
+
+«Es el que utilizo yo para las noticias» [c-0017] · [f-000259]; filtro rojas + naranjas (amarillas si estás «enfondeadas» [ASR; ¿en Funded?], porque algunas empresas marcan speeches) [c-0018] · [f-000306]; hora normalmente en New York «así me coincide con el gráfico» [c-0021]; «las carpetas rojas son las que van a traer la volatilidad» más allá de la PropFirm [c-0022] · [f-000425]. Alternativa/complemento: calendario propio de la prop firm (Funded Next; «FTPO» [ASR; candidato FTMO]) con restricciones — «así no hay discusión con ellos» [c-0019]; y «My Forex» [ASR; candidato Myfxbook] para algunas empresas [c-0020] · [f-000350].
+
+## C6 — El régimen actual de las noticias (observación del instructor)
+
+«Antes sí que había unos movimientos muy agresivos en las noticias; ahora yo lo que estoy notando es que no está siendo tan agresivo» [percepción propia, no regla] [c-0007]; «últimamente no se mueven tanto, antes se movían mucho mejor» [c-0045]; el precio «se mueve mucho por otras noticias que no están marcadas» (Trump, eventos mundiales), y si pasan de noche, la noticia marcada del día siguiente «casi no se mueve» [c-0008]; los PMIs, antes «nuestro día favorito», «el de esta semana ni se movió» [relato retrospectivo] [c-0009].
+
+## C7 — La noticia acelera el precio hacia su objetivo
+
+«El precio va a ir igualmente a donde tiene que ir, solamente que acelerado por la noticia»; «no cambia nada si la noticia de desempleo es buena o mala»; «la noticia va a acelerar el precio hacia el doble [ASR; candidato DOL]» [c-0026]. Sobre casos concretos: «¿qué hace la noticia? Simplemente ir más rápido hacia el objetivo» [c-0063]; «con las noticias simplemente lo que hace el precio es ir a por los objetivos más rápidamente» [c-0155]. Matiz no universal: a veces la vela de la noticia «no reacciona instantáneamente, pero traerá la volatilidad igualmente» [c-0057] · [c-0056].
+
+## C8 — Confirmaciones por pares según la noticia
+
+Se opera normal pero «buscando confirmaciones en otros pares» (movimientos más agresivos) [c-0027]; los pares dependen de la noticia (euro vs «GEP» [ASR]) [c-0028] · [f-000539]; pares del dólar en la misma dirección [c-0029] · [f-000559]; pares contrarios para confirmar al dólar [c-0031]; la comparación con «estos otros pares es para noticias específicas de ese par» [c-0033] · [c-0034]; «es importante esta distinción» [c-0037]; «buscamos ver más pares para encontrar la confirmación de que la noticia va a ir como nosotros queremos» [c-0088] · [f-001559]; los otros pares «como confirmación de lo que va a ser el precio» [c-0110]. Cuando todo confirma, «es cuando la probabilidad sube» [mitad literal; condición abierta] [c-0032 — UNCERTAIN].
+
+## C9 — Simetría euro/libra con DXY
+
+«El GBP estaba bullish y el DXY estaba bearish» ese día [c-0186] · [f-003359]; «si esto está bullish en euro, vais a ver que en dex [ASR; candidato DXY] está bearish — ya os lo puedo asegurar ya» [condicional dicha] [c-0187]. En el CPI se veía «venta en DXI [ASR; = DXY], compra en GDP [ASR], compra en Euro» y «la dirección muy fácil» [c-0137] · [f-002504] · [c-0136].
+
+## C10 — Failure swing como señal alrededor de la noticia
+
+«Fellow swing» [ASR; candidato failure swing]: en libra bajando a 3h, «el fellow swing de la vela de la noticia que queríamos operar… es el mismo caso que en Euro» [c-0068] · [f-001230]; criterio enunciado: «las velas abren diferentes pero en euro hacia [ASR; ¿hacía?] nuevo alto» [c-0082]; en DXY «la primera vela bajista» + «fellow swing arriba» → «esto se puede ver como un rango bajista» [c-0081]; «el fellow swing en dos horas… nos indica que la noticia… puede ir a por estos rangos bajistas» [modalizador «puede»] [c-0083]; caso resuelto del CPI: «es un failure swing, se ve muy claro… al menos intenta hacer el nuevo alto y falla» [c-0126] · [f-002310]; «se puede considerar como S&T [ASR; candidato SMT]: libra sí se lo lleva» [c-0127] · [f-002324].
+
+## C11 — Turtle Soup como condición de la noticia
+
+«El TARTSUB [ASR; candidato Turtle Soup] puede estar hecho ya a la 1: podemos posicionarnos ya en nuestro trade» [c-0042]; sin Turtle Soup es red flag por posible whipsaw [c-0062]; con él creado, se opera la primera noticia sin esperar la segunda [c-0070] · [c-0160]; test de fondo: diario + 12h con el «supecho» [ASR] hecho → «probablemente esto vaya a ser el low» [c-0152]; la importancia del rango ya creado [c-0162].
+
+## C12 — El Power 3 en la vela de la noticia
+
+«Power 3» [ASR; candidato Power of 3]: colocar la operación en el Power 3 de la vela del CPI (a las 8 abre, baja un poco) dejando «un poco de espacio para que si hace una pequeña manipulación no nos saque» [c-0107] · [f-001949]; entrar «en el PowerCity [ASR] de la vela del CPIA [ASR]» para ahorrarse London [c-0116]; «tuvimos todo este Power 3 para poder entrar antes a la noticia» [c-0150]; en la vela que contiene la noticia (dicha «de las 7») [c-0159] · [f-002859]; y como método general si se espera la noticia: «utilizar el Power 3, esperar un rango pendiente a vuestro favor y os posicionáis ahí, en la vela de la noticia, que es la vela que sabéis que va a traer la probabilidad» [c-0197]. También «operar el power 3 de esta vela» anticipando su volatilidad [c-0055] · [f-000959].
+
+## C13 — La idea detrás de operar noticias
+
+«Ver cómo los dos pares nos están diciendo lo mismo y esperar a que, con la noticia, tengamos algún rango a favor» [reconstrucción declarada del orden ASR] [c-0121]. Con los targets intactos, «vía libre para la noticia»; completados, «la probabilidad ya nos bajaría» [c-0122].
+
+## C14 — Resumen: las noticias son trading normal con volatilidad conocida
+
+«Las noticias operan igual que el trading normal, pero sabiendo que la volatilidad viene a esa hora» [c-0188]; «es como el análisis normal, pero simplemente sabiendo que la volatilidad va a venir con las velas a las noticias» [c-0185]; «es literalmente lo mismo que operar normal», «sabiendo que se puede esperar a las noticias para operar» [c-0173] · [c-0174]. Las red flags «son las mismas» [c-0189] · [c-0195] y se detallan: rangos a favor, no inside, dolls [ASR; candidato DOL] intactos [c-0190] · [c-0191] · [c-0193].
