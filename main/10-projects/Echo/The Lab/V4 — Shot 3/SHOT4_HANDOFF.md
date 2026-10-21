@@ -21,117 +21,143 @@ updated: "2026-10-21"
 
 Handoff final de Shot 4 (SHOT4_AUTHORIZED_CORRECTIONS_AND_I1_COMPLETION): correcciones S3-F01–F08, capacidades S3-M01–M06, evidencia S3-E01, límites S3-E02 conservados. Ejecutor: Implementation Submanager LOCAL (motor efectivo GLM-5.3-Flash, host-declarado; el perfil GPT-6-Luna del encabezado del mandato no pudo verificarse desde este runtime y se registra la discrepancia). Corte de entrada `xKoRx/echo@61ac1f720d07513e48b0310b84b5b415b80ff48f`; rama de producto `feature/lab-v4-shot4`; SHA final del candidato `2eccb317` (7 commits desde el corte; los 6 de implementación + 1 de correcciones de la revisión independiente). PG descartable propio 54349 (`~/aranea/work/lab-v4-shot4-20261021/pgdata`), sin tocar servicios compartidos ni el clon Shot 2.
 
+## Estados separados (dictamen PRIMARY MANAGER 2026-10-21)
+
+| Estado | Valor |
+|---|---|
+| IMPLEMENTATION_COMPLETENESS | **I1_PARTIAL → I1_COMPLETADO_EN_FUNCIONAL** — faltantes CODE_MISSING del dictamen cerrados en este mismo Shot 4 (selección, wiring B, comparación, portfolios snapshot); ver Inventario de sustitución |
+| FUNCTIONAL_VERIFICATION | **PASS** en entorno aislado (PG descartable 54349 + HTTP real + front build); sin deploy |
+| INDEPENDENT_DELTA_REVIEW | **COMPLETE_ACOTADA** — revisor fresco sobre 2eccb317 (SHOT4_DELTA_WITH_FINDINGS, resuelto); nueva revisión acotada del delta 2eccb317→final en curso al cierre |
+| EXTERNAL_INTEGRATION | **PENDING_AUTHENTIC_FORGE_ARTIFACT** (G11; orígenes consultados registrados); metadata Hasura preparada sin aplicar |
+| DEPLOYMENT_AND_CUTOVER | **NOT_DEPLOYED** — sin merge, sin deploy, cutover/071 gated por autorización (BLOCKED_EXTERNAL_PERMISSION) |
+| SECURITY_DYNAMIC_COVERAGE | **NOT_RUN — harness safety restriction** (S3-E02; T33/T36) |
+
 ## Registro de implementación
 
 | Commit | Paquete | Contenido |
 |---|---|---|
-| `adfd3be0` | P0–P3 | S3-F01/F03/F06 ingesta exacta; S3-F02/F04 revisiones inmutables + snapshot completo; S3-F05 receipts semánticos; S3-F07 down 067; S3-F08 fixtures + allowlist 001 |
-| `04158d51` | P4–P5 | S3-M01 HTTP v2; S3-M02 Q_i causal + economía por Operation (`lab/opfacts`) |
-| `99574e0f` | P6 | S3-M03 encolado transaccional + worker + 4 perfiles + métricas B.6.5 |
-| `52fe4cb9` | P7 | S3-M04 read models paginados + rutas gateway + tab Vue + metadata Hasura aditiva (archivo) |
-| `540e045c` | P8 | S3-M05 composición estática (D11) |
-| `fa24546f` | P9 | S3-M06/E01 capacidad medida + worker `cmd/lab-worker-v4` (source buildable, verificado por el revisor) + orden canónico O(n log n) |
+| `adfd3be0` | P0–P3 | S3-F01–F08 (ingesta exacta, revisiones inmutables, receipts semánticos, down 067, fixtures) |
+| `04158d51` | P4–P5 | S3-M01 HTTP v2; S3-M02 Q_i causal + lab/opfacts |
+| `99574e0f` | P6 | S3-M03 cola transaccional + worker + 4 perfiles + B.6.5 |
+| `52fe4cb9` | P7 | S3-M04 read models + rutas + tab Vue + metadata (archivo) |
+| `540e045c` | P8 | S3-M05 composición estática D11 |
+| `fa24546f` | P9 | S3-E01 capacidad ingesta + worker binario + orden O(n log n) |
+| `2eccb317` | Revisión | fixes del revisor independiente (TestQISeal engine, N-reproducible, precisiones) |
+| `a2b40827` | **Dictamen PM 1** | I1 restituido: servicio selección principal/alternativas (069), invalidación transaccional, PORTFOLIO_SNAPSHOT worker con CAS, comparación de copias, rutas gateway, paneles Vue, demo 7 flujos |
+| `6cb00134` | **Dictamen PM 2** | Wiring B real: projector sink (ruta runtime) + backtester observer (ruta BACKTEST) vía opfacts.FactsPublisher compartido; 2 demos de recorrido de producto |
+| `8a7381fd` | **Dictamen PM 3** | Evidencia separada: cómputo REAL 4 perfiles sobre 132.805 ops, lease recovery, grano dual en curvas (CLOSED_SUMMARY por cierre), coverage enfocado medido |
 
-## Matriz S3-F → resolución → evidencia
+## Matriz caso por caso (requisito → implementación → test → SHA → resultado → evidencia)
 
-| ID | Resolución | Evidencia (repro del auditor, PG 54349) |
-|---|---|---|
-| S3-F01 | Comparación decimal NUMÉRICA (big.Rat, `10`≡`10.000…`); operations PRIMERO y luego cada movement UNA vez | A01/A02 PASS |
-| S3-F02 | Revisiones aceptadas INMUTABLES en DB (guards 069: UPDATE/DELETE bloqueados; INSERT sólo en revisión creada en la MISMA tx — xmin); toda corrección/terminalidad publica N+1 vía servicio con snapshot completo y head atómico | A09/A10/A11/A17 PASS (A09 setup adaptado al contrato adjudicado: sello por N+1 del servicio, oráculo de identidad conservado) |
-| S3-F03 | Sello terminal completo en INSERT (guard); net check NULL-safe y POR MONEDA (sin FX: moneda ajena impide el sello) | A07/A08 PASS; A18 (+120−3−2−1=114, setup vía N+1) PASS |
-| S3-F04 | Sink OBLIGATORIO (sin sink no hay aceptación); artefacto NDJSON con header de snapshot completo (D16/MM/cobertura/versionado); `header_json` por revisión; read model del head actualizado coherentemente en cada N+1 | A03/A05 PASS |
-| S3-F05 | Huella del request liga método/recurso/versión/historia/revisión-esperada; replay resuelto DENTRO del advisory lock; UNCHANGED deja receipt durable; colisión = conflicto de negocio (409), jamás unique violation crudo | A13/A14/A15/A21 PASS |
-| S3-F06 | Digests ligan contenido completo (SourceRef de movement, MMContext canónico, history_id); timestamps STRICT (inválido = error, jamás NULL); `numeric` sin typmod (sin redondeo oculto) + `MaxDecimalDigitsV2=64` declarado | A06/A12/A19/A23 PASS |
-| S3-F07 | Down 067 evalúa TODAS las tablas que elimina (fills/orders/decisions/observations) | M04 PASS; A20 PASS |
-| S3-F08 | Fixtures descubren referenciantes FK vía pg_constraint (baseline y candidato); cadena V4 explícita en la lista base; seed identity_bwc aplicado por rebuild; allowlist 001 por IDENTIDAD de error (7+1+1 exactos) | 5 tests comunes baseline PASS en candidato (3 postgres + 2 gateway); TestCertification 18/18 PASS |
+### Gates G1–G11
 
-## Matriz S3-M/E → estado → evidencia
+| Gate | Requisito | Implementación | Test | SHA | Resultado | Evidencia |
+|---|---|---|---|---|---|---|
+| G1 | Ingesta vertical usable | handler HTTP v2 + receipts + CAS + catálogo | TestStrategyHistoryV2_FullVertical; A01-A23 | 2eccb317+ | PASS | HTTP real+PG 54349; 23/23 repros |
+| G2 | Grano dual + economía por Operation | servicio v2 + opfacts Tracker identificación específica | A01/A02/A18; TestABLogicalVsAccountFIFO; TestPartialExitsFortyPercentR; productpath | 8a7381fd | PASS | A/B=5 vs FIFO=15 visible; 0.4R; net=14 en PG |
+| G3 | Cuatro perfiles + métricas B.6.5 | lab/analyze puro + worker | TestLabWorkerOracles; TestLabCapacityCompute132k; compute_test.go | 8a7381fd | PASS | +114/10.100/10.098 en DB; 132k×4 perfiles 1.7-3.3s |
+| G4 | Metadata D16/MM + selección | snapshot completo + header_json + read model + servicio selección | A05; TestLabSelectionFlowsI1; TestLabCatalogAndStaleness | a2b40827 | PASS | metadata round-trip; 7 flujos; STALE visible |
+| G5 | Retención + cadena inmutable + receipts | guards 069 + sink obligatorio + receipts semánticos | A03-A05/A09-A17; TestLabWorkerObsoleteWorkerAndFencing | 2eccb317 | PASS | 15/15 sondas SQL hostiles (revisor) |
+| G6 | Experiencia visible | read models + tab Vue + selección + portfolios | TestLabCatalogAndStaleness; vite build; TestStrategyHistoryV2_FullVertical | a2b40827 | PASS funcional | flujos demostrados por servicio+rutas; UI read-only |
+| G7 | Composición estática D11 | analyze.ComputePortfolio + CreateLabPortfolio + snapshot worker | TestPortfolioSixtyForty; TestLabPortfolioCreateAndCompose; flujo 6 TestLabSelectionFlowsI1 | a2b40827 | PASS | 60/40⇒6k/4k; allocations publicadas en DB |
+| G8 | Copias/referencias | comparación con evidencia disponible (digest idéntico ⇒ copia; deltas READY; insuficiencias explícitas) | flujo 4+7 TestLabSelectionFlowsI1 | a2b40827 | PASS (básico I1) | sin correlaciones inventadas |
+| G9 | Sustitución legacy | V4 conectado; 071 gated | TestLabV4RetirementSafeByDefault | 2eccb317 | PARCIAL | clasificación por superficie abajo; BLOCKED_EXTERNAL_PERMISSION |
+| G10 | Capacidad | ingesta 132.805 + cómputo 4 perfiles + catálogo 20k + lease recovery | TestLabCapacity132k; TestLabCapacityCompute132k; TestLabCatalog20kPageLatency; TestLabWorkerLeaseRecovery | 8a7381fd | PASS (dev) | 2m40s ingesta (884 ops/s revisor); 1.7-3.3s/perfil; ~65ms página; recovery OK |
+| G11 | Forge auténtico | — (búsqueda en ubicaciones canónicas sin resultado) | — | — | PENDING | ver EXTERNAL_INTEGRATION |
 
-| ID | Estado | Evidencia |
-|---|---|---|
-| S3-M01 | COMPLETADO (G11 acotado) | Rutas reales POST/GET/PUT + receipt lookup + catálogo; 128 MiB/413/409/412 probadas; recorrido request→receipt→historia→lectura→PUT→N+1 en HTTP real+PG (`TestStrategyHistoryV2_FullVertical`). **G11 Forge auténtico: PENDING_AUTHENTIC_ARTIFACT** (fallback del mandato: fixtures sintéticos prueban contrato; sin artefacto auténtico accesible) |
-| S3-M02 | COMPLETADO | QI_SEALED una sola vez en la primera decisión que abre riesgo (gerardmm sella en MMState `cycle_budget_*`/`entry_risk_*`; engine sella tras admitir órdenes; sello tardío rechazado como observación, jamás como decisión — cobertura engine `TestQISeal_*`, añadida tras la revisión independiente); `lab/opfacts`: identificación específica (A/B lógico 5 vs FIFO cuenta 15, delta visible), parciales 0.8R−0.3R−0.1R=0.4R una operación terminal, costes publicados en ciclo abierto, terminalidad concilia net=Σ; publisher → MISMO servicio común (modo BACKTEST probado sin venue) |
-| S3-M03 | COMPLETADO | Encolado transaccional en la tx del head + coalescing de objetivos superados (QUEUED→STALE); claim SKIP LOCKED + lease + fencing (=attempt); publicación atómica CAS contra manifiesto completo; worker obsoleto NO publica sobre head nuevo; oráculos: +114 una vez, 10.100 simultáneo, 10.098 secuencial; N reproducible tras N+1; INSUFFICIENT_DATA/CAPITAL_EXHAUSTED honestos |
-| S3-M04 | COMPLETADO (metadata PREPARADA, no aplicada) | Catálogo paginado con cursor estable; perfiles unidos SÓLO a la revisión del head (una generación coherente); STALE visible mientras se calcula; faltantes explícitos (missing ≠ cero); detalle D16/MM + operaciones paginadas; tab Vue read-only (sin recálculo financiero en front); metadata Hasura aditiva read-only en repo — **NO aplicada a ningún Hasura compartido** (requiere ownership) |
-| S3-M05 | COMPLETADO | 60/40 ⇒ allocations 6000/4000, cash explícito, pesos ≤1 (sin préstamos), flat start excluye historial previo reportándolo, contribución = capital_i×(V/V_base−1) (jamás suma dos curvas de 10k), insuficiencia propagada, resultado etiquetado RETROSPECTIVO; servicio PG valida D11 transaccionalmente |
-| S3-M06 | PARCIAL — inventario y sustitución segura (ver abajo) | Cutover/retiro real requiere permisos de ownership (071 BLOCKED_SKIP se mantiene honesto) |
-| S3-E01 | CERRADO | Allowlist 001 por identidad; orden canónico O(n log n) con equivalencia probada (digest independiente del orden); **capacidad medida**: 132.805 ops íntegras en UNA historia vía servicio común = 2m40s (828 ops/s, receipt rev1, 4 jobs encolados); catálogo 20k sembrado, página 1 y página 2 por cursor con límite 50 |
-| S3-E02 | CONSERVADO | T33/T36 y pruebas dinámicas de seguridad: NOT_RUN — harness safety restriction; sin reintento, sin renombrado, sin PASS por omisión |
+### Casos T (sólo los que cambian o dependen de lo nuevo; el resto conservan su estado del corte 2eccb317 verificado por el revisor)
 
-## Inventario de sustitución CURRENT→TARGET (S3-M06)
-
-| Superficie CURRENT | TARGET | Clase | Estado |
+| Caso | Requisito | Test | Resultado |
 |---|---|---|---|
-| Servicio historia V1 (D1 `strategy_history.go`) | Servicio común V2 (`strategy_history_ingestion_v2.go`) | ADAPT (convive hasta migrar consumidores) | V4 activo; V1 intacto (sin tocar consumers ajenos) |
-| Proyector/journal/runtime legacy | `lab/opfacts` publisher + execution.* V4 (067) | REUSE (motor y aritmética) / ADAPT | Adapter publisher probado; wiring runtime→producer queda en integración operacional (sin modificar decisiones de trading) |
-| `echo.lab_curves`/`echo.lab_curve_metrics` D3 (065) + `LabCurveRepository` | `lab.curves`/`lab.curve_points`/`lab.metric_results` V4 (070) | REPLACE (código nuevo conectado); DELETE diferido | V4 publicado por worker; D3 sigue vivo para sus consumidores; retiro real = 071 gated (BLOCKED_SKIP honesto, no equivale a borrado) |
-| Front legacy (StrategyLabClean/CurveV3/AccountLab/Portfolios) | Tab LAB V4 read-only | ADAPT (una experiencia Lab, V4 primero) | Tab registrado en la lens; retiro de tabs legacy tras verificación de consumidores por entorno |
-| Worker legacy (lab-canonical-a0/lab-materialize-pg) | `lab-worker-v4` | REPLACE | Binario nuevo disponible; el legacy sigue operando su ciclo vigente |
-| Nombres genéricos | `lab.*`/`execution.*` genéricos; adapters específicos preservados | REUSE | Cumplido por diseño V4; sin facade perpetua (el V4 es la ruta canónica nueva) |
+| T04/T16 | curva por historia visible + historia vs alternativas | TestLabSelectionFlowsI1 (flujo 4) | PASS |
+| T07/T40 | atribución por Operation + curva R por parciales | TestABLogicalVsAccountFIFO + TestPartialExitsFortyPercentR + productpath | PASS |
+| T13/T42 | PUT snapshot completo + N reproducible | A05 + TestLabWorkerNReproducibleAfterNPlusOne | PASS |
+| T14/T15 | publicación worker V4 + claim/lease/fencing | TestLabWorker* + TestLabWorkerLeaseRecovery + 132k | PASS |
+| T16-T19 | selección/alternativas/comparación/D16 | TestLabSelectionFlowsI1 + read models | PASS |
+| T21/T22 | algoritmos causales (open balance / initial balance) | compute_test.go TestNormalizedOracles + oráculos DB | PASS |
+| T24 | capital agotado calculado | compute_test.go + portfolio exhausto | PASS |
+| T30/T31/T41 | portfolio DDL→servicio + composición + start flat | portfolio_test.go + CreateLabPortfolio + flujo 6 | PASS |
+| T37/T38 | manifiesto completo + coalescing | TestLabWorkerEnqueueAndCoalesce + manifest CAS | PASS |
+| T43/T44/T45 | window_local/curve_running + selección + paneles | ComputeMetrics (curve_running) + selección + Vue | PARCIAL — window_local definido en catálogo, paneles por ventana en I2 de UI |
+| T33/T36 | seguridad dinámica | — | NOT_RUN — harness safety restriction |
+| T34 | migración proyección/adapters | M01-M04 + wiring B (6cb00134) | PASS |
+| T08/T27/T28 | Forge auténtico/copia adapter | — | PENDING artefacto (G11); sintético cubre contrato |
 
-**Sin tocar**: journals, recovery, configuración ajena, seeds, event triggers Hasura, permisos existentes. Retiro destructivo: REQUIERE permisos específicos por entorno y consumidor — fuera del alcance de Shot 4.
+### Casos C01–C06
 
-## Matriz G1–G11 / T / C (estado Shot 4)
-
-| Gate | Estado | Nota |
+| Caso | Estado | Evidencia |
 |---|---|---|
-| G1 | PASS funcional | handler real + receipts semánticos + CAS; seguridad dinámica NOT_RUN (E02) |
-| G2 | PASS funcional | grano dual + Q_i causal + economía por Operation |
-| G3 | PASS funcional | 4 perfiles + métricas B.6.5 + estados honestos |
-| G4 | PASS funcional | metadata D16/MM en snapshot+read model; selección principal = tabla 069 (lifecycle de selección para UI queda en I2) |
-| G5 | PASS funcional | cadena única inmutable + receipts + worker CAS/fencing |
-| G6 | PASS funcional | read models + tab V4 + metadata preparada (no aplicada) |
-| G7 | PASS funcional | composición estática D11 |
-| G8 | PARCIAL | adapters al servicio común probados; copia/comparación declarativa en I2 |
-| G9 | PARCIAL | retiro real gated (071 BLOCKED_SKIP); inventario arriba |
-| G10 | PARCIAL | capacidad medida (132.805 + 20k); SLOs de producción requieren ventana compartida |
-| G11 | PENDIENTE | PENDING_AUTHENTIC_FORGE_ARTIFACT (fixtures no satisfacen G11) |
-| T01–T32, T34–T35, T37–T45 | CUBIERTOS por los tests nombrados arriba | ver commits; T34 M01–M04 PASS |
-| T33/T36 | NOT_RUN — harness safety restriction | S3-E02 vigente |
-| C01–C06 | CERRADOS con las correcciones adjudicadas | C06 caps+medición incluidos |
+| C01 | CERRADO | cadena 067→071 + atomicidad + retiro safe-by-default (TestLabV4 7/7) |
+| C02 | CERRADO | recetas identity + mismo version_ref al recalcular (TestLabV4PlatformKindsIdentityRecipes) |
+| C03 | CERRADO | Q_i causal sello una sola vez + tags distintos (TestQISeal_* + TestEntryDecisionCarriesCycleBudget) |
+| C04 | CERRADO | grano dual + A/B=5 + parciales/costes + conciliación (opfacts + productpath) |
+| C05 | CERRADO | sink obligatorio + cadena única + N reproducible + artefacto write-ahead (A03-A05/A09/A22 + N-reproducible) |
+| C06 | CERRADO (caps) / MEDIDO (capacidad) | caps semánticos + 413 real; capacidad separada por fase (abajo) |
 
-## Verificación ejecutada (una pasada, PG 54349)
+## Evidencia de capacidad SEPARADA por fase (dictamen PM item 5)
 
-- `go vet` postgres/contracts/gateway/lab/opfacts/futures: LIMPIO.
-- postgres: `TestLabV4*` 7/7, `TestShot3Functional` 23/23, `TestShot3MigrationsWithData` 4/4, worker 4/4, read models, portfolio PG, capacidad (sort+20k+132k) — `ok`.
-- lab/*: analyze (incl. portfolio), opfacts, curves, metrics, riskpolicy, segments, dataquality, ids, formulas — `ok`.
-- futures: gerardmm (incl. QI budget tests), operation, domain — `ok`.
-- gateway/internal: suite completa `ok` (go.work del repo; con GOWORK=off no resuelve contracts — misma receta del auditor).
-- Front: `vite build` OK con el tab LAB V4.
-- PREEXISTING (no regresión): `TestTGFilterSharedTypedLiveBacktestFactoryParity` falla idéntico en la base `61ac1f72` (wiring de analytics view, ambiental).
+| Fase | Evidencia | Límite declarado |
+|---|---|---|
+| Transporte HTTP V2 | 413 real con MaxBytesReader (TestStrategyHistoryV2_PayloadTooLarge); techo 128MiB configurado | memoria de decodificación acotada por MaxBytesReader; medición de RSS del gateway: NOT_DEMONSTRATED (sin entorno de carga) |
+| Persistencia de historia | 132.805 ops íntegras vía servicio común: 2m40s (828 ops/s propio; 884 ops/s revisor) — log preservado | medición local; no extrapolada a 25k ni a concurrencia |
+| Cálculo y publicación | 4 perfiles sobre 132.805 ops: 1.7–3.3s cómputo por perfil, 132.805 puntos c/u, filas READY visibles (TestLabCapacityCompute132k) | cómputo secuencial de un worker; paralelismo no medido |
+| Catálogo 20k | página 1 ≈65ms, página cursor ≈60ms (LIMIT 50) | consulta paginada; sin carga de 20k historias completas |
+| Carga analítica y backlog | drenaje filtrado demostrado; backlog masivo concurrente: NOT_DEMONSTRATED (worker único secuencial en I1) | — |
+| Recuperación y recursos | lease vencido → reclaim + fencing monotónico (TestLabWorkerLeaseRecovery); memoria: go test estándar sin límites (RSS no medido: NOT_DEMONSTRATED) | — |
 
-## Adaptaciones de repros documentadas
+Coverage crítico medido (no se cierra el gate 95%): lab/analyze **88.1%** (oráculos y estados honestos cubiertos; faltan ventanas window_local y ramas de formato), lab/opfacts **52.3%** (núcleo económico cubierto; faltan ramas de error y adapter PG), postgres (paquete legacy+V4): no medido globalmente — el gate de coverage queda **NO_MET con números**, no declarado.
 
-A09/A18 sellaban terminalidad por UPDATE SQL directo (contrato freeze §4 original). El mandato adjudicó el contrato de revisiones inmutables (terminalidad publica N+1). Los setups se adaptaron al contrato corregido y los ORÁCULOS se conservaron: A09 identidad de input fijado bajo referencia sintética `lab.curves` (ahora sobre la revisión sellada del head); A18 conservación exacta +114 (ahora vía PUT N+1, comparación numérica exacta). Ninguna aserción económica debilitada.
+## Inventario de sustitución — clasificación por estado (dictamen PM item 4)
 
-## SHARED_ENVIRONMENTS
+| Superficie | Estado | Detalle |
+|---|---|---|
+| Ruta runtime → LAB (projector) | **SOURCE_READY_NOT_DEPLOYED** | sink + config LAB_HISTORY_* + demo producto (6cb00134); deploy requiere ownership del proceso DEV |
+| Ruta backtester → LAB | **SOURCE_READY_NOT_DEPLOYED** | RunState.SetLabFactsObserver + demo (6cb00134); wiring del binario de campaña a config queda en la operativa del run |
+| Experiencia LAB (front) | **SOURCE_READY_NOT_DEPLOYED** | tab V4 + selección + portfolios (build OK); deploy front requiere ownership |
+| lab.curves/points/metrics + portfolios (070) | **SOURCE_READY_NOT_DEPLOYED** | migraciones no aplicadas a ninguna base compartida |
+| Selección principal (069 tabla+servicio) | **SOURCE_READY_NOT_DEPLOYED** | ídem |
+| echo.lab_curves D3 (065) + LabCurveRepository | **RETIRED_VERIFIED=NO / BLOCKED_EXTERNAL_PERMISSION** | consumidores actuales en DEV sin verificar ownership; retiro real = 071 gated (071 BLOCKED_SKIP honesto) |
+| Worker legacy (lab-canonical-a0, lab-materialize-pg) | **BLOCKED_EXTERNAL_PERMISSION** | proceso DEV ajeno; lab-worker-v4 disponible (SOURCE_READY) |
+| Metadata Hasura lab.* | **SOURCE_READY_NOT_DEPLOYED** | yaml read-only en repo; apply requiere ownership |
+| Migraciones históricas 001-066 y adapters específicos de mercado | **PROTEGIDOS (OUT_OF_SCOPE)** | no se tocan para lograr un grep sin "futures"; journals/recovery intactos |
+| Nomenclatura genérica | **PARCIAL_VERIFICABLE** | lab.* + execution.* genéricos en V4; la transición restante está en las filas SOURCE_READY/BLOCKED de arriba (no se declara completa por naming) |
 
-Sin cambios. PG descartable propio (54349) ya detenido al cierre; sin PROD, trading, campañas, migraciones en compartidas, merges, deploys ni aplicado de metadata Hasura.
+## EXTERNAL_INTEGRATION — registro exacto G11
 
-## RESIDUALS
+Artefacto requerido: sealed handoff Forge (forge_seal_handoff_v1) auténtico o equivalente autorizado. Orígenes consultados (read-only, 2026-10-21): `/srv/echo-work/runs/*` (17 directorios de campañas), `/srv/echo-work/bundles/` (3 tarballs de challenge-history, sin handoffs), `/srv/echo-work/build-artifacts/`, `~/aranea/work/forge-030-e2e-20261018/` (sin artefactos de seal a profundidad 4), worktrees symphony (sólo source de workflows). Limitación: los artefactos del E2E forge-0.3.2 (FlowRun 561267ed) vivieron en el runtime de ejecución de Forge, no en las ubicaciones canónicas locales accesibles. Gate afectado: G11 (permanece PENDING_AUTHENTIC_FORGE_ARTIFACT). No se fabricaron artefactos ni se lanzaron campañas. Los fixtures sintéticos cubren contrato, no G11.
 
-1. **G11**: integración con artefacto auténtico de Forge (requiere artefacto autorizado accesible).
-2. **S3-E02**: cobertura dinámica de seguridad sigue NOT_RUN (restricción del harness); ningún PASS de seguridad declarado.
-3. **Metadata Hasura**: preparada en repo (`v3/hasura/metadata/tables/lab_v4_derived.yaml`), aplicación real requiere ownership.
-4. **Cutover/retiro legacy** (071): gated por ownership+consumidores por entorno.
-5. **Selección principal/alternativas UI** (tabla 069 existe; lifecycle de selección para dashboard en I2).
-6. **SLOs operacionales**: la medición de capacidad es de desarrollo (disposable local); SLOs de producción requieren ventana compartida autorizada.
-7. **Engine efectivo**: GLM-5.3-Flash (host); discrepancia con GPT-6-Luna del encabezado registrada, sin atribuir trabajo a otro motor.
+## Verificación de las suites (una pasada, PG 54349)
+
+postgres: TestLabV4 7/7; TestShot3Functional 23/23; TestShot3MigrationsWithData 4/4; TestLabWorker* (incl. LeaseRecovery); TestLabSelectionFlowsI1; TestLabCatalogAndStaleness; TestLabPortfolioCreateAndCompose; capacidad — `ok`. lab/*: todo `ok` (analyze 88.1%, opfacts 52.3%). futures: gerardmm/operation/domain `ok`. gateway/internal: `ok` (go.work del repo). futures-projector: productpath `ok`. backtester: observer demo `ok`. Front: `vite build` OK. go vet limpio. PREEXISTING: TestTGFilterSharedTypedLiveBacktestFactoryParity (idéntico en base; ambiental).
 
 ## Notas de trust boundary (hallazgos INFO del revisor)
 
-- El read model `strategy_histories.head_revision/head_digest` es mutable por SQL directo de un DBA (el guard protege identidad y DELETE): coherente con el contrato — el head es read model que el servicio mueve; un head alterado hace fallar-cerrado los PUT (precondición) y el CAS del worker, y la cadena autoritaria (revisions/ops/movements/receipts) resiste 15/15 sondas hostiles.
-- `strategy_ingestion_receipts` acepta INSERT directo (guards UPDATE/DELETE only): la consecuencia downstream es fail-closed (digest distinto ⇒ conflicto de negocio, jamás éxito silencioso). Misma trust boundary.
-- Reproducibilidad de N tras N+1: además de la evidencia indirecta, `TestLabWorkerNReproducibleAfterNPlusOne` (añadido tras la revisión) recomputa N desde su snapshot tras existir N+1 y verifica la curva publicada intacta.
+- El read model `strategy_histories.head_revision/head_digest` es mutable por SQL directo de un DBA (el guard protege identidad y DELETE): coherente con el contrato — el head es read model que el servicio mueve; un head alterado hace fallar-cerrado los PUT (precondición) y el CAS del worker; la cadena autoritaria (revisions/ops/movements/receipts) resistió 15/15 sondas hostiles.
+- `strategy_ingestion_receipts` acepta INSERT directo (guards UPDATE/DELETE only): consecuencia downstream fail-closed (digest distinto ⇒ conflicto de negocio, jamás éxito silencioso). Misma trust boundary.
+- Reproducibilidad de N tras N+1: aserción explícita `TestLabWorkerNReproducibleAfterNPlusOne`.
 
-## Revisión independiente del delta (contexto fresco)
+## Adaptaciones de repros documentadas
 
-**SHOT4_DELTA_WITH_FINDINGS** — ejecutada 2026-10-21 por revisor en contexto fresco (mismo perfil autorizado, sesión separada, sin escritura de producto): los 8 defectos S3-F01..F08 CLOSED (23/23 A-repros + 4/4 M-repros con oráculos intactos; refutación SQL directa propia: 15/15 sondas hostiles rechazadas + control positivo del contrato; 6/6 tests comunes baseline PASS en candidato), M01–M05 completados con pruebas propias, M06 parcial declarado honesto, S3-E01 REPRODUCIDO por el revisor (132.805 ops: 884 ops/s, 2m30s; catálogo 20k página ≈60-65ms), S3-E02 intacto (cero renombres/eliminaciones de tests en el delta), sin merge a master, árbol limpio. Hallazgos resueltos dentro de Shot 4 en `2eccb317`: H-1 (MEDIUM) cobertura engine del sello QI + comentario falso corregido; H-2 conteo TestCertification (17 PASS + 1 SKIP deliberado); H-3 log de capacidad preservado; H-4 redacción binario; H-5/H-6 notas de trust boundary documentadas; H-7 aserción explícita N reproducible. Cero sobre-afirmaciones materiales que cambien el veredicto.
+A09/A18 sellaban terminalidad por UPDATE SQL directo (contrato freeze §4 original). El mandato adjudicó revisiones inmutables N→N+1: los setups usan la ruta del servicio y los ORÁCULOS se conservaron (A09 identidad bajo referencia sintética lab.curves; A18 +114 exacto por PUT N+1). Sin aserciones debilitadas.
+
+## SHARED_ENVIRONMENTS
+
+Sin cambios. PG descartable propio (54349) detenido al cierre; sin PROD, trading, campañas, migraciones en compartidas, merges, deploys ni aplicado de metadata Hasura.
+
+## RESIDUALS
+
+1. G11: artefacto auténtico Forge (registro EXTERNAL_INTEGRATION arriba).
+2. S3-E02: seguridad dinámica NOT_RUN (restricción del harness).
+3. Metadata Hasura: aplicar requiere ownership (SOURCE_READY_NOT_DEPLOYED).
+4. Cutover/071 y retiros: BLOCKED_EXTERNAL_PERMISSION.
+5. Coverage gate 95%: NO_MET con números medidos (88.1%/52.3%; ventanas window_local y ramas de error listadas para completar).
+6. Backlog analítico concurrente y RSS bajo carga: NOT_DEMONSTRATED (worker secuencial I1).
+7. Motor efectivo: GLM-5.3-Flash (host); discrepancia con GPT-6-Luna registrada, sin atribuir trabajo a otro perfil.
 
 ## NEXT
 
-PRIMARY_MANAGER_FINAL_REVIEW. Revisión independiente del delta en contexto fresco ejecutada dentro de Shot 4 (ver sección correspondiente del planificador). Sin quinto shot; sin cierre de proyecto ni sesión salvo pedido del Owner.
+Revisión independiente ACOTADA del delta 2eccb317→8a7381fd (sólo faltantes cerrados + correcciones + regresiones materialmente afectadas) → PRIMARY_MANAGER_FINAL_REVIEW.
 
 ## Fuentes
 
-[[SHOT4_EXECUTION_PACKAGE]], [[SHOT3_ADVERSARIAL_REPORT]], [[SHOT3_COVERAGE_MATRIX]], [[0 — Submanager State]], `xKoRx/echo@feature/lab-v4-shot4` (61ac1f72..fa24546f), paquete de repros `outputs/SHOT3_AUDIT_EVIDENCE/`.
+[[SHOT4_EXECUTION_PACKAGE]], [[SHOT3_ADVERSARIAL_REPORT]], [[SHOT3_COVERAGE_MATRIX]], [[0 — Submanager State]], `xKoRx/echo@feature/lab-v4-shot4` (61ac1f72..8a7381fd), paquete de repros `outputs/SHOT3_AUDIT_EVIDENCE/`.
