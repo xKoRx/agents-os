@@ -39,3 +39,20 @@ Registro append-only de correcciones materiales post-publicación (amendment_id,
 - **Verificación nueva (completa):** crop ampliado 2× del borde derecho + análisis visual de [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-003603.png|f-003603]]: EURUSD 4H con rectángulo de rango dibujado bajo las velas recientes; la vela 05:00 abre por ARRIBA del cuerpo de la vela 01:00 anterior (gap al alza) — corroborado sin errores.
 - **Evidencia:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003603|s-003603]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003608|s-003608]] («A las 5 nos abre esta vela por arriba, lo que significa que estamos creando un rango de 4 horas veris»).
 - **Resultado:** VERIFICADO — sin cambio de proposición; verdict SUPPORTED y epistemic conservados.
+
+## am-ch09-001
+
+- **Claim:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0033|c-0033]] (aclaración targeted; statement SIN cambios)
+- **Fecha:** 2026-10-21
+- **Motivo:** resolver q-ch07-017 («'red flag para entrar ya' = red flag que impide entrar?»): la segmentación ASR de s-000657 cortaba «ya vais / a ver en el vídeo [red flags]».
+- **Aclaración (contra la fuente de ep09, preservando IDs de ch07):** el vídeo de red flags (ch09) desarrolla esta red flag literalmente: «abrir por arriba es que la vela tome el high de la vela anterior» (ch09 [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0023|c-0023]]); cuando el precio abre al revés de tu dirección, «es el momento donde tú dejas de buscar las compras hasta tener los rangos a favor otra vez: esta sería la red flag de que nos abre el precio al revés» (ch09 [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0066|c-0066]]) — la lectura correcta de «red flag para entrar ya» es la de ADVERTENCIA (pausa la búsqueda de entradas en esa zona hasta recuperar rangos a favor), apoyada ya por s-000704 de ch07. Matiz honesto: el término «rango reiniciado» de c-0033 NO se repite literalmente en ep09 (en ch09 el uso de «reiniciado» queda en otro contexto, s-003011).
+- **Evidencia:** ch09 transcript s-000135/s-000146 (caso a las 3), s-000624/s-000629/s-000630 (definición de abrir por arriba/abajo), s-001802/s-001807 (cierre «dejas de buscar las compras hasta tener los rangos a favor»).
+- **Resultado:** ACLARADO — statement de c-0033 intacto; q-ch07-017 pasa a RESOLVED (ver OPEN-QUESTIONS de ch07).
+
+## am-ch09-002
+
+- **Claim:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0039|c-0039]] (aclaración targeted; statement SIN cambios)
+- **Fecha:** 2026-10-21
+- **Motivo:** ep09 repite y GENERALIZA la idea de «peor situación = DOL tomado» en clave probabilística: «tú te levantas con el objetivo ya tomado, esto es otra red flag para operar ese día» (ch09 [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0051|c-0051]]); «una vez hemos llegado al doll [ASR: DOL] podemos operar desde el doll pero ya nos baja la probabilidad» (ch09 [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0103|c-0103]]); descarte de compras cuando el precio «ya no tiene por qué tomar el otro, al menos hoy» (ch09 [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0122|c-0122]]).
+- **Evidencia:** ch09 s-001350, s-002701-s-002757, s-003141.
+- **Resultado:** REFORZADO — c-0039 queda sin cambio; ch09 añade la generalización «levantarse con el objetivo ya tomado» y su matiz probabilístico (advertencia, no prohibición: ch09 [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0107|c-0107]]).

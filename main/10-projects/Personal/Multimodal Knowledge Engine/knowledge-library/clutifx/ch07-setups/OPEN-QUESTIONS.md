@@ -53,7 +53,7 @@ Palabra dicha preservada; en un setup bajista la lectura probable es "a favor". 
 Adjudicado por contexto en review. Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0050|c-0050]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0051|c-0051]]. **Estado: OPEN**
 
 ### q-ch07-017 — ¿"red flag para entrar ya" = red flag que impide entrar? ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000657|s-000657]])
-La segmentación ASR corta "ya vais / a ver en el vídeo [red flags]"; [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000704|s-000704]] apoya la lectura de advertencia. Claim: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0033|c-0033]]. **Estado: OPEN**
+La segmentación ASR corta "ya vais / a ver en el vídeo [red flags]"; [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000704|s-000704]] apoya la lectura de advertencia. Claim: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0033|c-0033]]. **Estado: RESOLVED (2026-10-21, aclaración targeted am-ch09-001 con la fuente de ep09: lectura de advertencia; statement intacto)**
 
 ### q-ch07-018 — Dirección de la expansión del trade de hoy ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001841|s-001841]])
 "para que bajó al menos" es dudoso por ASR. Claim: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0095|c-0095]]. **Estado: OPEN**
