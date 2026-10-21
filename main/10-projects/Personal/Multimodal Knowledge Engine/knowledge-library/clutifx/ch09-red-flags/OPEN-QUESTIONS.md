@@ -23,7 +23,7 @@ Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clu
 ### q-ch09-007 — «reza» [ASR] → ¿«red flag»? (min 27/32;,)
 Candidato reforzado por recurrencia idéntica en s-003217 y por el tema del capítulo; la palabra dicha es distinta. **Estado: PARTIAL** — la lectura «red flag» se usa en notes como interpretación, preservando «reza» [ASR] en los statements.
 Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0098|c-0098]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0126|c-0126]]
-### q-ch09-008 — «JEP»/«JP»/«GIP» [ASR]: ¿GBP o JPY? (min 32-34;..)
+### q-ch09-008 — «JEP»/«JP»/«GIP» [ASR]: ¿GBP o JPY? (min 32-34)
 El contexto (long en Libra no tomado, «el día del SMT») y los frames ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/frames/f-003259.png|f-003259]] GBPUSD+EURUSD en pantalla; [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/frames/f-003320.png|f-003320]] GBPUSD·1D) apoyan GBP; sin respaldo literal para sustituir en los statements. **Estado: PARTIAL** — palabra dicha preservada [ASR]; lectura GBP documentada aquí.
 Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0126|c-0126]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0136|c-0136]]
 ### q-ch09-009 — «S&T» [ASR] → ¿SMT? (min 33;)

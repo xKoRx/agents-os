@@ -16,7 +16,7 @@ Guía de estudio del capítulo RED FLAGS. Cada tema apunta a las reglas y claims
 - ¿Entrar con el objetivo ya tomado está prohibido? → NO: advertencia probabilística ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0045|c-0045]]); excepción de riesgo consciente en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/rules|R9]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0107|c-0107]]/R9.
 - ¿Qué gestionas al ver formarse un rango en contra en pleno trade? → parciales + break even [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0015|c-0015]]; cerrar sin esperar el stop [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0078|c-0078]].
 - ¿Qué pasa con la probabilidad cuando operas «desde el DOL»? → baja ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0103|c-0103]]), sin dejar de ser posible.
-- ¿Qué sesión.anuncios quedan pendientes en el curso? → gestión de riesgo/trades, noticias, mentalidad [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0137|c-0137]].
+- ¿Qué anuncios quedan pendientes en el curso? → gestión de riesgo/trades, noticias, mentalidad [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0137|c-0137]].
 
 ## 3. Errores comunes que este capítulo corrige
 

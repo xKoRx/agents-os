@@ -4,7 +4,7 @@ Ejemplos del capítulo (kind `example` y los `observation`/`procedure` de ejempl
 
 ## E1 — Ejemplo base dibujado: rango mayor, target y redibujo realista (0:00–2:00)
 
-Si este es el rango mayor, el target sería el high de la vela; el instructor lo redibuja «como si fuera real» con un rango de 4 horas y velas de una hora [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0004|c-0004]] · frames [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/frames/f-000054.png|f-000054]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/frames/f-000054.png|f-000054]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/frames/f-000059.png|f-000059]].
+Si este es el rango mayor, el target sería el high de la vela; el instructor lo redibuja «como si fuera real» con un rango de 4 horas y velas de una hora [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0004|c-0004]] · frames [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/frames/f-000054.png|f-000054]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/frames/f-000059.png|f-000059]].
 
 ## E2 — Camino alternativo: toma del low y rango bullish hacia el objetivo (2:00)
 
