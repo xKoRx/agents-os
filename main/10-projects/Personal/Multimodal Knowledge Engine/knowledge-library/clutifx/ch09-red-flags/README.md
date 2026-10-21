@@ -18,7 +18,7 @@ Biblioteca de conocimiento del noveno vídeo del curso Clutifx, extraída con la
 | Campo | Valor |
 |---|---|
 | Fecha | 2026-10-21 |
-| ASR | faster-whisper `large-v3`, int8 CPU, language=es (p=1,00), beam 5, **430 segmentos, 96 % habla**, ligado al SHA; wall 2h09m46s (0,27× realtime — el peor rate del curso: contención severa del host, load 15 con echo-core + test Go de otro grind) |
+| ASR | faster-whisper `large-v3`, int8 CPU, language=es (p=1,00), beam 5, **430 segmentos, 96 % habla**, ligado al SHA; wall 2h09m46s = 7.785,8 s medidos por el proceso (`asr.log`); **ASR_SPEED** = 2.094,5/7.785,8 = **0,27×** (video/wall) · **ASR_COST_MULTIPLIER** = 7785,8/2094,5 = **3,72×** — contención severa del host, load 15 con echo-core + test Go de otro grind (errata de «peor rate»: ver Reconciliación de métricas) |
 | Extracción | 6 EXTRACTORs ONE-SHOT secuenciales (bloques 0-5 / 6-11 / 12-17 / 18-23 / 24-29 / 30-34), 137 claims, ~49 min |
 | Revisión | 35 minutos × 1 revisor ONE-SHOT en 7 olas de 5: **35/35 `MINUTE_REVIEW = VALID`** (cardinalidad exacta `validate_review.py`); checkpoint 5 min PASS (proyección ~140 min/h-video, OVER <2×, continuado con registro); 0 errores [1210]/[1310] del proveedor |
 | Integración | mecánica (`integrate_reviews.py` con fix de seguridad parcial-integration del preflight ch09: sólo escribe canónico con cobertura completa) + 12 correcciones de literalidad propuestas por revisores, adjudicadas y aplicadas al pool antes de integrar |
@@ -47,15 +47,24 @@ Biblioteca de conocimiento del noveno vídeo del curso Clutifx, extraída con la
 |---|---|
 | LIBRARY_VALIDATION | **PASS** (validate_library.py 0 findings, 2026-10-21) |
 | TERM_SOURCE_CHECK | **PASS** (check_term_sources.py: 137 vivos / 0 MATERIAL / 0 TDREQ, 2026-10-21) |
-| DOCVERIFY | FINDINGS → CORREGIDO — verificador independiente ONE-SHOT: 33 claims contrastados contra transcript (SOURCE-FIRST segmento a segmento), chequeo de endurecimiento (0 warnings publicados como prohibiciones sin respaldo), 4 frames leídos visualmente, navegación verificada completa (137 ids, 73 frames, 0 mismatches), métricas README contra artefactos ✓. 2 MATERIAL (documentation §2 resolvía el garble abierto «tarjeta breakable»; §7 atribuía el bloque 17:00 a EURUSD siendo GBPUSD) + 6 MENOR — los 8 adjudicados y corregidos in-mission; re-validación PASS. Spool: run dir docverify/ |
+| DOCVERIFY | FINDINGS → CORREGIDO — verificador independiente ONE-SHOT: 33 claims contrastados contra transcript (SOURCE-FIRST segmento a segmento), chequeo de endurecimiento (0 warnings publicados como prohibiciones sin respaldo), 4 frames leídos visualmente, navegación verificada completa (137 ids, 73 frames, 0 mismatches), métricas README contra artefactos ✓. 2 MATERIAL (documentation §2 resolvía el garble abierto «tarjeta breakable»; §7 atribuía el bloque 17:00 a EURUSD siendo GBPUSD) + 6 MENOR — los 8 adjudicados in-mission; auditoría del cierre semántico (2026-10-21) detectó que DV09-001 y DV09-006 NO habían llegado al árbol publicado pese al registro: re-aplicadas (AMENDMENTS am-ch09-doc-001/002) y re-verificadas (fila siguiente). Spool: run dir docverify/ |
+| DOCVERIFY targeted (cierre 2026-10-21) | ver fila de cierre semántico |
 
 ## Throughput (reporte separado tramos vs total)
 
 | Tramo | Valor |
 |---|---|
-| ASR wall | 2h09m46s (0,27× realtime — contención del host, OVER registrado) |
-| Agent wall (extracción+revisión) | ~109 min / 34,9 min video ≈ **187 min/h-video** (objetivo ≤120; OVER por contención de CPU heredada por los subagentes y revisores prudentes con frames; registrado sin disfrazar) |
-| Integración + composición | (ver PREFLIGHT-GATE/run del 2026-10-21) |
+| ASR wall | 2h09m46s = 7.785,8 s (`asr.log`) · ASR_SPEED 0,27× · ASR_COST_MULTIPLIER 3,72× (contención del host, OVER registrado) |
+| Agent wall (extracción+revisión) | **~127 min** reconciliado por epochs/spools: extracción ~51 min (bloques 11:20:33→12:11:58) + revisión ~75 min (12:14:58→13:30:11) sobre 34,9 min de video ≈ **218 min/h-video** (objetivo ≤120; OVER ~1,8× — contención de CPU heredada por los subagentes y revisores prudentes con frames). El «~109 min» publicado originalmente no es reconstruible de los epochs — errata en AMENDMENTS (am-ch09-doc-003) |
+| Integración + composición | 13:35:57 (`integration_start_epoch`) → validación/publicación (ver PREFLIGHT-GATE/run del 2026-10-21) |
+
+### Reconciliación de métricas (errata 2026-10-21, cierre semántico)
+
+Reconciliación post-publicación que preserva la historia OBSERVED original; detalle en AMENDMENTS (am-ch09-doc-003):
+
+- **ASR:** el proceso midió 7.785,8 s (`asr.log`, «0.27x realtime» = velocidad video/wall); la ventana por epochs (09:04:20→11:20:33 = 136,2 min) incluye setup y post-proceso de transcript. El wall de ASR es el del proceso.
+- **Agent wall:** el «~109 min» del README original y el «~119 min» del handoff (suma de estimaciones 49+70) carecen de respaldo de epochs; los spools dan extracción ~51 min y revisión ~75 min (suma ~127 min; ventana completa asr_end→último review = 129,6 min, con huecos de orquestación incluidos).
+- **Unidades de rate (errata material):** ch02–ch09 publicaron «N× realtime» mezclando dos magnitudes — velocidad (video/wall; ch09 0,27×) y multiplicador de costo (wall/video; ch08 1,76×). En unidades homogéneas de **ASR_COST_MULTIPLIER**: ch02 2,63× · ch03 4,73× · **ch04 9,06× (peor)** · ch05 5,00× · ch06 4,42× · ch07 1,50× · **ch08 0,57× (mejor)** · ch09 3,72×. En **ASR_SPEED**: ch04 0,11× (peor) … ch08 1,76× (mejor). **ch09 NO es «el peor rate del curso»** (queda 5.º de 8 en costo); la caracterización original queda subsanada aquí. Los README de ch02–ch08 no se retocan (fuera de alcance de este cierre).
 
 ## Estructura
 

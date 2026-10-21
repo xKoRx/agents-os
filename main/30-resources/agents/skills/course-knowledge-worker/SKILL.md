@@ -152,9 +152,23 @@ transcript, frame) y contrastar el término publicado contra el término
 realmente dicho/escrito — que documentation.md concuerde con claims.jsonl NO
 basta, porque ambos pueden contener el mismo error (defecto real ch03:
 "al DOL" publicado como "al DXY"). Ejecutar también
-`scripts/check_term_sources.py <lib>`. NO auto-corregir la biblioteca. NO
-declarar PASS sin haber ejecutado las verificaciones. Los workers NUNCA
-inventan links a recursos inexistentes.
+`scripts/check_term_sources.py <lib>`. **Chequeo de ambigüedades resueltas
+(obligatorio; regresión ch09 DV09-001, 2026-10-21): una síntesis no puede
+resolver categóricamente una ambigüedad material que el claim citado mantiene
+abierta, salvo que aporte evidencia adicional adjudicada.** Cuando el claim
+publica un garble con marca [ASR], un TERM_DISAMBIGUATION_REQUIRED o una
+q-\<curso\>-NNN OPEN, la documentación que lo cita debe preservar la duda
+(palabra dicha + interpretación como candidata no confirmada + referencia a la
+pregunta abierta); sustituirla por la lectura «natural» o por la práctica
+habitual del dominio es hallazgo MATERIAL. Caso real: la documentation de ch09
+publicaba «mover el stop a break even» citando c-0015, cuyo statement
+preservaba «mover tu tarjeta breakable» [ASR] con q-ch09-002 OPEN — y el
+DOCVERIFY que lo detectó lo registró como corregido sin que el fix llegara al
+árbol publicado: auditar el árbol físico final, no el registro de intenciones.
+No es un detector regex ni una ontología: exige contrastar cada cita de una
+duda abierta contra su claim. NO auto-corregir la biblioteca. NO declarar PASS
+sin haber ejecutado las verificaciones. Los workers NUNCA inventan links a
+recursos inexistentes.
 
 ## Output
 

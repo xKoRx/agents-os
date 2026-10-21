@@ -162,7 +162,13 @@ de gráfico continuo (ch02: 2,6/min) el presupuesto se declara por bloque, no gl
 6. **Composición**: `documentation.md` — síntesis por conceptos del capítulo,
    cada afirmación con su cita `[mm:ss]` y `[f-<HHMMSS>]` cuando es visual.
    Construida SOLO sobre claims SUPPORTED; los UNCERTAIN pueden mencionarse
-   explícitamente como dudosos, nunca como hechos.
+   explícitamente como dudosos, nunca como hechos. La síntesis tampoco puede
+   resolver categóricamente una ambigüedad material que el claim citado
+   mantiene abierta (garble [ASR], TERM_DISAMBIGUATION_REQUIRED, q-\<curso\>-NNN
+   OPEN) salvo que aporte evidencia adicional adjudicada: preserva la palabra
+   dicha y declara la interpretación como candidata no confirmada (regresión
+   real ch09 DV09-001: «mover el stop a break even» publicado sobre el garble
+   abierto «tarjeta breakable» de c-0015/q-ch09-002).
 7. **Publicación + validación final**: README con provenance (video sha256,
    herramienta, modelo, fecha, conteos RECONCILIADOS contra los artefactos) +
    claim counts por veredicto. DONE exige: evidencia estructurada válida,
