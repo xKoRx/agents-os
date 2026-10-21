@@ -1,6 +1,41 @@
+---
+type: doc
+schema_version: 1
+status: active
+area: "[[Echo]]"
+related:
+  - "[[Echo — Producto Integrado]]"
+  - "[[SHOT3_ADVERSARIAL_REPORT]]"
+aliases: []
+tags:
+  - kind/doc
+created: "2026-10-21"
+updated: "2026-10-21"
+---
+
 # V4 Shot 2 — Submanager State (durable)
 
+## Propósito
+
+Mantener el estado vigente del programa V4 y el handoff entre implementación, auditoría independiente y validación crítica.
+
+## Contenido
+
 **Role:** Implementation Submanager / Technical Integration Lead (mandato maestro 2026-10-20). **Engine:** GLM-5.3-Flash Max LOCAL. **Estado global:** ver [[F — Decision Register]] §V4 y [[Echo — Producto Integrado]].
+
+## Shot 3 — resultado vigente y distribución de roles, 2026-10-21
+
+**Instrucción actual Owner:** GPT-6-Luna o GPT-6.1-Sol sustituyen GLM según el trabajo; esta auditoría fue ejecutada íntegramente por **GPT-6.1-Sol / reasoning high**, auditor independiente en Codex LOCAL. No atribuir su trabajo a GLM. El auditor inspeccionó source, creó PG propio, escribió repros, ejecutó pruebas y produjo los informes; Astra fija criterio y valida evidencia compacta. Esta distribución sustituye las asignaciones antiguas al GOD presentes más abajo, que quedan como historia del programa. La excepción serial de Shot 2 no autoriza al GOD a absorber la investigación de Shot 3.
+
+**Corte auditado fijo:** `xKoRx/echo@61ac1f720d07513e48b0310b84b5b415b80ff48f`, base `d74b652500e673fc2bf4289f9f195f11960ba26e`; clon detached independiente y PG16.3 propio en loopback 54339, data-dir separado. Árbol del implementador intacto; sin fixes, merge, deploy, servicios compartidos ni PROD.
+
+**AUDIT BLOCKED; PRODUCT INCOMPLETE; VERDICT FAIL_DEFECTS_AND_INCOMPLETE_SCOPE.** La investigación funcional autorizada está entregada. El harness excluyó pruebas dinámicas de autenticación, autorización, aislamiento de seguridad y traversal; quedan **NOT_RUN — harness safety restriction** y no permiten declarar completa la auditoría original. No se reintentaron esos casos ni se sustituyó modelo/proveedor para eludir el límite.
+
+**Evidencia propia:** 41 casos candidatos distintos = 17 PASS_EXECUTED / 24 FAIL_EXECUTED; siete TestLabV4 entregados reproducidos 7/7. Contraste de cinco tests comunes baseline = 5 PASS y candidato = 5 FAIL por fixtures incompatibles con nuevas FK. Once checks racionales independientes PASS sólo como oráculos. CAS real concurrente PASS; replay concurrente FAIL; go vet de tres superficies PASS. No suite completa, benchmark 20k, Forge físico o seguridad dinámica certificados. Coverage de repetición dirigida 7,1% no acredita el gate 95%.
+
+**Hallazgos prioritarios:** ingesta terminal/multioperación rota; revisión mutable bajo mismo digest; sello SQL con NULL/monedas incompatibles; artefacto incompleto y sink opcional; receipts parciales; down 067 pierde fills si operations vacía. **I1 falta:** endpoints/Forge auténtico, Q_i y atribución por Operation/adapters, worker/cuatro perfiles/métricas, selección/dashboard/metadata, composición estática, sustitución/capacidad.
+
+**Artefactos canónicos:** [[SHOT3_ADVERSARIAL_REPORT]], [[SHOT3_COVERAGE_MATRIX]], [[SHOT4_EXECUTION_PACKAGE]], [[GOD_REVIEW_BRIEF]], [[SHOT3_DIRECTED_EXTRACTS]]. Paquete reutilizable en workspace externo de este encargo: `outputs/SHOT3_AUDIT_EVIDENCE/`. Brief <1.500 palabras; seis fragmentos/152 líneas. **NEXT GOD_CRITICAL_VALIDATION.** Astra aún no aprobó la auditoría. Shot 4 no iniciado ni proyecto/sesión cerrados.
 
 ## Dirección vigente del programa — Owner / Primary Manager, 2026-10-21
 
@@ -78,9 +113,9 @@ El toolkit de migración real ejecuta `db.Exec` por archivo; no demuestra golang
 
 ## Siguiente acción vigente
 
-**Despachar GOD LOCAL a Shot 3 adversarial independiente**, sobre SHA local fijo y worktree separado. Auditar implementación y compatibilidad de diseño; registrar faltantes I1 por separado. No devolver otro paquete de freeze. El resultado prepara Shot 4 de correcciones y cierre del alcance pendiente, con pruebas y revisión independiente del delta final.
+**GOD_CRITICAL_VALIDATION:** Astra valida hasta tres conclusiones críticas mediante [[GOD_REVIEW_BRIEF]] y seis fragmentos dirigidos; el informe y la matriz conservan el resto. Priorizar correcciones P1 y completar I1 mediante [[SHOT4_EXECUTION_PACKAGE]], dentro de Shot 4 y con revisión independiente de todo delta final en contexto fresco. No reabrir discovery/freeze ni crear un quinto shot. AUDIT permanece BLOCKED mientras no pueda cubrirse el alcance dinámico excluido por el harness.
 
-No iniciar cambios de Shot 4 en el árbol auditado mientras el auditor lo esté usando. El informe no certificará capacidades inexistentes y no debe detenerse sólo porque la entrega es parcial. No merge, deploy ni cierre de proyecto por este cambio de fase.
+No iniciar fixes durante esta auditoría ni declarar aprobación por Astra anticipadamente. Sin merge, deploy, servicios compartidos, PROD ni cierre de proyecto/sesión por este handoff.
 
 ## Log de avance
 
@@ -89,3 +124,5 @@ No iniciar cambios de Shot 4 en el árbol auditado mientras el auditor lo esté 
 - 2026-10-21: dictamen Manager C01–C06 y paquete rev 3 (`TECHNICAL_FREEZE_READY_V3`), entrega `eb9ad25e`; correcciones de identidad, riesgo, atribución económica, retención, transporte y migraciones documentadas. Sin edición de producto.
 - 2026-10-21: Primary Manager acepta corte V3 `cee739a8f8ae7c0bfe2d7e30bc473c88ab608c78`: `TECHNICAL_FREEZE_ACCEPTED_V3 / IMPLEMENTATION_AUTHORIZED`. Termina el ciclo de revisión preparatoria; mantiene cuatro shots. Excepción explícita de ejecución serial propia dentro de Shot 2 ante fallo de workers, con atribución honesta e independencia de Shot 3 preservada. Esta actualización es documental, no evidencia de código implementado.
 - 2026-10-21: Owner solicita continuar Shot 3/4 y ofrece GOD LOCAL. Primary Manager autoriza Shot 3 sobre candidato parcial reportado `61ac1f72`, sin reabrir freeze ni certificar I1; Shot 4 incluye faltantes del alcance aprobado y correcciones, con revisión independiente del delta final. Solo actualización documental; pausa del implementador y ejecución de auditoría aún no demostradas.
+
+- 2026-10-21: auditor independiente GPT-6.1-Sol / reasoning high entrega Shot 3 funcional sobre SHA completo 61ac1f720d07513e48b0310b84b5b415b80ff48f: 41 casos candidatos 17 PASS / 24 FAIL, baseline común 5 PASS, 11 oráculos PASS. AUDIT BLOCKED por harness safety restriction; PRODUCT INCOMPLETE. Cuatro entregables más extractos y repros preservados; siguiente GOD_CRITICAL_VALIDATION. Sin fixes ni Shot 4. Envelope legacy migrado explícitamente a doc/schema_version 1 mediante materializador, preservando cuerpo histórico.
