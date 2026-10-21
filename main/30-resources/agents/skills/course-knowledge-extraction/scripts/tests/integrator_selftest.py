@@ -66,8 +66,8 @@ def build_run(root, minutes_payload=(0,)):
     for m in minutes_payload:
         pp = os.path.join(run, "reviews", f"payload-min{m}.json")
         rp = os.path.join(run, "reviews", f"review-min{m}.json")
-        json.dump({"minute": m, "transcript": TRANSCRIPT,
-                   "claims": CLAIMS + (CLAIMS_M1 if m == 1 else [])},
+        mc = [c for c in CLAIMS + CLAIMS_M1 if c["minute"] == m]
+        json.dump({"minute": m, "transcript": TRANSCRIPT, "claims": mc},
                   open(pp, "w", encoding="utf-8"))
         json.dump(REVIEWS[m], open(rp, "w", encoding="utf-8"))
     return run, lib
@@ -149,12 +149,60 @@ def main():
             if not line or not line[0].rstrip().endswith(": 1"):
                 fails.append(f"caso6: contador esperado 1, stdout: {r.stdout.strip()!r}")
 
+    # Caso 7 (RED ch08): integración parcial NO toca el canónico
+    with tempfile.TemporaryDirectory() as root:
+        run, lib = build_run(root, minutes_payload=(0, 1))
+        r = subprocess.run([sys.executable, INTEGRATE, "--run", run, "--lib", lib,
+                            "--validate", VALIDATE], capture_output=True, text=True)
+        if r.returncode != 0:
+            fails.append(f"caso7: integración completa inicial exit {r.returncode}: {r.stdout}{r.stderr}")
+        canon = os.path.join(lib, "claims.jsonl")
+        full_bytes = open(canon, "rb").read()
+        if b"ok m1" not in full_bytes:
+            fails.append("caso7: la integración completa no aplicó el minuto 1")
+        r = subprocess.run([sys.executable, INTEGRATE, "--run", run, "--lib", lib,
+                            "--validate", VALIDATE, "1"],
+                           capture_output=True, text=True)
+        if r.returncode == 0:
+            fails.append("caso7: integración parcial con exit 0")
+        if open(canon, "rb").read() != full_bytes:
+            fails.append("caso7: claims.jsonl canónico ALTERADO por integración parcial (defecto ch08)")
+        prov = os.path.join(lib, "claims.jsonl.partial")
+        if not os.path.exists(prov):
+            fails.append("caso7: falta claims.jsonl.partial (resultado provisional)")
+
+    # Caso 8: lista explícita que cubre todos los reviews = completa
+    with tempfile.TemporaryDirectory() as root:
+        run, lib = build_run(root, minutes_payload=(0, 1))
+        r = subprocess.run([sys.executable, INTEGRATE, "--run", run, "--lib", lib,
+                            "--validate", VALIDATE, "0", "1"],
+                           capture_output=True, text=True)
+        if r.returncode != 0:
+            fails.append(f"caso8: exit {r.returncode}: {r.stdout}{r.stderr}")
+        if os.path.exists(os.path.join(lib, "claims.jsonl.partial")):
+            fails.append("caso8: lista completa marcada como parcial")
+        if not os.path.exists(os.path.join(lib, "claims.jsonl")):
+            fails.append("caso8: no escribió el canónico con lista completa explícita")
+
+    # Caso 9: claims de un minuto sin review -> cobertura incompleta
+    with tempfile.TemporaryDirectory() as root:
+        run, lib = build_run(root, minutes_payload=(0, 1))
+        os.remove(os.path.join(run, "reviews", "review-min1.json"))
+        os.remove(os.path.join(run, "reviews", "payload-min1.json"))
+        r = subprocess.run([sys.executable, INTEGRATE, "--run", run, "--lib", lib,
+                            "--validate", VALIDATE],
+                           capture_output=True, text=True)
+        if r.returncode == 0:
+            fails.append("caso9: cobertura incompleta con exit 0")
+        if os.path.exists(os.path.join(lib, "claims.jsonl")):
+            fails.append("caso9: escribió canónico sin cubrir todos los claims del pool")
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         sys.exit(1)
-    print("PASS (6 casos)")
+    print("PASS (9 casos)")
 
 
 if __name__ == "__main__":
