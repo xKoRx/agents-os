@@ -1,0 +1,47 @@
+# review-notes — ch09-red-flags (Clutifx · Chapter 09)
+
+Decisiones de revisión, garbles y notas de run. La metodología vive en la skill; aquí sólo lo específico del capítulo.
+
+## Parámetros del run
+
+- Video `ep09-red-flags.mp4` · 34:54.53 (2094,53 s) · sha256 `e4c221025d94f0f2aef33ab3a63b60a22ffbd536fd506a079a93f083b12e47db`.
+- ASR faster-whisper large-v3 int8, es (p=1,00), beam 5: **430 segmentos, 96 % habla**. Wall **2h09m46s (0,27× realtime — el peor rate del curso)**: máquina con contención severa (echo-core ~150 % + un test de Go de otro grind ~110 % sobre 8 cores; load 15). OVER registrado sin disfrazar.
+- Extracción: 6 EXTRACTORs ONE-SHOT SECUENCIALES (bloques 0-5/6-11/12-17/18-23/24-29/30-34) → **137 claims** (52 warnings, 22 examples, 23 observations, 15 concepts, 14 procedures, 9 rules, 2 parameters). Wall ~49 min.
+- Checkpoint 5 min: ola 1 (min 0-4) 5/5 VALID en ~12 min → proyección ~140 min/h-video (OVER <2×, continuado con registro). Real revisión: 7 olas de 5, ~10 min/ola.
+- Revisión: 35 minutos × 1 revisor ONE-SHOT (**35/35 `MINUTE_REVIEW = VALID`**, cardinalidad exacta verificada por `validate_review.py`). Veredictos: **135 SUPPORTED + 2 UNCERTAIN** (c-0063 alcance del «normalmente», c-0075 contradicción 4h-dicho vs 2h-visible) / 0 UNVERIFIED.
+- Epistemic: 133 instructor_statement + 4 visual_observation (capítulo de definiciones dichas; los frames corroboran referentes).
+- Frames: 35 base (fin de minuto MM:59.5 + final f-003454) + 26 bajo demanda = **61 PNG; 54 citados**. Todos los bajo demanda extraídos por los revisores con fórmula desde segundos reales y verificados visualmente antes de citar.
+
+## Integración
+
+- Mecánica (`integrate_reviews.py` con el fix de seguridad del preflight: sólo escribe el canónico con integración COMPLETA — se ejecutó con los 35 minutos y cobertura 137/137). Refs f-.png normalizadas por el script.
+- **12 correcciones propuestas por revisores, adjudicadas y aplicadas al pool antes de integrar** (literalidad): c-0009 encabezado «Enunciado», c-0011 cita literal «un posible pendiente con el rango este», c-0014 interpolación «temporalidades»→[ASR], c-0050 «me crea», c-0063 re-puntuación literal (veredicto UNCERTAIN se conserva), c-0064 +s-001736 y visual_hint 1037→1051, c-0065 +s-001802/s-001807 (frontera), c-0083 «'este de 8' [ASR]», c-0091 «'Y para acabar'» en vez de «Último caso», c-0104 «no de los targets», c-0114 sujeto inventado sustituido por la palabra dicha «RT es menace [ASR]», c-0126 primera persona «me he dejado».
+
+## Incidente de naming de frames (cazado en checkpoint, corregido pre-publicación)
+
+El ejemplo de fórmula incluido en los prompts de la ola 1 estaba MAL (95 s → «f-000095»: escribía los segundos crudos como nombre). Tres frames de las olas 1-4 heredaron el patrón. Verificación física contra el video (probes byte-idénticos) + normalización antes de integrar: f-000095→f-000135 (95 s), f-000217→f-000337 (217 s), f-000179 (179 s) eliminado como duplicado de estado del base f-000259 (179,5 s; mismo esquema 1D/0500 verificado visualmente) con remapeo de la evidencia de c-0009. Los prompts de las olas 2-7 ya llevaron la fórmula correcta y no repitieron el defecto. Los frames base se habían generado sin el prefijo `f-` (000059.png); renombrados al contrato antes del render. Registrado como lección en METHODOLOGY-FEEDBACK (el ejemplo del prompt es parte del contrato de naming).
+
+## Garbles del capítulo (para reutilizar)
+
+- «reza» → red flag (q-ch09-007, candidato reforzado por recurrencia s-003217).
+- «JEP»/«JP»/«GIP» → ¿GBP? (q-ch09-008; frames apoyan GBP sin respaldo literal).
+- «S&T» → ¿SMT? (q-ch09-009). «RT es menace» → sin resolver (q-ch09-006).
+- «tarjeta breakable» → ¿stop/target a break even? (q-ch09-002). «azista» → ¿alcista? (q-ch09-003). «dark del sub» → ¿Turtle Soup/draw del soup? (q-ch09-004).
+- Familia conocida re-confirmada: «doll» → DOL (c-0103, c-0120-0121), «tartel sub» → Turtle Soup (c-0057/0058), «fellow swing» → failure swing (c-0027), «trago favor» → rango a favor (c-0007), «top loss» → stop loss (c-0017), «tome lo» → tome el low (c-0008), «temporadas» → temporalidades (c-0030), «load» → low (c-0040 área), «power stream» no apareció.
+
+## Decisiones de revisión notables
+
+- **UNCERTAIN visibles, no forzados**: c-0063 (alcance del hedge — re-puntuación literal aplicada y duda de audio registrada) y c-0075 (contradicción «4 horas» dicho vs «2h» visible en frames) se publican como dudosos; la biblioteca es entregable con UNCERTAINs visibles.
+- **Tensión de fuerza documentada, no resuelta por el integrador**: c-0073 («red flag para tomar tu short. No lo vas a poder tomar» — kind rule) frente al patrón «un poco de red flag» de c-0067: ambas se publican con su fuerza dicha y la nota de contexto; el capítulo usa «red flag» tanto para invalidaciones acotadas como para avisos probabilísticos.
+- **Cross-chapter**: la red flag de ch07 c-0033 (anunciada para este vídeo) queda desarrollada aquí; la aclaración targeted se registró en ch07 preservando IDs (am-ch09-001). La idea «DOL tomado» de ch07 c-0039 se repite aquí en clave probabilística; aclaración targeted am-ch09-002 en ch07. La enumeración oficial del capítulo es la de c-0040 (q-ch09-005).
+- La red flag olvidada anunciada en s-002532 fue localizada y capturada completa en el bloque 6 (c-0126-c-0130), cerrando la deuda interna del run.
+
+## Cobertura y presupuesto de frames
+
+- 35 frames base (manifiesto `frames/.base_frames`) + 26 bajo demanda verificados visualmente = 61 PNG; **54 citados** en `claims.jsonl.evidence`. Densidad 1,75/min (capítulo de definición con ejemplos dibujados; sin exceso injustificado).
+- f-003454 (frame final) es la tarjeta de despedida «GRACIAS»: existe por el manifiesto, no se cita.
+
+## Verificación final
+
+- `validate_library.py` y `check_term_sources.py`: ver su resultado en README (LIBRARY_VALIDATION / TERM_SOURCE_CHECK).
+- DOCVERIFY independiente: ver su reporte en README.
