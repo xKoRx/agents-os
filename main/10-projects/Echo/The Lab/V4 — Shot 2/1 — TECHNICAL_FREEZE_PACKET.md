@@ -1,0 +1,52 @@
+# V4 Shot 2 — TECHNICAL_FREEZE_PACKET (propuesta para una sola aceptación Manager/Owner)
+
+**Fecha:** 2026-10-20. **Emite:** Submanager implementación The LAB V4 Shot 2. **Estado pedido:** `TECHNICAL_FREEZE_READY` — requiere UNA aceptación para pasar a implementación. **Evidencia fuente:** `~/aranea/work/lab-v4-shot2-20261020/preflight/FINDINGS-U01-U06.md` (read-only, verificado). **Baselines:** echo `d74b6525` (= origin/master), symphony `daded14`. **Ratificados vigentes:** D09/D10/D11/D16 (no se reabren). **Concreta:** D12–D15. **Cierra:** U01–U06, A01 PARCIAL→delta, A02 SÍ-condición.
+
+## 1. Alcance de implementación (I1, sin cambios de producto)
+
+Registro común multiproductor; historias múltiples por contexto MM con principal/alternativas; POST/PUT versionados con receipts, idempotencia y CAS; adapters canónicos (Forge + interno Echo + productor independiente); proyección genérica `execution`; 4 perfiles de curva; métricas B.6.5; worker con publicación atómica; dashboard único Vue; comparación básica de copias por enlaces; portfolios estáticos; sustitución legacy con migración/conciliación; matriz G1–G11 y T01–T45 completas. Fuera: scheduler/rotación, backtest causal, optimizador, trading desde LAB, scaffolding I2.
+
+## 2. Identidades y wire (SPEC núcleo)
+
+- **Identidad:** `strategy_versions` (061) sigue siendo la única identidad de versión; se amplía `target_platform` a dominio versionado (`MT5, MT4, SQX_NATIVE, ANALYTIC`) con receta de versión explícita por tipo — sin magics ni ejecutables ficticios; disponibilidad analítica ≠ capacidad de ejecución. Estrategias nativas/analíticas usan `canonical_strategy_id` real, no aliases.
+- **Historias:** tabla nueva `echo.strategy_histories` PK `(registry_namespace, strategy_version_ref, history_id)`; `history_id` externo estable del productor; contexto MM (digest+metodo), procedencia (`producer_writer` fijo al crear), modo/rol de referencia, cobertura declarada, metadatos temporales D16 (`construction_at`, `construction_data_cutoff`, `available_at`, `echo_reference_started_at` — todos opcionales, nunca inferidos), head monotónico `revision int`, `head_digest`, estado. Principal/alternativas: `echo.strategy_history_selection` por (namespace, version_ref, contexto MM) con revisión propia; alternativas no se suman.
+- **Operaciones y movimientos:** `echo.strategy_history_operations` PK `(namespace, version_ref, history_id, source_operation_id)` con grano dual: `CLOSED_SUMMARY` (fila resumen, `net_pnl` una vez) o `ECONOMIC_MOVEMENTS` (`echo.strategy_history_movements` con `movement_id`, tipo `REALIZED_PNL|COMMISSION|FEE|SWAP`, `amount_signed exact`, moneda, `economic_at`, referencia de hecho). Nunca se suman ambos niveles para la misma operación; `net = Σ movements` CHECK por operación terminal. Q_i: `initial_risk` (monto exacto + moneda + `risk_method` tag) por operación, NULL permitido → perfiles R/10k `INSUFFICIENT_DATA` explícito. Decimales exactos `numeric(38,18)` / decimal strings en wire (perfil `echo-wire-json.v1` actual, reutilizado).
+- **Contrato wire v2:** `strategy-ingestion.v2` (POST crea: identidad+versión+≥1 historia; `Idempotency-Key` durable por namespace+writer; `histories[]` con `history_id`, contexto, cobertura, temporalidad, operaciones) y PUT por historia con `expected_revision` (412 `PRECONDITION_FAILED`); replay de request aceptado resuelve receipt antes de contrastar head; misma key+otro contenido = 409; request múltiple = todo-o-nada; `202 ACCEPTED` = datos+trabajo pendiente; estados de historia/cálculo/generación expuestos por separado. Límite inline frozen 64 MiB (medido: p95 historia real ≈ 6–9 MB; la variante artefacto-referenciado queda documentada y NO implementada).
+- **Proyección execution:** migración aditiva 067: `execution.operations` PK `(scope, operation_id)` donde `scope = (run_mode, run_id, execution_account, account_strategy)`; retiene operaciones terminadas y `mm_config_snapshot`, `initial_risk`; `execution.orders` con `order_type` extendido (`MARKET, LIMIT, STOP_MARKET`) + `stop_price`; `execution.fills`/`decisions`/observaciones equivalentes 066. Secuencia `operation_event_seq` y dedup física se conservan; journal sigue siendo autoridad de recuperación; topic v2 `echo.execution.operation-facts.v1` con cutover explícito de productor/consumidor en DEV (proyección 066 se retira al cortar su único consumidor).
+
+## 3. Cálculo y publicación (D12)
+
+PostgreSQL única (DEV `echo-develop`); derivados en schema `lab.*` (`lab.curves`, `lab.curve_points`, `lab.metric_results`, `lab.portfolios`, `lab.portfolio_members`, `lab.jobs`); worker Go único acotado (nuevo binario sucesor de lab-worker): reclamo `SKIP LOCKED`+lease+token; snapshot `REPEATABLE READ`; cálculo fuera de locks; publicación CAS atómica contra manifiesto completo de insumos (revisiones de historias, selección, composición, versiones de algoritmos); agrupación por objetivo (`desired_seq`); jobs históricos separados de current; STALE visible; algoritmos puros sin I/O; reescoja completa de la historia afectada ante corrección (sin incremental en I1). Perfiles: `r_net_cumulative.v1`, `recorded_money.v1`, `normalized_10k_open_balance.v1` (B_i sellado al abrir, causal por timestamps, simultáneas sobre balance previo), `normalized_10k_initial_balance.v1`; `CAPITAL_EXHAUSTED`, missing≠cero, sin FX probado no hay suma entre monedas. Métricas B.6.5 con `DEFINED|NO_OBSERVATIONS|INSUFFICIENT_DATA|UNDEFINED` y `window_local` vs `curve_running`.
+
+## 4. Ingesta y adapters
+
+Reutilización del patrón de receipts (promotion_records) generalizado a `strategy-ingestion` con permisos por namespace **y writer**; Forge transforma su fuente y entrega DTO canónico (extensión mínima de su producer para emitir historia V2 — cambio acotado en symphony, sin tocar fábrica/campañas/promoción); Echo valida contrato, no layouts SQX/MT5; adapter interno Echo (journal REFERENCE → historia REAL) usa el mismo servicio de aplicación sin HTTP a sí mismo; upserts por hecho con identidad+secuencia para feeds internos. `Ingestar no activa trading` se conserva.
+
+## 5. Matriz de precondiciones (evidencia → gap → tratamiento)
+
+| Precondición | Evidencia | Gap | Tratamiento en Shot 2 |
+|---|---|---|---|
+| Identidad/versión reutilizable | 061 + 6 versiones DEV reales | `target_platform` restringido MT4/MT5 en source master; fix `MetaTrader5` sin merge | Fusionar `feature/e04-dev-ingest-recovery@4aad647b` al baseline de Shot 2 (incluye platform + seguridad ETCD) y extender dominio versionado |
+| Q_i capturable | carrier opcional en historia (064), journal 64% REFERENCE con risk_money; runtime sin campo genérico | `domain.Operation` sin Q_i | Captura nueva al materializar (campo + fact + columna execution); NULL→INSUFFICIENT_DATA; sin fabricar |
+| MM en runtime | `mm_config_snapshot` viaja en facts, no persiste | proyección 066 lo descarta por diseño | persistir en `execution.operations` (nuevo), dominio intacto |
+| Retención de inputs | store artefactos local operativo (21 MB/30 objetos); journal durable | replacement V1 destruye revisión previa | revisiones + artefacto canónico por revisión (D14); sin framework nuevo |
+| Transporte | receipts reales 3.4–4.6 KB; historias reales ≈ 6–9 MB; techo 64 MiB frozen | ninguno medido | inline 64 MiB basta; variante artefacto documentada no implementada |
+| Naming | 066 sin aplicar en DEV/PROD (0 consumidores físicos); 222 archivos Go con `futures` | renombres Go tocan a `ef-runtime-pools` | migración aditiva 067 + topic v2 con cutover DEV; renombres Go secuenciados/aislados del stream FEFB |
+| Entornos | DEV servicios activos (.161); PG DEV real; 065/066 no aplicadas | schema DEV con efectos aplicados a mano, sin tabla de control; Gateway reiniciado hoy 23:39 por sesión ajena | aplicar 067 por migración versionada normal; reconciliar ownership del runtime DEV antes de deploy; PROD intocado |
+| Legacy inventory | inventario confirmado (sdk/lab, lab-worker×4, 3 jobs SQL, front lab, 8 yamls Hasura) | consumidores compartidos por clasificar por archivo | inventario CURRENT→TARGET con REUSE/ADAPT/REPLACE/DELETE/OUT_OF_SCOPE en la primera tarea de integración; metadata Hasura siempre aditiva/reconciliada (preservar event triggers y permisos ajenos) |
+
+## 6. Plan de pruebas, recursos y SLOs
+
+- **Oráculos económicos del mandato** (2@100+2@102/1@103+3@104→net 10; simultáneas→10.100; secuencia→10.098; +120−6→114; portfolio 6k/4k) + casos T01–T45 + G1–G11 completos; PostgreSQL real descartable para locks/CAS/leases; E2E por rutas montadas incl. actualización visible; UI verificada en runtime; integración Forge con artefacto auténtico (candidato aislado autorizado) — gate físico que NO se sustituye por sintético; catálogo 20k con distribución del journal (mediana ~500, p95 ~25k ops); cobertura ≥95% caminos críticos primero.
+- **Recursos:** daedalus (8 vCPU/92 GB) + PG .220 DEV; `/srv/echo-work` para scratch/benchmark; concurrencia worker default 4, RAM ≤512 MB/job.
+- **SLOs propuestos (se congelan con esta aceptación):** catálogo paginado p95 <300 ms; PUT 25k ops <30 s; curva+métricas de 25k ops <10 s; ola 20k ≤12 h serial / ≤2 h con 8 workers; recuperación de worker con lease vencido sin publicación fantasma (probado, no SLO de latencia).
+
+## 7. Impacto, no-goals y riesgos
+
+- **Echo:** extensión aditiva contracts/gateway/PG/front; reemplazo de superficies Lab exclusivas; runtime operacional (journal, trading, StateFun) intocado salvo captura Q_i pura. **Forge:** delta mínimo en producer de handoff/historia dentro de su repo y política; contratos frozen externos sin cambio salvo aprobación de impacto.
+- **No-goals:** scheduler, ranking automático, backtest causal, optimizador, FX, margen compartido, dual-write permanente, segunda autoridad de operaciones.
+- **Riesgos:** (1) merge de e04 cambia files del boundary Forge→impacto mínimo pero real — se integra primero y se re-certifica; (2) `ef-runtime-pools` activa en `sdk/futures` — secuencia de renombres coordinada, sin topar typenames; (3) DEV PG compartida — sólo migraciones aditivas versionadas; (4) PROD queda UNCHANGED salvo autorización expresa registrada.
+
+## 8. Pedido
+
+Una sola aceptación (`TECHNICAL_FREEZE_ACCEPTED`) sobre esta SPEC/plan; después continúo en esta misma sesión sin re-entrevistas: implemento I1 completa, integro, pruebo y devuelvo el paquete de Shot 3 con la matriz completa. Si algo del freeze resulta no implementable, lo escalo con evidencia → decisión afectada → alcance bloqueado → solución mínima, sin rebajar gates silenciosamente.
