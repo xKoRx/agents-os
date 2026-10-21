@@ -1,11 +1,35 @@
 # METHODOLOGY-FEEDBACK — Clutifx (Course Intelligence)
 
 Feedback de método del curso Clutifx. Objetivo: mejorar los videos siguientes,
-no justificar decisiones pasadas. Estado tras Chapter 08 (2026-10-20 noche).
-Los bloques OBSERVED de Chapters 02–07 se conservan abajo (§Ch07, §Ch06, §Ch05,
-§Ch04, §Ch03, §Ch02). La skill canónica quedó en v1.2 con hardening ch03–ch07
+no justificar decisiones pasadas. Estado tras Chapter 09 (2026-10-21).
+Los bloques OBSERVED de Chapters 02–08 se conservan abajo (§Ch08, §Ch07, §Ch06,
+§Ch05, §Ch04, §Ch03, §Ch02). La skill canónica quedó en v1.2 con hardening ch03–ch07
 (incl. checks W11/W12 de navegación, wikilinker corregido con idempotencia y
 strip de code-spans en W01/W10); NO se toca aquí la decisión de Owner sobre ASR.
+
+## CH09 OBSERVED (medido en Chapter 09)
+
+| Métrica | Valor |
+|---|---|
+| Video | ep09-red-flags.mp4 · 34:54.53 · SHA `e4c22102…` |
+| ASR_WALL | 2h09m46s (**0,27× realtime — el peor rate del curso**): contención severa del host (echo-core ~150 % + test Go de otro grind ~110 % sobre 8 cores; load 15). El probe de preflight (0,32×) subestimó el efecto de la contención creciente |
+| EXTRACTION_WALL | ~49 min (6 EXTRACTORs SECUENCIALES, 137 claims; secuencial por la lección de cuota 1310 — sin incidentes) |
+| REVIEW_WALL | ~70 min (7 olas de 5; 35/35 VALID; 0 errores [1210]/[1310] — la cuota del proveedor volvió tras el corte del 20-oct) |
+| AGENT_WALL | ~119 min / 34,9 min ≈ **205 min/h-video — OVER (objetivo ≤120)**: contención de CPU heredada por los subagentes; registrado sin disfrazar |
+| Claims | 137 (135 SUPPORTED / 2 UNCERTAIN visibles / 0 UNVERIFIED) · 133 instructor + 4 visual_observation · 1 CONTRADICTION documentada (c-0075) |
+| Frames | 35 base + 38 bajo demanda = 73; 54 citados |
+| DOCVERIFY | ONE-SHOT independiente sobre la biblioteca publicada (ver README del capítulo) |
+| Checkpoint 5 min | PASS (min 0-4 VALID en ~12 min; proyección ~140/h-video OVER <2×; real 205 por contención) |
+
+## CH09 LEARNED (para ep10+)
+
+1. **El ejemplo del prompt es parte del contrato de naming**: el ejemplo «95 s → f-000095» de los prompts de la ola 1 era INCORRECTO (segundos crudos como nombre) y tres frames heredaron el patrón; cazado en el checkpoint, verificado contra el video (probes byte-idénticos) y normalizado pre-integración (f-000135/f-000337; f-000179 eliminado como duplicado de estado del base f-000259 con remapeo de evidencia). Para ep10+: el ejemplo del prompt debe generarse por la fórmula real (p.ej. 350 s → f-000550) y el checkpoint debe verificar los nombres de los frames creados por la ola 1.
+2. **Los frames base también necesitan el prefijo**: la extracción de bases generó `000059.png` sin el `f-`; renombrado al contrato antes del render. El manifiesto y los archivos deben usar SIEMPRE el stem `f-HHMMSS`.
+3. **V11 chapter-local extendido para aclaraciones targeted**: los wikilinks cross-chapter ([[…/CLAIMS#c-XXXX]], [[…/transcript#^s-XXXX]]) ya no disparan V11 en el capítulo anfitrión (su destino lo validan los checks W); el token desnudo de otro capítulo sigue fallando. Regresión: fixtures_selftest caso I. Habilita las aclaraciones targeted del contrato (am-ch09-001/002 en ch07) sin falsos positivos.
+4. **Colisión base/bajo demanda en el mismo HHMMSS**: un frame bajo demanda a los XX:59 colisiona con el base (capturado a XX:59.5); resolución aplicada: si el base muestra el referente (verificado visualmente), se cita el base y el on-demand se elimina como duplicado de estado. Documentado en el contrato de revisión.
+5. **El extractor no debe normalizar sin respaldo literal aunque el contexto sea fuerte**: 0 MATERIAL en SOURCE-FIRST; los 2 TDREQ («dole»→DOL en c-0120/0121) se cerraron con la marca [ASR: 'dole'] + la adjudicación del revisor por frames.
+6. **El proveedor se recuperó solo**: tras el corte [1310] del 20-oct, el 21-oct la cuota volvió; 17 subagentes grandes sin un solo [1210]/[1310]. Mantener despacho en olas de 5.
+7. **La contención del host domina el wall**: con load 15 el ASR cayó a 0,27× y los subagentes se arrastraron; el wall honesto (205/h-video) se registra OVER sin disfrazar. Para ep10+: medir load ANTES del ASR y registrar el pronóstico; si hay grinds ajenos, avisar al owner en el checkpoint.
 
 ## CH08 OBSERVED (medido en Chapter 08)
 
