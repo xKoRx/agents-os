@@ -57,9 +57,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000058|00:58]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000102|01:02]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000059.png|f-000059]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000075.png|f-000075]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000059.png|f-000059]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000115.png|f-000115]]
 
 **Visual hint:** 01:15 — rango alcista semanal marcado; en 2 semanas vela interior y rango completado
+
+**Notes:**  Frame renombrado: el revisor extrajo el segundo 75 con nombre inválido f-000075; regenerado por fórmula como f-000115 (histórico declarado en .deprecated_frame_names).
 
 ### c-0006
 
