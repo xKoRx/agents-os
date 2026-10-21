@@ -142,6 +142,19 @@ def main():
             "s-000030 [00:00:30-00:00:40] texto dos ^s-000030\n")
     ok &= expect("anchors sin bloque propio (sin línea en blanco)", variant(base, "bad-unseparated", m_unseparated), False, {"W05"})
 
+    def m_code_span_example(d):
+        # falso positivo real (QA ch07): un ejemplo de sintaxis rota dentro de
+        # backticks NO es un wikilink vivo — no debe disparar W01/W10
+        open(os.path.join(d, "review-notes.md"), "w", encoding="utf-8").write(
+            "El defecto producía `[[[lib/CLAIMS#c-0001|c-0001]]]` roto y `[[ sin cerrar`.\n")
+    ok &= expect("ejemplo de sintaxis en code span (no es link vivo)", variant(base, "ok-code-span", m_code_span_example), True)
+
+    def m_broken_outside_code(d):
+        # control: el MISMO ejemplo fuera de backticks SÍ es un link roto (W01)
+        open(os.path.join(d, "review-notes.md"), "w", encoding="utf-8").write(
+            "El defecto producía [[lib/inexistente|roto]] fuera de código.\n")
+    ok &= expect("link roto fuera de code span sigue cazándose", variant(base, "bad-outside-code", m_broken_outside_code), False, {"W01"})
+
     shutil.rmtree(tmp)
     print("WIKILINK_SELFTEST =", "PASS" if ok else "FAIL")
     sys.exit(0 if ok else 1)
