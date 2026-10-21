@@ -12,7 +12,7 @@ Notas de revisión y decisiones del run. Autoridad de claims: `claims.jsonl` ([[
 
 - **Dispatch híbrido**: extracción por bloques (4 workers, cada uno tras el anterior o en pareja con un revisor chico), revisión por minutos en waves de 4-5 revisores. La cuota aguantó TODO el capítulo (sin [1310] de agotamiento).
 - **2 muertes transitorias [1210]** ("Invalid API parameter" del proveedor): min 2 (en wave paralela) y min 15 (en wave paralela). Ambos recuperados con retry secuencial que completó el minuto con frames verificados (el error NO es determinista por imagen: los mismos workers leyeron otros PNG sin problema).
-- **Checkpoint 5 min**: min 0–4 VALID en ~20 min (proyección ~200 min/h-video, sobre objetivo 120 pero <2× → continuado con registro). Real final: **agent wall ≈93 min ≈ 327 min/h-video** — inflado por (a) contienda de CPU, (b) los 2 retries [1210] (~20 min extra), (c) revisores que extrajeron muchos frames bajo demanda (hasta 26 tool uses y 12 frames por minuto). Las cifras honestas están en el README; OVER registrado — no se declara PASS de throughput.
+- **Checkpoint 5 min**: min 0–4 VALID en ~20 min (proyección ~200 min/h-video, sobre objetivo 120 pero <2× → continuado con registro). Real final: **agent wall ≈93 min ≈ 327 min/h-video** — inflado por (a) contienda de CPU, (b) los 2 retries [1210] (~20 min extra), (c) revisores que hubieron frames bajo demanda (hasta 26 tool uses y 12 frames por minuto). Las cifras honestas están en el README; OVER registrado — no se declara PASS de throughput.
 
 ## Decisiones de revisión notables
 

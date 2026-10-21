@@ -35,7 +35,7 @@ Biblioteca de conocimiento del octavo video del curso Clutifx, extraída con la 
 | Epistemic | 86 instructor_statement · 0 visual_observation · 0 model_inference (los frames corroboran en `evidence` sin cambiar la epistemic: todo lo afirmado es dicho; los referentes visuales quedan como unresolved_questions) |
 | Contradicciones marcadas | 0 |
 | Frames base (fin de minuto) | 18 (minutos 0–16 en MM:59.5 + fin del parcial [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001704.png|f-001704]] — negro de cierre, no citado; manifiesto `frames/.base_frames`) |
-| Frames bajo demanda | 70 (extraídos y verificados visualmente por los revisores), **64 citados** en total; inventario en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/FRAMES|FRAMES]] |
+| Frames bajo demanda | 74 (extraídos y verificados visualmente por los revisores; 4 regularizados por el integrador: 3 movidos del staging del min 3, 1 renombrado por fórmula), **64 citados** en total; inventario en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/FRAMES|FRAMES]] |
 | Preguntas abiertas | 8 registradas (q-ch08-001..008): garbles del capítulo (power stream/very given/el de x y/tonalidad/la crisis), garbles sin lectura, deícticos por par (ORO/AUDUSD/USDCAD/EUR), desliz "tres días" y léxico — ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/OPEN-QUESTIONS|OPEN-QUESTIONS]] |
 | Rules / concepts / examples documentados | 18 / 10 / 4 |
 | Coverage | 17/17 minutos de video con claims y revisión |
