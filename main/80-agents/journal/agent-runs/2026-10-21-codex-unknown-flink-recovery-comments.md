@@ -40,7 +40,7 @@ Abordar los comentarios de #211 y #213: jobs no creados, sesiones ya cerradas, l
 - Reconciliación y uploads 100% líneas/ramas; extractor Python 96,55% líneas/100% ramas.
 - E2E completo #211 PASS en `1178e1d6`; Python lifecycle/cache hit PASS en `8f5af09d`; smoke final integrado JAR/Python PASS en `f681eb88`, con blobs de helpers iguales a #211 y JAR host/runtime iguales por SHA256.
 - Probe de Gateway real confirma la clasificación del DELETE. Todos los recursos de test propios retirados: 0 contenedores/0 redes rio-* y volumen Python eliminado.
-- Últimos CI en ejecución (#1380/#1379). Cero hilos abiertos verificados en ambos SHA finales. Evidencia consolidada en [[2026-10-21-flink-pr211-pr213-recovery-comments]].
+- Últimos CI (#1380/#1379), cobertura, dependencias, estático, workflow y CodeQL PASS en ambos SHA finales; Code Reviewer NEUTRAL. Siete hilos resueltos y cero abiertos verificados antes del último resultado del bot; la consulta posterior volvió a fallar por IP allowlist. Evidencia consolidada en [[2026-10-21-flink-pr211-pr213-recovery-comments]].
 
 ## Evaluación
 
@@ -48,4 +48,4 @@ Sin scores comparativos; resultado sustentado por tests, hooks, ejecución físi
 
 ## Resultado
 
-Parcial únicamente por espera de CI final; implementación, publicación, resolución de hilos y validación física completas. Modelo exacto no expuesto por el host; se conserva unknown. Rework posterior del usuario aún desconocido.
+Parcial únicamente por la reconsulta final de comentarios, bloqueada por IP allowlist y pendiente GlobalProtect; implementación, publicación, siete hilos resueltos, tests, validación física y CI completos. Modelo exacto no expuesto por el host; se conserva unknown. Rework posterior del usuario aún desconocido.
