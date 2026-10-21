@@ -197,7 +197,7 @@ Partición inicial de investigación: primeras60%, siguientes20%, últimas20% de
 | Gate | current state | phase agent responsibility | owner acceptance evidence | enables |
 |---|---|---|---|---|
 | G1 | accepted por el Owner (despacho SHOT 2, 2026-10-20, sobre `41d5d577`) | kernel/manifiesto y tests; dejar review | Owner evalúa recibos S01 | S02 |
-| G2 | delivered en review: S02 ejecutado (`experiment/campaign-lab-s02` @ `53b16229`, pushed); circuito funcional completo vía fixture E2E; E1/E2 ejecutados en runner real; E3–E6 ENGINE_BLOCKED con conflicto plataforma↔TGMM documentado | MM geométrico/analytics/config integrado y pruebas cortas | Owner acepta integridad; adjudica el conflicto plataforma↔TGMM; auditoría acotada consumida | S03 |
+| G2 | blocked durante S02-R1 (despacho Owner 2026-10-20): reparación del acoplamiento TGMM VERDE en tests (`experiment/campaign-lab-s02` @ `82261449`, pushed); falta E3–E6 reales + cobertura delta + docs | MM geométrico/analytics/config integrado, camino SG de campaña explícito y pruebas cortas | Owner acepta integridad y los ensayos E3–E6 ejecutados/conciliados | S03 |
 | G3 | pending | catálogo caracterizado y screening finito trazable | Owner acepta resultados y candidatos | S04 |
 | G4 | pending | confirmación temporal y descarte/selección | Owner acepta candidatas >=25% con límites | S05 o nueva ronda versionada |
 | G5 | pending | compatibilidad/runtime y suite de paridad | Owner autoriza integración; LIVE separado | migración prospectiva, no activación automática |
@@ -299,7 +299,7 @@ Cada fila es objetivo | símbolos | precondición | implementación | test | evi
 - [x] T1.5 Entrega | planner/artefactos | T1.4 | revisar diff/publicar evidencia | readback | G1 review #owner/agent
 - [x] T2.1 Analytics causal | owners existentes | G1 accepted | demands ATR/stdev | referencia manual/futuro | recibo #owner/agent
 - [x] T2.2 MM ópt-in | registry/Operation | T2.1 | kernel→órdenes/protección | fills/partials/close | E2E #owner/agent
-- [x] T2.3 Integración corta | runner | T2.2 | <=6 ensayos | invariancias | G2 review #owner/agent
+- [/] T2.3 Integración corta | runner | T2.2 | <=6 ensayos | invariancias | G2 review #owner/agent — REABIERTA por S02-R1: reparación VERDE en tests (`82261449`); falta ejecutar E3–E6 reales y conciliar
 - [ ] T3.1 Catálogo26 | tape/import | G2 accepted | caracterización | identidad completa | por fila #owner/agent
 - [ ] T3.2 Proyección | tooling aislado | T3.1 | tres riesgos | nulo/costos/seed | aproximación declarada #owner/agent
 - [ ] T3.3 Campaña shortlist | runner | T3.2 | tandas<=6 | oráculos | G3 review #owner/agent
