@@ -47,7 +47,7 @@ Biblioteca de conocimiento del noveno vídeo del curso Clutifx, extraída con la
 |---|---|
 | LIBRARY_VALIDATION | **PASS** (validate_library.py 0 findings, 2026-10-21) |
 | TERM_SOURCE_CHECK | **PASS** (check_term_sources.py: 137 vivos / 0 MATERIAL / 0 TDREQ, 2026-10-21) |
-| DOCVERIFY | (independiente ONE-SHOT sobre esta biblioteca publicada; su veredicto queda registrado aquí tras ejecutarse) |
+| DOCVERIFY | FINDINGS → CORREGIDO — verificador independiente ONE-SHOT: 33 claims contrastados contra transcript (SOURCE-FIRST segmento a segmento), chequeo de endurecimiento (0 warnings publicados como prohibiciones sin respaldo), 4 frames leídos visualmente, navegación verificada completa (137 ids, 73 frames, 0 mismatches), métricas README contra artefactos ✓. 2 MATERIAL (documentation §2 resolvía el garble abierto «tarjeta breakable»; §7 atribuía el bloque 17:00 a EURUSD siendo GBPUSD) + 6 MENOR — los 8 adjudicados y corregidos in-mission; re-validación PASS. Spool: run dir docverify/ |
 
 ## Throughput (reporte separado tramos vs total)
 
