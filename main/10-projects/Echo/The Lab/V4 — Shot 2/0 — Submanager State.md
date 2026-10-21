@@ -18,11 +18,13 @@
 
 | ID | Paquete | Responsable | Estado | Entregable |
 |---|---|---|---|---|
-| W-PF1 | U01/A01: lineage versión/MM/Q_i emisor→consumidor + delta de captura | worker ONE-SHOT | PENDING | `preflight/wpf1/FINDINGS.md` |
-| W-PF2 | U02/A02: hechos/retención/reproducción + U03 tamaños/transporte | worker ONE-SHOT | PENDING | `preflight/wpf2/FINDINGS.md` |
-| W-PF3 | U05: inventario naming futures_*/migración consumidores + legacy LAB | worker ONE-SHOT | PENDING | `preflight/wpf3/FINDINGS.md` |
-| SM-1 | U04 capacidad/SLOs numéricos + metodología; U06 baseline/entornos | submanager | PENDING | sección del freeze packet |
-| SM-2 | Concretar D12–D15 (PG/worker, API v2/CAS, retención inputs, comparación copias) + SPEC ejecutable | submanager | PENDING | `1 — TECHNICAL_FREEZE_PACKET.md` |
+| W-PF1 | U01/A01: lineage versión/MM/Q_i emisor→consumidor + delta de captura | submanager (workers cancelados 2/2 por harness) | DONE 2026-10-20 | `preflight/FINDINGS-U01-U06.md` §U01/A01 |
+| W-PF2 | U02/A02: hechos/retención/reproducción + U03 tamaños/transporte | submanager | DONE 2026-10-20 | ídem §U02/U03 |
+| W-PF3 | U05: inventario naming futures_*/migración consumidores + legacy LAB | submanager | DONE 2026-10-20 | ídem §U05 |
+| SM-1 | U04 capacidad/SLOs numéricos + metodología; U06 baseline/entornos | submanager | DONE 2026-10-20 | ídem §U04/U06 |
+| SM-2 | Concretar D12–D15 (PG/worker, API v2/CAS, retención inputs, comparación copias) + SPEC ejecutable | submanager | DONE 2026-10-20 | `1 — TECHNICAL_FREEZE_PACKET.md` |
+
+**Estado del gate:** `TECHNICAL_FREEZE_READY` emitido 2026-10-20 — esperando la ÚNICA aceptación Manager/Owner. Sin editar producto hasta entonces.
 
 **Despacho secuencial obligatorio** (cuota 1310: workers grandes en paralelo mueren por burst). Probe antes del primero.
 
@@ -35,8 +37,9 @@
 
 ## Siguiente acción
 
-Despachar probe de cuota → W-PF1 → W-PF2 → W-PF3 (secuencial) → SM-1/SM-2 → devolver `TECHNICAL_FREEZE_READY`.
+Esperar aceptación única del freeze. Al aceptarse: implementación I1 en orden (fundación y recorrido vertical → curvas/métricas/dashboard → composición/corte) con workers o en serie, matriz G1–G11/T01–T45, sustitución legacy y paquete Shot 3.
 
 ## Log de avance
 
 - 2026-10-20: bootstrap Agents-OS completo (constitución, perfil, router aranea, Environment Contract §0–§7); 4 autoridades leídas; baselines verificados; workspace dedicado creado; este estado registrado.
+- 2026-10-20 (noche): preflight U01–U06+A01/A02 ejecutado por el submanager (2 despachos de worker cancelados por el harness; reportado como trabajo propio, sin paralelismo simulado). Hallazgos: rama e04 `4aad647b` certificada NO mergeada a master (adoptar como baseline); 065/066 no aplicadas en DEV; journal con risk_money en 64% REFERENCE; transporte inline 64 MiB suficiente (p95 ≈ 6–9 MB); 066 sin consumidores físicos (ventana de migración limpia). `TECHNICAL_FREEZE_PACKET` emitido — `TECHNICAL_FREEZE_READY`.
