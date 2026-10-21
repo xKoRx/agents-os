@@ -1,0 +1,61 @@
+# study-guide — ch10-noticias (Clutifx · Chapter 10)
+
+Guía de estudio del capítulo NOTICIAS. Cada tema apunta a las reglas y claims que lo sostienen (citas en formato plano, pendientes de conversión a wikilinks). Lo dicho se distingue de lo derivado; los garbles se citan con [ASR] y su lectura queda como candidata.
+
+## 1. Los 4 ejes del capítulo (lo central)
+
+1. **Las noticias se clasifican, no se adivinan** — Excel «NEWS - ONE TO ONE ENG» con Time/Clarity/Difficulty/Whipsaw/Blow acc [c-0003] · [c-0005]; mejores noticias = más claridad, menos dificultad, menos whipsaw [c-0011]; whipsaw = látigo [c-0004]; quemar cuenta depende del riesgo [c-0006].
+2. **Operar las velas, no el resultado** — «operar siempre las velas» [c-0023]; la expansión «seguramente» en la vela de la noticia [c-0024]; el resultado «no importa» [c-0025]; el precio va «acelerado por la noticia» hacia «el doble [ASR]» [c-0026]; puede no reaccionar al instante y aun así traer la volatilidad [c-0057].
+3. **Confirmaciones por pares según la noticia** — pares del euro vs «GEP» [ASR] [c-0028]; pares del dólar en la misma dirección [c-0029]; pares contrarios [c-0031]; bullish para compras, bearish (con más confirmaciones) para ventas [c-0035] · [c-0036]; «buscamos ver más pares» [c-0088]; simetría con DXY [c-0186] · [c-0187].
+4. **Es trading normal con volatilidad conocida** — «literalmente lo mismo que operar normal» [c-0173]; «como el análisis normal» [c-0185]; resumen del instructor [c-0188]; red flags «las mismas» [c-0189] · [c-0195].
+
+## 2. Preguntas de repaso (con respuesta citada)
+
+- ¿Qué significa whipsaw y dónde se anota? → látigo: manipular a una dirección para luego ir a la otra [c-0004]; campo de cada noticia en el Excel junto a Time, Clarity, Difficulty y Blow acc [c-0003].
+- ¿Qué noticias conviene operar según el Excel? → las de más claridad, menos dificultad y menos probabilidad de whipsaw [c-0011]; ejemplos: PMI de Alemania «muy buena» [c-0012], CPI «muy peligrosa» [c-0014], «FOM [ASR]» a evitar [c-0015].
+- ¿Dónde se mira cuándo hay noticias y con qué filtro? → Forex Factory («el que utilizo yo») [c-0017]; rojas y naranjas, amarillas si estás «enfondeadas [ASR]» [c-0018]; calendario propio de la prop firm si existe [c-0019]; hora en New York [c-0021].
+- ¿Qué velas traen la volatilidad? → «las carpetas rojas» [c-0022]; «la vela que va a desplazar es esa» [c-0023]; la vela de las 2 en los días de noticias a las 2 [c-0041]; «la vela de las 5 de 6 horas» el día del CPI [c-0114].
+- ¿Importa si la noticia sale buena o mala? → No: «solo importa lo que estamos viendo en el gráfico» [c-0025]; el precio irá «acelerado» hacia donde tiene que ir [c-0026]; aunque a veces no reaccione instantáneamente [c-0057].
+- ¿Cuándo se entra en un día de noticia? → Opciones dichas: posicionarse antes (operación ideal) [c-0100]; esperar y usar el Power 3 [ASR] en la vela de la noticia [c-0197]; apurar cerca de la noticia bajando a 5 minutos [c-0058]; sin pelearse con el gráfico si se perdió la entrada ideal [c-0175]. En London no hace falta operar el día del CPI [c-0095].
+- ¿Qué papel juega el Turtle Soup (garbles «Tartel Sub» [ASR] etc.)? → stop debajo de él [c-0060]; si ya está hecho, no se espera otra manipulación [c-0061]; si no está, es red flag por posible whipsaw [c-0062]; hecho → se opera la primera noticia sin esperar la segunda [c-0070] · [c-0160]; diario + 12h con él hecho → probablemente el low [c-0152].
+- ¿Qué cambia en los objetivos un día de CPI? → «es un día de displacement»: 20 pips «es muy poco» [c-0109]; primer target para break even y target final [c-0108]; si va mal, el stop «en el fondo va a ser un break even» por el spread [c-0098].
+- ¿Qué restricciones de prop firm se citan? → fondeada: 5 minutos de margen para entrar antes y cerrar después (algunas 2 minutos), hay que respetarlo [c-0176]; challenge normalmente sin restricciones [c-0177]; cierre: «operarla solo en challenge o en fondeada con menos riesgo» [c-0198].
+- ¿Qué red flags aplican a noticias? → las mismas [c-0189] · [c-0195]: rangos a favor y no en contra [c-0190], no velas inside [c-0191] (inside → posible whipsaw [c-0192]), dolls [ASR] intactos [c-0193] (completado → «a lo mejor» poca volatilidad o reversal [c-0194]), targets intactos para la noticia [c-0122].
+
+## 3. Errores comunes que este capítulo corrige
+
+- Creer que hay que predecir el resultado de la noticia: el resultado «no importa», importa el gráfico y las velas [c-0025] · [c-0023].
+- Esperar siempre una reacción explosiva instantánea: «no os extrañéis que a veces pase esto» [c-0057]; ese día «el precio no se movió» y la volatilidad vino igualmente [c-0056].
+- Buscar objetivos pequeños en día de CPI: «20 pips es muy poco», es «un día de displacement» [c-0109].
+- Entrar sin Turtle Soup hecho y sin rangos a favor: sin Tartel Sub [ASR] es red flag por posible whipsaw [c-0062]; los rangos en contra no se quieren [c-0190]; con targets ya completados «la probabilidad ya nos bajaría» [c-0122].
+- Ignorar las normas de la prop firm: el margen de 5/2 minutos «tienes que respetar eso» [c-0176]; riesgo alto en noticias: «hay que estar más seguro de todo» [c-0038], «operarla solo en challenge o en fondeada con menos riesgo» [c-0198].
+- Tomar los garbles como datos: «GEP»/«GDP» (¿GBP?), «el doble»/«dolls» (¿DOL?), «DXI»/«dex» (¿DXY?), «USDCAT»/«USDJPI»/«NCTDUSD»/«AUTUSD» (¿pares?), «su pecho»/«tartel supia» (¿Turtle Soup?), «temporadas» (¿temporalidades?), «9 horas» y «aquí a 5» (horas dudosas) son palabras dichas [ASR] con candidatos abiertos — no hechos [c-0028] · [c-0029] · [c-0031] · [c-0026] · [c-0193] · [c-0123] · [c-0141] · [c-0092] · [c-0147] · [c-0149].
+
+## 4. Conexiones con capítulos previos (usados sin redefinir)
+
+- **ch02** (noticias 8:30 y operar la vela que las contiene): reafirmado aquí — «CPI a las 8 y media» [c-0089] · [c-0134] y «se vende en esta vela» [c-0135]; horas en New York [c-0021]. CONTRADICTION documentada NO armonizada: en ch10 la noticia de los ejemplos del 23-jun y del 4-jun se dice «a las 8 y cuarto» (8:15) [c-0069 — UNCERTAIN] · [c-0165 — UNCERTAIN] · [f-003010], frente a 8:30 (ch02) y 8:30/8:45 (ch07).
+- **ch03** (NFP/CPI llevan el precio al DOL): coherente con «el precio va a ir… acelerado por la noticia» hacia «el doble [ASR; candidato DOL]» [c-0026] y con los «dolls [ASR]» intactos como condición [c-0193].
+- **ch01/ch04** (Turtle Soup, Power of 3, rango pendiente): el capítulo los aplica sin redefinir — Turtle Soup como condición de la noticia [c-0062] · [c-0160], Power 3 [ASR] en la vela de la noticia [c-0107] · [c-0197], rango pendiente a favor [c-0158] · [c-0183].
+- **ch05** (SMT y DXY correlación −1): mismo uso — comparación Libra/DXY con failure swing [c-0126] · [c-0127] · [f-002310] y la simetría «GBP bullish / DXY bearish» [c-0186] · [c-0187]; «venta en DXI [ASR], compra en GDP [ASR]» [c-0137] · [f-002504].
+- **ch06** (failure swing): reaparece alrededor de la noticia — «fellow swing [ASR]» en libra y DXY [c-0068] · [c-0081] · [c-0083] · [c-0111] · [c-0126].
+- **ch07** (checklist de 4 preguntas, con la 4ª sobre noticias; vela de las 5 operable con noticias): el capítulo desarrolla esa 4ª pregunta [c-0023] · [c-0025] (la conexión explícita con la checklist no se verbaliza en el vídeo); «la vela de las 5 de 6 horas… volatilidad del CPI» [c-0114]; hora de noticias dichas 8:30/8:45 en ch07 vs 8:15 aquí — contradicción documentada, no resuelta [c-0165].
+- **ch08** (proceso de análisis y ventana ideal de entrada): «es como el análisis normal» [c-0185] · [c-0173]; el descenso de temporalidades buscando rangos claros [c-0092] · [c-0148]; posicionarse antes de la noticia como la ventana buena [c-0100] · [c-0151].
+- **ch09** (red flags): continuidad explícita — «las red flags son las mismas» [c-0189], «se aplican las mismas red flags a las noticias que al trading normal» [c-0195]; rangos en contra, velas inside y objetivo/DOL ya completado reaparecen como condiciones [c-0190] · [c-0191] · [c-0192] · [c-0193] · [c-0194] · [c-0122].
+
+## 5. Los 6 claims UNCERTAIN (estudiar como dudosos, no como hechos)
+
+- [c-0030] — observación visual del calendario Myfxbook en el minuto 5 (CONTRADICTION: en pantalla estaba el Excel; Myfxbook verificado en el minuto 3 [c-0020]).
+- [c-0032] — «cuando los pares confirman la misma dirección, la probabilidad sube»: la mitad citada es literal, la condición de apertura procede de un segmento garbleado ambiguo.
+- [c-0069] — la noticia de libra del 23-jun dicha «a las ocho y cuarto» (contradice ch02/ch07).
+- [c-0113] — día del CPI: «en 6 horas no hay nada» vs «en 6 horas teníamos un primer rango aquí» (contradicción interna del segmento).
+- [c-0164] — vela de la noticia «la de las 8» vs «la de las 7» [c-0159] en el 4-jun (contradicción interna; la revisión de [c-0159] la adjudicó como misma vela etiquetada por temporalidad, pero el claim queda dudoso).
+- [c-0165] — la noticia del 4-jun «a las 8 y cuarto» con marca visual 08:15 (contradice ch02/ch07).
+
+## 6. Ejercicios de estudio (derivados, no dichos)
+
+1. Reproducir la clasificación del Excel para 5 noticias de la próxima semana con los 5 campos de [c-0003] y ordenarlas con el criterio de [c-0011].
+2. Tomar el día del CPI (E7/E9) y anotar la secuencia completa de confirmaciones dichas (euro, libra, DXY, USDCAT [ASR]) antes de la vela de la noticia, citando cada claim.
+3. Simular el 4 de junio: escribir qué mirarías para decidir entre las dos entradas con [c-0141] · [c-0160] · [c-0168] · [c-0169] · [c-0170].
+4. Contrastar las horas 8:30 (ch02/ch07) y 8:15 ([c-0069], [c-0165]) sin armonizarlas: describir qué adjudicación haría falta y por qué los claims quedan UNCERTAIN.
+
+*Los ejercicios son derivados para el estudio; la fuente sólo respalda los conceptos citados.*
