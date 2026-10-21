@@ -1559,7 +1559,7 @@
 
 ### c-0120
 
-**Statement:** Con el target final ahí arriba ('si ese es el DOL'), la gestión ya es 'parcial y break-even y ya está', y 'te vas adaptando'.
+**Statement:** Con el target final ahí arriba ('si ese es el DOL [ASR: 'dole']'), la gestión ya es 'parcial y break-even y ya está', y 'te vas adaptando'.
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** procedure · **Minute:** 31 · **Source key:** 
 
@@ -1573,7 +1573,7 @@
 
 ### c-0121
 
-**Statement:** El precio 'ha llegado finalmente al DOL, pero no tiene que llegar siempre en nuestro timing'; hay que 'respetar al precio del mercado y saber qué está haciendo en todo momento y qué nos está diciendo'.
+**Statement:** El precio 'ha llegado finalmente al DOL [ASR: 'dole'], pero no tiene que llegar siempre en nuestro timing'; hay que 'respetar al precio del mercado y saber qué está haciendo en todo momento y qué nos está diciendo'.
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** observation · **Minute:** 31 · **Source key:** 
 

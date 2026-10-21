@@ -31,13 +31,13 @@ Guía de estudio del capítulo RED FLAGS. Cada tema apunta a las reglas y claims
 - Turtle Soup y order block → ch01/ch04; refinado y break even → ch04.
 - SMT y pares correlacionados → ch05 (conexión explícita en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0128|c-0128]]).
 - Failure swing → ch06 (mencionado como confirmación posible en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0027|c-0027]]).
-- Setups London/NY, vela de las 5 y de las 9, checklist → ch07 (la red flag «abrir por arriba» anunciada en c-0033 se desarrolla aquí).
+- Setups London/NY, vela de las 5 y de las 9, checklist → ch07 (la red flag «abrir por arriba» anunciada en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0033|c-0033]] se desarrolla aquí).
 - El proceso de análisis → ch08 (contexto de las horas 3/5/9 y del descenso de temporalidades).
 
 ## 5. Ejercicios de estudio (derivados, no dichos)
 
 1. Revisar E11 ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/examples|examples]]) y describir en qué instante exacto la red flag habría cambiado la gestión (comparar con [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0071|c-0071]]).
-2. Tomar la enumeración de c-0040 y escribir la condición de cada red flag con sus propias palabras, citando el claim.
+2. Tomar la enumeración de [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0040|c-0040]] y escribir la condición de cada red flag con sus propias palabras, citando el claim.
 3. Simular la decisión de E15 (objetivo tomado al levantarse): anotar qué se operaría, con qué fuerza de convicción y bajo qué excepción (R9).
 
 *Los ejercicios son derivados para el estudio; la fuente sólo respalda los conceptos citados.*

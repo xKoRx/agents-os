@@ -45,8 +45,8 @@ Biblioteca de conocimiento del noveno vídeo del curso Clutifx, extraída con la
 
 | Gate | Resultado |
 |---|---|
-| LIBRARY_VALIDATION | PASS (ver registro del run) |
-| TERM_SOURCE_CHECK | PASS (ver registro del run) |
+| LIBRARY_VALIDATION | **PASS** (validate_library.py 0 findings, 2026-10-21) |
+| TERM_SOURCE_CHECK | **PASS** (check_term_sources.py: 137 vivos / 0 MATERIAL / 0 TDREQ, 2026-10-21) |
 | DOCVERIFY | (independiente ONE-SHOT sobre esta biblioteca publicada; su veredicto queda registrado aquí tras ejecutarse) |
 
 ## Throughput (reporte separado tramos vs total)
