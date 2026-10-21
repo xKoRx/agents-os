@@ -49,6 +49,7 @@ Tarea puente humana: `[[Echo Futures — Optimización de Campañas]] implementa
 | Repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
 | xKoRx/echo | create: `experiment/campaign-lab-s01` | corte histórico anterior, o descendiente verificado con WIP preservado | este planner §§1,3,6 | este planner §§2,4,5,7 | S01+S01-R1+residual entregados en review (`41d5d577`); sin merge automático |
+| xKoRx/echo | create: `experiment/campaign-lab-s02` | `41d5d577` (G1 aceptado por el Owner vía despacho SHOT 2) | este planner §§2–6 (Fase 2) | despacho SHOT 2 + S02-BRIDGE.md | S02 ejecutado: T2.1–T2.3, commit `28c35257`, ensayos E1–E6; G2 en review |
 | xKoRx/echo | `feature/ef-runtime-pools` | corte reportado b13ef43d | R6 runtime | diseño runtime §§12–18 | READ_ONLY en S01–S04; integración sólo S05 autorizada |
 | xKoRx/agents-os | `master` directamente | HEAD concurrente | este planner | skill de planificación | sólo documentos; sin PR/rama |
 
