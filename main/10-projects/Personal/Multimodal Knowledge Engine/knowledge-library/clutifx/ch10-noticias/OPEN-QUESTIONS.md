@@ -15,8 +15,8 @@ Mismo segmento s-002045 citado por dos claims. El revisor de min18 (con f-002052
 Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0113|c-0113]]
 
 ### q-ch10-004 — «9 horas» / «16 horas» como temporalidades dichas (min 16/26)
-«Dieciséis horas» (s-001654/s-001645, c-0086) y «9 horas» (c-0122) no cuadran con las temporalidades del recorrido; los frames muestran 12h y 8h (f-001859, f-002658). Los candidatos (duración en velas 1h; garble de 8h) quedan abiertos. **Estado: OPEN** (audio).
-Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0086|c-0086]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0122|c-0122]]
+«Dieciséis horas» (s-001645; [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0093|c-0093]]) y «9 horas» ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0147|c-0147]]) no cuadran con las temporalidades del recorrido; los frames muestran 12h y 8h (f-001859, f-002658). Los candidatos (duración en velas 1h; garble de 8h) quedan abiertos. **Estado: OPEN** (audio).
+Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0093|c-0093]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0147|c-0147]]
 
 ### q-ch10-005 — Garbles de pares del Excel (min 0/5/6)
 «CAT»→CAD y «GEP»→GBP con respaldo escrito del Excel (f-000020/f-000059) pero sin confirmación de la palabra dicha; «USDJPI»/«JP»→USDJPY sin bloque JPY visible; «NCTD/AUTUSD/USDCAT/USDCHEF» con adjudicación visual parcial (USDCAD/USDCHF confirmados en f-000600; el resto candidatos). **Estado: PARTIAL** — palabra dicha preservada [ASR]; adjudicaciones escritas documentadas en notes.
@@ -27,7 +27,7 @@ Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clu
 Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0089|c-0089]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0114|c-0114]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0116|c-0116]]
 
 ### q-ch10-007 — Deíctico «esta» noticia del Excel (min 2)
-«esta» (s-000223, c-0013): f-000221/f-000225 no muestran resaltado ni selección; cursor junto a ISM MANUFACTURING PMI (candidato no concluyente). **Estado: OPEN** (requiere frame adicional o audio).
+«esta» (s-000221/s-000224, [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0013|c-0013]]): f-000221/f-000225 no muestran resaltado ni selección; cursor junto a ISM MANUFACTURING PMI (candidato no concluyente). **Estado: OPEN** (requiere frame adicional o audio).
 Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0013|c-0013]]
 
 ### q-ch10-008 — Frase de riesgo «0,5 → 1» (min 1)
