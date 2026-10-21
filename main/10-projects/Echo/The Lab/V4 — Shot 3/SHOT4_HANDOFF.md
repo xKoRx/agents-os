@@ -19,7 +19,7 @@ updated: "2026-10-21"
 
 ## Propósito
 
-Handoff final de Shot 4 (SHOT4_AUTHORIZED_CORRECTIONS_AND_I1_COMPLETION): correcciones S3-F01–F08, capacidades S3-M01–M06, evidencia S3-E01, límites S3-E02 conservados. Ejecutor: Implementation Submanager LOCAL (motor efectivo GLM-5.3-Flash, host-declarado; el perfil GPT-6-Luna del encabezado del mandato no pudo verificarse desde este runtime y se registra la discrepancia). Corte de entrada `xKoRx/echo@61ac1f720d07513e48b0310b84b5b415b80ff48f`; rama de producto `feature/lab-v4-shot4`; SHA final del candidato `2eccb317` (7 commits desde el corte; los 6 de implementación + 1 de correcciones de la revisión independiente). PG descartable propio 54349 (`~/aranea/work/lab-v4-shot4-20261021/pgdata`), sin tocar servicios compartidos ni el clon Shot 2.
+Handoff final de Shot 4 (SHOT4_AUTHORIZED_CORRECTIONS_AND_I1_COMPLETION): correcciones S3-F01–F08, capacidades S3-M01–M06, evidencia S3-E01, límites S3-E02 conservados. Ejecutor: Implementation Submanager LOCAL (motor efectivo GLM-5.3-Flash, host-declarado; el perfil GPT-6-Luna del encabezado del mandato no pudo verificarse desde este runtime y se registra la discrepancia). Corte de entrada `xKoRx/echo@61ac1f720d07513e48b0310b84b5b415b80ff48f`; rama de producto `feature/lab-v4-shot4`; SHA final del candidato `ed458c5e` (9 commits desde el corte: 6 implementación + fixes revisor 1 + 3 de la devolución PM + fixes F1-F3 del revisor acotado). PG descartable propio 54349 (`~/aranea/work/lab-v4-shot4-20261021/pgdata`), sin tocar servicios compartidos ni el clon Shot 2.
 
 ## Estados separados (dictamen PRIMARY MANAGER 2026-10-21)
 
@@ -46,6 +46,7 @@ Handoff final de Shot 4 (SHOT4_AUTHORIZED_CORRECTIONS_AND_I1_COMPLETION): correc
 | `a2b40827` | **Dictamen PM 1** | I1 restituido: servicio selección principal/alternativas (069), invalidación transaccional, PORTFOLIO_SNAPSHOT worker con CAS, comparación de copias, rutas gateway, paneles Vue, demo 7 flujos |
 | `6cb00134` | **Dictamen PM 2** | Wiring B real: projector sink (ruta runtime) + backtester observer (ruta BACKTEST) vía opfacts.FactsPublisher compartido; 2 demos de recorrido de producto |
 | `8a7381fd` | **Dictamen PM 3** | Evidencia separada: cómputo REAL 4 perfiles sobre 132.805 ops, lease recovery, grano dual en curvas (CLOSED_SUMMARY por cierre), coverage enfocado medido |
+| `ed458c5e` | **Revisor acotado** | F1 identidad real fail-fast (jamás slots sintéticos); F2 log de cómputo preservado; F3 operation_count real en lab.curves |
 
 ## Matriz caso por caso (requisito → implementación → test → SHA → resultado → evidencia)
 
@@ -154,10 +155,12 @@ Sin cambios. PG descartable propio (54349) detenido al cierre; sin PROD, trading
 6. Backlog analítico concurrente y RSS bajo carga: NOT_DEMONSTRATED (worker secuencial I1).
 7. Motor efectivo: GLM-5.3-Flash (host); discrepancia con GPT-6-Luna registrada, sin atribuir trabajo a otro perfil.
 
-## NEXT
+## Revisión independiente ACOTADA del delta PM (2eccb317→8a7381fd)
 
-Revisión independiente ACOTADA del delta 2eccb317→8a7381fd (sólo faltantes cerrados + correcciones + regresiones materialmente afectadas) → PRIMARY_MANAGER_FINAL_REVIEW.
+**PM_RETURN_WITH_FINDINGS** — revisor en contexto fresco: P1 selección VERIFICADO (SELECT propio: selection_revision=2 monotónica, sin duplicación); P2 wiring VERIFICADO (código de producto con ganchos reales fail-visible, opt-in sin cambios previos); P3 grano dual VERIFICADO (sin doble conteo, oráculos intactos); P4 evidencia REPRODUCIDA (cómputo 132k 409s, coverage exacto 88.1%/52.3%); P5 regresiones VERIFICADAS (TestLabV4 7/7); P6 handoff COHERENTE (estados no colapsados, NO_DEMONSTRATED explícitos). Hallazgos F1 (slots sintéticos), F2 (log incompleto), F3 (operation_count=0) RESUELTOS en `ed458c5e`.
+
+## NEXT
 
 ## Fuentes
 
-[[SHOT4_EXECUTION_PACKAGE]], [[SHOT3_ADVERSARIAL_REPORT]], [[SHOT3_COVERAGE_MATRIX]], [[0 — Submanager State]], `xKoRx/echo@feature/lab-v4-shot4` (61ac1f72..8a7381fd), paquete de repros `outputs/SHOT3_AUDIT_EVIDENCE/`.
+[[SHOT4_EXECUTION_PACKAGE]], [[SHOT3_ADVERSARIAL_REPORT]], [[SHOT3_COVERAGE_MATRIX]], [[0 — Submanager State]], `xKoRx/echo@feature/lab-v4-shot4` (61ac1f72..ed458c5e), paquete de repros `outputs/SHOT3_AUDIT_EVIDENCE/`.
