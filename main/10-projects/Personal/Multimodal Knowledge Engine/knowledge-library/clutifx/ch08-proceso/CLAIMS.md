@@ -61,7 +61,7 @@
 
 **Visual hint:** 01:15 — rango alcista semanal marcado; en 2 semanas vela interior y rango completado
 
-**Notes:**  Frame renombrado: el revisor extrajo el segundo 75 con nombre inválido f-000075; regenerado por fórmula como f-000115 (histórico declarado en .deprecated_frame_names). Nota de naming: uno de los frames del revisor venía con nombre inválido (segundos crudos 75); regenerado por fórmula como f-000115 y el nombre inválido declarado histórico en .deprecated_frame_names.
+**Notes:** Frame del revisor regenerado: venía con nombre inválido (segundos crudos 75); se extrajo por fórmula como f-000115 y el nombre inválido quedó declarado histórico en .deprecated_frame_names.
 
 ### c-0006
 
