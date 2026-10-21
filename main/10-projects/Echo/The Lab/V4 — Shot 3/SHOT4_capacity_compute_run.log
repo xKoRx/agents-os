@@ -1,0 +1,8 @@
+=== RUN   TestLabCapacityCompute132k
+    lab_capacity_test.go:280: CAPACITY-COMPUTE: r_net_cumulative.v1 sobre 132805 ops: cómputo+snapshot=2.205s, puntos=132805
+    lab_capacity_test.go:280: CAPACITY-COMPUTE: recorded_money.v1 sobre 132805 ops: cómputo+snapshot=1.704s, puntos=132805
+    lab_capacity_test.go:280: CAPACITY-COMPUTE: normalized_10k_open_balance.v1 sobre 132805 ops: cómputo+snapshot=3.262s, puntos=132805
+    lab_capacity_test.go:280: CAPACITY-COMPUTE: normalized_10k_initial_balance.v1 sobre 132805 ops: cómputo+snapshot=3.142s, puntos=132805
+--- PASS: TestLabCapacityCompute132k (387.06s)
+PASS
+ok  	github.com/xKoRx/echo/v3/sdk/postgres	387.106s
