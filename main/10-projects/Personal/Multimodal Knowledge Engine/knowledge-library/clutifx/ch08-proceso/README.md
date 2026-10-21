@@ -23,6 +23,7 @@ Biblioteca de conocimiento del octavo video del curso Clutifx, extraída con la 
 | Revisión | 17 minutos × 1 revisor (UNA revisión por minuto; minuto 14 en dos pasadas: la primera con 2 claims, la segunda 14b con los 4 del payload final): 17/17 `MINUTE_REVIEW = VALID`; 2 retries por error transitorio [1210] del proveedor (min 2, min 15) |
 | Integración | mecánica (`integrate_reviews.py` + `validate_review.py` por minuto); 19 correcciones propuestas por revisores aplicadas vía pool (literalidad de citas, evidence de frontera, visual_hints, 1 duda resuelta por frames c-0071) |
 | Modelo | GLM (subagentes locales + integrador; sin API pagada) |
+| DOCVERIFY | PASS — subagente independiente (fallback `general-purpose`): 3 MATERIAL + 1 MENOR de prosa documental (F-01 «2 h» inventada en la cadena del ORO; F-02 ejercicios atribuidos al instructor; F-03 «2M mismo target» vs «ya completado»; F-04 glosa en R10), los 4 adjudicados CONFIRMADOS y corregidos; claims/transcript/frames sin cambios; re-validación PASS |
 | Checkpoint 5 min | PASS (min 0–4 VALID tras 20 min; proyección ~200 min/h-video — sobre el objetivo 120 pero <2×, continuado con registro; real final 327 por contención de máquina y retries) |
 
 ## Métricas

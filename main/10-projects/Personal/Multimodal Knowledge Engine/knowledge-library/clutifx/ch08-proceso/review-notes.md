@@ -28,7 +28,9 @@ Notas de revisión y decisiones del run. Autoridad de claims: `claims.jsonl` ([[
 - 18 frames base (manifiesto `frames/.base_frames`) + **70 bajo demanda** extraídos y verificados visualmente por los revisores = 88 PNG; **64 citados** en `claims.jsonl.evidence`. Densidad 4,1/min (capítulo de recorrido continuo multi-TF: el instructor cambia de timeframe ~30 veces; presupuesto por bloque declarado, exceso justificado).
 - [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001704.png|f-001704]] (frame final) es el negro de cierre: existe por el manifiesto pero no se cita.
 
-## Verificación documental independiente (DOCVERIFY)
+## Verificación documental independiente (DOCVERIFY) — PASS con correcciones
 
-- `documentation-verifier` sigue caído (provider binding ausente, sexto capítulo consecutivo). Fallback documentado: subagente `general-purpose` ONE-SHOT con contrato adversarial completo. Resultado en el reporte de sesión.
-- Checks deterministas ejecutados por el integrador: `check_term_sources.py` y `validate_library.py` (ver estado final en README/reporte).
+- `documentation-verifier` sigue caído (provider binding ausente, sexto capítulo consecutivo). Fallback documentado: subagente `general-purpose` ONE-SHOT con contrato adversarial completo (sin PNGs por el [1210]; lo visual por consistencia registrada).
+- Resultado: **3 MATERIAL + 1 MENOR**, todos de prosa documental (claims/transcript/frames sin defectos): F-01 documentation §1 añadía «2 h» a la cadena del descenso del ORO (c-0022 no la tiene: el ORO pasa de 3 h a 1 h) — corregido; F-02 study-guide §7 atribuía al instructor 3 ejercicios de los que sólo 1 es dicho — retitulado «Ejercicios de estudio» con marca dicho/derivado; F-03 examples E3 comprimía «1A→2M mismo target» (el «mismo target» es hasta 3M; 2M es «un poco más cerca», ya completado) — corregido; F-04 rules R10 llevaba la glosa «de TF mayor (en contra)» no dicha — nivelada a la fuente. Los 4 adjudicados CONFIRMADOS y corregidos; re-validación `validate_library.py` PASS + `check_term_sources.py` PASS.
+- Cobertura del verificador: R1–R18 una a una, C1–C10, E1–E4, ~40 claims muestreados con frontera, 833 wikilinks resueltos, métricas README contra artefactos, lifecycle y navegación.
+- Checks deterministas del integrador: `check_term_sources.py` PASS (86 vivos / 0 MATERIAL / 0 TERM_DISAMBIGUATION_REQUIRED) y `validate_library.py` PASS (0 findings).

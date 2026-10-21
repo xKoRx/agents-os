@@ -15,7 +15,7 @@ Fuentes físicas de los videos (locales, NO en Git): `/home/kor/mke/course/epNN-
 | 05 | `ch05-smt/` | `ep05-smt.mp4` | `072f669d…` | 18:29.7 | biblioteca completa (skill course-knowledge-extraction, 99 claims SUPPORTED + 1 UNCERTAIN) | DONE 2026-10-19 |
 | 06 | `ch06-failure-swing/` | `ep06-failure-swing.mp4` | `470ff3c0…` | 13:27.98 | biblioteca completa (skill course-knowledge-extraction, 64 claims SUPPORTED; aclaración acotada 2026-10-20: q-ch06-008 resuelta, q-ch06-010 parcial, 12 frames nuevos) | DONE 2026-10-19 (preflight ch07 2026-10-20) |
 | 07 | `ch07-setups/` | `ep07-setups.mp4` | `b20ce8f7…` | 45:35.17 | biblioteca completa (skill course-knowledge-extraction, 238 claims SUPPORTED; checklist de 4 preguntas; run híbrido por cuota agotada — ver su review-notes) | DONE 2026-10-20 (QA final 2026-10-20: repairs semánticos + navegación + DOCVERIFY independiente PASS) |
-| 08 | `ch08-proceso/` | `ep08-proceso.mp4` | `5495798b…` | 17:04.42 | biblioteca completa (skill course-knowledge-extraction, 86 claims SUPPORTED; el proceso de análisis desde cero en 4 pares) | DONE 2026-10-20 |
+| 08 | `ch08-proceso/` | `ep08-proceso.mp4` | `5495798b…` | 17:04.42 | biblioteca completa (skill course-knowledge-extraction, 86 claims SUPPORTED; el proceso de análisis desde cero en 4 pares) | DONE 2026-10-20 (DOCVERIFY independiente PASS: 3 MATERIAL + 1 MENOR de prosa corregidos) |
 | 08–12 | — | `ep09-red-flags.mp4` … `ep12-psicotrading.mp4` | sin procesar | — | — | PENDIENTE (secuencia local verificable por nombre de archivo) |
 
 ## Capítulo 01 — Introducción (`ch01-introduccion/`)
