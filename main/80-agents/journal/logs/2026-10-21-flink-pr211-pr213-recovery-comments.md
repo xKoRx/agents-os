@@ -42,7 +42,9 @@ Se abordaron dos variantes de recuperación no cubiertas: envío incierto sin jo
 - 1937 tests productivos PASS por rama; 43 locales en #211 y 67 en #213. Hooks de seguridad, formato, Checkstyle y PMD PASS antes de cada commit.
 - Baseline: 3 regresiones fallan contra `6847ab66`; 6 regresiones Python fallan contra `ce8325cc`. Las suites corregidas pasan.
 - Reconciliación: 100% líneas/ramas. Extractor Python: 56/58 líneas y 18/18 ramas.
-- E2E físico nuevo en curso. Los checks de Fury no están reportados para los SHA nuevos; CodeQL de #211 PASS.
+- E2E físico nuevo en curso. CI Fury de #211 iniciado; CodeQL PASS. GitHub empezó a rechazar por IP allowlist durante la validación; se pidió verificar GlobalProtect.
+- Ajuste adicional local `8f5af09d` conserva el ownership de una extracción inválida si falla su borrado y reintenta antes de otro start. 67 tests locales y hooks PASS; push pendiente de recuperar acceso.
+- Probe contra SQL Gateway Flink 1.20.5 real confirma HTTP 500 con el SqlGatewayException y handle exactos tras repetir DELETE.
 
 ## Compartibilidad
 

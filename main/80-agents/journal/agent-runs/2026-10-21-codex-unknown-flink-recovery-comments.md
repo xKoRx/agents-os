@@ -38,7 +38,7 @@ Abordar los comentarios de #211 y #213: reconciliación de jobs no creados, sesi
 
 - 1937 tests productivos por rama, 43/67 locales y hooks PASS. Regresiones contrastadas con clases anteriores: 3 y 6 fallos esperados respectivamente; suites corregidas PASS.
 - Nueva reconciliación 100% líneas/ramas; extractor Python 96,55% líneas/100% ramas.
-- E2E físico y revisión del estado remoto pendientes de finalizar.
+- Probe sobre SQL Gateway real confirma la clasificación idempotente del DELETE. E2E físico en curso. Ajuste adicional local `8f5af09d` con 67 tests y hooks PASS; push y verificación remota bloqueados por IP allowlist, pendiente GlobalProtect.
 
 ## Evaluación
 
