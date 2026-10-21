@@ -49,6 +49,20 @@ El toolkit de migración real ejecuta `db.Exec` por archivo; no demuestra golang
 - Horario Owner: 08:00–02:30 CLST; al parar, estado durable y procesos propios seguros; sin presuponer reanudación automática.
 - Agents-OS sobre master, cambios pequeños + change_log. No cerrar sesión del submanager ni generar feedback de cierre sin pedido del Owner.
 
+## I1 en curso — estado de implementación (2026-10-21, bloque 1)
+
+**Rama:** `feature/lab-v4-shot2` @ `61ac1f72` (4 commits sobre `d74b6525`: `e85656bb` fundación, `7d36dbf4` i-e04, `6b697f3b` suite verde, `61ac1f72` guard scratch). **PG desechable:** pgboot embebido (fergusstrange/zonky) en `127.0.0.1:54329` db `echo_labv4` (datos en `~/aranea/work/lab-v4-shot2-20261020/pgdata`; relanzar con `pgboot` en `~/aranea/work/lab-v4-shot2-20261020/pgboot/`; sin root, sin docker). **Comando de la suite:** `DATABASE_URL=postgres://labv4:labv4@127.0.0.1:54329/echo_labv4?sslmode=disable LABV4_MIGRATION_TEST=1 go test ./v3/sdk/postgres/ -run TestLabV4` (desde `v3/sdk`).
+
+**VERDE (evidencia reproducible):** 7/7 `TestLabV4*` PASS — cadena 067→071 up/down/up con `lab_migration_state` exacta (C01); atomicidad por archivo con fallo forzado (C01); retiro legacy safe-by-default BLOCKED_SKIP→DROPPED armado (C01); recetas de identidad definition-v1/native-v1 con slots NULL y CYCLE_BUDGET sin evidencia rechazado (C02/C03); terminalidad DEFERRABLE net=Σ movements + movements append-only + CLOSED_SUMMARY legítimo (C03/C04/C05); ingesta POST/replay/409/CAS-412 + colisión de history_id imposible entre writers + analítica sin ejecutable + mapping no-venue sin magic (C02/C04/R04). Suite completa `./v3/sdk/postgres`: PASS (scratch ahora skip-gated). Gateway `internal`: PASS. i-e04 completo con tests portados (plataforma sellada, policy gate v2, receipts por namespace, fs artifact source).
+
+**Pendiente I1 (orden aceptado):** (1) handlers HTTP v2 en gateway (`strategy_history_v2_handler.go` nuevo + rutas POST `/api/v2/strategy-ingestions` y PUT `/api/v2/strategy-versions/{ref}/histories/{history_id}` con 128 MiB/413/412/409; el servicio ya está) + gate E2E Forge con fixture auténtico; (2) Fase 4 adapters: economía por Operation con correlación (caso A/B=5), QI_SEALED en la primera decisión MM, topic `echo.execution.operation-facts.v2`, adapter journal REFERENCE→v2 y backtester→v2 por el mismo servicio (caso T sobre esa ruta); (3) Fase 5: lab-worker-v4 (jobs SKIP LOCKED+lease+CAS, 4 perfiles, métricas B.6.5); (4) Fase 6: dashboard Vue + metadata Hasura aditiva; (5) Fase 7: sustitución legacy autorizada + matriz G1–G11/T01–T45 completa.
+
+**Precisión de ingeniería registrada (dentro del contrato):** `run_mode` reutiliza el enum del producto ('LIVE','EXACT_REPLAY','BACKTEST') — REPLAY==EXACT_REPLAY, sin tokens nuevos; `identity_mappings.magic` NULLable solo para identidades no-venue con guard `magic_allocation_ref='labv4/no-venue'` (069) — el esquema 061 exigía NOT NULL y el freeze prohíbe magics ficticios; 068 (e04 verbatim) lleva el auto-registro del protocolo C01 añadido; el constraint trigger de terminalidad dispara en INSERT y UPDATE (sellos insertados directamente también se validan).
+
+**Lección de coordination:** el worker i-e04 eliminó temporalmente archivos untracked del submanager en el worktree compartido (los restauró incompletos); mitigado commiteando los archivos propios de inmediato y con briefs que declaren los archivos ajenos intocables.
+
+**Estado:** I1 NO COMPLETE — los 5 ítems pendientes arriba son el trabajo restante del alcance aceptado; nada oculto.
+
 ## Siguiente acción
 
 **Implementar I1 ahora bajo el mandato maestro vigente, sin nueva aceptación.** Preparar contratos/Allowed Files de ejecución y despachar o ejecutar el primer paquete implementable en el workspace aislado: protocolo de migración probado en descartable y adopción selectiva E-04; fundación e ingesta; recorrido motor/backtester → historia → curvas/UI; portfolios estáticos; integración y retiro autorizado del legacy. Respetar dependencias reales y coordinar el traslape de source con FEFB.
