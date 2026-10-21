@@ -55,13 +55,13 @@
 - **Limitación:** ninguna.
 - **Referencia:** diff + SQL citados.
 
-## E05 — DEV sin tabla de control de migraciones (R01)
+## E05 — Mecanismo de migración real y DEV sin tabla de control (R01; corregida en rev 3)
 
-- **Entorno:** PG DEV. **Fecha:** 2026-10-21.
-- **Comando:** `SELECT table_name FROM information_schema.tables WHERE table_name ILIKE '%migration%'` (sin filtro de schema).
-- **Resultado:** 0 filas. El runner canónico es golang-migrate + `schema_migrations` (header de 061; toolkit `v3/toolkit/cmd/apply-migration`), pero DEV nunca tuvo la tabla.
-- **Limitación:** la reconstrucción del estado "qué migración quedó aplicada" se hará por verificación de efectos objeto a objeto en la tarea de reconciliación (no por la tabla, que no existe).
-- **Referencia:** SQL citado.
+- **Entorno:** PG DEV + repo @ `d74b6525`. **Fecha:** 2026-10-21 (re-lecturas 09:05 CLST).
+- **Comando:** `SELECT table_name FROM information_schema.tables WHERE table_name ILIKE '%migration%'` (sin filtro de schema); lectura de `v3/toolkit/cmd/apply-migration/main.go`.
+- **Resultado:** 0 tablas de control en DEV. El toolkit del repo hace `db.Exec(string(content))` del archivo SQL indicado por flag, con DSN por env vars — **sin golang-migrate, sin `schema_migrations`, sin registro de estado**; la atomicidad por archivo proviene de la transacción implícita del protocolo simple de PostgreSQL para multi-statement. El header de 061 menciona golang-migrate como contrato de harness, pero el repo no lo implementa; el mecanismo realmente empleado es aplicación manual archivo-a-archivo sin control (los efectos de DEV fueron aplicados a mano).
+- **Limitación:** la reconstrucción de qué migraciones quedaron aplicadas se hace por verificación de efectos objeto a objeto (hecha read-only para 065/066/068/objetos clave; el resto se verificará en i-mig-0 sin tocar la compartida). La rev 2 describía erróneamente golang-migrate como runner canónico — corregida aquí.
+- **Referencia:** SQL + archivo `v3/toolkit/cmd/apply-migration/main.go` citados.
 
 ## E06 — 065 aplicada en DEV, owner echo_user (R01 — corrige C1)
 
@@ -84,7 +84,7 @@
 - **Entorno:** PG DEV + systemd/journalctl --user (daedalus, servicios DEV). **Fecha:** 2026-10-21.
 - **Comando:** SQL `information_schema.tables WHERE relname IN ('futures_operations','futures_fills',...)`; `systemctl --user list-units --type=service --state=running | grep echo`; `journalctl --user -u echo-core-dev.service -n 200 --no-pager | grep -icE "projector|operation-facts"`.
 - **Resultado:** 0 tablas `futures_*` (066 sin aplicar en DEV); servicios DEV activos: `echo-core-dev` (StateFun :9090), `echo-gateway-dev` (:8090), `echo-front-dev` (:4173); binarios desplegados `echo-core` 2026-10-20 04:05, `echo-gateway` 2026-10-19 10:19; 0 líneas de proyector/topic en logs recientes.
-- **Limitación:** observación directa sobre DEV; **PROD no inspeccionado** (fuera de alcance por mandato): la existencia de consumidores físicos de 066 en PROD queda `NOT_DEMONSTRATED` y bloquea sólo el retiro/drop de 066, no el desarrollo.
+- **Limitación:** observación directa sobre DEV; **PROD no inspeccionado** (fuera de alcance por mandato): la existencia de consumidores físicos de 066 en PROD queda `NOT_DEMONSTRATED` y bloquea sólo el retiro/drop de 066, no el desarrollo. La ausencia de líneas de proyector en logs es observación, NO prueba de ausencia de consumidores: los gates previos a cualquier cutover son verificación de ownership + configuración + dependencias por entorno (rev 3).
 - **Referencia:** comandos citados.
 
 ## E09 — Distribución real del journal y tamaños serializados (R06)
@@ -92,7 +92,7 @@
 - **Entorno:** PG DEV. **Fecha:** 2026-10-21.
 - **Comando:** `SELECT strategy_id, canonical_symbol, count(*) FROM echo.trade_journal WHERE account_role='REFERENCE' AND status IN ('CLOSED','CLOSED_BY_USER','CLOSED_BY_AGENT') GROUP BY 1,2` + `percentile_cont`; medición de bytes: `octet_length(jsonb_agg(jsonb_build_object(<campos wire v1>))::text)` sobre 3 grupos representativos.
 - **Resultado:** 210 grupos (strategy, symbol): p50=19, p75=33, p95=59, p99=24.682, max=56.884 ops; 131 estrategias: p50=30, p95=64, max=132.805. Tamaño: 412–421 B/op; p50 ≈ 7,9 KB; p95 ≈ 24,8 KB; p99 ≈ 10,3 MB; **max medido 23,65 MB (56.884 ops)**. El formato medido es NDJSON/JSON con los 16 campos de `CanonicalOperationInputV1`; el envelope real añade cabecera y digests (mismo orden de magnitud).
-- **Limitación:** la serialización de medición fue jsonb de PG (no el serializador Go canónico); delta esperado <10%. La historia max (132.805 ops de una estrategia completa multi-símbolo) no se serializó entera: su cota superior es ~55 MB (132.805 × 421 B) — excede el request único de 64 MiB sólo combinada con otra historia grande; los caps por historia lo cubren.
+- **Limitación (rev 3):** la serialización de medición fue jsonb de PG con los campos V1 — es **evidencia de referencia, no certificación del envelope V2** (que añade movements, metadata y cabecera): la certificación del tamaño y de la memoria de decodificación V2 corresponde al benchmark congelado del paquete §6. La historia con 132.805 ops (multi-símbolo) es UNA historia con alcance económico completo — el diseño la preserva íntegra (sin división por símbolo); su cota de referencia es ~56 MB (132.805 × 421 B) y con movements estimada ≤96 MB, lo que motivó el techo de request 128 MiB con caps compatibles.
 - **Referencia:** SQL citado; campos wire en `v3/sdk/contracts/strategy_history.go`.
 
 ## E10 — Cobertura de risk_money en journal (R03)
@@ -111,12 +111,12 @@
 - **Limitación:** dataset pequeño de verificación; sirve de fixture, no de muestra estadística.
 - **Referencia:** SQL citado.
 
-## E12 — Contratos del motor y autoridad económica (R02/R03)
+## E12 — Contratos del motor, orden MM y scope del Ledger (R02/R03; ampliada en rev 3)
 
-- **Entorno:** repo @ `d74b6525`. **Fecha:** 2026-10-21.
-- **Comando:** lectura de `v3/sdk/futures/domain/operation.go` (Operation/Order/Fill), `v3/sdk/futures/operation/engine.go:1051` (pin de `MMConfigSnapshot` al materializar), `v3/sdk/futures/operation/wire.go:64` (OperationFact), `v3/sdk/futures/accounting/ledger.go` (`ApplyFill(fill, feePerContract)`, realización exacta por ticks + fee por contrato/lado), `v3/sdk/futures/domain/economics.go:44` (EconomicPlanRow), `v3/core/internal/functions/mm_engine.go:533-538` (sello canónico del riesgo en CoreCommand).
-- **Resultado:** el agregado Operation ya transporta MMConfigSnapshot pinneado al materializar y Orders con parciales (`CumulativeFilledQty`); el Ledger es la autoridad existente de realizaciones/costes (usado por el backtester; aún no cableado a los facts del runtime live); el sello de riesgo por ticket vive hoy en el Core (motor MT4/MT5), no en el motor futures.
-- **Limitación:** ninguna para nivel de contrato; la verificación conductual (parciales/costes → historia) queda como caso verificable T de implementación.
+- **Entorno:** repo @ `d74b6525`. **Fecha:** 2026-10-21 (re-lecturas 09:10 CLST).
+- **Comando:** lectura de `v3/sdk/futures/domain/operation.go` (Operation/Order/Fill), `v3/sdk/futures/operation/engine.go` (`:1051` construcción de Operation con pin de `MMConfigSnapshot`; `:1113` `invokeMM(MMTriggerMaterialized)`; `:1280` invokeMM; `:1435` `applyMMDecision`), `v3/sdk/futures/operation/mm.go:380` (`MMDecision` con `OrderRequests[].DecisionID`), `v3/sdk/futures/operation/wire.go:64` (OperationFact), `v3/sdk/futures/accounting/ledger.go` (`ApplyFill(fill, feePerContract)`; `Revision` con AccountID/AccountContextID a nivel cuenta; `contractInventory` FIFO por contrato con consumo oldest-first), `v3/sdk/futures/domain/economics.go:44` (EconomicPlanRow), `v3/core/internal/functions/mm_engine.go:533-538,892-960` (sello canónico de riesgo por ticket en el Core MT4/MT5).
+- **Resultado:** (a) la materialización crea la Operation ANTES de `invokeMM` — el pin de `MMConfigSnapshot` en `:1051` es configuración, no presupuesto; el presupuesto del ciclo lo establece la primera decisión MM del ciclo (`MMDecision` aplicada con DecisionIDs identificables), que es el punto causal del sello QI_SEALED. (b) El Ledger es por CUENTA/CONTRATO con inventario FIFO físico (el cierre de una operación puede consumir el lote de otra): la atribución de PnL a una Operation requiere correlación por `operation_id` (identificación específica contra los lotes de apertura de esa operación), con el Ledger como autoridad de cuenta para la conciliación. (c) Orders con parciales (`CumulativeFilledQty`) y Fill con identidad nativa ya existen. (d) El sello de riesgo por ticket vive hoy en el Core (motor MT4/MT5), no en el motor futures.
+- **Limitación:** nivel de contrato; la verificación conductual (correlación A/B, parciales/costes → historia) queda como caso T de implementación.
 - **Referencia:** archivos:líneas citados.
 
 ## E13 — Replacement V1 destructivo y patrón de receipts (R04)
