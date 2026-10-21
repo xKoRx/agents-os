@@ -19,7 +19,7 @@ tags:
   - kind/project
   - area/echo
 created: "2026-10-20"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 # Echo Futures — Optimización de Campañas
@@ -33,6 +33,8 @@ Una configuración que no alcanza el piso después de su búsqueda acotada y val
 Este documento es el **planificador único** de la iniciativa. Diseño, tareas, gates y despachos viven aquí. [[TRADESGERARD-CONTROL]] sigue siendo la autoridad del backtester histórico; [[Echo Futures — Runtime Pools]] sigue gobernando el runtime. No los reemplaza. La extracción del video es fuente de hipótesis, no especificación ejecutable de un optimizador.
 
 ## 📊 Estado actual
+
+**Rectificación del Owner (2026-10-21, despacho SHOT 3): la iniciativa tiene CUATRO shots.** (1) Diseño; (2) Implementación; (3) Pruebas/auditoría adversarial; (4) Corrección consolidada del dictamen S03 y verificación/aceptación final. No existen Shot 2.5, otro S02-Rx, un shot adicional de cierre ni Shot 5. Los gates/despachos previos que condicionaban S03 a «G2 accepted» quedan superseded como órdenes activas; los commits y recibos S01/S02/R1/VERIFY se conservan como historia real sin renumerar. **S02 es la entrega congelada bajo auditoría**: rama `experiment/campaign-lab-s02` @ `00347f4f` (VERIFY cerrado, árbol limpio, binario sellado `4ec4f80c`/sha256 `78d6abef…`; el delta ejecutable `4ec4f80c..00347f4f` son sólo tests/tooling/docs, el código de producción es idéntico al binario), con pendientes conocidos (cobertura <95% del piso en 4 archivos del delta) y **G2 sigue en `review`**; la auditoría S03 no certifica aceptación técnica ni condona la cobertura incompleta, y su salida válida incluye descubrir defectos. **S03 (activo)**: auditoría adversarial independiente de esa entrega, habilitada por despacho expreso del Owner. **S04 (siguiente)**: corrige en conjunto el dictamen S03 (incluida la cobertura) y ejecuta regresión/aceptación final; sin revisiones S02 extra. La compatibilidad con runtime es un requisito de contratos exigible hoy; este plan NO autoriza ni requiere operar LIVE ni egress comercial. La secuencia antigua de despachos por fase (§8, Fase 3/4/5) queda como historial superseded y contenido técnico de referencia, no como órdenes activas.
 
 `PLAN_V1 / S02_VERIFY_BLOCKED_COVERAGE (G2 = review)`. S01, S01-R1 y el residual aceptados (G1 aceptado). S02 ejecutado 2026-10-20/21. **S02 VERIFY (ONE-SHOT 2026-10-21)**: puntos A (fixture `TestS02RGMMEndToEndStdev`: stdev20 del owner realmente dimensiona, ciclo completo, sin fallback ATR), B (replay activo E7b vs E5: 3 diffs, sólo identidad de intento) y C (E9 vs E8: MR-04 nativo base vs reparado, 0 diffs económicos con actividad) cubiertos con recibo; 4 lanzamientos platform-batch (tope). Cobertura exacta por archivo: `account_policy.go` 46/47=97,9% CUMPLE; `observation_adapter.go` 20/23=87,0%, `analytics/observations.go` 62/67=92,5%, `analytics/vol/owner.go` 209/221=94,6%, `riskgeommm/state.go` 12/13=92,3% bajo el piso → **S02_BLOCKED** con único pendiente: pruebas focalizadas sobre API pública o aceptación explícita del Owner de excepción. Cierre en `echo/v3/backtester/tools/tradesgerard/campaign-lab/CLOSURE-S02-VERIFY.md`, commit `00347f4f` con readback (`origin == HEAD`). Sin S03 hasta la aceptación. **S02-R1 (reparación) EJECUTADO 2026-10-21**: acoplamiento plataforma↔TGMM eliminado (camino SG explícito + política de cuenta runtime `RGMM_ACCOUNT_POLICY_V1` + garantía UNAVAILABLE probada en integración); E1 reutilizado (recibo íntegro), E2/E3/E4/E5/E6 ejecutadas y conciliadas por platform-batch como campañas reales; commits `82261449`, `4ec4f80c` (binario sellado, sha256 `78d6abef…`) y `b7cb0be4` (reportes/tests), push con readback. **G2 = review** (el Owner acepta). Sin S03 hasta la aceptación.
 
@@ -197,9 +199,9 @@ Partición inicial de investigación: primeras60%, siguientes20%, últimas20% de
 | Gate | current state | phase agent responsibility | owner acceptance evidence | enables |
 |---|---|---|---|---|
 | G1 | accepted por el Owner (despacho SHOT 2, 2026-10-20, sobre `41d5d577`) | kernel/manifiesto y tests; dejar review | Owner evalúa recibos S01 | S02 |
-| G2 | delivered en review: S02-R1 completo (`experiment/campaign-lab-s02` @ `b7cb0be4`, binario sellado `4ec4f80c`/`78d6abef`): acoplamiento TGMM eliminado, UNAVAILABLE garantizado y probado, E1 reutilizado, E2–E6 ejecutadas/conciliadas como campañas reales | MM geométrico/analytics/config integrado, camino SG de campaña explícito, política de cuenta runtime y pruebas cortas | Owner acepta integridad y los ensayos E2–E6 ejecutados/conciliados | S03 |
-| G3 | pending | catálogo caracterizado y screening finito trazable | Owner acepta resultados y candidatos | S04 |
-| G4 | pending | confirmación temporal y descarte/selección | Owner acepta candidatas >=25% con límites | S05 o nueva ronda versionada |
+| G2 | delivered en review: S02 congelado en `00347f4f` (VERIFY `S02_BLOCKED` por cobertura de 4 archivos del delta; binario sellado `4ec4f80c`/`78d6abef`); bajo auditoría adversarial S03 por despacho del Owner | MM geométrico/analytics/config integrado, camino SG de campaña explícito, política de cuenta runtime y pruebas cortas | Owner acepta integridad y los ensayos E2–E6 ejecutados/conciliados (pendiente; la auditoría S03 no lo acepta) | S03 |
+| G3 | in review: S03 auditoría adversarial de la entrega S02 congelada `00347f4f` (dictamen + paquete de hallazgos para S04) | auditoría independiente: autoridades/continuidad, geometría/protección, identidad/datos, compatibilidad runtime, completitud/cobertura | Owner acepta el dictamen S03 y la lista consolidada de hallazgos | S04 |
+| G4 | pending | corrección consolidada del dictamen S03 (incluida cobertura) + regresión/aceptación final | Owner acepta la entrega corregida y verificada | cierre técnico del laboratorio; screening/confirmación posterior sólo con autorización Owner por tandas |
 | G5 | pending | compatibilidad/runtime y suite de paridad | Owner autoriza integración; LIVE separado | migración prospectiva, no activación automática |
 
 Ningún ejecutor acepta su gate ni inicia el siguiente. Dos reintentos correctivos por causa como máximo; después bloquear la causa, no ampliar arquitectura. Una fila con datos insuficientes no bloquea trabajo independiente válido. Cobertura del delta según piso del proyecto, sin inventar un framework para medirlo; si la herramienta vigente falla, causa explícita. Sin sesiones GOD ni subagentes.
@@ -311,6 +313,8 @@ Cada fila es objetivo | símbolos | precondición | implementación | test | evi
 - [ ] T5.3 Rollout plan | bundle | T5.2 | disabled/SIM/rollback | drains | G5 review #owner/agent
 
 ## 8. Prompt común y despachos
+
+> **Superseded como órdenes activas (rectificación del Owner 2026-10-21):** los despachos Fase 3/4/5 de esta sección ya no se despachan tal cual; la secuencia vigente es la de cuatro shots (S03 auditoría adversarial → S04 corrección consolidada). Se conservan como historial y como contenido técnico de referencia de las fases de investigación, que se ejecutarán después de S04 sólo con autorización expresa del Owner y por tandas.
 
 ### Prompt común del ejecutor
 
