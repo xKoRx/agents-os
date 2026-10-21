@@ -31,6 +31,22 @@ strip de code-spans en W01/W10); NO se toca aquí la decisión de Owner sobre AS
 6. **El proveedor se recuperó solo**: tras el corte [1310] del 20-oct, el 21-oct la cuota volvió; 17 subagentes grandes sin un solo [1210]/[1310]. Mantener despacho en olas de 5.
 7. **La contención del host domina el wall**: con load 15 el ASR cayó a 0,27× y los subagentes se arrastraron; el wall honesto (205/h-video) se registra OVER sin disfrazar. Para ep10+: medir load ANTES del ASR y registrar el pronóstico; si hay grinds ajenos, avisar al owner en el checkpoint.
 
+## CH09 CLOSEOUT (cierre semántico 2026-10-21 — métricas reconciliadas + defecto residual de DV09)
+
+Auditoría del cierre halló que 2 de las 8 correcciones del DOCVERIFY in-mission NO estaban aplicadas en el árbol publicado pese a estar registradas como corregidas: **DV09-001 (MATERIAL)** — documentation §2 y study-guide resolvían el garble abierto «mover tu tarjeta breakable» [ASR] de c-0015/q-ch09-002 al candidato «stop a break even» — y **DV09-002 residual en examples E5** (DV09-006, MENOR: frames de c-0032 adyacentes a c-0026). Corregidas con amendmends (am-ch09-doc-001/002), q-ch09-002 preservada OPEN, c-0071/c-0129 intactos, y re-verificadas con DOCVERIFY targeted ONE-SHOT (spool `run/docverify-closeout/`), que además validó la regla nueva: **una síntesis no puede resolver categóricamente una ambigüedad material que el claim citado mantiene abierta, salvo evidencia adicional adjudicada** (incorporada al contrato del DOCUMENTATION_VERIFIER y a la Composición de la skill; barrido 14 preguntas OPEN/PARTIAL × 5 docs = 0 casos residuales).
+
+Reconciliación de métricas (am-ch09-doc-003; la tabla OBSERVED de arriba se conserva como historia, con sus erratas aplicadas así):
+
+| Métrica | Valor original publicado | Valor reconciliado (epochs/spools/logs) |
+|---|---|---|
+| ASR_WALL | 2h09m46s (0,27× realtime) | 7.785,8 s por `asr.log` (el valor del proceso era correcto; la ventana por epochs 136,2 min incluye setup/post-proceso). **ASR_SPEED** = 2094,5/7785,8 = 0,27× · **ASR_COST_MULTIPLIER** = 3,72× |
+| EXTRACTION_WALL | ~49 min | ~51 min (spools de bloques 11:20:33→12:11:58) |
+| REVIEW_WALL | ~70 min | ~77 min (12:14:58→13:32:19; endpoint real = review-min31, no min33) |
+| AGENT_WALL | ~119 min (handoff) / ~109 min (README) ≈ 205 y 187 min/h-video | **~129 min ≈ 221 min/h-video** (suma de fases observadas; ventana completa 131,8 min) — ambos valores originales eran subestimaciones sin respaldo de epochs |
+| «El peor rate del curso» | afirmado en ch09 (0,27×) | **FALSO en unidades homogéneas**: mezclaba velocidad (video/wall) con multiplicador de costo (wall/video; así lo usa ch08 con «1,76×»). En costo ch09 = 3,72× = 5.º de 8; el peor es ch04 = 9,06× (velocidad 0,11×) |
+
+Lecciones duraderas para ep10+: (1) **corrección declarada ≠ corrección aplicada** — tras adjudicar findings, verificar el árbol físico final (grep del texto corregido) antes de registrar PASS; (2) **los rates se comparan en una sola unidad** — publicar SIEMPRE ASR_SPEED y ASR_COST_MULTIPLIER explícitos, nunca «N× realtime» ambiguo; (3) la regla anti-resolución-de-ambigüedades rige para ep10+ en composición y DOCVERIFY.
+
 ## CH08 OBSERVED (medido en Chapter 08)
 
 | Métrica | Valor |
