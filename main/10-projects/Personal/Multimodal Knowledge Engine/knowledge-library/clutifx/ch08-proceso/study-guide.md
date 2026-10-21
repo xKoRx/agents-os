@@ -23,10 +23,10 @@ BE al salir de los primeros rangos [[10-projects/Personal/Multimodal Knowledge E
 ## 6. Vender contra tendencia
 Diario alcista → cuidado con buscar el top [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/CLAIMS#c-0082|c-0082]]; no entrar sin confirmación de rangos bajistas [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/CLAIMS#c-0084|c-0084]]; NUNCA vender mientras se forman rangos alcistas [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/CLAIMS#c-0085|c-0085]]. Reglas [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/rules|R14–R16]].
 
-## 7. Ejercicios sugeridos por el instructor
-- Repetir el descenso completo en un par nunca visto, marcando rangos y construyendo la narrativa [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/CLAIMS#c-0069|c-0069]].
-- Volver al día exacto del vídeo (25 de junio) a repasar qué pasó con los trades [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/CLAIMS#c-0042|c-0042]].
-- Incluir en el análisis propio lo que la demo acotó: DXY y pares correlacionados [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/CLAIMS#c-0043|c-0043]].
+## 7. Ejercicios de estudio
+- Dicho por el instructor: volver al día exacto del vídeo (25 de junio) a repasar qué pasó con los trades [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/CLAIMS#c-0042|c-0042]].
+- Derivado del método (no dicho en el audio): repetir el descenso completo en un par nunca visto, marcando rangos y construyendo la narrativa [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/CLAIMS#c-0069|c-0069]].
+- Derivado del alcance declarado por el instructor (lo que la demo NO incluyó): añadir al análisis propio DXY y pares correlacionados [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/CLAIMS#c-0043|c-0043]].
 
 ## 8. Advertencias del capítulo
 El análisis demostrado "tampoco ha sido el más extenso" [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/CLAIMS#c-0043|c-0043]]; las simulaciones ("como si lo hubiéramos visto en directo" [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/CLAIMS#c-0062|c-0062]]) ilustran proceso, no resultados validados.
