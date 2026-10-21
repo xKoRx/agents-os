@@ -6,7 +6,7 @@ Preguntas abiertas del capítulo (IDs estables `q-ch09-NNN`, agrupación temáti
 En s-000033 el instructor dice «quizá 8 quitaría»; la reformulación posterior de s-000403 lista 3/5/9 y ahí «abre la de 8 horas» (cosa distinta). La fuente queda ambigua. **Estado: OPEN** (requiere audio).
 Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0003|c-0003]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0014|c-0014]]
 ### q-ch09-002 — «tarjeta breakable» [ASR] (min 4)
-¿«mover tu stop a break even» o «mover tu target a break even»? El contexto (señal de gestionar el trade) favorece stop, sin respaldo literal. **Estado: OPEN** (audio s-000426).
+¿«mover tu stop a break even» o «mover tu target a break even»? El contexto (señal de gestionar el trade) favorece stop, sin respaldo literal. **Estado: OPEN** (audio s-000426). Cierre semántico 2026-10-21: documentation §2 y study-guide corregidos para preservar la duda (am-ch09-doc-001); sin confirmación de audio la pregunta NO se adjudica.
 Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0015|c-0015]]
 ### q-ch09-003 — «azista» [ASR] (min 5)
 «Si estás en un objetivo azista»: candidato «alcista» apoyado por el contexto («las velas siguen subiendo... hasta tu doll»); sin respaldo literal. **Estado: OPEN** (audio s-000515).
