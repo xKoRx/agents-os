@@ -180,7 +180,7 @@ TestShot3Functional/A17_SupersededRowsCannotChange: shot3_functional_test.go:134
 
 A09 se repitió tras insertar referencia sintética READY en `lab.curves` para revisión1: `evidence/pinned-revision.json`, mismo fallo. No fue resultado de un worker existente. `strategy_history_ingestion_v2.go:694–723` muestra header retenido sin D16/MM/cobertura y `:502–505` sólo mueve head/digest.
 
-### 5. S3-F07 — guard de down067
+### 5. S3-F07 — guard de down 067
 
 `xKoRx/echo@61ac1f720d07513e48b0310b84b5b415b80ff48f:v3/sdk/postgres/migrations/067_execution_projection_v4.down.sql:1–24`
 

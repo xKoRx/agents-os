@@ -93,7 +93,7 @@ Trazar G1–G11, T01–T45 y C01–C06 al candidato `61ac1f720d07513e48b0310b84b
 
 | Caso | Implementación | Prueba/evidencia | Estado observado |
 |---|---|---|---|
-| C01 | 067–071 + tracking/ledger; sin retire real | Siete originales pertinentes; M01 rollback 069 real; M02 sin066; M03 conserva datos; M04 pierde fills | FAIL_EXECUTED en down067; otros subcasos PASS_EXECUTED; retiro pendiente |
+| C01 | 067–071 + tracking/ledger; sin retire real | Siete originales pertinentes; M01 rollback 069 real; M02 sin 066; M03 conserva datos; M04 pierde fills | FAIL_EXECUTED en down 067; otros subcasos PASS_EXECUTED; retiro pendiente |
 | C02 | Recetas presentes; sin perfil/consumer real | TestLabV4PlatformKindsIdentityRecipes y analítica/PUT; Source | Parcial PASS_EXECUTED; prueba T end-to-end MISSING_IMPLEMENTATION; ataques de mutación NOT_RUN harness safety restriction |
 | C03 | DTO/tag/evidence y columnas; sin captura MM | Rechazo tag sin evidencia original; Source MM sin delta | Parcial PASS_EXECUTED; sello causal/método acreditado y caso multi-entrada MISSING_IMPLEMENTATION |
 | C04 | Grano dual parcial; no atribución por Operation | A01/A02/A07/A08/A18; O09/O10 | FAIL_EXECUTED; adapter/reconciliación MISSING_IMPLEMENTATION |
