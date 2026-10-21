@@ -1,0 +1,23 @@
+# concepts — ch09-red-flags (Clutifx · Chapter 09)
+
+Conceptos del capítulo (kind `concept` en `claims.jsonl`, orden de fuente).
+
+**C1 — Red flag (definición)** — Las red flags son «señales negativas que nos pueden indicar que no tenemos que operar, que no tenemos que tomar ese trade» [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0001|c-0001]]. Definición probabilística («pueden indicar»), no prohibición automática.
+
+**C2 — Primera red flag: rangos en contra (enunciado)** — «el tema red flag, la primera, es que se te estén creando rangos en contra» [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0009|c-0009]]; «siempre quieres tener los rangos a tu favor, no los rangos en contra» [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0013|c-0013]]; reformulada como «cuando las velas nos están abriendo contrario a la idea» [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0019|c-0019]]; nombre de cierre: «la red flag de los rangos a favor y en contra» [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0079|c-0079]].
+
+**C3 — «Abrir por arriba/por debajo» (definición operativa)** — NO es la dirección de la apertura: «abrir contrario NO significa que esta vela, tal cual abra, suba... o baje»; significa que la vela tome el low (o el high) de la vela anterior [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0020|c-0020]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0023|c-0023]]. La misma mecánica en tu dirección es lo deseado: vela que abre tomando el low + rango a favor + objetivo alcista = «un long para la siguiente vela ya» [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0022|c-0022]].
+
+**C4 — Jerarquía de rangos (8h/12h/1D)** — El rango de ocho horas «seguramente va a coincidir con uno de doce y con uno de un día. Por lo tanto, son rangos importantes que el precio va a activar antes de moverse» [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0031|c-0031]]. (Usa la jerarquía HTF de ch03 sin redefinirla.)
+
+**C5 — Enumeración oficial de las red flags** — «La primera es cuando nos están abriendo las velas al revés. Las segundas son las velas internas. Ahora vamos a ir a la tercera, que son cuando el precio ha llegado al objetivo ya» [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0040|c-0040]]; la cuarta (par correlacionado con target tomado) se comenta al final [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0126|c-0126]]. La numeración dicha en la fuente no es internamente consistente (q-ch09-005).
+
+**C6 — Simetría entrada/salida** — «Cada entrada es una salida, cada salida es una entrada» [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0048|c-0048]]: la lógica que sostiene la red flag de entrar con objetivos ya tomados (si la gente sale del long, no es punto de buscar longs).
+
+**C7 — Hacia el objetivo vs desde el objetivo** — «Siempre operar hacia el objetivo o desde el objetivo» (desde el objetivo = buscar reversals); «es mucho más fácil operar hacia el objetivo que desde el objetivo» [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0052|c-0052]].
+
+**C8 — Los tres momentos del mercado** — «El mercado... tiene tres momentos de consolidación, expansión y reversa [ASR: ¿reversal?]» [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0062|c-0062]]; tras una expansión no viene otra expansión sin consolidación+manipulación (R6, UNCERTAIN).
+
+**C9 — La red flag como temporizador del momento de vender** — «El hecho de que te estaba abriendo las velas en contra te decía que aún no era momento de vender»; el momento llegó al recuperar el rango a favor [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0074|c-0074]].
+
+**C10 — Riesgo consciente (excepción explícita)** — «¿Puedes tomar tu short aquí para probar? Sí, claro que puedes. El trading forma parte de riesgo-beneficio. Tú puedes coger aquí un riesgo mayor esperando un beneficio» [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/CLAIMS#c-0107|c-0107]]; el corolario de aceptación es R9.
