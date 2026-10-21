@@ -34,7 +34,7 @@ Este documento es el **planificador único** de la iniciativa. Diseño, tareas, 
 
 ## 📊 Estado actual
 
-`PLAN_V1 / S02R1_IN_PROGRESS_G2_BLOCKED`. S01, S01-R1 y el residual aceptados (G1 aceptado). S02 ejecutado 2026-10-20/21; **S02-R1 (despacho de reparación) en curso**: acoplamiento plataforma↔TGMM reparado y VERDE en tests (camino SG explícito + política de cuenta runtime `RGMM_ACCOUNT_POLICY_V1` + fixture de campaña continua con pases reales), commit checkpoint `82261449` en `experiment/campaign-lab-s02` (push/readback). **Falta para G2 review: E3–E6 reales por platform-batch con identidad de build, RED evidence pre-reparación, coverage ≥95% delta, docs/PHASELESS retirado.** G2 = `blocked` durante la reparación; continúa 2026-10-21 08:00 (límite horario del Owner 02:30). Los shots siguientes requieren la aceptación del gate anterior.
+`PLAN_V1 / S02R1_DELIVERED_G2_REVIEW`. S01, S01-R1 y el residual aceptados (G1 aceptado). S02 ejecutado 2026-10-20/21. **S02-R1 (reparación) EJECUTADO 2026-10-21**: acoplamiento plataforma↔TGMM eliminado (camino SG explícito + política de cuenta runtime `RGMM_ACCOUNT_POLICY_V1` + garantía UNAVAILABLE probada en integración); E1 reutilizado (recibo íntegro), E2/E3/E4/E5/E6 ejecutadas y conciliadas por platform-batch como campañas reales; commits `82261449`, `4ec4f80c` (binario sellado, sha256 `78d6abef…`) y `b7cb0be4` (reportes/tests), push con readback. **G2 = review** (el Owner acepta). Sin S03 hasta la aceptación.
 
 Repositorio remoto histórico observado: `experiment/challenge-history-20261018@07cca9d399f3a4045aadb151dfcec612f192db96`. No hay inspección del working tree de Hefesto desde CLOUD. Rama runtime de referencia: `feature/ef-runtime-pools`; el planner reporta corte aceptado `b13ef43d01098de18856cce0ff95ee2761556071`. Se inspeccionaron contrato R6 y código selectivo, NO se certificó su despliegue.
 
@@ -197,7 +197,7 @@ Partición inicial de investigación: primeras60%, siguientes20%, últimas20% de
 | Gate | current state | phase agent responsibility | owner acceptance evidence | enables |
 |---|---|---|---|---|
 | G1 | accepted por el Owner (despacho SHOT 2, 2026-10-20, sobre `41d5d577`) | kernel/manifiesto y tests; dejar review | Owner evalúa recibos S01 | S02 |
-| G2 | blocked durante S02-R1 (despacho Owner 2026-10-20): reparación del acoplamiento TGMM VERDE en tests (`experiment/campaign-lab-s02` @ `82261449`, pushed); falta E3–E6 reales + cobertura delta + docs | MM geométrico/analytics/config integrado, camino SG de campaña explícito y pruebas cortas | Owner acepta integridad y los ensayos E3–E6 ejecutados/conciliados | S03 |
+| G2 | delivered en review: S02-R1 completo (`experiment/campaign-lab-s02` @ `b7cb0be4`, binario sellado `4ec4f80c`/`78d6abef`): acoplamiento TGMM eliminado, UNAVAILABLE garantizado y probado, E1 reutilizado, E2–E6 ejecutadas/conciliadas como campañas reales | MM geométrico/analytics/config integrado, camino SG de campaña explícito, política de cuenta runtime y pruebas cortas | Owner acepta integridad y los ensayos E2–E6 ejecutados/conciliados | S03 |
 | G3 | pending | catálogo caracterizado y screening finito trazable | Owner acepta resultados y candidatos | S04 |
 | G4 | pending | confirmación temporal y descarte/selección | Owner acepta candidatas >=25% con límites | S05 o nueva ronda versionada |
 | G5 | pending | compatibilidad/runtime y suite de paridad | Owner autoriza integración; LIVE separado | migración prospectiva, no activación automática |
@@ -299,7 +299,7 @@ Cada fila es objetivo | símbolos | precondición | implementación | test | evi
 - [x] T1.5 Entrega | planner/artefactos | T1.4 | revisar diff/publicar evidencia | readback | G1 review #owner/agent
 - [x] T2.1 Analytics causal | owners existentes | G1 accepted | demands ATR/stdev | referencia manual/futuro | recibo #owner/agent
 - [x] T2.2 MM ópt-in | registry/Operation | T2.1 | kernel→órdenes/protección | fills/partials/close | E2E #owner/agent
-- [/] T2.3 Integración corta | runner | T2.2 | <=6 ensayos | invariancias | G2 review #owner/agent — REABIERTA por S02-R1: reparación VERDE en tests (`82261449`); falta ejecutar E3–E6 reales y conciliar
+- [x] T2.3 Integración corta | runner | T2.2 | <=6 ensayos | invariancias | G2 review #owner/agent — RE-EJECUTADA en S02-R1: reparación + E2–E6 reales ejecutadas/conciliadas (`4ec4f80c`); E1 reutilizado
 - [ ] T3.1 Catálogo26 | tape/import | G2 accepted | caracterización | identidad completa | por fila #owner/agent
 - [ ] T3.2 Proyección | tooling aislado | T3.1 | tres riesgos | nulo/costos/seed | aproximación declarada #owner/agent
 - [ ] T3.3 Campaña shortlist | runner | T3.2 | tandas<=6 | oráculos | G3 review #owner/agent
