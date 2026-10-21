@@ -318,6 +318,16 @@ def main():
     tok_c = re.compile(r"\bc-(\d{4})\b")
     tok_s = re.compile(r"\bs-(\d{6})([a-z])?\b")
     claim_ids = set(seen)
+    # Tokens dentro de un wikilink cross-chapter ([[.../CLAIMS#c-XXXX|...]]) no se
+    # validan contra los claims LOCALES: son enlaces de aclaración targeted cuyo
+    # destino validan los checks W (defecto real ch09: las aclaraciones targeted
+    # am-ch09-* de ch07 disparaban V11 por citar claims de ch09).
+    wiki_span = re.compile(r"\[\[[^\]]*\]\]")
+    def _in_cross_wiki(line, pos):
+        for wm in wiki_span.finditer(line):
+            if wm.start() <= pos < wm.end() and "/CLAIMS#" in wm.group(0):
+                return True
+        return False
     for d in DOCS:
         p = os.path.join(lib, d)
         if not os.path.exists(p):
@@ -332,9 +342,11 @@ def main():
                     continue
                 if name + ".png" not in frames:
                     bad("V11", f"{d}:{ln_no}: referencia a frame inexistente {name} (¿histórico? decláralo en .deprecated_frame_names)")
-            for m in tok_c.findall(line):
-                if f"c-{m}" not in claim_ids:
-                    bad("V11", f"{d}:{ln_no}: referencia a claim inexistente c-{m}")
+            for m in tok_c.finditer(line):
+                if _in_cross_wiki(line, m.start()):
+                    continue
+                if f"c-{m.group(1)}" not in claim_ids:
+                    bad("V11", f"{d}:{ln_no}: referencia a claim inexistente c-{m.group(1)}")
             for m in tok_s.findall(line):
                 sid = f"s-{m[0]}" + (m[1] or "")
                 if sid not in sid_set:
