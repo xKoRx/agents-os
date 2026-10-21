@@ -25,7 +25,7 @@ Notas de revisión y decisiones del run. Autoridad de claims: `claims.jsonl` ([[
 
 ## Cobertura y presupuesto de frames
 
-- 18 frames base (manifiesto `frames/.base_frames`) + **70 bajo demanda** extraídos y verificados visualmente por los revisores = 88 PNG; **64 citados** en `claims.jsonl.evidence`. Densidad 4,1/min (capítulo de recorrido continuo multi-TF: el instructor cambia de timeframe ~30 veces; presupuesto por bloque declarado, exceso justificado).
+- 18 frames base (manifiesto `frames/.base_frames`) + **75 bajo demanda** extraídos y verificados visualmente por los revisores = **93 PNG** tras la reconciliación física del 2026-10-21 (ver sección final); **64 citados** en `claims.jsonl.evidence`. Densidad 4,1/min (capítulo de recorrido continuo multi-TF: el instructor cambia de timeframe ~30 veces; presupuesto por bloque declarado, exceso justificado).
 - [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001704.png|f-001704]] (frame final) es el negro de cierre: existe por el manifiesto pero no se cita.
 
 ## Verificación documental independiente (DOCVERIFY) — PASS con correcciones
@@ -34,3 +34,14 @@ Notas de revisión y decisiones del run. Autoridad de claims: `claims.jsonl` ([[
 - Resultado: **3 MATERIAL + 1 MENOR**, todos de prosa documental (claims/transcript/frames sin defectos): F-01 documentation §1 añadía «2 h» a la cadena del descenso del ORO (c-0022 no la tiene: el ORO pasa de 3 h a 1 h) — corregido; F-02 study-guide §7 atribuía al instructor 3 ejercicios de los que sólo 1 es dicho — retitulado «Ejercicios de estudio» con marca dicho/derivado; F-03 examples E3 comprimía «1A→2M mismo target» (el «mismo target» es hasta 3M; 2M es «un poco más cerca», ya completado) — corregido; F-04 rules R10 llevaba la glosa «de TF mayor (en contra)» no dicha — nivelada a la fuente. Los 4 adjudicados CONFIRMADOS y corregidos; re-validación `validate_library.py` PASS + `check_term_sources.py` PASS.
 - Cobertura del verificador: R1–R18 una a una, C1–C10, E1–E4, ~40 claims muestreados con frontera, 833 wikilinks resueltos, métricas README contra artefactos, lifecycle y navegación.
 - Checks deterministas del integrador: `check_term_sources.py` PASS (86 vivos / 0 MATERIAL / 0 TERM_DISAMBIGUATION_REQUIRED) y `validate_library.py` PASS (0 findings).
+
+## Reconciliación física de frames (preflight ch09, 2026-10-21)
+
+El árbol publicado tenía 96 PNG vs 92 indexados (FRAMES.md/README): 4 huérfanos sin referencia. Verificación física contra el video (probes ffmpeg byte-idénticos + reloj de pantalla de la grabación, offset lineal +03:30:07 verificado con dos anclas):
+
+- **f-000075** (nombre inválido, segundos crudos) — ES la captura real del segundo 75 (probe 00:01:15 byte-idéntico, gráfico 2S del ORO con la vela interior y el target ~3.500 que describe el review de [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/CLAIMS#c-0005|c-0005]]). Su "renombrado por fórmula" del run había re-extraído en el segundo 115 (gráfico 5D) dejando el nombre f-000115 con contenido desplazado. **Reparación**: contenido de f-000075 promovido a f-000115 (el nombre canónico del segundo 75); el archivo f-000075 retirado; el nombre queda declarado en `.deprecated_frame_names` (reubicado a la raíz de la biblioteca, donde lo lee el validador). sha256 del contenido preservado: `7d68e92e…e5046`. El contenido 5D desplazado (segundo 115, sha `db61f37f…`) no está citado por ningún claim (c-0006 usa f-000127) y se retira; recuperable por git.
+- **f-000801** — casi-duplicado del citado [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000804.png|f-000804]]: mismo instante (484 s, reloj 03:38:11 idéntico, AUDUSD 8h con el rango dibujándose; sólo difiere el tooltip «...»). Sin referencia. **Retirado como duplicado** (sha `d790fb8d…b6039`, recuperable por git).
+- **f-000814** — **byte-idéntico** al citado [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001334.png|f-001334]] (USDCAD 1h con el diálogo «Cambiar intervalo → 2 minutos», segundo 814): original de staging mal-nombrado desde segundos crudos (814 → «08:14»); el integrador ya lo había re-extraído con nombre correcto. **Retirado como duplicado** (sha `65639ebf…2d5f5b`).
+- **f-001536** — captura real del segundo 15:36 (probe byte-idéntico), frame de auditoría contextual sin claims (entre los citados f-001535 y f-001540). **Conservado e indexado** en FRAMES.md (patrón ch05: los frames descartados por revisores quedan como contexto, sin asociaciones inventadas).
+
+Árbol final: **93 PNG = 18 base + 75 bajo demanda, 64 citados**. Validador V04/V10/W06 en PASS sobre el árbol físico final.
