@@ -19,7 +19,7 @@ updated: "2026-10-21"
 
 ## Propósito
 
-Handoff final de Shot 4 (SHOT4_AUTHORIZED_CORRECTIONS_AND_I1_COMPLETION): correcciones S3-F01–F08, capacidades S3-M01–M06, evidencia S3-E01, límites S3-E02 conservados. Ejecutor: Implementation Submanager LOCAL (motor efectivo GLM-5.3-Flash, host-declarado; el perfil GPT-6-Luna del encabezado del mandato no pudo verificarse desde este runtime y se registra la discrepancia). Corte de entrada `xKoRx/echo@61ac1f720d07513e48b0310b84b5b415b80ff48f`; rama de producto `feature/lab-v4-shot4`; SHA final del candidato `fa24546f` (6 commits, 46 archivos, +6.180/−303). PG descartable propio 54349 (`~/aranea/work/lab-v4-shot4-20261021/pgdata`), sin tocar servicios compartidos ni el clon Shot 2.
+Handoff final de Shot 4 (SHOT4_AUTHORIZED_CORRECTIONS_AND_I1_COMPLETION): correcciones S3-F01–F08, capacidades S3-M01–M06, evidencia S3-E01, límites S3-E02 conservados. Ejecutor: Implementation Submanager LOCAL (motor efectivo GLM-5.3-Flash, host-declarado; el perfil GPT-6-Luna del encabezado del mandato no pudo verificarse desde este runtime y se registra la discrepancia). Corte de entrada `xKoRx/echo@61ac1f720d07513e48b0310b84b5b415b80ff48f`; rama de producto `feature/lab-v4-shot4`; SHA final del candidato `2eccb317` (7 commits desde el corte; los 6 de implementación + 1 de correcciones de la revisión independiente). PG descartable propio 54349 (`~/aranea/work/lab-v4-shot4-20261021/pgdata`), sin tocar servicios compartidos ni el clon Shot 2.
 
 ## Registro de implementación
 
@@ -123,6 +123,10 @@ Sin cambios. PG descartable propio (54349) ya detenido al cierre; sin PROD, trad
 - El read model `strategy_histories.head_revision/head_digest` es mutable por SQL directo de un DBA (el guard protege identidad y DELETE): coherente con el contrato — el head es read model que el servicio mueve; un head alterado hace fallar-cerrado los PUT (precondición) y el CAS del worker, y la cadena autoritaria (revisions/ops/movements/receipts) resiste 15/15 sondas hostiles.
 - `strategy_ingestion_receipts` acepta INSERT directo (guards UPDATE/DELETE only): la consecuencia downstream es fail-closed (digest distinto ⇒ conflicto de negocio, jamás éxito silencioso). Misma trust boundary.
 - Reproducibilidad de N tras N+1: además de la evidencia indirecta, `TestLabWorkerNReproducibleAfterNPlusOne` (añadido tras la revisión) recomputa N desde su snapshot tras existir N+1 y verifica la curva publicada intacta.
+
+## Revisión independiente del delta (contexto fresco)
+
+**SHOT4_DELTA_WITH_FINDINGS** — ejecutada 2026-10-21 por revisor en contexto fresco (mismo perfil autorizado, sesión separada, sin escritura de producto): los 8 defectos S3-F01..F08 CLOSED (23/23 A-repros + 4/4 M-repros con oráculos intactos; refutación SQL directa propia: 15/15 sondas hostiles rechazadas + control positivo del contrato; 6/6 tests comunes baseline PASS en candidato), M01–M05 completados con pruebas propias, M06 parcial declarado honesto, S3-E01 REPRODUCIDO por el revisor (132.805 ops: 884 ops/s, 2m30s; catálogo 20k página ≈60-65ms), S3-E02 intacto (cero renombres/eliminaciones de tests en el delta), sin merge a master, árbol limpio. Hallazgos resueltos dentro de Shot 4 en `2eccb317`: H-1 (MEDIUM) cobertura engine del sello QI + comentario falso corregido; H-2 conteo TestCertification (17 PASS + 1 SKIP deliberado); H-3 log de capacidad preservado; H-4 redacción binario; H-5/H-6 notas de trust boundary documentadas; H-7 aserción explícita N reproducible. Cero sobre-afirmaciones materiales que cambien el veredicto.
 
 ## NEXT
 
