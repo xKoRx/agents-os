@@ -1,12 +1,35 @@
 # METHODOLOGY-FEEDBACK — Clutifx (Course Intelligence)
 
 Feedback de método del curso Clutifx. Objetivo: mejorar los videos siguientes,
-no justificar decisiones pasadas. Estado tras Chapter 07 (2026-10-20; run
-reanudado tras doble reboot del host y ejecutado en modo híbrido por
-agotamiento de cuota del proveedor). Los bloques OBSERVED de Chapters 02–06
-se conservan abajo (§Ch06, §Ch05, §Ch04, §Ch03, §Ch02). La skill canónica
-quedó en v1.2 con hardening ch03–ch06; NO se toca aquí la decisión de Owner
-sobre ASR.
+no justificar decisiones pasadas. Estado tras Chapter 08 (2026-10-20 noche).
+Los bloques OBSERVED de Chapters 02–07 se conservan abajo (§Ch07, §Ch06, §Ch05,
+§Ch04, §Ch03, §Ch02). La skill canónica quedó en v1.2 con hardening ch03–ch07
+(incl. checks W11/W12 de navegación, wikilinker corregido con idempotencia y
+strip de code-spans en W01/W10); NO se toca aquí la decisión de Owner sobre ASR.
+
+## CH08 OBSERVED (medido en Chapter 08)
+
+| Métrica | Valor |
+|---|---|
+| Video | ep08-proceso.mp4 · 17:04.42 · SHA `5495798b…` |
+| ASR_WALL | 30,2 min (**1,76× realtime — el peor rate del curso**; máquina con sesión gráfica y contención; corrobora que el rate ASR depende del estado de la máquina: 0,68× despejada en ch07 vs 1,76× contendida aquí) · 276 segmentos, 97 % habla |
+| EXTRACTION_WALL | 4 bloques secuenciados/emparejados con revisores (~30 min) |
+| REVIEW_WALL | ≈60 min (17 minutos en waves de 4-5; **2 muertes [1210] transitorias del proveedor** — min 2 y min 15 — recuperadas con retry secuencial) |
+| AGENT_WALL | ≈93 min / 17,07 min ≈ **327 min/h-video — OVER (objetivo ≤120)**: contención de CPU + retries [1210] + revisores que extrajeron hasta 12 frames/minuto; registrado sin disfrazar |
+| Claims | 86 (86 SUPPORTED / 0 UNCERTAIN) · 86 instructor_statement / 0 visual_observation (capítulo PROCEDURAL: todo es dicho; los referentes visuales quedan como unresolved_questions, 84 agrupadas en 8 q-ch08-*) |
+| Frames | 18 base + 74 bajo demanda = 92; 64 citados |
+| DOCVERIFY | ver reporte de sesión (fallback `general-purpose`; el especialista sigue caído por provider binding) |
+| Checkpoint 5 min | PASS (min 0–4 VALID en ~20 min; proyección ~200/h-video — sobre objetivo pero <2×, continuado con registro) |
+
+## CH08 LEARNED (para ep09+)
+
+1. **El error [1210] "Invalid API parameter" del proveedor es TRANSITORIO y no determinista por imagen**: el mismo worker lee otros PNG sin problema y un retry secuencial del mismo minuto completa con frames verificados (2/2 recuperados). Protocolo para ep09+: ante un worker muerto con [1210], relanzar el minuto completo; si el retry también falla al leer PNG concreto, emitir veredicto textual con unresolved_questions de lo visual.
+2. **El throughput OVER se debe a causas medibles, no al contrato**: (a) contención de CPU del host (ASR 1,76× vs 0,68×), (b) retries, (c) densidad de frames bajo demanda (4,1/min). Para ep09+ con máquina despejada el objetivo ≤120 es alcanzable (ch07: 74).
+3. **Un run parcial de integrate_reviews.py SOBRESCRIBE claims.jsonl desde el pool**: re-ejecutar SIEMPRE la integración con la lista COMPLETA de minutos; ante minuto re-payloaded (min 14 ampliado por el bloque 4), la review de segunda pasada reemplaza a la primera (conservar la primera como auditoría).
+4. **Los frames bajo demanda viven en /tmp del revisor si el worker no los copia a la biblioteca** (min 3): el integrador debe barrer los staging /tmp/minrev-* y mover los frames citados antes de validar (V03 lo caza).
+5. **Los names de frame a mano siguen apareciendo aun con fórmula documentada** (f-000075 con segundos crudos 75): el validador V04 lo caza; regenerar por fórmula + declarar el nombre inválido en .deprecated_frame_names; NO citar el literal en notes de claims (V11 lo caza aunque el nombre esté declarado — la excepción aplica a referencias, no a notas).
+6. **La epistemic uniforme instructor_statement fue la decisión correcta en un capítulo procedural**: en vez de fabricar visual_observation a partir de stills ambiguos, los referentes visuales quedaron como preguntas (84 → 8 agrupadas); el DOCVERIFY puede concentrarse en el ORDEN y las condiciones del proceso, que es donde vive el conocimiento.
+7. **El wikilinker corregido (citas [c-XXXX] absorbidas, code-spans protegidos, idempotencia probada) pasó su primer run real sin producir una sola doble anidación** — los 8 docs de ch08 se wikilinkearon en un pase.
 
 ## CH07 OBSERVED (medido en Chapter 07, con incidentes)
 
