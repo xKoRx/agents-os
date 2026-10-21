@@ -10,7 +10,7 @@ Dibujar la sesión en 4h (velas 21/17/1; la 1 = London [[10-projects/Personal/Mu
 
 ## 3. Los tres escenarios de London
 1. TS ya hecho + rango claro → esperar la expansión en nuestra vela (el setup ideal [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0010|c-0010]], resumen [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0031|c-0031]]).
-2. TS por hacer → London puede no hacer nada [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0030|c-0030]]; día a menudo de noticias; evitar London, preparar compras para New York [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0034|c-0034]].
+2. TS por hacer → London puede no hacer nada [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0013|c-0013]]; día a menudo de noticias; evitar London, preparar compras para New York [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0016|c-0016]].
 3. Expansión ya pasada → buscar un rango pendiente a favor hacia el DOL [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0032|c-0032]] (el que da "la precisión máxima").
 La peor situación: llegar con el DOL ya tomado [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0039|c-0039]]; red flag de apertura por arriba = rango reiniciado [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0033|c-0033]]; rangos en contra = no operar [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0035|c-0035]].
 
@@ -22,7 +22,7 @@ Continuación o reversal [[10-projects/Personal/Multimodal Knowledge Engine/know
 
 ## 6. Ejercicios sugeridos por el instructor
 - Comprobar la "composición de velas" en gráfico propio (sin tratarla como patrón: puede estar en 3/5/6/8h [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0227|c-0227]]).
-- Backtesting + ver el gráfico en tiempo real cada día [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0236|c-0236]].
+- Backtesting + ver el gráfico en tiempo real cada día [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0224|c-0224]].
 - Practicar la lectura de aperturas de vela (5 y 9) contra el objetivo [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0166|c-0166]].
 
 ## 7. Advertencias del capítulo
