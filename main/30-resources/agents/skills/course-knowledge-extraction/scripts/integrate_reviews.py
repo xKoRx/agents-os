@@ -18,7 +18,15 @@ Efectos por review válido (results[i] sobre claims-pool.jsonl[claim_key]):
   - corrections_suggested se LISTAN en stdout para que el integrador las
     revise y las aplique al pool (nunca se aplican automáticamente al statement).
 
-Exit 0 = aplicado (o --dry-run limpio); 1 = algún review inválido (no escribe).
+Seguridad de integración parcial (defecto real ch08: un run de un solo minuto
+sobrescribió claims.jsonl desde el pool, perdiendo las reviews del resto). La
+escritura canónica exige INTEGRACIÓN COMPLETA: los minutos aplicados deben
+cubrir todos los reviews presentes en el run Y todos los claims del pool. Una
+ejecución parcial es sólo --dry-run (no escribe) o escribe un resultado
+PROVISIONAL separado (claims.jsonl.partial) sin tocar el canónico.
+
+Exit 0 = integración completa aplicada (o --dry-run); 1 = algún review
+inválido o integración parcial (no reemplaza el canónico).
 """
 import argparse
 import json
@@ -37,6 +45,12 @@ def _normalize_ref(e):
     return m.group(1) if m else e
 
 
+def discovered_minutes(run):
+    return sorted({int(m[len("review-min"):-5].lstrip("0") or "0")
+                   for m in os.listdir(os.path.join(run, "reviews"))
+                   if m.startswith("review-min") and m.endswith(".json")})
+
+
 def integrate(run, lib, minutes, dry=False, validate="validate_review.py"):
     pool_path = os.path.join(run, "claims-pool.jsonl")
     pool = {}
@@ -45,7 +59,10 @@ def integrate(run, lib, minutes, dry=False, validate="validate_review.py"):
             if line.strip():
                 rec = json.loads(line)
                 pool[rec["key"]] = rec
+    present = discovered_minutes(run)
+    partial = bool(minutes) and set(minutes) != set(present)
     applied, invalid, corrections, normalized = 0, [], [], 0
+    applied_keys = set()
     for m in minutes:
         rp = os.path.join(run, "reviews", f"review-min{m}.json")
         pp = os.path.join(run, "reviews", f"payload-min{m}.json")
@@ -60,6 +77,7 @@ def integrate(run, lib, minutes, dry=False, validate="validate_review.py"):
         rev = json.load(open(rp, encoding="utf-8"))
         for res in rev["results"]:
             c = pool[res["claim_key"]]
+            applied_keys.add(res["claim_key"])
             c["verdict"] = res["verdict"]
             raw = [e for e in res.get("verified_evidence", []) if e]
             ve = [_normalize_ref(e) for e in raw]
@@ -88,13 +106,28 @@ def integrate(run, lib, minutes, dry=False, validate="validate_review.py"):
         print(f"CORRECCIÓN {ck}: {corr[:200]}")
     if invalid:
         return 1
-    if not dry:
-        out = os.path.join(lib, "claims.jsonl")
-        with open(out, "w", encoding="utf-8") as f:
-            for key in sorted(pool):
-                f.write(json.dumps(pool[key], ensure_ascii=False) + "\n")
-        print(f"escrito {out} ({len(pool)} claims)")
-    return 0
+    coverage_ok = applied_keys == set(pool)
+    if not coverage_ok:
+        missing = sorted(set(pool) - applied_keys)
+        print(f"COBERTURA INCOMPLETA: {len(applied_keys)}/{len(pool)} claims del pool "
+              f"sin review aplicado ({', '.join(missing[:8])}...) — no es canónico.")
+    if dry:
+        if partial or not coverage_ok:
+            print("INTEGRACIÓN PARCIAL (dry-run): no escribe nada. "
+                  "Re-ejecutar con la lista COMPLETA de minutos para publicar.")
+            return 1
+        return 0
+    out = os.path.join(lib, "claims.jsonl")
+    if partial or not coverage_ok:
+        out = os.path.join(lib, "claims.jsonl.partial")
+        print(f"INTEGRACIÓN PARCIAL: minutos {minutes} de {present}; escrito "
+              f"PROVISIONAL {out} — el canónico NO se reemplaza (re-ejecutar con "
+              f"la lista COMPLETA de minutos).")
+    with open(out, "w", encoding="utf-8") as f:
+        for key in sorted(pool):
+            f.write(json.dumps(pool[key], ensure_ascii=False) + "\n")
+    print(f"escrito {out} ({len(pool)} claims)")
+    return 0 if not (partial or not coverage_ok) else 1
 
 
 def main():
@@ -109,11 +142,7 @@ def main():
     if not validate:
         here = os.path.dirname(os.path.abspath(__file__))
         validate = os.path.join(here, "validate_review.py")
-    minutes = a.minutes
-    if not minutes:
-        minutes = sorted({int(m[len("review-min"):-5].lstrip("0") or "0")
-                          for m in os.listdir(os.path.join(a.run, "reviews"))
-                          if m.startswith("review-min") and m.endswith(".json")})
+    minutes = a.minutes if a.minutes else discovered_minutes(a.run)
     sys.exit(integrate(a.run, a.lib, minutes, dry=a.dry_run, validate=validate))
 
 
