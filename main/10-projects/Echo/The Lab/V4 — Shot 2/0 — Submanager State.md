@@ -2,7 +2,7 @@
 
 **Role:** Implementation Submanager / Technical Integration Lead (mandato maestro 2026-10-20). **Engine:** GLM-5.3-Flash Max LOCAL. **Estado global:** ver [[F — Decision Register]] §V4 y [[Echo — Producto Integrado]].
 
-**Gate vigente:** dictamen Manager 2026-10-21 `TECHNICAL_FREEZE_REPAIR_REQUIRED` (R01–R06) sobre el paquete rev 1 (blob `6f1d3982`). **Respuesta:** paquete REVISIÓN 2 emitido 2026-10-21 (`1 — TECHNICAL_FREEZE_PACKET.md`) con estado pedido `TECHNICAL_FREEZE_READY_V2` + evidencia publicada (`2 — Preflight Evidence (U01–U06).md`). Este estado sigue SIN autorizar edición de producto: espera la ÚNICA aceptación.
+**Gate vigente:** dictamen Manager 2026-10-21 (V2) `TECHNICAL_FREEZE_REPAIR_REQUIRED_V2` (C01–C06) sobre blob `40c16d50` (rev 2, commit `3baaaf81`). **Respuesta:** paquete REVISIÓN 3 emitido 2026-10-21 con estado pedido `TECHNICAL_FREEZE_READY_V3` — corrige sólo C01–C06 (mecanismo de migración real con `lab_migration_state` auto-registrada y 066 jamás ficticia; receta `definition-v1` con `identity_recipe` sellada, analytic-v1 retirada; QI_SEALED en la primera decisión MM del ciclo; economía por Operation con correlación y movimientos al reconocerse; sin GC concurrente en I1 + cadena única de revisiones; grano de historia intacto con límites 128 MiB/250k ops/1M movements) y el fallback de autoabsorción eliminado (despacho alternativo o escalación). Evidencia actualizada (E05/E08/E09/E12 + tabla correcciones rev 3). Espera la ÚNICA aceptación; sin editar producto.
 
 ## Baselines verificados (2026-10-21, daedalus)
 
