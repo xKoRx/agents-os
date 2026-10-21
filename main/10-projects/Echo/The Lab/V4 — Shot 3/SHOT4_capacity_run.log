@@ -1,0 +1,5 @@
+=== RUN   TestLabCapacity132kOperationsSingleHistory
+    lab_capacity_test.go:90: CAPACITY: 132805 operaciones íntegras en una historia via servicio común: 2m40.331s (ops/s=828), receipt rev=1
+--- PASS: TestLabCapacity132kOperationsSingleHistory (181.09s)
+PASS
+ok  	github.com/xKoRx/echo/v3/sdk/postgres	181.140s

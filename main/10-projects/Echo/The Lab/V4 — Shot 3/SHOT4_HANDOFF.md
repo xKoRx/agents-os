@@ -30,7 +30,7 @@ Handoff final de Shot 4 (SHOT4_AUTHORIZED_CORRECTIONS_AND_I1_COMPLETION): correc
 | `99574e0f` | P6 | S3-M03 encolado transaccional + worker + 4 perfiles + métricas B.6.5 |
 | `52fe4cb9` | P7 | S3-M04 read models paginados + rutas gateway + tab Vue + metadata Hasura aditiva (archivo) |
 | `540e045c` | P8 | S3-M05 composición estática (D11) |
-| `fa24546f` | P9 | S3-M06/E01 capacidad medida + binario lab-worker-v4 + orden canónico O(n log n) |
+| `fa24546f` | P9 | S3-M06/E01 capacidad medida + worker `cmd/lab-worker-v4` (source buildable, verificado por el revisor) + orden canónico O(n log n) |
 
 ## Matriz S3-F → resolución → evidencia
 
@@ -50,7 +50,7 @@ Handoff final de Shot 4 (SHOT4_AUTHORIZED_CORRECTIONS_AND_I1_COMPLETION): correc
 | ID | Estado | Evidencia |
 |---|---|---|
 | S3-M01 | COMPLETADO (G11 acotado) | Rutas reales POST/GET/PUT + receipt lookup + catálogo; 128 MiB/413/409/412 probadas; recorrido request→receipt→historia→lectura→PUT→N+1 en HTTP real+PG (`TestStrategyHistoryV2_FullVertical`). **G11 Forge auténtico: PENDING_AUTHENTIC_ARTIFACT** (fallback del mandato: fixtures sintéticos prueban contrato; sin artefacto auténtico accesible) |
-| S3-M02 | COMPLETADO | QI_SEALED una sola vez en la primera decisión que abre riesgo (gerardmm sella en MMState `cycle_budget_*`/`entry_risk_*`; engine sella tras admitir órdenes; sello tardío rechazado como observación, jamás como decisión); `lab/opfacts`: identificación específica (A/B lógico 5 vs FIFO cuenta 15, delta visible), parciales 0.8R−0.3R−0.1R=0.4R una operación terminal, costes publicados en ciclo abierto, terminalidad concilia net=Σ; publisher → MISMO servicio común (modo BACKTEST probado sin venue) |
+| S3-M02 | COMPLETADO | QI_SEALED una sola vez en la primera decisión que abre riesgo (gerardmm sella en MMState `cycle_budget_*`/`entry_risk_*`; engine sella tras admitir órdenes; sello tardío rechazado como observación, jamás como decisión — cobertura engine `TestQISeal_*`, añadida tras la revisión independiente); `lab/opfacts`: identificación específica (A/B lógico 5 vs FIFO cuenta 15, delta visible), parciales 0.8R−0.3R−0.1R=0.4R una operación terminal, costes publicados en ciclo abierto, terminalidad concilia net=Σ; publisher → MISMO servicio común (modo BACKTEST probado sin venue) |
 | S3-M03 | COMPLETADO | Encolado transaccional en la tx del head + coalescing de objetivos superados (QUEUED→STALE); claim SKIP LOCKED + lease + fencing (=attempt); publicación atómica CAS contra manifiesto completo; worker obsoleto NO publica sobre head nuevo; oráculos: +114 una vez, 10.100 simultáneo, 10.098 secuencial; N reproducible tras N+1; INSUFFICIENT_DATA/CAPITAL_EXHAUSTED honestos |
 | S3-M04 | COMPLETADO (metadata PREPARADA, no aplicada) | Catálogo paginado con cursor estable; perfiles unidos SÓLO a la revisión del head (una generación coherente); STALE visible mientras se calcula; faltantes explícitos (missing ≠ cero); detalle D16/MM + operaciones paginadas; tab Vue read-only (sin recálculo financiero en front); metadata Hasura aditiva read-only en repo — **NO aplicada a ningún Hasura compartido** (requiere ownership) |
 | S3-M05 | COMPLETADO | 60/40 ⇒ allocations 6000/4000, cash explícito, pesos ≤1 (sin préstamos), flat start excluye historial previo reportándolo, contribución = capital_i×(V/V_base−1) (jamás suma dos curvas de 10k), insuficiencia propagada, resultado etiquetado RETROSPECTIVO; servicio PG valida D11 transaccionalmente |
@@ -117,6 +117,12 @@ Sin cambios. PG descartable propio (54349) ya detenido al cierre; sin PROD, trad
 5. **Selección principal/alternativas UI** (tabla 069 existe; lifecycle de selección para dashboard en I2).
 6. **SLOs operacionales**: la medición de capacidad es de desarrollo (disposable local); SLOs de producción requieren ventana compartida autorizada.
 7. **Engine efectivo**: GLM-5.3-Flash (host); discrepancia con GPT-6-Luna del encabezado registrada, sin atribuir trabajo a otro motor.
+
+## Notas de trust boundary (hallazgos INFO del revisor)
+
+- El read model `strategy_histories.head_revision/head_digest` es mutable por SQL directo de un DBA (el guard protege identidad y DELETE): coherente con el contrato — el head es read model que el servicio mueve; un head alterado hace fallar-cerrado los PUT (precondición) y el CAS del worker, y la cadena autoritaria (revisions/ops/movements/receipts) resiste 15/15 sondas hostiles.
+- `strategy_ingestion_receipts` acepta INSERT directo (guards UPDATE/DELETE only): la consecuencia downstream es fail-closed (digest distinto ⇒ conflicto de negocio, jamás éxito silencioso). Misma trust boundary.
+- Reproducibilidad de N tras N+1: además de la evidencia indirecta, `TestLabWorkerNReproducibleAfterNPlusOne` (añadido tras la revisión) recomputa N desde su snapshot tras existir N+1 y verifica la curva publicada intacta.
 
 ## NEXT
 
