@@ -325,7 +325,7 @@ def main():
     wiki_span = re.compile(r"\[\[[^\]]*\]\]")
     def _in_cross_wiki(line, pos):
         for wm in wiki_span.finditer(line):
-            if wm.start() <= pos < wm.end() and "/CLAIMS#" in wm.group(0):
+            if wm.start() <= pos < wm.end() and ("/CLAIMS#" in wm.group(0) or "/transcript#" in wm.group(0)):
                 return True
         return False
     for d in DOCS:
@@ -347,8 +347,10 @@ def main():
                     continue
                 if f"c-{m.group(1)}" not in claim_ids:
                     bad("V11", f"{d}:{ln_no}: referencia a claim inexistente c-{m.group(1)}")
-            for m in tok_s.findall(line):
-                sid = f"s-{m[0]}" + (m[1] or "")
+            for m in tok_s.finditer(line):
+                if _in_cross_wiki(line, m.start()):
+                    continue
+                sid = f"s-{m.group(1)}" + (m.group(2) or "")
                 if sid not in sid_set:
                     bad("V11", f"{d}:{ln_no}: referencia a segmento inexistente {sid}")
 
