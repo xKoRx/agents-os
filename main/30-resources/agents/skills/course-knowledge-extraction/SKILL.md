@@ -229,6 +229,16 @@ biblioteca: <ruta absoluta>
 ```text
 scripts/validate_library.py <lib> [--duration-seconds N]  # V01-V13; PASS|FAIL
 scripts/validate_review.py <payload.json> <review.json>   # cardinalidad R01-R04
+scripts/integrate_reviews.py --run <run> --lib <lib> [minutos...]
+                                                          # aplica reviews al pool y escribe
+                                                          # claims.jsonl; el canónico SOLO se
+                                                          # escribe con integración COMPLETA
+                                                          # (todos los reviews del run + cobertura
+                                                          # total del pool); una ejecución parcial
+                                                          # escribe sólo claims.jsonl.partial y
+                                                          # sale 1 (defecto real ch08: un run de un
+                                                          # minuto sobrescribió el canónico desde
+                                                          # el pool)
 scripts/make_minute_payload.py <transcript.md> <claims> <min> <out>
 scripts/tests/fixtures_selftest.py                        # red-green del validador
 scripts/add_block_anchors.py <transcript.md>              # anchors ^s- idempotentes
