@@ -228,6 +228,12 @@ biblioteca: <ruta absoluta>
 
 ```text
 scripts/validate_library.py <lib> [--duration-seconds N]  # V01-V13; PASS|FAIL
+                                                          # V11 exime los tokens dentro de wikilinks
+                                                          # cross-chapter ([[…/CLAIMS#c-…]] o [[…/transcript#^s-…]]:
+                                                          # su destino lo validan los checks W) — el token
+                                                          # desnudo de otro capítulo sigue fallando
+                                                          # (aclaraciones targeted am-ch09-*, regresión en
+                                                          # fixtures_selftest caso I)
 scripts/validate_review.py <payload.json> <review.json>   # cardinalidad R01-R04
 scripts/integrate_reviews.py --run <run> --lib <lib> [minutos...]
                                                           # aplica reviews al pool y escribe

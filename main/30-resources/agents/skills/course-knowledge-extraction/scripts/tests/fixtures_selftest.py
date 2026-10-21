@@ -163,6 +163,20 @@ def main():
     ok &= expect("H preguntas sin links a claims (W11) + guía sin claims/reglas (W12)",
                  v_plain, False, {"W11", "W12"})
 
+    # --- I: V11 exime tokens dentro de wikilinks cross-chapter (aclaraciones
+    # targeted; defecto real ch09: am-ch09-* de ch07 citaba claims/segmentos de
+    # ch09 y disparaba V11 chapter-local). Un token DESNUDO de otro capítulo
+    # sigue fallando.
+    v_x = os.path.join(tmp, "vault", "ch00-cross")
+    shutil.copytree(lib_v, v_x)
+    rel_other = "course/ch09-fx"
+    open(os.path.join(v_x, "review-notes.md"), "w", encoding="utf-8").write(
+        "# rn\n\nAclaración targeted: ver [[%s/CLAIMS#c-0001|c-0001 de otro capítulo]] "
+        "y [[%s/transcript#^s-000010|s-000010]]; verificación W resuelve el destino.\n"
+        "Pero el token desnudo c-9999 y s-999999 de otro capítulo sí es ruido local.\n" % (rel_other, rel_other))
+    ok &= expect("I wikilink cross-chapter exento de V11 (token desnudo sigue fallando)",
+                 v_x, False, {"V11"})
+
     shutil.rmtree(tmp)
     print("FIXTURES_SELFTEST =", "PASS" if ok else "FAIL")
     sys.exit(0 if ok else 1)
