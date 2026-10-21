@@ -10,17 +10,17 @@ parent: "[[RIO E2E local]]"
 sprint:
 start: "2026-10-13"
 due:
-progress: 66
+progress: 90
 repo:
 jira:
-prs: ["https://github.com/melisource/fury_rio-controlplane-flink/pull/209", "https://github.com/melisource/fury_rio-controlplane-flink/pull/211"]
+prs: ["https://github.com/melisource/fury_rio-controlplane-flink/pull/209", "https://github.com/melisource/fury_rio-controlplane-flink/pull/211", "https://github.com/melisource/fury_rio-controlplane-flink/pull/213"]
 aliases: []
 tags:
   - kind/project
   - area/meli
   - project/cp-flink-local
 created: "2026-10-13"
-updated: "2026-10-19"
+updated: "2026-10-21"
 ---
 
 # CP Flink local
@@ -33,21 +33,40 @@ CP Flink levantable en local con los flujos que soporta develop, sin Playmaker.
 
 | PR | Alcance | Rama / PR | Estado |
 |---|---|---|---|
-| 1 | SQL PROVISION, DEPROVISION, acciones start/stop y estado en runtime | `feature/rio-e2e-local-flink-kiss` @ `05d46cfd` · [#209](https://github.com/melisource/fury_rio-controlplane-flink/pull/209), base `develop` | Fury #1356 y CodeQL PASS; 1937 tests productivos + 19 locales, líneas 96,06%; descripción actualizada. E2E físico no repetido en esta recuperación de CI |
-| 2 | SQL UPDATE + CRUD HTTP de SQL + JAVA/JAR | `feature/rio-e2e-local-flink-pr2` @ `0728044c` · [#211](https://github.com/melisource/fury_rio-controlplane-flink/pull/211), base `feature/rio-e2e-local-flink-kiss` (#209) | Certificación previa en 0728044c: E2E físico y CI PASS. Nueva mejora opcional de recuperación de sesiones pendiente, [seguimiento desde #209](https://github.com/melisource/fury_rio-controlplane-flink/pull/211#issuecomment-6276874011) |
-| 3 | PYTHON/ZIP | `feature/rio-e2e-local-flink-pr3` @ `aaec54bd`, base `feature/rio-e2e-local-flink-pr2` (#211) | Implementado y certificado: 1937 productivos + 22 locales + pre-commit PASS, E2E físico completo PASS en aaec54bd (incluye PYTHON/ZIP con UDF y cache hit), cleanup 0/0, token ausente de imagen y log. Pusheado; PR draft [#213](https://github.com/melisource/fury_rio-controlplane-flink/pull/213) contra #211. Descripción: [[Descripción PR — rio-controlplane-flink (E2E local PR 3)]] |
+| 1 | SQL PROVISION, DEPROVISION, acciones start/stop y estado en runtime | `feature/rio-e2e-local-flink-kiss` @ `05d46cfd` · [#209](https://github.com/melisource/fury_rio-controlplane-flink/pull/209), base `develop` | Mergeado a `develop` el 2026-10-19 como squash `0b60e64b` (un solo padre); aprobado, CI verde |
+| 2 | SQL UPDATE + CRUD HTTP de SQL + JAVA/JAR | `feature/rio-e2e-local-flink-pr2` @ `1178e1d6` · [#211](https://github.com/melisource/fury_rio-controlplane-flink/pull/211), base `develop` | F1/F2 de recuperación corregidos: ausencia 404 confirmada durante 5 s sólo para envíos inciertos; cierre idempotente ante SqlGatewayException de sesión ausente con identidad exacta. 1937 productivos + 43 locales y hooks PASS; reconciliación nueva 100% líneas/ramas. CodeQL PASS en el SHA publicado. Recertificación E2E física en curso; quedan dos hilos pendientes de marcar como resueltos |
+| 3 | PYTHON/ZIP | `feature/rio-e2e-local-flink-pr3` @ `2b5ff6ae` · [#213](https://github.com/melisource/fury_rio-controlplane-flink/pull/213), base #211 | Sincronizado con #211 mediante merge `ce8325cc`. Limpieza inmediata de ZIP inválido y liberación de extracciones válidas tras terminación confirmada; conservación ante lanzamiento/cancelación inciertos y reintento ante fallo de disco. 1937 productivos + 67 locales y hooks PASS; extractor 96,55% líneas/100% ramas. E2E físico del SHA nuevo pendiente. Los fixes previos de allowlist, ZIP nuevo por ejecución y extensión nula siguen cubiertos; hilos pendientes de marcar como resueltos |
 
 Fuera de alcance: GCP y Playmaker; la integración Playmaker se entrega aparte, apilada como en ClickHouse.
 
 JAR de PR 2: stub Nexus con nginx oficial y TopSpeedWindowing.jar de la imagen Flink; queries y validación de paths productivas conservadas, HTTP sólo para `nexus-local`. El SHA `0728044c` conserva ConcurrentHashMap y omite entryClass/programArgs con valor null. Certificación registrada el 2026-10-14: 1937 tests productivos, 20 locales y pre-commit PASS; E2E físico completo PASS en una corrida, con cache hit de JAR sin descarga nueva desde Nexus y SQL retenido después de DEPROVISION. En esa corrida se verificó cleanup con 0 contenedores y 0 redes `rio-*`, VM sana y encendida, worktree limpio y src/main/src/test sin diff contra develop y la base `c0cabe72`. Descripción en inglés publicada y verificada contra [[Descripción PR — rio-controlplane-flink (E2E local PR 2)]]. El traspaso del 2026-10-19 añadió sólo el seguimiento opcional; no modificó la rama de PR 2 ni repitió esa certificación.
 
+### ▶ Próxima sesión: E2E con Playmaker + CP Flink
+
+- **Objetivo:** integrar Playmaker con el CP Flink en el E2E local y validar todos los flujos de la serie (SQL, SQL UPDATE, SQL CRUD, JAVA/JAR, PYTHON/ZIP, stop/start, runtime status, fallas) end-to-end vía Playmaker, como un PR propio en `fury_rio-playmaker`.
+- **Patrón a seguir:** la integración ClickHouse, ya mergeada: PM [#1286](https://github.com/melisource/fury_rio-playmaker/pull/1286) (Kafka) y [#1288](https://github.com/melisource/fury_rio-playmaker/pull/1288) (ClickHouse, `feature/rio-e2e-local-clickhouse-kiss`, worktree `rio-playmaker-rio-e2e-clickhouse`). Hub de integración: Playmaker `local/RIO_E2E.md`, que hoy registra a Flink como gap.
+- **Base CP Flink:** `feature/rio-e2e-local-flink-pr3` @ `438d2b9b` contiene la serie completa; si #211/#213 se mergean antes, usar `develop`. Validación standalone vigente: prompt de QA de la sesión 2026-10-20 (no persistido).
+- **Contrato Flink que Playmaker consume:** `describeApp` = salud (FAILED gana: un PROVISION con FAILED+RUNNING falla); `describeForDeletion` = actividad (stop/update/delete); `create()` idempotente; resultados en `rio-deployment-result-local` y `rio-action-result-local`; runtime en `rio-component-runtime-status-local` (POLL cada 60 s).
+- **Riesgos conocidos:** undeploy = develop-gap en Playmaker (`already_terminal`/`terminal_component_run`), no se toca; PRs abiertos de otra sesión que cambian estados: CP Flink [#214](https://github.com/melisource/fury_rio-controlplane-flink/pull/214) (gate de última acción) y PM [#1318](https://github.com/melisource/fury_rio-playmaker/pull/1318) (SIG-650, FAILED sobre servicios terminados). Regla dura: sólo implementación local, sin lógica de negocio.
+- **Comportamientos de develop que el E2E con Playmaker va a observar (QA 2026-10-21, no son bugs de la serie):** (1) un PROVISION repetido sobre una app RUNNING redepliega: `CheckToCreateAppInAWSHandler` la deriva a STOP_TO_UPDATE → update → start, igual que KDA, y reemplaza los job IDs sin duplicarlos; (2) `PublishStateChangeCommand` publica RUNNING→READY como `FAILED` hacia Playmaker, de modo que un stop legítimo visto por el POLL de 60 s sin pasar por STOPPING llega como FAILED; es el falso FAILED que aborda CP Flink #214.
+- **Pendientes de esta serie:** review humano de #211; tras su merge, retarget de #213 a `develop`. #213 figura listo para revisión en GitHub.
+
 ## ✅ Tareas
 
-- [ ] En PR 2 (#211), conservar el handle de la sesión de reemplazo si fallan el DELETE anterior y el de compensación; reintentar el cierre y ampliar `retainsOriginalStateWhenReplacementSessionCleanupAlsoFails` para demostrar la recuperación. [Seguimiento](https://github.com/melisource/fury_rio-controlplane-flink/pull/211#issuecomment-6276874011) · [sugerencia de Karla](https://github.com/melisource/fury_rio-controlplane-flink/pull/209#discussion_r4318564696). #owner/me #type/dev #area/meli
+- [x] En PR 2 (#211), conservar el handle de la sesión de reemplazo si fallan el DELETE anterior y el de compensación; reintentar el cierre y ampliar `retainsOriginalStateWhenReplacementSessionCleanupAlsoFails` para demostrar la recuperación. [Seguimiento](https://github.com/melisource/fury_rio-controlplane-flink/pull/211#issuecomment-6276874011) · [sugerencia de Karla](https://github.com/melisource/fury_rio-controlplane-flink/pull/209#discussion_r4318564696). #owner/me #type/dev #area/meli
 - [ ] Fix en develop del doble dispatch de CreateAppInAWSHandler y StartAppInAWSHandler que compensa LocalFlinkEventMulticaster; entrega fuera de local. #owner/me #type/dev #area/meli
 - [ ] Corregir `component_type: null` en el resultado del undeploy; entrega fuera de local. #owner/me #type/dev #area/meli
 
 ## 📆 Bitácora
+
+- **2026-10-21 — revalidación F1/F2 y limpieza Python:** fixes publicados en `1178e1d6` (#211) y `2b5ff6ae` (#213), con merge conservador `ce8325cc`. Tres regresiones nuevas fallan contra `6847ab66`; seis de limpieza Python fallan contra `ce8325cc` y pasan con los fixes. El E2E ahora comprueba que el volumen de extracciones quede vacío tras DEPROVISION. Validación física nueva en curso. [[2026-10-21-flink-pr211-pr213-recovery-comments]].
+
+- **2026-10-21 — PR 3:** merge conservador de #211 vigente y tres comentarios de #213 aplicados/publicados en `438d2b9b`. UPDATE Python ya no reutiliza módulos ni archivos requeridos de un ZIP anterior; nombres seguros y extensión nula cubiertos. 1937 productivos + 53 locales y hooks PASS, extractor 100% líneas/ramas; E2E físico completo PASS sobre el JAR publicado, tres extracciones Python distintas con permisos 755, cleanup 0 contenedores/0 redes rio-* y volumen propio eliminado. Checks CI/CodeQL/cobertura/dependencias/análisis estático/workflow PASS. [[2026-10-21-flink-pr213-review-comments]].
+
+- **2026-10-21:** comentarios de #211 atendidos en `48de148b` (UPDATE) y `44adcafd` (JAR/properties), publicados en la rama del PR. 1937 tests productivos + 33 locales y hooks staged PASS; cinco nuevas regresiones fallan sobre el código previo. Tres hilos humanos respondidos y resueltos. E2E físico completo PASS y cleanup 0/0 en `44adcafd`. Dos bordes posteriores del bot corregidos en `febd460f` (rechazo JAR 4xx) y `6847ab66` (DELETE con sesiones pendientes): 1937 productivos + 36 locales y hooks staged PASS; cinco hilos respondidos/resueltos. Recertificación física completa PASS en `6847ab66` (incluye SQL, UPDATE, CRUD, JAVA/JAR y cache hit), cleanup 0/0, CI y CodeQL PASS, Code Reviewer NEUTRAL sin nuevos hilos. Worktree limpio, sin diff en src/main/src/test contra origin/develop. PR 3 conserva su base anterior `91cdd5f8`; no se sincronizó en este trabajo. [[2026-10-21-flink-pr211-review-comments]].
+
+- **2026-10-20:** descripciones de #211 (`feature/rio-e2e-local-flink-pr2` @ `91cdd5f8`, base `develop`) y #213 (`feature/rio-e2e-local-flink-pr3` @ `e7e12bff`, base #211) reescritas como serie alineada con #209 y publicadas en GitHub: [[Descripción PR — rio-controlplane-flink (E2E local PR 2)]] · [[Descripción PR — rio-controlplane-flink (E2E local PR 3)]].
+- **2026-10-20:** #209 entró como squash, así que #211 quedó con conflictos en 9 archivos y sin los últimos 5 commits de PR 1. Se mergeó `feature/rio-e2e-local-flink-kiss` en PR 2 (`9d3253ac`) y luego `develop` (`67081cde`). En la resolución: la ejecución SQL delega en `LocalFlinkSqlOperations`; `update()` registra el reemplazo sin pasar por el `create()` idempotente de PR 1 y valida con la vista de actividad; cancelación y reemplazo de sesión pasan a `LocalFlinkJobLauncher` por PMD GodClass. Mejora de Karla en `03e681b7`: el handle de la sesión de reemplazo se conserva y el siguiente stop reintenta cerrarlo. El caso FAILED+RUNNING de `local/e2e.py`, roto también en develop, ahora lee desde el offset actual (`91cdd5f8`). PR 3 re-sincronizado (`c6fd48cf`, `e7e12bff`), con la extracción ZIP en `LocalFlinkPythonArchive`. E2E físico PASS en ambas ramas. Seguimiento respondido en [#211](https://github.com/melisource/fury_rio-controlplane-flink/pull/211#issuecomment-6305674796). Pendiente: pedir review de #211.
 
 - **2026-10-19:** #209 recuperado con commit vacío `05d46cfd`; Fury #1356 y CodeQL PASS, sin cambios de archivos en el relanzamiento. Descripción existente modificada en GitHub y [[Descripción PR — rio-controlplane-flink (E2E local)]]. La mejora opcional de Karla quedó pendiente en #211 y fue [respondida con la referencia cruzada](https://github.com/melisource/fury_rio-controlplane-flink/pull/209#discussion_r4318662950). Próximo: implementarla y validarla en PR 2. [[2026-10-19-codex-unknown-flink-pr209-fury-ci]] · [[2026-10-19-flink-pr209-fury-ci-session-feedback]].
 

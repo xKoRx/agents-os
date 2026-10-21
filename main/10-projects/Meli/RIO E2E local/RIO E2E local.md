@@ -13,7 +13,7 @@ due:
 progress: 75
 repo:
 jira:
-prs: ["https://github.com/melisource/fury_rio-playmaker/pull/1286", "https://github.com/melisource/fury_rio-controlplane-kafka/pull/86", "https://github.com/melisource/fury_rio-controlplane-clickhouse/pull/342", "https://github.com/melisource/fury_rio-playmaker/pull/1288", "https://github.com/melisource/fury_rio-controlplane-flink/pull/209", "https://github.com/melisource/fury_rio-controlplane-flink/pull/211"]
+prs: ["https://github.com/melisource/fury_rio-playmaker/pull/1286", "https://github.com/melisource/fury_rio-controlplane-kafka/pull/86", "https://github.com/melisource/fury_rio-controlplane-clickhouse/pull/342", "https://github.com/melisource/fury_rio-playmaker/pull/1288", "https://github.com/melisource/fury_rio-controlplane-flink/pull/209", "https://github.com/melisource/fury_rio-controlplane-flink/pull/211", "https://github.com/melisource/fury_rio-controlplane-flink/pull/213"]
 aliases: ["rio-e2e-local", "RIO local E2E", "Ecosistema RIO E2E local"]
 tags:
   - kind/project
@@ -38,6 +38,10 @@ Diseñar y luego implementar un entorno local reproducible con cinco aplicacione
 Base fijada por el owner: rio-deployment-trigger-local y rio-deployment-result-local, sin bridge Kafka→HTTP externo ni embebido. Minimizar cambios productivos, conservar contratos y usar Clean, SOLID, KISS y YAGNI para justificar cada pieza nueva. El challenge y el consenso están completos; en el HEAD actual de PM #1286, los siete E2E del stack local pasan. Los flujos de undeploy/DEPROVISION que dependen del comportamiento defectuoso de develop permanecen etiquetados develop-gap (ver bitácora). El alcance posterior conserva CH/Flink/front.
 
 ## Estado vigente
+
+- **2026-10-21 — CP Flink #213 sincronizado y comentarios corregidos:** `438d2b9b` incorpora #211 @ `6847ab66` y los tres comentarios de revisión de Python/ZIP. 1937 productivos + 53 locales, hooks y E2E físico completo PASS; CI, CodeQL, cobertura, dependencias, análisis estático y workflow SUCCESS. Cleanup 0 contenedores/0 redes rio-*, worktree limpio. #213 listo para revisión y MERGEABLE; detalle en [[CP Flink local]] y [[2026-10-21-flink-pr213-review-comments]].
+
+- **2026-10-20 — CP Flink standalone completo; sigue integración Playmaker:** #209 mergeado (squash `0b60e64b`); #211 @ `91cdd5f8` listo para review y #213 draft @ `e7e12bff`, ambos con E2E físico completo PASS y descripciones publicadas como serie. PM #1286 y #1288 ya están mergeados, así que la integración Playmaker + Flink parte de `develop` con el patrón de ClickHouse. Detalle y contrato en [[CP Flink local]] («Próxima sesión»). [[2026-10-20-flink-pr211-pr213-sync-updated]].
 
 - **2026-10-19 — PM #1288, pipeline verde:** el owner exige pipeline verde. `e0c91cb8e` corrige una carrera de verificación asíncrona en `DeploymentFlowAcceptanceCriteria` que hizo fallar x86 en CI 6321 sobre `5be401023`; ARM había pasado. Fix test-only, mismas aserciones y sin cambio productivo. Hooks PASS; regresión fresca 4889 casos, 0 fallos/errores y 2 skips heredados. [Pipeline 6324](https://rp-ci-java.furycloud.io/blue/organizations/jenkins/rio-playmaker/detail/rio-playmaker/6324/pipeline/) SUCCESS sobre ese SHA; CI, coverage, dependencias, análisis estático y workflow verificados en verde. El comentario de MV resuelto y su evidencia física se conservan; src/main/src/local/src/localIntegrationTest son idénticos a `5be401023`. [[2026-10-19-codex-unknown-rio-e2e-pr1288-mv-actions]].
 
@@ -67,7 +71,7 @@ Entrega multirrepo por fases. F1 tiene ramas/bases y SPEC funcional→técnica�
 | [[ads-signals-frontend]] · fury_ads-signals-frontend | Integración no creada | origin/develop local a3f82abd8a4756d750b8d3ec86e9065df1fec9a4; remoto 01e19bc sin leer | Journeys B1–B3 en el diseño revisado | Sin código si D4 se resuelve por seed | BLOCKED (D4) |
 | [[rio-controlplane-kafka]] · fury_rio-controlplane-kafka | feature/rio-e2e-local-kafka | 6a91937c0664d83f907dec222af8a96b4042c6ae | repo + meli/features/20261009-rio-e2e-local/1-functional/spec.md | repo + meli/features/20261009-rio-e2e-local/2-technical/spec.md | HEAD4e19959: PR #86 publicado, 19 archivos/+1708/−16; `src/main`/`src/test` vacíos; 691+62 `check` PASS, 25/25 `localFunctionalTest` PASS, cleanup completo; ocho hilos respondidos sin resolver; descripción actualizada. [[Descripción PR — rio-controlplane-kafka]] |
 | [[rio-controlplane-clickhouse]] · fury_rio-controlplane-clickhouse | feature/rio-e2e-local-clickhouse, worktreeaislado | fetcheddevelop cf17797ef9bc1eb9b9bdb3329e6c70bfc8231386; originaldirty intacto | SPEC F2 C1–C6/A1/X1–X4 abajo | SharedintakeMVC mínimo/Kafkaembebido/motor25.8.33.6/SQLcliente físico | E2E backend soportado y cleanup PASS; C6 API PM/capabilities externas BLOCKED, F4 NO_EJECUTADO |
-| [[rio-controlplane-flink]] · fury_rio-controlplane-flink | Integración no creada | origin/develop local7c645ea92f86650744a3c5ee1bad0012633ef0e9;1 cambio ajeno | Escenarios a descubrir | Cloud Controller/runtime a verificar | Seam local por demostrar |
+| [[rio-controlplane-flink]] · fury_rio-controlplane-flink | Standalone listo (#209 mergeado, #211, #213); integración Playmaker no creada | origin/develop local7c645ea92f86650744a3c5ee1bad0012633ef0e9;1 cambio ajeno | Escenarios a descubrir | Cloud Controller/runtime a verificar | Seam local por demostrar |
 
 ### Entregables F2 ClickHouse vigentes
 
