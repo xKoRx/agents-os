@@ -36,7 +36,7 @@ Biblioteca de conocimiento del noveno vídeo del curso Clutifx, extraída con la
 | Epistemic | 133 instructor_statement · 4 visual_observation · 0 model_inference |
 | Contradicciones marcadas | 1 (c-0075, CONTRADICTION: temporalidad del ejemplo) |
 | Frames base (fin de minuto) | 35 (minutos 0-33 en MM:59.5 + fin del parcial [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/frames/f-003454.png|f-003454]] — tarjeta de despedida, no citado; manifiesto `frames/.base_frames`) |
-| Frames bajo demanda | 26 (extraídos y verificados visualmente por los revisores, fórmula desde segundos reales), **54 citados** en total; inventario en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/FRAMES|FRAMES]] |
+| Frames bajo demanda | 38 (extraídos y verificados visualmente por los revisores, fórmula desde segundos reales), **54 citados** en total; inventario en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/FRAMES|FRAMES]] |
 | Preguntas abiertas | 16 registradas (q-ch09-001..016): garbles del capítulo (reza, JEP/JP/GIP, S&T, RT es menace, tarjeta breakable, azista, dark del sub), enumeración de red flags, deícticos de dibujo, alcance del hedge de c-0063, temporalidad de c-0075, deudas cross-chapter — ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/OPEN-QUESTIONS|OPEN-QUESTIONS]] |
 | Rules / concepts / examples documentados | 9 / 10 / 18 |
 | Coverage | 35/35 minutos de video con claims y revisión |

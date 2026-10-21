@@ -10,7 +10,7 @@ Decisiones de revisión, garbles y notas de run. La metodología vive en la skil
 - Checkpoint 5 min: ola 1 (min 0-4) 5/5 VALID en ~12 min → proyección ~140 min/h-video (OVER <2×, continuado con registro). Real revisión: 7 olas de 5, ~10 min/ola.
 - Revisión: 35 minutos × 1 revisor ONE-SHOT (**35/35 `MINUTE_REVIEW = VALID`**, cardinalidad exacta verificada por `validate_review.py`). Veredictos: **135 SUPPORTED + 2 UNCERTAIN** (c-0063 alcance del «normalmente», c-0075 contradicción 4h-dicho vs 2h-visible) / 0 UNVERIFIED.
 - Epistemic: 133 instructor_statement + 4 visual_observation (capítulo de definiciones dichas; los frames corroboran referentes).
-- Frames: 35 base (fin de minuto MM:59.5 + final f-003454) + 26 bajo demanda = **61 PNG; 54 citados**. Todos los bajo demanda extraídos por los revisores con fórmula desde segundos reales y verificados visualmente antes de citar.
+- Frames: 35 base (fin de minuto MM:59.5 + final f-003454) + 38 bajo demanda = **73 PNG; 54 citados**. Todos los bajo demanda extraídos por los revisores con fórmula desde segundos reales y verificados visualmente antes de citar.
 
 ## Integración
 
@@ -38,7 +38,7 @@ El ejemplo de fórmula incluido en los prompts de la ola 1 estaba MAL (95 s → 
 
 ## Cobertura y presupuesto de frames
 
-- 35 frames base (manifiesto `frames/.base_frames`) + 26 bajo demanda verificados visualmente = 61 PNG; **54 citados** en `claims.jsonl.evidence`. Densidad 1,75/min (capítulo de definición con ejemplos dibujados; sin exceso injustificado).
+- 35 frames base (manifiesto `frames/.base_frames`) + 38 bajo demanda verificados visualmente = 73 PNG; **54 citados** en `claims.jsonl.evidence`. Densidad 2,09/min (capítulo de definición con ejemplos dibujados; sin exceso injustificado).
 - f-003454 (frame final) es la tarjeta de despedida «GRACIAS»: existe por el manifiesto, no se cita.
 
 ## Verificación final
