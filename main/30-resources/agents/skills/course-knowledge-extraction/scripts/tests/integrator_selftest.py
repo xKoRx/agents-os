@@ -10,8 +10,16 @@ Casos:
   3  cardinalidad rota (falta un claim) -> INVALID, NO escribe claims.jsonl
   4  --dry-run no escribe aunque todos los reviews sean válidos
   5  s- originales se preservan delante y sin duplicar s- verificados
-  6  contador "refs f-.png normalizadas" cuenta SOLO refs que tenían sufijo
+  6  contador "refs f-.png normalizadas" cuenta SOLO refs que traían sufijo
      (defecto real ch05: contaba toda ref f- añadida aunque ya fuera canónica)
+  7  integración PARCIAL (subconjunto de minutos sobre un run con más reviews)
+     NO altera claims.jsonl canónico: escribe claims.jsonl.partial y exit 1
+     (defecto real ch08: un run de un solo minuto sobrescribió el canónico
+     desde el pool, perdiendo las reviews de los minutos omitidos)
+  8  lista explícita de minutos que cubre TODOS los reviews = integración
+     completa: escribe el canónico y exit 0
+  9  pool con claims de un minuto sin review -> cobertura incompleta ->
+     tampoco toca el canónico
 
 Uso:  python3 integrator_selftest.py
 """
@@ -28,6 +36,10 @@ CLAIMS = [
     {"key": "k2", "id": "c-0002", "minute": 0, "statement": "y",
      "evidence": ["s-000030"]},
 ]
+CLAIMS_M1 = [
+    {"key": "k3", "id": "c-0003", "minute": 1, "statement": "z",
+     "evidence": ["s-000030"]},
+]
 REVIEWS = {
     0: {"minute": 0, "results": [
         {"claim_key": "k1", "verdict": "SUPPORTED",
@@ -35,6 +47,10 @@ REVIEWS = {
          "reason": "ok", "unresolved_questions": ["q-a"]},
         {"claim_key": "k2", "verdict": "UNCERTAIN",
          "verified_evidence": ["s-000030"], "reason": "dudoso"},
+    ]},
+    1: {"minute": 1, "results": [
+        {"claim_key": "k3", "verdict": "SUPPORTED",
+         "verified_evidence": ["s-000030"], "reason": "ok m1"},
     ]},
 }
 
@@ -45,12 +61,13 @@ def build_run(root, minutes_payload=(0,)):
     os.makedirs(os.path.join(run, "reviews"))
     os.makedirs(lib)
     with open(os.path.join(run, "claims-pool.jsonl"), "w", encoding="utf-8") as f:
-        for c in CLAIMS:
+        for c in CLAIMS + (CLAIMS_M1 if 1 in minutes_payload else []):
             f.write(json.dumps(c, ensure_ascii=False) + "\n")
     for m in minutes_payload:
         pp = os.path.join(run, "reviews", f"payload-min{m}.json")
         rp = os.path.join(run, "reviews", f"review-min{m}.json")
-        json.dump({"minute": m, "transcript": TRANSCRIPT, "claims": CLAIMS},
+        json.dump({"minute": m, "transcript": TRANSCRIPT,
+                   "claims": CLAIMS + (CLAIMS_M1 if m == 1 else [])},
                   open(pp, "w", encoding="utf-8"))
         json.dump(REVIEWS[m], open(rp, "w", encoding="utf-8"))
     return run, lib
