@@ -9,9 +9,39 @@ related:
   - "[[D — Revised Roadmap]]"
 tags: [kind/doc, area/echo]
 created: "2026-09-22"
-updated: "2026-09-23"
+updated: "2026-10-20"
 ---
 # F — Decision Register — owner clarifications and D1 decisions
+
+## V4 — Owner ratifications 2026-10-20 (current product authority)
+
+**Project:** [[Echo — Producto Integrado]] / The LAB V4. **Design evidence:** [[THE_LAB_V4_Diseno_para_revision]] (Shot 1 GOD, 2026-10-20; source artifact preserved). **Authority:** Owner's explicit confirmation on 2026-10-20. These four decisions **supersede conflicting V3 specifications** below; prior ratifications remain historical evidence, not instructions to implement V3 over V4.
+
+| ID | Status | Ratified decision | Required interpretation |
+|---|---|---|---|
+| D09 | **OWNER_RATIFIED** | Virtual initial capital **10,000** and **1%** risk preset, **configurable**. | `normalized_10k_open_balance.v1`: each operation's virtual risk budget is sealed at opening from the realized virtual balance causally known at that time; no future PnL for sizing. The 1% preset is **not** an operational Echo account/prop risk rule, nor an aggregate exposure cap. Explicitly version the separate initial-balance profile. |
+| D10 | **OWNER_RATIFIED** | **Cycle's risk budget proven and sealed when the Operation opens** is the R denominator. | `Q_i > 0` must be source-supported, scoped to the **whole logical cycle**, including possible later adds. Do not infer it from the first entry SL, final SL, realized loss or contemporary MM config; if absent or unsuitable, R and risk-normalized curves are `INSUFFICIENT_DATA`. Do not silently recompute Q_i when exposure changes; any later breach or change in actual risk does not retroactively rewrite its initial normalization basis. |
+| D11 | **OWNER_RATIFIED** | **Separate capital per portfolio member**, fixed initial weights, and **flat start**. | No shared financing, loans, margin simulation or implicit rebalance in I1. Initial capital apportioned by member weight; weight sum <= 1, remainder cash. Entries before `composition_start_at` do not earn in a newly flat-initialized portfolio. |
+| D16 | **OWNER_RATIFIED** | **Real strategy-version construction date `construction_at`** determines the pre/post construction boundary. | Preserve `construction_data_cutoff` separately as evidence of the last training-data date; do not use it as a substitute for `construction_at`. Preserve `available_at` and `echo_reference_started_at` as distinct time dimensions; never infer unknown timestamps from receipt/import date. |
+
+### V4 authority and conflicts with V3
+
+- **V3 P02/P04 / Echo Integrated Product old "A" boundary**: its cutoff at end of training dataset was the V3 period classifier. **SUPERSEDED for V4 classification** by D16. Training cutoff remains metadata, not the boundary.
+- **V3 D1-M01/M07/M08/M09**: one closed trade = one row, no partial fills/OPEN cycles and mandatory TP were V3-scoped constraints. **SUPERSEDED as V4 schema restrictions**. The new model accepts multi-order/partial-fill/movement evidence, open/terminal cycles and different granularity. A CLOSED_SUMMARY remains valid when detailed evidence is absent, but is never added again to its movements.
+- **V3 D1-M04/M11**: Echo owns canonical history/identity; Forge supplies a normalized input without writing directly to Echo PG. **RETAIN compatible authority boundary**; V4 extends it to multiple histories, origins and contexts.
+- **D09 + D10**: the virtual 1% budget and the Operation's historical `Q_i` have different purposes. The former sizes an *analytical normalized curve*, the latter normalizes the actual cycle's result. Neither authorizes trading or silently enforces prop risk.
+- **D11**: static portfolio is retrospective analysis, **not** causal portfolio-selection backtesting, shared capital simulation or live allocation.
+
+### Manager review / freeze gate
+
+- `OWNER_PRODUCT_DECISIONS_D09_D10_D11_D16 = FROZEN` as of 2026-10-20.
+- `SHOT1_DESIGN = REVIEWED_WITH_CONDITIONS`; **not** `FROZEN` or `READY_FOR_UNRESTRICTED_IMPLEMENTATION` yet. The Shot 1 source explicitly requires resolution/verification of G.2 technical facts before freezing an implementation-ready contract.
+- `D12–D15 = MANAGER_TECHNICAL_DIRECTION_ACCEPTED_FOR_PREFLIGHT`, **not Owner ratifications nor final technical freeze**: PostgreSQL+bounded worker; versioned API/CAS; input-retention and exact revision manifests; explicit-evidence copy comparisons.
+- `TECHNICAL_PREFLIGHT_OPEN = U01–U06 + A01/A02`: emitted strategy-version/MM/risk lineage; complete historical retention/rebuild; real history size and delivery shape; numeric SLOs/hardware; consumers of generic naming and migration constraints; real deployment/test posture, source artefact preservation.
+- **Gate:** request bounded LOCAL preflight and record evidence plus revised complete SPEC; manager/Owner accept scope and technical freeze before editing dependent production code. No new Owner product interview is required unless a verified material contradiction arises.
+- **Source-of-truth status:** original V4 design artifact is kept unchanged as proposed design; this decision register is the ratified Owner delta. Do not mistake the source artifact's `READY_FOR_OWNER_REVIEW` label for freeze approval.
+
+---
 
 ## CLOSED — producto confirmado por Rodrigo el 22-09
 | ID | Decisión | Alcance |
