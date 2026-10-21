@@ -66,9 +66,17 @@ def find_vault_root(start):
     return None
 
 
+def strip_code_spans(text):
+    """Elimina los code spans inline (`...`) antes de validar wikilinks: en
+    Obsidian renderizan literal (no son links vivos); un ejemplo de sintaxis
+    rota dentro de backticks NO es un finding (falso W01 real, ch07 QA)."""
+    return re.sub(r"`[^`]*`", "", text)
+
+
 def check_wiki_targets(text, source_label, vault, rel_check_dir, bad):
     """W01/W02/W03/W07: cada wikilink resuelve a archivo, heading o block id;
     los links a .png exigen ruta completa (nada de basename ambiguo)."""
+    text = strip_code_spans(text)
     for m in WIKI_RE.finditer(text):
         target, anchor = m.group(1).strip(), (m.group(2) or "").strip()
         full = m.group(0)
@@ -99,7 +107,9 @@ def check_wiki_targets(text, source_label, vault, rel_check_dir, bad):
 def check_wiki_balance(text, source_label, bad):
     """W10: los wikilinks del documento están equilibrados — sin `[[` sin
     cerrar, sin `]]` huérfano, sin anidamiento. Detecta Markdown mal formado
-    tras la transformación de citas a wikilinks."""
+    tras la transformación de citas a wikilinks. Los code spans renderizan
+    literal y no cuentan."""
+    text = strip_code_spans(text)
     for ln_no, line in enumerate(text.splitlines(), 1):
         i, open_wl, err = 0, False, None
         while i <= len(line) - 2:
