@@ -297,9 +297,9 @@ Cada fila es objetivo | símbolos | precondición | implementación | test | evi
 - [x] T1.3 Manifiesto26 | campaign-lab (create) | T1.1 | identidad y validación§4.2 |26únicos/drift/no I/O económico | catálogo sellado #owner/agent
 - [x] T1.4 Compatibilidad | tests kernel+manifest | T1.2–3 | serialización/matriz R6 | aislamiento/sin side effects | recibo #owner/agent
 - [x] T1.5 Entrega | planner/artefactos | T1.4 | revisar diff/publicar evidencia | readback | G1 review #owner/agent
-- [ ] T2.1 Analytics causal | owners existentes | G1 accepted | demands ATR/stdev | referencia manual/futuro | recibo #owner/agent
-- [ ] T2.2 MM ópt-in | registry/Operation | T2.1 | kernel→órdenes/protección | fills/partials/close | E2E #owner/agent
-- [ ] T2.3 Integración corta | runner | T2.2 | <=6 ensayos | invariancias | G2 review #owner/agent
+- [x] T2.1 Analytics causal | owners existentes | G1 accepted | demands ATR/stdev | referencia manual/futuro | recibo #owner/agent
+- [x] T2.2 MM ópt-in | registry/Operation | T2.1 | kernel→órdenes/protección | fills/partials/close | E2E #owner/agent
+- [x] T2.3 Integración corta | runner | T2.2 | <=6 ensayos | invariancias | G2 review #owner/agent
 - [ ] T3.1 Catálogo26 | tape/import | G2 accepted | caracterización | identidad completa | por fila #owner/agent
 - [ ] T3.2 Proyección | tooling aislado | T3.1 | tres riesgos | nulo/costos/seed | aproximación declarada #owner/agent
 - [ ] T3.3 Campaña shortlist | runner | T3.2 | tandas<=6 | oráculos | G3 review #owner/agent
