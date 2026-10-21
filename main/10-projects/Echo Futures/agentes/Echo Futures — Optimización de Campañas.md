@@ -197,7 +197,7 @@ Partición inicial de investigación: primeras60%, siguientes20%, últimas20% de
 | Gate | current state | phase agent responsibility | owner acceptance evidence | enables |
 |---|---|---|---|---|
 | G1 | accepted por el Owner (despacho SHOT 2, 2026-10-20, sobre `41d5d577`) | kernel/manifiesto y tests; dejar review | Owner evalúa recibos S01 | S02 |
-| G2 | delivered en review: S02 ejecutado (`experiment/campaign-lab-s02` @ `28c35257`+tooling); circuito funcional completo vía fixture E2E; E1/E2 ejecutados en runner real; E3–E6 ENGINE_BLOCKED con conflicto plataforma↔TGMM documentado | MM geométrico/analytics/config integrado y pruebas cortas | Owner acepta integridad; adjudica el conflicto plataforma↔TGMM; auditoría acotada consumida | S03 |
+| G2 | delivered en review: S02 ejecutado (`experiment/campaign-lab-s02` @ `53b16229`, pushed); circuito funcional completo vía fixture E2E; E1/E2 ejecutados en runner real; E3–E6 ENGINE_BLOCKED con conflicto plataforma↔TGMM documentado | MM geométrico/analytics/config integrado y pruebas cortas | Owner acepta integridad; adjudica el conflicto plataforma↔TGMM; auditoría acotada consumida | S03 |
 | G3 | pending | catálogo caracterizado y screening finito trazable | Owner acepta resultados y candidatos | S04 |
 | G4 | pending | confirmación temporal y descarte/selección | Owner acepta candidatas >=25% con límites | S05 o nueva ronda versionada |
 | G5 | pending | compatibilidad/runtime y suite de paridad | Owner autoriza integración; LIVE separado | migración prospectiva, no activación automática |
