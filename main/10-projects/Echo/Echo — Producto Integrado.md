@@ -22,11 +22,21 @@ tags:
   - kind/project
   - area/echo
 created: 2026-09-07
-updated: 2026-10-04
+updated: 2026-10-20
 ---
 # Echo — Producto Integrado
 
-> **Dirección de producto vigente, owner 22-09-2026, planificación solamente.** Exactamente dos tracks de implementación: [[Echo Forge — Factory V2 Completion]] y [[Echo — Live Platform V1]]. The Lab pertenece a Echo, no es un tercer proyecto. La planificación vigente de Lab está en [[D — Revised Roadmap]]; el contrato en [[A — Product Contract — The Lab]], diseño en [[B — Architecture Decision Report]], primer flujo en [[E — First Usable Vertical Slice]] y decisiones en [[F — Decision Register]]. [[C — Reality and Gap Matrix]] conserva evidencia con fecha de corte, NO prueba implementación nueva.
+## Dirección actual del LAB — V4 (Owner ratificó 2026-10-20)
+
+**The LAB V4 sustituye el diseño V3 para la plataforma analítica de Echo**, sin crear otro proyecto/producto. El motor nacido bajo Echo Futures es el motor genérico de operaciones de Echo; los conceptos compartidos no conservarán nombres `futures_` por inercia. LAB es consumidor analítico con su propio modelo de historia, curvas, métricas y composición; preserva los hechos originales, la identidad del runtime y la integración operativa Forge, y retira progresivamente el LAB exclusivo V1–V3, sin alterar silenciosamente PROD.
+
+**Decisiones Owner V4 ratificadas:** D09 capital virtual inicial 10.000 + preset 1% configurable con presupuesto al abrir; D10 R sobre presupuesto certificado del ciclo sellado al abrir; D11 portfolio estático con capital separado, pesos fijos y comienzo flat; D16 corte pre/post por `construction_at` real y `construction_data_cutoff` como metadata distinta. Autoridad detallada: [[F — Decision Register]]; handoff completo GOD: [[THE_LAB_V4_Diseno_para_revision]].
+
+**Estado al 2026-10-20:** `OWNER_PRODUCT_DECISIONS_FROZEN`, `SHOT1_DESIGN_REVIEWED_WITH_CONDITIONS`. No declarar `SHOT1_FULL_FROZEN` / `READY_FOR_IMPLEMENTATION` mientras siga abierto el preflight técnico del registro (U01–U06, A01/A02). El Owner ha ratificado **solo** D09/D10/D11/D16; D12–D15 son propuesta técnica aceptada para verificación por el mánager, no decisiones Owner. No hay autorización de deploy/migración destructiva aquí.
+
+### Antecedentes de producto V3 (históricos; no authority de V4)
+
+> **Dirección histórica V3, owner 22-09-2026; superseded para LAB V4 por las decisiones ratificadas el 20-10-2026.** Exactamente dos tracks de implementación: [[Echo Forge — Factory V2 Completion]] y [[Echo — Live Platform V1]]. The Lab pertenece a Echo, no es un tercer proyecto. La planificación vigente de Lab está en [[D — Revised Roadmap]]; el contrato en [[A — Product Contract — The Lab]], diseño en [[B — Architecture Decision Report]], primer flujo en [[E — First Usable Vertical Slice]] y decisiones en [[F — Decision Register]]. [[C — Reality and Gap Matrix]] conserva evidencia con fecha de corte, NO prueba implementación nueva.
 
 ## Objetivo de producto
 Forge fabrica y entrega finalistas junto con operaciones SQX y MT5. Echo ingiere estrategias; su `trade_journal` continúa siendo exclusivamente autoridad operacional de Echo. The Lab V3 conserva una única base analítica de operaciones normalizadas, ofrece tres períodos, N curvas algorítmicas, métricas, calendario, dashboard y screener. Luego permite probar múltiples gestiones monetarias, portfolios y asignaciones controladas a cuentas. North star: TIME_TO_USABLE_TRADING_SYSTEM, KISS, integridad y crecimiento sin duplicar autoridades.
