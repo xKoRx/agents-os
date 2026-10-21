@@ -1,6 +1,6 @@
-# V4 Shot 2 — Evidencia de preflight (U01–U06 + A01/A02), revisión 2
+# V4 Shot 2 — Evidencia de preflight (U01–U06 + A01/A02), revisión 3
 
-**Fecha de recolección:** 2026-10-20 23:48–00:40 CLST y 2026-10-21 11:15–11:40 CLST. **Emitida por:** Submanager Shot 2 (GLM-5.3-Flash Max, host daedalus, local). **Naturaleza:** trabajo directo read-only del submanager; NO constituye verificación independiente (reconocido en el dictamen Manager 2026-10-21). Los deltas de repo se citan contra `xKoRx/echo` @ `d74b6525` (origin/master 2026-10-20) y rama `origin/feature/e04-dev-ingest-recovery` @ `4aad647b`; PG DEV = `echo-develop` @ .220 vía MCP `aranea-postgres-rw` (sólo SELECT). Sin secretos; sin dumps pesados.
+**Fecha de recolección:** 2026-10-20 23:48–00:40 CLST y 2026-10-21 11:15–11:40 CLST (re-lecturas rev 3: 2026-10-21 09:00–09:20 CLST). **Emitida por:** Submanager Shot 2 (GLM-5.3-Flash Max, host daedalus, local). **Naturaleza:** trabajo directo read-only del submanager; NO constituye verificación independiente (reconocido en los dictámenes Manager 2026-10-21). Los deltas de repo se citan contra `xKoRx/echo` @ `d74b6525` (origin/master 2026-10-20) y rama `origin/feature/e04-dev-ingest-recovery` @ `4aad647b`; PG DEV = `echo-develop` @ .220 vía MCP `aranea-postgres-rw` (sólo SELECT). Sin secretos; sin dumps pesados.
 
 **Clasificación de estados:** `VERIFIED` = evidencia mecánica reproducible obtenida por consulta/comando citado; `SPECIFIED_FOR_IMPLEMENTATION` = diseño fijado en el paquete rev 2, por demostrar en implementación; `NOT_DEMONSTRATED` = frontera abierta, acotada a la acción que bloquea.
 
@@ -11,7 +11,17 @@
 | C1 | "065 (lab_curves_v3) NO aplicada en DEV" | **FALSA.** `echo.lab_curves`, `lab_curve_points`, `lab_curve_metrics` existen en DEV con el schema exacto de 065 (registry_namespace, strategy_version_ref, algorithm_id, algorithm_version, config_digest, history_digest…) y owner `echo_user`. El efecto de 065 está aplicado a mano como el de las demás | E06 |
 | C2 | "distribución del journal: mediana ~500, p95 ~25k ops" | **Incorrecta.** Distribución real REFERENCE por (strategy_id, canonical_symbol): 210 grupos, p50=19, p75=33, p95=59, p99=24.682, max=56.884 ops; por strategy_id: 131, p50=30, p95=64, max=132.805. Los SLOs y el workload del benchmark se congelan con la distribución medida | E09 |
 | C3 | "DEV con efectos aplicados a mano, sin tabla de control" (alcance parcial) | **Alcance completo:** DEV NO tiene ninguna tabla `schema_migrations` en ningún schema; toda la historia 001→065/068-carece de control. La reconciliación de la tabla de control es prerrequisito del plan de migraciones, no un detalle | E05 |
-| C4 | "066 sin aplicar en DEV" | **Confirmada.** No existen `echo.futures_*`; además el Core DEV desplegado (binario 2026-10-20 04:05) no muestra actividad de proyector ni del topic en logs recientes (0 líneas en últimas 200 y en ventana 20:00+) | E08 |
+| C4 | "066 sin aplicar en DEV" | **Confirmada.** No existen `echo.futures_*`; además el Core DEV desplegado (binario 2026-10-20 04:05) no muestra actividad de proyector ni del topic en logs recientes (0 líneas en últimas 200 y en ventana 20:00+). La observación de logs NO prueba ausencia de consumidores: los gates previos a cualquier cutover son ownership + configuración + dependencias por entorno | E08 |
+
+## Correcciones de la revisión 3 (dictamen V2, C01–C06)
+
+| # | Afirmación de la rev 2 | Estado real | Evidencia |
+|---|---|---|---|
+| C1-r3 | "El runner canónico es golang-migrate + `schema_migrations` (header de 061; toolkit apply-migration)" | **Incorrecta como descripción del mecanismo empleado.** El toolkit `v3/toolkit/cmd/apply-migration/main.go` hace `db.Exec` del archivo SQL indicado por flag: sin golang-migrate, sin tabla de estado, sin tracking. El header de 061 MENCIONA golang-migrate como contrato de harness, pero el repo no lo implementa. El mecanismo real es aplicación manual/archivo-a-archivo sin control | E05 |
+| C2-r3 | La receta `analytic-v1` (perfiles/métricas/config/datasets en los slots de ejecutable) | **Retirada del diseño** por el dictamen: la identidad del derivado no pertenece a StrategyVersion; sustituida por `identity_recipe` sellada + `definition-v1` con `strategy_definition_sha256` (paquete §2.1) | — |
+| C3-r3 | "Punto exacto de fijación: `engine.go:1051` (materialización)" | **Corregida.** La materialización crea la Operation ANTES de `invokeMM` (`:1113`); el presupuesto lo establece la primera decisión MM del ciclo (`mm.go:380` `MMDecision`, DecisionIDs en `applyMMDecision`) — E12 ampliado | E12 |
+| C4-r3 | Ledger presentado como autoridad directa de las economías de Operation | **Precisado.** El Ledger es por cuenta/contrato con FIFO físico (`Revision` a nivel cuenta, `contractInventory` por contrato): la atribución por Operation requiere correlación (identificación específica), no lectura directa del neteo de cuenta | E12 |
+| C5-r3 | Tamaños JSON-PG V1 usados como certificación del envelope V2 | **Reclasificados como evidencia de referencia**; la certificación del envelope V2 (con movements/metadata y memoria de decodificación) corresponde al benchmark congelado | E09 |
 
 ## E01 — Divergencia e04 vs master (R01)
 
