@@ -29,7 +29,7 @@ tags:
 - **Tipo:** updated.
 - **Archivo:** `10-projects/Meli/RIO E2E local/CP Flink local.md`.
 - **Estado anterior:** #211 @ `6847ab66` y #213 @ `438d2b9b`, certificados antes de los nuevos comentarios.
-- **Estado nuevo:** #211 @ `5a688903` y #213 @ `f681eb88`, publicados, worktrees limpios y siete hilos resueltos y todos los CI finales PASS; falta confirmar si el último bot añadió comentarios porque la consulta volvió a ser bloqueada por IP allowlist.
+- **Estado nuevo:** #211 @ `5a688903` y #213 @ `f681eb88`, publicados, worktrees limpios, siete hilos resueltos y todos los CI finales PASS. Verificación final posterior al bot sobre ambos SHA: cero hilos abiertos y MERGEABLE; listos para pedir review humano.
 
 ## Motivo y resolución
 
@@ -46,8 +46,8 @@ Se corrigieron dos variantes de recuperación: envío incierto sin job físico y
 - Python físico PASS en `8f5af09d`: UDF, stop/start, re-provisión sin nueva descarga y volumen vacío. Smoke final integrado PASS en `f681eb88`: JAR con file sink, ambos uploads eliminados del JobManager, Python UDF, DEPROVISION, jobs terminales y volumen de extracciones vacío. No se repitió la suite física completa después del último fix; se probaron sus caminos modificados.
 - `LocalFlinkJarFiles`, `LocalFlinkJobRecovery` y `LocalFlinkHttpException` tienen blobs iguales entre `5a688903` y `f681eb88`. El JAR host/runtime final coincide por SHA256 `d82b74223d3ccc59b95e32dbd767d9d6e04cda1391caf5c944f75f5d436ecd4b`.
 - Cada corrida terminó con 0 contenedores/0 redes rio-*; volumen Python propio eliminado y VM encendida.
-- Hilos: 0 abiertos por PR tras resolver 7, verificados antes del último resultado del bot. CI Fury #1380 (#211) y #1379 (#213), cobertura, dependencias, estático, workflow y CodeQL PASS sobre `5a688903`/`f681eb88`; Code Reviewer NEUTRAL en ambos. La reconsulta de comentarios posterior al bot fue rechazada por IP allowlist en varios intentos; no afirmar todavía cero hilos nuevos tras ese resultado.
-- Hubo rechazo intermitente por IP allowlist; se pidió verificar GlobalProtect, se recuperó acceso para publicar y resolver hilos, y volvió a bloquearse al reconsultar los reviews finales. No se cambió de VPN. Docker Bake requirió un permiso acotado para el secret de pip ya configurado; no se leyó ni registró su contenido.
+- Hilos: 0 abiertos por PR tras resolver 7, verificados después del último resultado del bot sobre ambos SHA finales; ambos MERGEABLE. CI Fury #1380 (#211) y #1379 (#213), cobertura, dependencias, estático, workflow y CodeQL PASS sobre `5a688903`/`f681eb88`; Code Reviewer NEUTRAL en ambos. La reconsulta final de comentarios y checks fue exitosa tras confirmar el usuario GlobalProtect conectado.
+- Hubo rechazo intermitente por IP allowlist; se pidió verificar GlobalProtect, se recuperó acceso para publicar y resolver hilos, y volvió a bloquearse al reconsultar los reviews finales. El usuario confirmó GlobalProtect conectado y la verificación final recuperó acceso. No se cambió de VPN. Docker Bake requirió un permiso acotado para el secret de pip ya configurado; no se leyó ni registró su contenido.
 
 ## Compartibilidad
 
