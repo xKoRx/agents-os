@@ -232,3 +232,49 @@ Resultado al cierre: UX_IMPLEMENTATION=READY_FOR_OWNER_REVIEW|PARTIAL|BLOCKED, O
 **URL interna de la demo corregida:** `http://127.0.0.1:8099/lab?writer=worker-writer` (loopback, bearer `demo-token-labv4` por build config; sin writer el detalle usa forge-live por convención heredada). Boundary 8099 + PG descartable 54349 DB `echo_labv4_demo2` (seed `TestLabV4DemoSeedScreenerForUI`, 10 estrategias + selección + portfolio 60/40; worker real `lab-worker-v4` drenó las colas). La demo anterior (`echo_labv4_demo`) NO se borró. Nota operativa: el change event del filtro de símbolo también dispara con Enter (el fill sintético de Playwright no genera change nativo; wiring verificado por dispatch).
 
 **Límites reales:** sin despliegue a PROD ni merge (canary pausado); TF no declarado en el modelo V4; SQN/recovery/data-quality-score no existen en V4 y se muestran como "—" con motivo; la ordenación server-side carga el conjunto de estrategias×perfil del namespace (volumen de catálogo, no de historias; latencia no medida bajo carga); Account Lab/Portfolios sin acceso desde la entrada (capacidad conservada en código/APIs); seguridad dinámica S3-E02 sigue NOT_RUN.
+
+## CONTINUACIÓN 3 — AJUSTES PUNTUALES SOBRE EL RECORRIDO ENTREGADO (2026-10-22)
+
+Mandato del Owner: ajustes puntuales (identidad al navegar desde el catálogo, coherencia de revisión en el dashboard, clasificación de métricas/metadata), sin reconstruir la pantalla, sin nuevos shots, conservando la demo. Ejecutor: implementador LOCAL (GLM-5.3-Flash, host-declarado). Corte de entrada verificado `feature/lab-v4-shot4 @ 86af0a68` (base `93d776f0`, worktree `~/aranea/work/lab-v4-shot4-20261021/echo`, árbol limpio). **SHA final: `95a0bf63` + commit de oráculo de recovery (ver abajo); 1 commit principal sobre 86af0a68.**
+
+| Estado | Valor |
+|---|---|
+| UX_IMPLEMENTATION | **READY_FOR_OWNER_REVIEW** (ajustes verificados en navegador; misma experiencia visual salvo los ajustes pedidos) |
+| OWNER_UX_ACCEPTANCE | **PENDING** — el Owner no revisó aún |
+| CANARY | **PAUSED_FOR_UX_REVIEW** — sin despliegues; paquete canary intacto; NINGÚN bundle de demo se promueve (config/credenciales de demo, fixtures, no es el catálogo real del Owner ni G11) |
+| MCP_TOOLING_RESTORED | **SÍ** (catálogo aranea-ssh accesible; registrado de la continuación 2) — esta sesión NO lo usó: todo el trabajo fue local |
+| PROD_TARGET_ACCESS_NOT_YET_VERIFIED | **VIGENTE** — una sonda exitosa a Zeus NO valida echo-runtime-prod; no se investigó el destino PROD (fuera de alcance del mandato) |
+
+### §1 Identidad correcta al navegar desde el catálogo
+
+- **Fallback `forge-live` eliminado** del recorrido (`StrategyLabV4Tab.vue` / `labV4.js`): no hay writer global en la URL ni productor por defecto. La FILA transporta la identidad resuelta (`registry_namespace`, `strategy_version_ref`, `producer_writer`, `history_id`, head, selección) y el dashboard la usa tal cual; el backend sigue resolviendo namespace del CONTEXTO AUTENTICADO (config+bearer), nunca del query parameter.
+- **Selección no resuelta**: la fila UNRESOLVED/NO_HISTORY abre un estado visible con las historias CANDIDATAS y su identidad completa (nuevo read model `ListLabStrategyCandidates` + ruta `GET /api/v2/lab/strategies/{id}/candidates`); cada candidata ofrece "elegir principal" (decisión explícita, jamás primera historia ni productor por defecto). Defecto de esquema real descubierto por este flujo: `mm_context_digest` NOT NULL+CHECK impedía seleccionar estrategias SIN contexto MM (503 silencioso) → **migración 073** (mm nullable + `UNIQUE NULLS NOT DISTINCT`) y normalización ""→NULL en `SelectPrimaryHistory`/`GetHistorySelection` (`IS NOT DISTINCT FROM`).
+- **Prueba funcional (demo, navegador real, sin writer en URL):** `orb-nq-15m` (productor `worker-writer`) y `mr-dax-5m` (productor `backtest-observer-writer`, segundo productor agregado al seed) abren ambas con identidad/métricas/operaciones propias; deep-link `?strategy=mr-dax-5m` recargado OK; volver conserva filtros/curva/página (`?q=mr` + 2 filas verificados); elegir candidata del segundo productor en trend-eurusd-h1 pasa la fila a SELECTION con la métrica de la elegida. Capturas `~/aranea/work/lab-v4-shot4-20261021/evidence-ux3/01,04,05,06,09`. Sin pruebas dinámicas restringidas (harness respetado).
+
+### §2 Coherencia de revisión en el dashboard (caso J)
+
+- El detalle se **PINNEA a la revisión PUBLICADA del perfil pedido** (`GET .../histories/{hid}?profile=…`): curva, métricas y operaciones de la MISMA generación; `head_revision` y `displayed_revision` viajan separados. Mientras N+1 está aceptado sin publicar: banner "Actualización pendiente… N publicada / head N+1 en cálculo; no se mezclan generaciones", tabla "Operaciones (revisión N)" y movimientos pedidos con `?revision=N` (la revisión de la operación inspeccionada, no el head del momento). Al publicar N+1: curva, métricas y operaciones cambian COHERENTES (sin banner, revisión nueva).
+- El SCREENER también alinea el conteo de operaciones a la generación mostrada (jamás un head N+1 pendiente presentado como explicación del resultado N). Defecto adicional corregido: el read model de perfiles por historia dejaba ganar una fila arbitraria entre revisiones (con rev1+rev2 publicadas podía mostrar la generación vieja como vigente) — ahora la revisión MAYOR publicada gana el mapa.
+- **Prueba (demo):** rev N publicada → PUT N+1 con cambio económico visible (orb-7) SIN drenar → dashboard muestra N pinneada con banner y desglose expandido coherente (captures `02,03,07`) → drenar worker → recarga del mismo enlace muestra N+1 completo sin banner (`10`). Sin modificar revisiones aceptadas ni algoritmos económicos.
+
+### §3 Métricas y metadata — clasificación de faltantes
+
+- **Estados**: a los B.6.5 (DEFINED/NO_OBSERVATIONS/INSUFFICIENT_DATA/UNDEFINED) se agregan **NOT_IMPLEMENTED** y **NOT_APPLICABLE** (**migración 072**, CHECK extendido). INSUFFICIENT_DATA ya no sustituye "no implementado" ni "no aplicable"; ningún faltante se muestra como cero.
+- **EXPECTANCY**: `expectancy` en la UNIDAD DEL PERFIL (R en r_net_cumulative; moneda en los demás), sobre deltas causales por operación (`OpDelta` construido por cada compute) dividido por cerradas EVALUABLES con base declarada — los parciales de una abierta jamás suman como terminales y el R jamás se re-etiqueta a dinero. (Legacy `expectancy_r` sigue en las curvas viejas; el sort del screener usa `expectancy` con fallback.)
+- **RECUPERACIÓN** (B.6.5 riesgo realizado): `recovery_factor` = neto del perfil / drawdown máximo ABSOLUTO en la misma unidad (R usa DD en R, sin dividir por base cero); DD cero ⇒ UNDEFINED con motivo; cola tras agotamiento ⇒ INSUFFICIENT_DATA del prefijo.
+- **PROFIT FACTOR**: sobre la contribución del perfil (PF en R para perfil R, en moneda para money); monedas mezcladas (o declaradas junto a montos sin moneda) ⇒ **NOT_APPLICABLE** fail-closed (los loaders transportan ahora la moneda de movimientos/neto).
+- **SQN**: publicado como **NOT_IMPLEMENTED** con motivo (la definición aplicable al perfil no está aprobada; la fórmula legacy no se copió; sin ampliación del catálogo).
+- **TIMEFRAME**: transportado verbatim desde la definición canónica del productor (`echo.strategy_definitions.timeframe` vía join por canonical_strategy_id) en fila del screener y detalle; NULL/sin fila ⇒ "no declarado". **Jamás inferido** del nombre ni de la frecuencia observada. Demo con 3 casos: declarado (15m/5m/H1), fila sin TF, sin fila.
+- Prueba backend: `metrics_classification_test.go` (5 casos: unidad por perfil, no-re-etiquetado R→USD, monedas mezcladas NOT_APPLICABLE, cola tras agotamiento INSUFFICIENT, denominadores cero UNDEFINED/NO_OBSERVATIONS) + oráculos extendidos en `lab_screener_test.go`/`lab_readmodels_test.go` (pinneo de revisión, candidatos, TF, clasificación).
+
+### Verificación
+
+- Suites: `go test ./v3/sdk/lab/analyze/` ok (incluye clasificación nueva); `./v3/sdk/postgres -run TestLab` **completa ok (1439s, PG descartable 54329 DB efímera propia)** + re-ejecución dirigida del subconjunto afectado por el fix final de generación (catálogo/staleness/N-reproducible/selección/screener). go vet limpio; `vite build` OK. PREEXISTING ambiental intacto (sin tocar).
+- Front: identidad por fila, banner STALE, tiles por unidad (expectancy/recuperación/SQN), TF transportado, candidatos con elección prevista — capturas `evidence-ux3/01..10`.
+- Demo viva: **`http://127.0.0.1:8099/lab`** (SIN `?writer=`); boundary `bin-ux3/labv4-boundary` @ 95a0bf63+; PG descartable 54349 DB **`echo_labv4_demo3`** (re-creada con 072/073; seed con 2 productores y TF declarado/no declarado; worker real `bin-ux3/lab-worker-v4` drenó las colas). **La demo usa FIXTURES**: no es el catálogo real del Owner ni G11. DBs demo previas (`echo_labv4_demo`, `echo_labv4_demo2`) intactas. Fuente/build/base exactos: `xKoRx/echo@feature/lab-v4-shot4` @ `95a0bf63` (+fix de oráculo), base `86af0a68` (corte entregado), base reportada `93d776f0`; front build con `VITE_GATEWAY_ENDPOINT=http://127.0.0.1:8099` y token de demo por build config (sin popups; sin tokens en este documento ni en capturas).
+
+### SHARED_ENVIRONMENTS / límites
+
+Sin cambios en compartidos: PG descartables propios (54329 tests DB efímera, 54349 demo3 propia) + artifacts propios; sin PROD, trading, Kafka, metadata Hasura, merges, deploys ni reinicios de productores. Sin investigación del destino PROD. Residual: cobertura del delta cubierta por pruebas dirigidas (identidad/revisiones/métricas/navegación); la suite larga completa se ejecutó UNA vez con el código previo al guard final y el subconjunto afectado se re-ejecutó con el final.
+
+
