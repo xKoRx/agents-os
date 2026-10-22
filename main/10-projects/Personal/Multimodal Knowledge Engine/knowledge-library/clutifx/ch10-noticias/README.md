@@ -23,7 +23,7 @@ Biblioteca de conocimiento del décimo vídeo del curso Clutifx, extraída con l
 | Revisión | 36 minutos × 1 revisor ONE-SHOT en 7 olas de 5-6: **36/36 `MINUTE_REVIEW = VALID`** (cardinalidad exacta `validate_review.py`); checkpoint 5 min PASS (proyección ~269 min/h-video registrada, OVER, continuado con el criterio ch09); 4 muertes [1210] recuperadas con retry completo |
 | Integración | mecánica (`integrate_reviews.py` con safety parcial-integration): **199/199 claims con review aplicado, cobertura total** — canónico escrito sólo con integración COMPLETA; ~50 correcciones de los revisores adjudicadas y aplicadas al pool ANTES de integrar (literalidad restaurada, evidencia de frontera, kinds por hedges, visual_hints falsos corregidos, adjudicaciones visuales con palabra dicha preservada) — detalle en review-notes |
 | Modelo | GLM (subagentes locales + integrador; sin API pagada) |
-| DOCVERIFY | ver fila de verificación final |
+| DOCVERIFY | publicación: independiente ONE-SHOT **0 MATERIAL + 5 MENOR** (metadatos), corregidos y re-validados · closeout 2026-10-21: DOCVERIFY targeted del closeout **8 findings (4 MATERIAL de texto stale + 4 MENOR), los 8 corregidos y re-validados contra el árbol físico** (ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/AMENDMENTS|AMENDMENTS]]) |
 | Checkpoint 5 min | PASS (bloque 1 + min 0-4 VALID; OVER registrado) |
 
 ## Métricas
@@ -45,9 +45,18 @@ Biblioteca de conocimiento del décimo vídeo del curso Clutifx, extraída con l
 
 | Gate | Resultado |
 |---|---|
-| LIBRARY_VALIDATION | ver fila de cierre |
-| TERM_SOURCE_CHECK | ver fila de cierre |
-| DOCVERIFY | ver fila de verificación final |
+| LIBRARY_VALIDATION | **PASS** (publicación; re-validado tras el closeout 2026-10-21: findings=0, 105 frames/200 claims) |
+| TERM_SOURCE_CHECK | **PASS** (199 claims vivos, 0 MATERIAL, 0 TERM_DISAMBIGUATION_REQUIRED) |
+| DOCVERIFY | **PASS tras corrección** (publicación: 0 MATERIAL + 5 MENOR; closeout: 8 findings corregidos — detalle en la fila DOCVERIFY de Provenance y en AMENDMENTS) |
+
+### Closeout (2026-10-21, post-publicación)
+
+```text
+CH10_REFUTED_CLAIM = RESOLVED (am-ch10-001: c-0030 superseded por c-0200)
+CH10_NEWS_TIME_REVIEW = ADJUDICATED (am-ch10-002: contradicción 8:15 retirada; c-0165/c-0164 SUPPORTED; c-0069 UNCERTAIN re-enfocado a q-ch10-015)
+CH10_FRAME_EVIDENCE_SAFETY = PASS (contrato de clases de evidencia en integrate_reviews.py + evidence_safety_selftest 5/5; 9 selftests sin regresiones)
+CH10_LIFECYCLE = PASS · CH10_SOURCE_FIRST = PASS · CH10_LIBRARY_VALIDATION = PASS · CH10_TARGETED_DOCVERIFY = PASS (tras corrección 8/8)
+```
 
 ## Throughput (reporte separado tramos vs total; nomenclatura normalizada post-ch09)
 
