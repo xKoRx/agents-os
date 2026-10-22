@@ -31,7 +31,7 @@ Biblioteca de conocimiento del décimo vídeo del curso Clutifx, extraída con l
 | Métrica | Valor |
 |---|---|
 | Claims totales | 199 |
-| SUPPORTED / UNCERTAIN / UNVERIFIED | 193 / 6 / 0 (c-0030 condición sobre garble; c-0032 observación visual refutada por pantalla; c-0069 y c-0165 contradicción «8 y cuarto» vs 8:30/8:45 de ch02/ch07; c-0113 «6h sin nada» vs «primer rango»; c-0164 vela «de las 7» vs «de las 8» — visibles como dudosos, sin resolución artificial) |
+| SUPPORTED / UNCERTAIN / UNVERIFIED | 193 / 6 / 0 (c-0030 observación visual refutada por pantalla; c-0032 condición sobre garble; c-0069 y c-0165 contradicción «8 y cuarto» vs 8:30/8:45 de ch02/ch07; c-0113 «6h sin nada» vs «primer rango»; c-0164 vela «de las 7» vs «de las 8» — visibles como dudosos, sin resolución artificial) |
 | Claims activos / superseded | 199 / 0 (sin supersessions en este capítulo) |
 | Epistemic | 197 instructor_statement · 2 visual_observation · 0 model_inference |
 | Contradicciones marcadas | 3 (c-0069/c-0165 vs ch02/ch07; c-0164 interna resuelta visualmente en q-ch10-002 pero claim conserva su veredicto; c-0113 interna) |
@@ -54,11 +54,11 @@ Biblioteca de conocimiento del décimo vídeo del curso Clutifx, extraída con l
 | Tramo | Valor |
 |---|---|
 | ASR wall | 2h27m07s = 8.826,8 s (`asr.log`) · ASR_SPEED 0,24× · ASR_COST_MULTIPLIER 4,11× (contención del host, dentro del pronóstico) |
-| Agent wall (extracción+revisión) | **156 min** (17:38:16 bloque-1 → 20:14:30 último review, spools/epochs) sobre 35,8 min de video ≈ **262 min/h-video** (objetivo ≤120; OVER ~2,2× — contención sostenida de CPU heredada por workers + revisores prudentes con frames; proyección del checkpoint 269, real 262). Workers puros: extracción ~61 min + revisión ~136 min en olas paralelas |
+| Agent wall (extracción+revisión) | **159 min** (17:38:16 bloque-1 → 20:17:16 último review review-min33, spools/epochs) sobre 35,8 min de video ≈ **266 min/h-video** (objetivo ≤120; OVER ~2,2× — contención sostenida de CPU heredada por workers + revisores prudentes con frames; proyección del checkpoint 269, real 266). Workers puros: extracción ~61 min + revisión ~136 min en olas paralelas |
 | Integración + composición | 20:23 (`integration_start_epoch`) → validación/publicación (~40 min: integración mecánica, adjudicación de ~50 correcciones, 5 docs + proyecciones + wikilinks + validadores) |
 | TOTAL wall | 15:08 (ASR start) → publicación ≈ 5h55m |
 
-RESOURCE_CONTENTION = **YES** (externa: echo-core 157 % permanente + go tests de otra sesión; ninguna carga ajena fue detenida). THROUGHPUT = **OVER** (registrado sin disfrazar; el checkpoint hizo su trabajo: proyección 269 vs real 262).
+RESOURCE_CONTENTION = **YES** (externa: echo-core 157 % permanente + go tests de otra sesión; ninguna carga ajena fue detenida). THROUGHPUT = **OVER** (registrado sin disfrazar; el checkpoint hizo su trabajo: proyección 269 vs real 266).
 
 ## Estructura
 

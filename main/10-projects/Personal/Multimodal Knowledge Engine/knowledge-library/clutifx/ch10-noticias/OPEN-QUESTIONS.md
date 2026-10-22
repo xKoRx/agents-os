@@ -39,8 +39,8 @@ Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clu
 Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0019|c-0019]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0137|c-0137]]
 
 ### q-ch10-010 — «My Forex» confirmado Myfxbook en min 3; estado del minuto 5 (c-0032)
-La adjudicación de c-0020 quedó confirmada visualmente (f-000350 URL tecleada, f-000359 sitio cargado; verificado por el Manager). El claim c-0032 del minuto 5 (observación visual del extractor que situaba Myfxbook en el minuto 5) quedó UNCERTAIN: la pantalla de ese minuto muestra el Excel. **Estado: RESOLVED para c-0020; c-0032 queda como registro honesto del error del extractor (ver SU nota).**
-Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0020|c-0020]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0032|c-0032]]
+La adjudicación de c-0020 quedó confirmada visualmente (f-000350 URL tecleada, f-000359 sitio cargado; verificado por el Manager). El claim c-0030 del minuto 5 (observación visual del extractor que situaba Myfxbook en el minuto 5) quedó UNCERTAIN: la pantalla de ese minuto muestra el Excel. **Estado: RESOLVED para c-0020; c-0030 queda como registro honesto del error del extractor (ver su nota).**
+Claims: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0020|c-0020]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0030|c-0030]]
 
 ### q-ch10-011 — Horas sin zona horaria dicha (min 4/7/23/31)
 «a las 10» / «las 2» / «a las 40/45» dichos sin zona; el Excel y Forex Factory muestran ET/NY (f-000425, f-000059); «a las cuatro y media» resultó ser 04:30 del eje del broker (f-003159). **Estado: PARTIAL** — contextos documentados; la palabra dicha no se completa.

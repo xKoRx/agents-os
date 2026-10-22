@@ -27,7 +27,7 @@ Notas de revisión del run del 2026-10-21 (Manager local GLM, ONE-SHOT). Contrat
 - **8:15 vs 8:30/8:45** (ch02/ch07): c-0069 y c-0165 UNCERTAIN con CONTRADICTION; el ejemplo del 4-jun dice «ocho y cuarto» y el frame muestra 08:15. Puede ser noticia distinta — requiere audio (q-ch10-001).
 - **Vela de las 7 vs de las 8**: c-0164 UNCERTAIN; resolución visual de min28 documentada en q-ch10-002 (misma vela, etiqueta por temporalidad).
 - **«en 6h no hay nada» vs «teníamos un primer rango»**: c-0113 UNCERTAIN; lecturas de ambos revisores en q-ch10-003.
-- c-0030 (condición «misma dirección» sobre garble) y c-0032 (observación visual del extractor refutada por pantalla) completan los 6 UNCERTAIN, todos visibles y sin resolución artificial.
+- c-0032 (condición «misma dirección» sobre garble) y c-0030 (observación visual del extractor refutada por pantalla) completan los 6 UNCERTAIN, todos visibles y sin resolución artificial.
 
 ## Verificación visual independiente del Manager
 
@@ -35,5 +35,5 @@ El Manager leyó directamente f-000350 y f-000359 (3:50/3:59) para adjudicar la 
 
 ## Proyecciones y validación
 
-- CLAIMS.md 199 filas; FRAMES.md 97 frames (36 base por manifiesto + 61 bajo demanda; 91 citados, 6 contextuales sin claims — inventariados, patrón ch09).
+- CLAIMS.md 199 filas; FRAMES.md 98 frames (36 base por manifiesto + 62 bajo demanda; 91 citados, 7 contextuales sin claims — inventariados, patrón ch09).
 - Veredicto final: 199 claims = 193 SUPPORTED + 6 UNCERTAIN + 0 UNVERIFIED; 0 superseded; epistemic 197 instructor_statement + 2 visual_observation.
