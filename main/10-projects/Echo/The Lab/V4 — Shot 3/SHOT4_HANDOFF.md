@@ -190,6 +190,13 @@ Paquete completo listo en `~/aranea/work/lab-v4-shot4-20261021/canary-pkg/` (REA
 ### SHARED_ENVIRONMENTS
 Sin cambios en compartidos: PG descartable propio (54349) + DBs efímeras propias (demo/load/bt en ese clúster); sin PROD, trading, Kafka, metadata Hasura, merges a master de producto, ni reinicios de productores. Procesos locales al cierre: demo UI (8099, loopback+bearer) y PG 54349 dejados corriendo como checkpoint visible; carga detenida.
 
+### FINAL_SHA_REVIEW — COMPLETE (revisor en contexto fresco, 2026-10-22)
+Dictamen **READY_FOR_MANAGER** sobre `bfd03a19` (delta ed458c5e..bfd03a19, 4 commits). Evidencia propia del revisor: suite lab green (210s), coverage 96,1% reproducido exacto, T43 validado como dos significados distintos (70 ≠ 150 por máximo inicial), sin identidad sintética en el delta, invariantes económicos demostrados con asserts, sin tests sin aserciones ni exclusiones. 5 hallazgos NO bloqueantes: 2 MINOR corregidos en `1c7d929a` (SHA FINAL del candidato) (trim lossy; opened_at ausente ahora falla cerrado — jamás membresía PRE implícita) + 3 NOTE registradas (CurveCurrent siempre true en el endpoint de análisis; charset hex no validado en slots LAB_FACTS; errores de BD mapeados a 400 en el handler de análisis).
+2. G11: BLOCKED_EXTERNAL_ARTIFACT (recurso exacto arriba).
+3. Canary: SOURCE_VERIFIED_CANARY_BLOCKED (gate 6 acceso; paquete listo).
+4. Seguridad dinámica (S3-E02): sigue NOT_RUN (restricción del harness, sin reintentos).
+5. 1.4: pata positiva del binario backtester→PG demostrada a nivel biblioteca + fail-fast real del binario; el e2e nativo completo no produce operaciones (fixture market-data-only) — registrado honesto.
+
 ### CONTINUACIÓN 2 — CORRECCIÓN DE EXPERIENCIA (2026-10-22, en curso)
 
 El Owner RECHAZÓ la experiencia visible del LAB V4 (recorrido de portfolios/snapshot/jobs; consola de infraestructura, no producto). Estados registrados en el planificador:
@@ -202,10 +209,3 @@ El Owner RECHAZÓ la experiencia visible del LAB V4 (recorrido de portfolios/sna
 | ACCESO MCP | resuelto durante esta continuación: catálogo aranea-ssh restaurado (sonda read-only `sqx-zeus` respondió `sqx-ulab-zeus-0`); el bloqueo previo del gate 6 (sesión expirada) ya no aplica cuando el canary se reanude |
 
 Resultado al cierre: UX_IMPLEMENTATION=READY_FOR_OWNER_REVIEW|PARTIAL|BLOCKED, OWNER_UX_ACCEPTANCE=PENDING, evidencia A–J y SHA en la subsección final de esta continuación.
-
-### FINAL_SHA_REVIEW — COMPLETE (revisor en contexto fresco, 2026-10-22)
-Dictamen **READY_FOR_MANAGER** sobre `bfd03a19` (delta ed458c5e..bfd03a19, 4 commits). Evidencia propia del revisor: suite lab green (210s), coverage 96,1% reproducido exacto, T43 validado como dos significados distintos (70 ≠ 150 por máximo inicial), sin identidad sintética en el delta, invariantes económicos demostrados con asserts, sin tests sin aserciones ni exclusiones. 5 hallazgos NO bloqueantes: 2 MINOR corregidos en `1c7d929a` (SHA FINAL del candidato) (trim lossy; opened_at ausente ahora falla cerrado — jamás membresía PRE implícita) + 3 NOTE registradas (CurveCurrent siempre true en el endpoint de análisis; charset hex no validado en slots LAB_FACTS; errores de BD mapeados a 400 en el handler de análisis).
-2. G11: BLOCKED_EXTERNAL_ARTIFACT (recurso exacto arriba).
-3. Canary: SOURCE_VERIFIED_CANARY_BLOCKED (gate 6 acceso; paquete listo).
-4. Seguridad dinámica (S3-E02): sigue NOT_RUN (restricción del harness, sin reintentos).
-5. 1.4: pata positiva del binario backtester→PG demostrada a nivel biblioteca + fail-fast real del binario; el e2e nativo completo no produce operaciones (fixture market-data-only) — registrado honesto.
