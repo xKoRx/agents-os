@@ -251,7 +251,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000617|06:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000619|06:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000621|06:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000623|06:23]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000625|06:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000626|06:26]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000379.png|f-000379]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000619.png|f-000619]]
 
 **Visual hint:** 06:19 — gráfico EURUSD 5M con el trade dibujado (zona azul de recorrido y zona gris inferior, nivel horizontal superior en 1,11376); los deícticos «llega aquí»/«lo quitas de aquí» apuntan a este gráfico
 
@@ -371,7 +371,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000756|07:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000801|08:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000806|08:06]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000813|08:13]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000496.png|f-000496]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000500.png|f-000500]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000816.png|f-000816]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000820.png|f-000820]]
 
 **Visual hint:** 08:20 — gráfico GBPUSD 5M con el trade del instructor dibujado (zona azul/gris, etiqueta «2am low», nivel 1,32190), patrón equivalente al ejemplo anterior de EURUSD
 

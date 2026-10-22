@@ -32,7 +32,7 @@ La escalera 7→4→1→−3 contada como experiencia propia: «me ha pasado mil
 
 ## E8 — Irse tras el profit y olvidar el precio (min 13)
 
-«Yo cuando he tenido esto y te he profitado [ASR] ya me he ido, y aquí ya no me ha preocupado nada; ya ni estaba pensando en qué hacía el precio y en qué no» — [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0059|c-0059]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001355|s-001355]].
+«Yo cuando he tenido esto y te he profitado [ASR] ya me he ido, y aquí ya no me ha preocupado nada; ya ni estaba pensando en qué hacía el precio y en qué no» — [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0059|c-0059]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001311|s-001311]].
 
 ## E9 — El alumno rayado por la venta que «se escapó» (min 14)
 
@@ -56,7 +56,7 @@ Aritmética dicha de la inversión: «ni que os gastéis 5.000 euros en challeng
 
 ## E14 — El trade repartido entre cuentas (min 29)
 
-«Tienes un challenge que está a más 6, tienes un stop loss, lo dejas a más 5 y ya estás nervioso para el siguiente trade; pues nada, vas al challenge que tienes a más 2 y coges el trade ahí; ¿te va bien? Tienes 2 a más 5 ahora; ¿te va mal? Pues uno más cinco y uno más uno, que no pasa nada» — deícticos numéricos sin panel en pantalla — [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0131|c-0131]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002909|s-002909]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002959.png|f-002959]].
+«Tienes un challenge que está a más 6, tienes un stop loss, lo dejas a más 5 y ya estás nervioso para el siguiente trade; pues nada, vas al challenge que tienes a más 2 y coges el trade ahí; ¿te va bien? Tienes 2 a más 5 ahora; ¿te va mal? Pues uno más cinco y uno más uno, que no pasa nada» — deícticos numéricos sin panel en pantalla — [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0131|c-0131]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002943|s-002943]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002959.png|f-002959]].
 
 ## E15 — Cierre y despedida (min 30-31)
 
