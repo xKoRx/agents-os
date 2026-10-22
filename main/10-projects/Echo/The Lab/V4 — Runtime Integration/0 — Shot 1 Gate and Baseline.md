@@ -40,6 +40,16 @@ D09/D10/D11/D16 y D17–D24 de [[F — Decision Register]] prevalecen; D24 resue
 
 A runtime/autoridad y CURRENT→TARGET; B ingesta/readiness; C historias/economía; D curvas/métricas/workers; E rankings/paridad; F SQL/migraciones; G Hasura/UX y consolidación funcional/paquete Shot 2; H matriz QA/oráculos. Los especialistas no editan estado padre ni change_log. El gate final y las correcciones materiales del paquete pertenecen a GOD.
 
+### Adjudicaciones de revisión crítica
+
+- Un único hash nuevo `wire.HashTagged`/`wire.Digest` del SDK; se descarta la receta de longitudes propuesta inicialmente en A. Los IDs nativos existentes no cambian.
+- Vocabulario público `run_id`, `config_revision`, `execution_mode`, rol `REFERENCE|EXECUTION|NATIVE` y `reference_basis` separado. El `operation_ref` fuente A se guarda en `source_operation_id`/`correlation.source_operation_ref` de C; la ref de History representa ese hecho bajo una historia y no crea otra autoridad.
+- Decoder V2 cerrado, sin claves duplicadas/desconocidas; decimales canónicos rechazados si no cumplen. Digest y ID opaco son tipos distintos. Receipt replay se resuelve antes de CAS; precondición stale devuelve 412, ausencia 428, conflicto de identidad/idempotencia 409.
+- Readiness externa OBSERVE_MASTER no fabrica Operation/Signal nativos. Native sólo acredita snapshot realmente cargado; incompatibilidad requiere arranque aislado propio y estado explícito, sin hot reload inventado ni reinicio compartido.
+- Economía racional y métricas HE24; único kernel MinMaxV1 binary64 compatible con Forge, conversión declarada en el borde. Submódulo puro dentro de Echo, ningún repositorio adicional ni segundo kernel decimal.
+- Cohorte exige misma semántica comparable; run/config/selection individuales viven en membership, no se exige compartir un run físico entre estrategias. Se publica el conjunto completo atómicamente.
+- Migraciones nuevas 067–074 adjudicadas a F sobre catálogo real 066; sin copiar numeración/DDL de ramas antiguas. Runner mínimo con transacción y checksum de bytes externos; no auto-hash circular. Retiro destructivo y migración de estrategias quedan fuera.
+
 ## Fuentes
 
 Fuentes primarias: repositorios y SHAs de la tabla; mandato Owner del 2026-10-22; notas canónicas citadas. Los documentos de especialistas incorporarán rutas y líneas verificadas en ese único corte. No hay certificación E2E, de seguridad dinámica ni de infraestructura por completar este diseño.
