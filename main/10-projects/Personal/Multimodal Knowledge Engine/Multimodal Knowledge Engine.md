@@ -249,6 +249,7 @@ Repo: `docs/roadmap/post-m0-opportunities.md` (`master`, commit de alta `c9c0d3c
 - Historial sintético anterior NO_GO conservado; recovery PASS sobre tres casos y holdout 6/6 no son certificación M0. Gate definitivo físico/spec basado en evidencia.
 - Roadmap de oportunidades diferido y ya persistido, sin scope creep M0.
 - V2: L0 reutiliza source/media/evidence; L1 son Grounded Claims atómicos; L2 son SKOs con provenance transitiva. `D4 = DEFERRED_TO_V3`; intent/questions, RAG/search, cross-source composition y SKO nesting quedan fuera.
+- Estado knowledge-library Clutifx (2026-10-22, misión CLUTIFX_FINAL_REGULARIZATION): 12/12 bibliotecas V1.2 (1.599 activos, 1.584 SUPPORTED, 15 UNCERTAIN, 9 superseded), 12/12 validadores PASS, CH01 migrado desde MKE V2 con legado preservado; READY_FOR_COMPILATION=PASS en `knowledge-library/clutifx/COMPILATION-READINESS.md`.
 - Para M0-R1, el golden existente se preserva hash-identical; corregir evaluación cross-language NO autoriza traducir/regenerar golden ni relajar valores/condiciones/negaciones/excepciones.
 - Whisper/local ASR es ahora requisito operacional del Owner para cerrar M0-R1, pero sigue detrás de `ASRProvider`; este refinement no autoriza acoplar media/pipeline a Whisper ni crear routing/infra adicional.
 
