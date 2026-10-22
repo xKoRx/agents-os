@@ -127,6 +127,8 @@ Si el archivo vigente organiza wiring en otra unidad del mismo paquete, GLM regi
 
 Shot 2 debe devolver source SHA/delta/manifest por repo, versiones efectivas de módulo, checksum migraciones/metadata, tests críticos y coverage≥95% nuevo, oráculos D/E/H, captura del recorrido G y prueba auténtica aislada Forge→readiness→master→journal→History→curvas→ambos rankings→Hasura→UI. SQL setup de tests es desechable propio; fuente auténtica conserva provenance y scope, jamás fixture presentado como integración real. Artefacto/permiso externo ausente se registra BLOCKED_EXTERNAL con evidencia mínima, no omite implementación funcional. I1 completo incluye selección/copia/D11/screener/detalle; sólo gates físicos requieren acceso externo. Root/GOD emite gate final del paquete, no I.
 
+La migración F068 y el registry service incluyen identidad sin Magic y primera asignación certificada única: `StrategyIdentityRecordV2` nullable, error V1 UNMAPPED_EXECUTION_IDENTITY, función SQL protegida/evento append-only y carrera/replay H01/H35. No aplicar el scanner V1 no-null al registro universal. El detalle F/B es normativo.
+
 ## Fuentes
 
 - A–H enlazados en §1, únicos owners contractuales.

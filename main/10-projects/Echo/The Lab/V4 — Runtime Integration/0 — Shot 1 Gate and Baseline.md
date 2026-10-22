@@ -49,8 +49,9 @@ A runtime/autoridad y CURRENT→TARGET; B ingesta/readiness; C historias/econom�
 - Fuente exacta, derivados `derived-fixed24-half-even.v1` con B/deltas cuantizados24, sumas exactas y cota de error; descarta fracciones compuestas expandidas por crecimiento de memoria. Métricas HE24; único kernel MinMaxV1 binary64 compatible con Forge, conversión declarada en el borde. Submódulo puro `v3/shared-analytics` dentro de Echo, ningún repositorio adicional ni segundo kernel decimal; `sdk/analytics` existente importa SDK y no puede ser raíz del módulo puro.
 - Cohorte exige misma semántica comparable; run/config/selection individuales viven en membership, no se exige compartir un run físico entre estrategias. Se publica el conjunto completo atómicamente.
 - Migraciones nuevas 067–074 adjudicadas a F sobre catálogo real 066; sin copiar numeración/DDL de ramas antiguas. Runner mínimo con transacción y checksum de bytes externos; no auto-hash circular. Retiro destructivo y migración de estrategias quedan fuera.
-
 - Hasura V4 usa roles nuevos `lab_readonly/lab_config_operator` sin herencia de permisos legacy, source `echo_lab_v4` al mismo DB con login least-privilege, `owner_principal_ref` y page máximo200. Se conserva metadata legacy fuera de alcance. FK de history head referencia revision_digest, no content_digest, y rechaza NULL que eludiría la FK.
+
+- Registry universal sin Magic exige ampliar mapping061; F068 cierra nullable triple, primera asignación única con función protegida/evento, scanner V2 y error V1 explícito. Identidad y asignaciones previas permanecen selladas.
 
 ## Fuentes
 
