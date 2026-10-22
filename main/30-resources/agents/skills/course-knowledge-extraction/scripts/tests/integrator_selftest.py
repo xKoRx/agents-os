@@ -146,7 +146,7 @@ def main():
             fails.append(f"caso6: exit {r.returncode}")
         else:
             line = [l for l in r.stdout.splitlines() if "normalizadas" in l]
-            if not line or not line[0].rstrip().endswith(": 1"):
+            if not line or "refs f-.png normalizadas: 1" not in line[0]:
                 fails.append(f"caso6: contador esperado 1, stdout: {r.stdout.strip()!r}")
 
     # Caso 7 (RED ch08): integración parcial NO toca el canónico

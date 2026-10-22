@@ -250,7 +250,14 @@ scripts/integrate_reviews.py --run <run> --lib <lib> [minutos...]
                                                           # escribe sólo claims.jsonl.partial y
                                                           # sale 1 (defecto real ch08: un run de un
                                                           # minuto sobrescribió el canónico desde
-                                                          # el pool)
+                                                          # el pool). Evidencia visual por clases:
+                                                          # las f-* del pool sin verificar NO entran
+                                                          # al canónico; entran las de
+                                                          # verified_evidence del revisor y las
+                                                          # targeted-adjudicadas con prueba en
+                                                          # <run>/evidence-adjudications.json
+                                                          # (defecto real ch10: refs f- adjudicadas
+                                                          # se perdían en la fusión)
 scripts/make_minute_payload.py <transcript.md> <claims> <min> <out>
 scripts/tests/fixtures_selftest.py                        # red-green del validador
 scripts/add_block_anchors.py <transcript.md>              # anchors ^s- idempotentes
