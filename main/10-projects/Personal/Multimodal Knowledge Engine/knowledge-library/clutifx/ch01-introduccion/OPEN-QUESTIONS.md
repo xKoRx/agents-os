@@ -1,0 +1,19 @@
+# ch01-introduccion — Preguntas abiertas
+
+IDs estables `q-ch01-NNN`. Una pregunta abierta NO degrada una regla correctamente sustentada; delimita lo que no debe consumirse como hecho. Estado: OPEN | RESOLVED (con evidencia adjudicada).
+
+- **q-ch01-001** — Deícticos del dibujo no verbalizados ("esta", "este de aquí", "aquí arriba", "para aquí", etc.): el referente exacto solo consta en el gesto/dibujo del vídeo; los frames citados por cada claim lo acotan pero no lo rotulan. Claims afectados: c-0006, c-0007, c-0013, c-0020, c-0024, c-0026, c-0027, c-0036, c-0050, c-0051, c-0054, c-0060, c-0067, c-0070, c-0076, c-0079, c-0086, c-0089, c-0090, c-0092, c-0094, c-0096, c-0110, c-0124, c-0126, c-0127. **OPEN** (resoluble solo re-viendo el vídeo; no afecta a las reglas, que se sostienen en el audio).
+- **q-ch01-002** — "doble" [ASR] en c-0049 ("en contra de nuestro doble… en dirección a nuestro doble"): candidatos con significados distintos — DOL (objetivo de liquidez; apoyado por "en contra de", posesivo "nuestro", "reiniciar antes de ir hacia el objetivo") vs DXY (índice del dólar). El statement preserva la palabra dicha. **OPEN** (adjudicación SOURCE-FIRST pendiente; contraste con el DOL/DXY del GLOSSARY del curso).
+- **q-ch01-003** — "DXI" [ASR] en c-0084 ("esto podría ser con el DXI también"): lectura probable DXY (s-002315 escribe "DXY" literal más adelante; contraste euro/libra). **OPEN** (mantener [ASR]; ch05 dice DXY literalmente — relación documentada en GLOSSARY).
+- **q-ch01-004** — "JP" [ASR] en c-0088 ("ya sea JP o DXY"): lectura probable JPY. **OPEN**.
+- **q-ch01-005** — Familia de garbles de Turtle Soup ("Tartel sub", "tartle sub", "Tartle Sup", "intertartel sub", "intentarte el show"): **RESOLVED** por evidencia visual — rótulos TURTLESOUP (f-001559) e INTRATURTLESOUP (f-001859) escritos por el instructor en pantalla, y "intertartel sub" explícito en s-001921. Adjudicación registrada en notes de c-0058..c-0077; los statements preservan el audio [ASR].
+- **q-ch01-006** — "Felur Swing" [ASR] en c-0100/0101: **RESOLVED** — el instructor lo dice literal ("Esto es el failure swing", s-002710) y la definición coincide con la introducida en c-0098.
+- **q-ch01-007** — "S&T" [ASR] en c-0097: **RESOLVED** por co-texto ("el concepto de SMT en la estrategia") y rótulo SMT en f-002559.
+- **q-ch01-008** — "Forexcom" [ASR] en c-0103: **RESOLVED** — cabecera del gráfico "EURUSD · 8h · FOREX.com" visible en f-002623 y siguientes.
+- **q-ch01-009** — Truncado ASR "toma del [ASR]" (c-0061, s-001539/s-001554): probable "toma del alto o del bajo"; el texto no lo completa. **OPEN** (no completar sin audio).
+- **q-ch01-010** — Término inglés del order block dicho como "change instead of delivery" [ASR] (c-0105): lecturas candidatas "change in state of delivery" (CISD) vs "change of character" (CHoCH); el transcript no desambigua. **OPEN** (requiere re-escucha 27:20–27:34).
+- **q-ch01-011** — Temporalidades dichas "10, 25, 30" [ASR] (c-0113, s-002936–002952): "25" no es temporalidad estándar; candidatos 5/15/20. **OPEN** (requiere re-escucha 29:40–29:44).
+- **q-ch01-012** — AM/PM de "a la 1" (c-0119): el dibujo usa notación 24h ("0100"/"0500"), sugiriendo 01:00–05:00 NY; por la vela de 4h que cierra a las 5 sería 13:00–17:00 en el otro caso. El audio nunca lo verbaliza. **OPEN**.
+- **q-ch01-013** — "salidas basadas en el tiempo y traspasadas [ASR] en el tiempo" (c-0131, s-003343): garble sin candidatos claros; temas anunciados para más adelante. **OPEN**.
+- **q-ch01-014** — Nivel exacto del objetivo de Libra en el ejemplo de c-0037 (1,36031 vs 1,36238 vs 1,37489 no determinables desde los frames). **OPEN** (afecta solo a la anécdota del ejemplo, no a la regla).
+- **q-ch01-015** — Nexo exacto rango bearish en Libra → SMT (c-0036): el instructor lo difiere explícitamente ("ya lo vais a ver en el tema de la SMT"); ep05 lo desarrolla. **OPEN** como pendiente del propio curso (documentado, no defecto).

@@ -1,0 +1,9 @@
+# ch01-introduccion — Amendments
+
+Registro append-only de correcciones materiales sobre la biblioteca V1.2 publicada (regeneraciones cosméticas no van aquí). Formato: amendment_id, claim(s), fecha, motivo, antes/después, evidencia, resultado.
+
+- **am-ch01-001** — 2026-10-22 — claims c-0058..c-0077 (garbles Turtle Soup), c-0084 (DXI), c-0088 (JP), c-0097 (S&T), c-0100/0101 (Felur Swing), c-0103 (Forexcom) — MOTIVO: adjudicaciones de garbles confirmadas (rótulos en pantalla, literales del instructor, cabecera de gráfico) registradas en `notes` sin reescritura de statements (contrato SOURCE-FIRST: la palabra dicha se preserva con [ASR]). ANTES: candidates sin confirmar en unresolved_questions. DESPUÉS: adjudicación citada en notes + preguntas q-ch01-005..008 marcadas RESOLVED en OPEN-QUESTIONS. EVIDENCIA: f-001559/f-001859 (rótulos), s-002710 (literal), f-002623+ (cabecera). RESULTADO: aplicado y validado.
+- **am-ch01-002** — 2026-10-22 — c-0041, c-0042, c-0043 (rango pendiente: "cierra adentro **o reacciona**") — MOTIVO: el revisor del minuto 9 verificó que las dos condiciones alternativas están dichas en s-000954 ("toma el low de la vela anterior y sube"); la evidencia se amplió con s-000926/s-000928/s-000932. ANTES: evidencia parcial. DESPUÉS: evidencia completa. RESULTADO: aplicado en integración.
+- **am-ch01-003** — 2026-10-22 — 3 visual_hints re-fijados (c-0047→999 s, c-0067→1023 s, c-0081→1275 s en claves locales; ver adjudications del run) — MOTIVO: los segundos originales mostraban el momento previo al dibujo completo (lección ch06 #3: capturar el momento del señalamiento/dibujo completo). ANTES/DESPUÉS: ver evidence-adjudications.json del run 2026-10-22. RESULTADO: aplicado en integración.
+
+Sin supersessions a 2026-10-22: los 132 claims nacen activos; ACTIVE KNOWLEDGE = los 132 (ninguno con `superseded_by`).
