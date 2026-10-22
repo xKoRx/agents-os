@@ -56,7 +56,7 @@ Auditoría NORMAL acotada (una sesión GLM, corte `07cca9d3`) al cierre `PASS_26
 
 ## Execution Client y Feed Batching — supervisión
 
-- [ ] [[Echo Futures — Execution Client y Feed Batching]] implementar + seguimiento de los tres shots #owner/me #type/supervision #area/echo
+- [r] [[Echo Futures — Execution Client y Feed Batching]] implementar + seguimiento de los tres shots #owner/me #type/supervision #area/echo — FEFB G3 accepted por Primary Manager sobre `2ee61791`; código terminado, aprobación humana de tarea puente pendiente; certificación NT separada.
 
 ## 🎯 Objetivo
 
