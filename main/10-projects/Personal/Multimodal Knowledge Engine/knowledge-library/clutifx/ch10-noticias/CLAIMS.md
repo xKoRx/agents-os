@@ -2279,7 +2279,7 @@
 
 ### c-0200
 
-**Supersedes:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#['c-0030']|['c-0030']]] (versión histórica preservada)
+**Supersedes:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0030|c-0030]] (versión histórica preservada)
 
 **Statement:** En pantalla se muestra la hoja de cálculo Excel «NEWS - ONE TO ONE ENG» (pestaña «NOTICIAS») con una tabla de estadísticas por noticia (Time, Clarity, Difficulty, Whipsaw, Blow acc) y siete bloques por divisa (USA, EUR, GBP, CAD, AUD, NZD, CHF) que listan las noticias relevantes de cada moneda y los pares con los que se operan: USA → XXXUSD/USDXXX; EUR → EURUSD, EURCAD, EURCHF, EURAUD; GBP → GBPUSD, GBPCAD, GBPCHF, GBPAUD; CAD → USDCAD, EURCAD, GBPCAD, AUDCAD, NZDCAD; AUD → AUDUSD, AUDCAD; NZD → NZDUSD, NZDCAD; CHF → USDCHF, EURCHF, GBPCHF.
 
