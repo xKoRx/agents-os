@@ -8,7 +8,7 @@ Registro append-only de correcciones materiales post-publicación. Capítulo pub
 - **Motivo**: documentation.md §16 y study-guide §6 atribuían bajo «CH07 (setups/checklist)» dos conexiones que la fuente remite al vídeo de NOTICIAS (ch10): c-0012 («he explicado antes con el vídeo de noticias», s-000410) y c-0070 («lo que os decía en el capítulo de noticias también», s-002310/s-002313). El transcript de ch11 contiene exactamente dos referencias intercapítulo dichas y ambas son a ch10; ninguna referencia a setups/checklist de ch07 existe en la fuente.
 - **Antes**: bullet CH07 en §16 y study-guide §6 con c-0012/c-0070; README Prerrequisitos/Referencias y COURSE-INDEX listaban ch07.
 - **Después**: bullet CH07 eliminado; c-0070 incorporada al bullet CH10 (que ya documentaba c-0012/c-0042); README y COURSE-INDEX sin ch07 en prerrequisitos/referencias, con nota de la corrección.
-- **Evidencia**: s-000410, s-000415 (vídeo de noticias), s-002310+s-002313 (capítulo de noticias); búsqueda sobre claims.jsonl (0 menciones de setups/checklist/c-0229) y transcript.
+- **Evidencia**: s-000410, s-000415 (vídeo de noticias), s-002310+s-002313 (capítulo de noticias); búsqueda sobre claims.jsonl (0 menciones de setups ni del checklist de 4 preguntas — ese claim pertenece a ch07) y transcript.
 - **Resultado**: clasificación documental corregida; conexiones conservadas sólo donde la fuente las respalda (ch10). q-ch11-012 no afectada (duda de alcance preservada, PARTIAL).
 
 ## am-ch11-doc-002 — Errata de métricas del run (2026-10-22, reconciliación contra epochs/spools/commits)
