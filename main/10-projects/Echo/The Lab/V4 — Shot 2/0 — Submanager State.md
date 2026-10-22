@@ -10,7 +10,7 @@ aliases: []
 tags:
   - kind/doc
 created: "2026-10-21"
-updated: "2026-10-21"
+updated: "2026-10-22"
 ---
 
 # V4 Shot 2 — Submanager State (durable)
@@ -20,6 +20,23 @@ updated: "2026-10-21"
 Mantener el estado vigente del programa V4 y el handoff entre implementación, auditoría independiente y validación crítica.
 
 ## Contenido
+
+## Handoff primario vigente — sesión Manager cerrada 2026-10-22
+
+**Siguiente objetivo:** nuevo programa de cierre `THE_LAB_V4_FORGE_ONBOARDING_RANKING` de **exactamente cuatro shots**, de alcance acotado. No continuar ejecutando indefinidamente Shot 4 previo. Las **decisiones OWNER_RATIFIED D17–D23** están en [[F — Decision Register]], sección `V4 — Decisiones Owner 2026-10-22`. Son la autoridad producto vigente junto a D09/D10/D11/D16. Nuevo manager empieza ahí, en este handoff y la última continuación de [[SHOT4_HANDOFF]]; evita rereads masivos.
+
+**Prioridad real del Owner:** Forge debe conocer y usar contrato canónico de Echo (nunca viceversa); `POST strategy-ingestions` registra Strategy/Version+historia y debe coordinar habilitación operacional **en `strategy_definitions` y routing/políticas reales** con readiness verificable para señal master que puede llegar **~1 minuto después**. Esa señal debe persistirse en `trade_journal` y proyectarse en LAB enlazada con historia histórica Forge, sin confundir historia/versión/cuenta ni sumar copias. Forge puede configurar estrategia en su propio dominio usando refs devueltos.
+
+**Analytics:** curvas matemáticas derivadas e independientes de la historia fuente; registro factory de perfiles R/10k (+money/initial-balance existentes), score separado del selector de curva; ranking Go puro **compartido Echo/Forge**, dos presets iniciales Edge Dúo (RetDD+PF) y Forge Calidad 4 (RetDD+PF+Sharpe+SQN), automaticidad para todas estrategias elegibles, cohortes/versiones/scores reproducibles. Hasura + screener ordenable/filtros + detalle completo incluyendo calendario por día, operaciones/historia y perfiles. Sin fixtures de usuario.
+
+**Portfolios dinámicos = CERO tareas ahora.** Conservar extensionalidad de identidad/tiempo/revisión; no diseñar selector/rebalanceo/simulador. Diferencia importante: ranking de estrategias actual **no equivale** a portfolio dinámico.
+
+**Roles y gasto:** Shot1 GOD LOCAL submanager de diseño: coordina Lunas/Soles que investigan y redactan, GOD decide y valida evidencia compacta; Shot2 GLM LOCAL implementa; Shot3 GOD LOCAL submanager independiente: Lunas/Soles ejecutan auditoría y GOD valida; Shot4 GLM LOCAL corrige todo, con QA fresca del delta final dentro del shot. GOD nunca ejecutor de test/build/source masivo; sin otro freeze ni quinto shot.
+
+**Estado REAL reportado/verificable:** xKoRx/echo `feature/lab-v4-shot4@10a4eddd540de69370408c60a7a9c159b97e6a38` publicado; `feature/ef-runtime-pools@960bf60ae0832570ca3b97aba0e7badea486bb00` paralelo; Echo REFERENCE 136 estrategias/3580 operaciones reportadas en corte de 2026-10-22 (solo REFERENCE), no toda operación. V2 funciona local, **no** Forge E2E ni habilitación operacional. Activación/provenance y ranking **no implementados** por registrar decisiones. Seguridad dinámica y despliegue siguen gated. Branch SHA y acceso físico se refrescan en Shot1. **No se mutó producto ni entorno en este cierre**.
+
+**Próximo paso:** entregar prompt maestro del nuevo manager e iniciar su Shot1; cuatro shots únicos y sin preguntar nuevamente decisiones ya ratificadas. El cierre es de **esta sesión manager**, no del proyecto Echo/The Lab ni autorización a trading real.
+
 
 **Role:** Implementation Submanager / Technical Integration Lead (mandato maestro 2026-10-20). **Engine:** GLM-5.3-Flash Max LOCAL. **Estado global:** ver [[F — Decision Register]] §V4 y [[Echo — Producto Integrado]].
 
