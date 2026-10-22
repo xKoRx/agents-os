@@ -16,10 +16,10 @@ Notas operativas del run de reconstrucción V1.2 (run dir `/home/kor/mke/clutifx
 ## Incidentes y correcciones
 
 1. **[1210] "Invalid API parameter"**: 6 muertes de worker (min06, min08, min13, min19, min23, min28, min30 — el 30 murió 2 veces), todas TRANSITORIAS y recuperadas con retry completo del minuto; 0 pérdida de datos. Coincide con el patrón ch08–ch12.
-2. **Naming de frames por segundos crudos (4ª recurrencia, cazada por el Manager)**: 7 frames de 3 revisores (min04 ×2, min09, min10, min32 ×3) usaron el segundo crudo como HHMMSS (p.ej. 241 s → `f-000241` en vez de `f-000401`). Detección: chequeo decode(distancia del minuto) post-olas. Adjudicación con **sonda byte-idéntica** (lección ch12: la sonda prueba el INSTANTE): extracción ffmpeg fresca al segundo declarado → 7/7 idénticas → renombrados por fórmula + reviews re-normalizados. Lección reforzada: generar SIEMPRE las rutas del pack por código; el revisor no debe escribir nombres a mano.
+2. **Naming de frames por segundos crudos (4ª recurrencia, cazada por el Manager)**: 7 frames de 3 revisores (min04 ×2, min09, min10, min32 ×3) usaron el segundo crudo como HHMMSS (p.ej. el segundo 241 escrito como HHMMSS crudo en vez de por fórmula). Detección: chequeo decode(distancia del minuto) post-olas. Adjudicación con **sonda byte-idéntica** (lección ch12: la sonda prueba el INSTANTE): extracción ffmpeg fresca al segundo declarado → 7/7 idénticas → renombrados por fórmula + reviews re-normalizados. Lección reforzada: generar SIEMPRE las rutas del pack por código; el revisor no debe escribir nombres a mano.
 3. **Formatos heterogéneos de `verified_evidence`** en los reviewers (ids desnudos, dicts `{segment,timestamp,quote}`, strings en prosa con varios ids): el normalizador del Manager (no canónico) los unificó a ids desnuros para `validate_review.py`. Defecto de paquete, no de contrato: los prompts no fijaron el formato de la lista de evidencia.
 4. **`.base_frames` con sufijo `.png`**: el renderer falla cerrado esperando stems (correcto); corregido el manifiesto.
-5. **f-002148-style**: aquí no ocurrió; el frame final se nombró por fórmula (f-003403) desde el principio (lección ch10 #1 aplicada en el setup del Manager).
+5. **Residuo estilo frame-final mal nombrado (cf. ch10)**: aquí no ocurrió; el frame final se nombró por fórmula (f-003403) desde el principio (lección ch10 #1 aplicada en el setup del Manager).
 
 ## Veredictos y honestidad epistémica
 

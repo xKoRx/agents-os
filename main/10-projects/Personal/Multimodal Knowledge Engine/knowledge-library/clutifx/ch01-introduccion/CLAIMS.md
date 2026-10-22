@@ -65,7 +65,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000121|01:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000129|01:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000143|01:43]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000081.png|f-000081]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000105.png|f-000105]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000159.png|f-000159]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000121.png|f-000121]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000105.png|f-000105]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000159.png|f-000159]]
 
 **Visual hint:** 01:21 — dibujo: identificar qué vela es 'probablemente bajista' y qué vela toma el extremo y cierra adentro
 
@@ -219,7 +219,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000453|04:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000459|04:59]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000506|05:06]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000290.png|f-000290]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000450.png|f-000450]]
 
 **Notes:** Nótese el condicional 'a lo mejor' para la formación del siguiente rango.
 
@@ -881,7 +881,9 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001735|17:35]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001737|17:37]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001739|17:39]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001742|17:42]]
 
-**Notes:** Criterio dicho con 'por lo tanto': mientras el cierre siga dentro, el rango permanece operativo aunque ocurra un intra.
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001859.png|f-001859]]
+
+**Notes:** Criterio dicho con 'por lo tanto': mientras el cierre siga dentro, el rango permanece operativo aunque ocurra un intra. | Adjudicación Manager (am-ch01-004): frame base f-001859 añadido — el revisor del min17 lo verificó como corroboración visual durante la definición.
 
 ### c-0071
 
