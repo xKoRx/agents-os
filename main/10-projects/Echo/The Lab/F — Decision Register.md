@@ -9,9 +9,60 @@ related:
   - "[[D — Revised Roadmap]]"
 tags: [kind/doc, area/echo]
 created: "2026-09-22"
-updated: "2026-10-20"
+updated: "2026-10-22"
 ---
 # F — Decision Register — owner clarifications and D1 decisions
+
+## V4 — Decisiones Owner 2026-10-22: Forge, operación, curvas y rankings (autoridad vigente)
+
+**Estado:** OWNER_RATIFIED para requisitos/producto. **No equivale a implementación ni certificación**. Esta sección complementa D09/D10/D11/D16; sustituye interpretaciones anteriores que daban por terminada una integración Forge limitada a ingesta analítica. El siguiente ciclo de cierre tiene **exactamente 4 shots** (diseño, implementación, auditoría adversarial, correcciones); no es permiso para continuar indefinidamente el Shot 4 anterior.
+
+### D17 — Forge canonical ingest → Echo operacional → LAB (OWNER_RATIFIED)
+
+Una estrategia enviada por Forge mediante el **contrato canónico Echo** debe: (1) registrar identidad Strategy/StrategyVersion inmutable y una o varias historias históricas con operaciones, revisiones y provenance; (2) quedar **registrada y habilitable operativamente en Echo** mediante la integración real con `echo.strategy_definitions` y las rutas de señales/políticas/identidades correspondientes; (3) permitir que una señal de cuenta master entrante incluso **un minuto después de la recepción** sea correlacionada a la misma estrategia/version, ingresada en `echo.trade_journal` por su ruta canónica y proyectada como historia Echo/REFERENCE junto a la historia importada de Forge en una **vista continua con selección temporal**, sin mutar ni sumar dos veces las historias; (4) producir curvas, métricas y scores automáticos. Distinguir `INGEST_ACCEPTED`, `ANALYTICS_PENDING` y `ECHO_OPERATIONAL_READY`; una aceptación analítica NO implica preparación operacional. Si faltan políticas de cuenta, mappings, permisos, data o habilitación operativa, respuesta de readiness explícita con motivos; **no ejecutar trading real sin las autorizaciones operacionales aplicables**. Idempotencia/replay, reconciliación, fallo parcial, retry y condición de carrera señal-inmediata son requisitos de aceptación.
+
+Forge puede configurar su propia estrategia en su dominio inmediatamente usando las identidades/receipts devueltos por Echo. Echo NO debe conocer las tablas, clases ni formato interno de Forge; el cliente Forge conoce, valida y traduce al `strategy-ingestion.v2` (versión compatible/aditiva si hace falta). No acoplar provisioning a cálculo de curvas ni obligar al runtime a esperar el worker analítico.
+
+### D18 — Frontera de fuentes y niveles históricos (OWNER_RATIFIED)
+
+La historia normal es la evidencia económica fuente (USD cuando el productor la declara USD; no inferir USD en otras divisas). `History` y revisiones contienen evidencia exacta y cobertura. `Operation` conserva ciclo lógico, movimientos, cuenta, run/rol y enlaces a orders/fills cuando existen; `CLOSED_SUMMARY` es legítimo para legado, no una simulación de fills. Forge aporta histórico antes de Echo; Echo aporta una historia nueva de ejecución/reference desde la operación real. Selección de historia y segmentos previenen solapes/look-ahead, conservan todas las alternativas y distinguen `construction_at`, cutoff, `available_at`, inicio Echo y conocimiento efectivo. Se exige trazabilidad Forge→estrategia habilitada→señal master→journal→proyección LAB→vista histórica.
+
+### D19 — Curvas y scoring son subsistemas independientes (OWNER_RATIFIED)
+
+Cada curva es un **derivado versionado de la historia económica**, no otra fuente ni un algoritmo de ranking. Registro/factory pequeño de implementaciones Go con `profile_id/algorithm_version/config_digest`, requisitos y producción automática para todas las historias elegibles al registrar perfil o actualizar historia. Inicialmente preservar perfiles V4 existentes: `recorded_money.v1`, `r_net_cumulative.v1`, `normalized_10k_open_balance.v1`, `normalized_10k_initial_balance.v1`; visualización inicial prioriza R y 10k, con dinero registrado como fuente. Los puntos/operaciones/movimientos asociados a cada curva conservan el mismo input y pueden consultarse por revisión/fecha. No clonar historia, duplicar costos o falsear Q_i para un perfil insuficiente.
+
+Cada ranking es otra familia de derivados: `ranking_algorithm_id`, versión, configuración sellada, **input_curve_profile_id propio**, ventana/cohorte y un score por estrategia/algoritmo/contexto/revisión con status, explicación/componentes y provenance. **Selector de curva de UI independiente del selector de ranking**: las columnas reflejan la curva visible; el score refleja el algoritmo elegido, aunque se calcule sobre otra curva. Ordenar por score y por columnas, filtros server-side y Hasura (roles/metadata aditiva). Un nuevo algoritmo registrado una vez se aplica automáticamente a todas las estrategias elegibles y se recalcula ante cambios, sin copias de implementación por estrategia.
+
+### D20 — Dos rankings iniciales, motor compartido Forge/Echo (OWNER_RATIFIED)
+
+Usar una **única implementación pura y reutilizable Go** de combinación ponderada con normalización Min-Max y versionado, basada en el ranker REAL de Forge (`xKoRx/symphony/sqx/core/domain/ranking_snapshot_per_type.go`, `weighted_combination_minmax.v1`) y adaptada a métricas de curvas V4. No copiar código en dos lugares; comparar snapshots/golden tests de la implementación Forge y la compartida para garantizar paridad sin acoplar Echo a internals de Forge.
+
+Presets iniciales (dos algoritmos configurados sobre un mismo motor):
+1. `edge_duo.v1` / **Edge Dúo**, entradas Ret/DD 50% y Profit Factor 50%. Perfil económico base definido y fijado por contrato del algoritmo, nunca por el selector UI.
+2. `forge_quality_four.v1` / **Forge Calidad 4**, Ret/DD 31.25%, Profit Factor 25%, Sharpe 25%, SQN 18.75% (renormalización 5:4:4:3 de los cuatro componentes similares al `risk_adjusted_delta.v1` de Forge; aquel es **comparador de dos curvas** y no debe usarse como score absoluto sin transformación explícita).
+
+Ret/DD/PF/Sharpe/SQN exigen **definiciones, unidades, perfil, calendario, window, mínimo de muestra, política de extremos/undefined y tratamiento de costes declarados y versionados**. Sharpe requiere retornos periódicos y base temporal; SQN requiere distribución por operaciones evaluables bajo regla explícita; no copiar números SQX sin equivalencia de definiciones. Si falta métrica obligatoria, score `INSUFFICIENT_DATA/NOT_COMPARABLE`, nunca cero favorable o renormalización silenciosa de los pesos.
+
+**Advertencia estructural:** Min-Max depende del conjunto elegible. Cambiar una estrategia puede cambiar scores del resto: fijar identidad de **cohorte/snapshot de métricas** y recalcular/publicar rankings completos del grupo afectado con consistencia y desempate determinista. Un score absoluto por estrategia sin cohorte NO es comparable entre universos distintos.
+
+### D21 — Experiencia V4 prioritaria (OWNER_RATIFIED)
+
+La entrada a LAB es un **screener de estrategias reales** (no fixtures ni consola de portfolios/backtest). Selectores independientes `ranking` y `curve`, grilla con métricas de curva seleccionada y score/rank del ranking elegido, filtros y orden server-side con Hasura. Click abre detalle: perfiles R/dinero/10k, métricas correspondientes y score por algoritmo, curva de capital/resultado con su historia exacta, timeline de operaciones parciales/terminales, calendario diario de PnL/resultado bajo la curva y fuente seleccionadas, períodos pre/post/Forge/Echo, identidades y cobertura. Los datos de una generación deben ser coherentes, no mezclar curva N con operaciones de N+1. Fuentes reales de Echo y Forge; sin scores ni trades ficticios.
+
+### D22 — Portfolios dinámicos: cero trabajo funcional ahora (OWNER_RATIFIED)
+
+**NO implementar ni diseñar ahora** scheduler, selector Top N automático, rebalanceo, simulador causal, membresías mutables ni infraestructura de portfolios. Objetivo **solo** que la identidad de versiones, revisiones/snapshots, disponibilidad temporal, provenance, curva y scores sean extensibles mediante tablas/servicios **aditivos** cuando I2 se aborde. Si un bloqueo estructural real en lo que se implementa HOY impediría esa extensión, repararlo mínimamente como parte de Forge/LAB; no abrir trabajo de I2 ni gastar tiempo en él.
+
+### D23 — Programa único de cierre: SOLO CUATRO SHOTS (OWNER_RATIFIED)
+
+**Shot 1:** GOD LOCAL submanager de DISEÑO detallado, coordina Luna/Sol en contexto fresco para investigación técnica y redacción; él decide contradicciones materiales y valida el paquete compacto, NO hace inspección/test masivos personalmente. Ratificar dentro del shot todos los detalles técnicos deducibles, sin devolver entrevistas generales al Owner.
+**Shot 2:** GLM LOCAL implementa, integra Echo/Forge/LAB/Hasura en superficies autorizadas y valida con data auténtica aislada.
+**Shot 3:** GOD LOCAL submanager de QA adversarial independiente, coordina Luna/Sol (independientes del implementador), valida findings/evidencia compacta; NO es el auditor ejecutor ni consume cuota en suites/logs/source completos.
+**Shot 4:** GLM LOCAL corrige TODOS los findings y completa el alcance, con revisión independiente de los cambios finales DENTRO del mismo shot. **No Shot 5, subshots perpetuos ni freeze recurrentes.** Limitar GOD a despacho y validación crítica, evidencias compactas, sin fallback de ejecución premium.
+
+Prioridad: activar correctamente estrategia Forge en Echo, enlazar master/trade_journal e historia LAB, curvas y **dos rankings**, screener/detalle reales y Hasura. No hacer rollout/trading/operaciones destructivas sin permisos específicos; pruebas con cuentas/datos autorizados en entornos aislados. Mantener AGENTS OS master, código por repo/rama autorizada; preservar no-interferencia con el runtime paralelo.
+
+**Baseline actual:** xKoRx/echo `feature/lab-v4-shot4@10a4eddd540de69370408c60a7a9c159b97e6a38`; xKoRx/echo `feature/ef-runtime-pools@960bf60ae0832570ca3b97aba0e7badea486bb00`; xKoRx/symphony `master@daded14cbe0bc85f6fafda8d079e94036f715b47` según último acceso; refrescar en Shot 1. El loader Echo REFERENCE es **parcial**, el endpoint V2 está verificado localmente, no lo suficiente para disponibilidad operacional/Forge E2E. G11 y seguridad dinámica aún no certificados. **Continuidad:** el siguiente manager debe arrancar en esta sección y el `SHOT4_HANDOFF` final, sin repetir los diseños V4 aprobados.
 
 ## V4 — Owner ratifications 2026-10-20 (current product authority)
 
