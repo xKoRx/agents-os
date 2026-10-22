@@ -24,7 +24,7 @@ Biblioteca de conocimiento del undécimo vídeo del curso Clutifx, extraída con
 | Checkpoint 5 min | PASS (bloque 1 + min 0-4 VALID en ~15,6 min; proyección 240-250 min/h-video OVER registrada ANTES de continuar; real ~229) |
 | Integración | mecánica (`integrate_reviews.py` con el contrato de evidencia visual del closeout ch10): **80/80 claims con review aplicado, cobertura total** — canónico escrito sólo con integración COMPLETA; 26 correcciones de los revisores adjudicadas y aplicadas al pool ANTES de integrar (literalidad restaurada, anclas load-bearing, evidencia de frontera, visual_hints corregidos) — detalle en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/review-notes|review-notes]] |
 | Modelo | GLM (subagentes locales + integrador; sin API pagada) |
-| DOCVERIFY | independiente ONE-SHOT sobre la biblioteca publicada — ver fila de verificación final |
+| DOCVERIFY | independiente ONE-SHOT: **PASS_WITH_FINDINGS (0 MATERIAL + 4 MENOR)** — SOURCE-FIRST 17 claims con cifras contrastados contra transcript+frames (0 discrepancias), 15 garbles preservados, 12 q-ch11 barridas contra la síntesis sin resolverse, 1160 wikilinks OK, SHA recomputado idéntico; los 4 MENOR corregidos y re-validados (cirílica en R26, headings de concepts, conteo de contextuales 33, glosa interna en E13) |
 
 ## Métricas
 
@@ -35,7 +35,7 @@ Biblioteca de conocimiento del undécimo vídeo del curso Clutifx, extraída con
 | Claims activos / superseded | 80 / 0 (sin supersessions en este capítulo) |
 | Epistemic | 80 instructor_statement · 0 visual_observation · 0 model_inference (capítulo VERBAL: la sustancia es dicha; los frames sostienen deícticos) |
 | Frames base (fin de minuto) | 27 (minutos 0-25 en MM:59.5 + fin del parcial [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-002621.png|f-002621]] (26:21; nombre por fórmula — el pack del Manager decía «f-001621» y el extractor lo cazó); manifiesto `frames/.base_frames`) |
-| Frames bajo demanda | 60 (extraídos y verificados visualmente por revisores/extractor, fórmula desde segundos reales; incluidas las capturas de auditoría contextual de los revisores — patrón ch09/ch10), **54 citados** en total de 87 PNG físicos (32 contextuales sin citar); inventario en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/FRAMES|FRAMES]] |
+| Frames bajo demanda | 60 (extraídos y verificados visualmente por revisores/extractor, fórmula desde segundos reales; incluidas las capturas de auditoría contextual de los revisores — patrón ch09/ch10), **54 citados** en total de 87 PNG físicos (33 contextuales sin citar — 17 base + 16 demanda, inventariados); inventario en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/FRAMES|FRAMES]] |
 | Preguntas abiertas | 12 registradas (q-ch11-001..012): capital de referencia de los %, cuadro «challenges/0,5%» en pantalla, unidades de cifras dichas, deícticos de gráfico, garbles [ASR], «10 horas» del trade de ayer, segmento truncado del BE de parciales, cobertura fronteriza, «en 5 minutos» vs TF en pantalla, objetivos 8h/12h sin etiqueta, alcance «no se mueve» vs BE — ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/OPEN-QUESTIONS|OPEN-QUESTIONS]] |
 | Rules / concepts / examples documentados | 34 / 12 / 15 |
 | Coverage | 27/27 minutos de video con claims y revisión |
@@ -44,9 +44,15 @@ Biblioteca de conocimiento del undécimo vídeo del curso Clutifx, extraída con
 
 | Gate | Resultado |
 |---|---|
-| LIBRARY_VALIDATION | PASS (ver fila de cierre) |
-| TERM_SOURCE_CHECK | PASS (ver fila de cierre) |
-| DOCVERIFY | PASS (ver fila de verificación final) |
+| LIBRARY_VALIDATION | **PASS** (findings=0, 87 frames/80 claims; re-validado tras corregir los 4 MENOR del DOCVERIFY) |
+| TERM_SOURCE_CHECK | **PASS** (80 claims vivos, 0 MATERIAL, 0 TERM_DISAMBIGUATION_REQUIRED) |
+| DOCVERIFY | **PASS tras corrección** (0 MATERIAL + 4 MENOR corregidos y verificados contra el árbol físico) |
+
+```text
+CH11 = DONE
+CH11_SOURCE_INTEGRITY = PASS · CH11_LIFECYCLE = PASS · CH11_SOURCE_FIRST = PASS
+CH11_LIBRARY_VALIDATION = PASS · CH11_DOCVERIFY = PASS (0 MATERIAL, 4 MENOR corregidos)
+```
 
 ## Throughput (reporte separado tramos vs total; nomenclatura normalizada post-ch09)
 

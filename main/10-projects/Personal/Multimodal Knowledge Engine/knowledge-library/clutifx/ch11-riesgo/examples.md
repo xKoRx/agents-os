@@ -74,7 +74,7 @@ Dudas preservadas: El referente exacto de «esto de aquí son 12.000 dólares» 
 
 Mismo importe, consecuencias distintas: «que esto te baje de 6.000 a 0 significa que tienes el challenge en 0% en lugar de más 6, que tienes que volver a empezar para pasarlo», mientras que en una fondeada pasar de 6.000 a 0 «significa que acabas de perder 6.000 dólares»; cierra: «hay que saberse adaptar a cada situación también con este tema del break-even, los parciales, el riesgo, lo mismo». [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0066|c-0066]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002156|s-002156]].
 
-Dudas preservadas: Las citas load-bearing del Manager «en el challenge... no hay dinero real como tal involucrado» y «en las fondeadas... ese dinero ya es tuyo... lo tienes que proteger... hasta que lo cobres de verdad» corresponden a habla anterior a [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002151|s-002151]] (<=21:51), no incluida en el payload de este minuto: no han podido verificarse aquí (cubrir, si procede, en los claims del minuto 21).
+Dudas preservadas: las citas «en el challenge... no hay dinero real como tal involucrado» y «en las fondeadas... ese dinero ya es tuyo... lo tienes que proteger» (s-002131-s-002151) quedan cubiertas por el claim del minuto 21 [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0065|c-0065]]; ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/OPEN-QUESTIONS|OPEN-QUESTIONS q-ch11-008]].
 
 ## E14 — minuto 24 (24:00)
 
