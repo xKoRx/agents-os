@@ -164,3 +164,34 @@ Sin cambios. PG descartable propio (54349) detenido al cierre; sin PROD, trading
 ## Fuentes
 
 [[SHOT4_EXECUTION_PACKAGE]], [[SHOT3_ADVERSARIAL_REPORT]], [[SHOT3_COVERAGE_MATRIX]], [[0 — Submanager State]], `xKoRx/echo@feature/lab-v4-shot4` (61ac1f72..ed458c5e), paquete de repros `outputs/SHOT3_AUDIT_EVIDENCE/`.
+
+## CONTINUACIÓN DEL SHOT 4 — corrección final, verificación y canario (2026-10-21/22)
+
+Mandato del Owner: secuencia continua (cerrar pendientes → SHA final → release reproducible → canary PROD acotado). Ejecutor: implementador LOCAL (GLM-5.3-Flash, host-declarado). Corte de entrada verificado `ed458c5e` (worktree `~/aranea/work/lab-v4-shot4-20261021/echo`, rama `feature/lab-v4-shot4`, árbol limpio).
+
+### Commits de la continuación (ed458c5e → SHA final)
+| Commit | Contenido |
+|---|---|
+| `3939dcb8` | §1.1/§1.2/§1.3/§1.4 — analyze.WindowMetrics + WindowMetricsFromSeries (window_local vs máximo arrastrado, T43 con oráculos 70≠150) + ComparePrePost (cohorte por apertura, corte as_of, delta abs/relativo con UNDEFINED en denominador cero); comparación de copias separada en DigestEquivalence (A) vs CopyFidelity INSUFFICIENT_LINK_EVIDENCE (B, T45) + discontinuidad MM (T44); declaraciones de coste CostTransport NONE_V1/FULL_DECLARED_V1 selladas en coverage + LabCostStatus KNOWN_NONZERO/KNOWN_ZERO/UNKNOWN + comisión tardía N+1 sin mutar N + sin doble descuento; wiring real del binario backtester (LAB_FACTS_* fail-fast) + ruta gateway /analysis + panel de ventana en el front |
+| `1f8e8756` | Demo de UI en ejecución expuso 3 defectos reales de wiring: read models serializaban PascalCase (front esperaba snake_case — el recorrido UI jamás se había corrido); binario lab-worker-v4 no despachaba PORTFOLIO_SNAPSHOT (agotaba 5 intentos con perfil ""); cola reclamaba portfolios antes que curvas (INSUFFICIENT_DATA prematuro). Corregidos + labv4-boundary (boundary mínimo reutilizando el handler V2; SPA fallback; bearer siempre) |
+| `27525f2b` | Gate de coverage cerrado: 96,1% statements en analyze+opfacts (`DATABASE_URL=<PG descartable> LABV4_MIGRATION_TEST=1 go test ./lab/analyze/ ./lab/opfacts/ -coverpkg=./lab/analyze,./lab/opfacts`); tests de publisher con sink stub, fail-closed de montos/monedas mezcladas, ValidatePortfolio D11; borrado código muerto (shortDigest64, rama inalcanzable de json.Marshal) |
+| `bfd03a19` | Carga (§2.2) contra binarios REALES: 16 POST concurrentes ×500 ops (8.000 ops) 201 en 14,9s; ráfaga PUT N+1 (rev→3) 200 en 4,0s; coalescing demostrado (sólo rev3 calculada; 32 jobs rev1 → STALE); worker único drena 32 jobs en 10s; kill -9 a mitad de drenaje → relevo recupera por lease sin duplicar publicación; RSS muestreado 0,5s: boundary max 22MB, worker max 15MB. Fix: boundary registraba patrones sin wildcards (PathValue vacío → todo PUT 400). Evidencia: `~/aranea/work/lab-v4-shot4-20261021/LOAD_AND_MEMORY_EVIDENCE.md` |
+
+### Demo de producto en UI ejecutándose (§1.1 — vite build NO sustituye)
+PG descartable 54349 (DB demo) + binario labv4-boundary (127.0.0.1:8099, bearer) + worker real + front build. Recorrido verificado en navegador: catálogo (3 historias × 4 perfiles READY, D16 visible) → detalle → selección principal/alternativas (hist-A principal; comparación A/B por alternativa) → **análisis de ventana: DD local 6 ≠ DD arrastrado 116, net_change −6, badge costes KNOWN_NONZERO, pre/post por construction_at (pre neto 120/DD 80 vs post −36/DD 70, Δ −156, relativo −13/10)** → portfolio 60/40 READY final 9714,72 (allocations 6.000/4.000). Captura: `~/aranea/work/lab-v4-shot4-20261021/evidence-labv4-ui-window.png`. Oráculos de cohortes verificados con oracle Go independiente (curva money acumulativa desde 0).
+
+### G11 — de "no sé dónde está" a recurso exacto identificado
+FlowRun 561267ed (E2E forge-0.3.2, watcher log `final-release-e2e-20261019/watcher/watcher-w11.log:125,128`) = Temporal `sqx-main-v1-67dd5b4e-…` (fuera de visibilidad del cluster DEV compartido). **Artefactos auténticos VIVOS en MinIO `s3://sqx-strategies/wave_11/ndx/l_h1/flow_example_2/v1/`** (00_configs, 01_builder .sqx, 03…09 con final-*.sqx del reretester; timestamps 2026-10-19). Faltante exacto para G11: las TRADE LISTS del final reretester y el sealed promotion handoff — `10_tradelist/`, `13_mt5_backtest/` y `08_applied/` están VACÍOS en MinIO (esos outputs vivieron en el runtime MT5, host Kronos) y el workflow ya no es consultable. G11 sigue **BLOCKED_EXTERNAL_ARTIFACT** con el recurso y acceso faltante nombrados: trade lists del reretester en el host MT5 + registro de promoción (sha:b325fd29) del runtime Forge.
+
+### Canary PROD (§4/§5) — SOURCE_VERIFIED_CANARY_BLOCKED
+Paquete completo listo en `~/aranea/work/lab-v4-shot4-20261021/canary-pkg/` (README con receta, rollback y criterios de parada). Fuente auténtica verificada: `challenge-history-r4-identity-and-evidence.tar.gz` → ORB-CH300-30M (80.439 eventos; **digest del archivo = event_digest del receipt**, provenance OK). Gate 6 del canary FALLA: la sesión MCP `aranea-ssh` expiró ("Session not found or expired", reintentos fallidos; perfiles no alcanzables) ⇒ sin inventario/ownership/acceso demostrable al destino PROD no se despliega (mandato: sin bypass; escalar permiso). Siguiente paso mecánico cuando el acceso vuelva: inventario del host → DB lógica nueva (echo_labv4_canary) → boundary+worker en loopback → smoke con la historia del bundle → rollback = stop procesos + drop de SU DB.
+
+### SHARED_ENVIRONMENTS
+Sin cambios en compartidos: PG descartable propio (54349) + DBs efímeras propias (demo/load/bt en ese clúster); sin PROD, trading, Kafka, metadata Hasura, merges a master de producto, ni reinicios de productores. Procesos locales al cierre: demo UI (8099, loopback+bearer) y PG 54349 dejados corriendo como checkpoint visible; carga detenida.
+
+### RESIDUALS (delta de la continuación)
+1. FINAL_SHA_REVIEW: revisión independiente del delta en curso al cierre (veredicto pendiente de incorporar).
+2. G11: BLOCKED_EXTERNAL_ARTIFACT (recurso exacto arriba).
+3. Canary: SOURCE_VERIFIED_CANARY_BLOCKED (gate 6 acceso; paquete listo).
+4. Seguridad dinámica (S3-E02): sigue NOT_RUN (restricción del harness, sin reintentos).
+5. 1.4: pata positiva del binario backtester→PG demostrada a nivel biblioteca + fail-fast real del binario; el e2e nativo completo no produce operaciones (fixture market-data-only) — registrado honesto.
