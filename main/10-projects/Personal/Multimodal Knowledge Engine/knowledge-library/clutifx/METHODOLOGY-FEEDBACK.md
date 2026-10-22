@@ -1,11 +1,34 @@
 # METHODOLOGY-FEEDBACK — Clutifx (Course Intelligence)
 
 Feedback de método del curso Clutifx. Objetivo: mejorar los videos siguientes,
-no justificar decisiones pasadas. Estado tras Chapter 09 (2026-10-21).
+no justificar decisiones pasadas. Estado tras Chapter 10 (2026-10-21).
 Los bloques OBSERVED de Chapters 02–08 se conservan abajo (§Ch08, §Ch07, §Ch06,
 §Ch05, §Ch04, §Ch03, §Ch02). La skill canónica quedó en v1.2 con hardening ch03–ch07
 (incl. checks W11/W12 de navegación, wikilinker corregido con idempotencia y
 strip de code-spans en W01/W10); NO se toca aquí la decisión de Owner sobre ASR.
+
+## CH10 OBSERVED (medido en Chapter 10)
+
+| Métrica | Valor |
+|---|---|
+| Video | ep10-noticias.mp4 · 35:48.47 · SHA `cdd6ee7b…` |
+| ASR_WALL | 2h27m07s = 8.826,8 s (`asr.log`) · **ASR_SPEED 0,24× · ASR_COST_MULTIPLIER 4,11×** (nomenclatura normalizada post-ch09): contención sostenida del host (echo-core 157 % permanente + go tests ajenos intermitentes), dentro del pronóstico del preflight (0,25-0,30×) · 523 segmentos, 97 % habla |
+| EXTRACTION_WALL | ~61 min de workers (6 EXTRACTORs SECUENCIALES, 199 claims; ventana 17:38→19:06 con la ola-1 de revisión intercalada) |
+| REVIEW_WALL | ~49 min pura (ola-1 11,4 + olas 2-7 37,6; 36 minutos en 7 olas de 5-6; 4 muertes [1210] recuperadas con retry completo) |
+| AGENT_WALL | 159 min (17:38:16→20:17:16, epochs/spools) / 35,8 min ≈ **266 min/h-video — OVER (objetivo ≤120, ~2,2×)**: contención sostenida + revisores prudentes con frames; la proyección del checkpoint (269) quedó a 1 % del real |
+| Claims | 199 (193 SUPPORTED / 6 UNCERTAIN visibles / 0 UNVERIFIED) · 197 instructor + 2 visual · 3 CONTRADICTION documentadas |
+| Frames | 36 base + 62 bajo demanda = 98; 91 citados, 7 contextuales inventariados |
+| DOCVERIFY | independiente ONE-SHOT: **0 MATERIAL + 5 MENOR** (metadatos), 46 claims SOURCE-FIRST, 10 garbles preservados, 1860 wikilinks OK, SHA recomputado — corregidos y re-validados |
+| Checkpoint 5 min | PASS (bloque 1 + min 0-4 VALID; proyección 269/h-video OVER, continuada con criterio ch09; real 266) |
+
+## CH10 LEARNED (para ep11+)
+
+1. **El prompt-error de naming es recursivo**: el Manager puso ejemplos de frames decimales (f-000119 por «1:59») en el prompt del extractor 1 y nombró el frame final con segundos crudos (f-002148) — los WORKERS cazaron ambos (el extractor contra `ls`; el revisor de min35 con la fórmula). Para ep11+: los prompts del Manager también deben generar sus ejemplos con la fórmula, y el revisor del último minuto verifica explícitamente el frame fin-de-video.
+2. **Los visual_hints del extractor pueden describir pantallas que no existen** (2 casos: «gráfico» cuando había calendario Forex Factory o tarjeta del Excel). El revisor los corrigió; para ep11+: el checkpoint incluye leer 1-2 visual_hints contra sus frames.
+3. **Dos revisores «en conflicto» pueden estar mirando minutos distintos** (Myfxbook min3 vs Excel min5): adjudicar leyendo el frame directamente cuesta menos que una revisión nueva.
+4. **El integrador dropea los f-refs del pool** (sólo conserva s- + verified_evidence del revisor): si el Manager adjudica frames al pool, re-inyectarlos tras integrar (hecho con fixup; 8 refs).
+5. **La contención sostenida NO rompió el pipeline** pero duplicó el wall vs ch07 despejado (266 vs 74/h): la decisión checkpoint-basada (continuar con registro, criterio ch09) fue correcta; para ep11+ con este host, anunciar OVER esperado en el preflight y medir la proyección al minuto 5.
+6. **[1210] sigue siendo transitorio** (5 muertes, 5/5 recuperadas con un retry del worker completo; protocolo ch08 confirmado en extractores y revisores).
 
 ## CH09 OBSERVED (medido en Chapter 09)
 
