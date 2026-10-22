@@ -50,6 +50,8 @@ A runtime/autoridad y CURRENT→TARGET; B ingesta/readiness; C historias/econom�
 - Cohorte exige misma semántica comparable; run/config/selection individuales viven en membership, no se exige compartir un run físico entre estrategias. Se publica el conjunto completo atómicamente.
 - Migraciones nuevas 067–074 adjudicadas a F sobre catálogo real 066; sin copiar numeración/DDL de ramas antiguas. Runner mínimo con transacción y checksum de bytes externos; no auto-hash circular. Retiro destructivo y migración de estrategias quedan fuera.
 
+- Hasura V4 usa roles nuevos `lab_readonly/lab_config_operator` sin herencia de permisos legacy, source `echo_lab_v4` al mismo DB con login least-privilege, `owner_principal_ref` y page máximo200. Se conserva metadata legacy fuera de alcance. FK de history head referencia revision_digest, no content_digest, y rechaza NULL que eludiría la FK.
+
 ## Fuentes
 
 Fuentes primarias: repositorios y SHAs de la tabla; mandato Owner del 2026-10-22; notas canónicas citadas. Los documentos de especialistas incorporarán rutas y líneas verificadas en ese único corte. No hay certificación E2E, de seguridad dinámica ni de infraestructura por completar este diseño.
