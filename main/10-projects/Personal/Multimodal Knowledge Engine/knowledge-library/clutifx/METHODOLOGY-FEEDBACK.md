@@ -1,14 +1,37 @@
 # METHODOLOGY-FEEDBACK — Clutifx (Course Intelligence)
 
 Feedback de método del curso Clutifx. Objetivo: mejorar los videos siguientes,
-no justificar decisiones pasadas. Estado tras Chapter 12 (2026-10-22) — inventario
-del curso COMPLETO (12/12 vídeos; CH01 = LEGACY PARTIAL, deuda MKE V2 separada).
+no justificar decisiones pasadas. Estado tras la regularización final (2026-10-22) — inventario del curso
+COMPLETO y homogéneo: 12/12 vídeos procesados y 12/12 bibliotecas V1.2 (CH01 migrado desde MKE V2 ese mismo día; legado preservado en su `legacy-mke-v2/`).
 Los bloques OBSERVED de Chapters 02–08 se conservan abajo (§Ch08, §Ch07, §Ch06,
 §Ch05, §Ch04, §Ch03, §Ch02). La skill canónica quedó en v1.2 con hardening ch03–ch07
 (incl. checks W11/W12 de navegación, wikilinker corregido con idempotencia y
 strip de code-spans en W01/W10); NO se toca aquí la decisión de Owner sobre ASR.
 
-## CH12 OBSERVED (medido en Chapter 12 — último del inventario)
+## CH01 V1.2 MIGRATION OBSERVED (2026-10-22 — misión CLUTIFX FINAL REGULARIZATION)
+
+| Métrica | Valor |
+|---|---|
+| Video | ep01-intro.mp4 · 34:04 · SHA `4de8f12d…` |
+| ASR | **REUTILIZADO** del run MKE V2 original (transcript.json con source_sha256 verificado; 323 segmentos monótonos, cobertura completa; 0 min de ASR) |
+| EXTRACTION_WALL | ~34 min de workers (6 EXTRACTORs SECUENCIALES, 132 claims ≈ 3,9/min) |
+| REVIEW_WALL | 34 MINUTE_REVIEWERs en olas de 5; 6 muertes [1210] transitorias, todas recuperadas con retry completo del minuto (protocolo ch08) |
+| AGENT_WALL | proyección checkpoint ~200 min/h-video (<2×, continuado con registro, criterio ch04–ch12) |
+| Claims | 132 (132 SUPPORTED / 0 UNCERTAIN); 114 instructor + 18 visual |
+| Frames | 35 base + 54 bajo demanda = 89; 65 citados |
+| DOCVERIFY | independiente ONE-SHOT: **0 MATERIAL + 11 MENOR**, los 4 recomendados corregidos (timestamps, ventana de c-0007, cita de R27) |
+| Integración | 132/132 aplicados, cobertura completa; IDs c-0001..c-0132 post-integración (patrón ch10) |
+| Legado | MKE V2 preservado e inventariado (legacy-mke-v2/ con SHA-256); sin conversión automática de GROUNDING_SUPPORTED a SUPPORTED |
+
+## CH01 LEARNED (para migraciones futuras)
+
+1. **Reutilizar el transcript del run caro es legítimo y barato**: identidad por `source_sha256` + monotonicidad + cobertura + 0 vacíos evitó el ASR completo (la partida dominante de todos los capítulos). Es el patrón para cualquier migración MKE V2→V1.2.
+2. **Los reviewers escriben `verified_evidence` en formatos heterogéneos** (ids desnudos, dicts `{segment,quote}`, strings en prosa con varios ids, a veces con el id embebido): el paquete debe FIJAR el formato de la lista de evidencia; el normalizador del Manager tuvo que unificar a ids desnuros para `validate_review.py`.
+3. **4ª recurrencia del naming por segundos crudos, con variante que V04 no caza**: nombres tipo f-001932 (1932 s crudos) parsean como HHMMSS válido dentro de duración — sólo el árbitro "decode vs minuto de la review + sonda byte-idéntica al instante declarado" los detecta. Para futuros runs: el pack genera las rutas Y el chequeo post-olas compara decode(min) contra el minuto revisado + los segundos declarados en el propio texto del revisor.
+4. **El borrador durante la publicación existe**: 6 frames citados desaparecieron del árbol entre dos lecturas de ~1 min sin commit de borrado (mecánica inversa de la resurrección LiveSync documentada en FRAME-RECONCILIATION-2026-10-22.md). Reposición desde spool + re-extracción fresca; los validadores lo cazan (W06/V11) si el borrado deja inconsistencia.
+5. **La migración no toca los otros capítulos**: los refinamientos posteriores (ch02/ch04/ch05/ch06) se registran como relaciones INTRODUCES→REFINES/EXTENDS en documentation §10 sin sobrescribir nada.
+
+## CH12 OBSERVED (medido en Chapter 12)
 
 | Métrica | Valor |
 |---|---|
@@ -21,7 +44,7 @@ strip de code-spans en W01/W10); NO se toca aquí la decisión de Owner sobre AS
 | Frames | 32 base + 21 bajo demanda = 53; 18 citados, 35 contextuales inventariados |
 | DOCVERIFY | independiente ONE-SHOT: **6 MATERIAL + 3 MENOR**, los 9 corregidos y re-validados (README ausente, 3 claims huérfanos de docs, cabecera de examples falsa, endurecimiento de 2 hedges dichos, DV09-001 sobre c-0103/q-ch12-011, garble inexistente «ímpitu», cita comprimida, cursor de frame) |
 | Checkpoint 5 min | PASS (18/18 SUPPORTED en ~22,6 min; proyección 144/h OVER 1,2× < 2× → continuar con registro; real 170) |
-| Proveedor | **0 muertes [1210]/[1310] en 33 subagentes** (segundo run consecutivo sin muertes, con contención del host) |
+| Proveedor | **0 muertes [1210]/[1310] en 39 subagentes** (6 extractores + 32 revisores + 1 DOCVERIFY; el original decía 33 — errata de conteo corregida 2026-10-22, valor original preservado aquí como historia) (segundo run consecutivo sin muertes, con contención del host) |
 | TOTAL | ASR 08:51 → integración 14:07 ≈ 316 min; publicación remota ~14:12 ≈ **321 min ≈ 5h21m** (conciliado contra epochs/commits) |
 
 ## CH12 LEARNED (para futuros cursos)
