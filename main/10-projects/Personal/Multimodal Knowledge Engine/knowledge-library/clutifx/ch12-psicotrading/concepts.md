@@ -1,6 +1,6 @@
 # concepts — ch12-psicotrading (Clutifx · Chapter 12)
 
-Conceptos y procedimientos del capítulo (kind  y  en ; 22 entradas, orden de fuente). Los procedimientos son las «herramientas prácticas» dichas (cerrar gráficos, múltiples cuentas, journal, válvula del FOMO); los conceptos, los marcos psicológicos que el instructor nombra y desarrolla — siempre como explicación DICHA por él, no como mecanismos validados.
+Conceptos y procedimientos del capítulo (kind `concept` y `procedure` en `claims.jsonl`; 22 entradas, orden de fuente). Los procedimientos son las «herramientas prácticas» dichas (cerrar gráficos, múltiples cuentas, journal, válvula del FOMO); los conceptos, los marcos psicológicos que el instructor nombra y desarrolla — siempre como explicación DICHA por él, no como mecanismos validados.
 
 ## C1 — Concepto
 
