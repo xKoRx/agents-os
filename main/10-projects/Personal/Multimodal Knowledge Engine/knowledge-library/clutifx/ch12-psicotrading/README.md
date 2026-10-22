@@ -37,7 +37,7 @@ Biblioteca de conocimiento del duodécimo y último vídeo del inventario actual
 | Frames base (fin de minuto) | 32 (minutos 0-30 en MM:59.5 + fin de video [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-003124.png|f-003124]] a 31:24); manifiesto `frames/.base_frames` |
 | Frames bajo demanda | 21 (extraídos y verificados visualmente por extractores/revisores/integrador, fórmula desde segundos reales), **18 citados** en evidence de 53 PNG físicos (35 contextuales inventariados); inventario en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/FRAMES|FRAMES]] |
 | Preguntas abiertas | 11 registradas (q-ch12-001..011): garbles ASR de audio (toblos/estoblos, fumo, C&K, propiedad/esbeona, draw claro…), signos del caso del alumno, unidades no dichas, deícticos de gráfico, tweet/PDFs no verificables, truncamientos del ASR — ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/OPEN-QUESTIONS|OPEN-QUESTIONS]] |
-| rules/concepts/examples | 71 (43 R + 28 W) / 22 / 15 entradas (23 de los 34 example claims) |
+| Rules / concepts / examples documentados | 71 / 22 / 15 (43 R + 28 W; 15 entradas que citan 23 de los 34 example claims) |
 | Coverage | 32/32 minutos de video con claims y revisión |
 
 ## Verificación final
