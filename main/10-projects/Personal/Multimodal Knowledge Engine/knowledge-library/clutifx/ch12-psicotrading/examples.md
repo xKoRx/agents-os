@@ -1,6 +1,6 @@
 # examples — ch12-psicotrading (Clutifx · Chapter 12)
 
-Ejemplos, relatos personales y aritméticas dichas del capítulo (kind `example` en `claims.jsonl`; 34 claims agrupados en 14 entradas temáticas, orden de fuente). Los relatos del instructor se publican como EXPERIENCIA PERSONAL — nunca como validación de rentabilidad ni como mecanismo general.
+Ejemplos, relatos personales y aritméticas dichas del capítulo (kind `example` en `claims.jsonl`; 34 claims kind=example; 15 entradas temáticas que citan 23 de ellos — los 11 restantes son aritméticas o anuncios cortos cubiertos en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/documentation|documentation]]). Los relatos del instructor se publican como EXPERIENCIA PERSONAL — nunca como validación de rentabilidad ni como mecanismo general.
 
 ## E1 — La confianza dicha desde la experiencia (min 1)
 
@@ -28,7 +28,7 @@ La escalera 7→4→1→−3 contada como experiencia propia: «me ha pasado mil
 
 ## E7 — La compra no clara y la «reiniciada» en el gráfico (min 12)
 
-«Yo siento que quiero operar y el setup no es tan claro — aquí ya he llegado al primer doll [ASR; candidato DOL], que era aquí, y después ves esto de aquí, la reiniciada esta para seguir»: ejemplo con el gráfico en pantalla; f-001212 muestra el cursor en el primer DOL (~1,32190) y f-001245 la herramienta de posición completa (Objetivo 0689,55 / Stop 9700 legibles) — [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0053|c-0053]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001214|s-001214]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001212.png|f-001212]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001245.png|f-001245]].
+«Yo siento que quiero operar y el setup no es tan claro — aquí ya he llegado al primer doll [ASR; candidato DOL], que era aquí, y después ves esto de aquí, la reiniciada esta para seguir»: ejemplo con el gráfico en pantalla; f-001212 ancla el nivel del primer DOL (1,32190, línea marcada y eje resaltado; crosshair en ~1,32097) y f-001245 la herramienta de posición completa (Objetivo 0689,55 / Stop 9700 legibles) — [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0053|c-0053]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001214|s-001214]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001212.png|f-001212]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001245.png|f-001245]].
 
 ## E8 — Irse tras el profit y olvidar el precio (min 13)
 
