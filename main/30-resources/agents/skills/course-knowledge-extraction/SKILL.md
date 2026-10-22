@@ -274,6 +274,8 @@ scripts/tests/review_pipeline_selftest.py                 # payload emite key; v
                                                           # acepta claim_key|key (5 casos)
 scripts/tests/lifecycle_selftest.py                       # red-green de supersession safety
                                                           # (V14/V15/V16; 10 casos)
+scripts/tests/evidence_safety_selftest.py                 # red-green de la seguridad de evidencia
+                                                          # visual del integrador (5 casos; ch10)
 scripts/check_term_sources.py <lib> [--groups JSON]       # SOURCE-FIRST: normalización de términos
                                                           # sin respaldo en la fuente = MATERIAL
 scripts/tests/source_first_selftest.py                    # red-green del chequeo (caso real DOL/DXY)
