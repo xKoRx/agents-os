@@ -26,3 +26,11 @@ tags:
 3. **Reconciliador L3 mono-cuenta**: validado sólo con una cuenta viva; la primera campaña multi-cuenta real rompió la conciliación (D4). Sugerencia: fixture multi-cuenta en los tests del caracterizador.
 4. **Estados de ejecución ambiguos en el adelanto al Owner**: mezclar «clasificadas/despachadas/completas/activas» indujo lectura errónea del avance. El censo exclusivo por intento físico (§3 del despacho) debió existir desde el primer reporte.
 5. **D1 confirmó la lección de diseño**: un rechazo de admisión esperado no debe poder enlazarse con el replan del MM en un pump de efectos inmediatos sin acotación; el fix estructural (cap en sizing) es el dueño correcto, no el pump.
+
+## Rectificación LC26 (2026-10-22, segundo bloque)
+
+6. **Sobredeclaración del gate**: publiqué `TECHNICAL_ACTIVITY_GATE: ACREDITADO` con el censo v1 contradiciendo a la frecuencia (0 compras vs 1 compra) — la conjunción de gates no puede apoyarse en filas sin conciliar. Lección: el gate se emite DESPUÉS de reconciliar las filas que lo sostienen, nunca en el mismo pase que las produce.
+7. **Extractores inconsistentes**: dos scripts leyendo campos distintos del mismo resultado produjeron censos opuestos; el campo ausente se volvió cero por `.get(...,0)`. Lección: métricas requeridas sin default; null visible.
+8. **Promedio no es cobertura**: presenté medias ≥1/sesión como cumplimiento del objetivo diario; la matriz por sesión con ceros y rachas era el compromiso real del despacho.
+9. **`NOT_EXERCISED` no es despejado**: reporté D1 como no-disparado en NQZ6 sin marcar que la ruta quedaba sin ejercitar; el gate D1 debió quedar abierto desde el primer informe.
+10. **Identidad de derivados**: derivé el spec de ventana sin distinguir hash de contenido nuevo vs parent hash (manifest_identity reutilizado como procedencia); el despacho lo exige explícito para todo derivado.
