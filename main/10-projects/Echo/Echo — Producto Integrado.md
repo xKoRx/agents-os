@@ -34,7 +34,7 @@ updated: 2026-10-22
 
 **Decisiones Owner V4 ratificadas:** D09 capital virtual inicial 10.000 + preset 1% configurable con presupuesto al abrir; D10 R sobre presupuesto certificado del ciclo sellado al abrir; D11 portfolio estático con capital separado, pesos fijos y comienzo flat; D16 corte pre/post por `construction_at` real y `construction_data_cutoff` como metadata distinta. Autoridad detallada: [[F — Decision Register]]; handoff completo GOD: [[THE_LAB_V4_Diseno_para_revision]].
 
-**Estado al 2026-10-20:** `OWNER_PRODUCT_DECISIONS_FROZEN`, `SHOT1_DESIGN_REVIEWED_WITH_CONDITIONS`. No declarar `SHOT1_FULL_FROZEN` / `READY_FOR_IMPLEMENTATION` mientras siga abierto el preflight técnico del registro (U01–U06, A01/A02). El Owner ha ratificado **solo** D09/D10/D11/D16; D12–D15 son propuesta técnica aceptada para verificación por el mánager, no decisiones Owner. No hay autorización de deploy/migración destructiva aquí.
+**Estado actual al 2026-10-22:** `SHOT1_DESIGN_COMPLETE / SHOT2_IMPLEMENTATION_READY` para `THE_LAB_V4_RUNTIME_FORGE_INTEGRATION`. Diseño ejecutable sobre `feature/ef-runtime-pools@2ee61791deb3139be23e1c9be3708b1d41da8d6b`, ocho especialistas Sol ONE-SHOT y revisión crítica GOD. Autoridad y diez entregables: [[0 — Shot 1 Gate and Baseline]]; siguiente GLM LOCAL Shot2: [[J — Shot 2 Implementation Package]]. D17–D24 también ratificadas; las condiciones/preflights de 2026-10-20 son antecedentes superados para el gate de diseño actual, sin nuevo freeze. Implementación/E2E de este paquete NOT_RUN, sin deploy, migración destructiva ni activación compartida. Exactamente cuatro shots; sesión Agents-OS y proyecto abiertos.
 
 ## Backlog de producto — funcionalidades futuras (fuera de LAB V4)
 

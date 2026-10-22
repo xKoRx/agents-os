@@ -111,7 +111,7 @@ Todas las rutas de mutación usan Bearer opaco dedicado, resuelto por ETCD al st
 
 Límites I1: request descomprimido 134.217.728 bytes (128 MiB), 8 historias, 250.000 operaciones/historia, 1.000.000 movements/historia; sin truncado ni división de historia por símbolo. No aceptar `Content-Encoding` distinto de identity en esta versión (415). Streaming a staging privado del servicio mediante `MaxBytesReader`; validación por historia sin retener simultáneamente todas; staging máximo 2 GiB/proceso, cleanup al finalizar, abortar sin commit si se agota. Una admisión bulk por proceso y una por namespace, sin cola HTTP; exceso 429 + Retry-After 2s. Hasta 4 provisiones pequeñas y 2 publicaciones outbox concurrentes por proceso, una por binding; SQL pool reservado al tráfico operacional existente. Deadline bulk 120s, lock timeout SQL 5s, GET 5s y provisión 15s; todos parametrizados ETCD con esos defaults. El HTTP cliente Forge usa 130s para bulk y 5s GET; `202` se obtiene después del commit completo, no al recibir bytes.
 
-Meta de implementación a medir: readiness de profile aislado sin dependencia faltante ≤45s desde commit, antes del master simulado en t+60s; no es garantía actual ni gate para cortar/hacer caber artificialmente un histórico. Registrar por separado tiempo upload, validate, commit, provision y ACK. Si se excede, readiness sigue pendiente/degradada con causa visible y la observación se conserva.
+Meta de implementación a medir: readiness de profile aislado sin dependencia faltante ≤45s desde commit, antes del master simulado a t_first_byte+60s; ambos gates se miden por separado y 45s postcommit no prueba por sí solo el minuto desde recepción; no es garantía actual ni gate para cortar/hacer caber artificialmente un histórico. Registrar por separado tiempo upload, validate, commit, provision y ACK. Si se excede, readiness sigue pendiente/degradada con causa visible y la observación se conserva.
 
 | HTTP | code / retry |
 |---|---|
@@ -228,5 +228,5 @@ Evidencia mínima por caso físico: SHAs/builds ejecutados, namespace/profile/ru
 - [[F — Decision Register]], D17/D18/D23/D24 y D09/D10/D11/D16.
 - [[Echo — Producto Integrado]], [[0 — Submanager State]] y [[SHOT4_HANDOFF]]: requisitos/antecedentes; capacidades de ramas históricas no prueban el baseline runtime.
 - [[THE_LAB_V4_Diseno_para_revision]], §§E.1/E.2, y [[1 — TECHNICAL_FREEZE_PACKET]], R02/R04/R06: recetas, snapshots, CAS y límites compatibles.
-- [[Echo + Echo Forge — Environment Contract]] y [[aranea-agent-dev]]: autoridad/ambiente y aislamiento.
+- [[Echo + Echo Forge — Environment Contract]] y `aranea-agent-dev`: autoridad/ambiente y aislamiento.
 - Código local fijado por repositorio, path y línea en §1 y §10; sin consultas remotas ni mutaciones de infraestructura.

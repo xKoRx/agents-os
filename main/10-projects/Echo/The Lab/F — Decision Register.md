@@ -93,7 +93,11 @@ Prioridad: activar correctamente estrategia Forge en Echo, enlazar master/trade_
 - **D09 + D10**: the virtual 1% budget and the Operation's historical `Q_i` have different purposes. The former sizes an *analytical normalized curve*, the latter normalizes the actual cycle's result. Neither authorizes trading or silently enforces prop risk.
 - **D11**: static portfolio is retrospective analysis, **not** causal portfolio-selection backtesting, shared capital simulation or live allocation.
 
-### Manager review / freeze gate
+### Gate técnico vigente — Runtime Integration, 2026-10-22
+
+`SHOT1_DESIGN_COMPLETE / SHOT2_IMPLEMENTATION_READY` por GOD para THE_LAB_V4_RUNTIME_FORGE_INTEGRATION. [[0 — Shot 1 Gate and Baseline]] fija evidencia runtime y adjudicaciones; [[J — Shot 2 Implementation Package]] es entrada de GLM Shot2. No es nueva ratificación Owner ni altera D09/D10/D11/D16/D17–D24. Las condiciones técnicas de 2026-10-20 siguientes y el freeze V3 aceptado son antecedentes resueltos o requisitos compatibles; no otro gate previo pendiente. Diseño completo no equivale a implementación/E2E/deploy certificado, y no autoriza recursos compartidos.
+
+### Manager review / freeze gate — histórico 2026-10-20, sustituido para diseño vigente
 
 - `OWNER_PRODUCT_DECISIONS_D09_D10_D11_D16 = FROZEN` as of 2026-10-20.
 - `SHOT1_DESIGN = REVIEWED_WITH_CONDITIONS`; **not** `FROZEN` or `READY_FOR_UNRESTRICTED_IMPLEMENTATION` yet. The Shot 1 source explicitly requires resolution/verification of G.2 technical facts before freezing an implementation-ready contract.

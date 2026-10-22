@@ -21,7 +21,17 @@ Mantener el estado vigente del programa V4 y el handoff entre implementación, a
 
 ## Contenido
 
-## Handoff primario vigente — sesión Manager cerrada 2026-10-22
+## Estado canónico actual — Runtime Integration Shot 1, 2026-10-22
+
+**`SHOT1_DESIGN_COMPLETE / SHOT2_IMPLEMENTATION_READY`.** Programa vigente `THE_LAB_V4_RUNTIME_FORGE_INTEGRATION`, exactamente cuatro shots. Gate GOD, baseline/evidencia y diez entregables en [[0 — Shot 1 Gate and Baseline]]; implementación concreta en [[J — Shot 2 Implementation Package]] y [[I — Go API SQL Executable Spec]]. Echo único `feature/ef-runtime-pools@2ee61791deb3139be23e1c9be3708b1d41da8d6b`; Symphony `master@daded14cbe0bc85f6fafda8d079e94036f715b47`. Ambos HEAD remotos/árboles limpios verificados al despacho y al dictamen.
+
+Diseño recibido de ocho especialistas Sol ONE-SHOT, revisado críticamente y adjudicado por GOD. Contratos runtime/Signal/Reference/journal separados, V2 aceptación distinta de readiness, historias inmutables y deduplicadas, cuatro curvas causales, dos rankings con kernel Go compartido, migraciones067–074, Hasura/UX y 49 oráculos. D09/D10/D11/D16 y D17–D24 intactas; sin pendientes técnicos sustantivos ni nuevo freeze.
+
+**NEXT:** GLM-5.3-Flash Max LOCAL implementa Shot2 según J; no se ha iniciado implementación ni Shot3/4. Gates producto/físicos NOT_RUN, infraestructura no certificada. No intervención en legacy, campañas, PROD, flota, órdenes reales, datos compartidos ni migración de estrategias. Sesión Agents-OS abierta; el cierre de una sesión Manager histórica de abajo no cierra esta sesión ni el proyecto.
+
+**Precedencia temporal:** este estado sustituye el «iniciar Shot1» y los estados de gate previos. El nombre anterior THE_LAB_V4_FORGE_ONBOARDING_RANKING y las ramas/certificados de los handoffs siguientes son antecedentes; no son otro programa activo, baseline ni PASS heredable.
+
+## Handoff histórico de entrada — sesión Manager cerrada 2026-10-22
 
 **OWNER UPDATE D24 — UN SOLO BASELINE ECHO (2026-10-22):** `feature/ef-runtime-pools` es la **única rama de desarrollo y base de integración** Echo; HEAD remoto verificado `2ee61791deb3139be23e1c9be3708b1d41da8d6b` (refrescar). `feature/lab-v4-shot4` y las ramas antiguas de backtester quedan como evidencia histórica, NO como segunda base ni como origen de merges/cherry-picks. La extracción de estrategias continúa sin intervención; el Owner migrará las estrategias al motor runtime **después de concluirla**, en un esfuerzo futuro separado. Shot 1–4 deben diseñar/implementar/certificar Echo/Forge/LAB sobre el modelo del runtime actual, sin exigir ni ejecutar esa migración. Autoridad: [[F — Decision Register]] D24, prevalece sobre los textos históricos de este handoff.
 
