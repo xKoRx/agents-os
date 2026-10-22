@@ -22,7 +22,7 @@ tags:
   - kind/project
   - area/echo
 created: 2026-09-07
-updated: 2026-10-20
+updated: 2026-10-22
 ---
 # Echo — Producto Integrado
 
@@ -33,6 +33,17 @@ updated: 2026-10-20
 **Decisiones Owner V4 ratificadas:** D09 capital virtual inicial 10.000 + preset 1% configurable con presupuesto al abrir; D10 R sobre presupuesto certificado del ciclo sellado al abrir; D11 portfolio estático con capital separado, pesos fijos y comienzo flat; D16 corte pre/post por `construction_at` real y `construction_data_cutoff` como metadata distinta. Autoridad detallada: [[F — Decision Register]]; handoff completo GOD: [[THE_LAB_V4_Diseno_para_revision]].
 
 **Estado al 2026-10-20:** `OWNER_PRODUCT_DECISIONS_FROZEN`, `SHOT1_DESIGN_REVIEWED_WITH_CONDITIONS`. No declarar `SHOT1_FULL_FROZEN` / `READY_FOR_IMPLEMENTATION` mientras siga abierto el preflight técnico del registro (U01–U06, A01/A02). El Owner ha ratificado **solo** D09/D10/D11/D16; D12–D15 son propuesta técnica aceptada para verificación por el mánager, no decisiones Owner. No hay autorización de deploy/migración destructiva aquí.
+
+## Backlog de producto — funcionalidades futuras (fuera de LAB V4)
+
+**Registro del Owner (2026-10-22).** Son capacidades futuras de Echo, no tareas del programa actual ni compromisos de fecha. The Lab continúa dentro de [[Echo — Producto Integrado]]: no se crea un proyecto paralelo.
+
+- **The Lab — evolución analítica:** explotar las historias preconstrucción, postconstrucción/pre-Echo y Echo según sus cortes reales para evaluar estabilidad y deriva de métricas, curvas configurables, rankings y comparativas por ventana, preservando identidad, provenance y revisiones. El alcance actual de integración Forge → Echo → LAB, curvas, rankings, screener y dashboard continúa bajo [[F — Decision Register]] y el programa V4 de cuatro shots.
+- **Portfolios dinámicos (I2, futuro):** selección y rotación de estrategias por rankings, filtros, curvas y ventanas; políticas Top N, pesos, correlación, riesgo y MM; membresía temporal y cadencias configurables (hora, día, semana, mes, año), con evaluación y seguimiento. No implementar ni diseñar ahora scheduler, rebalanceador, políticas de selección ni nuevas tablas de I2.
+- **Backtester histórico de campañas desde The Lab (futuro):** reutilizar el motor de backtesting existente de Echo, no crear otro motor, para recorrer los históricos de estrategias y eventualmente portfolios y simular campañas de distintas duraciones, ventanas y tipos de cuenta **Forex y/o Futuros**. Permitir definir reglas de evaluación/fondeo según el tipo de cuenta (fases, objetivos, límites de pérdida diaria/total, trailing EOD cuando corresponda, capital y costes), MM y escenarios; devolver cronología de decisiones, curvas, métricas y resultados reproducibles. Usar sólo datos disponibles en cada instante, sin look-ahead y distinguiendo historia observada de resultados simulados. Estas reglas son ejemplos de parámetros futuros, no defaults congelados.
+- **Compatibilidad futura sin trabajo especulativo hoy:** cuando se implementen estas capacidades, deben evolucionar de forma predominantemente aditiva sobre identidades StrategyVersion/History/Operation, versiones y revisiones, provenance, ventanas y disponibilidad temporal, contexto MM, curvas, métricas y scores versionados que V4 ya necesita. Evitar una reingesta completa de Forge o refactorizar medio Echo; **cero tiempo de implementación actual** para portfolios y backtesting de campañas, y sin añadir endpoints, tablas, colas o workers por anticipación.
+
+**Estado:** backlog diferido, sin estimación ni asignación. No modifica requisitos, gates ni responsabilidades de los cuatro shots de LAB V4.
 
 ### Antecedentes de producto V3 (históricos; no authority de V4)
 
