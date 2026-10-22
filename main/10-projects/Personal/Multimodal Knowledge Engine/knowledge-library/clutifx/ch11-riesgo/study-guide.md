@@ -42,10 +42,9 @@ Todas las reglas del capítulo, con su claim y evidencia: [[10-projects/Personal
 ## 6. Conexiones con capítulos previos (estudiar en conjunto)
 
 - **CH04**: el BE tras parcial y la salida en la vela de las 5 que aquí se criterizan [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0013|c-0013]] [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0029|c-0029]].
-- **CH07**: el trade retomado es el ejemplo del capítulo de noticias [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0012|c-0012]]; pirámide con objetivos intactos [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0070|c-0070]].
 - **CH08**: el trade de ayer usó targets 1d/2d del proceso [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0035|c-0035]].
 - **CH09**: el parcial/BE como mitigación systematizada de la red flag [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0046|c-0046]].
-- **CH10**: «vamos a ignorar que había noticias» — el mismo trade del 4-jun [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0012|c-0012]]; displacement en escenario de noticia [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0042|c-0042]].
+- **CH10**: «vamos a ignorar que había noticias» — el mismo trade del 4-jun [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0012|c-0012]]; displacement en escenario de noticia [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0042|c-0042]]; pirámide con objetivos intactos remite al capítulo de noticias [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0070|c-0070]].
 
 ## 7. Ejercicios de estudio (derivados, no dichos)
 
