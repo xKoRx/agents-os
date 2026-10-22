@@ -46,3 +46,7 @@ tags:
 ## Verificación
 
 Censos por `result.json` receipteado (identidad plan+engine), caracterizador con conciliación forzada al ledger, 10/10 flat checks del control, utilización muestreada (`r01-util.jsonl`). Sin procesos huérfanos al cierre.
+
+## Rectificación LC26 (segundo bloque, mismo día)
+
+El gate v1 fue sobredeclarado (censo v1 contradecía a la frecuencia; D1 sin ejercitar presentado como despejado). Rectificado por delta (`a2429c9c` push con readback; `GATE-LASTCONTRACT-V2.md`): censo reconstruido desde eventos PURCHASE (26 campañas compraron, no 5; la cuenta comprada se llama `btg-functional` en esta ventana), **D4 cerrado** (economics.summary = RunState de la última cuenta; conciliación por cuenta con identidad exacta `gross−fees==final−initial`; 5/5 reconciliadas), **pases reales en NQZ6** (TG-F0 nativo 1/6, SG-TG-F0 1/2, TG-F1 nativo 1/4), matriz de frecuencia por sesión con ceros/mediana/racha y clases sin `-like` (DAILY_OBSERVED: MR-02 nativo, TG-F0 nativo/SG), **D5 nombrado** (FBC/ORB/MR-03 jamás evaluadas: módulos BarClose-only reciben triggers de sesión; contraejemplo FBC original 36 fills — fix de serving pendiente), **D1_GATE ABIERTO** (repro de pie; fix diseñado sobre el envelope con posición firme; NQZ6 NOT_EXERCISED). Gates finales: EXECUTION/REPORTING/ACTIVITY/RESOURCE PASS; D1 OPEN; HISTORICAL_RESUME_STATUS = condicionado al gate; RESEARCH_ACCEPTANCE = ninguna; OWNER_ACCEPTANCE = REVIEW. Feedback ampliado (6–10).
