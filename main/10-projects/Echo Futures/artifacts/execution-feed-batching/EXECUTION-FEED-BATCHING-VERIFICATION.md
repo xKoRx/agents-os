@@ -10,7 +10,7 @@ aliases: []
 tags:
   - kind/doc
 created: "2026-10-20"
-updated: "2026-10-21"
+updated: "2026-10-22"
 ---
 
 # EXECUTION-FEED-BATCHING-VERIFICATION
