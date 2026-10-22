@@ -4,7 +4,7 @@ Ejemplos del capítulo con su momento y frames (todos citados desde [[10-project
 
 ## E1 — Rango alcista dibujado [01:21–02:39]
 vela pintada de negro que toma un extremo y cierra adentro; rótulo "rango alcista". [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/CLAIMS#c-0006|c-0006]] · [f-000121], [f-000105], [f-000159]
-## E2 — Rango bajista dibujado [02:30–03:39]
+## E2 — Rango bajista dibujado [01:47–02:45]
 "lo mismo pero al revés"; matices verbales de color/probabilidad. [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/CLAIMS#c-0007|c-0007]] · [f-000131], [f-000142]
 ## E3 — Ejemplos reales en 4H [03:08–03:50]
 toma del high + cierre adentro → rango bajista; rango alcista "va por debajo, cierra adentro"; caso parecido al dibujo. [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/CLAIMS#c-0009|c-0009]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/CLAIMS#c-0010|c-0010]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/CLAIMS#c-0011|c-0011]] · [f-000308], [f-000316], [f-000326], [f-000330], [f-000344], [f-000350]
