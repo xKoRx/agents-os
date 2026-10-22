@@ -26,7 +26,9 @@ updated: 2026-10-22
 ---
 # Echo — Producto Integrado
 
-## Dirección actual del LAB — V4 (Owner ratificó 2026-10-20)
+## 📊 Estado actual
+
+### Dirección actual del LAB — V4 (Owner ratificó 2026-10-20)
 
 **The LAB V4 sustituye el diseño V3 para la plataforma analítica de Echo**, sin crear otro proyecto/producto. El motor nacido bajo Echo Futures es el motor genérico de operaciones de Echo; los conceptos compartidos no conservarán nombres `futures_` por inercia. LAB es consumidor analítico con su propio modelo de historia, curvas, métricas y composición; preserva los hechos originales, la identidad del runtime y la integración operativa Forge, y retira progresivamente el LAB exclusivo V1–V3, sin alterar silenciosamente PROD.
 
@@ -51,7 +53,9 @@ updated: 2026-10-22
 
 > **Dirección histórica V3, owner 22-09-2026; superseded para LAB V4 por las decisiones ratificadas el 20-10-2026.** Exactamente dos tracks de implementación: [[Echo Forge — Factory V2 Completion]] y [[Echo — Live Platform V1]]. The Lab pertenece a Echo, no es un tercer proyecto. La planificación vigente de Lab está en [[D — Revised Roadmap]]; el contrato en [[A — Product Contract — The Lab]], diseño en [[B — Architecture Decision Report]], primer flujo en [[E — First Usable Vertical Slice]] y decisiones en [[F — Decision Register]]. [[C — Reality and Gap Matrix]] conserva evidencia con fecha de corte, NO prueba implementación nueva.
 
-## Objetivo de producto
+## 🎯 Objetivo
+
+### Objetivo de producto
 Forge fabrica y entrega finalistas junto con operaciones SQX y MT5. Echo ingiere estrategias; su `trade_journal` continúa siendo exclusivamente autoridad operacional de Echo. The Lab V3 conserva una única base analítica de operaciones normalizadas, ofrece tres períodos, N curvas algorítmicas, métricas, calendario, dashboard y screener. Luego permite probar múltiples gestiones monetarias, portfolios y asignaciones controladas a cuentas. North star: TIME_TO_USABLE_TRADING_SYSTEM, KISS, integridad y crecimiento sin duplicar autoridades.
 
 ## Decisiones de producto ratificadas por owner 22-09
@@ -63,7 +67,9 @@ Forge fabrica y entrega finalistas junto con operaciones SQX y MT5. Echo ingiere
 - Reemplazar Lab V1/V2 sin obligación de compatibilidad visual ni fórmulas legacy. Eliminar tablas, jobs, código, vistas y front exclusivos de Lab antiguo tras inventario de consumidores y prueba de que no tocan Echo operacional; no convertir paridad legacy en gate. Limpieza explícita del roadmap, no backlog eterno.
 - Entregar primero dashboard auténtico durante 23–27 septiembre. Cada día inicia con planificación técnica de su hito, luego implementación, pruebas, corrección y evidencia; no terminar una jornada por mera entrega de código. Owner mantiene gates de trading/PROD separados.
 
-## Estado y realidad
+## 📆 Bitácora
+
+### Estado y realidad
 - **Auditoría operacional PROD (14-10): `OPERATIONAL_DEGRADED` — sistema limpio E2E, AUD-24 sigue latente.** Todo lo que corrió hoy corrió bien: traza E2E completa (trade `01a13a80` del master scalpa copiado en 1–2 s a 3 cuentas con tickets reales, cierres con PnL journalizados, master +93.43), 17/17 terminales conectadas, 0 FAILED/96 h, core 0 ERROR (4 WARN = exclusiones correctas), bridge 0 WARN/0 ERROR, config-flow entregando (ola ClientConfig hoy 13:31 UTC), ETCD/repo sin cambios (PIDs del 25-sep intactos). La única degradación es la misma de ayer, ahora sin exposición viva: **AUD-24 sigue demostrado (G5 `504079710` con 0 filas en journal all-time, causa en hipótesis) y su gate de regresión no se ejercitó (0 copias a G5 en la ventana)**. Las 3 posiciones huérfanas del 13-oct cerraron en broker fuera de Echo (equity=balance con latido fresco). Nuevos/extendidos: AUD-27 extendido (la estrategia XAU `magic_250901015` tiene su trade de 22:01 OPEN sin copiar: policies sólo hacia Slaves ARCHIVED), AUD-29 re-confirmado (Axi `3094610` = cuenta ciega, ya listada como pendiente owner en el change_log del 12-oct). AUD-25/26/28 vigentes sin cambio. Evidencia: [[Echo — Production Operational Audit 2026-10-14]].
 - **Auditoría operacional PROD (13-10): `OPERATIONAL_DEGRADED` — los fixes del 12-oct quedaron finos.** Triggers entregando de nuevo (ola ClientConfig post-fix 23:21 UTC del 12-oct vía `accounts_config`), flota migrada 17/17 (3 MT4 + 14 MT5) latiendo, E2E con tickets reales y 0 FAILED/72 h. Las "pocas operaciones abiertas" son config vigente, no efecto de los fixes: master con 4 señales copiables; `magic_260104001` sin policies (AUD-26) y GDAXI con policies hacia cuentas ARCHIVED (AUD-27, 0 legs históricos). Único defecto nuevo AUD-24 (P1): **TTP G5 `504079710` no journaliza** — 3 USTEC vivas sin legs en `trade_journal`; el próximo cierre del master NDX las dejaría sin gestión activa (quedarían al TP/SL estático del broker) — tratar hoy. AUD-25: repo `v3/hasura/` sigue sin triggers ni header Authorization (apply directo reproduciría el incidente). Evidencia: [[Echo — Production Operational Audit 2026-10-13]].
 - **Auditoría operacional PROD (04-10): `OPERATIONAL_PASS`.** Primera auditoría con SSH al runtime: core/gateway/functions en `.71` sin reinicio desde el rollout 25-sep (`master@372af59a`, cero drift), ETCD íntegro (incluida la recuperación del incidente del día), E2E persistiendo al segundo en la apertura dominical, 0 ERROR/24 h y 1 WARN esperado. **AUD-17 (4109) CERRADO** con gate cumplido; copia activa en ~15 cuentas y ~14 estrategias (AUD-18 mejorado). Pendientes P3/P4: volumen de logs del core (knob WARN no reduce export), higiene métrica de cuenta archivada, listener extra :45021 por identificar. Evidencia: [[Echo — Production Operational Audit 2026-10-04]].
@@ -73,7 +79,9 @@ Forge fabrica y entrega finalistas junto con operaciones SQX y MT5. Echo ingiere
 - **Rollout PROD (25-09): owner autorizado; `PROD_ROLLOUT_PARTIAL_EXECUTED`.** En vivo y verificado: BD `echo` @ .220 migrada (061–065 + suplementos certificados MetaTrader5/GRANT UPDATE, postcheck PASS, backup 157.310 filas) y ETCD production sembrado (4 tokens auth Gateway + CORS, mod_rev 59077–59081). Empaquetado esperando ventana owner: binarios `372af59a` (core/functions/gateway/lab-worker, `vcs.modified=false`), front dist, metadata Hasura vía merge aditivo (**el repo `v3/hasura/` no contiene event_triggers ⇒ un `metadata apply` directo los borraría y rompería la propagación de config**). Paquete y runbooks: workspace externo `~/aranea/work/echo-prod-rollout-20260925/release/`. Deuda: merge `4aad647b` (seed tests siguen pudiendo clobberizar password ETCD PROD), AUD-10 GDAXI, alias WSFMARKETS, alertas silencio. Evidencia: resumen `2026-09-25-echo-prod-rollout-summary`.
 - Echo E10 M7 pendiente revisión/ratificación sample policy: no bloquear historia/curvas ni avanzar elegibilidad por inercia. E06/E07 son fuentes para REAL; E08/E09 controlan seguridad/fidelidad económica, no son prerequisito de curvas históricas. No asumir que master=PROD.
 
-## Plan y supervisión
+## ✅ Tareas
+
+### Plan y supervisión
 - **23/09:** modelo SQL/contrato Forge+Echo congelado con evidencia de operación auténtica.
 - **24/09:** D3 cerrado: primera experiencia analítica certificada en source/fixture y físicamente en Echo DEV; baseline `master@372af59a`. Historia Forge auténtica sigue como gate externo separado.
 - **25/09:** D4 — Live Analytical Refresh. Primero cerrar wiring físico del endpoint de history y metadata Hasura reproducible; luego `history changed → dirty → automatic recalculate → atomic publish → UI refreshed` sin CLI manual.

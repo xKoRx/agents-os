@@ -13,6 +13,12 @@ updated: "2026-10-22"
 ---
 # F — Decision Register — owner clarifications and D1 decisions
 
+## Propósito
+
+Conservar decisiones ratificadas, su precedencia y gates técnicos de The Lab dentro de Echo. Distinguir autoridad producto vigente de evidencia y contratos históricos.
+
+## Contenido
+
 ## V4 — Decisiones Owner 2026-10-22: Forge, operación, curvas y rankings (autoridad vigente)
 
 **Estado:** OWNER_RATIFIED para requisitos/producto. **No equivale a implementación ni certificación**. Esta sección complementa D09/D10/D11/D16; sustituye interpretaciones anteriores que daban por terminada una integración Forge limitada a ingesta analítica. El siguiente ciclo de cierre tiene **exactamente 4 shots** (diseño, implementación, auditoría adversarial, correcciones); no es permiso para continuar indefinidamente el Shot 4 anterior.
