@@ -235,7 +235,7 @@ Resultado al cierre: UX_IMPLEMENTATION=READY_FOR_OWNER_REVIEW|PARTIAL|BLOCKED, O
 
 ## CONTINUACIÓN 3 — AJUSTES PUNTUALES SOBRE EL RECORRIDO ENTREGADO (2026-10-22)
 
-Mandato del Owner: ajustes puntuales (identidad al navegar desde el catálogo, coherencia de revisión en el dashboard, clasificación de métricas/metadata), sin reconstruir la pantalla, sin nuevos shots, conservando la demo. Ejecutor: implementador LOCAL (GLM-5.3-Flash, host-declarado). Corte de entrada verificado `feature/lab-v4-shot4 @ 86af0a68` (base `93d776f0`, worktree `~/aranea/work/lab-v4-shot4-20261021/echo`, árbol limpio). **SHA final: `95a0bf63` + commit de oráculo de recovery (ver abajo); 1 commit principal sobre 86af0a68.**
+Mandato del Owner: ajustes puntuales (identidad al navegar desde el catálogo, coherencia de revisión en el dashboard, clasificación de métricas/metadata), sin reconstruir la pantalla, sin nuevos shots, conservando la demo. Ejecutor: implementador LOCAL (GLM-5.3-Flash, host-declarado). Corte de entrada verificado `feature/lab-v4-shot4 @ 86af0a68` (base `93d776f0`, worktree `~/aranea/work/lab-v4-shot4-20261021/echo`, árbol limpio). **SHA final: `95df47b2` (1 commit principal — amend incluye el oráculo de recovery); sobre 86af0a68.**
 
 | Estado | Valor |
 |---|---|
@@ -271,7 +271,7 @@ Mandato del Owner: ajustes puntuales (identidad al navegar desde el catálogo, c
 
 - Suites: `go test ./v3/sdk/lab/analyze/` ok (incluye clasificación nueva); `./v3/sdk/postgres -run TestLab` **completa ok (1439s, PG descartable 54329 DB efímera propia)** + re-ejecución dirigida del subconjunto afectado por el fix final de generación (catálogo/staleness/N-reproducible/selección/screener). go vet limpio; `vite build` OK. PREEXISTING ambiental intacto (sin tocar).
 - Front: identidad por fila, banner STALE, tiles por unidad (expectancy/recuperación/SQN), TF transportado, candidatos con elección prevista — capturas `evidence-ux3/01..10`.
-- Demo viva: **`http://127.0.0.1:8099/lab`** (SIN `?writer=`); boundary `bin-ux3/labv4-boundary` @ 95a0bf63+; PG descartable 54349 DB **`echo_labv4_demo3`** (re-creada con 072/073; seed con 2 productores y TF declarado/no declarado; worker real `bin-ux3/lab-worker-v4` drenó las colas). **La demo usa FIXTURES**: no es el catálogo real del Owner ni G11. DBs demo previas (`echo_labv4_demo`, `echo_labv4_demo2`) intactas. Fuente/build/base exactos: `xKoRx/echo@feature/lab-v4-shot4` @ `95a0bf63` (+fix de oráculo), base `86af0a68` (corte entregado), base reportada `93d776f0`; front build con `VITE_GATEWAY_ENDPOINT=http://127.0.0.1:8099` y token de demo por build config (sin popups; sin tokens en este documento ni en capturas).
+- Demo viva: **`http://127.0.0.1:8099/lab`** (SIN `?writer=`); boundary `bin-ux3/labv4-boundary` @ 95df47b2 (código de producto; los binarios se construyeron del árbol final, el amend solo tocó un test); PG descartable 54349 DB **`echo_labv4_demo3`** (re-creada con 072/073; seed con 2 productores y TF declarado/no declarado; worker real `bin-ux3/lab-worker-v4` drenó las colas). **La demo usa FIXTURES**: no es el catálogo real del Owner ni G11. DBs demo previas (`echo_labv4_demo`, `echo_labv4_demo2`) intactas. Fuente/build/base exactos: `xKoRx/echo@feature/lab-v4-shot4` @ `95df47b2`, base `86af0a68` (corte entregado), base reportada `93d776f0`; front build con `VITE_GATEWAY_ENDPOINT=http://127.0.0.1:8099` y token de demo por build config (sin popups; sin tokens en este documento ni en capturas).
 
 ### SHARED_ENVIRONMENTS / límites
 
