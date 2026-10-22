@@ -58,10 +58,22 @@ CH11_LIBRARY_VALIDATION = PASS · CH11_DOCVERIFY = PASS (0 MATERIAL, 4 MENOR cor
 
 | Tramo | Valor |
 |---|---|
-| ASR wall | 5.765,7 s = 1h36m06s (`asr.log`) · ASR_SPEED 0,27× · ASR_COST_MULTIPLIER 3,64× (contención del host anunciada en preflight) |
+| ASR wall | 5.765,7 s = 1h36m06s (`asr.log`) · ASR_SPEED 0,27× · ASR_COST_MULTIPLIER 3,64× (contención del host anunciada en preflight) — **CONFIRMADO por epochs** (ventana 23:17:43→01:01:16 = 103,5 min incluye carga de modelo/escritura; el proceso medido es 96,1) |
 | Agent wall (extracción+revisión) | ventana ≈ 100,5 min sobre 26,36 min de video ≈ **229 min/h-video** (objetivo ≤120; OVER ~1,9× — contención sostenida del host; proyección del checkpoint 240-250, real 229). Workers puros: extracción ~50,6 min + revisión ~42,9 min de makespan |
 | Integración + composición | ~40 min (integración mecánica, adjudicación de 26 correcciones, 5 docs + proyecciones + wikilinks + validadores) |
 | TOTAL wall | 23:17 (ASR start) → publicación ≈ 3h10m |
+
+**Errata de métricas (am-ch11-doc-002, 2026-10-22 — reconciliación contra epochs/spools/commits; las cifras de arriba se conservan como historia):**
+
+| Tramo | Valor publicado | Valor reconciliado (epochs/mtimes/git) |
+|---|---|---|
+| ASR_WALL | 96,1 min proceso | **CONFIRMADO** (5.765,7 s por `asr.log`; ventana epochs 23:17:43→01:01:16 = 103,5 min con setup incluido) |
+| EXTRACTION_WALL | ~50,6 min puros | **CONFIRMADO** (spools: bloque 1 01:02:56→01:10:01 ≈ 7,1; bloques 2-6 01:20:03→02:03:30 ≈ 43,5; makespan de ventana 01:02:56→02:03:30 = 60,6 min con checkpoint + revisión ola-1 intercalados) |
+| REVIEW_WALL | ~42,9 min de makespan | ventana epochs 01:10:52→02:43:28 = 92,6 min gross (solapada con extracción de bloques 2-6); **makespan puro reconstruido ≈ 48 min** (ola 1 ≈ 7,9 + olas 2-6 ≈ 40,0 por mtimes de spools; el «42,9» subestima ~5 min sin cambiar veredictos) |
+| INTEGRATION_WALL | ~40 min | **48,3 min** (epochs 02:46:27→03:34:47: integración mecánica + 26 correcciones + composición + wikilinks + validadores + DOCVERIFY y sus correcciones) |
+| TOTAL_WALL | ≈ 3h10m (~190 min) | **≈ 4h20m (259,9 min): 23:17:43 (ASR start) → 03:37:37 (commit 5c81a66e con COURSE-INDEX/feedback, push a GitHub)**; hasta integration_end 03:34:47 = 257,1 min; primer commit de la biblioteca 02:59:04 (sync 47f2c5b2, dentro de la ventana de integración). El «3h10m» subestimó ~70 min al no cubrir el tramo completo de integración + publicación remota |
+
+AGENT_WALL 100,5 min (01:02:56→02:43:28) **CONFIRMADO**. Solapamientos reales: revisión ola-1 solapada con extracción (01:10:52–01:19:52) y colas de adjudicación de correcciones (02:43:28→02:46:27 ≈ 3,0 min) — la ventana de 100,5 min ya los incluye.
 
 RESOURCE_CONTENTION = **YES** (externa: echo-core 164 % permanente + go test ajeno; ninguna carga ajena fue detenida). THROUGHPUT = **OVER** (registrado sin disfrazar; el checkpoint proyectó 240-250 y el real fue 229).
 
