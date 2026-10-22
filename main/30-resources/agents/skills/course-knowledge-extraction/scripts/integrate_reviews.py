@@ -11,7 +11,19 @@ Uso:
 
 Efectos por review válido (results[i] sobre claims-pool.jsonl[claim_key]):
   - verdict <- results[i].verdict
-  - evidence <- s-originales + verified_evidence (normalizando refs f-NNNNNN.png -> f-NNNNNN)
+  - evidence <- CANONICAL_EVIDENCE = s-originales + REVIEWER_VERIFIED_EVIDENCE
+    + TARGETED_ADJUDICATED_EVIDENCE (normalizando refs f-NNNNNN.png -> f-NNNNNN,
+    sin duplicados). Las clases de evidencia:
+      PROPOSED_EVIDENCE             f-* propuesto por el extractor en el pool:
+                                    NO entra al canónico salvo verificación
+                                    (el validador V03 caza el frame sin archivo)
+      REVIEWER_VERIFIED_EVIDENCE    verified_evidence del review: entra
+      TARGETED_ADJUDICATED_EVIDENCE refs de <run>/evidence-adjudications.json
+                                    ({"<claim_key>": {"refs": [...], "proof":
+                                    "<spool/razón de la adjudicación>"}}): entran
+                                    — defecto real ch10: las refs f- adjudicadas
+                                    por targeted review se perdían en la fusión
+      CANONICAL_EVIDENCE            resultado en claims.jsonl
   - unresolved_questions <- unión sin duplicados
   - review_reason <- results[i].reason (recortado a 1500)
   - reviewed_minute <- minuto
@@ -51,7 +63,19 @@ def discovered_minutes(run):
                    if m.startswith("review-min") and m.endswith(".json")})
 
 
-def integrate(run, lib, minutes, dry=False, validate="validate_review.py"):
+def load_adjudications(run, explicit=None):
+    """TARGETED_ADJUDICATED_EVIDENCE: refs f- adjudicadas con prueba
+    ({"<claim_key>": {"refs": [...], "proof": "..."}}). Ausente = vacío."""
+    path = explicit or os.path.join(run, "evidence-adjudications.json")
+    if not os.path.exists(path):
+        return {}
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    return {k: v for k, v in data.items() if isinstance(v, dict) and v.get("refs")}
+
+
+def integrate(run, lib, minutes, dry=False, validate="validate_review.py",
+              adjudications_file=None):
     pool_path = os.path.join(run, "claims-pool.jsonl")
     pool = {}
     with open(pool_path, encoding="utf-8") as f:
@@ -59,9 +83,11 @@ def integrate(run, lib, minutes, dry=False, validate="validate_review.py"):
             if line.strip():
                 rec = json.loads(line)
                 pool[rec["key"]] = rec
+    adjudications = load_adjudications(run, adjudications_file)
     present = discovered_minutes(run)
     partial = bool(minutes) and set(minutes) != set(present)
     applied, invalid, corrections, normalized = 0, [], [], 0
+    adj_applied = 0
     applied_keys = set()
     for m in minutes:
         rp = os.path.join(run, "reviews", f"review-min{m}.json")
@@ -89,6 +115,13 @@ def integrate(run, lib, minutes, dry=False, validate="validate_review.py"):
                     continue
                 if e not in merged:
                     merged.append(e)
+            # TARGETED_ADJUDICATED_EVIDENCE: con prueba de la adjudicación
+            adj = adjudications.get(res["claim_key"], {})
+            for e in adj.get("refs", []):
+                e = _normalize_ref(e)
+                if e and e not in merged:
+                    merged.append(e)
+                    adj_applied += 1
             c["evidence"] = merged
             if res.get("corrections_suggested"):
                 corrections.append((res["claim_key"], res["corrections_suggested"]))
