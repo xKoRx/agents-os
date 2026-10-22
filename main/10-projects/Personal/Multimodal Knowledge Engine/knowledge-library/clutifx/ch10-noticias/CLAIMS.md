@@ -347,6 +347,10 @@
 
 ### c-0030
 
+**SUPERSEDED — HISTORICAL, NOT ACTIVE**
+
+**Replacement:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#c-0200|c-0200]]
+
 **Statement:** En pantalla se muestra el calendario económico de Myfxbook (pestaña 'Economic Calendar | Myfxbook', myfxbook.com/forex-economic-calendar) con eventos de la semana (Wednesday, Jun 25, 2025) y su impacto (LOW/MEDIUM/HIGH).
 
 **Verdict:** UNCERTAIN · **Epistemic:** visual_observation · **Kind:** observation · **Minute:** 5 · **Source key:** 
@@ -790,6 +794,8 @@
 **Tiempo:** [12:31–12:35]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001231|12:31]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001233|12:33]]
+
+**Notes:** Adjudicación targeted 2026-10-21 (am-ch10-002): la CONTRADICTION con ch02 (8:30)/ch07 (8:30/8:45) queda RETIRADA — son horas de noticias de otros días/ejemplos; el propio 23-jun tiene al menos dos noticias (s-001237 «la primera noticia», s-001245 «una noticia solo a las 10»). Palabra dicha «ocho y cuarto» preservada sin normalizar; el «07:15» del eje en f-001259 es el crosshair del gesto de entrada (s-001258 «tu long estaría aquí»), no la hora de la noticia. La duda queda re-enfocada en la identificación y hora exacta de la noticia (q-ch10-015). Corroboración externa [no es evidencia del curso]: NY Fed jun-2025, 23-jun sin evento US 08:15 (sólo NAR Existing Home Sales 10:00 ET, coherente con el impulso ~10:00).
 
 ### c-0070
 
@@ -1605,7 +1611,9 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002519|25:19]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002520.png|f-002520]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002520.png|f-002520]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002547.png|f-002547]]
+
+**Notes:** Adjudicación targeted 2026-10-21 (am-ch10-002): f-002520 (25:20) es frame de transición (GBPUSD/DXY 1h aún en 11-12 jun); la navegación al 4-jun se verifica en f-002547 (25:47, etiqueta «4/6/2025 EURUSD | 60M», añadido a evidencia). Corroboración externa [no es evidencia del curso]: NY Fed jun-2025 — el 4-jun hubo ADP National Employment Report 08:15 ET + ISM Non-Manufacturing 10:00 ET, coherente con «una noticia a las 8 y cuarto y una noticia a las 10» (el ISM Non-Manufacturing es el informe de servicios que el instructor llama «ISM Services PMI»).
 
 ### c-0141
 
@@ -1875,7 +1883,7 @@
 
 **Statement:** En 1 hora «teníamos este rango de aquí que cierra por fuera», pero «está aún lejos de la vela de la noticia»: «la vela de la noticia es la de las 8».
 
-**Verdict:** UNCERTAIN · **Epistemic:** instructor_statement · **Kind:** observation · **Minute:** 29 · **Source key:** 
+**Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** observation · **Minute:** 29 · **Source key:** 
 
 **Tiempo:** [29:51–30:01]
 
@@ -1885,17 +1893,21 @@
 
 **Visual hint:** 29:51 — Rango de 1 hora que cierra por fuera, aún lejos de la vela de la noticia (dicha «de las 8»); visible seleccionado en el frame 29:59
 
+**Notes:** Adjudicación targeted 2026-10-21 (am-ch10-002): la CONTRADICTION interna se RETIRA — la resolución de q-ch10-002 se verificó visualmente: las velas 2h abren en horas impares (crosshairs encajados 03:00 en f-002855 y 11:00 en f-002912; ticks 09:00/13:00 en f-002859) y las 1h a horas en punto (f-002951/f-002959), por lo que la noticia de 8:15 cae dentro de la vela 2h «de las 7» Y de la vela 1h «de las 8»: misma zona de la noticia, etiqueta distinta por temporalidad. f-003010 sitúa el borde de la noticia en «mié 04 Jun '25 08:15». q-ch10-002 queda RESUELTA. Corroboración externa [no es evidencia del curso]: NY Fed jun-2025 — ADP 08:15 ET el 4-jun.
+
 ### c-0165
 
 **Statement:** En el ejemplo de este día, la noticia era a las 8 y cuarto.
 
-**Verdict:** UNCERTAIN · **Epistemic:** instructor_statement · **Kind:** parameter · **Minute:** 30 · **Source key:** 
+**Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** parameter · **Minute:** 30 · **Source key:** 
 
 **Tiempo:** [30:05–30:10]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003005|30:05]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003008|30:08]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-003010.png|f-003010]]
+
+**Notes:** Adjudicación targeted 2026-10-21 (am-ch10-002): los tres planos convergen sin armonizar nada — (1) dicho literal «la noticia era a las 8 y cuarto» (s-003005/s-003008; también s-002519 en min 25); (2) el gráfico: f-003010 muestra el eje 15M con «mié 04 Jun '25 08:15»; (3) corroboración EXTERNA [no es evidencia del instructor]: NY Fed calendario junio 2025 (newyorkfed.org/research/calendars/i-jun25.html) — el 4-jun hubo ADP National Employment Report 08:15 ET + ISM Non-Manufacturing 10:00 ET; el CPI 08:30 fue el 11-jun. La noticia de las 8:15 es el ADP (nombrado por el instructor en s-002547, c-0142): evento DISTINTO de las noticias 8:30/8:45 de ch02/ch07 — la CONTRADICTION se retira y la identificación queda cerrada dentro del capítulo + externa.
 
 ### c-0166
 
@@ -2264,4 +2276,20 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003528|35:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003532|35:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003541|35:41]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003533|35:33]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-003548.png|f-003548]]
+
+### c-0200
+
+**Supersedes:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/CLAIMS#['c-0030']|['c-0030']]] (versión histórica preservada)
+
+**Statement:** En pantalla se muestra la hoja de cálculo Excel «NEWS - ONE TO ONE ENG» (pestaña «NOTICIAS») con una tabla de estadísticas por noticia (Time, Clarity, Difficulty, Whipsaw, Blow acc) y siete bloques por divisa (USA, EUR, GBP, CAD, AUD, NZD, CHF) que listan las noticias relevantes de cada moneda y los pares con los que se operan: USA → XXXUSD/USDXXX; EUR → EURUSD, EURCAD, EURCHF, EURAUD; GBP → GBPUSD, GBPCAD, GBPCHF, GBPAUD; CAD → USDCAD, EURCAD, GBPCAD, AUDCAD, NZDCAD; AUD → AUDUSD, AUDCAD; NZD → NZDUSD, NZDCAD; CHF → USDCHF, EURCHF, GBPCHF.
+
+**Verdict:** SUPPORTED · **Epistemic:** visual_observation · **Kind:** observation · **Minute:** 5 · **Source key:** 
+
+**Tiempo:** [05:39–06:04]
+
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000539|05:39]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000551|05:51]]
+
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000539.png|f-000539]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000559.png|f-000559]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000500.png|f-000500]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000515.png|f-000515]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000529.png|f-000529]]
+
+**Notes:** Reemplaza a c-0030 (supersession am-ch10-001, 2026-10-21): la observación del extractor que situaba Myfxbook en el minuto 5 fue REFUTADA — la pantalla de todo el minuto 5 muestra este Excel; Myfxbook está verificado en el minuto 3 (c-0020, f-000350/f-000359). Revisión targeted independiente (run clutifx-ch10-closeout-20261021): 5 puntos del minuto verificados (f-000500, f-000515, f-000529, f-000539, f-000559), 0 Myfxbook en todos.
 

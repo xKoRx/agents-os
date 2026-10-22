@@ -30,14 +30,14 @@ Biblioteca de conocimiento del décimo vídeo del curso Clutifx, extraída con l
 
 | Métrica | Valor |
 |---|---|
-| Claims totales | 199 |
-| SUPPORTED / UNCERTAIN / UNVERIFIED | 193 / 6 / 0 (c-0030 observación visual refutada por pantalla; c-0032 condición sobre garble; c-0069 y c-0165 contradicción «8 y cuarto» vs 8:30/8:45 de ch02/ch07; c-0113 «6h sin nada» vs «primer rango»; c-0164 vela «de las 7» vs «de las 8» — visibles como dudosos, sin resolución artificial) |
-| Claims activos / superseded | 199 / 0 (sin supersessions en este capítulo) |
-| Epistemic | 197 instructor_statement · 2 visual_observation · 0 model_inference |
-| Contradicciones marcadas | 3 (c-0069/c-0165 vs ch02/ch07; c-0164 interna resuelta visualmente en q-ch10-002 pero claim conserva su veredicto; c-0113 interna) |
+| Claims totales | 200 (199 activos + 1 superseded) |
+| SUPPORTED / UNCERTAIN / UNVERIFIED (activos) | 196 / 3 / 0 (c-0032 condición sobre garble; c-0069 noticia de libra del 23-jun sin identificación — q-ch10-015; c-0113 «6h sin nada» vs «primer rango» — visibles como dudosos, sin resolución artificial). Closeout 2026-10-21: c-0030 superseded por c-0200 (am-ch10-001); c-0164 y c-0165 promovidas a SUPPORTED al retirarse la «contradicción 8:15» (am-ch10-002) |
+| Claims activos / superseded | 199 / 1 (c-0030 → c-0200, am-ch10-001 2026-10-21) |
+| Epistemic | 197 instructor_statement · 2 visual_observation (activos; 3 visuales en total con c-0030 superseded) · 0 model_inference |
+| Contradicciones marcadas | 1 vigente (c-0113 interna); 2 retiradas por adjudicación targeted 2026-10-21 (am-ch10-002: «8 y cuarto» vs ch02/ch07 y vela 7/8) |
 | Frames base (fin de minuto) | 36 (minutos 0-34 en MM:59.5 + fin del parcial [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-003548.png|f-003548]] (35:48; el nombre incorrecto f-002148 fue cazado por el revisor de min35 y renombrado por fórmula); manifiesto `frames/.base_frames`) |
-| Frames bajo demanda | 62 (extraídos y verificados visualmente por los revisores, fórmula desde segundos reales), **91 citados** en total de 98 PNG físicos (7 contextuales sin claims, inventariados — patrón ch09); inventario en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/FRAMES|FRAMES]] |
-| Preguntas abiertas | 14 registradas (q-ch10-001..014): contradicción de horas 8:15/8:30, vela 7/8, garbles del capítulo (USDJPI, Tartel Sub, temperatura, FTPO, enfondeadas…), deícticos del Excel y del walkthrough — ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/OPEN-QUESTIONS|OPEN-QUESTIONS]] |
+| Frames bajo demanda | 67 (62 del run + 5 del closeout 2026-10-21: f-000500/f-000515/f-000529/f-002547/f-001300; todos extraídos y verificados visualmente, fórmula desde segundos reales), **95 citados** en total de 103 PNG físicos (8 contextuales sin claims, inventariados — patrón ch09); inventario en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/FRAMES|FRAMES]] |
+| Preguntas abiertas | 15 registradas (q-ch10-001..015): garbles del capítulo (USDJPI, Tartel Sub, temperatura, FTPO, enfondeadas…), deícticos del Excel y del walkthrough, identificación de la noticia de libra del 23-jun (q-ch10-015, nueva en el closeout); RESUELTAS en el closeout 2026-10-21: q-ch10-001, q-ch10-002, q-ch10-010 — ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/OPEN-QUESTIONS|OPEN-QUESTIONS]] |
 | Rules / concepts / examples documentados | 29 / 14 / 13 |
 | Coverage | 36/36 minutos de video con claims y revisión |
 
