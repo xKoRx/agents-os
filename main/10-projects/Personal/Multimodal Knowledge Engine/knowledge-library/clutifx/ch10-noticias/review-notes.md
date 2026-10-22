@@ -37,3 +37,7 @@ El Manager leyó directamente f-000350 y f-000359 (3:50/3:59) para adjudicar la 
 
 - CLAIMS.md 199 filas; FRAMES.md 98 frames (36 base por manifiesto + 62 bajo demanda; 91 citados, 7 contextuales sin claims — inventariados, patrón ch09).
 - Veredicto final: 199 claims = 193 SUPPORTED + 6 UNCERTAIN + 0 UNVERIFIED; 0 superseded; epistemic 197 instructor_statement + 2 visual_observation.
+
+## CIERRE (closeout 2026-10-21 — anotación append-only; el registro histórico de arriba no se reescribe)
+
+Tras la publicación, el closeout targeted corrigió: am-ch10-001 (c-0030 superseded por c-0200 — la observación Myfxbook-min5 refutada ya no está activa) y am-ch10-002 (adjudicación de las horas «8 y cuarto»: c-0165 y c-0164 SUPPORTED, c-0069 UNCERTAIN con contradicción retirada, q-ch10-001/002 RESUELTAS, q-ch10-015 nueva). Métricas vigentes en el README (200 claims: 196 S + 3 U activos + 1 superseded; AGENT_WALL 266 min/h-video conciliado por epochs — la cifra 284 de arriba era la estimación de cierre del run). Ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/AMENDMENTS|AMENDMENTS]].
