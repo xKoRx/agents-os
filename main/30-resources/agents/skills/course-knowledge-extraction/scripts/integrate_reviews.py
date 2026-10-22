@@ -134,7 +134,7 @@ def integrate(run, lib, minutes, dry=False, validate="validate_review.py",
                 c["review_reason"] = reason[:1500]
             c["reviewed_minute"] = m
             applied += 1
-    print(f"aplicados: {applied} | invalid: {invalid} | refs f-.png normalizadas: {normalized}")
+    print(f"aplicados: {applied} | invalid: {invalid} | refs f-.png normalizadas: {normalized} | refs targeted-adjudicadas: {adj_applied}")
     for ck, corr in corrections:
         print(f"CORRECCIÓN {ck}: {corr[:200]}")
     if invalid:
@@ -169,6 +169,8 @@ def main():
     ap.add_argument("--lib", required=True, help="biblioteca del capítulo (destino claims.jsonl)")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--validate", default=None, help="ruta a validate_review.py")
+    ap.add_argument("--adjudications", default=None,
+                    help="evidence-adjudications.json (default: <run>/evidence-adjudications.json)")
     ap.add_argument("minutes", nargs="*", type=int)
     a = ap.parse_args()
     validate = a.validate
@@ -176,7 +178,8 @@ def main():
         here = os.path.dirname(os.path.abspath(__file__))
         validate = os.path.join(here, "validate_review.py")
     minutes = a.minutes if a.minutes else discovered_minutes(a.run)
-    sys.exit(integrate(a.run, a.lib, minutes, dry=a.dry_run, validate=validate))
+    sys.exit(integrate(a.run, a.lib, minutes, dry=a.dry_run, validate=validate,
+                       adjudications_file=a.adjudications))
 
 
 if __name__ == "__main__":
