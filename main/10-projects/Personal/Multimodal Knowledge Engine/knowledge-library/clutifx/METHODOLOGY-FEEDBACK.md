@@ -7,6 +7,30 @@ Los bloques OBSERVED de Chapters 02–08 se conservan abajo (§Ch08, §Ch07, §C
 (incl. checks W11/W12 de navegación, wikilinker corregido con idempotencia y
 strip de code-spans en W01/W10); NO se toca aquí la decisión de Owner sobre ASR.
 
+## CH11 OBSERVED (medido en Chapter 11)
+
+| Métrica | Valor |
+|---|---|
+| Video | ep11-riesgo.mp4 · 26:21.42 · SHA `590e4c3c…` |
+| ASR_WALL | 5.765,7 s = 1h36m06s · **ASR_SPEED 0,27× · ASR_COST_MULTIPLIER 3,64×** — dentro del pronóstico del preflight (0,24-0,28× anunciado con la contención medida) · 320 segmentos, 96 % habla |
+| EXTRACTION_WALL | ~50,6 min (6 EXTRACTORs SECUENCIALES, 80 claims; ≤4 claims/min — capítulo con pausas de pantalla) |
+| REVIEW_WALL | ~42,9 min de makespan (27 revisores en 6 olas de 5/5/5/5/5/2; 27/27 VALID) |
+| AGENT_WALL | ventana ≈ 100,5 min / 26,36 min ≈ **229 min/h-video — OVER (~1,9×)**: contención sostenida del host (echo-core 164 % + go test ajeno); proyección del checkpoint 240-250, real 229 |
+| Claims | 80 (79 SUPPORTED / 1 UNCERTAIN visible / 0 UNVERIFIED) · **80 instructor + 0 visual** (capítulo VERBAL: la sustancia es toda dicha) |
+| Frames | 27 base + 60 bajo demanda = 87 físicos; 54 citados, 33 contextuales inventariados |
+| DOCVERIFY | independiente ONE-SHOT: **0 MATERIAL + 4 MENOR**, corregidos y re-validados; SOURCE-FIRST 17 claims con cifras (0 discrepancias), 12 q-ch11 barridas sin resolverse, 1160 wikilinks OK, SHA recomputado |
+| Checkpoint 5 min | PASS (bloque 1 + min 0-4 en ~15,6 min; proyección 240-250/h OVER registrada ANTES de continuar; real 229) |
+| Proveedor | **0 muertes [1210]/[1310] en 33 subagentes** (primer run del curso sin muertes pese a la contención del host) |
+
+## CH11 LEARNED (para ep12+)
+
+1. **El prompt-error de naming ES recursivo y cazó al propio Manager**: el pack decía «f-001621» para el frame fin-de-video (26:21 = 1581 s → f-002621 por fórmula); el EXTRACTOR lo detectó y usó el nombre correcto; el revisor de min26 lo verificó doble. La lección ch10 #1 se había aplicado a los prompts de los workers pero NO al pack del Manager. Para ep12: los ejemplos de naming de TODOS los artefactos (packs incluidos) se generan con la fórmula real.
+2. **Capítulo verbal = 0 visual_observation es legítimo**: los 80 claims son instructor_statement (procedimientos y cifras verbales); los frames sostienen deícticos sin forzar observaciones visuales. La epistemic estricta no obliga a fabricar visual_observation.
+3. **Cobertura fronteriza verificada barato**: los revisores marcaron segmentos load-bearing sin claim en su minuto; el integrador verificó la cobertura en claims de minutos contiguos (q-ch11-008/009 RESUELTAS con rastro) sin reprocesar nada.
+4. **El contrato de evidencia del closeout ch10 no hizo falta en producción** (0 adjudicaciones targeted en el run) pero el `.deprecated_frame_names` va en la RAÍZ del capítulo, no en frames/ (error propio de este run, cazado por V11).
+5. **Contención ≠ muertes de proveedor**: walls degradadas por echo-core+go-test, pero 33/33 subagentes completaron sin un solo [1210]/[1310]; la fiabilidad del proveedor y la velocidad del host son dimensiones independientes.
+6. **Integración ch10-compatible**: pool con clave local (b*-NN), ids globales asignados post-integración (patrón ch10); el payload builder prefiere `id` si existe — asignar ids SOLO después de integrar.
+
 ## CH10 OBSERVED (medido en Chapter 10)
 
 | Métrica | Valor |
