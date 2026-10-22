@@ -22,37 +22,24 @@ tags:
   - scope/session
 ---
 
-# 2026-10-22-the-lab-v4-runtime-shot1-design
-
-%% Routing: area/project/application/entities/related usan links canónicos. Aliases son variantes humanas; tags/paths usan slugs. %%
+# The Lab V4 — Runtime Shot 1 — registro consolidado
 
 ## Cambio
 
-- **Tipo:** created / updated / deleted / conflict-resolution
-- **Archivo(s):**
-  - 
+Se inicia el paquete documental `10-projects/Echo/The Lab/V4 — Runtime Integration/` en el proyecto existente. Estado inicial DESIGN_IN_PROGRESS; el gate y la actualización del control canónico se completan tras revisión crítica.
 
 ## Motivo
 
-- 
+Mandato Owner del 2026-10-22: diseñar integración Forge/LAB sobre la única rama Echo vigente, D24, para implementación Shot 2; conservar programa exacto de cuatro shots.
 
 ## Fuentes usadas
 
-- 
-
-## Resolución aplicada
-
-- 
+[[F — Decision Register]], [[Echo — Producto Integrado]], [[0 — Submanager State]], [[SHOT4_HANDOFF]], [[THE_LAB_V4_Diseno_para_revision]], freeze compatible y baseline del [[0 — Shot 1 Gate and Baseline]].
 
 ## Validación
 
-- 
-
-## Compartibilidad
-
-- **Scope:** local / team
-- **Redacción revisada:** sin identidad, paths locales, memoria interna ni secretos
+Bootstrap y router Aranea ejecutados; baseline remoto y checkout limpio verificados. En curso: especialistas y revisión documental. No código de producto, suites masivas, infraestructura, PROD ni campañas modificados.
 
 ## Rollback
 
-- 
+Revertir únicamente el commit documental propio si se requiere, preservando cambios concurrentes. No hay migración ni cambio operacional que revertir.
