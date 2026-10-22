@@ -1,11 +1,37 @@
 # METHODOLOGY-FEEDBACK — Clutifx (Course Intelligence)
 
 Feedback de método del curso Clutifx. Objetivo: mejorar los videos siguientes,
-no justificar decisiones pasadas. Estado tras Chapter 11 (2026-10-22).
+no justificar decisiones pasadas. Estado tras Chapter 12 (2026-10-22) — inventario
+del curso COMPLETO (12/12 vídeos; CH01 = LEGACY PARTIAL, deuda MKE V2 separada).
 Los bloques OBSERVED de Chapters 02–08 se conservan abajo (§Ch08, §Ch07, §Ch06,
 §Ch05, §Ch04, §Ch03, §Ch02). La skill canónica quedó en v1.2 con hardening ch03–ch07
 (incl. checks W11/W12 de navegación, wikilinker corregido con idempotencia y
 strip de code-spans en W01/W10); NO se toca aquí la decisión de Owner sobre ASR.
+
+## CH12 OBSERVED (medido en Chapter 12 — último del inventario)
+
+| Métrica | Valor |
+|---|---|
+| Video | ep12-psicotrading.mp4 · 31:24.25 · SHA `b9fc83c5…` |
+| ASR_WALL | 10.373,5 s = 172,9 min · **ASR_SPEED 0,18× · ASR_COST_MULTIPLIER 5,50×** — POR DEBAJO del pronóstico (0,24-0,28×): contención nueva EN VUELO (functions.test + postgres.test ajenos desde el minuto ~46 del ASR; el proceso cayó de ~200 % a ~133 % CPU) · **583 segmentos, 99 % habla (el más denso del curso)** |
+| EXTRACTION_WALL | ≈ 66,8 min de runtime puro (6 EXTRACTORs SECUENCIALES, 135 claims; makespan 80,8 con checkpoint/reviews intercalados) |
+| REVIEW_WALL | ≈ 40,3 min de makespan puro (32 revisores en 6 olas 5/5/5/5/5/7; 32/32 VALID); ventana gross 79,8 min intercalada con extracción |
+| AGENT_WALL | 88,9 min / 31,4 min ≈ **170 min/h-video — OVER (~1,4×)**; proyección del checkpoint 144 (OVER 1,2× declarada ANTES de continuar) |
+| Claims | 135 (135 SUPPORTED / 0 UNCERTAIN / 0 UNVERIFIED) · **135 instructor_statement / 0 visual** (relato verbal; 18 frames citados sostienen deícticos) |
+| Frames | 32 base + 21 bajo demanda = 53; 18 citados, 35 contextuales inventariados |
+| DOCVERIFY | independiente ONE-SHOT: **6 MATERIAL + 3 MENOR**, los 9 corregidos y re-validados (README ausente, 3 claims huérfanos de docs, cabecera de examples falsa, endurecimiento de 2 hedges dichos, DV09-001 sobre c-0103/q-ch12-011, garble inexistente «ímpitu», cita comprimida, cursor de frame) |
+| Checkpoint 5 min | PASS (18/18 SUPPORTED en ~22,6 min; proyección 144/h OVER 1,2× < 2× → continuar con registro; real 170) |
+| Proveedor | **0 muertes [1210]/[1310] en 33 subagentes** (segundo run consecutivo sin muertes, con contención del host) |
+| TOTAL | ASR 08:51 → integración 14:07 ≈ 316 min; publicación remota ~14:12 ≈ **321 min ≈ 5h21m** (conciliado contra epochs/commits) |
+
+## CH12 LEARNED (para futuros cursos)
+
+1. **La corrección de un revisor también es una propuesta, no un hecho**: el revisor de min6 «corrigió» f-000619→f-000379 malinterpretando la fórmula (f-000619 SÍ codifica 06:19 = 379 s) y el integrador lo aplicó con sondas byte-idénticas — que NO detectan el error porque un frame del mismo instante coincide sea cual sea el nombre. **V04 lo cazó antes de publicar** (segundos 79/90/96 inválidos). Revertido y documentado. Lección doble: la sonda prueba el INSTANTE, no el NOMBRE — el árbitro del naming es la fórmula + V04; y toda corrección de worker se adjudica, jamás se aplica por autoridad.
+2. **El defecto de naming del Manager alcanzó su 4ª recurrencia pese a la lección escrita EN el prompt**: rutas de frames base a mano en olas 1/3/4/5 (f-000119/f-000179/f-000239/f-000299, f-000719…, f-001019…, f-001199) — los revisores lo cazaron todas contra el directorio. Única palanca real: GENERAR las rutas del pack con código (fórmula), no escribirlas a mano.
+3. **Pronóstico de ASR desactualizable en vuelo**: el preflight midió 0,24-0,28× y el run acabó en 0,18× por contención aparecida a mitad. Para futuros runs: re-medir la contención DENTRO del ASR (lectura a mitad) y revisar el pronóstico en el checkpoint, no sólo al cierre.
+4. **99 % habla**: capítulo sin una sola observación visual load-bearing (135 instructor_statement); los frames sostienen deícticos. La epistemic estricta funcionó sin forzar visualización (patrón ch11 acentuado).
+5. **El contrato de evidencia targeted (closeout ch10) se ejercitó con volumen por primera vez**: 5 frames adjudicados con prueba md5 de extracción fresca (incluida una frame solicitada por un revisor y materializada por el integrador, f-001245).
+6. **Cobertura fronteriza adjudicada barata, 2º run consecutivo** (s-002200-002208 → c-0100; s-002506-002522 → c-0116): el protocolo ch11 evita reprocesar.
 
 ## CH11 CLOSEOUT (2026-10-22 — targeted post-publicación; mandato: 2 defectos documentales + duda q-ch11-012, sin reprocesar nada)
 
