@@ -72,7 +72,7 @@ Preguntas abiertas del capítulo. ID estable `q-ch05-NNN`. Una pregunta abierta 
 
 **Claims:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0100|c-0100]]
 
-**Estado:** RESOLVED (2026-10-19, al procesar ep06): el instructor abre el capítulo 6 diciendo literalmente "Ahora vamos a hablar del failure swing" ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0001|ch06 c-0001]], s-000000; "failure swing" dicho literal ×16 en ese capítulo) y lo cierra con "hasta aquí el capítulo de fellow swing [ASR]" ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0064|ch06 c-0064]]). "Felux Swing" [ASR] = failure swing. El statement de c-0100 no se modifica (preservó la palabra dicha con lectura probable ya anotada).
+**Estado:** RESOLVED (2026-10-19, al procesar ep06): el instructor abre el capítulo 6 diciendo literalmente "Ahora vamos a hablar del failure swing" ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0001|ch06 c-0001]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000000|ch06 s-000000]]; "failure swing" dicho literal ×16 en ese capítulo) y lo cierra con "hasta aquí el capítulo de fellow swing [ASR]" ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0064|ch06 c-0064]]). "Felux Swing" [ASR] = failure swing. El statement de c-0100 no se modifica (preservó la palabra dicha con lectura probable ya anotada).
 
 ### q-ch05-010
 

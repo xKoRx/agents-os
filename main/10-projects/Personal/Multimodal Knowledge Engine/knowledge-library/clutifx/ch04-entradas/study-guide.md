@@ -27,3 +27,7 @@ Guía de estudio del capítulo. Cada punto enlaza su claim (autoridad: [[10-proj
 ## Dudosos (no estudiar como hechos)
 
 Los 8 claims UNCERTAIN ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/CLAIMS#c-0038|c-0038]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/CLAIMS#c-0041|c-0041]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/CLAIMS#c-0042|c-0042]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/CLAIMS#c-0043|c-0043]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/CLAIMS#c-0057|c-0057]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/CLAIMS#c-0078|c-0078]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/CLAIMS#c-0102|c-0102]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/CLAIMS#c-0108|c-0108]]) — ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/OPEN-QUESTIONS|OPEN-QUESTIONS]].
+
+## Reglas del capítulo
+
+Las reglas citadas del capítulo (todas con su claim de soporte) están numeradas en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/rules|rules]]; la proyección navegable por claim en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/CLAIMS|CLAIMS]].

@@ -38,3 +38,7 @@ Guía de estudio del capítulo. Preguntas ordenadas por sección de [[10-project
 20. ¿Cuál es "la lógica de los failure swings" del trade final? ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0061|c-0061]])
 21. ¿Qué objetivos habilita el failure swing que sin él no se pueden marcar? ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0057|c-0057]])
 22. ¿Cuál es la tarea práctica sugerida al cerrar el capítulo? ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0033|c-0033]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS#c-0026|c-0026]])
+
+## Reglas del capítulo
+
+Las reglas citadas del capítulo (todas con su claim de soporte) están numeradas en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/rules|rules]]; la proyección navegable por claim en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/CLAIMS|CLAIMS]].

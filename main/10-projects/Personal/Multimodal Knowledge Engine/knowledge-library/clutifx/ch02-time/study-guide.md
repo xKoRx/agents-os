@@ -49,3 +49,7 @@ Salir con precaución y asegurar: "muchas veces, ni que nos parezca muy clara la
 - Confundir "pocas veces rentable" de 12 M con "prohibido": es una advertencia del instructor [00:20, [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0002|c-0002]].
 - Creer que fuera de horas clave no se puede entrar: se puede, "bajo un contexto" que se verá "más tarde" [04:13, [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0029|c-0029]] — el video no precisa cuándo; `documentation.md` §5 lo marca como hipótesis.
 - Tomar el power 3 como entrada automática: las entradas ideales van ahí SOLO tras Turtle Soup + rango a favor [13:08–13:21, [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0084|c-0084]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS#c-0083|c-0083]].
+
+## Reglas del capítulo
+
+Las reglas citadas del capítulo (todas con su claim de soporte) están numeradas en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/rules|rules]]; la proyección navegable por claim en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch02-time/CLAIMS|CLAIMS]].

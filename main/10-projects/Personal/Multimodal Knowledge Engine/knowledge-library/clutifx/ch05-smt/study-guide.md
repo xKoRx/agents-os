@@ -49,3 +49,7 @@ Guía de estudio del capítulo. Preguntas ordenadas por sección de [[10-project
 - Correlación +1 (euro/libra) vs −1 (DXY) [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0085|c-0085]].
 - Rango bullish de 8 horas del caso E2 [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0027|c-0027]].
 - Temporalidades del descenso: 8h → 6h → 4h → 3h → 2h → 1h [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0040|c-0040]]–[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS#c-0045|c-0045]].
+
+## Reglas del capítulo
+
+Las reglas citadas del capítulo (todas con su claim de soporte) están numeradas en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/rules|rules]]; la proyección navegable por claim en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/CLAIMS|CLAIMS]].

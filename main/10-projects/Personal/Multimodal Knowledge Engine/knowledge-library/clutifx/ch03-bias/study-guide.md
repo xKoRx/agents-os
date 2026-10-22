@@ -31,3 +31,7 @@ Al terminar este capítulo debes poder:
 - Operar "por tiempo" (esperar Turtle Soup y girar) sin el componente bias/DOL [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0144|c-0144]].
 - Buscar el rango perfecto a medio camino del movimiento [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0158|c-0158]].
 - Tomar como certeza las lecturas de garbles ASR: preservar el dicho y consultar [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/review-notes|review-notes]].
+
+## Reglas del capítulo
+
+Las reglas citadas del capítulo (todas con su claim de soporte) están numeradas en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/rules|rules]]; la proyección navegable por claim en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS|CLAIMS]].
