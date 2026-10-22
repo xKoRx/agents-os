@@ -1,11 +1,19 @@
 # METHODOLOGY-FEEDBACK — Clutifx (Course Intelligence)
 
 Feedback de método del curso Clutifx. Objetivo: mejorar los videos siguientes,
-no justificar decisiones pasadas. Estado tras Chapter 10 (2026-10-21).
+no justificar decisiones pasadas. Estado tras Chapter 11 (2026-10-22).
 Los bloques OBSERVED de Chapters 02–08 se conservan abajo (§Ch08, §Ch07, §Ch06,
 §Ch05, §Ch04, §Ch03, §Ch02). La skill canónica quedó en v1.2 con hardening ch03–ch07
 (incl. checks W11/W12 de navegación, wikilinker corregido con idempotencia y
 strip de code-spans en W01/W10); NO se toca aquí la decisión de Owner sobre ASR.
+
+## CH11 CLOSEOUT (2026-10-22 — targeted post-publicación; mandato: 2 defectos documentales + duda q-ch11-012, sin reprocesar nada)
+
+Gate CH11_CROSS_CHAPTER_REFERENCES + CH11_METRICS_RECONCILED + CH11_SOURCE_FIRST (q-ch11-012) = PASS. Dos correcciones documentales, cero cambios en claims:
+
+1. **Referencia intercapítulo mal clasificada bajo CH07 (am-ch11-doc-001)**: documentation.md §16 y study-guide §6 colocaban bajo «CH07 (setups/checklist)» las conexiones de c-0012 y c-0070, pero ambas remiten literalmente al vídeo de noticias (ch10: s-000410 «he explicado antes con el vídeo de noticias»; s-002310/s-002313 «lo que os decía en el capítulo de noticias también»). El transcript de ch11 tiene exactamente dos referencias intercapítulo y ambas son a ch10; 0 menciones de setups/checklist en claims. Corrección: bullet CH07 eliminado, c-0070 movida al bullet CH10, README/COURSE-INDEX sin ch07 en prerrequisitos/referencias. Lección: al redactar §16 «relación con capítulos previos», verificar cada conexión contra los segmentos citados del transcript — el clasificador del run asignó el capítulo por tema del trade (el 4-jun también apareció en walkthroughs) y no por la referencia dicha.
+2. **Errata de métricas (am-ch11-doc-002)**: el handoff publicó TOTAL_WALL ≈ 190 min sin respaldo; epochs/spools/commits dan ASR 23:17:43 → push 03:37:37 = **259,9 min ≈ 4h20m**. Reconciliado: ASR_WALL 96,1 min CONFIRMADO (asr.log; ventana epochs 103,5 con setup), EXTRACTION pura ~50,6 CONFIRMADA (makespan ventana 60,6 con checkpoint intercalado), REVIEW puro ≈ 48 min (no 42,9; ventana gross 92,6 solapada con extracción), INTEGRACIÓN 48,3 min (no ~40), TOTAL a publicación remota 4h20m (no 3h10m). Cifras originales preservadas como historia en el README (§ Throughput, errata). Lección: el TOTAL_WALL del handoff se estimó antes de terminar la integración + publicación; para ep12+ el TOTAL se cierra contra el commit de publicación, nunca contra estimación de dispatch.
+3. **q-ch11-012 verificada sin cambios**: «el stop loss no se mueve» (c-0020) vs break even (c-0019/c-0028) — documentation §7 cita sólo el literal; rules R4 textual; la conciliación (stop inicial vs protección de profit) vive como ejercicio con «pista» en study-guide §7.4 y la duda queda PARTIAL en OPEN-QUESTIONS. Ningún documento convierte la lectura en resolución universal. La duda NO bloquea CH12.
 
 ## CH11 OBSERVED (medido en Chapter 11)
 
