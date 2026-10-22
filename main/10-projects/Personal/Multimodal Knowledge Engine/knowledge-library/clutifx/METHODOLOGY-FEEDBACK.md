@@ -30,6 +30,16 @@ strip de code-spans en W01/W10); NO se toca aquí la decisión de Owner sobre AS
 5. **La contención sostenida NO rompió el pipeline** pero duplicó el wall vs ch07 despejado (266 vs 74/h): la decisión checkpoint-basada (continuar con registro, criterio ch09) fue correcta; para ep11+ con este host, anunciar OVER esperado en el preflight y medir la proyección al minuto 5.
 6. **[1210] sigue siendo transitorio** (5 muertes, 5/5 recuperadas con un retry del worker completo; protocolo ch08 confirmado en extractores y revisores).
 
+## CH10 CLOSEOUT (2026-10-21 — targeted post-publicación; mandato: 3 defectos puntuales, sin reprocesar CH01-CH10)
+
+Gate CH10_REFUTED_CLAIM + CH10_NEWS_TIME_REVIEW + CH10_FRAME_EVIDENCE_SAFETY = PASS. Tres reparaciones, una por clase de defecto:
+
+1. **c-0030 (claim visual refutado que permanecía UNCERTAIN/ACTIVE)**: revisión targeted independiente (5 puntos del minuto 5 verificados; 0 Myfxbook; el contenido descrito era del minuto 3, ya cubierto por c-0020) → supersession V1.2 c-0030→c-0200 (proposición nueva: el Excel «NEWS - ONE TO ONE ENG» del minuto 5, 7 frames de evidencia) + am-ch10-001 + q-ch10-010 RESUELTA. Un claim refutado ya no permanece activo «como registro honesto»: el historial honesto es el superseded navegable.
+2. **q-ch10-001 (la «contradicción 8:15»)**: adjudicación SOURCE-FIRST con separación explícita instructor/gráfico/corroboración-externa (NY Fed calendario jun-2025: ADP 08:15 ET + ISM 10:00 ET el 4-jun; CPI 08:30 el 11-jun; 23-jun sin evento US 08:15). Resultado: la comparación con ch02/ch07 no demostraba contradicción — c-0165 y c-0164 promovidas a SUPPORTED (contradicciones retiradas), c-0069 permanece UNCERTAIN con la duda re-enfocada a la identificación (q-ch10-015 nueva), horas NO armonizadas. El frame «07:15» de f-001259 resultó ser el crosshair del gesto de entrada, no dato horario — leer el frame directo barató la re-adjudicación (lección CH10 #3 confirmada).
+3. **integrate_reviews.py dropeaba refs f- adjudicadas** (CH10 LEARNED #4): contrato de clases de evidencia (PROPOSED / REVIEWER_VERIFIED / TARGETED_ADJUDICATED / CANONICAL): las f-* propuestas no verificadas NO entran al canónico; las de verified_evidence y las targeted-adjudicadas con prueba (<run>/evidence-adjudications.json) SÍ. Tests RED/GREEN: scripts/tests/evidence_safety_selftest.py (5 casos) + 9 selftests sin regresiones. Skills actualizadas (descripción del integrador).
+
+DOCVERIFY targeted del closeout: 8 findings (4 MATERIAL de texto stale que contradecía la adjudicación + 4 MENOR) — corregidos y verificados contra el árbol físico; validadores PASS (library 0 findings, source-first 0). Lección reforzada: al reescribir un párrafo largo por reemplazo de prefijo, auditar la COLA del párrafo (el residuo pre-closeout fue el 100 % de los MATERIAL).
+
 ## CH09 OBSERVED (medido en Chapter 09)
 
 | Métrica | Valor |
