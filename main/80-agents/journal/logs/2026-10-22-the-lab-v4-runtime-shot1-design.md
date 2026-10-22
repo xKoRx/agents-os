@@ -44,7 +44,7 @@ Mandato Owner del 2026-10-22: cerrar diseño ejecutable Forge/LAB sobre la únic
 
 ## Validación
 
-Schema estricto del paquete inicial completo+change_log: ERROR=0/WARN=0,12 notas; whitespace correcto. Referencias internas verificadas, enlace de router externo expresado como nombre de skill sin wikilink falso. H01–H49 únicos y todos NOT_RUN; diez entregables indexados. Baseline remoto y workspace de ambos repositorios revalidados al terminar: SHAs coinciden y árboles limpios. Validación final del conjunto y commit/push documental registrada en la respuesta del turno.
+Schema estricto final del paquete completo, change_log y tres notas canónicas: ERROR=0/WARN=0,15 notas; whitespace correcto. Referencias internas verificadas, enlace de router externo expresado como nombre de skill sin wikilink falso. H01–H49 únicos y todos NOT_RUN; diez entregables indexados. Baseline remoto y workspace de ambos repositorios revalidados al terminar: SHAs coinciden y árboles limpios. Validación final del conjunto y commit/push documental registrada en la respuesta del turno.
 
 No código de producto, builds/suites, DBs, recursos compartidos, PROD, campañas, flota, órdenes reales, migración de estrategias ni backtester legacy tocados. Schema target y readiness son diseño, no certificación física. Bloqueos externos sólo se declaran cuando se constatan al ejecutar su gate, sin sustituir artefactos auténticos por fixtures ni presentar NOT_RUN como PASS. Shot2/3/4 no iniciados.
 

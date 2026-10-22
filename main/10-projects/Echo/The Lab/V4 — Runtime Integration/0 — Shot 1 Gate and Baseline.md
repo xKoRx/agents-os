@@ -74,7 +74,7 @@ A runtime/autoridad y CURRENT→TARGET; B ingesta/readiness; C historias/econom�
 
 ### Validación del dictamen
 
-Se verificaron schema Agents-OS de las 11 notas del paquete y change_log: ERROR=0/WARN=0; whitespace limpio. Se revisaron referencias internas, presencia de los cuatro perfiles y dos rankings, contratos cruzados A–J y 49 IDs H únicos, todos NOT_RUN. No paths absolutos de máquina ni claves privadas en el paquete. El cierre documental no ejecuta ni reemplaza los oráculos.
+Se verificó schema Agents-OS de las 11 notas del paquete, change_log y tres notas canónicas actualizadas (15 notas): ERROR=0/WARN=0; whitespace limpio. Se revisaron referencias internas, presencia de los cuatro perfiles y dos rankings, contratos cruzados A–J y 49 IDs H únicos, todos NOT_RUN. No paths absolutos de máquina ni claves privadas en el paquete. El cierre documental no ejecuta ni reemplaza los oráculos.
 
 Se repitió lectura de branch/HEAD/status local y `git ls-remote` al terminar: Echo y Symphony mantienen exactamente ambos SHAs de la tabla y workspaces limpios. No se consultaron ramas Echo alternativas. Las fuentes son code-level y no certifican el catálogo de una DB desplegada; F exige inspección real de ownership/catalog/constraints en el harness antes de aplicar. No hay contradicción material que impida diseñar el alcance; las diferencias con CURRENT tienen TARGET, superficies y aceptación definidos.
 
