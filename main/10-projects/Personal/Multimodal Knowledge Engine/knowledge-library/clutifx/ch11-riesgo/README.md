@@ -35,9 +35,9 @@ Biblioteca de conocimiento del undécimo vídeo del curso Clutifx, extraída con
 | Claims activos / superseded | 80 / 0 (sin supersessions en este capítulo) |
 | Epistemic | 80 instructor_statement · 0 visual_observation · 0 model_inference (capítulo VERBAL: la sustancia es dicha; los frames sostienen deícticos) |
 | Frames base (fin de minuto) | 27 (minutos 0-25 en MM:59.5 + fin del parcial [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-002621.png|f-002621]] (26:21; nombre por fórmula — el pack del Manager decía «[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-001621.png|f-001621]]» y el extractor lo cazó); manifiesto `frames/.base_frames`) |
-| Frames bajo demanda | 27 (extraídos y verificados visualmente por revisores/extractor, fórmula desde segundos reales), **54 citados** en total de 54 PNG físicos (0 contextuales sin citar); inventario en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/FRAMES|FRAMES]] |
+| Frames bajo demanda | 59 (extraídos y verificados visualmente por revisores/extractor, fórmula desde segundos reales; incluidas las capturas de auditoría contextual de los revisores — patrón ch09/ch10), **54 citados** en total de 86 PNG físicos (32 contextuales sin citar); inventario en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/FRAMES|FRAMES]] |
 | Preguntas abiertas | 12 registradas (q-ch11-001..012): capital de referencia de los %, cuadro «challenges/0,5%» en pantalla, unidades de cifras dichas, deícticos de gráfico, garbles [ASR], «10 horas» del trade de ayer, segmento truncado del BE de parciales, cobertura fronteriza, «en 5 minutos» vs TF en pantalla, objetivos 8h/12h sin etiqueta, alcance «no se mueve» vs BE — ver [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/OPEN-QUESTIONS|OPEN-QUESTIONS]] |
-| Rules / concepts / examples documentados | 34 (rule+warning) / 12 (concept+procedure) / 15 |
+| Rules / concepts / examples documentados | 34 / 12 / 15 |
 | Coverage | 27/27 minutos de video con claims y revisión |
 
 ## Verificación final

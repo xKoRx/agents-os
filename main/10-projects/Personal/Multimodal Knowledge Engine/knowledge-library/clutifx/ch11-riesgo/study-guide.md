@@ -13,6 +13,8 @@ Guía de estudio derivada de la biblioteca (los ejercicios son derivados; la fue
 
 ## 2. Las reglas estructurales (lo no negociable dicho)
 
+Todas las reglas del capítulo, con su claim y evidencia: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/rules|rules]] (R1-R34, incluye las warnings).
+
 - Stop loss no se mueve [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0020|c-0020]]; debajo del Turtle Soup [ASR] [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0021|c-0021]]; margen según expansión (60-80 pips/día → 25 pips «a lo mejor bien») [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0022|c-0022]].
 - Break even: en los puntos donde si estás equivocado el precio se gira [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0013|c-0013]]; JAMÁS «en tal R» [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0014|c-0014]]; también al tomar objetivos [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0028|c-0028]], al ver giro en contra [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0031|c-0031]], y con displacement sin objetivo tomado «no sobraría» [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0041|c-0041]].
 - Parciales → break even, siempre (coherencia dicha) [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/CLAIMS#c-0019|c-0019]].
