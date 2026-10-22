@@ -15,10 +15,10 @@ agent_model: GLM-5.3-Flash
 model_source: host
 task_type: coding
 task_complexity: high
-outcome: partial
+outcome: success
 verification: market_evidence
 evaluator: agent
-user_rework: pending
+user_rework: unknown
 source_session:
 load_policy: manual
 indexable: false
@@ -54,3 +54,7 @@ El gate v1 fue sobredeclarado (censo v1 contradecía a la frecuencia; D1 sin eje
 ## Bloque 3 — Continuación LC26 (mismo día, tercer ONE-SHOT)
 
 Censo por PURCHASE events reconstruido (26 compran/21 no; la cuenta comprada se llama `btg-functional`), **D4 cerrado con regresiones** (per-account `gross−fees==final−initial`, ledger declarado sólo con su owner, pausas=pendientes, gz/plain parity; 75/75 tras corregir el commit rojo `34f063cf` con el verde `92f1596a`), matriz de frecuencia por sesión (DAILY_OBSERVED: MR-02 nat, TG-F0 nat/SG; pases reales NQZ6: TG-F0 1/6, SG-TG-F0 1/2, TG-F1 1/4), **D5 causa de campo** (módulos BarClose-only reciben triggers de sesión; fix pendiente), **D1 refinado a nivel de campo** (envelope de la Operation del stop vacío en el deny; el fallback account-wide se REVIRTIÓ por romper aislamiento por Operation — tests del provider lo impidieron; diseño correcto = mapping de identidad del replan). Gates finales: EXECUTION/REPORTING/ACTIVITY/RESOURCE PASS; **D1_GATE OPEN**; HISTORICAL_RESUME_STATUS condicionado; RESEARCH_ACCEPTANCE ninguna; OWNER_ACCEPTANCE REVIEW. Sin procesos huérfanos; R01 en pausa del Owner.
+
+## Bloque 4 — Corrección D1/D5 + barrido NQZ6 (mismo día, cuarto ONE-SHOT)
+
+**D1 FIXED** (provider, dueño correcto): el chequeo absoluto de cap en `evaluateCandidate` negaba también las reducciones físicamente probadas; fix = reducción probada juzgada contra `max(cap, reachable pre-candidato)` en las tres familias; reversión/foreign-op/overclose/riesgo nuevo intactos (los tests que revirtieron el fix anterior siguen verdes). Arnés `d1_tightened_cap_test.go` (12 subtests). **Oráculo de campaña: el caso original HIST SG-MR-04-R500 (DRAIN_NOT_CONVERGENT 2024-01-23T18:05) corrió su horizonte completo 2023→2026 en 1:07:11, COMPLETE/reconciled, 30 cuentas (5 pases), pico 2.9 GiB RSS.** **D5 FIXED — dos causas**: (a) binding NY_OPEN con calendar_id ajeno al envelope en la derivación del lab (ventana jamás materializada; ahora viaja la identidad del propio plan); (b) selector del trace económico que ocultaba evaluaciones `evaluated=true` sin señal (el funnel leyó «jamás evaluada»; instrumentación demostró 20.699 evaluaciones 1m en el mismo plan). Diagnóstico nombrado `FBC/ORB_WINDOW_CALENDAR_UNRESOLVED` + contadores exactos en `execution.summary.strategy_evaluations`. **Barrido NQZ6 47/47 COMPLETE+reconciled** bajo `dc865aa9…`@`d111ce62` con prueba de identidad (28 fills idénticos, 19 FBC/ORB desbloqueados 0→real), pases 3 idénticos al censo corregido, cobertura conjunta 10/10 sesiones, 44 ACTIVE / 2 LOW_FREQUENCY (MR-03) / 1 SIGNAL_WITHOUT_FILL (MR-05 SG). Regresiones: python 124/124; failure-set backtester idéntico a HEAD limpio (18 preexistentes documentados). Commits `d111ce62`, `4d63c874`, `28dce6fc` push con readback; HISTORICAL_DELTA_PLAN actualizado por delta; STOP antes del histórico (espera autorización del Owner). Verificación de outcome en la capa dueña (recibos por attempt + resumen del motor), no en mocks.
