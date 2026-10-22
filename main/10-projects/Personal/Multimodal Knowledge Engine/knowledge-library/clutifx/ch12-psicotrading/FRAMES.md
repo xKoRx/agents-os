@@ -1,0 +1,57 @@
+# FRAMES — inventario navegable
+
+> Generado deterministamente por `render_frames_md.py` desde `frames/` + `frames/.base_frames` (autoridad de la clase base). Timestamp codificado en el nombre (f-HHMMSS.png). "Contextual" = sin claims asociados; no se fuerzan relaciones.
+
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000059.png|f-000059]] · 00:00:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000159.png|f-000159]] · 00:01:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000259.png|f-000259]] · 00:02:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000320.png|f-000320]] · 00:03:20 · bajo demanda · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000359.png|f-000359]] · 00:03:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000379.png|f-000379]] · 00:03:79 · bajo demanda · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0024|c-0024]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000419.png|f-000419]] · 00:04:19 · bajo demanda · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000459.png|f-000459]] · 00:04:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000490.png|f-000490]] · 00:04:90 · bajo demanda · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000496.png|f-000496]] · 00:04:96 · bajo demanda · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0035|c-0035]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000500.png|f-000500]] · 00:05:00 · bajo demanda · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0035|c-0035]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000559.png|f-000559]] · 00:05:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000659.png|f-000659]] · 00:06:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000714.png|f-000714]] · 00:07:14 · bajo demanda · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0029|c-0029]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000759.png|f-000759]] · 00:07:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000802.png|f-000802]] · 00:08:02 · bajo demanda · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000859.png|f-000859]] · 00:08:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000959.png|f-000959]] · 00:09:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001030.png|f-001030]] · 00:10:30 · bajo demanda · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001059.png|f-001059]] · 00:10:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001159.png|f-001159]] · 00:11:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001212.png|f-001212]] · 00:12:12 · bajo demanda · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0053|c-0053]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001245.png|f-001245]] · 00:12:45 · bajo demanda · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0053|c-0053]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001259.png|f-001259]] · 00:12:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001359.png|f-001359]] · 00:13:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001403.png|f-001403]] · 00:14:03 · bajo demanda · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0062|c-0062]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001417.png|f-001417]] · 00:14:17 · bajo demanda · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0064|c-0064]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001446.png|f-001446]] · 00:14:46 · bajo demanda · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0065|c-0065]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001459.png|f-001459]] · 00:14:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001559.png|f-001559]] · 00:15:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001659.png|f-001659]] · 00:16:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001722.png|f-001722]] · 00:17:22 · bajo demanda · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0076|c-0076]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001759.png|f-001759]] · 00:17:59 · base (fin de minuto) · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0076|c-0076]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001859.png|f-001859]] · 00:18:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-001959.png|f-001959]] · 00:19:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002059.png|f-002059]] · 00:20:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002117.png|f-002117]] · 00:21:17 · bajo demanda · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0097|c-0097]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002159.png|f-002159]] · 00:21:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002222.png|f-002222]] · 00:22:22 · bajo demanda · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0102|c-0102]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002259.png|f-002259]] · 00:22:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002310.png|f-002310]] · 00:23:10 · bajo demanda · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0104|c-0104]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002359.png|f-002359]] · 00:23:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002459.png|f-002459]] · 00:24:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002535.png|f-002535]] · 00:25:35 · bajo demanda · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002559.png|f-002559]] · 00:25:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002630.png|f-002630]] · 00:26:30 · bajo demanda · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002659.png|f-002659]] · 00:26:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002759.png|f-002759]] · 00:27:59 · base (fin de minuto) · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0123|c-0123]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002810.png|f-002810]] · 00:28:10 · bajo demanda · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0123|c-0123]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002859.png|f-002859]] · 00:28:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002959.png|f-002959]] · 00:29:59 · base (fin de minuto) · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0131|c-0131]]
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-003059.png|f-003059]] · 00:30:59 · base (fin de minuto) · contextual
+- [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-003124.png|f-003124]] · 00:31:24 · base (fin de minuto) · citado por: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/CLAIMS#c-0135|c-0135]]
