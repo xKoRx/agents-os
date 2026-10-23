@@ -32,6 +32,8 @@ Revisión integral EF-PROD-GOD-01, corte 2026-10-23 America/Santiago. Candidato 
 
 The Lab V4 comparte historia de la rama; sus cambios no se atribuyen a Futures. No se propone modificar backtester/Lab ni usar sus resultados para acreditar LIVE. La identidad de fuente, binario, módulo y estado son cuatro evidencias diferentes.
 
+Readback final de source durante la revisión: `git ls-remote origin refs/heads/feature/ef-runtime-pools` devolvió nuevamente ac0621a1 completo y el checkout permaneció limpio. Sin deltas materiales nuevos que adjudicar.
+
 Documentación obligatoria consultada: proyecto padre (objetivo, freezes, tarea puente y presupuestos), ledger Runtime Pools (R6, RESUME-01–05, FINAL-01, F1 y decisión Owner integral), R6 §§12–18, planner FEFB, diseño FEFB y anexo T1.1, matriz de verificación con cierre S3, dictamen S2, checklist CERT-NT-01 vigente. Contratos adicionales: D2-04, D2-05B/C por referencias de implementación, D2-06C, D2-07/A/C, Performance Resource Budgets V1 y README del backtester en sus seams de paridad. Retrieval enfocado por rutas, encabezados y símbolos; no se afirma lectura exhaustiva de cada documento histórico.
 
 ### 2. AS-IS reconstruido
@@ -106,6 +108,8 @@ Severidad es riesgo si se habilitara producción con el defecto, no afirmación 
 8. **Migración:** corte coordinado sin mezcla de instancias, preservando offsets y semántica de todos los lectores. No cambiar groups para “resolver” lag.
 9. **Certificación:** matar antes/después de respuesta HTTP y commit checkpoint; consumidor aislado observa sólo commits; exactitud de IDs/payloads y una intención física bajo redelivery. Medir latencia real con transacciones.
 10. **Residual:** Kafka y venue no comparten transacción; M2/reconciliación siguen obligatorios. Varios sinks transaccionales no garantizan visibilidad simultánea entre topics.
+
+Complemento transversal F02/FX: `v3/core/internal/functions/mm_engine.go:671–672` emite a `echo/core-commands-egress`, también sin deliverySemantic explícito en module.yaml:120; close/automation egress requieren el mismo inventario. `v3/bridge/internal/session/command_consumer.go:110–147` usa group por hostname y OffsetNewest, y su configuración no fija IsolationLevel=ReadCommitted. `pipe_handler.go:1776` sí verifica TTL antes de transmitir; eso no acredita un fence de generation en el terminal. Esta diferencia impide extrapolar las garantías del consumer Futures a FX. No se ejecutó EA ni se afirma duplicación física FX. Corrección y gate de convivencia especificados en Documento 2 §6–7.
 
 #### F03 — P0: observación económica marcada entregada antes de entrega durable
 
