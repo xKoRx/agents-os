@@ -53,7 +53,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000101|01:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000125|01:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000129|01:29]]
 
-**Notes:** Definición verbalizada mientras dibuja; en este punto no precisa qué extremo (high/low) corresponde a cada dirección de rango.
+**Notes:** Definición verbalizada mientras dibuja; en este punto no precisa qué extremo (high/low) corresponde a cada dirección de rango. Normalización ASR sin marca (DV01-010, DOCVERIFY residual 2026-10-22): dicho "no tiene porque es la siguiente"; publicado "no tiene por qué ser la siguiente". Sentido inequívoco; sin cambio de statement.
 
 ### c-0006
 
@@ -77,9 +77,9 @@
 
 **Tiempo:** [01:50–02:25]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000155|01:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000207|02:07]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000219|02:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000150|01:50]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000158|01:58]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000202|02:02]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000150|01:50]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000155|01:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000158|01:58]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000202|02:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000207|02:07]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000219|02:19]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000211.png|f-000211]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000222.png|f-000222]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000159.png|f-000159]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000115.png|f-000115]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000115.png|f-000115]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000159.png|f-000159]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000211.png|f-000211]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000222.png|f-000222]]
 
 **Visual hint:** 01:55 — dibujo: qué vela es la 'probablemente positiva' y cuál la 'negativa' en el ejemplo de rango bajista
 
@@ -115,9 +115,9 @@
 
 **Verdict:** SUPPORTED · **Epistemic:** visual_observation · **Kind:** example · **Minute:** 3 · **Source key:** 
 
-**Tiempo:** [03:25–03:35]
+**Tiempo:** [03:25–03:48]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000325|03:25]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000325|03:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000335|03:35]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000326.png|f-000326]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000330.png|f-000330]]
 
@@ -231,7 +231,7 @@
 
 **Tiempo:** [04:53–05:17]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000511|05:11]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000453|04:53]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000453|04:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000511|05:11]]
 
 **Notes:** Formulación con hedge ('es como que'); 'aparejando' es la palabra dicha.
 
@@ -355,7 +355,7 @@
 
 **Tiempo:** [07:01–07:24]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000709|07:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000717|07:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000701|07:01]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000701|07:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000709|07:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000717|07:17]]
 
 **Notes:** Segmento s-000709 termina garbled ('pues en funciona'); sentido tomado del fragmento intelligible.
 
@@ -367,7 +367,7 @@
 
 **Tiempo:** [07:17–07:29]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000724|07:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000717|07:17]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000717|07:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000724|07:24]]
 
 ### c-0031
 
@@ -439,7 +439,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000817|08:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000823|08:23]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000826.png|f-000826]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000820.png|f-000820]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000823.png|f-000823]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000820.png|f-000820]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000823.png|f-000823]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000826.png|f-000826]]
 
 **Visual hint:** 08:23 — Rango bearish formado en la parte alta del gráfico de Libra (GBP)
 
@@ -453,7 +453,7 @@
 
 **Tiempo:** [08:29–08:42]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000829|08:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000834|08:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000840|08:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000836|08:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000839|08:39]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000829|08:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000834|08:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000836|08:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000839|08:39]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000840|08:40]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000834.png|f-000834]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000841.png|f-000841]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000844.png|f-000844]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000848.png|f-000848]]
 
@@ -467,7 +467,7 @@
 
 **Tiempo:** [08:51–08:59]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000853|08:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000855|08:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000856|08:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000851|08:51]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000851|08:51]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000853|08:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000855|08:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000856|08:56]]
 
 **Notes:** Léelo junto con k-b2-009: el 'asumir' convive con el matiz 'no siempre' dicho antes.
 
@@ -491,7 +491,7 @@
 
 **Tiempo:** [09:14–09:32]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000914|09:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000921|09:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000930|09:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000926|09:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000928|09:28]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000914|09:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000921|09:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000926|09:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000928|09:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000930|09:30]]
 
 **Notes:** El método para fijar el objetivo NO se explica en este bloque (diferido).
 
@@ -505,7 +505,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000932|09:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000954|09:54]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000959.png|f-000959]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000954.png|f-000954]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001018.png|f-001018]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000954.png|f-000954]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000959.png|f-000959]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001018.png|f-001018]]
 
 **Visual hint:** 09:54 — Dibujo de velas en 4H tomando el low del rango diario, con mechas, nueva vela abriendo por debajo
 
@@ -535,7 +535,7 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001040.png|f-001040]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001059.png|f-001059]]
 
-**Notes:** El 'porque' es nexo dicho por el instructor (definicional), no inferencia del extractor.
+**Notes:** El 'porque' es nexo dicho por el instructor (definicional), no inferencia del extractor. Normalización ASR sin marca (DV01-010, DOCVERIFY residual 2026-10-22): dicho "Déjame repetirlo que quede claro"; publicado cita extraída "para que quede claro" (inserción de conector; elipse de "repetirlo"). Sentido inequívoco; sin cambio de statement.
 
 ### c-0044
 
@@ -547,7 +547,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001102|11:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001116|11:16]]
 
-**Notes:** Definición introducida en capítulo introductorio; simétrica al rango pendiente pero en contra del objetivo.
+**Notes:** Definición introducida en capítulo introductorio; simétrica al rango pendiente pero en contra del objetivo. Normalización ASR sin marca (DV01-010, DOCVERIFY residual 2026-10-22): dicho "Pues que la siguiente vela abre por arriba"; publicado "cuando la siguiente vela abre por arriba" (conector editorial dentro de la cita). Sentido inequívoco; sin cambio de statement.
 
 ### c-0045
 
@@ -569,7 +569,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001151|11:51]]
 
-**Notes:** ASR 'altista' normalizado a 'alcista' (sin segundo significado posible).
+**Notes:** ASR 'altista' normalizado a 'alcista' (sin segundo significado posible). Normalización ASR sin marca (DV01-010, DOCVERIFY residual 2026-10-22): dicho "altista"; publicado "alcista". Sentido inequívoco; sin cambio de statement.
 
 ### c-0047
 
@@ -775,7 +775,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001554|15:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001600|16:00]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001659.png|f-001659]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001600.png|f-001600]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001600.png|f-001600]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001659.png|f-001659]]
 
 **Visual hint:** 16:39 — dibujo con velas (4H): siguiente vela toma el low de la anterior y reacciona
 
@@ -787,9 +787,9 @@
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** rule · **Minute:** 16 · **Source key:** 
 
-**Tiempo:** [16:16–16:34]
+**Tiempo:** [16:00–16:34]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001616|16:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001624|16:24]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001600|16:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001616|16:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001624|16:24]]
 
 **Notes:** Dos condiciones unidas por 'y' (toma de liquidez + reacción contraria); sin reacción no hay tartel sub. 'Tiene que ser' es cuantificador fuerte dicho.
 
@@ -841,7 +841,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001653|16:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001702|17:02]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001703.png|f-001703]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001653.png|f-001653]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001653.png|f-001653]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001703.png|f-001703]]
 
 **Visual hint:** 17:03 — dibujo: stop loss señalado por debajo del Tartel sub
 
@@ -867,7 +867,7 @@
 
 **Tiempo:** [17:21–17:35]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001729|17:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001731|17:31]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001733|17:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001721|17:21]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001721|17:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001729|17:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001731|17:31]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001733|17:33]]
 
 **Notes:** El 'porque' (lógica correcta pese al stop) es dicho por el instructor; se refiere al caso del intra tartel sub.
 
@@ -905,7 +905,7 @@
 
 **Tiempo:** [17:50–17:59]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001750|17:50]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001754|17:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001756|17:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001752|17:52]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001750|17:50]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001752|17:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001754|17:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001756|17:56]]
 
 ### c-0073
 
@@ -915,7 +915,7 @@
 
 **Tiempo:** [17:59–18:32]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001801|18:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001819|18:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001759|17:59]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001759|17:59]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001801|18:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001819|18:19]]
 
 **Visual hint:** 18:01 — dibujo esquemático: vela de un día y en 4H se forma un rango contrario a la dirección
 
@@ -965,7 +965,7 @@
 
 **Tiempo:** [18:47–19:30]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001921|19:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001926|19:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001847|18:47]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001847|18:47]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001921|19:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001926|19:26]]
 
 **Notes:** Causa dicha explícita de la eliminación: 'porque la vela cierra fuera'. | Adjudicación Manager: 'tartel sub'→Turtle Soup (garble del curso, ver GLOSSARY); 'intertartel sub' queda [ASR] con candidato intra Turtle Soup.
 
@@ -1019,7 +1019,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002045|20:45]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002115.png|f-002115]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002105.png|f-002105]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002059.png|f-002059]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002059.png|f-002059]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002105.png|f-002105]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002115.png|f-002115]]
 
 **Visual hint:** 21:15 — dos gráficos etiquetados euro y libra mostrando la SMT conocida hasta ahora (clásica)
 
@@ -1033,7 +1033,7 @@
 
 **Tiempo:** [20:45–21:33]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002123|21:23]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002125|21:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002129|21:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002132|21:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002045|20:45]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002045|20:45]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002123|21:23]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002125|21:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002129|21:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002132|21:32]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002147.png|f-002147]]
 
@@ -1047,7 +1047,7 @@
 
 **Tiempo:** [21:33–21:45]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002133|21:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002138|21:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002143|21:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002136|21:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002142|21:42]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002133|21:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002136|21:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002138|21:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002142|21:42]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002143|21:43]]
 
 **Notes:** Hedge 'un poco' palabra dicha. Enfatiza carácter introductorio de lo dicho aquí.
 
@@ -1185,7 +1185,7 @@
 
 **Tiempo:** [24:12–24:42]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002434|24:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002412|24:12]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002412|24:12]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002434|24:34]]
 
 **Notes:** Capítulo introductorio: presenta los dos usos de la SMT en la estrategia, no definición cerrada; el contexto de curso indica que ch05 la desarrolla.
 
@@ -1257,11 +1257,11 @@
 
 **Tiempo:** [25:52–26:58]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002552|25:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002600|26:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002642|26:42]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002553|25:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002555|25:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002558|25:58]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002552|25:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002553|25:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002555|25:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002558|25:58]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002600|26:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002625|26:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002642|26:42]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002559.png|f-002559]]
 
-**Notes:** Enumeración dicha en un solo bloque de habla (s-002552 a s-002642).
+**Notes:** Enumeración dicha en un solo bloque de habla (s-002552 a s-002642). Normalización ASR sin marca (DV01-010, DOCVERIFY residual 2026-10-22): dicho "que ha hecho el alto al final o en este caso el bajo al final de la vela"; publicado "ha hecho el alto, o en este caso el bajo, al final de la vela" (reorden de "al final"; elipse). Sentido inequívoco; sin cambio de statement.
 
 ### c-0100
 
@@ -1283,7 +1283,7 @@
 
 **Tiempo:** [26:08–26:17]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002608|26:08]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002613|26:13]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002616|26:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002610|26:10]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002612|26:12]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002608|26:08]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002610|26:10]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002612|26:12]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002613|26:13]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002616|26:16]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002623.png|f-002623]]
 
@@ -1311,15 +1311,15 @@
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** observation · **Minute:** 26 · **Source key:** 
 
-**Tiempo:** [26:42–27:20]
+**Tiempo:** [26:25–27:20]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002642|26:42]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002658|26:58]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002710|27:10]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002625|26:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002642|26:42]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002658|26:58]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002710|27:10]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002623.png|f-002623]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002627.png|f-002627]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002642.png|f-002642]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002659.png|f-002659]]
 
 **Visual hint:** 26:42 — comparación de dos feeds de broker: low no tomado en uno vs tomado en el otro
 
-**Notes:** 'Forexcom' [ASR]: candidato Forex.com; 'FXCM' dicho literal. | Adjudicación Manager: 'Forexcom' [ASR] adjudicado Forex.com por cabecera del gráfico (f-002623+).
+**Notes:** 'Forexcom' [ASR]: candidato Forex.com; 'FXCM' dicho literal. | Adjudicación Manager: 'Forexcom' [ASR] adjudicado Forex.com por cabecera del gráfico (f-002623+). Normalización ASR sin marca (DV01-010, DOCVERIFY residual 2026-10-22): dicho "va a haber veces que lo vas a ver así que esto se queda aquí y te quedas haciendo zoom"; publicado "va a haber veces que te quedas haciendo zoom" (elipse sin puntos suspensivos). Sentido inequívoco; sin cambio de statement.
 
 ### c-0104
 
@@ -1341,7 +1341,7 @@
 
 **Tiempo:** [27:20–27:36]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002720|27:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002730|27:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002734|27:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002726|27:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002732|27:32]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002720|27:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002726|27:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002730|27:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002732|27:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002734|27:34]]
 
 **Notes:** 'change instead of delivery' [ASR]: candidatos 'change in state of delivery' / 'change of character (CHoCH)'. Capítulo introductorio: introduce el término, no definición exhaustiva.
 
@@ -1353,7 +1353,7 @@
 
 **Tiempo:** [27:36–27:42]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002738|27:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002740|27:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002736|27:36]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002736|27:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002738|27:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002740|27:40]]
 
 **Notes:** Nexo 'para' palabra dicha; uso declarado del instructor, no regla universal.
 
@@ -1421,7 +1421,7 @@
 
 **Visual hint:** 29:22 — gráfico del long del 23 de junio con el order block formado
 
-**Notes:** Fecha dicha literal: 23 de junio; año no verbalizado en el bloque.
+**Notes:** Fecha dicha literal: 23 de junio; año no verbalizado en el bloque. Normalización ASR sin marca (DV01-010, DOCVERIFY residual 2026-10-22): dicho "espero que se formará el orden block"; publicado "esperé que se formará el order block". Sentido inequívoco; sin cambio de statement.
 
 ### c-0112
 
@@ -1433,7 +1433,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002930|29:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002936|29:36]]
 
-**Notes:** Hedge palabra dicha: 'podrías'.
+**Notes:** Hedge palabra dicha: 'podrías'. Normalización ASR sin marca (DV01-010, DOCVERIFY residual 2026-10-22): dicho "el orden bloque"; publicado "el order block". Sentido inequívoco; sin cambio de statement.
 
 ### c-0113
 
@@ -1445,7 +1445,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002936|29:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002945|29:45]]
 
-**Notes:** Números tal como dichos: '10, 25, 30' [ASR]; '25' no es timeframe estándar en MT5/TradingView (candidatos: 20 o 15).
+**Notes:** Números tal como dichos: '10, 25, 30' [ASR]; '25' no es timeframe estándar en MT5/TradingView (candidatos: 20 o 15). Normalización ASR sin marca (DV01-010, DOCVERIFY residual 2026-10-22): dicho "esto lo miró en 15", "el orden block"; publicado "esto lo miré en 15", "el order block". Sentido inequívoco; sin cambio de statement.
 
 ### c-0114
 
@@ -1467,7 +1467,7 @@
 
 **Tiempo:** [29:59–30:25]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003009|30:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003016|30:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003019|30:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002959|29:59]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002959|29:59]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003009|30:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003016|30:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003019|30:19]]
 
 **Notes:** Transición final del temario; el order block solo se nombra, sin desarrollo en este bloque. Antecedente declarado: Power 3 explicado en el curso intermedio.
 
@@ -1533,7 +1533,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003102|31:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003123|31:23]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-003159.png|f-003159]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-003102.png|f-003102]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-003102.png|f-003102]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-003159.png|f-003159]]
 
 **Visual hint:** 31:02 — vela pintada con mecha superior resultante de la manipulación y cierre a las 5
 
@@ -1575,7 +1575,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003159|31:59]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-003201.png|f-003201]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-003159.png|f-003159]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-003159.png|f-003159]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-003201.png|f-003201]]
 
 **Notes:** La apertura de la nueva vela coincide con el cierre de la anterior; dicho como base para elegir punto de entrada (k-b6-010).
 
@@ -1597,7 +1597,7 @@
 
 **Tiempo:** [32:17–32:24]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003217|32:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003220|32:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003218|32:18]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003223|32:23]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003217|32:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003218|32:18]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003220|32:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003223|32:23]]
 
 **Notes:** Propósito declarado del concepto Power 3; nexo 'para' dicho.
 
@@ -1609,7 +1609,7 @@
 
 **Tiempo:** [32:24–32:38]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003227|32:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003232|32:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003236|32:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003224|32:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003229|32:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003233|32:33]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003224|32:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003227|32:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003229|32:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003232|32:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003233|32:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003236|32:36]]
 
 **Notes:** Nexo 'porque' dicho por el instructor al justificar que es lo ideal.
 
@@ -1621,7 +1621,7 @@
 
 **Tiempo:** [32:38–32:54]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003240|32:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003246|32:46]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003249|32:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003238|32:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003242|32:42]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003244|32:44]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003248|32:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003251|32:51]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003238|32:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003240|32:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003242|32:42]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003244|32:44]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003246|32:46]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003248|32:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003249|32:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003251|32:51]]
 
 **Notes:** Anticipación palabra dicha ('tú anticipas que va a ser alcista'): condición subjetiva, no certeza. Nexos 'Por lo tanto' y 'para' dichos.
 
@@ -1633,7 +1633,7 @@
 
 **Tiempo:** [32:59–33:08]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003259|32:59]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003304|33:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003302|33:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003305|33:05]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003259|32:59]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003302|33:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003304|33:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003305|33:05]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-003304.png|f-003304]]
 
@@ -1649,7 +1649,7 @@
 
 **Tiempo:** [33:08–33:23]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003308|33:08]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003311|33:11]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003318|33:18]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003309|33:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003314|33:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003316|33:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003320|33:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003322|33:22]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003308|33:08]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003309|33:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003311|33:11]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003314|33:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003316|33:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003318|33:18]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003320|33:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003322|33:22]]
 
 **Notes:** Condicional dicho ('si tienes el foco...'). Nexo 'para' dicho por el instructor en 'manipular para luego ir a mi dirección'; secuencia manipulación→dirección verbalizada por él, no añadida.
 
@@ -1661,7 +1661,7 @@
 
 **Tiempo:** [33:24–33:34]
 
-**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003328|33:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003330|33:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003332|33:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003334|33:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003324|33:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003326|33:26]]
+**Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003324|33:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003326|33:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003328|33:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003330|33:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003332|33:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003334|33:34]]
 
 **Notes:** Cuantificador dicho ('muchas veces'); ámbitos declarados: entradas y salidas. Meta-información del curso.
 
