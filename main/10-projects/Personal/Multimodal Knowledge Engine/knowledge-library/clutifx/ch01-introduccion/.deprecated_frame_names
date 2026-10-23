@@ -2,6 +2,6 @@
 # Corregidos físicamente: f-000105->f-000145, f-000131->f-000211, f-000142->f-000222
 # (contenido verificado por extracción ffmpeg: 105s=01:45, 131s=02:11, 142s=02:22).
 # Un nombre de esta lista en un .md es historical_invalid_name, NO una cita vigente.
-000105
-000131
-000142
+f-000105
+f-000131
+f-000142
