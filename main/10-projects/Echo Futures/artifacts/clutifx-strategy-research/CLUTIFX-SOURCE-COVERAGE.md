@@ -28,7 +28,7 @@ FASE B4 de la misión GOD. Demuestra que todo claim operativo relevante tiene de
 | ch04 entradas (119) | 111 | STR-005 (refinado), SET-002/003/004 (OB, PDM espejo, continuación), §5 gestión, jerarquía DOL>entrada | 8 UNCERTAIN marcados (lista en dudas-y-discrepancias) |
 | ch05 smt (100) | 99 | CMP-012/013/014/015, STR-007, red flag 4 | 1 UNCERTAIN (c-0073 dibujo caso 2) |
 | ch06 failure swing (64) | 64 | CMP-011, STR-006 | — |
-| ch07 setups (238) | 238 | STR-001/002/003/004, SET-001, CMP-020/021/022, checklist 4 preguntas (§0), contradicción q-ch07-019 preservada (no consumible como hora) | mayor capítulo; 2 claims guardados como duda material |
+| ch07 setups (238) | 238 | STR-001/002/003/004, SET-001, CMP-020/021/022, checklist 4 preguntas (master §0.1), contradicción q-ch07-019 preservada (no consumible como hora) | mayor capítulo; 3 claims guardados como duda material (c-0143/c-0181/c-0182, grupo q-ch07-019) |
 | ch08 proceso (86) | 86 | §7 procedimiento completo, CMP-002, salidas §5 (reacción contraria, vela clave condicional SET-007), anti-regla de venta | — |
 | ch09 red flags (137) | 135 | §6 completo (4 flags), CMP-016..019, secuencia 1-5-9 (CMP-020), consolidación 3 momentos | 2 UNCERTAIN (c-0063, c-0075) |
 | ch10 noticias (200) | 196 | STR-008(+b), CMP-021, filtros de noticia §6, calendario/Excel fuente | 15 UNCERTAIN-adjacent (garbles de pares q-ch10-005; c-0069/c-0113/c-0032) |
