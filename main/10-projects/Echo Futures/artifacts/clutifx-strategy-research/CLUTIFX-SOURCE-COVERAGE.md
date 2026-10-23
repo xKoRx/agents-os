@@ -40,7 +40,7 @@ FASE B4 de la misión GOD. Demuestra que todo claim operativo relevante tiene de
 
 ## Exclusiones consolidadas (clasificación de la misión)
 
-- `META` (19+1): transaccional del curso (aperturas/recaps/anuncios) — ya clasificados por COVERAGE; sin destino por diseño.
+- `META` (18 META + 1 ANUNCIO): transaccional del curso (aperturas/recaps/anuncios) — ya clasificados por COVERAGE; sin destino por diseño.
 - `EXAMPLE_ONLY`: ratios y cifras de ejemplos (12,34R; −164/−100 pips; 0.00209 del stop) — se citan como [ejemplo] en master/detectores, nunca como parámetro.
 - `DUPLICATE_SEMANTICS` (20): repetidos del instructor — un solo destino (regla de no-duplicación de FASE E).
 - `INSUFFICIENT_SPECIFICATION`: "Entry Model" (ch04 c-0110); vídeo extras del reiniciado (ch03 c-0013); capital de referencia de % (q-ch11-001); límite de reentradas; distancia numérica del stop (mostrada 0.00209 no verbalizada). Ninguno rellenable.
