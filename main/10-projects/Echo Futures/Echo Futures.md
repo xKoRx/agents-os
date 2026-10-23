@@ -23,7 +23,7 @@ tags:
   - echo-futures
   - algorithmic-trading
 created: "2026-09-25"
-updated: "2026-10-16"
+updated: "2026-10-23"
 ---
 
 # Echo Futures

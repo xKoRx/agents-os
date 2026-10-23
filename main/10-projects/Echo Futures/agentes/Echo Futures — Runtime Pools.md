@@ -62,7 +62,7 @@ Entregar extensión runtime de pools y asociaciones pool–Strategy–MM mediant
 - [ ] PRD.2 Tras adjudicación y despacho, ejecutar B1→B2→B3 como una implementación consolidada según Documento 3. #owner/agent
 - [ ] PRD.3 Revisar G-IMPL y autorizar por separado la certificación física según Documento 4; registrar resultados aquí. #owner/agent
 
-**Siguiente responsable: Primary Manager.** No lanzar GLM, implementar, probar, desplegar ni operar desde esta sesión GOD. Publicación/readback documental se registra en [[2026-10-23-echo-futures-production-design]] y en el handoff final; el proyecto padre sigue apuntando a este único planificador.
+**Siguiente responsable: Primary Manager.** No lanzar GLM, implementar, probar, desplegar ni operar desde esta sesión GOD. Registro documental de auditoría: `80-agents/journal/logs/2026-10-23-echo-futures-production-design.md`; commit/readback en el handoff final. Ese log no es autoridad operativa; el proyecto padre sigue apuntando a este único planificador.
 
 ### Historial de entregas y decisiones previas
 
