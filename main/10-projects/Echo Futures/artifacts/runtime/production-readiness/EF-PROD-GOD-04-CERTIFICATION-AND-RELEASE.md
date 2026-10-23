@@ -81,6 +81,7 @@ Antes de fallos: snapshot M2/outboxes/manifest, baseline de posiciones/órdenes/
 | SCALE-01 / F09 | 1/100/200 deliveries sobre misma Signal | Una evaluación Strategy/analytics y suscripción por stream; costo account-scoped; caps conservan state vivo | L2+L3 |
 | POISON-01 / F09 | Payload inválido repetido / config incompatible | Rechazo durable y scope bloqueado; no fresh job, no retry storm ilimitada ni descarte de economía; resto progresa según aislamiento | L3 |
 | FX-01 / F01/F02/F09 | Restore/deploy compartido y replay controlado FX aislado | Offsets/IDs conservados; exact duplicate no cambia journal; conflicto real visible; no nueva ejecución durante estado incierto | L3, L4 legacy según adapter |
+| FX-02 / F02/F06 | Transacción abortada y comando FX ya en pipe cuando vence permit o cambia generation | Consumer FX no entrega tx abortada; último salto rechaza OPEN viejo sin romper reducción. Sin capability probada, coexistencia FX armada NO_GO; no sustituirla por TTL sólo en Bridge | L3+L4 legacy |
 | OPS-01 / F09 | OTEL caído, /health200 con STALE, checkpoint viejo, lease perdido | Cuatro dimensiones no colapsadas; new-risk no depende de exporter; alertas/evidencia recuperables; falta de evidencia bloquea certificación | L3+L4 |
 | ROL-01 / F01/F10 | Upgrade y rollback antes/después de efecto | Compatibilidad probada, no retroceso de generation ni pérdida de acción; después de efecto usar estado compatible/forward repair | L3+L5 |
 
