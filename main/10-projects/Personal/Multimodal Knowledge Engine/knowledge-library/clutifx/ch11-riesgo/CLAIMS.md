@@ -35,6 +35,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-000059.png|f-000059]]
 
+**Dudas abiertas:**
+
+- No se dice explícitamente sobre qué capital se calculan el 1%, el 2%/1,5% ni el 4% de profit (por contexto, la cuenta challenge, pero no está dicho en el audio).
+
 ### c-0004
 
 **Statement:** En challenge (fase 2) «vendría a ser lo mismo»: arriesgar un 1% hasta el 2,5% «o así» de profit y en el siguiente trade intentar pasar el challenge «de una»; «a lo mejor» con un 1% basta otra vez o, si no, con un 1,5% «seguro que os va a bastar». Lo presenta como «para mí el enfoque de riesgo ideal que tendrías que tomar vosotros en los challenge».
@@ -47,6 +51,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-000105.png|f-000105]]
 
+**Dudas abiertas:**
+
+- No se dice explícitamente sobre qué capital se calculan el 1%, el 1,5% ni el 2,5% de profit (por contexto, la cuenta challenge, pero no está dicho).
+- ¿Es «2,5» un nivel de profit? La palabra no se dice en el segmento; la lectura se apoya en el paralelo con fase 1 (s-000053) y en la nota en pantalla de fase 1 (f-000105). El «2,5» de fase 2 no llega a aparecer escrito en el cuadro (fue reescrito y al final del minuto muestra «0,5%»).
+
 ### c-0005
 
 **Statement:** En cuenta fondeada, «para mí es un 1% el riesgo ideal»; también «podrías utilizar también un 0,5%» si aún no lleváis muchos payouts. Fuerza: recomendación personal del instructor.
@@ -56,6 +65,11 @@
 **Tiempo:** [01:37–01:48]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000137|01:37]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000139|01:39]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000144|01:44]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000146|01:46]]
+
+**Dudas abiertas:**
+
+- Deixis visual sin resolver: al final del minuto el cuadro de texto en pantalla queda «challenges / 0,5%» (f-000150 = 00:01:50 y f-000159 = 00:01:59, verificados visualmente); el «0,5%» aparece escrito bajo el título «challenges», pero en el audio el 0,5% se justifica por no llevar muchos payouts (fondeada). La pantalla sola no permite emparejar el 0,5% escrito con challenge o con fondeada; el cuadro fue editado en vivo (a 105 s mostraba «1%» tecleándose, f-000145) y el título «challenges» es resto del resumen anterior.
+- No se dice explícitamente sobre qué capital se calculan el 1% y el 0,5% (por contexto, la cuenta fondeada, pero no está dicho).
 
 ### c-0006
 
@@ -77,6 +91,12 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000209|02:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000215|02:15]]
 
+**Dudas abiertas:**
+
+- En pantalla (f-000220, verificado, /tmp/ch11-minrev-2/) el instructor escribe las anotaciones «challenges» y «0,5%»: esa cifra no se verbaliza en el minuto y su significado (¿coste del challenge? ¿% de qué?) queda abierto; no debe fusionarse con el 1/1,5/2 del audio.
+- La unidad de «un 1, 1,5 o un 2» al sacar dinero de la fondeada no está dicha en el audio: ¿importes (p. ej. miles) o porcentajes? Se preserva la palabra dicha.
+- Unidad de «un 1, 1,5 o un 2» (confirmada como no dicha en el audio del minuto): ¿importes o porcentajes? Se preserva la palabra dicha.
+
 ### c-0008
 
 **Statement:** Lógica personal del instructor sobre asumir riesgo (ejemplo con cifras dichas tal cual): con una cuenta a +2.000 de profit, si opera esa cuenta puede perder esos 2.000 (un -2.000); en lugar de perderlos, gastarlos en challenges le permite ampliar su capital «en 400k a lo mejor». ¿Prefiere gastárselos en challenges antes que arriesgarse a perderlos? «Pues muchas veces sí».
@@ -88,6 +108,12 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000215|02:15]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000232|02:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000254|02:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000259|02:59]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-000245.png|f-000245]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-000259.png|f-000259]]
+
+**Dudas abiertas:**
+
+- Moneda de «2.000» y «400k» no dicha en el minuto (los dólares se nombran más adelante en el vídeo, no aquí).
+- Posible relación no verbalizada: la anotación en pantalla «0,5%» junto a «challenges» (f-000245, verificado) sugiere 0,5% de 400k = 2.000, pero el instructor no verbaliza esa cuenta en el minuto; queda abierta y no debe publicarse como lógica dicha.
+- «400k» queda referido verbalmente a capital («ampliar mi capital en 400k»), pero no se especifica si es tamaño total agregado de las cuentas compradas con los 2.000; «400k» no aparece en pantalla (sólo verbal).
 
 ### c-0009
 
@@ -120,6 +146,12 @@
 **Tiempo:** [03:22–03:47]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000322|03:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000325|03:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000329|03:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000331|03:31]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000333|03:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000335|03:35]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000337|03:37]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000339|03:39]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000343|03:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000341|03:41]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000345|03:45]]
+
+**Dudas abiertas:**
+
+- El referente de «me ha pasado esto» no se explicita en el audio (¿perder el profit acumulado al no esperar el cobro?).
+- El referente de «me ha pasado esto» no se explicita en el audio (¿perder el profit acumulado al no esperar el cobro?); el frame f-000322 confirma que en pantalla no hay aclaración visual (sólo gráfico y anotaciones «challenges/0,5%/+2000/-2000/gasto en challenge»).
+- Qué significa exactamente «no subir mucho los payouts» no está dicho literalmente; se preserva tal cual.
 
 ### c-0012
 
@@ -171,6 +203,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-000522.png|f-000522]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-000527.png|f-000527]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-000559.png|f-000559]]
 
+**Dudas abiertas:**
+
+- La atribución de cada objetivo a 8h vs 12h es sólo dicha: en f-000522 y f-000527 las líneas/cajas del gráfico no llevan etiqueta de temporalidad visible, por lo que no se puede verificar visualmente cuál nivel corresponde a cada objetivo.
+
 ### c-0016
 
 **Statement:** Ejemplo hipotético del instructor: «imagínate esto si son 10 lotes, esto de aquí son 30 pips, pues si yo dejo la mitad son 1500 dólares más que me llevo», porque «aún hay mucho espacio si pasara algo».
@@ -182,6 +218,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000546|05:46]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000548|05:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000550|05:50]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000552|05:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000556|05:56]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-000553.png|f-000553]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-000559.png|f-000559]]
+
+**Dudas abiertas:**
+
+- En f-000553 la etiqueta textual de la herramienta de medida es parcialmente ilegible en el PNG; el delta de precio mostrado (0,00301 ≈ 30,1 pips) confirma la cifra dicha de 30 pips, pero el número grande de la etiqueta no se puede leer con certeza.
 
 ### c-0017
 
@@ -215,6 +255,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000644|06:44]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000648|06:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000651|06:51]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000656|06:56]]
 
+**Dudas abiertas:**
+
+- El segmento queda truncado: «ya estaba puesto desde...» — no se dice desde dónde/cuándo estaba puesto el break-even (deíctico no resuelto en la fuente).
+- El segmento queda truncado: «ya estaba puesto desde...» — no se dice desde dónde/cuándo estaba puesto el break-even.
+
 ### c-0020
 
 **Statement:** El stop loss no se mueve: «el tema stop-loss no se mueve, obviamente, eso ya lo sabéis, es una cosa básica».
@@ -224,6 +269,10 @@
 **Tiempo:** [07:02–07:09]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000702|07:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000703|07:03]]
+
+**Dudas abiertas:**
+
+- Alcance de «no se mueve» sin delimitar en el minuto: el mismo capítulo enseña luego mover el stop a break even (s-000903, s-001021, contexto) y reentrar con stop nuevo (s-000816, contexto). Lectura probable: no moverlo/ampliarlo en contra; el instructor no verbaliza la conciliación. Abierta para el integrador, no es contradicción dicha.
 
 ### c-0021
 
@@ -235,6 +284,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000709|07:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000855|08:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000857|08:57]]
 
+**Dudas abiertas:**
+
+- Garble ASR «tardesub»/«TARTER SUB» preservado como dicho; el mapeo a Turtle Soup viene del glosario del curso, no está confirmado contra fuente en este minuto (hereda la duda del claim).
+- Garble ASR «tartesub»/«tarter sub» preservado como dicho; glosario del curso lo mapea a Turtle Soup.
+
 ### c-0022
 
 **Statement:** Entrando en Turtle Soup [ASR «tardesub»] en zona óptima, hay que ver la expansión que hace el precio y qué margen se quiere dar: si el precio se mueve cada día 60-80 pips, «a lo mejor» un stop loss de 25 pips está bien, porque «si tu idea está bien va a ser take profit igual» aunque baje un poco más.
@@ -244,6 +298,10 @@
 **Tiempo:** [07:12–07:32]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000712|07:12]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000717|07:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000719|07:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000722|07:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000726|07:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000730|07:30]]
+
+**Dudas abiertas:**
+
+- Deíctico «este stop loss de aquí» (s-000724) refiere a un elemento en pantalla no resuelto: el frame del extractor f-000445 (07:25) muestra el gráfico GBPUSD 6h con zona azul y zona gris, pero un popup «Cambiar intervalo» tapa el centro y no hay línea ni etiqueta de stop identificable. El valor «25 pips» es literal y no depende del deíctico, por eso el frame no se cita como evidencia.
 
 ### c-0023
 
@@ -255,6 +313,13 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000734|07:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000736|07:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000738|07:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000743|07:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000748|07:48]]
 
+**Dudas abiertas:**
+
+- Garbles ASR «tardesub»/«tarde sub» → Turtle Soup (glosario); «el cartel subía está hecho y confirmado» es fragmento ASR poco claro, se preserva literal.
+- Garbles «tardesub»/«tarde sub» → Turtle Soup: candidato de glosario, preservado como dicho.
+- «el cartel subía está hecho y confirmado» es fragmento ASR poco claro, preservado literal (heredado del claim).
+- «orden los» [ASR] (s-000743) → order blocks es interpretación por glosario sin respaldo literal en el segmento; queda abierta como candidata.
+
 ### c-0024
 
 **Statement:** A veces ocurre un intra-Turtle Soup [ASR «intratar del subas»/«intratardel sub»]: da el stop loss, el precio reacciona y la vela vuelve a cerrar dentro del rango; si tu idea sigue intacta, vuelves a entrar con el stop loss debajo del Turtle Soup [ASR «tardel sub»] otra vez, quedando «un menos uno R ahí y un más cuatro R aquí»: el primero va mal y el segundo va bien.
@@ -264,6 +329,12 @@
 **Tiempo:** [07:48–08:25]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000755|07:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000801|08:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000806|08:06]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000810|08:10]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000816|08:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000821|08:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000748|07:48]]
+
+**Dudas abiertas:**
+
+- Deícticos «ahí»/«aquí» en «un menos uno R ahí y un más cuatro R aquí» (s-000810) refieren a puntos del gráfico no señalizados de forma inequívoca en pantalla; no resueltos visualmente (no afecta al statement, que cita la frase tal cual).
+- Garble ASR «intratar del subas»/«intratardel sub» → intra-Turtle Soup (candidato indicado por el pack), palabra dicha preservada.
+- Garbles ASR «intratar del subas»/«intratardel sub»/«tardel sub» -> lectura intra-Turtle Soup como candidato (apoyado por la familia de garbles del glosario); no hay enunciación literal de «Turtle Soup» en los segmentos citados: preservar palabra dicha + [ASR] en publicación.
 
 ### c-0025
 
@@ -275,6 +346,13 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000821|08:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000825|08:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000829|08:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000834|08:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000836|08:36]]
 
+**Dudas abiertas:**
+
+- Afirmación condicional del instructor (si el bias es correcto): no es validación empírica de rentabilidad.
+- Afirmación condicional del instructor («si el bias es correcto... siempre vas a acabar siendo rentable»): condicional dicha, no validación empírica de rentabilidad; no universalizar en documentación.
+- «rentar al trade» [ASR]: candidato probable «reentrar al trade» (coherente con «vuelves a entrar» en s-000810); palabra dicha preservada, sin confirmación literal.
+- «rentar al trade» [ASR]: candidato probable «reentrar al trade»; palabra dicha preservada.
+
 ### c-0026
 
 **Statement:** Es importante diferenciar entre perseguir el precio por FOMO o por EGO y tomar el trade con lógica «porque sabes que va a seguir subiendo», en cuyo caso «no sería perseguir».
@@ -284,6 +362,10 @@
 **Tiempo:** [08:38–08:50]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000838|08:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000840|08:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000843|08:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000843a|08:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000847|08:47]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000848|08:48]]
+
+**Dudas abiertas:**
+
+- Deixis: «perseguirlo» (s-000840) es explicitado en el statement como «perseguir el precio»; el pronombre podría referir al movimiento/precio o al trade. Explicitación razonable por el contexto («ves que luego sube»), pero no literal.
 
 ### c-0027
 
@@ -296,6 +378,12 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000855|08:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000857|08:57]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000859|08:59]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000901|09:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000903|09:03]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-000903.png|f-000903]]
+
+**Dudas abiertas:**
+
+- «TARTER SUB» [ASR]: Turtle Soup es candidato por glosario+familia de garbles; sin confirmación literal adicional en pantalla.
+- «si tu día es correcta» [ASR]: candidato probable «si tu idea es correcta»; palabra dicha preservada.
+- «si tu día es correcta» [ASR]: candidato «si tu idea es correcta»; se mantiene la palabra dicha.
 
 ### c-0028
 
@@ -321,6 +409,12 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-000929.png|f-000929]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-000941.png|f-000941]]
 
+**Dudas abiertas:**
+
+- El deíctico «se te forma esto de aquí» (s-000919) no corresponde a ningún dibujo visible en f-000919/f-000929: los rangos bajistas no se dibujan en pantalla en este minuto.
+- La referencia visual «ves cómo se te forma esto de aquí» es deíctica sobre el gráfico 4h; el contenido de la regla queda dicho en audio (rangos bajistas multi-temporalidad).
+- «a las 5» (s-000929): se asume vela de las 5 (término del curso, ch04); el audio no lo explicita y en pantalla no es verificable.
+
 ### c-0030
 
 **Statement:** En la salida basada en tiempo, si el target no está tomado, normalmente no va a cerrar toda la posición: hará «un 80 o un 90%» y deja algún parcial correr, «un poco simbólico», para que, si ves el precio llegar a tu target (a menos que te hayas llevado algo…), …
@@ -330,6 +424,11 @@
 **Tiempo:** [09:49–10:06]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000949|09:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-000957|09:57]]
+
+**Dudas abiertas:**
+
+- Enunciado cortado en la frontera del bloque (s-000957 continúa en block3): la condición final «a menos que te hayas llevado algo» queda incompleta.
+- Enunciado cortado en la frontera: «a menos que te hayas llevado algo...» (s-000957, 09:57-10:06) queda sin completar dentro del bloque; su continuación pertenece al minuto 10 (block3) — resolver ahí, no aquí.
 
 ### c-0031
 
@@ -343,6 +442,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-000643.png|f-000643]]
 
+**Dudas abiertas:**
+
+- El referente exacto del deíctico «este bearish» (¿estructura bearish? ¿rango bearish?) sigue sin resolverse por audio; f-000643 confirma velares bajistas en pantalla en 4h pero no desambigua el sustantivo. Mantener la unresolved_question del payload.
+- «este bearish» (s-001043) queda sin sustantivo dicho en audio (¿estructura bearish? ¿rango bearish?): deíctico del gráfico no resuelto por el transcript.
+
 ### c-0032
 
 **Statement:** En otras estrategias «el break-even tiene que ser como algo fijo, como en un OR [ASR], un 2R, porque no sigue ninguna lógica la estrategia como tal»; en esta, «como seguimos una lógica», «si vemos que nuestra lógica ha cambiado, que nuestra idea puede estar mal», se adapta lo dicho, y «el precio te da muchas oportunidades por ver que la operación estaba mal». «lo importante de esta estrategia es que podemos ser conscientes de que nos dice el precio» [ASR].
@@ -352,6 +456,13 @@
 **Tiempo:** [10:14–10:39]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001014|10:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001021|10:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001027|10:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001030|10:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001036|10:36]]
+
+**Dudas abiertas:**
+
+- ASR s-001014 dice «de que nos dice el precio»; la lectura «de lo que nos dice» es candidata no confirmada.
+- ASR «de que nos dice el precio» (s-001014) vs publicado «de lo que nos dice el precio»: candidata de normalización menor sin marca.
+- «OR» [ASR] (s-001021): ¿nombre de otra estrategia del curso (¿opening range?) u otro término? Preservada la palabra dicha, sin normalizar.
+- «OR» [ASR] (s-001021): ¿nombre de otra estrategia del curso (¿opening range?) u otro término? Preservado tal cual; los frames no lo desambiguan.
 
 ### c-0033
 
@@ -365,6 +476,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-000650.png|f-000650]]
 
+**Dudas abiertas:**
+
+- «en varias temporalidades» (s-001050): el frame 10:50.5 sólo muestra 4h; no se verifica visualmente el barrido multi-temporalidad (no es load-bearing para el veredicto, que descansa en el transcript).
+
 ### c-0034
 
 **Statement:** Es «muy, muy difícil mentalmente» cerrar de repente un long y entrar en un short «si el objetivo está bullish y tú estabas bullish», «porque las veces que haces esto y sale mal, te marcan mucho»; el instructor reconoce que es difícil hacer cosas así.
@@ -374,6 +489,10 @@
 **Tiempo:** [11:08–11:41]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001108|11:08]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001128|11:28]]
+
+**Dudas abiertas:**
+
+- s-001108 también dice «Ni que tu trade fuera de 3R inicialmente, tú ahora con esta estrategia te sabes adaptar a lo que hace el mercado» (adaptarse al mercado frente a R fija) y s-001050, primer segmento del minuto, «adaptarte un poco a lo que dice el precio... tenía lógica también salirte después de tomar un objetivo y crear un rango bajista en varias temporalidades»: contenido nuclear del minuto 11 sin claim propio en este payload (la respuesta «Ninguno» a la pregunta del break-even cae en s-001049, minuto 10). Para que el integrador decida si este minuto o el 10 los reclama.
 
 ### c-0035
 
@@ -389,6 +508,11 @@
 
 **Visual hint:** 12:10 — gráfico EURUSD 12h con niveles horizontales marcados y el objetivo arriba; soporte del deíctico «en 12 horas teníamos el primer objetivo» (frame verificado f-001210)
 
+**Dudas abiertas:**
+
+- Los deícticos «aquí tomé ya un parcial y aquí cerré ya todo» (s-001204) apuntan a momentos señalados en vivo: f-001210 muestra los niveles pero no marcadores legibles de parcial/cierre — si se publican como referencia posicional, verificar contra frame dedicado del instante exacto.
+- Los targets «de un día» y «de dos días» son autocorrección en directo (primero dijo «tres días»); confirmar su ubicación exacta contra frames si se publican como referencia posicional.
+
 ### c-0036
 
 **Statement:** Experiencia del instructor sobre ese trade: ese punto «fue mi take profit final»; «era una fondeada, era una fondeada que me venía de drawdown de menos 3%, y yo con esto pasé de menos 3% a más 1,5 de payout»; «era un trade brutal este ya por mí».
@@ -403,6 +527,11 @@
 
 **Visual hint:** 12:28 — gráfico EURUSD 15m en máximos al narrar el «aquí arriba» de los parciales y el take profit final (frame verificado f-001228)
 
+**Dudas abiertas:**
+
+- Referencia/unidad del «1,5» en «más 1,5 de payout» no dicha en la fuente: ¿% de la cuenta fondeada u otro importe? El «payout de 1500» de s-001417 es el contraste contrafactual posterior, no este dato (se mantiene la duda del extractor).
+- Referencia/unidad del «1,5» en «más 1,5 de payout» no dicha: ¿% de la cuenta fondeada, otro importe? El «payout de 1500» de s-001417 es el contraste contrafactual posterior, no este dato.
+
 ### c-0037
 
 **Statement:** Contexto y plan del instructor en ese trade: «venimos de muchos días consolidando toda la semana, de hecho toda semana anterior», «por lo tanto yo aquí esperé tomar el primer target y hacer un poco así y luego pensar en reentrar»; «pero fue directo aquí».
@@ -412,6 +541,10 @@
 **Tiempo:** [12:48–13:07]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001248|12:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001256|12:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001300|13:00]]
+
+**Dudas abiertas:**
+
+- «pero fue directo aquí» (s-001300) y «hacer un poco así» (s-001256) son deícticos: el punto concreto del gráfico no es resoluble desde el transcript; un frame ~13:03 (fórmula: f-001303.png) lo anclaría si el integrador lo considera load-bearing.
 
 ### c-0038
 
@@ -427,6 +560,15 @@
 
 **Visual hint:** 13:15 — gráfico EURUSD 1h (60M) con herramienta de posición visible (Objetivo 0,50%, Cerrado PyG, Stop) al narrar el esquema 50%/break even (frame verificado f-001315)
 
+**Dudas abiertas:**
+
+- Adjudicación del revisor min13 (frames f-001320/f-001325): segundos después del 1h el gráfico al narrar los objetivos es el 12h (mismos niveles que f-001210) — REFUERZA el candidato «12 horas» y debilita «1 hora»; el instructor cambia 1h→12h→15m dentro de s-001315. Palabra dicha «10 horas» [ASR] preservada sin normalizar; adjudicación final contra s-001204 (min 12).
+- El alcance «en una cuenta fondeada» dicho para el 50%/break even: mantener la pertenencia a cuenta fondeada al publicar, no universalizar.
+- «10 horas» [ASR] (s-001315): candidatos «12 horas» (coincide con el primer objetivo dicho en s-001204) o «1 hora» (el gráfico visible en el frame f-001315 es 1h); palabra dicha preservada, sin resolver.
+- «10 horas» [ASR] (s-001315): sin resolución literal posible desde audio; f-001320 (12h en pantalla al narrar los targets, niveles 1,15803/1,16148/1,16317) hace a «12 horas» el candidato fuerte frente a «1 hora»; confirmar contra s-001204.
+- «de oposición» [ASR] (s-001341) leído como «de la posición»; lectura evidente pero no literal en la fuente.
+- «de oposición» [ASR] (s-001341): lectura «de la posición» evidente pero no literal; preservar la marca [ASR] al publicar.
+
 ### c-0039
 
 **Statement:** En la gestión descrita, el parcial más grande va en «el objetivo que tenías tú 100% seguro»; así se sigue la tendencia y los objetivos bullish «ya con la seguridad de que tienes mucho profit tomado», y «como tú sigues ganando, pues no te sabe mal haber cerrado tan pronto».
@@ -438,6 +580,12 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001353|13:53]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-001353.png|f-001353]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-001403.png|f-001403]]
+
+**Dudas abiertas:**
+
+- ASR dudoso en s-001353: el nexo «pero es» podría ser «porque es»; el deíctico «aquí» (el parcial más grande) no es adjudicable con los frames revisados (f-001353/f-001403) — se conserva la cita literal.
+- Deíctico «aquí» de «tu parcial, el más grande, está aquí» no adjudicable visualmente con certeza: en f-001353 (13:53.5) el cursor está a media caja y en f-001403 (14:03.5) sobre el objetivo final superior.
+- Garbles del segmento sin resolver: «pero es» (¿«porque es»?) y «ves como ni que tú hayas tomado profit» (¿«aunque hayas tomado profit»?).
 
 ### c-0040
 
@@ -453,6 +601,11 @@
 
 **Visual hint:** 14:17 — gráfico EURUSD 15m con el trade completo hasta el objetivo superior (Objetivo 1,43%, Cerrado P/yG 7,45) al narrar los tramos «de aquí a aquí» del contrafactual (frame verificado f-001417)
 
+**Dudas abiertas:**
+
+- El «12.000-13.000» es contrafactual dicho («sería»), no lo ocurrido; el payout ocurrido dicho es 1.500. Publicar solo con la marca contrafactual.
+- Se mantiene la advertencia del extractor: el «12.000-13.000» es contrafactual dicho («sería»), no lo ocurrido; el payout ocurrido dicho es 1.500. Publicar solo con la marca contrafactual. Sin contradicciones con el resto del capítulo (s-002420 repite «los 1500 que pudieras haber ganado»).
+
 ### c-0041
 
 **Statement:** «Aquí yo digo que no pondría break-even porque no hay ningún objetivo que se tome», pero «cuando veis el displacement así, en 5 minutos, por ejemplo, cuando veis que está así volando, sí que un break-even aquí no sobraría ya».
@@ -467,6 +620,11 @@
 
 **Visual hint:** 14:55 — gráfico EURUSD 15m con el displacement alcista visible (subida casi vertical dentro de la zona del trade) al decir «cuando veis el displacement así» (frame verificado f-001455)
 
+**Dudas abiertas:**
+
+- Confirmado en f-001455 y f-001459: la TF visible en pantalla es EURUSD 15m («EURUSD | 15M»); el «en 5 minutos» dicho no se corresponde con ninguna TF 5m mostrada en el tramo verificado — queda como referencia verbal no resuelta visualmente, preservar la duda.
+- El «en 5 minutos» dicho no se corresponde con la TF visible en el frame verificado f-001455 (EURUSD 15m): no se muestra en pantalla un gráfico de 5m en el tramo verificado.
+
 ### c-0042
 
 **Statement:** En el escenario de la noticia: aquí sí que no toma ningún objetivo; «en la noticia aquí hay 45 había [ASR], si hay este displacement aquí, tú ya no quieres que vuelva a pasar esto... esto es improbable que pase, tú ya quieres que el precio llegue a su lugar»; «si pasa esto, nada te dice que no pueda pasar esto»; «también hay que ver el contexto en que estáis».
@@ -480,6 +638,15 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-001524.png|f-001524]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-001509.png|f-001509]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-001518.png|f-001518]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-001530.png|f-001530]]
 
 **Visual hint:** 15:24 — f-001524: gráfico EURUSD 15m con la banda azul de la ventana de noticia y el displacement al alza dentro de ella; zona gris de interés debajo
+
+**Dudas abiertas:**
+
+- Deícticos finos de «tú ya no quieres que vuelva a pasar esto así» (s-001520+s-001522): «esto» apunta a un escenario previo no reidentificado uno a uno en frame.
+- Deícticos «aquí/esto» resueltos sólo parcialmente contra el frame f-001524 (banda de noticia con displacement); la frase de arranque «aquí sí que no toma ningún objetivo» es cola del tema noticia del bloque anterior
+- El chart está en 5m en f-001509 y en 15m desde ~15:18 (f-001518/f-001524): el cambio de temporalidad durante la explicación no afecta al statement publicado, pero condiciona qué frame ancla cada deíctico.
+- Referente de «45» [ASR] en s-001518 no resuelto (¿45 minutos?, ¿nivel?): «45» no aparece en pantalla (f-001518 verificado); requiere audio.
+- Referente de «45» en «en la noticia aquí hay 45 había» [ASR, s-001518]: nada en pantalla (f-001518) muestra esa cifra; no confirmable contra el frame.
+- «si pasa esto, nada te dice que no pueda pasar esto» — referentes visuales no identificados uno a uno
 
 ### c-0043
 
@@ -512,6 +679,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001603|16:03]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-001605.png|f-001605]]
+
+**Dudas abiertas:**
+
+- El «3.000 dólares» es cifra dicha por el instructor, no un importe legible en pantalla (el tooling muestra otro orden); mantenerlo como instructor_statement sin anclarlo al frame.
+- s-001556 («No hay riesgo porque estás arriesgando solo lo que pagaste del examen», regla dicha con alcance challenge y contraste directo de este claim) queda en el minuto sin claim propio: proponer cobertura al integrador.
 
 ### c-0046
 
@@ -547,6 +719,12 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001657|16:57]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001659|16:59]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001700|17:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001701|17:01]]
 
+**Dudas abiertas:**
+
+- Tipología de dos tipos + «yo soy de los del miedo» = auto-descripción del instructor, no ley universal
+- «estoblos» [ASR] → candidato «stop loss» (familia de garbles «top loss/toplos»); confirmación contra audio original pendiente
+- «estoblos» [ASR]: candidato stop loss («top loss/toplos» es garble conocido de la familia); preservada la palabra dicha
+
 ### c-0049
 
 **Statement:** «Tenéis que ver un poco qué tipo sois y saber cómo controlaros y adaptaros para reducir el dolor de estas situaciones»; si sois más propensos a aguantar los trades más lejos, «como obligaros un poco más a tomar los parciales para evitar que os pasen cosas así».
@@ -566,6 +744,12 @@
 **Tiempo:** [17:53–18:07]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001753|17:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001800|18:00]]
+
+**Dudas abiertas:**
+
+- Deíctico «les hace así»: gesto/reacción no resoluble visualmente (screen recording sin cámara; verificado en f-001800 y f-001759)
+- «es un swing top para un punto importante de reversión»: ASR posiblemente «o un punto importante de reversión» (mantener la duda, ya anotada por el extractor)
+- «un swing top para un punto importante de reversión»: ASR posiblemente «o un punto importante de reversión»; preservada la palabra dicha
 
 ### c-0051
 
@@ -591,6 +775,11 @@
 
 **Visual hint:** 18:20 — f-001820: gráfico EURUSD 15m con el trade de ejemplo (Objetivo 0,01457 / 1,27%; Stop 0,00241 / 0,21%; R:R 5,05) y líneas horizontales; los porcentajes 50/20/10/10/10 no aparecen etiquetados en pantalla
 
+**Dudas abiertas:**
+
+- La correspondencia nivel↔porcentaje queda sin resolver: los niveles señalados no están etiquetados en pantalla (verificado en f-001820 y f-001812) y el señalado no es atribuible a un nivel concreto desde los frames
+- Los porcentajes se dicen señalando niveles del gráfico que no están etiquetados en el frame verificado (f-001820 muestra el trade con Objetivo 1,27% / Stop 0,21%); la correspondencia nivel↔porcentaje queda sin resolver
+
 ### c-0053
 
 **Statement:** Tema entradas en pirámide (pregunta que recibe mucho): «yo casi solo las hago en challenge»; si las hace en cuenta live, normalmente es porque, por ejemplo, cerró el trade entero ahí, pasa un «retrisme» [ASR] así y vuelve a entrar.
@@ -600,6 +789,11 @@
 **Tiempo:** [18:26–18:42]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001826|18:26]]
+
+**Dudas abiertas:**
+
+- «retrisme» [ASR]: candidatos retrace/retoque; palabra dicha preservada, no resoluble contra glosario ni frames
+- «retrisme» [ASR]: candidatos retrace/retoque; preservada la palabra dicha
 
 ### c-0054
 
@@ -623,6 +817,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-001859.png|f-001859]]
 
+**Dudas abiertas:**
+
+- Los lotes «10 aquí y 5 aquí» no aparecen etiquetados en pantalla; f-001859 muestra la segunda posición (Objetivo/Stop 0,34%, R:B 1) sin cifras de lotes — deícticos de nivel sin resolver
+- «10 aquí y 5 aquí» son unidades dichas como lotes; ejemplo numérico del instructor, deícticos sin frame
+
 ### c-0056
 
 **Statement:** Mecánica de la pirámide en challenge: «la primera la mueves a break-even y luego estás en las dos»; «no es el doble de lotes, pero son más lotes, y el riesgo es el mismo que habías asumido tú al principio»; «significa que para pasar el challenge vas a necesitar menos pips, un objetivo más corto y a lo mejor es más útil».
@@ -635,6 +834,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-001920.png|f-001920]]
 
+**Dudas abiertas:**
+
+- Los deícticos «aquí»/«rentas aquí arriba» de s-001842 no son resolubles a precios concretos; la herramienta en pantalla muestra 0,00614/0,00391 de la demo, no los lotes «10 y 5» dichos.
+- s-001826/s-001842 (contexto del minuto, frontera 18/19) contienen contenido load-bearing no presente en ningún claim del minuto 19 recibido: «yo casi solo las hago en challenge», «nunca es como que doblo los lotes en live» (re-entrada «como mucho» tras cerrar), el ejemplo 10+5 («arriesgar lo mismo pero con 5 lotes más») y el garble ASR «retrisme» (¿retrace/retroceso?) — confirmar que los claims del minuto previo los cubren con marca [ASR] donde aplique.
+
 ### c-0057
 
 **Statement:** Cómo tomar la pirámide: «la pirámide significa porque es ir como escalando la posición» [ASR]; hay que pensar que el trade de pirámide «tiene que ser como si fuera un trade que realmente no estabais antes en long»: por mucho que estéis en long aquí abajo, «vuestra pirámide no puede ser una compra aquí tal cual, porque sí»; si ahí no compraríais en una situación normal «porque no tienes ningún rango a favor ni nada, pues esto no puede ser tu pirámide».
@@ -646,6 +850,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001929|19:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-001948|19:48]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-001952.png|f-001952]]
+
+**Dudas abiertas:**
+
+- Que el dibujo de f-001952 (herramienta en zona baja) represente el ejemplo de compra rechazada («tal cual, porque sí») y no la transición al ejemplo válido (rango pendiente de 1h, f-002007 con la herramienta arriba) no es resoluble sólo desde el frame; el claim no lo afirma, así que no afecta al veredicto.
 
 ### c-0058
 
@@ -660,6 +868,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-002007.png|f-002007]]
 
 **Visual hint:** 20:07 — gráfico EURUSD 15m (FOREX.com) con zonas rectangulares (azul/gris) marcadas en la base de la subida, el rango pendiente señalado como pirámide (frame verificado f-002007)
+
+**Dudas abiertas:**
+
+- Las zonas se dibujan sobre el gráfico 15m; desde f-002007 no puede confirmarse que correspondan al rango de 1h que el instructor dice verbalmente.
 
 ### c-0059
 
@@ -705,6 +917,11 @@
 
 **Visual hint:** 20:53 — gráfico EURUSD 1h (60M, FOREX.com) con la herramienta de posición (zonas azul/gris y flecha) al explicar la segunda entrada de 10 lotes; sin etiquetas de importes visibles (frame verificado f-002053)
 
+**Dudas abiertas:**
+
+- El referente exacto de «esto de aquí son 12.000 dólares» (importe/margen de los 20 lotes) no se resuelve en el frame f-002053
+- El referente exacto de «esto de aquí son 12.000 dólares» (importe/margen de los 20 lotes) no se resuelve en ningún frame del tramo 20:48-20:59 (f-002048, f-002053, f-002056, f-002059: gráfico 1h sin etiquetas de importes).
+
 ### c-0063
 
 **Statement:** Con esos 20 lotes, «cualquier movimiento así, una cuenta que tenía +4.000 me la deja en break even»; mecanismo dicho: «porque sería el stop loss de la primera más el profit perdido a la segunda».
@@ -717,6 +934,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-002053.png|f-002053]]
 
+**Dudas abiertas:**
+
+- «cualquier movimiento así» es deíctico del gráfico (movimiento en contra); su magnitud no queda definida verbalmente ni en pantalla.
+
 ### c-0064
 
 **Statement:** «Yo tengo una mentalidad más conservadora en las fondeadas, por lo tanto, no estoy dispuesto a asumir ese riesgo»: prefiere «menos riesgo de perder lo que ya tengo y menos beneficio posible» antes que «doblar la posición en un challenge y que se me líe, en una fondeada».
@@ -726,6 +947,10 @@
 **Tiempo:** [21:14–21:30]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002114|21:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002120|21:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002127|21:27]]
+
+**Dudas abiertas:**
+
+- La formulación «en la fondeada no lo hago nunca» (regla pirámide-NUNCA) no aparece literal en ningún segmento del minuto 21; si se dijo, corresponde al minuto 20 (fuera de esta ventana; boundary_segments_included vacío). El statement usa la fuerza dicha aquí: «no estoy dispuesto a asumir ese riesgo».
 
 ### c-0065
 
@@ -737,6 +962,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002131|21:31]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002135|21:35]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002138|21:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002141|21:41]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002144|21:44]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002149|21:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002151|21:51]]
 
+**Dudas abiertas:**
+
+- s-002156 [21:56-22:20] (bajar de 6.000 a 0: challenge al 0 % frente a «acabas de perder 6.000 dólares» en fondeada) cae en esta ventana pero no tiene claim asignado en este payload; comprobar si el minuto 22 lo recoge.
+
 ### c-0066
 
 **Statement:** Mismo importe, consecuencias distintas: «que esto te baje de 6.000 a 0 significa que tienes el challenge en 0% en lugar de más 6, que tienes que volver a empezar para pasarlo», mientras que en una fondeada pasar de 6.000 a 0 «significa que acabas de perder 6.000 dólares»; cierra: «hay que saberse adaptar a cada situación también con este tema del break-even, los parciales, el riesgo, lo mismo».
@@ -747,6 +976,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002156|21:56]]
 
+**Dudas abiertas:**
+
+- Las citas load-bearing del Manager «en el challenge... no hay dinero real como tal involucrado» y «en las fondeadas... ese dinero ya es tuyo... lo tienes que proteger... hasta que lo cobres de verdad» corresponden a habla anterior a s-002151 (<=21:51), no incluida en el payload de este minuto: no han podido verificarse aquí (cubrir, si procede, en los claims del minuto 21).
+
 ### c-0067
 
 **Statement:** Excepción dicha a no piramidar en fondeada: «para recuperar drawdown, ahí sí que lo veo un poco diferente... por ejemplo en una fondeada, una pirámide para recuperar el drawdown no lo veo tan mal» — hedge literal «no lo veo tan mal» (opinión del instructor, no permiso general).
@@ -756,6 +989,10 @@
 **Tiempo:** [22:20–22:30]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002220|22:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002223|22:23]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002226|22:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002227|22:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002229|22:29]]
+
+**Dudas abiertas:**
+
+- s-002220 arranca a mitad de frase; la regla base «no piramidar en fondeada» que esta excepción matiza queda en segmentos previos (<=22:20) fuera del payload: la pertenencia excepción-regla-base no es verificable desde los segmentos aportados (contrastar con los claims del minuto 21).
 
 ### c-0068
 
@@ -768,6 +1005,14 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002230|22:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002233|22:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002235|22:35]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002238|22:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002240|22:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002242|22:42]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002244|22:44]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002246|22:46]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002248|22:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002250|22:50]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-002231.png|f-002231]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-002233.png|f-002233]]
+
+**Dudas abiertas:**
+
+- Confirmado en revisión: el instructor no pronuncia «por ciento»; dijo «un 1» (s-002230) y «un 0,5» (s-002233). Que sean % de riesgo queda como lectura contextual, no dicha.
+- Los porcentajes se dicen como «un 1» y «un 0,5» en contexto de riesgo; el símbolo % es lectura del contexto (el instructor no pronuncia «por ciento»)
+- Los porcentajes visibles en f-002231/f-002233 (0,34%/1,00% y 0,27%/0,43%) son de la herramienta de posición de TradingView (distancia de precio); no confirman que «1»/«0,5» sean % del capital de la cuenta.
+- Sobre qué capital se calculan esos porcentajes no se dice nada
+- Sobre qué capital se calcularían esos porcentajes no se dice nada en los segmentos.
 
 ### c-0069
 
@@ -788,6 +1033,10 @@
 **Tiempo:** [22:57–23:15]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002257|22:57]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002259|22:59]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002300|23:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002303|23:03]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002304|23:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002307|23:07]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002309|23:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002310|23:10]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002313|23:13]]
+
+**Dudas abiertas:**
+
+- Cohesión con la excepción dicha justo antes (fin del min 22): «para recuperar drawdown... en una fondeada, una pirámide... no lo veo tan mal» (hedge, con 1% + 0,5%) y el caso positivo «pirámide normalmente es cuando hay expansiones, objetivos muy claros» (s-002255, contexto de frontera). ¿Debe el integrador cruzar esta advertencia (b5-13) con esa excepción para que la advertencia no se lea como prohibición de pirámide con objetivo ya tomado?
 
 ### c-0071
 
@@ -843,6 +1092,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002436|24:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002438|24:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002440|24:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002443|24:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002444|24:44]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002447|24:47]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002449|24:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002449a|24:49]]
 
+**Dudas abiertas:**
+
+- «top loss» [ASR] en s-002449: candidato único «stop loss», confirmado por el propio instructor en s-002449a («va stop loss», «no te tocan stop loss por poco»)
+
 ### c-0076
 
 **Statement:** Cierre probabilístico del capítulo: «al final el trading, cuando llevas muchos meses, años, todas estas cosas que son así un poco como no suerte, pero que unas veces caen de un lado y otras veces de otro, pues cuando llegas mucho tiempo se iguala las veces que cae de un lado y las veces que cae del otro». Afirmación del instructor sobre psicología/probabilidad a largo plazo («no es suerte pero...»), NO dato estadístico ni validación empírica de la estrategia.
@@ -854,6 +1107,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002511|25:11]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002514|25:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002515|25:15]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002517|25:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002519|25:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002522|25:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002524|25:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002526|25:26]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-002511.png|f-002511]]
+
+**Dudas abiertas:**
+
+- Deíctico «todas estas cosas» (s-002514): el referente más plausible son los ejemplos de sesgo de memoria dichos justo antes en s-002449a (incluido en el payload: «siempre que pongo el break even, justo toca el break even y vuela / cuando no pongo, va stop loss»; TP perfectos y stops que no tocan por poco). La lectura se apoya pero el segmento no la explicita: mantener la duda abierta, no resolverla categóricamente en documentación.
+- «todas estas cosas» es deíctico hacia los ejemplos de sesgo de memoria dichos justo antes, fuera de este bloque (s-002444-s-002449a, bloque 5: «siempre que cierro vuela / siempre que aguanto break even tocas top loss [ASR] / pongo break even y vuela — cuando no pongo, va stop loss»; TP perfectos y stops que no tocan por poco). El referente completo vive en el minuto 24-25 del bloque 5.
 
 ### c-0077
 
@@ -878,6 +1136,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002533|25:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002535|25:35]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002538|25:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002539|25:39]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/transcript#^s-002541|25:41]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-002540.png|f-002540]]
+
+**Dudas abiertas:**
+
+- «Ser conservador» no se define en este segmento; la lectura como gestión conservadora (proteger con parciales/break even) proviene del contexto de capítulos previos (ch08/ch09), no de ep11 en este minuto.
 
 ### c-0079
 
@@ -904,4 +1166,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch11-riesgo/frames/f-002621.png|f-002621]]
 
 **Visual hint:** 26:21 — tarjeta de cierre «GRACIAS» con el sitio www.cursosdigitales701.com («para más cursos visita nuestro sitio web»); frame fin-de-video f-002621 (26:21 = 1581 s por fórmula), extraído y verificado visualmente
+
+**Dudas abiertas:**
+
+- CANONIZACIÓN DEL FRAME FIN-DE-VIDEO: f-002621.png NO existe aún en /home/kor/mke/clutifx-ch11-20261021/frames/ (el directorio canónico termina en f-002559.png); la cita f-002621 del claim se apoya en la copia del extractor (/tmp/ch11-extractor-block6/f-002621.png) y en la re-extracción verificada del revisor (/tmp/ch11-minrev-26/f-002621.png, contenido idéntico). El integrador debe copiar/re-extraer el frame a frames/f-002621.png antes de publicar la evidencia.
+- NOMENCLATURA FRAME FIN-DE-VIDEO: la tarea/pack indicaban «f-001621», pero la fórmula f-{h:02d}{m:02d}{s:02d} desde 00:26:21 (1581 s) da f-002621 (f-001621 codificaría 00:16:21). Extraído como f-002621.png y verificado (muestra la tarjeta GRACIAS, coherente con fin de video 26:21.42). El integrador debe usar f-002621; parece el mismo defecto de nombrado ya cazado en ch10.
+- NOTA DE ALCANCE (no afecta a este claim): el anuncio de cierre load-bearing «de la base creada del curso este va a ser el último ya» (s-002558+s-002600+s-002601, verbatim confirmado en el transcript de este payload) y «a la larga se igualan» pertenecen al minuto 25; no hay claim del minuto 26 que los cubra, así que no se revisan aquí.
 

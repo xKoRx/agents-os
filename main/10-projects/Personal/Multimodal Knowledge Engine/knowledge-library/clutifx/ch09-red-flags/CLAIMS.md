@@ -37,6 +37,11 @@
 
 **Notes:** Modalizadores 'quizá'/'quizás' preservados: la inclusión de las 8 queda dudosa en la propia fuente.
 
+**Dudas abiertas:**
+
+- Confirmar si la lista definitiva de horas clave incluye o excluye las 8 (s-000033: 'quizá 8 quitaría'); en s-000403 se dice que a las 9 abre la vela de 8 horas, cosa distinta.
+- La lista definitiva de horas clave queda ambigua en la propia fuente: en s-000033 el instructor dice 'quizá 8 quitaría'; la reformulación posterior incluida como contexto (s-000353, s-000358, s-000403) nombra 'las 3', 'las 5' y 'a las 9' —donde a las 9 'abre la de 8 horas, la de 2 horas, la de 1 hora', cosa distinta de 'las 8' como hora clave— sin relistar las 8. Remitido al integrador para canonicalización.
+
 ### c-0004
 
 **Statement:** Ejemplo base dibujado: si este es el rango mayor, estarías tomando de target el high de la vela; el instructor lo redibuja 'como si fuera real' con un rango de 4 horas y velas de una hora.
@@ -69,6 +74,12 @@
 
 **Notes:** Nexo causal 'porque está tomando el alto' dicho literalmente. CROSS-CHAPTER: desarrolla la red flag anunciada en ch07 (c-0033 / q-ch07-017: 'abrir por arriba de esa vela creando un rango — posible rango reiniciado'): aquí ep09 la presenta como 'rango en contra' cuando la vela de las 3 abre por arriba. La aclaración targeted en ch07 es cosa del integrador.
 
+**Dudas abiertas:**
+
+- Convención de nombres de frames bajo demanda: frame extraído como f-000095.png siguiendo el ejemplo explícito del Manager (95 s → f-000095); el context pack formula f-{HHMMSS} (95 s → f-000135). El integrador debe confirmar cuál espera FRAMES.md/validate_review.py antes de sincronizar.
+- q-ch07-017 (deuda ch07, confirmada para el integrador): s-000135 + s-000146 desarrollan aquí la red flag anunciada en ch07 (c-0033: 'abrir por arriba de esa vela creando un rango — posible rango reiniciado'); ep09 la presenta como 'rango en contra' al abrir la vela de las 3 por arriba. Aplicar la aclaración targeted en ch07 preservando IDs originales (NO editado por el reviewer).
+- q-ch07-017: con este desarrollo (s-000135), señalar al integrador la aclaración de c-0033 en ch07 preservando los IDs originales.
+
 ### c-0006
 
 **Statement:** Lo normal es que el precio vaya por los targets, pero si se están creando rangos en contra significa que el precio puede reiniciar un rango antes de ir al objetivo.
@@ -81,6 +92,10 @@
 
 **Notes:** Modalizadores literales preservados: 'lo normal' y 'puede reiniciar' (advertencia probabilística, NO prohibición). Garble ASR en s-000140: 'esto va a pasar siempre no habrá ver' (lectura probable: 'esto no va a pasar siempre'); se publica sólo la parte limpia del contraste.
 
+**Dudas abiertas:**
+
+- s-000140 contiene garble ASR sin resolver ("...va a pasar esto siempre no habrá ver"); lectura probable "esto no va a pasar siempre, ¿no?/¿ver?". No afecta al statement publicado (usa sólo el contraste literal 'lo normal... pero'), queda anotado para el integrador por si se corrige el segmento.
+
 ### c-0007
 
 **Statement:** Con rangos en contra formándose, el instructor dice que aquí arriba no estarías buscando longs 'nunca': para llegar al objetivo estarías esperando a que se deforme 'un trago favor' [ASR].
@@ -92,6 +107,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-000152|01:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-000158|01:58]]
 
 **Notes:** El 'nunca' vale DENTRO del escenario dibujado (rango en contra formándose tras abrir por arriba a las 3), no es prohibición universal. 'un trago favor' [ASR] → candidato claro: 'un rango a favor' (sin segundo término en disputa).
+
+**Dudas abiertas:**
+
+- Normalización del garble 'un trago favor' [ASR]: candidato 'un rango a favor' respaldado sólo contextualmente (s-000218 'formándote un rango bullish', s-000229 'crear este rango pendiente', s-000331 'aquí ya tenemos el rango a favor'), NO literalmente en el segmento citado s-000158; por eso corrections_suggested queda null. El integrador decide si normaliza en el statement.
 
 ### c-0008
 
@@ -120,6 +139,10 @@
 **Visual hint:** 02:37 — Reinterpretación del dibujo: la vela grande como vela diaria y la otra como la vela de las 5
 
 **Notes:** Definición de time-based exit dicha aquí; el nexo 'por eso' (reinterpretación diaria/5 → salida por tiempo) es del instructor.
+
+**Dudas abiertas:**
+
+- En f-000237 (157 s, inicio del segmento s-000237) la vela grande aún muestra el rótulo '4H' mientras la locución dice 'ejemplo de una hora'; en 179 s (f-000179) ya está reetiquetada '1D'. Confirmar para el integrador que '4H' es remanente del dibujo del minuto 1 (reetiquetado en vivo durante la explicación) y no parte del ejemplo actual; no afecta a la definición de time-based exit.
 
 ### c-0010
 
@@ -171,6 +194,10 @@
 
 **Notes:** Formulación de preferencia general del instructor ('siempre quieres'); resumen de la red flag 1.
 
+**Dudas abiertas:**
+
+- Numeración ambigua en la fuente: el instructor reutiliza 'primera red flag' en s-000528/s-000630 para el tema 'velas que abren contrario a la idea' y resume en s-001044 'La primera es cuando nos están abriendo las velas al revés' (segunda = inside candles, tercera = objetivo ya tomado). Los 'rangos en contra' de este minuto quedan fuera de esa numeración final 1-2-3; el integrador debe decidir cómo numerarlos/agruparlos (posible red flag introductoria/paraguas).
+
 ### c-0014
 
 **Statement:** Horas clave detalladas: las 3, 'que es nuevamente cuando pasa la expansión en London'; las 5, 'la vela que abre tantas' [ASR]; y las 9, cuando vuelve a abrir vela de 4 horas — abre la de 8 horas, la de 2 horas, la de 1 hora, otra vez: 'también es un momento importante donde se te pueden crear rangos en contra'.
@@ -183,6 +210,10 @@
 
 **Notes:** Modalizador 'se te pueden crear' preservado. La 'vela de 8 horas' que abre a las 9 no es la hora de las 8 dudosa de b1-03.
 
+**Dudas abiertas:**
+
+- El ASR 'esta vela que abre tantas' (s-000358) parece incompleto: ¿'tantas' = 'tantas temporalidades'? La completación 'temporalidades' publicada en el statement no tiene respaldo literal en el segmento citado; confirmar contra audio antes de publicar la glosa.
+
 ### c-0015
 
 **Statement:** Si estás en un trade (long tomado desde abajo, la entrada ideal) y ves que te está pasando esto (rango en contra formándose), es 'por ejemplo una señal de tomar primero parciales aquí arriba' y, segundo, 'mover tu tarjeta breakable' [ASR].
@@ -194,6 +225,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-000415|04:15]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-000419|04:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-000426|04:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-000408|04:08]]
 
 **Notes:** Modalizador 'por ejemplo una señal' preservado. TERM_DISAMBIGUATION_REQUIRED: 'mover tu tarjeta breakable' [ASR] — candidatos: 'mover tu stop a break even' (práctica común) o 'mover tu target a break even' (fonéticamente más cercano a 'tarjeta'); el glosario trae 'break even' pero no resuelve 'tarjeta'.
+
+**Dudas abiertas:**
+
+- Desambiguar 'tarjeta breakable' (s-000426, 00:04:26): los candidatos 'mover tu stop a break even' y 'mover tu target a break even' no tienen respaldo literal en el segmento (el ASR dice 'tarjeta breakable'); requiere revisión de audio fuera del alcance de este review. La publicación con [ASR] es la segura.
+- Desambiguar 'tarjeta breakable' (s-000426, 00:04:26): ¿'stop a break even' o 'target a break even'? Revisar audio si es posible.
 
 ### c-0016
 
@@ -233,6 +269,11 @@
 
 **Notes:** TERM_DISAMBIGUATION_REQUIRED: 'azista' [ASR] — candidatos 'alcista' (apoyado por el contexto: 'las velas siguen subiendo... hasta tu DOL') y 'bajista' (fonéticamente posible, contradice el resto de la frase). 'doll' [ASR] → DOL (objetivo de liquidez; DXY no aparece en este bloque).
 
+**Dudas abiertas:**
+
+- Confirmar contra audio que 'azista' (s-000515, 00:05:15) = 'alcista': el contexto inmediato ('las velas siguen subiendo... hasta tu doll', s-000519-s-000523) apoya 'alcista'; 'bajista' es fonéticamente menos probable y contradice la frase.
+- Desambiguar 'azista' (s-000515, 00:05:15): 'alcista' encaja con 'las velas siguen subiendo... hasta tu DOL'; confirmar contra audio.
+
 ### c-0019
 
 **Statement:** Reformulación de la primera red flag: 'el tema de cuando las velas nos están abriendo contrario a la idea'.
@@ -261,6 +302,10 @@
 
 **Notes:** La negación 'no significa' es del instructor: la definición es por tomar el extremo de la vela anterior, no por la dirección posterior de la vela.
 
+**Dudas abiertas:**
+
+- El instructor verbaliza sólo el caso 'tome el low' para 'abrir por arriba o por debajo'; ¿el caso simétrico (tome el high, idea bajista) queda implícito? No está dicho en este bloque.
+
 ### c-0021
 
 **Statement:** 'Esto es lo que nos gusta ver': cuando la vela abre tomando el low de la anterior, 'lo que está haciendo aquí es crearnos un rango a favor de nuestra tendencia'.
@@ -272,6 +317,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-000552|05:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-000554|05:54]]
 
 **Notes:** Contrapositivo positivo de la red flag 1 (lo deseable: rangos a favor).
+
+**Dudas abiertas:**
+
+- Referente deíctico 'este de aquí' (s-000554, 05:54-06:02): el 'rango a favor' dibujado no se identifica sin ambigüedad en f-000559 (dos líneas horizontales + velas dibujadas); no afecta al veredicto (soporte textual completo).
 
 ### c-0022
 
@@ -303,6 +352,10 @@
 
 **Notes:** Negación literal ('no que la vela abra y baja', dicho tal cual por ASR). Resuelve la duda abierta en b1-20: el caso simétrico (tome el high) SÍ se verbaliza aquí. CROSS-CHAPTER: completa la definición de 'abrir por arriba/por debajo' vinculada a la red flag anunciada en ch07 (c-0033); aclaración targeted en ch07 es cosa del integrador. Visual inferido del dibujo narrado en audio (frame no verificado).
 
+**Dudas abiertas:**
+
+- Visual_hint no verificado tal como está redactado: en 06:14-06:29 (f-000614, f-000629) sólo hay dibujado un caso (alcista: abre por debajo tomando el low, rango y long); no aparece en pantalla el 'dibujo de los dos casos' con la vela que abre tomando el high. El caso simétrico (s-000624) es sólo verbal. Ajustar el visual_hint del claim a un solo caso o dejarlo sin frame.
+
 ### c-0024
 
 **Statement:** Tras la definición de abrir por arriba/por debajo, el instructor cierra: 'Vale, esta sería la primera red flag'.
@@ -314,6 +367,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-000629|06:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-000630|06:30]]
 
 **Notes:** CROSS-BLOCK: aquí la 'primera red flag' refiere a la variante 'velas que abren tomando el extremo de la vela anterior' (reformulación del minuto 5, b1-19/b1-20); en el minuto 0 se había anunciado como 'rangos en contra' (b1-02). El instructor mismo enumera en s-001044. Ver b2-19.
+
+**Dudas abiertas:**
+
+- Deuda cross-chapter q-ch07-017 / c-0033 (ch07): ep09 s-000629-s-000630 desarrolla esta primera red flag como velas que abren tomando el extremo de la vela anterior (luego enumerada en s-001044 como 'cuando nos están abriendo las velas al revés'), consistente con la red flag 'abrir por arriba creando rango' anunciada en ch07. El integrador debe aplicar la aclaración targeted en ch07 preservando IDs; NO editar ch07 desde este minuto.
 
 ### c-0025
 
@@ -383,6 +440,11 @@
 
 **Notes:** Modalizadores 'a veces' preservados. TERM_DISAMBIGUATION_REQUIRED: 'dark del sub' [ASR] (s-000756, 00:07:56) — candidato principal 'el Turtle Soup' (familia tartel/tarde/turtle sub; encaja con el contexto: en 8h el Turtle Soup no está hecho, bajas de temporalidad y ya está activado) vs. candidato alternativo 'el draw del soup'; no decidible sólo con el glosario.
 
+**Dudas abiertas:**
+
+- Desambiguar 'dark del sub' (s-000756, 00:07:56): 'el Turtle Soup no está hecho aún' vs 'el draw del soup'. Mantengo la pregunta del extractor: el frame base f-000759 muestra el dibujo 8H pero no resuelve una ambigüedad fonética. Nota contextual para el integrador (no decisiva): la lectura 'Turtle Soup' encaja mejor con la continuación dicha (s-000803: bajar a 1h y encontrar 'ya me ha activado el rango' aunque en 8h no esté hecho) y con la familia de garbles listada ('tartel/tarde/tardel sub/turtle sub'); requeriría re-escucha de audio para cerrar.
+- Desambiguar 'dark del sub' (s-000756, 00:07:56): ¿'el Turtle Soup no está hecho aún' o 'el draw del soup'? Revisar audio/frame si es posible.
+
 ### c-0030
 
 **Statement:** 'El precio tiende a hacer caso a lo que pasa en temporadas' [ASR] 'más altas': 'no porque en una hora tengas ya tu rango pendiente significa que el precio no vaya a abrir este rango'.
@@ -422,6 +484,10 @@
 **Visual hint:** 08:56 — Dibujo del stop colocado en la vela de una hora y el giro del precio al activar el rango mayor de 8 horas hacia su objetivo
 
 **Notes:** Nexo causal 'porque' dicho por el instructor. Ejemplo del mecanismo de barrido de stops que motiva la red flag (entrada en TF menor sin esperar el rango mayor). Visual inferido del dibujo narrado (frame no verificado).
+
+**Dudas abiertas:**
+
+- Los frames muestran el esquema (velas con mechas inferiores, caja '8H', flecha, líneas horizontales superior e inferior) pero ningún frame rotula explícitamente 'stop' ni 'objetivo': la correspondencia entre la línea corta bajo la vela negra y el stop, y entre la línea horizontal inferior larga y el objetivo, es inferencia del relato del instructor sobre su propio dibujo, no texto visible en pantalla. No afecta la literalidad del statement (que es instructor_statement), sólo la lectura del visual_hint.
 
 ### c-0033
 
@@ -531,6 +597,10 @@
 
 **Notes:** Red flag #3 anunciada: precio que ya llegó a/tomó objetivos (se desarrolla en el minuto 11, b2-20 a b2-22). CROSS-BLOCK: la enumeración official here llama 'primera' a la variante 'velas abriendo al revés'; en el minuto 0 la primera se había anunciado como 'rangos en contra' (b1-02) y en el minuto 5 se reformuló (b1-19). El instructor las trata como la misma red flag; la trazabilidad de la enumeración queda anotada para el integrador.
 
+**Dudas abiertas:**
+
+- Enumeración de red flags: confirmar que la 'primera red flag' del minuto 0 ('rangos en contra') y la de aquí ('velas abriendo al revés') son la misma reformulada, o dos variantes; el instructor las enlaza pero nunca lo dice explícito.
+
 ### c-0041
 
 **Statement:** Ejemplo montado en compras: 'compramos aquí o esto sería el Tartel Sub' [ASR] 'de la vela ideal y tenemos objetivo aquí de 4 horas, tenemos objetivo aquí de 12 horas y el objetivo aquí diario'.
@@ -547,6 +617,10 @@
 
 **Notes:** 'Tartel Sub' [ASR] → Turtle Soup (familia de garbles conocida; candidato único). Montaje del ejemplo para la red flag 3; los tres objetivos (4h/12h/diario) dicha literalmente. Visual inferido del dibujo narrado (frame no verificado).
 
+**Dudas abiertas:**
+
+- Los tres niveles horizontales del dibujo no están etiquetados en pantalla: la asignación de cada línea a 4h/12h/diario descansa sólo en la narración de s-001104 y no es distinguible visualmente (dato visual no resuelto, no afecta a la literalidad de la cita).
+
 ### c-0042
 
 **Statement:** 'Tú lo que quieres comprar es por aquí abajo. No quieres comprar una vez ya se ha llevado el objetivo de cuatro horas.'
@@ -560,6 +634,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/frames/f-001159.png|f-001159]]
 
 **Notes:** Red flag 3 aplicada al ejemplo en compras: la condición (ya tomado el objetivo de 4 horas) va EN el statement, como negación literal dicha por el instructor.
+
+**Dudas abiertas:**
+
+- Cross-chapter (deuda ch07 c-0039 'peor situación = DOL tomado'): s-001136 repite el tema 'no entrar una vez tomado el objetivo/DOL'; dejar anotado al integrador para evaluar el enlace entre la red flag 3 de ep09 y c-0039, sin asumir resolución en este minuto.
 
 ### c-0043
 
@@ -612,6 +690,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001249|12:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001251|12:51]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001253|12:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001255|12:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001256|12:56]]
 
 **Notes:** Lectura probable (coherente con s-001217 'no entrar en trades en los cuales ya nos han tomado objetivos'): la red flag es entrar en trades una vez los objetivos están tomados; la frase ASR es ambigua y se cita literal.
+
+**Dudas abiertas:**
+
+- s-001249+s-001251 'el no entrar en los trades una vez objetivos están tomando': el garble ASR admite '[la red flag es] entrar en los trades una vez los objetivos están tomados' (lectura coherente con s-001217) o un consejo literal 'no entrar'; requiere confirmación contra audio. No resuelto en esta revisión (transcript y frames no lo desambiguan).
+- s-001249+s-001251 'el no entrar en los trades una vez objetivos están tomando': ¿'[la red flag es] entrar en los trades una vez los objetivos están tomados' (garble ASR) o consejo literal 'no entrar'? Confirmar contra audio.
 
 ### c-0047
 
@@ -675,6 +758,10 @@
 
 **Notes:** Causal explícito ('porque'): la fuerza de la red flag deriva del objetivo de operar hacia el objetivo. CROSS-CHAPTER c-0039 (ch07, 'peor situación = DOL tomado'): este pasaje repite/extiende la idea generalizándola a 'objetivo ya tomado al levantarte = red flag para operar esa sesión'; señalar al integrador, no asumir resolución.
 
+**Dudas abiertas:**
+
+- CROSS-CHAPTER (deuda c-0039, ch07 'peor situación = DOL tomado'): s-001350 repite/extiende la idea generalizándola a 'levantarse con el objetivo ya tomado = red flag para operar ese día' (reforzado en s-001417-s-001419, min 14). Dejado anotado para el integrador; NO se asume la resolución de c-0039 desde aquí.
+
 ### c-0052
 
 **Statement:** 'Siempre operar hacia el objetivo o desde el objetivo' — operar desde el objetivo sería intentar buscar reversals (si nos forman rangos bajistas) —, 'pero es mucho más fácil operar hacia el objetivo que desde el objetivo, por lo tanto' [elipsis completada en s-001412-s-001419: si te levantas con el objetivo ya tomado, es red flag para operar esa sesión].
@@ -699,6 +786,10 @@
 
 **Notes:** Reformulación con horizontes (1 día / 2 días / 1 semana) de la red flag de b3-08; 'aparte' enlaza con el matiz de comportamiento del precio (b3-11).
 
+**Dudas abiertas:**
+
+- CROSS-CHAPTER (integrador): esta red flag de 'objetivo ya tomado' (s-001350 + s-001412-s-001419, con horizontes 1 día/2 días/1 semana) toca la deuda c-0039 de ch07 ('peor situación = DOL tomado'); ep09 la repite y cuantifica horizontes — aplicar aclaración targeted en ch07 preservando IDs, sin asumir equivalencia total (aquí se dice del objetivo/día concreto, no literalmente 'DOL').
+
 ### c-0054
 
 **Statement:** Comportamiento esperado tras una expansión hacia un objetivo: 'el precio no hace así... después de una expansión hacia un objetivo no va a hacer así; como mucho, va a hacer un poco así... parece que baja, crea otro rango, hace un nuevo alto para crear un rango de 12 horas bajista, por ejemplo, y va bajando así'; 'no es como que vaya a tomar al objetivo y tenga que hacer siempre una línea recta hacia abajo; por lo tanto podemos esperar un poco de esto'.
@@ -715,6 +806,12 @@
 
 **Notes:** Deixis visual masiva ('hace así'/'un poco así'): la forma exacta requiere frame. Matiz relevante: el recorrido post-expansión no es 'línea recta' — el instructor espera rangos intermedios (p.ej. rango de 12 horas bajista).
 
+**Dudas abiertas:**
+
+- Forma exacta señalada en s-001421-s-001442 es deíctica ('hace así', 'un poco así'); si el integrador necesita precisarla, extraer frame ~14:25-14:42 (segundos 865-882).
+- Fuerza del enunciado: en este minuto el instructor dice 'no va a hacer así' sin hedge, pero más adelante en el mismo capítulo lo modaliza él mismo con 'normalmente' (s-001635, min 16: 'no va a ser expansión expansión expansión normalmente'). El integrador puede querer alinear la fuerza publicada de esta observación con ese hedge intracapítulo.
+- f-001429 captura el gesto a mitad del dibujo (869 s); la trayectoria dibujada sigue evolucionando hasta ~14:42 (s-001435/s-001442). Si el integrador necesita la forma COMPLETA dibujada, extraer frame ~14:37-14:40 (877-880 s).
+
 ### c-0055
 
 **Statement:** Transición de sección: 'y para acabar, la última red flag es viene un poco [relacionado con este último]' (anuncia la última red flag antes de la parte de gráficos).
@@ -726,6 +823,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001449|14:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001500|15:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001644|16:44]]
 
 **Notes:** s-001449 contiene un garble inicial no resuelto ('impresionó sea totalmente limpio', posible cola de la frase anterior sobre lo que 'podemos esperar'). La conexión completa se formula en s-001500 (ya minuto 15).
+
+**Dudas abiertas:**
+
+- Garble inicial de s-001449 'impresionó sea totalmente limpio' sigue sin resolverse contra fuente (posible '[que] impresione, sea totalmente limpio' como cola de la idea de 'podemos esperar un poco de esto' en s-001442); el statement no lo usa, mantener en OPEN-QUESTIONS para confirmación contra audio.
+- s-001449 'impresionó sea totalmente limpio' — ASR ilegible; ¿'[que] impresione, sea totalmente limpio'? Confirmar contra audio.
 
 ### c-0056
 
@@ -740,6 +842,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/frames/f-001559.png|f-001559]]
 
 **Notes:** Modalizador literal preservado ('puedes esperar que... no vaya a ser'). La vela de las 5 y la vela de las 9 son términos del curso (glosario).
+
+**Dudas abiertas:**
+
+- s-001500 'en el día en veras a cuatro horas' — ¿'velas a cuatro horas'? Confirmar contra audio.
+- s-001504 'tú quieres superar la sesión de New York' — posible garble de 'tradear la sesión de New York' (contexto: operar la vela de las 5). Confirmar contra audio.
 
 ### c-0057
 
@@ -768,6 +875,12 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/frames/f-001543.png|f-001543]]
 
 **Notes:** Modalizador 'puedes esperar' preservado; secuencia dicha en orden literal.
+
+**Dudas abiertas:**
+
+- Referente de 'que sea una vela inside, que no pasa mucho' (s-001542-s-001544): ¿la vela de las 5 o la de las 9? El orden literal sugiere la 5, pero no es explícito. Nota del reviewer: atribuir la 'vela inside que no pasa mucho' a la 9 contradiría 'que la expansión pase a las 9' (una expansión que 'no pasa mucho' sería contradictoria), lo que refuerza la lectura de que la inside es la 5; confirmar contra audio/gráfico.
+- Referente de 'que sea una vela inside, que no pase mucho' (s-001542-s-001544): ¿la vela de las 5 o la de las 9? El orden literal sugiere la 5, pero no es explícito.
+- f-001543 (15:43) no despeja el deíctico: el gráfico EURUSD 15M no muestra resaltada ninguna vela concreta en ese instante.
 
 ### c-0059
 
@@ -817,6 +930,10 @@
 
 **Notes:** Trío conceptual de este pasaje; el segmento no menciona Power of 3 — no importar esa equivalencia sin respaldo.
 
+**Dudas abiertas:**
+
+- Confirmar contra el audio (~16:30, s-001624) si el tercer momento dicho es 'reversa' o 'reversal' (trío consolidación/expansión/…); hoy el statement preserva 'reversa' [ASR] con el candidato anotado.
+
 ### c-0063
 
 **Statement:** 'Si venimos de una expansión, no va a ser expansión, expansión, expansión; normalmente, para llegar a una expansión tiene que venir de un periodo de consolidación y una manipulación... no de otra expansión.'
@@ -828,6 +945,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001635|16:35]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001639|16:39]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001624|16:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001644|16:44]]
 
 **Notes:** Doble fuerza: la primera parte lleva el modalizador 'normalmente' (preservar); la segunda parte es requisito de secuencia dicho sin hedge ('tiene que venir de consolidación + manipulación'). Formulación general de las red flags de expansión de los minutos 15-16.
+
+**Dudas abiertas:**
+
+- Confirmar contra el audio (~16:36-16:40, s-001635→s-001639) dónde cae la pausa respecto de 'normalmente': ¿cierra la primera cláusula ('...expansión, expansión, normalmente') o abre la segunda ('normalmente, para llegar a una expansión tiene que venir...')? De ello depende kind=rule vs kind=warning.
 
 ### c-0064
 
@@ -845,6 +966,12 @@
 
 **Notes:** Lectura de gráfico por el instructor (objetivos bajistas señalados); deixis 'Este de aquí'. 'Como vamos a ver ahora' — el ejemplo continúa tras el corte del bloque. La parte narrativa ('estábamos buscando longs') es instructor_statement.
 
+**Dudas abiertas:**
+
+- En f-001731/f-001735 sólo una línea horizontal dibujada (1,35669) es visible; los 'dos objetivos bajistas' completos y el 'alguno más bajo' del diario no son simultáneamente verificables en un solo frame (junto a la línea se aprecia la etiqueta 1,33428, posiblemente el otro extremo señalado con el cursor). Confirmación visual exacta del segundo objetivo queda abierta.
+- s-001726 'En un día debemos tener alguno más bajo también' — deíctico, sentido exacto ligado al gráfico (se mantiene del payload).
+- s-001726 'En un día debemos tener alguno más bajo también' — deíctico, sentido exacto ligado al gráfico.
+
 ### c-0065
 
 **Statement:** ¿Por qué no puedes comprar ahí? 'Porque se te están formando rangos bajistas al revés — no están a favor de tu compra estos rangos'; 'están en contra porque te están abriendo por arriba y te están creando un rango bajista que es este'; 'en el momento en que se te están formando rangos bajistas, te abre por arriba la vela'.
@@ -859,6 +986,12 @@
 
 **Notes:** Nexos causales explícitos ('porque', 'por lo tanto'). CROSS-CHAPTER c-0033 (ch07): desarrollo literal de la red flag 'abrir por arriba creando un rango' anunciada en ch07 — aquí aparece 'te están abriendo por arriba y te están creando un rango bajista'; el término ch07 'rango reiniciado' NO aparece literalmente en estos segmentos: la aclaración targeted corresponde al integrador, no asumir resolución total.
 
+**Dudas abiertas:**
+
+- 'Rango reiniciado' (término de ch07 c-0033 / q-ch07-017) no aparece literalmente en el minuto 17 ni en el resto del transcript aportado — 'reiniciado' sólo reaparece en otro contexto (s-003011, ~30:11, sobre rangos ya completados). La aclaración targeted en ch07 corresponde al integrador, preservando IDs; no asumir resolución total de la deuda.
+- 'Rango reiniciado' (término de ch07 c-0033) no aparece literalmente en estos segmentos — resolución parcial, dejar al integrador.
+- La explicación se corta a mitad de frase en s-001758 (fin del bloque 12-17); la conclusión está en el bloque siguiente.
+
 ### c-0066
 
 **Statement:** Cuando el precio te abre al revés de la dirección que buscas, "es el momento donde tú dejas de buscar las compras hasta tener los rangos a favor otra vez": "esta sería la red flag de que nos abre el precio al revés".
@@ -870,6 +1003,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001802|18:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001807|18:07]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001810|18:10]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001814|18:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-001758|17:58]]
 
 **Notes:** Núcleo de la primera red flag del capítulo (apertura en contra). El instructor añade que estas red flags "son bastante fáciles de ver" (s-001814). Posible desarrollo de la red flag anunciada en ch07 (apertura por arriba / posible rango reiniciado), pero aquí se formula sin el término "rango reiniciado" — ver unresolved_questions.
+
+**Dudas abiertas:**
+
+- Correspondencia con ch07 c-0033 / q-ch07-017: el bloque 17:58-18:14 desarrolla textualmente la red flag 'abrir por arriba' contra compras (s-001758 + s-001810), lo que hace plausible que sea lo anunciado en ch07; sin embargo el wording 'rango reiniciado' NO aparece en este bloque (el uso más cercano de 'reiniciado' en el capítulo está en s-003011, en otro contexto: rangos ya completados). El integrador decide la aclaración targeted en ch07; no asumir la resolución.
+- ¿Es esta la explicación que ch07 anunciaba como "se detalla en el vídeo de red flags" (c-0033 / q-ch07-017)? En este bloque no aparece el wording "rango reiniciado"; el enlace cross-chapter lo decide el integrador.
 
 ### c-0067
 
@@ -915,6 +1053,10 @@
 
 **Notes:** Los modalizadores "seguramente" y "a lo mejor" pertenecen a la reconstrucción hipotética del escenario del trade, no a la fuerza de la red flag.
 
+**Dudas abiertas:**
+
+- Cross-chapter (deuda q-ch07-017 / c-0033 de ch07): este minuto desarrolla la red flag 'te abre el revés' (a las 3 abre por abajo formando rango alcista cuando buscas ventas, s-001917-s-001925, resumida en s-002215 como 'la red flag de los rangos a favor y en contra'), que es el caso espejo direccional de la red flag anunciada en ch07 ('abrir por arriba creando un rango / posible rango reiniciado'); no es literalmente el mismo caso, así que dejo anotada la conexión para que el integrador decida la aclaración targeted en ch07 sin presuncir resolución.
+
 ### c-0070
 
 **Statement:** En ese escenario lo que querrías ver es que la vela de las 3, aunque "obviamente te va a abrir por debajo", al menos "te cierre con fuerza por fuera" para "poder confirmar que vas hacia el target de abajo"; también querías ver después una vela que desplazara.
@@ -940,6 +1082,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/frames/f-001959.png|f-001959]]
 
 **Notes:** Análisis retrospectivo de ERROR (categoría 6 del contrato): ignorar la red flag habría costado la salida por stop. La fórmula "el stop loss te lo haría" es elíptica en el ASR (probablemente "te lo habría saltado").
+
+**Dudas abiertas:**
+
+- Mecánica exacta de 'el stop loss te lo haría' (s-001959): el ASR es elíptico (plausible 'te lo habría saltado/hecho saltar') y el segmento combina 'break even' con la mención al stop sin explicitar la secuencia; no queda claro si el stop se habría saltado antes de que el precio alcanzara el target, dado que s-002007-s-002015 afirman que el precio acabó llegando al target y que siguiendo las red flags se podía tomar la venta ahí arriba.
+- Significado exacto de "el stop loss te lo haría" (s-001959): ¿el stop se habría saltado antes de llegar al objetivo? El segmento combina "break even" con la mención al stop sin explicitar la mecánica.
 
 ### c-0072
 
@@ -973,6 +1120,10 @@
 
 **Notes:** Invalidación de la entrada directa dicha SIN hedge en este segmento (por eso kind=rule). TENSIÓN con b4-02/s-001835, donde el mismo patrón (apertura de las 3 en contra sin rango formado) es "un poco de red flag": la fuerza parece depender de si llega a formarse rango en contra; el integrador decide la fuerza canónica. Categoría 7: ante la contradicción del setup se espera el rango 4h a favor en vez de forzar la entrada.
 
+**Dudas abiertas:**
+
+- Tensión de fuerza entre minutos (cross-chapter/cross-minute para el integrador): aquí la apertura de la vela de las 9 por debajo se dice sin hedge ("Red flag para tomar tu short. No lo vas a poder tomar"), mientras el patrón análogo del minuto ~18 (b4-02/s-001835) se dijo como "un poco de red flag". ep09 no enuncia explícitamente en este segmento la condición que modularía la fuerza (p. ej. que llegue o no a formarse rango en contra). Decidir la fuerza canónica sin editar los claims originales.
+
 ### c-0074
 
 **Statement:** "El hecho de que te estaba abriendo las velas en contra te decía que aún no era momento de vender"; el momento de vender fue cuando volviste a tener el rango a favor.
@@ -1001,6 +1152,12 @@
 
 **Notes:** El patrón de aperturas en contra y rangos alternados se repite en la temporalidad inferior (velas de 4h: 3/5/9/13). El instructor califica el ejemplo de "perfecto" (s-002118). Nótese que a las 5 el rango formado es bajista aunque también abrió por abajo: el instructor no explicita regla sobre la dirección del rango formado.
 
+**Dudas abiertas:**
+
+- Confirmar la temporalidad real del gráfico mostrado en 21:05-21:32: el instructor dice 'otra vela de 4 horas' (s-002123) pero el header visible dice 'EURUSD · 2h' / 'EURUSD | 120M' (f-002109, f-002130) — ¿garble ASR ('2 horas' capturado como '4 horas'), despiste del instructor, o secuencia descrita sobre un gráfico 4h distinto al mostrado? Resolver contra audio/chart antes de publicar el enmarcado 'en 4 horas'.
+- Verificar a mayor zoom qué velas del gráfico son las de las 3/5/9/13 y sus rangos alcista/bajista: no resoluble en f-002109/f-002130; sólo se ve la caja de rango final dibujada cerca de 'dom 22 Jun '25 23:00'.
+- ¿El 'en 4 horas' del statement aplica a toda la secuencia de velas 3/5/9/13 o sólo a la vela de las 13 (la única calificada literalmente 'de 4 horas' en s-002123)?
+
 ### c-0076
 
 **Statement:** "Aquí sí que yo, en mi opinión, se podría haber vendido aquí ya"; esa venta "habría sido esto: break even", al tú ver cómo pasaba esto.
@@ -1012,6 +1169,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-002132|21:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-002134|21:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-002136|21:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-002138|21:38]]
 
 **Notes:** Juicio retrospectivo con modalizador doble ("en mi opinión" + "se podría"): NO es regla. Categoría 6 (lecciones de ejemplos retrospectivos).
+
+**Dudas abiertas:**
+
+- Parsing de s-002136/s-002138: ¿'break even' completa la venta hipotética ('habría sido esto: break even') o abre la instrucción de gestión posterior ('break even al tú ver cómo pasa esto')? Ambas lecturas caben en el ASR; no afecta a la fuerza modalizada del juicio pero sí a la puntuación si se cita textualmente en documentación.
 
 ### c-0077
 
@@ -1049,6 +1210,11 @@
 
 **Notes:** Etiqueta para el integrador: red flag #1 = "rangos a favor y en contra" (apertura en contra / rangos formándose en contra). Coincide con la red flag de "rangos en contra" ya listada en ch07 — verificar correspondencia exacta el integrador.
 
+**Dudas abiertas:**
+
+- Correspondencia con ch07: la red flag "rangos en contra" ya listada en ch07 (deuda c-0033/q-ch07-017) recibe aquí su desarrollo literal en ep09 (s-002200-s-002215: cierre anticipado antes del stop + reentrada cuando los rangos vuelvan a favor); el integrador debe aplicar la aclaración targeted en ch07 preservando IDs (no resuelto por este reviewer).
+- El ordinal "primera red flag del capítulo" no es verificable desde el minuto 22 (etiqueta del extractor, no texto dicho): el integrador debe confirmar la numeración contra los minutos 0-21 de ep09.
+
 ### c-0080
 
 **Statement:** Segunda red flag (velas internas), ejemplo en el euro con el rango de 12 horas de ayer: "Lo que os estaba comentando antes es el ejemplo exacto"; con la vela de 12 horas abierta (abrió a las 5), "lo que vas a hacer es tomar el short a menos que nos tome el low de aquí".
@@ -1064,6 +1230,11 @@
 **Visual hint:** 22:35 — Euro, rango de 12 horas: vela de 12h que abre a las 5 y baja a tomar el low, con el objetivo posterior hacia arriba
 
 **Notes:** Estructura "a menos que" = EXCEPCIÓN explícita (categoría 5 del contrato): la toma del low desactiva el short. "Velas internas" (s-002218) / "Inside Candles" (s-002311) es el nombre del tema.
+
+**Dudas abiertas:**
+
+- "Abrió a las 5" (s-002235) no es verificable visualmente en el frame (sólo la trayectoria de la vela es visible); queda respaldado sólo por el dicho literal del instructor.
+- El ordinal "segunda red flag (velas internas)" es etiquetado del extractor (el instructor dice "Vamos a buscar ahora algún ejemplo de las velas internas", sin numerar): el integrador debe confirmar la numeración contra los minutos previos del capítulo.
 
 ### c-0081
 
@@ -1093,6 +1264,10 @@
 
 **Notes:** Categoría 6 (error retrospectivo): entrar antes de que se resuelva la vela interna implica stop más amplio y barrido. "Lo habrías llevado" = el stop habría saltado (fórmula elíptica).
 
+**Dudas abiertas:**
+
+- La elipsis "tú lo habrías llevado" (s-002307) admite la lectura ASR «te lo habría(n) llevado» (= stop barrido); la glosa del statement sigue esa lectura contextual. Sin respaldo literal de la forma completa, no se corrige, sólo se anota.
+
 ### c-0083
 
 **Statement:** "Y así van a ser muchos casos en el rango diario también": el tema de las Inside Candles se repite en el rango diario; 'este de 8' [ASR] "no se vio muy clara" y el instructor busca otra que se vea clara.
@@ -1104,6 +1279,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-002311|23:11]]
 
 **Notes:** Generalización del patrón de velas internas al rango diario. El instructor descarta en directo un ejemplo poco claro (práctica didáctica).
+
+**Dudas abiertas:**
+
+- Referente de «este de 8» en s-002311 sin resolver: ¿ejemplo/rango de 8 horas o de las 8:00? El segmento no lo precisa y el ejemplo descartado no queda identificable en los frames disponibles (presupuesto de extracción agotado); preservar «de 8» sin normalizar.
 
 ### c-0084
 
@@ -1169,6 +1348,11 @@
 
 **Notes:** La versión corregida (no va a pasar muchas veces) es la final; la equivocación inicial queda documentada porque el instructor la enuncia y la corrige en el mismo pasaje.
 
+**Dudas abiertas:**
+
+- Confirmar el referente de la autocorrección (los casos en que la vela no toma el alto/low de la anterior), inferido del contexto del ejemplo inmediatamente siguiente.
+- Confirmar para el integrador el referente de la autocorrección: los casos de velas que no toman el alto/low de la anterior (velas internas) en 4h. Inferido del contexto inmediato (s-002413 "Si vamos a 4 horas" + ejemplo "Esta de aquí, por ejemplo... más de lo mismo" en s-002433/s-002439); la frase corregida no re-enuncia el referente de forma explícita.
+
 ### c-0089
 
 **Statement:** Ejemplo en 4 horas: «esta vela no vendes ni nada, no ha tomado ninguno de los extremos de esta»; cuando tienes el rango a favor, una vez toma el low de esa vela anterior, «a partir de ahí es donde tú puedes buscar ya el movimiento».
@@ -1182,6 +1366,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/frames/f-002443.png|f-002443]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/frames/f-002459.png|f-002459]]
 
 **Visual hint:** 24:43 — Gráfico de 4h: vela señalada que no toma el alto ni el low de la vela anterior; sólo tras tomar su low se busca el movimiento
+
+**Dudas abiertas:**
+
+- Identificación visual exacta de la vela interna señalada: f-002443 muestra el gráfico 4h sin anotación visible sobre la vela concreta y f-002459 muestra un rectángulo delimitando la zona del ejemplo; la verificación píxel a píxel de que la vela no toma alto/low de la anterior no es posible desde los frames.
 
 ### c-0090
 
@@ -1234,6 +1422,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-002532|25:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-002539|25:39]]
 
 **Notes:** Promesa dentro del vídeo; esa red flag queda presumiblemente en el tramo 29–34 del vídeo, fuera de este bloque.
+
+**Dudas abiertas:**
+
+- Deuda localizada para el integrador (no asumir resuelta sin confirmar): la red flag olvidada anunciada en s-002532 aparece en s-003217–s-003230 («si en euro ya ha llegado a un target y en JEP no, eso es red flag también», desarrollada en s-003238–s-003334); aplicar la aclaración preservando IDs.
+- Localizar la red flag olvidada anunciada en s-002532 (debe aparecer en el bloque 6, minutos 29–34) antes de cerrar el capítulo.
 
 ### c-0094
 
@@ -1299,6 +1492,11 @@
 
 **Notes:** Garble «reza» (s-002701): candidato «red flag» por contexto («la última … que había dicho», retoma las red flags previas); no se sustituye sin confirmación literal.
 
+**Dudas abiertas:**
+
+- Confirmar que «reza» en s-002701 es «red flag» (candidato reforzado por la recurrencia idéntica en s-003217 y por el tema del capítulo, pero palabra dicha distinta: decisión de normalización para el integrador).
+- Confirmar que «reza» en s-002701 es «red flag» (único candidato plausible, pero palabra dicha distinta).
+
 ### c-0099
 
 **Statement:** Con el objetivo bullish ya tomado, «ahora sí que podemos buscar el reversal, se puede buscar un reversal, pero no sabemos ya por qué los targets ya no están claros».
@@ -1361,6 +1559,10 @@
 
 **Notes:** «doll» → DOL confirmado por contexto (llegar a/operar desde el objetivo de liquidez tras agotar targets alcistas; lectura DXY descartada por el sentido del pasaje). Eco del tema ch07 «peor situación = DOL tomado» (deuda c-0039): este bloque lo repite en probabilístico; cross-link a decidir por el integrador, no asumir resolución.
 
+**Dudas abiertas:**
+
+- Cross-chapter (deuda c-0039, ch07 «peor situación = DOL tomado»): este bloque lo repite en clave probabilística («es como que nos baja la probabilidad»); el integrador decide el cross-link, sin asumir resolución desde aquí.
+
 ### c-0104
 
 **Statement:** «Siempre es mejor» operar todo esto hasta los targets, no de los targets intentar el reversal.
@@ -1372,6 +1574,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-002805|28:05]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-002808|28:08]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-002809|28:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-002811|28:11]]
 
 **Notes:** Preferencia comparativa dicha con «siempre es mejor»; no es prohibición universal: a continuación admite que el short se puede tomar (b5-22).
+
+**Dudas abiertas:**
+
+- Cross-chapter (deuda c-0039 de ch07, 'peor situación = DOL tomado'): los segmentos de contexto s-002757–s-002803 («ya que hemos llegado al doll... podemos operar desde el doll pero ya nos baja la probabilidad») desarrollan aquí la idea del DOL ya alcanzado; dejar anotado al integrador para enlazar/aclarar c-0039 sin asumir identidad literal («peor situación» vs «nos baja la probabilidad»).
 
 ### c-0105
 
@@ -1483,6 +1689,12 @@
 
 **Notes:** Garble «RT es menace»: candidatos «el retroceso es menester» / «RT es menester» (por contexto: tras tomar el rango, el precio debe recrear los rangos alcistas); TERM_DISAMBIGUATION_REQUIRED. El segmento termina a mitad de frase y continúa en el bloque 6 (minuto 30).
 
+**Dudas abiertas:**
+
+- La frase de s-002939 queda cortada al fin del bloque; verificar su continuación en el bloque 6 antes de cerrar la idea.
+- Resolver el garble «RT es menace» de s-002939 contra el audio (los frames no permiten resolverlo); candidatos por contexto («tiene que volver a crear los rangos alcistas»): «el retroceso es menester» / «RT es menester» — TERM_DISAMBIGUATION_REQUIRED.
+- Resolver el garble «RT es menace» en s-002939 contra audio/frames o el continuo en el bloque 6.
+
 ### c-0114
 
 **Statement:** Continuación de la frase cortada del bloque 5 (s-002939): si entras a comprar una vez el rango de 4 horas ya está tomado, 'fíjate que RT es menace [ASR], tiene que volver a crear los rangos alcistas'; la re-entrada correcta es 'volver a entrar aquí y ya tienes un nuevo rango', mientras que arriba ('aquí arriba tú no podías entrar') es 'una red flag para operar'.
@@ -1495,6 +1707,13 @@
 
 **Notes:** Mandato de tarea: cierra la frase 'RT es menace' de s-002939 (bloque 5). 'RT es menace' es garble ASR sin resolución; candidato semántico por contexto: 'el precio/el mercado es dinámico' (NO normalizar). En s-003011 'ahora una red flag para operar' podría ser 'es una red flag' (ASR pudo omitir el verbo). Tipo de red flag: entrar a comprar tras rango completado.
 
+**Dudas abiertas:**
+
+- Resolución del garble 'RT es menace' (s-002939): requiere re-escucha; el sujeto de 'tiene que volver a crear los rangos alcistas' depende de esa lectura.
+- Resolución del garble 'RT es menace' (s-002939): requiere re-escucha; ¿'el precio/el mercado es dinámico'?
+- ¿'ahora una red flag para operar' (s-003011) es 'ahora es una red flag para operar'?
+- ¿'ahora una red flag para operar' (s-003011) es 'ahora es una red flag para operar'? ASR pudo omitir el verbo.
+
 ### c-0115
 
 **Statement:** Red flag: 'ni que la dirección sea alcista', una vez que sabes que has completado un rango, 'lo que no puedes hacer es tú comprar aquí intentando llegar ahí' (al rango objetivo superior).
@@ -1506,6 +1725,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-003011|30:11]]
 
 **Notes:** Fuerza dicha como imposición ('no puedes') para el caso concreto de comprar tras la finalización del rango; la justificación es probabilística (b6-003). Tipo: condición que descalifica la entrada en esa zona. Posible desarrollo de la red flag anunciada en ch07 (c-0033/q-ch07-017, 'rango reiniciado'): aquí el contexto es rango completado, no la apertura de London.
+
+**Dudas abiertas:**
+
+- q-ch07-017/c-0033 (ch07): ¿esta explicación del 'reiniciado para bajar' tras rango completado es el desarrollo anunciado de la red flag de 'abrir por arriba' en London? El integrador decide la aclaración targeted en ch07; NO asumir resolución.
 
 ### c-0116
 
@@ -1557,6 +1780,10 @@
 
 **Notes:** Red flag explícitamente probabilística ('baja mucho la probabilidad'). Tipo: advertencia con degradación de probabilidades, no prohibición.
 
+**Dudas abiertas:**
+
+- Dato visual para el integrador: el gráfico en pantalla durante s-003102 (f-003110, verificado) es 4h (240M) mientras el audio dice "rango de 8 horas"; es el mismo rango/niveles (1,1523 / 1,1615 / 1,1632) que el chart 8h de f-003159. Sin impacto en la literalidad de la cita; se anota sólo la temporalidad del gráfico mostrado.
+
 ### c-0120
 
 **Statement:** Con el target final ahí arriba ('si ese es el DOL [ASR: 'dole']'), la gestión ya es 'parcial y break-even y ya está', y 'te vas adaptando'.
@@ -1596,6 +1823,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-003141|31:41]]
 
 **Notes:** Alcance temporal 'al menos hoy' preservado: el descarte es para la sesión, no permanente. Tipo: señal condicional que descarta compras, no señal de venta (ver b6-010). Relación con c-0039 (ch07, 'peor situación = DOL tomado'): extiende la idea del objetivo ya tomado.
+
+**Dudas abiertas:**
+
+- c-0039 (ch07): ¿este descarte de compras por objetivo ya tomado es la misma red flag o una extensión al par correlacionado? Integrador valora cross-chapter.
+- c-0039 (ch07, "peor situación = DOL tomado"): confirmado que s-003141 desarrolla la idea del objetivo ya tomado como descarte de compras del par; el integrador valora si es repetición o extensión de la red flag de ch07 (cross-chapter, no editar ch07).
 
 ### c-0123
 
@@ -1639,6 +1871,10 @@
 
 **Notes:** La confirmación multi-temporal es lo que en el ejemplo sí habilitó la venta ('se podía hasta tomar la venta'), tras la negación general de b6-010.
 
+**Dudas abiertas:**
+
+- El sustantivo 'rangos' no aparece literal en los segmentos del minuto (s-003158 dice 'formó bajistas por todos lados', sin el nombre); la lectura 'rangos bajistas' se apoya en el contexto del capítulo y en los rangos marcados en f-003259. Si se exige literalidad estricta, contrastar con el bloque anterior del transcript.
+
 ### c-0126
 
 **Statement:** La última 'reza' [ASR] que 'me he dejado' de decir: 'si en euro ya ha llegado a un target y en JEP [ASR] no, eso es red flag también'.
@@ -1651,6 +1887,13 @@
 
 **Notes:** Esta es la 'red flag olvidada' anunciada para el final del vídeo (pendiente del bloque 5): condición completa (par correlacionado: EUR llegó a target, el otro no) + veredicto ('eso es red flag también'). 'reza' [ASR]: candidatos 'regla'/'cosa'. 'JEP' [ASR]: candidatos 'GBP (Libra)'/'JPY'; el ejemplo posterior usa 'Libra' (s-003300) y 'JP' (s-003309), lo que sugiere GBP, pero sin respaldo literal en el segmento para sustituir.
 
+**Dudas abiertas:**
+
+- 'JEP' [ASR]: ¿GBP (Libra) o JPY? Contexto sugiere GBP sin respaldo literal.
+- 'JEP' [ASR]: ¿GBP (Libra) o JPY? Sin respaldo literal en los segmentos citados para sustituir. Nota visual para el integrador: f-003259 (32:59, durante este ejemplo) muestra GBPUSD y EURUSD, no USDJPY, lo que apoya la lectura GBP; decisión de normalización reservada al integrador.
+- 'reza' [ASR]: ¿'regla' o 'cosa'? No resuelto en revisión (requiere re-escucha); los candidatos anotados se mantienen.
+- 'reza' [ASR]: ¿'regla' o 'cosa'? Requiere re-escucha.
+
 ### c-0127
 
 **Statement:** Razón de la red flag: 'si tú estás en JEP [ASR] significa que no tiene por qué seguir subiendo'.
@@ -1662,6 +1905,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-003232|32:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-003233|32:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-003236|32:36]]
 
 **Notes:** Modalizador 'no tiene por qué' preservado: probabilístico, no imposibilidad. Tipo: advertencia dependiente del par correlacionado.
+
+**Dudas abiertas:**
+
+- 'JEP' [ASR]: misma ambigüedad que c-0126 (GBP vs JPY); f-003259 apoya lectura GBP durante este ejemplo, sin respaldo literal para sustituir.
+- Misma ambigüedad 'JEP' [ASR] que b6-013.
 
 ### c-0128
 
@@ -1676,6 +1924,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/frames/f-003259.png|f-003259]]
 
 **Notes:** Cross-chapter: referencia explícita al capítulo del SMT (ch05). 'JEP' [ASR] idem b6-013.
+
+**Dudas abiertas:**
+
+- 'JEP' [ASR] idem b6-013.
+- 'JEP' [ASR] idem c-0126: la nota visual de f-003259 (GBPUSD+EURUSD en pantalla durante este ejemplo) apoya GBP, pero no hay respaldo literal en los segmentos para sustituir el término dicho.
 
 ### c-0129
 
@@ -1727,6 +1980,11 @@
 
 **Notes:** Modalizadores 'a lo mejor' y 'no tiene por qué' preservados (razonamiento probabilístico del momento, no certeza). 'JP' [ASR]: candidatos 'GBP (Libra)'/'JPY' (idem b6-013).
 
+**Dudas abiertas:**
+
+- 'JP' [ASR]: ¿GBP o JPY? idem b6-013.
+- 'JP' [ASR]: ¿GBP o JPY? idem b6-013. f-003320 muestra el gráfico como GBPUSD·1D (par del long en Libra no tomado), lo que apoya 'GBP (Libra)'; re-escucha pendiente para confirmación literal.
+
 ### c-0133
 
 **Statement:** 'Podría ser un S&T [ASR]. Por lo tanto, esto lo cogí un poco como red flag y no tomé este long. Si no hubiera sido por esto, lo habría tomado 100% porque se veía súper claro en un día, en dos días, en tres días, en doce horas.'
@@ -1738,6 +1996,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-003334|33:34]]
 
 **Notes:** Revisión retrospectiva de decisión real (contrato item 6). 'S&T' [ASR]: candidato 'SMT' (el mismo 'día del SMT' citado en s-003242). 'un poco como red flag' preservado (decisión tomada con duda).
+
+**Dudas abiertas:**
+
+- 'S&T' [ASR]: ¿'SMT'? El contexto lo apoya; re-escucha recomendable.
+- ¿Qué resultado tuvo finalmente el long descartado? No se dice en este bloque.
 
 ### c-0134
 
@@ -1767,6 +2030,11 @@
 
 **Notes:** 'por el simple hecho de que' = la red flag fue el criterio único del descarte. 'GIP' [ASR]: candidato 'GBP (Libra)' (coherente con 'long en Libra', s-003300).
 
+**Dudas abiertas:**
+
+- 'GIP' [ASR]: ¿'GBP'? El segmento citado no lo desambigua; resolver vía audio/contexto de b6-013 (minuto anterior) o aclaración targeted del integrador.
+- 'GIP' [ASR]: ¿'GBP'? idem b6-013.
+
 ### c-0136
 
 **Statement:** Matiz posterior: GIP [ASR] 'está funcionando seguramente porque el objetivo mayor que es el de 6 meses está bullish, pues GIP tendría que arrasar con todos los objetivos bullish hasta llegar ahí'.
@@ -1778,6 +2046,13 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-003409|34:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-003411|34:11]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-003413|34:13]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-003414|34:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-003416|34:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch09-red-flags/transcript#^s-003407|34:07]]
 
 **Notes:** Modalizadores 'seguramente'/'tendría' preservados: hipótesis explicativa del instructor, no certeza. Tipo: excepción contextal (contrato item 5) — la red flag del par correlacionado no impidió que el par no operado siguiera hacia objetivos mayores si el objetivo superior (6 meses) es bullish.
+
+**Dudas abiertas:**
+
+- 'GIP' [ASR] idem b6-022.
+- 'GIP' [ASR] idem c-0135.
+- El transcript no explicita el resultado final del long no tomado; 'está funcionando' sugiere que el par siguió hacia objetivos mayores, pero el video no lo confirma con datos.
+- El transcript no explicita el resultado final del long no tomado; 'está funcionando' sugiere que el par siguió subiendo.
 
 ### c-0137
 

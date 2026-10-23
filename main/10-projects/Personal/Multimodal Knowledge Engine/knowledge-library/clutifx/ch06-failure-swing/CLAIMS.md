@@ -23,6 +23,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000000|00:00]]
 
+**Dudas abiertas:**
+
+- 'aventurías de hacienda' [ASR] (s-000000): frase final del segmento garbleada por el ASR, lectura no resuelta (¿'aventuras de hace tiempo'?, ¿referencia a alumnos en directo?). No afecta a la instrucción principal
+
 ### c-0003
 
 **Statement:** La función del failure swing es añadir contexto, para saber mejor qué está pasando; es un concepto que hay que entender, pero sin obsesionarse ni buscarlo siempre.
@@ -47,6 +51,10 @@
 
 **Visual hint:** 00:59 — Gráfico EURUSD 15m (TradingView, feed FOREX.com) con el caso dibujado a mano: alto anterior marcado con línea horizontal, un alto posterior inferior que no llega a él, un rectángulo marcando el tramo de la caída y una flecha apuntando hacia abajo.
 
+**Dudas abiertas:**
+
+- 'fellow swing' [ASR] → lectura probable 'failure swing' (término dicho literalmente por el instructor en s-000000 del mismo minuto)
+
 ### c-0005
 
 **Statement:** Contraste con lo enseñado antes: les enseñaron a esperar que, por ejemplo, en 4 horas el precio tome el alto del anterior y luego reaccione de manera bajista; con el 'celu swing' [ASR] no es así: falla, no llega a hacer el nuevo alto y baja directamente.
@@ -56,6 +64,11 @@
 **Tiempo:** [00:52–01:12]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000052|00:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000056|00:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000104|01:04]]
+
+**Dudas abiertas:**
+
+- 'celu swing' [ASR] (s-000056) → lectura probable 'failure swing'
+- Confirmar por audio que 'celu' (s-000056) es garble de 'failure': el mismo minuto dice 'failure' literal en s-000131/s-000140, pero el garble concreto de s-000056 no se puede verificar por ASR
 
 ### c-0006
 
@@ -81,6 +94,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000125|01:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000131|01:31]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000140|01:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000149|01:49]]
 
+**Dudas abiertas:**
+
+- 'celu swing' [ASR] (s-000125) → lectura probable 'failure swing'; en s-000131 el ASR recoge 'failure' literal ('esto sería un poco el concepto de failure [swing]')
+- Confirmar que 'celu swing' (s-000125) es el mismo garble de 'failure swing' — apoyado por 'failure' literal en s-000131/s-000140 del mismo minuto
+
 ### c-0008
 
 **Statement:** Primera razón por la que puede pasar un 'felo swing' [ASR], ya vista en el capítulo anterior y descrita por el instructor como la más obvia y la más fácil: se trata de la SMT ['es sentir' ASR]: como en la libra esto sí ha pasado y en euro no pasa, ese es el motivo por el cual no se lleva el nuevo alto, 'porque es una S&T' [ASR].
@@ -94,6 +112,17 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-000204.png|f-000204]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-000212.png|f-000212]]
 
 **Visual hint:** 02:08 — Etiqueta 'SMT' escrita a mano sobre el dibujo en estilo velas, junto al alto que la vela siguiente no supera (la medición 0.00017/0.01% del ASR no es legible en frames: no verificada).
+
+**Dudas abiertas:**
+
+- 'S&T' [ASR] (s-000201) → lectura probable 'SMT' (término dicho literalmente como 'SMT' en s-000547, fuera de este intervalo)
+- 'eran casi todos los swings' (s-000155) [ASR]: frase parcialmente garbleada
+- 'eran casi todos los swings' (s-000155) [ASR]: frase parcialmente garbleada; lectura probable 'casi todos [estos] swings [se dan] porque se trata de la SMT'
+- 'es sentir' [ASR] (s-000155) y 'S&T' [ASR] (s-000208) -> lectura probable 'SMT' (dicho literalmente en s-000547)
+- 'es sentir' [ASR] (s-000155) → lectura probable 'SMT'
+- 'felo swing' [ASR] (s-000149) -> lectura probable 'failure swing' (dicho literalmente en s-000249 del mismo minuto)
+- 'felo swing' [ASR] (s-000149) → lectura probable 'failure swing'
+- La medición '0.00017 / 0.01%' del visual_hint no pudo verificarse en los frames extraídos
 
 ### c-0009
 
@@ -139,6 +168,11 @@
 
 **Notes:** Atribución del garble: 'fellow swing' [ASR] corresponde a s-000300; en s-000249-s-000253 el ASR transcribió literalmente 'failure swing'.
 
+**Dudas abiertas:**
+
+- 'fellow swing' [ASR] (s-000253) → lectura probable 'failure swing'
+- 'fellow swing' [ASR] (s-000300) -> lectura probable 'failure swing' (transcrito literalmente en s-000249)
+
 ### c-0013
 
 **Statement:** Tras identificarlo: 'ya vais a ver como en 30 en 15 seguramente ya hay rangos que os permitan vender ni que esté alto no esté hecho' [ASR] — en las temporalidades de 30 y 15 seguramente ya hay rangos que permiten vender.
@@ -148,6 +182,11 @@
 **Tiempo:** [03:00–03:12]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000300|03:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000305|03:05]]
+
+**Dudas abiertas:**
+
+- 'ni que esté alto no esté hecho' [ASR] (s-000305): lectura probable 'aunque ese alto no esté hecho' / 'sin que ese alto esté hecho'; cualificador sin resolver con certeza
+- 'ni que esté alto no esté hecho' [ASR] (s-000305): lectura probable 'aunque ese alto no esté hecho' / 'sin que ese alto esté hecho'; cualificador sin resolver con certeza (mantener la duda del extractor)
 
 ### c-0014
 
@@ -161,6 +200,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-000359.png|f-000359]]
 
+**Dudas abiertas:**
+
+- Hueco de transcripción 03:30-03:33 sin segmento id entre s-000322 (termina 'la vela del 5,') y s-000333: ~3 s no cubiertos por ningún anchor; el flujo de la frase se reconstruye sin ambigüedad pero el integrador podría comprobar el audio
+
 ### c-0015
 
 **Statement:** 'Nunca anticipéis el failure swing solo porque pase eso' (refiriéndose al caso del alto hecho al final de la vela/hora que venía explicando); es solo un modo de entender.
@@ -170,6 +213,10 @@
 **Tiempo:** [03:45–03:57]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000352|03:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000356|03:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000345|03:45]]
+
+**Dudas abiertas:**
+
+- Deíctico 'eso' (s-000352): resuelto por contexto inmediato como el alto al final de vela/hora; confirmar si hace falta
 
 ### c-0016
 
@@ -205,6 +252,11 @@
 
 **Visual hint:** 04:19 — Anotación 'FINAL DE HORA' escrita sobre una vela pequeña en el dibujo en estilo velas, en la zona del alto que no se supera; el instructor manipula esa vela mientras habla.
 
+**Dudas abiertas:**
+
+- 'ahí sentí' [ASR] (s-000414) → lectura probable 'SMT' (coherente con 'es sentir' [ASR] en s-000155)
+- 'ahí sentí' [ASR] (s-000414) → lectura probable 'SMT' (coherente con 'es sentir' [ASR] en s-000155); no confirmable desde f-000419, requiere audio/integrador
+
 ### c-0019
 
 **Statement:** Operativa: se puede vender sin esperar que ese rango se vaya a abrir por arriba; sería una confirmación que se tiene para esperar que ese rango no tiene que ser activado de ese modo, sino que ya está activado con el 'Fearless Swing' [ASR].
@@ -214,6 +266,11 @@
 **Tiempo:** [04:21–04:35]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000421|04:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000426|04:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000433|04:33]]
+
+**Dudas abiertas:**
+
+- 'Fearless Swing' [ASR] (s-000433) → lectura probable 'failure swing' (término dicho literalmente en s-000000)
+- 'Fearless Swing' [ASR] (s-000433) → lectura probable 'failure swing', dicho literalmente en s-000358; normalización final pendiente del integrador
 
 ### c-0020
 
@@ -227,6 +284,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-000459.png|f-000459]]
 
+**Dudas abiertas:**
+
+- 'PPR' [ASR] (s-000441) → 'Pepper' (Pepperstone), respaldado por la anotación 'FOREXCOM / FXCM / PEPPER / OANDA' en f-000459 y la entrada PEPPERSTONE del diálogo de símbolos; confirmación por audio no disponible
+- La explicación del caso broker continúa en s-000500+ (desde 05:00), fuera de este intervalo: el contenido de esa continuación corresponde al siguiente bloque
+
 ### c-0021
 
 **Statement:** Va a haber veces en que en 'forex con' [ASR] el precio se queda prácticamente igual o no se lo lleva por poquísimo, y luego vas a 'fxm' [ASR] y el precio está habiéndolo tomado; por lo tanto el rango estaría activado.
@@ -236,6 +298,13 @@
 **Tiempo:** [05:00–05:27]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000500|05:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000509|05:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000522|05:22]]
+
+**Dudas abiertas:**
+
+- 'forex con' [ASR] ≈ ¿Forex.com?: f-000559 muestra el gráfico activo de FOREX.com y s-000441 nombra 'Forexcom', pero el garble de audio lo resuelve el integrador
+- 'forex con' [ASR]: ¿Forex.com?
+- 'fxm' [ASR] ≈ ¿FXCM?: FXCM aparece en la lista de brokers en f-000559 y s-000441, pero no hay fijación de audio
+- 'fxm' [ASR]: ¿FXCM?
 
 ### c-0022
 
@@ -261,6 +330,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000517|05:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000500|05:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000509|05:09]]
 
+**Dudas abiertas:**
+
+- El referente de 'o así' es deíctico (señala el gráfico); la glosa '(a punto de tomarlo)' es interpretación apoyada en s-000500/s-000509, no texto dicho
+
 ### c-0024
 
 **Statement:** Siempre va a haber algún 'bloque' [ASR] que sí que lo ha tomado; nunca se va a quedar así (sin que ninguno lo tome).
@@ -271,6 +344,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000522|05:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000527|05:27]]
 
+**Dudas abiertas:**
+
+- 'algún bloque' [ASR]: ¿algún broker?
+- 'bloque' [ASR]: ¿'broker'? — coherente con el contexto de brokers/feeds (s-000441, s-000500), pero sin desambiguación en transcript ni frames
+
 ### c-0025
 
 **Statement:** Este sería el tercer motivo del 'Finishing' [ASR].
@@ -280,6 +358,11 @@
 **Tiempo:** [05:29–05:32]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000529|05:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000531|05:31]]
+
+**Dudas abiertas:**
+
+- 'Finishing' [ASR]: lectura probable 'failure swing' — en el propio payload el término aparece sin garble como 'failure swing' (s-000627) y como 'fellow swing' (s-001322); la normalización la registra el integrador
+- 'del Finishing' [ASR]: lectura probable 'del failure swing'
 
 ### c-0026
 
@@ -311,6 +394,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000549|05:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000551|05:51]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000553|05:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000555|05:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000557|05:57]]
 
+**Dudas abiertas:**
+
+- 'fellow swing' [ASR]: lectura probable 'failure swing'
+- 'fellow swing' [ASR]: lectura probable 'failure swing' — el propio video lo dice sin garble en s-000627 y el capítulo se titula failure swing; la normalización la registra el integrador
+
 ### c-0029
 
 **Statement:** Identificación en vivo: con una nueva vela subiendo, asumís que va a pasar esto [deíctico al esquema dibujado en pantalla]; va subiendo y, cuando veis que reacciona ya para abajo creando algún rango bajista y veis que hay alguno de los motivos comentados, ahí es donde dices 'failure swing' y puedes entrar.
@@ -324,6 +412,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-000659.png|f-000659]]
 
 **Visual hint:** 06:59 — f-000659: sigue en pantalla el esquema dibujado (zigzag con flecha bajista; esquema FINAL DE VELA con velas 0100/0500) sobre EURUSD 15m FOREX.com
+
+**Dudas abiertas:**
+
+- s-000612/s-000618 'asumir que va a pasar esto' es deíctico al dibujo en pantalla; el evento exacto asumido (p. ej. intentar el nuevo alto) no se verbaliza en el minuto 6
 
 ### c-0030
 
@@ -365,6 +457,12 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000654|06:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000700|07:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000707|07:07]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000713|07:13]]
 
+**Dudas abiertas:**
+
+- 'pelos wings' [ASR]: lectura probable 'failure swings'
+- 'sentir' [ASR] en s-000654: ¿SMT?
+- 'sentir' [ASR] en s-000654: ¿SMT? — candidato no confirmado en el audio de este minuto
+
 ### c-0034
 
 **Statement:** Ejemplo de 'fellow swing' [ASR]: estamos en el euro a 6 de mayo de '95 [ASR], y esta vela no toma el 'load' [ASR] de la vela anterior y empieza a reaccionar para arriba directamente.
@@ -377,6 +475,15 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-000759.png|f-000759]]
 
+**Dudas abiertas:**
+
+- 'de 95' [ASR]: el gráfico visible muestra 6/5/2025 → ¿'de 2025'?
+- 'de 95' [ASR]: f-000759 muestra el grafico con fecha 6/5/2025 → lectura probable 'de 25' (2025); confirmable solo con audio
+- 'fellow swing' [ASR]: failure swing
+- 'fellow swing' [ASR]: failure swing — apoyado en el propio payload: s-000937/s-000945/s-000948 dicen 'failure swing' literalmente para el mismo patron
+- 'load' [ASR]: ¿low?
+- 'load' [ASR]: ¿low? — el propio transcript usa 'low' correctamente en s-000923/s-000926, consistente con esa lectura
+
 ### c-0035
 
 **Statement:** Esa vela crea lo que sería este rango, que no se ve como rango, pero vais a ver que es un 'pelo' [ASR]: vamos al rango de 5 minutos, que lo vamos a ver con más precisión.
@@ -386,6 +493,11 @@
 **Tiempo:** [07:28–07:37]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000728|07:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000733|07:33]]
+
+**Dudas abiertas:**
+
+- 'es un pelo' [ASR]: ¿'es un failure swing'? Pasaje parcialmente garbleado
+- 'pelo' [ASR]: ¿'failure swing'? El contexto del capitulo (s-000707 'pelos wings', s-000801 'pelo swing', s-000945 'failure swing') apunta a failure swing, pero el pasaje es parcialmente garbleado y la frase 'porque lo que lo se' no se entiende
 
 ### c-0036
 
@@ -400,6 +512,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-000759.png|f-000759]]
 
 **Visual hint:** 07:59 — f-000759: gráfico EURUSD 5m del 6/5/2025 (FOREX.com) con dos líneas horizontales dibujadas en la zona del bajo (~1,13157 y ~1,13054) junto a la mecha baja de la zona 05:30-06:00
+
+**Dudas abiertas:**
+
+- El frame f-000759 no permite leer la hora exacta del bajo (mecha en la zona 05:30-06:00, sin sub-etiquetas de minuto); el '5:50' queda respaldado solo por s-000737
 
 ### c-0037
 
@@ -423,6 +539,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000751|07:51]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000756|07:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000801|08:01]]
 
+**Dudas abiertas:**
+
+- 'fellow swing' [ASR]: failure swing
+- 'fellow swing' [ASR]: failure swing — apoyado en el propio payload (s-000945/s-000948 dicen 'failure swing' literalmente para el mismo patron)
+
 ### c-0039
 
 **Statement:** Ahí es donde puedes pensar: vale, tenemos 'pelo swing' [ASR], por lo tanto puedo entrar a mi operación, ya ni que no hayamos tomado el 'logo' [ASR] (este bajo), porque para el algoritmo este 'logo' [ASR] está tomado ya y los rangos alcistas están ya creados.
@@ -432,6 +553,12 @@
 **Tiempo:** [08:01–08:18]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000801|08:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000806|08:06]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-000812|08:12]]
+
+**Dudas abiertas:**
+
+- 'logo' [ASR]: ¿low?
+- 'pelo swing' [ASR]: ¿failure swing?
+- 'pelo swing' [ASR]: ¿failure swing? (variante de garble no listada en §4 del context pack, coherente con las conocidas)
 
 ### c-0040
 
@@ -466,6 +593,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-000859.png|f-000859]]
 
 **Visual hint:** 08:59 — f-000859: mismo gráfico EURUSD 5m del 6/5/2025 con líneas dibujadas desde la zona del bajo (~1,13054) proyectando la subida posterior hasta ~1,13551
+
+**Dudas abiertas:**
+
+- 'hay 55' [ASR]: ¿'a las :55'?
+- 'hay 55' [ASR]: ¿'a las :55'? Lectura probable por 'final de vela' (s-000853) y 'a las seis abre' (s-000830), pero la palabra exacta del audio queda ambigua
 
 ### c-0043
 
@@ -553,6 +685,12 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001003|10:03]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001005|10:05]]
 
+**Dudas abiertas:**
+
+- 'fellow swing' [ASR]: lectura probable 'failure swing'
+- 'targets a pistas más arriba' [ASR]: la expresión 'a pistas' es de lectura dudosa
+- 'targets a pistas más arriba' [ASR]: la expresión 'a pistas' es de lectura dudosa (no resoluble por frame)
+
 ### c-0051
 
 **Statement:** Otro rango de 8 horas también tiene un fellow swing [ASR] abajo; el instructor va a ver qué pasó ahí abajo y con eso da por completado el capítulo de fellow swing [ASR].
@@ -562,6 +700,10 @@
 **Tiempo:** [10:17–10:24]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001017|10:17]]
+
+**Dudas abiertas:**
+
+- 'fellow swing' [ASR] (dos ocurrencias): lectura probable 'failure swing'
 
 ### c-0052
 
@@ -574,6 +716,12 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001025|10:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001036|10:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001038|10:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001040|10:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001043|10:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001047|10:47]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001048|10:48]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001059.png|f-001059]]
+
+**Dudas abiertas:**
+
+- la cifra 16.20 no queda legible en ningún frame base disponible (f-001059 a los 659 s muestra el gráfico de 5m con el low marcado y crosshair en 17:10 del 23-abr-25)
+- la cifra 16.20 no queda legible en ningún frame verificado (f-001059 muestra el low marcado en 5m y crosshair en 17:10, sin la cifra legible)
+- las horas de apertura se dicen con corrección en caliente ('a las 9… perdón, a las 17')
 
 ### c-0053
 
@@ -588,6 +736,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001047.png|f-001047]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001050.png|f-001050]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001053.png|f-001053]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001059.png|f-001059]]
 
 **Notes:** Aclaración acotada 2026-10-20 (preflight ch07, revisión targeted 3/3 SUPPORTED): deíctico 'a las 7' [ASR] (s-001049) — lectura operativa 'a las 17'. El propio instructor corrige la apertura de la vela de 8h en juego: 'A las 9 abre esta. Perdón, a las 17' (s-001025); el low previo queda en 16.20 como final de la hora de esa vela de 8h (s-001040/s-001043/s-001047/s-001048); frames 5m del 23-abr-25: low ~16:35 (f-001047), subida directa tras la apertura de 17:00 (f-001050, f-001059) y low intacto a las 20:15 (f-001053); s-001123 confirma la cadena de aperturas 8h (low a las 00 → la siguiente abre a las 01). Palabra exacta del audio no recuperable; q-ch06-008 RESUELTA en lo operativo.
+
+**Dudas abiertas:**
+
+- La palabra exacta dicha en s-001049 ('a las 7' [ASR]) no es recuperable por ASR ni por frames: la lectura operativa 'a las 17' queda confirmada por contexto y frames (q-ch06-008 → RESOLVED en lo operativo); confirmación por audio opcional
+- La cifra exacta '16.20' del low no es legible en f-001047 (mechas del low en la zona ~16:20-16:40, sin sub-etiquetas de minuto); el dato descansa en s-001043
 
 ### c-0054
 
@@ -633,6 +786,12 @@
 
 **Visual hint:** 11:59 — gráfico de 8h EURUSD con dos niveles horizontales superiores marcados (≈1,4123 y ≈1,3941) y suelo ≈1,3157, delimitando los rangos cuyos techos actúan como objetivos alcistas señalados
 
+**Dudas abiertas:**
+
+- 'fellow swing' [ASR]: lectura probable 'failure swing'
+- 'fellow swing' [ASR]: lectura probable 'failure swing'; confirmar término canónico con el audio/nombre del capítulo (decisión del integrador)
+- deícticos 'este primero'/'de ahí' resueltos con el frame base f-001159 (719 s)
+
 ### c-0058
 
 **Statement:** Volviendo al gráfico de 1 hora: tú buscas los rangos a favor para comprar; observas este fellow swing [ASR] aquí; tienes un objetivo en 1 hora 'que es bastante grande' — para comprar, mejor que no sea muy arriba; esperas algún rango a favor por ahí.
@@ -649,6 +808,11 @@
 
 **Notes:** Aclaración acotada 2026-10-20 (preflight ch07, revisión targeted): deícticos de s-001206 — (1) 'objetivo de aquí en una hora, que es bastante grande' = el objetivo de la herramienta de long dibujada (f-001220: Objetivo 0,00436, zona azul hasta ~1,3903, línea 1,3941 encima; 'mejor que no sea muy arriba' = no el 1,4123); dibujada sobre 28-abr 06:00-10:00 y desplazada después a la derecha (f-001224, f-001227, f-001236). (2) 'algún rango a favor por aquí, por ejemplo, este' = el rectángulo 1h dibujado a continuación, ~28-abr 02:00-13:00, ~1,3745-1,3296 (f-001216 eje resaltado 02:00-13:00 y extremos 1,3745/1,3296; f-001227/f-001233 rectángulo terminado); NO confundir con el 06:00-10:00 de la herramienta de long. (3) 'este fellow swing aquí' queda sin marcado explícito en los frames de 12:06-12:26; referente probable: el low + reacción en el borde izquierdo del rectángulo (~28-abr 02:00-03:00, ~1,3296-1,3300), coherente con s-001247 ('el failure swing aquí creando el rango de 1 hora'); PROBABLE, no cierto. q-ch06-010 RESUELTA PARCIAL.
 
+**Dudas abiertas:**
+
+- Referente de 'este fellow swing aquí' (s-001206) sin marcado explícito en los frames de 12:06-12:26: probable el low + reacción en el borde izquierdo del rectángulo (~28-abr 02:00-03:00, ~1,3296-1,3300); requiere confirmación por audio o un frame con marca expresa (q-ch06-010 → RESOLVED_PARCIAL)
+- Los niveles exactos de entrada/target/stop de la herramienta de long no son plenamente legibles en el eje; los valores de las etiquetas sí están verificados en f-001220
+
 ### c-0059
 
 **Statement:** 'A favor' quiere decir: ya sea que se reinicie uno [ASR] contrario —como esta vela que señala— o que se cree un rango a favor.
@@ -662,6 +826,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001227.png|f-001227]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001230.png|f-001230]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/frames/f-001233.png|f-001233]]
 
 **Notes:** Aclaración acotada 2026-10-20 (preflight ch07, revisión targeted): deícticos de s-001226 — (1) 'esta vela que os marco ahora' = la vela interior del rectángulo 1h hacia las 07:00-08:00, marcada con círculo y línea sobre su low ~1,3449 (f-001230, crosshair 08:00). (2) 'un rango a favor, como sería este de aquí' = el rectángulo 1h (~28-abr 02:00-13:00, ~1,3745-1,3296; f-001227/f-001233). La lectura probable del garble 'ya sea que reinicie uno o contrario' como 'que se reinicie un rango contrario' refuerza el vocabulario del propio instructor en s-001237 ('rangos pendientes... rangos reiniciados'); confirmación literal por audio no disponible. q-ch06-013 permanece OPEN en lo literal; referentes visuales RESUELTOS.
+
+**Dudas abiertas:**
+
+- Lectura literal del garble 'ya sea que reinicie uno o contrario' (s-001226) sin confirmación de audio; referentes visuales confirmados (q-ch06-013 sigue OPEN en lo literal)
+- La hora exacta de la vela marcada (f-001230) solo es acotable a ~07:00-08:00 por crosshair y posición dentro del rectángulo; sin sub-etiquetas de minuto
 
 ### c-0060
 
@@ -720,4 +889,9 @@
 **Tiempo:** [13:21–13:24]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001321a|13:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001322|13:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch06-failure-swing/transcript#^s-001323|13:23]]
+
+**Dudas abiertas:**
+
+- 'fellow swing' [ASR] (s-001322): lectura probable 'failure swing'; el propio s-001258 (12:58-13:00, mismo capítulo) dice 'failure swings' literalmente, lo que apoya la lectura, pero la normalización del statement corresponde al integrador
+- 'fellow swing' [ASR]: lectura probable 'failure swing'; confirma el tema del capítulo
 

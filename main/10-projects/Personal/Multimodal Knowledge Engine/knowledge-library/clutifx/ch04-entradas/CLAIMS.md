@@ -75,6 +75,10 @@
 
 **Notes:** Deíctico 'en esta': existe otra vela/ubicación del esquema donde también se puede entrar y se tratará más adelante en el episodio.
 
+**Dudas abiertas:**
+
+- A qué vela exacta del esquema se refiere 'en esta' (no verificable con los frames base disponibles)
+
 ### c-0006
 
 **Statement:** 'La que nosotros vamos a querer entrar es aquí arriba, en el punto óptimo.'
@@ -118,6 +122,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-000146.png|f-000146]]
 
 **Notes:** Frase elíptica en el ASR; se conserva literal. Relaciona el cuerpo/entidad de la vela de 4 horas con el punto óptimo visible en la vela de 8 horas. | Statement corregido por el MINUTE_REVIEWER (integración 2026-10-19). Antes: 'La entidad está ya aquí en cuatro horas, que en la de 8 se va a ver ya en el punto óptimo.'
+
+**Dudas abiertas:**
+
+- Antecedente exacto de 'la entidad' (¿cuerpo de la vela de 4h proyectado dentro de la de 8h?): no totalmente verificable con frames base
+- ¿Dijo el instructor literalmente 'la entidad' o es garble ASR de 'la entrada'? No verificable con audio: solo hay texto ASR y frames; f-000146 muestra el cursor sobre la zona de entrada óptima del zoom de 4 horas, coherente con la lectura 'entrada'.
 
 ### c-0009
 
@@ -219,6 +228,10 @@
 
 **Notes:** «Tartel Sub» = garble ASR; candidato: Turtle Soup (toma de liquidez + reacción, según glosario del curso; variante 'tartle sub'). Contexto previo del segmento: dibuja la vela y el rango operativo 'un poco más real'.
 
+**Dudas abiertas:**
+
+- Punto exacto de la 1ª entrada en el dibujo no cubierto por frames base (momento 4:03-4:23)
+
 ### c-0016
 
 **Statement:** Orden de las entradas según el esquema: 1) toma del alto ('Tartel Sub' [ASR] / Turtle Soup), 2) PDM —con el order block en el mismo orden—, y si el precio se escapa, 3) Power 3 de una vela de temporalidad menor.
@@ -246,6 +259,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-000428.png|f-000428]]
 
 **Notes:** Definición dicha en contexto de rango bajista. El glosario de caps. 2-3 describe el PDM como low del rango (soporte en alcista); NO se normaliza: se preserva lo dicho. Posible asimetría por dirección del sesgo.
+
+**Dudas abiertas:**
+
+- Si el PDM cambia de lado (alto del rango en bajista vs low en alcista) segun el sesgo, o si 'reaccion en el alto' refiere a otro elemento; el glosario ch03 (c-0092) solo cubre el caso alcista y la expansion de la sigla esta abierta (q-ch03-004)
+- Si el PDM cambia de lado (alto vs low del rango) según el sesgo, o si el instructor se refería a otro elemento
 
 ### c-0018
 
@@ -286,6 +304,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-000507.png|f-000507]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-000514.png|f-000514]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-000535.png|f-000535]]
 
 **Notes:** s-000438 es contexto de frontera: para él PDM y order block tienen la misma importancia/mismo orden. 'orden blog' (s-000510) = order block y 'temporada' (s-000530) = temporalidad: garbles sin ambigüedad.
+
+**Dudas abiertas:**
+
+- Ordinal exacto en la lista: el deíctico 'la segunda' (s-000505-s-000510) no permite fijar con certeza si Turtle Soup o PDM+order block ocupa el primer o segundo lugar
 
 ### c-0021
 
@@ -403,6 +425,11 @@
 
 **Notes:** 'feliz swing' (s-000723) es garble sin resolver.
 
+**Dudas abiertas:**
+
+- 'es seguramente feliz swing' (s-000723): garble no resuelto (que 'este swing' u otro termino del metodo); el claim no depende de este fragmento porque la parte de 2h que afirma es 'tenemos rango'
+- 'es seguramente feliz swing' (s-000723): garble no resuelto (¿'este swing'?, ¿otro término del método?)
+
 ### c-0029
 
 **Statement:** Procedimiento de zoom hacia el [tarde sub → Turtle Soup] [ASR]: como hizo con la vela de 8 horas, fue haciendo zoom bajando temporalidades (hasta 1 hora y luego 15 minutos) hasta el rango de 15 minutos; y si ese rango se deforma, tú puedes tomar este trade de aquí (otro rango disponible).
@@ -419,6 +446,12 @@
 
 **Notes:** 'tarde sub' (s-000730) y variantes = Turtle Soup (glosario, sin ambigüedad).
 
+**Dudas abiertas:**
+
+- 'este rango es el swing ese metodo tema broker pues la entidad' (s-000735-s-000747): garble sin resolver (referencia al swing, al broker o a 'la entidad'); no forma parte del contenido afirmado por el claim
+- s-000800: la lectura '(otro rango disponible)' es interpretacion del audio garbled 'o si yo utilice este aqui'; no confirmada por frame ni por transcript limpio
+- 'este rango es el swing ese método tema broker pues la entidad' (s-000735-s-000747): garble sin resolver (¿referencia al swing, al broker o a 'la entidad'?)
+
 ### c-0030
 
 **Statement:** Resumen del recorrido del ejemplo: se empezó en un gráfico de 12 horas buscando el doble [ASR: 'el doble'] y se acabó en un rango de 15 minutos encontrando esa entrada ideal para tomar el trade.
@@ -432,6 +465,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-000810.png|f-000810]]
 
 **Notes:** TERM_DISAMBIGUATION_REQUIRED: se preserva la palabra dicha 'el doble'; el glosario sugiere DOL (objetivo de liquidez) pero no se normaliza.
+
+**Dudas abiertas:**
+
+- 'el doble' (s-000808): ¿DOL (objetivo de liquidez al que va el precio) u otra lectura? Pendiente de confirmación
+- 'el doble' (s-000808): la lectura DOL (objetivo de liquidez) es la más coherente con el contexto del vídeo (buscar el objetivo en 12h y refinar la entrada en 15m; cfr. s-001333 'saber dónde está el doll'), pero el audio de este segmento no lo desambigua; se preserva la palabra dicha sin normalizar.
 
 ### c-0031
 
@@ -549,6 +587,13 @@
 
 **Notes:** Contexto de frontera previo (s-000955..s-000959): el precio se frena aquí pero podría seguir más hondo y luego reaccionar. 'El doble' es garble conocido de DOL (el objetivo/liquidez al que va el precio); DXY no aparece dicho en los caps procesados, pero no se normaliza por si el referente fuera otro. 'El sub' es garble sin resolver.
 
+**Dudas abiertas:**
+
+- 'El sub más hondo': ¿'el stop más hondo' (ampliar stop) o 'el Turtle Soup más hondo' (barrido más profundo)?
+- 'El doble': ¿DOL (candidato principal por el glosario) u otro referente?
+- 'El sub más hondo': ¿'el stop más hondo' o 'el Turtle Soup más hondo'?
+- 'El doble': ¿DOL (objetivo/liquidez al que va el precio) u otro referente? La zona 'Objetivo' de la herramienta en f-001003 es coherente con DOL pero no lo confirma.
+
 ### c-0039
 
 **Statement:** Es cuando esperas el order block: asegurar que la tendencia ya ha cambiado.
@@ -589,6 +634,13 @@
 
 **Notes:** '0 de ladón' es garble sin resolver; candidato principal por contexto: '0 (de) drawdown' (entrada sin retroceso en contra). 'Power 3' = Power of 3.
 
+**Dudas abiertas:**
+
+- '0 de ladón': ¿'0 drawdown' u otro término?
+- Referente exacto del deíctico 'aquí' (punto temprano del gráfico).
+- '0 de ladón': ¿'0 (de) drawdown' u otro término? Ningún frame lo etiqueta; requeriría confirmación de audio o del glosario canónico del curso.
+- Deíctico 'aquí' (10:31): el ancla de entrada de la herramienta en el mínimo del rango (~1.3650, f-001031) es el referente plausible, no confirmable al 100% (no se ve el puntero exacto).
+
 ### c-0042
 
 **Statement:** Siguiendo el esquema de antes, PDM no lo toca en este caso.
@@ -605,6 +657,10 @@
 
 **Notes:** Observación del gráfico narrada; el frame base f-001059 (10:59) ya muestra el gráfico de 1h posterior, por lo que este momento puntual no queda cubierto por los frames base.
 
+**Dudas abiertas:**
+
+- ¿Qué nivel concreto del gráfico 15m es el PDM del 'esquema de antes'? Ninguno de los dibujos visibles (rango, herramienta de posición, líneas de objetivo/stop) está etiquetado como PDM.
+
 ### c-0043
 
 **Statement:** Vamos a ir directamente a buscar Power 3 con algún rango pendiente a favor de la primera [ASR].
@@ -618,6 +674,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001045.png|f-001045]]
 
 **Notes:** Tras constatar que el PDM no se toca, el plan narrado es ir directo a buscar un Power of 3 con rango pendiente a favor. 'De la primera' queda literal: no está claro el referente.
+
+**Dudas abiertas:**
+
+- 'A favor de la primera': ¿de la primera qué (hora, vela, dirección o entrada del esquema previo)?
+- 'A favor de la primera': ¿de la primera qué (dirección, vela, hora)?
 
 ### c-0044
 
@@ -634,6 +695,11 @@
 **Visual hint:** 17:38 — gráfico de 1h con dos zonas contrastadas: punto sin rango a favor vs punto con rango a favor donde replantearse comprar
 
 **Notes:** Regla con negación explícita (no comprar sin rango a favor). Frame base frames/f-001059.png (10:59) verificado visualmente: gráfico EURUSD 1h con rango rectangular dibujado y el precio dentro rompiendo hacia arriba; respalda el contexto del rango narrado, pero la sustancia de la claim es la regla dicha, por eso instructor_statement.
+
+**Dudas abiertas:**
+
+- Deícticos 'aquí' (dos puntos distintos del gráfico de 1h).
+- Localización exacta de los dos deícticos 'aquí' (punto sin rango a favor vs punto con rango a favor) en el gráfico de 1h; f-001059 corrobora el contexto general (rango dibujado + ruptura al alza) sin fijar los dos puntos concretos.
 
 ### c-0045
 
@@ -839,6 +905,12 @@
 
 **Notes:** La numeración ('el 2') pertenece a marcas del gráfico no recuperables desde el transcript.
 
+**Dudas abiertas:**
+
+- Qué es exactamente 'el 2' (low numerado / segundo rango del ejemplo).
+- Cuál de los dos pequeños segmentos horizontales de f-001320 corresponde a la entrada alternativa ('este').
+- Qué es exactamente 'el 2' (low numerado / segundo rango del ejemplo): ninguna marca numérica visible en f-001317 ni f-001320.
+
 ### c-0058
 
 **Statement:** Para mí la entrada no tiene mucha mucha importancia; lo que es muy importante es saber dónde está el DOL [ASR: 'doll'] e intentar pillar el momento, lo que significa tener los rangos a favor, no operar cuando están en contra.
@@ -890,6 +962,11 @@
 **Visual hint:** 23:37 — Turtle Soup ocurrido arriba del gráfico en una hora de ausencia, y el short ideal inalcanzable señalado
 
 **Notes:** Nexo explícito ('por lo tanto'). Frame base f-001359.png (13:59) verificado: gráfico EURUSD 1h con rango rectangular dibujado y velas alcistas rompiendo por la parte superior; respalda el escenario del short que se escapa por arriba, pero no permite confirmar cuál mecha es el Turtle Soup, por eso instructor_statement.
+
+**Dudas abiertas:**
+
+- 'Delante de Asia': ¿'durante (la sesión de) Asia' u otra lectura?
+- 'Delante de Asia': ¿'durante/antes de (la sesión de) Asia' u otra lectura? El propio instructor dice después (s-001639) 'normalmente no estoy acostumbrado yo a que pasen ante Asia', lo que sugiere lectura temporal, pero el frame no lo desambigua.
 
 ### c-0062
 
@@ -953,6 +1030,12 @@
 
 **Notes:** La última frase continúa en el segmento de frontera s-001500 (contexto-posterior, min 15): '...buena entrada si se ha ido ya del rango...'. Verbo garble 'intentó': probablemente 'intento' (yo) o 'intenta' (impersonal).
 
+**Dudas abiertas:**
+
+- Verbo 'intentó/intento/intenta' en la frase final (s-001500): el frame no permite desambiguar.
+- Verbo 'intentó/intento/intenta' en la frase final.
+- 'En orden lo que sea': ¿'en el orden que sea'?
+
 ### c-0066
 
 **Statement:** Para tener una buena entrada le gusta que el precio no haya salido del rango (que esté dentro del rango, arriba o abajo); si el precio ya se ha ido del rango, intenta no entrar mucho.
@@ -989,6 +1072,13 @@
 
 **Notes:** Frame verificado (f-001559, seg. 15:59): gráfico EURUSD 5M con rango dibujado y croquis entrada/stop en la zona de ~03:00-04:00; el frame ancla el referente visual del rango de 5m y la zona de las 3.
 
+**Dudas abiertas:**
+
+- ¿'a las 3' se refiere a la hora clave de 3 a.m. del curso o a otro referente?
+- ¿'el sub de una hora [ASR]' = el Turtle Soup de la hora, el subtimeframe horario u otro término? Ningún frame resuelve la palabra dicha.
+- ¿'a las 3' = hora clave 3:00 NY del curso? El frame muestra el rango de 5m formado en la zona 03:00-04:00 del eje (coherente), pero la equivalencia con la 'hora clave 3' del glosario queda como inferencia contextual, no como respaldo literal.
+- ¿'el sub de una hora [ASR]' = el subtimeframe de la hora (5m) u otro término?
+
 ### c-0069
 
 **Statement:** Ha notado que su win rate es mejor y todo va mejor si no intenta llegar tan a la perfección y, en su lugar, literalmente pilla 'el doble [ASR]' y pilla el momento, sin obsesionarse con si es el punto justo o va a quedar un poco antes de llegar al 'doble [ASR]'.
@@ -1000,6 +1090,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-001543|15:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-001547|15:47]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-001556|15:56]]
 
 **Notes:** TERM_DISAMBIGUATION_REQUIRED: 'el doble' es garble ASR; candidatos: DOL (objetivo/liquidez al que va el precio, referente de caps 2-3) vs 'el doble' literal (doble techo). Palabra dicha preservada, sin normalizar.
+
+**Dudas abiertas:**
+
+- ¿'el doble' = DOL (objetivo/liquidez) o 'el doble' literal (doble techo/suelo)? El contexto ('antes de llegar al doble', proyección hacia el objetivo visible en f-001536/f-001559) es compatible con DOL pero no lo prueba literalmente.
+- ¿'el doble' = DOL (objetivo/liquidez) o 'el doble' literal?
 
 ### c-0070
 
@@ -1055,6 +1150,11 @@
 
 **Notes:** Expectativa del instructor sobre comportamiento por sesiones; 'rango pendiente' es término del glosario (dicho literal).
 
+**Dudas abiertas:**
+
+- ¿'ante Asia [ASR]' = 'antes de Asia' o 'en Asia'? El contexto (s-001616a 'antes de llegar a Asia') favorece 'antes de Asia'; requiere confirmación de audio.
+- ¿'ante Asia [ASR]' = 'antes de Asia' o 'en Asia'?
+
 ### c-0074
 
 **Statement:** Nuevo ejemplo de entradas: en 'el tema vallas [ASR]' ya no está entrando, se limita solo a las entradas; en el rango de 12 horas tienen 'el doble [ASR]' ahí arriba (como veis); bajando a 8 horas tienen otro rango que se puede marcar como objetivo, y el tema es ir sacando profits.
@@ -1068,6 +1168,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001659.png|f-001659]]
 
 **Notes:** Segmento largo 16:51-17:24 (cruza la frontera min 16→17). Frame verificado (f-001659, seg. 16:59): gráfico EURUSD 12h (720M) con nivel horizontal marcado en los máximos (~1,16148), coherente con 'el doble ahí arriba'. 'vallas [ASR]' = bias según glosario (contexto: 'estoy limitándome solo en las entradas' lo confirma).
+
+**Dudas abiertas:**
+
+- ¿'el doble' = DOL (objetivo/liquidez) o 'el doble' literal?
 
 ### c-0075
 
@@ -1095,6 +1199,11 @@
 
 **Notes:** Frame verificado (f-001759, seg. 17:59): gráfico EURUSD 2h (120M) con rangos anidados dibujados, visualiza la compresión por TFs descendentes.
 
+**Dudas abiertas:**
+
+- TERM_DISAMBIGUATION_REQUIRED: ¿'el tag del súper [ASR]' = 'el doble del superior', 'el tag' literal (tocar/etiquetar un nivel) u otro término? Nota de revisión: el referente visual (f-001802, 18:02.5) es la zona de mínimos/fondo (~1,078) del rango en 2h, no el objetivo alcista de 12h (1,16148), lo que debilita la hipótesis 'DOL del TF superior arriba'; se requiere audio de mejor calidad o confirmación del instructor.
+- TERM_DISAMBIGUATION_REQUIRED: ¿'el tag del súper [ASR]' = 'el doble del superior' (DOL del TF superior), 'el techo del superior' u otro término?
+
 ### c-0077
 
 **Statement:** En 15 minutos se forma el rango de aquí abajo y esa es la entrada ideal; si entrabas en ese rango, así de perfecto se podía pillar este movimiento.
@@ -1120,6 +1229,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001833.png|f-001833]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-001859.png|f-001859]]
 
 **Notes:** Statement corregido por el MINUTE_REVIEWER (integración 2026-10-19). Antes: Entrando en ese rango, él habría entrado quizá a esperar el order block, con take profit ahí abajo; mira lo que podías llegar a conseguir ese día si utilizabas esta forma de entrar.
+
+**Dudas abiertas:**
+
+- ¿Dijo el instructor 'take profit aquí arriba' (y el ASR registró 'abajo'), o se refería al stop / a esperar el order block abajo? Los frames no permiten desambiguar la palabra dicha.
 
 ### c-0079
 
@@ -1163,6 +1276,11 @@
 
 **Notes:** London = sesión de Londres.
 
+**Dudas abiertas:**
+
+- ¿'una hora que ya no es mía' = franja horaria fuera de su horario operativo? cuál (no resoluble con los frames del minuto)
+- ¿'una hora que ya no es mía' = franja horaria fuera de su horario operativo? cuál
+
 ### c-0082
 
 **Statement:** En una hora tenemos un rango en contra 'para reiniciado [ASR]' y todo esto es muy choppy; a lo mejor tenías la primera compra en este rango bullish hasta llegar ahí arriba, y eso seguramente habría sido un 'break [ASR]'.
@@ -1178,6 +1296,12 @@
 **Visual hint:** 19:26 — gráfico de 1h con el rango en contra (choppy) y el rango bullish de la primera compra marcados
 
 **Notes:** Los frames base de min 19-20 muestran 4h/1h en otros momentos; el instante exacto 19:26 no está en frames base, por eso visual_hint en vez de cita de frame.
+
+**Dudas abiertas:**
+
+- ¿'break [ASR]' = break even (sugerido por s-001944 y glosario) o rotura del rango?
+- ¿'break [ASR]' = break even (cf. s-001944) o rotura del rango?
+- ¿'para reiniciado [ASR]' = 'ya reiniciado' o 'pendiente de reiniciar'?
 
 ### c-0083
 
@@ -1242,6 +1366,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-002014|20:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-002021|20:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-002028|20:28]]
 
 **Notes:** s-002014 llega parcialmente garbled por ASR ('para ir alguna algo pasó').
+
+**Dudas abiertas:**
+
+- Contenido exacto de s-002014 (ASR ilegible)
+- Contenido exacto de la cola de s-002014 (ASR: 'para ir alguna algo pasó')
 
 ### c-0088
 
@@ -1365,6 +1494,13 @@
 
 **Notes:** s-002255 llega muy garbled ('entrada de tarde supa que ideal o del orden block'); el instructor se autocorrige ('me liado') en s-002313. PDM según glosario: low del rango.
 
+**Dudas abiertas:**
+
+- Sentido de 'que ideal' en s-002255
+- Sentido exacto de 'que ideal' en s-002255 (posible 'vale?' u otro garble); no resuelto sin audio de mayor calidad.
+- Termino exacto de 'tarde supa' [ASR] en s-002255: el contexto del video (s-002402/s-002424, 'Tartel Sub/Tartel Soup') sugiere Turtle Soup, pero el token garbled del segmento no es concluyente por si solo.
+- Término exacto de 'tarde supa' [ASR] (¿Turtle Soup?)
+
 ### c-0097
 
 **Statement:** Si estás buscando shorts y ves que el precio sube, quieres que ese nivel (el PDM) se respete para bajar; se vería dibujando una mecha.
@@ -1404,6 +1540,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-002359.png|f-002359]]
 
 **Notes:** 'el DM30' [ASR] en contexto de confirmación entre temporalidades sugiere 'el de M30' (gráfico de 30 minutos); no se normaliza. | Statement corregido por el MINUTE_REVIEWER (integración 2026-10-19). Antes: A veces en 15 minutos se te puede formar esto y puedes tener dudas porque en 4 horas el precio aún no te ha cerrado; puedes esperar un poco más de confirmación, por ejemplo que 'el DM30' [ASR] esté así, que se ve muy claro.
+
+**Dudas abiertas:**
+
+- 'el DM30' [ASR]: ¿'el de M30' u otro término (¿PDM de 30)?
 
 ### c-0100
 
@@ -1465,6 +1605,10 @@
 
 **Notes:** TERM_DISAMBIGUATION_REQUIRED: 'el doble' [ASR], candidatos DOL (objetivo/liquidez del rango diario o 12h, referente de caps. 2-3) vs DXY (índice del dólar, no dicho en el curso procesado); el contexto (marcar un nivel del diario/12h para salir) favorece DOL. No se normaliza.
 
+**Dudas abiertas:**
+
+- Confirmar si 'el doble' = DOL (objetivo de liquidez del diario/12h)
+
 ### c-0104
 
 **Statement:** Entrada long de la sesión anterior (Londres): el 'Tartel Soup' [ASR] en una hora queda abajo y es para tomar la compra; se veía también en otras temporalidades: en 4 horas se ve cómo reinicia ese rango haciendo el 'Tartel Soup' justo abajo, y en 3 horas lo mismo.
@@ -1523,6 +1667,11 @@
 
 **Notes:** Deíctico: el contexto de frontera (s-002443, minuto 24) hablaba de 'marcar el doble antes, que era el diario' — 'el doble' puede ser garble de DOL (no normalizar). La corrección parece referirse a qué gráfico usar para ese nivel.
 
+**Dudas abiertas:**
+
+- Residual: si 'el doble' [ASR] de s-002443 es DOL (nivel/liquidez); f-002505 apoya la lectura de nivel previo (línea 1,12481 sobre el 12h), pero la palabra dicha no es normalizable desde imagen
+- ¿Mejor que el diario para qué exactamente: marcar el nivel/DOL previo o el objetivo? (deíctico de frontera)
+
 ### c-0108
 
 **Statement:** No hace falta que [este] se complete, porque estamos alcistas y ya se nos forma un rango a favor.
@@ -1536,6 +1685,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-002529.png|f-002529]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/frames/f-002536.png|f-002536]]
 
 **Notes:** Nexo causal dicho ('¿por qué? porque estamos alcistas'). Referente de 'este' sin resolver; candidatos: el rango marcado o el Turtle Soup en 2h.
+
+**Dudas abiertas:**
+
+- Referente de 'no hace falta que complete este' (s-002528): ¿el rango, el Turtle Soup o el movimiento en 2h?
+- Referente de 'no hace falta que complete este' (s-002528): ¿el rango, el Turtle Soup en 2h u otro elemento? f-002529 (3h) y f-002536 (2h) no lo desambiguan
 
 ### c-0109
 
@@ -1565,6 +1719,11 @@
 
 **Notes:** 'Vamos a acabar el Entry Model que sería aquí' — ambiguo entre 'terminar de explicar el Entry Model' y 'la salida completa el Entry Model'. Fragmento de s-002610 'que es este año tanto este' es garble/deíctico del gráfico.
 
+**Dudas abiertas:**
+
+- Lectura exacta de 'vamos a acabar el Entry Model que sería aquí' (s-002555/s-002557)
+- Lectura exacta de 'vamos a acabar el Entry Model que sería aquí' (s-002555/s-002557): 'terminar de explicar el Entry Model' vs 'la salida completa el Entry Model'
+
 ### c-0111
 
 **Statement:** En pantalla, al explicar la gestión por 30 minutos, se muestra el gráfico de EURUSD en 30 minutos con un rango sombreado (azul) y una zona gris en los mínimos; el precio cotiza ~1,1175, en la parte baja.
@@ -1592,6 +1751,12 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-002610|26:10]]
 
 **Notes:** 'tulón' es garble sin resolver; candidatos fonéticos p.ej. 'tu long'; NO normalizar. La temporalidad de referencia para el objetivo en el ejemplo es 12 horas.
+
+**Dudas abiertas:**
+
+- Significado de 'tulón' (s-002610)
+- Fragmento 'que es este año tanto este' (s-002610)
+- Referente exacto de '12 horas' en s-002610: ¿objetivo de la temporalidad de 12h o garble de '1-2 horas'?
 
 ### c-0113
 
@@ -1628,6 +1793,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch04-entradas/transcript#^s-002646|26:46]]
 
 **Notes:** Nexo causal dicho ('lo que significa que'). La frase previa 'te toma objetivo más a las 5 te abre por arriba' (s-002646) está parcialmente garbleada.
+
+**Dudas abiertas:**
+
+- Lectura exacta de 'te toma objetivo más a las 5 te abre por arriba' (s-002646)
 
 ### c-0116
 

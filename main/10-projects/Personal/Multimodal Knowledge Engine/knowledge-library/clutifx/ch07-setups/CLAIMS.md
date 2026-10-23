@@ -29,6 +29,10 @@
 
 **Notes:** El instructor se corrige en directo (s-000053): nombra 'la una' y corrige a 'la vela de las 17'; velas resultantes: 21, 17 y 1.
 
+**Dudas abiertas:**
+
+- El lienzo subyacente de TradingView muestra 'EURUSD · 1h / 60M' (f-000059, f-000111) mientras el instructor describe un escenario de 4 horas: parece un dibujo esquemático sobre un lienzo de 1h. No afecta al claim (las velas 21/17/1 quedan verificadas por las etiquetas 2100/1700/0100), pero queda registrado por si la documentación llegara a afirmar que el gráfico en pantalla es de 4h.
+
 ### c-0003
 
 **Statement:** La vela de las 1 es la vela que operamos nosotros en London.
@@ -56,6 +60,12 @@
 **Visual hint:** 01:42 — esquema en curso: rango objetivo y zona de entrada; anotación bajo la vela 0100 aparece ~1:30-1:42
 
 **Notes:** 'esta R' es deíctico al gráfico; candidato 'este rango'.
+
+**Dudas abiertas:**
+
+- Confirmar por audio si 'esta R' = 'este rango': el ASR escribe 'esta R'; preservada como dicha.
+- El deictico 'esta R' no es confirmable como rango/flecha dibujada: ningun frame verificado del minuto (78s, 90s, 102s, 119s) muestra una flecha literal hacia el objetivo.
+- ¿'esta R' = 'este rango'? Verificar audio.
 
 ### c-0005
 
@@ -135,6 +145,11 @@
 
 **Notes:** 'target sub' → Turtle Soup (garble conocido del curso).
 
+**Dudas abiertas:**
+
+- Confirmar en audio la variante exacta del garble ('target sub'); el context pack la lista como variante conocida de Turtle Soup (lectura probable, no confirmada por audio).
+- ¿'target sub' = Turtle Soup? Lectura probable por contexto; verificar audio.
+
 ### c-0011
 
 **Statement:** Le gustan los gráficos de 4 y de 6 horas 'porque es fácil como para dividir las sesiones'.
@@ -198,6 +213,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-000331.png|f-000331]]
 
 **Notes:** s-000331 añade 'en este caso el setup sería más claro' — por contexto (sin expansión) cabría esperar 'menos claro'.
+
+**Dudas abiertas:**
+
+- s-000331: ¿'el setup sería más claro' (tal como lo transcribió el ASR) o 'menos claro' (lectura que sugiere el contexto: días de noticias, vela de London sin expansión, 'mejor evitar London' en s-000342)? Requiere re-escucha de audio; f-000331 sólo muestra el esquema dibujado y no resuelve la palabra hablada. Mientras no se resuelva, no publicar ese fragmento como claim independiente.
+- s-000331: ¿'el setup sería más claro' o 'menos claro'? Verificar audio.
 
 ### c-0016
 
@@ -269,6 +289,10 @@
 
 **Notes:** Hedge: 'a lo mejor'.
 
+**Dudas abiertas:**
+
+- Referente visual del deíctico 'aquí' en s-000429 (punto del esquema del escenario 2): no verificado con frame de ese instante (~00:04:30); no afecta al veredicto porque el statement es fiel a lo dicho.
+
 ### c-0022
 
 **Statement:** 'Este sería el segundo escenario'; después va a explicar 'partes más concretas de cada caso'.
@@ -293,6 +317,10 @@
 
 **Notes:** Deíctico 'estas dos velas' refiere al gráfico dibujado en ese momento.
 
+**Dudas abiertas:**
+
+- El par exacto al que refiere el deíctico 'estas dos velas' (s-000456) no es 100% resoluble desde stills: las candidatas más visibles son las dos velas 4H rotuladas '1700' y '2100' (f-000459/f-000502), pero el esquema muestra también una tercera vela blanca intermedia con mecha superior larga y la vela diaria; confirmar con reproducción continua sólo si el integrador necesita el referente exacto.
+
 ### c-0024
 
 **Statement:** En la vela de London de este tercer escenario, lo que hay que esperar es que se cree un rango pendiente para poder ir hacia nuestro 'rol' [ASR].
@@ -304,6 +332,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000501|05:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000506|05:06]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000456|04:56]]
 
 **Notes:** 'rol' → candidato principal: DOL (objetivo); en el mismo dibujo s-000518 dice 'dol' literal.
+
+**Dudas abiertas:**
+
+- ¿'rol' = DOL? Contexto apunta a DOL; verificar audio.
+- ¿'rol' = DOL? El contexto del mismo dibujo apunta a DOL ('dol' literal en s-000518, 'gol' en s-000632, 'Dole' en s-000755), pero el ASR no permite confirmar la palabra efectivamente dicha; requiere verificacion de audio.
 
 ### c-0025
 
@@ -397,6 +430,11 @@
 
 **Notes:** 'tarde subía' → Turtle Soup; 'el todo claro' — candidato principal 'el DOL claro' (cf. s-000518 'dol' literal, s-000632 'gol').
 
+**Dudas abiertas:**
+
+- ¿'el todo claro' (s-000626) = 'el DOL claro'? TERM_DISAMBIGUATION pendiente de confirmar con audio; contexto de minuto (s-000518 'dol' literal, s-000632 'gol') apoya DOL objetivo. El integrador decide si resuelve o queda abierto.
+- ¿'el todo claro' = 'el DOL claro'? TERM_DISAMBIGUATION; verificar audio.
+
 ### c-0032
 
 **Statement:** Si vemos que tenemos un 'gol' [ASR] claro al que aún no hemos llegado, y nos abre ahora 'la vida de London' [ASR], lo que vamos a hacer es esperar un rango a favor nuestro para llegar hasta el gol con nuestra vela.
@@ -408,6 +446,12 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000632|06:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000638|06:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000643|06:43]]
 
 **Notes:** 'gol' → candidato DOL; 'la vida de london' → candidato 'la vela de London'.
+
+**Dudas abiertas:**
+
+- ¿'gol' (s-000632/s-000643) = DOL? Contexto apoya DOL objetivo (s-000518 'dol' literal; resumen 'llegar directamente al Dole' en s-000755), sin confirmación de audio.
+- ¿'gol' = DOL? ¿'la vida de london' = 'la vela de London'? Verificar audio.
+- ¿'la vida de london' (s-000638) = 'la vela de London'? Preservado dicho; confirmar audio.
 
 ### c-0033
 
@@ -425,6 +469,11 @@
 
 **Notes:** 'para entrar ya' es literal en el ASR; por contexto + 'lo que no vamos a querer es entrar por aquí arriba' se entiende como advertencia contra entrar ahí.
 
+**Dudas abiertas:**
+
+- ¿'red flag para entrar ya' (s-000657) = red flag que impide entrar ya (no entrar)? La segmentación ASR corta 'ya vais / a ver en el vídeo'; s-000704 ('lo que no vamos a querer es entrar por aquí arriba') apoya la lectura de advertencia; confirmar audio.
+- ¿'red flag para entrar ya' = red flag que impide entrar ya? El contexto posterior (s-000704) apoya lectura de advertencia; verificar audio.
+
 ### c-0034
 
 **Statement:** Ante ese caso, 'ya sería más ideal' esperar a ver si en New York hace algo así: tomando ese 'tarde su' [ASR] — ese low — y luego reacciona ('a la vela de york' [ASR]) finalmente a tomar el objetivo.
@@ -441,6 +490,12 @@
 
 **Notes:** s-000715 sale garbleado ('reacciona a la vela de york iba finalmente a tomar el objetivo'); reconstrucción mínima por contexto.
 
+**Dudas abiertas:**
+
+- s-000708: 'este lo' → ¿'este low'? Verificar audio.
+- s-000715: lectura exacta del garble 'reacciona a la vela de york iba finalmente a tomar el objetivo' — ¿'y luego reacciona y la vela de NY va finalmente a tomar el objetivo'? Verificar audio.
+- s-000715: ¿'y luego reaccione y finalmente vaya a tomar el objetivo'? ¿'vela de york' = New York / su vela? Verificar audio.
+
 ### c-0035
 
 **Statement:** Si están los rangos en contra no vamos a operar: vamos a esperar a tener los rangos a favor para poder llegar hasta el [palabra final no resuelta en ASR; candidato DOL por contexto] (frase truncada en el ASR).
@@ -452,6 +507,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000723|07:23]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000727|07:27]]
 
 **Notes:** s-000727 termina 'para poder llegar hasta el' (truncado); por contexto: gol/DOL.
+
+**Dudas abiertas:**
+
+- Palabra final truncada en s-000727 ('hasta el …'): ¿gol/DOL?
+- s-000727: ¿el audio dice 'hasta el DOL, vale'? No resoluble por transcript; confirmar con audio (briefing del Manager apunta a DOL literal en esta zona).
 
 ### c-0036
 
@@ -466,6 +526,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-000759.png|f-000759]]
 
 **Notes:** 'hoy' = día de la grabación. 'gol' → DOL; 'tarde el sur' → Turtle Soup. Hedges: 'normalmente', 'a veces', 'como mucho', 'a lo mejor'.
+
+**Dudas abiertas:**
+
+- s-000743: ¿'gol' = DOL? Coherente con s-000755 ('Dole') y con s-000816 ('si llegamos y el Dolly está tomado, es la peor situación' — mismo caso DOL-ya-completado antes de London); verificar audio.
+- ¿'gol' = DOL? Contexto (objetivo completado antes de London) apunta a DOL; verificar audio.
 
 ### c-0037
 
@@ -493,6 +558,11 @@
 
 **Notes:** 'Tartel Soup' → Turtle Soup; 'Dole' → candidato DOL (s-000518 'dol' literal en este capítulo; s-002110 'DOL' literal más adelante).
 
+**Dudas abiertas:**
+
+- s-000755: ¿'Dole' = DOL? Candidato fuerte por coherencia interna del capítulo: 'DOL' literal en s-002110, 'doll' literal en s-002455 y s-004334; verificar audio para confirmar la palabra dicha en este punto.
+- ¿'Dole' = DOL? Muy probable por coherencia con s-000518; verificar audio.
+
 ### c-0039
 
 **Statement:** Si al llegar a London el Dolly [ASR] está tomado, es la peor situación, porque normalmente no va a haber más expansiones si el Dolly [ASR] está tomado.
@@ -502,6 +572,11 @@
 **Tiempo:** [07:55–08:28]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000816|08:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000755|07:55]]
+
+**Dudas abiertas:**
+
+- 'Dolly' [ASR] → DOL vs DXY no se resuelve en este segmento; a favor de DOL: el briefing lista 'Dolly/el doble/dol' como candidatos DOL, y en el mismo bloque temático s-001333 dice 'el dol' literal en contexto equivalente ('acabar con el dol como el dol no está aún tomado'). La palabra dicha queda preservada; la adjudicación final del término corresponde al integrador.
+- 'Dolly' [ASR] → ¿DOL (objetivo/liquidez)? TERM_DISAMBIGUATION; en s-001333 del mismo bloque se dice 'el dol' literal
 
 ### c-0040
 
@@ -559,6 +634,10 @@
 
 **Notes:** El instructor usa 'patrón' en ambos sentidos: prohíbe usarlo como patrón y a la vez dice que en 4h el mismo patrón se repite muchas veces.
 
+**Dudas abiertas:**
+
+- s-000841 usa 'patrón' en doble sentido dentro del mismo segmento: prohíbe utilizarlo como patrón (c-0043) y a la vez describe que 'este mismo patrón' se repite muchas veces en 4h. La tensión es de la fuente, no del extractor; el integrador puede querer unificar terminología (p.ej. 'composición de velas', término que el propio instructor usa en s-001028: 'no me gusta llamar patrón pero sí como una composición de velas que se repite mucho').
+
 ### c-0045
 
 **Statement:** Entre los ejemplos en 4h: uno no se dio en London (se dio más tarde) y otro sí se dio en London.
@@ -585,6 +664,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-000946.png|f-000946]]
 
+**Dudas abiertas:**
+
+- 'Tartel Sub' → Turtle Soup
+- 'Tartel Sub' → Turtle Soup (garble ASR; preservar la palabra dicha)
+
 ### c-0047
 
 **Statement:** Seguramente a las 2 había alguna noticia por cómo se movió; a la 1 la vela abre por arriba y nos hace tarde el sub [ASR]; en 4 horas y en 6 horas también estaba pasando lo mismo.
@@ -599,6 +683,11 @@
 
 **Notes:** Hedge 'seguramente' preservado (s-000925).
 
+**Dudas abiertas:**
+
+- 'tarde el sub' → Turtle Soup
+- 'tarde el sub' → Turtle Soup (garble ASR; preservar la palabra dicha)
+
 ### c-0048
 
 **Statement:** En 4 horas (el ejemplo que estaba enseñando) hace tarde el sub [ASR] y va directamente al objetivo; aquí fue por la noticia: tenías que entrar aquí directamente o a las 3 tomar el short.
@@ -611,6 +700,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-000946.png|f-000946]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-000952.png|f-000952]]
 
+**Dudas abiertas:**
+
+- 'tarde el sub' → Turtle Soup
+- 'tarde el sub' → Turtle Soup (garble ASR; preservar la palabra dicha)
+
 ### c-0049
 
 **Statement:** Aquí ya no se vuelve a vender porque el primer objetivo está tomado y se está creando un rango alcista.
@@ -620,6 +714,10 @@
 **Tiempo:** [09:54–10:04]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000954|09:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000955|09:55]]
+
+**Dudas abiertas:**
+
+- La hora/vela exacta en que se dibuja el 'rango alcista' nuevo no es verificable con frames del minuto 9 (el instructor lo describe pero el dibujo no aparece en f-000952/f-000956/f-000959); si el integrador necesita ancla visual, extraer a partir de ~f-001000 (min 10).
 
 ### c-0050
 
@@ -631,6 +729,12 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001004|10:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000955|09:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001010|10:10]]
 
+**Dudas abiertas:**
+
+- 'doble'/'dos' → lectura adjudicada DOL (dos DOLs bajistas más abajo) por contexto de rango alcista + objetivo; no hay segunda mención literal en el minuto que la confirme.
+- 'doble'/'dos' → ¿DOL/DOLs (liquidez/objetivo) más abajo? TERM_DISAMBIGUATION (¿o doble mínimo?)
+- ASR 'no analizado' → lectura probable 'no, analizando'; no cambia el sentido del statement.
+
 ### c-0051
 
 **Statement:** En esta vela no se vende porque se tiene el rango alcista.
@@ -641,6 +745,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001010|10:10]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000955|09:55]]
 
+**Dudas abiertas:**
+
+- Garble 'viendo que había más del bajista' queda sin resolver (lectura probable: 'más doles del lado bajista'); no afecta la regla publicada.
+- continuación garbleada 'viendo que había más del bajista' sin resolver (¿'más doles del lado bajista'?)
+
 ### c-0052
 
 **Statement:** En este caso (seguir vendiendo hacia abajo) sería una continuación.
@@ -650,6 +759,10 @@
 **Tiempo:** [10:04–10:21]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001015|10:15]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001004|10:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001010|10:10]]
+
+**Dudas abiertas:**
+
+- ASR cortado ('pues el nivel que en este caso') deja leve ambigüedad sobre el referente exacto de 'este caso'; el contexto lo liga al escenario de seguir vendiendo con DOLs inferiores.
 
 ### c-0053
 
@@ -678,6 +791,13 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-001045.png|f-001045]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-001059.png|f-001059]]
 
 **Visual hint:** 10:45 — gráfico 4h: tarde sub formado a las 9 y rango de la vela de London yendo directo al objetivo
+
+**Dudas abiertas:**
+
+- 'a las 9' ¿vela de las 9? confirmar visualmente
+- 'tarde sub' → Turtle Soup
+- 'tarde sub' → Turtle Soup es lectura adjudicada por glosario/briefing, no mención literal del término; palabra dicha preservada con [ASR].
+- Confirmación visual de 'se forma exactamente a las 9': los frames disponibles no permiten identificar sin ambigüedad qué vela es 'las 9' (¿vela de las 9 o 'a las 9' de la tarde = vela de las 21?); en el minuto no hay zoom que la aísle.
 
 ### c-0055
 
@@ -719,6 +839,14 @@
 
 **Notes:** Frase truncada en el audio al pasar a la vela siguiente.
 
+**Dudas abiertas:**
+
+- 'tarde sub' → Turtle Soup
+- 'tarde sub' → Turtle Soup (lectura probable por contexto del capítulo, no dicha literal en este segmento)
+- la referencia 'en dos horas' del ASR no queda confirmada visualmente como TF 2h: el gráfico visible en f-001127 (11:27) es 1h (60M); podría referirse a la TF 2h o a un lapso de tiempo
+- qué ocurre exactamente 'entrando a las 3' en 2h queda incompleto en el audio
+- qué significa exactamente 'entrando a las 3' (¿vela/candle de las 03:00?) queda incompleto en el audio
+
 ### c-0058
 
 **Statement:** Se habría tenido que utilizar el pablo frida [ASR] de esta vela; simplemente entrar a las dos.
@@ -731,6 +859,13 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-001127.png|f-001127]]
 
+**Dudas abiertas:**
+
+- 'a las dos' ¿vela de las 2?
+- 'a las dos' → ¿vela de las 2 (02:00)?
+- 'pablo frida' → Power of 3 es candidata probable (s-000127 'Power 3' y s-003503 'Power of 3' literales en este capítulo), no resuelto en este segmento
+- 'pablo frida' → ¿Power of 3?
+
 ### c-0059
 
 **Statement:** Este día no sabe si había alguna noticia en GP [ASR] (¿GBP?); por eso el movimiento se dio antes.
@@ -740,6 +875,11 @@
 **Tiempo:** [11:30–11:34]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001130|11:30]]
+
+**Dudas abiertas:**
+
+- 'gp' → ¿GBP?
+- 'gp' → ¿GBP? Lectura probable pero no confirmable: el gráfico mostrado en este minuto es EURUSD, por lo que el referente de 'gp' no se resuelve visualmente
 
 ### c-0060
 
@@ -753,6 +893,13 @@
 
 **Notes:** Regla clave del bloque (TS en vela anterior de London → vela de London espera la expansión).
 
+**Dudas abiertas:**
+
+- 'tarde subía' → Turtle Soup
+- 'tarde subía' → Turtle Soup (lectura probable por contexto, no dicha literal en este segmento)
+- 'vela del circo' → sin resolver (¿'de la sesión'?); preservar la palabra dicha
+- 'vela del circo' → ¿'vela de la sesión'? sin resolver
+
 ### c-0061
 
 **Statement:** En este caso sí que la vela de London es la que hace el tarde su [ASR] (¿Turtle Soup?) y la vela que expande es la de New York.
@@ -765,6 +912,12 @@
 
 **Notes:** Contraste con b2-22: aquí el TS lo hace la propia vela de London.
 
+**Dudas abiertas:**
+
+- 'tarde su' → Turtle Soup
+- 'tarde su' → Turtle Soup: garble, no resoluble desde la fuente (mantener [ASR]).
+- Asignación visual del rol exacto de cada vela 4h (cuál hace el TS y cuál expande) no verificable desde un frame estático sin anotación; f-001159 (11:59) muestra el gráfico 4h del ejemplo con la expansión al final, pero no permite confirmar los roles.
+
 ### c-0062
 
 **Statement:** Haciendo zoom a London no pasa mucho; lo más interesante pasa justo a la 1, cuando [ASR 'aceptarse su', prob. 'hace el tarde su'].
@@ -776,6 +929,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001203|12:03]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001210|12:10]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-001214.png|f-001214]]
+
+**Dudas abiertas:**
+
+- 'cuando aceptarse su' → ¿'cuando hace el Turtle Soup'? garble sin resolver; la vela oscura en el alto del rango visible en f-001214 hace plausible la lectura pero no la confirma.
+- 'cuando aceptarse su' → ¿'cuando hace el Turtle Soup'? sin resolver
 
 ### c-0063
 
@@ -790,6 +948,12 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-001221.png|f-001221]]
 
 **Notes:** Hedge: ejemplo esquemático hecho 'a ciegas' (s-001226, s-001231). | Correction integrada: paréntesis reorganizado a apunte aparte (s-001226–s-001231)
+
+**Dudas abiertas:**
+
+- 'se deformen' → ¿'se formen'? garble sin resolver.
+- Referente exacto de 'esto solamente a otro target más abajo en otro target' (s-001226): ambiguo por ASR, no afirmar como parte firme del procedimiento.
+- dicho 'se deformen rangos' → ¿'se formen rangos'? sin resolver
 
 ### c-0064
 
@@ -826,6 +990,11 @@
 **Tiempo:** [13:05–13:33]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001305|13:05]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001315|13:15]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001322|13:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001327|13:27]]
+
+**Dudas abiertas:**
+
+- 'intratar del sub' → 'Intra Turtle Soup' sigue siendo lectura por contexto (glosario/curso), no dicha literal por el instructor en este segmento
+- 'intratar del sub' → Intra Turtle Soup
 
 ### c-0067
 
@@ -867,6 +1036,12 @@
 
 **Visual hint:** 14:38 — gráfico con objetivos de 5 días, 4 días (ya completado) y semanal marcados arriba
 
+**Dudas abiertas:**
+
+- en f-001438 las líneas de objetivo no están etiquetadas: qué línea exacta corresponde a 5d/4d/semanal descansa solo en lo dicho, no es visualmente distinguible
+- fragmento 'esta expansión de London que es de vida' (s-001414) garbleado sin resolver
+- garble 'esta expansión de londona que es de vida' (s-001414) sigue sin resolver; no afecta al contenido verificado del claim
+
 ### c-0070
 
 **Statement:** La vela de London es la vela de la 1; este caso es un poco distinto: se tiene un rango bearish para aquí, pero los objetivos bullish están aún intactos.
@@ -889,6 +1064,12 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001500|15:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001505|15:05]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001510|15:10]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001514|15:14]]
 
+**Dudas abiertas:**
+
+- 'fellow swing' → failure swing
+- 'tartel su pasi'/'tartel subida' → Turtle Soup
+- 'tartel su pasi/tartel subida/táctil sub' = Turtle Soup (candidato fuerte por variantes del curso); 'fellow swing' = failure swing (garble conocido ch06); confirmación de audio pendiente
+
 ### c-0072
 
 **Statement:** Pero en este día ya se tenía el táctil sub [ASR] (¿Turtle Soup?) hecho aquí; ese trato sube [ASR] ha hecho lo que sería el rango creado para ir hacia el objetivo.
@@ -898,6 +1079,10 @@
 **Tiempo:** [15:14–15:30]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001514|15:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001524|15:24]]
+
+**Dudas abiertas:**
+
+- 'táctil sub'/'trato sube' → Turtle Soup
 
 ### c-0073
 
@@ -922,6 +1107,10 @@
 **Visual hint:** 15:47 — vela de la 1 abriendo por debajo y compras marcadas hacia el primer y segundo objetivo alcistas
 
 **Notes:** Nexo causal 'lo que significa que' dicho explícitamente.
+
+**Dudas abiertas:**
+
+- Deícticos 'aquí arriba' del 1er/2º objetivo: corroborables con frame f-001547 si el Owner lo desea; no load-bearing para el enunciado
 
 ### c-0075
 
@@ -1075,6 +1264,11 @@
 
 **Notes:** 'trailer': palabra dicha preservada; lecturas candidatas en unresolved_questions.
 
+**Dudas abiertas:**
+
+- 'trailer' (s-001728): ¿garble de 'transición'? ¿término literal del curso? Contexto: vela de las 5 toma el alto de London tras tomar objetivo HTF.
+- Mantenida del extractor: 'trailer' (s-001728) — ¿garble de 'transición'? ¿término literal del curso? Contexto: vela de las 5 toma el alto de London tras tomar objetivo HTF. Requiere resolución del integrador; no sustituir en el statement.
+
 ### c-0088
 
 **Statement:** 'Tenemos un nuevo objetivo, pues en New York podemos buscar la reversal hacia ese objetivo'.
@@ -1131,6 +1325,11 @@
 
 **Notes:** s-001803 añade literal 'en una hora' sin resolver.
 
+**Dudas abiertas:**
+
+- 'en London en una hora' (s-001803): ¿'en la vela de la 1'? ¿expresión temporal? No queda claro por ASR.
+- 'en London en una hora' (s-001803): ¿'en la vela de la 1'? ¿expresión temporal? No queda claro por ASR; pendiente de resolución por el integrador.
+
 ### c-0093
 
 **Statement:** El trade de hoy en London 'no ha acabado resultando'; Libra (GBP) tenía objetivos más altistas [ASR] también.
@@ -1168,6 +1367,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-001859.png|f-001859]]
 
 **Notes:** 'target sub': garble ASR de 'Turtle Soup'. Literal de s-001841: 'es que esta vela expandiera para que bajó al menos'.
+
+**Dudas abiertas:**
+
+- Dirección de la expansión esperada (s-001841): literal 'para que bajó al menos' es dudoso por ASR; s-001852 menciona después 'el rango pendiente para ir para arriba'. La flecha hacia abajo en f-001859 no resuelve si es expectativa o resultado.
+- Dirección de la expansión esperada (s-001841): ¿'para abajo al menos'? El ASR no lo deja claro; s-001852 menciona después 'el rango pendiente para ir para arriba'.
 
 ### c-0096
 
@@ -1207,6 +1411,11 @@
 
 **Notes:** 'durante el hondo': garble sin resolver (¿'durante el fondo'?); preservada la palabra dicha.
 
+**Dudas abiertas:**
+
+- 'durante el hondo' (¿'durante el fondo'?) sin confirmación de audio
+- 'el hondo' (s-001902): ¿'el fondo'? ¿otro término? Contexto: reacción esperada tras el Turtle Soup.
+
 ### c-0099
 
 **Statement:** El trade de ayer: 'en London no comprábamos' — 'esto sigue siendo una inside candle'.
@@ -1240,6 +1449,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001922|19:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001927|19:27]]
 
 **Notes:** s-001927 empieza con el fragmento 'JP' (tras 'si vamos a ir'), probablemente parte de 'GBPJPY'.
+
+**Dudas abiertas:**
+
+- 'JP' probablemente GBPJPY (sin confirmar literal)
+- Fragmento 'JP' (s-001927): ¿par 'GBPJPY'? Verificar contra el frame del ejemplo.
 
 ### c-0102
 
@@ -1307,6 +1521,10 @@
 
 **Notes:** 'mismo tarde sobre' (literal 'mismo tarde sobre el mismo sitio'): garble ASR; lectura probable 'el mismo Turtle Soup en el mismo sitio'.
 
+**Dudas abiertas:**
+
+- 'mismo tarde sobre' = 'el mismo Turtle Soup' (candidato por contexto de refinado)
+
 ### c-0108
 
 **Statement:** A 2 horas 'podemos pintar este rango aquí para refinar un poco más aún'; a 1 hora 'tenemos este rango de aquí'.
@@ -1352,6 +1570,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002042|20:42]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002050|20:50]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002054|20:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002056|20:56]]
 
 **Notes:** Literal s-002050/s-002054: 'porque aquí todo se estaba un poco feo' — ambiguo por ASR (¿'se estaba viendo un poco feo'?).
+
+**Dudas abiertas:**
+
+- 'todo se estaba un poco feo' (¿'se estaba viendo'?) garble en nota
+- Razón dicha en s-002050/s-002054 ('todo se estaba un poco feo'): frase poco clara por ASR; verificar sentido con frame del gráfico de 15m.
 
 ### c-0112
 
@@ -1401,6 +1624,10 @@
 
 **Notes:** Contraste explícito del instructor: enfoque por rangos/DOL vs salida solo basada en tiempo; lo segundo sería más fácil, esto da la precisión máxima.
 
+**Dudas abiertas:**
+
+- Referente deíctico 'la de antes' (s-002120): el contexto apunta al enfoque basado solo en tiempo (salida en vela de las 5), pero el instructor no lo explicita en este minuto.
+
 ### c-0116
 
 **Statement:** Ejemplo del jueves (tomó un long): la sesión de London 'viene a ser el caso mismo de hacer el Tartel Sub' [ASR] 'durante London', pero 'estaba dicho' [ASR] 'en la vela anterior ya': 'esto fue un Intratartel Sub' [ASR].
@@ -1412,6 +1639,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002128|21:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002130|21:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002133|21:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002135|21:35]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002137|21:37]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002140|21:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002142|21:42]]
 
 **Notes:** 'Tartel Sub'/'Intratartel Sub': garbles ASR de 'Turtle Soup'/'Intra Turtle Soup'. Literal s-002140 'estaba dicho': posible 'estaba hecho' (cambia el sentido; preservada la palabra dicha).
+
+**Dudas abiertas:**
+
+- 'estaba dicho en la vela anterior' (s-002140): ¿'estaba hecho'? El contexto (Intra Turtle Soup ya materializado) sugiere 'hecho', pero se preserva lo dicho.
+- 'estaba dicho en la vela anterior' (s-002140): ¿'estaba hecho'? El contexto (Intra Turtle Soup) sugiere 'hecho'.
 
 ### c-0117
 
@@ -1427,6 +1659,10 @@
 
 **Notes:** 'Intratartel Sub': garble ASR de 'Intra Turtle Soup'.
 
+**Dudas abiertas:**
+
+- En f-002149 la línea horizontal dibujada visible está en el bajo (~1.3400); la línea del target no resulta inequívoca en el encuadre estático — la afirmación 'se ve claro' es instructor_statement, no visual_observation.
+
 ### c-0118
 
 **Statement:** 'Vamos a ir a otras temporadas' [ASR] 'y vais a ver que se ve igual de claro': en 12 horas, en 8 horas, en un día y en 4 horas se ve igual de claro el target — 'el target de ahí parecía bastante obvio'.
@@ -1441,6 +1677,10 @@
 
 **Notes:** 'temporadas': garble ASR de 'temporalidades'. Números de TF dichos: 12h, 8h, 1D, 4h.
 
+**Dudas abiertas:**
+
+- La corroboración visual cubre solo el tramo 8h (f-002159/f-002200); los cambios a 12h, 1D y 4h dentro de s-002151 no quedaron frameados individualmente (el claim es instructor_statement y no los requiere).
+
 ### c-0119
 
 **Statement:** 'Nosotros aquí nos levantaríamos a las 2 y media'; aclara: 'levantaríamos sería cuando yo entro a gráfico de 2 y media' (cuando entra al gráfico).
@@ -1452,6 +1692,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002213|22:13]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002218|22:18]]
 
 **Notes:** Hora dicha: 2:30. Rutina personal del instructor, no regla general.
+
+**Dudas abiertas:**
+
+- El referente exacto de '2 y media' (¿vela/gráfico de las 2:30, a.m. pre-London?) no se precisa en el dicho; la cita es fiel pero la hora queda como deíctico temporal sin resolver.
 
 ### c-0120
 
@@ -1503,6 +1747,10 @@
 
 **Notes:** 'lobo': garble ASR; lectura probable 'low' (toma del low). Conector 'significa que' explícito en el dicho.
 
+**Dudas abiertas:**
+
+- 'este lobo' (s-002248): ¿'este low'? Deíctico visual — verificar con frame del momento (22:48-22:53).
+
 ### c-0124
 
 **Statement:** 'Aquí es donde podríamos tomar el long hacia el objetivo' (cuando el rango pendiente queda creado en nuestra dirección).
@@ -1543,6 +1791,11 @@
 
 **Notes:** 'PowerCity': palabra dicha preservada; lectura candidata 'Power of 3' (dicho literal en otras partes del capítulo).
 
+**Dudas abiertas:**
+
+- 'PowerCity' (s-002308) sigue sin resolverse: es garble de audio, no de imagen — f-002308 (GBPUSD 4h con el trade) no contiene etiqueta ni elemento que resuelva el término. El candidato 'Power of 3' se apoya sólo en que se dice literal en otros puntos del capítulo (s-000127, s-003503); queda abierto para el integrador.
+- 'PowerCity' (s-002308): ¿'Power of 3'? Confirmar contra el frame de 23:08-23:13.
+
 ### c-0127
 
 **Statement:** 'Pero si en London ya estábamos posicionados, la entrada era más óptima' (que la oportunidad de la vela siguiente).
@@ -1566,6 +1819,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002320|23:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002324|23:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002329|23:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002333|23:33]]
 
 **Notes:** 'TAS del SUPE': garble ASR de 'Turtle Soup'. 'DOD': garble con candidatos; preservada la palabra dicha.
+
+**Dudas abiertas:**
+
+- 'DOD' (s-002329): candidato DOL no resoluble por frame (garble de audio). Refuerzo contextual para el integrador: el checklist literal de cierre dice '¿está el doll tomado?' (s-004334) y 'el doll' aparece literal en s-002455; el garble DOD de este minuto encaja con DOL/objetivo, pero la palabra dicha publicada sigue siendo la fuente.
+- 'DOD' (s-002329): ¿DOL (objetivo/liquidez)? Checklist de 3 del instructor: TS hecho + DOL en una dirección + rangos a favor.
 
 ### c-0129
 
@@ -1594,6 +1852,10 @@
 **Visual hint:** 23:50 — la vela de las 4 abre por debajo de la vela de las 3 y crea un rango de 15 minutos
 
 **Notes:** Conector 'por lo tanto' y 'nos da' explícitos en el dicho.
+
+**Dudas abiertas:**
+
+- La relación 'abre por debajo de la vela de las 3' es dicho del instructor (s-002350/s-002354): en el frame 15m no es legible de forma inequívoca la apertura de la vela de 4h contra la de las 3h, por lo que queda sustentada sólo por el transcript; no se solicita frame adicional porque el instructor no la muestra en otra pantalla dentro de este tramo.
 
 ### c-0131
 
@@ -1691,6 +1953,11 @@
 
 **Notes:** Garble 'doll': candidatos DOL (objetivo/liquidez) o DXY (índice); el contexto (objetivo diario arriba) apunta a DOL.
 
+**Dudas abiertas:**
+
+- 'doll' (s-002455): ¿DOL (objetivo/liquidez) o DXY (índice)? El contexto ('un objetivo diario para marcar el doll') y el referente visual (zona de precio sobre el gráfico GBPUSD como objetivo) apuntan a DOL, pero el instructor no lo desambigua explícitamente en este minuto; se mantiene abierta la TERM_DISAMBIGUATION anotada por el extractor.
+- Confirmar lectura de 'doll': ¿DOL o DXY? TERM_DISAMBIGUATION.
+
 ### c-0139
 
 **Statement:** El esquema se dibuja con una vela diaria y velas de cuatro horas (esta vez con velas alcistas: 'lo hacemos al revés' que los esquemas bajistas anteriores).
@@ -1747,6 +2014,10 @@
 
 **Notes:** Nexo causal ('¿Por qué? Porque') explícito en la fuente; hedge 'quizás' preservado.
 
+**Dudas abiertas:**
+
+- q-ch07-019 (OPEN, contradicción material): este claim dice 'quizás noticias a las 10' (s-002654) para el ejemplo NY-EUR 4h, pero la segunda explicación del mismo ejemplo (c-0181/c-0182, s-003457) dice 'noticia a las 8'; la hora no está adjudicada — no consumir ninguna de las dos como confirmada.
+
 ### c-0144
 
 **Statement:** Ese día (con la vela de New York abriendo tal cual tras el London Lunch) es donde se va a tener la expansión; este sería el caso donde se buscará la expansión en New York.
@@ -1795,6 +2066,11 @@
 
 **Notes:** 'A las 01' dicho literal; lectura probable 'a la 1' (vela de la 1).
 
+**Dudas abiertas:**
+
+- 'A las 01' lectura probable 'a la 1' (vela de la 1, NY); dicho literal '01'
+- Confirmar si 'a las 01' se refiere a la vela de la 1.
+
 ### c-0148
 
 **Statement:** Cómo esperar el reversal cuando el objetivo se completa durante London: que la vela de las 5 tome el load [ASR] de la vela anterior y cree un rango bullish después de completar un rango bearish; para ese día en New York se va a esperar una reversión.
@@ -1808,6 +2084,10 @@
 **Visual hint:** 28:30 — Esquema: vela de las 5 tomando el low de la vela anterior y creando un rango bullish
 
 **Notes:** 'load' = garble ASR; lectura probable 'low' (toma el low de la vela anterior).
+
+**Dudas abiertas:**
+
+- 'load' = low (garble; candidato fuerte por contexto)
 
 ### c-0149
 
@@ -1845,6 +2125,11 @@
 
 **Notes:** 'dole': garble — candidatos DOL (objetivo) o DXY (índice), TERM_DISAMBIGUATION; 'tardesub': lectura probable Turtle Soup.
 
+**Dudas abiertas:**
+
+- 'dole' = DOL (candidato fuerte: contexto de objetivo; DXY no visto en el capítulo) sin confirmación de audio
+- 'dole': ¿DOL o DXY? TERM_DISAMBIGUATION_REQUIRED.
+
 ### c-0152
 
 **Statement:** Algunas veces va a pasar que la vela de las 5 sea la que hace esto (el ASR recoge primero 'pocas veces' y el instructor reformula a 'algunas veces').
@@ -1881,6 +2166,10 @@
 
 **Notes:** 'logo' = garble ASR; lectura probable 'low' (toma el low).
 
+**Dudas abiertas:**
+
+- 'logo' = low (garble, candidato fuerte)
+
 ### c-0155
 
 **Statement:** Si la noticia se encuentra en esta vela (la de las 5), es más probable que esta vela sea la de la expansión.
@@ -1904,6 +2193,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002935|29:35]]
 
 **Notes:** Frase ASR comprimida ('lo mejor está así solamente power 3'); 'power 3' dicho literal = Power of 3 según contexto del curso.
+
+**Dudas abiertas:**
+
+- Confirmar qué describe exactamente 'solamente power 3' en el esquema (frame).
+- La frase ASR 'lo mejor está así solamente power 3' es comprimida; sentido reconstruido por contexto
 
 ### c-0157
 
@@ -1971,6 +2265,11 @@
 
 **Notes:** 'velas negras' = velas bajistas (por contraste con pintar velas alcistas); 'doll': candidatos DOL o DXY, el contexto apunta a DOL bajista.
 
+**Dudas abiertas:**
+
+- 'doll' = DOL (contexto de objetivo bajista; DXY no visto en el capítulo)
+- Confirmar lectura de 'doll' en este esquema contra frame.
+
 ### c-0163
 
 **Statement:** Se esperan los rangos y se va hacia el don [ASR].
@@ -1982,6 +2281,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003149|31:49]]
 
 **Notes:** 'don' = garble ASR; lectura probable 'DOL'. El segmento termina en 'se da de' (continúa en s-003158 con 'nivel'), sin resolver.
+
+**Dudas abiertas:**
+
+- 'don' = DOL (candidato por contexto)
+- 'don': ¿DOL?; frase final 'se da de nivel' sin resolver.
 
 ### c-0164
 
@@ -2031,6 +2335,11 @@
 
 **Notes:** 'el doble' palabra dicha en s-003215. | Re-adjudicación honesta en integración: sustancia hablada; f-003215 corrobora deícticos.
 
+**Dudas abiertas:**
+
+- 'el doble' = DOL (candidato fuerte por contexto de objetivo abajo)
+- 'el doble' [ASR]: ¿DOL (objetivo/liquidez) o DXY? Por contexto (nivel de precio abajo que funciona como target) lo probable es DOL.
+
 ### c-0168
 
 **Statement:** En ese caso a lo mejor ya no hay expansión ese día en New York; hay que esperar al día siguiente a que el precio vuelva a crear un rango bajista y pueda ir a por el objetivo.
@@ -2069,6 +2378,11 @@
 
 **Notes:** ASR literal: 'Pero en el 8, en 12 tenemos este' (¿objetivo en 8h y en 12h?).
 
+**Dudas abiertas:**
+
+- 'Pero en el 8, en 12 tenemos este' (¿objetivo en 8h y en 12h?) garble; 'el doble' = DOL candidato
+- 'el doble' [ASR]: ¿DOL o DXY? Por contexto (objetivo de precio abajo) lo probable es DOL.
+
 ### c-0171
 
 **Statement:** Primero, en 12 horas ya se ve cómo se crea un 'rango positivo' (palabra dicha) con la vela de las 5 de 12 horas.
@@ -2085,6 +2399,11 @@
 
 **Notes:** Preserva 'positivo' literal.
 
+**Dudas abiertas:**
+
+- 'rango positivo' en setup bajista: ¿'rango a favor'? palabra dicha preservada
+- Qué significa 'rango positivo' aquí: ¿alcista (bullish) o 'a favor' del setup bajista en curso?
+
 ### c-0172
 
 **Statement:** En 4 horas, a las 4 ocurre exactamente el último caso del esquema (el de los esquemas de New York enseñados antes); volviendo un segundo hacia atrás se ve que es exactamente eso lo que estaba haciendo.
@@ -2098,6 +2417,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-003336.png|f-003336]]
 
 **Visual hint:** 33:36 — 4h: vela de las 4 replicando el último caso del esquema NY
+
+**Dudas abiertas:**
+
+- 'a las 4': ¿vela de 4h que abre a las 4?
 
 ### c-0173
 
@@ -2120,6 +2443,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003351|33:51]]
 
 **Notes:** Dicho justo tras 'la expansión nos la da la vela de las 9'.
+
+**Dudas abiertas:**
+
+- Deíctico 'esta vela': ¿la vela en la que se crea el rango a favor (frente a esperar la vela de las 9)?
 
 ### c-0175
 
@@ -2160,6 +2487,11 @@
 **Visual hint:** 34:07 — objetivo diario marcado arriba en el gráfico (línea 'Felucion')
 
 **Notes:** 'Felucion' palabra dicha en s-003409.
+
+**Dudas abiertas:**
+
+- 'Felucion' [ASR] sin resolver: ¿nombre de herramienta/línea del gráfico, otra cosa? Contexto: objetivo diario marcado ahí arriba.
+- 'Felucion' sin lectura (¿etiqueta de la línea? ¿flat?) — requeriría audio
 
 ### c-0178
 
@@ -2211,6 +2543,12 @@
 
 **Notes:** Causal dicha: 'había una noticia aquí por esto pasó esto tan feo'.
 
+**Dudas abiertas:**
+
+- 'pechazo' [ASR] sin resolver: ¿pico/spike/mecha de noticia?
+- 'pechazo' sin lectura (¿'el precio'? ¿'pico'?)
+- q-ch07-019 (OPEN, contradicción material): este claim dice noticia 'a las 8' (s-003457), pero la primera explicación del mismo ejemplo NY-EUR 4h (c-0143, s-002654) dijo 'quizás noticias a las 10'; la hora no está adjudicada — no consumir ninguna de las dos como confirmada.
+
 ### c-0182
 
 **Statement:** La noticia fue a las 8; se entra en la vela de las 9 en el Power of 3 (dicho literal); después llega ya la noticia, que era importante — no recuerda cuál era, no sabe si era el CPI.
@@ -2222,6 +2560,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003457|34:57]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003500|35:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003503|35:03]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003504|35:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003507|35:07]]
 
 **Notes:** 'Power of 3' literal en s-003503. Hedges preservados ('no recuerdo cuál era, no sé si era el CPI').
+
+**Dudas abiertas:**
+
+- q-ch07-019 (OPEN, contradicción material): este claim dice 'la noticia fue a las 8' (s-003457), pero la primera explicación del mismo ejemplo NY-EUR 4h (c-0143, s-002654) dijo 'quizás noticias a las 10'; la hora no está adjudicada — no consumir ninguna de las dos como confirmada.
 
 ### c-0183
 
@@ -2248,6 +2590,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003518|35:18]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003519|35:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003522|35:22]]
 
 **Notes:** s-003522 ASR: 'yo de una forma temática'.
+
+**Dudas abiertas:**
+
+- 'temática' probablemente 'esquemática' (garble)
+- s-003522 'de una forma temática': ¿'de forma esquemática'?
 
 ### c-0185
 
@@ -2375,6 +2722,10 @@
 
 **Visual hint:** 37:01 — 8h: reinicio del rango bajista
 
+**Dudas abiertas:**
+
+- Deíctico 'este rango': ¿el rango bajista de 8h que se estaba viendo?
+
 ### c-0195
 
 **Statement:** En 12 horas no llega al final: al tener el rango alcista, ya se sabe que no todos los rangos bajistas tienen que completarse.
@@ -2400,6 +2751,11 @@
 **Visual hint:** 37:19 — vela de las 5 tomando el alto de London y bajando; objetivo alcista arriba
 
 **Notes:** Frase ASR ambigua: 'nos toma el alto de Londres y trae zona para abajo' (¿'echa zona para abajo'?, ¿'baja en zona'?).
+
+**Dudas abiertas:**
+
+- 'trae zona para abajo' frase ASR ambigua
+- Interpretación exacta de 'trae zona para abajo' en s-003719.
 
 ### c-0197
 
@@ -2452,6 +2808,11 @@
 **Visual hint:** 37:54 — low del movimiento marcado a las 8:40 en la vela de 15m
 
 **Notes:** ASR truncado en s-003754: 'es ya en la 15 minutos si...'.
+
+**Dudas abiertas:**
+
+- A qué 'vela' se refiere el 'final de vela' de s-003805 (¿15m? ¿1h 8:00-9:00?): frase truncada por ASR.
+- ASR truncado en s-003754 ('es ya en la 15 minutos si…')
 
 ### c-0201
 
@@ -2508,6 +2869,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003840|38:40]]
 
 **Notes:** Causal dicha: 'como pasa el failure swing, se te crea este rango de 4 horas'.
+
+**Dudas abiertas:**
+
+- Deíctico 'tú esperarías esto' (s-003840): ¿qué se esperaría en su lugar (¿continuación bajista)? Ambiguo.
 
 ### c-0205
 
@@ -2609,6 +2974,10 @@
 
 **Notes:** deíctico 'por aquí' sin resolución visual individual; la toma del trade queda asociada a la zona ya descrita (bajo de London Lunch).
 
+**Dudas abiertas:**
+
+- Deíctico 'por aquí' asociado a la zona descrita (bajo de London Lunch)
+
 ### c-0214
 
 **Statement:** Cómo sabías que en London no tenías que comprar: porque tú siempre quieres esperar a tener los rangos activos a tu favor antes del trato sub [ASR]; en London no tenías rango activo a favor. 'Esto es algo súper clave.'
@@ -2619,6 +2988,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004026|40:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004031|40:31]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004036|40:36]]
 
+**Dudas abiertas:**
+
+- 'trato sub' (s-004031): lectura probable 'Turtle Soup'
+
 ### c-0215
 
 **Statement:** En 6 horas, más de lo mismo: a partir de que la vela de London toma el low es cuando se puede comprar; la vela de New York crea el rango a favor/el pendiente otra vez — 'sería el intentar de su [ASR], pero a la vez crea este rango' y tienes tus compras para ir hacia ahí arriba.
@@ -2628,6 +3001,11 @@
 **Tiempo:** [40:36–40:57]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004036|40:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004042|40:42]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004051|40:51]]
+
+**Dudas abiertas:**
+
+- 'el intentar de su' (s-004051): ¿'el intento de Turtle Soup'?
+- 'el intentar de su' garble sin resolver
 
 ### c-0216
 
@@ -2661,6 +3039,10 @@
 
 **Visual hint:** 41:31 — vela de 1h que coincide con el rango de 8h marcado en el gráfico
 
+**Dudas abiertas:**
+
+- deíctico 'marcar este una hora' (s-004122): qué elemento exacto marca el instructor (¿la vela de 1h o el rango de 8h en TF de 1h?)
+
 ### c-0219
 
 **Statement:** 'Todas las velas cierran con el cuerpo justo ahí': 'esto no es casualidad, esto que está pasando aquí no es casualidad, es porque el precio va a ir a ese rango a completarlo'.
@@ -2685,6 +3067,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004145|41:45]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004152|41:52]]
 
+**Dudas abiertas:**
+
+- 'tártil sub' (s-004152): lectura probable 'Turtle Soup'
+
 ### c-0221
 
 **Statement:** Si entrabas a New York, tenías que utilizar 'el pablo sería [ASR]', alguna vela de una hora, para llegar hasta arriba.
@@ -2694,6 +3080,11 @@
 **Tiempo:** [41:52–42:02]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004152|41:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004158|41:58]]
+
+**Dudas abiertas:**
+
+- 'el pablo sería' (s-004152): lectura probable 'Power of 3' (dicho literal en s-000127/s-003503 de este capítulo)
+- 'el pablo sería' = Power of 3 (candidato; s-000127/s-003503 lo dicen literal en otros contextos)
 
 ### c-0222
 
@@ -2783,6 +3174,12 @@
 
 **Notes:** núcleo del capítulo.
 
+**Dudas abiertas:**
+
+- 'doll' del checklist: DOL (candidato fuerte: patrón del capítulo y del curso) — requiere audio para confirmación literal
+- 'el doll' (s-004334): ¿DOL (objetivo de liquidez) o DXY (índice)? TERM_DISAMBIGUATION abierta; por contexto del checklist ('tomado') la lectura probable es DOL
+- 'tardesub' (s-004334): lectura probable 'Turtle Soup'
+
 ### c-0230
 
 **Statement:** 'Yo creo que' solo haciéndote estas cuatro preguntas puedes determinar ya si tu vela va a ser la que manipula, la que distribuye, un reversal o una continuación.
@@ -2815,6 +3212,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004426|44:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004429|44:29]]
 
+**Dudas abiertas:**
+
+- 'ArtelSoup' (s-004426): lectura probable 'Turtle Soup'
+
 ### c-0233
 
 **Statement:** En el trade de ayer de la compra, no podías comprar hasta que en 8 horas no hacía el tarde su [ASR], por mucho que en temporalidades más bajas lo encontrases [garble ASR]; eso no pasó.
@@ -2826,6 +3227,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004437|44:37]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004439|44:39]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-004446|44:46]]
 
 **Visual hint:** 44:39 — trade de ayer: gráfico de 8h donde el TS era condición previa para comprar
+
+**Dudas abiertas:**
+
+- 'tarde su' (s-004439) y 'a contar de su' (s-004446): lectura probable 'Turtle Soup'
+- Fragmento s-004446 garbleado sin lectura
 
 ### c-0234
 

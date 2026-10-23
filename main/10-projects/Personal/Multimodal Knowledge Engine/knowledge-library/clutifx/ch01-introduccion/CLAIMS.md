@@ -69,6 +69,10 @@
 
 **Visual hint:** 01:21 — dibujo: identificar qué vela es 'probablemente bajista' y qué vela toma el extremo y cierra adentro
 
+**Dudas abiertas:**
+
+- Deíctico 'esta' (s-000121): el texto no precisa a qué vela se refiere; solo se resuelve viendo el dibujo.
+
 ### c-0007
 
 **Statement:** Ejemplo dibujado de rango bajista: 'es lo mismo pero al revés'; interviene 'probablemente una vela positiva' —'no tiene por qué, pero la mayoría de veces vais a ver que sí que es así'— y 'una vela negativa' —'tampoco tiene que ser negativa como tal'—; normalmente una vela toma el extremo de la vela anterior y crea el rango.
@@ -84,6 +88,10 @@
 **Visual hint:** 01:55 — dibujo: qué vela es la 'probablemente positiva' y cuál la 'negativa' en el ejemplo de rango bajista
 
 **Notes:** El instructor matiza dos veces que el color/dirección de las velas no es condición necesaria ('no tiene por qué', 'tampoco tiene que ser negativa como tal'), solo lo habitual.
+
+**Dudas abiertas:**
+
+- Deícticos 'esto de aquí', 'una vela positiva' y 'una vela negativa' (s-000155/s-000202): el texto no precisa qué vela es cada una; se resuelve viendo el dibujo.
 
 ### c-0008
 
@@ -162,6 +170,10 @@
 **Visual hint:** 04:01 — gráfico diario: secuencia de tomas del extremo y cierres dentro que definen el rango alcista
 
 **Notes:** La verbalización es entrecortada (toma / cierra dentro / parece por fuera / otra vez dentro); la secuencia exacta se ve en el gráfico.
+
+**Dudas abiertas:**
+
+- La correspondencia vela a vela de la secuencia verbalizada (toma extremo / cierra dentro / parece por fuera / fuera / sigue dentro) no es completamente asignable desde frames estáticos; la lectura global (mechas que prueban extremos y cierres dentro dentro de la caja diaria) sí queda confirmada.
 
 ### c-0014
 
@@ -249,6 +261,11 @@
 
 **Visual hint:** 05:24 — dibujo: el instructor señala el destino del precio ('para aquí') tras formarse el rango bajista
 
+**Dudas abiertas:**
+
+- 'Para aquí' (s-000524): el destino exacto no se verbaliza; solo se señala en el dibujo.
+- 'Para aquí' (s-000524): el destino exacto no se verbaliza; solo se señala en el dibujo. La línea a ~1,1516 (nivel del low de la vela previa, extendida a la derecha) es el candidato visual al 'nuevo objetivo', pero el vídeo no verbaliza el precio ni rotula la línea como 'objetivo'.
+
 ### c-0021
 
 **Statement:** Resumen de la importancia de los rangos: 'es asumir que los rangos que se nos van formando se van a completar' ('completamos un alcista, se nos forma uno bajista, completamos el bajista...').
@@ -299,6 +316,11 @@
 
 **Notes:** Término NO definido en este bloque; definición diferida explícitamente por el instructor.
 
+**Dudas abiertas:**
+
+- Deíctico 'este de aquí / abajo': la zona exacta del diario que el instructor señala como failure swing no es identificable en el texto ni de forma inequívoca en el frame base (múltiples zonas señalables en el 1D).
+- Deíctico 'este de aquí / abajo': qué ejemplo concreto del diario señala no es identificable en el texto.
+
 ### c-0025
 
 **Statement:** Regla del rango enunciada con el cuantificador 'normalmente': si el precio toma un extremo y cierra adentro, 'lo que va a hacer el precio es ir hacia el otro extremo'.
@@ -327,6 +349,11 @@
 
 **Notes:** Preserva la diferencia dicho/adentro: no todos los ejemplos mostrados cierran estrictamente adentro.
 
+**Dudas abiertas:**
+
+- Deíctico 'este': el frame acota el referente más plausible a la vela oscura del borde derecho de la caja (9-14 May '25), coherente con 'cierra un poco fuera', pero la identificación exacta no es 100% inequívoca desde el frame estático.
+- Deíctico 'este': qué vela exacta del ejemplo no es identificable en el texto.
+
 ### c-0027
 
 **Statement:** Afirma que esto se puede comprobar uno mismo en muchas temporalidades y que puede buscar muchos ejemplos; señala otro caso más ('este de aquí también') y aclara que lo mostrado 'es solo el diario, obviamente'.
@@ -336,6 +363,11 @@
 **Tiempo:** [06:47–07:01]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-000647|06:47]]
+
+**Dudas abiertas:**
+
+- Deíctico 'este de aquí también' (~06:50): rango adicional señalado no identificable en el texto; el claim, al ser instructor_statement, no depende de resolverlo.
+- Deíctico 'este de aquí también': rango adicional sin identificar en el texto.
 
 ### c-0028
 
@@ -445,6 +477,13 @@
 
 **Notes:** 'es cuando' es coincidencia temporal dicha por el instructor; NO se infiere causalidad.
 
+**Dudas abiertas:**
+
+- Deíctico 'aquí arriba': formación exacta no identificable en el texto.
+- El 'rango bearish' sobre Libra no está dibujado como caja en f-000826: solo se señala el high y se ve la vela de reversión (la caja dibujada en zona alta visible a 08:20-08:23 corresponde al panel XAUUSD).
+- Nexo exacto entre rango bearish en Libra y SMT no explicado aquí; tema SMT diferido.
+- Nexo exacto entre rango bearish en Libra y SMT no explicado en este minuto; tema diferido por el instructor (mantener).
+
 ### c-0037
 
 **Statement:** Ejemplo en Libra: rango bullish con 'este objetivo para hoy'; la vela 'cierra con fuerza' y 'no teníamos rango bajista', lo que — en palabras del instructor — 'ha hecho a la libra ir directamente hasta su objetivo'.
@@ -458,6 +497,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000834.png|f-000834]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000841.png|f-000841]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000844.png|f-000844]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-000848.png|f-000848]]
 
 **Notes:** Añade: 'lástima que llegó antes de que pudiésemos entrar en la sesión, pero el objetivo de Libra estaba ahí arriba'. 'Libra' = GBP (libra esterlina), argot del instructor.
+
+**Dudas abiertas:**
+
+- Nivel exacto del objetivo de Libra (1,36031 vs 1,36238 vs 1,37489) no determinable desde los frames disponibles.
 
 ### c-0038
 
@@ -549,6 +592,10 @@
 
 **Notes:** Definición introducida en capítulo introductorio; simétrica al rango pendiente pero en contra del objetivo. Normalización ASR sin marca (DV01-010, DOCVERIFY residual 2026-10-22): dicho "Pues que la siguiente vela abre por arriba"; publicado "cuando la siguiente vela abre por arriba" (conector editorial dentro de la cita). Sentido inequívoco; sin cambio de statement.
 
+**Dudas abiertas:**
+
+- La rotulación visual completa del caso reiniciado (renombrar/ajustar el diagrama copiado) culmina en s-001200 [12:00-12:05], ya en el minuto 12; dentro del minuto 11 el frame solo muestra la demostración en curso, sin contradecir el claim.
+
 ### c-0045
 
 **Statement:** Si esa vela 'abre, toma el high y nos cierra adentro', entonces 'lo que está pasando ahora es que se nos está formando un rango bajista'.
@@ -558,6 +605,10 @@
 **Tiempo:** [11:36–11:51]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001136|11:36]]
+
+**Dudas abiertas:**
+
+- En los frames de 11:45 y 11:59 el rango bajista aún no aparece rotulado como objeto terminado en pantalla (el texto visible sigue siendo 'RANGO PENDIENTE', perteneciente al diagrama anterior); la confirmación visual plena del diagrama reiniciado ocurre en el minuto 12 (s-001200).
 
 ### c-0046
 
@@ -570,6 +621,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001151|11:51]]
 
 **Notes:** ASR 'altista' normalizado a 'alcista' (sin segundo significado posible). Normalización ASR sin marca (DV01-010, DOCVERIFY residual 2026-10-22): dicho "altista"; publicado "alcista". Sentido inequívoco; sin cambio de statement.
+
+**Dudas abiertas:**
+
+- Deícticos 'este/este': se resuelven por contexto inmediato (pendiente = rango alcista a favor del objetivo; reiniciado = rango bajista), no por el texto literal.
+- Los deícticos 'este/este' dependen del gesto en vídeo: la lectura (izquierdo=alcista/pendiente, derecho=bajista/reiniciado) está respaldada por el frame 11:59 y por el contraste canónico de s-001231 (min12), pero no por el texto literal del segmento.
 
 ### c-0047
 
@@ -607,6 +663,12 @@
 
 **Notes:** 'Posible rango bajista': el hedge 'posible' es palabra dicha. Direcciones preservadas tal cual: reiniciado = abre por arriba (bajista); pendiente = abre en dirección del objetivo (alcista).
 
+**Dudas abiertas:**
+
+- 'doble' [ASR]: la lógica del pasaje ('en contra de' vs 'en dirección a', posesivo 'nuestro', y 'reiniciar antes de ir hacia el objetivo' en s-001205) favorece la lectura DOL (draw on liquidity / objetivo) sobre DXY (índice del dólar); este segmento no la confirma terminantemente. Las menciones posteriores a DXY/DXI (s-002146, s-002315) son contexto de SMT en otro minuto y no resuelven este uso.
+- La correspondencia exacta de 'un doble alcista' con el vocabulario canónico de la estrategia (p. ej. doble objetivo o doble confirmación) no queda definida en el minuto.
+- Término 'doble' [ASR]: candidatos con significados distintos, p. ej. DOL (objetivo de liquidez, coherente con el posesivo 'nuestro' y con 'objetivo') frente a otras lecturas como DXY (índice del dólar); el texto del bloque no desambigua.
+
 ### c-0050
 
 **Statement:** Primer ejemplo real (diario, 'el mismo que estaba explicando de ejemplo', con el objetivo diario arriba): 'el rango este es un rango reiniciado' — 'porque el objetivo está arriba, tú quieres comprar..., pero se te forma un rango en contra y para abajo'.
@@ -623,6 +685,11 @@
 
 **Notes:** El 'porque' es la justificación clasificatoria dicha por el instructor, no una causalidad inferida.
 
+**Dudas abiertas:**
+
+- Deícticos 'el objetivo este diario de aquí arriba' y 'el rango este': qué rango/objetivo exactos son no es identificable en el texto.
+- Los deícticos 'el objetivo este diario de aquí arriba' y 'el rango este' quedan identificados a nivel visual (línea 1,15803 y rectángulo ~1,1376-1,1397) pero sin valores verbales exactos dichos por el instructor.
+
 ### c-0051
 
 **Statement:** Busca ahora un rango pendiente 'que ya recuerdo que lo tenemos en 12 horas' y señala además otro caso: 'este es un reiniciado también'.
@@ -634,6 +701,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001329|13:29]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001333.png|f-001333]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001359.png|f-001359]]
+
+**Dudas abiertas:**
+
+- Deíctico 'este es un reiniciado también': el candidato visual más probable es la zona sombreada sobre las velas de ~11-12 jun (1,5069-1,5231) en el 12h, pero qué rectángulo exacto señala el instructor no es 100% concluyente desde un solo frame.
+- Deíctico 'este es un reiniciado también': qué rango exacto señala no consta en el texto.
 
 ### c-0052
 
@@ -674,6 +746,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001420.png|f-001420]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001459.png|f-001459]]
 
 **Notes:** Diferencia explícita preservada: en este caso de 8H la vela NO toma el extremo (abre por debajo y cierra dentro), a diferencia de la definición de pendiente del bloque anterior, donde la vela sí tomaba el low.
+
+**Dudas abiertas:**
+
+- Deíctico 'este extremo': qué extremo del gráfico señala no consta en el texto ni se desambigua del todo desde frames estáticos; el rectángulo dibujado (techo ~1,15231 / suelo ~1,14600) es visible, pero la asignación vela a vela de 'abre por debajo, cierra dentro' no es completamente pinuable desde un frame puntual.
+- Deíctico 'este extremo': qué extremo del gráfico señala no consta en el texto.
 
 ### c-0055
 
@@ -739,6 +816,10 @@
 
 **Notes:** La definición dicha aquí usa 'tomar el alto' (caso bajista); la versión general con el low se enuncia después (k-b3-019). Definición de capítulo introductorio. | Adjudicación Manager: 'Turtle Soup' confirmado visualmente (f-001559); unresolved de grafía cerrada.
 
+**Dudas abiertas:**
+
+- Término 'Tartel sub' [ASR]: candidato 'Turtle Soup' (concepto conocido de toma de liquidez + reacción); el texto no confirma la grafía y no se sustituye por el glosario.
+
 ### c-0060
 
 **Statement:** 'En este caso, esto sería un tartel sub bajista'; anuncia verlo 'con velas y con ejemplos, que se vea más claro'.
@@ -750,6 +831,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001532|15:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001537|15:37]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001534.png|f-001534]]
+
+**Dudas abiertas:**
+
+- Deíctico 'esto': qué estructura del dibujo señala no consta en el texto.
+- La flecha ascendente al final del trazado en f-001534 no se explica verbalmente en este minuto; podría anticipar el movimiento posterior que el instructor dibuja a continuación (caso con velas desde s-001554), pero el audio no lo precisa.
 
 ### c-0061
 
@@ -764,6 +850,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001559.png|f-001559]]
 
 **Notes:** Equivalencia dicha por el instructor: Tartel sub = toma de liquidez = toma del extremo.
+
+**Dudas abiertas:**
+
+- Frase truncada por ASR en la frontera s-001539/s-001554: no se puede confirmar si dijo exactamente 'toma del alto o del bajo'; el texto citado se deja con '[ASR]'.
+- Segmento truncado por ASR ('toma del'): probablemente 'toma del alto o del bajo'; el texto no lo completa.
 
 ### c-0062
 
@@ -847,6 +938,11 @@
 
 **Notes:** Dirección preservada: longs → stop debajo del tartel sub. La segunda frase es expectativa dicha, no garantía (contrastar con k-b3-022 y k-b3-023). | Adjudicación Manager: visual_hint re-fijado a 1023 s (f-001703) donde el stop (Long Position) aparece.
 
+**Dudas abiertas:**
+
+- Deíctico 'aquí abajo': posición exacta del stop solo se señala en el dibujo.
+- La distancia exacta del stop respecto al Turtle Soup no se verbaliza: la herramienta dibujada muestra 0.00209, pero el instructor no enuncia regla numérica; el posicionamiento exacto ('aquí abajo') es deíctico y solo se aprecia en el dibujo.
+
 ### c-0068
 
 **Statement:** Nuevo concepto: 'hay un nuevo concepto que se llama Intra Tartel Sub [ASR], que es cuando hace un Tartel Sub extra'; 'no tiene por qué hacerlo, pero hay veces que puede pasar algo así'.
@@ -858,6 +954,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001712|17:12]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001721|17:21]]
 
 **Notes:** Introducción en capítulo introductorio; contrasta con k-b3-021 ('no tendría por qué pasar otro TS'): a veces sí ocurre.
+
+**Dudas abiertas:**
+
+- Mismo término 'Tartel sub' [ASR] de k-b3-013 (candidato Turtle Soup).
 
 ### c-0069
 
@@ -885,6 +985,10 @@
 
 **Notes:** Criterio dicho con 'por lo tanto': mientras el cierre siga dentro, el rango permanece operativo aunque ocurra un intra. | Adjudicación Manager (am-ch01-004): frame base f-001859 añadido — el revisor del min17 lo verificó como corroboración visual durante la definición.
 
+**Dudas abiertas:**
+
+- Deíctico 'este rango': es el rango del ejemplo en pantalla; el texto no verbaliza cuál.
+
 ### c-0071
 
 **Statement:** 'Son cosas que tenéis que aceptar que pueden pasar, porque si no tendríamos un 100% de winrate y tampoco es plan.'
@@ -907,6 +1011,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001750|17:50]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001752|17:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001754|17:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001756|17:56]]
 
+**Dudas abiertas:**
+
+- El bloque cierra con la pregunta '¿pasa muchas veces?' (s-001759); la respuesta del instructor no consta en este bloque.
+
 ### c-0073
 
 **Statement:** Responde a una pregunta previa: 'No. Algunas veces pasa, sí'. Regla condicional dicha: 'si esto es una vela, digamos, de un día y en cuatro horas tenemos, pues, algo así, como que se nos forma un rango contrario a nuestra dirección, puede pasar que el precio vaya a completar rangos antes de subir'.
@@ -920,6 +1028,10 @@
 **Visual hint:** 18:01 — dibujo esquemático: vela de un día y en 4H se forma un rango contrario a la dirección
 
 **Notes:** Hedges palabra dicha: 'puede pasar', 'digamos', 'como que'. Contexto de la regla: compra (idea alcista), ver k-b4-002.
+
+**Dudas abiertas:**
+
+- Antecedente del deíctico inicial 'No. Algunas veces pasa, sí': la pregunta a la que responde está en el bloque anterior, no en este.
 
 ### c-0074
 
@@ -945,6 +1057,10 @@
 
 **Notes:** Tres requisitos palabra dicha: tomar, reacción, cerrar dentro del mismo rango. | Adjudicación Manager: normalización intra Turtle Soup / Turtle Soup confirmada por rótulos en pantalla (f-001801/f-001859 INTRATURTLESOUP) y s-001921 literal; statement preserva audio [ASR].
 
+**Dudas abiertas:**
+
+- Garble ASR 'intentarte el show'/'un tarde el sub'/'intentarte su sitio' [ASR]: candidatos con el mismo sentido probable — intra-Turtle Soup (el ASR no permite confirmar el término exacto); 'el otro tarde' [ASR]: candidato Turtle Soup.
+
 ### c-0076
 
 **Statement:** 'Si cierra fuera del primer rango, así vale, este rango y ya se puede eliminar, ya no se consideraría más un rango, y tendríamos a lo mejor un nuevo rango que podría ser este'.
@@ -957,6 +1073,11 @@
 
 **Notes:** Hedge 'a lo mejor' palabra dicha. Invalidación por cierre fuera: cierre fuera del rango elimina el rango.
 
+**Dudas abiertas:**
+
+- Deíctico 'un nuevo rango que podría ser este' (s-001917, ~19:17-19:21): qué rango exacto señala solo consta en el dibujo de ese momento; el frame base es de 19:59 y no resuelve esa deixis puntual.
+- Deíctico 'un nuevo rango que podría ser este': qué rango exacto señala solo consta en el dibujo.
+
 ### c-0077
 
 **Statement:** Reatribución dicha: 'esto ya no sería un intertartel sub [ASR], sino que sería un tartel sub [ASR] de este rango, y este lo podríamos ya eliminar porque la vela cierra fuera'.
@@ -968,6 +1089,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001847|18:47]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001921|19:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-001926|19:26]]
 
 **Notes:** Causa dicha explícita de la eliminación: 'porque la vela cierra fuera'. | Adjudicación Manager: 'tartel sub'→Turtle Soup (garble del curso, ver GLOSSARY); 'intertartel sub' queda [ASR] con candidato intra Turtle Soup.
+
+**Dudas abiertas:**
+
+- Garbles ASR 'intertartel sub' (candidato: intra-Turtle Soup) y 'tartel sub' (candidato: Turtle Soup): el ASR no permite confirmar los términos exactos dichos; queda abierta la confirmación fonética aunque la regla de normalización cubre 'tartel sub'.
+- Garbles ASR 'intertartel sub' (candidato: intra-Turtle Soup) y 'tartel sub' (candidato: Turtle Soup): el ASR no permite confirmar los términos exactos; no se sustituyen por glosario.
 
 ### c-0078
 
@@ -994,6 +1120,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-001959.png|f-001959]]
 
 **Notes:** Dirección preservada: caso alcista (esperar vela nueva que abra, tome el low y forme rango; objetivo en el rango nuevo, el anterior queda borrado). Hedge 'podríamos' palabra dicha.
+
+**Dudas abiertas:**
+
+- Deícticos 'el objetivo aquí'/'este'/'ahí arriba': posiciones exactas solo constan en el dibujo (el objetivo pasa al nuevo rango formado, no al eliminado).
+- Deícticos 'el objetivo aquí'/'este'/'ahí arriba': posiciones exactas solo constan en el dibujo; el frame de 19:59 confirma que se traza un rango nuevo pero no permite fijar con precisión el punto del objetivo ('ahí arriba' se señala en s-002013, ~20:13-20:19).
 
 ### c-0080
 
@@ -1024,6 +1155,10 @@
 **Visual hint:** 21:15 — dos gráficos etiquetados euro y libra mostrando la SMT conocida hasta ahora (clásica)
 
 **Notes:** Presentación como introducción: el capítulo propio de SMT se anuncia en k-b4-011; no es definición definitiva. | Adjudicación Manager: visual_hint re-fijado a 1275 s (f-002115) donde los dos gráficos euro/libra son visibles.
+
+**Dudas abiertas:**
+
+- En f-002115 solo la polilínea izquierda lleva la etiqueta 'EURUSD'; la identificación de la polilínea derecha como 'libra' descansa en la narración (la etiqueta podría añadirse después del segundo 1275, fuera de este minuto). No afecta al veredicto.
 
 ### c-0082
 
@@ -1065,6 +1200,11 @@
 
 **Notes:** Deíctico 'esto' = la SMT clásica euro/libra que acaba de mostrar. | Adjudicación Manager: 'DXI' [ASR] con lectura probable DXY (índice del dólar; s-002315 escribe DXY literal); sin sustitución en statement — ver q-ch01-003.
 
+**Dudas abiertas:**
+
+- Término 'DXI' [ASR]: candidato con significado distinto probable — DXY (índice del dólar), contraste habitual del par euro/libra; distinguir de DOL (objetivo de liquidez). El texto del bloque no desambigua y no se sustituye por glosario.
+- Término 'DXI' [ASR]: lectura más probable DXY (índice del dólar), apoyada por uso correcto de 'DXY' en s-002315 y por el contexto de contraste euro/libra; distinguir de DOL (objetivo de liquidez). El frame 00:21:47 muestra solo diagramas EURUSD/GBPUSD sin gráfico DXY, por lo que la confirmación final depende del audio/capítulo de SMT anunciado.
+
 ### c-0085
 
 **Statement:** Con la estrategia 'vais a ver que hay como dos tipos de SMT'. Más adelante nombra los dos: una SMT 'en el tema de llegar a los objetivos' y, 'del mismo modo', una SMT 'para formar el rango'.
@@ -1092,6 +1232,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002230.png|f-002230]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002254.png|f-002254]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002259.png|f-002259]]
 
 **Notes:** Hedge 'puede pasarte' palabra dicha. Reutiliza la mecánica de rango (tomar el low, formar rango) en ambos pares.
+
+**Dudas abiertas:**
+
+- Deíctico 'este objetivo alcista en euro': posición exacta del objetivo solo consta en el dibujo.
 
 ### c-0087
 
@@ -1123,6 +1267,10 @@
 
 **Notes:** Aquí el instructor dice 'DXY' de forma explícita (texto ASR literal). Hedge 'pueda llegar a completar' palabra dicha. | Adjudicación Manager: 'JP' [ASR] adjudicado JPY (pares con yen); statement preserva palabra dicha.
 
+**Dudas abiertas:**
+
+- Término 'JP' [ASR]: candidato probable JPY (pares con yen); el texto no lo desarrolla.
+
 ### c-0089
 
 **Statement:** 'Por lo tanto, tú aquí tendrías que estar atento a los dos pares para que no te pase esto'.
@@ -1137,6 +1285,10 @@
 
 **Notes:** Regla operativa dicha: vigilar ambos pares correlacionados.
 
+**Dudas abiertas:**
+
+- Deíctico 'esto' = el giro/reversal descrito en k-b4-016; el texto lo resuelve por continuidad inmediata.
+
 ### c-0090
 
 **Statement:** Escenario de riesgo dicho: 'Tú estás en un long en libra, pero euro ya ves que llega a los objetivos, puede haber una SMT ahí arriba y se te gire el precio directamente'.
@@ -1150,6 +1302,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002359.png|f-002359]]
 
 **Notes:** Hedge 'puede haber' palabra dicha.
+
+**Dudas abiertas:**
+
+- Deíctico 'ahí arriba': zona exacta de la posible SMT solo consta en el dibujo.
 
 ### c-0091
 
@@ -1177,6 +1333,10 @@
 
 **Notes:** Segundo tipo de SMT (formación del rango). Segmento s-002342 termina en 24:11 con la explicación en curso: la continuación cae fuera de este bloque.
 
+**Dudas abiertas:**
+
+- Deíctico 'el de euro que sea así': cómo queda exactamente el rango de euro solo consta en el dibujo; la frase queda cortada al acabar el bloque.
+
 ### c-0093
 
 **Statement:** Dualidad de la SMT dicha por el instructor: 'puede ser la SMT para llegar al objetivo o puede ser la SMT para crear el rango'.
@@ -1203,6 +1363,10 @@
 
 **Notes:** 'GIP' [ASR]: candidato GBP/libra (el bloque compara euro y libra).
 
+**Dudas abiertas:**
+
+- Qué nivel o zona exacta del gráfico es cada 'esto' (referencias deícticas no verbalizadas: cuál es el rango y cuál el objetivo).
+
 ### c-0095
 
 **Statement:** El caso no tiene por qué ser solo el rango inicial: 'puede ser también en tema rangos pendientes, como he enseñado antes'.
@@ -1226,6 +1390,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002450|24:50]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002456|24:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002502|25:02]]
 
 **Notes:** Nexo 'para' palabra dicha del instructor al describir el papel del rango; no se añade causalidad adicional.
+
+**Dudas abiertas:**
+
+- Qué zona del gráfico es 'este de aquí' que la Libra crearía (deíctico no verbalizado).
 
 ### c-0097
 
@@ -1275,6 +1443,10 @@
 
 **Notes:** 'Felur Swing' [ASR]: candidato failure swing (el propio instructor dice 'failure swing' en s-002535 y s-002608). | Adjudicación Manager: 'Felur Swing' [ASR] adjudicado failure swing — el instructor lo dice literal en s-002710; statement preserva audio.
 
+**Dudas abiertas:**
+
+- El segmento s-002535 citado en notes (uso previo de 'failure swing') pertenece al minuto 25 y no está en este paquete; no afecta al veredicto porque s-002710 dentro del paquete ya confirma el término.
+
 ### c-0101
 
 **Statement:** 'Felur Swing [ASR] es cuando el precio no consigue hacer el nuevo bajo, pero el rango se daría por creado y empieza a ir arriba directamente'.
@@ -1288,6 +1460,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002623.png|f-002623]]
 
 **Notes:** Consecuencia dicha: rango por creado a pesar del bajo no tomado; dirección dicha: arriba. | Adjudicación Manager: 'Felur Swing' [ASR] adjudicado failure swing (s-002710 literal).
+
+**Dudas abiertas:**
+
+- Dirección espejo (failure swing en altos / rango bajista) no se enuncia en este minuto; el enunciado queda limitado al caso de bajos tal como fue dicho.
 
 ### c-0102
 
@@ -1305,6 +1481,10 @@
 
 **Notes:** 'Estos motivos' remiten a los casos de failure swing enumerados en k-b5-007.
 
+**Dudas abiertas:**
+
+- El contenido exacto de la enumeración 'estos motivos' (k-b5-007) se verifica en la revisión del minuto 25; aquí solo se constata la referencia anafórica.
+
 ### c-0103
 
 **Statement:** Diferencia de feeds entre brokers: 'en otro broker sí ha hecho el low; por ejemplo, esto es Forexcom [ASR], pues a lo mejor a FXCM sí que se lleva el low'. 'Va a haber veces que te quedas haciendo zoom pensando si se lo lleva o no y luego te das cuenta que es prácticamente igual y que en otro broker esto realmente se ve así'. Conclusión dicha: 'sería el rango por creado igualmente. Esto es el failure swing'.
@@ -1320,6 +1500,10 @@
 **Visual hint:** 26:42 — comparación de dos feeds de broker: low no tomado en uno vs tomado en el otro
 
 **Notes:** 'Forexcom' [ASR]: candidato Forex.com; 'FXCM' dicho literal. | Adjudicación Manager: 'Forexcom' [ASR] adjudicado Forex.com por cabecera del gráfico (f-002623+). Normalización ASR sin marca (DV01-010, DOCVERIFY residual 2026-10-22): dicho "va a haber veces que lo vas a ver así que esto se queda aquí y te quedas haciendo zoom"; publicado "va a haber veces que te quedas haciendo zoom" (elipse sin puntos suspensivos). Sentido inequívoco; sin cambio de statement.
+
+**Dudas abiertas:**
+
+- El vídeo no muestra la pantalla de FXCM en paralelo; la comparación es narrada + anotada ('OTRO BROKER'), no screencast del segundo feed. El claim queda soportado como declaración del instructor con anotación ilustrativa.
 
 ### c-0104
 
@@ -1344,6 +1528,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002720|27:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002726|27:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002730|27:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002732|27:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002734|27:34]]
 
 **Notes:** 'change instead of delivery' [ASR]: candidatos 'change in state of delivery' / 'change of character (CHoCH)'. Capítulo introductorio: introduce el término, no definición exhaustiva.
+
+**Dudas abiertas:**
+
+- Desambiguación CISD vs CHoCH no resoluble desde el transcript: ambas lecturas son compatibles con 'el cambio de'/'cambio de tendencia' dicho; requeriría re-escucha del audio en 27:30-27:34.
 
 ### c-0106
 
@@ -1383,6 +1571,11 @@
 
 **Notes:** Temporalidad dicha: M15. Remisión a capítulo de entradas.
 
+**Dudas abiertas:**
+
+- Sentido exacto de 'para subir' en el audio (¿entrada al alza o subida de temporalidad?): no se resuelve en el texto ni en los frames; posible garble ASR, no afecta a la literalidad del claim.
+- Sentido exacto de 'para subir' en el audio (¿entrada al alza o subida de temporalidad?): no se resuelve en el texto.
+
 ### c-0109
 
 **Statement:** Sobre un order block en gráfico de 8 horas: 'es un poco exagerado porque está cerrado muy fuera, pero es un gráfico de 8 horas. Si vamos a M15 va a ser mucho más fácil encontrar order blocks'.
@@ -1408,6 +1601,10 @@
 **Visual hint:** 28:55 — order block en gráfico: vela cierra por fuera y entrada long señalada
 
 **Notes:** Nexo temporal 'una vez... cierra' palabra dicha; no se afirma causalidad adicional.
+
+**Dudas abiertas:**
+
+- En f-002855/f-002859/f-002915 no se aprecia marca gráfica explícita (caja de order block o flecha de entrada); la señalización parece verbal/cursor a la resolución disponible. ¿Hubo anotación dibujada en algún instante no cubierto por los frames?
 
 ### c-0111
 
@@ -1447,6 +1644,10 @@
 
 **Notes:** Números tal como dichos: '10, 25, 30' [ASR]; '25' no es timeframe estándar en MT5/TradingView (candidatos: 20 o 15). Normalización ASR sin marca (DV01-010, DOCVERIFY residual 2026-10-22): dicho "esto lo miró en 15", "el orden block"; publicado "esto lo miré en 15", "el order block". Sentido inequívoco; sin cambio de statement.
 
+**Dudas abiertas:**
+
+- Timeframes exactos dichos hacia 29:40-29:44 ('10, 25, 30' según ASR) no confirmables desde el transcript; requeriría re-escucha del audio.
+
 ### c-0114
 
 **Statement:** Cierre del repaso dicho: 'este es el concepto de order block. Y creo que los conceptos básicos ya estarían todos, que son los rangos, la SMT aplicada a la estrategia, el failure swing'.
@@ -1458,6 +1659,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002952|29:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-002959|29:59]]
 
 **Notes:** La enumeración literal no incluye order block (el segmento termina en 30:08); hedge palabra dicha: 'creo que... ya estarían'.
+
+**Dudas abiertas:**
+
+- La enumeración completa ('...el order block y [power of three]...') continúa en s-003009+ [contexto], fuera de este minuto; su cobertura corresponde a la revisión del minuto 30.
 
 ### c-0115
 
@@ -1523,6 +1728,11 @@
 
 **Notes:** Horarios preservados literalmente como condición del concepto (1 y 5, hora New York; 5 = cierre).
 
+**Dudas abiertas:**
+
+- El audio nunca verbaliza AM/PM para 'a la 1'; el dibujo usa notación '0100'/'0500' (formato 24h), sugiriendo 01:00 y 05:00 hora New York, pero la disambiguación no queda confirmada verbalmente.
+- Si 'a la 1' es 13:00 o 01:00 hora New York (AM/PM no verbalizado; por la vela de 4h que cierra a las 5 sería 13:00, pero no se dice).
+
 ### c-0120
 
 **Statement:** Forma final de la vela pintada: 'Abre, manipula, entonces esto ahora es una mecha ya... sube y baja un poco más hasta cerrar, dejando la mecha ahí arriba', y 'cierra aquí... A las 5'.
@@ -1538,6 +1748,10 @@
 **Visual hint:** 31:02 — vela pintada con mecha superior resultante de la manipulación y cierre a las 5
 
 **Notes:** En el ejemplo, la manipulación queda como mecha superior; cierra a las 5 (hora New York según k-b6-005).
+
+**Dudas abiertas:**
+
+- Zona horaria de 'a las 5' / etiqueta '0500' del gráfico no se explicita en los segmentos del minuto 31; la atribución a hora New York depende de k-b6-005 (no incluido en este paquete). Se preserva el horario literal.
 
 ### c-0121
 
@@ -1589,6 +1803,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003206|32:06]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003210|32:10]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003214|32:14]]
 
+**Dudas abiertas:**
+
+- La semántica exacta de los dos cuerpos dibujados (velas concretas vs zonas esquemáticas de entrada) no se verbaliza; el frame f-003212 apoya la hipótesis del payload (abajo = power of 3 junto a la apertura 0500; arriba = punto más avanzado del recorrido) pero no la certifica al 100%.
+- Qué puntos exactos del gráfico son 'aquí arriba' y 'aquí abajo' (deícticos del dibujo no verbalizados; por contexto, entrar arriba = más avanzada la vela, abajo = en el power of 3).
+
 ### c-0125
 
 **Statement:** Énfasis del instructor: 'concepto muy importante más que nada para tener noción de cómo se mueve el mercado y de lo que está haciendo el precio'.
@@ -1613,6 +1832,11 @@
 
 **Notes:** Nexo 'porque' dicho por el instructor al justificar que es lo ideal.
 
+**Dudas abiertas:**
+
+- El instructor no verbaliza qué tramo exacto del dibujo constituye la manipulación inicial del power of 3; el visual identifica la secuencia dibujada (bajada inicial y expansión) pero no delimita sus fases con precisión.
+- Qué movimiento dibujado es 'esto' que hace el precio durante el power three (deíctico no verbalizado).
+
 ### c-0127
 
 **Statement:** Coincidencia rango + Power 3: 'te está creando un rango alcista y a la vez está haciendo el power 3 de una vela que tú anticipas que va a ser alcista. Por lo tanto, tú aquí tienes unos longs brutales para llegar ahí arriba'.
@@ -1624,6 +1848,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003238|32:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003240|32:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003242|32:42]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003244|32:44]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003246|32:46]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003248|32:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003249|32:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003251|32:51]]
 
 **Notes:** Anticipación palabra dicha ('tú anticipas que va a ser alcista'): condición subjetiva, no certeza. Nexos 'Por lo tanto' y 'para' dichos.
+
+**Dudas abiertas:**
+
+- El mapeo exacto de 'aquí' (entrada) y 'ahí arriba' (objetivo) a niveles del gráfico es inferido del dibujo (base ~1.1465, techo ~1.1595 del esquema), no verbalizado por el instructor.
+- Qué zonas del gráfico son 'aquí' (entrada) y 'ahí arriba' (objetivo) (deícticos no verbalizados).
 
 ### c-0128
 
@@ -1676,6 +1905,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003338|33:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003340|33:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003343|33:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003345|33:45]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/transcript#^s-003347|33:47]]
 
 **Notes:** 'traspasadas' [ASR]: palabra dudosa del ASR sin candidatos claros identificados; se preserva tal cual. El instructor anuncia que las salidas basadas en el tiempo se explicarán más adelante (no definidas en este bloque).
+
+**Dudas abiertas:**
+
+- ASR: 'traspasadas en el tiempo' (s-003343) es palabra marcada como dudosa sin candidatos claros; podría ser un garble (p.ej. forma de 'pasadas/en time-based exits' u otra construcción). Verificar con audio si existe una normalización segura antes de usar el término en downstream.
+- s-003338/s-003340: 'está todo temas, salidas' podría puntuarse como 'está todo. Temas: salidas...'; la puntuación ASR actual es ambigua pero no afecta al contenido del claim.
 
 ### c-0132
 

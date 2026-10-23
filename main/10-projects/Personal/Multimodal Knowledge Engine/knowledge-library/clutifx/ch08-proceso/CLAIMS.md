@@ -47,6 +47,12 @@
 
 **Visual hint:** 00:47 — línea horizontal marcada en el alto del mensual del oro (el posible rango bajista de 1 mes; la zona no está delimitada con caja)
 
+**Dudas abiertas:**
+
+- El objeto dibujado en el mensual es una línea horizontal en el alto (~3.455), no una caja del rango bajista; confirmar que la nota visual del integrador lo describa así
+- «aquí» en «un posible rango bajista aquí»: qué zona exacta del mensual (la estructura 2020–2023 se señala verbalmente, no se dibuja como rango)
+- «aquí» en «un posible rango bajista aquí»: qué zona exacta del mensual (sólo visible en el gráfico)
+
 ### c-0005
 
 **Statement:** En 3 semanas «se ve un rango alcista aquí arriba» (lo marca y quita el rango del mensual); «en dos semanas estamos en vela interior» y «este rango alcista se completó ya»; hay «el mismo rango alcista aquí arriba» y «podemos tener un target ahí».
@@ -63,6 +69,13 @@
 
 **Notes:** Frame del revisor regenerado: venía con nombre inválido (segundos crudos 75); se extrajo por fórmula como f-000115 y el nombre inválido quedó declarado histórico en .deprecated_frame_names.
 
+**Dudas abiertas:**
+
+- «esta vela de aquí»: qué vela concreta define el rango alcista semanal
+- «esta vela de aquí»: qué vela concreta define el rango alcista semanal (deíctico no plenamente resoluble en frame estático)
+- «un target ahí»: la línea marcada en el alto (~3.500) es el referente más probable, pero la ubicación exacta queda deíctica
+- «un target ahí»: ubicación exacta del target
+
 ### c-0006
 
 **Statement:** Verificación del low del rango: «este low tendríamos que ver si está tomado en algún otro broker o no, es probable que sí»; con el target semanal marcado, «seguramente esto vaya a estar tomado en algún broker».
@@ -74,6 +87,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000126|01:26]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000127.png|f-000127]]
+
+**Dudas abiertas:**
+
+- «este low»: cuál de los lows del rango semanal debe verificarse contra otros brokers
+- «este low»: cuál de los lows del rango semanal debe verificarse contra otros brokers — f-000127 muestra un nivel en los mínimos (~3222) pero el gesto del instructor no es resoluble desde el frame estático
 
 ### c-0007
 
@@ -87,6 +105,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000159.png|f-000159]]
 
+**Dudas abiertas:**
+
+- ubicación exacta de los rangos de 5d/4d/3d/2d («otro aquí arriba», «por aquí») — deícticos sólo resolubles viendo el vídeo en cada cambio de TF; f-000159 (4D, 01:59) corrobora la escena pero no las posiciones individuales de cada rango
+- ubicación exacta de los rangos de 5d/4d/3d/2d («otro aquí arriba», «por aquí») — sólo visibles en el gráfico
+
 ### c-0008
 
 **Statement:** Balance tras el descenso: «visto esto, tenemos a [ASR] un objetivo bearish más» y «a largo plazo estaríamos bullish, buscando un poco el máximo histórico» (el gráfico mostrado es «el gráfico de dos semanas»).
@@ -99,6 +122,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000239.png|f-000239]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000235.png|f-000235]]
 
+**Dudas abiertas:**
+
+- El deíctico «que era este» (s-000235) precede ~2-4 s al switch al chart 2W visible en f-000239: no es 100% determinable si «este» alude al 2W recién mostrado o a una vista previa del recap no conservada en frames del minuto.
+
 ### c-0009
 
 **Statement:** Siguiente paso: «vamos a bajar más la temporalidad a ver si vemos algo para hoy»: en 12 horas «tenemos un buen rango» y «parece que vamos a poder tener un buen movimiento hasta aquí» (hedge «parece»).
@@ -110,6 +137,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000239|02:39]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000241|02:41]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000243|02:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000244|02:44]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000247|02:47]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000249|02:49]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000245.png|f-000245]]
+
+**Dudas abiertas:**
+
+- «hasta aquí» (s-000249): el límite del movimiento esperado en 12h es solo deíctico; en f-000245 el endpoint concreto señalado por el instructor no es inequívoco a resolución de frame (se conserva la duda del extractor).
+- «hasta aquí»: hasta dónde se extiende el movimiento esperado en 12h
 
 ### c-0010
 
@@ -125,6 +157,12 @@
 
 **Visual hint:** 03:00 — vela de 6h que «cierra muy poco por fuera» (posible rango) y vela interior de 4h
 
+**Dudas abiertas:**
+
+- En f-000259/f-000300 la vela concreta que «cierra muy poco por fuera» (6h) no es inequívoca a resolución de frame: la vela bajista grande cierra en el borde inferior de la caja; la identificación exacta queda aproximada.
+- Referentes deícticos: «este» ya completado (8h), «esto rango» (6h) y «el rango este de aquí» (3h) — 6h y 3h quedan razonablemente resueltos por los rangos dibujados en f-000259/f-000300 y f-000315; para 8h no hay frame del minuto que muestre el rango completado.
+- «este» (8h) ya completado, «esto rango» (6h) y «el rango este de aquí» (3h): qué rangos concretos señala
+
 ### c-0011
 
 **Statement:** «La entrada óptima se nos habría escapado ya»: era «justo cuando se nos estaba creando este rango bullish de 12 horas, cuando nos tomaba los targets bajistas».
@@ -139,6 +177,11 @@
 
 **Visual hint:** 03:19 — creación del rango bullish de 12h mientras se toman los targets bajistas (entrada óptima perdida)
 
+**Dudas abiertas:**
+
+- «aquí»: la vela exacta de la entrada óptima perdida no es señalable desde un frame estático (el instructor la señala verbalmente); candidato visual en f-000319: el low con mecha por debajo de ~3,302, pero es inferencia propia, no anotación dicha.
+- «aquí»: ubicación exacta de la entrada óptima perdida
+
 ### c-0012
 
 **Statement:** «El trade que teníamos que haber tomado es por aquí» y «ahora estaríamos en break even, como ha pasado durante Asia».
@@ -148,6 +191,11 @@
 **Tiempo:** [03:27–03:38]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000327|03:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000331|03:31]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000334|03:34]]
+
+**Dudas abiertas:**
+
+- «por aquí»: ubicación exacta del trade hipotético no marcada en el gráfico al segundo 207; el esbozo posterior (f-000345/f-000350) corresponde al trade nuevo, no a este hipotético, así que el deíctico queda abierto.
+- «por aquí»: ubicación exacta del trade que habría que haber tomado
 
 ### c-0013
 
@@ -160,6 +208,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000334|03:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000338|03:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000341|03:41]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000345|03:45]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000345.png|f-000345]]
+
+**Dudas abiertas:**
+
+- «esto podría ser 1»: el frame confirma que «esto» es el trade dibujado, pero el referente de «1» sigue ambiguo (¿opción/alternativa 1 de entrada?, ¿vela de la 1?); no resolvible con la fuente disponible.
+- «esto podría ser 1»: qué significa «1» (¿primera opción de entrada?, ¿vela de la 1?)
 
 ### c-0014
 
@@ -174,6 +227,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000350.png|f-000350]]
 
 **Visual hint:** 03:50 — esbozo del trade en 1h: stop loss y take profit sobre el rango reiniciado
+
+**Dudas abiertas:**
+
+- Posición exacta del stop loss, del take profit y del «break even de antes»: f-000350 muestra la herramienta con valores (SL ~0,67% abajo, TP ~1,56% arriba, entrada ~3,3277) pero no qué nivel exacto corresponde a la anotación verbal del «break even de antes».
+- posición exacta del stop loss y del take profit en el gráfico («por aquí», «ahí arriba»)
 
 ### c-0015
 
@@ -217,6 +275,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000459.png|f-000459]]
 
+**Dudas abiertas:**
+
+- «por aquí» (dónde sería la entrada normal): el referente visual exacto en el 1h/12h no queda determinado por f-000459; «estos rangos de ahí abajo» es consistente con los niveles marcados bajo el precio en f-000459 pero la atribución línea-a-línea sigue siendo interpretativa.
+- «por aquí» y «estos rangos de ahí abajo»: referentes exactos en el gráfico
+
 ### c-0019
 
 **Statement:** Plan condicional con la vela de 12 horas (rama 1): la vela «cierra dentro de dos horas»; «si reacciona y cierra dentro de este rango, invalidaría este a lo mejor, y buscaría directamente ir a por algunos targets más bajos» (hedge «a lo mejor»).
@@ -226,6 +289,11 @@
 **Tiempo:** [05:05–05:18]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000505|05:05]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000512|05:12]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000514|05:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000516|05:16]]
+
+**Dudas abiertas:**
+
+- «este rango» (dentro del cual cerraría la vela 12h) y «este» (lo que invalidaría): f-000459 muestra un rectángulo de rango dibujado sobre las velas recientes de 12h (~3320-3367), candidato probable, pero el gesto/deíctico no es atribuible con certeza desde frame estático; requeriría frame en el instante exacto del señalamiento (≈305-312 s) y aun así puede quedar ambiguo.
+- «este rango» y «este» (lo que invalidaría): qué rango de 12h señala
 
 ### c-0020
 
@@ -240,6 +308,13 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000521.png|f-000521]]
 
 **Visual hint:** 05:21 — trayectoria esperada (zigzag) hasta tomar el alto del rango
+
+**Dudas abiertas:**
+
+- La trayectoria dibujada (visual_hint «zigzag») no es verificable en f-000521: el still muestra los rangos y niveles marcados pero no un trazado claro de «vaya haciendo así»; un frame en ~322–325 s podría capturar el dibujo si llegó a trazarse.
+- «este alto» y «ahí arriba»: el frame sugiere 3.367,01 como alto etiquetado, pero la correspondencia exacta no es concluyente en el still.
+- «este alto» y «ahí arriba»: niveles exactos
+- «vaya haciendo así»: trayectoria dibujada, sólo visible en el gráfico
 
 ### c-0021
 
@@ -297,6 +372,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000559.png|f-000559]]
 
+**Dudas abiertas:**
+
+- El carácter «bullish» (target al alza) es lo dicho por el instructor; en el still la dirección del target del rango 1A no es inequívoca (precio actual 0,65031 por encima de las etiquetas del rango). El frame sostiene la existencia del rango, no su orientación.
+
 ### c-0026
 
 **Statement:** Descenso de temporalidades: en 6 meses «lo mismo, tiene un objetivo bullish» ahí arriba; en 3 meses «mismo rango bullish».
@@ -307,6 +386,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000604|06:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000608|06:08]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000610|06:10]]
 
+**Dudas abiertas:**
+
+- «ahí arriba» (s-000608) cae en la frontera 6M→3M del audio; su adscripción al objetivo bullish de 6 meses es lectura del extractor, plausible pero no inequívoca.
+
 ### c-0027
 
 **Statement:** En 2 meses hay «un rango bullish más cerca»; en 1 mes «ya tomamos este objetivo bullish».
@@ -316,6 +399,10 @@
 **Tiempo:** [06:12–06:19]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000612|06:12]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000615|06:15]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000617|06:17]]
+
+**Dudas abiertas:**
+
+- El referente exacto de «este objetivo bullish» (1M) es deíctico: en el frame 06:18 el precio (~0.6515) está por debajo de las líneas visibles 0.66880/0.69428, por lo que el objetivo tomado parece ser el alto de la vela mensual previa (coherente con s-000631) y no esas líneas — sin contradicción, referente no fijado.
 
 ### c-0028
 
@@ -347,6 +434,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000636|06:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000638|06:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000642|06:42]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000643|06:43]]
 
+**Dudas abiertas:**
+
+- Referente deíctico de «este» en s-000643 (rango 2W no completado): candidato visual es la caja ~0.6514–0.6537 en el frame 06:45; no fijable al 100% desde un solo frame.
+
 ### c-0031
 
 **Statement:** En 1 semana el precio completó el rango («en una semana nos completó este») y «esto fue un buen trade»: trade hecho «después de tomar un rango de temporalidad muy alta que haga un retracement a completar un rango semanal».
@@ -358,6 +449,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000647|06:47]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000659.png|f-000659]]
+
+**Dudas abiertas:**
+
+- Referente deíctico de «este» (rango semanal completado): no fijable con precisión desde f-000659; candidato visual la caja ~0.63835–0.65154.
 
 ### c-0032
 
@@ -429,6 +524,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000804.png|f-000804]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000816.png|f-000816]]
 
+**Dudas abiertas:**
+
+- En 6h, f-000811 (491 s) todavía muestra el rectángulo del rango (el mismo que en 8h/4h): «no hay mucho» parece significar 'nada nuevo que hacer' y no 'sin rango dibujado'; sentido exacto sin resolver.
+- Parse de «aquí arriba sin objetivo también ya» (s-000819) ambiguo: qué está «sin objetivo» (¿el rango 4h, el precio?); en f-000816 sí hay líneas horizontales por encima del rango 4h.
+
 ### c-0038
 
 **Statement:** Las compras van «y al señor esta vela del power 3» [ASR, fragmento garbleado] «por aquí algo así, buscando estos objetivos de ahí arriba».
@@ -440,6 +540,13 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000819|08:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000825|08:25]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000822.png|f-000822]]
+
+**Dudas abiertas:**
+
+- Deíctico «esta vela» (s-000819): f-000822 muestra la zona marcada (velas recientes, ~0,65100) pero no permite identificar sin ambigüedad cuál vela concreta es «la del power 3».
+- Deíctico «esta vela» (s-000819): qué vela concreta del gráfico 4h señala
+- Fragmento «al señor esta vela del power 3» [ASR] (s-000819): garble sin resolver — preservar palabra dicha
+- Fragmento «al señor esta vela del power 3» [ASR] (s-000819): garble sin resolver — preservar palabra dicha («al señor» además sin lectura probable).
 
 ### c-0039
 
@@ -455,6 +562,11 @@
 
 **Visual hint:** 08:38 — Gráfico 3h: nivel hasta el que 'tendría que llegar el precio' (100% del rango) y reacción esperada
 
+**Dudas abiertas:**
+
+- Deíctico «hasta aquí» (s-000838): el nivel exacto del «100%» no es resoluble visualmente en f-000838 (candidatos: mínimo del rango ~0,6453 o la línea ~0,64882).
+- Deíctico «hasta aquí» (s-000838): nivel exacto del 100% en el gráfico 3h
+
 ### c-0040
 
 **Statement:** En 2h «ya está tomado»; en 1h «vela de las tres toma el load» [ASR: low] «de la vela anterior», «por lo tanto el power stream» [ASR] «nos da la entrada por aquí».
@@ -468,6 +580,13 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000842.png|f-000842]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000847.png|f-000847]]
 
 **Visual hint:** 08:46 — Gráfico 1h (aparece ~525-527s): vela de las 3 tomando el low de la vela anterior; zona de entrada señalada 'por aquí' (a 522s la pantalla aún muestra 2h)
+
+**Dudas abiertas:**
+
+- Garble «load» (s-000842): lectura conocida «low»
+- Garble «load» (s-000842): lectura «low» según glosario (resuelta por convención; preservar palabra dicha).
+- «power stream» [ASR] (s-000852): lectura probable «power three» / Power of 3 — TERM_DISAMBIGUATION pendiente de confirmación.
+- «power stream» [ASR] (s-000852): lectura probable «power three» / Power of 3 — TERM_DISAMBIGUATION, confirmar término exacto
 
 ### c-0041
 
@@ -483,6 +602,10 @@
 
 **Visual hint:** 08:59 — Zona de la 'entrada ideal' señalada abajo en el gráfico, ya perdida en el momento del vídeo
 
+**Dudas abiertas:**
+
+- Garble «nos la hemos partido ya» (s-000859/s-000904): lectura probable «perdido» por contexto («lo mismo de antes»), sin confirmación textual.
+
 ### c-0042
 
 **Statement:** Invitación a revisión futura: «si queréis, cuando veáis este vídeo podéis venir a este exacto día, que es el 25 de junio, a repasar como que [ASR: ≈ cómo] ha pasado al final con estos trades» (la frase va encabezada por «el out fuese» [ASR]).
@@ -495,6 +618,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000901.png|f-000901]]
 
+**Dudas abiertas:**
+
+- «el out fuese» [ASR] (s-000913): garble sin resolver — preservar palabra dicha, lectura no confirmada
+
 ### c-0043
 
 **Statement:** Alcance del análisis: «tampoco ha sido el análisis más extenso» — «no he mirado en el de «x y» [ASR] ni pares correlacionados» —, «es sólo para que veáis la idea de cómo sería análisis».
@@ -505,6 +632,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000922|09:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000931|09:31]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000935|09:35]]
 
+**Dudas abiertas:**
+
+- «el de x y» [ASR] (s-000931): lectura probable «el de DXY» (garble conocido dxi→DXY); confirmar término
+
 ### c-0044
 
 **Statement:** Gestión: «una vez esto llegue acá arriba yo ya pondría break even, porque ya se ha salido como de los primeros rangos que había»; «a partir de ahí yo protegería ya a poner very given» [ASR] — hedges «yo pondría / protegería» preservados.
@@ -514,6 +645,11 @@
 **Tiempo:** [09:35–09:55]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000935|09:35]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000941|09:41]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000944|09:44]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000952|09:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000954|09:54]]
+
+**Dudas abiertas:**
+
+- Deíctico «acá arriba» (s-000935): ¿el primer objetivo del trade?
+- «very given» [ASR] (s-000954): lectura probable «break even»; confirmar
 
 ### c-0045
 
@@ -526,6 +662,12 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000945|09:45]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000948|09:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-000950|09:50]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-000959.png|f-000959]]
+
+**Dudas abiertas:**
+
+- Deíctico «el primero» (s-000950): ¿primer objetivo?
+- Deíctico «el primero» (s-000950): ¿primer objetivo? En f-000959 hay al menos dos líneas horizontales por encima del precio (~0,6515 y ~0,6528) más el techo de la zona marcada (~0,6537); no se resuelve cuál es «el primero» sin el gesto/audio del instructor
+- «se atendía como sentido» [ASR] (s-000945): fragmento garbleado — preservar dicha, lectura no confirmada
 
 ### c-0046
 
@@ -571,6 +713,12 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001041.png|f-001041]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001046.png|f-001046]]
 
+**Dudas abiertas:**
+
+- El deíctico «ya completado» (s-001040, en dos meses) sigue sin resolverse: f-001041 muestra USDCAD·2M sin rangos dibujados y con los targets (1,34725 / 1,34196) aún no tocados por la vela 2M (low 1,38210), por lo que ni «target completado» ni «rango completado» queda confirmado visualmente. Referente ambiguo sin narración adicional; ningún frame adicional lo desambigua.
+- «Descenso inicial» en el statement podría leerse como descenso de precio; en contexto es descenso de temporalidad (proceso multi-TF). No requiere corrección, pero conviene que el integrador mantenga la lectura de TF al redactar documentación.
+- ¿A qué se refiere «ya completado» en dos meses: ¿al target, al rango? Deíctico del gráfico no resuelto sin frame.
+
 ### c-0050
 
 **Statement:** REGLA: cuando en un timeframe (p. ej. 3 semanas) tienes rango alcista y rango bajista, «es mejor no intentar adivinar nada»: «time frame de momento lo ignoras y sigues», porque «no vas a intentar adivinar cuando tienes 2 rangos enfrentados».
@@ -582,6 +730,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001048|10:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001050|10:50]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001053|10:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001054|10:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001101|11:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001103|11:03]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001106|11:06]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001107|11:07]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001102.png|f-001102]]
+
+**Dudas abiertas:**
+
+- Los dos rectángulos de f-001102 no llevan rótulo; la identificación de cuál es el alcista y cuál el bajista viene del discurso previo (10:44 «voy a estar creando un rango alcista»), no de una marca visual.
 
 ### c-0051
 
@@ -605,6 +757,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001114|11:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001116|11:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001118|11:18]]
 
+**Dudas abiertas:**
+
+- El par de rangos enfrentados en 2S no es visualmente resoluble en f-001115/f-001117/f-001119: sólo un rectángulo visible en 677 s, ya borrado en 679 s. No queda claro si el segundo rango está fuera de cuadro o si el instructor se refiere al par heredado de 3S.
+
 ### c-0053
 
 **Statement:** En 1 semana sí hay el rango bearish: «por lo tanto es otra cosa que nos indicaría que probablemente vayan a ser los rangos bearish los que pueden ganar».
@@ -614,6 +770,10 @@
 **Tiempo:** [11:19–11:28]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001119|11:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001123|11:23]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001125|11:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001127|11:27]]
+
+**Dudas abiertas:**
+
+- En f-001119 (679 s, aún 2S, rectángulo ya borrado), f-001120 (680 s) y f-001122 (682 s) no aparece ningún rango dibujado en 1S: el referente visual del «rango bearish» en 1 semana queda sin resolver (posiblemente alude al rango bearish marcado en 3S/2S, no a un rectángulo propio de 1S).
 
 ### c-0054
 
@@ -626,6 +786,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001128|11:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001137|11:37]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001138|11:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001141|11:41]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001137.png|f-001137]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001142.png|f-001142]]
+
+**Dudas abiertas:**
+
+- El nivel exacto marcado como objetivo en 3D (1,34725 frente a 1,34196) no es distinguible en f-001137; ambos constan como líneas preexistentes.
 
 ### c-0055
 
@@ -651,6 +815,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001151.png|f-001151]]
 
+**Dudas abiertas:**
+
+- Que el rango esté «completado» se apoya en lo dicho (s-001149): el still muestra el rango dibujado pero no permite verificar por sí solo la toma del objetivo.
+
 ### c-0057
 
 **Statement:** La venta ideal habría sido «por aquí arriba» (en la zona del rango diario) «y haber tomado algún parcial».
@@ -662,6 +830,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001154|11:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001156|11:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001158|11:58]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001157.png|f-001157]]
+
+**Dudas abiertas:**
+
+- El punto exacto de la «venta ideal» no está dibujado en el gráfico; «por aquí arriba» se resuelve como zona alta del rango diario por contexto del frame, no por una marca visual explícita.
 
 ### c-0058
 
@@ -682,6 +854,10 @@
 **Tiempo:** [12:16–12:44]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001216|12:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001218|12:18]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001219|12:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001223|12:23]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001224|12:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001228|12:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001229|12:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001235|12:35]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001236|12:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001240|12:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001241|12:41]]
+
+**Dudas abiertas:**
+
+- El claim es instructor_statement y no cita frames por temporalidad; si el integrador quiere soporte visual por TF (12h/8h/6h/4h/3h, s-001216–s-001241), requeriría frames puntuales adicionales.
 
 ### c-0060
 
@@ -719,6 +895,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001259.png|f-001259]]
 
+**Dudas abiertas:**
+
+- Los niveles concretos de los objetivos (líneas visibles en f-001259 alrededor de ~1,3708 y ~1,3687 y las cajas dibujadas) son solo visuales, no verbalizados en el minuto; si el integrador los quiere como visual_observation, documentarlos aparte con estos frames.
+
 ### c-0063
 
 **Statement:** Gestión de la venta simulada: «movería breakeven ya una vez tomado este» objetivo; ir «hasta aquí, al menos» (nivel intermedio) y, al final, «dejar correr parciales ya y alargar el trade».
@@ -728,6 +908,10 @@
 **Tiempo:** [13:07–13:20]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001307|13:07]]
+
+**Dudas abiertas:**
+
+- Los referentes visuales «este», «hasta aquí (al menos)» y «hasta aquí (al final)» no quedan individualizados entre sí en los frames verificados: f-001321 muestra el plan de la venta dibujado (entrada/stop/objetivo) pero no distingue el nivel intermedio del final.
 
 ### c-0064
 
@@ -743,6 +927,10 @@
 
 **Visual hint:** 13:21 — gráfico USDCAD: la operación que el instructor sí haría para hoy
 
+**Dudas abiertas:**
+
+- Qué es exactamente «esto de aquí» que sí haría para hoy: deíctico visual; un frame de ~801s permitiría resolverlo.
+
 ### c-0065
 
 **Statement:** En la simulación el precio baja hasta el nivel marcado y «ahora ha completado justo el primero de dos horas».
@@ -756,6 +944,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001334.png|f-001334]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001337.png|f-001337]]
 
 **Visual hint:** 13:37 — gráfico 2h USDCAD (a ~817s): primer rango de 2h completado; a 814s la pantalla está en 1h
+
+**Dudas abiertas:**
+
+- «El primero de dos horas»: ¿primer objetivo en el gráfico de 2h o primer rango de 2h? Deíctico del gráfico.
 
 ### c-0066
 
@@ -798,6 +990,11 @@
 **Tiempo:** [14:21–14:35]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001421|14:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001423|14:23]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001425|14:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001427|14:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001429|14:29]]
+
+**Dudas abiertas:**
+
+- Garble «tonalidad» (s-001423): la lectura «temporalidad» está apoyada por el contexto y por s-001429, donde «temporalidad» se dice literalmente; pero la palabra exacta pronunciada en s-001423 no es verificable desde el transcript. Requiere escucha directa del audio para cerrarla.
+- Garble «tonalidad» (s-001423): por contexto y por s-001429 («bajas más de temporalidad») se lee «temporalidad»; confirmar.
 
 ### c-0070
 
@@ -865,6 +1062,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001520.png|f-001520]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001523.png|f-001523]]
 
+**Dudas abiertas:**
+
+- La conclusión 'no ha hecho nuevo alto' es la verbal del instructor: a la resolución del frame, la comparación píxel a píxel entre la mecha de la vela actual de GBPUSD (H 1.36337) y el nivel dibujado (~1.36309/1.36326) no es plenamente resoluble.
+
 ### c-0075
 
 **Statement:** En Euro, en 12 horas hay rango bearish hasta el mismo punto y en 8 horas rango bearish hasta el mismo punto; en 6 horas no hay nada.
@@ -876,6 +1077,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001526|15:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001528|15:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001530|15:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001532|15:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001533|15:33]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001529.png|f-001529]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001532.png|f-001532]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001535.png|f-001535]]
+
+**Dudas abiertas:**
+
+- 'Hasta el mismo punto' (s-001528, s-001532): el instructor lo señala en el gráfico; por audio no se especifica el punto de referencia (presumiblemente el high del failure swing marcado como objetivo).
 
 ### c-0076
 
@@ -925,6 +1130,10 @@
 
 **Visual hint:** 15:58 — Euro: zona de la venta ideal ya escapada (arriba), señalada en el gráfico
 
+**Dudas abiertas:**
+
+- 'Era aquí arriba, al menos hasta aquí' (s-001558, s-001559): el nivel exacto de la venta ideal se señala en el gráfico, no se verbaliza.
+
 ### c-0080
 
 **Statement:** Con el primer rango tomado y formándose posiblemente rangos alcistas, ahora estaría ya moviendo a break even.
@@ -948,6 +1157,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001625.png|f-001625]]
 
 **Visual hint:** 16:25 — Rango diario de Euro: tendencia alcista
+
+**Dudas abiertas:**
+
+- 'Ni que hayamos llegado al objetivo' (s-001610): la sintaxis del ASR deja ambiguo si el matiz es 'aun cuando ya llegamos al objetivo' o 'ni siquiera hemos llegado'; el claim lo preserva literal sin decantar, correcto, pero el matiz queda sin resolver por audio.
 
 ### c-0082
 
@@ -985,6 +1198,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/frames/f-001636.png|f-001636]]
 
+**Dudas abiertas:**
+
+- 'Yo aquí no entraría' (s-001633): se refiere a la situación actual (1h con posible rango alcista formándose), no a una zona concreta verbalizada.
+- Deíctico 'aquí' (s-001633): los frames f-001636/f-001659 lo sitúan en la situación 1h del momento (posible rango alcista formándose), no a una zona verbalizada; se mantiene la nota del claim.
+
 ### c-0085
 
 **Statement:** Nunca vendáis mientras se forman rangos alcistas; tiene que ser aquí arriba, mientras se están formando los rangos bajistas.
@@ -999,6 +1217,11 @@
 
 **Visual hint:** 16:48 — El instructor señala en el gráfico la zona alta donde se venden los rangos bajistas
 
+**Dudas abiertas:**
+
+- 'Tiene que ser aquí arriba' (s-001646): la zona de venta se señala en el gráfico; por audio no se precisa el nivel exacto.
+- Deíctico 'aquí arriba' (s-001646): el frame f-001648 muestra la venta dibujada en la zona alta con stop por encima, pero el nivel exacto verbalizado no se precisa por audio; se mantiene la nota del claim.
+
 ### c-0086
 
 **Statement:** Cierre del capítulo: 'creo que queda claro cómo se hace la crisis [ASR] desde cero'; nos vemos al siguiente vídeo.
@@ -1008,4 +1231,9 @@
 **Tiempo:** [16:53–17:00]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch08-proceso/transcript#^s-001653|16:53]]
+
+**Dudas abiertas:**
+
+- 'La crisis' [ASR] (s-001653): garble sin confirmación de fuente; lectura probable 'el análisis' por contexto ('cómo se hace el análisis desde cero', tema verificado del capítulo en s-000000). Pendiente de resolución definitiva.
+- 'La crisis' [ASR] (s-001653): garble; lectura probable por contexto 'el análisis' — 'queda claro cómo se hace el análisis desde cero' (TERM_DISAMBIGUATION, palabra dicha preservada).
 

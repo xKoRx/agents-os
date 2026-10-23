@@ -33,6 +33,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000036|00:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000043|00:43]]
 
+**Dudas abiertas:**
+
+- «funciona 100%» y «win rate va a ser siempre positivo» se publican como dichos literales del instructor, no como hecho validado; preservar esa fuerza
+- «funciona 100%» y «win rate va a ser siempre positivo» se publican como dichos literales del instructor, no como hecho validado; preservar esa fuerza (arrastrado del extractor; verificado que el segmento lo dice así)
+
 ### c-0004
 
 **Statement:** Mecanismo dicho por el instructor: antes, con win rate negativo, siempre existía la duda de si mañana se sabría hacia dónde va el precio, si se tendría take profit o si se podría pasar al challenge; «eso lo que hace es aumentar vuestras dudas» y, «al aumentar vuestras dudas», «vais a tener más inclinación a operar más para disipar esas dudas», buscando «la confirmación de tener más trades, más take profit para que esa confianza en vosotros mismos crezca».
@@ -85,6 +90,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000149|01:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000143|01:43]]
 
+**Dudas abiertas:**
+
+- «el 1% lo que tú desees» queda truncada/dudosa en ASR; no completar
+- «el 1% lo que tú desees» queda truncada/dudosa en ASR; no completar (mantener la duda del extractor; candidatos no aclarables contra el segmento citado)
+
 ### c-0009
 
 **Statement:** El instructor dice que «somos capaces de hacer días de 6R, 8R, 9R, 10, 4, lo que sea».
@@ -94,6 +104,11 @@
 **Tiempo:** [01:57–02:08]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000157|01:57]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000201|02:01]]
+
+**Dudas abiertas:**
+
+- «10, 4» dicho literal; posible lectura «10R, 4R» pero no completar sin respaldo
+- «10, 4» se mantiene literal como en la fuente (posible lectura «10R, 4R»); el claim ya lo preserva sin completar: correcto, no resolver.
 
 ### c-0010
 
@@ -117,6 +132,10 @@
 
 **Notes:** Adjudicación integrador (corrección min2): el hedge «sí puede ser porque estás aprendiendo» se dijo sobre el caso del 40 (s-000227); anclado al caso dicho.
 
+**Dudas abiertas:**
+
+- «winrate va a ser positivo» es dicho del instructor, no dato validado
+
 ### c-0012
 
 **Statement:** Cifras dichas (condicional y autorrectoración literales): el instructor dice que «si yo y Will tenemos un 90, 80 o casi 100% en algunos casos de winrate con la estrategia, no puede ser que tú tengas un 40 — o sea, sí puede ser porque estás aprendiendo».
@@ -126,6 +145,10 @@
 **Tiempo:** [02:27–02:51]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000227|02:27]]
+
+**Dudas abiertas:**
+
+- Los 90/80/100% son los que el instructor atribuye a él y a Will (relato propio, no dato validado); el claim ya lo enmarca como «cifras dichas»: sin acción adicional.
 
 ### c-0013
 
@@ -167,6 +190,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000327|03:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000338|03:38]]
 
+**Dudas abiertas:**
+
+- Observación de literalidad (no corrupta): el «12R» dicho corresponde al extremo 6 de 10 aciertos (5 aciertos a ratio 2 darían 10R); el claim preserva la palabra dicha del instructor sin arbitrar la imprecisión. No requiere corrección, sólo constancia.
+- modalizadores «creo yo»/«modesto» preservados: estimación del instructor, no dato
+
 ### c-0017
 
 **Statement:** «Es muy importante confiar en que en el largo plazo tenéis siempre las de ganar utilizando una buena estrategia».
@@ -187,6 +215,12 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000414|04:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000426|04:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000436|04:36]]
 
+**Dudas abiertas:**
+
+- «el dole» [ASR]: candidato DOL («el doble», objetivo de liquidez) según glosario; preservar palabra dicha, no sustituir sin respaldo literal
+- «el dole» [ASR]: candidatos DOL («el doble», objetivo de liquidez) u otro término homófono; mantener palabra dicha + candidatos, sin resolver por coherencia con el glosario
+- «puede aparecer el fin del mundo» (s-000426): posible garble ASR de «puede parecer»; el claim publica la palabra literal del transcript, no sustituir sin respaldo
+
 ### c-0019
 
 **Statement:** Resumen dicho por el instructor: «yo me metería esta idea en la cabeza de que si tú te ciñes al plan, arriesgas un 1%, siempre vas a ser rentable utilizando esta estrategia».
@@ -196,6 +230,11 @@
 **Tiempo:** [04:48–05:04]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000448|04:48]]
+
+**Dudas abiertas:**
+
+- «siempre vas a ser rentable» es promesa dicha condicionada (ceñirse al plan + 1%) por el instructor, no hecho validado
+- «siempre vas a ser rentable» es promesa dicha condicionada (ceñirse al plan + arriesgar 1%) por el instructor; no publicar en docs como garantía incondicional
 
 ### c-0020
 
@@ -219,6 +258,14 @@
 
 **Notes:** ['caso de un alumno relatado por el instructor (terceros), no experiencia directa propia']
 
+**Dudas abiertas:**
+
+- Añadido por revisión: en s-000518, «se mete más 5%» es ambiguo — ¿llega a +5% de profit o arriesga más de un 5%? La narrativa posterior («De más 5 a quemarlo» s-000524, «estaba a un 5 y ahora está a un 1» s-000545) sugiere estado de cuenta (+5%), pero no se resuelve desde el texto dicho
+- El instructor no nombra el patrón con ningún término (revenge trading aparece después, en s-002224 y s-002545, pero NO en este minuto); no retro-etiquetar este ejemplo con ese término
+- Signos más/menos inconsistentes en ASR (heredado del claim): «de menos 5 pasa a menos 4... pasa a menos 3» (s-000527) vs «estaba más 5 y ahora está a más 3» (s-000531/s-000533); secuencia exacta de signos no resoluble desde el texto, no reconstruir
+- el instructor NO nombra ningún término técnico para el patrón (recuperar/arriesgar más para sentirse bien); no etiquetarlo con término inventado
+- signos más/menos inconsistentes en ASR («de menos 5 pasa a menos 4» vs «estaba más 5 y ahora está a más 3»): secuencia exacta de signos no resoluble desde el texto
+
 ### c-0022
 
 **Statement:** Cierre del caso: «son cosas que pasan, pero no tiene sentido ya que pase esto con esta» [frontera 6:00] «estrategia, cuando simplemente tú no tienes que pensar…» (continuación verificada en s-000600).
@@ -231,6 +278,11 @@
 
 **Notes:** Adjudicación integrador (corrección min5): statement extendido con la continuación confirmada en el segmento de frontera s-000600 del payload de revisión (revisor min5: «confirma que la frase continúa»); kind rule→warning (fragmento transicional/truncado).
 
+**Dudas abiertas:**
+
+- Continuación exacta de la frase más allá de s-000600 («estrategia, cuando simplemente...») queda fuera del alcance de este minuto; si el integrador extiende el claim, corresponde al revisor del minuto 6 verificar esa parte
+- la frase queda cortada por la frontera del bloque; la palabra final (probablemente «estrategia») NO está dicha en este bloque, no completar
+
 ### c-0023
 
 **Statement:** «No tiene sentido que te pase esto con esta estrategia», cuando simplemente no tienes que pensar: el trade aparece, le meto un 1 y ya está, vaya bien o vaya mal; si va mal, lo revisas, lo apuntas y ya está; si va bien, mejor, lo apuntas también, lo revisas, lo estudias y te olvidas ya de ese trade, tanto del bueno como del malo.
@@ -240,6 +292,10 @@
 **Tiempo:** [05:58–06:17]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000600|06:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000602|06:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000604|06:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000606|06:06]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000608|06:08]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000610|06:10]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000613|06:13]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000615|06:15]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000558|05:58]]
+
+**Dudas abiertas:**
+
+- «le meto un 1» se dice literal y sin unidad; el bloque no explicita si es el 1% de riesgo (coherente con ch11, pero aquí no se dice)
 
 ### c-0024
 
@@ -254,6 +310,12 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-000619.png|f-000619]]
 
 **Visual hint:** 06:19 — gráfico EURUSD 5M con el trade dibujado (zona azul de recorrido y zona gris inferior, nivel horizontal superior en 1,11376); los deícticos «llega aquí»/«lo quitas de aquí» apuntan a este gráfico
+
+**Dudas abiertas:**
+
+- Garble «toblos» [ASR] (s-000625): candidato «top loss»→stop loss por contexto, sin confirmación literal
+- Referente exacto de «de aquí» (¿el nivel objetivo marcado en el gráfico —1,11376—, o el apunte/journal?): el frame confirma un nivel marcado en pantalla, pero el referente no queda literal en el audio
+- Referente exacto de «de aquí» (¿nivel objetivo del gráfico, apunte/journal?): el frame muestra el gráfico, pero el referente no queda literal
 
 ### c-0025
 
@@ -309,6 +371,10 @@
 
 **Visual hint:** 07:14 — gráfico EURUSD 5M con el máximo del movimiento en la parte alta del gráfico (~1,1146-1,1148): «comprar aquí arriba» señala esa zona alta
 
+**Dudas abiertas:**
+
+- Deixis exacta de «aquí arriba»: en f-000714 el cursor no está sobre el máximo (queda a media pantalla); el referente plausible es la zona de máximos ~1,1146-1,1148, pero el punto exacto señalado no es verificable píxel a píxel.
+
 ### c-0030
 
 **Statement:** Comprar «por aquel medio» [ASR; glosa candidata, no dicha: «de cualquier manera»] sólo por ganas de operar y ganas de hacer profit no va a funcionar.
@@ -318,6 +384,10 @@
 **Tiempo:** [07:20–07:35]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000720|07:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000722|07:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000728|07:28]]
+
+**Dudas abiertas:**
+
+- Referente de «por aquel medio» (s-000722): ¿'de cualquier manera', otra zona del gráfico (continuación de «o cualquier otra cosa») u otro método? Ambigüedad material que el audio no resuelve.
 
 ### c-0031
 
@@ -377,6 +447,13 @@
 
 **Notes:** experiencia personal; el instructor mismo matiza «hoy no es el mejor ejemplo»
 
+**Dudas abiertas:**
+
+- Garble ASR «ya vi el trato de su paquí» (s-000806) sin candidato claro, sin resolver
+- Garble «ya vi el trato de su paquí» (s-000806): sin candidato claro
+- «esto es de oro» (s-000806/s-000813) sigue sin referente confirmado: verificado visualmente que en 7:59-8:10 la pantalla muestra EURUSD 5M (f-000759, f-000802, f-000810) y desde 8:16 GBPUSD 5M (f-000816, f-000820); ningún gráfico de oro (XAUUSD) verificado en la ventana
+- «esto es de oro» (s-000806/s-000813): los frames verificados del momento muestran EURUSD a 8:02 (f-000802) y 8:10 (f-000810), y el cambio a GBPUSD ocurre entre 8:10 y 8:16 (f-000816, f-000820); no se verifica ningún gráfico de oro (XAUUSD) en la ventana — el referente de «esto es de oro» queda abierto
+
 ### c-0036
 
 **Statement:** Si estás haciendo un challenge, una sucesión de buenos trades va a acabar convirtiéndose en el challenge pasado; tú intentando buscar pasar el challenge, lo que va a convertirse es en tú cogiendo malos trades («obviamente»).
@@ -416,6 +493,10 @@
 **Tiempo:** [09:00–09:13]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000900|09:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000902|09:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000904|09:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000906|09:06]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-000908|09:08]]
+
+**Dudas abiertas:**
+
+- El 8% (objetivo) y el 4-5% (profit intermedio) se enuncian como ejemplo («digamos»); el bloque no formaliza los parámetros del challenge
 
 ### c-0040
 
@@ -467,6 +548,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001000|10:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001003|10:03]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001005|10:05]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001007|10:07]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001009|10:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001011|10:11]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001013|10:13]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001016|10:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001017|10:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001019|10:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001021|10:21]]
 
+**Dudas abiertas:**
+
+- «Tenemos la buena estrategia» es autopercepción del instructor, publicada como dicha, no como hecho
+
 ### c-0045
 
 **Statement:** «No tengáis prisa, no miréis el challenge» y, lo mismo con los números, hay que ir con calma y nunca fijarse en ellos: si ya ves el menos 6, ya te vas a desesperar y querrás salir de ahí muy rápido.
@@ -497,6 +582,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001033|10:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001046|10:46]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001027|10:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001029|10:29]]
 
+**Dudas abiertas:**
+
+- «2 trades buenos, 6R» se dice literal sin desglosar las R por trade
+- «Aún 4 fallos por hacer» se dice tal cual con -6% y riesgo 1%; el tope del que saldría el 4 (¿10% de drawdown máximo?) no se dice en el bloque
+
 ### c-0048
 
 **Statement:** «Esta estrategia permite hacer números así tan buenos que un menos 6, que puede parecer un desastre absoluto, en una mañana se recupera»; y «he ido al extremo de un menos 6. Si es un menos 2, ya ni te digo: un menos 2 es solo una operación buena».
@@ -507,6 +597,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001046|10:46]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001058|10:58]]
 
+**Dudas abiertas:**
+
+- «Y he ido al extremo de un menos 6» (s-001058): ¿relato personal de haber estado en -6% o recurso retórico del análisis llevado al extremo? Ambiguo en el ASR; si fuera personal, sería experiencia del instructor, no dato general
+
 ### c-0049
 
 **Statement:** Si estabas en un 7% y te bajas a 4 —«calma, un 4»—, vuelven a ser solo dos trades buenos; y «no queráis nunca recuperar estos números porque es cuando se jode siempre».
@@ -516,6 +610,11 @@
 **Tiempo:** [11:15–11:28]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001115|11:15]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001118|11:18]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001120|11:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001122|11:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001124|11:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001126|11:26]]
+
+**Dudas abiertas:**
+
+- Confirmada la duda del extractor: el referente de 7%/4% (¿beneficio acumulado del challenge, drawdown u otro % de la cuenta?) no se explicita en el minuto; correcto publicarlos como dichos literales
+- No se dice si el 7% y el 4% son beneficio acumulado del challenge, drawdown u otro porcentaje de la cuenta; se publican como dichos literales
 
 ### c-0050
 
@@ -528,6 +627,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001128|11:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001130|11:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001132|11:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001134|11:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001136|11:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001138|11:38]]
 
 **Notes:** Adjudicación integrador (corrección min11): anclada a experiencia personal — s-001128 «porque me ha pasado en el pasado», s-001139 «me ha pasado miles de veces»; la documentación no la publica como mecanismo psicológico general.
+
+**Dudas abiertas:**
+
+- El referente de 7/4 (¿beneficio del challenge, drawdown u otro % de la cuenta?) no se explicita; mismo ambiguo que b3-01
+- Mismo referente ambiguo que b3-01 para 7/4 (¿beneficio del challenge, drawdown u otro % de la cuenta?), no explicitado en la fuente
 
 ### c-0051
 
@@ -553,6 +657,10 @@
 
 **Notes:** fórmula «desde mi experiencia» + «podéis»: recomendación práctica dicha apoyada en su práctica personal
 
+**Dudas abiertas:**
+
+- «challenges fondeadas» (s-001158) tiene disonancia de género; puede ser elipsis ASR de «challenges y fondeadas» (dos tipos de cuenta) o «challenges fondeadas» como categoría. El claim lo preserva dicho — correcto; la lectura no cambia el sentido de «más de una cuenta»
+
 ### c-0053
 
 **Statement:** Ejemplo con el gráfico en pantalla: «yo siento que quiero operar y el setup no es tan claro — aquí ya he llegado al primer doll, que era aquí», «y después ves esto de aquí, la reiniciada esta para seguir» [ASR: «doll»; candidato DOL].
@@ -568,6 +676,13 @@
 **Visual hint:** 12:12 — gráfico GBPUSD 5M: el cursor sobre el nivel horizontal ~1,32190 (techo de la zona azul «Objetivo» del trade dibujado), zona de máximos que el precio tocó — «el primer doll, que era aquí»
 
 **Notes:** Adjudicación integrador (frame f-001245, targeted con prueba md5): cursor sobre la herramienta de posición en la zona del trade; Objetivo importe 0689,55 y Stop importe 9700 legibles a 12:25.
+
+**Dudas abiertas:**
+
+- Deíctico «la reiniciada esta para seguir» (s-001214): estructura exacta no identificable en f-001212; pendiente frame adicional f-001245 (solicitado en additional_frame_needed)
+- Garble «doll» (s-001212): candidato DOL (glosario del curso), sin confirmación literal en el segmento
+- Garble «doll» (s-001212): confirmado que el segmento dice literalmente «doll»; candidato DOL sigue sin confirmación literal — preservar [ASR] (arrastrado del extractor; verificado)
+- Qué estructura exacta señala «la reiniciada esta para seguir»: deíctico del gráfico no marcado en el frame verificado
 
 ### c-0054
 
@@ -589,6 +704,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001230|12:30]]
 
+**Dudas abiertas:**
+
+- El tramo «sientes muchas ganas de vengarte, de operar, de nada» (s-001230) llega garbleado por el ASR; «ganas de vengarse operando» es la lectura natural, no literal segura
+- Garble ASR en s-001230 «de vengarte, de operar, de nada»: verificado que el segmento dice así; «ganas de vengarse operando» sigue siendo lectura natural no literal segura (arrastrado del extractor; confirmado contra fuente)
+
 ### c-0056
 
 **Statement:** Aritmética dicha a modo de ejemplo («imagínate»): «estás arriesgando 1%, pues vas a hacer menos 1 menos 1 o menos 1 más 2»; «el siguiente más 2 ya te compensa un poco» —«no sé»— «el dolor del primer menos 1». «Jugar con cosas así es importante».
@@ -608,6 +728,11 @@
 **Tiempo:** [13:08–13:26]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001308|13:08]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001320|13:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001322|13:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001323|13:23]]
+
+**Dudas abiertas:**
+
+- Referente de «lo máximo que pudiese perder» (¿pérdida máxima del día, de la cuenta, tope del challenge?) no se explicita en el bloque
+- Referente de «lo máximo que pudiese perder» sigue abierto: el bloque no explicita si es tope de pérdida del día, de la cuenta o del challenge; el deíctico «esto» (s-001311) tampoco lo resuelve. No resolver por coherencia con el glosario ch11.
 
 ### c-0058
 
@@ -631,6 +756,11 @@
 
 **Notes:** experiencia personal (qué hacía él tras profitar y marcharse); no regla universal
 
+**Dudas abiertas:**
+
+- Garble «te he profitado» (s-001311): candidato «he profitado / he hecho profit», sin confirmación literal
+- Garble «te he profitado» (s-001311): candidatos «he profitado / he hecho el profit»; sin confirmación literal en el segmento — se conserva la palabra dicha.
+
 ### c-0060
 
 **Statement:** Si tenéis un journal: «en el journal poner el estado mental en el que estabais cuando tomaba es un trade [ASR]».
@@ -641,6 +771,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001341|13:41]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001347|13:47]]
 
+**Dudas abiertas:**
+
+- Garble «cuando tomaba es un trade» (s-001347): candidato «cuando tomabais ese trade»
+- Garble «cuando tomaba es un trade» (s-001347): candidato «cuando tomabais ese trade» sin confirmación literal — se conserva la palabra dicha.
+
 ### c-0061
 
 **Statement:** Lo que vais a ver con esa anotación: «los take profit solamente vais a estar en un estado mental tranquilo, calmado, y los estoblos [ASR] supongo que con FOMO o con rabia o con venganza o con todo».
@@ -650,6 +785,13 @@
 **Tiempo:** [13:47–13:58]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001347|13:47]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001351|13:51]]
+
+**Dudas abiertas:**
+
+- Alcance exacto del «supongo»: modera sólo la parte de stops según el flujo dicho; si se reutiliza el claim, no extender la suposición a los take profit.
+- El «supongo» dicho modera solo la parte de los stops; se conserva tal cual
+- Garble «estoblos» (s-001351): candidato «stop loss»
+- Garble «estoblos» (s-001351): candidato «stop loss» sin confirmación literal — se conserva la palabra dicha.
 
 ### c-0062
 
@@ -666,6 +808,11 @@
 **Visual hint:** 14:03 — gráfico GBPUSD 5M con zoom ampliado (18:00→~10:30): la caída del lateral derecho hasta ~1,3188 es «esta venta de aquí» de la que habla el alumno; el trade dibujado anterior sigue en pantalla
 
 **Notes:** caso del día con un alumno; relato, no regla
+
+**Dudas abiertas:**
+
+- La vela/zona exacta de «esta venta» es deíctica (gesto sobre el gráfico) y no queda marcada en el frame estático; verificado sólo el conjunto (caída del día visible). Confirmable sólo revisando el movimiento del vídeo.
+- La vela/zona exacta de «esta venta» no queda marcada en el frame; verificado sólo el conjunto (caída del día visible)
 
 ### c-0063
 
@@ -691,6 +838,11 @@
 
 **Visual hint:** 14:17 — gráfico GBPUSD 5M de todo el día (18:00→~10:30) mientras enumera las operaciones del recorrido: el día muestra múltiples swings con la caída final a la derecha
 
+**Dudas abiertas:**
+
+- Los puntos exactos de la enumeración (venta/compra/TP/reiniciada/noticia) no quedan marcados uno a uno en el frame; verificado sólo el conjunto «todo el día lo que hay»
+- Los puntos exactos de la enumeración (venta/compra/TP/reiniciada/noticia) son deícticos y no quedan marcados uno a uno en el frame; verificado sólo el conjunto «todo el día lo que hay».
+
 ### c-0065
 
 **Statement:** Sobre vender en los mínimos del día: «obviamente está el precio aquí abajo; hombre, vender aquí es un poco arriesgado ya diría» — hoy «se hace muchos pips», pero «normalmente si entras aquí va a ser, no sé, que sea un „sigue la flecha“ muy claro, que puede ser»; y para no entrar en estrategia: «vamos a decidir que solo era FOMO».
@@ -705,6 +857,11 @@
 
 **Visual hint:** 14:46 — gráfico GBPUSD 5M muy ampliado: el precio en la parte inferior derecha (~1,3160-1,3165) tras la caída del día — «está el precio aquí abajo», donde «vender aquí» sería arriesgado
 
+**Dudas abiertas:**
+
+- Sentido de «un sigue la flecha» (s-001455): se dice literal sin definir (¿entrada a favor del impulso sin estructura?)
+- Sentido de «un sigue la flecha» (s-001455): se dice literal sin definir (¿entrada a favor del impulso sin estructura?); correctamente sin resolver en el claim.
+
 ### c-0066
 
 **Statement:** «Ahí es cuando sabes que no debes operar; pero lo mismo: si tienes mucho, mucho FOMO y es un „sigue la flecha“ claro, y no sé, ni que tu estado mental sea malo — si tienes tú bastantes cuentas para operar, le puedes medir poco riesgo en un challenge y se te quita el mono ese de operar».
@@ -714,6 +871,10 @@
 **Tiempo:** [15:02–15:24]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001503|15:03]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001506|15:06]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001508|15:08]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001510|15:10]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001512|15:12]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001514|15:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001516|15:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001502|15:02]]
+
+**Dudas abiertas:**
+
+- «sigue la flecha» (s-001508) no figura en el glosario del pack: puede ser la señal literal de entrada (flecha) del setup de los capítulos de estrategia o un garble ASR; el claim la preserva dicha, pero el integrador podría confirmarla contra ch07 antes de wikilinkearla a ningún término.
 
 ### c-0067
 
@@ -737,6 +898,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001548|15:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001551|15:51]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001552|15:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001554|15:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001556|15:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001558|15:58]]
 
+**Dudas abiertas:**
+
+- La frase continúa en el bloque 4 (s-001558 corta en «simplemente vais a ver…» al llegar a 16:00)
+- La frase continúa en el bloque 4 (s-001558 corta en «simplemente vais a ver…» al llegar a 16:00; la continuación «cuál es vuestro nivel en la estrategia» es s-001600, minuto 16): la porción continuada queda fuera de este review y debe cubrirla el revisor del minuto 16 si genera claim propio.
+
 ### c-0069
 
 **Statement:** «Esto es bastante claro»: tenéis que cada uno aprender a ver cómo podéis gestionar vuestras emociones; «esto cada persona es distinto».
@@ -749,6 +915,11 @@
 
 **Notes:** Regla dicha con «tenéis que»; el instructor subraya la dimensión individual de la gestión emocional
 
+**Dudas abiertas:**
+
+- Confirmada como genuinamente irresoluble en este paquete: s-001600/s-001602 («cuál es vuestro nivel en la estrategia pero emocionalmente en la demo no hay nada») carecen del antecedente de la pregunta previa; qué es «no hay nada» en la demo (¿riesgo, presión?) queda abierto. El claim no depende de esos segmentos.
+- s-001600-001602 («cuál es vuestro nivel en la estrategia pero emocionalmente en la demo no hay nada») es deíctico: no se oye la pregunta previa ni queda claro qué es «no hay nada» en la demo (¿riesgo, presión emocional?)
+
 ### c-0070
 
 **Statement:** En las situaciones en que ves que te estás descontrolando: «cierra el Ctrader, cierra el gráfico y vete» (lo que dice haber recomendado ya: «o cerrar el gráfico»).
@@ -760,6 +931,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001615|16:15]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001631|16:31]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001634|16:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001634a|16:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001636|16:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001629|16:29]]
 
 **Notes:** Recomendación práctica dicha («yo os he dicho esto»); se preserva «Ctrader» tal como suena en el segmento
+
+**Dudas abiertas:**
+
+- Verificada como abierta y correctamente preservada: «o meterle en otros challenges» (s-001617) es ambiguo/truncado por ASR (¿meter dinero en otros challenges, meterse en otros?); el claim conserva la palabra dicha sin normalizar. Correcto.
+- «o meterle en otros challenges» (s-001617) queda sin resolver: ¿añadir dinero a otros challenges, meterse en otros challenges? Truncamiento/garble del ASR; se conserva la palabra dicha
 
 ### c-0071
 
@@ -794,6 +970,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001647|16:47]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001649|16:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001651|16:51]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001652|16:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001655|16:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001657|16:57]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001659|16:59]]
 
 **Notes:** El 1% se publica como dicho literal («buenos setups de 1%»), sin explicitar si es riesgo por trade
+
+**Dudas abiertas:**
+
+- No se explicita si el «1%» de los setups es el riesgo por operación (lectura plausible por ch11) u otra magnitud; se conserva literal
+- Verificada como abierta y correcta: no se explicita en el audio si el «1%» de los setups es riesgo por operación u otra magnitud; se conserva literal. No normalizar contra ch11 sin respaldo literal en ep12.
 
 ### c-0074
 
@@ -834,6 +1015,11 @@
 **Visual hint:** 17:22 — la pantalla sigue mostrando el gráfico GBPUSD 5M del 17/9/2024 («2am low») de la demo anterior; NO hay dashboard ni cifras de FTMO en pantalla
 
 **Notes:** Experiencia personal del instructor; cifras literales (riesgo 0,5; 10% de profit; una semana; FTMO) Adjudicación integrador (corrección min17): f-001722.png (1042 s, canónico) adjudicada targeted con prueba md5 (extracción fresca byte-idéntica) para el visual_hint del relato FTMO — confirma que NO hay dashboard/cifras en pantalla.
+
+**Dudas abiertas:**
+
+- «C&K» (s-001717) [ASR]: ¿garble de «challenge», de otra firma prop o de otra cosa? Candidatos abiertos; la relación exacta entre «C&K» y «FTMO» (¿el mismo challenge?) no queda dicha explícitamente en el transcript.
+- «C&K» (s-001717) [ASR]: ¿garble de «challenge», de otra firma prop o de otra cosa? Candidatos abiertos; relación exacta entre «C&K» y «FTMO» (¿el mismo challenge?) no queda dicha explícitamente
 
 ### c-0077
 
@@ -929,6 +1115,11 @@
 
 **Notes:** Experiencia personal; el propio instructor deja la fecha de su primera cuenta ambigua a propósito («me da igual»)
 
+**Dudas abiertas:**
+
+- Octubre vs noviembre de 2023: la fecha de la primera cuenta del instructor queda ambigua a propósito («ya me da igual»); no adjudicar (coincide con la unresolved_question del claim).
+- Octubre vs noviembre de 2023: la fecha exacta de la primera cuenta del instructor no se resuelve (él la declara irrelevante); no adjudicar
+
 ### c-0085
 
 **Statement:** «Intentad separaros un poco de la situación, verla como desde lejos o hasta en tercera persona», «para ver si vale la pena ahora toda esta prisa».
@@ -963,6 +1154,11 @@
 
 **Notes:** Escenario ilustrativo/hipotético (preguntas retóricas), NO relato personal ni promesa de resultado; cifras dichas: 5/10/20 (cuenta pequeña), 4 meses, 100K
 
+**Dudas abiertas:**
+
+- Las cifras 5/10/20 se dicen sin unidad explícita en el segmento (subentendido miles/K por contraste con «100K»); se conservan literales
+- Las cifras 5/10/20 se dicen sin unidad explícita en s-001935 (subentendido miles/K por contraste con «100K»); se conservan literales — no resolver por coherencia
+
 ### c-0088
 
 **Statement:** «Cuando estáis superando y os vienen estas ganas, este ímpito, esta prisa», pensad de este modo: separaros un poco, ser más conscientes de la situación en general, «de que no pasa nada por ahora suspender un par de challenges si esto es a largo plazo».
@@ -974,6 +1170,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-001957|19:57]]
 
 **Notes:** Aplicación del procedimiento de b4-17 al impulso de prisa; «un par de challenges» literal
+
+**Dudas abiertas:**
+
+- «Cuando estáis superando» (s-001957): objeto ambiguo (¿superando un challenge, una mala racha?); ASR poco claro, se conserva la palabra dicha
+- «Cuando estáis superando» (s-001957): objeto ambiguo y ASR poco claro (¿superando un challenge, una mala racha, otra lectura?); se conserva la palabra dicha, no adjudicar
 
 ### c-0089
 
@@ -1021,6 +1222,11 @@
 
 **Notes:** Experiencia personal; el «winrate muy alto» es autoevaluación dicha del instructor, sin cifra, enmarcada contra el fracaso pasado («fracasé en unos cuantos»)
 
+**Dudas abiertas:**
+
+- «Winrate muy alto»: sin cifra; no se publica como garantía ni promesa, sólo como dicho del instructor sobre sí mismo
+- «Winrate muy alto»: sin cifra; no se publica como garantía ni promesa, sólo como dicho del instructor sobre sí mismo (conservar)
+
 ### c-0093
 
 **Statement:** «Obviamente si arriesgas más puedes fallar».
@@ -1032,6 +1238,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002044|20:44]]
 
 **Notes:** Condicional con modalizador doble («obviamente», «puedes»); fuerza dicha: advertencia probabilística, no certeza
+
+**Dudas abiertas:**
+
+- El antecedente exacto del condicional (¿arriesgar más al querer ir rápido?) se sobreentiende del contexto inmediato (b4-24, s-002036-s-002042); el nexo explícito dicho es sólo «obviamente» (conservar)
+- El antecedente exacto del condicional en el hilo (¿arriesgar más al querer ir rápido?) se sobreentiende del contexto inmediato (b4-24); el nexo explícito dicho es sólo «obviamente»
 
 ### c-0094
 
@@ -1045,6 +1256,12 @@
 
 **Notes:** «Permitir» dicho sin explicitar si es económicamente o psicológicamente (¿ambos?); nexo «significa» dicho por el instructor
 
+**Dudas abiertas:**
+
+- Contexto posterior NO citado por el claim (s-002116-s-002123, [contexto]: «si tú necesitas los 300 que están aquí… para pagar lo que sea») apunta a la lectura económica, pero está fuera de la evidencia citada y del minuto: no debe usarse para resolver la ambigüedad en este claim
+- «No te puedes permitir» (s-002047): ¿económicamente, emocionalmente o ambos? No se explicita en el segmento
+- «No te puedes permitir» (s-002047): ¿económicamente, emocionalmente o ambos? No se explicita en los segmentos citados (conservar)
+
 ### c-0095
 
 **Statement:** Si ese challenge es tu única oportunidad, «se va a acentuar todo: el drawdown va a ser más duro, cuando estés más cerca del profit target vas a sentir más la presión».
@@ -1056,6 +1273,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002052|20:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002056|20:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002059|20:59]]
 
 **Notes:** Continuación directa de b4-26; los nexos son los dichos («va a acentuar», «cuando»), sin mecanismo añadido
+
+**Dudas abiertas:**
+
+- La frase se corta en la frontera del bloque («cuando pases…», s-002059 termina 21:04): continuación literal presente en s-002104 ([contexto], «a fase 2…»), esperada en el bloque 5 — verificar al revisar el minuto 21 que b5-01 la recoge (conservar)
+- La frase se corta en la frontera del bloque («cuando pases…», s-002059 termina 21:04, minuto 21): continuación esperada en el bloque 5
 
 ### c-0096
 
@@ -1085,6 +1307,11 @@
 
 **Notes:** Cifras literales (700, 300) tal como dichas, sin unidad completa ni referente resuelto; los deícticos «esto de aquí», «que están aquí», «hasta aquí» señalan la pantalla
 
+**Dudas abiertas:**
+
+- ¿Qué representan «700 dólares» y «los 300»? (¿balance/disponible del challenge, importe en riesgo, otra cifra?) No es visible en el frame de 21:17; requeriría frame adicional o aclaración del instructor
+- ¿Qué representan «700 dólares» y «los 300»? Confirmado con f-002117 que NO es visible en pantalla (sin dashboard); sigue requiriendo aclaración del instructor o frame con las etiquetas de la herramienta visibles
+
 ### c-0098
 
 **Statement:** «Para que vuestro rendimiento en el trading sea positivo, tenéis que estar en una situación que os permita eso»: aguantar más los trades, «no sufrir por unos toplos» [ASR].
@@ -1096,6 +1323,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002128|21:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002135|21:35]]
 
 **Notes:** Recomendación dicha con «tenéis que»; «toplos» [ASR]: candidato stop loss (glosario: «top loss/toplos» → ¿stop loss?); se conserva la palabra dicha
+
+**Dudas abiertas:**
+
+- Confirmar «toplos» = stop loss contra audio; el ASR del segmento no permite adjudicarlo
+- Confirmar «toplos» = stop loss contra audio; el ASR del segmento no permite adjudicarlo (s-002141 dice «stoploss» explícito minutos después: corroboración contextual, no confirmación)
 
 ### c-0099
 
@@ -1133,6 +1365,11 @@
 
 **Notes:** Enunciado entrecortado por el ASR al final: «voy a utilizar un challenge y el profit de hoy / hará igual» (s-002218, s-002220) queda ininteligible; se conserva sin completar
 
+**Dudas abiertas:**
+
+- s-002218/s-002220 («voy a utilizar un challenge y el profit de hoy / hará igual») [ASR]: frase truncada; candidata «ya dará igual»/«hará igual» — sin respaldo literal para completar. No hay frame en 22:18-22:21 que ayude (el único del minuto, f-002259, es un chart GBPUSD estático). Mantener abierta.
+- s-002218/s-002220 («voy a utilizar un challenge y el profit de hoy / hará igual») [ASR]: frase truncada; ¿«ya dará igual», «hará igual»…? No completar sin respaldo
+
 ### c-0102
 
 **Statement:** «Esto es lo bueno del trading también»: «en el trading parece que se acaba el mundo siempre, pero tú sales de casa, vas a cenar, vas a hacer no sé qué, o simplemente te vas a dormir, y el día siguiente te levantas ya diferente, ya es como que se ha olvidado lo del día antes»; «al menos esto es lo que me pasa a mí».
@@ -1146,6 +1383,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002222.png|f-002222]]
 
 **Notes:** Experiencia personal explícita («al menos esto es lo que me pasa a mí»); menciona «lo menciono en mi pdf, el del revenge trading, creo que fue» (s-002221, s-002224): material propio citado verbalmente
+
+**Dudas abiertas:**
+
+- El PDF del revenge trading no se muestra en pantalla ni se da título exacto («creo que fue»): referencia externa no verificable desde el vídeo
+- El PDF del revenge trading no se muestra en pantalla ni se da título exacto («creo que fue», s-002224): el único frame disponible del minuto (f-002259, 22:59) es un chart GBPUSD y no cubre el momento de la mención. Solicitar f-002222 (22:22 = 1342 s, momento de «lo menciono en mi pdf») para confirmar que no hay PDF en pantalla.
 
 ### c-0103
 
@@ -1175,6 +1417,13 @@
 
 **Notes:** Consejo dicho con «tenéis que»; cifras literales (5.000 € gastados, 15.000 retirados, ×3); el tweet es referencia verbal del instructor Adjudicación integrador (corrección min23): visual_hint sustituido por la lectura verificada del revisor; los importes «10685.07/3700» del hint original NO son legibles en pantalla (23:05-23:16) → movidos a unresolved_questions.
 
+**Dudas abiertas:**
+
+- El tweet citado no se muestra en el vídeo (verificado 23:10): contenido y fecha del tweet no verificables
+- El tweet citado no se muestra en el vídeo (verificado en f-002310 y f-002359): contenido y fecha del tweet no verificables
+- Los importes «Objetivo importe 10685.07 / Stop importe 3700» del visual_hint original NO son legibles en pantalla (23:05-23:16, verificado por el revisor); origen no verificado.
+- «Objetivo importe 10685.07 / Stop importe 3700» del visual_hint original: no aparecen en pantalla en 23:05-23:16; origen no verificado (¿dicho de viva voz en otro momento, o lectura errónea del extractor?)
+
 ### c-0105
 
 **Statement:** «No son números increíbles porque 5.000 en cuentas de 100 son 10-12 cuentas; pasas 5 de las 10-12 y de estas 5 sacas un profit de 15, que es un 3% en cada una»; «es que no es nada espectacular».
@@ -1186,6 +1435,13 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002315|23:15]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002317|23:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002319|23:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002322|23:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002324|23:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002326|23:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002327|23:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002330|23:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002332|23:32]]
 
 **Notes:** Desglose ilustrativo del instructor; cifras tal como dichas (5.000, «cuentas de 100», 10-12, 5 pasadas, profit de 15, 3%)
+
+**Dudas abiertas:**
+
+- «Cuentas de 100» (s-002317) sin unidad dicha: ¿de 100K? Candidato por «no queráis ahora comprar una de 100k» (s-002524); no adjudicar
+- «Cuentas de 100» (s-002317) sin unidad dicha: ¿de 100K? Candidato por «no queráis ahora comprar una de 100k» (s-002524); no adjudicar sin respaldo
+- «Pasas 5 de las 10-12» es ilustración numérica dicha, no estadística citada de ninguna firma
+- «Profit de 15» (s-002326) sin unidad dicha: ¿15.000 €? Candidato por «vais a retirar 15.000» (s-002311); no adjudicar
 
 ### c-0106
 
@@ -1223,6 +1479,11 @@
 
 **Notes:** Progresiones ilustrativas dichas con formulación optativa («pues que… te generen»), no promesa ni resultado; metáforas literales dichas: «excavando», «se mueve el trading»
 
+**Dudas abiertas:**
+
+- Los números de las progresiones (20, 40, 80; 1.000, 2000) se dicen sin unidad explícita en el segmento (por contraste con «10.000», subentendido miles): conservar tal cual
+- Se mantiene la duda del claim, correctamente abierta: los números de las progresiones (20, 40, 80; 1.000, 2000) se dicen sin unidad explícita en el segmento; la lectura «miles» es sólo subentendida por contraste con «10.000». No adjudicar.
+
 ### c-0109
 
 **Statement:** Calificación de alcance: «pero esto estoy hablando en un contexto general»; «si solo te fijas en un challenge, ese challenge sí que es o todo o nada»; «no tiene sentido en algo que es tan amplio».
@@ -1246,6 +1507,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002451|24:51]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002454|24:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002456|24:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002457|24:57]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002500|25:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002501|25:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002504|25:04]]
 
 **Notes:** Experiencia personal con «yo» y «quizá»; cifras literales (dos años, 50, 20-25, cuentas de 5 y de 10)
+
+**Dudas abiertas:**
+
+- Se mantiene la duda del claim, correctamente abierta: «cuentas pequeñas... de 5, de 10» (s-002501) se dice sin unidad; candidato 5K/10K por contraste con «una de 100k» (s-002524, minuto 25). No adjudicar.
+- «Cuentas pequeñas… de 5, de 10» (s-002501) sin unidad dicha: ¿5K/10K? Candidato por contraste con «una de 100k» (s-002524); no adjudicar
 
 ### c-0111
 
@@ -1283,6 +1549,11 @@
 
 **Notes:** Condicional explícito («si aplicas bien la estrategia») preservado; la finalidad («para quitar un poco de hierro») es dicha por el instructor
 
+**Dudas abiertas:**
+
+- «No te va a pasar de quemar cuentas» es una universal condicional dicha, sin respaldo de datos en el segmento: publicar sólo como dicho del instructor con su condicional
+- «Si aplicas bien la estrategia, no te va a pasar de quemar cuentas» es una universal condicional dicha sin respaldo de datos en el segmento: conservar sólo como dicho del instructor con su condicional (el claim ya lo hace; no derivar regla operativa de ella).
+
 ### c-0114
 
 **Statement:** «Si esto va bien vas a hacer 100 challenges en los próximos 5 años, ¿sabes? O sea que uno no es nada importante».
@@ -1294,6 +1565,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002551|25:51]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002553|25:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002555|25:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002557|25:57]]
 
 **Notes:** Proyección condicional dicha («si esto va bien»), no promesa de número; cierre del hilo de desdramatizar el challenge individual
+
+**Dudas abiertas:**
+
+- La frase cierra justo en la frontera del bloque (s-002557 termina 26:00): posible continuación del hilo en el bloque 6
 
 ### c-0115
 
@@ -1307,6 +1582,12 @@
 
 **Notes:** Continúa la frontera del bloque 5: s-002600 «si comparas en los 100» es frase cortada (hilo b5-19: «100 challenges… uno no es nada importante»). Consecuencias dichas en futuro sin mecanismo psicológico añadido
 
+**Dudas abiertas:**
+
+- El contenido exacto del hilo b5-19 («100 challenges…») no está en el payload (boundary_segments_included vacío): la nota de frontera se apoya sólo en s-002557/s-002600 visibles.
+- ¿A qué se refiere «este 1» (s-002602)? ¿Este challenge, el 1% de riesgo, otra cosa? Candidato: este challenge, por contraste con «los 100» (s-002600) y el hilo b5-19; no adjudicar sin respaldo literal.
+- ¿A qué se refiere «este 1» (s-002602)? ¿Este challenge, el 1% de riesgo, otra cosa? Candidato: este challenge, por contraste con «los 100» (s-002600) y el hilo del bloque 5; no adjudicar sin respaldo literal
+
 ### c-0116
 
 **Statement:** «Tenéis que eso [ASR, disfluencia dicha], es trabajo mental y sobre todo, lo que he dicho al principio del vídeo: meteros en la cabeza que con esta estrategia a la larga siempre vais a ganar, es lo más importante».
@@ -1318,6 +1599,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002614|26:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002617|26:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002618|26:18]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002620|26:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002622|26:22]]
 
 **Notes:** Instrucción dicha («meteros en la cabeza») que contiene la promesa «a la larga siempre vais a ganar»: publicar sólo como convicción dicha del instructor, no como resultado demostrado
+
+**Dudas abiertas:**
+
+- «Con esta estrategia a la larga siempre vais a ganar» es promesa universal dicha sin respaldo de datos en el segmento: conservar tal cual, como dicho del instructor
+- «Con esta estrategia a la larga siempre vais a ganar» es promesa universal dicha sin respaldo de datos en el segmento: conservar tal cual, como dicho del instructor; la documentación que la cite no debe presentarla como hecho verificado.
 
 ### c-0117
 
@@ -1331,6 +1617,11 @@
 
 **Notes:** Autocorrección dicha en directo («con el challenge, perdón» → over risking); «la podéis leer» [ASR]: candidato «la podéis liar» por «si la liáis» (s-002627); se conserva la palabra dicha
 
+**Dudas abiertas:**
+
+- Confirmar «la podéis leer» (s-002633a) = «la podéis liar» contra audio
+- Confirmar «la podéis leer» (s-002633a) = «la podéis liar» contra audio; el candidato es coherente con «si la liáis» (s-002627) pero no hay respaldo de audio en este flujo.
+
 ### c-0118
 
 **Statement:** Ilustración numérica dicha: «si os limitáis a coger trades de 1% —1%, 1%, 1%— y tomáis 100 y ganáis 60 y perdéis 40 —que perder 40 son muchos estoblos [ASR]—, vais a ser súper rentables».
@@ -1343,6 +1634,13 @@
 
 **Notes:** Escenario hipotético dicho (no resultado propio ni estadística citada); «estoblos» [ASR]: candidato stop losses (familia de garbles «top loss/toplos» del glosario); se conserva la palabra dicha
 
+**Dudas abiertas:**
+
+- Confirmar «estoblos» (s-002645) = stop losses contra audio
+- Confirmar «estoblos» (s-002645) = stop losses contra audio.
+- La proporción 60 ganados/40 perdidos es ilustración dicha del instructor, no dato verificado de la estrategia
+- La proporción 60 ganados/40 perdidos es ilustración dicha del instructor, no dato verificado de la estrategia.
+
 ### c-0119
 
 **Statement:** «Te quedaría un 80R en 100 trades; ponle 2 meses y medio: 80R en 2 meses y medio»; remata: «no son números» [frase truncada].
@@ -1354,6 +1652,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002650|26:50]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002652|26:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002654|26:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002657|26:57]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002659|26:59]]
 
 **Notes:** Cifras literales (80R, 100 trades, 2 meses y medio) tal como dichas, derivadas de la ilustración 60/40 de b6-04 Adjudicación integrador (corrección min26): orden dicho preservado en evidencia («te quedaría un 80R» + «en 80R 100 trades», s-002650+s-002652); el statement condensa el orden sin alterar cifras.
+
+**Dudas abiertas:**
+
+- s-002659 «no son números»: frase truncada por el ASR (¿«no son números locos»?); no completar sin respaldo
+- s-002659 «no son números»: frase truncada por el ASR (¿«no son números locos»?); no completar sin respaldo.
 
 ### c-0120
 
@@ -1391,6 +1694,11 @@
 
 **Notes:** Modalizador «puede pasar» preservado; «no puede ser rentables de un día para otro» (s-002735/s-002738) llega truncada por el ASR y se conserva sin completar
 
+**Dudas abiertas:**
+
+- Sintaxis exacta de «no puede ser rentables de un día para otro» (¿«no podéis ser rentables de un día para otro»?): confirmada truncada en el ASR (s-002735/s-002738/s-002740); sólo resoluble con audio, no con el transcript
+- Sintaxis exacta de «no puede ser rentables de un día para otro» (¿«no podéis ser rentables…»?): frase truncada en el ASR
+
 ### c-0123
 
 **Statement:** Anuncio dicho: «si alguien me pide, os voy a enviar mi pdf del revenge trading, y tengo uno del miedo a operar también»; de otro «no recuerdo de qué iba», «si de cómo sobrepasar las pérdidas, en plan de cómo aguantar mentalmente»; «está en inglés pero lo podéis traducir y ya está, porque es un pdf».
@@ -1404,6 +1712,12 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002759.png|f-002759]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/frames/f-002810.png|f-002810]]
 
 **Notes:** Anuncio/ofrecimiento dicho, no regla (kind=example); los PDF son material propio del instructor citado verbalmente (ya mencionados en b5-07)
+
+**Dudas abiertas:**
+
+- El «si» de s-002756 («si de como sobrepasar…») es probablemente el «¿sí?» dicho; se preserva tal cual, sin impacto en el contenido
+- Los PDF no se muestran en pantalla en este tramo; títulos y contenido exactos no verificables desde el vídeo («no recuerdo de qué iba el otro», s-002753)
+- Títulos y contenido exactos de los PDF no verificables desde el vídeo (el instructor mismo dice «no recuerdo de qué iba el otro», s-002753; el tercer PDF queda sin título confirmado)
 
 ### c-0124
 
@@ -1428,6 +1742,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002819|28:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002822|28:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002824|28:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002826|28:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002828|28:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002830|28:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002832|28:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002836|28:36]]
 
 **Notes:** «100%» es cifra literal dicha por el instructor; los ejemplos de cosas externas son los dichos (familia, novia, hijos, algo económico chungo)
+
+**Dudas abiertas:**
+
+- «Se va a ver afectado 100%» es universal dicha sin respaldo de datos: conservar como dicho del instructor con su cifra literal
+- «Se va a ver afectado 100%» es universal dicha sin respaldo de datos: conservar como dicho del instructor con su cifra literal (mantener la duda ya anotada por el extractor)
 
 ### c-0126
 
@@ -1465,6 +1784,10 @@
 
 **Notes:** Recomendación dicha con hedge («puede ir bien»); «en qué estado son los peores para operar» se dice tal cual (sintaxis del ASR)
 
+**Dudas abiertas:**
+
+- «Si lo de tener» (s-002907) [ASR]: ¿condicional o «sí» afirmativo? Confirmar contra audio; el statement publicado la omite.
+
 ### c-0129
 
 **Statement:** «Y lo tienes en las múltiples cuentas, ¿sí? Esto también a mí me ha ayudado mucho» [ASR].
@@ -1477,6 +1800,12 @@
 
 **Notes:** Experiencia personal («a mí me ha ayudado mucho»); la frase de apertura llega garbleada por el ASR
 
+**Dudas abiertas:**
+
+- El referente de «esto» (s-002919) no está zanjado: puede ser la práctica de tener múltiples cuentas o el propio journal con emociones del turno anterior; no visible en pantalla.
+- «Y lo tienes en las múltiples cuentas» (s-002919) [ASR]: ¿«lo de tener múltiples cuentas»? Confirmar contra audio.
+- «Y lo tienes en las múltiples cuentas» (s-002919) [ASR]: ¿«lo de tener múltiples cuentas»? Confirmar contra audio; el referente de «esto» es esa práctica, no algo visible en pantalla
+
 ### c-0130
 
 **Statement:** «Tú tienes fondeadas, estás muy nervioso, tienes mucho fumo [ASR], no sé qué; pues nada, te vas al challenge y metes un 0,5% y te quedas tranquilo ya porque ya tienes tu dosis de dopamina y ya está».
@@ -1488,6 +1817,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002926|29:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002931|29:31]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002933|29:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-002935|29:35]]
 
 **Notes:** Recomendación dicha en segunda persona genérica; «fumo» [ASR]: candidato FOMO (glosario ch11); «dosis de dopamina» es expresión literal dicha por el instructor (no mecanismo añadido por el extractor); cifra literal: 0,5% en el challenge; el instructor lo enmarca: «son consejos reales, humanos… yo os digo porque lo he vivido» (s-002936-s-002943)
+
+**Dudas abiertas:**
+
+- Confirmar «fumo» (s-002926) = FOMO contra audio
+- Confirmar «fumo» (s-002926) = FOMO contra audio.
 
 ### c-0131
 
@@ -1504,6 +1838,11 @@
 **Visual hint:** 29:59 — 29:59 (f-002959): en pantalla sólo el gráfico GBPUSD 5M del 17/9/2024; NO hay panel de cuentas ni saldos visibles, así que los «más 6», «más 5», «más 2» no se ven en pantalla
 
 **Notes:** Experiencia dicha, enmarcada por «yo os digo porque lo he vivido» (s-002943); cifras literales (+6, +5, +2, +1) tal como dichas, sin unidad ni moneda
+
+**Dudas abiertas:**
+
+- ¿Qué significa «tienes 2 a más 5 ahora» (s-003000)? ¿Dos cuentas a +5? Y «uno más cinco y uno más uno» (s-003002): ¿una cuenta a +5 y otra a +1? Referentes no resueltos por el ASR ni visibles en pantalla (verificado f-002959)
+- ¿Qué significa «tienes 2 a más 5 ahora» (s-003000)? ¿Dos cuentas a +5? Y «uno más cinco y uno más uno» (s-003002): ¿una cuenta a +5 y otra a +1? Referentes no resueltos por el ASR ni visibles en pantalla (verificado f-002959).
 
 ### c-0132
 
@@ -1529,6 +1868,15 @@
 
 **Notes:** Cierre del principio «cuanto más, mejor» dicho; el tramo final del ASR es ilegible y se conserva tal cual: «propiedad con una estrategia esbeona, es buena»; «draw claro» (s-003025) puede aludir al draw como objetivo de liquidez (familia DOL del glosario) pero no se confirma
 
+**Dudas abiertas:**
+
+- «Draw claro» (s-003025): ¿draw = draw on liquidity (familia DOL) o «drawdown»? Ambigüedad material abierta; el extractor la mantiene sin resolver (correcto); confirmar contra audio.
+- «Draw claro» (s-003025): ¿draw = objetivo de liquidez (draw on liquidity)? Confirmar contra audio
+- «Esbeona» (s-003031) [ASR]: garble sin candidato claro (¿«que sea buena»?); conservar la palabra dicha
+- «Esbeona» (s-003031) [ASR]: garble sin candidato claro; conservar palabra dicha (bien hecho por el extractor).
+- «Propiedad» (s-003031) [ASR]: ¿«la probabilidad»? Candidato razonable; requiere re-escucha de audio para confirmar (no resoluble desde transcript/frames).
+- «Propiedad» (s-003031) [ASR]: ¿«la probabilidad»? Candidato; no confirmar sin audio
+
 ### c-0134
 
 **Statement:** Cierre del vídeo dicho: «creo que voy a dejar este vídeo aquí… si echáis algo en falta me lo decís y haré otro vídeo, no me cuesta nada»; «también he querido que sea un poco improvisado, así como un poco de charla más personal»; «no tengáis problema en decirme si queréis una segunda parte de un tema más concreto, porque el de vosotros que me pidió esto fue un poco general, sobre todo hablando un poco del winrate y el revenge trading».
@@ -1540,6 +1888,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-003032|30:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-003034|30:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-003037|30:37]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-003038|30:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-003041|30:41]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-003043|30:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-003045|30:45]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-003047|30:47]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-003049|30:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-003051|30:51]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-003053|30:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-003055|30:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-003057|30:57]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-003058|30:58]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch12-psicotrading/transcript#^s-003101|31:01]]
 
 **Notes:** Anuncio/cierre dicho (kind=example, no regla); origen del vídeo: petición de un espectador «un poco general» sobre winrate y revenge trading; «yo he querido emplear un poco más» (s-003101) llega con sintaxis truncada en el ASR, conservada sin completar
+
+**Dudas abiertas:**
+
+- s-003101 «Yo he querido emplear un poco más» [ASR]: frase truncada en la frontera (¿«extenderme un poco más»?); su continuación pertenece al minuto 31; no completar sin audio (el extractor la preservó sin resolver: correcto).
+- s-003101 «yo he querido emplear un poco más» [ASR]: frase truncada (¿«extenderme un poco más»?); no completar sin respaldo
 
 ### c-0135
 

@@ -57,6 +57,11 @@
 
 **Notes:** 'JP' es garble ASR; candidato principal JPY. 'DXY' está transcrito literalmente por el ASR (sin señal de garble); contexto pack §3 permite DXY literal en contexto de correlación/divergencia. No normalizar.
 
+**Dudas abiertas:**
+
+- Confirmar con audio si 'JP' se dijo como 'JPY' (garble ASR sin resolver; la tabla de correlación en pantalla muestra pares JPY: EURJPY, USDJPY, GBPJPY, lo que apoya la lectura JPY pero no la confirma).
+- ¿'JP' = JPY (relación euro-JPY)? Garble ASR a confirmar con audio/frame.
+
 ### c-0006
 
 **Statement:** En Myfxbook (sección de correlación del mercado) se puede poner cualquier par y ver con qué pares está correlacionado.
@@ -70,6 +75,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000042.png|f-000042]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000059.png|f-000059]]
 
 **Notes:** 'MyForexBook' es probable garble ASR de Myfxbook; los deícticos 'aquí' refieren a la web mostrada en pantalla. | statement corregido en integración (correction_suggested del reviewer, revisada por el integrador)
+
+**Dudas abiertas:**
+
+- Confirmar el nombre real del sitio (¿Myfxbook?) con frame de la web en pantalla.
 
 ### c-0007
 
@@ -131,6 +140,11 @@
 
 **Notes:** El caso es de 'este día, que fue el lunes, el jueves de la semana pasada' [ASR]: referencia de día contradictoria en el ASR, sin resolver.
 
+**Dudas abiertas:**
+
+- Fecha del caso contradictoria en el ASR ('el lunes, el jueves de la semana pasada'); los frames muestran el replay con barras resaltadas en jun-2025 (jue 12 / jue 26 Jun '25) sin poder fijar el día exacto.
+- Nivel/fecha exacta del alto de Libra ('este alto de aquí', deíctico visual).
+
 ### c-0012
 
 **Statement:** Que pase una SMT no significa que por eso tenga que verse una reversión.
@@ -142,6 +156,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-000153|01:53]]
 
 **Notes:** Negación explícita en la fuente: 'No significa que porque pase eso tenga que ver una reversión'.
+
+**Dudas abiertas:**
+
+- ASR 'tenga que ver una reversión' es probablemente 'tenga que haber una reversión'; no afecta el sentido (SMT ≠ reversión obligatoria) y no se normalizó en el statement.
 
 ### c-0013
 
@@ -156,6 +174,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000259.png|f-000259]]
 
 **Visual hint:** 02:05 — Recorrido del precio de euro hacia el objetivo inferior ('aquí abajo') en el gráfico.
+
+**Dudas abiertas:**
+
+- Nivel exacto del objetivo 'aquí abajo' en euro (deíctico; el frame base muestra la zona 1.14851/1.14565 pero no desambigua cuál de las líneas inferiores es el objetivo referido).
+- Nivel exacto del objetivo 'aquí abajo' en euro (visual).
 
 ### c-0014
 
@@ -185,6 +208,11 @@
 
 **Visual hint:** 02:29 — Objetivo en el gráfico de euro que a simple vista no parece objetivo, y llegada final del precio a él.
 
+**Dudas abiertas:**
+
+- Nivel exacto del objetivo de euro ('esto', deíctico).
+- Nivel exacto del objetivo de euro ('esto', deíctico): f-000230 muestra varias líneas horizontales en el gráfico (1.16148, 1.15402, 1.15145, 1.14851/1.14565) y el frame no permite determinar sin ambigüedad cuál señaló el instructor.
+
 ### c-0016
 
 **Statement:** Si no llegas a ser consciente de que esa SMT estaba ahí, a lo mejor en euro te perdías y no veías el objetivo.
@@ -211,6 +239,11 @@
 
 **Visual hint:** 03:03 — Nivel superior ('aquí arriba') que euro no necesitó alcanzar para poder vender.
 
+**Dudas abiertas:**
+
+- Nivel exacto de 'aquí arriba' (visual).
+- Referente exacto de 'aquí arriba': los frames muestran tanto el nivel horizontal superior (1.16148) como una línea diagonal en la parte alta del gráfico de euro; el frame no desambigua cuál señaló el instructor.
+
 ### c-0018
 
 **Statement:** Si se te formaba ese rango bajista, ya podías vender euro con el objetivo de abajo; esos son objetivos que has podido marcar gracias a la SMT.
@@ -226,6 +259,11 @@
 **Visual hint:** 03:10 — Rango bajista marcado en euro y objetivo inferior derivado de la SMT.
 
 **Notes:** Nexo causal explícito en la fuente ('gracias a la SMT').
+
+**Dudas abiertas:**
+
+- El transcript no verbaliza qué nivel exacto es 'el objetivo de abajo' (el frame muestra varios niveles marcados: ~1.15402, ~1.14851/1.14804, ~1.14565/1.14545); la atribución exacta de cada nivel al rango vs objetivo queda sin anclaje verbal.
+- Niveles exactos del rango bajista y del objetivo (visual).
 
 ### c-0019
 
@@ -264,6 +302,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000346.png|f-000346]]
 
 **Visual hint:** 03:46 — Gráfico en pantalla al presentar el caso del 'rango que realmente no se ve' (par no verbalizado).
+
+**Dudas abiertas:**
+
+- El par y la temporalidad del caso no se verbalizan en el transcript; el frame f-000346 muestra un rango dibujado sobre el gráfico EURUSD 1h (y GBPUSD 1h al lado), pero el instructor no lo nombra, por lo que la atribución queda como observación visual no confirmada verbalmente.
+- ¿Qué par y temporalidad corresponde a este caso? No se verbaliza en el transcript.
 
 ### c-0022
 
@@ -315,6 +358,11 @@
 
 **Visual hint:** 04:50 — Dos rangos bearish marcados ('aquí, aquí') en el gráfico de libra, de 2 y de 3 días.
 
+**Dudas abiertas:**
+
+- ¿Cuál de los niveles marcados en la libra (~1.37489 o ~1.34278, vistos en f-000450) corresponde al rango bearish de 2 días y cuál al de 3 días? Los gráficos en ese momento están etiquetados '2D' y no hay etiqueta visible de '3 días' ni en f-000450 ni en el frame base f-000459.
+- ¿Cuál de los rangos marcados es de 2 días y cuál de 3? (deíctico 'aquí, aquí')
+
 ### c-0026
 
 **Statement:** Se cambió el bias a bearish durante esos días y lo que pasó es que se formó un rango bullish de 8 horas.
@@ -326,6 +374,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-000456|04:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-000504|05:04]]
 
 **Notes:** Relación temporal ('y lo que pasó'), no causalidad. Contrast con el bias bearish es la base del caso SMT que continúa en el bloque 2.
+
+**Dudas abiertas:**
+
+- ¿En qué par se formó el rango bullish de 8h? La narración de su completación cae justo tras el corte del intervalo (s-000504, fuera de bloque).
 
 ### c-0027
 
@@ -357,6 +409,10 @@
 
 **Notes:** TERM_DISAMBIGUATION «dol» [ASR]: candidatos DOL (objetivo/liquidez; lectura favorecida: el sujeto es euro moviéndose a su objetivo tras completar el rango) vs DXY (participante legítimo en SMT, menos probable aquí). No se normaliza.
 
+**Dudas abiertas:**
+
+- Desambiguación final de «dol» [s-000504]: lectura favorecida DOL (objetivo; niveles 1.15145/1.14804 visibles en f-000514 y el 1.14804 alcanzado en f-000603); confirmación por audio no disponible; DXY se considera descartada por contexto pero se deja registrada.
+
 ### c-0029
 
 **Statement:** Mucha gente de la mentoría estaba en long ese día y, «por culpa de no ver que esto no es empty» [ASR], a lo mejor se te pudo girar el trade si estabas en libra.
@@ -368,6 +424,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-000525|05:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-000529|05:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-000531|05:31]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-000533|05:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-000535|05:35]]
 
 **Notes:** «empty» = garble ASR de SMT (lectura única, normalizado en el resto de statements).
+
+**Dudas abiertas:**
+
+- ¿La negación en «esto no es empty» (s-000531) es artefacto del ASR? Lectura probable: «por no ver que esto era una SMT»
+- ¿La negación en «esto no es empty» (s-000531) es artefacto del ASR? Lectura probable: «por no ver que esto era una SMT»; requeriría audio/clarificación del instructor.
 
 ### c-0030
 
@@ -405,6 +466,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000603.png|f-000603]]
 
+**Dudas abiertas:**
+
+- Referente exacto de «esto» (s-000554): f-000603 muestra el desenlace bearish (caída en ambos pares, euro en su objetivo 1.14804), consistente con la glosa «la SMT se cumple»; confirmación literal por audio no disponible.
+- Referente exacto de «esto» (s-000554); por contexto inmediato y el enunciado previo (fuera de ventana, s-000433), la SMT/rango sin completar en el otro par
+
 ### c-0033
 
 **Statement:** La SMT no se puede anticipar como tal: si estás en long en los dos (pares), no puedes anticipar que solo vaya a llegar uno.
@@ -427,6 +493,13 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-000606|06:06]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-000615|06:15]]
 
+**Dudas abiertas:**
+
+- Referente de «dar esto por completado» (s-000615): el contexto de frontera (s-000705, «esto de aquí se da como por rango creado y tienes el objetivo ahí abajo») apunta al rango/registro en euro, pero la frase dicha no lo especifica.
+- Referente de «dar esto por completado» (s-000615): ¿dar por completada la operación/la bajada?
+- «olvidarte de qué va a llegar» (s-000615): literal «qué»; ¿lectura «de si va a llegar» (el rango en el otro par)?
+- «olvidarte de qué va a llegar» (s-000615): literal «qué»; ¿lectura «de si va a llegar» (el rango/objetivo en el otro par)?
+
 ### c-0035
 
 **Statement:** En euro ya está todo preparado para ir para abajo: completa uno alcista y te crea uno bajista hacia los targets bajistas que había marcado antes de dos días de aquí; este («el grande de abajo») lo deja marcado junto al de dos días.
@@ -440,6 +513,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000630.png|f-000630]]
 
 **Notes:** statement corregido en integración (correction_suggested del reviewer, revisada por el integrador)
+
+**Dudas abiertas:**
+
+- Deícticos «aquí»/«este» (s-000631, s-000638): niveles concretos de los targets marcados en el gráfico
+- Identidad exacta de «el grande de abajo» y «el de dos días» (s-000638): el gráfico muestra varias líneas marcadas (p. ej. ≈1.15145, 1.14804, 1.14565 en EURUSD 8h) y la correspondencia deíctica no es resoluble sin audio/gesto.
 
 ### c-0036
 
@@ -456,6 +534,13 @@
 **Visual hint:** 06:48 — Nivel marcado como objetivo bajista en la parte alta del gráfico
 
 **Notes:** «la importancia que tuve» → lectura probable «la importancia que tuvo (la SMT)» (s-000654 continúa «la que tuvo la SMT ese día»).
+
+**Dudas abiertas:**
+
+- Decodificar «por una es en ti» (s-000648): lectura probable «por la SMT»
+- Decodificar «por una es en ti» (s-000648): lectura probable «por la SMT», sin confirmación de audio disponible.
+- Deíctico «aquí arriba» (s-000648): qué nivel exacto
+- Nivel exacto de «aquí arriba» (s-000648): el candidato visual es la línea superior del gráfico GBPUSD (≈1.37489, visible en f-000648/f-000659/f-000714); no verificable con certeza sin gesto/cursor del instructor.
 
 ### c-0037
 
@@ -483,6 +568,11 @@
 
 **Visual hint:** 07:05 — Nivel/objetivo marcado en la parte baja del gráfico
 
+**Dudas abiertas:**
+
+- Referente de «esto de aquí» (s-000705): el objetivo/la operación marcada abajo
+- Referente exacto de «esto de aquí» (s-000705): el frame f-000705 muestra rangos dibujados en ambos diarios y niveles bajo el precio, pero no desambigua si «esto» es la SMT, el rango o la operación
+
 ### c-0039
 
 **Statement:** En el diario: «la SMT está aquí con Libra, esto está tomado» [deíctico]; por lo tanto hay objetivo ahí abajo; se deja el gráfico así por ser más fácil.
@@ -496,6 +586,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000712.png|f-000712]]
 
 **Visual hint:** 07:12 — Gráfico diario: SMT con libra y objetivo marcado abajo
+
+**Dudas abiertas:**
+
+- Referente de «esto está tomado» (s-000712): qué nivel tomado define la SMT en el diario
+- Referente de «esto está tomado» (s-000712): qué nivel tomado define la SMT en el diario; f-000712 muestra los dibujos pero sin etiqueta que lo precise
 
 ### c-0040
 
@@ -549,6 +644,11 @@
 
 **Visual hint:** 07:40 — Zona del gráfico donde el instructor señala otra SMT (a explicar más adelante)
 
+**Dudas abiertas:**
+
+- Qué señala exactamente como «otra SMT» en esa zona (s-000740): deíctico «aquí» sin marca visible en f-000740; lo explica más adelante en el vídeo
+- Qué señala exactamente como «otra SMT» en esa zona (s-000740): deíctico «aquí»; la explica más adelante
+
 ### c-0044
 
 **Statement:** El rango bajista de 3 horas se podía marcar como otro objetivo, pero como «cierra un poco por fuera», «este mejor no lo marcamos».
@@ -575,6 +675,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000835.png|f-000835]]
 
+**Dudas abiertas:**
+
+- A qué refiere exactamente «en las dos temporalidades» (s-000811): la lectura «ambos pares (euro/libra)» es la consistente con f-000835 (rangos bajistas 1h en ambos gráficos), pero la palabra dicha es ambigua (¿pares o temporalidades?) — requiere aclaración o decisión del integrador
+- A qué refiere «en las dos temporalidades» (s-000811): ¿ambos pares (euro/libra) u otra lectura? — en 2h acababa de decir que no había nada
+
 ### c-0046
 
 **Statement:** «Siguiendo el que habituó las entradas y el del bias» [ASR], ya se puede ver que esa zona era una «buenísima venta».
@@ -586,6 +691,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-000811|08:11]]
 
 **Notes:** «el que habituó las entradas» → lectura probable «el capítulo de las entradas» (y «el del bias» = el capítulo del bias).
+
+**Dudas abiertas:**
+
+- Lectura del garble «el que habituó las entradas» [ASR]: ¿«el capítulo/vídeo de las entradas»? Candidato plausible (coincide con «el del bias» = capítulo del bias) pero sin confirmación literal en el audio transcrito
 
 ### c-0047
 
@@ -612,6 +721,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000846.png|f-000846]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000852.png|f-000852]]
 
 **Visual hint:** 08:46 — Niveles marcados como primer y segundo objetivo en el gráfico
+
+**Dudas abiertas:**
+
+- Identidad exacta en pantalla de «primer objetivo» vs «segundo objetivo» (¿el objetivo de la herramienta de posición vs la línea ~1.1485?): la actividad de marcar objetivos está verificada visualmente, pero el mapeo 1:1 de cada deíctico no es completamente resoluble desde los frames
 
 ### c-0049
 
@@ -663,6 +776,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000916.png|f-000916]]
 
+**Dudas abiertas:**
+
+- Referente de «esto de aquí» (s-000915): los movimientos/rangos señalados en el gráfico
+- Referente exacto de «esto de aquí» (s-000915): f-000916 muestra rangos bajistas marcados en ambos gráficos 4h (cursor sobre GBPUSD), pero no identifica sin ambigüedad qué dibujo concreto señala el instructor
+
 ### c-0053
 
 **Statement:** En dos horas hay un rango bajista; en Libra, tras buscarlo, también se confirma que se crea («no, vale, sí, aquí sí que nos crea»).
@@ -676,6 +794,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000936.png|f-000936]]
 
 **Notes:** Navegación de gráfico con autocorrección del instructor.
+
+**Dudas abiertas:**
+
+- Confirmar que el «sí que nos crea» final (s-000936) refiere a Libra en 2 horas (lectura por contexto)
 
 ### c-0054
 
@@ -693,6 +815,12 @@
 
 **Notes:** Frase confusa del ASR; se preserva literal.
 
+**Dudas abiertas:**
+
+- Referente de «este de aquí» (s-000941): f-000942 muestra el gráfico GBPUSD 6h con rango marcado, pero no desambigua a qué dibujo apunta
+- Sentido exacto de la frase (s-000938-s-000941): ¿el rango de Libra no se veía en 4h y 6h? ¿qué es «este de aquí»?
+- Sentido exacto de la frase (s-000938-s-000941): ¿el rango de Libra se ve sobre todo en 4h/6h y no en la vista actual, o este rango (2h) no se veía en 4h/6h?
+
 ### c-0055
 
 **Statement:** «Si lo veis» en Libra: no llega nunca a crearnos un rango pendiente; en cambio, en Euro sí.
@@ -706,6 +834,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000945.png|f-000945]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-000948.png|f-000948]]
 
 **Notes:** No contradice a B2-K27: distintas temporalidades (2h vs esta).
+
+**Dudas abiertas:**
+
+- Lectura de «si lo veis» (s-000943): ¿«aunque lo veáis»/«por más que lo veáis»?
+- Lectura de «si lo veis» (s-000943): ¿«aunque lo veáis»/«por más que lo veáis»? Se preserva literal.
 
 ### c-0056
 
@@ -773,6 +906,12 @@
 
 **Notes:** 'reinicia la perfección' preservado tal cual; conecta con vocabulario de entradas/bias (ch04).
 
+**Dudas abiertas:**
+
+- Identidad exacta del deíctico 'este aquí': f-001028 confirma un rectángulo dibujado en GBPUSD bajo el cursor, pero el frame estático no permite decir qué rango/nivel concreto es.
+- Referente deíctico 'este aquí': ¿a qué rango/nivel concreto de Libra señala?
+- ¿'reinicia la perfección' es término del curso (reinicio del rango de forma perfecta) o garble de otra expresión?
+
 ### c-0061
 
 **Statement:** Cuando ves que está el rango en contra, no puedes vender ahí ('esto no lo puedes hacer'), porque están los rangos en contra.
@@ -800,6 +939,11 @@
 **Visual hint:** 10:44 — Gráfico de Libra: rango que se reinicia arriba y rango 'a favor' que se forma, con el punto de venta
 
 **Notes:** Respuesta a la pregunta retórica '¿cuándo puedes tú volver a vender?' (s-001040). Disyunción explícita ('o... o...'), no causalidad.
+
+**Dudas abiertas:**
+
+- Deícticos 'este' (rango que se reinicia arriba) y 'el otro a favor': f-001044 muestra el trade (stop/entrada/objetivo) pero no identifica los dos rangos concretos a los que alude.
+- Deícticos 'este' (rango que se reinicia) y 'el otro a favor': ¿qué rangos concretos del gráfico de Libra son?
 
 ### c-0063
 
@@ -830,6 +974,11 @@
 **Visual hint:** 11:00 — Gráfico de euro: punto de salida del long ('aquí') y nivel 'esto' al que ya no se esperó
 
 **Notes:** Primer uso operativo de la SMT que enumera: salida anticipada del long.
+
+**Dudas abiertas:**
+
+- Deícticos 'aquí' (punto de salida en euro) y 'esto' (nivel al que no se esperó): ¿qué niveles concretos?
+- Referentes exactos de 'aquí' (punto de salida del long en euro) y 'esto' (nivel al que ya no se esperó): f-001100 muestra el gráfico con niveles dibujados pero no permite fijar cuál es cuál.
 
 ### c-0065
 
@@ -883,6 +1032,11 @@
 
 **Notes:** Orientación del extractor (NO evidencia): f-001159 muestra las etiquetas EURUSD y GBPUSD sobre el lienzo de TradingView, con velas dibujadas a mano.
 
+**Dudas abiertas:**
+
+- Posición relativa de las zonas: el ASR dice 'aquí abajo, aquí arriba' sin desambiguar; el frame f-001159 (11:59) sugiere dos zonas etiquetadas lado a lado (EURUSD a la izquierda, GBPUSD a la derecha) — a confirmar por reviewer.
+- Residual (no afecta al veredicto): a qué se refiere exactamente la frase ASR 'aquí abajo, aquí arriba' (s-001135) — las etiquetas en f-001159 están a la misma altura y lado a lado, por lo que la frase podría aludir a la posición de las zonas según se dibujen los casos posteriores, no de las etiquetas.
+
 ### c-0069
 
 **Statement:** El primer caso (de SMT): nos crea un rango en un par y en el otro no.
@@ -894,6 +1048,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-001140|11:40]]
 
 **Notes:** Definición del caso 1; la cola del segmento es garble ASR y no altera la definición.
+
+**Dudas abiertas:**
+
+- Lectura exacta de la cola garbleada 'no lo puedes acelerar si queréis' (s-001140): ¿'podéis acelerar el vídeo mientras dibujo' (encaja con 'mientras dibujo', s-001153) u otra expresión sobre el rango?
+- Lectura exacta de la cola garbleada de s-001140 ('no lo puedes acelerar si queréis'): ¿'podéis acelerar el vídeo si queréis' (encaja con 'mientras dibujo' en s-001153) u otra expresión? No afecta a la definición del caso 1, pero conviene resolverla si se publica el segmento.
 
 ### c-0070
 
@@ -937,6 +1096,10 @@
 
 **Notes:** Prepara la condición del caso 2 ('dos objetivos en la dirección contraria', s-001323).
 
+**Dudas abiertas:**
+
+- Posición de los dos objetivos ('aquí'/'aquí'): deícticos sobre el dibujo (¿por debajo del rango, a dos alturas distintas?)
+
 ### c-0073
 
 **Statement:** Segundo caso de SMT [ASR 'de sentir'], dibujado reutilizando el mismo esquema ('voy a utilizar el mismo dibujo'); sobre 'voy a sacar la de sentido arriba' [ASR] el referente exacto no queda resuelto y los frames muestran que el dibujo no pasa a velas alcistas (mantiene la orientación del primer caso con los dos objetivos abajo).
@@ -950,6 +1113,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001251.png|f-001251]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001308.png|f-001308]]
 
 **Notes:** 'De sentir' → SMT (garble ASR, mismo patrón que s-001525 fuera de intervalo). | statement corregido en integración (correction_suggested del reviewer, revisada por el integrador)
+
+**Dudas abiertas:**
+
+- Lectura exacta de 'voy a sacar la de sentido arriba' (garble): lectura contextual = pasar el dibujo a sentido alcista
+- ¿A qué se refiere exactamente 'voy a sacar la de sentido arriba' (s-001246)? La lectura contextual propuesta por el extractor (pasar a sentido alcista) contradice los frames f-001251/f-001259/f-001308; requeriría re-escucha del audio o aclaración del instructor.
 
 ### c-0074
 
@@ -1017,6 +1185,12 @@
 
 **Notes:** Tercer caso diferenciado por ser 'rango pendiente' lo que se crea en un par y no en el otro. | visual_hint.second corregido 840->871 (extractor escribió HHMMSS como segundos crudos; DOCVERIFY DV-04)
 
+**Dudas abiertas:**
+
+- Deíctico 'por aquí arriba': forma exacta de la vela y del rango pendiente en el dibujo
+- El 'rango pendiente' creado por la vela de EURUSD no está rotulado como tal en f-001431; el instructor lo señala después (s-001444, s-001517, fuera del minuto). La geometría exacta de la zona queda implícita en el dibujo.
+- visual_hint.second=840 (f-001400) precede al dibujo completado del tercer caso; el frame que verifica el deíctico 'abre por aquí arriba creando el rango pendiente y en GBP no' es f-001431 (14:31) — sugiero actualizar el hint a ese segundo si el integrador lo replica.
+
 ### c-0079
 
 **Statement:** Este sería el tercer caso de SMT que nos podemos encontrar en nuestra estrategia; en este tendríamos rango pendiente aquí, este rango pendiente.
@@ -1030,6 +1204,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001437.png|f-001437]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/frames/f-001450.png|f-001450]]
 
 **Notes:** Cierra la enumeración canónica: 3 casos de SMT (con K10/K13/K18/K22).
+
+**Dudas abiertas:**
+
+- No es concluyente a nivel de frame si el rectángulo negro seleccionado en f-001450 es el objeto 'rango pendiente' o una vela copiada del esquema; la existencia del esquema del tercer caso sí queda confirmada, pero la forma visual exacta del rango dibujado no se pudo verificar.
 
 ### c-0080
 
@@ -1060,6 +1238,10 @@
 **Visual hint:** 15:01 — Esquema dibujado de los tres casos de SMT (euro y libra) en pantalla, dispuesto para captura.
 
 **Notes:** visual_hint.second corregido 1501->901 (extractor escribió HHMMSS como segundos crudos; DOCVERIFY DV-04)
+
+**Dudas abiertas:**
+
+- Verificar en frame que el esquema dibujado muestra efectivamente los tres casos (euro crea/no crea rango, libra correlacionada).
 
 ### c-0082
 
@@ -1103,6 +1285,10 @@
 
 **Notes:** Transición al bloque de DXY.
 
+**Dudas abiertas:**
+
+- ¿'x y' = DXY? Lectura favorecida por el contexto inmediato (correlación -1, s-001540), pero el garble queda sin confirmación literal.
+
 ### c-0085
 
 **Statement:** El tema de DXY es lo mismo pero inverso: si estos dos (euro y libra) están a correlación +1, el DXY va a correlación -1.
@@ -1132,6 +1318,11 @@
 **Visual hint:** 15:47 — Dibujo del caso de SMT entre euro y DXY ('se vería así').
 
 **Notes:** visual_hint.second corregido 1547->947 (extractor escribió HHMMSS como segundos crudos; DOCVERIFY DV-04)
+
+**Dudas abiertas:**
+
+- Sujeto elíptico de 'no se llevaría el bajo' (s-001604): por contexto (correlación -1, analogía con los casos de libra dibujados) sería el DXY, pero el ASR deja la frase sin sujeto explícito; no confirmable literalmente.
+- Sujeto elíptico de 'no se llevaría el bajo': por contexto (correlación -1, analogía con libra) sería el DXY, pero el ASR deja la frase sin sujeto explícito.
 
 ### c-0087
 
@@ -1188,6 +1379,10 @@
 **Visual hint:** 16:35 — Nivel dibujado en el esquema marcado como objetivo en el DXY.
 
 **Notes:** statement corregido en integración (correction_suggested del reviewer, revisada por el integrador) | visual_hint.second corregido 1635->995 (extractor escribió HHMMSS como segundos crudos; DOCVERIFY DV-04)
+
+**Dudas abiertas:**
+
+- A qué nivel concreto del dibujo remite el deíctico 'esto' (el objetivo del DXY).
 
 ### c-0091
 
@@ -1277,6 +1472,10 @@
 
 **Notes:** ASR: 'S&T' = SMT; 'otros sales' ≈ 'o sales'.
 
+**Dudas abiertas:**
+
+- Garble s-001749 'otros sales ya del trade para anticipar': confirmar si es 'o sales ya del trade' (lectura del claim, coherente con 'o tomas parciales' en s-001736) o 'otros [traders] salen ya del trade'.
+
 ### c-0098
 
 **Statement:** Lo mismo que en libra: si este es solo un objetivo pero tienes otro aquí arriba, lo normal es que vaya a hacer un pequeño retracement pero que haga esto (la continuación dibujada).
@@ -1292,6 +1491,10 @@
 **Visual hint:** 17:57 — Dibujo con el primer objetivo alcanzado y otro objetivo por encima ('otro aquí arriba').
 
 **Notes:** visual_hint.second corregido 1757->1077 (extractor escribió HHMMSS como segundos crudos; DOCVERIFY DV-04)
+
+**Dudas abiertas:**
+
+- Referentes deícticos 'este' y 'aquí arriba' en el dibujo (¿el objetivo ya tocado y un segundo objetivo superior?) y qué traza exacta es 'esto' (la continuación).
 
 ### c-0099
 
@@ -1309,6 +1512,12 @@
 
 **Notes:** Nexo explícito en fuente ('significa que'); ASR 'S&T' = SMT. | visual_hint.second corregido 1804->1084 (excede duración; señalado por reviewer min18)
 
+**Dudas abiertas:**
+
+- La trayectoria no se verbaliza en el ASR; la lectura fina del dibujo (DXY con impulso alcista sobre resistencia y euro con gran vela bajista, correlación inversa) es observación del revisor sobre el frame, no conocimiento verbalizado por el instructor.
+- Qué describe exactamente 'esto' para DXY y para euro en el dibujo (el ASR no verbaliza la trayectoria).
+- visual_hint.second=1804 excede la duración del video (18:29.7 = 1109.7s; ffmpeg en 1804s no codifica nada): el momento real del dibujo es 18:04 = 1084s (frames f-001804/f-001809). Corregir el metadato a second=1084.
+
 ### c-0100
 
 **Statement:** Cierre del capítulo: hasta aquí el capítulo de SMT; el siguiente vídeo va a ser de 'Felux Swing' [ASR].
@@ -1318,4 +1527,9 @@
 **Tiempo:** [18:14–18:18]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-001814|18:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-001815|18:15]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch05-smt/transcript#^s-001817|18:17]]
+
+**Dudas abiertas:**
+
+- 'Felux Swing': ¿failure swing? (garble ASR; cf. 'feliz swing' en el glosario del curso). Se preserva la palabra dicha.
+- Confirmar el término realmente hablado en s-001817: 'Felux Swing' [ASR] se adjudica provisionalmente a 'failure swing' por contexto (ch02, roadmap del curso); ep06 permitirá cerrar la disambiguación.
 

@@ -39,6 +39,12 @@
 
 **Notes:** 'GDP' se interpreta como GBP porque todo el bloque analiza la libra (Libra = GBP según glosario).
 
+**Dudas abiertas:**
+
+- Confirmar garble ASR 'GDP' = GBP (todo el bloque analiza GBPUSD; añadir variante al glosario).
+- Deíctico 'hay uno que aún no está tomado': el referente concreto no se resuelve por audio (plausiblemente el objetivo de 6M que enseña en s-000035, que f-000042 muestra sin tomar), pero queda sin confirmación explícita.
+- Nuevo garble ASR: 'GDP' = ¿GBP (libra)? Confirmar y añadir variante al glosario.
+
 ### c-0004
 
 **Statement:** En seis meses está este rango, que va a ser el objetivo de GDP, y está a 130 pips, 140.
@@ -89,6 +95,10 @@
 
 **Notes:** Consistente con la convención de ch02: objetivo completado se borra/deja de servir.
 
+**Dudas abiertas:**
+
+- Deíctico 'este rango' (s-000059/s-000106): identificar el elemento exacto del gráfico que el instructor señala como objetivo ya tomado. Extraje f-000103 (01:03) y revisé el frame base f-000059: en 3M la única línea marcada visible (~1,37489) no permite confirmar sin ambigüedad que el precio ya la tocó, por lo que NO la uso como evidencia del veredicto. No afecta al veredicto porque la sustancia del claim es dicha.
+
 ### c-0008
 
 **Statement:** En dos meses, más de lo mismo: al principio teníamos este rango/target aquí, pero ya está tomado y no nos sirve por ahora.
@@ -100,6 +110,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000106|01:06]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000111|01:11]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-000113.png|f-000113]]
+
+**Dudas abiertas:**
+
+- Referente exacto de 'este rango/target': la línea visible en f-000113 está en ~1.3786; 'ya está tomado' no es decidible sólo con este frame (precio actual 1.3615, por debajo); lectura plausible: nivel alcanzado en 2021-2022, donde ancla la línea. Confirmar con el integrador.
 
 ### c-0009
 
@@ -113,6 +127,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-000125.png|f-000125]]
 
+**Dudas abiertas:**
+
+- El ASR trae 'si en un mes sólo podemos ver esto': ese 'si' puede ser muleta verbal (lectura afirmativa del claim) o condicional real; el integrador decide si el statement mantiene la lectura afirmativa.
+- Referente exacto del 'objetivo ya tomado' en 1M: la línea ~1.37489 es la candidata visible en f-000125; confirmar.
+
 ### c-0010
 
 **Statement:** En la tendencia alcista siempre se puede anticipar que se va a tomar al menos el alto de la anterior vela antes de hacer el reversal.
@@ -124,6 +143,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000123|01:23]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000128|01:28]]
 
 **Notes:** 'reversal' tal cual (retroceso/corrección). Anticipación aplicada a que el objetivo anterior ya se tomó.
+
+**Dudas abiertas:**
+
+- Confirmar 'reversal' para el glosario: usado por el instructor como retroceso/corrección (según notes del claim); no está en la tabla de garbles conocida.
 
 ### c-0011
 
@@ -137,6 +160,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-000159.png|f-000159]]
 
+**Dudas abiertas:**
+
+- Mapeo exacto rectángulo→etiqueta: f-000159 muestra el rectángulo grande de 2022 y el pequeño reciente con flecha al low, pero la asignación 'bajista'/'alcista' a cada uno se infiere del relato, no del frame aislado; podría resolverse con un frame ~00:02:05 si el integrador lo considera necesario.
+
 ### c-0012
 
 **Statement:** Cuando se forma un rango pendiente en dirección a nuestro gol, significa que el reiniciado no tiene por qué completarse: podría pasar esto; ¿si tiene que pasar siempre? No.
@@ -148,6 +175,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000148|01:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000154|01:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000201|02:01]]
 
 **Notes:** 'gol' = goal/objetivo (ASR: 'a nuestra nuestro gol'). Relaciona rango pendiente y rango reiniciado (ch01).
+
+**Dudas abiertas:**
+
+- Deíctico 'esto' en 'podría pasar esto': qué escenario exacto señala el instructor en el gráfico (candidato: el rango pendiente marcado en 3W visible en f-000159) queda sin resolver; no se adivina.
+- Garble 'gol' (= goal/objetivo, ASR: 'a nuestra nuestro gol') candidato a añadir al glosario; no está en la tabla conocida.
 
 ### c-0013
 
@@ -173,6 +205,12 @@
 
 **Notes:** "temporales" = temporalidades (garble ASR, preservado).
 
+**Dudas abiertas:**
+
+- Deíctico 'esto' en 'donde esto sí que esté completado': no está resuelto por el dicho; por contexto podría ser el rango que se espera completado en la semanal con libra, pero no se debe afirmar sin confirmación.
+- Garble 'sentí' en 'alguna sentí con libra': ¿'semanal'? Confirmar y añadir al glosario.
+- Garble nuevo 'temporales' = temporalidades: confirmar y añadir al glosario.
+
 ### c-0015
 
 **Statement:** Si el precio ya os dice que vamos a ir para arriba, ya no vais a estar esperando esto.
@@ -185,6 +223,10 @@
 
 **Notes:** La glosa "(a que se complete)" era interpretación del deíctico "esto" y se movió aquí desde el statement.
 
+**Dudas abiertas:**
+
+- Deíctico 'esto' en 'ya no vais a estar esperando esto': por contexto inmediato (s-000201 'esto si tiene que pasar siempre', sobre la completación) parece referirse a esperar que se complete, pero el instructor no lo explicita.
+
 ### c-0016
 
 **Statement:** A dos semanas teníamos lo mismo, un objetivo: se nos crea un rango pendiente alcista, lo toma y sube para arriba.
@@ -194,6 +236,10 @@
 **Tiempo:** [02:24–02:39]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000224|02:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000231|02:31]]
+
+**Dudas abiertas:**
+
+- Discrepancia audio/pantalla: en f-000227 (02:27) el gráfico mostrado es 3S/3W mientras el audio (s-000224) dice 'dos semanas'. El recap s-000307 lista '2 semanas' y '3 semanas' en el walkthrough; confirmar el TF real de este tramo (posible omisión del ASR).
 
 ### c-0017
 
@@ -207,6 +253,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-000245.png|f-000245]]
 
+**Dudas abiertas:**
+
+- Resolver a qué objetivo concreto apunta 'otro objetivo aquí' (f-000245 muestra una línea horizontal marcada sobre la parte alta del gráfico semanal, sin etiqueta legible).
+
 ### c-0018
 
 **Statement:** A tres días tenemos este rango de aquí, muy clean; un intratard lo subpasó.
@@ -218,6 +268,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000239|02:39]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000251|02:51]]
 
 **Notes:** 'intratard' → intra Turtle Soup; 'muy clean' = muy limpio.
+
+**Dudas abiertas:**
+
+- Deíctico 'este rango de aquí' en 3 días sin confirmación visual: si el integrador la quiere, extraer f-000249 (00:02:49).
+- Sentido exacto de 'un intratard lo subpasó': ¿'un intra Turtle Soup lo superó'? Garbles 'intratard' y 'subpasó' para el glosario.
 
 ### c-0019
 
@@ -254,6 +309,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000326|03:26]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-000330.png|f-000330]]
+
+**Dudas abiertas:**
+
+- La parte 'en 8 horas tenemos ya nada' no quedó cubierta por ningún frame verificado (f-000330 muestra sólo la 12 h); esa mitad se sostiene exclusivamente en el dicho de s-000326.
 
 ### c-0022
 
@@ -295,6 +354,10 @@
 
 **Notes:** s-000342 añadido: el anclaje 'en euro' está en su cierre.
 
+**Dudas abiertas:**
+
+- La parte 'en 8 horas no teníamos ya nada' (EURUSD) no quedó cubierta por frame verificado (f-000359 muestra el 1D y f-000405 la 12 h); se sostiene en el dicho de s-000353.
+
 ### c-0025
 
 **Statement:** En dos días teníamos este también y en tres días es el mismo: bias muy claro, teníamos que llegar hasta aquí arriba.
@@ -306,6 +369,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000415|04:15]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-000419.png|f-000419]]
+
+**Dudas abiertas:**
+
+- No se capturó frame del gráfico de 2 días ('este también' en dos días): verificado sólo por el dicho 'es el mismo' en s-000419; el frame f-000419 cubre la parte de 3 días.
 
 ### c-0026
 
@@ -333,6 +400,11 @@
 
 **Visual hint:** 04:37 — Elemento o zona en el gráfico de euro que, según el instructor, puede complicar el long
 
+**Dudas abiertas:**
+
+- ¿A qué elemento concreto se refiere 'esto de aquí' en s-000434? El frame f-000437 muestra el 1D con el rango de 12h y el objetivo diario por encima del precio (~1,52 vs topes ~1,58/~1,62); el candidato plausible es el rango/techo inmediato superior, pero el frame no lo confirma sin ambigüedad.
+- ¿Qué es exactamente 'esto de aquí' en el gráfico de euro (00:04:34-00:04:40)? Requiere verificación visual del frame.
+
 ### c-0028
 
 **Statement:** Una vez tenemos el bias claro, para operar tenemos que ir a las otras temporalidades a ver que tengamos los rangos a favor para llegar a ella.
@@ -342,6 +414,11 @@
 **Tiempo:** [04:40–04:50]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000440|04:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000445|04:45]]
+
+**Dudas abiertas:**
+
+- Deíctico 'a ella' (s-000445) sin resolver: por el contexto inmediato (s-000458 habla de 'nuestro objetivo') parece referirse al objetivo/dirección, pero el instructor no lo explicita.
+- Deíctico sin resolver: ¿a qué se refiere 'para llegar a ella' (¿al objetivo, a la dirección)?
 
 ### c-0029
 
@@ -377,6 +454,12 @@
 
 **Notes:** Al inicio del segmento retira marcas del gráfico: 'dejamos esto como los dolls... esto de aquí y esto de aquí, lo quito'. Nota (2026-10-18): 'los dolls' = los niveles/DOL dibujados que se retiran del gráfico; garble preservado sin uso en el statement.
 
+**Dudas abiertas:**
+
+- Deícticos sin resolver en el ejemplo: 'esto', 'los objetivos que están ahí arriba', 'aquí en medio' (s-000502/s-000518); el claim los conserva como deixis y no los resuelve, correcto.
+- Garble 'los dolls' (s-000502): probablemente 'el DOL' (cf. glosario 'el dol'/'el doble'); confirmar y añadir variante al glosario.
+- Garble 'los dolls': probablemente 'el DOL' (glosario: 'el dol'/'el doble'). Confirmar y añadir variante al glosario.
+
 ### c-0032
 
 **Statement:** Esta es la vela de London: nos está viendo por encima de esta, lo que significa que está creando un rango bajista.
@@ -392,6 +475,11 @@
 **Visual hint:** 05:32 — Vela de Londres moviéndose por encima de otra vela del gráfico, creando un rango bajista
 
 **Notes:** Nexo 'lo que significa que' explícito. London = sesión de Londres (vela de 4 h, ch02).
+
+**Dudas abiertas:**
+
+- ASR 'nos está viendo por encima de esta' (s-000531): probablemente 'va/está por encima de esta (vela anterior)'; confirmar a qué vela se refiere 'esta'.
+- Frase ASR 'nos está viendo por encima de esta': probablemente 'va/está por encima de esta (vela)'. Confirmar a qué vela se refiere 'esta'.
 
 ### c-0033
 
@@ -417,6 +505,10 @@
 
 **Notes:** loan = garble ASR de "long" (s-000549); preservado tal cual dicha la palabra.
 
+**Dudas abiertas:**
+
+- Nuevo garble candidato para el glosario: 'loan' = 'long' (s-000549).
+
 ### c-0035
 
 **Statement:** Vas cambiando temporalidades y viendo qué tienes: en tres horas, más de lo mismo; se nos está creando un rango bajista a las 2, no puedes comprar; en una hora, otro rango bajista que indicaba que no podías comprar; y en 8 horas también bajista: todo era bajista.
@@ -428,6 +520,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000551|05:51]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000555|05:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000556|05:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000611|06:11]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-000559.png|f-000559]]
+
+**Dudas abiertas:**
+
+- Garble 'a las 2' (s-000556, 'rango bajista a las 2'): probablemente 'en la de 2 horas' (secuencia 3h→2h→1h del barrido); confirmar.
+- Garble 'a las 2' en 'rango bajista a las 2': ¿'en la de 2 horas', 'en las dos'? Confirmar.
 
 ### c-0036
 
@@ -457,6 +554,10 @@
 
 **Notes:** El instructor no usa aquí el término Turtle Soup (el patrón coincide con toma de liquidez + reacción): anotación mía, no del curso.
 
+**Dudas abiertas:**
+
+- La parte 12h ('el mismo bajo y empieza a reaccionar') no quedo plenamente legible en frames: f-000648 (06:48) muestra el 12h con el nivel 1,14565 dibujado y una caja de rango, pero el toque exacto del bajo por la vela de 12h no se distingue con claridad a ese zoom.
+
 ### c-0038
 
 **Statement:** En este momento te levantas y entras en el gráfico con objetivos alcistas, pero tienes un rango bajista; por lo tanto, no vas a poder comprar aquí: tienes que esperar a que tengas los rangos a favor.
@@ -469,6 +570,10 @@
 
 **Notes:** 'Por lo tanto' explícito. ASR 'tú te levantas y entras en el gráfico': sentido de abrir el gráfico (por la mañana).
 
+**Dudas abiertas:**
+
+- Deixis 'no vas a poder comprar aqui': el punto exacto del grafico queda sin resolver. f-000648 (06:48) muestra el 12h con una caja de rango dibujada y niveles (1,14565 abajo; 1,15803/1,16173 arriba), pero no permite atribuir sin ambiguedad cual caja es el rango bajista ni cual punto es 'aqui'.
+
 ### c-0039
 
 **Statement:** Si tú ibas a GVP este día: obviamente los objetivos alcistas los dejamos por ahí; si vas a la temporada diaria, GVP tenía, aparte del rango diario, un rango bajista aquí.
@@ -480,6 +585,12 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000656|06:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000700|07:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000703|07:03]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000707|07:07]]
 
 **Notes:** 'temporada diaria' → temporalidad diaria (garble conocido).
+
+**Dudas abiertas:**
+
+- Deixis 'un rango bajista aqui' (en diario): el frame base muestra 12h, no el diario; el rango bajista diario no es verificable visualmente dentro de este minuto.
+- Garble 'GVP' = GBP?: el frame base f-000659 (06:59) muestra GBPUSD en pantalla (panel derecho, 12h), consistente con GVP=GBP pero sin confirmarlo. Confirmar y anadir al glosario.
+- Garble 'GVP' = ¿GBP? (variantes ya vistas: 'GDP'). Confirmar y añadir al glosario.
 
 ### c-0040
 
@@ -496,6 +607,10 @@
 **Visual hint:** 07:20 — Apertura de un rango semanal con Power of 3 antes del movimiento alcista
 
 **Notes:** 'Power 3' = Power of 3 (glosario). 'Es probable que' se mantiene tal cual (probabilidad, no certeza).
+
+**Dudas abiertas:**
+
+- ASR 'GVP' (s-000656/s-000703, contexto del ejemplo): probablemente = GBP; el frame f-000720 muestra gráficos semanales de EURUSD y GBPUSD. Confirmar y añadir 'GVP = GBP' al glosario.
 
 ### c-0041
 
@@ -521,6 +636,11 @@
 
 **Notes:** Resumen del método del capítulo hasta aquí.
 
+**Dudas abiertas:**
+
+- Garble 'el turn' (s-000749): ¿'el target'? Confirmar y añadir al glosario.
+- Garble 'el turn' en 'para ir hacia el turn': ¿'el target'? Confirmar y añadir al glosario.
+
 ### c-0043
 
 **Statement:** Segundo ejemplo (este día, que se ve mejor): en el gráfico de tres días teníamos este objetivo bajista; es un rango porque, como va por arriba, cierra adentro, y nos crea esto como objetivo bajista.
@@ -536,6 +656,10 @@
 **Visual hint:** 07:56 — Gráfico de 3 días: rango que va por arriba y cierra adentro, marcado como objetivo bajista
 
 **Notes:** Reformulación de la definición de rango (toma un extremo y cierra dentro, ch01) en versión bajista. El instructor reconoce que el primer ejemplo era 'un poco liado'.
+
+**Dudas abiertas:**
+
+- Identidad del 'este día' del segundo ejemplo: la fecha concreta no es legible en f-000812 (el gráfico 3D muestra datos 2024-2025 de EURUSD con velas recientes ~1.10-1.12); resolver qué día/ejemplo es si la documentación lo necesita.
 
 ### c-0044
 
@@ -589,6 +713,11 @@
 
 **Notes:** «ahí abajo» queda resuelto por el propio enunciado: completar el rango de tres días.
 
+**Dudas abiertas:**
+
+- s-000843: «¿por qué este es alcista? lo vais a ver ahora» — dentro del bloque del minuto no se explica qué rango es el alcista ni por qué; se resuelve más adelante en el capítulo (p. ej. s-001027 y s-001131+, rangos alcistas en 4 h y superiores), conviene enlazar la resolución al integrar.
+- s-000843: «¿por qué este es alcista? lo vais a ver ahora» — en este bloque no se llega a explicar qué rango es el alcista ni por qué.
+
 ### c-0048
 
 **Statement:** Bajando de temporalidad: en 12 horas hay otro rango bajista, que «nos sigue dando dos confirmaciones».
@@ -602,6 +731,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-000859.png|f-000859]]
 
 **Notes:** «dos confirmaciones» se preserva tal cual suena.
+
+**Dudas abiertas:**
+
+- «dos confirmaciones» (s-000854): ¿literal o garble de ASR? Además, no se explicita en el minuto a qué dos confirmaciones se refiere (¿diario + tres días, o los dos objetivos marcados?).
+- ¿«dos confirmaciones» es literal (dos confirmaciones) o garble de ASR (p. ej. «nos sigue dando confirmaciones»)?
 
 ### c-0049
 
@@ -640,6 +774,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000922|09:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000924|09:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000926|09:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-000929|09:29]]
 
 **Notes:** s-000922 «ya estamos cerca del objetivo» es ambiguo; en contexto parece referirse a la escalada de TFs para precisar el bias, no a un objetivo de precio.
+
+**Dudas abiertas:**
+
+- Resolver el referente de s-000922 («ya estamos cerca del objetivo»): ¿escala de temporalidades para afinar el bias u objetivo de precio? No afecta la sustancia del claim, pero el segmento queda como evidencia incluida.
 
 ### c-0052
 
@@ -682,6 +820,11 @@
 **Visual hint:** 09:44 — velas del rango alcista de 8 h: cierres afuera con los cuerpos respetando el low
 
 **Notes:** ASR: «Ya veis que Clean, como cierra afuera, los cuerpos siempre respetan el Low» — «Clean» parece garble; el sentido dicho es: incluso con cierre afuera, los cuerpos respetan el low.
+
+**Dudas abiertas:**
+
+- Confirmar lectura de «Ya veis que Clean, como cierra afuera…» (s-000944): ¿«Clean» es garble ASR o el inglés del instructor? ¿Afuera de qué estructura cierra la vela (del rango previo, del extremo)?
+- Confirmar lectura de «Ya veis que Clean, como cierra afuera…»: ¿qué es «Clean»? (posible garble).
 
 ### c-0055
 
@@ -733,6 +876,10 @@
 
 **Notes:** «la vela de la una» = vela de la 1 (hora sin aclarar); «en London» = sesión de Londres.
 
+**Dudas abiertas:**
+
+- «La vela de la una»: el instructor no aclara la hora (¿01:00 New York UTC-4?). Queda como deíctico temporal sin resolver.
+
 ### c-0059
 
 **Statement:** Cuando hay tantas velas, normalmente la vela más importante va a ser la vela de la izquierda: es la que hay que hacer caso; «la vela de izquierda siempre es la que manda» (como norma general).
@@ -773,6 +920,10 @@
 
 **Notes:** Adjudicación de integración: ambas citas son literales (s-001025, s-001050 + s-001056); la identificación día-difícil = martes es inferencia contextual del deíctico 'este' en s-001050, declarada aquí; no se funde el 'un poco feo' con 'muy difícil'.
 
+**Dudas abiertas:**
+
+- q-cand: referente exacto del deíctico 'este' en s-001050 (¿el martes de s-001025?): la lectura vigente es inferencia contextual declarada, no textual.
+
 ### c-0062
 
 **Statement:** Para el miércoles hay que bajar bastante de temporalidad para encontrar la entrada.
@@ -808,6 +959,12 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001131|11:31]]
 
 **Notes:** Hora de entrada a la sesión como parámetro del método; en el ejemplo, a esa hora el gráfico muestra un rango bullish.
+
+**Dudas abiertas:**
+
+- El rango bullish del ejemplo no es atribuible sin ambigüedad a un rectángulo concreto en f-001131 (se dibuja después; en f-001159 hay un rectángulo pequeño en torno a 1,1150-1,1159 sobre velas de ~03:00-06:00 del 28, sin etiqueta).
+- ¿«A las 2» en qué referencia horaria (a.m./p.m.) y en qué zona? (el curso usa horario New York UTC-4).
+- ¿«A las 2» en qué referencia horaria y zona (el curso usa horario New York UTC-4)? El reloj de la plataforma no es legible en los frames verificados.
 
 ### c-0065
 
@@ -845,6 +1002,10 @@
 
 **Notes:** ASR: «para ir en dirección a ir» — frase garbleada (¿«en dirección al DOL»?); la sustancia (rango de 1 h a favor => puedes vender) es explícita («lo que significa»).
 
+**Dudas abiertas:**
+
+- Garble ASR en s-001154: «para ir en dirección a ir» (¿«en dirección al DOL»?) — candidato a añadir al glosario; no afecta la sustancia del claim.
+
 ### c-0068
 
 **Statement:** Importante que, luego, en 8 horas, 6 horas y esas temporalidades no tengas rangos en contra.
@@ -869,6 +1030,10 @@
 
 **Notes:** Remite al vídeo de entradas (fuera del alcance de este capítulo).
 
+**Dudas abiertas:**
+
+- Deícticos no resueltos: qué zona exacta es «toda esta zona» dentro del rango de 30 min/1 h y a qué nivel concreto remite «hasta llegar ahí abajo» (probablemente el objetivo inferior marcado, no confirmado por transcript).
+
 ### c-0070
 
 **Statement:** «El tema DOL es básicamente: en rangos de temporalidad más alta, vela de la izquierda predominando e ir para allí».
@@ -880,6 +1045,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001229|12:29]]
 
 **Notes:** Recapitulación hecha por el propio instructor del concepto DOL.
+
+**Dudas abiertas:**
+
+- Confirmar el significado de «DOL» en este curso: el glosario mapea «el dol»/«el doble» a DOL, pero aquí («ir para allí» tras «vela de la izquierda predominando») suena a objetivo/dirección de liquidez (draw on liquidity). Pendiente de resolución por el integrador.
+- Confirmar el significado de «DOL»: el glosario interpreta «el dol»/«el doble» como el DOL, pero aquí («el tema DOL… ir para allí») suena a concepto de objetivo/dirección de liquidez.
 
 ### c-0071
 
@@ -1013,6 +1183,10 @@
 
 **Notes:** ASR «el power / free» = «el Power of 3» (cf. glosario «power 3»); nuevo garble propuesto para el glosario.
 
+**Dudas abiertas:**
+
+- Confirmar nuevo garble «power free» = «Power of 3» para añadirlo al glosario.
+
 ### c-0082
 
 **Statement:** La entrada ideal estaba aquí arriba; entrar aquí abajo es «un poco de red flag» porque ya tienes el riesgo de que «estamos tomando lows de veras de cuatro horas» y puede pasar que reinicie un rango y luego baje.
@@ -1029,6 +1203,11 @@
 
 **Notes:** «lows de veras» se preserva tal cual; la lectura «velas de 4 h» es interpretación (la anoto aquí, no en el statement).
 
+**Dudas abiertas:**
+
+- Confirmar «lows de veras de cuatro horas»: ¿garble de «lows de velas de cuatro horas»? Persiste; los frames confirman el contexto visual (lows de velas de 4 h en pantalla) pero no resuelven el ASR.
+- Confirmar «lows de veras de cuatro horas»: ¿«lows de velas de cuatro horas»? (garble probable).
+
 ### c-0083
 
 **Statement:** Eso (que reinicie el rango y baje) no va a pasar viendo lo que estaba pasando en una hora: cuando pasa esto y te reacciona, en una hora ya dices que la de cuatro horas no va a revertirse y simplemente va a seguir bajando («ya que una hora me está diciendo»); en seis horas va a ser más de lo mismo.
@@ -1040,6 +1219,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001500|15:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001505|15:05]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001512|15:12]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001518|15:18]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001525|15:25]]
 
 **Notes:** Fragmento ASR parcialmente garbleado («como anticipas que esto no va a pasar…»); nexo causal explícito: «ya que una hora me está diciendo».
+
+**Dudas abiertas:**
+
+- ASR dudoso en s-001505: «luego baje como anticipas que esto no va a pasar» — ¿dijo «como anticipé»? Posible garble a registrar en glosario.
 
 ### c-0084
 
@@ -1054,6 +1237,12 @@
 **Visual hint:** 15:25 — entrada en el Power 3 de la vela de las 23 (arriba)
 
 **Notes:** «vela de las 23» tal cual; presumiblemente la vela de las 23:00.
+
+**Dudas abiertas:**
+
+- Deíctico «esta de aquí arriba»: el punto exacto de la entrada en el Power 3 no es visible en los frames verificados (f-001525, f-001529).
+- ¿«la vela de las 23» a qué hora y zona horaria se refiere? (misma duda de referencia horaria que «a las 2», B-21).
+- ¿«la vela de las 23» a qué hora y zona horaria se refiere? (misma duda de referencia horaria que «a las 2», B-21; los frames muestran el cursor de replay en velas 23:00 del gráfico 6h, lo que apoya vela de 23:00 sin resolver zona horaria).
 
 ### c-0085
 
@@ -1079,6 +1268,10 @@
 
 **Notes:** Re-aplicación, en el ejemplo del 1 h, de la regla ya dicha en s-001007–s-001013.
 
+**Dudas abiertas:**
+
+- «aquí abajo» y «Aquí» son deícticos sobre el gráfico: el punto concreto de la venta vetada y de la venta válida no queda identificado en el transcript.
+
 ### c-0087
 
 **Statement:** Una vez el rango está a favor de tu tendencia otra vez, «significa que esto es un rango pendiente» y puedes vender hasta los objetivos de más abajo.
@@ -1090,6 +1283,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001544|15:44]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001553|15:53]]
 
 **Notes:** Conecta con el concepto de rango pendiente (ch01/ch02); nexo explícito «significa que».
+
+**Dudas abiertas:**
+
+- «esto es un rango pendiente»: deíctico — qué rango concreto queda como pendiente (el rectángulo y líneas visibles en f-001559/f-001529 no permiten atribuir el señalamiento sin adivinar).
 
 ### c-0088
 
@@ -1104,6 +1301,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-001609.png|f-001609]]
 
 **Visual hint:** 16:09 — Reversión del precio antes de alcanzar el objetivo diario marcado
+
+**Dudas abiertas:**
+
+- En f-001609 hay varios niveles horizontales marcados por debajo del mínimo de la reversión y ninguno está etiquetado; el frame no permite confirmar cuál línea exacta es 'el de diario' señalado en s-001600 (no afecta al veredicto, que se sostiene en el dicho).
 
 ### c-0089
 
@@ -1120,6 +1321,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001621|16:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001625|16:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001627|16:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001629|16:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001631|16:31]]
 
 **Notes:** ASR 'tema vallas' = 'tema bayas' (bias). 'El doble' = el DXY (garble conocido del curso). SUPERSEDED por c-0212 (2026-10-18, amend-ch03-04): el statement publicaba 'el DXY' donde la fuente dice 'el doble aquí abajo' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver AMENDMENTS.md del capítulo.
+
+**Dudas abiertas:**
+
+- Garble confirmado en contexto por el reviewer: 'vallas' = 'bayas/bias' (s-001621); proponer su adición al glosario del capítulo.
+- Nuevo garble ASR: 'vallas' por 'bayas/bias' (s-001621); proponer su adición al glosario.
 
 ### c-0090
 
@@ -1145,6 +1351,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-001644.png|f-001644]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-001659.png|f-001659]]
 
+**Dudas abiertas:**
+
+- ¿A qué vela concreta del gráfico de 6 h se refiere 'vela de las 23' (s-001643)? Requiere frame para identificarla.
+
 ### c-0092
 
 **Statement:** PDM (no lo había comentado en el vídeo de conceptos): si estás alcista, quieres ver cómo el precio se apoya en el low del rango, no rompe por debajo de él y lo usa como soporte real para ir hacia arriba; eso se llama PDM.
@@ -1158,6 +1368,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-001659.png|f-001659]]
 
 **Visual hint:** 16:51 — Precio apoyándose en el low del rango de 6 h sin romperlo y reacción alcista (PDM)
+
+**Dudas abiertas:**
+
+- 'pdm' no aparece como etiqueta de texto en f-001659 ni se expande en el audio del intervalo; no se puede confirmar a qué corresponde la sigla (término del curso o garble ASR). Mantener como pregunta abierta para el glosario.
+- ¿Qué significa la sigla 'pdm' (s-001658)? Término nuevo del curso o posible garble de ASR; no está en el glosario.
 
 ### c-0093
 
@@ -1191,6 +1406,10 @@
 
 **Visual hint:** 17:33 — Objetivos de los rangos de 8 h y 6 h marcados; el precio completa el de 6 h antes que el de 8 h
 
+**Dudas abiertas:**
+
+- El toque exacto del objetivo de 6h no es pixel-verificable en el frame (mínimo visible 1,10284 vs línea 1,1028, ~0.4 pips): el frame es consistente con lo dicho, pero el 'completa' exacto depende del dicho, no del frame.
+
 ### c-0095
 
 **Statement:** Tenéis marcados los dos objetivos, pero no hace falta que se complete el de 8: con el de 6 ya es suficiente, y más si estamos bearish.
@@ -1204,6 +1423,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-001733.png|f-001733]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-001759.png|f-001759]]
 
 **Notes:** Interpretación del pasaje garbleado en notes, no como hecho: 'es 2' suena a 'el de 8'.
+
+**Dudas abiertas:**
+
+- Confirmar el referente del garble 'no hace falta que es completar es 2' (s-001738): ¿'no hace falta que se complete el de 8'?
+- Garble ASR 'es 2' (s-001744): la lectura 'el de 8' queda confirmada por contexto y frames, pero conviene registrarla en el glosario (candidato: 'es 2' = 'el de 8'); decisión del integrador.
 
 ### c-0096
 
@@ -1227,6 +1451,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-001807.png|f-001807]]
 
+**Dudas abiertas:**
+
+- Referente exacto de 'por debajo' (¿bajo la vela previa o bajo el rango anterior?) no queda cerrado: f-001807 apunta a 'bajo la vela previa' (apertura ~1,10437 vs cuerpo previo ~1,1050) pero el still no es concluyente al 100%.
+- ¿Por debajo de qué se abre la vela: del rango anterior, de la vela previa? (s-001801)
+
 ### c-0098
 
 **Statement:** El momento en que se puede volver a buscar ventas es cuando en 6 horas el precio completa el primer rango y, por ejemplo, reinicia otro rango.
@@ -1237,6 +1466,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001811|18:11]]
 
+**Dudas abiertas:**
+
+- Deíctico 'aquí reinicia otro rango' (s-001811): los frames f-001851/f-001859/f-001905 muestran los cuadros de rango ya dibujados en 6h más adelante en el minuto, pero no permiten identificar sin ambigüedad el rango señalado en ese segundo concreto.
+
 ### c-0099
 
 **Statement:** Esto fue ya el día siguiente: a partir de ahí se tenía otra venta hasta el objetivo.
@@ -1246,6 +1479,10 @@
 **Tiempo:** [18:11–18:33]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001811|18:11]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001824|18:24]]
+
+**Dudas abiertas:**
+
+- Deíctico 'a partir de aquí' (s-001824): el punto exacto del gráfico donde arranca esa segunda venta no queda identificado; requeriría frame dedicado a ese segundo.
 
 ### c-0100
 
@@ -1258,6 +1495,12 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001824|18:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001833|18:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001841|18:41]]
 
 **Notes:** ASR 'toma el logo de la vela anterior' = 'toma el low de la vela anterior'.
+
+**Dudas abiertas:**
+
+- Deíctico 'aquí' (s-001833): qué vela/low concreto toma el precio no es identificable sin frame de ese segundo.
+- Nuevo garble ASR: 'logo' por 'low' (s-001833); proponer su adición al glosario.
+- Proponer garble al glosario: 'logo' (y 'load' en s-003244) por 'low'.
 
 ### c-0101
 
@@ -1273,6 +1516,12 @@
 
 **Notes:** ASR 'rango veris' = 'rango bearish' (garble conocido).
 
+**Dudas abiertas:**
+
+- Confirmar si 'en otro bloque' (s-001856) es literal o garble ASR y, si aplica, proponerlo al glosario.
+- Identificar los rangos señalados como 'este rango' (s-001848, s-001856): requiere frame.
+- La etiqueta 'bearish' del cuadro procede del discurso (venta arriba), el frame no rotula dirección: la identificación uno a uno de cada mención de 'este' con el cuadro no es 100% concluyente con stills.
+
 ### c-0102
 
 **Statement:** Si completa este (rango), el precio va para arriba directamente, creando este como rango bullish.
@@ -1287,6 +1536,13 @@
 
 **Notes:** El condicional 'si completa este va para arriba directamente creando este como rango bullish' está dicho tal cual; el arranque de la frase viene muy garbleado por el ASR.
 
+**Dudas abiertas:**
+
+- A qué rango se refiere 'si completa este' (s-001856, s-001902): requiere frame.
+- Correspondencia definitiva entre cada mención de 'este' (rango completado vs. rango creado como bullish) y el cuadro dibujado: f-001905 muestra el cuadro ≈1,1039–1,1055 extendiéndose sobre mar 03–04, pero con stills no es 100% concluyente.
+- El garble inicial de s-001902 ('ahí es en ti con libro de') sigue sin resolverse; no afecta a la sustancia del claim y puede proponerse al glosario como ruido no recuperable.
+- Garble 'ahí es en ti con libro de' (s-001902) sin resolver.
+
 ### c-0103
 
 **Statement:** El precio no llega a nuestro objetivo bajista, que estaría ahí abajo, porque se nos crean rangos bullish al final.
@@ -1298,6 +1554,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001908|19:08]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001916|19:16]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-001914.png|f-001914]]
+
+**Dudas abiertas:**
+
+- Confirmar si la línea horizontal marcada (~1,1023/1,10228) visible en f-001914 es el 'objetivo bajista' al que alude el instructor y qué rectángulos concretos son los 'rangos bullish'.
+- Ubicación exacta del 'objetivo bajista ahí abajo' (s-001908): requiere frame.
 
 ### c-0104
 
@@ -1321,6 +1582,10 @@
 
 **Notes:** ASR 'aquí habría tomando el short' = 'aquí habría tomado el short'.
 
+**Dudas abiertas:**
+
+- Referente exacto de 'aquí arriba' (zona del short hipotético) y 'aquí abajo' (destino) en el gráfico 6h; la deixis de 19:27-19:33 no queda resuelta con el frame de 19:14.
+
 ### c-0106
 
 **Statement:** Gestión del trade: cuando ves cómo el precio completa esto, pones break even y ya está; dejas que te saquen break even y (sigue) para arriba.
@@ -1330,6 +1595,11 @@
 **Tiempo:** [19:33–19:39]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001933|19:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001935|19:35]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-001937|19:37]]
+
+**Dudas abiertas:**
+
+- A qué se refiere 'completa esto' (¿el rango, el objetivo del trade?) en s-001933: requiere frame.
+- A qué se refiere exactamente 'completa esto' (s-001933): requiere frame del momento 19:33-19:39; la deixis no se resuelve con los frames extraídos de este minuto.
 
 ### c-0107
 
@@ -1369,6 +1639,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-001959.png|f-001959]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-002005.png|f-002005]]
 
+**Dudas abiertas:**
+
+- A qué rango y objetivo se refieren 'este rango' / 'llegar ahí' (s-002008): requiere frame.
+- Identificar con precisión qué rectángulo es 'este rango' que el precio reinicia (candidato: rango marcado alrededor del 4-5 Sep, ~1,1032-1,1055, en f-002005) y qué nivel es 'llegar ahí' (¿línea horizontal ~1,1023?).
+
 ### c-0110
 
 **Statement:** Ésa es la lógica de cómo funciona todo: ver el bias y saber cuándo va a pasar; quieres tener los rangos a tu favor.
@@ -1395,6 +1670,11 @@
 
 **Notes:** 'El de tres' = el objetivo de la vela de 3 días.
 
+**Dudas abiertas:**
+
+- Identificar en pantalla el objetivo y los rangos (alcista de 2 días, bajista) señalados (s-002021, s-002028): requiere frame.
+- Identificar sin ambigüedad qué rectángulo dibujado es el rango alcista y cuál el bajista, y cuál marca exactamente 'el de tres' (el objetivo del 3D): el frame f-002028 muestra dos rectángulos sin etiquetas; la identidad la da el audio.
+
 ### c-0112
 
 **Statement:** Cuando tienes un rango alcista y un rango bajista, ¿cómo saber cuál es más importante? La vela de la izquierda, la de 3 días, es más importante.
@@ -1406,6 +1686,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002028|20:28]]
 
 **Notes:** ASR 'la velada de izquierda' = 'la vela de la izquierda'.
+
+**Dudas abiertas:**
+
+- La vela concreta señalada como 'esta de tres días' (la de la izquierda) no es identificable en los frames disponibles: f-002051 muestra el gráfico 3D en ese tramo sin ninguna vela resaltada.
 
 ### c-0113
 
@@ -1429,6 +1713,10 @@
 
 **Notes:** '2 días' y 'un día' parecen referirse a las velas de 2 días y 1 día marcadas en pantalla (interpretación).
 
+**Dudas abiertas:**
+
+- Resolver el referente en pantalla de 'un día alcista, que es este de aquí' (¿vela/rango de 1 día señalado?): f-002051 muestra 3D sin marcas en ese momento, de modo que el objeto señalado no queda resuelto por frame.
+
 ### c-0115
 
 **Statement:** En 2 días, ¿cuándo puedes volver a vender? Cuando se te forma el primer rango bajista.
@@ -1440,6 +1728,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002057|20:57]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-002059.png|f-002059]]
+
+**Dudas abiertas:**
+
+- Confirmar cuál de los dos rectángulos visibles en f-002059 es exactamente 'este de aquí' (el primer rango bajista): el frame muestra dos rectángulos sin etiquetas y la atribución al recién formado descansa en el audio.
 
 ### c-0116
 
@@ -1468,6 +1760,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002114|21:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002118|21:18]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-002118.png|f-002118]]
+
+**Dudas abiertas:**
+
+- A qué se refiere 'se te completa esto' (s-002118): requiere frame.
+- El deíctico 'se te completa esto' (s-002118) no queda desambiguado por f-002118: podría ser el objetivo inferior que el precio alcanza (línea ~1,1023) o la finalización del rango previo; el frame muestra el precio en la línea inferior pero no identifica el objeto exacto.
 
 ### c-0118
 
@@ -1517,6 +1814,10 @@
 
 **Notes:** ASR 'al DOL' = 'al DXY' (garble conocido). SUPERSEDED por c-0215 (2026-10-18, amend-ch03-01): el statement publicaba 'al DXY' donde la fuente dice 'al DOL' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver AMENDMENTS.md del capítulo.
 
+**Dudas abiertas:**
+
+- Nuevo garble ASR: 'NCP' por 'NFP' (s-002156); proponer su adición al glosario.
+
 ### c-0122
 
 **SUPERSEDED — HISTORICAL, NOT ACTIVE**
@@ -1549,6 +1850,11 @@
 
 **Notes:** SUPERSEDED por c-0217 (2026-10-18, amend-ch03-03): el statement publicaba '(La llegada al DXY)' donde la fuente dice '(la llegada al DOL)' — la normalización DXY era incorrecta; el referente en este capítulo es DOL (objetivo de liquidez; s-001229 'el tema DOL' literal + pizarra f-004059 'DOL sesión'). El claim histórico se preserva sin renumerar; ver AMENDMENTS.md del capítulo.
 
+**Dudas abiertas:**
+
+- ¿A qué corresponde 'FB' en 'Fue en FB' (s-002217)? Garble ASR sin resolver.
+- ¿A qué corresponde 'FB' en 'Fue en FB' (s-002217)? Garble ASR sin resolver; mantener la palabra tal cual en el statement hasta identificarla.
+
 ### c-0124
 
 **Statement:** Ésa es la lógica: formar el rango diario bajista y ahí podías colocar tu venta para llegar hasta el objetivo final.
@@ -1569,6 +1875,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002236|22:36]]
 
+**Dudas abiertas:**
+
+- Puntos exactos del gráfico de 'aquí abajo' y 'aquí' (s-002236): f-002238 no los resuelve (no hay marcas visibles en el chart); resolvería sólo con el cursor/gesto del momento exacto, no load-bearing para el veredicto.
+- Qué puntos exactos del gráfico son 'aquí abajo' y 'aquí' (s-002236): requiere frame.
+
 ### c-0126
 
 **Statement:** Dado que el NFP a lo mejor no lo operabas, recuerda: ya tenías un rango diario bajista, tenías este rango bajista que era el de 12 horas, y tienes el rango final de 3 días aquí.
@@ -1578,6 +1889,11 @@
 **Tiempo:** [22:36–23:05]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002236|22:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002251|22:51]]
+
+**Dudas abiertas:**
+
+- Deícticos 'este rango' y 'aquí' (s-002251) sin resolución visual: f-002259 muestra niveles trazados pero no identifica los rangos de 12 h / 3 días nombrados.
+- Glosario: 'NCP' (s-002156) parece pertenecer a la misma familia de garble que NFP (s-002236 lo dice como 'NFP'); confirmar para el glosario.
 
 ### c-0127
 
@@ -1619,6 +1935,14 @@
 
 **Notes:** Los niveles exactos de entrada/stop/TP son deícticos: requieren frame.
 
+**Dudas abiertas:**
+
+- Correspondencia exacta entrada/stop/TP con las líneas visibles en f-002319 no es etiquetada en pantalla (deíctico): niveles numéricos exactos sin resolver (~1,11256 arriba; 1,10228/1,10168 abajo).
+- Garble 'es después de la vez' (s-002319) sigue sin resolverse.
+- Garble 'es después de la vez' (s-002319) sin resolver.
+- Nuevo garble ASR 'stop los' = 'stop loss' (s-002319/s-002325): proponer su adición al glosario.
+- Nuevo garble ASR: 'stop los' por 'stop loss' (s-002319, s-002325); proponer su adición al glosario.
+
 ### c-0130
 
 **Statement:** (El instructor) espera que vaya quedando claro el tema del bias; sabe que es un poco liado y que en el curso intermedio parecía más sencillo, pero así es como lo tenéis que ver, y así es como vais a poder lograr la máxima precisión.
@@ -1630,6 +1954,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002335|23:35]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002343|23:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002348|23:48]]
 
 **Notes:** ASR 'el tema de bayas' = 'el tema de bias'; 'me curso intermedio' ≈ '(en) el curso intermedio'.
+
+**Dudas abiertas:**
+
+- Proponer al glosario el garble 'me curso intermedio' ≈ '(en) el curso intermedio' (s-002343).
 
 ### c-0131
 
@@ -1655,6 +1983,11 @@
 
 **Notes:** Frase que continúa la del bloque anterior (entra cortada).
 
+**Dudas abiertas:**
+
+- Ambigüedad de 'sesiones' en s-002411: ¿'velas de las sesiones próximas' = velas de las temporalidades próximas (12/8/6/4 h)? El curso también usa 'sesión' como vela de 4 h, y el ASR confunde 'temporadas'/'sesión'; requiere aclaración del integrador si se parafrasea en documentación.
+- ¿'Las velas de las sesiones próximas' = las velas de las temporalidades próximas (12/8/6/4 h)? La lectura de 'sesiones' es ambigua en el audio.
+
 ### c-0133
 
 **Statement:** Se pasa al directo: a ver cómo está GDP [ASR], porque estaba volando, pero no hay mucho que decir en GDP aún; se va a euro para explicar lo que está pasando ahora mismo y la lógica detrás de lo que podría ser un short aquí.
@@ -1664,6 +1997,11 @@
 **Tiempo:** [24:20–24:43]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002420|24:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002428|24:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002434|24:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002440|24:40]]
+
+**Dudas abiertas:**
+
+- Confirmar garble ASR nuevo: GDP = GBP (no está en el glosario).
+- Confirmar garble ASR nuevo: GDP = GBP (no está en el glosario; 'estaba volando' encaja con GBP según el contexto del capítulo, pero el audio no es verificable desde el transcript).
 
 ### c-0134
 
@@ -1687,6 +2025,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-002501.png|f-002501]]
 
+**Dudas abiertas:**
+
+- ¿'En tres días hemos completado el rango' se refiere al ejemplo anterior (3d/2d/1d) o al gráfico en directo de euro?
+- ¿'En tres días' es la temporalidad de 3 días o la duración (tres días) hasta completar el objetivo 1,16148? En f-002501 el gráfico está en 2D con el objetivo ya tomado; la pregunta original del payload queda refinada, no cerrada del todo.
+
 ### c-0136
 
 **Statement:** Esto de arriba podría ser un fellow swing [ASR] ahora mismo.
@@ -1703,6 +2046,13 @@
 
 **Notes:** 'fellow swing' = failure swing (glosario).
 
+**Dudas abiertas:**
+
+- A qué estructura exacta del gráfico se refiere 'esto de arriba'.
+- Garble sin resolver en s-002509: 'a ver en chip y claro ese sentido en chip' (¿'en seis'?, ¿otro término?). Añadir al glosario cuando se resuelva.
+- Garble sin resolver: 'a ver en chip y claro ese sentido en chip' (¿en GBP?, ¿otra temporalidad?).
+- Parcialmente resuelto por f-002509: 'esto de arriba' = la estructura superior reciente (velas que alcanzan el alto 1,16148) en 12h; queda abierto si señala el swing alto concreto o la zona completa.
+
 ### c-0137
 
 **Statement:** Esto se podría ver como un rango ya creado; bajando más temporalidades: en 8 horas rango bajista, en 6 horas rango bajista el mismo, en 4 horas rango bajista el mismo, en 3 horas un rango bajista allá arriba y en 2 horas el mismo rango bajista.
@@ -1716,6 +2066,10 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-002520.png|f-002520]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-002559.png|f-002559]]
 
 **Visual hint:** 25:20 — El mismo rango bajista marcado al bajar por 8h, 6h, 4h, 3h y 2h
+
+**Dudas abiertas:**
+
+- f-frames verificados sólo para los extremos 8h (f-002520) y 2h (f-002559); 6h, 4h y 3h no se extrajeron por presupuesto de frames — el dicho de esas temporalidades queda soportado por s-002520/s-002544.
 
 ### c-0138
 
@@ -1755,6 +2109,11 @@
 
 **Notes:** Causal explícita: no poder predecir más allá se debe a que faltan rangos ('porque faltan rangos').
 
+**Dudas abiertas:**
+
+- A qué nivel del gráfico se refiere 'llegar hasta aquí'.
+- Confirmar referente exacto de 'hasta aquí': candidato más probable la línea horizontal en 1.16148 marcada a la derecha (f-002621, f-002659); alternativa residual: borde superior de la zona gris (~1.162), nivel muy próximo.
+
 ### c-0141
 
 **Statement:** Cómo se crearían los rangos: si esa vela diaria, que ahora está así y no está diciendo mucho, hoy reacciona fuerte abajo y cierra dentro de esta anterior, se podrá tener un rango bajista ya creado.
@@ -1767,6 +2126,10 @@
 
 **Notes:** Condicional explícito ('si... podremos tener'): reacción fuerte abajo + cierre dentro de la vela anterior = rango bajista creado.
 
+**Dudas abiertas:**
+
+- Deícticos 'esta vela diaria' y 'esta anterior' sin anclaje en el claim: en f-002659 (1D, verificado) la última vela diaria cierra ~1.15993 y la previa es de mayor rango; el claim preserva la deixis fielmente sin resolverla.
+
 ### c-0142
 
 **Statement:** Ese rango bajista, a lo mejor, va a ser el próximo doll [ASR]; lo de 'a lo mejor' es porque está muy lejos: aunque cierre dentro son 120 pips, así que no va a ser el doll de la siguiente sesión.
@@ -1778,6 +2141,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002640|26:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002642|26:42]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002643|26:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002646|26:46]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002648|26:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002650|26:50]]
 
 **Notes:** Cifra literal dicha por el instructor: 120 pips. REMEDIACIÓN (2026-10-18): 'doll' = DOL (el próximo objetivo de liquidez), consistente con s-001229 y f-004059; el claim ya lo preservaba sin adjudicar y la pizarra permite adjudicar el referente.
+
+**Dudas abiertas:**
+
+- Garble 'doll' ambiguo aquí: el glosario mapea 'el dol/el doble' a DOL, pero en esta frase el sentido parece 'objetivo' ('el próximo objetivo'); confirmar para el glosario.
+- Garble 'doll' ambiguo en este pasaje: el glosario mapea 'el dol/el doble' a DOL, pero 'el próximo doll de la siguiente sesión' aplicado a un rango del gráfico (EURUSD en pantalla, f-002621) sugiere otro sentido (¿objetivo/nivel?). Confirmar para el glosario.
 
 ### c-0143
 
@@ -1801,6 +2169,11 @@
 
 **Notes:** Nexo causal explícito ('porque si no'). 'Del doll' = del DXY según glosario. Claim central del capítulo: sin el componente bias, operar el Turtle Soup es operar a ciegas como un patrón. REMEDIACIÓN (2026-10-18, amend-ch03-07): la glosa inline '(DXY)' era una interpretación incorrecta y se retiró del statement; 'del doll' = del DOL (s-001229 literal, f-004059). La palabra dicha ('doll') se preserva.
 
+**Dudas abiertas:**
+
+- Confirmar garble ASR nuevo: 'el concepto de vallas' (s-002704), candidato 'el concepto de bias'; la lectura del claim no depende de resolver este garble.
+- Confirmar garble ASR nuevo: 'el concepto de vallas' = 'el concepto de bias' (aparece en el mismo pasaje que el time-based).
+
 ### c-0145
 
 **Statement:** Este día fue brutal y él tenía un stop loss ahí; lo va a explicar porque va a quedar bastante claro lo que es el bias también de estos días.
@@ -1810,6 +2183,10 @@
 **Tiempo:** [27:29–27:41]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002729|27:29]]
+
+**Dudas abiertas:**
+
+- Deíctico 'ahí': la ubicación exacta del stop loss en el gráfico no queda resuelta; no es load-bearing para el claim, pero si se quiere anclar visualmente habría que identificar el nivel marcado en el día explicado.
 
 ### c-0146
 
@@ -1825,6 +2202,12 @@
 
 **Notes:** Nexo explícito ('por lo tanto') entre la toma del alto y su posición en shorts. REMEDIACIÓN (2026-10-18): 'hasta el doble' = hasta el DOL bajista (el objetivo de los shorts, cf. s-002758 '12 horas objetivo bearish casi completado'); consistente con s-001229 y f-004059.
 
+**Dudas abiertas:**
+
+- Deíctico 'el alto de esto': qué máximo concreto se toma no se resuelve en f-002745 (gráfico 1D todavía sin niveles dibujados); los niveles se ven ya dibujados en f-002759 en 12h.
+- Qué significa exactamente 'shorts muy claros hasta el doble' ('el doble' = DOL según glosario; el sentido de 'hasta' no queda claro en el audio).
+- Sentido exacto de 'shorts muy claros hasta el doble' ('el doble' = DOL según glosario; qué significa 'hasta' en el audio no queda claro).
+
 ### c-0147
 
 **Statement:** En 12 horas: objetivo veris [ASR], que ya se ve como casi completado o completado.
@@ -1836,6 +2219,12 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002758|27:58]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-002759.png|f-002759]]
+
+**Dudas abiertas:**
+
+- Confirmar garble 'objetivo veris' = 'objetivo bearish' (patrón de glosario 'el doble está veris' = 'el DOL está bearish'); el frame es consistente con un setup bajista (alto tomado, precio reacciona hacia objetivo inferior) pero no puede confirmar el audio.
+- Confirmar garble: 'objetivo veris' = 'objetivo bearish' (patrón de garble conocido: 'el doble está veris' = 'el DOL está bearish').
+- El estado exacto ('casi completado o completado') es caracterización verbal del instructor: en f-002759 el precio se acerca a la línea 1,13469 sin que se aprecie toque claro.
 
 ### c-0148
 
@@ -1863,6 +2252,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002824|28:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-002836|28:36]]
 
+**Dudas abiertas:**
+
+- El nivel exacto del objetivo ('ahi abajo') y del punto de venta ('aqui') es deictico: el transcript no verbaliza precios. El frame f-002859 (00:28:59) muestra una herramienta de posicion corta en pantalla (entrada ~1,14430, stop ~1,14720, objetivo 1,13469, misma linea de objetivo que f-002806), pero no puede atribuirse con certeza a la venta original (28:24) ni a la entrada ideal posterior (28:53+).
+
 ### c-0150
 
 **Statement:** Bajando más: 6 horas mismo rango bajista, 4 horas rango bajista súper clean; se ve cómo todo está alineado para las ventas.
@@ -1885,6 +2278,10 @@
 
 **Notes:** El propio instructor advierte que esa entrada demostrativa es 'fuera de horario'.
 
+**Dudas abiertas:**
+
+- La ubicacion exacta de la 'entrada ideal' ('es aqui/ahi') y que vela concreta es 'este primero' en 3h son deicticas: no resolubles desde el transcript.
+
 ### c-0152
 
 **Statement:** Para que veáis hasta qué punto de perfección se puede llegar con la estrategia: mirad este rango pequeño de 2 horas, tú puedes refinar tu entrada hasta ahí; ya lo vais a ver en el capítulo de entradas, pero es para que veáis cuán perfecto puede ser esto.
@@ -1900,6 +2297,11 @@
 **Visual hint:** 29:22 — Rango pequeño de 2 horas con el que se afina la entrada
 
 **Notes:** El detalle del refinamiento de entrada se remite al capítulo de entradas.
+
+**Dudas abiertas:**
+
+- Garble sin resolver (s-002916/19): 'bueno, no se ve, es el de 4 a 1' — a que se refiere 'el de 4 a 1'? El primer rango senalado no llega a verse en pantalla y el frame no resuelve el termino.
+- Garble sin resolver: 'bueno, no se ve, es el de 4 a 1' (¿a qué se refiere 'el de 4 a 1'? ¿una proporción, un timeframe?).
 
 ### c-0153
 
@@ -1925,6 +2327,11 @@
 
 **Notes:** 'temporadas' = temporalidades (glosario). "Estoy emitiendo la temporada más alta" = dicho literal (s-002948); garble probable de "estoy empezando por/eliminando la temporalidad más alta" (interpretación en notes, no en el statement). ADJUDICACIÓN DE INTEGRACIÓN (2026-10-18): el review marcó UNCERTAIN porque el statement original parafraseaba ('Está en la temporada más alta'); corregido al dicho literal 'Estoy emitiendo la temporada más alta' (s-002948) el claim es fiel; el garble 'emitiendo' (¿'empezando por'/'eliminando'?) queda como pregunta, no como certeza.
 
+**Dudas abiertas:**
+
+- Resolver el garble 'emitiendo' (s-002948): 'empezando por', 'eliminando', 'abriendo' u otra? Anadir al glosario si procede.
+- garble 'emitiendo la temporada más alta': ¿'empezando por la temporalidad más alta' / 'eliminando'? (s-002948)
+
 ### c-0155
 
 **Statement:** Resumen del día desde la temporalidad más alta: diario bajista, 12 horas bajista hasta ahí abajo, 8 horas bajista hasta ahí abajo, 6 horas bajista hasta el mismo punto; es decir, al menos hasta ahí todo parecía bastante claro.
@@ -1949,6 +2356,10 @@
 
 **Visual hint:** 30:05 — Vela de entrada de London señalada y su equivalente en 4 horas
 
+**Dudas abiertas:**
+
+- Resolver los deícticos 'esta vela de aquí' (vela de entrada en London) y 'esta vela de aquí' (equivalente en 4 horas): en 30:05-30:10 el diálogo 'Cambiar intervalo' tapa el gráfico y en f-003014 el cursor está a medio gráfico sin señalar una vela concreta.
+
 ### c-0157
 
 **Statement:** Es el mismo caso que antes: no se tiene rango a favor ahí; en este caso la entrada idónea, que era ahí arriba, ya se ha perdido.
@@ -1958,6 +2369,10 @@
 **Tiempo:** [30:12–30:20]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003012|30:12]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003016|30:16]]
+
+**Dudas abiertas:**
+
+- Deíctico 'ahí arriba' (nivel de la entrada idónea perdida) no resuelto visualmente; el claim lo preserva como deixis, no lo adivina.
 
 ### c-0158
 
@@ -1981,6 +2396,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003030|30:30]]
 
+**Dudas abiertas:**
+
+- Confirmar garble ASR nuevo: 'ante un red más baja' = 'ante una temporalidad más baja'.
+- Confirmar garble ASR nuevo: 'un red más baja' = 'una temporalidad más baja' (candidato a añadir al glosario).
+
 ### c-0160
 
 **Statement:** Estando en 3 horas buscando entradas (se anticipa y olvida entradas): en 3 horas hay rango en contra; esperas tener un rango a favor, que es crear un rango pendiente hacia los targets; la entrada en lo don [ASR] sería ahí, hasta ahí abajo.
@@ -1992,6 +2412,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003034|30:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003041|30:41]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003047|30:47]]
 
 **Notes:** El instructor se salta el detalle de la entrada ('me anticipo un poco, olvido entradas').
+
+**Dudas abiertas:**
+
+- Aclarar la relación entre 'tu entrada en lo don' (s-003047) y el 'porque no es London' de s-003053 inmediatamente posterior: si 'en lo don' = 'en London', la marca se borra aparentemente porque la vela marcada no es la de London; el referente exacto queda sin resolver.
+- Confirmar garble ASR nuevo: 'en lo don' = 'en London'.
 
 ### c-0161
 
@@ -2005,6 +2430,12 @@
 
 **Notes:** Nexo explícito ('porque no es London') para borrar la marca. "lleve" = ASR literal (s-003101); probablemente "tome/toque el nivel" (interpretación).
 
+**Dudas abiertas:**
+
+- A qué nivel se refiere 'esperar a que tome esto' en 2 horas (presumiblemente un alto, pero no se explicita).
+- A qué nivel se refiere 'esto' en 2 horas (presumiblemente un alto, pero no se explicita; el frame f-003059 muestra cajas pero no desambigua el nivel).
+- Referente exacto de 'porque no es London' (si la vela marcada no es la vela de London o si se refiere al momento/sesión).
+
 ### c-0162
 
 **Statement:** En London hubo que esperar a que completara el rango bullies [ASR] y, a las 3, que ya se ha dicho que es una vela clave y normalmente es cuando la distribución se da en London, toma el alto de la vela anterior creando un rango pendiente bajista.
@@ -2017,6 +2448,12 @@
 
 **Notes:** 'A las 3' enlaza con la hora clave 3 a.m. y la distribución del Power of 3 de ch02 (distribución en London).
 
+**Dudas abiertas:**
+
+- Confirmar garble: 'rango bullies' = 'rango bullish' (variante ASR nueva, candidata a glosario).
+- Confirmar garble: 'rango bullies' = 'rango bullish'.
+- Cuál de los rectángulos del gráfico de 1h es el 'rango bullies' que debía completarse en London (deíctico 'este rango bullies aquí'; no resoluble con certeza desde frame estático).
+
 ### c-0163
 
 **Statement:** De todas esas velas, la de la izquierda es la más importante.
@@ -2026,6 +2463,11 @@
 **Tiempo:** [31:09–31:21]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003109|31:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003116|31:16]]
+
+**Dudas abiertas:**
+
+- A qué conjunto exacto de velas se refiere 'todas estas de aquí' (se dice sobre el gráfico de 1 hora alrededor de London).
+- A qué conjunto exacto de velas se refiere 'todas estas de aquí' (señala sobre el gráfico de 1h, clúster previo a London/desplome, ~lun 02 Jun 22:00 según f-003118; no resoluble con certeza desde frame estático).
 
 ### c-0164
 
@@ -2039,6 +2481,10 @@
 
 **Notes:** 'target sub' = Turtle Soup (glosario); el stop iría por encima del Turtle Soup.
 
+**Dudas abiertas:**
+
+- Confirmar garble: 'target sub' = 'target Turtle Soup' (variante ASR nueva, candidata a glosario).
+
 ### c-0165
 
 **Statement:** El objetivo primero es ahí, que es ratio 2, donde ya podías sacar algo si querías.
@@ -2050,6 +2496,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003147|31:47]]
 
 **Notes:** 'ratio 2' dicho tal cual por el instructor (primer objetivo con ratio 2).
+
+**Dudas abiertas:**
+
+- Cuál nivel exacto del gráfico es el 'objetivo primero' con ratio 2 (deíctico 'aquí' sin etiqueta visible en los frames verificados del minuto).
 
 ### c-0166
 
@@ -2063,6 +2513,11 @@
 
 **Notes:** 'comprate' = probable 'completó/completé un objetivo más' (garble).
 
+**Dudas abiertas:**
+
+- A qué escenario se refiere 'por precaución que no pase esto'.
+- Confirmar garble: 'comprate' ≈ 'completó/completé un objetivo más' (candidato a glosario).
+
 ### c-0167
 
 **Statement:** Seguimos en seis horas, más de lo mismo: nuevo bajo aquí; puedes sacar algo [parciales]. Si aún te queda en la operación, tendría que quedarte por el objetivo — que está aquí — y sacas un poco más.
@@ -2075,6 +2530,13 @@
 
 **Notes:** Continuación del ejemplo del bloque anterior: gestión de parciales en un short en curso; 'sacar' = tomar parciales en nuevos bajos.
 
+**Dudas abiertas:**
+
+- Deicticos 'aqui' (niveles del grafico de 6h del short en curso) sin resolver
+- Deícticos 'aquí' (niveles del gráfico del short) sin resolver
+- s-003232: 'el objetivo no llega... a nuestro target porque no llega' — frase confusa en ASR; ¿el objetivo intermedio no alcanza el target mayor?
+- s-003232: cola confusa en ASR no incluida en el statement ('que pasa que el objetivo no llega vale a nuestro target porque no llega') - el objetivo intermedio no alcanzaria el target mayor; requiere aclaracion
+
 ### c-0168
 
 **Statement:** Vamos ahora a un día de ejemplo: en la apertura, esta toma el 'load' [low] de la vela anterior, creando un posible rango alcista.
@@ -2086,6 +2548,13 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003239|32:39]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003244|32:44]]
 
 **Notes:** A partir de aquí el instructor plantea el escenario: ¿qué pasa si estabas en short y se forma este posible rango alcista?
+
+**Dudas abiertas:**
+
+- Deicticos 'desde aqui' / 'querias llegar aqui' (entrada y objetivo del short hipotetico) sin resolver
+- Deixis visual sin resolver: que vela es 'esta' y que low de 'la vela anterior' (los frames f-003244/f-003259 no lo desambiguan; haria falta frame con zoom o resaltado del dia en cuestion)
+- Deícticos 'desde aquí' / 'querías llegar aquí' (entrada y objetivo del short hipotético) sin resolver
+- Garble 'load' = 'low' (nuevo; proponer al glosario)
 
 ### c-0169
 
@@ -2125,6 +2594,13 @@
 
 **Notes:** Sentido: mantiene la operación confiando en el bias; el 'por lo tanto' conecta con el rango alcista de 12 h (E-04).
 
+**Dudas abiertas:**
+
+- Deíctico 'llegar aquí' (nivel que esperaba que el precio alcanzara) sin resolver: contextualmente apunta al objetivo del rango alcista de 12 h marcado arriba en f-003304, pero ningún frame fija el nivel exacto
+- Deíctico 'llegar aquí' (objetivo esperado del día) sin resolver
+- Garble 'el vayas' = 'el bias' (nuevo; proponer al glosario)
+- Garble nuevo 'el vayas' = 'el bias' (s-003319): proponer al glosario (mantener lo señalado por el extractor)
+
 ### c-0172
 
 **Statement:** Y qué pasó: se me forma un rango en contra en 12 horas y, como habéis visto, en 8 horas se forma un rango en contra también, este de aquí.
@@ -2141,6 +2617,11 @@
 
 **Notes:** Durante la espera aparecen rangos en contra en 12 h y 8 h; el instructor da sólo secuencia, sin nexo causal.
 
+**Dudas abiertas:**
+
+- En s-003324 el ASR trae 'rango en contra en 12 horas en un día como habéis visto' y el claim omite 'en un día': ¿rango en contra también en el diario, o 'en un día' es adverbial? (ambiguo en ASR; en s-003337 el instructor anuncia marcar también el diario)
+- Qué rectángulo exacto es el 'rango en contra' en 8 h (deíctico 'este de aquí'): f-003337 muestra varios; la etiqueta depende del barrido/confirmación y no es resoluble en frame estático
+
 ### c-0173
 
 **Statement:** Objetivo aquí de 8 horas, este es el de 12 horas, y el diario lo voy a marcar también con objetivo ahí arriba, para que veáis los targets: 12 horas, 8 horas, un día.
@@ -2155,6 +2636,10 @@
 
 **Visual hint:** 33:37 — Objetivos marcados en 8 h, 12 h y diario
 
+**Dudas abiertas:**
+
+- Qué línea concreta corresponde al objetivo de 8 h y cuál al de 12 h (deícticos solapados en el mismo gráfico); el objetivo del diario no es visible aún en f-003337 (se marca justo después)
+
 ### c-0174
 
 **Statement:** Vamos a 6 horas: otro rango bajista aquí; vale, perdón, alcista — en cuatro horas.
@@ -2166,6 +2651,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003344|33:44]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003355|33:55]]
 
 **Notes:** El instructor corrige 'bajista' por 'alcista' a mitad de frase.
+
+**Dudas abiertas:**
+
+- Autocorrección en vivo: ¿el rango bajista era de 6 h y el alcista de 4 h, o un solo rango corregido?
+- ¿Había dos rangos (bajista en 6 h y alcista en 4 h) o un solo rango corregido en voz alta? Se mantiene la duda del extractor; el claim la preserva con la autocorrección literal
 
 ### c-0175
 
@@ -2182,6 +2672,10 @@
 **Visual hint:** 33:55 — Vela de London abriendo por debajo de la anterior, formando rango alcista en 4 h
 
 **Notes:** Patrón de formación de rango alcista en la vela de London (abre por debajo de la anterior).
+
+**Dudas abiertas:**
+
+- Identificación exacta de la vela de London en el frame: en f-003401 el dibujo parte de la vela del 03 Jun (crosshair 21:00), pero ningún puntero fija la vela de las 3 en el 4h
 
 ### c-0176
 
@@ -2211,6 +2705,10 @@
 
 **Notes:** Frase elíptica en ASR.
 
+**Dudas abiertas:**
+
+- s-003420: 'sube aquí abajo seguramente donde se mete dos horas' — referencia al gráfico sin resolver; lectura probable: el retroceso baja en 3 h y por debajo se forma el rango alcista de 2 h
+
 ### c-0178
 
 **Statement:** Todo, todo alcista: por mucho que yo en el diario pudiera tener eso ahí, se me están creando todos rangos alcistas y, por lo tanto, el precio tuvo un comportamiento alcista ese día.
@@ -2222,6 +2720,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003431|34:31]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003433|34:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003435|34:35]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003437|34:37]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003439|34:39]]
 
 **Notes:** Idea clave del bloque: el comportamiento del día lo determinan los rangos que se están creando, por encima de lo que pueda mostrar el diario; nexo explícito 'por lo tanto'.
+
+**Dudas abiertas:**
+
+- Deíctico 'eso' ('lo que el diario pudiera tener ahí', ¿rango bajista en diario?) sin resolver
+- Deíctico 'eso' ('lo que yo en el diario pudiera tener ahí') sin resolver: probablemente un rango bajista en el gráfico diario, pero el minuto no lo nombra ni lo muestra.
 
 ### c-0179
 
@@ -2250,6 +2753,12 @@
 **Visual hint:** 35:01 — Vela de las 3 (1 h) abriendo por arriba de la anterior
 
 **Notes:** 'Abrir por arriba' = sobre la vela anterior, según el contexto del ejemplo.
+
+**Dudas abiertas:**
+
+- Confirmación visual exacta pendiente: ¿qué vela de f-003501 es 'la de las tres' y sobre qué abre (¿vela anterior o borde/máximo del rango marcado)? El frame muestra el gráfico 1h correcto pero no resuelve el detalle sin ambigüedad
+- Garble nuevo: 'la vela de estrés' = 'la vela de las tres' (s-003511); proponer al glosario
+- s-003511: 'la vela de estrés' = 'la vela de las tres' (nuevo garble; proponer al glosario)
 
 ### c-0181
 
@@ -2287,6 +2796,11 @@
 
 **Notes:** Relato del error que desemboca en el stop loss (E-15); se preserva 'compré' tal cual suena. "reaccioné" = literal s-003523 (sujeto: el instructor); sin audio independiente para confirmar "reaccionó" (el precio), se conserva el transcript tal cual.
 
+**Dudas abiertas:**
+
+- s-003520: 'compré todo esto de aquí' resulta incoherente con anticipar un rango bearish (para beneficiarse de un rango bajista se vendería/shortaría); ¿garble o lapsus del instructor por 'vendí'/short? Mantener la palabra tal cual suena y aclarar en notes
+- s-003520: 'compré todo esto de aquí' — incoherente con anticipar un rango bearish; ¿garble/lapsus por short (vender)?
+
 ### c-0184
 
 **Statement:** Fue un poco eso, mi culpa: al saber sí o sí que normalmente se completa mi doble [ASR], ignoré un poco eso [los rangos bullish de 8 h, 12 h y 6 h].
@@ -2321,6 +2835,11 @@
 
 **Notes:** Nexo explícito 'porque': se prefiere la entrada en el rango más bajo.
 
+**Dudas abiertas:**
+
+- Deíctico 'este' (rango más bajo en 1 h) sin resolver
+- Deíctico 'este': la frase misma lo define como 'el rango de más abajo' (entrada en 1h), pero qué rectángulo concreto del gráfico es no está verificado visualmente con frame; no adivinar
+
 ### c-0187
 
 **Statement:** Si te pierdes tu entrada [y el precio ya está más abajo]: ¿entras aquí? No, no tienes ningún rango a favor. ¿Entras aquí? No, no tienes ningún rango a favor.
@@ -2332,6 +2851,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003553|35:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003558|35:58]]
 
 **Notes:** No se entra donde no hay rango a favor.
+
+**Dudas abiertas:**
+
+- Deícticos 'aquí' (los dos niveles candidatos a entrada en el gráfico 1h) sin resolver: identificar los niveles exactos requeriría interpretar el gráfico con riesgo de invención; requieren frame dedicado o aclaración
+- Deícticos 'aquí' (niveles candidatos a entrada en 1 h) sin resolver
 
 ### c-0188
 
@@ -2345,6 +2869,10 @@
 
 **Notes:** Validez condicional del rango a favor: se mantiene hasta el cierre por fuera.
 
+**Dudas abiertas:**
+
+- Deícticos 'esto parece un rango a favor' / 'hasta que esto cierra por fuera' (vela o nivel exacto) sin resolver
+
 ### c-0189
 
 **Statement:** Había una noticia ese día a las 8 y la volatilidad llegó aquí: tenías que haber entrado justo antes.
@@ -2356,6 +2884,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003611|36:11]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003626|36:26]]
 
 **Notes:** Contexto de noticia a las 8 (horario New York); la volatilidad se fue sin dar entrada previa válida.
+
+**Dudas abiertas:**
+
+- 'A las 8' sin zona horaria explícita en el segmento (¿8:00 New York UTC-4?)
+- Deíctico 'la volatilidad llegó aquí' (nivel alcanzado) sin resolver
 
 ### c-0190
 
@@ -2372,6 +2905,11 @@
 **Visual hint:** 36:26 — Rango pendiente 'de manual' en 2 h: objetivo alcista, apertura por debajo, entrada en la vela siguiente
 
 **Notes:** Caso de libro del rango pendiente: objetivo alcista + apertura por debajo creando rango bullish → entrada en la siguiente vela.
+
+**Dudas abiertas:**
+
+- 'Un pendiente de manual' — elíptico por 'un [rango] pendiente de manual'
+- s-003626: 'el rango a jabón' — probablemente 'el rango a favor' (nuevo garble; proponer al glosario)
 
 ### c-0191
 
@@ -2429,6 +2967,12 @@
 
 **Notes:** Principio de adaptación en tiempo real a lo que muestra el gráfico.
 
+**Dudas abiertas:**
+
+- 'te cuentas con todo objetivos alcistas' (s-003745) es garble probable de 'te encuentras con' — proponer para GLOSSARY si el ASR lo repite.
+- Deíctico 'el objetivo aquí' sin resolver
+- Deíctico 'el objetivo aquí' sin resolver: no se indica a qué nivel del gráfico apunta (requeriría frame anotado por quien extrajo; el frame base f-003759 no permite resolverlo sin adivinar).
+
 ### c-0196
 
 **Statement:** Si íbamos en higher time frame teníamos más objetivos alcistas por aquí; o sea, se podía predecir que esto no se iba a completar, a reiniciar, y íbamos a ir para arriba directamente.
@@ -2440,6 +2984,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003757|37:57]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003806|38:06]]
 
 **Notes:** Los objetivos alcistas en HTF permiten anticipar que el movimiento no se reinicia; caso similar al día anterior.
+
+**Dudas abiertas:**
+
+- s-003757: 'no se iba a completar, a reiniciar' — confirmar si significa 'completarse y reiniciarse (a la baja)'
+- s-003757: 'no se iba a completar, a reiniciar' — confirmar si significa 'no se iba a completar ni reiniciar' o 'no se iba a completar, sino a reiniciar (el rango)'; el audio no desambigua.
 
 ### c-0197
 
@@ -2455,6 +3004,10 @@
 
 **Notes:** Comportamiento observado en el caso narrado; consistente con 'el precio va a completar el rango' (ch01), pero aquí sólo el caso.
 
+**Dudas abiertas:**
+
+- En f-003817 sólo se aprecia un rectángulo en el 12h; visualmente no se distingue cuál es el rango bearish previo y cuál el bullish que se forma (esa distinción viene sólo del audio).
+
 ### c-0198
 
 **Statement:** Esto es la vela de London: ¿tú vas a vender aquí abajo? Bueno, como te acabo de decir, no puedes; aquí como mucho vas a haber tomado tu short ahí arriba, con objetivo ahí abajo.
@@ -2466,6 +3019,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003821|38:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003823|38:23]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003826|38:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003827|38:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003830|38:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003832|38:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003835|38:35]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003840|38:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003842|38:42]]
 
 **Notes:** Aplicación de la regla de no entrar sin rangos a favor: el short sólo habría sido válido antes, desde el rango bajista.
+
+**Dudas abiertas:**
+
+- Deícticos 'aquí abajo' / 'ahí arriba' / 'ahí abajo' sin resolver
+- Deícticos 'aquí abajo' / 'ahí arriba' / 'ahí abajo' sin resolver: el overlay del trade en f-003855/f-003859 (entrada arriba del rango, objetivo abajo, 'Objetivo: 0.01180') es consistente, pero ningún frame identificado marca cuál vela exacta es 'la vela de London'.
 
 ### c-0199
 
@@ -2509,6 +3067,11 @@
 
 **Notes:** Reevaluación del objetivo activo según los rangos en contra.
 
+**Dudas abiertas:**
+
+- Deícticos 'el objetivo este' (el que no se completa) y 'el que va a completarse es este' sin adjudicación concluyente: f-003903/f-003907 muestran un short cerrado en pérdida con objetivo abajo y un rango, lo que sugiere objetivo del short (abajo) abandonado vs objetivo superior válido, pero el referente exacto de cada 'este' no es visualmente concluyente en stills
+- Deícticos 'el objetivo este' / 'el que va a completarse es este' (objetivo abandonado vs objetivo válido) sin resolver
+
 ### c-0202
 
 **Statement:** Si eres capaz de ver todo esto en tiempo real y puedes cerrar tu short y entrar en long, aquí tenías el long este, que seguramente tenía algún target aquí de dos días, tres días también.
@@ -2518,6 +3081,10 @@
 **Tiempo:** [39:10–39:22]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003910|39:10]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003914|39:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003916|39:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003918|39:18]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003920|39:20]]
+
+**Dudas abiertas:**
+
+- Deícticos 'aquí' (ubicación del long) y 'target aquí' sobre el gráfico sin resolver; en f-003903/f-003907 solo es visible el short cerrado, no un long dibujado
 
 ### c-0203
 
@@ -2542,6 +3109,10 @@
 **Tiempo:** [39:36–39:46]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003936|39:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003938|39:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003940|39:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003942|39:42]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-003944|39:44]]
+
+**Dudas abiertas:**
+
+- Deíctico 'este de aquí' (el rango/objeto con el que uno se podría liar) sin adjudicar a un objeto concreto del gráfico
 
 ### c-0205
 
@@ -2583,6 +3154,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/frames/f-004059.png|f-004059]]
 
+**Dudas abiertas:**
+
+- s-004036: 'si está cerca ya van a ser todos de medio plazo' — fragmento ASR poco claro
+- s-004036: 'si está cerca ya van a ser todos de medio plazo' — fragmento ASR poco claro que la pantalla no resuelve (el cuadro sólo dice '3d - 2d - 1d = DOL medio plazo'); confirmar lectura con audio/contexto si es posible
+
 ### c-0208
 
 **Statement:** Y a bajar: 12 horas, 8 horas, 6 horas, 4 horas — 'estas serían para doble ya la sesión'.
@@ -2597,6 +3173,10 @@
 
 **Notes:** REMEDIACIÓN (2026-10-18, amend-ch03-09): la nota anterior interpretaba 'Doble' = DXY (glosario antiguo); la pizarra del propio minuto 40 (f-004059, tercera línea '12h - 8h - 6h - 4h = DOL sesión') resuelve el referente: 'para doble ya la sesión' = 'para el DOL ya, la sesión'. Interpretación probable previa descartada.
 
+**Dudas abiertas:**
+
+- s-004056: 'para doble ya la sesión' — confirmar lectura: ¿'para el doble (DXY) ya, la sesión'?
+
 ### c-0209
 
 **Statement:** Las de 4 horas hacia abajo, o sea, menor de 4 horas, sería ya para entradas y momento: para saber en qué momento tienes tú los rangos a favor para poder ir hacia el objetivo ya.
@@ -2607,6 +3187,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-004056|40:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-004109|41:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-004115|41:15]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-004117|41:17]]
 
+**Dudas abiertas:**
+
+- s-004109: 'rangos de favor' = 'rangos a favor' (garble menor; proponer al glosario)
+
 ### c-0210
 
 **Statement:** Vamos a profundizar más en las entradas y en cómo poner el stop loss; el siguiente vídeo va a ser el de las entradas.
@@ -2616,6 +3200,10 @@
 **Tiempo:** [41:22–41:44]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-004122|41:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-004124|41:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-004126|41:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-004140|41:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/transcript#^s-004142|41:42]]
+
+**Dudas abiertas:**
+
+- Posibles garbles en segmentos de contexto del minuto (no citados por claims, para el glosario): s-004056 'para doble ya la sesión' y s-004109 'los rangos de favor' (¿'los rangos a favor'?) sin resolución evidente del audio escrito.
 
 ### c-0211
 

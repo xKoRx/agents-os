@@ -27,6 +27,11 @@
 
 **Visual hint:** 00:13 — Excel de noticias en pantalla (verificado en f-000059: 'NEWS - ONE TO ONE ENG', tablas por noticia con la divisa en el nombre, p. ej. CPI CAD, CPI GBP)
 
+**Dudas abiertas:**
+
+- «CAT» [ASR] → candidato CAD (código del dólar canadiense); en el Excel las noticias canadienses aparecen como 'CAD' (p. ej. CPI CAD en f-000059); confirmar la palabra dicha.
+- «CAT» [ASR] → candidato CAD: el Excel escribe «CAD» (f-000020, f-000059) pero eso no confirma la palabra hablada; queda sin resolver si el instructor dijo «CAT» o «CAD». Mantener la marca [ASR].
+
 ### c-0003
 
 **Statement:** En cada casilla del Excel hay: a qué hora es la noticia; la claridad («clarity»), que significa lo bien que se ve — la dirección hacia dónde va a ir; la dificultad, que es normalmente cómo de fácil es ver hacia dónde va a ir; la probabilidad de que haga whipsaw; y la probabilidad de quemar la cuenta si te equivocas.
@@ -63,6 +68,11 @@
 
 **Visual hint:** 00:59 — f-000059: Excel NEWS - ONE TO ONE ENG con tablas por noticia y cabecera TIME (NY | UTC-4)
 
+**Dudas abiertas:**
+
+- Confirmado al revisar: los valores concretos (p. ej. NFP Time 8:30, Clarity 80%, Difficulty *, Whipsaw 10%, Blow acc 90%) son legibles en f-000059 pero el instructor no los enuncia en este tramo; correctamente quedan fuera de los claims. Pendiente que el integrador decida si se publican como observación visual adicional.
+- Los valores concretos de cada tabla (p. ej. NFP Time 8:30, Clarity 80%, Whipsaw 10%, Blow acc 90%) son legibles en pantalla pero el instructor no los enuncia en este tramo: quedan fuera de los claims.
+
 ### c-0006
 
 **Statement:** La probabilidad de quemar la cuenta depende del riesgo: 'obviamente esto depende del riesgo'; 'si le metes un 2%, a lo mejor te saca mucho más allá y te la quema'; 'si le metes un 0,5, pues en lugar de un 0,5, si fallas, puedes perder un 1'.
@@ -72,6 +82,11 @@
 **Tiempo:** [01:02–01:12]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000102|01:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000104|01:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000106|01:06]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000108|01:08]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000111|01:11]]
+
+**Dudas abiertas:**
+
+- El ASR 'si le metes un 0,5, pues en lugar de un 0,5, si fallas, puedes perder un 1' (s-000108+s-000111) es sintácticamente confuso; la lectura probable (arriesgando 0,5 puedes acabar perdiendo 1 si fallas) no está confirmada por audio; contrastar antes de fijar la interpretación.
+- La última frase del ASR ('en lugar de un 0,5... puedes perder un 1') es sintácticamente confusa; interpretación probable: arriesgando 0,5 puedes acabar perdiendo 1 si fallas; contrastar con audio antes de fijarla.
 
 ### c-0007
 
@@ -93,6 +108,12 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000120|01:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000121|01:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000124|01:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000127|01:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000128|01:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000135|01:35]]
 
+**Dudas abiertas:**
+
+- 'una noticia de estas' es deíctico: por contexto se refiere a las noticias marcadas en el calendario/Excel (f-000159 muestra el Excel de noticias), no a una noticia concreta.
+- El segundo encadenado (s-000128→s-000135) es narrativo ('pues luego... y casi no se mueve') sin nexo causal explícito; el statement lo formula como secuencia, correcto, pero no publicarlo como regla causal.
+- La causalidad 'el precio se mueve por otras noticias' es dicha ('por'); el segundo encadenado es narrativo ('luego... y casi no se mueve') sin nexo causal explícito.
+
 ### c-0009
 
 **Statement:** Ejemplo relatado: los PMIs 'antes era nuestro día favorito, que era súper fácil y siempre desplazaba muy bien'; últimamente 'el de esta semana ni se movió', 'por culpa de que había otras noticias durante la noche o el día antes que habían ya movido el precio'.
@@ -102,6 +123,11 @@
 **Tiempo:** [01:35–01:56]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000135|01:35]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000142|01:42]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000151|01:51]]
+
+**Dudas abiertas:**
+
+- Relato retrospectivo ('el de esta semana') con causalidad dicha ('por culpa de'); no publicar como regla universal (el claim ya lo anota).
+- Relato retrospectivo con causalidad dicha por el instructor ('por culpa de'); no publicar como regla universal.
 
 ### c-0010
 
@@ -137,6 +163,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000059.png|f-000059]]
 
+**Dudas abiertas:**
+
+- Causalidad dicha ('porque no hace whipsaws') y relato en pasado ('era muy buena'). En el Excel se ve MANUF. PMI GERMANY (f-000059: Time 3:30, Clarity 85%, Whipsaw 10%); el instructor no enuncia esos valores.
+- Confirmada la nota del extractor: causalidad dicha y relato en pasado se preservan; los valores del Excel (3:30/85%/10%) son visibles en f-000059 y f-000221 pero no enunciados — no convertirlos en conocimiento dicho.
+
 ### c-0013
 
 **Statement:** De una noticia señalada en el Excel: 'esta últimamente es muy buena también, voy a enseñar un ejemplo de esta'.
@@ -150,6 +181,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000221.png|f-000221]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000225.png|f-000225]]
 
 **Visual hint:** 02:21 — ver qué noticia tiene señalada el instructor en el Excel al decir «esta»
+
+**Dudas abiertas:**
+
+- Deíctico sin resolver: no se verbaliza qué noticia es «esta»; los frames base f-000059 (0:59) y f-000159 (2:39) no permiten identificarla con certeza.
+- Deíctico «esta» sigue ABIERTO: f-000221 (141 s) y f-000225 (145 s) no muestran resaltado ni selección de una noticia; el cursor descansa junto a la tabla ISM MANUFACTURING PMI (Time 10:00, Clarity 85%, Whipsaw 5%) y hay un artefacto transitorio de cursor de texto sobre el Blow acc de MANUF. PMI GERMANY en f-000221. Ninguna observación identifica la noticia con certeza; no normalizar.
 
 ### c-0014
 
@@ -175,6 +211,11 @@
 
 **Visual hint:** 02:38 — f-000159 (2:39): tabla FOMC del Excel — Time 14:00, Clarity 25%, Whipsaw 66%, Blow acc 50%
 
+**Dudas abiertas:**
+
+- «FOM» [ASR] se preserva correctamente en el statement; la tabla FOMC en pantalla (f-000239, f-000248) con Clarity 25% coincidente respalda FOMC como referente — decisión de normalización del integrador. Los valores Time/Whipsaw/Blow acc se ven en pantalla pero no son enunciados; sólo la claridad 25% es dicha.
+- «FOM» [ASR] → candidato FOMC: en el Excel la tabla se titula FOMC (f-000059, f-000159). Los valores Time/Whipsaw/Blow acc se ven en pantalla pero no son enunciados; sólo la claridad 25% es dicha.
+
 ### c-0016
 
 **Statement:** De «GDP»: 'difícil de ver'; con estas tablas se muestra cómo clasifican las noticias ('aquí podéis ver un poco, pues, cómo clasificamos las noticias').
@@ -188,6 +229,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000159.png|f-000159]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000248.png|f-000248]]
 
 **Visual hint:** 02:48 — f-000159 (2:39): tablas GDP USA (Time 8:30, Clarity 17%, Difficulty ***, Whipsaw 60%, Blow acc 25%) y GDP CAD visibles en el Excel
+
+**Dudas abiertas:**
+
+- Qué noticia GDP concreta señala («esta de GDP») no queda resuelto por los frames base; en f-000159 se ve GDP USA y en f-000059 GDP USA y GDP CAD.
+- «esta de GDP» sin resaltado explícito en f-000248: la descripción «difícil de ver» es consistente con GDP USA (Clarity 17%, Whipsaw 60%) y no con GDP CAD (Clarity 80%, Whipsaw 5%), ambos visibles; GDP USA queda como candidato con respaldo contextual, no confirmado visualmente. No cerrar categóricamente.
 
 ### c-0017
 
@@ -217,6 +263,11 @@
 
 **Visual hint:** 03:05 — columna Impact del calendario con iconos rojos/naranjas/amarillos (verificado en f-000259)
 
+**Dudas abiertas:**
+
+- «enfondeadas» [ASR] → candidato «en Funded» (FundedNext citada en s-000321; en s-000354 el ASR vuelve a dar «fondeada» por funded, lo que apoya la lectura sin confirmar la palabra exacta de este segmento).
+- «enfondeadas» [ASR] → candidato «en Funded» (p. ej. FundedNext, citada en s-000321); confirmar la palabra dicha.
+
 ### c-0019
 
 **Statement:** Algunas empresas tienen su propio calendario económico («si vas a Funded Next, estas tienen calendario económico y FTPO [ASR] también tienen»): pones restricciones y te enseña directamente las noticias que tú no puedes operar, sin tener que mirar el otro calendario, 'y así no hay discusión con ellos'.
@@ -226,6 +277,11 @@
 **Tiempo:** [03:17–03:43]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000317|03:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000321|03:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000328|03:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000334|03:34]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000339|03:39]]
+
+**Dudas abiertas:**
+
+- «FTPO» [ASR] → candidato FTMO: no hay respaldo literal en el segmento; corrobora débilmente que el navegador del instructor tiene un atajo «FTMO» (visible en f-000348, 3:48), pero no se ve el sitio FTMO en el minuto.
+- «FTPO» [ASR] → candidato FTMO; confirmar el nombre dicho.
 
 ### c-0020
 
@@ -240,6 +296,12 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000350.png|f-000350]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000359.png|f-000359]]
 
 **Visual hint:** 03:43 — ver qué sitio se muestra en pantalla al nombrar «My Forex» (3:43-3:50)
+
+**Dudas abiertas:**
+
+- El alcance de «las otras» (¿otras empresas?, ¿otras noticias?) no queda explícito en el segmento.
+- La identificación «My Forex»→Myfxbook se confirma por pantalla (URL y sitio cargado); la pronunciación exacta de la palabra dicha no es verificable desde frames.
+- «My Forex» [ASR] → candidato Myfxbook: en f-000359 (5:59) la pantalla muestra myfxbook.com/forex-economic-calendar; confirmar contra el momento exacto dicho.
 
 ### c-0021
 
@@ -277,6 +339,13 @@
 
 **Visual hint:** 04:36 — gráfico con la noticia marcada a las 10 y la vela que desplaza (no está en los frames base)
 
+**Dudas abiertas:**
+
+- Deictico 'esta/esa vela' sin referente visual en el minuto: en pantalla solo esta el calendario de Forex Factory (candidato: la fila 10:00am USD ISM Services PMI del mie 4 jun); la vela en el grafico se muestra a partir de ~08:16 (dia 23 de junio), fuera de este minuto.
+- El gráfico señalado no está en los frames base; hace falta frame on-demand (~276 s) para verificar el deíctico «esta vela».
+- La hora «10» se dice sin zona horaria; en el Excel las horas están en NY (f-000059, 'TIME (NY | UTC-4)'), pero para este gráfico no se verbaliza.
+- La hora «10» se dice sin zona horaria; f-000425/f-000436 muestran el calendario en Eastern Time (toast 'Time zone set to (GMT-04:00) Eastern Time' visible en f-000425) con una entrada 10:00am USD, pero el instructor no verbaliza la zona en este minuto.
+
 ### c-0024
 
 **Statement:** 'No significa que no se puede operar durante London, pero significa que tenemos que ser conscientes de que la expansión seguramente vaya a pasar durante esa vela, no durante la vela de London.'
@@ -297,6 +366,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000456|04:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000510|05:10]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000516|05:16]]
 
+**Dudas abiertas:**
+
+- «la primera pregunta tipica»: el segmento es confuso en ASR ('la primera pregunta tipica, no, el resultado...'); no queda claro si enuncia una pregunta retorica del trading de noticias ni si remite a la checklist de 4 preguntas de ch07 (cuya 4a pregunta es la de noticias). La conexion no se verbaliza en el video.
+- «la primera pregunta típica» — el segmento es confuso en ASR ('la primera pregunta típica, no, el resultado...'); no queda claro si remite a la checklist de ch07.
+
 ### c-0026
 
 **Statement:** 'El precio va a ir igualmente a donde tiene que ir, solamente que acelerado por la noticia'; no cambia nada si la noticia de desempleo es buena o mala — 'simplemente importa lo que vemos en el gráfico y el doble [ASR]'; 'la noticia va a acelerar el precio hacia el doble'.
@@ -307,6 +381,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000510|05:10]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000516|05:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000525|05:25]]
 
+**Dudas abiertas:**
+
+- «el doble» [ASR] — TERM_DISAMBIGUATION_REQUIRED: candidato DOL (objetivo de liquidez, glosario del curso; coherente con ch03 'la noticia lleva el precio al DOL'); en ch05 «el doble» admitía DOL vs DXY. Preservar la palabra dicha; confirmar.
+- «el doble» [ASR]: desambiguación DOL vs DXY sigue abierta; el segmento no da respaldo literal para sustituir; el candidato DOL (glosario) es coherente con ch03 y con que DXY aparezca literalmente como índice aparte más adelante (s-001142), pero no sustituye la palabra dicha.
+
 ### c-0027
 
 **Statement:** Se opera normal, como con los otros trades; pero con las noticias, al ser movimientos más agresivos, lo que se hace es buscar confirmaciones en otros pares.
@@ -316,6 +395,10 @@
 **Tiempo:** [05:29–05:39]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000529|05:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000536|05:36]]
+
+**Dudas abiertas:**
+
+- Causalidad dicha por el instructor ('al ser movimientos más agresivos'); no inferida.
 
 ### c-0028
 
@@ -331,6 +414,12 @@
 
 **Notes:** Corrección revisor min5: el frame del momento es f-000559 (5:59); en pantalla está el Excel de pares por divisa.
 
+**Dudas abiertas:**
+
+- Deíctico «estos pares»: los pares concretos para euro/GBP no se verbalizan en el segmento; en f-000359 (5:59) la pantalla muestra el calendario de Myfxbook, no una lista de pares.
+- «GEP» [ASR] → GBP: la tabla GBP en pantalla (f-000539) es coherente con el candidato, pero el audio no es literalmente confirmable desde los frames; preservar la palabra dicha.
+- «GEP» [ASR] → candidato GBP (libra); confirmar.
+
 ### c-0029
 
 **Statement:** Para las noticias del dólar («las D» [ASR] que son del dólar): mirar los pares EURUSD, «JPUSD» [ASR], «NCTDUSD» [ASR] y «AUTUSD» [ASR] 'para ver que todo nos va en la misma dirección'.
@@ -344,6 +433,14 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000559.png|f-000559]]
 
 **Notes:** Corrección revisor min5: la lista de pares por divisa SÍ es visible en el Excel (f-000559); retractación de la nota «no es visible».
+
+**Dudas abiertas:**
+
+- En f-000359 (5:59) la pantalla muestra myfxbook; la eventual lista de pares no es visible en los frames base.
+- Garbles aún sin confirmación de audio: «AUTUSD»→AUDUSD (literal en tabla AUD, f-000559), «NCTDUSD»→NZDUSD (literal en tabla NZD, f-000559), «JPUSD»→USDJPY sin listado explícito en pantalla (sólo genérico USD/XXX en tabla USA); preservar palabras dichas [ASR].
+- Pares dichos con posible garble ASR: «JPUSD» → ¿USDJPY/JPYUSD?; «NCTDUSD» → ¿USDCAD? ¿NZDUSD? ¿CADUSD?; «AUTUSD» → ¿AUDUSD?; confirmar contra audio/frame.
+- «las D que son del dólar» [ASR] — expresión confusa; el sentido probable es 'las noticias del dólar'.
+- «las D que son del dólar» [ASR]: expresión confusa preservada; el sentido probable es 'las noticias del dólar' (contexto: tabla USA).
 
 ### c-0030
 
@@ -361,6 +458,12 @@
 
 **Notes:** Revisor min5 (UNCERTAIN, CONTRADICTION): la pantalla del minuto 5 muestra el Excel «NEWS - ONE TO ONE ENG» (tablas por divisa), no Myfxbook; los deícticos «lo que vemos aquí»/«estos pares» quedan resueltos por ese Excel. Myfxbook verificado en el minuto 3 (b1-20, f-000350/f-000359).
 
+**Dudas abiertas:**
+
+- Confirmar si «My Forex» [ASR] de s-000343 (referenciado por b1-20) corresponde a Myfxbook: s-000343 no fue incluido en el transcript provisto.
+- El instructor no verbaliza «Myfxbook» en este tramo; la identificación con «My Forex» [ASR] de s-000343 es candidata (ver b1-20).
+- ¿En qué segundo exacto del video es visible el calendario de Myfxbook? No está en 5:29/5:39/5:59; requiere re-extracción fuera de 300-360 s.
+
 ### c-0031
 
 **Statement:** Para tener la confirmación de que el dólar va para un sitio, se miran pares como el USDCAT [ASR], el USDCHEF [ASR] o el USDJPI [ASR] para ver que van en la dirección contraria.
@@ -375,6 +478,11 @@
 
 **Notes:** Adjudicación revisor min6 (visual literal f-000600): «USDCAT» [ASR] = USDCAD y «USDCHEF» [ASR] = USDCHF escritos en el Excel; «USDJPI» [ASR] queda sin confirmación (sin bloque JPY visible).
 
+**Dudas abiertas:**
+
+- USDCAT → ¿USDCAD?, USDCHEF → ¿USDCHF?, USDJPI → ¿USDJPY? (garbles ASR de nombres de pares, no confirmados en la fuente)
+- USDJPI → ¿USDJPY?: el Excel visible en f-000600/f-000612 no muestra ningún bloque JPY ni la cadena 'USDJPY'; queda candidato por contexto (familia USDXXX), no confirmado en fuente.
+
 ### c-0032
 
 **Statement:** Cuando los pares con los que se compara confirman la misma dirección, es lo que se quiere ver: «esto es cuando la probabilidad sube».
@@ -388,6 +496,12 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000600.png|f-000600]]
 
 **Notes:** Revisor min6: mitad interpretativa anclada en s-000551 («para ver que todo nos va en la misma dirección», literal).
+
+**Dudas abiertas:**
+
+- s-000616 es garble ASR («el GDP nos dice lo mismo que el CAD nos dice lo contrario»): no queda claro si el ejemplo enuncia coincidencia o discrepancia; «GDP» → ¿GBP?
+- s-000616: ¿el enunciado original decía que el bloque GBP coincide y otro bloque (¿NZD?, ¿USD?) va en sentido contrario, o que el CAD va en sentido contrario? El ASR no lo resuelve.
+- «GDP» → ¿GBP?: bloque GBP visible en f-000600 como referente plausible; sin confirmación literal de la palabra dicha.
 
 ### c-0033
 
@@ -453,6 +567,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000701|07:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000705|07:05]]
 
+**Dudas abiertas:**
+
+- Referente deíctico de «Es importante» queda fuera del minuto (s-000657 sólo aporta «para tener las confirmaciones extras de la dirección»); probablemente operar la vela/noticia, a confirmar con el minuto anterior.
+
 ### c-0039
 
 **Statement:** «Estas son noticias que son en GDP [ASR] a las 2.»
@@ -466,6 +584,14 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000708.png|f-000708]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000759.png|f-000759]]
 
 **Notes:** Revisor min7: el contexto visual (f-000708/f-000759) favorece la lectura «GDP» [ASR] = GBP sobre el indicador PIB; sin confirmación de audio.
+
+**Dudas abiertas:**
+
+- En el mismo minuto s-000731 dice «en JP hay noticias a las 2» para la misma hora: ¿referente distinto (Japón/JPY) del «GDP» de s-000708? La hoja no muestra columna JPY pero sí el par GBPJPY bajo GBP (f-000708).
+- La hora «a las 2» se dice sin zona horaria explícita en el segmento
+- La hora «a las 2» se dice sin zona horaria explícita; la hoja también lista «2:00» sin zona.
+- «GDP» → ¿GBP (libra), como en s-000616/s-001142 (s-000616 no entregado en esta ventana, no verificable aquí), o el indicador PIB/GDP? TERM_DISAMBIGUATION_REQUIRED: la hoja del instructor lista GDP bajo la columna GBP (f-000708), pero sus tarjetas GDP visibles son USA/CAD a las 8:30 y las de 2:00 son CPI/Retail Sales/Claimant Count GBP (f-000759); ambigüedad no cerrada por el visual.
+- «GDP» → ¿GBP (libra), como en s-000616/s-001142, o el indicador PIB/GDP? TERM_DISAMBIGUATION_REQUIRED
 
 ### c-0040
 
@@ -499,6 +625,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000722|07:22]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000731|07:31]]
 
+**Dudas abiertas:**
+
+- «TARTSUB» → ¿Turtle Soup? (familia de garbles del curso: tartel/tarde sub/turtle sub/tarde supa; ver también s-001101 «Tartel Sub»). Sin respaldo literal en este segmento, se preserva [ASR].
+- «TARTSUB» → ¿Turtle Soup? (familia de garbles tartel/tarde sub del curso)
+
 ### c-0043
 
 **Statement:** «El día que en JP hay noticias a las 2, nosotros podemos entrar al gráfico a la una.»
@@ -511,6 +642,12 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000735.png|f-000735]]
 
+**Dudas abiertas:**
+
+- Coherencia con s-000708 («noticias en GDP a las 2», mismo minuto): ¿mismo bloque de noticias con dos nombres o dos referentes distintos? No adjudicable desde el minuto.
+- «en JP» dicho literal: ¿Japón/JPY? La hoja de noticias visible en f-000735 no tiene columna JPY (divisas: USA, EUR, GBP, CAD, AUD, NZD, CHF) y lista CPI CHF a las 2:30; el par GBPJPY aparece bajo GBP. Queda abierto sin sustituir la palabra dicha.
+- «en JP» dicho literal: ¿Japón/JPY? no se explicita en el segmento
+
 ### c-0044
 
 **Statement:** No puede ir ahora una por una: «las apuntáis, os las miráis vosotros, les hacéis bytesting [ASR]».
@@ -520,6 +657,11 @@
 **Tiempo:** [07:59–08:05]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000759|07:59]]
+
+**Dudas abiertas:**
+
+- «bytesting» → ¿backtesting?
+- «bytesting» → ¿backtesting? No resoluble con frames ni con el segmento citado; requiere confirmación del instructor.
 
 ### c-0045
 
@@ -543,6 +685,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000837.png|f-000837]]
 
+**Dudas abiertas:**
+
+- La hora «a las 10» es la primera mención; el instructor la corrige después (b2-18): 3.45 hora española / 9.45 hora New York
+- La tarjeta «PMI MANUFACTURING PMI» del Excel muestra «Time 9:00» sin zona horaria; el instructor luego corrige la hora de la noticia a 9.45 NY (b2-18). La discrepancia 9:00 (tarjeta) vs 9:45 (dicho) no se reconcilia en el minuto.
+
 ### c-0047
 
 **Statement:** Sobre esa noticia: «como veis, bastante clara, no whipsaw y no quema cuenta, una de las que queremos». Cree que coincidía con esta también, pero no sabe si era el mismo día.
@@ -557,6 +704,12 @@
 
 **Visual hint:** 08:37 — Excel «NEWS - ONE TO ONE ENG», tarjeta «PMI MANUFACTURING PMI» (Time 9:00, Clarity 85 %, Whipsaw 15 %, Blow acc 30 %) — NO el gráfico del 23-jun
 
+**Dudas abiertas:**
+
+- «Coincidía con esta también»: referente deíctico sin resolver (¿otra noticia del calendario?); el propio instructor no lo cierra («no sé si era el mismo día esta vez»).
+- «quema cuenta» es jerga dicha literal, sin definición en el segmento (preservar tal cual).
+- «quema cuenta» es la expresión literal dicha (jerga del instructor), sin definición en el segmento
+
 ### c-0048
 
 **Statement:** Corrección de la hora de la noticia del 23 de junio: «Fue a las 10… perdón, a las 10, no, a las 3.45 [ASR] hora española, 9.45 hora New York. Fue a las 9.45, antes de esta vela.»
@@ -569,6 +722,12 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000859.png|f-000859]]
 
+**Dudas abiertas:**
+
+- Forma exacta dicha tras «Perdón» no confirmable por ASR: «3.45» [ASR] ↔ «tres cuarenta y cinco (de la tarde)» o «quince cuarenta y cinco»; ambas resuelven a 15:45 hora española, coherente con 9.45 NY y con el reloj UTC-4 del gráfico (f-000859). El statement mantiene [ASR] correctamente.
+- No queda claro qué hora representaba el «a las 10» inicial antes de la corrección
+- «a las 3.45» es prosa/garble ASR: candidato «15:45 hora española» (coherente con 9:45 New York, +6 h en junio)
+
 ### c-0049
 
 **Statement:** «Teníamos el doble [ASR] alcista de 12 horas. Es la operación que hemos visto en algún episodio anterior.»
@@ -578,6 +737,11 @@
 **Tiempo:** [09:08–09:17]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000908|09:08]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000915|09:15]]
+
+**Dudas abiertas:**
+
+- «el doble» → ¿DOL (objetivo de liquidez)? candidato del glosario; alternativa plausible no descartada: «doble (suelo) alcista» como patrón de precio. Ninguna lectura confirmada literalmente en el segmento ni en los frames (no se muestra el gráfico de 12h en el segundo exacto).
+- «el doble» → ¿DOL (objetivo de liquidez)? candidato del glosario; no confirmado literalmente en el segmento
 
 ### c-0050
 
@@ -591,6 +755,12 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000926.png|f-000926]]
 
+**Dudas abiertas:**
+
+- La dirección bullish de los rangos de 8h y 6h y el «este de aquí también se podía marcar» son deícticos del barrido; f-000926.png sólo captura el rango de 12h.
+- «el dólar fista» → garble ASR sin resolver: ¿el DOL alcista? ¿dólar (divisa)/DXY alcista? ¿otro término? ch05 advierte DOL ≠ DXY; sin confirmación literal en el segmento ni lectura legible del garble en los frames.
+- «el dólar fista» → ¿el dólar alcista? ¿DXY alcista? ¿otro término? garble ASR sin resolver (NOTA: el instructor corrige en s-000920 «objetivo bullish» por «rango bullish creado»)
+
 ### c-0051
 
 **Statement:** «Como veis, todo nos indica bullish. 4 horas no teníamos nada.»
@@ -600,6 +770,10 @@
 **Tiempo:** [09:39–09:42]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000939|09:39]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000941|09:41]]
+
+**Dudas abiertas:**
+
+- El barrido multitemporalidad que acompaña a «todo nos indica bullish» no queda capturado íntegro en los frames extraídos (f-000926 muestra 12h; 586-599s muestran 3h/2h/1h).
 
 ### c-0052
 
@@ -611,6 +785,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000943|09:43]]
 
+**Dudas abiertas:**
+
+- «Felo» → ¿failure swing? candidato del glosario; no confirmado literalmente en el segmento
+- «Felo» → ¿failure swing? candidato del glosario; se refuerza porque en segmentos posteriores del mismo capítulo el ASR recoge «fellow swing»/«failure swing» (s-001229, s-001423, s-002300), pero no hay confirmación literal en el propio segmento citado.
+
 ### c-0053
 
 **Statement:** «Yo en este día lo que hice ya fue posicionarme aquí abajo cuando se dio el data sub [ASR]» (relato retrospectivo de lo que hizo ese día, no regla general).
@@ -621,6 +800,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000946|09:46]]
 
+**Dudas abiertas:**
+
+- «el data sub» → ¿Turtle Soup? (familia tartel/tarde sub); sin confirmación literal en el segmento
+- «el data sub» → ¿Turtle Soup? (familia tartel/tarde/turtle sub del glosario); se refuerza con «Tartel Sub» literal en s-001101 del mismo día, pero sin confirmación en el segmento citado.
+
 ### c-0054
 
 **Statement:** «Aquí podemos ver vela de las 8 también: reinicia un rango y podríamos poner nuestra entrada por aquí.»
@@ -630,6 +814,12 @@
 **Tiempo:** [09:46–09:59]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-000946|09:46]]
+
+**Dudas abiertas:**
+
+- Qué vela concreta «reinicia un rango» es deíctico no resuelto visualmente en este minuto.
+- «vela de las 8» dicha literal, sin zona horaria ni temporalidad especificadas en el segmento
+- «vela de las 8» dicha literal, sin zona horaria ni temporalidad especificadas en el segmento; candidato plausible: vela 08:00-10:00 del gráfico 2h (contendría la noticia de 9:45 NY del mismo día), pero no verificable en los frames extraídos.
 
 ### c-0055
 
@@ -644,6 +834,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000959.png|f-000959]]
 
 **Visual hint:** 09:59 — Zona de entrada y vela de la noticia marcadas en el gráfico del 23 de junio. (zona de entrada sombreada sobre 1h del 23/6/2025; la vela de la noticia no está etiquetada por separado)
+
+**Dudas abiertas:**
+
+- «power 3» corresponde probablemente al término establecido Power of 3; la forma completa no se dice en el segmento
+- «power 3» corresponde probablemente al término establecido Power of 3; la forma completa no se dice literalmente en el segmento.
 
 ### c-0056
 
@@ -677,6 +872,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001059.png|f-001059]]
 
+**Dudas abiertas:**
+
+- La vela concreta «de 40» (5 minutos antes de la noticia de las :45) no es legible al zoom de f-001059; sólo se verifica que el gráfico es 5M con la entrada marcada, no la hora exacta de la vela de entrada.
+
 ### c-0059
 
 **Statement:** «Yo soy más partidario de intentar operar normal y estaría bien posicionado por la noticia, pero si querías, este día se podía hacer así» (preferencia del instructor, no regla).
@@ -697,6 +896,12 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001101|11:01]]
 
+**Dudas abiertas:**
+
+- «Stop los» → ¿stop loss? (candidato del glosario)
+- «Stop los» → ¿stop loss?; «Tartel Sub» → ¿Turtle Soup? (candidatos del glosario)
+- «Tartel Sub» → ¿Turtle Soup? (candidato del glosario)
+
 ### c-0061
 
 **Statement:** «Como el Tartel Sub [ASR] ya está hecho, no esperamos otra manipulación.»
@@ -707,6 +912,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001101|11:01]]
 
+**Dudas abiertas:**
+
+- «Tartel Sub» → ¿Turtle Soup?
+- «Tartel Sub» → ¿Turtle Soup? (candidato del glosario)
+
 ### c-0062
 
 **Statement:** «Si no hay Tartel Sub [ASR], es una red flag porque ahí es donde sí que puede haber un whipsaw» y que pase algo así y luego vaya arriba (posibilidad dicha con «puede», no certeza).
@@ -716,6 +926,11 @@
 **Tiempo:** [11:01–11:26]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001101|11:01]]
+
+**Dudas abiertas:**
+
+- «Tartel Sub» → ¿Turtle Soup?
+- «Tartel Sub» → ¿Turtle Soup? (candidato del glosario)
 
 ### c-0063
 
@@ -736,6 +951,11 @@
 **Tiempo:** [11:36–11:47]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001136|11:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001142|11:42]]
+
+**Dudas abiertas:**
+
+- «GDP» → ¿GBP? (dicho junto a DXY y pares USD); en este segmento DXY sí se nombra literalmente
+- «GDP» → ¿GBP? (dicho junto a DXY y pares USD; en este segmento DXY sí se nombra literalmente)
 
 ### c-0065
 
@@ -761,6 +981,12 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001152|11:52]]
 
+**Dudas abiertas:**
+
+- Los frames del minuto muestran el gráfico GBPUSD con cabecera «12h»; no es verificable visualmente si «10 horas» es la temporalidad del gráfico o la duración del rango
+- «las veras» → ¿las velas?
+- «rango de 10 horas»: temporalidad dicha literal (10h)
+
 ### c-0067
 
 **Statement:** En el día de la noticia analizado en Libra: «si vamos a un día tenemos un rango alcista», «si vamos a dos días tenemos otro rango alcista», «por lo tanto veis como todo marca alcista»; el rango en dos días ya está reiniciado y en un día se creó uno «pendiente para subir» tras completar uno bajista.
@@ -785,6 +1011,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001230.png|f-001230]]
 
+**Dudas abiertas:**
+
+- «fellow swing» [ASR]: candidato «failure swing» (glosario ch06).
+- «fellow swing» [ASR]: candidato «failure swing» (glosario ch06); sin etiqueta literal en el gráfico que lo confirme, preservar marca [ASR].
+
 ### c-0069
 
 **Statement:** La noticia que querían operar ese día en Libra es «la de las ocho y cuarto» (8:15).
@@ -797,6 +1028,13 @@
 
 **Notes:** Adjudicación targeted 2026-10-21 (am-ch10-002): la CONTRADICTION con ch02 (8:30)/ch07 (8:30/8:45) queda RETIRADA — son horas de noticias de otros días/ejemplos; el propio 23-jun tiene al menos dos noticias (s-001237 «la primera noticia», s-001245 «una noticia solo a las 10»). Palabra dicha «ocho y cuarto» preservada sin normalizar; el «07:15» del eje en f-001259 es el crosshair del gesto de entrada (s-001258 «tu long estaría aquí»), no la hora de la noticia. La duda queda re-enfocada en la identificación y hora exacta de la noticia (q-ch10-015). Corroboración externa [no es evidencia del curso]: NY Fed jun-2025, 23-jun sin evento US 08:15 (sólo NAR Existing Home Sales 10:00 ET, coherente con el impulso ~10:00).
 
+**Dudas abiertas:**
+
+- ¿Qué noticia concreta era «la de las ocho y cuarto» del 23-jun en GBP? Sin identificación externa (NY Fed jun-2025 lista sólo NAR Existing Home Sales 10:00 ET el 23-jun; la identidad queda SIN IDENTIFICAR) — ver q-ch10-015.
+- ¿Hora exacta de la noticia 1 del 23-jun: 8:15 vs 8:30/8:45? El gráfico (eje ET) acota el evento a ~08:00-08:45 ET (mínimos del failure swing; la ancla de entrada dibujada cae en la barra 08:30, f-001300) y el impulso ~09:35-10:05 corresponde a la segunda noticia (s-001245); a resolución 15M no distingue 8:15 de 8:30/8:45.
+- Zona horaria del gráfico inferida ET (reloj UTC-4 en pantalla + impulso coincidiendo con 10:00 ET); el feed no la declara explícitamente en ningún frame.
+- Dentro del mismo capítulo se repite 8:15 para otro día (4 jun: s-002519 «una noticia a las 8 y cuarto y una noticia a las 10»; s-003008), lo que sugiere que 8:15 es una hora real usada por el instructor, no garble — corroborado externamente para el 4-jun (ADP 08:15 ET, NY Fed jun-2025; ver c-0165).
+
 ### c-0070
 
 **Statement:** «Podemos ya operar esta vela, que es la primera noticia, sin esperar la segunda», porque ya se ha creado el «TartelSoup» [ASR; candidato: Turtle Soup]: «como hemos creado ya el TartelSoup, sabemos que estamos listos para subir».
@@ -807,6 +1045,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001235|12:35]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001237|12:37]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001239|12:39]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001249|12:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001251|12:51]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001246|12:46]]
 
+**Dudas abiertas:**
+
+- «TartelSoup» [ASR]: candidato «Turtle Soup» (glosario).
+
 ### c-0071
 
 **Statement:** Precisión sobre las noticias de ese día: «Bueno, aquí había una noticia solo a las 10».
@@ -816,6 +1058,11 @@
 **Tiempo:** [12:45–12:49]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001245|12:45]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001246|12:46]]
+
+**Dudas abiertas:**
+
+- Ambigüedad: ¿«una noticia solo a las 10» = segunda noticia a las 10:00, o única noticia a las 10:00 (lo que tensionaría la «ocho y cuarto» de s-001233)? s-001237 y s-002519 apoyan la primera lectura; el integrador adjudica.
+- Ambigüedad: ¿«una noticia solo a las 10» significa que la segunda noticia era a las 10:00, o que sólo había una noticia (a las 10:00), en cuyo caso tensionaría la «ocho y cuarto» de s-001231?
 
 ### c-0072
 
@@ -830,6 +1077,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001259.png|f-001259]]
 
 **Visual hint:** 12:59 — GBPUSD 15M con dos rangos dibujados (23 jun); el long señalado en la zona del low
+
+**Dudas abiertas:**
+
+- visual_hint «el long señalado»: confirmado como cursor del instructor en la zona del low (no hay anotación etiquetada); si el integrador necesita la marca exacta de entrada, pedir frame adicional en 779-780 s.
+- «TartelSoup» [ASR]: candidato «Turtle Soup» (glosario).
 
 ### c-0073
 
@@ -875,6 +1127,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001350.png|f-001350]]
 
+**Dudas abiertas:**
+
+- «hay 40» [ASR]: candidato «a las 40 / entras a las 40»; «el 45» se refiere ¿a la noticia de las 8:45 (ch07) o a la vela de las :45?
+
 ### c-0077
 
 **Statement:** «No esperaba que fuese tan directo para los take profits»; el trade completo «es un poco irreal en mi opinión, es como un swing trading, pero hasta aquí sí que era bastante realista, que era el rango diario, al menos el primero».
@@ -896,6 +1152,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001340|13:40]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001359.png|f-001359]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001350.png|f-001350]]
+
+**Dudas abiertas:**
+
+- Dato visual del reviewer: durante 13:40-14:00 el chart en pantalla es GBPUSD, por lo que «JP» podría ser otro garble de «GBP» (cf. ASR «GDP» por GBP en 21:23, s-002123/s-002126). Queda para el integrador; no resolver sin respaldo literal.
+- «JP» [ASR]: candidato ¿JPY (p. ej. USDJPY)? No hay nombre completo dicho.
 
 ### c-0079
 
@@ -921,6 +1182,10 @@
 
 **Visual hint:** 14:59 — pantalla partida GBPUSD 6h / DXY 6h (CAPITALCOM): el índice DXY visible en pantalla
 
+**Dudas abiertas:**
+
+- «DXI»/«Dx» [ASR]: candidato DXY (índice visible en pantalla en el bloque); no confundir con DOL.
+
 ### c-0081
 
 **Statement:** En «Dx» [ASR; candidato: DXY] «teníamos la primera vela bajista aquí» y «esto es un fellow swing [ASR] arriba»; «por lo tanto esto se puede ver como un rango bajista».
@@ -932,6 +1197,12 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001416|14:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001421|14:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001423|14:23]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001431|14:31]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001422.png|f-001422]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001429.png|f-001429]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001440.png|f-001440]]
+
+**Dudas abiertas:**
+
+- El still no permite adjudicar sin ambigüedad cuál vela exacta es «la primera vela bajista» señalada por el deíctico «aquí» (candidata visible: primera vela oscura dentro/junto al rectángulo superior).
+- «Dx» [ASR]: candidato DXY.
+- «fellow swing» [ASR]: candidato «failure swing».
 
 ### c-0082
 
@@ -945,6 +1216,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001429.png|f-001429]]
 
+**Dudas abiertas:**
+
+- «en euro» dicho en s-001429 mientras el panel visible en f-001429 es GBPUSD (libra) en máximos; el gráfico de euro se mostró antes (s-001400). El referente probable es EURUSD visto momentos antes, no adjudicable desde el frame actual.
+- «hacia» [ASR]: candidato «hacía» (verbo hacer), lectura coherente con el criterio de divergencia entre pares (familia failure swing, ch06).
+
 ### c-0083
 
 **Statement:** «El fellow swing [ASR] en dos horas: ves como tenemos todos rangos bajistas, por lo tanto también nos indica que la noticia que se va a dar aquí en esta vela puede ir a por estos rangos bajistas» (modalizador «puede» literal).
@@ -957,6 +1233,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001440.png|f-001440]]
 
+**Dudas abiertas:**
+
+- «fellow swing» [ASR]: candidato «failure swing».
+
 ### c-0084
 
 **Statement:** «No había tanto objetivo a largo plazo creo en DXY»; «con los grabs [ASR] y todo se veía un poco feo» («creo» literal, opinión).
@@ -966,6 +1246,11 @@
 **Tiempo:** [14:48–14:55]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001448|14:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001450|14:50]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001451|14:51]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001454|14:54]]
+
+**Dudas abiertas:**
+
+- «grabs» [ASR] (s-001451): candidatos «gaps» (palabra dicha en s-001400 sobre el mismo gráfico) vs «grabs» (absorciones de liquidez); no adjudicable por texto/audio disponible.
+- «grabs» [ASR]: candidatos «gaps» (dicho en s-001400) o «grabs» (absorciones de liquidez).
 
 ### c-0085
 
@@ -979,6 +1264,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001514.png|f-001514]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001518.png|f-001518]]
 
+**Dudas abiertas:**
+
+- El nivel exacto del «objetivo aquí abajo» en 12h no es verbalizado por el instructor (sólo deíctico); f-001518 muestra el rango dibujado pero no cifra el nivel.
+
 ### c-0086
 
 **Statement:** «Seguramente veníamos de completar algún rango bajista»: en 4 días se ve que «completamos un rango de temperatura [ASR; candidato: temporalidad] más alta»; «si nos forman rangos bajistas, pues teníamos esta confirmación de que la noticia iba a ser bajista para USDCAT [ASR; candidato: USDCAD]».
@@ -990,6 +1279,14 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001521|15:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001526|15:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001530|15:30]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001533|15:33]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001538|15:38]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001528.png|f-001528]]
+
+**Dudas abiertas:**
+
+- El referente deíctico «este rango» completado en 4D no es inequívocamente identificable en f-001528: el rango dibujado no se distingue con claridad en el frame (el cambio a 4D sí queda verificado).
+- «USDCAT» [ASR]: candidato «USDCAD» (dicho literalmente en s-001455).
+- «USDCAT» [ASR]: candidato «USDCAD» respaldado por el dicho literal en s-001455 (mismo par, mismo análisis); confirmación por audio sólo si se quiere cerrar.
+- «temperatura» [ASR]: candidato «temporalidad».
+- «temperatura» [ASR]: mantengo abierto el candidato «temporalidad»; requiere confirmación contra audio.
 
 ### c-0087
 
@@ -1047,6 +1344,10 @@
 
 **Visual hint:** 16:22 — temporalidades 12h/1D/2D/3D del día del CPI sin rangos visibles (en el still de 982 s sólo es visible la vista 1D; 12h/2D/3D se dicen pero no se ven en ese frame)
 
+**Dudas abiertas:**
+
+- El still extraído (982 s) sólo documenta la vista 1D; las vistas 12h/2D/3D del día del CPI no quedan capturadas en frames de este minuto.
+
 ### c-0092
 
 **Statement:** «Cuando no tenemos rango en las temporadas [ASR; candidato: temporalidades] de toda la vida… podemos buscar alguna donde sí que se vea el rango claro.»
@@ -1056,6 +1357,11 @@
 **Tiempo:** [16:45–16:56]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001645|16:45]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001649|16:49]]
+
+**Dudas abiertas:**
+
+- Confirmar contra el audio si «temporadas» [ASR] es «temporalidades»; sin respaldo literal en el segmento, la marca [ASR] debe mantenerse.
+- «temporadas» [ASR]: candidato «temporalidades».
 
 ### c-0093
 
@@ -1070,6 +1376,12 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001659.png|f-001659]]
 
 **Visual hint:** 16:59 — EURUSD 16h con el rango de 16h y su objetivo (línea ~1,4562) y la vela del mié 11 jun
+
+**Dudas abiertas:**
+
+- El instructor duda y se autocorrige sobre si el rango estaba completado antes del CPI; la lectura final enunciada es el rango de 16 horas del día 11.
+- En f-001659 la línea-objetivo (~1,4562) y el crosshair del mié 11 jun '25 sí son legibles; la caja del rango de 16h no se distingue con claridad en el still.
+- La duda en directo («no sé si estaba completado ya antes el CPI») sólo queda resuelta como lectura final enunciada (rango de 16 horas del día 11); no hay verificación visual explícita de si el rango estaba completado antes del CPI.
 
 ### c-0094
 
@@ -1093,6 +1405,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001714|17:14]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001725|17:25]]
 
+**Dudas abiertas:**
+
+- Alcance exacto de la negación «no hace falta»: ¿no hace falta operar durante London, o no hace falta esperar? El orden del ASR es ambiguo.
+- Alcance exacto de la negación «no, no hace falta»: la lectura más plausible es «no hace falta [operar durante London]» — se puede esperar y entrar más cerca de la noticia (coherente con s-001725 y el walkthrough posterior de entradas cerca de la vela del CPI) —, pero el orden del ASR no permite cerrarlo; lo adjudica el integrador.
+
 ### c-0096
 
 **Statement:** «La entrada ideal es, pues, como hacemos siempre, en el rango de una hora aquí, justo a las 3»: «hora importante, hace el Tartel Super [ASR; candidato: Turtle Soup] a las 3, reacciono [ASR; candidato: «reaccionó»]».
@@ -1106,6 +1423,11 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001731.png|f-001731]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001734.png|f-001734]]
 
 **Visual hint:** 17:31 — gráfico de 1h con la vela de las 3:00 donde hace el Turtle Soup y reacciona
+
+**Dudas abiertas:**
+
+- «reacciono» [ASR]: candidato «reaccionó».
+- «a las 3»: no se especifica si 3:00 de la mañana (hora de gráfico); verificar contra frame.
 
 ### c-0097
 
@@ -1141,6 +1463,12 @@
 
 **Visual hint:** 17:59 — EURUSD 1h con operación long dibujada; el precio alcanza la línea horizontal del objetivo marcado en el alto
 
+**Dudas abiertas:**
+
+- Temporalidad del rango objetivo: «16 horas» dicho literalmente (s-001802, s-001854) pero el gráfico HTF mostrado está en 12h (f-001854 y f-001859: cabecera «EURUSD · 12h», replay «12h»; en f-001859 el diálogo «Cambiar intervalo» muestra «No aplicable»). ¿Garble ASR de «doce» o imprecisión del instructor? No adjudicable con la evidencia disponible; preservar la palabra dicha.
+- «16 horas» dicho literalmente también en s-001854; f-001859 (18:59) muestra el gráfico EURUSD en 12h con el diálogo «Cambiar intervalo» abierto: confirmar la temporalidad real del objetivo HTF (¿16h o 12h?).
+- «full stop loss» queda cortado por la frontera de bloque (s-001800); contexto en el bloque 3.
+
 ### c-0100
 
 **Statement:** «Lo que sería la operación ideal»: estaríamos posicionados antes de la noticia.
@@ -1161,6 +1489,10 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001820|18:20]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001823|18:23]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001825|18:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001827|18:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001829|18:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001831|18:31]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001833|18:33]]
 
+**Dudas abiertas:**
+
+- TERM_DISAMBIGUATION_REQUIRED en «target sub» [ASR] (s-001825): Turtle Soup vs «target superior». El contexto de s-002917 («no hay motivo por manipulación») favorece Turtle Soup, pero no hay respaldo literal de esa palabra en el segmento citado.
+
 ### c-0102
 
 **Statement:** En 6 horas había lo mismo: «un rango pendiente de 6 horas creado» y se puede marcar target ahí.
@@ -1173,6 +1505,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002052.png|f-002052]]
 
+**Dudas abiertas:**
+
+- Trazabilidad de la adjudicación: la autotensión interna de s-002045 quedó resuelta como estado posterior del replay + re-afirmación en el mismo segmento (ver reason, evidencia s-002045 y f-002052); si el integrador prefiere conservar la duda, referenciar ambos.
+
 ### c-0103
 
 **Statement:** En 8 horas había un rango, con otro objetivo: «como cierra esta vela dentro de la anterior», «objetivo para arriba».
@@ -1182,6 +1518,10 @@
 **Tiempo:** [18:43–18:54]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001843|18:43]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001846|18:46]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001848|18:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001850|18:50]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001851|18:51]]
+
+**Dudas abiertas:**
+
+- El rango concreto de 8h señalado con «este lo veis» (s-001846) no es individualmente identificable sin frame en 18:46; el statement se valida como reporte fiel de lo dicho, no como identificación del objeto dibujado.
 
 ### c-0104
 
@@ -1197,6 +1537,13 @@
 
 **Visual hint:** 18:59 — gráfico EURUSD con rangos marcados en varias temporalidades y diálogo «Cambiar intervalo» abierto, en el recorrido 4h→6h→8h→HTF
 
+**Dudas abiertas:**
+
+- Temporalidad del rango HTF: «16 horas» dicho dos veces (s-001802, s-001854) pero el gráfico mostrado es 12h (f-001854, f-001859: cabecera y replay «12h»; «Cambiar intervalo» → «No aplicable»). Discrepancia no adjudicable; preservar la palabra dicha.
+- «16 horas» dicho dos veces (s-001802, s-001854) pero f-001859 muestra el gráfico en 12h: confirmar temporalidad real del rango HTF (¿16h o 12h?).
+- «bullies» [ASR] → candidato bullish.
+- «bullies» [ASR] → candidato bullish: apoyado por contexto (s-001827 «como estamos bullish», targets arriba) pero sin respaldo literal de la palabra completa; preservar la marca [ASR].
+
 ### c-0105
 
 **Statement:** En 2 horas, este día se podía comprar y quedar ya posicionado; «si no comprábamos ahí, como teníamos que hacerlo», había que buscar un rango a favor; cerca de la noticia había en 2 horas un rango que se crea pendiente para subir.
@@ -1208,6 +1555,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001905|19:05]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001913|19:13]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001919|19:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-001925|19:25]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-001910.png|f-001910]]
+
+**Dudas abiertas:**
+
+- s-001905 contiene el garble «la cumpleaños rango de dos horas», correctamente excluido del statement; queda sin resolver (¿«el rango de dos horas»?).
+- s-001905 contiene el garble «la cumpleaños rango de dos horas», no incorporado al statement por ser ilegible (¿«el rango de dos horas»?).
 
 ### c-0106
 
@@ -1235,6 +1587,13 @@
 
 **Visual hint:** 19:59 — EURUSD 1h del día del CPI con caja de posición long dibujada (zona de entrada abajo, objetivo arriba) y rangos horizontales marcados
 
+**Dudas abiertas:**
+
+- «Power 3» (s-001937) y «PowerCity» (s-002108) → candidato Power of 3, sin respaldo literal completo en el segmento.
+- «Power 3» (s-001937) y «PowerCity» (s-002108) → candidato Power of 3.
+- «nuestra venta» [ASR]: el visual (f-001949: Objetivo arriba/Stop abajo; f-001959: entrada abajo/objetivo arriba) apunta a posición long, pero no hay respaldo literal para sustituir la palabra dicha; aclarar (¿garble de «entrada»?).
+- «nuestra venta» [ASR]: ¿garble de «entrada» o venta literal? En el mismo walkthrough se dice «podemos comprar» (s-001905) y «long» (s-002136) — aclarar.
+
 ### c-0108
 
 **Statement:** «Aquí sería para mí el primer target el de poner break-even y aquí el target final»: el primer target es donde poner break even; después hay un target final.
@@ -1259,6 +1618,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002010.png|f-002010]]
 
+**Dudas abiertas:**
+
+- s-001959 dice «que no buscar un objetivo de 20 pips…»: ASR probable de «que no, buscar un objetivo de 20 pips…»; el sentido («es muy poco») queda preservado.
+- «que no buscar un objetivo de 20 pips…»: ASR probable de «que no, buscar un objetivo de 20 pips…»; el sentido («es muy poco») queda preservado en el statement.
+
 ### c-0110
 
 **Statement:** «Podíamos utilizar los otros pares también como confirmación de lo que va a ser el precio»: en Euro ya se había visto cómo se veía, y se va a comprobar en Libra.
@@ -1281,6 +1645,12 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002032.png|f-002032]]
 
+**Dudas abiertas:**
+
+- El frame f-002032 muestra GBPUSD/EURUSD en 12h (720M): la temporalidad visible durante este relato de Libra es 12h. No afecta al statement (que no cita temporalidad), pero conviene no asociar el ejemplo a 6h.
+- «fellow swing» [ASR] → candidato failure swing (glosario ch06); confirmar contra audio.
+- «fellow swing» [ASR] → candidato failure swing (glosario ch06); pendiente confirmar contra audio. El frame f-002032 muestra la zona marcada, pero identificar en ella el patrón «intenta el nuevo low y falla» desde un fotograma estático es inferencia, no verificación.
+
 ### c-0112
 
 **Statement:** Otro rango en Libra se podía marcar también; y «este sí que no hay fellow swing» [ASR]: «este se ve claramente como es un rango».
@@ -1293,6 +1663,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002044.png|f-002044]]
 
+**Dudas abiertas:**
+
+- «fellow swing» [ASR] → candidato failure swing.
+- «fellow swing» [ASR] → candidato failure swing; confirmar contra audio.
+
 ### c-0113
 
 **Statement:** En 8 horas «no hay nada» y en 6 horas «no hay nada»; pero en 6 horas «teníamos un primer rango aquí» con el mismo objetivo ahí arriba.
@@ -1304,6 +1679,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002045|20:45]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002059.png|f-002059]]
+
+**Dudas abiertas:**
+
+- CONTRADICTION (interna, s-002045): «en 6 horas no hay nada» frente a «en 6 horas teníamos un primer rango aquí» en el mismo segmento — verificar con audio; posible ASR del primer «6 horas».
+- CONTRADICTION (s-002045): ¿dijo realmente «en 6 horas no hay nada» antes de «en 6 horas teníamos un primer rango aquí», o el primer «6 horas» es ASR/misstatement de otra temporalidad? Verificar contra audio.
 
 ### c-0114
 
@@ -1339,6 +1719,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002108|21:08]]
 
+**Dudas abiertas:**
+
+- «PowerCity» [ASR] → candidato Power of 3; «CPIA» [ASR] → candidato CPI.
+- «PowerCity» [ASR] → candidato Power of 3; «CPIA» [ASR] → candidato CPI: requiere confirmación por audio; el frame no desambigua el término hablado.
+
 ### c-0117
 
 **Statement:** En London «lo que podríamos hacer es entrar en el TAR del sub de abajo del todo» [ASR].
@@ -1348,6 +1733,11 @@
 **Tiempo:** [21:15–21:19]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002115|21:15]]
+
+**Dudas abiertas:**
+
+- «TAR del sub» [ASR] → candidato Turtle Soup (familia tartel/tarde/turtle sub); requiere confirmación por audio.
+- «TAR del sub» [ASR] → candidato Turtle Soup (glosario: tartel/tarde/turtle sub/tarde supa); confirmar contra audio.
 
 ### c-0118
 
@@ -1361,6 +1751,13 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002121.png|f-002121]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002124.png|f-002124]]
 
+**Dudas abiertas:**
+
+- «3 horas» dicho también en s-002201: temporalidad no habitual del curso (1h/2h/4h/6h/8h/12h/16h) — conservada literal.
+- «3 horas» no es temporalidad habitual del curso (6h/8h/12h/1D…): dicho dos veces literalmente, se conserva; sin contradicción con capítulos previos detectada.
+- «GDP» [ASR] → candidato GBP (Libra); el frame f-002059 muestra GBPUSD 6h — confirmar el par.
+- «GDP» [ASR] → candidato GBP: el visual (GBPUSD 3h en pantalla al decirlo) apoya el candidato, pero la palabra dicha requiere confirmación por audio.
+
 ### c-0119
 
 **Statement:** «Indica todo bullish en euro, indica todo bullish en GDP» [ASR]: eso «nos da las confirmaciones para entrar aquí»; «nos crea un rango a favor» — «siempre queremos un rango a favor, aquí nos lo crea».
@@ -1370,6 +1767,11 @@
 **Tiempo:** [21:26–21:36]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002126|21:26]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002132|21:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002134|21:34]]
+
+**Dudas abiertas:**
+
+- «GDP» [ASR] → candidato GBP (mismo garble que en b4-20); requiere confirmación por audio.
+- «GDP» [ASR] → candidato GBP.
 
 ### c-0120
 
@@ -1395,6 +1797,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002147|21:47]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002150|21:50]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002152|21:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002154|21:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002156|21:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002157|21:57]]
 
+**Dudas abiertas:**
+
+- s-002157 dice «esperar a que la noticia tengamos algún rango a favor»: orden de palabras ASR; sentido preservado.
+- s-002157: orden de palabras ASR («esperar a que la noticia tengamos…»); sentido reconstruido como «esperar a que, con la noticia, tengamos algún rango a favor» — confirmar por audio si se requiere literalidad exacta.
+
 ### c-0122
 
 **Statement:** Con el rango de 3 horas «más lo mismo, están todos los rangos sin completar»: «pues tenemos vía libre para la noticia»; pero si esto estuviera ya completado, «la probabilidad ya nos bajaría» — «es importante esto, que tengamos los targets aún intactos para la noticia».
@@ -1419,6 +1826,10 @@
 
 **Visual hint:** 22:59 — cuadro «Búsqueda de símbolos» con DXY tecleado y gráfico DXY 4D ya cargado en el panel derecho
 
+**Dudas abiertas:**
+
+- «DXI» [ASR] → candidato DXY (dicho literalmente en s-002327 y visible en f-002259).
+
 ### c-0124
 
 **Statement:** En DXY «muy probablemente teníamos rangos bajistas que nos daban la confirmación que queríamos».
@@ -1441,6 +1852,12 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002238|22:38]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002244|22:44]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002251|22:51]]
 
+**Dudas abiertas:**
+
+- «Día bastante consolidación» (s-002244): ASR probable de «día bastante [de] consolidación».
+- «Pelus swing» [ASR] → candidato failure swing (glosario: pelo(s)); confirmar contra audio.
+- «Pelus swing» [ASR] → failure swing como candidato (apoyo contextual s-002300/s-002309 y glosario pelo(s)); la confirmación por audio no está disponible para el reviewer, sólo transcript.
+
 ### c-0126
 
 **Statement:** «Dejadme ver el otro par del DXY y si no, lo tomaremos como un failure swing»: en este caso «sí que llega», «es un failure swing, se ve muy claro» — «quizá en otro broker que no he mirado sí que se lo ha llevado», «o que al menos intenta hacer el nuevo alto y falla».
@@ -1452,6 +1869,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002253|22:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002300|23:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002308|23:08]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002309|23:09]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002313|23:13]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002316|23:16]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002318|23:18]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002310.png|f-002310]]
+
+**Dudas abiertas:**
+
+- El alto previo concreto que «intenta hacer y falla» (s-002318) no es identificable sin ambigüedad en el still f-002310; el failure swing se observa en el panel GBPUSD 3D pero la estructura exacta requeriría gesto/audio.
+- «el otro par del DXY» (s-002253): deíctico — ¿qué gráfico concreto mira (¿GBP frente a DXY)? Un frame bajo demanda (~1395 s) lo aclararía.
 
 ### c-0127
 
@@ -1465,6 +1887,13 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002324.png|f-002324]]
 
+**Dudas abiertas:**
+
+- Frame bajo demanda (~1400-1410 s) para verificar el alto tomado por Libra frente a DXY.
+- Qué nivel concreto «se lleva» Libra (s-002323) no es decidible desde el still; requiere audio o gesto.
+- TERM_DISAMBIGUATION_REQUIRED sigue abierto: «S&T» [ASR] → candidato SMT; el frame f-002324 apoya esa lectura (comparación GBPUSD/DXY con niveles marcados) pero no la cierra sin audio.
+- «S&T» [ASR] → candidato SMT (glosario ch05); TERM_DISAMBIGUATION_REQUIRED: confirmar contra audio.
+
 ### c-0128
 
 **Statement:** «Este PI» [ASR] «es una noticia importante», «va a desplazar bastante».
@@ -1474,6 +1903,11 @@
 **Tiempo:** [23:31–23:34]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002331|23:31]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002333|23:33]]
+
+**Dudas abiertas:**
+
+- «PI» [ASR] → candidato CPI (todo el bloque trata el CPI); confirmar contra audio.
+- «PI» [ASR] → candidato CPI: hay respaldo contextual literal en el mismo día (s-002425, contexto min 24: «CPI a las 8 y media, por lo tanto se vende en esta vela»), pero la confirmación del término dicho requiere audio.
 
 ### c-0129
 
@@ -1487,6 +1921,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002330.png|f-002330]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002310.png|f-002310]]
 
+**Dudas abiertas:**
+
+- La caja del rango bajista dibujada en DXY es nítida en f-002310 pero no se distingue en f-002330; el nivel exacto del «objetivo aquí abajo» no es legible en el still.
+
 ### c-0130
 
 **Statement:** «Veo aquí un rango de 12 horas también»: «como las velas cierran dentro, dejando este bajo como objetivo».
@@ -1499,6 +1937,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002340.png|f-002340]]
 
+**Dudas abiertas:**
+
+- El transcript no nombra el instrumento del rango; el frame lo sitúa en el panel GBPUSD 12h (el DXY 12h muestra solo líneas horizontales). Si «este bajo como objetivo» es el mínimo de la caja o un swing low inferior no es decidible desde el still.
+
 ### c-0131
 
 **Statement:** «En 8 horas, aquí sí que se ve bien en este par»: «es justo, nos crea el rango pendiente para vender, perfectísimo»; y «en 6 horas nos crea el mismo rango, lo veis aquí».
@@ -1510,6 +1952,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002344|23:44]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002348|23:48]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002350|23:50]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002352|23:52]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002354|23:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002356|23:56]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002358|23:58]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002350.png|f-002350]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002359.png|f-002359]]
+
+**Dudas abiertas:**
+
+- Referente de «este par»/«aquí»: las cajas del rango pendiente están dibujadas en los paneles GBPUSD (8h y 6h); los paneles DXY muestran estructuras de líneas (99,392 arriba / 98,817 / 98,351 abajo). Sin gesto/audio no se cierra cuál es «el rango pendiente para vender».
+- Si el rango «para vender» fuese sobre GBPUSD, hay tensión aparente con «compra en GDP» (s-002504, contexto min 24, mismo día: venta DXY / compra GBP); no es contradicción del transcript (el instructor dice lo que dice), pero el integrador debe adjudicar el referente — posiblemente la venta referida es el lado DXY de la estructura.
 
 ### c-0132
 
@@ -1567,6 +2014,10 @@
 
 **Notes:** Adjudicación revisores min24/25 (visual f-002459/f-002504; s-003344 «DXY» literal): «DXI» [ASR] = DXY (índice del dólar), NO DOL. Palabra dicha preservada.
 
+**Dudas abiertas:**
+
+- TERM_DISAMBIGUATION_REQUIRED: «DXI» [ASR] → ¿DXY (índice del dólar) o DOL (objetivo de liquidez)? DXY se dijo literalmente sólo en ch05; confirmar contra frame/gráfico del ejemplo.
+
 ### c-0137
 
 **Statement:** Se veía «venta en DXI» [ASR], «compra en GDP» [ASR] y «compra en Euro», y «por lo tanto teníamos la dirección muy fácil para esta noticia».
@@ -1581,6 +2032,10 @@
 
 **Notes:** Respaldo visual f-002504: «DXY» y «GBPUSD» literales en pantalla al decirse las frases → «DXI» [ASR] = DXY (índice, no DOL) y «GDP» [ASR] = GBP.
 
+**Dudas abiertas:**
+
+- «DXI» [ASR] → misma disambiguación que b5-05 (¿DXY o DOL?); «GDP» [ASR] → ¿GBP?
+
 ### c-0138
 
 **Statement:** Se podían mirar también «el NCTD» [ASR], «AUTUSD» [ASR] y «el USDCAT» [ASR], y «todo nos iría indicando lo mismo».
@@ -1590,6 +2045,15 @@
 **Tiempo:** [25:10–25:17]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002510|25:10]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002511|25:11]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002512|25:12]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002513|25:13]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002515|25:15]]
+
+**Dudas abiertas:**
+
+- «AUTUSD» [ASR] → ¿AUDUSD?
+- «AUTUSD» [ASR] → ¿AUDUSD?: candidato plausible, sin respaldo literal ni visual en el minuto; queda abierto.
+- «NCTD» [ASR] → ¿NZD/USD u otro par correlacionado?
+- «NCTD» [ASR]: sin confirmación visual (f-002512 no muestra cambio de símbolo); candidato ¿NZD/USD? u otro par correlacionado, queda abierto.
+- «USDCAT» [ASR] → ¿USDCAD?
+- «USDCAT» [ASR] → ¿USDCAD?: candidato plausible, sin respaldo literal ni visual en el minuto; queda abierto.
 
 ### c-0139
 
@@ -1627,6 +2091,11 @@
 
 **Notes:** Revisor min25: la hora dicha para esa noticia es «8 y cuarto» en la primera mitad del mismo s-002519 (y s-003008); la glosa usa el literal «la noticia de las 8».
 
+**Dudas abiertas:**
+
+- «su pecho»/«tarde» [ASR] → ¿«ya está tardado/hecho el Turtle Soup»? (glosario lista «tarde», «turtle sub», «tartel sub» como garbles de Turtle Soup).
+- «ya tarde su pecho» [ASR] → ¿«ya está hecho/tardado el Turtle Soup»? Candidato apoyado por usos posteriores del capítulo («el Tartel Sub ya está hecho» s-002917, «tarde el supecho» s-002753/s-002759, «tartel supia está hecho» s-003455), pero sin respaldo literal dentro del propio segmento citado: no normalizar, mantener [ASR] y la duda.
+
 ### c-0142
 
 **Statement:** El 4 de junio, la noticia de las 8 es «del ADP, Non-Farm Employment Change»; el instructor dice «esta no sé si está en el Excel».
@@ -1661,6 +2130,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002625.png|f-002625]]
 
+**Dudas abiertas:**
+
+- «artista» [ASR] → ¿alcista? (familia del garble «azista» del glosario); sin respaldo literal en el segmento para sustituir, se preserva la palabra dicha.
+- «artista» [ASR] → ¿alcista? (glosario: «azista» → ¿alcista?).
+
 ### c-0145
 
 **Statement:** «En temporadas» [ASR] más altas «tenemos ya objetivos para arriba», «porque es donde hemos llegado hoy justo».
@@ -1670,6 +2144,11 @@
 **Tiempo:** [26:39–26:51]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002639|26:39]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002646|26:46]]
+
+**Dudas abiertas:**
+
+- «temporadas» [ASR] → ¿temporalidad?
+- «temporadas» [ASR] → ¿temporalidad? (misma familia que «tonalidad» → temporalidad del glosario); sin respaldo literal para sustituir.
 
 ### c-0146
 
@@ -1682,6 +2161,10 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002651|26:51]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002658.png|f-002658]]
+
+**Dudas abiertas:**
+
+- «los diarios 12 horas» es elíptico: ¿«los diarios [y] 12 horas»? Se preserva literal; la lectura no altera el sentido del statement («nada» en 8h para seguir bajando).
 
 ### c-0147
 
@@ -1697,6 +2180,13 @@
 
 **Visual hint:** 26:58 — Rango visible en EURUSD del 4/6/2025 con objetivo bullish; temporalidad en pantalla: 8h (480M), no «9 horas»
 
+**Dudas abiertas:**
+
+- Deíctico sin resolver: qué líneas concretas delimitan «este» rango cuyo cierre «prácticamente dentro» — el frame muestra líneas en 1,4548/1,4454 y cierre en 1,4186, pero la delimitación exacta del rango señalado no es inequívoca.
+- Tensión interna a adjudicar por el integrador: s-002651 («por ocho horas no había nada») vs s-002658 («eso es un rango» en «9 horas» [ASR]); bajo la lectura elíptica («no había nada» PARA SEGUIR BAJANDO) no hay contradicción directa, pero si «9 horas» = «8 horas» conviene explicitarlo.
+- «9 horas» dicho dos veces — ¿garble de «8 horas» (temporalidad efectivamente en pantalla en f-002658) o de otra cosa? El recorrido descrito baja 12h→8h→6h; sin respaldo literal para sustituir, queda [ASR].
+- «9 horas» dicho dos veces — ¿temporalidad real? El recorrido usa 12h/8h/6h/4h/2h/1h; contrastar contra frame.
+
 ### c-0148
 
 **Statement:** «Teníamos los primeros rangos bullish aquí abajo»; en 4 horas «teníamos el rango bullish aquí», «por lo tanto nos podíamos posicionar ya para el trade aquí».
@@ -1706,6 +2196,10 @@
 **Tiempo:** [27:15–27:28]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002715|27:15]]
+
+**Dudas abiertas:**
+
+- Deixis visual sin resolver al detalle: el «rango bullish aquí» no queda inequívocamente señalado en los frames extraídos f-002715.png (6h, niveles horizontales arriba) ni f-002724.png (4h, niveles 1,4182/1,4331/1,4548 por encima del precio); el rectángulo claro en los mínimos sólo es visible después, en la vista 2h (f-002746.png). El integrador puede fijar la zona exacta con un frame ~27:22-27:27 si la necesita.
 
 ### c-0149
 
@@ -1717,6 +2211,12 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002728|27:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002715|27:15]]
 
+**Dudas abiertas:**
+
+- El unresolved del extractor menciona noticias «a las 8:15 y 10:00»: «8 y cuarto» está respaldado (s-003008), pero «10:00» no aparece en la ventana de transcript entregada (s-002912 sólo confirma «dos noticias» ese día, sin segunda hora); verificar en tramos previos del vídeo antes de darlo por cierto.
+- «aquí a 5» [ASR] → ¿«a las 5» (¿vela de las 5, cf. ch07?) u otra hora garbleada? El ejemplo tiene noticias a las 8:15 y 10:00.
+- «aquí a 5» [ASR]: candidatos sin resolver — ¿«a las 5» (hora/vela de las 5, cf. ch07)? En el ejemplo la noticia es «a las 8» (s-002851) / «a las 8 y cuarto» (s-003008) y la vela de noticia en 2h es «la de las 7» (s-002859), por lo que ninguna lectura literal cuadra con «5»; mantener [ASR].
+
 ### c-0150
 
 **Statement:** «Por lo tanto, tuvimos todo este Power 3» [ASR] «para poder entrar antes a la noticia».
@@ -1726,6 +2226,11 @@
 **Tiempo:** [27:36–27:40]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002736|27:36]]
+
+**Dudas abiertas:**
+
+- «Power 3» [ASR] → ¿Power of 3 (término del glosario)?
+- «Power 3» [ASR] → ¿«Power of 3»? Sin confirmación literal de la forma completa en el intervalo; uso coherente en s-002902 («se puede utilizar el Power 3»), lo que refuerza el candidato sin cerrarlo.
 
 ### c-0151
 
@@ -1752,6 +2257,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002753|27:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002759|27:59]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002759.png|f-002759]]
+
+**Dudas abiertas:**
+
+- «supecho»/«su pecho» [ASR] → ¿Turtle Soup? Coincide con «Tartel Sub» (s-002917) y con la familia de garbles del glosario («tartel/tarde/target… sub»); en f-002759 las marcas del gráfico quedan tapadas por el diálogo de intervalo, por lo que el término no se confirma visualmente. Candidato, no confirmado.
+- «supecho»/«su pecho» [ASR] → ¿Turtle Soup? Coincide con «Tartel Sub» de s-002917 y con el glosario.
 
 ### c-0153
 
@@ -1784,6 +2294,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002819|28:19]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002828|28:28]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-002834.png|f-002834]]
+
+**Dudas abiertas:**
+
+- Alcance sin resolver: ¿enunciado general o acotado al ejemplo del día? El instructor lo dice en tono general mientras narra el ejemplo; el statement no lo universaliza, se deja la duda abierta.
+- ¿Enunciado general o acotado al ejemplo del 4 de junio? El instructor lo dice de forma general mientras narra el ejemplo.
 
 ### c-0156
 
@@ -1823,6 +2338,12 @@
 
 **Visual hint:** 28:53 — Rango pendiente a favor creado en el gráfico de 2 horas antes de la noticia
 
+**Dudas abiertas:**
+
+- CONTRADICTION: con ch07 (noticias 8:30/8:45) la hora de este día es 8:15 — probablemente otra noticia/otro día y no conflicto real, pero se deja anotada para que el integrador adjudique.
+- «a las 8» (s-002851) vs «8 y cuarto» (s-003008, mismo día; ver también s-002519 citado por el extractor): ¿redondeo del instructor o pérdida del «y cuarto» en ASR? Queda abierto.
+- «a las 8» vs «8 y cuarto» (s-002519, mismo día): ¿redondeo del instructor o el ASR perdió el «y cuarto»?
+
 ### c-0159
 
 **Statement:** En «la vela que contiene la noticia, que es esta de las 7», «se puede utilizar el Power 3» [ASR] «para entrar en compra en esta vela», con «el objetivo ahí arriba».
@@ -1839,6 +2360,12 @@
 
 **Notes:** Revisor min28 (frames f-002855/f-002959): velas 2h abren en horas impares; la noticia de 8:15 cae en la vela 2h de las 7:00 y en la 1h de las 8:00 — misma vela, etiqueta por temporalidad. Adjudicación: sin contradicción material.
 
+**Dudas abiertas:**
+
+- CONTRADICTION interna: aquí la vela que contiene la noticia es «la de las 7» (s-002859), pero en s-002959 dice «la vela de la noticia es la de las 8»; ¿etiquetado de velas por apertura, zona horaria del gráfico o garble? El integrador adjudica.
+- La lectura de la alineación impar de las velas 2h se basa en las etiquetas visibles del eje temporal (03:00/09:00/13:00), no en la etiqueta literal de la vela de la noticia; confirmación de alta confianza pero indirecta.
+- «Power 3» [ASR] → ¿Power of 3 (término del glosario)?
+
 ### c-0160
 
 **Statement:** «Teniendo dos noticias, lo que queremos es entrar aquí en la primera, si ya vemos que el Tartel Sub» [ASR] «ya está hecho y no hay motivo por manipulación».
@@ -1849,6 +2376,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002911|29:11]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002912|29:12]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002913|29:13]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002915|29:15]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002917|29:17]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002919|29:19]]
 
+**Dudas abiertas:**
+
+- «Tartel Sub» [ASR] → ¿Turtle Soup? (glosario lista «tartel sub»); confirmar contra fuente.
+- «Tartel Sub» [ASR] → ¿Turtle Soup? El glosario lo propone pero el segmento no contiene el término expandido; confirmar contra audio/fuente antes de normalizar en documentación.
+
 ### c-0161
 
 **Statement:** «Si esto fuera algo así, que el Tartel Sub no está hecho» [ASR], «pues a lo mejor puede ser que la primera haga algo así, para la segunda desplazar hacia el objetivo»; aclara que «he puesto un ejemplo extremo».
@@ -1858,6 +2390,11 @@
 **Tiempo:** [29:21–29:33]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002921|29:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002923|29:23]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002925|29:25]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002927|29:27]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002929|29:29]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-002931|29:31]]
+
+**Dudas abiertas:**
+
+- «Tartel Sub» [ASR] → ¿Turtle Soup? (mismo garble que b5-29).
+- «Tartel Sub» [ASR] → ¿Turtle Soup? (mismo garble que b5-29; confirmar contra fuente).
 
 ### c-0162
 
@@ -1895,6 +2432,10 @@
 
 **Notes:** Adjudicación targeted 2026-10-21 (am-ch10-002): la CONTRADICTION interna se RETIRA — la resolución de q-ch10-002 se verificó visualmente: las velas 2h abren en horas impares (crosshairs encajados 03:00 en f-002855 y 11:00 en f-002912; ticks 09:00/13:00 en f-002859) y las 1h a horas en punto (f-002951/f-002959), por lo que la noticia de 8:15 cae dentro de la vela 2h «de las 7» Y de la vela 1h «de las 8»: misma zona de la noticia, etiqueta distinta por temporalidad. f-003010 sitúa el borde de la noticia en «mié 04 Jun '25 08:15». q-ch10-002 queda RESUELTA. Corroboración externa [no es evidencia del curso]: NY Fed jun-2025 — ADP 08:15 ET el 4-jun.
 
+**Dudas abiertas:**
+
+- Matiz visual residual (no bloqueante): identificar la vela exacta que «cierra por fuera» del rango 1h — el rectángulo se redimensiona en vivo entre f-002951 y f-002959 y el still no permite señalar la vela concreta; la extensión gris bajo la caja es consistente con lo dicho.
+
 ### c-0165
 
 **Statement:** En el ejemplo de este día, la noticia era a las 8 y cuarto.
@@ -1921,6 +2462,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-003010.png|f-003010]]
 
+**Dudas abiertas:**
+
+- Garble «temporada más baja»: candidato probable «temporalidad más baja» (contexto de bajar de TF); alternativa: periodo/sesión de menor actividad. TERM_DISAMBIGUATION_REQUIRED.
+- Garble «temporada más baja»: candidato probable «temporalidad más baja» (contexto de bajar de TF; f-003010 muestra el gráfico 15M en ese momento); alternativa: periodo/sesión de menor actividad. TERM_DISAMBIGUATION_REQUIRED.
+
 ### c-0167
 
 **Statement:** «Normalmente las noticias si hacen así será para hacer así» [deíctico al gráfico]; en este caso, «los top loss de aquí estaba bastante seguro» [ASR; candidato: stop loss].
@@ -1930,6 +2476,11 @@
 **Tiempo:** [30:21–30:29]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003021|30:21]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003024|30:24]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003025|30:25]]
+
+**Dudas abiertas:**
+
+- Garble «top loss» → ¿stop loss?
+- La primera mitad es deíctica (gestos al gráfico no verbalizados): ¿qué muestra «hacen así»?
 
 ### c-0168
 
@@ -1950,6 +2501,10 @@
 **Tiempo:** [30:36–30:44]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003036|30:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003039|30:39]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003041|30:41]]
+
+**Dudas abiertas:**
+
+- Qué ilustra el gesto «pasara así» no es verbalizado.
 
 ### c-0170
 
@@ -1972,6 +2527,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003055|30:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003058|30:58]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003100|31:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003102|31:02]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003106|31:06]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-003059.png|f-003059]]
+
+**Dudas abiertas:**
+
+- El «lo» de «en una hora no lo hay» se interpreta como rango a favor (contexto de b6-06); no dicho literal en el segmento.
+- «A tanta cosa ya» (s-003058) es garble/filler sin resolución.
 
 ### c-0172
 
@@ -2019,6 +2579,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-003138.png|f-003138]]
 
+**Dudas abiertas:**
+
+- A qué hora de sesión o de noticia corresponde el 04:30 del eje del gráfico: la zona horaria del gráfico/broker (el reloj en pantalla marca UTC-4) no se declara en el segmento, así que no se puede contrastar este 04:30 con las horas de noticia 8:30/8:45 de ch07 ni afirmar contradicción — el instructor no nombra la hora de la noticia de ese día en este tramo.
+- «A las cuatro y media» es hora del eje del gráfico de ese día (16:30); no queda claro si es hora local del gráfico o de la sesión.
+
 ### c-0176
 
 **Statement:** Hay que tener cuidado con las «normas de unas propias» [ASR; candidato: normas de las firmas de fondeo]: en fondeada, al menos, te dejan cinco minutos de margen para entrar antes y para cerrar después [de la noticia] y tienes que respetar eso; algunas son dos minutos.
@@ -2029,6 +2594,13 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003149|31:49]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003154|31:54]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003201|32:01]]
 
+**Dudas abiertas:**
+
+- Garble «normas de unas propias»: ¿«normas de las firmas de fondeo» (prop firms)? Sin respaldo literal del término real en el audio.
+- Garble «normas de unas propias»: ¿«normas de las firmas propias» (prop firms)?
+- ¿El margen de 5/2 minutos se aplica a la hora exacta de la noticia (antes para entrar, después para cerrar)? Dicho así pero sin detalle de si es por operación o por ventana de noticia.
+- ¿El margen de 5/2 minutos se aplica a la hora exacta de la noticia (entrar antes / cerrar después)? Dicho así pero sin detallar si es por operación o por ventana de noticia.
+
 ### c-0177
 
 **Statement:** En challenge normalmente no hay restricciones así [de noticias].
@@ -2038,6 +2610,11 @@
 **Tiempo:** [32:07–32:11]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003207|32:07]]
+
+**Dudas abiertas:**
+
+- Ambigüedad menor de puntuación ASR: «no hay restricciones así» vs «no hay restricciones, así que»; ambas lecturas son compatibles con el statement publicado, la glosa [de noticias] es interpretativa.
+- Hedge «normalmente» preservado: no convertir en prohibición/universal.
 
 ### c-0178
 
@@ -2051,6 +2628,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-003214.png|f-003214]]
 
+**Dudas abiertas:**
+
+- «Ratios» se interpreta como múltiplos de R (2R-3R): f-003214 muestra «Relación riesgo/beneficio: 3.13», lo que apoya esa lectura, pero el instructor no lo define verbalmente en el segmento.
+- «Ratios» se interpreta como múltiplos de R (2R-3R); no definido explícitamente en el segmento.
+
 ### c-0179
 
 **Statement:** El GDP iba a tener también este rango alcista en 12 horas, que es lo mismo que se tenía en euro; por lo tanto, ya se tenía el bias claro para el GDP y para euro.
@@ -2060,6 +2642,10 @@
 **Tiempo:** [32:22–32:52]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003222|32:22]]
+
+**Dudas abiertas:**
+
+- «Este rango alcista» es deíctico del gráfico de 12h; ningún frame de este minuto captura el chart 12h (f-003237 muestra 2D, f-003259 muestra 6h), por lo que el referente visual queda sin verificar (el soporte textual es completo).
 
 ### c-0180
 
@@ -2085,6 +2671,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-003252.png|f-003252]]
 
+**Dudas abiertas:**
+
+- Deíctico «la verdadera noticia es esta de aquí»: ¿se refiere al rango pendiente de 8h dibujado (f-003252) o a otro elemento (p. ej. la vela de noticia)? No se resuelve inequívocamente.
+- «La verdadera noticia es esta de aquí» es ambiguo: ¿se refiere al rango pendiente de 8h como el elemento clave del día? No se resuelve inequívocamente.
+
 ### c-0182
 
 **Statement:** [En 6 horas, «en nada»]; en 4 horas esto fue un rango pendiente también, para tomar la compra ideal.
@@ -2096,6 +2687,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003255|32:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003258|32:58]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003259|32:59]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003303|33:03]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003305|33:05]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003306|33:06]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-003259.png|f-003259]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-003303.png|f-003303]]
+
+**Dudas abiertas:**
+
+- «En 6 horas, en nada» es ambiguo (¿no había nada operativo en 6h?); el frame f-003259 (32:59) muestra 6h de GBPUSD/EURUSD con cajas de rango dibujadas, lo que no cuadra inequívocamente con «en nada».
+- No hay frame del gráfico en 4h para verificar el rango dicho en s-003303.
 
 ### c-0183
 
@@ -2121,6 +2717,11 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003323|33:23]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003326|33:26]]
 
+**Dudas abiertas:**
+
+- Garble «azistas» → ¿alcistas? (glosario lo lista como candidato, sin confirmación literal en el segmento).
+- «azistas»→«alcistas» sigue siendo candidato apoyado sólo por contexto (día de compras, precio al alza); sin respaldo literal en el segmento citado.
+
 ### c-0185
 
 **Statement:** Es como el análisis normal, pero simplemente sabiendo que la volatilidad va a venir con las velas a las noticias.
@@ -2143,6 +2744,10 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-003359.png|f-003359]]
 
+**Dudas abiertas:**
+
+- La fecha concreta de «este día» no se dice en el audio; la línea vertical de f-003359 marca «mié 04 Jun '25 17:00» como día bajo el cursor (corroboración visual, no cita textual).
+
 ### c-0187
 
 **Statement:** Si esto está bullish en euro, vais a ver que en «dex» [ASR; candidato: DXY] está bearish — «ya os lo puedo asegurar ya»; si lo queréis comprobar por vosotros mismos, lo podéis ir a hacer con los días que se han estado cogiendo para las noticias.
@@ -2152,6 +2757,11 @@
 **Tiempo:** [33:44–34:06]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003353|33:53]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003355|33:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003357|33:57]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003358|33:58]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003400|34:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003401|34:01]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003404|34:04]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003344|33:44]]
+
+**Dudas abiertas:**
+
+- Garble «dex» → DXY: en el mismo análisis s-003344 nombra «DXY» literalmente, pero la sustitución formal la adjudica el revisor/integrador.
+- La sustitución formal «dex»→DXY en s-003355 es inferencia (muy respaldada: «DXY» literal en s-003344 con la misma simetría); el statement correctamente mantiene la palabra dicha con [ASR] — el integrador confirma la normalización.
 
 ### c-0188
 
@@ -2203,6 +2813,12 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003422|34:22]]
 
+**Dudas abiertas:**
+
+- Advertencia probabilística («lo que puede pasar»): no publicar como prohibición universal.
+- Garble «toplos»: ¿«stop loss»? ¿«tops» (techos barridos)? Probable «stops», sin confirmación literal.
+- Garble «toplos»: ¿«stops (loss)»? ¿«tops/lows» barridos? Sin confirmación literal ni etiqueta en frame; mantener [ASR].
+
 ### c-0193
 
 **Statement:** [Otra condición:] que los «dolls» [ASR; candidato: DOL] no estén completados — «queréis los dolls intactos».
@@ -2215,6 +2831,11 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-003445.png|f-003445]]
 
+**Dudas abiertas:**
+
+- Garble «dolls» → DOL (objetivo de liquidez) según familia de garbles del curso; confirmar contra frame/segmento antes de normalizar.
+- «dolls» → DOL sigue siendo candidato de la familia de garbles del curso: el frame f-003445 no muestra etiqueta literal «DOL» en el gráfico, sólo líneas y zonas dibujadas; no normalizar sin respaldo literal.
+
 ### c-0194
 
 **Statement:** Si la noticia fuera una vez [ASR] y este doll [ASR; candidato: DOL] ya se ha completado, «a lo mejor la noticia no va a traer casi volatilidad o la noticia va a ser un reversal».
@@ -2224,6 +2845,11 @@
 **Tiempo:** [34:41–34:55]
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003441|34:41]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003449|34:49]]
+
+**Dudas abiertas:**
+
+- Antecedente «si la noticia fuera una vez» [ASR]: lectura como «si llega la noticia» es paráfrasis plausible no confirmada contra fuente literal.
+- Hedge «a lo mejor» preservado: advertencia probabilística, no regla determinista.
 
 ### c-0195
 
@@ -2245,6 +2871,12 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003455|34:55]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003504|35:04]]
 
+**Dudas abiertas:**
+
+- «El TP no va a llegar con la noticia» es ambiguo: ¿el TP solo llega con la noticia (en NY) o no llega sin ella? No resolver categóricamente.
+- «Ni que la noticia sea en New York» probablemente es «aunque la noticia sea en New York»; sin confirmación literal en el segmento.
+- «Ni que la noticia sea en New York» probablemente es «aunque la noticia sea en New York»; sin confirmación literal.
+
 ### c-0197
 
 **Statement:** Si queréis esperar la noticia y esperar a la vela de la noticia: utilizar el Power 3 (Power of 3), esperar un rango pendiente a vuestro favor y os posicionáis ahí, en la vela de la noticia, que es la vela que sabéis que va a traer la probabilidad.
@@ -2265,6 +2897,12 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003536|35:36]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003537|35:37]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003540|35:40]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003533|35:33]]
 
+**Dudas abiertas:**
+
+- «Solo» dicho sin hedge en la despedida: verificar con el revisor si se publica como condición dura o recomendación de cierre.
+- ¿«Con menos riesgo» califica solo a fondeada o a ambas (challenge y fondeada)? Ambigüedad sintáctica no resoluble desde el transcript.
+- ¿«Con menos riesgo» califica solo a fondeada o a ambas (challenge y fondeada)? Ambigüedad sintáctica no resuelta.
+
 ### c-0199
 
 **Statement:** Cierre del vídeo: «sería hasta aquí el vídeo de noticias, espero que haya quedado claro, que os sirva… hasta aquí el vídeo, nos vemos en el siguiente». No se anuncia título ni tema del siguiente vídeo.
@@ -2276,6 +2914,11 @@
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003528|35:28]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003532|35:32]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003541|35:41]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/transcript#^s-003533|35:33]]
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-003548.png|f-003548]]
+
+**Dudas abiertas:**
+
+- El frame f-002148 (35:48) es pantalla negra: no existe tarjeta de cierre legible que nombre el siguiente vídeo.
+- La comprobación visual de «sin tarjeta de cierre» cubre sólo el frame final (35:48); una tarjeta previa a los últimos segundos no se descartó, aunque el audio (s-003541) tampoco anuncia título ni tema.
 
 ### c-0200
 
@@ -2292,4 +2935,8 @@
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000539.png|f-000539]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000559.png|f-000559]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000500.png|f-000500]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000515.png|f-000515]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch10-noticias/frames/f-000529.png|f-000529]]
 
 **Notes:** Reemplaza a c-0030 (supersession am-ch10-001, 2026-10-21): la observación del extractor que situaba Myfxbook en el minuto 5 fue REFUTADA — la pantalla de todo el minuto 5 muestra este Excel; Myfxbook está verificado en el minuto 3 (c-0020, f-000350/f-000359). Revisión targeted independiente (run clutifx-ch10-closeout-20261021): 5 puntos del minuto verificados (f-000500, f-000515, f-000529, f-000539, f-000559), 0 Myfxbook en todos. Nota de fidelidad visual (DV10C-07): los bloques AUD y NZD contienen además una fila de par atenuada (gris, baja legibilidad en stills) no incluida en la enumeración del statement; ver f-000500/f-000559.
+
+**Dudas abiertas:**
+
+- Deíctico no resuelto: en s-000456 [4:56-5:10] el instructor dice «vamos a volver aquí»; el referente de «aquí» no se confirmó con frames y no se usó como evidencia.
 
