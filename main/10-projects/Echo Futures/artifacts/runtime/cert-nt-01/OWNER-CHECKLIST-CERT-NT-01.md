@@ -16,6 +16,17 @@ updated: "2026-10-20"
 
 # OWNER CHECKLIST — CERT-NT-01 (desbloqueo de gates C2/C3/C4)
 
+## FINAL 2026-10-23 (SHA 2ee61791 desplegado) — UN solo ciclo Owner: AddOn integrado + JSON Sim101 + reinicio NT
+
+Runtime ya desplegado y verificado por el submanager: core/gateway/relay DEV en release `2ee61791` (binarios buildvcs limpios), module Flink verbatim en .75 (job RUNNING 38/38), perfil de feed ETCD provisionado (ticks ALL, flush 50ms, NATIVE 1m..1d, NQ 12-26), backlog histórico drenado. Falta SOLO el ciclo físico del AddOn en .132.
+
+- Paquete staged verificado por hash en `.132`: `C:\Users\echo-dev\certnt01-final\` (4 archivos; tarjeta `OWNER-INSTALL-CARD-FINAL.md` con pasos exactos, backup, rollback y hashes; fuente daedalus `/home/kor/opt/echo-dev/var/nt-feed/owner-install/final-2ee61791/`).
+- Acción: cerrar NT → respaldar → RETIRAR `EchoFeedAddOn.cs` (una sola autoridad de feed; D5) y duplicados → copiar `EchoExecutionAddOn.cs` + `EchoFeedV1.cs` + `EchoNativeBars.cs` (sha256 en la tarjeta) a `Custom\AddOns\EchoFeed\` → reemplazar COMPLETO `echo-execution-addon.json` por el TARGET sustituyendo sólo el `auth_token` (binding CERTNT01-SIM01 → .161:9771 → Sim101 id "2"; config_version 1; feed ticks ALL/flush 50/NATIVE 1m..1d) → iniciar NT.
+- Verificación esperada (submanager por canal del relay): hello con capabilities `feed.ticks.v1/feed.bars.v1/feed.batch.v1`, `feed_state ACTIVE`, `market_batch` en Kafka con `bars_origin` estampado, y binding RESOLVED = Sim101 id "2" (cero RJARA…551).
+- Este ciclo desbloquea C2 (ventana stampada de 30 min), C3 y la elegibilidad de armado C5. El armado C5 lo ejecuta el submanager con despacho propio tras verificar el ciclo.
+
+---
+
 Actualizado 2026-10-20 (RESUME-05): la sección «RESUME-05» de abajo es la vigente para el arming C3.
 
 ## RESUME-05 (2026-10-20) — timeout CORREGIDO y demostrado; JSON COMPLETO; acción Owner única para arming C3
