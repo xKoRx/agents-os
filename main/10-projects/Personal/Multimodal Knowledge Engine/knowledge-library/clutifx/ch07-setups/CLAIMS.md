@@ -31,7 +31,7 @@
 
 ### c-0003
 
-**Statement:** La vela de las 1 es la vela que operamos nosotros operan en London.
+**Statement:** La vela de las 1 es la vela que operamos nosotros en London.
 
 **Verdict:** SUPPORTED · **Epistemic:** instructor_statement · **Kind:** parameter · **Minute:** 1 · **Source key:** 
 
@@ -569,7 +569,7 @@
 
 **Transcript:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000900|09:00]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-000841|08:41]]
 
-**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-000545.png|f-000545]]
+**Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/frames/f-000905.png|f-000905]]
 
 **Visual hint:** 09:05 — gráfico 1h/60M FXCM con dos casos enmarcados comparados (uno no se dio en London, otro sí)
 
