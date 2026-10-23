@@ -25,10 +25,16 @@ tags:
   - kind/project
   - area/personal
 created: "2026-09-17"
-updated: "2026-10-21"
+updated: "2026-10-23"
 ---
 
 # Multimodal Knowledge Engine
+
+> [!important]+ Continuidad de uso · 2026-10-23 — Clutifx listo para explotación; curso Gerard candidato
+> **Estado vigente:** la biblioteca certificada de 12 capítulos y su compilación V1 están disponibles para consulta en [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/compiled/README|Clutifx compiled/README]]; 1.584 claims SUPPORTED de 1.599 activos, 15 UNCERTAIN y 9 superseded. La compilación publicada (commit `721c1b108bdd5bff05edfc0c3414ce7df9c09a1d`) es derivada: `claims.jsonl`, transcript y frames por capítulo siguen siendo la autoridad. q-ch07-019 (08:00 vs 10:00 en noticia NY-EUR) permanece OPEN/MATERIAL y ninguna hora puede elevarse a hecho confirmado.
+> **Decisión del Owner en esta sesión:** pasar de la extracción a explotar Clutifx para identificar, formalizar y probar estrategias; se puede complementar con criterios/metodología propia en una superficie DERIVADA y etiquetada como interpretación/hipótesis, sin alterar los claims ni atribuirla al instructor. Las conclusiones de rendimiento requieren backtesting independiente; el curso no las certifica.
+> **Próximo curso candidato:** Gerard. Aún NO iniciado ni adquirido como fuente en esta sesión; no inferir identidad del curso ni equipararlo automáticamente al proyecto Tradesgerard/Echo Futures. Preflight previo: inventario y permiso de uso de videos, SHA-256/duración, orden de episodios, exclusión LiveSync del nuevo árbol y reutilización de las skills V1.2, DOCVERIFY independiente y contrato de consumo epistémico desde CH01.
+> **Deuda menor no bloqueante:** al hacer mantenimiento documental, corregir la rotulación de columnas de COVERAGE, un enlace ilustrativo activo en guia-estudio, el preámbulo histórico de COMPILATION-READINESS y mejorar la portabilidad del reporte/checker de QA que quedó en el run local. No rehacer extracción ni compilación por estos puntos.
 
 > [!important]+ Estado canónico · 2026-10-23 — CLUTIFX KNOWLEDGE COMPILATION V1 publicado (biblioteca compilada del curso; artefacto DERIVADO, autoridad intacta)
 
@@ -185,6 +191,9 @@ Repo: `docs/roadmap/post-m0-opportunities.md` (`master`, commit de alta `c9c0d3c
 - [[M0 Execution]] — planificador histórico de V1/M0; cerrado como remediado @ `640d000`, sin recertificación final. Conservar como evidencia, no usar para conducir V2.
 
 ## ✅ Tareas
+
+- [ ] Explotar Clutifx: derivar estrategias en una capa aplicada separada, con citas a la biblioteca, hipótesis propias identificadas y validación/backtesting independiente antes de considerarlas operables. #owner/me #type/admin #area/personal
+- [ ] Preparar curso Gerard como candidato: confirmar identidad y materiales/permiso, inventario SHA/duración/orden, aislamiento LiveSync y preflight V1.2 antes de autorizar cualquier extracción. #owner/me #type/admin #area/personal
 
 - [x] Convergencia arquitectónica ADR-001 y SPECs M0 freeze. #owner/me #type/admin #area/personal
 - [x] Fijar objetivo de conocimiento, QA delegado, contratos visuales y milestones. #owner/me #type/admin #area/personal
