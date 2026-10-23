@@ -42,7 +42,7 @@ tags:
 
 - Solución A recomendada: conservar componentes y reglas; recovery con manifest/markers/fencing, M1 real, observaciones durables, cursores/horizonte, tiempo por admisión y autoridad contable. Tres P0, seis P1 y un P2, distinguiendo evidencia source de reportes/gaps; RCA exacta F1 no afirmada.
 - Implementación futura consolidada en B1/B2/B3 por un Submanager GLM LOCAL; G-DOC review, G-IMPL pending, cert física bloqueada, PROD NO_GO. FX compartido requiere continuidad y gate equivalente; no extrapolar garantía Futures al consumer legacy. Opción B condicionada a capacidad/blast radius/capability de convivencia; C diferida.
-- Cuatro documentos materializados con plantilla canónica y completados como draft. No código, tests de producto, benchmarks, builds, SSH, cambios de config, infraestructura, cuentas ni órdenes; GLM no lanzado. Validaciones sólo documentales.
+- Cuatro documentos materializados con plantilla canónica; `status: active` indica documento vigente según schema doc, mientras el contenido declara inequívocamente diseño candidato pendiente de adjudicación. No código, tests de producto, benchmarks, builds, SSH, cambios de config, infraestructura, cuentas ni órdenes; GLM no lanzado. Validaciones sólo documentales.
 
 ## Validación
 

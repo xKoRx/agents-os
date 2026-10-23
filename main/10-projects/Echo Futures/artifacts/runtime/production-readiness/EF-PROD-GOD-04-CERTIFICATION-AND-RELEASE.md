@@ -1,7 +1,7 @@
 ---
 type: doc
 schema_version: 1
-status: draft
+status: active
 area: "[[Echo]]"
 related: ["[[Echo Futures — Runtime Pools]]", "[[EF-PROD-GOD-01-SOURCE-FORENSICS]]", "[[EF-PROD-GOD-02-PRODUCTION-ARCHITECTURE]]", "[[EF-PROD-GOD-03-IMPLEMENTATION-PLAN]]"]
 aliases: []
