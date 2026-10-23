@@ -312,7 +312,8 @@ El curso pone la gestión del lado humano; para Echo Futures estas reglas son **
 9. **Reentrada intra-TS**: STR-009.
 10. **Pirámides (challenge only)**: primera protegida (BE) siempre (ch11 c-0055/c-0060); test contrafáctico load-bearing: "si no estuviera el trade inicial, ¿tomaría este segundo trade? Si sí, pirámide; si no, no" (c-0059; c-0057/c-058); "en la fondeada no lo hago NUNCA" (c-0061); con objetivo ya tomado, mucho cuidado (c-0070); excepción drawdown con aritmética UNCERTAIN (c-0067/c-0068).
 11. **Riesgo por etapa** [ejemplos hipotéticos, capital de referencia no dicho q-ch11-001]: challenge f1 1% hasta 4% profit luego 2%/1.5%; f2 1% hasta 2.5%; fondeada 1% (o 0.5%) (ch11 c-0003–c-0006).
-12. **Payouts/challenges**: retirar 1-2% de fondeadas y recomprar challenges (ch11 c-0007/c-0008) — política de cartera humana, fuera de scope de una Strategy.
+12. **Tope y límite diario (ch12 — reglas de conducta operativa, extraídas por el minero del capítulo)**: tope de riesgo 1% por trade (ch12 c-0008, c-0019, c-0073 "buenos setups de 1%"); límite del día perdedor "2R máximo… dos operaciones de 1 y 1" (ch12 c-0010, parámetro dicho); protocolo de retirada: al alcanzar "lo máximo que pudiese perder, cerrar el gráfico" (c-0057, umbral no explicitado q-ch12-010), y ante descontrol "cierra el Ctrader, cierra el gráfico y vete" (c-0070); check de estado: "si ves que estás muy nervioso, también no operar" (c-0124); journal por trade: "lo revisas, lo apuntas… te olvidas" (c-0023). Aritmética de expectativa dicha (hipotética, no validación): 5-6/10 aciertos a 1% ratio 2 ⇒ +8R neto "el challenge pasado" (c-0015/c-0016); 100 trades 60/40 ⇒ "80R" (c-0119). Estos son refinamientos de MM/plan de conta — ningún indicador de entrada.
+13. **Payouts/challenges**: retirar 1-2% de fondeadas y recomprar challenges (ch11 c-0007/c-0008) — política de cartera humana, fuera de scope de una Strategy.
 
 ---
 
