@@ -276,7 +276,7 @@ Mecanismo causal: el precio completa cadenas de rangos en dirección a objetivos
 | Estrategias completas (N3) | 9 + 1 variante | STR-001..009 (+STR-008b) |
 | Setups parciales (N2) | 7 | Ver §4 |
 | Componentes (N1) | 24 | CLF-CMP-001..024 (§2) |
-| Reglas de gestión (transversales) | 12 | §5 |
+| Reglas de gestión (transversales) | 13 | §5 (la nº 12 agrega las reglas de conducta operativa de ch12) |
 | Red flags | 4 | §6 |
 
 **Por qué no más**: cada combinación enseñada de los componentes cae en una de las 9 estrategias (las variaciones enseñadas son de sesión/escenario dentro de FAM-001, o de gestión en §5). El curso NO enseña: estrategias de escala intradía pura,网格/grid, momentum-indicadores, ni ningún setup con indicadores técnicos (el curso no usa ningún indicador — véase §8 exclusión "NOT_OBSERVABLE"). Inflar el conteo dividendo ejemplos LONG/SHORT o TFs sería artificio: la simetría y la multi-TF son dimensiones, no estrategias (ver `CLUTIFX-EXPERIMENT-MATRIX.md`).
@@ -370,7 +370,7 @@ Datos disponibles (auditados en `HEFESTO-BASELINE-AUDIT.md`): NQ físico 2023-10
 
 | Clase | Contenido | Ejemplos |
 |---|---|---|
-| `NON_TRADING_CONTENT` | ch12 psicotrading completo (revenge, miedo, disciplina), anécdotas | ch12 salvo el solape de §5/§8 |
+| `NON_TRADING_CONTENT` | Psicología pura (revenge, miedo, disciplina, anécdotas) | ch12 MAYORMENTE (135 claims: psicología + catálogo de errores); **excepción**: sus reglas de conducta operativa (1%/trade, 2R/día perdedor, protocolo de retirada, journal, no-operar-nervioso) SÍ fueron extraídas a §5.12 |
 | `META` | Aperturas, temarios, recaps, anuncios de vídeo siguiente | 19 claims clasificados META por COVERAGE |
 | `EXAMPLE_ONLY` | Observaciones de un caso sin enunciado general | "cuerpos respetan brutalmente el rango" (ch03 c-0108); ratio 12,34 (ch04 c-0079); -164 vs -100 pips (ch05) |
 | `DUPLICATE_SEMANTICS` | Repeticiones del instructor con otras palabras | 20 claims EQUIV clasificados por COVERAGE |
