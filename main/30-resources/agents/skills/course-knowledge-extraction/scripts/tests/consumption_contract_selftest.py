@@ -68,14 +68,8 @@ C1 = lambda uq=None: claim("c-0001", ["s-000010"], "había noticias a las 10", u
 C2 = lambda uq=None: claim("c-0002", ["s-000020"], "la noticia fue a las 8", uq)
 QREF = "q-tst-001 (OPEN, contradicción material): hora no adjudicada."
 
-# Compuerta de interpretación (estructura, no NLU): aserción estructurada +
-# manifiesto. El compilador futuro sustituye esto por su propia lógica; el
-# CONTRATO que se prueba aquí es el mismo.
-def synthesis_gate(assertion, summary):
-    guarded = {}
-    for ch in summary and [summary] or []:
-        pass
-    return assertion, summary  # placeholder reemplazado abajo
+# La compuerta de interpretación vive dentro de run_real() (caso 6): opera
+# sobre aserciones estructuradas + manifiesto del preflight, no NLU.
 
 
 def real_library_root():

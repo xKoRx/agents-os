@@ -70,7 +70,7 @@ def resolve_evidence(claims, seg_ids, frames):
         for e in c.get("evidence", []):
             if e.startswith("s-") and e not in seg_ids:
                 broken.append((c["id"], e))
-            elif e.startswith("f-") and e + ".png" not in frames:
+            elif e.startswith("f-") and e not in frames:
                 broken.append((c["id"], e))
     return broken
 
