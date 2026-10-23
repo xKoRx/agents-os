@@ -108,12 +108,12 @@ STR-007 sin TIER 1 (bloqueado por datos). Cada TIER 1 declara: identidades de ra
 | S7-* (SMT) | sin 2º instrumento en corpus | incorporar ES/YM 1m al corpus (decisión Owner) |
 | S8-* (noticias) | sin feed de calendario económico en el runtime | conector de calendario (gap declarado en D1) |
 | Todas: fidelidad intrabar fina | sin ticks | corpus de ticks (pendiente físico) |
-| 23 filas R02 SG FBC/ORB | ciclo R03 ajeno en curso | re-ejecución del ciclo correctivo (Owner/otra sesión) |
+| 23 filas R02 en cuarentena (17 SG FBC/ORB + 3 SG-TG + 3 SG-MR) | ciclo R03 ajeno en curso | re-ejecución del ciclo correctivo (Owner/otra sesión) |
 
 ## 8. Gate E
 
 ```text
-VARIANTES_MATERIALES_IDENTIFICADAS = 8 TIER1 + 22 TIER2 + 5 TIER3 (35 identidades, grids declarados como rangos)
+VARIANTES_MATERIALES_IDENTIFICADAS = 8 TIER1 + 21 TIER2 etiquetadas + 5 TIER3 (34 IDs; la fila S6-P1a,b empaqueta 3 sustituciones ⇒ 35 sustituciones efectivas; grids declarados como rangos)
 REDUNDANCIA_ELIMINADA = equivalencias R2⊆rango, E1≈E2 (pendiente medición), eje MM desacoplado, patrón alias documentado
 SELECCION_DEL_CONJUNTO = PENDING (Owner)
 ```
