@@ -343,7 +343,7 @@
 - Deictico 'esta/esa vela' sin referente visual en el minuto: en pantalla solo esta el calendario de Forex Factory (candidato: la fila 10:00am USD ISM Services PMI del mie 4 jun); la vela en el grafico se muestra a partir de ~08:16 (dia 23 de junio), fuera de este minuto.
 - El gráfico señalado no está en los frames base; hace falta frame on-demand (~276 s) para verificar el deíctico «esta vela».
 - La hora «10» se dice sin zona horaria; en el Excel las horas están en NY (f-000059, 'TIME (NY | UTC-4)'), pero para este gráfico no se verbaliza.
-- La hora «10» se dice sin zona horaria; f-000425/f-000436 muestran el calendario en Eastern Time (toast 'Time zone set to (GMT-04:00) Eastern Time' visible en f-000425) con una entrada 10:00am USD, pero el instructor no verbaliza la zona en este minuto.
+- La hora «10» se dice sin zona horaria; f-000425 muestra el calendario en Eastern Time (toast 'Time zone set to (GMT-04:00) Eastern Time' visible) y el frame de revisión complementario de ese minuto (capturado en review, no publicado en la biblioteca) mostraba una entrada 10:00am USD, pero el instructor no verbaliza la zona en este minuto.
 
 ### c-0024
 
@@ -480,7 +480,7 @@
 **Dudas abiertas:**
 
 - USDCAT → ¿USDCAD?, USDCHEF → ¿USDCHF?, USDJPI → ¿USDJPY? (garbles ASR de nombres de pares, no confirmados en la fuente)
-- USDJPI → ¿USDJPY?: el Excel visible en f-000600/f-000612 no muestra ningún bloque JPY ni la cadena 'USDJPY'; queda candidato por contexto (familia USDXXX), no confirmado en fuente.
+- USDJPI → ¿USDJPY?: el Excel visible en f-000600 (y en el frame de revisión complementario del mismo minuto, no publicado en la biblioteca) no muestra ningún bloque JPY ni la cadena 'USDJPY'; queda candidato por contexto (familia USDXXX), no confirmado en fuente.
 
 ### c-0032
 
@@ -2050,7 +2050,7 @@
 - «AUTUSD» [ASR] → ¿AUDUSD?
 - «AUTUSD» [ASR] → ¿AUDUSD?: candidato plausible, sin respaldo literal ni visual en el minuto; queda abierto.
 - «NCTD» [ASR] → ¿NZD/USD u otro par correlacionado?
-- «NCTD» [ASR]: sin confirmación visual (f-002512 no muestra cambio de símbolo); candidato ¿NZD/USD? u otro par correlacionado, queda abierto.
+- «NCTD» [ASR]: sin confirmación visual (el frame de revisión del minuto, no publicado en la biblioteca, no muestra cambio de símbolo); candidato ¿NZD/USD? u otro par correlacionado, queda abierto.
 - «USDCAT» [ASR] → ¿USDCAD?
 - «USDCAT» [ASR] → ¿USDCAD?: candidato plausible, sin respaldo literal ni visual en el minuto; queda abierto.
 
@@ -2198,7 +2198,7 @@
 
 **Dudas abiertas:**
 
-- Deixis visual sin resolver al detalle: el «rango bullish aquí» no queda inequívocamente señalado en los frames extraídos f-002715.png (6h, niveles horizontales arriba) ni f-002724.png (4h, niveles 1,4182/1,4331/1,4548 por encima del precio); el rectángulo claro en los mínimos sólo es visible después, en la vista 2h (f-002746.png). El integrador puede fijar la zona exacta con un frame ~27:22-27:27 si la necesita.
+- Deixis visual sin resolver al detalle: el «rango bullish aquí» no queda inequívocamente señalado en los frames de revisión del minuto (6h con niveles horizontales arriba; 4h con niveles 1,4182/1,4331/1,4548 por encima del precio; capturados durante la review y no publicados en la biblioteca); el rectángulo claro en los mínimos sólo es visible después, en la vista 2h (f-002746.png). El integrador puede fijar la zona exacta con un frame ~27:22-27:27 si la necesita.
 
 ### c-0149
 

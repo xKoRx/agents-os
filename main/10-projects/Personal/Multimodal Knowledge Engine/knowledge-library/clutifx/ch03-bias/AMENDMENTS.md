@@ -139,7 +139,7 @@ previa a la publicación (pre-remediation) están documentadas en
 - **Claim:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0018|c-0018]]
 - **Fecha:** 2026-10-23
 - **Motivo:** hardening del contrato de consumo — la proyección de `unresolved_questions` en CLAIMS.md (renderer 2026-10-23) sometió las dudas al chequeo V11 y reveló que la nota usaba sintaxis de ID (`f-000249`) para un frame HIPOTÉTICO nunca extraído (sugerencia de extracción, no referencia).
-- **Antes:** «…si el integrador la quiere, extraer f-000249 (00:02:49).»
-- **Después:** «…si el integrador la quiere, extraer el frame de 00:02:49 si hace falta.»
+- **Antes:** «…si el integrador la quiere, extraer [ID de frame hipotético para 00:02:49]» (nunca extraído; ver nota).
+- **Después:** «…si el integrador la quiere, extraer el frame de 00:02:49 si hace falta.» (el texto original queda en el historial git de claims.jsonl y en el run `~/mke/clutifx-contract-hardening-20261023/`)
 - **Evidencia:** no aplica (nota de duda; statement, evidence y veredicto intactos).
 - **Resultado:** CORREGIDO — misma instrucción sin pseudo-referencia; validate_library PASS.
