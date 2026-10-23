@@ -48,7 +48,7 @@ Auditoría NORMAL acotada (una sesión GLM, corte `07cca9d3`) al cierre `PASS_26
 
 ## Runtime pools — supervisión
 
-- [r] [[Echo Futures — Runtime Pools]] adjudicar Production Readiness — GOD Design (EF-PROD-GOD-01..04); G-DOC en review, implementación pendiente y certificación/PROD bloqueadas. Única autoridad operativa; historial R6/FEFB/F1 preservado. #owner/me #type/supervision #area/echo
+- [/] [[Echo Futures — Runtime Pools]] Production Readiness GOD G-DOC accepted (EF-PROD-GOD-01..04 + [[EF-PROD-GOD-05-MANAGER-ADJUDICATION]]); GLM B1–B3 autorizado y por iniciar, G-IMPL pendiente, certificación/PROD bloqueadas. Única autoridad operativa; R6/FEFB/F1 preservados. #owner/me #type/supervision #area/echo
 
 ## Optimización de Campañas — supervisión
 
