@@ -1063,7 +1063,7 @@
 
 **Frames:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch01-introduccion/frames/f-002147.png|f-002147]]
 
-**Notes:** Deíctico 'esto' = la SMT clásica euro/libra que acaba de mostrar. | Adjudicación Manager: 'DXI' [ASR] con lectura probable DXY (índice del dólar; s-002315 escribe DXY literal); sin sustitución en statement — ver q-ch01-002.
+**Notes:** Deíctico 'esto' = la SMT clásica euro/libra que acaba de mostrar. | Adjudicación Manager: 'DXI' [ASR] con lectura probable DXY (índice del dólar; s-002315 escribe DXY literal); sin sustitución en statement — ver q-ch01-003.
 
 ### c-0085
 
