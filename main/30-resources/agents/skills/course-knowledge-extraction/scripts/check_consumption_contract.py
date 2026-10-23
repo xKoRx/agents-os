@@ -176,6 +176,7 @@ def main():
             violations.append(("CC04", f"{qid}: esperado {want}; referencia=({got}) entrada=({linked})"))
 
     n_claims = sum(len(d["claims"]) for d in chapters.values())
+    all_rows = [r for d in manifest.values() for r in d["rows"]]
     summary = {
         "library_root": root,
         "chapters": len(chapters),
@@ -183,9 +184,9 @@ def main():
         "consumable": consumable_total,
         "consumable_with_material_question": guarded_total,
         "excluded": {
-            "SUPERSEDED": sum(1 for d in chapters.values() for c in d["claims"] if c.get("superseded_by")),
-            "UNCERTAIN": sum(1 for d in chapters.values() for c in d["claims"] if c.get("verdict") == "UNCERTAIN"),
-            "UNVERIFIED": sum(1 for d in chapters.values() for c in d["claims"] if c.get("verdict") == "UNVERIFIED"),
+            "SUPERSEDED": sum(1 for r in all_rows if r["status"] == "EXCLUDED_SUPERSEDED"),
+            "UNCERTAIN": sum(1 for r in all_rows if r["status"] == "EXCLUDED_UNCERTAIN"),
+            "UNVERIFIED": sum(1 for r in all_rows if r["status"] == "EXCLUDED_UNVERIFIED"),
         },
         "material_contradiction_groups": groups,
         "violations": [{"check": k, "msg": m} for k, m in violations],
