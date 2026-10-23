@@ -38,6 +38,10 @@ updated: "2026-10-23"
 
 El mandato GOD LOCAL de 2026-10-12 y su estado de ejecución viven exclusivamente en [[TRADESGERARD-CONTROL]]. Contrato, perfil versionado, catálogo finito y entrada GLM se enlazan desde ese control. Esta iniciativa no acepta ni reemplaza gates históricos BTG/D1–D6 y no autoriza LIVE.
 
+## Clutifx — Extracción de estrategias (misión GOD) — 2026-10-23
+
+Catálogo documental exhaustivo de las estrategias del curso Clutifx (fuente: biblioteca MKE certificada @ `7fdaac6b`) con su objetivización para futura implementación en este backtester. Documento maestro: [[CLUTIFX-STRATEGIES-MASTER]] (5 familias, 9+1 estrategias, 24 componentes, detectores y matriz experimental) en `artifacts/clutifx-strategy-research/`, junto a [[HEFESTO-BASELINE-AUDIT]], [[CLUTIFX-OBJECTIVE-DETECTORS]], [[CLUTIFX-EXPERIMENT-MATRIX]], [[CLUTIFX-SOURCE-COVERAGE]] y [[HANDOFF-CLUTIFX-GOD|HANDOFF]]. Sólo documentación: sin implementación, sin backtests nuevos (orden owner), sin cambios en runtime ni en la biblioteca canónica. `EXPERIMENT_MATRIX_OWNER_APPROVAL=PENDING`.
+
 ## Corte vigente BTG-S05 — 2026-10-08
 
 READY_FOR_FINAL_ACCEPTANCE sobre fuente `d1b1446d401f88cfa42dee2eb959120305f5a372`, misma S05: BASIC/CAMPAIGN finales y replays completos PASS independiente. BASIC saldo56594,16; CAMPAIGN caja4640/3compras/2reemplazos/cobros0. Primary favorable sólo IDs informado por Owner; PRIMARY_FINAL_REVIEW=PENDING/GATE_ACCEPTED=false/PROMOTION=NOT_ACCEPTED. Raw final completo publicado/verificado, nueva fase privada inmutable; sesión Root/especialistas cerrada por Owner, Primary permanece abierto y revisa aceptación final. D6 físico NOT_DEMONSTRATED/no transferencia; ninguna acción física, merge o deploy. Detalle, hashes, receta y límites en [[BTG-S05-REMEDIATION-AND-RESULTS]].
