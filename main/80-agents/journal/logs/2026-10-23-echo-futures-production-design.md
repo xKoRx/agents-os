@@ -46,7 +46,8 @@ tags:
 
 ## Validación
 
-- Baseline producto reconfirmado por GitHub compare idéntico y `git ls-remote`; sin deltas nuevos ni cambios locales de producto. Revisión de coherencia entre contratos, plan, escenarios y fallbacks cerrados; enlaces, esquema y whitespace documentales se verifican antes del handoff.
+- Baseline producto reconfirmado por GitHub compare idéntico y `git ls-remote`; sin deltas nuevos ni cambios locales de producto. Revisión de coherencia entre contratos, plan, escenarios y fallbacks cerrados. Lint estricto dirigido: seis notas (cuatro documentos, planner y este log), ERROR=0/WARN=0. Validador del planner: errors=0/warnings=0; ese validador reconoce los cuatro paquetes históricos y no certifica semánticamente B1–B3. Trece destinos de wikilinks de los documentos resueltos; fences Markdown balanceados y diff whitespace limpio.
+- Lint ampliado detectó siete observaciones heredadas en padre/checklist (cinco del padre: dos tags y tres headings; dos headings de checklist), verificadas iguales en el baseline inicial. No se reestructura documentación histórica ajena al mandato para silenciarlas. El diff de notas existentes sólo agrega sección/bitácora/crosslink y modifica fecha/tarea puente; no elimina historia operativa.
 - El cron del vault incorporó versiones intermedias en commits sync concurrentes; se preservaron commits ajenos. La publicación final usa `agents-os/master`, sin force-push. El commit de snapshot y readback remoto exacto de los ocho paths se reportan en el handoff final una vez comprobados; este log no presume publicación por existir localmente.
 
 ## Compartibilidad
