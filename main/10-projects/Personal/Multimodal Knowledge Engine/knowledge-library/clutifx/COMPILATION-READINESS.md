@@ -41,7 +41,7 @@ Identidades de fuente verificadas por SHA-256 completo de los 12 videos (los 12 
 - **Barrido semántico cross-chapter (fase E)**: 3 auditores independientes (E1 rango/pendiente/TS/DOL-DXY; E2 SMT/failure-swing/OB/Po3; E3 London-NY/noticias/riesgo/psicotrading/superficie): núcleo semántico coherente; 0 MATERIAL abiertos tras corrección — el único MATERIAL (XE3-04: dos horas dichas para la noticia del ejemplo NY-EUR) quedó registrado como duda abierta q-ch07-019 con flags en síntesis (no-armonización sin evidencia, contrato SOURCE-FIRST); 15 MENOR corregidos (hedges preservados en GLOSSARY/COURSE-INDEX, citas realineadas, punteros legacy→V1.2, cabeceras ch11, [ASR] faltantes).
 - **Semántica targeted**: `check_term_sources.py` 12/12 PASS (1.584 claims vivos, 0 MATERIAL, 0 TERM_DISAMBIGUATION_REQUIRED). Claims refutados en ACTIVE KNOWLEDGE: 0 (los 9 superseded son historia navegable, V14 ×12).
 - **Contrato de consumo (preflight F1)**: 1.584 claims consumibles (ACTIVE ∧ SUPPORTED ∧ evidencia s-*/f-* resuelta), 0 con evidencia rota; exclusiones activas (SUPERSEDED 9, UNCERTAIN 15, UNVERIFIED 0, legacy-mke-v2 fuera).
-- **Preguntas abiertas materiales**: visibles, con IDs estables y ahora con dos nuevas (q-ch07-019 hora de noticia; q-ch01 ninguna nueva). Ninguna afirmación dudosa es consumible como hecho.
+- **Preguntas abiertas materiales**: visibles, con IDs estables y ahora con dos nuevas (q-ch07-019 hora de noticia; q-ch01 ninguna nueva). Ninguna afirmación dudosa es consumible como hecho. Desde 2026-10-23 la duda material tiene además **vínculo estructural**: q-ch07-019 declara `Materialidad: MATERIAL` y está referenciada en el `unresolved_questions` de los tres claims que afecta (am-ch07-007); el preflight del contrato verifica la bidireccionalidad.
 
 ## Control de sincronización (Fase C — fix en la causa)
 
@@ -70,6 +70,8 @@ Verificación determinista: `scripts/check_consumption_contract.py <clutifx>/` (
 ## Resultado
 
 ```text
+KNOWLEDGE_LIBRARY_READY = PASS
+CONSUMPTION_CONTRACT = PASS
 READY_FOR_COMPILATION = PASS
 COMPILATION_EXECUTED = NO
 ```
