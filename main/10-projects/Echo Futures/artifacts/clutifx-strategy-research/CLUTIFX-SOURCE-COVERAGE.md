@@ -24,7 +24,7 @@ FASE B4 de la misión GOD. Demuestra que todo claim operativo relevante tiene de
 |---|---|---|---|
 | ch01 introducción (132) | 132 | CMP-001..006 (rango, cadena, pendiente, reiniciado, TS, intra-TS), CMP-019, CMP-010 (P3), glosario master §1 | 20 claims META omitidos como regla (lista en extracto ch01); ninguno operativo perdido |
 | ch02 time (100) | 98 | CMP-010, CMP-020, horario §1 (pirámide de aperturas, horas clave, minuto 59), CMP-024 (HTF manda), STR-001 contexto | 2 claims superseded (DOL/DXY) excluidos por contrato |
-| ch03 bias (217) | 211 | CMP-002/003/004/007/008/023, §7 procedimiento, red flag 1 | 8 UNCERTAIN/deícticos no consumibles; 6 superseded |
+| ch03 bias (217) | 211 | CMP-002/003/004/007/008/023, §7 procedimiento, red flag 1 | 0 UNCERTAIN en el capítulo (217 SUPPORTED, 6 superseded por DOL/DXY); los 8 sin cita directa son clasificados EQUIV por COVERAGE |
 | ch04 entradas (119) | 111 | STR-005 (refinado), SET-002/003/004 (OB, PDM espejo, continuación), §5 gestión, jerarquía DOL>entrada | 8 UNCERTAIN marcados (lista en dudas-y-discrepancias) |
 | ch05 smt (100) | 99 | CMP-012/013/014/015, STR-007, red flag 4 | 1 UNCERTAIN (c-0073 dibujo caso 2) |
 | ch06 failure swing (64) | 64 | CMP-011, STR-006 | — |
