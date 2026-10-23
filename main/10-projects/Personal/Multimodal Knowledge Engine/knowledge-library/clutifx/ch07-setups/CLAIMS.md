@@ -717,7 +717,7 @@
 
 **Dudas abiertas:**
 
-- La hora/vela exacta en que se dibuja el 'rango alcista' nuevo no es verificable con frames del minuto 9 (el instructor lo describe pero el dibujo no aparece en f-000952/f-000956/f-000959); si el integrador necesita ancla visual, extraer a partir de ~f-001000 (min 10).
+- La hora/vela exacta en que se dibuja el 'rango alcista' nuevo no es verificable con frames del minuto 9 (el instructor lo describe pero el dibujo no aparece en f-000952/f-000956/f-000959); si el integrador necesita ancla visual, extraer a partir de ~00:10:00 (min 10).
 
 ### c-0050
 

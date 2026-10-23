@@ -271,7 +271,7 @@
 
 **Dudas abiertas:**
 
-- Deíctico 'este rango de aquí' en 3 días sin confirmación visual: si el integrador la quiere, extraer f-000249 (00:02:49).
+- Deíctico 'este rango de aquí' en 3 días sin confirmación visual: si el integrador la quiere, extraer el frame de 00:02:49 si hace falta.
 - Sentido exacto de 'un intratard lo subpasó': ¿'un intra Turtle Soup lo superó'? Garbles 'intratard' y 'subpasó' para el glosario.
 
 ### c-0019

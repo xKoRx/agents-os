@@ -265,7 +265,6 @@
 
 **Dudas abiertas:**
 
-- «enfondeadas» [ASR] → candidato «en Funded» (FundedNext citada en s-000321; en s-000354 el ASR vuelve a dar «fondeada» por funded, lo que apoya la lectura sin confirmar la palabra exacta de este segmento).
 - «enfondeadas» [ASR] → candidato «en Funded» (p. ej. FundedNext, citada en s-000321); confirmar la palabra dicha.
 
 ### c-0019
