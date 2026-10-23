@@ -136,10 +136,10 @@ previa a la publicación (pre-remediation) están documentadas en
 [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/review-notes|review-notes]] §Decisiones de integración y en las notas de cada claim.
 ## am-ch03-001
 
-- **Claim:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0018|c-0018]]
+- **Claims:** [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0018|c-0018]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch03-bias/CLAIMS#c-0025|c-0025]]
 - **Fecha:** 2026-10-23
-- **Motivo:** hardening del contrato de consumo — la proyección de `unresolved_questions` en CLAIMS.md (renderer 2026-10-23) sometió las dudas al chequeo V11 y reveló que la nota usaba sintaxis de ID (`f-000249`) para un frame HIPOTÉTICO nunca extraído (sugerencia de extracción, no referencia).
-- **Antes:** «…si el integrador la quiere, extraer [ID de frame hipotético para 00:02:49]» (nunca extraído; ver nota).
-- **Después:** «…si el integrador la quiere, extraer el frame de 00:02:49 si hace falta.» (el texto original queda en el historial git de claims.jsonl y en el run `~/mke/clutifx-contract-hardening-20261023/`)
-- **Evidencia:** no aplica (nota de duda; statement, evidence y veredicto intactos).
-- **Resultado:** CORREGIDO — misma instrucción sin pseudo-referencia; validate_library PASS.
+- **Motivo:** hardening del contrato de consumo — la proyección de `unresolved_questions` en CLAIMS.md (renderer 2026-10-23) sometió las dudas al chequeo V11 y reveló dos defectos latentes de notas: (a) c-0018 usaba sintaxis de ID de frame para un frame HIPOTÉTICO nunca extraído (sugerencia de extracción, no referencia); (b) c-0025 citaba un segmento INEXISTENTE (desliz del ID del frame f-000419 al citar el segmento; el dicho «es el mismo» está en s-000415, verificado en el transcript). Textos originales: el texto original queda en el historial git de claims.jsonl y en el run `~/mke/clutifx-contract-hardening-20261023/`.
+- **Antes:** c-0018 «…extraer [ID de frame hipotético para 00:02:49]»; c-0025 «…verificado sólo por el dicho 'es el mismo' en [segmento inexistente]…».
+- **Después:** c-0018 «…extraer el frame de 00:02:49 si hace falta.»; c-0025 «…verificado sólo por el dicho 'es el mismo' en s-000415; el frame f-000419 cubre la parte de 3 días.»
+- **Evidencia:** no aplica (notas de duda; statements, evidence y veredictos intactos).
+- **Resultado:** CORREGIDO — mismas instrucciones sin pseudo-referencias y con la cita real; validate_library PASS.

@@ -372,7 +372,7 @@
 
 **Dudas abiertas:**
 
-- No se capturó frame del gráfico de 2 días ('este también' en dos días): verificado sólo por el dicho 'es el mismo' en s-000419; el frame f-000419 cubre la parte de 3 días.
+- No se capturó frame del gráfico de 2 días ('este también' en dos días): verificado sólo por el dicho 'es el mismo' en s-000415; el frame f-000419 cubre la parte de 3 días.
 
 ### c-0026
 
