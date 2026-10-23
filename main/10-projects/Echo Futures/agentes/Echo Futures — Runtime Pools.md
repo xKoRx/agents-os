@@ -32,7 +32,9 @@ Entregar extensión runtime de pools y asociaciones pool–Strategy–MM mediant
 
 ### Production Readiness — GOD Design (2026-10-23)
 
-**Estado vigente de este mandato: `GOD_PRODUCTION_DESIGN_READY_FOR_MANAGER_REVIEW`; G-DOC=`review`, G-IMPL=`pending`, certificación física=`BLOCKED`, PROD=`NO_GO`.** Entrega exclusivamente documental EF-PROD-GOD-01 solicitada por Owner antes de GLM. No es aceptación, implementación ni certificación. El historial R6, FEFB, F1, FINAL-01 y RESUME inferior queda íntegro y conserva su valor histórico; sus autorizaciones no sustituyen los gates actuales. El paquete de cuatro documentos satisface la revisión integral y reemplaza para este mandato la expectativa anterior de un RFC único, sin crear otro ledger ni otro proyecto.
+**Estado vigente de este mandato: `G-DOC_ACCEPTED_WITH_BINDING_AMENDMENTS`; implementación GLM LOCAL AUTORIZADA pero aún no iniciada; G-IMPL=`pending`, certificación física=`BLOCKED`, PROD=`NO_GO`.** Entrega exclusivamente documental EF-PROD-GOD-01 solicitada por Owner antes de GLM. No es aceptación, implementación ni certificación. El historial R6, FEFB, F1, FINAL-01 y RESUME inferior queda íntegro y conserva su valor histórico; sus autorizaciones no sustituyen los gates actuales. El paquete de cuatro documentos satisface la revisión integral y reemplaza para este mandato la expectativa anterior de un RFC único, sin crear otro ledger ni otro proyecto.
+
+**Adjudicación Primary Manager 2026-10-23:** G-DOC **ACCEPTED** con precisiones vinculantes M01–M07 en [[EF-PROD-GOD-05-MANAGER-ADJUDICATION]] (publicada y verificada). P0 F01–F03 aceptados; P1 F04–F09 aceptados con fuentes y límites de evidencia; P2 F10 diferido salvo riesgo explotable. Opción A aprobada como base de IMPLEMENTACIÓN, no GO a producción; B condicionada a fallo de coexistencia FX o envelope. Se autoriza **un Submanager GLM LOCAL** para implementar B1→B2→B3 en source/aislamiento, sin tests físicos, deployment ni cuentas fuera del entorno aislado expresamente permitido. Gate independiente G-IMPL después de entrega integrada; Ninja, SIM, FX compartido y PROD siguen bajo autorización operacional futura del Owner. Los targets numéricos de GOD se medirán y podrán adjudicarse para el scope, nunca rebajar invariantes para obtener PASS. Ningún shot FEFB nuevo. Esta decisión supersede el estado documental GOD en review de las líneas históricas inferiores.
 
 **Baseline:** producto `xKoRx/echo`, `feature/ef-runtime-pools@ac0621a1917a9ecbed50b3daed4add1518ffc71d`, HEAD remoto reconfirmado idéntico el 2026-10-23; vault inicial `master@ab264ac57e863224e6fe34ef4c9a096b260c21ec`. Inspección read-only de source, contratos, evidencia histórica y documentación oficial. No se ejecutaron tests, benchmarks, compilaciones, SSH/MCP de infraestructura, deploys, cambios operativos ni órdenes. Los commits concurrentes de The Lab no se atribuyeron a Futures.
 
@@ -42,6 +44,7 @@ Entregar extensión runtime de pools y asociaciones pool–Strategy–MM mediant
 - [[EF-PROD-GOD-02-PRODUCTION-ARCHITECTURE]] — solución recomendada A, contratos de continuidad/ejecución, recovery, Kafka/M1, tiempo, feed, economía y escala.
 - [[EF-PROD-GOD-03-IMPLEMENTATION-PLAN]] — tres bloques coherentes para UN Submanager GLM LOCAL y especialistas ONE-SHOT futuros; no despachados.
 - [[EF-PROD-GOD-04-CERTIFICATION-AND-RELEASE]] — matriz de aceptación, pruebas futuras, SIM101, GO/NO-GO, release y disaster recovery.
+- [[EF-PROD-GOD-05-MANAGER-ADJUDICATION]] — G-DOC accepted, ratificación F01–F10, M01–M07 y permiso GLM sólo source/aislamiento; prevalece ante ambigüedades propuestas.
 
 **Decisiones propuestas:** mantener componentes, reglas Strategy/MM/Provider/R6 y inicialmente job compartido FX/Futures; exigir restore compatible mediante manifest + guard por owner + fencing del último salto; hacer efectivo M1 transaccional; persistir observaciones antes de dedup/ACK; completar cursores de redelivery, storage power-loss, tiempo por admisión y autoridad contable. Separar disponibilidad, frescura, recuperabilidad y permiso de ejecución. Opción B de aislamiento queda definida y condicionada a capacidad/blast radius; active-active, portfolios dinámicos, nuevo motor y reescritura Lab/backtester diferidos. Toda decisión es candidata; el autor GOD no se autoacepta.
 
@@ -49,20 +52,20 @@ Entregar extensión runtime de pools y asociaciones pool–Strategy–MM mediant
 
 | Gate / bloque | Estado | Dependencia y salida | Responsable siguiente |
 |---|---|---|---|
-| G-DOC | review | Adjudicar paquete completo y enmiendas a REC-03/M1/causalidad; no equivale a certificar | Primary Manager |
-| B1 continuidad + contratos | pending, no iniciado | G-DOC aceptado y mandato GLM; manifest/restore/M1/ownership, baseline integrado B1_SHA | Submanager GLM LOCAL futuro |
-| B2 entrega durable + paridad | pending | B1; observaciones/feed/tiempo/contabilidad, baseline integrado B2_SHA | Mismo Submanager |
-| B3 integración + migración + evidencia | pending | B2; auditor independiente, paquete único de release, pruebas autorizadas en aislamiento | Mismo Submanager + verificador |
+| G-DOC | **accepted con M01–M07 — 2026-10-23** | Ratificación EF-PROD-GOD-05; no equivale a producto certificado | Primary Manager |
+| B1 continuidad + contratos | **authorized, NOT_STARTED** | Implementación única GLM: recovery/M1/ownership, baseline B1_SHA; pruebas sólo aisladas | Submanager GLM LOCAL |
+| B2 entrega durable + paridad | **authorized, NOT_STARTED** | Tras B1; observaciones/feed/tiempo/contabilidad, baseline integrado B2_SHA | Mismo Submanager |
+| B3 integración + migración + evidencia | **authorized, NOT_STARTED** | Tras B2; auditor independiente, release candidato y evidencia en aislamiento | Mismo Submanager + verificador |
 | G-IMPL | pending | Revisión independiente del SHA integrado y evidencia; sin arming implícito | Primary Manager |
 | G-ENV / G-FEED / G-REC | blocked | Permisos físicos separados, estado seguro, hashes exactos, feed integrado y restore real | Manager / Owner según Documento 4 |
 | G-SIM | blocked | Gates anteriores + permiso explícito, identidad Sim101 actual y reconciliación | Owner autoriza; ejecutor futuro certifica |
 | G-PROD | NO_GO | P0/P1 resueltos, envelope y protección físicos demostrados; autorización real explícita | Owner, después de recomendación Manager |
 
-- [r] PRD.1 Adjudicar los cuatro documentos EF-PROD-GOD y enmiendas candidatas; aceptar o devolver contradicciones concretas. #owner/agent
-- [ ] PRD.2 Tras adjudicación y despacho, ejecutar B1→B2→B3 como una implementación consolidada según Documento 3. #owner/agent
+- [x] PRD.1 Adjudicar EF-PROD-GOD-01..04; **G-DOC accepted por Primary Manager**, M01–M07 en [[EF-PROD-GOD-05-MANAGER-ADJUDICATION]] (2026-10-23). #owner/agent
+- [ ] PRD.2 **AUTORIZADA/NOT_STARTED:** Submanager GLM LOCAL ejecuta B1→B2→B3 como una única implementación consolidada según Documento 3 y M01–M07; sin deploy ni órdenes. #owner/agent
 - [ ] PRD.3 Revisar G-IMPL y autorizar por separado la certificación física según Documento 4; registrar resultados aquí. #owner/agent
 
-**Siguiente responsable: Primary Manager.** No lanzar GLM, implementar, probar, desplegar ni operar desde esta sesión GOD. Registro documental de auditoría: `80-agents/journal/logs/2026-10-23-echo-futures-production-design.md`; commit/readback en el handoff final. Ese log no es autoridad operativa; el proyecto padre sigue apuntando a este único planificador.
+**Siguiente responsable: Submanager GLM LOCAL (implementación autorizada, aún no ejecutada).** Producto y pruebas sólo en source/entorno aislado conforme M01–M07. No despliegue compartido, terminal Owner, cuentas ni PROD desde G-DOC. Historial GOD read-only superior ya cumplido. Registro documental de auditoría: `80-agents/journal/logs/2026-10-23-echo-futures-production-design.md`; commit/readback en el handoff final. Ese log no es autoridad operativa; el proyecto padre sigue apuntando a este único planificador.
 
 ### Historial de entregas y decisiones previas
 
@@ -784,6 +787,8 @@ Registrada y EJECUTADA dentro de este shot: las pruebas de disable ahora cubren 
 **Separación explícita de evidencia (obligatoria en /verify):** E2E laboratorio previamente aceptados (S02–S04, planner arriba) · procesos/clúster desplegados · AddOn compilado y cargado · feed real · ejecución NT SIM · economía observada de SIM · cuentas reales: ejecución NO autorizada.
 
 ## 📆 Bitácora
+
+- 2026-10-23 — **Primary Manager G-DOC ACCEPTED con binding amendments M01–M07** tras lectura íntegra de GOD-01..04 y contraste source crítico F01–F06/StateFun Kafka egress. Ratificación [[EF-PROD-GOD-05-MANAGER-ADJUDICATION]] publicada. GLM LOCAL B1–B3 AUTORIZADO sólo source/aislamiento; G-IMPL pendiente; G-ENV/G-FEED/G-REC/G-SIM/PROD BLOQUEADOS. No S4 FEFB, no órdenes ni deploy. 
 
 - **2026-10-23 — EF-PROD-GOD-01:** revisión integral design-only entregada en cuatro documentos [[EF-PROD-GOD-01-SOURCE-FORENSICS|01]] / [[EF-PROD-GOD-02-PRODUCTION-ARCHITECTURE|02]] / [[EF-PROD-GOD-03-IMPLEMENTATION-PLAN|03]] / [[EF-PROD-GOD-04-CERTIFICATION-AND-RELEASE|04]]. Source ac0621a1 reconfirmado remoto; tres P0, seis P1 y un P2 con evidencia/gaps diferenciados. Opción A recomendada con triple barrera de recovery y tres bloques GLM futuros; G-DOC review, resto pendiente/bloqueado. No código, pruebas de producto, infraestructura ni órdenes. Historial intacto y tarea puente padre en review. Publicación documental/readback en change_log de esta fecha; siguiente Primary Manager.
 
