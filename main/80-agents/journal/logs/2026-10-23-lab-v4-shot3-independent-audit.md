@@ -28,12 +28,12 @@ tags:
 
 ## Cambio
 
-Inicio del reporte independiente Shot3 en Runtime Integration y continuidad del proyecto existente Echo — Producto Integrado. Se preserva íntegra la documentación histórica homónima.
+Entrega definitiva Shot3 en el proyecto existente Echo — Producto Integrado, carpeta The Lab/V4 — Runtime Integration: SHOT3_ADVERSARIAL_REPORT, SHOT3_COVERAGE_MATRIX y SHOT4_FIX_PACKAGE. Continuidad padre y enlace desde S2 actualizados; históricos homónimos preservados. No código producto modificado, fixes ni inicio Shot4.
 
 ## Validación
 
-Cortes y trees Git locales verificados. Clones independientes detached, sin editar checkouts del implementador. Auditoría en ejecución; no certificación final.
+53 findings adjudicados: 23 P0, 29 P1 y 1 P2. H01–H49: 1 PASS, 41 FAIL, 7 NOT_RUN, 0 BLOCKED_EXTERNAL principales. Seis especialistas ONE-SHOT, dos modelos solicitados; evidencia compacta adjudicada, cuatro duplicados corroborantes fusionados y F-07 acotado al launcherQA. Matriz49 IDs exclusivos y estados legales.169 hashes originales verificados; manifests y repros fuera del vault. Validación schema/diff y publicación master registradas en salida de sesión. Límites físicos/cobertura y excepción inicial browser E explícitos; no se certifica cero conexiones externas.
 
 ## Rollback
 
-Revertir únicamente los cambios documentales de esta sesión mediante diff revisado; no modificar evidencias ni trabajo ajeno. Este log se consolidará al adjudicar.
+Revertir sólo el delta documental de esta auditoría mediante diff revisado, conservando evidencia externa y trabajo ajeno. No revertir, resetear ni modificar candidatos Echo/Symphony ni recursos compartidos. Sesión abierta, sin cierre `/close`.
