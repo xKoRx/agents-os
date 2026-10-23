@@ -1,8 +1,8 @@
-# COMPILATION-READINESS — Clutifx (2026-10-23, certificación GOD)
+# COMPILATION-READINESS — Clutifx (2026-10-23, certificación GOD + contrato de consumo)
 
 Documento mínimo de preparación para la futura recompilación integral del curso. **Este documento NO ejecuta la recompilación** (mandato: COMPILATION_EXECUTED = NO). Autoridades canónicas: COURSE-INDEX.md, GLOSSARY.md, los claims.jsonl por capítulo y los validadores de la skill `course-knowledge-extraction` v1.2.
 
-Historial: la certificación anterior (CLUTIFX_FINAL_REGULARIZATION, 2026-10-22, baseline `85369dba`) se emitió con defectos que una auditoría independiente detectó; esta versión la sustituye tras corregirlos (misión GOD 2026-10-22/23; ver FRAME-RECONCILIATION-2026-10-22.md §cierre, AMENDMENTS ch01-006/007 y ch07-005/006, y el HANDOFF del run `~/mke/clutifx-god-cert-20261022/`).
+Historial: la certificación anterior (CLUTIFX_FINAL_REGULARIZATION, 2026-10-22, baseline `85369dba`) se emitió con defectos que una auditoría independiente detectó; esta versión la sustituye tras corregirlos (misión GOD 2026-10-22/23; ver FRAME-RECONCILIATION-2026-10-22.md §cierre, AMENDMENTS ch01-006/007 y ch07-005/006, y el HANDOFF del run `~/mke/clutifx-god-cert-20261022/`). Ampliación 2026-10-23 (misión KNOWLEDGE_CONSUMPTION_HARDENING, am-ch07-007): la última brecha abierta —q-ch07-019 señalizada sólo en documentación narrativa— quedó cerrada con vínculo estructural en los claims y el contrato de consumo de §C3 endurecido con preflight determinista y casos negativos (`~/mke/clutifx-contract-hardening-20261023/`).
 
 ## Identidad certificada
 
@@ -50,15 +50,22 @@ Identidades de fuente verificadas por SHA-256 completo de los 12 videos (los 12 
 - **Convergencia demostrada (21:53→07:0x, ~9 h)**: 0/55 nombres retirados reaparecidos; 1.033/1.033 PNG en 12/12 (conteos exactos); 0 adds de frames en git; 0 borrados nuevos; LiveSync vivo con el filtro activo durante todo el período, con ~9 h de ciclos reales de autosync (cron, cada minuto) y replicación continua.
 - **Residual**: (a) otros dispositivos con LiveSync sobre el mismo CouchDB remoto NO quedan protegidos (alcance local a este vault; decisión del Owner); (b) revertir la config reintroduce el riesgo; (c) los validadores W06/V11/V04/V05 siguen como red de detección.
 
-## Política de consumo para la recompilación (C3)
+## Política de consumo para la recompilación (C3, endurecida 2026-10-23)
 
 El compilador sólo tratará como conocimiento fundamentado:
 
 ```text
-ACTIVE (sin superseded_by) AND verdict = SUPPORTED AND evidencia resuelta (s-/f- existentes)
+CONSUMIBLE = ACTIVE (sin superseded_by) AND verdict = SUPPORTED AND evidencia resuelta (s-/f- existentes)
 ```
 
-Excluir de afirmaciones factuales: SUPERSEDED (9), UNCERTAIN (15), UNVERIFIED (0), y todo el contenido de `ch01-introduccion/legacy-mke-v2/` (1.894 registros MKE V2 — historia, no conocimiento). Los elementos inciertos se conservan como preguntas/limitaciones identificadas (OPEN-QUESTIONS por capítulo, incluida la nueva q-ch07-019); los superseded navegan a su reemplazo. Dependencias de duda material que NO deben entrar como conocimiento confirmado: q-ch01-002 ("doble"→DOL/DXY) y sus análogas por capítulo listadas en OPEN-QUESTIONS.
+con este significado y estas reglas de consumo:
+
+1. **Fidelidad, no verdad**: SUPPORTED acredita que el instructor dijo/observó eso con evidencia verificada (eje A); NO acredita verdad objetiva ni ausencia de contradicciones con otras declaraciones. El estado epistémico (eje B) lo dan `epistemic` (instructor_statement / visual_observation / model_inference) y `kind` — las inferencias del extractor no se atribuyen a la fuente.
+2. **Dudas materiales adjuntas** (eje C): todo consumible que referencia en `unresolved_questions` una q-* con Estado OPEN y `Materialidad: MATERIAL` se consume como **CONSUMIBLE_CON_DUDA_MATERIAL** — acompañado siempre por su pregunta abierta, preservando TODAS las versiones dichas. Las dudas AUXILIARES (garbles, deícticos; sin marcador MATERIAL) acompañan como nota sin bloquear el claim: proporcionalidad, no degradación masiva.
+3. **Contradicciones materiales** (eje E): ≥2 consumibles ligados a la misma q-* MATERIAL forman un grupo de contradicción (único vigente: q-ch07-019 = {c-0143, c-0181, c-0182}, noticia «a las 10» vs «a las 8» del ejemplo NY-EUR de ch07). Ninguno de sus claims puede sostener un hecho definitivo («la noticia fue a las X») ni una regla operativa universal basada en ese dato; el compilador conserva ambas declaraciones como evidencia histórica del instructor.
+4. **Exclusiones del conocimiento factual** (eje D): SUPERSEDED (9), UNCERTAIN (15), UNVERIFIED (0), todo `ch01-introduccion/legacy-mke-v2/` (historia, no conocimiento) y evidencia inexistente. Los superseded navegan a su reemplazo; las inciertas quedan como preguntas/limitaciones identificadas (incluida q-ch01-002 «doble»→DOL/DXY y sus análogas en OPEN-QUESTIONS).
+
+Verificación determinista: `scripts/check_consumption_contract.py <clutifx>/` (PASS: 12 capítulos, 1.608 registros = 1.599 activos + 9 superseded; 1.584 consumibles = 1.581 + 3 con duda material; 1 grupo de contradicción; 0 evidencia rota) con casos negativos en `scripts/tests/consumption_contract_selftest.py` (14/14: contradicción sin señalizar → detectada; hecho definitivo «a las 8»/«a las 10» y regla universal sobre claims guardados → RECHAZADOS; reporte de contradicción con ambas horas → ACEPTADO). La interpretación libre de síntesis en texto libre es trabajo del compilador futuro; el contrato aquí fijado es su especificación mínima.
 
 ## Resultado
 

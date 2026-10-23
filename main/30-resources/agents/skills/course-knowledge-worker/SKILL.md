@@ -166,9 +166,14 @@ preservaba «mover tu tarjeta breakable» [ASR] con q-ch09-002 OPEN — y el
 DOCVERIFY que lo detectó lo registró como corregido sin que el fix llegara al
 árbol publicado: auditar el árbol físico final, no el registro de intenciones.
 No es un detector regex ni una ontología: exige contrastar cada cita de una
-duda abierta contra su claim. NO auto-corregir la biblioteca. NO declarar PASS
-sin haber ejecutado las verificaciones. Los workers NUNCA inventan links a
-recursos inexistentes.
+duda abierta contra su claim. **Vínculo estructural de dudas materiales**
+(hardening 2026-10-23, defecto real q-ch07-019): una q-\<curso\>-NNN OPEN con
+`**Materialidad: MATERIAL**` debe estar referenciada en el
+`unresolved_questions` de TODOS los claims que su entrada enlaza — señalizarla
+sólo en documentación narrativa es hallazgo MATERIAL (la señal vía
+`scripts/check_consumption_contract.py <curso>/` es determinista). NO
+auto-corregir la biblioteca. NO declarar PASS sin haber ejecutado las
+verificaciones. Los workers NUNCA inventan links a recursos inexistentes.
 
 ## Output
 
