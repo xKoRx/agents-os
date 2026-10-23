@@ -8,6 +8,14 @@ Los bloques OBSERVED de Chapters 02–08 se conservan abajo (§Ch08, §Ch07, §C
 (incl. checks W11/W12 de navegación, wikilinker corregido con idempotencia y
 strip de code-spans en W01/W10); NO se toca aquí la decisión de Owner sobre ASR.
 
+## LECCIÓN TRANSVERSAL — dudas materiales con vínculo estructural (2026-10-23, misión KNOWLEDGE_CONSUMPTION_HARDENING)
+
+**OBSERVED:** la contradicción de q-ch07-019 (noticia «a las 10» en c-0143 vs «a las 8» en c-0181/c-0182, mismo ejemplo NY-EUR de ch07) se detectó y señaló correctamente en documentación narrativa (documentation/examples/OPEN-QUESTIONS), pero los tres claims seguían SUPPORTED sin asociación estructural con la pregunta. El contrato de consumo entonces vigente (ACTIVE ∧ SUPPORTED ∧ evidencia resuelta) habría dejado que una recompilación presentara cualquiera de las dos horas como confirmada.
+
+**LECCIÓN (reutilizable): las contradicciones y dudas materiales deben quedar relacionadas ESTRUCTURALMENTE con los claims afectados antes de publicar el capítulo** — mención narrativa no basta porque el consumo no la acompaña. Mecanismo vigente endurecido en la skill v1.2: (1) la pregunta OPEN material declara `**Materialidad: MATERIAL**` en OPEN-QUESTIONS (sin marcador es AUXILIAR — garbles y deícticos no bloquean; proporcionalidad); (2) los claims que su entrada enlaza la referencian en `unresolved_questions` (bidireccional); (3) `scripts/check_consumption_contract.py` valida la estructura por curso y `scripts/tests/consumption_contract_selftest.py` demuestra rojo/verde: contradicción sin señalizar → detectada (CC02), hecho definitivo sobre claim guardado → RECHAZADO, reporte de contradicción que preserva ambas versiones → ACEPTADO. SUPPORTED queda definido como fidelidad a la fuente, no verdad objetiva.
+
+**REQUISITOS PREVIOS del siguiente curso** (antes del primer capítulo): (1) confirmar que su propio árbol de trabajo no entra en conflicto con LiveSync/autosync (revisar `syncIgnoreRegEx` y qué directorio procesa el cron — lección FRAME-RECONCILIATION); (2) reutilizar la skill v1.2 con el hardening acumulado de Clutifx (W-checks, SOURCE-FIRST, lifecycle, integrador con partial-integration safety, contrato PSICOTRADING de estilo si aplica); (3) conservar DOCVERIFY independiente (worker sin acceso de autor, sobre el árbol físico final); (4) aplicar el contrato epistémico de consumo desde el primer capítulo (dudas materiales estructurales incluidas — el preflight corre por capítulo, no al final del curso).
+
 ## CH01 V1.2 MIGRATION OBSERVED (2026-10-22 — misión CLUTIFX FINAL REGULARIZATION)
 
 | Métrica | Valor |
