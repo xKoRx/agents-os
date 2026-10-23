@@ -16,6 +16,12 @@ updated: "2026-10-20"
 
 # OWNER CHECKLIST — CERT-NT-01 (desbloqueo de gates C2/C3/C4)
 
+## ACTUALIZACIÓN MANAGER 2026-10-23 — F1 LIVE reparado; cert física y PROD BLOQUEADAS por restore Flink
+
+**SHA Core DEV actual reportado:** `ac0621a1917a9ecbed50b3daed4add1518ffc71d` (reemplaza la identidad `2ee61791` en la sección histórica FINAL). El reloj LIVE funciona; sin embargo, Flink falló y re-sometió job NUEVO sin restaurar estado (`restored:0`, reset sequencer Futures, replay FX). La RCA/garantía de recuperación y 30 min reales de frescura STAMPED/NATIVE están pendientes. **NO autorizar listener de ejecución `:9771`, `futures-bridge/accounts` ni ningún armado, incluso Sim101, por completar solamente esta tarjeta**.
+
+**Acción Owner permitida de forma independiente, SIN órdenes:** comprobar que no haya operaciones ajenas abiertas que hagan inseguro un reinicio de NinjaTrader; respaldo del perfil; instalar SOLO la versión integrada staged `EchoExecutionAddOn.cs`, `EchoFeedV1.cs`, `EchoNativeBars.cs` y retirar el anterior `EchoFeedAddOn.cs`/duplicados; instalar JSON TARGET con binding exclusivo Sim101 y secreto local (no publicar auth_token); verificar identidad real de Sim101 con `Account.Id` en el terminal y que NO aparezca RJARA comercial en ningún binding de ejecución; reiniciar NT únicamente bajo control Owner y validar handshake/feed sin activar ejecución. **No asumir que plataforma ID `2` es invariable:** revalidarlo en el terminal. Si no es posible demostrar identidad y feed único, STOP y rollback del perfil NT. La certificación operativa continúa bajo el ledger [[Echo Futures — Runtime Pools]], no bajo la sección FINAL histórica inferior.
+
 ## FINAL 2026-10-23 (SHA 2ee61791 desplegado) — UN solo ciclo Owner: AddOn integrado + JSON Sim101 + reinicio NT
 
 Runtime ya desplegado y verificado por el submanager: core/gateway/relay DEV en release `2ee61791` (binarios buildvcs limpios), module Flink verbatim en .75 (job RUNNING 38/38), perfil de feed ETCD provisionado (ticks ALL, flush 50ms, NATIVE 1m..1d, NQ 12-26), backlog histórico drenado. Falta SOLO el ciclo físico del AddOn en .132.
