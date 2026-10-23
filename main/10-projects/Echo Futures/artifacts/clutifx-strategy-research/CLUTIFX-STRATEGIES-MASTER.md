@@ -50,6 +50,8 @@ El curso enseña **UN sistema de trading** con variantes de entrada y de sesión
 
 Todo lo demás del curso son: los **componentes** que detectan cada pieza (§2), las **estrategias completas** que los combinan en sesiones/escenarios (§3), los **setups parciales** y matices (§4), las **reglas de gestión** (§5), los **filtros/red flags** (§6) y el **procedimiento de análisis** (§7). La tabla de correspondencia claim → destino está en `CLUTIFX-SOURCE-COVERAGE.md`.
 
+**§0.1 — El checklist de 4 preguntas del propio curso** (ch07 c-0229, síntesis oficial del instructor): antes de operar una vela preguntar — **(1) ¿Está el Turtle Soup ya hecho? (2) ¿Está el DOL tomado? (3) ¿Tengo rangos a favor? (4) ¿Hay noticias en la vela que opero?** — "yo creo que solo haciéndoos estas cuatro preguntas podéis determinar ya si vuestra vela va a ser la que manipula, va a ser la que distribuye, va a ser un reversal o va a ser una continuación" (c-0230, criterio creído dicho); mejor "antes de tomar el trade o mientras estáis analizando" (c-0231). En el catálogo: (1)→CMP-005, (2)→CMP-017, (3)→CMP-003/004, (4)→CMP-021/STR-008.
+
 ---
 
 ## 1. Glosario operativo literal (definiciones del instructor)
