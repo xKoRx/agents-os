@@ -19,7 +19,7 @@ tags:
   - kind/project
   - area/echo
 created: "2026-10-16"
-updated: "2026-10-20"
+updated: "2026-10-23"
 ---
 
 # Echo Futures — Runtime Pools
@@ -29,6 +29,42 @@ updated: "2026-10-20"
 Entregar extensión runtime de pools y asociaciones pool–Strategy–MM mediante cuatro shots independientes, con diseño verificable, implementación, auditoría adversarial y corrección. S01 diseña y prepara; no implementa producto. Autoridad funcional/técnica única: `VAULT_ROOT/10-projects/Echo Futures/artifacts/runtime/ECHO-FUTURES-RUNTIME-POOL-DESIGN.md` (§1–11 decisiones compatibles R5; §12–18 contrato R6 prioritario). Este proyecto es el planificador único; no duplicar tasks/gates en otra SPEC.
 
 ## 📊 Estado actual
+
+### Production Readiness — GOD Design (2026-10-23)
+
+**Estado vigente de este mandato: `GOD_PRODUCTION_DESIGN_READY_FOR_MANAGER_REVIEW`; G-DOC=`review`, G-IMPL=`pending`, certificación física=`BLOCKED`, PROD=`NO_GO`.** Entrega exclusivamente documental EF-PROD-GOD-01 solicitada por Owner antes de GLM. No es aceptación, implementación ni certificación. El historial R6, FEFB, F1, FINAL-01 y RESUME inferior queda íntegro y conserva su valor histórico; sus autorizaciones no sustituyen los gates actuales. El paquete de cuatro documentos satisface la revisión integral y reemplaza para este mandato la expectativa anterior de un RFC único, sin crear otro ledger ni otro proyecto.
+
+**Baseline:** producto `xKoRx/echo`, `feature/ef-runtime-pools@ac0621a1917a9ecbed50b3daed4add1518ffc71d`, HEAD remoto reconfirmado idéntico el 2026-10-23; vault inicial `master@ab264ac57e863224e6fe34ef4c9a096b260c21ec`. Inspección read-only de source, contratos, evidencia histórica y documentación oficial. No se ejecutaron tests, benchmarks, compilaciones, SSH/MCP de infraestructura, deploys, cambios operativos ni órdenes. Los commits concurrentes de The Lab no se atribuyeron a Futures.
+
+**Artefactos candidatos, autoridad del diseño una vez adjudicada:**
+
+- [[EF-PROD-GOD-01-SOURCE-FORENSICS]] — AS-IS, trazabilidad y diez causas/hallazgos; distingue hechos, reportes e hipótesis.
+- [[EF-PROD-GOD-02-PRODUCTION-ARCHITECTURE]] — solución recomendada A, contratos de continuidad/ejecución, recovery, Kafka/M1, tiempo, feed, economía y escala.
+- [[EF-PROD-GOD-03-IMPLEMENTATION-PLAN]] — tres bloques coherentes para UN Submanager GLM LOCAL y especialistas ONE-SHOT futuros; no despachados.
+- [[EF-PROD-GOD-04-CERTIFICATION-AND-RELEASE]] — matriz de aceptación, pruebas futuras, SIM101, GO/NO-GO, release y disaster recovery.
+
+**Decisiones propuestas:** mantener componentes, reglas Strategy/MM/Provider/R6 y inicialmente job compartido FX/Futures; exigir restore compatible mediante manifest + guard por owner + fencing del último salto; hacer efectivo M1 transaccional; persistir observaciones antes de dedup/ACK; completar cursores de redelivery, storage power-loss, tiempo por admisión y autoridad contable. Separar disponibilidad, frescura, recuperabilidad y permiso de ejecución. Opción B de aislamiento queda definida y condicionada a capacidad/blast radius; active-active, portfolios dinámicos, nuevo motor y reescritura Lab/backtester diferidos. Toda decisión es candidata; el autor GOD no se autoacepta.
+
+**Bloqueos:** F01/F02/F03 P0 (autoridad de recovery, M1 configurado sin atomicidad exigida, fill marcado antes de publicación durable); F04–F09 P1; F10 P2. E01–E07 especifican artefactos faltantes: RCA/raw logs, snapshots/offsets, runtime efectivo, FX Journal, NT físico, economía/protección y capacidad. La causa exacta del resubmit F1 no está demostrada. `restored:0` no se sanea cambiando latest/earliest ni fabricando pins. Sin continuidad, identidad, historia o protección verificable, new-risk permanece cerrado. No habilitar listener/cuentas/armado siquiera Sim101 mediante esta publicación; CERT-NT-01 no se cierra PASS.
+
+| Gate / bloque | Estado | Dependencia y salida | Responsable siguiente |
+|---|---|---|---|
+| G-DOC | review | Adjudicar paquete completo y enmiendas a REC-03/M1/causalidad; no equivale a certificar | Primary Manager |
+| B1 continuidad + contratos | pending, no iniciado | G-DOC aceptado y mandato GLM; manifest/restore/M1/ownership, baseline integrado B1_SHA | Submanager GLM LOCAL futuro |
+| B2 entrega durable + paridad | pending | B1; observaciones/feed/tiempo/contabilidad, baseline integrado B2_SHA | Mismo Submanager |
+| B3 integración + migración + evidencia | pending | B2; auditor independiente, paquete único de release, pruebas autorizadas en aislamiento | Mismo Submanager + verificador |
+| G-IMPL | pending | Revisión independiente del SHA integrado y evidencia; sin arming implícito | Primary Manager |
+| G-ENV / G-FEED / G-REC | blocked | Permisos físicos separados, estado seguro, hashes exactos, feed integrado y restore real | Manager / Owner según Documento 4 |
+| G-SIM | blocked | Gates anteriores + permiso explícito, identidad Sim101 actual y reconciliación | Owner autoriza; ejecutor futuro certifica |
+| G-PROD | NO_GO | P0/P1 resueltos, envelope y protección físicos demostrados; autorización real explícita | Owner, después de recomendación Manager |
+
+- [r] PRD.1 Adjudicar los cuatro documentos EF-PROD-GOD y enmiendas candidatas; aceptar o devolver contradicciones concretas. #owner/agent
+- [ ] PRD.2 Tras adjudicación y despacho, ejecutar B1→B2→B3 como una implementación consolidada según Documento 3. #owner/agent
+- [ ] PRD.3 Revisar G-IMPL y autorizar por separado la certificación física según Documento 4; registrar resultados aquí. #owner/agent
+
+**Siguiente responsable: Primary Manager.** No lanzar GLM, implementar, probar, desplegar ni operar desde esta sesión GOD. Publicación/readback documental se registra en [[2026-10-23-echo-futures-production-design]] y en el handoff final; el proyecto padre sigue apuntando a este único planificador.
+
+### Historial de entregas y decisiones previas
 
 **S04 ENTREGADO (2026-10-19):** el Primary Manager GPT-6 **aceptó G3 (`accepted`)** como dictamen de auditoría sobre `36e5b27c7de9ad7be5a5b78b3f74e4b8129fd3aa` (despacho S04; scope F01+O01+O02; G2 conserva su aceptación histórica) y la corrección S03-F01 fue ejecutada y validada — SHA FINAL `b13ef43d01098de18856cce0ff95ee2761556071` (REMOTE_VERIFIED, FF sin force; master intacto `d74b6525`). **ACEPTACIÓN G4 RECIBIDA (2026-10-19, despacho CERT-NT-01):** el Primary Manager GPT-6 aceptó G4 (`accepted`) sobre `b13ef43d01098de18856cce0ff95ee2761556071` — decisión registrada aquí recibida del despacho, NO autoaceptación del submanager; habilita exclusivamente la etapa operativa CERT-NT-01 (despliegue controlado + certificación NinjaTrader, cuentas SIM exclusivamente); no autoriza merge a master, egress real ni cuentas comerciales del Owner. Fix mínimo sin estado nuevo (runSelection no reemplaza una solicitud pendiente; reconcileDisabledClaim continúa el sweep tras respuesta negativa); repros S03 rojos verificados en `36e5b27c` y oráculos conservados como regresiones permanentes rojo→verde (unit 6/7 rojo por diseño + E2E Pool+Provider rojo); aserción incidental de los originales adaptada con justificación registrada. Suites 40 ok + exactamente 5 baseline; E2E nominales 21/21; race 0; cobertura estricta 96.10% (pool 856/863). S03-O01/O02 documentados sin cambio de comportamiento (module.yaml + comentarios de código + corrección en línea del registro MR1-DrainIngress). **G4 = `review`** — el Primary Manager adjudica; sin deploy, sin merge a master, sin egress real, sin quinto shot. Ver «Evidencia S04».
 
