@@ -199,7 +199,7 @@ Mecanismo causal: el precio completa cadenas de rangos en dirección a objetivos
   3. Entrar cuando "lo has comprimido tanto que no puede hacerlo más" (c-0067), con el precio a favor ("yo siempre entro con el precio a favor mío ya", c-0040 [personal]).
   4. Stop bajo el TS de la TF de entrada; el resto del plan hereda de la estrategia padre.
 - **Regla clave del refinado**: "cómo sabías que en London no tenías que comprar: porque tú siempre quieres esperar a tener los rangos activos a tu favor antes del trato sub" (ch07 c-0214, "súper clave").
-- **Adaptación NQ**: `NQ_DIRECTLY_TESTABLE` (procedimiento estructural puro). `[PROPUESTA]`: escalón exacto de TFs (8h→4h→1h→15m vs 4h→1h→30m→15m) como eje experimental.
+- **Adaptación NQ**: `NQ_DIRECTLY_TESTABLE` (procedimiento estructural puro). `[PROPUESTA]`: escalón exacto de TFs (8h→4h→1h→15m vs 4h→1h→30m→15m) como eje experimental. **Tensión fuente no resuelta**: "yo ya nunca bajo de 15" (ch04 c-0011, límite personal) vs "hasta 5 minutos para la entrada más perfecta" (ch04 c-0067/c-0068) — el propio capítulo deja ambas dichas; el eje experimental del refinado incluye 15m como piso conservador y la tensión queda declarada.
 
 ---
 
