@@ -32,7 +32,7 @@ Entrega definitiva Shot3 en el proyecto existente Echo — Producto Integrado, c
 
 ## Validación
 
-53 findings adjudicados: 23 P0, 29 P1 y 1 P2. H01–H49: 1 PASS, 41 FAIL, 7 NOT_RUN, 0 BLOCKED_EXTERNAL principales. Seis especialistas ONE-SHOT, dos modelos solicitados; evidencia compacta adjudicada, cuatro duplicados corroborantes fusionados y F-07 acotado al launcherQA. Matriz49 IDs exclusivos y estados legales.169 hashes originales verificados; manifests y repros fuera del vault. Validación schema/diff y publicación master registradas en salida de sesión. Límites físicos/cobertura y excepción inicial browser E explícitos; no se certifica cero conexiones externas.
+53 findings adjudicados: 22 P0, 30 P1 y 1 P2. H01–H49: 1 PASS, 41 FAIL, 7 NOT_RUN, 0 BLOCKED_EXTERNAL principales. Seis especialistas ONE-SHOT, dos modelos solicitados; evidencia compacta adjudicada, cuatro duplicados corroborantes fusionados y F-07 acotado al launcherQA. Matriz49 IDs exclusivos y estados legales.169 hashes originales verificados; manifests y repros fuera del vault. Validación schema/diff y publicación master registradas en salida de sesión. Límites físicos/cobertura y excepción inicial browser E explícitos; no se certifica cero conexiones externas.
 
 ## Rollback
 

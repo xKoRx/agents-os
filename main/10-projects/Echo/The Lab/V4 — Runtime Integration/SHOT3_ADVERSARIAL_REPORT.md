@@ -21,7 +21,7 @@ Dictamen independiente definitivo del candidato integrado de THE_LAB_V4_RUNTIME_
 
 **SHOT3_ADVERSARIAL_COMPLETE / SHOT4_FIX_PACKAGE_READY.** El candidato no es aceptable como producto completo; los defectos no bloquean esta entrega de auditoría. Shot4 es el único shot restante y todavía no se inicia. Sesión abierta, sin `/close`.
 
-53 findings adjudicados: 23 P0, 29 P1 y 1 P2. H01–H49: 1 PASS, 41 FAIL, 7 NOT_RUN, 0 BLOCKED_EXTERNAL principales.
+53 findings adjudicados: 22 P0, 30 P1 y 1 P2. H01–H49: 1 PASS, 41 FAIL, 7 NOT_RUN, 0 BLOCKED_EXTERNAL principales.
 
 ### Cortes y autenticidad del baseline
 
@@ -60,7 +60,6 @@ Los detalles esperados/observados, ruta exacta, repro, corrección y regresión 
 | B-01 | P0 | bug | App role can forge Magic allocation events and manufacture a successful replay | H35 |
 | B-02 | P0 | bug | Ingestion auto-aliases external identities onto a canonical strategy | H01 |
 | B-05 | P0 | functional_missing | H12 fact persistence has no writer and grants UPDATE over source facts | H12,H35 |
-| B-06 | P0 | bug | History PUT drops correction/retraction temporal evidence | H14 |
 | B-07 | P0 | bug | 075 master intake is unusable by echo_user and is exposed as a normal migration despite harness-only status | H35 |
 | C-05 | P0 | bug | Normalizados sin Q_i se publican READY vacíos | H16 |
 | C-06 | P0 | bug | NO_FX ignora moneda de Q_i y mezcla netos de movimientos | H19 |
@@ -76,6 +75,7 @@ Los detalles esperados/observados, ruta exacta, repro, corrección y regresión 
 | A-07 | P1 | test_gap | Claimed t+60 test changes a field instead of emitting after a minute | H07 |
 | B-03 | P1 | bug | Parallel POST with the same idempotency key returns a unique violation instead of its receipt | H02 |
 | B-04 | P1 | functional_missing | Multi-instrument identity is truncated to the first instrument | H01 |
+| B-06 | P1 | bug | History PUT drops correction/retraction temporal evidence | H14 |
 | C-01 | P1 | bug | SQN y Sharpe pierden el signo de la media | H21,H22 |
 | C-02 | P1 | bug | DailyBins omite días COMPLETE vacíos y desconoce GAP | H22 |
 | C-03 | P1 | bug | Current drawdown CURVE_RUNNING devuelve máximo histórico de ventana | H21 |

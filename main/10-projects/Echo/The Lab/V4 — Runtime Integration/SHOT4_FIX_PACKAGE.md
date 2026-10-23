@@ -19,7 +19,7 @@ updated: "2026-10-23"
 
 ## Contenido
 
-**SHOT4_FIX_PACKAGE_READY.** 53 findings adjudicados: 23 P0, 29 P1 y 1 P2. H01–H49: 1 PASS, 41 FAIL, 7 NOT_RUN, 0 BLOCKED_EXTERNAL principales.
+**SHOT4_FIX_PACKAGE_READY.** 53 findings adjudicados: 22 P0, 30 P1 y 1 P2. H01–H49: 1 PASS, 41 FAIL, 7 NOT_RUN, 0 BLOCKED_EXTERNAL principales.
 
 ### Entrada y restricciones
 
@@ -231,24 +231,6 @@ Cada ficha conserva expected/actual, source exacto, repro, ownership y regresió
 
 **Adjudicación:** CONFIRMED; fuente y límites según evidencia indicada; no implica E2E auténtico.
 
-### B-06 — P0 — History PUT drops correction/retraction temporal evidence
-
-**Tipo/casos:** bug; H14. **Superficie propietaria:** HistoryServiceV2 PUT and history_change_entries persistence..
-
-**Fuente exacta:** echo@3b3ae81eb0905286324c899e122737f98dd45303:v3/sdk/contracts/strategy_history_v2.go:179-193; echo@3b3ae81eb0905286324c899e122737f98dd45303:v3/sdk/postgres/strategy_history_v2_put.go:123-134; echo@3b3ae81eb0905286324c899e122737f98dd45303:v3/sdk/postgres/migrations/071_lab_v4_history_revisions.up.sql:164-186.
-
-**Esperado:** Every correction/retraction revision retains the exact canonical change entry and its effective/known times so N/N+1/N+2 histories remain auditable.
-
-**Observado:** The accepted digest covers the values, but durable history_change_entries loses them; persisted columns remain NULL and canonical_entry is empty.
-
-**Repro/evidencia:** base `work/shot3/B`; REPORT.md#hallazgos-principales. Comando/ruta: Source trace: pass non-empty effective_at/known_at in Retractions; PUT's INSERT omits effective_at_ns/known_at_ns and supplies canonical_entry `{}`.
-
-**Corrección concreta:** Encode the complete canonical ChangeEntryV2 and store exact epoch_ns evidence in the existing columns; keep entry rows append-only.
-
-**Regresión obligatoria:** Correct +40→+30→0 with non-empty temporal evidence; read back all three immutable revisions and exact change entries; artifact/commit failure leaves no head advance or partial entry.
-
-**Adjudicación:** CONFIRMED; fuente y límites según evidencia indicada; no implica E2E auténtico.
-
 ### B-07 — P0 — 075 master intake is unusable by echo_user and is exposed as a normal migration despite harness-only status
 
 **Tipo/casos:** bug; H35. **Superficie propietaria:** Echo migration 075, migration registry/manifest and master intake service..
@@ -279,7 +261,7 @@ Cada ficha conserva expected/actual, source exacto, repro, ownership y regresió
 
 **Repro/evidencia:** base `work/shot3/C`; evidence/economic-repro.log; evidence/boundary-run.log. Comando/ruta: cd C/echo; GOMAXPROCS=2 go run -p=2 ../repro/economic_repro.go
 
-**Corrección concreta:** Registrar QI_UNPROVEN y estado insuficiente para todos perfiles afectados; conservar money
+**Corrección concreta:** Validar acreditación Q_i de ciclo completo, método/basis/currency/source y sello causal antes del primer fill en el loader y frontera de perfiles. FIRST_ENTRY_RISK, monto sin evidencia o sello posterior no acreditan ciclo. Publicar QI_UNPROVEN/INSUFFICIENT para R y normalizados afectados, conservando money independiente y razones explícitas.
 
 **Regresión obligatoria:** Q ausente, cero, posterior apertura y cobertura parcial con estado y razones
 
@@ -522,6 +504,24 @@ Cada ficha conserva expected/actual, source exacto, repro, ownership y regresió
 **Regresión obligatoria:** Ingest a strategy with two or more normalized instruments; direct SQL readback equals the full set; replay preserves it; conflicting or unknown IDs reject atomically.
 
 **Adjudicación:** CONFIRMED; fuente y límites según evidencia indicada; no implica E2E auténtico.
+
+### B-06 — P1 — History PUT drops correction/retraction temporal evidence
+
+**Tipo/casos:** bug; H14. **Superficie propietaria:** HistoryServiceV2 PUT and history_change_entries persistence..
+
+**Fuente exacta:** echo@3b3ae81eb0905286324c899e122737f98dd45303:v3/sdk/contracts/strategy_history_v2.go:179-193; echo@3b3ae81eb0905286324c899e122737f98dd45303:v3/sdk/postgres/strategy_history_v2_put.go:123-134; echo@3b3ae81eb0905286324c899e122737f98dd45303:v3/sdk/postgres/migrations/071_lab_v4_history_revisions.up.sql:164-186.
+
+**Esperado:** Every correction/retraction revision retains the exact canonical change entry and its effective/known times so N/N+1/N+2 histories remain auditable.
+
+**Observado:** The accepted digest covers the values, but durable history_change_entries loses them; persisted columns remain NULL and canonical_entry is empty.
+
+**Repro/evidencia:** base `work/shot3/B`; REPORT.md#hallazgos-principales. Comando/ruta: Source trace: pass non-empty effective_at/known_at in Retractions; PUT's INSERT omits effective_at_ns/known_at_ns and supplies canonical_entry `{}`.
+
+**Corrección concreta:** Encode the complete canonical ChangeEntryV2 and store exact epoch_ns evidence in the existing columns; keep entry rows append-only.
+
+**Regresión obligatoria:** Correct +40→+30→0 with non-empty temporal evidence; read back all three immutable revisions and exact change entries; artifact/commit failure leaves no head advance or partial entry.
+
+**Adjudicación:** CONFIRMED P1 para omisión de evidencia temporal en history_change_entries. No se demostró pérdida total del artefacto fuente; no se atribuye esa pérdida más amplia ni severidad P0.
 
 ### C-01 — P1 — SQN y Sharpe pierden el signo de la media
 
