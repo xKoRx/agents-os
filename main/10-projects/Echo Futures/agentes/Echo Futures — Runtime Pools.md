@@ -566,6 +566,12 @@ Registrada y EJECUTADA dentro de este shot: las pruebas de disable ahora cubren 
 
 **Estado:** `F1_MANAGER_AUTHORIZED`, `CERT_NT_BLOCKED` para C5. No hay release F1 final ni aceptación física al momento de esta decisión. → **SUPERADA 2026-10-23: F1 ejecutado — ver «CERT-NT-01-F1 EJECUTADO» abajo.**
 
+## CERT-NT-01 — Owner decision: GOD full-system design first (2026-10-23)
+
+**Orden vigente:** GOD (Astra, cloud, ONE-SHOT) realiza exclusivamente forensics documental/source read-only y entrega un diseño integral de remediación de CERT-NT-01. **No implementa código, no ejecuta pruebas, no hace deploy, no modifica Kafka/StateFun/NT, no opera órdenes y no usa SSH/MCP locales.** El diseño debe abarcar conjuntamente (a) fallo StateFun y re-submit sin restore, estado y checkpoint lineage, (b) replay FX/ingress offsets e integridad del journal, (c) degradación de capacidad/frescura legacy vs FEFB STAMPED NATIVE y clock LIVE ya corregido, (d) topología de despliegue/cutover/rollback, (e) cliente NinjaTrader integrado y barreras Sim101, (f) mínimos criterios de promoción segura a PROD y pruebas que ejecutará GLM posteriormente. Distinguir causas verificadas vs hipótesis no concluyentes (logs JobManager aún pendientes), diseñar fail-closed si faltan checkpoints. **No rediseñar FEFB/Strategy/MM ni prometer producción sin evidencia.**
+
+**Salida única exigida del GOD:** `artifacts/runtime/cert-nt-01/CERT-NT-01-GOD-FULL-REMEDIATION-DESIGN.md` (RFC prescriptivo con causalidad/evidencia, contratos y responsabilidades, cambios precisos por componente/config, transiciones de estado, recuperación y migración, procedimiento operativo reversible, inventario de decisiones, matriz de aceptación y un solo paquete implementable GLM). El Primary Manager revisará el documento; **GLM está NO AUTORIZADO para tocar recovery/producto hasta design accepted**. C3 del Owner sólo puede prepararse feed-only/desarmado. Se mantiene C5 NOT_ARMED, cuentas comerciales y PROD NO TOUCH. Sin nuevas fases/shots FEFB. Esta decisión **sustituye** el mandato previo de que GLM implemente recovery inmediatamente, preservando todos los hechos históricos del ledger.
+
 ## CERT-NT-01 — Decisión Primary Manager pos-F1 (2026-10-23, continuidad operativa)
 
 **F1 FIX ACCEPTED como corrección DEV, NO certificación de producción.** Source `ac0621a1917a9ecbed50b3daed4add1518ffc71d` verificado en origin: LIVE→RealtimeClock; EXACT_REPLAY/BACKTEST→VirtualClock. Evidencia in situ del submanager: 0 falsos future-dated / 4.000+ eventos, timer de silencio disparando. **P0 de liberación pendiente: STATEFUN_STATELESS_RESUBMIT** — tras restart de Core el Job `6551ccab` falló y apareció `9d99a9da` con `restored:0`, sequencer Futures reiniciado (pérdida de continuidad de estado/ventanas dedup) y reproceso FX masivo. **No se conoce aún la causa exacta** de fallo/resubmit hasta recuperar JobManager/TaskManager logs y mecanismo automático de submission; no afirmar que el replay fue inocuo sin reconciliación completa de efectos FX/PG. Los ingresses versionados del módulo usan `startupPosition:earliest` para trade journal FX y `latest` para market feed Futures: una re-submisión sin restore no cumple continuidad ni equivale a recuperación por checkpoint. No borrar offsets/checkpoints ni restaurar un snapshot viejo sobre un job activo sin plan de corte/conciliación.
@@ -732,6 +738,8 @@ Registrada y EJECUTADA dentro de este shot: las pruebas de disable ahora cubren 
 **Separación explícita de evidencia (obligatoria en /verify):** E2E laboratorio previamente aceptados (S02–S04, planner arriba) · procesos/clúster desplegados · AddOn compilado y cargado · feed real · ejecución NT SIM · economía observada de SIM · cuentas reales: ejecución NO autorizada.
 
 ## 📆 Bitácora
+
+- 2026-10-23 — **Owner corrige secuencia:** GOD diseña recuperación integral primero (sin pruebas/código/infra), Manager acepta/rechaza diseño, sólo entonces GLM implementa y verifica; CERT-NT-01 permanece BLOQUEADO para egress/PROD. Decisión vigente y brief de entregable en sección Owner decision. 
 
 - 2026-10-23 — **Manager pos-F1:** acepta fix reloj DEV sobre ac0621a1, bloquea producción por pérdida de continuidad StateFun (`restored:0`; raíz exacta por RCA), exige un solo paquete recovery + C3 feed-only + C2/C4/C5 gated, GOD focalizado tras evidencia. No nuevas fases FEFB. 
 
