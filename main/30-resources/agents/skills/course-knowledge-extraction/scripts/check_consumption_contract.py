@@ -57,7 +57,7 @@ def load_open_questions(path):
         out[qid] = {
             "estado": est.group(1) if est else "OPEN",
             "materialidad": mat.group(1) if mat else "AUXILIAR",
-            "linked_claims": sorted(set(CLAIM_WIKI_RE.findall(body))),
+            "linked_claims": sorted("c-" + x for x in set(CLAIM_WIKI_RE.findall(body))),
             "chapter_file": path,
         }
     return out
