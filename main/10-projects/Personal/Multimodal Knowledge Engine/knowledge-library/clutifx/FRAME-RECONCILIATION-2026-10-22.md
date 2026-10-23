@@ -55,6 +55,40 @@ igualmente (sincroniza todo archivo del vault).
 - `git rm` de los 55 (reversible: los blobs quedan en el historial; los retiros
   originales ya los habían adjudicado).
 - Validadores re-ejecutados por capítulo con `--duration-seconds` exacta.
-- Verificación de persistencia: pendiente de ciclos reales de replicación de
-  LiveSync (ver §Verificación de persistencia al cierre de la misión; si
-  reaparece, se registra BLOCKED_SYNC_INTEGRITY con la evidencia).
+- Verificación de persistencia: quedó PENDIENTE al cierre de la misión anterior
+  (historia preservada en esta sección; el documento COMPILATION-READINESS de
+  entonces la daba por verificada con observación pasiva — drift documental que
+  la auditoría GOD 2026-10-22 corrigió).
+
+## Verificación de persistencia — CERRADA (auditoría GOD, 2026-10-22 22:2x)
+
+El gate pendiente se cerró con un FIX EN LA CAUSA, no con observación pasiva:
+
+1. **Exclusión soportada del árbol**: `syncIgnoreRegEx = "knowledge-library/clutifx/"`
+   en `.obsidian/plugins/obsidian-livesync/data.json` (plugin obsidian-livesync
+   v1.0.26; el predicado de sync-target del plugin excluye los paths que
+   matchean de propagación Y de reflexión — verificado en `main.js` del plugin:
+   `if(syncIgnore.some(e3=>e3.test(file)))return!1`). Se descartó
+   `useIgnoreFiles/.gitignore` porque habría excluido el árbol también de git
+   (autosync), rompiendo el pipeline de publicación.
+2. **Aplicación verificable**: edición de `data.json` con Obsidian activo +
+   reinicio controlado de Obsidian (systemd --user, TERM + relanzamiento
+   21:53); la config sobrevivió apagado y arranque (re-leída del disco) y el
+   proceso quedó vivo con el vault cargado. LiveSync NO se desactivó ni se
+   tocaron CouchDB/datos E2EE; la base remota conserva docs Clutifx obsoletos
+   (inofensivos: el filtro impide su reflexión local).
+3. **Convergencia observada post-fix** (21:53→22:2x, ~30 min): 0/55 nombres
+   retirados presentes; 1.033 PNG en 12/12 capítulos = conteo esperado exacto;
+   0 adds de frames en git desde el arranque (≈15 ciclos de autosync + ciclos
+   continuos de replicación LiveSync); 0 borrados nuevos de frames válidos.
+   Adicionalmente, la observación pasiva previa al fix ya acumulaba ~3 h sin
+   huérfanos (16:35→19:5x) y el evento inverso (borrado de 6 frames, repuesto)
+   está documentado en review-notes de ch01.
+4. **Residual honesto**: (a) otros dispositivos con LiveSync sobre el mismo
+   CouchDB remoto NO quedan protegidos por este filtro (alcance local a este
+   vault — decisión del Owner si aplica); (b) si el Owner revierte la config,
+   vuelve el riesgo — la recomendación original queda sustituida por este fix;
+   (c) los validadores W06/V11/V04/V05 siguen como red de detección.
+
+`SYNC_INTEGRITY` (gate GOD fase C): evidencia acumulándose desde el fix; el
+veredicto final del gate vive en el HANDOFF de la misión GOD.
