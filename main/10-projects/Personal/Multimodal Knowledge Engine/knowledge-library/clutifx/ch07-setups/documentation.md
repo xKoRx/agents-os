@@ -1,7 +1,7 @@
 # documentation — Clutifx Chapter 07 (Setups de London y New York)
 
 Síntesis por conceptos del séptimo video del curso. Toda afirmación cita su claim
-([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS|CLAIMS]] proyección de `claims.jsonl`, la autoridad) y, cuando es visual, su frame. El capítulo opera sobre lo enseñado en ch02–ch06: no redefine rangos, bias, entradas, SMT ni failure swing — los usa.
+([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS|CLAIMS]] proyección de `claims.jsonl`, la autoridad) y, cuando es visual, su frame. El capítulo opera sobre lo enseñado en ch02–ch06: no redefine rangos, bias, entradas ni failure swing — los usa (la SMT no se menciona en este capítulo).
 
 ## 1. Qué es este capítulo y en qué marco de sesiones opera
 

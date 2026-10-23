@@ -58,6 +58,9 @@ La segmentación ASR corta "ya vais / a ver en el vídeo [red flags]"; [[10-proj
 ### q-ch07-018 — Dirección de la expansión del trade de hoy ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-001841|s-001841]])
 "para que bajó al menos" es dudoso por ASR. Claim: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0095|c-0095]]. **Estado: OPEN**
 
+### q-ch07-019 — ¿La noticia del ejemplo NY-EUR 4h era a las 8 o a las 10? ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-002654|s-002654]] vs [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/transcript#^s-003457|s-003457]])
+El instructor da dos horas para la noticia del mismo ejemplo NY-EUR 4h: «quizás porque había noticias a las 10» ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0143|c-0143]], primera explicación) y «noticia a las 8» con entrada en la vela de las 9 «en el Power of 3» ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0181|c-0181]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/ch07-setups/CLAIMS#c-0182|c-0182]], segunda explicación). La cronología «entrar en la 9 y la noticia llega después» sólo es posible con la hora de las 10; con noticia a las 8 la regla propia del capítulo manda operar la vela de las 5 [c-0152–c-0155]. Los claims preservan cada versión dicha; la hora no se armoniza sin evidencia (análogo a am-ch10-002). **Estado: OPEN**
+
 ---
 
 **Preguntas de capítulos anteriores NO resueltas por éste**: q-ch04-004 ("el doble" de ch04) sigue ligada al audio de ch04 — ch07 dice DOL literalmente en su propio audio, lo que refuerza la lectura a nivel de curso (ver GLOSSARY) pero no confirma el audio de ch04.
