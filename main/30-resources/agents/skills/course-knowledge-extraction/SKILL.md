@@ -340,6 +340,23 @@ sólo correcciones materiales, no regeneraciones cosméticas) y
 evidencia, estado OPEN|RESOLVED). Una pregunta abierta NO degrada una regla
 correctamente sustentada.
 
+**Dudas materiales con vínculo estructural** (hardening 2026-10-23, defecto
+real q-ch07-019): una contradicción entre claims activos SUPPORTED —dos
+versiones dichas incompatibles del mismo hecho— es incompatible con consumir
+cualquiera de ellas como confirmada, aunque cada claim sea fiel a su fuente.
+Por eso: (a) toda pregunta OPEN **material** (afecta la verdad de lo afirmado,
+no un garble/deíctico auxiliar) declara `**Materialidad: MATERIAL**` en su
+entrada de OPEN-QUESTIONS — sin marcador es AUXILIAR y no bloquea; (b) los
+claims que su entrada enlaza DEBEN referenciarla en su campo
+`unresolved_questions` (vínculo estructural bidireccional, verificable), no
+basta mencionarla en la documentación narrativa; (c) el preflight
+`scripts/check_consumption_contract.py` valida la estructura del contrato por
+curso (consumibles, guardados con duda material, grupos de contradicción) con
+selftest rojo/verde en `scripts/tests/consumption_contract_selftest.py`. El
+renderer proyecta `unresolved_questions` en CLAIMS.md (`**Dudas abiertas:**`),
+así la superficie navegable muestra la duda donde se lee el claim. Aplicarlo
+ANTES de declarar DONE del capítulo.
+
 **Aclaración acotada** (sin reprocesar el capítulo): resolver claim por ID →
 abrir statement y provenance ([[CLAIMS]]) → consultar segmentos citados →
 inspeccionar frames citados → extraer sólo frames puntuales nuevos si hacen
@@ -354,6 +371,21 @@ transcript/frame. Distinguir SUPPORTED / UNCERTAIN / UNVERIFIED / OPEN QUESTION 
 instructor_statement / visual_observation. Si falta conocimiento, decirlo: los
 vacíos NO se rellenan con conocimiento general; el contexto externo se etiqueta
 explícitamente como no del curso.
+
+**Contrato de consumo** (hardening 2026-10-23): SUPPORTED acredita **fidelidad
+a la fuente** (segmentos/frames verificados), NO verdad objetiva ni ausencia
+de contradicciones. El estado epistémico lo dan `epistemic`
+(instructor_statement / visual_observation / model_inference) y `kind`; las
+inferencias propias del extractor nunca se atribuyen a la fuente. El consumible
+factual es `ACTIVE ∧ SUPPORTED ∧ evidencia resuelta` **con sus dudas
+materiales adjuntas**: todo claim con referencia a una q-* OPEN MATERIAL
+(`unresolved_questions`) se consume como CONSUMIBLE_CON_DUDA_MATERIAL — se
+preservan TODAS las versiones dichas, se cita la pregunta abierta y NO se
+elige arbitrariamente entre lecturas en contradicción (los claims de un grupo
+de contradicción nunca sostienen un hecho definitivo ni una regla universal).
+Las dudas auxiliares (garbles, deícticos sin q-* MATERIAL) acompañan como nota
+sin bloquear el claim. Excluidos del conocimiento factual: SUPERSEDED,
+UNCERTAIN, UNVERIFIED, legacy MKE V2, evidencia inexistente.
 
 **Validación de navegación**: validate_library.py incluye checks W (links a
 archivos/headings/blocks existentes, anchors únicos, proyecciones sincronizadas,
