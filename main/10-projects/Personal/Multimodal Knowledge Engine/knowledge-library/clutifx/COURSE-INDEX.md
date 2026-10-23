@@ -2,6 +2,10 @@
 
 Índice vivo de la biblioteca de conocimiento del curso Clutifx. Cada capítulo vive en su carpeta con biblioteca completa (README, transcript, frames, claims, documentación). Este índice NO reemplaza los README por capítulo; apunta a ellos.
 
+## 📚 Biblioteca compilada (superficie derivada)
+
+La recompilación integral del curso (Knowledge Compilation V1, 2026-10-23) vive en `compiled/`: una biblioteca integrada, temática y navegable construida SOLO sobre claims consumibles (`ACTIVE ∧ SUPPORTED ∧ evidencia resuelta`) con sus dudas materiales adjuntas. **Es un artefacto derivado: la autoridad sigue siendo esta biblioteca por capítulos.** Entrada: [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/compiled/README|compiled/README]] · Documentos temáticos 01–12 · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/compiled/playbook-decisiones|playbook-decisiones]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/compiled/atlas-ejemplos|atlas-ejemplos]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/compiled/dudas-y-discrepancias|dudas-y-discrepancias]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/compiled/guia-estudio|guia-estudio]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/compiled/COVERAGE|COVERAGE]] · [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/compiled/PROVENANCE|PROVENANCE]] (preflight PASS 4/4 sobre el snapshot `7fdaac6b`, DOCVERIFY independiente PASS_WITH_FINDINGS 0 MATERIAL, QA práctica adversarial PASS).
+
 Fuentes físicas de los videos (locales, NO en Git): `/home/kor/mke/course/epNN-*.mp4`.
 
 ## Estado del curso

@@ -73,10 +73,10 @@ Verificación determinista: `scripts/check_consumption_contract.py <clutifx>/` (
 KNOWLEDGE_LIBRARY_READY = PASS
 CONSUMPTION_CONTRACT = PASS
 READY_FOR_COMPILATION = PASS
-COMPILATION_EXECUTED = NO
+COMPILATION_EXECUTED = YES (2026-10-23)
 ```
 
-Sin defectos materiales conocidos abiertos. Recomendaciones no bloqueantes al Owner: (1) decidir si otros dispositivos con LiveSync deben replicar la exclusión `syncIgnoreRegEx`; (2) la decisión ASR (GPU/modelo) sigue abierta y no afecta a la recompilación.
+Sin defectos materiales conocidos abiertos. **Compilación ejecutada (2026-10-23, misión CLUTIFX KNOWLEDGE COMPILATION V1)**: la superficie derivada vive en `compiled/` ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/compiled/README|entrada]], [[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/compiled/PROVENANCE|provenance completa]]); preflight 4/4 PASS contra este snapshot, DOCVERIFY independiente PASS_WITH_FINDINGS (0 MATERIAL), QA práctica adversarial PASS, cobertura 1.584/1.584 conciliada ([[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/compiled/COVERAGE|COVERAGE]]). Este documento de preparación queda como registro del estado que la compilación consumió. Recomendaciones no bloqueantes al Owner: (1) decidir si otros dispositivos con LiveSync deben replicar la exclusión `syncIgnoreRegEx`; (2) la decisión ASR (GPU/modelo) sigue abierta y no afecta a la recompilación.
 
 ## Commit de compilación
 
