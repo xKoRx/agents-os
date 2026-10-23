@@ -16,9 +16,9 @@ updated: "2026-10-23"
 
 # OWNER CHECKLIST — CERT-NT-01 (desbloqueo de gates C2/C3/C4)
 
-## Diseño GOD 2026-10-23 — pendiente de revisión, sin autorización operativa
+## Diseño GOD 2026-10-23 — G-DOC ACCEPTED, implementación GLM autorizada, certificación NO-GO
 
-El paquete [[EF-PROD-GOD-01-SOURCE-FORENSICS]], [[EF-PROD-GOD-02-PRODUCTION-ARCHITECTURE]], [[EF-PROD-GOD-03-IMPLEMENTATION-PLAN]] y [[EF-PROD-GOD-04-CERTIFICATION-AND-RELEASE]] está entregado para adjudicación del Primary Manager. Estado/gates únicamente en [[Echo Futures — Runtime Pools]] → «Production Readiness — GOD Design». No implementado ni certificado; no habilita listener, cuentas, armado SIM/LIVE ni ejecución de esta checklist histórica. Las acciones feed-only anteriormente permitidas siguen bajo control Owner y sus condiciones originales, sin ampliación por esta entrega. F1 no resuelve restore y la causa inicial/resubmission sigue sin RCA demostrada.
+El paquete [[EF-PROD-GOD-01-SOURCE-FORENSICS]], [[EF-PROD-GOD-02-PRODUCTION-ARCHITECTURE]], [[EF-PROD-GOD-03-IMPLEMENTATION-PLAN]] y [[EF-PROD-GOD-04-CERTIFICATION-AND-RELEASE]] quedó **G-DOC ACCEPTED con enmiendas vinculantes M01–M07** registradas en [[EF-PROD-GOD-05-MANAGER-ADJUDICATION]] por Primary Manager el 2026-10-23. Se autorizó sólo implementación GLM B1→B2→B3 en source/entornos aislados; **no** despliegue operativo, listener, cuentas, armado SIM/LIVE, ni ejecución de esta checklist histórica. Estado/gates exclusivamente en [[Echo Futures — Runtime Pools]]. Instalación feed-only mantiene controles Owner de antes sin ampliación. F1 no repara restore y la RCA original del resubmit sigue sin demostrarse. G-IMPL y certificación físicos permanecen pendientes.
 
 ## ACTUALIZACIÓN MANAGER 2026-10-23 — F1 LIVE reparado; cert física y PROD BLOQUEADAS por restore Flink
 
