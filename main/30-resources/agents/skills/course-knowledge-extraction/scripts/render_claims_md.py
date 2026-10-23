@@ -91,6 +91,18 @@ def main():
         if c.get("notes"):
             L.append(f"**Notes:** {c['notes']}")
             L.append("")
+        # Dudas del propio claim (contrato de consumo 2026-10-23): lo que el
+        # claim declara sin resolver —garbles, deícticos y referencias q-<curso>
+        # -NNN a OPEN-QUESTIONS— se proyecta verbatim para que la superficie
+        # navegable muestre la duda donde se lee el claim. Texto plano: los IDs
+        # q-* navegan vía OPEN-QUESTIONS.md del capítulo; nada aquí es segunda
+        # fuente de verdad.
+        if c.get("unresolved_questions"):
+            L.append("**Dudas abiertas:**")
+            L.append("")
+            for q in c["unresolved_questions"]:
+                L.append(f"- {q}")
+            L.append("")
     out = os.path.join(lib, "CLAIMS.md")
     open(out, "w", encoding="utf-8").write("\n".join(L) + "\n")
     print(f"CLAIMS.md: {len(claims)} claims -> {out}")
