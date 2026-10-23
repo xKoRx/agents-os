@@ -49,14 +49,14 @@ Enlaces canónicos agregados: `Echo Futures.md` §"Clutifx — Extracción de es
 - Fuente: 12 capítulos, 1.608 claims (1.584 SUPPORTED consumibles / 15 UNCERTAIN / 9 superseded), 1.033 frames, 19 docs compilados, snapshot `7fdaac6b` sin cambios.
 - Catálogo: 5 familias · 9+1 estrategias · 7 setups parciales · 24 componentes · 12 reglas de gestión · 4 red flags · 16 familias de detectores · 35 variantes experimentales.
 - Hefesto (read-only): universo 89 identidades (26 NATIVE + 63 SG en 21 configs × R250/500/750), 26/26 challenge COMPLETE_RECONCILED, campaign-lab R02 66/89 consolidadas + 23 ENGINE_BLOCKED (fix `e951d258` ya commiteado por ciclo R03 ajeno; re-ejecución pendiente), corpus NQ 2023-10→2026-10 1m Last (1.096.110 filas / 672 sesiones / 926.685 min ejecutables), motor `v3/backtester` Strategy/MM/provider con 6 módulos de estrategia (tg/fbc/orb/mr/s1/s2).
-- Minería por capítulo: 12 extractos con ítems citados por claim-id (evidencia de segunda capa en `/tmp/clf-god/`, efímero; las citas viven en los docs).
+- Minería por capítulo COMPLETA (12/12): extractos con ítems citados por claim-id y línea de cobertura por capítulo, preservados como evidencia en `artifacts/clutifx-strategy-research/mining/` (ch01 104 ítems/132 claims · ch02 · ch03 217/217 · ch04 118/119 · ch05 97/100 · ch06 58/64 · ch07 228/238 · ch08 86/86 · ch09 137/137 · ch10 197/200 citados · ch11 78/80 · ch12 135/135). Hallazgos integrados al master desde los extractos: reglas de conducta operativa de ch12 (§5.12), tensión 15m-vs-5m del refinado (STR-005), R:R nunca cifrado (frames 2,34–2,76) en exclusiones.
 
 ## Estado de cosas vivas al cierre (no tocar sin reconciliar)
 
 1. **Ciclo R03 (OTRA SESIÓN)**: rama `experiment/campaign-lab-s04` con commit `e951d258` (fix protected-close) + WIP test remainder + worktree `r03-diag`. Las 23 filas SG FBC/ORB cuarentenadas esperan su re-ejecución. Esta misión no intervino.
 2. **Rama `experiment/challenge-history-20261018`**: 1 commit sin push (`20c73fd4`, auditoría NORMAL).
 3. **MCP aranea-ssh**: la sesión del cliente ZCode expiró a mitad de misión; se operó por puente HTTP manual (initialize + bearer del config local), patrón ya documentado en memoria. El appliance `mcps.lab.aranea.cl` volvió a responder durante la misión.
-4. **Workflow minería** (`dwfrun-c4cace99…`, GLM-5.3-Flash secuencial): produce los 12 extractos en `/tmp/clf-god/`; si queda incompleto al leer este handoff, los extractos ya entregados siguen siendo válidos como evidencia (cada uno es autocontenido por capítulo).
+4. **Minería cerrada**: los 12 extractos por capítulo viven en `artifacts/clutifx-strategy-research/mining/` (copiados desde `/tmp/clf-god/`). Nota operativa: la cuenta start-plan sufrió rate-limit 1302 con ~10 agentes paralelos grandes; los capítulos caídos (ch03/ch10) se rescataron vía workflow en la cuenta individual (GLM-5.3-Flash). Lección: paralelizar de a mitades, no de a 10.
 
 ## Próximos pasos propuestos (decisión Owner)
 
