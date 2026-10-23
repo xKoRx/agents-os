@@ -374,7 +374,7 @@ Datos disponibles (auditados en `HEFESTO-BASELINE-AUDIT.md`): NQ físico 2023-10
 | `META` | Aperturas, temarios, recaps, anuncios de vídeo siguiente | 19 claims clasificados META por COVERAGE |
 | `EXAMPLE_ONLY` | Observaciones de un caso sin enunciado general | "cuerpos respetan brutalmente el rango" (ch03 c-0108); ratio 12,34 (ch04 c-0079); -164 vs -100 pips (ch05) |
 | `DUPLICATE_SEMANTICS` | Repeticiones del instructor con otras palabras | 20 claims EQUIV clasificados por COVERAGE |
-| `INSUFFICIENT_SPECIFICATION` | "Entry Model" (ch04 c-0110, término sin definición); vídeo "extras" del reiniciado anunciado y no procesado (ch03 c-0013); capital de referencia de los % (q-ch11-001) | Huecos declarados de la biblioteca |
+| `INSUFFICIENT_SPECIFICATION` | "Entry Model" (ch04 c-0110, término sin definición); vídeo "extras" del reiniciado anunciado y no procesado (ch03 c-0013); capital de referencia de los % (q-ch11-001); R:R objetivo anunciado pero NUNCA cifrado en audio (frames de ch08 muestran 2,34/2,68/2,76/2,46 — dato visual no verbalizado); distancia numérica del stop (mostrada 0.00209 en herramienta, no dicha); límite de reentradas; umbral de "lo máximo que pudiese perder" (q-ch12-010) | Huecos declarados de la biblioteca |
 | `NOT_OBSERVABLE_WITH_AVAILABLE_DATA` | SMT multi-par (sin 2º instrumento); motivo FS "feeds de brokers"; DXY (sin índice) | Ver §8 |
 | `UNCERTAIN` | 15 claims (garbles/deícticos) + contradicción MATERIAL q-ch07-019 (hora de la noticia del ejemplo NY-EUR: 10 vs 8 — ninguna adjudicable) | Nunca consumibles como hechos |
 
