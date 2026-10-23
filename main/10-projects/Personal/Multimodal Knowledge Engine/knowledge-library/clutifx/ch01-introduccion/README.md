@@ -41,7 +41,7 @@ El 2026-10-22 (misión CLUTIFX FINAL REGULARIZATION) la biblioteca se **reconstr
 | Epistemic | 114 instructor_statement + 18 visual_observation + 0 model_inference |
 | Preguntas abiertas | 15 (`q-ch01-001..015`; 4 RESOLVED con evidencia adjudicada) |
 | Frames base (fin de minuto) | 35 (manifiesto `frames/.base_frames`) |
-| Frames bajo demanda | 54 (65 referencias citadas sobre 89 físicos) |
+| Frames bajo demanda | 58 (80 referencias citadas sobre 93 físicos; corrección de grounding visual 2026-10-22) |
 | Rules / concepts / examples documentados | 40 / 14 / 27 |
 | Revisión independiente (DOCVERIFY) | ONE-SHOT independiente 2026-10-22; ver su reporte en el run y AMENDMENTS |
 
