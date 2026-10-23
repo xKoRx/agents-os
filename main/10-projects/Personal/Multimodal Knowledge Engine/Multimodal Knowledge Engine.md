@@ -192,7 +192,7 @@ Repo: `docs/roadmap/post-m0-opportunities.md` (`master`, commit de alta `c9c0d3c
 
 ## ✅ Tareas
 
-- [ ] Explotar Clutifx: derivar estrategias en una capa aplicada separada, con citas a la biblioteca, hipótesis propias identificadas y validación/backtesting independiente antes de considerarlas operables. #owner/me #type/admin #area/personal
+- [ ] Explotar Clutifx: derivar estrategias en una capa aplicada separada, con citas a la biblioteca, hipótesis propias identificadas y validación/backtesting independiente antes de considerarlas operables. → Primer derivado documental entregado 2026-10-23 (misión GOD): [[CLUTIFX-STRATEGIES-MASTER]] en `Echo Futures/artifacts/clutifx-strategy-research/` (extraction+objetivización completas; implementación y backtesting siguen pendientes y viven en Echo Futures, no aquí). #owner/me #type/admin #area/personal
 - [ ] Preparar curso Gerard como candidato: confirmar identidad y materiales/permiso, inventario SHA/duración/orden, aislamiento LiveSync y preflight V1.2 antes de autorizar cualquier extracción. #owner/me #type/admin #area/personal
 
 - [x] Convergencia arquitectónica ADR-001 y SPECs M0 freeze. #owner/me #type/admin #area/personal
