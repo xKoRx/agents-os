@@ -42,7 +42,7 @@ Gates: **A** PASS/PASS/PASS/PARTIAL (runtime identificado; inventario 89=26+63 e
 | `HANDOFF.md` | Este documento |
 | `QA-VERIFICATION.md` | Informe de la revisión adversarial independiente (FASE H) + resolución de findings |
 
-Enlaces canónicos agregados: `Echo Futures.md` §"Clutifx — Extracción de estrategias" (nota canónica del proyecto) y referencia cruzada mínima en la tarea "Explotar Clutifx" del proyecto MKE. La biblioteca MKE quedó **intacta** (verificado: sin diffs desde `7fdaac6b`).
+Enlaces canónicos agregados: `Echo Futures.md` §"Clutifx — Extracción de estrategias" (nota canónica del proyecto) y referencia cruzada mínima en la tarea "Explotar Clutifx" del proyecto MKE. **Estado de la biblioteca MKE**: la capa de autoridad por capítulos (claims.jsonl/CLAIMS/frames/rules) quedó **bit-idéntica** desde el snapshot `7fdaac6b` (0 archivos de capítulo en el diff); la capa derivada `compiled/` fue completada por el propio run MKE en el commit `c3d9255b` (2026-10-23 10:50, después del snapshot, antes de esta publicación) — todas las cifras del contrato (1.608/1.584/15/9/1.033) fueron re-verificadas contra el estado vigente y no cambian (hallazgo D1 del QA, corregido aquí).
 
 ## Estadísticas reales del cierre
 
