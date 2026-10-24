@@ -7,7 +7,7 @@ slug: "00-index-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: "2026-08-10"
-updated: "2026-09-23"
+updated: "2026-10-24"
 reviewed: "2026-09-17"
 aliases:
   - "00-index index"
@@ -52,6 +52,7 @@ tags:
 | [[30-resources/agents/skills/sdd-workflow/SKILL|sdd-workflow]] | Clasifica y ejecuta fases SDD sin mezclarlas. | skill · transversal |
 | [[30-resources/agents/skills/sdd-developer/SKILL|sdd-developer]] | Implementa y certifica una feature SDD ready con tres shots, E2E/regression harvest y feedback reusable. | skill · transversal |
 | [[30-resources/agents/skills/e2e-gated-validation/SKILL|e2e-gated-validation]] | Validación E2E como secuencia de gates con evidencia y PASS/FAIL por gate. | skill · transversal |
+| [[30-resources/agents/skills/echo-retester-master/SKILL|echo-retester-master]] | Validación económica-first por identidad: desarrollo/causalidad, smoke propio, recuperación de rollover y trimestre con pase obligatorio antes del histórico. | skill · Echo Futures · estrategia investigación |
 | [[30-resources/agents/skills/release-certification/SKILL|release-certification]] | Certifica que release/binario corresponde al source autorizado. | skill · transversal |
 | [[30-resources/agents/skills/deployment-proof/SKILL|deployment-proof]] | Demuestra que el runtime ejecuta la release nueva; exit 0 no es prueba. | skill · transversal |
 | [[30-resources/agents/skills/readonly-production-probe/SKILL|readonly-production-probe]] | Probes read-only temporales contra sistemas reales con cleanup obligatorio. | skill · transversal |
