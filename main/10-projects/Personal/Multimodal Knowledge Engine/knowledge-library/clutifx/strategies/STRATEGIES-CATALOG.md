@@ -1,27 +1,8 @@
----
-type: doc
-schema_version: 1
-status: active
-area: "[[Echo]]"
-related:
-  - "[[Echo Futures]]"
-  - "[[10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/compiled/README|Clutifx compiled]]"
-aliases:
-  - clutifx strategies master
-  - catálogo estrategias clutifx
-tags:
-  - kind/doc
-  - area/echo
-  - tech/strategy-research
-created: "2026-10-23"
-updated: "2026-10-23"
----
+# STRATEGIES-CATALOG — Catálogo exhaustivo de estrategias del curso Clutifx
 
-# CLUTIFX-STRATEGIES-MASTER — Catálogo exhaustivo de estrategias del curso Clutifx
+Catálogo canónico e **interable** de las estrategias, setups, componentes, gestión y filtros del curso, extraído por la misión GOD (Clutifx Strategy Extraction & Objective Formalization, 2026-10-23) y re-domiciliado a la biblioteca el 2026-10-24 por decisión del Owner: el knowledge es la superficie que mejora con el tiempo y el catálogo debe evolucionar con ella. Derivado de la biblioteca por capítulos bajo el snapshot `7fdaac6b` (12 capítulos · 1.608 claims = 1.584 SUPPORTED consumibles + 15 UNCERTAIN + 9 superseded · 1.033 frames · 19 docs compilados). **Contrato de iteración**: igual que `compiled/`, este catálogo es una superficie DERIVADA — la autoridad sigue siendo la biblioteca por capítulos — y debe re-derivarse/actualizarse cuando la biblioteca cambie (nuevos capítulos procesados, UNCERTAIN resueltos, supersessions, nuevos frames). Ningún cambio aquí puede contradecir un claim vigente.
 
-**Documento maestro de la misión GOD (Clutifx Strategy Extraction & Objective Formalization, 2026-10-23).** Superficie DERIVADA de investigación: vive en Echo Futures y NO modifica la biblioteca canónica de MKE. Fuente de autoridad: la biblioteca por capítulos (`10-projects/Personal/Multimodal Knowledge Engine/knowledge-library/clutifx/`), snapshot verificado `7fdaac6b` (12 capítulos · 1.608 claims = 1.584 SUPPORTED consumibles + 15 UNCERTAIN + 9 superseded · 1.033 frames · 19 docs compilados).
-
-**Contrato de este catálogo**: sólo conocimiento `ACTIVE ∧ SUPPORTED ∧ evidencia resuelta` del curso. Se preservan los modalizadores dichos («normalmente», «yo creo», «a lo mejor»): una regla [probabilística] NO es una regla [dicha]. Las promesas del instructor («no falla», «imparables») son frases dichas, no validaciones. **El curso no aporta backtests ni winrates medidos**: este catálogo especifica; no valida. Nada de lo aquí atribuido a Clutifx puede presentar parámetros inventados como enseñados.
+**Contrato de consumo**: sólo conocimiento `ACTIVE ∧ SUPPORTED ∧ evidencia resuelta` del curso. Se preservan los modalizadores dichos («normalmente», «yo creo», «a lo mejor»): una regla [probabilística] NO es una regla [dicha]. Las promesas del instructor («no falla», «imparables») son frases dichas, no validaciones. **El curso no aporta backtests ni winrates medidos**: este catálogo especifica; no valida. Nada de lo aquí atribuido a Clutifx puede presentar parámetros inventados como enseñados. Los detectores objetivos (`[OP]/[HIP]`), la clasificación NQ y la matriz experimental viven en la capa de investigación de Echo Futures (`10-projects/Echo Futures/artifacts/clutifx-strategy-research/`) y NO son parte del conocimiento del curso.
 
 **Cómo resolver citas**: `chNN c-XXXX` = claim del capítulo, resoluble en `…/clutifx/chNN-*/CLAIMS.md#c-XXXX`; `q-chNN-YYY` = pregunta abierta en `…/clutifx/chNN-*/OPEN-QUESTIONS.md#q-chNN-YYY`. Los wikilinks completos viven en los docs compilados de la biblioteca; aquí se usa la forma corta por legibilidad.
 
