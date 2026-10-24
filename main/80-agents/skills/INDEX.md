@@ -7,7 +7,7 @@ slug: "skills-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-06-28
-updated: 2026-10-18
+updated: 2026-10-24
 reviewed: 2026-09-12
 aliases:
   - "skills index"
@@ -84,6 +84,7 @@ skills de una aplicación viven y se descubren en su repo owner.
 | [[30-resources/agents/skills/sdd-workflow/SKILL.md|sdd-workflow]] | Clasifica y ejecuta fases SDD sin mezclar specification, plan, tasks, implementation y verification. | Features/cambios no triviales; metodología en `30-resources/methodologies/sdd/`. |
 | [[30-resources/agents/skills/sdd-developer/SKILL.md|sdd-developer]] | Entrega una SPEC SDD ready mediante implementación one-shot, verificación adversarial independiente y corrección/gate final, preservando regresiones/E2E reutilizables. | Transversal; IMPLEMENT+VERIFY de features SDD listas. |
 | [[30-resources/agents/skills/e2e-gated-validation/SKILL.md|e2e-gated-validation]] | Orquesta validaciones E2E como secuencia de gates con evidencia y criterios PASS/FAIL. | E2E, golden runs o certificaciones físicas; transferible. |
+| [[30-resources/agents/skills/echo-retester-master/SKILL.md|echo-retester-master]] | Gatea cada nueva Strategy/variante/MM: unitarias → smoke individual → rollover → contrato trimestral con ≥1 challenge aprobado → histórico sólo de promocionadas; runbook fail-closed. | Echo Futures, ClutiFX y futuras campañas de extracción/implementación de estrategias; no LIVE. |
 | [[30-resources/agents/skills/release-certification/SKILL.md|release-certification]] | Certifica que release/binario corresponde al source autorizado (baseline, blob equality, SHA256). | Antes de certificar/probar sobre una release. |
 | [[30-resources/agents/skills/deployment-proof/SKILL.md|deployment-proof]] | Demuestra por jerarquía de evidencia que el runtime ejecuta la release nueva, sin aceptar exit 0. | Tras cualquier deploy que participe en una validación. |
 | [[30-resources/agents/skills/readonly-production-probe/SKILL.md|readonly-production-probe]] | Crea probes temporales read-only contra sistemas reales con cleanup obligatorio. | Inspección física de producción sin modificar estado. |
