@@ -367,7 +367,16 @@ El curso **no usa indicadores técnicos** (ni medias, ni osciladores, ni ADX): t
 
 ---
 
-## 10. Gate B y estado
+## 10. Casos límite de clasificación (decisiones documentadas — por qué no son familias propias)
+
+Decisiones de taxonomía tomadas por la extracción y ratificadas con el Owner (2026-10-24). Ninguna pierde información: cada una tiene su destino declarado. Si una futura iteración prefiere otra taxonomía, estos son los puntos a re-evaluar:
+
+1. **PDM + Order Block como triggers de FAM-001 (no familia propia)** — El instructor les da "la misma importancia" que al Turtle Soup en el esquema de entradas (ch04 c-0019), pero comparten el mecanismo causal completo (bias → DOL → rangos a favor → expansión) y sólo cambian el detonante; viven como CMP-008/CMP-009 + SET-002/SET-003. Una taxonomía por detonante los elevaría a familia; la elegida agrupa por mecanismo para no fragmentar el contexto común.
+2. **Entrada anticipada del rango sin cierre** — Estilo anticipatorio dicho como "más avanzado" (ch01 c-0052/c-0053) pero el método no se enseña ⇒ `INSUFFICIENT_SPECIFICATION` (ver §9). Su versión enseñada (TS + reacción sin esperar cierre, ch02 c-0035 / ch04 c-0027) está en CMP-001 y como eje experimental en la capa de investigación.
+3. **Operar "desde el DOL" tras objetivo tomado (riesgo consciente, ch09 c-0107/c-0108)** — Mantenido como **excepción de la red flag 3**, no como estrategia: el propio instructor la de-emfatiza ("la probabilidad es mucho más baja", "targets ya no están claros"). Su versión estructurada SÍ es estrategia: STR-004 (NY reversal con vela de las 5 tomando low + rango nuevo).
+4. **Contenido anunciado y ausente** — El vídeo de "extras" sobre cuándo el reiniciado debe completarse (ch03 c-0013) y el "Entry Model" con "gestión por 30 minutos" (ch04 c-0110/c-0112) podrían contener estrategias únicas, pero no forman parte de los 12 capítulos procesados: ausencia documentada, no vacío rellenable. Si ese material se procesa algún día, este catálogo debe re-derivarse (contrato de iteración del encabezado).
+
+## 11. Gate B y estado
 
 ```text
 CLUTIFX_STRATEGY_DISCOVERY = COMPLETE
