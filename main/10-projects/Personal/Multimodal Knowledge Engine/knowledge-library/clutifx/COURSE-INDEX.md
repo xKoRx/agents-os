@@ -8,6 +8,10 @@ La recompilación integral del curso (Knowledge Compilation V1, 2026-10-23) vive
 
 Fuentes físicas de los videos (locales, NO en Git): `/home/kor/mke/course/epNN-*.mp4`.
 
+## 🗂️ Catálogo de estrategias (superficie derivada interable)
+
+El catálogo canónico de TODAS las estrategias del curso — 5 familias (continuación hacia DOL, failure swing, SMT, noticias, reentrada intra-TS), 9+1 estrategias completas con setup claro, 24 componentes, 13 reglas de gestión, 4 red flags, exclusiones honestas y casos límite documentados — vive en `strategies/STRATEGIES-CATALOG.md` (extraído por la misión GOD 2026-10-23; re-domiciliado a la biblioteca por decisión del Owner el 2026-10-24 porque el knowledge es la superficie iterable). **Mismo contrato que `compiled/`**: derivado sólo de claims `ACTIVE ∧ SUPPORTED`, la autoridad sigue siendo la biblioteca por capítulos, y **debe re-derivarse cuando la biblioteca cambie** (nuevos capítulos como el vídeo de "extras" del reiniciado, UNCERTAIN resueltos, supersessions). La capa de investigación para backtesting (detectores objetivos `[OP]/[HIP]`, clasificación NQ, matriz experimental) viven fuera, en `10-projects/Echo Futures/artifacts/clutifx-strategy-research/`.
+
 ## Estado del curso
 
 | # | Carpeta | Video | SHA-256 (prefijo) | Duración | Biblioteca | Estado |
