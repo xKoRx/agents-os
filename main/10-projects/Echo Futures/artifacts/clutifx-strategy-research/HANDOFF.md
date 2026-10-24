@@ -15,7 +15,9 @@ created: "2026-10-23"
 updated: "2026-10-23"
 ---
 
-# HANDOFF — Misión GOD Clutifx Strategy Extraction (2026-10-23)
+# HANDOFF — Misión GOD Clutifx Strategy Extraction (2026-10-23, re-domiciliación 2026-10-24)
+
+**Re-domiciliación 2026-10-24 (decisión Owner)**: el catálogo canónico de estrategias se movió a la biblioteca de conocimiento (`…/clutifx/strategies/STRATEGIES-CATALOG.md`) porque el knowledge es la superficie iterable y el catálogo debe mejorar con ella (contrato de iteración en su encabezado: re-derivarse ante nuevos capítulos, UNCERTAIN resueltos o supersessions). En este directorio quedó la **capa de investigación del backtester**: `CLUTIFX-STRATEGIES-MASTER.md` pasó a ser la vista de investigación (clasificación NQ + punteros), y los detectores/matriz/auditoría/QA/mining no cambiaron. El QA-VERIFICATION verificó el contenido del catálogo cuando vivía aquí; se movió íntegro, hallazgos siguen aplicando.
 
 ## Veredictos finales
 
