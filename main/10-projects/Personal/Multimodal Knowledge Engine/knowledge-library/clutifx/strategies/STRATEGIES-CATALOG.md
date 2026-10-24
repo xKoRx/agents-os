@@ -329,7 +329,9 @@ Para el backtester, este procedimiento es el **pipeline de contexto** (CMP-002 +
 
 ---
 
-## 8. Clasificación NQ / datos / runtime (resumen de D2-D3)
+## 8. Adaptación a futuros NQ / Echo Futures (puntero a la capa de investigación)
+
+La clasificación por estrategia (`NQ_DIRECTLY_TESTABLE` / `NQ_ADAPTATION_HYPOTHESIS` / `MULTI_INSTRUMENT_DATA_REQUIRED` / `FX_NATIVE` / `DATA_BLOCKED` / `RUNTIME_GAP`), los detectores objetivos y la matriz experimental son trabajo de investigación del backtester y viven en `10-projects/Echo Futures/artifacts/clutifx-strategy-research/` (master de investigación, `CLUTIFX-OBJECTIVE-DETECTORS.md`, `CLUTIFX-EXPERIMENT-MATRIX.md`, `HEFESTO-BASELINE-AUDIT.md`). Resumen de la clasificación vigente:
 
 | Estrategia | Clasificación | Detalle |
 |---|---|---|
