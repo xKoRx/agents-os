@@ -1,5 +1,11 @@
 # Runbooks resource log
 
+## [2026-10-24] create | echo-futures-strategy-qualification-runbook
+
+- Runbook operativo de qualification-first para Echo Futures, ligado a la skill `echo-retester-master`: censo per-identity, fuentes y contrato trimestral NQ físico, warmup causal, smoke real por identidad, canary rollover corto, campaña con pase obligatorio antes de histórico y reconciliación económica completa.
+- Incluye estados de gates, esquema ilustrativo de receipt, guard de cola histórica fail-closed, pruebas negativas anti-bypass, recursos Hefesto (máximo global seis motores) y rollback ante failure/data gaps. No añade segundo scheduler ni habilita LIVE.
+- Cambio registrado en `80-agents/journal/logs/2026-10-24-echo-futures-strategy-qualification-gates.md`.
+
 ## [2026-09-19] create | high-impact-networking-dns-contract + cluster-node-maintenance-contract + ceph-storage-operations-contract
 
 - Se crearon los tres contratos del operador high-impact (habilitación H5 de [[HERMES — Infrastructure Operations]], mandato owner one-shot, ZERO mutaciones): networking/DNS (familias A/B/J: OPNsense 130 SPOF sin recovery, Pi-hole, Tailscale 119, firewall PVE disabled; clasificación CLASS 1–3; precondiciones con owner presencial y pre-captura), nodos/quorum (familias C/J: baseline corosync LAN-only sin red dedicada, kernel drift athena, precondiciones GO, NO_GO de quorum/Ceph/ventana, plantilla de mantenimiento con drenaje) y Ceph (familia D: baseline nearfull medido 3/3 MONs — osd.0 85.65%/osd.2 85.59%, pool1 87.26% —, plan de resolución por riesgo ascendente: huérfanos confirmados → reweight → PGs → add OSD, con NO_GO en degradación de clientes). REUSE en vez de crear: TrueNAS reutiliza matriz H1, PBS el estado R2 de [[BACKUP-DR-OWNER-PROJECT]], Hermes el recovery existente. Ningún contrato autoriza operaciones; CLASS 3 queda owner-gated sin excepción. Fila de captura en fechas-captura; índice de runbooks 29 curados. Evidencia: `~/aranea/work/h5-high-impact-20260919/probes/`. Change log: `2026-09-19-h5-high-impact-enablement`.
