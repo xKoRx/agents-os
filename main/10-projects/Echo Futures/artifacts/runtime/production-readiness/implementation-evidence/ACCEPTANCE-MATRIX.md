@@ -1,3 +1,16 @@
+---
+type: doc
+schema_version: 1
+status: active
+area: "[[Echo]]"
+related: ["[[Echo Futures — Runtime Pools]]", "[[EF-PROD-GOD-03-IMPLEMENTATION-PLAN]]", "[[EF-PROD-GOD-04-CERTIFICATION-AND-RELEASE]]", "[[EF-PROD-GOD-05-MANAGER-ADJUDICATION]]"]
+aliases: []
+tags:
+  - kind/doc
+created: "2026-10-24"
+updated: "2026-10-24"
+---
+
 # EF-PROD-GLM-01 — ACCEPTANCE-MATRIX F01–F09 (cierre de implementación B1–B3)
 
 Corte: 2026-10-24, Submanager GLM-5.3-Flash LOCAL. Delta auditado: `xKoRx/echo feature/ef-runtime-pools ac0621a1..fd5612f5` (170 archivos, +25.210/−494). Estado por finding: CERRADO_EN_SOURCE (reparación y tests en source, capa L1/L2 Go/C#-puro), NOT_RUN (capa física L3+ pendiente de G-ENV/G-FEED/G-REC). Oráculos según EF-PROD-GOD-04 §3; enmiendas M01–M07 de EF-PROD-GOD-05 aplicadas.

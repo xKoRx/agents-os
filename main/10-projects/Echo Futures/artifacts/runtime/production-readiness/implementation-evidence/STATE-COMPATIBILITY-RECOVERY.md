@@ -1,3 +1,16 @@
+---
+type: doc
+schema_version: 1
+status: active
+area: "[[Echo]]"
+related: ["[[Echo Futures — Runtime Pools]]", "[[EF-PROD-GOD-03-IMPLEMENTATION-PLAN]]", "[[EF-PROD-GOD-04-CERTIFICATION-AND-RELEASE]]", "[[EF-PROD-GOD-05-MANAGER-ADJUDICATION]]"]
+aliases: []
+tags:
+  - kind/doc
+created: "2026-10-24"
+updated: "2026-10-24"
+---
+
 # EF-PROD-GLM-01 — STATE-COMPATIBILITY y RECOVERY-PROOF (resumen de compatibilidad y recuperación)
 
 Corte `fd5612f5`. Detalle normativo: GOD-02 §3–§6; contratos congelados en `v3/sdk/futures/recovery/` (schema `recovery.v1`, marker `owner-continuity.v1`, policy de compatibilidad `strict-v1`).

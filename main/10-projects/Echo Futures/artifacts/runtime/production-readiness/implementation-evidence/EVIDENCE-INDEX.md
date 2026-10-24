@@ -1,3 +1,16 @@
+---
+type: doc
+schema_version: 1
+status: active
+area: "[[Echo]]"
+related: ["[[Echo Futures — Runtime Pools]]", "[[EF-PROD-GOD-03-IMPLEMENTATION-PLAN]]", "[[EF-PROD-GOD-04-CERTIFICATION-AND-RELEASE]]", "[[EF-PROD-GOD-05-MANAGER-ADJUDICATION]]"]
+aliases: []
+tags:
+  - kind/doc
+created: "2026-10-24"
+updated: "2026-10-24"
+---
+
 # EF-PROD-GLM-01 — EVIDENCE-INDEX (cierre B1–B3)
 
 Generado 2026-10-24 por el Submanager GLM-5.3-Flash. Cadena de SHAs en `xKoRx/echo@feature/ef-runtime-pools` (todos FF, sin force, sin push al cierre salvo el push final del candidato):
