@@ -23,7 +23,7 @@ Corte, tabla por finding, dictamen adversarial W6, batería de integración, cob
 
 # EF-PROD-GLM-01 — ACCEPTANCE-MATRIX F01–F09 (cierre de implementación B1–B3)
 
-Corte: 2026-10-24, Submanager GLM-5.3-Flash LOCAL. Delta auditado: `xKoRx/echo feature/ef-runtime-pools ac0621a1..fd5612f5` (170 archivos, +25.210/−494). Estado por finding: CERRADO_EN_SOURCE (reparación y tests en source, capa L1/L2 Go/C#-puro), NOT_RUN (capa física L3+ pendiente de G-ENV/G-FEED/G-REC). Oráculos según EF-PROD-GOD-04 §3; enmiendas M01–M07 de EF-PROD-GOD-05 aplicadas.
+Corte: 2026-10-24, Submanager GLM-5.3-Flash LOCAL. Delta auditado: `xKoRx/echo feature/ef-runtime-pools ac0621a1..602dfcad` (fd5612f5 + merge con las correcciones físicas del Owner, compilación real assemblies @ dade311a). Estado por finding: CERRADO_EN_SOURCE (reparación y tests en source, capa L1/L2 Go/C#-puro), NOT_RUN (capa física L3+ pendiente de G-ENV/G-FEED/G-REC). Oráculos según EF-PROD-GOD-04 §3; enmiendas M01–M07 de EF-PROD-GOD-05 aplicadas.
 
 | Finding | Estado | Cierre en source (SHA y evidencia principal) | Capa física |
 |---|---|---|---|
