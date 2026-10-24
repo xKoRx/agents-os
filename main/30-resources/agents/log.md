@@ -1,5 +1,12 @@
 # Agents resource log
 
+## [2026-10-24] create | echo-retester-master — qualification-first
+
+- Se creó `echo-retester-master` como skill federada de Echo Futures para toda nueva estrategia/variante/MM (ClutiFX y fuentes futuras). El criterio exige G0 implementación, G1 correctness, G2 smoke **por identidad**, G3 cruce de rollover y G4 contrato trimestral de un único NQ físico (≥45 sesiones con datos) con ≥1 `CHALLENGE_PASSED` antes de G5 histórico largo.
+- La vía de admisión al histórico debe validar receipts y digests fail-closed; ningún control hermano hereda PASS, y una compra no equivale a un pase. Runner mecánico descrito exclusivamente en `30-resources/runbooks/echo-futures-strategy-qualification-runbook.md`, sin duplicarlo aquí.
+- Antecedente del Owner: ClutiFX S02 TS_M30 ejecutó 444 sesiones y 0/15.256 evaluaciones ready; falla de warmup/roll nunca smokeada. La regla previene repetir este costo. Ejecutor local debe materializar el guard y correr checks negativos antes de usar G5.
+- Change log: `2026-10-24-echo-futures-strategy-qualification-gates`.
+
 ## [2026-09-23] ingest | Compounding Engineering Vision
 
 - Se formalizó `compounding-engineering-vision.md` como visión de ingeniería de Agents-OS, separada de la constitución ejecutable del sistema.
