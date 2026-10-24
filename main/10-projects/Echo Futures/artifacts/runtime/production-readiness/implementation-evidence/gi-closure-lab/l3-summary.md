@@ -1,0 +1,12 @@
+# L3 aislado — laboratorio de usuario (sin docker), 2026-10-24
+- Runtime real: flink-1.14.3 + statefun-flink-{distribution,core}-3.2.0.jar (maven central), Java 11 (mise temurin-11), imagen-equivalente layout (lib/ + /opt/statefun/modules vía userns bind-mount; rutas hardcodeadas Constants.java respetadas).
+- Broker: Kafka 3.7.1 KRaft single-node 127.0.0.1:29092 (transacciones on, RF=1). Aislado: puertos propios, topics propios (ef-gi-*), cero contacto con DEV/PROD.
+- L3-A MÓDULO (JAR real):
+  - object-form fixture  → job RUNNING (3 tasks). master-object.log
+  - scalar-form fixture  → RECHAZADO: MismatchedInputException → "Error parsing a GenericKafkaEgressSpec" (GenericKafkaEgressBinderV1.parseSpec) → cluster entrypoint FAILED. master-scalar.log
+  - manifest REAL develop corregido (solo direcciones reescritas a 127.0.0.1) → job RUNNING (19 tasks, sin errores). master-real.log
+- L3-B KAFKA TX (sarama 1.43.3, mismo cliente del producto):
+  - TX commit → registro visible para consumer group read_committed (1/1).
+  - TX abort → registro INVISIBLE para read_committed (0/1).
+  - L3_TX_PROBE_PASS (txprobe, fuente commiteada).
+- NOT_RUN declarado: acoplamiento commit-at-checkpoint del egress StateFun (requiere función remota real en el loop → G-REC/G-ENV); restore físico del job (rec-01..07).

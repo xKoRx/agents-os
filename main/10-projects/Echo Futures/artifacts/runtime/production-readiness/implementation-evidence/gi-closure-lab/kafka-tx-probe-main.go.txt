@@ -1,0 +1,115 @@
+// L3-b: broker transactional commit/abort + read_committed isolation probe
+// (consumer GROUP — the pattern the product bridge uses; IBM/sarama).
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+	"time"
+
+	"github.com/IBM/sarama"
+)
+
+const (
+	brokers    = "127.0.0.1:29092"
+	topic      = "ef-gi-tx-probe2"
+	abortTopic = "ef-gi-tx-aborted2"
+)
+
+type multiHandler struct {
+	seen map[string][]string
+}
+
+func (h *multiHandler) Setup(s sarama.ConsumerGroupSession) error   { return nil }
+func (h *multiHandler) Cleanup(s sarama.ConsumerGroupSession) error { return nil }
+func (h *multiHandler) ConsumeClaim(s sarama.ConsumerGroupSession, c sarama.ConsumerGroupClaim) error {
+	for m := range c.Messages() {
+		h.seen[m.Topic] = append(h.seen[m.Topic], string(m.Value))
+		s.MarkMessage(m, "")
+	}
+	return nil
+}
+
+func main() {
+	cfg := sarama.NewConfig()
+	cfg.Version = sarama.V2_8_0_0
+	cfg.Producer.RequiredAcks = sarama.WaitForAll
+	cfg.Producer.Return.Successes = true
+	cfg.Producer.Idempotent = true
+	cfg.Producer.Transaction.ID = "efgi-lab-tx-producer-2"
+	cfg.Net.MaxOpenRequests = 1
+	prod, err := sarama.NewAsyncProducer([]string{brokers}, cfg)
+	if err != nil {
+		log.Fatalf("producer: %v", err)
+	}
+	defer prod.Close()
+
+	// TX 1: one record committed.
+	if err := prod.BeginTxn(); err != nil {
+		log.Fatalf("begin1: %v", err)
+	}
+	prod.Input() <- &sarama.ProducerMessage{Topic: topic, Key: sarama.StringEncoder("committed"), Value: sarama.StringEncoder("VISIBLE-AFTER-COMMIT")}
+	select {
+	case <-prod.Successes():
+	case err := <-prod.Errors():
+		log.Fatalf("produce1: %v", err)
+	case <-time.After(15 * time.Second):
+		log.Fatal("produce1: timeout")
+	}
+	if err := prod.CommitTxn(); err != nil {
+		log.Fatalf("commit: %v", err)
+	}
+	fmt.Println("TX1 committed: 1 record on", topic)
+
+	// TX 2: one record aborted.
+	if err := prod.BeginTxn(); err != nil {
+		log.Fatalf("begin2: %v", err)
+	}
+	prod.Input() <- &sarama.ProducerMessage{Topic: abortTopic, Key: sarama.StringEncoder("aborted"), Value: sarama.StringEncoder("MUST-BE-INVISIBLE")}
+	select {
+	case <-prod.Successes():
+	case err := <-prod.Errors():
+		log.Fatalf("produce2: %v", err)
+	case <-time.After(15 * time.Second):
+		log.Fatal("produce2: timeout")
+	}
+	if err := prod.AbortTxn(); err != nil {
+		log.Fatalf("abort: %v", err)
+	}
+	fmt.Println("TX2 aborted: 1 record on", abortTopic)
+
+	// Consumer group with ReadCommitted: sees the committed record only.
+	cc := sarama.NewConfig()
+	cc.Version = sarama.V2_8_0_0
+	cc.Consumer.Offsets.Initial = sarama.OffsetOldest
+	cc.Consumer.IsolationLevel = sarama.ReadCommitted
+	group, err := sarama.NewConsumerGroup([]string{brokers}, "efgi-tx-probe-group-2", cc)
+	if err != nil {
+		log.Fatalf("group: %v", err)
+	}
+	defer group.Close()
+	seen := map[string][]string{}
+	h := &multiHandler{seen: seen}
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	go func() {
+		for {
+			if err := group.Consume(ctx, []string{topic, abortTopic}, h); err != nil {
+				log.Fatalf("consume: %v", err)
+			}
+			if ctx.Err() != nil {
+				return
+			}
+		}
+	}()
+	<-ctx.Done()
+	visA := len(seen[topic])
+	visB := len(seen[abortTopic])
+	fmt.Printf("read_committed view: committed-topic=%d (want 1) aborted-topic=%d (want 0)\n", visA, visB)
+	if visA == 1 && visB == 0 {
+		fmt.Println("L3_TX_PROBE_PASS")
+	} else {
+		fmt.Println("L3_TX_PROBE_FAIL")
+	}
+}

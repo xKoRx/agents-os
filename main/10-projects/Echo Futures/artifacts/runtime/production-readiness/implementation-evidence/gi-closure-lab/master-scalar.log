@@ -1,0 +1,343 @@
+Starting statefun as a console application on host daedalus.
+2026-10-24 15:36:53,536 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - --------------------------------------------------------------------------------
+2026-10-24 15:36:53,542 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Preconfiguration: 
+2026-10-24 15:36:53,542 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - 
+
+
+RESOURCE_PARAMS extraction logs:
+jvm_params: -Xmx201326592 -Xms201326592 -XX:MaxMetaspaceSize=268435456
+dynamic_configs: -D jobmanager.memory.off-heap.size=134217728b -D jobmanager.memory.jvm-overhead.min=201326592b -D jobmanager.memory.jvm-metaspace.size=268435456b -D jobmanager.memory.heap.size=201326592b -D jobmanager.memory.jvm-overhead.max=201326592b
+logs: WARNING: sun.reflect.Reflection.getCallerClass is not supported. This will impact performance.
+INFO  [] - Loading configuration property: jobmanager.rpc.address, localhost
+INFO  [] - Loading configuration property: jobmanager.rpc.port, 61235
+INFO  [] - Loading configuration property: jobmanager.bind-host, 127.0.0.1
+INFO  [] - Loading configuration property: rest.bind-address, 127.0.0.1
+INFO  [] - Loading configuration property: rest.port, 28081
+INFO  [] - Loading configuration property: taskmanager.bind-host, 127.0.0.1
+INFO  [] - Loading configuration property: taskmanager.numberOfTaskSlots, 4
+INFO  [] - Loading configuration property: parallelism.default, 1
+INFO  [] - Loading configuration property: state.backend, hashmap
+INFO  [] - Loading configuration property: state.checkpoints.dir, file:///tmp/ef-gi-lab/sf-checkpoints
+INFO  [] - Loading configuration property: execution.checkpointing.interval, 10000
+INFO  [] - Loading configuration property: execution.checkpointing.mode, EXACTLY_ONCE
+INFO  [] - Loading configuration property: execution.checkpointing.timeout, 60000
+INFO  [] - Loading configuration property: execution.checkpointing.min-pause, 200
+INFO  [] - Loading configuration property: execution.checkpointing.max-concurrent-checkpoints, 1
+INFO  [] - Loading configuration property: high-availability, none
+INFO  [] - Loading configuration property: classloader.check-leaked-classloader, false
+INFO  [] - Loading configuration property: env.log.dir, /tmp/ef-gi-lab/sf-log
+INFO  [] - Loading configuration property: jobmanager.memory.process.size, 768m
+INFO  [] - Loading configuration property: taskmanager.memory.process.size, 1536m
+INFO  [] - Loading configuration property: classloader.parent-first-patterns.additional, org.apache.flink.statefun;org.apache.kafka;com.google.protobuf
+INFO  [] - The derived from fraction jvm overhead memory (76.800mb (80530638 bytes)) is less than its min value 192.000mb (201326592 bytes), min value will be used instead
+INFO  [] - Final Master Memory configuration:
+INFO  [] -   Total Process Memory: 768.000mb (805306368 bytes)
+INFO  [] -     Total Flink Memory: 320.000mb (335544320 bytes)
+INFO  [] -       JVM Heap:         192.000mb (201326592 bytes)
+INFO  [] -       Off-heap:         128.000mb (134217728 bytes)
+INFO  [] -     JVM Metaspace:      256.000mb (268435456 bytes)
+INFO  [] -     JVM Overhead:       192.000mb (201326592 bytes)
+
+2026-10-24 15:36:53,542 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - --------------------------------------------------------------------------------
+2026-10-24 15:36:53,543 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Starting StatefulFunctionsClusterEntryPoint (Version: 1.14.3, Scala: 2.12, Rev:98997ea, Date:2022-01-08T23:23:54+01:00)
+2026-10-24 15:36:53,543 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  OS current user: root
+2026-10-24 15:36:53,543 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Current Hadoop/Kerberos user: <no hadoop dependency found>
+2026-10-24 15:36:53,544 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  JVM: OpenJDK 64-Bit Server VM - Eclipse Adoptium - 11/11.0.32.1+1
+2026-10-24 15:36:53,544 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Maximum heap size: 192 MiBytes
+2026-10-24 15:36:53,544 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  JAVA_HOME: /home/kor/.local/share/mise/installs/java/temurin-11
+2026-10-24 15:36:53,545 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  No Hadoop Dependency available
+2026-10-24 15:36:53,545 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  JVM Options:
+2026-10-24 15:36:53,545 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -Xmx201326592
+2026-10-24 15:36:53,546 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -Xms201326592
+2026-10-24 15:36:53,546 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -XX:MaxMetaspaceSize=268435456
+2026-10-24 15:36:53,546 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -Dlog.file=/tmp/ef-gi-lab/sf-log/flink-kor-statefun-0-daedalus.log
+2026-10-24 15:36:53,546 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -Dlog4j.configuration=file:/opt/flink/conf/log4j-console.properties
+2026-10-24 15:36:53,546 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -Dlog4j.configurationFile=file:/opt/flink/conf/log4j-console.properties
+2026-10-24 15:36:53,547 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -Dlogback.configurationFile=file:/opt/flink/conf/logback-console.xml
+2026-10-24 15:36:53,547 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Program Arguments:
+2026-10-24 15:36:53,549 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     --configDir
+2026-10-24 15:36:53,549 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     /opt/flink/conf
+2026-10-24 15:36:53,549 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -D
+2026-10-24 15:36:53,550 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     jobmanager.memory.off-heap.size=134217728b
+2026-10-24 15:36:53,550 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -D
+2026-10-24 15:36:53,550 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     jobmanager.memory.jvm-overhead.min=201326592b
+2026-10-24 15:36:53,550 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -D
+2026-10-24 15:36:53,550 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     jobmanager.memory.jvm-metaspace.size=268435456b
+2026-10-24 15:36:53,550 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -D
+2026-10-24 15:36:53,550 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     jobmanager.memory.heap.size=201326592b
+2026-10-24 15:36:53,551 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -D
+2026-10-24 15:36:53,551 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     jobmanager.memory.jvm-overhead.max=201326592b
+2026-10-24 15:36:53,551 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Classpath: /opt/flink/lib/flink-csv-1.14.3.jar:/opt/flink/lib/flink-json-1.14.3.jar:/opt/flink/lib/flink-shaded-zookeeper-3.4.14.jar:/opt/flink/lib/log4j-1.2-api-2.17.1.jar:/opt/flink/lib/log4j-api-2.17.1.jar:/opt/flink/lib/log4j-core-2.17.1.jar:/opt/flink/lib/log4j-slf4j-impl-2.17.1.jar:/opt/flink/lib/statefun-flink-core.jar:/opt/flink/lib/statefun-flink-distribution.jar:/opt/flink/lib/flink-dist_2.12-1.14.3.jar:::
+2026-10-24 15:36:53,551 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - --------------------------------------------------------------------------------
+2026-10-24 15:36:53,553 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - Registered UNIX signal handlers for [TERM, HUP, INT]
+2026-10-24 15:36:53,584 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: jobmanager.rpc.address, localhost
+2026-10-24 15:36:53,585 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: jobmanager.rpc.port, 61235
+2026-10-24 15:36:53,585 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: jobmanager.bind-host, 127.0.0.1
+2026-10-24 15:36:53,585 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: rest.bind-address, 127.0.0.1
+2026-10-24 15:36:53,585 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: rest.port, 28081
+2026-10-24 15:36:53,586 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: taskmanager.bind-host, 127.0.0.1
+2026-10-24 15:36:53,586 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: taskmanager.numberOfTaskSlots, 4
+2026-10-24 15:36:53,586 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: parallelism.default, 1
+2026-10-24 15:36:53,586 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: state.backend, hashmap
+2026-10-24 15:36:53,586 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: state.checkpoints.dir, file:///tmp/ef-gi-lab/sf-checkpoints
+2026-10-24 15:36:53,587 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: execution.checkpointing.interval, 10000
+2026-10-24 15:36:53,587 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: execution.checkpointing.mode, EXACTLY_ONCE
+2026-10-24 15:36:53,587 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: execution.checkpointing.timeout, 60000
+2026-10-24 15:36:53,587 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: execution.checkpointing.min-pause, 200
+2026-10-24 15:36:53,588 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: execution.checkpointing.max-concurrent-checkpoints, 1
+2026-10-24 15:36:53,588 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: high-availability, none
+2026-10-24 15:36:53,588 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: classloader.check-leaked-classloader, false
+2026-10-24 15:36:53,588 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: env.log.dir, /tmp/ef-gi-lab/sf-log
+2026-10-24 15:36:53,589 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: jobmanager.memory.process.size, 768m
+2026-10-24 15:36:53,589 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: taskmanager.memory.process.size, 1536m
+2026-10-24 15:36:53,589 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: classloader.parent-first-patterns.additional, org.apache.flink.statefun;org.apache.kafka;com.google.protobuf
+2026-10-24 15:36:53,651 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - Starting StatefulFunctionsClusterEntryPoint.
+2026-10-24 15:36:53,726 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - Install default filesystem.
+2026-10-24 15:36:53,733 INFO  org.apache.flink.core.fs.FileSystem                          [] - Hadoop is not in the classpath/dependencies. The extended set of supported File Systems via Hadoop is not available.
+2026-10-24 15:36:53,832 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - Install security context.
+2026-10-24 15:36:53,853 INFO  org.apache.flink.runtime.security.modules.HadoopModuleFactory [] - Cannot create Hadoop Security Module because Hadoop cannot be found in the Classpath.
+2026-10-24 15:36:53,859 INFO  org.apache.flink.runtime.security.modules.JaasModule         [] - Jaas file will be created as /tmp/jaas-3363870891487884636.conf.
+2026-10-24 15:36:53,869 INFO  org.apache.flink.runtime.security.contexts.HadoopSecurityContextFactory [] - Cannot install HadoopSecurityContext because Hadoop cannot be found in the Classpath.
+2026-10-24 15:36:53,875 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - Initializing cluster services.
+2026-10-24 15:36:54,371 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcServiceUtils        [] - Trying to start actor system, external address localhost:61235, bind address 127.0.0.1:61235.
+2026-10-24 15:36:55,715 INFO  akka.event.slf4j.Slf4jLogger                                 [] - Slf4jLogger started
+2026-10-24 15:36:55,798 INFO  akka.remote.RemoteActorRefProvider                           [] - Akka Cluster not in use - enabling unsafe features anyway because `akka.remote.use-unsafe-remote-features-outside-cluster` has been enabled.
+2026-10-24 15:36:55,798 INFO  akka.remote.Remoting                                         [] - Starting remoting
+2026-10-24 15:36:56,140 INFO  akka.remote.Remoting                                         [] - Remoting started; listening on addresses :[akka.tcp://flink@localhost:61235]
+2026-10-24 15:36:56,335 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcServiceUtils        [] - Actor system started at akka.tcp://flink@localhost:61235
+2026-10-24 15:36:56,386 INFO  org.apache.flink.configuration.Configuration                 [] - Config uses fallback configuration key 'jobmanager.rpc.address' instead of key 'rest.address'
+2026-10-24 15:36:56,405 INFO  org.apache.flink.runtime.blob.BlobServer                     [] - Created BLOB server storage directory /tmp/blobStore-a5fc37e4-7b2c-49c2-8d97-fea3563a82e6
+2026-10-24 15:36:56,409 INFO  org.apache.flink.runtime.blob.BlobServer                     [] - Started BLOB server at 127.0.0.1:36831 - max concurrent requests: 50 - max backlog: 1000
+2026-10-24 15:36:56,426 INFO  org.apache.flink.runtime.metrics.MetricRegistryImpl          [] - No metrics reporter configured, no metrics will be exposed/reported.
+2026-10-24 15:36:56,430 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcServiceUtils        [] - Trying to start actor system, external address localhost:0, bind address 0.0.0.0:0.
+2026-10-24 15:36:56,491 INFO  akka.event.slf4j.Slf4jLogger                                 [] - Slf4jLogger started
+2026-10-24 15:36:56,498 INFO  akka.remote.RemoteActorRefProvider                           [] - Akka Cluster not in use - enabling unsafe features anyway because `akka.remote.use-unsafe-remote-features-outside-cluster` has been enabled.
+2026-10-24 15:36:56,499 INFO  akka.remote.Remoting                                         [] - Starting remoting
+2026-10-24 15:36:56,566 INFO  akka.remote.Remoting                                         [] - Remoting started; listening on addresses :[akka.tcp://flink-metrics@localhost:43669]
+2026-10-24 15:36:56,603 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcServiceUtils        [] - Actor system started at akka.tcp://flink-metrics@localhost:43669
+2026-10-24 15:36:56,662 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcService             [] - Starting RPC endpoint for org.apache.flink.runtime.metrics.dump.MetricQueryService at akka://flink-metrics/user/rpc/MetricQueryService .
+2026-10-24 15:36:56,794 INFO  org.apache.flink.configuration.Configuration                 [] - Config uses fallback configuration key 'jobmanager.rpc.address' instead of key 'rest.address'
+2026-10-24 15:36:56,795 INFO  org.apache.flink.configuration.Configuration                 [] - Config uses fallback configuration key 'rest.port' instead of key 'rest.bind-port'
+2026-10-24 15:36:56,795 INFO  org.apache.flink.runtime.jobmaster.MiniDispatcherRestEndpoint [] - Upload directory /tmp/flink-web-14743302-dcbe-4e60-af1b-760f892cf9d0/flink-web-upload does not exist. 
+2026-10-24 15:36:56,796 INFO  org.apache.flink.runtime.jobmaster.MiniDispatcherRestEndpoint [] - Created directory /tmp/flink-web-14743302-dcbe-4e60-af1b-760f892cf9d0/flink-web-upload for file uploads.
+2026-10-24 15:36:56,831 INFO  org.apache.flink.runtime.jobmaster.MiniDispatcherRestEndpoint [] - Starting rest endpoint.
+2026-10-24 15:36:57,258 INFO  org.apache.flink.runtime.webmonitor.WebMonitorUtils          [] - Determined location of main cluster component log file: /tmp/ef-gi-lab/sf-log/flink-kor-statefun-0-daedalus.log
+2026-10-24 15:36:57,259 INFO  org.apache.flink.runtime.webmonitor.WebMonitorUtils          [] - Determined location of main cluster component stdout file: /tmp/ef-gi-lab/sf-log/flink-kor-statefun-0-daedalus.out
+2026-10-24 15:36:57,642 INFO  org.apache.flink.runtime.jobmaster.MiniDispatcherRestEndpoint [] - Rest endpoint listening at 127.0.0.1:28081
+2026-10-24 15:36:57,651 INFO  org.apache.flink.runtime.jobmaster.MiniDispatcherRestEndpoint [] - http://127.0.0.1:28081 was granted leadership with leaderSessionID=00000000-0000-0000-0000-000000000000
+2026-10-24 15:36:57,653 INFO  org.apache.flink.runtime.jobmaster.MiniDispatcherRestEndpoint [] - Web frontend listening at http://127.0.0.1:28081.
+2026-10-24 15:36:57,760 INFO  org.apache.flink.statefun.flink.launcher.StatefulFunctionsJobGraphRetriever [] - Creating JobGraph for job d678d7a2ede7f3a8a825d20136243a40, with parallelism 1 and savepoint restore settings SavepointRestoreSettings.none().
+2026-10-24 15:36:58,362 INFO  org.apache.flink.runtime.jobmaster.MiniDispatcherRestEndpoint [] - Shutting down rest endpoint.
+2026-10-24 15:36:58,441 INFO  org.apache.flink.runtime.jobmaster.MiniDispatcherRestEndpoint [] - Removing cache directory /tmp/flink-web-14743302-dcbe-4e60-af1b-760f892cf9d0/flink-web-ui
+2026-10-24 15:36:58,460 INFO  org.apache.flink.runtime.jobmaster.MiniDispatcherRestEndpoint [] - http://127.0.0.1:28081 lost leadership
+2026-10-24 15:36:58,460 INFO  org.apache.flink.runtime.jobmaster.MiniDispatcherRestEndpoint [] - Shut down complete.
+2026-10-24 15:36:58,472 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - Shutting StatefulFunctionsClusterEntryPoint down with application status FAILED. Diagnostics org.apache.flink.util.FlinkException: Could not create the DispatcherResourceManagerComponent.
+	at org.apache.flink.runtime.entrypoint.component.DefaultDispatcherResourceManagerComponentFactory.create(DefaultDispatcherResourceManagerComponentFactory.java:275)
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.runCluster(ClusterEntrypoint.java:254)
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.lambda$startCluster$1(ClusterEntrypoint.java:193)
+	at org.apache.flink.runtime.security.contexts.NoOpSecurityContext.runSecured(NoOpSecurityContext.java:28)
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.startCluster(ClusterEntrypoint.java:190)
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.runClusterEntrypoint(ClusterEntrypoint.java:617)
+	at org.apache.flink.statefun.flink.launcher.StatefulFunctionsClusterEntryPoint.main(StatefulFunctionsClusterEntryPoint.java:99)
+Caused by: org.apache.flink.util.FlinkRuntimeException: Could not retrieve the JobGraph.
+	at org.apache.flink.runtime.dispatcher.runner.JobDispatcherLeaderProcessFactoryFactory.createFactory(JobDispatcherLeaderProcessFactoryFactory.java:58)
+	at org.apache.flink.runtime.dispatcher.runner.DefaultDispatcherRunnerFactory.createDispatcherRunner(DefaultDispatcherRunnerFactory.java:54)
+	at org.apache.flink.runtime.entrypoint.component.DefaultDispatcherResourceManagerComponentFactory.create(DefaultDispatcherResourceManagerComponentFactory.java:212)
+	... 6 more
+Caused by: org.apache.flink.util.FlinkException: Could not create the JobGraph from the provided user code jar.
+	at org.apache.flink.statefun.flink.launcher.StatefulFunctionsJobGraphRetriever.retrieveJobGraph(StatefulFunctionsJobGraphRetriever.java:107)
+	at org.apache.flink.runtime.dispatcher.runner.JobDispatcherLeaderProcessFactoryFactory.createFactory(JobDispatcherLeaderProcessFactoryFactory.java:55)
+	... 8 more
+Caused by: org.apache.flink.client.program.ProgramInvocationException: The main method caused an error: Error parsing a GenericKafkaEgressSpec.
+	at org.apache.flink.client.program.PackagedProgram.callMainMethod(PackagedProgram.java:372)
+	at org.apache.flink.client.program.PackagedProgram.invokeInteractiveModeForExecution(PackagedProgram.java:222)
+	at org.apache.flink.client.program.PackagedProgramUtils.getPipelineFromProgram(PackagedProgramUtils.java:158)
+	at org.apache.flink.client.program.PackagedProgramUtils.createJobGraph(PackagedProgramUtils.java:82)
+	at org.apache.flink.statefun.flink.launcher.StatefulFunctionsJobGraphRetriever.retrieveJobGraph(StatefulFunctionsJobGraphRetriever.java:101)
+	... 9 more
+Caused by: java.lang.RuntimeException: Error parsing a GenericKafkaEgressSpec.
+	at org.apache.flink.statefun.flink.io.kafka.binders.egress.v1.GenericKafkaEgressBinderV1.parseSpec(GenericKafkaEgressBinderV1.java:87)
+	at org.apache.flink.statefun.flink.io.kafka.binders.egress.v1.GenericKafkaEgressBinderV1.bind(GenericKafkaEgressBinderV1.java:71)
+	at org.apache.flink.statefun.flink.core.jsonmodule.RemoteModule.bindComponent(RemoteModule.java:60)
+	at org.apache.flink.statefun.flink.core.jsonmodule.RemoteModule.lambda$configure$0(RemoteModule.java:45)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.apache.flink.statefun.flink.core.jsonmodule.RemoteModule.configure(RemoteModule.java:45)
+	at org.apache.flink.statefun.flink.core.spi.Modules.createStatefulFunctionsUniverse(Modules.java:89)
+	at org.apache.flink.statefun.flink.core.StatefulFunctionsUniverses$ClassPathUniverseProvider.get(StatefulFunctionsUniverses.java:43)
+	at org.apache.flink.statefun.flink.core.StatefulFunctionsUniverses.get(StatefulFunctionsUniverses.java:32)
+	at org.apache.flink.statefun.flink.core.StatefulFunctionsJob.main(StatefulFunctionsJob.java:71)
+	at org.apache.flink.statefun.flink.core.StatefulFunctionsJob.main(StatefulFunctionsJob.java:52)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.apache.flink.client.program.PackagedProgram.callMainMethod(PackagedProgram.java:355)
+	... 13 more
+Caused by: org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize value of type `org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode` from String value (token `JsonToken.VALUE_STRING`)
+ at [Source: UNKNOWN; line: -1, column: -1] (through reference chain: org.apache.flink.statefun.flink.io.kafka.binders.egress.v1.GenericKafkaEgressSpec$Builder["deliverySemantic"])
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1601)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1375)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1280)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.std.JsonNodeDeserializer$ObjectDeserializer.deserialize(JsonNodeDeserializer.java:108)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.std.JsonNodeDeserializer$ObjectDeserializer.deserialize(JsonNodeDeserializer.java:83)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.DefaultDeserializationContext.readRootValue(DefaultDeserializationContext.java:322)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper._readValue(ObjectMapper.java:4569)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2798)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.core.JsonParser.readValueAs(JsonParser.java:2223)
+	at org.apache.flink.statefun.flink.io.kafka.binders.egress.v1.GenericKafkaEgressSpec$ProducerSemanticJsonDeserializer.deserialize(GenericKafkaEgressSpec.java:119)
+	at org.apache.flink.statefun.flink.io.kafka.binders.egress.v1.GenericKafkaEgressSpec$ProducerSemanticJsonDeserializer.deserialize(GenericKafkaEgressSpec.java:114)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.impl.MethodProperty.deserializeSetAndReturn(MethodProperty.java:158)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.BuilderBasedDeserializer._deserialize(BuilderBasedDeserializer.java:487)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.BuilderBasedDeserializer._deserializeUsingPropertyBased(BuilderBasedDeserializer.java:404)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.BeanDeserializerBase.deserializeFromObjectUsingNonDefault(BeanDeserializerBase.java:1405)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.BuilderBasedDeserializer.deserializeFromObject(BuilderBasedDeserializer.java:319)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.BuilderBasedDeserializer.deserialize(BuilderBasedDeserializer.java:219)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.DefaultDeserializationContext.readRootValue(DefaultDeserializationContext.java:322)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper._readValue(ObjectMapper.java:4569)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2798)
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper.treeToValue(ObjectMapper.java:3261)
+	at org.apache.flink.statefun.flink.io.kafka.binders.egress.v1.GenericKafkaEgressBinderV1.parseSpec(GenericKafkaEgressBinderV1.java:85)
+	... 28 more
+.
+2026-10-24 15:36:58,480 INFO  org.apache.flink.runtime.blob.BlobServer                     [] - Stopped BLOB server at 127.0.0.1:36831
+2026-10-24 15:36:58,481 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcService             [] - Stopping Akka RPC service.
+2026-10-24 15:36:58,507 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcService             [] - Stopping Akka RPC service.
+2026-10-24 15:36:58,620 INFO  akka.remote.RemoteActorRefProvider$RemotingTerminator        [] - Shutting down remote daemon.
+2026-10-24 15:36:58,623 INFO  akka.remote.RemoteActorRefProvider$RemotingTerminator        [] - Shutting down remote daemon.
+2026-10-24 15:36:58,628 INFO  akka.remote.RemoteActorRefProvider$RemotingTerminator        [] - Remote daemon shut down; proceeding with flushing remote transports.
+2026-10-24 15:36:58,633 INFO  akka.remote.RemoteActorRefProvider$RemotingTerminator        [] - Remote daemon shut down; proceeding with flushing remote transports.
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.jboss.netty.util.internal.ByteBufferUtil (file:/tmp/flink-rpc-akka_e6e4bf5c-80f5-49fa-b42d-e01126ba9185.jar) to method java.nio.DirectByteBuffer.cleaner()
+WARNING: Please consider reporting this to the maintainers of org.jboss.netty.util.internal.ByteBufferUtil
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2026-10-24 15:36:58,752 INFO  akka.remote.RemoteActorRefProvider$RemotingTerminator        [] - Remoting shut down.
+2026-10-24 15:36:58,808 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcService             [] - Stopped Akka RPC service.
+2026-10-24 15:36:58,836 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcService             [] - Stopped Akka RPC service.
+2026-10-24 15:36:58,840 ERROR org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - Could not start cluster entrypoint StatefulFunctionsClusterEntryPoint.
+org.apache.flink.runtime.entrypoint.ClusterEntrypointException: Failed to initialize the cluster entrypoint StatefulFunctionsClusterEntryPoint.
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.startCluster(ClusterEntrypoint.java:216) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.runClusterEntrypoint(ClusterEntrypoint.java:617) [flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.statefun.flink.launcher.StatefulFunctionsClusterEntryPoint.main(StatefulFunctionsClusterEntryPoint.java:99) [statefun-flink-distribution.jar:3.2.0]
+Caused by: org.apache.flink.util.FlinkException: Could not create the DispatcherResourceManagerComponent.
+	at org.apache.flink.runtime.entrypoint.component.DefaultDispatcherResourceManagerComponentFactory.create(DefaultDispatcherResourceManagerComponentFactory.java:275) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.runCluster(ClusterEntrypoint.java:254) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.lambda$startCluster$1(ClusterEntrypoint.java:193) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.security.contexts.NoOpSecurityContext.runSecured(NoOpSecurityContext.java:28) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.startCluster(ClusterEntrypoint.java:190) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	... 2 more
+Caused by: org.apache.flink.util.FlinkRuntimeException: Could not retrieve the JobGraph.
+	at org.apache.flink.runtime.dispatcher.runner.JobDispatcherLeaderProcessFactoryFactory.createFactory(JobDispatcherLeaderProcessFactoryFactory.java:58) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.dispatcher.runner.DefaultDispatcherRunnerFactory.createDispatcherRunner(DefaultDispatcherRunnerFactory.java:54) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.component.DefaultDispatcherResourceManagerComponentFactory.create(DefaultDispatcherResourceManagerComponentFactory.java:212) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.runCluster(ClusterEntrypoint.java:254) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.lambda$startCluster$1(ClusterEntrypoint.java:193) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.security.contexts.NoOpSecurityContext.runSecured(NoOpSecurityContext.java:28) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.startCluster(ClusterEntrypoint.java:190) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	... 2 more
+Caused by: org.apache.flink.util.FlinkException: Could not create the JobGraph from the provided user code jar.
+	at org.apache.flink.statefun.flink.launcher.StatefulFunctionsJobGraphRetriever.retrieveJobGraph(StatefulFunctionsJobGraphRetriever.java:107) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.runtime.dispatcher.runner.JobDispatcherLeaderProcessFactoryFactory.createFactory(JobDispatcherLeaderProcessFactoryFactory.java:55) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.dispatcher.runner.DefaultDispatcherRunnerFactory.createDispatcherRunner(DefaultDispatcherRunnerFactory.java:54) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.component.DefaultDispatcherResourceManagerComponentFactory.create(DefaultDispatcherResourceManagerComponentFactory.java:212) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.runCluster(ClusterEntrypoint.java:254) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.lambda$startCluster$1(ClusterEntrypoint.java:193) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.security.contexts.NoOpSecurityContext.runSecured(NoOpSecurityContext.java:28) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.startCluster(ClusterEntrypoint.java:190) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	... 2 more
+Caused by: org.apache.flink.client.program.ProgramInvocationException: The main method caused an error: Error parsing a GenericKafkaEgressSpec.
+	at org.apache.flink.client.program.PackagedProgram.callMainMethod(PackagedProgram.java:372) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.client.program.PackagedProgram.invokeInteractiveModeForExecution(PackagedProgram.java:222) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.client.program.PackagedProgramUtils.getPipelineFromProgram(PackagedProgramUtils.java:158) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.client.program.PackagedProgramUtils.createJobGraph(PackagedProgramUtils.java:82) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.statefun.flink.launcher.StatefulFunctionsJobGraphRetriever.retrieveJobGraph(StatefulFunctionsJobGraphRetriever.java:101) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.runtime.dispatcher.runner.JobDispatcherLeaderProcessFactoryFactory.createFactory(JobDispatcherLeaderProcessFactoryFactory.java:55) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.dispatcher.runner.DefaultDispatcherRunnerFactory.createDispatcherRunner(DefaultDispatcherRunnerFactory.java:54) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.component.DefaultDispatcherResourceManagerComponentFactory.create(DefaultDispatcherResourceManagerComponentFactory.java:212) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.runCluster(ClusterEntrypoint.java:254) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.lambda$startCluster$1(ClusterEntrypoint.java:193) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.security.contexts.NoOpSecurityContext.runSecured(NoOpSecurityContext.java:28) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.startCluster(ClusterEntrypoint.java:190) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	... 2 more
+Caused by: java.lang.RuntimeException: Error parsing a GenericKafkaEgressSpec.
+	at org.apache.flink.statefun.flink.io.kafka.binders.egress.v1.GenericKafkaEgressBinderV1.parseSpec(GenericKafkaEgressBinderV1.java:87) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.statefun.flink.io.kafka.binders.egress.v1.GenericKafkaEgressBinderV1.bind(GenericKafkaEgressBinderV1.java:71) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.statefun.flink.core.jsonmodule.RemoteModule.bindComponent(RemoteModule.java:60) ~[statefun-flink-core.jar:3.2.0]
+	at org.apache.flink.statefun.flink.core.jsonmodule.RemoteModule.lambda$configure$0(RemoteModule.java:45) ~[statefun-flink-core.jar:3.2.0]
+	at java.util.ArrayList.forEach(ArrayList.java:1541) ~[?:?]
+	at org.apache.flink.statefun.flink.core.jsonmodule.RemoteModule.configure(RemoteModule.java:45) ~[statefun-flink-core.jar:3.2.0]
+	at org.apache.flink.statefun.flink.core.spi.Modules.createStatefulFunctionsUniverse(Modules.java:89) ~[statefun-flink-core.jar:3.2.0]
+	at org.apache.flink.statefun.flink.core.StatefulFunctionsUniverses$ClassPathUniverseProvider.get(StatefulFunctionsUniverses.java:43) ~[statefun-flink-core.jar:3.2.0]
+	at org.apache.flink.statefun.flink.core.StatefulFunctionsUniverses.get(StatefulFunctionsUniverses.java:32) ~[statefun-flink-core.jar:3.2.0]
+	at org.apache.flink.statefun.flink.core.StatefulFunctionsJob.main(StatefulFunctionsJob.java:71) ~[statefun-flink-core.jar:3.2.0]
+	at org.apache.flink.statefun.flink.core.StatefulFunctionsJob.main(StatefulFunctionsJob.java:52) ~[statefun-flink-core.jar:3.2.0]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.apache.flink.client.program.PackagedProgram.callMainMethod(PackagedProgram.java:355) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.client.program.PackagedProgram.invokeInteractiveModeForExecution(PackagedProgram.java:222) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.client.program.PackagedProgramUtils.getPipelineFromProgram(PackagedProgramUtils.java:158) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.client.program.PackagedProgramUtils.createJobGraph(PackagedProgramUtils.java:82) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.statefun.flink.launcher.StatefulFunctionsJobGraphRetriever.retrieveJobGraph(StatefulFunctionsJobGraphRetriever.java:101) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.runtime.dispatcher.runner.JobDispatcherLeaderProcessFactoryFactory.createFactory(JobDispatcherLeaderProcessFactoryFactory.java:55) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.dispatcher.runner.DefaultDispatcherRunnerFactory.createDispatcherRunner(DefaultDispatcherRunnerFactory.java:54) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.component.DefaultDispatcherResourceManagerComponentFactory.create(DefaultDispatcherResourceManagerComponentFactory.java:212) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.runCluster(ClusterEntrypoint.java:254) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.lambda$startCluster$1(ClusterEntrypoint.java:193) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.security.contexts.NoOpSecurityContext.runSecured(NoOpSecurityContext.java:28) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.startCluster(ClusterEntrypoint.java:190) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	... 2 more
+Caused by: org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize value of type `org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode` from String value (token `JsonToken.VALUE_STRING`)
+ at [Source: UNKNOWN; line: -1, column: -1] (through reference chain: org.apache.flink.statefun.flink.io.kafka.binders.egress.v1.GenericKafkaEgressSpec$Builder["deliverySemantic"])
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1601) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1375) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1280) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.std.JsonNodeDeserializer$ObjectDeserializer.deserialize(JsonNodeDeserializer.java:108) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.std.JsonNodeDeserializer$ObjectDeserializer.deserialize(JsonNodeDeserializer.java:83) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.DefaultDeserializationContext.readRootValue(DefaultDeserializationContext.java:322) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper._readValue(ObjectMapper.java:4569) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2798) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.core.JsonParser.readValueAs(JsonParser.java:2223) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.statefun.flink.io.kafka.binders.egress.v1.GenericKafkaEgressSpec$ProducerSemanticJsonDeserializer.deserialize(GenericKafkaEgressSpec.java:119) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.statefun.flink.io.kafka.binders.egress.v1.GenericKafkaEgressSpec$ProducerSemanticJsonDeserializer.deserialize(GenericKafkaEgressSpec.java:114) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.impl.MethodProperty.deserializeSetAndReturn(MethodProperty.java:158) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.BuilderBasedDeserializer._deserialize(BuilderBasedDeserializer.java:487) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.BuilderBasedDeserializer._deserializeUsingPropertyBased(BuilderBasedDeserializer.java:404) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.BeanDeserializerBase.deserializeFromObjectUsingNonDefault(BeanDeserializerBase.java:1405) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.BuilderBasedDeserializer.deserializeFromObject(BuilderBasedDeserializer.java:319) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.BuilderBasedDeserializer.deserialize(BuilderBasedDeserializer.java:219) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.DefaultDeserializationContext.readRootValue(DefaultDeserializationContext.java:322) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper._readValue(ObjectMapper.java:4569) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2798) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper.treeToValue(ObjectMapper.java:3261) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.statefun.flink.io.kafka.binders.egress.v1.GenericKafkaEgressBinderV1.parseSpec(GenericKafkaEgressBinderV1.java:85) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.statefun.flink.io.kafka.binders.egress.v1.GenericKafkaEgressBinderV1.bind(GenericKafkaEgressBinderV1.java:71) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.statefun.flink.core.jsonmodule.RemoteModule.bindComponent(RemoteModule.java:60) ~[statefun-flink-core.jar:3.2.0]
+	at org.apache.flink.statefun.flink.core.jsonmodule.RemoteModule.lambda$configure$0(RemoteModule.java:45) ~[statefun-flink-core.jar:3.2.0]
+	at java.util.ArrayList.forEach(ArrayList.java:1541) ~[?:?]
+	at org.apache.flink.statefun.flink.core.jsonmodule.RemoteModule.configure(RemoteModule.java:45) ~[statefun-flink-core.jar:3.2.0]
+	at org.apache.flink.statefun.flink.core.spi.Modules.createStatefulFunctionsUniverse(Modules.java:89) ~[statefun-flink-core.jar:3.2.0]
+	at org.apache.flink.statefun.flink.core.StatefulFunctionsUniverses$ClassPathUniverseProvider.get(StatefulFunctionsUniverses.java:43) ~[statefun-flink-core.jar:3.2.0]
+	at org.apache.flink.statefun.flink.core.StatefulFunctionsUniverses.get(StatefulFunctionsUniverses.java:32) ~[statefun-flink-core.jar:3.2.0]
+	at org.apache.flink.statefun.flink.core.StatefulFunctionsJob.main(StatefulFunctionsJob.java:71) ~[statefun-flink-core.jar:3.2.0]
+	at org.apache.flink.statefun.flink.core.StatefulFunctionsJob.main(StatefulFunctionsJob.java:52) ~[statefun-flink-core.jar:3.2.0]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.apache.flink.client.program.PackagedProgram.callMainMethod(PackagedProgram.java:355) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.client.program.PackagedProgram.invokeInteractiveModeForExecution(PackagedProgram.java:222) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.client.program.PackagedProgramUtils.getPipelineFromProgram(PackagedProgramUtils.java:158) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.client.program.PackagedProgramUtils.createJobGraph(PackagedProgramUtils.java:82) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.statefun.flink.launcher.StatefulFunctionsJobGraphRetriever.retrieveJobGraph(StatefulFunctionsJobGraphRetriever.java:101) ~[statefun-flink-distribution.jar:3.2.0]
+	at org.apache.flink.runtime.dispatcher.runner.JobDispatcherLeaderProcessFactoryFactory.createFactory(JobDispatcherLeaderProcessFactoryFactory.java:55) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.dispatcher.runner.DefaultDispatcherRunnerFactory.createDispatcherRunner(DefaultDispatcherRunnerFactory.java:54) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.component.DefaultDispatcherResourceManagerComponentFactory.create(DefaultDispatcherResourceManagerComponentFactory.java:212) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.runCluster(ClusterEntrypoint.java:254) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.lambda$startCluster$1(ClusterEntrypoint.java:193) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.security.contexts.NoOpSecurityContext.runSecured(NoOpSecurityContext.java:28) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	at org.apache.flink.runtime.entrypoint.ClusterEntrypoint.startCluster(ClusterEntrypoint.java:190) ~[flink-dist_2.12-1.14.3.jar:1.14.3]
+	... 2 more
