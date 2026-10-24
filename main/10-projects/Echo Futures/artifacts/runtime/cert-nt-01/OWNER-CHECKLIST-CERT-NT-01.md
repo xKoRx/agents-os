@@ -16,6 +16,10 @@ updated: "2026-10-23"
 
 # OWNER CHECKLIST — CERT-NT-01 (desbloqueo de gates C2/C3/C4)
 
+## EF-PROD 2026-10-24 — G-IMPL BLOCKED por integración source; certificación física NO-GO
+
+El Primary Manager revisó el candidato integrado `602dfcad` y agrupó cuatro hallazgos GI-01..04 en [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]], bajo [[Echo Futures — Runtime Pools]]. M1 no tiene aún schema de deliverySemantic acreditado; RuntimeControl requiere wiring/offset validation y /ready fuente real. Son correcciones dentro de B3: NO nuevo GOD, NO nuevos shots FEFB, NO autorización a desplegar, instalar con nuevo scope, armar ni operar. El checklist histórico sigue sujeto a G-IMPL, G-ENV/G-FEED/G-REC y permiso Owner explícito. No tocar cuentas comerciales.
+
 ## Diseño GOD 2026-10-23 — G-DOC ACCEPTED, implementación GLM autorizada, certificación NO-GO
 
 El paquete [[EF-PROD-GOD-01-SOURCE-FORENSICS]], [[EF-PROD-GOD-02-PRODUCTION-ARCHITECTURE]], [[EF-PROD-GOD-03-IMPLEMENTATION-PLAN]] y [[EF-PROD-GOD-04-CERTIFICATION-AND-RELEASE]] quedó **G-DOC ACCEPTED con enmiendas vinculantes M01–M07** registradas en [[EF-PROD-GOD-05-MANAGER-ADJUDICATION]] por Primary Manager el 2026-10-23. Se autorizó sólo implementación GLM B1→B2→B3 en source/entornos aislados; **no** despliegue operativo, listener, cuentas, armado SIM/LIVE, ni ejecución de esta checklist histórica. Estado/gates exclusivamente en [[Echo Futures — Runtime Pools]]. Instalación feed-only mantiene controles Owner de antes sin ampliación. F1 no repara restore y la RCA original del resubmit sigue sin demostrarse. G-IMPL y certificación físicos permanecen pendientes.
