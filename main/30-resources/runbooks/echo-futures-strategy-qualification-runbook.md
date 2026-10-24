@@ -153,7 +153,7 @@ Para indicadores de lookback muy largo cuya primera oportunidad ready no cabe en
 ## 7. G5 — Histórico completo SOLO para promovidas
 
 - La cola histórica debe generarse **como intersección exacta** `declared identities ∩ G4 PASS receipts ∩ matching source/build/dataset policy`. Una identidad ausente o mismatch no entra en la cola, aunque se escriba manualmente en un manifiesto.
-- Guard fail-closed **en la vía real de admisión de jobs** (runner/supervisor/adaptador existente): el plan histórico debe incluir `qualification_receipt_sha256` y el gate valida el resultado firmado por digest de artefactos, build+strategy+variant+MM+dataset/calendario. El guard se aplica también al `resume`; no limitarse a un checklist de prosa. No introducir un segundo scheduler.
+- Guard fail-closed **en la vía real de admisión de jobs** (runner/supervisor/adaptador existente): el plan histórico debe incluir `qualification_receipt_sha256` y el gate valida el recibo por digest de artefactos, build+strategy+variant+MM/política y la compatibilidad verificable de las fuentes/calendario/roll. **El corpus trimestral y el corpus histórico tienen digests DISTINTOS por definición**: cada uno se valida contra su manifiesto; comparar procedencia/semántica y, si corresponde, bytes del tramo de contrato coincidente, NO igualdad de hashes de todo el dataset. El guard se aplica también al `resume`; no limitarse a un checklist de prosa. No introducir un segundo scheduler.
 - Una corrección de reporting puro regenera derivados sin motor. Cambio de lógica de señal, MM, Provider que altere decisiones/fills, fuente, warmup/roll o símbolos invalida recibos dependientes y exige repetir G1–G4 antes de G5.
 - Usar corpus histórico físicamente sellado, con rollovers y causalidad; respetar exclusiones, cierres diarios, comisiones y políticas. No mezclar resultados pre/postfix. Conservar todos los intentos y sus hashes.
 - Métricas de salida: por identidad y por familia, compras, pases, Wilson95, pérdidas/pendientes, gasto separado, costo/pase, mediana días hasta pase; entradas/día, cobertura de días, máxima sequía, net expectancy/payoff/DD, histogramas temporales, solapamiento de señales y dependencia de perfiles MM. Excluir duplicados de señal del conteo de familias.
@@ -198,7 +198,7 @@ Recibos mínimos sugeridos, usando esquema local equivalente cuando ya exista un
     "source_sha": "<source SHA>",
     "strategy_config_sha256": "<config SHA256>",
     "binary_sha256": "<binary SHA256>",
-    "dataset_sha256": "<dataset SHA256>",
+    "qualification_dataset_sha256": "<quarter dataset SHA256>",
     "calendar_sha256": "<calendar SHA256>",
     "contract_id": "<verified physical NQ contract>",
     "market_sessions_eligible": 60,
@@ -236,7 +236,10 @@ admit_historical(job, receipts):
   assert r.G4.passed >= 1 && r.G4.reconciled
   assert r.contract.market_sessions_eligible >= 45
   assert exact_match(r.source, r.strategy_config, r.binary,
-                     r.dataset, r.calendar, job.declared_contracts)
+                     r.mm_profile, r.market_policies, job.strategy_contracts)
+  assert digest(r.quarter_dataset) == r.quarter_dataset_declared_sha
+  assert digest(job.historical_dataset) == job.historical_dataset_declared_sha
+  assert source_lineage_and_market_semantics_compatible(r, job)
   assert digest_matches_all_immutable_receipts(r)
   else -> BLOCKED_QUALIFICATION_GATE with exact code and no engine spawn
 ```
@@ -270,7 +273,7 @@ Antes de declarar que el runner aplica la skill, ejecutar **pruebas negativas de
 2. Job G5 con G1/G2 PASS heredados de variante hermana ⇒ BLOQUEADO.
 3. Job G5 con G4 `purchased>0`, `passed=0` ⇒ BLOQUEADO.
 4. Job G5 con `G4.passed=1` pero sólo 10 sesiones NQZ6 ⇒ `DATA_REQUIRED`/BLOQUEADO.
-5. Job G5 con G4 PASS pero cambio de `binary/config/calendar` ⇒ BLOQUEADO hasta reevaluar impacto.
+5. Job G5 con G4 PASS pero cambio de `binary/config/calendar` ⇒ BLOQUEADO hasta reevaluar impacto; quarter_dataset_sha distinto del historical_dataset_sha **es esperado**, verificar linaje de fuentes y ambos sellos.
 6. Job G5 con `ready=0` atravesando roll ⇒ BLOQUEADO aunque `exit=0`.
 7. Job G4 en trimestre elegible con G0–G3 PASS ⇒ admitido, registra 1 intento y cierre.
 8. Job G5 de identidad con G4 PASS + digests iguales ⇒ admitido una sola vez; `resume` idéntico no duplica.
