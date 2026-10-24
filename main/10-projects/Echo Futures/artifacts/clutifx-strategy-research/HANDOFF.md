@@ -36,7 +36,8 @@ Gates: **A** PASS/PASS/PASS/PARTIAL (runtime identificado; inventario 89=26+63 e
 
 | Documento | Contenido |
 |---|---|
-| `CLUTIFX-STRATEGIES-MASTER.md` | **El documento único con TODAS las estrategias** (5 familias, 9+1 estrategias completas con setup claro, 7 setups parciales, 24 componentes, 12 reglas de gestión, 4 red flags, glosario literal, clasificación NQ, exclusiones) |
+| **`…/clutifx/strategies/STRATEGIES-CATALOG.md` (en la biblioteca — CANÓNICO)** | **El documento único con TODAS las estrategias** (5 familias, 9+1 estrategias completas con setup claro, 7 setups parciales, 24 componentes, 13 reglas de gestión, 4 red flags, glosario literal, exclusiones, casos límite documentados) — interable con el knowledge |
+| `CLUTIFX-STRATEGIES-MASTER.md` (aquí) | Vista de investigación backtester: clasificación NQ, frontera Strategy/MM, punteros a la capa |
 | `HEFESTO-BASELINE-AUDIT.md` | Estado físico del backtester: runtime, inventario 89, ejecuciones auditadas, datos, capacidad, Gate A |
 | `CLUTIFX-OBJECTIVE-DETECTORS.md` | 16 familias de detectores (NATIVO/[OP]/[HIP]) con fórmulas, causalidad, lookahead, parámetros |
 | `CLUTIFX-EXPERIMENT-MATRIX.md` | 35 variantes materiales en 3 tiers, equivalencias, plan de validación F, bloqueos |
