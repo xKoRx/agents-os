@@ -11,6 +11,16 @@ created: "2026-10-24"
 updated: "2026-10-24"
 ---
 
+
+
+## Propósito
+
+Índice de evidencia del mandato EF-PROD-GLM-01: cadena de SHAs por etapa, comandos de verificación reproducibles, control de entregas de especialistas, decisiones del Submanager y límites físicos. Documento de evidencia; no es autoridad operativa.
+
+## Contenido
+
+SHAs por etapa, comandos, trabajadores, decisiones documentadas y estado físico.
+
 # EF-PROD-GLM-01 — EVIDENCE-INDEX (cierre B1–B3)
 
 Generado 2026-10-24 por el Submanager GLM-5.3-Flash. Cadena de SHAs en `xKoRx/echo@feature/ef-runtime-pools` (todos FF, sin force, sin push al cierre salvo el push final del candidato):

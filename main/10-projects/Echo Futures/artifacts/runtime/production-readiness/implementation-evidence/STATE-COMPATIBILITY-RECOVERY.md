@@ -11,6 +11,16 @@ created: "2026-10-24"
 updated: "2026-10-24"
 ---
 
+
+
+## Propósito
+
+Compatibilidad de estado/datos/schemas y prueba de recuperación (autoridad de restauración y rollback) del candidato fd5612f5, según GOD-02 §3–§7 y GOD-03 §7. Documento de evidencia; la aplicación física queda en G-ENV/G-REC.
+
+## Contenido
+
+Matriz old/new reader-writer por tipo de estado, recovery-proof source-level y condiciones de rollback.
+
 # EF-PROD-GLM-01 — STATE-COMPATIBILITY y RECOVERY-PROOF (resumen de compatibilidad y recuperación)
 
 Corte `fd5612f5`. Detalle normativo: GOD-02 §3–§6; contratos congelados en `v3/sdk/futures/recovery/` (schema `recovery.v1`, marker `owner-continuity.v1`, policy de compatibilidad `strict-v1`).
