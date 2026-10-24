@@ -6,7 +6,7 @@ icon: 📋
 slug: "runbooks-index"
 area: "[[Personal]]"
 created: "2026-09-12"
-updated: "2026-09-18"
+updated: "2026-10-24"
 reviewed: "2026-09-17"
 aliases:
   - "runbooks index"
@@ -42,6 +42,7 @@ tags:
 | [[30-resources/runbooks/cluster-node-maintenance-contract|cluster-node-maintenance-contract]] | Contrato H5 del operador de nodos/quorum: baseline corosync sin red dedicada, precondiciones GO, condiciones NO_GO y plantilla de mantenimiento (enablement-only, CLASS 3 owner-gated). | Aranea |
 | [[30-resources/runbooks/ceph-storage-operations-contract|ceph-storage-operations-contract]] | Contrato H5 del operador Ceph: baseline nearfull medido 3/3 MONs (pool1 87.26%), plan de resolución por riesgo ascendente, criterios GO/NO_GO y rollback (enablement-only, no ejecuta reparaciones). | Aranea |
 | [[30-resources/runbooks/integrated-orchestration-contract|integrated-orchestration-contract]] | Contrato H6 de orquestación integrada: cadena REQUEST→AGENTS-OS UPDATE, selección de proyecto ejecutor, gates por clase, máquina de estados preparación/ejecución, handoff reproducible; enablement-only (no autoriza ni ejecuta). | Aranea |
+| [[30-resources/runbooks/echo-futures-strategy-qualification-runbook|echo-futures-strategy-qualification-runbook]] | Runbook mecánico de qualification-first de estrategias Echo Futures: contrato trimestral ≥45 sesiones, smoke por identidad, rollover, receipts y guard fail-closed del histórico. | Echo Futures |
 | [[30-resources/runbooks/aranea-ssh-mcp|aranea-ssh-mcp]] | SSH Aranea: viewer/operator, `docker-echo-dev-operator` y evidence publisher Windows ACTIVE/CERTIFIED. | Aranea |
 | [[30-resources/runbooks/aranea-postgres-mcp|aranea-postgres-mcp]] | PostgreSQL RO/RW Aranea (Echo). | Aranea |
 | [[30-resources/runbooks/aranea-mongodb-mcp|aranea-mongodb-mcp]] | MongoDB RO/RW Aranea (Echo Forge). | Aranea |
