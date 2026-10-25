@@ -18,7 +18,7 @@ updated: "2026-10-23"
 
 ## EF-PROD 2026-10-24 — G-IMPL BLOCKED por integración source; certificación física NO-GO
 
-El Primary Manager revisó el candidato integrado `602dfcad` y agrupó cuatro hallazgos GI-01..04 en [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]], bajo [[Echo Futures — Runtime Pools]]. M1 no tiene aún schema de deliverySemantic acreditado; RuntimeControl requiere wiring/offset validation y /ready fuente real. Son correcciones dentro de B3: NO nuevo GOD, NO nuevos shots FEFB, NO autorización a desplegar, instalar con nuevo scope, armar ni operar. El checklist histórico sigue sujeto a G-IMPL, G-ENV/G-FEED/G-REC y permiso Owner explícito. No tocar cuentas comerciales.
+El Primary Manager volvió a revisar `9daa57cb` después del cierre GI-01..04. **M1 schema objeto está corregido y el JAR real lo aceptó**, y los negativos de Kafka/ETCD funcionan en su capa. **G-IMPL permanece BLOCKED** porque `gate` no obliga al master de StateFun a restaurar el snapshot, `attest` no tiene readers efectivos; Kafka topic identity y frescura completa/edad de documento no están demostrados, y 96.68% cubre archivos Go nuevos pero no código añadido a existentes. Ver addendum de [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]], PRD.4 en [[Echo Futures — Runtime Pools]]. Un solo correctivo B3, sin GOD nuevo. No desplegar, instalar con nuevo scope, armar SIM/LIVE, tocar cuentas comerciales ni ejecutar este checklist hasta autorización posterior de G-IMPL/G-ENV/G-REC/G-FEED y Owner.
 
 ## Diseño GOD 2026-10-23 — G-DOC ACCEPTED, implementación GLM autorizada, certificación NO-GO
 
