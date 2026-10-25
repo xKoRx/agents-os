@@ -52,7 +52,7 @@ Auditoría NORMAL acotada (una sesión GLM, corte `07cca9d3`) al cierre `PASS_26
 
 ## Runtime pools — supervisión
 
-- [/] [[Echo Futures — Runtime Pools]] GOD G-DOC accepted; GLM B1–B3 integrados en `9daa57cb`; **G-IMPL BLOCKED** tras re-review Manager: ruta de restore real/attestation no cerrada, continuidad de identidad Kafka, frescura y QA diff-aware. Un solo cierre B3 PRD.4; ver [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]]. CERT-NT-01/SIM/PROD no autorizados; R6/FEFB/F1 preservados. #owner/me #type/supervision #area/echo
+- [/] [[Echo Futures — Runtime Pools]] GOD G-DOC accepted; código GI-2 `0e17c4d3` entregado (restore L3 aislado verificado por agentes), **G-IMPL BLOCKED sólo por QA cobertura bajo piso**; Owner confirma Flink DEV+PROD existentes, NO tercero. Preflight RO sobre DEV y preparación de bundle autorizado, deploy DEV observation-only sujeto a restore/rollback/FX y ventana segura; SIM/PROD NO-GO. Ver [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]]. #owner/me #type/supervision #area/echo
 
 ## Optimización de Campañas — supervisión
 
