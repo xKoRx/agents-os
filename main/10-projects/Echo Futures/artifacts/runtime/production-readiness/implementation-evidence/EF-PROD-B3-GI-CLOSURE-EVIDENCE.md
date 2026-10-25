@@ -108,7 +108,10 @@ reproducibles). Exclusiones DECLARADAS (tests, nunca código): sdk/postgres y sd
 baseline en ACCEPTANCE-MATRIX; `TestS2Audit_StampedCapacityProbe` verde en fd5612f5, cuelga
 sin DEV etcd/kafka — flag para G-ENV).
 
-Resultado final: VER SECCIÓN RESULTADO (se completa al cierre).
+Resultado final (SHA integrado `5011d21e`): **96.68% global — 1982/2050 bloques, umbral GOD-03 ≥95% CUMPLIDO** (`THRESHOLD_95_OK`, exit 0; 83 paquetes `ok`, 0 fallos). Reparación previa requerida: la primera batería honesta dio 88.82% y el cierre exigió una ronda de reparación (A-R: deployverify 96/96 bloques; B-R: dispatch del CLI testeable `cli_run.go` + tests real-broker env-gated de `offset_window.go` 37/37 + `recovery_plane.go`/`control.go`; D-R: `observation_delivery.go` 7/7, `observation_ack.go` 19/20, `observations.go` 279/288, `recovery_gate.go` 77/78 — bloques residuales declarados inalcanzables por construcción con justificación por línea). El reporte por archivo vive en
+`implementation-evidence/gi-closure-lab/coverage-report-final.md` (copia del run final).
+
+Incidente de límites durante la reparación (disclosed): el worker B-R verificó su test real-broker contra el broker DEV compartido (192.168.31.44) y el cleanup dejó 4 topics basura `echo-runtimecontrol-gi04-*`; el Submanager los eliminó (restaurando el estado previo; verificado por re-listado), commiteó un guard en el test que Niega auto-crear topics en brokers no-loopback, y lo registra aquí como violación de frontera ocurrida y remedida.
 
 ### Regresiones
 
