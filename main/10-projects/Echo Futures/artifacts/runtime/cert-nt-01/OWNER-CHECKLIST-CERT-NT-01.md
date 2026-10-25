@@ -16,6 +16,10 @@ updated: "2026-10-23"
 
 # OWNER CHECKLIST — CERT-NT-01 (desbloqueo de gates C2/C3/C4)
 
+## EF-PROD 2026-10-25 — Código GI-2 listo para preflight DEV existente; PROD NO-GO
+
+**Decisión Owner:** Aranea ya tiene dos Flink/StateFun (DEV y PROD). NO desplegar otro Flink ni nuevos proyectos Docker. Fuente candidata `0e17c4d3`; L3 restore probado sólo en laboratorio aislado. G-IMPL queda BLOCKED por cobertura insuficiente 82.92% archivos Go nuevos / 76.45% subset diff-aware observado (9 archivos sin datos). Se permite preflight sólo lectura sobre Flink DEV existente y preparar actualización observation-only; **no reiniciar jobs FX compartidos ni aplicar Compose source automáticamente**. Despliegue DEV depende de checkpoint/rollback/impacto FX comprobados y ventana Owner cuando corresponda. PROD/Ninja ejecución/Sim101 continúan DESARMADOS hasta autorización y certificación separadas. Referencia [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]] y [[Echo Futures — Runtime Pools]] PRD.5.
+
 ## EF-PROD 2026-10-24 — G-IMPL BLOCKED por integración source; certificación física NO-GO
 
 El Primary Manager volvió a revisar `9daa57cb` después del cierre GI-01..04. **M1 schema objeto está corregido y el JAR real lo aceptó**, y los negativos de Kafka/ETCD funcionan en su capa. **G-IMPL permanece BLOCKED** porque `gate` no obliga al master de StateFun a restaurar el snapshot, `attest` no tiene readers efectivos; Kafka topic identity y frescura completa/edad de documento no están demostrados, y 96.68% cubre archivos Go nuevos pero no código añadido a existentes. Ver addendum de [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]], PRD.4 en [[Echo Futures — Runtime Pools]]. Un solo correctivo B3, sin GOD nuevo. No desplegar, instalar con nuevo scope, armar SIM/LIVE, tocar cuentas comerciales ni ejecutar este checklist hasta autorización posterior de G-IMPL/G-ENV/G-REC/G-FEED y Owner.
