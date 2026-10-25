@@ -32,7 +32,19 @@ Entregar extensión runtime de pools y asociaciones pool–Strategy–MM mediant
 
 ### Production Readiness — GOD Design (2026-10-23)
 
-**Estado vigente de este mandato: `G-DOC_ACCEPTED_WITH_BINDING_AMENDMENTS`; implementación GLM LOCAL EJECUTADA B1→B2→B3 (2026-10-24, candidato vigente `9daa57cb` (602dfcad + cierre GI-01..04), REMOTE_VERIFIED); G-IMPL=`blocked` (re-review Manager 2026-10-24 de `9daa57cb`: restauración StateFun aún no obligatoria; ver addendum en [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]]), certificación física=`BLOCKED`, PROD=`NO_GO`.** La implementación cierra F01–F09 en source (capa L1/L2 Go/C#-puro) con QA adversarial independiente; toda capa física L3+ queda NOT_RUN para G-ENV/G-FEED/G-REC/G-SIM. El historial R6, FEFB, F1, FINAL-01 y RESUME inferior queda íntegro y conserva su valor histórico; sus autorizaciones no sustituyen los gates actuales.
+### Decisión Primary Manager 2026-10-25 — NO TERCER FLINK · COMISIONAMIENTO DEV EXISTENTE
+
+**Owner instruye infraestructura fija:** Aranea tiene Flink/StateFun **DEV y PROD** ya instalados. No añadir otro Flink, Docker stack, Kafka/ETCD, VM ni LXC. El laboratorio efímero GI-2 fue sólo prueba, no proyecto de despliegue. **Source candidato `0e17c4d3f1179cde709f923c8dd28e8cd853afc9` verificado remotamente; revisión de source/lab favorece avanzar al DEV existente DESARMADO.** Ver adjudicación detallada en [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]] (addendum «Decisión operativa 2026-10-25»), que conserva la limitación de que no se reejecutaron tests desde la revisión del Manager.
+
+**G-IMPL = BLOCKED_QA_COVERAGE (no accepted):** GLM declara 2267/2734=82.92% de bloques en archivos Go nuevos y 396/518=76.45% del subset diff-aware observado (nueve archivos sin cobertura): no cumple ≥95% GOD-03. Verificación funcional GI-REC-P0/P0b/GI-RDY-P1 e integración L3 aislada favorable, verificador C cero MATERIAL; no elevar el ratio ni ocultar el gap. Trabajo restante en source: sólo añadir/ejecutar tests reales y reconciliar cobertura con QA independiente, no modificar motor ni arquitectura para inflarla.
+
+**G-ENV-DEV-PREFLIGHT = AUTORIZADO READ-ONLY de la infraestructura EXISTENTE:** descubrir estado físico efectivo, checkpoints, job IDs, configuración real, dominio FX compartido, release, M2/órdenes y rollback; preparar bundle exacto sin mutaciones. **DEV_OBSERVATION_DEPLOY = CONDICIONAL** a preflight/restore plan SAFE, sin exposición real ni interferencia FX, y ventana Owner si se requiere reiniciar servicio compartido. Nunca arrancar un segundo Compose project, usar source Compose como orden de instalar, resetear offsets o crear un Flink 3; conservar PROD 100% intacto. Sólo después del gate de implementación/operación y certificación se podrá hablar de SIM/PROD por cuenta concreta.
+
+- [ ] PRD.5 **WORKFLOW OPERATIVO ÚNICO:** QA de cobertura y preflight de despliegue sobre Flink DEV existente en paralelo sin mutaciones; luego, sólo con preflight seguro/ventana autorizada, actualización controlada de job DEV observation-only + continuidad, M1, market feed y rollback verificados. PROD/SIM siempre desarmados hasta gates posteriores. #owner/agent
+
+
+
+**Estado vigente de este mandato: G-DOC ACCEPTED; código 0e17c4d3 entregado y verificado en repo; G-IMPL BLOCKED_QA_COVERAGE (82.92% archivos Go nuevos, 76.45% subset diff-aware observado, 9 archivos sin perfil); G-ENV-DEV-PREFLIGHT RO AUTORIZADO sobre el Flink DEV YA EXISTENTE; despliegue DEV observation-only condicionado; Flink PROD intacto, G-SIM/G-PROD NO_GO.** La implementación cierra F01–F09 en source (capa L1/L2 Go/C#-puro) con QA adversarial independiente; toda capa física L3+ queda NOT_RUN para G-ENV/G-FEED/G-REC/G-SIM. El historial R6, FEFB, F1, FINAL-01 y RESUME inferior queda íntegro y conserva su valor histórico; sus autorizaciones no sustituyen los gates actuales.
 
 **Revisión G-IMPL Primary Manager — 2026-10-24:** Se examinó el candidato `602dfcadb113224e76fa631415eb8009eaa6e201` y evidence en GitHub. **G-IMPL = BLOCKED_FOR_SINGLE_B3_INTEGRATION_CLOSURE**, no rechazo de todo B1/B2 ni apertura de otro shot. Informe canónico [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]] en implementation-evidence/: GI-01 (P0 `deliverySemantic` YAML scalar, spec StateFun 3.2 exige objeto); GI-02 (P0 ruta efectiva RuntimeControl/un único submitter/offsets mandatory + manifest storage); GI-03 (P1 `/ready` con snapshot fijo, sin market/permits efectivos); GI-04 (QA final independiente + coverage global no demostrado). Todos devueltos EN UN SOLO PAQUETE al Submanager GLM, preferir workflow ZCode con 2 workers máximo y verificador read-only. SHA inicial fijo, source/aislamiento únicamente; no deploy/órdenes ni cert física. 
 
@@ -795,6 +807,8 @@ Registrada y EJECUTADA dentro de este shot: las pruebas de disable ahora cubren 
 **Separación explícita de evidencia (obligatoria en /verify):** E2E laboratorio previamente aceptados (S02–S04, planner arriba) · procesos/clúster desplegados · AddOn compilado y cargado · feed real · ejecución NT SIM · economía observada de SIM · cuentas reales: ejecución NO autorizada.
 
 ## 📆 Bitácora
+
+- 2026-10-25 — **Manager revisa GI-2 0e17c4d3 y fija topología Owner:** Aranea Flink DEV/PROD existentes, NO tercero. Recovery L3 aislado PASS del agente, QA cobertura bajo 95% ⇒ G-IMPL BLOCKED_QA_COVERAGE; se autoriza sólo preflight RO sobre DEV y preparar update controlado sin órdenes, deploy sujeto a proof de restore/rollback y ventana FX del Owner. Ver [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]]. 
 
 - 2026-10-24 — **Manager re-review `9daa57cb`, G-IMPL BLOCKED**: restore real/attestation ausentes en ruta de producción, topic identity no acreditada, freshness externa sin age-check/fuente, cobertura 96.68% sólo nuevos archivos Go. Conserva avances y autoriza un único cierre B3, sin PROD/Sim/DEV compartido. 
 
