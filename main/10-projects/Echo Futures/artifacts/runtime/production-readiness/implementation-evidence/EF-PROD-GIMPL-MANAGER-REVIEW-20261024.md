@@ -63,6 +63,14 @@ Un **único bloque correctivo GI-01..04 dentro de B3**, owner SUBMANAGER GLM LOC
 
 **Gates siguientes:** G-ENV/G-REC/G-FEED/SIM/PROD siguen sin autorización; la causa exacta del incidente F1 puede permanecer E01=UNRESOLVED sólo si la recuperación nueva elimina fehacientemente todos los caminos equivalentes de job vacío.
 
+### GI-REC-P0 — Confirmación adicional del entrypoint OFICIAL de StateFun 3.2.0 (2026-10-24)
+
+**Fallo de ruta/startup source-confirmed, MISMO finding de recuperación, no nuevo shot.** Tras pregunta del Owner se inspeccionó el Dockerfile y script **oficiales** de `apache/flink-statefun:3.2.0-java11`: imagen `FROM flink:1.14.3-scala_2.12-java11`; instalación `ADD docker-entry-point.sh /docker-entry-point.sh`; `ENTRYPOINT ["/docker-entry-point.sh"]`. En `ROLE=master`, su script ejecuta `$FLINK_HOME/bin/standalone-job.sh start-foreground -Djobmanager.rpc.address=$MASTER_HOST "$@"`; los argumentos de restore `-s/--fromSavepoint` se propagan por `"$@"`. Fuentes upstream: https://github.com/apache/flink-statefun-docker/blob/master/3.2.0-java11/Dockerfile y https://github.com/apache/flink-statefun-docker/blob/master/3.2.0-java11/docker-entry-point.sh ; Docker Hub https://hub.docker.com/r/apache/flink-statefun .
+
+**Divergencia exacta en Echo `9daa57cb`:** Ambos `v3/core/deploy/flink-statefun/{develop,production}/docker-compose.yml` sobreescriben `entrypoint` y hacen `... gate && exec /docker-entrypoint.sh` (sin guion entre entry/point y sin argumentos de restore). Esta ruta es la del **Flink BASE**, no la declarada por StateFun; por `FROM flink` puede quedar heredada en el filesystem, de modo que el fallo no debe describirse exclusivamente como “archivo inexistente”: podría invocar el script genérico equivocado, con argumentos vacíos, o salir. La diferencia debe corregirse y probarse contra la **misma imagen/digest efectiva**. El preflight no puede considerarse restore; debe pasar un checkpoint/savepoint válido al arranque de StateFun, y la certificación debe acreditar estado y offsets no vacíos recuperados y bloqueo de arranque sin restore. No basta reemplazar una cadena sin enlazar el snapshot certificado.
+
+**Mandato:** incorporar esta causa explícita en el ÚNICO cierre PRD.4/GI-REC-P0; test fail si Compose invoca entrypoint distinto del declarado por la imagen efectiva o si ruta RESTORE arranca sin snapshot; incluir prueba oficial del rol master y `-s`, con efecto `exec`/PID1 documentado. No arranques contra servicios compartidos ni contenedor PROD durante la auditoría. `exec` al final es intencional para sustituir el shell por el runtime, no un paso después de terminar el job.
+
 ### Estado de entorno
 
 **No deploy, no órdenes, sin autorización de SIM/LIVE, PROD NO-GO.** El F1 DEV existente no se modifica en esta revisión. El proceso de GLM no debe tocar procesos compartidos, grupos/offsets Kafka del Owner, credenciales, ETCD económico o el terminal Ninja.
