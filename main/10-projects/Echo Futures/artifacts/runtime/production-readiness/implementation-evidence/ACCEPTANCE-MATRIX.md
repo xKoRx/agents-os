@@ -65,7 +65,7 @@ StateFun Java + Kafka transaccional reales (KAF-01/02, REC-01..06 en L3; el labo
 
 ## Addendum cierre GI-2 — continuidad real, identidad Kafka, frescura y cobertura diff-aware (2026-10-25)
 
-Dictamen base: addendum «Re-review del Primary Manager» en [[EF-PROG-MANAGER-REVIEW-20261024]] (G-IMPL=BLOCKED). Corrección integrada `9daa57cb..0e17c4d3` (ramas `wrk-gi2/restore` 5 commits + `wrk-gi2/fresh` 5 commits + merge `40fad3a5` + wiring `0e17c4d3`). Evidencia completa: [[EF-PROD-GI2-CONTINUITY-CLOSURE-EVIDENCE]]. Verificador C read-only sobre el SHA final: **READY_FOR_MANAGER_REVIEW, cero MATERIAL.**
+Dictamen base: addendum «Re-review del Primary Manager» en [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]] (G-IMPL=BLOCKED). Corrección integrada `9daa57cb..0e17c4d3` (ramas `wrk-gi2/restore` 5 commits + `wrk-gi2/fresh` 5 commits + merge `40fad3a5` + wiring `0e17c4d3`). Evidencia completa: [[EF-PROD-GI2-CONTINUITY-CLOSURE-EVIDENCE]]. Verificador C read-only sobre el SHA final: **READY_FOR_MANAGER_REVIEW, cero MATERIAL.**
 
 | Hallazgo re-review | Estado | Cierre |
 |---|---|---|
