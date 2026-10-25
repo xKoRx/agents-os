@@ -47,5 +47,18 @@ Defectos confirmados y corregidos dentro del bloque: W6-D1 (interop permit write
 ## Cobertura código nuevo (≥95% piso)
 recovery 96,9% · runtimecontrol 97,4% · permit 100% · fxpermit 96,2→100% · gate.go 98,7% · observations 94,2% (ramas defensivas declaradas) · cursor.go 100% · revision_authority/protection_capability/memstore authority/fact_adapter 100% · producer 92,6% · publisher 91,3% (ramas fail-rápidas ante estados imposibles, declaradas).
 
+## Addendum cierre GI-01..GI-04 (2026-10-24, dictamen Manager → corrección única B3)
+
+Dictamen: [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]] (G-IMPL=blocked). Corrección integrada: `602dfcad..5011d21e` (aa999ca0 GI-01 · dc3bb84a GI-02 · 17d95c62 GI-03 · reparación GI-04 bf0ad72d/236ce793/5011d21e). Evidencia completa: [[EF-PROD-B3-GI-CLOSURE-EVIDENCE]].
+
+| GI | Estado de cierre | Cierre en source + física demostrada | Sigue NOT_RUN |
+|---|---|---|---|
+| GI-01 P0 schema M1 | CORREGIDO + L3 | `aa999ca0`: objeto `type+transactionTimeout: 15 min` ×6 egress ×2 manifests + verificador `deployverify` (96/96 bloques, guardián de archivos reales). L3 JAR real: objeto ⇒ RUNNING; escalar ⇒ RECHAZADO (`Error parsing a GenericKafkaEgressSpec`); manifest real ⇒ RUNNING 19 tasks. | commit-at-checkpoint del egress con función remota en loop (G-REC/G-ENV) |
+| GI-02 P0 recovery ejecutable | CORREGIDO + L3-c | `dc3bb84a`: offsets obligatorios (nil ⇒ `ErrOffsetWindowUnavailable`/BLOCKED; ingress sin offsets ⇒ BLOCKED), `KafkaOffsetWindow` sarama, CLI `echo-runtime-control` + gate en compose (entrypoint `gate && exec`; sin gate no hay master ⇒ no hay job). L3-c real: gate RESTORE exit 0; offset fuera de watermark real/objecto ausente/digest alterado ⇒ BLOCKED exit 1; attest niega fabricar evidencia sin providers (M01). | ruta CLEAN del attest (providers de read-back del despliegue, G-ENV/G-REC); REC-01..07 |
+| GI-03 P1 readiness efectiva | CORREGIDO | `17d95c62`: permits ETCD reales por tick (`ListLivePermitBindings`), market contract `echo.futures.market-freshness.v1` (UNKNOWN honesto), rebuild del input EN cada tick (defecto del snapshot fijo corregido), `NewRiskEligible` separado de `/ready` operativa; separación probada vs `AdmissionCheck` (ausente/revocado/expirado/generation) aunque Ready=true. | proyección física de `/ready` en runtime vivo (G-ENV) |
+| GI-04 QA/cobertura global | CUMPLE | Batería reproducible (`efprod-coverage.sh`, denominador = todos los bloques de archivos nuevos sin exclusiones de código): **96.68% global (1982/2050) ≥95% GOD-03**, 83 paquetes ok, 0 fallos; reparación previa desde 88.82% con residual por archivo declarado; 7 fallos heredados re-verificados idénticos a `ac0621a1` (causas intactas). | race de la batería completa en un solo pase (race por paquete afectado hecho) |
+
+Incidente disclosed: test de B-R creó 4 topics basura en Kafka DEV compartido; eliminados por el Submanager (estado restaurado) + guard loopback commiteado. RCA E01 permanece UNRESOLVED (el guard verificable cubre la clase de fallo; no se inventa causa).
+
 ## NOT_RUN físicos (bloquean G-ENV/G-FEED/G-REC/G-SIM, no G-IMPL)
-StateFun Java + Kafka transaccional reales (KAF-01/02, REC-01..06 en L3) · terminal NT físico (OBS/DISK/FEED L4, compile de AddOns contra assemblies) · PG outbox real (SKIP con seam `ECHO_TEST_PG_DSN`) · SIM/venue (ECON/ORD/PROT L5/L6) · envelope/capacidad (PERF/SCALE) · power-loss eléctrico real.
+StateFun Java + Kafka transaccional reales (KAF-01/02, REC-01..06 en L3; el laboratorio GI demostró aceptación de módulo y transacciones broker, no el ciclo completo con función remota) · terminal NT físico (OBS/DISK/FEED L4, compile de AddOns contra assemblies) · PG outbox real (SKIP con seam `ECHO_TEST_PG_DSN`) · SIM/venue (ECON/ORD/PROT L5/L6) · envelope/capacidad (PERF/SCALE) · power-loss eléctrico real.
