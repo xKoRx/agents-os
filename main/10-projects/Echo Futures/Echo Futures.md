@@ -52,7 +52,7 @@ Auditoría NORMAL acotada (una sesión GLM, corte `07cca9d3`) al cierre `PASS_26
 
 ## Runtime pools — supervisión
 
-- [/] [[Echo Futures — Runtime Pools]] Production Readiness GOD G-DOC accepted; GLM B1–B3 entregados en `602dfcad`; **G-IMPL blocked en revisión de source** por GI-01..04, un único cierre de integración dentro B3 (ver [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]]). Certificación/PROD siguen bloqueadas; R6/FEFB/F1 preservados. #owner/me #type/supervision #area/echo
+- [/] [[Echo Futures — Runtime Pools]] GOD G-DOC accepted; GLM B1–B3 integrados en `9daa57cb`; **G-IMPL BLOCKED** tras re-review Manager: ruta de restore real/attestation no cerrada, continuidad de identidad Kafka, frescura y QA diff-aware. Un solo cierre B3 PRD.4; ver [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]]. CERT-NT-01/SIM/PROD no autorizados; R6/FEFB/F1 preservados. #owner/me #type/supervision #area/echo
 
 ## Optimización de Campañas — supervisión
 
