@@ -123,7 +123,22 @@ Incidente de límites durante la reparación (disclosed): el worker B-R verific�
 
 ### Verificador C (QA adversarial independiente, read-only)
 
-VER SECCIÓN RESULTADO (se completa al cierre).
+Dictamen sobre el SHA `5011d21e` (worktree desechable, cero escrituras en producto): **overall = READY_FOR_MANAGER_REVIEW** — GI-01 **PASS**, GI-02 **PASS**, GI-03 **PASS**, GI-04 **CONCERNS** (convergentes, sin código nuevo post-veredicto). Hallazgos del verificador que quedan DISCLOSADOS como residuales para el re-review del Manager (no defectos bloqueantes del cierre):
+
+- **GI-04 concern resuelta en cierre**: el verificador detectó que el script de cobertura citado no estaba commiteado; se commiteó como tooling post-audit `9daa57cb` (`v3/tools/coverage/efprod-coverage.sh`, cero código de producto, disclosed).
+- GI-01 bypass teórico B1: claves YAML duplicadas (deployverify lee la primera; Jackson la última) — no explotable con los manifests actuales; dirección de fallo = deploy rechazado en runtime, nunca silencio. Endurecimiento futuro del verificador (detección de dup-keys) queda propuesto.
+- GI-02: REST `/jars` paralelo sigue abierto una vez el master booteó (el compose lo declara paso de commissioning); compose legacy v2 no tiene gate (fuera de alcance B3).
+- GI-03: el espejo `/ready` no valida max-age del documento de freshness (la enforcement de trading usa `FreshnessBounds` + `AdmissionCheck`, intactas).
+- Baseline heredada: el verificador cruzó worktrees `ac0621a1` vs `5011d21e` — causas IDÉNTICAS línea a línea en los 5 fallos ejecutables; PG/Jaeger por infra ausente; hang `TestS2Audit_StampedCapacityProbe` confirmado y atribuido.
+- Reproducibilidad GI-04: el muestreo independiente del verificador (15 archivos clave) REPRODUCE el reporte del Submanager casi exacto; el global 96.68% depende de los tests env-gated con broker real (metodología, skips y perfiles publicados).
+
+NOT_RUN que mantiene gates físicos: commit-at-checkpoint del egress con función remota (G-REC/G-ENV), ruta CLEAN del attest (providers del despliegue), REC-01..07, terminal NT, PG outbox real, SIM/venue, envelope.
+
+### Resultado del cierre
+
+- SHA publicado: `9daa57cb` (FF sobre `602dfcad`; audited SHA del verificador: `5011d21e`, +1 commit tooling disclosed).
+- STATUS: GIMPL_INTEGRATION_READY_FOR_MANAGER_REVIEW.
+- G-IMPL termina en **review** (nunca accepted desde el Submanager). Sin deploy, sin órdenes, desarmado; PROD NO_GO.
 
 ## Fuentes
 
