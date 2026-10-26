@@ -292,7 +292,7 @@ Ninguna variante termina como `0 trades`/`NO_ACTIVITY`/`COMPLETE`/`UNKNOWN`/`LOW
 | E | Señales sin fills | cuenta, MM, min lot, stops, Provider, rechazos | `SIGNAL_REJECTED_VALID_POLICY` vs `SIGNAL_EXECUTION_DEFECT` |
 | F | Entradas sin operación completa | fills, cierre, órdenes protectoras, lifecycle, reconciliación | no funcional hasta demostrar cierre real |
 | G | Roundtrips, todos perdedores | entrada, stop/target, dirección, filtros, costos, sesión vs patrón fuente | `FULLY_TRADED_NEGATIVE_SAMPLE`; evidencia negativa conservada, sin cambiar la estrategia para conseguir un ganador |
-| H | Operaciones completas, cero challenges | resultado G4 conciliado | `QUARTER_NO_PASS`; sin histórico |
+| H | Operaciones completas, cero challenges | resultado G4 conciliado + factibilidad del target (§6) | `QUARTER_NO_PASS` con causa primaria distinguida: `MATHEMATICALLY_UNREACHABLE_WITH_OBSERVED_TRADES` (opera bien pero no puede aprobar: frecuencia×ganador < target) vs `NEGATIVE_EDGE` (la muestra ejecutada es perdedora); sin histórico en ambos casos |
 
 ### Knowledge Review Loop (reutilizable para cualquier curso)
 
