@@ -57,6 +57,7 @@ Owner exige diseño definitivo basado en The Lab, endpoint primero con integraci
 - HEADs remotos/locales y limpieza de tres checkouts de producto comprobados; sólo lecturas de fuente/Git. Ninguna suite/build/proceso/broker/DB de producto ejecutado. Ejemplos Go son documentación, no implementación ni test ejecutado.
 - Validación documental completada: lint estricto ERROR=0/WARN=0 sobre9notas;51wikilinks de notas nuevas resueltos sin ambigüedad,11conceptos de paquetes,6rutas,3prompts maestros y12casos endpoint presentes; cero paths de máquina/placeholders. git diff --check sin errores. Readback de documentos y símbolos de ejemplos realizado, sin compilar ni ejecutar producto.
 - Persistencia únicamente Agents-OS master. Cron de sincronización produjo commits intermedios de este trabajo; no se modificó cron, sync.sh ni .sync. Consolidación final con commit/push normal y verificación remota, preservando avances de otras sesiones.
+- Readback remoto completado: master@bb5529b9563eef6dfd5e0fe94821803273889074 contiene las9notas, bytes idénticos a los locales; commit de consolidación alcanzable desde origin/master. El presente ajuste sólo registra esa evidencia y confirma estado READY.
 - Veredicto de diseño validado documentalmente: ECHO_INGESTION_V2_GOD_DESIGN_READY_FOR_GLM. Gates funcionales nuevos permanecen NOT_RUN; early merge no declarado PASS aquí.
 
 ## Compartibilidad

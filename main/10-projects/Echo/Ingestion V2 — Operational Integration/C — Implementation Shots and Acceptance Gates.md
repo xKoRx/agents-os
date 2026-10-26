@@ -131,7 +131,7 @@ Revisión documental por autor Shot1, no QA independiente ni pruebas de ejecuci�
 |10 paquetes GLM | D tres prompts completos y E ejemplos |
 |11 persistencia master | Change_log consolidado, readback/validación/commit/push de documentos |
 
-Veredicto: **ECHO_INGESTION_V2_GOD_DESIGN_READY_FOR_GLM**, sujeto a la verificación de persistencia master registrada en change_log. Sin blocker de diseño pendiente. AUTH_FORGE limita autenticidad futura, no freeze. Ningún gate funcional PASS por esta declaración. Siguiente acción: D2, Shot2; no iniciado en Shot1.
+Veredicto: **ECHO_INGESTION_V2_GOD_DESIGN_READY_FOR_GLM**, con persistencia master verificada y registrada en change_log. Sin blocker de diseño pendiente. AUTH_FORGE limita autenticidad futura, no freeze. Ningún gate funcional PASS por esta declaración. Siguiente acción: D2, Shot2; no iniciado en Shot1.
 
 
 ### C8. Contrato de ejecución autónoma y control
@@ -158,7 +158,7 @@ T3.01 SHA/independencia/harness; T3.02 falsificar E/O/J; T3.03 falsificar L/F/H;
 
 | Gate | Estado ejecución | Responsable | Autoridad/aceptación | Habilita |
 |---|---|---|---|---|
-| Diseño Shot1 | review documental completado, persistencia al commit | GOD | Mandato freeze con11criterios | Shot2 listo para despacho |
+| Diseño Shot1 | READY: revisión documental y persistencia master verificadas | GOD | Mandato freeze con11criterios | Shot2 listo para despacho |
 | Endpoint E | pending / NOT_RUN | Shot2 GLM | D25 autorización condicionada explícita | Merge inmediato y O |
 | Shot2 completo | pending / NOT_RUN | GLM | Handoff verificable | Despacho Shot3 fresco |
 | Shot3 QA | pending / NOT_RUN | GLM independiente | Findings con evidencia | Despacho Shot4 |
