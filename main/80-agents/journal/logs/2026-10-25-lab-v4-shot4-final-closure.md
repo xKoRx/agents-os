@@ -1,0 +1,7 @@
+# change_log — 2026-10-25 — THE LAB V4 Shot 4 cierre
+
+- Entregados en `10-projects/Echo/The Lab/V4 — Runtime Integration/`: `SHOT4_FINAL_IMPLEMENTATION_REPORT.md`, `SHOT4_FINAL_COVERAGE_MATRIX.md`, `SHOT4_INDEPENDENT_FINAL_REVIEW.md`, `SHOT4_FINAL_HANDOFF.md` (cierre del programa THE_LAB_V4_RUNTIME_FORGE_INTEGRATION, cuarto y último shot).
+- Producto: `xKoRx/echo` rama `lab-v4/shot4-integration` @ `b2b3ebfe3337b3b44034c5be3bf00b8379c8f1ce` (pusheada a origin; base `ac0621a1`, baseline Shot3 `3b3ae81e`); `xKoRx/symphony` rama `lab-v4/shot4-symphony` @ `a0c68d1` (pusheada; base `dd4af7d0`). La rama autorizada `feature/ef-runtime-pools` avanzó en paralelo con trabajo ajeno (`0e17c4d3`, wiring ef-prod): la reconciliación merge del shot con esa línea queda como decisión del Owner — nada ajeno fue tocado.
+- Veredicto de cierre: 47/49 H01–H49 PASS sobre el SHA de cierre (auditoría adversarial W6 + revalidación + verificación de cierre con oráculos de auditor); abiertos con causa medida: H45 sub-invariante prepare ≤2s (piso contractual del COPY ~38MB = 3,0–3,5s) y QA-01 cobertura del delta (85,8/85,2% vs 95%, residuos estructurales documentados). Sin defecto funcional ni de seguridad abierto. Cero BLOCKED_EXTERNAL principales (AUTH_FORGE se mantiene X_AUTH_ARTIFACT documentado).
+- Migraciones aditivas 076–083 registradas en el protocolo del toolkit (067–075 bytes intactos).
+- Evidencia grande fuera del vault: `/srv/echo-work/lab-v4-shot4-20261023/evidence/` (w0–w5, wperf*, fix-cov*, fix2-*, fix3-*, w6, reval, final-verify, SHOT4_FINAL_COVERAGE_MATRIX.json).
