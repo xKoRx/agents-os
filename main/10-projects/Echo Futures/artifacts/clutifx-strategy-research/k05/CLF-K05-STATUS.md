@@ -61,4 +61,4 @@ OWNER_ACCEPTANCE: REVIEW
 
 ## Sync
 
-Destinos disponibles desde Daedalus: el vault canónico local es la superficie de publicación (este directorio). No existe evidencia de un canal de sincronización automático k05→Hefesto en este host; el handoff se declara PUBLICADO EN VAULT (verificable por SHA) y NO ENTREGADO a Hefesto hasta que un ciclo de implementación lo consuma — no se declara recepción por Hefesto.
+Destino disponible verificado: el vault es repo git con auto-sync a `github.com/xKoRx/agents-os` (commits `sync HH:MM`). Los 10 entregables k05 + planner + journal quedaron recogidos por el sync en HEAD `fde8cda2` (10:28), tree limpio, `master` igual a `origin/master`; digest del handoff sin cambios (`fbce00c2…`). El handoff queda PUBLICADO EN VAULT y verificado por SHA; NO se declara recepción por Hefesto (no existe canal k05→Hefesto desde este host: el consumo es del próximo ciclo de implementación).
