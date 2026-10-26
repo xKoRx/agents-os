@@ -1,40 +1,38 @@
 ---
-type: source
+type: "source"
 schema_version: 1
-status: active
-area: '[[Trading]]'
-source_url: https://academia.imoxtrading.com/documento/IhGxmzPk_3g1
-repo: null
-path: null
-author: null
-published: null
-captured: '2026-10-26'
-license: null
-checksum: sha256:3154a0a8f7ffa8f7f454e85c1245a932057b22bf8c3c479ecea3708b8e8e0779
-supersedes: null
-superseded_by: null
+status: "active"
+area: "[[Trading]]"
+source_url: "https://academia.imoxtrading.com/documento/IhGxmzPk_3g1"
+repo: 
+path: 
+author: 
+published: 
+captured: "2026-10-26"
+license: 
+checksum: "sha256:3154a0a8f7ffa8f7f454e85c1245a932057b22bf8c3c479ecea3708b8e8e0779"
+supersedes: 
+superseded_by: 
 aliases: []
-tags:
-- kind/source
-- area/trading
-- topic/imox
-created: '2026-10-26'
-updated: '2026-10-26'
-platform: imox-academia
-community_key: imox-circle
-record_kind: attachment
-parent_context_url: https://comunidad.imoxtrading.com/c/laboratorio-a51b70/en-busca-de-la-cartera-estable-dos-pruebas-para-separar-ventaja-de-suerte
-processing_state: partial
-reading_scope: '7 páginas: texto completo; figura p. 3 renderizada y revisada. Otras figuras pendientes de contraste visual exhaustivo.'
-body_coverage: reviewed_declared_pages
-attachments_coverage: local_pdf_preserved
-last_reviewed_on: '2026-10-26'
-review_time_precision: date
-relevance_decision: useful
-knowledge_destinations:
-- '[[IMOX - Cartera estable - Ventaja frente a azar y selección]]'
-pending_reason: Ver alcance; no se ejecutó ni reprodujo el estudio.
+tags: ["kind/source", "area/trading", "topic/imox"]
+created: "2026-10-26"
+updated: "2026-10-26"
+platform: "imox-academia"
+community_key: "imox-circle"
+record_kind: "attachment"
+parent_context_url: "https://comunidad.imoxtrading.com/c/laboratorio-a51b70/en-busca-de-la-cartera-estable-dos-pruebas-para-separar-ventaja-de-suerte"
+processing_state: "partial"
+reading_scope: "7 páginas: texto completo; figura p. 3 renderizada y revisada. Otras figuras pendientes de contraste visual exhaustivo."
+body_coverage: "reviewed_declared_pages"
+attachments_coverage: "local_pdf_preserved"
+last_reviewed_on: "2026-10-26"
+review_time_precision: "date"
+relevance_decision: "useful"
+knowledge_destinations: ["[[IMOX - Cartera estable - Ventaja frente a azar y selección]]"]
+pending_reason: "Ver alcance; no se ejecutó ni reprodujo el estudio."
 ---
+
+
 
 # IMOX - Fuente adjunta - PDF Cartera estable
 
@@ -55,3 +53,7 @@ Descarga realizada en Chrome por la sesión autenticada del usuario y lectura lo
 ## Pendientes
 
 La lectura documental no valida código, dataset, resultados ni aplicación a Rodrigo.
+
+## Notas de provenance
+
+Origen y alcance declarados arriba. La lectura usa Chrome autenticado y, para los PDF, descarga personal y lectura local autorizadas. No se redistribuyó contenido ni se ejecutaron instrucciones o archivos; resultados atribuidos, sin validación independiente.

@@ -1,23 +1,20 @@
 ---
-type: index
+type: "index"
 schema_version: 1
-status: active
-icon: 🗂️
-slug: imox-index
-area: '[[Trading]]'
-project: null
-created: '2026-10-24'
-updated: '2026-10-26'
-reviewed: '2026-10-26'
-aliases:
-- IMOX — Índice
-cssclasses:
-- wide
-tags:
-- kind/index
-- area/trading
-- topic/imox
+status: "active"
+icon: "🗂️"
+slug: "imox-index"
+area: "[[Trading]]"
+project: 
+created: "2026-10-24"
+updated: "2026-10-26"
+reviewed: "2026-10-26"
+aliases: ["IMOX — Índice"]
+cssclasses: ["wide"]
+tags: ["kind/index", "area/trading", "topic/imox"]
 ---
+
+
 
 # IMOX — Índice
 

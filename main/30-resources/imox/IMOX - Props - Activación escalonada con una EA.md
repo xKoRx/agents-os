@@ -1,22 +1,19 @@
 ---
-type: resource
+type: "resource"
 schema_version: 1
-status: active
-area: '[[Trading]]'
-sources:
-- '[[IMOX - Fuente - Props - Activación escalonada con una EA]]'
-last_verified: '2026-10-26'
-confidence: high
+status: "active"
+area: "[[Trading]]"
+sources: ["[[IMOX - Fuente - Props - Activación escalonada con una EA]]"]
+last_verified: "2026-10-26"
+confidence: "high"
 aliases: []
-tags:
-- kind/resource
-- area/trading
-- topic/imox
-created: '2026-10-26'
-updated: '2026-10-26'
-related:
-- '[[IMOX]]'
+tags: ["kind/resource", "area/trading", "topic/imox"]
+created: "2026-10-26"
+updated: "2026-10-26"
+related: ["[[IMOX]]"]
 ---
+
+
 
 # IMOX - Props - Activación escalonada con una EA
 

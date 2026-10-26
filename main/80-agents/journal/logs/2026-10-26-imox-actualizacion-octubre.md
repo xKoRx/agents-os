@@ -1,29 +1,26 @@
 ---
-type: change_log
+type: "change_log"
 schema_version: 1
-scope: session
-created: '2026-10-26'
-updated: '2026-10-26'
-area: '[[Trading]]'
-project: null
-application: null
-entities:
-- '[[IMOX]]'
-related:
-- '[[IMOX — Revisión 2026-10-26 - Actualización de octubre]]'
-- '[[IMOX - Metodología para investigación Forex y CFD]]'
+scope: "session"
+created: "2026-10-26"
+updated: "2026-10-26"
+area: "[[Trading]]"
+project: 
+application: 
+entities: ["[[IMOX]]"]
+related: ["[[IMOX — Revisión 2026-10-26 - Actualización de octubre]]", "[[IMOX - Metodología para investigación Forex y CFD]]"]
 aliases: []
-confidence: verified
-source_session: null
+confidence: "verified"
+source_session: 
 source_feedbacks: []
-share_scope: local
-load_policy: manual
+share_scope: "local"
+load_policy: "manual"
 indexable: false
-index_priority: never
-tags:
-- kind/change-log
-- scope/session
+index_priority: "never"
+tags: ["kind/change-log", "scope/session"]
 ---
+
+
 
 # Actualización documental IMOX — octubre 2026
 

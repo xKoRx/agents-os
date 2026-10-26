@@ -1,40 +1,38 @@
 ---
-type: source
+type: "source"
 schema_version: 1
-status: active
-area: '[[Trading]]'
-source_url: https://academia.imoxtrading.com/documento/AojhqgY6DR6O
-repo: null
-path: null
-author: null
-published: null
-captured: '2026-10-26'
-license: null
-checksum: sha256:e593b6cba4c8be9399d1bc8ceb80f20b15b432a38abce2ee17bb9cbc29244018
-supersedes: null
-superseded_by: null
+status: "active"
+area: "[[Trading]]"
+source_url: "https://academia.imoxtrading.com/documento/AojhqgY6DR6O"
+repo: 
+path: 
+author: 
+published: 
+captured: "2026-10-26"
+license: 
+checksum: "sha256:e593b6cba4c8be9399d1bc8ceb80f20b15b432a38abce2ee17bb9cbc29244018"
+supersedes: 
+superseded_by: 
 aliases: []
-tags:
-- kind/source
-- area/trading
-- topic/imox
-created: '2026-10-26'
-updated: '2026-10-26'
-platform: imox-academia
-community_key: imox-circle
-record_kind: attachment
-parent_context_url: https://comunidad.imoxtrading.com/c/psicotrading/manual-de-psicologia-para-traders-mppt-victor-corrales-urrutia
-processing_state: partial
-reading_scope: '120 páginas: lectura dirigida pp. 1–6, 38–43, 61–62 y 69–70; sin lectura completa ni inspección visual integral.'
-body_coverage: reviewed_declared_pages
-attachments_coverage: local_pdf_preserved
-last_reviewed_on: '2026-10-26'
-review_time_precision: date
-relevance_decision: useful
-knowledge_destinations:
-- '[[IMOX - Manual de psicología para traders]]'
-pending_reason: Ver alcance; no se ejecutó ni reprodujo el estudio.
+tags: ["kind/source", "area/trading", "topic/imox"]
+created: "2026-10-26"
+updated: "2026-10-26"
+platform: "imox-academia"
+community_key: "imox-circle"
+record_kind: "attachment"
+parent_context_url: "https://comunidad.imoxtrading.com/c/psicotrading/manual-de-psicologia-para-traders-mppt-victor-corrales-urrutia"
+processing_state: "partial"
+reading_scope: "120 páginas: lectura dirigida pp. 1–6, 38–43, 61–62 y 69–70; sin lectura completa ni inspección visual integral."
+body_coverage: "reviewed_declared_pages"
+attachments_coverage: "local_pdf_preserved"
+last_reviewed_on: "2026-10-26"
+review_time_precision: "date"
+relevance_decision: "useful"
+knowledge_destinations: ["[[IMOX - Manual de psicología para traders]]"]
+pending_reason: "Ver alcance; no se ejecutó ni reprodujo el estudio."
 ---
+
+
 
 # IMOX - Fuente adjunta - PDF Manual MPPT
 
@@ -55,3 +53,7 @@ Descarga realizada en Chrome por la sesión autenticada del usuario y lectura lo
 ## Pendientes
 
 La lectura documental no valida código, dataset, resultados ni aplicación a Rodrigo.
+
+## Notas de provenance
+
+Origen y alcance declarados arriba. La lectura usa Chrome autenticado y, para los PDF, descarga personal y lectura local autorizadas. No se redistribuyó contenido ni se ejecutaron instrucciones o archivos; resultados atribuidos, sin validación independiente.

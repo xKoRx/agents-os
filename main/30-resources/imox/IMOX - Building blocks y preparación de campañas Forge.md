@@ -1,30 +1,20 @@
 ---
-type: resource
+type: "resource"
 schema_version: 1
-status: active
-area: '[[Trading]]'
-sources:
-- '[[IMOX - Fuente - Building Blocks Skill]]'
-- '[[IMOX - Fuente - Guía de Building Blocks SQX 145]]'
-- '[[IMOX - Fuente - Tipos de estrategia en trading algorítmico]]'
-- '[[IMOX - Fuente - Builder - Minería de estrategias]]'
-- '[[IMOX - Fuente - AnchoredVWAP - Exportación y compatibilidad por versión]]'
-- '[[IMOX - Fuente - IA y Building Blocks - Cambio de enfoque de Aritz]]'
-last_verified: '2026-10-24'
-confidence: high
+status: "active"
+area: "[[Trading]]"
+sources: ["[[IMOX - Fuente - Building Blocks Skill]]", "[[IMOX - Fuente - Guía de Building Blocks SQX 145]]", "[[IMOX - Fuente - Tipos de estrategia en trading algorítmico]]", "[[IMOX - Fuente - Builder - Minería de estrategias]]", "[[IMOX - Fuente - AnchoredVWAP - Exportación y compatibilidad por versión]]", "[[IMOX - Fuente - IA y Building Blocks - Cambio de enfoque de Aritz]]"]
+last_verified: "2026-10-24"
+confidence: "high"
 aliases: []
-tags:
-- kind/resource
-- area/trading
-- topic/imox
-- topic/building-blocks
-created: '2026-10-24'
-updated: '2026-10-26'
-related:
-- '[[IMOX]]'
-- '[[30-resources/applications/echo/echo-forge]]'
-source_url: https://comunidad.imoxtrading.com/c/aportes-ia/building-blocks-skill
+tags: ["kind/resource", "area/trading", "topic/imox", "topic/building-blocks"]
+created: "2026-10-24"
+updated: "2026-10-26"
+related: ["[[IMOX]]", "[[30-resources/applications/echo/echo-forge]]"]
+source_url: "https://comunidad.imoxtrading.com/c/aportes-ia/building-blocks-skill"
 ---
+
+
 
 # IMOX - Building blocks y preparación de campañas Forge
 

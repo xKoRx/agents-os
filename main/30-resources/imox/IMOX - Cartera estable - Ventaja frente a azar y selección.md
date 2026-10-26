@@ -1,23 +1,19 @@
 ---
-type: resource
+type: "resource"
 schema_version: 1
-status: active
-area: '[[Trading]]'
-sources:
-- '[[IMOX - Fuente - Cartera estable - Ventaja frente a azar y selección]]'
-- '[[IMOX - Fuente adjunta - PDF Cartera estable]]'
-last_verified: '2026-10-26'
-confidence: high
+status: "active"
+area: "[[Trading]]"
+sources: ["[[IMOX - Fuente - Cartera estable - Ventaja frente a azar y selección]]", "[[IMOX - Fuente adjunta - PDF Cartera estable]]"]
+last_verified: "2026-10-26"
+confidence: "high"
 aliases: []
-tags:
-- kind/resource
-- area/trading
-- topic/imox
-created: '2026-10-26'
-updated: '2026-10-26'
-related:
-- '[[IMOX]]'
+tags: ["kind/resource", "area/trading", "topic/imox"]
+created: "2026-10-26"
+updated: "2026-10-26"
+related: ["[[IMOX]]"]
 ---
+
+
 
 # IMOX - Cartera estable - Ventaja frente a azar y selección
 

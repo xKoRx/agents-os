@@ -1,52 +1,50 @@
 ---
-type: source
+type: "source"
 schema_version: 1
-status: active
-area: '[[Trading]]'
-source_url: https://comunidad.imoxtrading.com/c/aportes-y-recursos/como-estoy-usando-claude-dentro-de-mis-customprojects-de-sqx-para-analizar-los-databanks
-repo: null
-path: null
-author: Jose2ms
-published: null
-captured: '2026-10-24'
-license: null
-checksum: null
-supersedes: null
-superseded_by: null
+status: "active"
+area: "[[Trading]]"
+source_url: "https://comunidad.imoxtrading.com/c/aportes-y-recursos/como-estoy-usando-claude-dentro-de-mis-customprojects-de-sqx-para-analizar-los-databanks"
+repo: 
+path: 
+author: "Jose2ms"
+published: 
+captured: "2026-10-24"
+license: 
+checksum: 
+supersedes: 
+superseded_by: 
 aliases: []
-tags:
-- kind/source
-- area/trading
-- topic/imox
-created: '2026-10-24'
-updated: '2026-10-26'
-platform: circle
-community_key: imox-circle
-record_kind: post
-post_key: circle:comunidad.imoxtrading.com/c/aportes-y-recursos/como-estoy-usando-claude-dentro-de-mis-customprojects-de-sqx-para-analizar-los-databanks
-canonical_post_url: https://comunidad.imoxtrading.com/c/aportes-y-recursos/como-estoy-usando-claude-dentro-de-mis-customprojects-de-sqx-para-analizar-los-databanks
-parent_context_url: null
-source_post_id: null
-space_key: aportes-y-recursos
-published_at: null
-source_updated_at: null
-last_reviewed_on: '2026-10-26'
-last_reviewed_at: null
-review_time_precision: date
-registered_at: '2026-10-25T00:13:22-03:00'
-processing_state: partial
-reading_scope: body_comments_primary_attachments
-body_coverage: reviewed
-comments_coverage: visible_current_subset_nested_replies_pending
-attachments_coverage: partial_or_unconfirmed
-relevance_decision: useful
-decision_reason: Extracción previa con conocimiento o contexto útil documentado; no implica aprobación de sus afirmaciones.
-knowledge_destinations:
-- '[[IMOX - Claude en CustomProjects para analizar databanks]]'
-pending_reason: Respuestas anidadas y medios no revalidados íntegramente en la revisita.
-contribution_state: not_planned
-last_registration_review: '[[IMOX — Revisión 2026-10-26 - Actualización de octubre]]'
+tags: ["kind/source", "area/trading", "topic/imox"]
+created: "2026-10-24"
+updated: "2026-10-26"
+platform: "circle"
+community_key: "imox-circle"
+record_kind: "post"
+post_key: "circle:comunidad.imoxtrading.com/c/aportes-y-recursos/como-estoy-usando-claude-dentro-de-mis-customprojects-de-sqx-para-analizar-los-databanks"
+canonical_post_url: "https://comunidad.imoxtrading.com/c/aportes-y-recursos/como-estoy-usando-claude-dentro-de-mis-customprojects-de-sqx-para-analizar-los-databanks"
+parent_context_url: 
+source_post_id: 
+space_key: "aportes-y-recursos"
+published_at: 
+source_updated_at: 
+last_reviewed_on: "2026-10-26"
+last_reviewed_at: 
+review_time_precision: "date"
+registered_at: "2026-10-25T00:13:22-03:00"
+processing_state: "partial"
+reading_scope: "body_comments_primary_attachments"
+body_coverage: "reviewed"
+comments_coverage: "visible_current_subset_nested_replies_pending"
+attachments_coverage: "partial_or_unconfirmed"
+relevance_decision: "useful"
+decision_reason: "Extracción previa con conocimiento o contexto útil documentado; no implica aprobación de sus afirmaciones."
+knowledge_destinations: ["[[IMOX - Claude en CustomProjects para analizar databanks]]"]
+pending_reason: "Respuestas anidadas y medios no revalidados íntegramente en la revisita."
+contribution_state: "not_planned"
+last_registration_review: "[[IMOX — Revisión 2026-10-26 - Actualización de octubre]]"
 ---
+
+
 
 # IMOX - Fuente - Claude en CustomProjects para analizar databanks
 

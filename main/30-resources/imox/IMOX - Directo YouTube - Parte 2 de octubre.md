@@ -1,22 +1,19 @@
 ---
-type: resource
+type: "resource"
 schema_version: 1
-status: active
-area: '[[Trading]]'
-sources:
-- '[[IMOX - Fuente - Directo YouTube - Parte 2 de octubre]]'
-last_verified: '2026-10-26'
-confidence: low
+status: "active"
+area: "[[Trading]]"
+sources: ["[[IMOX - Fuente - Directo YouTube - Parte 2 de octubre]]"]
+last_verified: "2026-10-26"
+confidence: "low"
 aliases: []
-tags:
-- kind/resource
-- area/trading
-- topic/imox
-created: '2026-10-26'
-updated: '2026-10-26'
-related:
-- '[[IMOX]]'
+tags: ["kind/resource", "area/trading", "topic/imox"]
+created: "2026-10-26"
+updated: "2026-10-26"
+related: ["[[IMOX]]"]
 ---
+
+
 
 # IMOX - Directo YouTube - Parte 2 de octubre
 

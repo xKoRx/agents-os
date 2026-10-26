@@ -1,17 +1,16 @@
 ---
-type: doc
+type: "doc"
 schema_version: 1
-status: active
-area: '[[Trading]]'
+status: "active"
+area: "[[Trading]]"
 related: []
 aliases: []
-tags:
-- kind/doc
-- area/trading
-- topic/imox
-created: '2026-10-24'
-updated: '2026-10-26'
+tags: ["kind/doc", "area/trading", "topic/imox"]
+created: "2026-10-24"
+updated: "2026-10-26"
 ---
+
+
 
 # IMOX — Bitácora
 

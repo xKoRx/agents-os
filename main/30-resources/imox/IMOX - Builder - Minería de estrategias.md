@@ -1,24 +1,20 @@
 ---
-type: resource
+type: "resource"
 schema_version: 1
-status: active
-area: '[[Trading]]'
-sources:
-- '[[IMOX - Fuente - Builder - Minería de estrategias]]'
-last_verified: '2026-10-24'
-confidence: verified
+status: "active"
+area: "[[Trading]]"
+sources: ["[[IMOX - Fuente - Builder - Minería de estrategias]]"]
+last_verified: "2026-10-24"
+confidence: "verified"
 aliases: []
-tags:
-- kind/resource
-- area/trading
-- topic/imox
-created: '2026-10-24'
-updated: '2026-10-26'
-source_url: https://comunidad.imoxtrading.com/c/aportes-ia/builder-mineria-de-estrategias
-related:
-- '[[IMOX]]'
-- '[[30-resources/applications/echo/echo-forge]]'
+tags: ["kind/resource", "area/trading", "topic/imox"]
+created: "2026-10-24"
+updated: "2026-10-26"
+source_url: "https://comunidad.imoxtrading.com/c/aportes-ia/builder-mineria-de-estrategias"
+related: ["[[IMOX]]", "[[30-resources/applications/echo/echo-forge]]"]
 ---
+
+
 
 # IMOX - Builder - Minería de estrategias
 

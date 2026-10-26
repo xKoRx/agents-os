@@ -1,22 +1,20 @@
 ---
-type: doc
+type: "doc"
 schema_version: 1
-status: active
-area: '[[Trading]]'
-related:
-- '[[IMOX]]'
+status: "active"
+area: "[[Trading]]"
+related: ["[[IMOX]]"]
 aliases: []
-tags:
-- kind/doc
-- area/trading
-- topic/imox
-created: '2026-10-26'
-updated: '2026-10-26'
-review_started_on: '2026-10-26'
-review_finished_at: '2026-10-26T20:25:45-03:00'
+tags: ["kind/doc", "area/trading", "topic/imox"]
+created: "2026-10-26"
+updated: "2026-10-26"
+review_started_on: "2026-10-26"
+review_finished_at: "2026-10-26T20:25:45-03:00"
 inventory_complete: false
 processing_complete: false
 ---
+
+
 
 # IMOX — Revisión 2026-10-26 - Actualización de octubre
 

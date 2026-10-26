@@ -1,20 +1,18 @@
 ---
-type: resource
+type: "resource"
 schema_version: 1
-status: active
-area: '[[Trading]]'
-sources:
-- '[[IMOX - Fuente - Mi base de datos para analizar resultados]]'
-last_verified: 2026-10-24
-confidence: verified
+status: "active"
+area: "[[Trading]]"
+sources: ["[[IMOX - Fuente - Mi base de datos para analizar resultados]]"]
+last_verified: "2026-10-24"
+confidence: "verified"
 aliases: []
-tags:
-- kind/resource
-- area/trading
-- topic/imox
-created: '2026-10-24'
-updated: '2026-10-26'
+tags: ["kind/resource", "area/trading", "topic/imox"]
+created: "2026-10-24"
+updated: "2026-10-26"
 ---
+
+
 
 # IMOX - Base de datos para analizar resultados
 

@@ -1,32 +1,20 @@
 ---
-type: resource
+type: "resource"
 schema_version: 1
-status: active
-area: '[[Trading]]'
-sources:
-- '[[IMOX - Fuente - IA y Building Blocks - Cambio de enfoque de Aritz]]'
-- '[[IMOX - Fuente - SQX 144 - Builders cortos y filtros baratos]]'
-- '[[IMOX - Fuente - SQX - Point value y comprobación monetaria]]'
-- '[[IMOX - Fuente - Ventanas móviles de 24 meses y estabilidad temporal]]'
-- '[[IMOX - Fuente - SQX automatizado - Hipótesis, sondas y ejecución]]'
-- '[[IMOX - Fuente - Building Blocks Skill]]'
-- '[[IMOX - Fuente - Actualizar Broker Profiles en SQX]]'
-- '[[IMOX - Fuente - Guía SQX 144 - Conocimiento de Telegram]]'
-last_verified: '2026-10-24'
-confidence: high
+status: "active"
+area: "[[Trading]]"
+sources: ["[[IMOX - Fuente - IA y Building Blocks - Cambio de enfoque de Aritz]]", "[[IMOX - Fuente - SQX 144 - Builders cortos y filtros baratos]]", "[[IMOX - Fuente - SQX - Point value y comprobación monetaria]]", "[[IMOX - Fuente - Ventanas móviles de 24 meses y estabilidad temporal]]", "[[IMOX - Fuente - SQX automatizado - Hipótesis, sondas y ejecución]]", "[[IMOX - Fuente - Building Blocks Skill]]", "[[IMOX - Fuente - Actualizar Broker Profiles en SQX]]", "[[IMOX - Fuente - Guía SQX 144 - Conocimiento de Telegram]]"]
+last_verified: "2026-10-24"
+confidence: "high"
 aliases: []
-tags:
-- kind/resource
-- area/trading
-- topic/imox
-- topic/sqx144
-created: '2026-10-24'
-updated: '2026-10-26'
-source_url: https://comunidad.imoxtrading.com/c/aportes-ia/ia-building-blocks
-related:
-- '[[IMOX]]'
-- '[[30-resources/applications/echo/echo-forge]]'
+tags: ["kind/resource", "area/trading", "topic/imox", "topic/sqx144"]
+created: "2026-10-24"
+updated: "2026-10-26"
+source_url: "https://comunidad.imoxtrading.com/c/aportes-ia/ia-building-blocks"
+related: ["[[IMOX]]", "[[30-resources/applications/echo/echo-forge]]"]
 ---
+
+
 
 # IMOX - Empezar con SQX 144 - Metodología y primera campaña
 

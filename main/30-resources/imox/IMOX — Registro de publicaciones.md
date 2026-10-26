@@ -1,25 +1,21 @@
 ---
-type: doc
+type: "doc"
 schema_version: 1
-status: active
-area: '[[Trading]]'
-related:
-- '[[IMOX]]'
-aliases:
-- Diccionario de posts IMOX
-- Índice de posts procesados IMOX
-tags:
-- kind/doc
-- area/trading
-- topic/imox
-created: '2026-10-25'
-updated: '2026-10-26'
+status: "active"
+area: "[[Trading]]"
+related: ["[[IMOX]]"]
+aliases: ["Diccionario de posts IMOX", "Índice de posts procesados IMOX"]
+tags: ["kind/doc", "area/trading", "topic/imox"]
+created: "2026-10-25"
+updated: "2026-10-26"
 registered_posts: 124
 processed_posts: 3
 partial_posts: 108
-snapshot_at: '2026-10-26T20:25:45-03:00'
+snapshot_at: "2026-10-26T20:25:45-03:00"
 excluded_posts: 13
 ---
+
+
 
 # IMOX — Registro de publicaciones
 

@@ -1,23 +1,21 @@
 ---
-type: doc
+type: "doc"
 schema_version: 1
-status: active
-area: '[[Trading]]'
-related:
-- '[[IMOX]]'
+status: "active"
+area: "[[Trading]]"
+related: ["[[IMOX]]"]
 aliases: []
-tags:
-- kind/doc
-- area/trading
-- topic/imox
-created: '2026-10-25'
-updated: '2026-10-26'
+tags: ["kind/doc", "area/trading", "topic/imox"]
+created: "2026-10-25"
+updated: "2026-10-26"
 coverage_intervals: []
-inventory_complete_through: null
-processing_complete_through: null
-coverage_state: partial_inventory_observed
-review_mode: on_request
+inventory_complete_through: 
+processing_complete_through: 
+coverage_state: "partial_inventory_observed"
+review_mode: "on_request"
 ---
+
+
 
 # IMOX — Cobertura de revisión
 

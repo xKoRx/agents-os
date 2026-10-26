@@ -1,52 +1,50 @@
 ---
-type: source
+type: "source"
 schema_version: 1
-status: active
-area: '[[Trading]]'
-source_url: https://comunidad.imoxtrading.com/c/plugins-627f40/mi-base-de-datos-para-analizar-resultados
-repo: null
-path: null
-author: Jorge PF
-published: null
-captured: '2026-10-24'
-license: null
-checksum: null
-supersedes: null
-superseded_by: null
+status: "active"
+area: "[[Trading]]"
+source_url: "https://comunidad.imoxtrading.com/c/plugins-627f40/mi-base-de-datos-para-analizar-resultados"
+repo: 
+path: 
+author: "Jorge PF"
+published: 
+captured: "2026-10-24"
+license: 
+checksum: 
+supersedes: 
+superseded_by: 
 aliases: []
-tags:
-- kind/source
-- area/trading
-- topic/imox
-created: '2026-10-24'
-updated: '2026-10-26'
-platform: circle
-community_key: imox-circle
-record_kind: post
-post_key: circle:comunidad.imoxtrading.com/c/plugins-627f40/mi-base-de-datos-para-analizar-resultados
-canonical_post_url: https://comunidad.imoxtrading.com/c/plugins-627f40/mi-base-de-datos-para-analizar-resultados
-parent_context_url: null
-source_post_id: null
-space_key: plugins-627f40
-published_at: null
-source_updated_at: null
-last_reviewed_on: '2026-10-26'
-last_reviewed_at: null
-review_time_precision: date
-registered_at: '2026-10-25T00:13:22-03:00'
-processing_state: partial
-reading_scope: body_comments_primary_attachments
-body_coverage: reviewed
-comments_coverage: visible_current_subset_nested_replies_pending
-attachments_coverage: reviewed_or_none_in_scope
-relevance_decision: useful
-decision_reason: Extracción previa con conocimiento o contexto útil documentado; no implica aprobación de sus afirmaciones.
-knowledge_destinations:
-- '[[IMOX - Base de datos para analizar resultados]]'
-pending_reason: Respuestas anidadas y medios no revalidados íntegramente en la revisita.
-contribution_state: not_planned
-last_registration_review: '[[IMOX — Revisión 2026-10-26 - Actualización de octubre]]'
+tags: ["kind/source", "area/trading", "topic/imox"]
+created: "2026-10-24"
+updated: "2026-10-26"
+platform: "circle"
+community_key: "imox-circle"
+record_kind: "post"
+post_key: "circle:comunidad.imoxtrading.com/c/plugins-627f40/mi-base-de-datos-para-analizar-resultados"
+canonical_post_url: "https://comunidad.imoxtrading.com/c/plugins-627f40/mi-base-de-datos-para-analizar-resultados"
+parent_context_url: 
+source_post_id: 
+space_key: "plugins-627f40"
+published_at: 
+source_updated_at: 
+last_reviewed_on: "2026-10-26"
+last_reviewed_at: 
+review_time_precision: "date"
+registered_at: "2026-10-25T00:13:22-03:00"
+processing_state: "partial"
+reading_scope: "body_comments_primary_attachments"
+body_coverage: "reviewed"
+comments_coverage: "visible_current_subset_nested_replies_pending"
+attachments_coverage: "reviewed_or_none_in_scope"
+relevance_decision: "useful"
+decision_reason: "Extracción previa con conocimiento o contexto útil documentado; no implica aprobación de sus afirmaciones."
+knowledge_destinations: ["[[IMOX - Base de datos para analizar resultados]]"]
+pending_reason: "Respuestas anidadas y medios no revalidados íntegramente en la revisita."
+contribution_state: "not_planned"
+last_registration_review: "[[IMOX — Revisión 2026-10-26 - Actualización de octubre]]"
 ---
+
+
 
 # IMOX - Fuente - Mi base de datos para analizar resultados
 

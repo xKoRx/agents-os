@@ -1,44 +1,19 @@
 ---
-type: resource
+type: "resource"
 schema_version: 1
-status: active
-area: '[[Trading]]'
-sources:
-- '[[IMOX - Fuente - IA y Building Blocks - Cambio de enfoque de Aritz]]'
-- '[[IMOX - Fuente - Building Blocks Skill]]'
-- '[[IMOX - Fuente - Tipos de estrategia en trading algorítmico]]'
-- '[[IMOX - Fuente - Actualizar Broker Profiles en SQX]]'
-- '[[IMOX - Fuente - SQX - Point value y comprobación monetaria]]'
-- '[[IMOX - Fuente - Claude en CustomProjects para analizar databanks]]'
-- '[[IMOX - Fuente - Builder - Minería de estrategias]]'
-- '[[IMOX - Fuente - Acceso VDS por WireGuard]]'
-- '[[IMOX - Fuente - Manual de psicología para traders]]'
-- '[[IMOX - Fuente - Seminario 30 de octubre - Repaso 136 a 144]]'
-- '[[IMOX - Fuente - Cartera estable - Ventaja frente a azar y selección]]'
-- '[[IMOX - Fuente - Gestión variable - Martingala H1 de Ramon]]'
-- '[[IMOX - Fuente - Piramidación - Comparación a igual riesgo]]'
-- '[[IMOX - Fuente - FOMO - Plan y decisiones trazables]]'
-- '[[IMOX - Fuente - Gestión variable - Error de timeframe y límite de lotes]]'
-- '[[IMOX - Fuente - MetaTrader móvil - Observar sin intervenir]]'
-- '[[IMOX - Fuente - Robustez entre brokers - Estudio de 189 estrategias]]'
-- '[[IMOX - Fuente - Axi por etapas - Sizing y exposición conjunta]]'
-- '[[IMOX - Fuente - Capacidad SQX - Comparar bloques equivalentes]]'
-- '[[IMOX - Fuente - FTMO - Recuperación con escalera de riesgo]]'
-- '[[IMOX - Fuente - Incubación masiva - Experimento de Tony]]'
-last_verified: '2026-10-26'
-confidence: high
+status: "active"
+area: "[[Trading]]"
+sources: ["[[IMOX - Fuente - IA y Building Blocks - Cambio de enfoque de Aritz]]", "[[IMOX - Fuente - Building Blocks Skill]]", "[[IMOX - Fuente - Tipos de estrategia en trading algorítmico]]", "[[IMOX - Fuente - Actualizar Broker Profiles en SQX]]", "[[IMOX - Fuente - SQX - Point value y comprobación monetaria]]", "[[IMOX - Fuente - Claude en CustomProjects para analizar databanks]]", "[[IMOX - Fuente - Builder - Minería de estrategias]]", "[[IMOX - Fuente - Acceso VDS por WireGuard]]", "[[IMOX - Fuente - Manual de psicología para traders]]", "[[IMOX - Fuente - Seminario 30 de octubre - Repaso 136 a 144]]", "[[IMOX - Fuente - Cartera estable - Ventaja frente a azar y selección]]", "[[IMOX - Fuente - Gestión variable - Martingala H1 de Ramon]]", "[[IMOX - Fuente - Piramidación - Comparación a igual riesgo]]", "[[IMOX - Fuente - FOMO - Plan y decisiones trazables]]", "[[IMOX - Fuente - Gestión variable - Error de timeframe y límite de lotes]]", "[[IMOX - Fuente - MetaTrader móvil - Observar sin intervenir]]", "[[IMOX - Fuente - Robustez entre brokers - Estudio de 189 estrategias]]", "[[IMOX - Fuente - Axi por etapas - Sizing y exposición conjunta]]", "[[IMOX - Fuente - Capacidad SQX - Comparar bloques equivalentes]]", "[[IMOX - Fuente - FTMO - Recuperación con escalera de riesgo]]", "[[IMOX - Fuente - Incubación masiva - Experimento de Tony]]"]
+last_verified: "2026-10-26"
+confidence: "high"
 aliases: []
-tags:
-- kind/resource
-- area/trading
-- topic/imox
-- topic/methodology
-created: '2026-10-26'
-updated: '2026-10-26'
-related:
-- '[[IMOX]]'
-- '[[Estrategias IMOX — Forex y CFD con Echo Forge]]'
+tags: ["kind/resource", "area/trading", "topic/imox", "topic/methodology"]
+created: "2026-10-26"
+updated: "2026-10-26"
+related: ["[[IMOX]]", "[[Estrategias IMOX — Forex y CFD con Echo Forge]]"]
 ---
+
+
 
 # IMOX - Metodología para investigación Forex y CFD
 
