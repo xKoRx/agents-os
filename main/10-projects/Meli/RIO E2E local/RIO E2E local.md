@@ -20,7 +20,7 @@ tags:
   - area/meli
   - project/rio-e2e-local
 created: "2026-10-08"
-updated: "2026-10-19"
+updated: "2026-10-23"
 slug: rio-e2e-local
 entities: ["[[rio-playmaker]]", "[[rio-controlplane-kafka]]", "[[rio-controlplane-clickhouse]]", "[[rio-controlplane-flink]]"]
 related: ["[[ads-signals-frontend]]", "[[rio-frontend]]", "[[Kafka — Ambiente local con servicios reales]]", "[[Ambientes locales RIO — Comparativa de implementaciones]]"]
@@ -38,6 +38,28 @@ Diseñar y luego implementar un entorno local reproducible con cinco aplicacione
 Base fijada por el owner: rio-deployment-trigger-local y rio-deployment-result-local, sin bridge Kafka→HTTP externo ni embebido. Minimizar cambios productivos, conservar contratos y usar Clean, SOLID, KISS y YAGNI para justificar cada pieza nueva. El challenge y el consenso están completos; en el HEAD actual de PM #1286, los siete E2E del stack local pasan. Los flujos de undeploy/DEPROVISION que dependen del comportamiento defectuoso de develop permanecen etiquetados develop-gap (ver bitácora). El alcance posterior conserva CH/Flink/front.
 
 ## Estado vigente
+
+- **2026-10-23 — import refview alineado; certificación pendiente:** PM `85f5bad67` sobre base E2E, CP `686d8f7a8` y front `8eaa15827` sobre develop, publicados y drafts conservados. Suites PM5190, CP3973 y front11745 PASS; typecheck heredado123 sigue rojo. Runner y skill incorporan ocho screens y espera del grupo completo con regresiones RED/GREEN; candidatos a #1332. Spellbook vencido y un nuevo `down --volumes` del stack concurrente rechazado automáticamente: autenticación y autorización específicas pendientes. Lore0/12; no hay certificado de import ni teardown final. [[Import de Refreshable Materialized Views externas]], [[2026-10-23-refreshable-import-e2e-alignment]].
+
+- **2026-10-23 — import de refreshable externa, intento detenido en F0:** [[Import de Refreshable Materialized Views externas]] conserva PM `74bcdde08`, CP CH `b2386223` y front `027d9f10c`; puerto 8443 ocupado por un Lore ajeno (PID 62677), preservado. Sin merges, stack ni corridas (0/12); caso y certificación pendientes. [[2026-10-23-refreshable-import-e2e-preflight-entity-updated]].
+
+- **2026-10-23 — PRs de la ronda Flink/front/Lore abiertos, listos para review:** CP Flink [#218](https://github.com/melisource/fury_rio-controlplane-flink/pull/218) (mergear primero) · Playmaker [#1332](https://github.com/melisource/fury_rio-playmaker/pull/1332) · front docs [#824](https://github.com/melisource/fury_ads-signals-frontend/pull/824). Descripciones: [[Descripción PR — rio-controlplane-flink (E2E local Playmaker)]], [[Descripción PR — rio-playmaker (E2E local Flink)]], [[Descripción PR — ads-signals-frontend (RIO ecosistema local)]].
+
+- **2026-10-23 — Ambiente desde cero con un comando:** `.lore/ecosystem/rio-ecosystem setup` clona e instala las seis apps (manifiesto `apps.json` con git path y rama) y `all` corre los 13 casos; validado con workspace vacío: 12 corridas Lore PASS, 48/48 oráculos (PM `bc5e283fe`). El front no cambia código; su README apunta al runbook (rama docs sin push).
+
+- **2026-10-23 — 13 casos de ecosistema certificados:** se suman Run Query, refreshable view, conector Kafka→ClickHouse y un pipeline que cruza Kafka, Flink y ClickHouse en un solo deploy. `rio-ecosystem all` desde cero: 12 corridas Lore PASS y 48/48 oráculos backend (PM `53a3a929a`).
+
+- **2026-10-23 — "corre todos los escenarios de RIO" listo para el equipo:** `.lore/ecosystem/rio-ecosystem all` en el repo de Playmaker levanta el ecosistema local y corre 9 casos (Kafka, ClickHouse con vista materializada, Flink SQL/JAR/Python e inválido), certificados desde cero: Lore 8/8 corridas, 28/28 oráculos backend. Agentes: skills en `.lore/ecosystem/skills/` vía `AGENTS.md`. Detalle en [[RIO E2E local — Integración Flink Playmaker]].
+
+- **2026-10-22 — Lore 5/5 PASS (primer PASS de navegador):** `run_mvkbbsbnec16b25105`, compliance 100%: smoke, Flink SQL deploy y stop/start, tópico Kafka con peek y tabla ClickHouse, contrastados con backend real. Lore sin cambios de código; escenarios y procedimiento en PM `local/lore/` (`3cb35aaef`). Commits locales sin push en PM y CP Flink. Detalle en [[RIO E2E local — Integración Flink Playmaker]].
+
+- **2026-10-22 — journeys de navegador B1–B3 PASS:** `ads-signals-frontend` sin cambios de código opera contra Playmaker local y los tres CP reales (Flink SQL deploy/stop/start con jobs y datos reales, tópico Kafka RF 2 con peek, MergeTree en base creada desde la UI), verificado contra backend. Procedimiento en el hub de PM (`3e76158bf`) y runner SQL local del CP Flink (`da3e33c6`); commits locales sin push. Falta F5 (Lore). Detalle en [[RIO E2E local — Integración Flink Playmaker]].
+
+- **2026-10-22 — integración PM + CP Flink validada por backend:** [[RIO E2E local — Integración Flink Playmaker]] G0–G3 aceptados tras code review independiente (CP Flink `ac019e17`, PM `a66ae3871`, commits locales sin push). Flink entra por APIs de PM con SQL, stop/start, redeploy, JAR, Python y errores; regresión Kafka/ClickHouse PASS; undeploy sigue `develop-gap`. Front y Lore bloqueados por la CA devcert vencida y por un defecto de identidad del diseño (DD-8), pendiente de decisión.
+
+- **2026-10-22 — diseño y plan de la integración PM + CP Flink listos:** [[RIO E2E local — Integración Flink Playmaker]] (proyecto de agente, `ready_for_phase_0`) fija bases frescas CP Flink `920a7075` (#213, con #211/#214) y PM `f1a4b246d` (#1318). El único faltante de transporte es el intake Kafka de actions en el CP Flink; PM no requiere código productivo ni `src/local`. Seis fases con gates: bases/memoria → actions CP Flink → vertical SQL desde APIs PM → matriz + regresión → front → Lore y ensayo de demo. Ruta crítica para la demo: G0 → G1 → G2 → G4 → G5. Sin código ni uso de la VM en esta sesión.
+
+- **2026-10-22 — retoma para demo del 23/10:** owner confirma los tres PRs Flink mergeados; GitHub confirma #211 (`74cc6f96`) y #213 (`920a7075`). Kafka #86 y ClickHouse #342 también mergeados. #214 Flink y #1318 PM mergeados: usar bases develop frescas con esos fixes. La integración PM + Flink sigue pendiente: la guía de develop la excluye y Flink standalone recibe actions por HTTP, mientras PM las publica en Kafka. Completar adapter local de actions y composición con broker compartido; luego certificar APIs PM y efectos físicos, levantar ads-signals-frontend y ejecutar Lore. No se ejecutaron suites en esta retoma. Preflight read-only: colima-rio accesible, sin contenedores activos, 4 CPU/~8 GB RAM; host ~32 GiB libres; shell Node22, Node24 instalado. Front/Kafka/CH originales tienen cambios de otras tareas: aislar checkouts. Lore/browser y TLS siguen pendientes de prueba real.
 
 - **2026-10-21 — CP Flink #213 sincronizado y comentarios corregidos:** `438d2b9b` incorpora #211 @ `6847ab66` y los tres comentarios de revisión de Python/ZIP. 1937 productivos + 53 locales, hooks y E2E físico completo PASS; CI, CodeQL, cobertura, dependencias, análisis estático y workflow SUCCESS. Cleanup 0 contenedores/0 redes rio-*, worktree limpio. #213 listo para revisión y MERGEABLE; detalle en [[CP Flink local]] y [[2026-10-21-flink-pr213-review-comments]].
 
@@ -124,6 +146,7 @@ No se crearon subproyectos persistentes de ejecución delegada. SDD delegó impl
 
 ## ✅ Tareas
 
+- [r] [[RIO E2E local — Integración Flink Playmaker]] arrancar + seguimiento #owner/me #type/supervision #area/meli
 - [x] Publicar dos PRs con descripciones técnicas y nueva recertificación de auth upstream #owner/agent #type/dev #area/meli
 - [ ] Resolver CodeQL Playmaker y acreditar ambos PRs verdes sin bypass #owner/agent #type/test #area/meli
 - [x] Preparar dos prompts maestros alineados con F1 y decisión N CPs #owner/agent #type/dev #area/meli
@@ -159,6 +182,10 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 ```
 
 ## 📆 Bitácora
+
+- **2026-10-23 — refview certificado:** cinco casos ClickHouse, 13 escenarios Lore y 23 oráculos PASS desde cero; teardown cero. Nuevo import externo, fixes CP/front y Lore #21; screens/fixtures/oráculos candidatos a #1332. PM 0cec5e7c5, CP 1a39e420, front cdcb115e6. [[Import de Refreshable Materialized Views externas]].
+
+
 
 - **2026-10-14 — CP Flink #211:** fixes y alineación publicados en 39937680; física final del último fix pendiente, continuidad en [[CP Flink local]] y [[2026-10-14-rio-flink-pr211-alignment-close]].
 
@@ -211,6 +238,8 @@ if(loose.length){dv.header(3,"🧺 Sin owner (clasificar)");render(loose);}
 
 ## 🔗 Docs / Links
 
+- [[Descripción PR — rio-playmaker (E2E local Flink)]] — PM `feature/rio-e2e-local-flink` @ `bbe14b2c8`, base `develop` @ `ca4fe6bef` (sincronizada; escenarios Lore en `.lore/ecosystem/`).
+- [[Descripción PR — rio-controlplane-flink (E2E local Playmaker)]] — CP Flink `feature/rio-e2e-local-flink-playmaker` @ `da3e33c6`, base `develop` @ `920a7075`.
 - [[Descripción PR — rio-controlplane-kafka]] — CP Kafka #86, HEAD `4e19959`, rama `feature/rio-e2e-local-kafka`, base `develop`.
 - [[Descripción PR — rio-controlplane-clickhouse (E2E local)]] — entrega local vigente, CH #342, HEAD `d064c280`; sin diferencias en `src/main`/`src/test` respecto de develop.
 - [[Descripción PR — rio-playmaker (E2E local ClickHouse)]] — PM #1288 sobre #1286; HEAD publicado y verificado `b533e1d39`.

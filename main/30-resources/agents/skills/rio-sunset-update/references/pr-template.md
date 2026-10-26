@@ -1,41 +1,50 @@
 ## Rio sunset update
 
-- Project: `<project>`
-- Query window: `<start ISO-8601 with offset>` through `<end ISO-8601 with offset>` (inclusive)
-- Source status: `<verified | blocked>`
+- Proyecto: `<proyecto>`
+- Horizonte de elegibilidad: todo lo que vence en o antes de `<fin ISO-8601 con offset>`, **incluidos los sunsets ya vencidos**
+- Horizonte elegido por: `<la persona, entre N opciones>` / `<default aplicado>`
+- Estado de la fuente: `<verificada | bloqueada>`
 
-This pull request carries **every** applied sunset update for this project in one batch. There is at most one open sunset pull request per project; reruns update this one rather than opening another.
+Este pull request lleva **todas** las actualizaciones de sunset aplicadas para este proyecto, en un solo lote. Hay a lo sumo un pull request de sunsets abierto por proyecto: una nueva corrida actualiza este en lugar de abrir otro.
 
-### Applied in this PR
+### Aplicado en este PR
 
-| Sunset ID | Component/dependency | Sunset date | Previous version | Target version | Evidence reference |
-| --- | --- | --- | --- | --- | --- |
-| `<id>` | `<component>` | `<date>` | `<previous>` | `<target>` | `<reference>` |
+Las filas marcadas `vencido` ya habían pasado su plazo, así que los builds que las usaban ya estaban bloqueados. Van listadas primero.
 
-### Found but not applied — needs a human decision
+| Bucket | ID del sunset | Componente/dependencia | Fecha de sunset | Versión anterior | Versión objetivo | Evidencia |
+| --- | --- | --- | --- | --- | --- | --- |
+| `vencido` / `en horizonte` | `<id>` | `<componente>` | `<fecha>` | `<anterior>` | `<objetivo>` | `<referencia>` |
 
-These are inside the window but are not declared with a literal version in the manifest, so no mechanical update exists. Each row states why.
+### Ya en curso — excluidos de este PR
 
-| Sunset ID | Component/dependency | Sunset date | Current version | Target version | Classification | Managed by (artifact and declared version) | Evidence reference |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| `<id>` | `<component>` | `<date>` | `<current>` | `<target>` | `<managed by BOM / managed by build plugin / transitive only / conflicting targets>` | `<managing artifact @ version, as declared in the manifest, or "not identifiable from the manifest">` | `<reference>` |
+Sunsets elegibles que otro trabajo ya está resolviendo, así que este PR no los toca.
 
-For each row, quote the manifest line that declares the manager, and the project's existing override idiom if it has one. Do not assert which manager version would resolve the sunset unless that was verified.
-
-### Already in flight — excluded from this PR
-
-Eligible sunsets that another effort is already resolving, so this PR leaves them alone.
-
-| Sunset ID | Component/dependency | Sunset date | Handled by | That work sets it to |
+| ID del sunset | Componente/dependencia | Fecha de sunset | Lo maneja | Ese trabajo lo lleva a |
 | --- | --- | --- | --- | --- |
-| `<id>` | `<component>` | `<date>` | `<PR number or branch>` | `<version>` |
+| `<id>` | `<componente>` | `<fecha>` | `<número de PR o branch>` | `<versión>` |
 
-### Change and validation
+### Encontrado y no aplicado — necesita una decisión humana
 
-- Files changed: `<files>`
-- Native project commands executed: `<commands from versioned project configuration>`
-- Results: `<build/tests/lint/typecheck>`
-- PR commit SHA: `<sha>`
-- Immutable build identifier for that SHA: `<build>`
+Están dentro del horizonte pero no se declaran con una versión literal en el manifest, así que no existe una actualización mecánica. Cada fila dice por qué.
 
-No deploy is requested by this PR. A separate, explicit test-scope selection and final confirmation are required after the immutable build is ready.
+| ID del sunset | Componente/dependencia | Fecha de sunset | Versión actual | Versión objetivo | Clasificación | Gobernado por (artefacto y versión declarada) | Evidencia |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `<id>` | `<componente>` | `<fecha>` | `<actual>` | `<objetivo>` | `<gobernado por BOM / gobernado por plugin de build / sólo transitivo / objetivos en conflicto / versión objetivo inexistente>` | `<artefacto @ versión, según el manifest, o "no identificable desde el manifest">` | `<referencia>` |
+
+Para cada fila, se cita la línea del manifest que declara al gestor, y el idioma de override que el proyecto ya use si tiene uno. No se afirma qué versión del gestor resolvería el sunset salvo que eso haya sido verificado.
+
+### Cambio y validación
+
+- Archivos modificados: `<archivos>`
+- Comandos nativos del proyecto ejecutados: `<comandos tomados de la configuración versionada del proyecto>`
+- Resultados: `<build/tests/lint/typecheck>`
+- SHA del commit del PR: `<sha>`
+- Build inmutable para ese SHA: `<build>`
+
+Este PR no solicita ningún deploy. La selección del scope de test y la confirmación final son pasos aparte y explícitos, posteriores a que el build inmutable esté listo.
+
+Si la aplicación no tiene scopes en Fury — una librería o un SDK — agregá en su lugar:
+
+> **Sin deploy de prueba.** `<proyecto>` no tiene scopes, así que no hay entorno propio al que
+> desplegar: la validación de este PR es el build y los tests. El comportamiento en runtime se
+> verifica cuando las aplicaciones que consumen la librería adopten la versión nueva.

@@ -35,6 +35,11 @@ const scopes = fixture('scopes.json', [
   { name: 'ajeno', application: 'otra-aplicacion', productive: false, criticality: 'test' },
   { name: 'duplicado', application: 'rio-controlplane-clickhouse', productive: false, criticality: 'test' },
   { name: 'duplicado', application: 'rio-controlplane-clickhouse', productive: false, criticality: 'test' },
+  // Sin application no hay prueba de pertenencia: debe rechazarse.
+  { name: 'sin-application', productive: false, criticality: 'test' },
+  // Regresion: productive ha llegado como string en respuestas observadas.
+  // "true" (string) debe negar exactamente igual que true (booleano).
+  { name: 'productive-string', application: 'rio-controlplane-clickhouse', productive: 'true', criticality: 'test' },
 ]);
 
 const scopeArgs = (scope, file = scopes) => [
@@ -60,13 +65,23 @@ assert.notEqual(run(scopeGate, scopeArgs('test-events')).status, 0, 'test-events
 // productive=true niega.
 assert.notEqual(run(scopeGate, scopeArgs('consumer-prod')).status, 0, 'consumer-prod debe rechazarse');
 
+const noApp = run(scopeGate, scopeArgs('sin-application'));
+assert.notEqual(noApp.status, 0, 'scope sin application debe rechazarse');
+assert.match(noApp.stderr, /application ausente/);
+
+// Regresion (hallazgo del code reviewer): productive: "true" como string, con
+// criticality "test" y un nombre sin marcador, no debe autorizar el deploy.
+const stringProductive = run(scopeGate, scopeArgs('productive-string'));
+assert.notEqual(stringProductive.status, 0, 'productive "true" (string) debe rechazarse como productive=true');
+assert.match(stringProductive.stderr, /productive es true/);
+
 // Datos faltantes, ambiguos, ajenos o inexistentes: siempre cerrado.
 assert.notEqual(run(scopeGate, scopeArgs('sin-criticality')).status, 0);
 assert.notEqual(run(scopeGate, scopeArgs('ajeno')).status, 0);
 assert.notEqual(run(scopeGate, scopeArgs('duplicado')).status, 0);
 assert.notEqual(run(scopeGate, scopeArgs('no-existe')).status, 0);
 
-// Proyecto fuera de la allowlist.
+// Scope que pertenece a otra aplicacion: rechazado por pertenencia, no por lista.
 assert.notEqual(
   run(scopeGate, ['--project', 'proyecto-ajeno', '--scope', 'test', '--scopes-file', scopes]).status, 0,
 );
@@ -82,7 +97,7 @@ assert.notEqual(run(scopeGate, scopeArgs('test', fixture('vacio.json', []))).sta
 assert.notEqual(run(scopeGate, scopeArgs('test', fixture('objeto.json', { nope: true }))).status, 0);
 
 // ---------------------------------------------------------------------------
-// Casos reales medidos el 2026-09-16 sobre los 11 proyectos de la allowlist.
+// Casos reales medidos el 2026-09-16 sobre los proyectos RIO.
 // Cada fila viene de la respuesta de /fury_read/.../scopes, no es inventada.
 // ---------------------------------------------------------------------------
 const reales = fixture('reales.json', [
@@ -157,6 +172,9 @@ const versions = fixture('versions.json', [
   { version: '202609.16.0-prod', branch: 'master', commit: other, status: 'FINISHED', disabled: false, tags: { productive: 'true' } },
   { version: '202609.15.0-run', branch: 'feature/y', commit: 'b'.repeat(40), status: 'RUNNING', disabled: false, tags: { productive: 'false' } },
   { version: '202609.14.0-off', branch: 'feature/z', commit: 'c'.repeat(40), status: 'FINISHED', disabled: true, tags: { productive: 'false' } },
+  // Regresion: disabled ha llegado como string en respuestas observadas.
+  // "true" (string) debe negar exactamente igual que true (booleano).
+  { version: '202609.13.0-offstr', branch: 'feature/w', commit: 'e'.repeat(40), status: 'FINISHED', disabled: 'true', tags: { productive: 'false' } },
 ]);
 
 const buildArgs = (sha, file = versions) => ['--sha', sha, '--versions-file', file];
@@ -172,6 +190,10 @@ assert.notEqual(run(buildGate, buildArgs(other)).status, 0, 'build productivo de
 assert.notEqual(run(buildGate, buildArgs('b'.repeat(40))).status, 0, 'build no finalizado debe rechazarse');
 assert.notEqual(run(buildGate, buildArgs('c'.repeat(40))).status, 0, 'build deshabilitado debe rechazarse');
 
+// Regresion (hallazgo del code reviewer): disabled: "true" como string, igual
+// que productive, no debe colarse por una comparacion estricta con booleano.
+assert.notEqual(run(buildGate, buildArgs('e'.repeat(40))).status, 0, 'disabled "true" (string) debe rechazarse como disabled=true');
+
 // Dos builds utilizables para el mismo commit: ambiguo.
 const ambiguous = fixture('ambiguo.json', [
   { version: 'v1', commit: good, status: 'FINISHED', disabled: false, tags: { productive: 'false' } },
@@ -183,5 +205,19 @@ assert.notEqual(run(buildGate, buildArgs(good, ambiguous)).status, 0);
 assert.notEqual(run(buildGate, []).status, 0);
 assert.notEqual(run(buildGate, [...buildArgs(good), '--extra', 'x']).status, 0);
 assert.notEqual(run(buildGate, buildArgs(good, fixture('vacio2.json', []))).status, 0);
+
+// Sanitizacion: el contenido de una respuesta invalida no debe aparecer en
+// stdout ni en stderr (el mensaje de JSON.parse cita fragmentos).
+for (const [gate, args] of [
+  [scopeGate, (f) => ['--project', 'rio-playmaker', '--scope', 'test', '--scopes-file', f]],
+  [buildGate, (f) => ['--sha', 'a'.repeat(40), '--versions-file', f]],
+]) {
+  const leaky = path.join(work, 'leaky.json');
+  writeFileSync(leaky, 'SECRETVALUE123 no es json');
+  const r = run(gate, args(leaky));
+  assert.notEqual(r.status, 0);
+  assert.doesNotMatch(r.stdout + r.stderr, /SECRETVALUE123|SECRETVALU/);
+  assert.match(r.stderr, /INVALID_JSON/);
+}
 
 console.log('validate-scope and validate-build tests passed');

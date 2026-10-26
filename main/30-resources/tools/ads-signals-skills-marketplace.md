@@ -23,7 +23,7 @@ tags:
   - scope/tool
   - priority/high
 created: "2026-09-01"
-updated: "2026-09-17"
+updated: "2026-10-22"
 ---
 
 # ads-signals-skills-marketplace
@@ -69,7 +69,7 @@ updated: "2026-09-17"
 
 ## Links
 
-- `30-resources/agents/skills/rio-sunset-update/SKILL.md` — adaptación canónica del vault basada en `feat/rio-sunset-update@a7872cd` (PR ref `origin/pr/2`).
+- `30-resources/agents/skills/rio-sunset-update/SKILL.md` — adaptación canónica del vault sincronizada desde `feat/rio-sunset-update@b3a732e1e2746b2137c5baaf6f7357e6fa01ccfd` (verificación 2026-10-22).
 - [[ads-signals-skills-marketplace-source]] — provenance del repo y del checkout verificado.
 - [[Zords — Human-First Technical Authoring]] — proyecto que llevó `human-first-technical-writing` a esta superficie de distribución.
 - `30-resources/agents/skills/human-first-technical-writing/SKILL.md` — skill canónica curada en el vault.

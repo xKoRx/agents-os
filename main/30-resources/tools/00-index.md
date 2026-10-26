@@ -7,7 +7,7 @@ slug: tools-index
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-07-04
-updated: 2026-09-01
+updated: 2026-10-22
 reviewed: 2026-08-11
 aliases:
   - tools index

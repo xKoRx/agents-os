@@ -50,13 +50,32 @@ if (parsed.error) {
   } else {
     try {
       const info = await lstat(versionsFile);
-      if (info.isSymbolicLink()) throw new Error('el archivo de versiones no puede ser un enlace');
-      if (info.size > MAX_VERSIONS_FILE_BYTES) throw new Error('archivo de versiones demasiado grande');
+      if (info.isSymbolicLink()) {
+        const err = new Error('el archivo de versiones no puede ser un enlace');
+        err.code = 'SYMLINK_REJECTED';
+        throw err;
+      }
+      if (info.size > MAX_VERSIONS_FILE_BYTES) {
+        const err = new Error('archivo de versiones demasiado grande');
+        err.code = 'FILE_TOO_LARGE';
+        throw err;
+      }
 
-      const payload = JSON.parse(await readFile(versionsFile, 'utf8'));
+      let payload;
+      try {
+        payload = JSON.parse(await readFile(versionsFile, 'utf8'));
+      } catch {
+        // No se reutiliza el error original: el mensaje de JSON.parse cita
+        // fragmentos del contenido, que puede ser una respuesta sensible.
+        const err = new Error('el archivo no contiene JSON valido');
+        err.code = 'INVALID_JSON';
+        throw err;
+      }
       const entries = Array.isArray(payload) ? payload : payload?.versions;
       if (!Array.isArray(entries) || entries.length === 0) {
-        throw new Error('la respuesta de versiones no es una lista con elementos');
+        const err = new Error('la respuesta de versiones no es una lista con elementos');
+        err.code = 'INVALID_RESPONSE_SHAPE';
+        throw err;
       }
 
       // Coincidencia por commit exacto. Nunca por branch, por string de version
@@ -72,7 +91,10 @@ if (parsed.error) {
           if (typeof entry.status !== 'string' || !finishedStatus.test(entry.status)) {
             reasons.push(`status "${entry.status ?? 'ausente'}"`);
           }
-          if (entry.disabled === true) reasons.push('build deshabilitado');
+          // disabled, igual que tags.productive mas abajo, ha llegado como string
+          // en respuestas observadas: una comparacion estricta con el booleano
+          // deja pasar un build deshabilitado disfrazado de "disabled": "true".
+          if (entry.disabled === true || entry.disabled === 'true') reasons.push('build deshabilitado');
           const productive = entry?.tags?.productive;
           // tags.productive llega como string en la respuesta observada.
           if (productive === true || productive === 'true') reasons.push('build productivo');
@@ -103,6 +125,10 @@ if (parsed.error) {
         }
       }
     } catch (error) {
+      // La causa completa va a stderr por separado: el mensaje de fail() se
+      // mantiene parco a proposito, pero quien depure despues necesita el
+      // .code y el mensaje propio (sin stack ni contenido de la respuesta), no solo "no se pudo validar (error)".
+      console.error(`rio-sunset-update: detalle interno del gate de build — ${error?.code ?? 'SIN_CODIGO'}: ${error?.message ?? 'sin mensaje'}`);
       fail(`no se pudo validar (${error?.code ?? 'error'}).`);
     }
   }

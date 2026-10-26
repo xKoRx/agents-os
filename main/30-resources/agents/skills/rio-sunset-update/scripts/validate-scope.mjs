@@ -13,12 +13,8 @@
 // Uso:
 //   node validate-scope.mjs --project <proyecto> --scope <scope> --scopes-file <ruta.json>
 import { lstat, readFile } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
-import path from 'node:path';
 import process from 'node:process';
 
-const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
-const projectsPath = path.join(scriptDirectory, '..', 'references', 'projects.json');
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 // Un scope puede llamarse casi cualquier cosa, pero no aceptamos formas que
 // luego viajarian a una linea de comando.
@@ -27,7 +23,7 @@ const scopePattern = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 // SOLO para negar: negar por nombre es conservador, autorizar por nombre es lo
 // que resulto peligroso.
 //
-// Medido sobre los 11 proyectos de la allowlist: "stage" y "staging" conviven
+// Medido sobre los proyectos RIO: "stage" y "staging" conviven
 // ("stage", "api-stage", "bq-stage-nonprod", "staging-nonprod",
 // "staging-consumer-nonprod-nonprod"), y "dev"/"develop" aparecen con
 // criticality test. Todos llegan como criticality "test", asi que ese campo no
@@ -70,24 +66,34 @@ if (parsed.error) {
     fail('el nombre del scope tiene caracteres no admitidos.');
   } else {
     try {
-      // 1. El proyecto debe pertenecer a la allowlist, misma fuente unica que el gate de entrada.
-      if ((await lstat(projectsPath)).isSymbolicLink()) throw new Error('registro de proyectos enlazado');
-      const registry = JSON.parse(await readFile(projectsPath, 'utf8'));
-      if (registry.schemaVersion !== '1.0' || !Array.isArray(registry.projects)) {
-        throw new Error('registro de proyectos invalido');
-      }
-      const known = registry.projects.some((entry) => entry && entry.name === project);
-      if (!known) {
-        fail('el proyecto no pertenece a la allowlist.');
-      } else {
+      {
         const info = await lstat(scopesFile);
-        if (info.isSymbolicLink()) throw new Error('el archivo de scopes no puede ser un enlace');
-        if (info.size > MAX_SCOPES_FILE_BYTES) throw new Error('archivo de scopes demasiado grande');
+        if (info.isSymbolicLink()) {
+          const err = new Error('el archivo de scopes no puede ser un enlace');
+          err.code = 'SYMLINK_REJECTED';
+          throw err;
+        }
+        if (info.size > MAX_SCOPES_FILE_BYTES) {
+          const err = new Error('archivo de scopes demasiado grande');
+          err.code = 'FILE_TOO_LARGE';
+          throw err;
+        }
 
-        const payload = JSON.parse(await readFile(scopesFile, 'utf8'));
+        let payload;
+        try {
+          payload = JSON.parse(await readFile(scopesFile, 'utf8'));
+        } catch {
+          // No se reutiliza el error original: el mensaje de JSON.parse cita
+          // fragmentos del contenido, que puede ser una respuesta sensible.
+          const err = new Error('el archivo no contiene JSON valido');
+          err.code = 'INVALID_JSON';
+          throw err;
+        }
         const entries = Array.isArray(payload) ? payload : payload?.scopes;
         if (!Array.isArray(entries) || entries.length === 0) {
-          throw new Error('la respuesta de scopes no es una lista con elementos');
+          const err = new Error('la respuesta de scopes no es una lista con elementos');
+          err.code = 'INVALID_RESPONSE_SHAPE';
+          throw err;
         }
 
         // 2. Exactamente una coincidencia literal por nombre.
@@ -101,7 +107,11 @@ if (parsed.error) {
           const reasons = [];
 
           // 3. Pertenencia a la aplicacion, cuando el payload la declara.
-          if (typeof entry.application === 'string' && entry.application !== project) {
+          //    Obligatoria: sin application no hay prueba de pertenencia, y un
+          //    payload malformado o de otro proyecto no puede autorizar el deploy.
+          if (typeof entry.application !== 'string' || !entry.application) {
+            reasons.push('application ausente o no es texto: no se puede probar la pertenencia al proyecto');
+          } else if (entry.application !== project) {
             reasons.push(`pertenece a ${entry.application}, no a ${project}`);
           }
 
@@ -114,7 +124,9 @@ if (parsed.error) {
 
           // 5. productive sirve solo para NEGAR. Nunca para autorizar: se observo
           //    productive=false en scopes productivos, incluido uno llamado "prod".
-          if (entry.productive === true) {
+          //    El campo ha llegado como string en respuestas observadas: una
+          //    comparacion estricta con el booleano deja pasar "productive": "true".
+          if (entry.productive === true || entry.productive === 'true') {
             reasons.push('productive es true');
           }
 
@@ -144,7 +156,10 @@ if (parsed.error) {
         }
       }
     } catch (error) {
-      // Sin detalles del sistema de archivos ni del contenido en el mensaje.
+      // La causa completa va a stderr por separado: el mensaje de fail() se
+      // mantiene parco a proposito, pero quien depure despues necesita el
+      // .code y el mensaje propio (sin stack ni contenido de la respuesta), no solo "no se pudo validar (error)".
+      console.error(`rio-sunset-update: detalle interno del gate de scope — ${error?.code ?? 'SIN_CODIGO'}: ${error?.message ?? 'sin mensaje'}`);
       fail(`no se pudo validar (${error?.code ?? 'error'}).`);
     }
   }

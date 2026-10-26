@@ -15,7 +15,7 @@ agent_model: GLM-5.3-Flash
 model_source: host
 task_type: coding
 task_complexity: high
-outcome: partial
+outcome: success
 verification: market_evidence
 evaluator: agent
 user_rework: unknown
@@ -40,6 +40,12 @@ tags:
 
 - Consolidación interim 29/89 (set REUSE + oráculo): 357 compras, 34 pases (9,5%), 4 filas ≥25% observado (LAB-SG-MR-06-R500/R750, LAB-SG-MR-09-R500/R750) con IC Wilson amplio por denominador chico; 60 filas UNRESOLVED en cola al cierre de sesión.
 - Verificación: regresiones dirigidas verdes (D1 arnés 3 tests/12 subtests; python 124/124; failure set backtester 18 == baseline documentado del commit de build), D5 verificado en bytes de plan (calendario propio vs ajeno), conciliación por cuenta `declared_matches_own_account` por fila, series de recursos `r02-util.jsonl`.
+
+## Desenlace (2026-10-23)
+
+- Cola drenada sin HALT final: 66/89 completas conciliadas (2.126 compras → 219 pases = 10,3%); 23 filas `ENGINE_BLOCKED_TECHNICAL` por el defecto de cierre protegido (estocástico ~15-20% por campaña SG en todos los módulos; determinístico por coordenada), receipteadas para ciclo de corrección; 29 `REUSE_VERIFIED` preservadas.
+- Publicación final autónoma: commit `c6ae3dbc` push con readback OK (watch2 por señal `SUPERVISOR-FINAL.json`).
+- Gobernanza de recursos según directiva del Owner: host a tope (6 motores), único freno anti-OOM por crecimiento de swap, cero OOM; guardian + verificador comm-filtrado.
 
 ## Estado y reanudación
 

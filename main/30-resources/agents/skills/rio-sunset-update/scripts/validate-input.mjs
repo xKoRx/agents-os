@@ -1,11 +1,22 @@
 #!/usr/bin/env node
-import { lstat, readFile } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
-import path from 'node:path';
+// Gate de forma de la invocacion. No consulta la red y no lee ningun registro:
+// valida unicamente que haya exactamente un proyecto, que su nombre tenga forma
+// de slug, y que la unica bandera admitida sea la literal.
+//
+// Deliberadamente NO valida que el proyecto exista: eso se verifica contra Fury
+// en la primera fase de red (ver references/workflow.md, "Validar el proyecto
+// contra Fury"). Este gate existe para fallar cerrado sin red, en cualquier
+// cliente: sin argumento no hay proyecto sobre el que actuar, asi que un agente
+// que llegue a esta skill por iniciativa propia no puede hacer nada.
+//
+// Uso:
+//   node validate-input.mjs <project_name> [--attempt-migration]
 import process from 'node:process';
 
-const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
-const projectsPath = path.join(scriptDirectory, '..', 'references', 'projects.json');
+// Unica bandera admitida. Literal, sin abreviaturas ni variantes.
+const MIGRATION_FLAG = '--attempt-migration';
+// El nombre viaja a lineas de comando (git, fury), asi que se exige forma de
+// slug aqui y no solo mas adelante.
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 function fail(message) {
@@ -14,33 +25,20 @@ function fail(message) {
 }
 
 const args = process.argv.slice(2);
-if (args.length !== 1) {
-  fail('se requiere exactamente un argumento: <nombre_del_proyecto>.');
+const flags = args.filter((a) => a.startsWith('-'));
+const positional = args.filter((a) => !a.startsWith('-'));
+const unknownFlag = flags.find((f) => f !== MIGRATION_FLAG);
+
+if (positional.length !== 1) {
+  fail('se requiere exactamente un proyecto: <project_name>.');
+} else if (unknownFlag) {
+  fail(`bandera desconocida: se admite solo ${MIGRATION_FLAG}.`);
+} else if (flags.length > 1) {
+  fail('bandera repetida.');
+} else if (!slugPattern.test(positional[0])) {
+  fail('el nombre del proyecto debe ser un slug en minusculas, sin caracteres especiales.');
 } else {
-  const project = args[0];
-  // El valor se emite como argumento de git/gh/fury, así que la forma del slug se
-  // exige aquí y no sólo en la allowlist: projects.json es un archivo editable.
-  if (!slugPattern.test(project)) {
-    fail('el proyecto debe ser un slug en minúsculas sin caracteres especiales.');
-  } else {
-    try {
-      if ((await lstat(projectsPath)).isSymbolicLink()) {
-        throw new Error('el registro de proyectos no puede ser un enlace simbólico');
-      }
-      const registry = JSON.parse(await readFile(projectsPath, 'utf8'));
-      if (registry.schemaVersion !== '1.0' || !Array.isArray(registry.projects)) {
-        throw new Error('registro de proyectos inválido');
-      }
-      const allowed = registry.projects.some(
-        (entry) => entry && typeof entry.name === 'string' && slugPattern.test(entry.name) && entry.name === project,
-      );
-      if (!allowed) {
-        fail('el proyecto debe coincidir literalmente con un elemento de la allowlist.');
-      } else {
-        console.log(project);
-      }
-    } catch (error) {
-      fail(`no se pudo validar el registro de proyectos (${error?.code ?? 'error'}).`);
-    }
-  }
+  const project = positional[0];
+  const migrationMode = flags.length === 1;
+  console.log(migrationMode ? `${project} ${MIGRATION_FLAG}` : project);
 }

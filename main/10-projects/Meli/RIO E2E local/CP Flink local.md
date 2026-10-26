@@ -31,6 +31,8 @@ CP Flink levantable en local con los flujos que soporta develop, sin Playmaker.
 
 ## 📊 Estado actual
 
+**Actualización 2026-10-22:** los tres PRs de esta serie están mergeados según el owner; GitHub confirma #211 squash `74cc6f96` y #213 squash `920a7075`. La tabla inferior conserva la evidencia previa al merge. Ya no quedan review/retarget pendientes de la serie; la próxima entrega es integración con Playmaker sobre develop fresco. #214 también está mergeado. El transporte local de deployments y resultados existe; actions standalone entra por HTTP directo y falta completar su consumo Kafka para integrarlo con PM. No se repitió E2E en esta retoma.
+
 | PR | Alcance | Rama / PR | Estado |
 |---|---|---|---|
 | 1 | SQL PROVISION, DEPROVISION, acciones start/stop y estado en runtime | `feature/rio-e2e-local-flink-kiss` @ `05d46cfd` · [#209](https://github.com/melisource/fury_rio-controlplane-flink/pull/209), base `develop` | Mergeado a `develop` el 2026-10-19 como squash `0b60e64b` (un solo padre); aprobado, CI verde |
@@ -49,7 +51,8 @@ JAR de PR 2: stub Nexus con nginx oficial y TopSpeedWindowing.jar de la imagen F
 - **Contrato Flink que Playmaker consume:** `describeApp` = salud (FAILED gana: un PROVISION con FAILED+RUNNING falla); `describeForDeletion` = actividad (stop/update/delete); `create()` idempotente; resultados en `rio-deployment-result-local` y `rio-action-result-local`; runtime en `rio-component-runtime-status-local` (POLL cada 60 s).
 - **Riesgos conocidos:** undeploy = develop-gap en Playmaker (`already_terminal`/`terminal_component_run`), no se toca; PRs abiertos de otra sesión que cambian estados: CP Flink [#214](https://github.com/melisource/fury_rio-controlplane-flink/pull/214) (gate de última acción) y PM [#1318](https://github.com/melisource/fury_rio-playmaker/pull/1318) (SIG-650, FAILED sobre servicios terminados). Regla dura: sólo implementación local, sin lógica de negocio.
 - **Comportamientos de develop que el E2E con Playmaker va a observar (QA 2026-10-21, no son bugs de la serie):** (1) un PROVISION repetido sobre una app RUNNING redepliega: `CheckToCreateAppInAWSHandler` la deriva a STOP_TO_UPDATE → update → start, igual que KDA, y reemplaza los job IDs sin duplicarlos; (2) `PublishStateChangeCommand` publica RUNNING→READY como `FAILED` hacia Playmaker, de modo que un stop legítimo visto por el POLL de 60 s sin pasar por STOPPING llega como FAILED; es el falso FAILED que aborda CP Flink #214.
-- **Pendientes de esta serie:** review humano de #211; tras su merge, retarget de #213 a `develop`. #213 figura listo para revisión en GitHub.
+- **Pendientes de esta serie:** ninguno de merge/review; continuar integración Playmaker desde `develop` que incluya #213 y #214.
+- **Plan vigente de la integración (2026-10-22):** [[RIO E2E local — Integración Flink Playmaker]]. Reemplaza este brief como autoridad de diseño, fases y gates.
 
 ## ✅ Tareas
 

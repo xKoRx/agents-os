@@ -61,3 +61,7 @@
 - Ingresado el repo `ads-signals-skills-marketplace` desde [[Fuentes — Workspace de repositorios]]; el repositorio completo permanece fuera del vault.
 - Creadas [[ads-signals-skills-marketplace]] y [[ads-signals-skills-marketplace-source]]; actualizado el índice de tools con su contrato de catálogo, publicación y validación.
 - Verificación sobre `feature/human-first-technical-writing@d1515df`: validador del marketplace verde con 3 skills, `git diff --check` verde y PR `melisource/fury_ads-signals-skills-marketplace#1` abierto con Code Reviewer aprobado sin issues.
+
+## [2026-10-22] update | ads-signals-skills-marketplace → sunsets
+
+- Actualizada provenance de la adaptación canónica [[30-resources/agents/skills/rio-sunset-update/SKILL|rio-sunset-update]] al commit `b3a732e1` de `feat/rio-sunset-update`; repos locales existentes preservados.

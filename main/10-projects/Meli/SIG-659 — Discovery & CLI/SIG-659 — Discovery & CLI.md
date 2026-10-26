@@ -25,7 +25,7 @@ tags:
   - kind/project
   - area/meli
 created: "2026-10-19"
-updated: "2026-10-19"
+updated: "2026-10-22"
 ---
 
 # SIG-659 — Discovery & CLI
@@ -56,6 +56,7 @@ updated: "2026-10-19"
 - **2026-10-19 — Proyecto creado.** La epic y sus 10 hijas están en `draft`, sin tasks en Spellbook, todas creadas por dmuena. Los paquetes de trabajo no tienen responsables.
 - Las specs hijas son **esqueletos**: objetivo, estado actual y dependencias. Ninguna tiene criterios de aceptación ni SPEC técnica. Antes de implementar, el P0 tiene que pasar por refinamiento (fase F0).
 - Contrasté lo que la epic dice que "ya existe" contra el código (`origin/develop`). Hay **seis desvíos** que cambian el tamaño y el enfoque del P0; están en [[#🔬 Línea base verificada en código]]. El más importante: **hoy ningún CP publica su capability**, así que el canal V1 no existe en la práctica y U2 + U7 no son una migración sino una primera adopción.
+- **2026-10-22 — Specs técnicas de contrato por CP en review.** bkikuta publicó [SIG-695](https://spellbook.adminml.com/projects/SIG/specs/SIG-695) (ClickHouse), [SIG-696](https://spellbook.adminml.com/projects/SIG/specs/SIG-696) (Flink), [SIG-697](https://spellbook.adminml.com/projects/SIG/specs/SIG-697) (Kafka), [SIG-698](https://spellbook.adminml.com/projects/SIG/specs/SIG-698) (Fury) y [SIG-699](https://spellbook.adminml.com/projects/SIG/specs/SIG-699) (envelope genérico de trigger/resultado V2, no el CP de signals). Cubren el **contenido** de los contratos, pero ninguna, ni [SIG-644 SDK V2](https://spellbook.adminml.com/projects/SIG/specs/SIG-644), cubre la publicación CP → playmaker ni el registro en MySQL: ese tramo del P0 no tiene spec. Hallazgos de la revisión en la bitácora.
 - **Próximo paso:** cerrar F0. Revisar los desvíos con dmuena, llevar las decisiones al kickoff y escribir la SPEC técnica de [SIG-671](https://spellbook.adminml.com/projects/SIG/specs/SIG-671).
 
 ## 🧭 Qué implica el P0
@@ -203,6 +204,7 @@ views:
 > - [ ] **F0** Resolver P-6: ubicar la spec de migración física del registry y su owner, y confirmar si de verdad bloquea U6 #owner/me #type/research #area/meli
 > - [ ] **F0** Kickoff: cerrar K-1, K-2, K-4 y P-3 a P-8, y registrar cada respuesta en 🧭 Decisiones #owner/me #type/admin #area/meli
 > - [ ] **F0** Proponer el formato del nivel de acceso por operation (P-5) como ampliación compatible de SIG-635 #owner/me #type/dev #area/meli
+> - [ ] **F0** Revisar con bkikuta [SIG-695](https://spellbook.adminml.com/projects/SIG/specs/SIG-695)–[SIG-699](https://spellbook.adminml.com/projects/SIG/specs/SIG-699): huecos del canal, choques con SIG-644, relaciones asimétricas, `clickhouse-ref-view` y CP de signals #owner/me #type/pr-review #area/meli
 > - [ ] **F0** Escribir la SPEC técnica de [SIG-671](https://spellbook.adminml.com/projects/SIG/specs/SIG-671) (U1–U8, alcance P0 con criterios de aceptación) con `signals-tech-spec-authoring` #owner/me #type/dev #area/meli
 > - [ ] **F0** Escribir la SPEC técnica de [SIG-677](https://spellbook.adminml.com/projects/SIG/specs/SIG-677) (endpoint por operación, compatibilidad con el endpoint actual) #owner/me #type/dev #area/meli
 > - [ ] **F0** Proponer ajuste de sizes con la línea base (U2 y U7 son trabajo nuevo) y actualizar SIG-671, SIG-676 y SIG-670 en Spellbook #owner/me #type/admin #area/meli
@@ -274,6 +276,9 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 ## 📆 Bitácora
 
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
+- **2026-10-22** — Reparto del P0: Brenda (bkikuta) toma los contratos; Rodrigo toma canal y transporte. Relevado en código (playmaker `origin/develop@ca4fe6be`, SDK `origin/master@b9281493`, kafka `origin/develop@f4b5701e`): el único canal es push HTTP a `POST /events/cp-components` (permitAll, sin identidad de productor); `bigqueue.cp-components-topic` (`controlplanes-components` / `-test`) existe en config pero ningún código lo lee, y topics y consumers se configuran en Fury, no en el repo; el registry `component_type_registry` sólo lo leen el upsert y `GET /v2/reference/component-types` (sidebar del front y CLI vía BFF); `scripts/seed-component-types.sh` está vacío y el seed real es `docs/runbook-seed-component-registry-test.md`; las ramas `discovery-v2-00..05` del SDK no tienen transporte y borran `CPCapabilityMessage`, que playmaker todavía compila. Kafka: tres nombres de tipo (`aws-msk-topic`, `gcp-kafka-topic` y el alias `kafka-topic`), output `servers` (no `brokers`), ACME por el fallback `*` y `peek` como read-action sin ACME, incluido en importados; `gcp-kafka-topic` se enruta a `MATERIALIZER_REST` en playmaker y su peek no funciona en el CP.
+- **2026-10-22** — Decisiones del owner: Discovery sin coexistencia V1/V2 (el V1 nunca se publicó), despliegue big bang (al llegar a prod todo component type tiene contrato) y playmaker agnóstico (asume lo que declara el CP, incluido access_level, sin pisos propios). Comentarios publicados en SIG-635, SIG-644, SIG-671, SIG-695, SIG-697 y SIG-698, verificados contra el contenido remoto. En SIG-699 se comentó que el título no corresponde, que falta el contrato del CP de signals (catalog-signal, bigqueue-signal, stream-signal) y que el trigger V2 cambia el protocolo de despliegue vigente, por lo que debería ir en una spec aparte.
+- **2026-10-22** — Revisión de SIG-695 a SIG-699 contra SIG-635, SIG-644 y el código. Falta: canal de publicación (cuándo y cómo publica el CP, el pedido desde playmaker), registro en MySQL, autenticación del productor y guardia de versión en CI. Choques con el SDK: `context_exports` no string (Kafka, ClickHouse), `orchestration.role` fuera del enum (ClickHouse) y `access_level` descartado como campo desconocido. Relaciones asimétricas: `clickhouse-mergetree` no acepta como input a `flink-sql` ni a `clickhouse-mat-view`. Faltan contratos de `clickhouse-ref-view` y de `rio-controlplane-signals`.
 - **2026-10-19** — Proyecto creado desde la epic SIG-659, la técnica SIG-635, las 10 specs hijas y el deck del kickoff. Línea base verificada en código: seis desvíos (D-1 a D-6); el más relevante es que ningún CP publica capability hoy.
 
 ## 🧭 Decisiones
@@ -288,6 +293,8 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - Epic: [SIG-659 Discovery & CLI — contratos de componentes CP](https://spellbook.adminml.com/projects/SIG/specs/SIG-659)
 - Contrato técnico: [SIG-635 Discovery v2 — formato de contratos de componentes CP](https://spellbook.adminml.com/projects/SIG/specs/SIG-635)
 - Specs hijas: [SIG-673](https://spellbook.adminml.com/projects/SIG/specs/SIG-673) · [SIG-671](https://spellbook.adminml.com/projects/SIG/specs/SIG-671) · [SIG-677](https://spellbook.adminml.com/projects/SIG/specs/SIG-677) · [SIG-679](https://spellbook.adminml.com/projects/SIG/specs/SIG-679) · [SIG-670](https://spellbook.adminml.com/projects/SIG/specs/SIG-670) · [SIG-678](https://spellbook.adminml.com/projects/SIG/specs/SIG-678) · [SIG-675](https://spellbook.adminml.com/projects/SIG/specs/SIG-675) · [SIG-674](https://spellbook.adminml.com/projects/SIG/specs/SIG-674) · [SIG-676](https://spellbook.adminml.com/projects/SIG/specs/SIG-676) · [SIG-672](https://spellbook.adminml.com/projects/SIG/specs/SIG-672)
+- SDK V2: [SIG-644 Discovery V2 — Implement contracts on SDK](https://spellbook.adminml.com/projects/SIG/specs/SIG-644) (ramas `feature/discovery-v2-00` a `-05` en `rio-sdk-events`, sin mergear)
+- Contratos por CP: [SIG-695 ClickHouse](https://spellbook.adminml.com/projects/SIG/specs/SIG-695) · [SIG-696 Flink](https://spellbook.adminml.com/projects/SIG/specs/SIG-696) · [SIG-697 Kafka](https://spellbook.adminml.com/projects/SIG/specs/SIG-697) · [SIG-698 Fury](https://spellbook.adminml.com/projects/SIG/specs/SIG-698) · [SIG-699 Envelope de trigger/resultado V2](https://spellbook.adminml.com/projects/SIG/specs/SIG-699)
 - Antecedente V1: [SIG-191 CP Capability Discovery — Self-registration and Schema Registry](https://spellbook.adminml.com/projects/SIG/specs/SIG-191)
 - Specs a coordinar (según SIG-635): [SIG-5 RIO Actions Framework](https://spellbook.adminml.com/projects/SIG/specs/SIG-5) · [SIG-573](https://spellbook.adminml.com/projects/SIG/specs/SIG-573) / [SIG-590](https://spellbook.adminml.com/projects/SIG/specs/SIG-590) (Context de componente) · [SIG-598](https://spellbook.adminml.com/projects/SIG/specs/SIG-598) / [SIG-609](https://spellbook.adminml.com/projects/SIG/specs/SIG-609) (monitores) · [SIG-610](https://spellbook.adminml.com/projects/SIG/specs/SIG-610) (undeploy)
 - Deck del kickoff: [Grid — Discovery & CLI Kickoff](https://grid.adminml.com/d/01M51AD6PAM7119Q6AVW89VMYH/view?slide=1)
