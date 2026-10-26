@@ -3,7 +3,7 @@ type: runbook
 schema_version: 1
 scope: area
 created: "2026-10-24"
-updated: "2026-10-24"
+updated: "2026-10-25"
 area: "[[Echo]]"
 project: "[[Echo Futures]]"
 application:
@@ -82,7 +82,7 @@ owner_authority   Matriz y parámetros expresamente autorizados
 Antes de construir pedidos económicos:
 
 1. Inventariar todos los contratos físicos NQ con primero/último minuto, cobertura por sesión, gaps, DST, días válidos, roll schedule, source manifest hash y disponibilidad de indicadores.
-2. Preferir el **más reciente con cobertura trimestral verificable**, ideal 55–65 sesiones de mercado, **mínimo 45 sesiones elegibles con datos ejecutables reales en UN contrato físico**. Elegir por recencia/cobertura, nunca por PnL. Si el contrato más reciente es corto (p. ej. NQZ6 10 sesiones), declarar el dato e intentar el **anterior contrato trimestral completo** (p. ej. NQU6 sólo si los recibos lo demuestran). No juntar dos vencimientos para alcanzar artificialmente 45.
+2. Preferir el **más reciente con cobertura trimestral verificable**, ideal 55–65 sesiones de mercado, **mínimo 45 sesiones elegibles con datos ejecutables reales en UN contrato físico**. Elegir por recencia/cobertura, nunca por PnL. Si el contrato más reciente es corto (p. ej. NQZ6 10 sesiones), declarar el dato e intentar el **anterior contrato trimestral completo** (p. ej. NQU6 sólo si los recibos lo demuestran). No juntar dos vencimientos para alcanzar artificialmente 45. Revalidar en cada ciclo: el censo físico 2026-10-25 midió NQZ6 = 17 elegibles (cobertura 2026-09-10→2026-10-06, 2 cortas) y NQU6 = 60 sesiones calificadas 2026-06-14→2026-09-13; NQZ6 califica para G2 LAST-CONTRACT, no para trimestre.
 3. Congelar `contract_id`, `stream_id`, fechas de primer/último dato, `warmup_start`, `trade_start`, `end_exclusive`, timezone/calendario y exclusiones. La ventana de mercado y el historial de warmup se verifican por bytes, no por nombre del job.
 4. Demostrar que indicadores/HTF reciben un prefix **causal y semánticamente válido**: si un DOL 1D/3D necesita historia previa, sólo usarla si el contrato vigente autoriza continuidad/ajuste y el prefijo está correctamente sellado. Si la fuente no alcanza el lookback legítimo ⇒ `DATA_REQUIRED`.
 5. Si ningún contrato aporta ≥45 sesiones elegibles y warmup permitido, **NO pasar a G4/G5**. La obtención/completitud de datos es un trabajo separado, no habilita ejecutar un DEV multicontrato de 444 días como "proxy".
@@ -104,24 +104,27 @@ Para cada `strategy_id+variant_id+profile_id`:
 
 **FAIL**: `warmup` infinito, `ready=0` después del lookback completo, requirement mismatch, calendario no materializado, señal sin tick/contrato correcto, index lookahead, MM incorrecto, etc. Diagnosticar, corregir, incrementar versión semántica cuando corresponda y repetir sólo gates afectados.
 
-## 4. G2 — Smoke individual de datos reales y trazabilidad del funnel
+## 4. G2 — Validación física por identidad sobre el ÚLTIMO CONTRATO (split G2A/G2B/G2C)
 
-Usar un tramo **breve** del contrato objetivo: inicio de trading más varios días ejecutables con lookback legítimo. Ejecutar una sola identidad a la vez para depuración; después se podrá paralelizar la cola cualificada.
+**Contrato.** Identificar el contrato físico NQ más reciente con datos verificables en el corpus y su cobertura real (censo de sesiones: el primer/último byte, sesiones completas, elegibles y cortas); usar UN solo contrato, sin concatenar vencimientos ni ampliar ventanas en silencio. Al 2026-10-25: NQZ6 = último contrato (cobertura 2026-09-10→2026-10-06, 17 elegibles, 2 cortas), NQU6 = último trimestre completo (60 sesiones calificadas). La ventana sellada del último contrato se registra en `WINDOW_REGISTRY` con `purpose: LAST_CONTRACT` y `contracts: [NQZ6]` (2026-10-25).
 
-Crear recibo por identidad con funnel:
+**Tres subgates, todos por identidad, sin heredar PASS ajeno:**
+
+- **G2A — readiness / signals / detectors.** Smoke breve del inicio de trading + días ejecutables con lookback legítimo. Recibo por identidad con el funnel completo (ver abajo). `evaluations_ready=0` con barras suficientes ⇒ `FAILED_CORRECTNESS` inmediato; setup no ocurrido ⇒ `READY_LOW_SIGNAL`.
+- **G2B — STRATEGY_SESSION_COMPATIBILITY.** Obligatorio antes de G4: cada señal OPEN a `America/New_York` con DST (zoneinfo), confrontada con la ventana que el AccountPolicy impone (E2T/GAU50: `[09:30, 15:55)` ET), correlación por `SignalID` desde `OPERATION_APPLY/CAMPAIGN_SIGNAL`. Veredictos `SESSION_COMPATIBLE` / `SESSION_INCOMPATIBLE` (⇒ sin G4; no es veredicto comercial) / `INCONCLUSIVE_NO_SIGNALS`. Herramienta: `campaign-lab/session_compatibility.py`. Prohibido modificar horarios de Provider para fabricar entradas.
+- **G2C — FULL TRADE LIFECYCLE.** Sobre la traza económica real de la corrida G2: ≥1 fill de entrada, ≥1 fill de salida y ≥1 **round-trip reconciliado** reconstruido posición-a-conciencia por `campaign-lab/qualification_ledger.py` (reutiliza `research_lab.reconcile_trades`: un trade cierra sólo cuando la posición neta vuelve a cero; dinero exacto en ticks; fees reales por lado). Posición abierta al horizonte se reporta como `open_at_horizon` y jamás cuenta como trade completo. La operación completa conserva su identidad (entry_at/exit_at, dirección, qty, precios, bruto/fees/neto) e informa win/loss/break-even; ganar no se exige.
+
+**Funnel obligatorio por variante** (cantidades, rechazos y motivo en cada transición; todo cero relevante con explicación verificable):
 
 ```text
 source minutes → bars closed → requirements satisfied → evals → ready evals
-→ detector predicates → opportunities → signals → MM proposals
-→ provider accepted/rejected → orders → fills/operations → closes/ledger
-→ purchases / pass/loss/pending
+→ detector predicates → opportunities → signals → session eligibility
+→ account selection → money management → provider accepted/rejected
+→ orders → entry fills → position lifecycle → exit fills
+→ trade journal / cash ledger → reconciliation
 ```
 
-- `evaluations_ready=0` con barras suficientes y lookback teórico vencido ⇒ `FAILED_CORRECTNESS` inmediatamente. No gastar horas en la historia para "ver si aparece".
-- Ausencia de señales con `ready>0` ⇒ comprobar fixture positivo y condiciones observadas, usando nombres/valores concretos. Si setup no ocurrió, clasificar `READY_LOW_SIGNAL` y pasar al G3/G4 **sólo para evaluar frecuencia real**; no marcar como fallo del motor.
-- Se exige al menos un ejemplo real de Signal→Operation→fill cuando la oportunidad aparece. Si no aparece en el smoke breve, la prueba E2E de G1 debe demostrar esa ruta; el tramo breve por sí solo no puede inventarla.
-- La campaña compró una cuenta ≠ pasó un challenge. Registrar ambos separadamente, con cash ledger y terminal.
-- G2 no exige un pase; G4 sí.
+Los rechazos de campaña se clasifican por `input_kind=CAMPAIGN_SIGNAL` + `reasons` (`CAMPAIGN_ALLOWED` vs `CAMPAIGN_UNAVAILABLE`/`SESSION_ENTRY_WINDOW`/`SESSION_SAFETY_CUTOFF`/`SIZE_BELOW_MIN_CONTRACT`/…), correlacionados por `SignalID`; el conteo por señal difiere del conteo por día y ambos se registran.
 
 ## 5. G3 — Canary corto de rollover y recuperación de ready (obligatorio)
 
@@ -136,25 +139,24 @@ source minutes → bars closed → requirements satisfied → evals → ready ev
 
 Para indicadores de lookback muy largo cuya primera oportunidad ready no cabe en un canario compacto, proporcionar prefijo causal legítimo y un fixture de rehidratación para probar la transición; si no es demostrable, G3 `INCONCLUSIVE/DATA_REQUIRED` y no promover.
 
-## 6. G4 — Contrato trimestral: selección obligatoria antes del histórico
+## 6. G4 — Contrato trimestral: admisión fail-closed antes del histórico
 
-**Este es el único gate que autoriza el histórico largo.**
+**Este es el único gate que autoriza el histórico largo, y ya no arranca sin cualificación propia.**
 
-- Ejecutar `CHALLENGE_ONLY + CONTINUOUS` bajo las reglas y costos vigentes de Echo Futures, por cada identidad distinta que aprobó G0–G3.
-- El horizonte es **el contrato trimestral validado**, no una concatenación de rolls; duración meta ~3 meses, mínimo 45 sesiones elegibles físicas, independientemente de que algunas sesiones no tengan trades.
-- Cuentas continuas y policy real: cada pase/pérdida termina la cuenta correspondiente, campaña puede comprar la siguiente conforme a presupuesto y política. Denominador = TODAS las compras. Pausa/pendiente no se contabiliza como pérdida ni pase.
-- **PROMOCIÓN (literal Owner):** `CHALLENGE_PASSED >= 1` *y* G0–G3 PASS *y* ledger/fills/fees/cierre conciliados *y* sin bloqueo técnico abierto. Un pase aislado no promete que la tasa histórica sea ≥25% ni constituye validación estadística.
-- **CERO PASES (ejecución válida):** `QUARTER_NO_PASS` ⇒ NO G5. Documentar número de oportunidades/trades/compras, pérdidas/pendientes y razón; no reabrir histórico para buscar un pase. Cero compras exige diagnóstico de selección/compra; cero trades exige diagnóstico de Signal/Provider/MM (separar técnico vs genuinamente infrecuente).
-- **FASE DE INVESTIGACIÓN:** probar sólo variantes predeclaradas en la matriz. Cambiar umbrales/riesgo tras mirar resultados del trimestre crea hipótesis nueva y nueva identidad; no reusar los pases observados como confirmación OOS.
-- Porcentaje de pases, costo por pase, time-to-pass y frecuencia sirven para **ordenar las promociones**; nunca para sustituir el gate ≥1 pase. Evaluar interés especial de estrategias de ~1 operación/día o aportes complementarios.
-
-**No usar** C02 NQZ6 de 10 sesiones como gate económico trimestral. Es solo evidencia E2E del camino.
+- **Admisión (2026-10-25):** toda campaña QUARTER pasa por `qualification_guard.admit_quarter` en la única costura de spawn (`research_lab._run_one`, cubre `run` y `resume --execute`). Exige por identidad: G0/G1/G2A/G2B/G2C/G3 PASS, veredicto de sesión `SESSION_COMPATIBLE`, G2C con ≥1 entry fill + ≥1 exit fill + ≥1 round-trip reconciliado, y la **identidad de ejecución sellada** declarada en el plan: `execution_purpose: QUARTER`, `contract_set` igual a los contratos físicos que el plan realmente lee (filas acotadas del `source_read_plan`), `window_identity` igual a los stamps del plan y `plan_digest` fijando los bytes preparados exactos (JSON canónico del plan sin la declaración de cualificación — `research_lab.plan_identity_digest`). Cualquier campo ausente, ilegible o en desacuerdo ⇒ `QUALIFICATION-BLOCKED.json` con causa exacta, exit 78, cero motores.
+- **El propósito lo decide el plan, no la etiqueta.** `effective_execution_purpose` clasifica `SMOKE | LAST_CONTRACT | ROLLOVER_CANARY | QUARTER | HISTORICAL` desde la ventana sellada registrada, el conjunto de contratos físicos y el horizonte económico; un propósito declarado contradictorio bloquea (`PURPOSE_CONTRADICTS_EXECUTION_IDENTITY`). Un estudio multicontrato de 90 días es `HISTORICAL` por conjunto de contratos, aunque su duración quepa en un trimestre.
+- **Campañas bit-idénticas:** un recibo de cualificación que ya trae G4 bloquea la puerta (`RECEIPT_NOT_A_QUALIFICATION_CHAIN`); la campaña ejecutada con su recibo existente ES la evidencia y no se repite.
+- Ejecutar `CHALLENGE_ONLY + CONTINUOUS` bajo las reglas y costos vigentes, por cada identidad distinta que aprobó la cadena completa. El horizonte es **el contrato trimestral validado** (≥45 sesiones elegibles físicas), no una concatenación de rolls.
+- Cuentas continuas y policy real: cada pase/pérdida termina la cuenta correspondiente; denominador = TODAS las compras. **PROMOCIÓN (literal Owner):** `CHALLENGE_PASSED >= 1` *y* cadena G0–G3+G2C PASS *y* ledger/fills/fees/cierre conciliados *y* sin bloqueo técnico abierto.
+- **CERO PASES (ejecución válida):** `QUARTER_NO_PASS` ⇒ NO G5. Documentar oportunidades/trades/compras, pérdidas/pendientes y razón. Compra sin pase no es pase; pausa no es pérdida.
+- **FASE DE INVESTIGACIÓN:** sólo variantes predeclaradas en la matriz; cambiar umbrales tras mirar resultados crea identidad nueva.
 
 ## 7. G5 — Histórico completo SOLO para promovidas
 
 - La cola histórica debe generarse **como intersección exacta** `declared identities ∩ G4 PASS receipts ∩ matching source/build/dataset policy`. Una identidad ausente o mismatch no entra en la cola, aunque se escriba manualmente en un manifiesto.
-- Guard fail-closed **en la vía real de admisión de jobs** (runner/supervisor/adaptador existente): el plan histórico debe incluir `qualification_receipt_sha256` y el gate valida el recibo por digest de artefactos, build+strategy+variant+MM/política y la compatibilidad verificable de las fuentes/calendario/roll. **El corpus trimestral y el corpus histórico tienen digests DISTINTOS por definición**: cada uno se valida contra su manifiesto; comparar procedencia/semántica y, si corresponde, bytes del tramo de contrato coincidente, NO igualdad de hashes de todo el dataset. El guard se aplica también al `resume`; no limitarse a un checklist de prosa. No introducir un segundo scheduler.
-- Una corrección de reporting puro regenera derivados sin motor. Cambio de lógica de señal, MM, Provider que altere decisiones/fills, fuente, warmup/roll o símbolos invalida recibos dependientes y exige repetir G1–G4 antes de G5.
+- Guard fail-closed **en la vía real de admisión de jobs** (research_lab `_run_one`, única costura de spawn que comparten `run` y `resume --execute`): `qualification_guard.admit_historical` valida el recibo por digest de artefactos, identidad exacta, cadena funcional completa **incluida G2C** (una identidad que nunca completó una operación no promueve, aunque otro recibo diga G4), build+strategy+variant+MM/política y la compatibilidad verificable de las fuentes/calendario/roll. **El corpus trimestral y el corpus histórico tienen digests DISTINTOS por definición**: cada uno se valida contra su manifiesto; comparar procedencia/semántica y, si corresponde, bytes del tramo de contrato coincidente, NO igualdad de hashes de todo el dataset.
+- **Anti-falsificación de identidad/fase (2026-10-25):** ni `tier` ni `execution_purpose` declarados por el job deciden nada — el propósito efectivo se deriva del plan sellado (ventana registrada, conjunto de contratos físicos realmente leídos, horizonte económico) y toda contradicción bloquea antes del spawn (`PURPOSE_CONTRADICTS_EXECUTION_IDENTITY`, `TIER_CONTRADICTS_EXECUTION_CLASS`). Un job que se auto-degrada, un histórico etiquetado como trimestre y un estudio multicontrato corto que intenta pasar por quarter caen todos en la misma costura. Las superficies fuera del entrypoint autorizado (llamadas directas al binario del motor, `platform-batch` manual) NO están protegidas por el guard de Python: el guard cubre la vía de admisión autorizada y esa frontera se declara explícitamente, jamás se promete cobertura total.
+- Una corrección de reporting puro regenera derivados sin motor. Cambio de lógica de señal, MM, Provider que altere decisiones/fills, fuente, warmup/roll o símbolos invalida recibos dependientes y exige repetir G1–G4 antes de G5. Recibos de ciclos previos se reutilizan como evidencia mientras su identidad y versiones sigan válidas; el guard compara digests y rechaza mezclas.
 - Usar corpus histórico físicamente sellado, con rollovers y causalidad; respetar exclusiones, cierres diarios, comisiones y políticas. No mezclar resultados pre/postfix. Conservar todos los intentos y sus hashes.
 - Métricas de salida: por identidad y por familia, compras, pases, Wilson95, pérdidas/pendientes, gasto separado, costo/pase, mediana días hasta pase; entradas/día, cobertura de días, máxima sequía, net expectancy/payoff/DD, histogramas temporales, solapamiento de señales y dependencia de perfiles MM. Excluir duplicados de señal del conteo de familias.
 - Resultado histórico para ranking **retrospectivo**: el trimestre de promoción ya influyó en qué candidato se probó. Marcarlo como dato de desarrollo, no OOS virgen. Validación independiente requiere datos posteriores realmente no usados.
@@ -207,7 +209,10 @@ Recibos mínimos sugeridos, usando esquema local equivalente cuando ya exista un
   "gates": {
     "G0": {"status": "PASS", "receipt_sha256": "<digest>"},
     "G1": {"status": "PASS", "receipt_sha256": "<digest>"},
-    "G2": {"status": "PASS", "evaluations": 1000, "ready": 800, "receipt_sha256": "<digest>"},
+    "G2A": {"status": "PASS", "evaluations": 1000, "ready": 800, "signals": 12, "receipt_sha256": "<digest>"},
+    "G2B": {"status": "PASS", "verdict": "SESSION_COMPATIBLE", "signals": 12, "in_window": 4, "receipt_sha256": "<digest>"},
+    "G2C": {"status": "PASS", "entry_fills": 4, "exit_fills": 4, "reconciled_roundtrips": 4,
+            "open_at_horizon": 0, "wins": 1, "losses": 3, "receipt_sha256": "<digest>"},
     "G3": {"status": "PASS", "first_ready_after_roll": "<timestamp>", "receipt_sha256": "<digest>"},
     "G4": {
       "status": "PASS",
@@ -230,21 +235,29 @@ Todos los números del ejemplo son **ficticios**. El archivo real debe provenir 
 ### Guard en scheduler/adaptador (pseudocódigo, NO CLI existente)
 
 ```text
-admit_historical(job, receipts):
+admit_quarter(job, receipts, plan):                      # CLF-Q03-R1
   r = receipts.exact_identity(job.strategy, job.variant, job.mm)
-  assert r.G0.pass && r.G1.pass && r.G2.pass && r.G3.pass && r.G4.pass
-  assert r.G4.passed >= 1 && r.G4.reconciled
-  assert r.contract.market_sessions_eligible >= 45
-  assert exact_match(r.source, r.strategy_config, r.binary,
-                     r.mm_profile, r.market_policies, job.strategy_contracts)
-  assert digest(r.quarter_dataset) == r.quarter_dataset_declared_sha
-  assert digest(job.historical_dataset) == job.historical_dataset_declared_sha
-  assert source_lineage_and_market_semantics_compatible(r, job)
-  assert digest_matches_all_immutable_receipts(r)
+  assert r.G0..G3.pass && r.G2A.pass && r.G2B.verdict == SESSION_COMPATIBLE
+  assert r.G2C.entry_fills >= 1 && r.G2C.exit_fills >= 1 && r.G2C.reconciled_roundtrips >= 1
+  assert !r.carries_G4                                  # no bit-identical re-runs
+  assert job.execution_purpose == effective_purpose(plan) == QUARTER
+  assert job.contract_set == plan.physical_contracts    # bounded source-read rows
+  assert job.window_identity == plan.{warmup,trade,end}
+  assert job.plan_digest == plan_identity_digest(plan)  # plan minus qualification
+  assert exact_match(r.source, r.strategy_config, r.binary, r.mm_profile,
+                     r.calendar, job.declarations, engine_binary)
+  else -> BLOCKED_QUALIFICATION_GATE with exact code and no engine spawn
+
+admit_historical(job, receipts, engine):                 # todo lo anterior + G4
+  assert r.G4.pass && r.G4.passed >= 1 && r.G4.reconciled
+  assert r.G4.market_sessions_eligible >= 45
+  assert quarter_dataset_digest == r.binding.quarter_dataset (sealed separately)
+  assert historical_dataset_digest != quarter_dataset_digest
+  assert lineage(symbol, bar_semantics, calendar_family) compatible
   else -> BLOCKED_QUALIFICATION_GATE with exact code and no engine spawn
 ```
 
-El agente debe **adaptar** este contrato a las herramientas reales que encuentre; no copiar el pseudocódigo como Python funcional ni inventar flags. Cuando un mismo motor haya evolucionado entre quarter e histórico, demostrar compatibilidad semántica del cambio; de otro modo repetir qualification con el nuevo build.
+El agente debe **adaptar** este contrato a las herramientas reales que encuentre; no copiar el pseudocódigo como Python funcional ni inventar flags. Cuando un mismo motor haya evolucionado entre quarter e histórico, demostrar compatibilidad semántica del cambio; de otro modo repetir qualification con el nuevo build. Las superficies invocables por fuera del entrypoint autorizado (binario directo) no están cubiertas por el guard: la frontera se declara, no se promete en falso.
 
 ## 10. Diagnóstico y recuperación (tabla de decisiones)
 
@@ -265,20 +278,44 @@ El agente debe **adaptar** este contrato a las herramientas reales que encuentre
 
 Para cada fallo emitir `first_divergence_stage`, primer timestamp físico, log/trace/evento, causa, propietario, fix+prueba antes/después y `affected_identity_set`. No reiniciar desde cero toda la historia por defecto.
 
+### Casos de "no opera" (obligatorios, de barato a caro; CLF-Q03-R1)
+
+Ninguna variante termina como `0 trades`/`NO_ACTIVITY`/`COMPLETE`/`UNKNOWN`/`LOW_FREQUENCY` sin diagnóstico causal y clasificación persistente:
+
+| Caso | Síntoma | Inspección (orden barato→caro) | Clasificación |
+|---|---|---|---|
+| A | Nunca alcanza ready | composición TF, Requirements, warmup, resets, datos | `TECHNICAL_DEFECT` (fix + repetir gates) |
+| B | Ready, cero oportunidades | cada predicado del setup contra el contrato; catálogo y claims | `VALID_RARE_NO_ACTIVITY` o defecto de construcción |
+| C | Oportunidades, cero señales | lógica de decisión e invalidaciones vs knowledge | fix de código o `SOURCE_REVIEW_REQUIRED` |
+| D | Señales fuera de horario | Strategy vs AccountPolicy, intersección posible | `SESSION_INCOMPATIBLE` (fiel al curso; adaptación = identidad nueva autorizada) |
+| E | Señales sin fills | cuenta, MM, min lot, stops, Provider, rechazos | `SIGNAL_REJECTED_VALID_POLICY` vs `SIGNAL_EXECUTION_DEFECT` |
+| F | Entradas sin operación completa | fills, cierre, órdenes protectoras, lifecycle, reconciliación | no funcional hasta demostrar cierre real |
+| G | Roundtrips, todos perdedores | entrada, stop/target, dirección, filtros, costos, sesión vs patrón fuente | `FULLY_TRADED_NEGATIVE_SAMPLE`; evidencia negativa conservada, sin cambiar la estrategia para conseguir un ganador |
+| H | Operaciones completas, cero challenges | resultado G4 conciliado | `QUARTER_NO_PASS`; sin histórico |
+
+### Knowledge Review Loop (reutilizable para cualquier curso)
+
+Cuando una variante no opera o su lógica no puede validarse, emitir UNA ficha por problema material en `CLF-<CICLO>-KNOWLEDGE-REVIEW-QUEUE.md` (formato completo en la skill §8 y en el mandato): `REVIEW_ID`, identidad, `CURRENT_STATUS` (`NEEDS_ITERATION | SOURCE_REVIEW_REQUIRED | VALID_RARE_NO_ACTIVITY | SESSION_INCOMPATIBLE | BLOCKED_SPEC | BLOCKED_DATA`), `SOURCE` (curso, capítulo, claim_ids, frame_ids, timestamp de video, path del knowledge), `EXPECTED_BEHAVIOR` vs `IMPLEMENTED_BEHAVIOR`, `OBSERVED_LAST_CONTRACT` (funnel numérico), `FIRST_CAUSAL_DIVERGENCE`, `ROOT_CAUSE` (`CONFIRMED | HYPOTHESIS | UNKNOWN`), `KNOWLEDGE_QUESTION` concreta para el Owner, `VIDEO_REVIEW_TARGET` (capítulo y minuto; `NOT_RESOLVED` si no es recuperable — jamás inventado), `RECOMMENDED_ACTION` (`FIX_CODE | REVIEW_VIDEO | CLARIFY_SPEC | KEEP_RARE | ADAPT_MARKET | BLOCKED_DATA`) y `RETEST_SCOPE` (gates afectados, jamás todo el histórico por defecto). No volver a analizar el curso entero: la ficha apunta exactamente a la parte de conocimiento en duda.
+
 ## 11. Verificación anti-regresión de la propia metodología
 
-Antes de declarar que el runner aplica la skill, ejecutar **pruebas negativas de admisión**, sin computación cara:
+Antes de declarar que el runner aplica la skill, ejecutar **pruebas negativas de admisión**, sin computación cara. Matriz CLF-Q03-R1 (cada rechazo demuestra **cero motores lanzados**, sentinel del stub + recibo `QUALIFICATION-BLOCKED.json` con causa exacta):
 
-1. Job G5 de variante nunca smokeada ⇒ `BLOCKED_QUALIFICATION_GATE`; cero spawn.
-2. Job G5 con G1/G2 PASS heredados de variante hermana ⇒ BLOQUEADO.
-3. Job G5 con G4 `purchased>0`, `passed=0` ⇒ BLOQUEADO.
-4. Job G5 con `G4.passed=1` pero sólo 10 sesiones NQZ6 ⇒ `DATA_REQUIRED`/BLOQUEADO.
-5. Job G5 con G4 PASS pero cambio de `binary/config/calendar` ⇒ BLOQUEADO hasta reevaluar impacto; quarter_dataset_sha distinto del historical_dataset_sha **es esperado**, verificar linaje de fuentes y ambos sellos.
-6. Job G5 con `ready=0` atravesando roll ⇒ BLOQUEADO aunque `exit=0`.
-7. Job G4 en trimestre elegible con G0–G3 PASS ⇒ admitido, registra 1 intento y cierre.
-8. Job G5 de identidad con G4 PASS + digests iguales ⇒ admitido una sola vez; `resume` idéntico no duplica.
-9. Job con alias demostrado exacto ⇒ no se ejecuta dos veces ni incrementa familias.
-10. Recuperación de supervisor tras interrupción ⇒ sólo idempotentes pendientes; sin huérfanos ni afirmación de COMPLETE prematura.
+1. Estrategia que sólo compila: job QUARTER sin cadena de cualificación ⇒ `RECEIPT_MISSING`.
+2. `ready=true` pero cero señales, o señales sin órdenes, u órdenes sin fills, o entrada sin cierre conciliado: G2C con `entry_fills/exit_fills/reconciled_roundtrips` incompletos ⇒ `G2C_NOT_FULL_TRADE`.
+3. Sesión incompatible: G2B con veredicto `SESSION_INCOMPATIBLE` ⇒ `G2B_NOT_SESSION_COMPATIBLE`.
+4. G2C de otra variante: identidad del recibo ≠ identidad declarada ⇒ `IDENTITY_MISMATCH`.
+5. G2C con artefacto alterado: digest del artefacto ≠ bytes ⇒ `RECEIPT_ARTIFACT_TAMPERED`.
+6. G4 sin G2C PASS / cadena incompleta ⇒ `GATE_G2C_NOT_PASS`/`GATE_<X>_NOT_PASS`.
+7. G5 sin G4 PASS ⇒ `GATE_G4_NOT_PASS`; G5 con cero challenges ⇒ `G4_NO_PASS`; G4 no conciliado ⇒ `G4_UNRECONCILED`; <45 sesiones ⇒ `SESSIONS_BELOW_MINIMUM`.
+8. Histórico mal etiquetado como trimestre ⇒ `PURPOSE_CONTRADICTS_EXECUTION_IDENTITY` (el propósito efectivo lo decide el plan).
+9. Horizonte multicontrato corto intentando evadir clasificación ⇒ clasificado `HISTORICAL` por conjunto de contratos ⇒ exige cadena G5 ⇒ `RECEIPT_MISSING` sin recibos.
+10. `resume --execute` sin recibos (histórico y quarter) ⇒ bloqueado en la misma costura.
+11. Identidad duplicada que intenta heredar un PASS ⇒ `IDENTITY_MISMATCH`; plan re-preparado con otro digest ⇒ `PLAN_DIGEST_MISMATCH`; contratos declarados ≠ contratos leídos ⇒ `CONTRACT_SET_MISMATCH`.
+12. Recibo que ya trae G4 (campaña bit-idéntica) ante la puerta quarter ⇒ `RECEIPT_NOT_A_QUALIFICATION_CHAIN`.
+13. Positivos: quarter con cadena completa e identidad sellada ⇒ admitido una vez; G5 con G4 PASS + digests compatibles ⇒ admitido; alias demostrado exacto ⇒ no se ejecuta dos veces.
+
+E2E real sobre el runner (sin stub): job quarter sin cualificación ⇒ `RECEIPT_MISSING`, exit 78, 0 motores; job histórico sin recibo ⇒ ídem.
 
 Validación documental skill: caso positivo = nuevo STR-002 ClutiFX; caso negativo = consultar rankings de R03 (no lanzar motores); caso adyacente = deploy Echo PROD (derivar a `echo-prod-deploy`, sin carga aquí).
 
@@ -286,11 +323,13 @@ Validación documental skill: caso positivo = nuevo STR-002 ClutiFX; caso negati
 
 Entregar bajo el proyecto/run root existente sin crear un segundo planner:
 
-- `QUALIFICATION-LEDGER.csv` con 1 fila por identidad y G0–G5.
-- `CONTRACT-DATA-RECEIPT.md` (elección física del trimestre, sesiones y falta de datos).
-- `G1-CORRECTNESS.md`, `G2-INDIVIDUAL-SMOKES.md`, `G3-ROLL-RECOVERY.md`.
+- `QUALIFICATION-LEDGER.csv` con 1 fila por identidad y G0–G5 (incluidos G2A/G2B/G2C), reconciliada con la matriz (1 fila por ID, sin omisiones).
+- `CONTRACT-DATA-RECEIPT.md` (elección física del trimestre y del último contrato, sesiones y falta de datos).
+- `G1-CORRECTNESS.md`, `G2-LASTCONTRACT-ALL-VARIANTS.csv` (funnel por identidad), `G2-FULL-TRADE-EVIDENCE.md` (round-trips conciliados con identidad preservada), `G3-ROLL-RECOVERY.md`.
 - `G4-QUARTER-ECONOMICS.csv` (pases y rechazos separados).
 - `G5-HIST-ELIGIBLE-MANIFEST.json` (sólo promocionadas, digests verificados).
+- `KNOWLEDGE-REVIEW-QUEUE.md` (fichas del loop; una por problema material no resuelto).
+- `ZERO-TRADE-RCA.md` y `SESSION-COMPATIBILITY.md` (diagnóstico causal y veredictos G2B por identidad).
 - `COMPUTE-BUDGET-RECEIPT.md` (wall/CPU/RAM/swap por gate y número de históricos evitados).
 - `DECISION-STRATEGIES.md` (familias distintas, frecuencia, economía, incertidumbre) sólo cuando exista evidencia completa.
 - `REPRODUCE.md` con comandos exactos capturados del tooling real y fuente/build/corpus; `STATUS.md` inequívoco.

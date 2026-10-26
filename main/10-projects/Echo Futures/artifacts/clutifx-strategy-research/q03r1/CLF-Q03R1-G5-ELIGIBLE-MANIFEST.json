@@ -1,0 +1,94 @@
+{
+ "schema": "echo.strategy-qualification.g5-manifest.v1",
+ "run_id": "CLF-Q03R1-20261025",
+ "rule": "G5 requires per-identity G0..G3 + G2C FULL TRADE PASS and >=1 CHALLENGE_PASSED in the quarter contract",
+ "quarter_contract": "NQU6 2026-06-14T22:00Z..2026-09-13T22:00Z (60 eligible sessions)",
+ "last_contract": "NQZ6 2026-09-10..2026-10-06 (17 eligible sessions)",
+ "eligible": [],
+ "blocked": [
+  {
+   "cause": "G4_NO_PASS",
+   "identities": [
+    "C02",
+    "C03",
+    "C07",
+    "S03",
+    "S04",
+    "S05A",
+    "S05B",
+    "S06",
+    "S07",
+    "S09",
+    "S10",
+    "S11",
+    "S12",
+    "S13",
+    "S16",
+    "S19",
+    "S20",
+    "S21",
+    "T01"
+   ],
+   "detail": "every G2C-PASS identity already ran its NQU6 campaign (18 identity rows, 0 CHALLENGE_PASSED); campaigns are not repeated bit-identically"
+  },
+  {
+   "cause": "G2B_NOT_SESSION_COMPATIBLE",
+   "identities": [
+    "C01",
+    "C04",
+    "S01",
+    "S02",
+    "S17"
+   ]
+  },
+  {
+   "cause": "G2C_NO_FULL_TRADE_LAST_CONTRACT",
+   "identities": [
+    "C06",
+    "S15",
+    "T04"
+   ]
+  },
+  {
+   "cause": "ALIAS_OR_BLOCKED",
+   "identities": [
+    "C05",
+    "S08",
+    "S14",
+    "S18",
+    "T02",
+    "T03",
+    "C08",
+    "T05"
+   ]
+  }
+ ],
+ "g4_new_run_list": [],
+ "executed": 0,
+ "real_receipt_chain_check": {
+  "C02": {
+   "admitted": true,
+   "decision": "ADMITTED",
+   "reason": null,
+   "variant": "CLF-VAR-C02"
+  },
+  "C03": {
+   "admitted": true,
+   "decision": "ADMITTED",
+   "reason": null,
+   "variant": "CLF-VAR-C03"
+  },
+  "C06": {
+   "admitted": false,
+   "decision": "BLOCKED_QUALIFICATION_GATE",
+   "reason": "G2B_NOT_SESSION_COMPATIBLE",
+   "variant": null
+  },
+  "C01": {
+   "admitted": false,
+   "decision": "BLOCKED_QUALIFICATION_GATE",
+   "reason": "G2B_NOT_SESSION_COMPATIBLE",
+   "variant": null
+  }
+ }
+}

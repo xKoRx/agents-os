@@ -1,1 +1,1 @@
-tienes como límite las 2:30am, luego de esta hora debes parar cualquier movimiento y continuar a las 8am. si terminas antes de las 2:30am mejor, pero si no te paras y continuas a las 8am sass
+tienes como límite las 2:30am, luego de esta hora debes parar cualquier movimiento y continuar a las 8am. si terminas antes de las 2:30am mejor, pero si no te paras y continuas a las 8am sassass

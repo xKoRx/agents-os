@@ -7,7 +7,7 @@ slug: "skills-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-06-28
-updated: 2026-10-24
+updated: "2026-10-25"
 reviewed: 2026-09-12
 aliases:
   - "skills index"
@@ -33,7 +33,9 @@ tags:
 - **Domain/app-owned:** se descubren mediante el registro de routers y el repo owner; no forman parte del índice always-load.
 - **Regla de lugar:** una skill vive en el core sólo si cambia el comportamiento de AGENTS OS itself; todo lo demás vive federado y se enlaza, no se copia.
 
-## 🛠️ Catálogo core — comportamientos de AGENTS OS
+## 📂 Catálogo
+
+### Core — comportamientos de AGENTS OS
 
 | Skill | Una línea | Cuándo cargar |
 |---|---|---|
@@ -97,6 +99,19 @@ skills de una aplicación viven y se descubren en su repo owner.
 | [[30-resources/agents/skills/echo-prod-deploy/SKILL.md|echo-prod-deploy]] | Despliegue autorizado de Echo a PROD (BD, ETCD, Hasura, deploy-prod.sh, front) con verificación y rollback. **Owner-gated**: sólo por pedido explícito del owner de usarla. | Única vía para mutar PROD Echo desde el agente; requiere autorización y secretos de cada corrida. |
 | [[30-resources/agents/skills/course-knowledge-extraction/SKILL.md|course-knowledge-extraction]] | Extrae conocimiento de videos de curso a una biblioteca por capítulo (transcript citable + 1 frame/min + frames bajo demanda + revisión POR MINUTO); prohíbe explícitamente el grind MKE por claim (44 h/video medidos). | Al procesar videos de cursos (Clutifx 2 y siguientes) o generar knowledge libraries desde video. |
 | [[30-resources/agents/skills/course-knowledge-worker/SKILL.md|course-knowledge-worker]] | Contrato de los subagentes ONE-SHOT de la skill anterior (EXTRACTOR / MINUTE_REVIEWER / DOCUMENTATION_VERIFIER): paquete de entrada, invariantes y contrato de salida por rol; workers sin acceso a archivos canónicos. | Al despachar workers de extracción/revisión/verificación de un capítulo; lo carga el orquestador y se incluye en cada paquete. |
+
+### Trading y diseño de campañas
+
+| Skill | Una línea | Dominio / uso |
+|---|---|---|
+| [[30-resources/agents/skills/sqx144-campaign-design/SKILL.md|sqx144-campaign-design]] | Diseña hipótesis, presets compatibles y sondas SQX 144 con evidencia de IMOX. | Trading; diseño previo, no ejecución ni cambios de Forge. |
+| [[30-resources/agents/skills/imox-strategy-research/SKILL.md|imox-strategy-research]] | Conduce roadmap, cobertura, campañas y aprendizaje de investigación IMOX. | Trading; proyecto de negocio, deriva diseño de presets y operación técnica. |
+
+### Conocimiento de comunidades
+
+| Skill | Una línea | Uso |
+|---|---|---|
+| [[30-resources/agents/skills/community-knowledge-ingest/SKILL.md|community-knowledge-ingest]] | Inventario, lectura, exclusiones y sincronización con fronteras verificables. | Circle/IMOX ahora; otras comunidades cuando se incorporen. |
 
 ## 🔗 Links
 

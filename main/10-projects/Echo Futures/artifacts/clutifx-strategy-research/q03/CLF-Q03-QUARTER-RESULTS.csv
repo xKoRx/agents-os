@@ -1,0 +1,4 @@
+ciclo,identidad,spec,contrato,ventana,compras,pases,perdidas,pendientes,senales_open,en_ventana,rechazadas_sesion,ops,fills,dias_con_entrada,net_realizado_usd,estado_sesion,promocion,conciliado
+Q03-20261025,C01,CLF_LONDON_IDEAL_V1,NQU6 2026-06-14T22:00Z..2026-09-13T22:00Z,60 sesiones,0,0,0,0,1,0,1,0,0,0,0,SESSION_INCOMPATIBLE,QUARTER_NO_PASS,True
+Q03-20261025,C03,CLF_NY_CONTINUATION_V1,NQU6 2026-06-14T22:00Z..2026-09-13T22:00Z,60 sesiones,1,0,0,1,3,2,1,4,4,2,795.04,SESSION_COMPATIBLE,QUARTER_NO_PASS,True
+Q03-20261025,C04,CLF_NY_REVERSAL_V1,NQU6 2026-06-14T22:00Z..2026-09-13T22:00Z,60 sesiones,0,0,0,0,6,0,6,0,0,0,0,SESSION_INCOMPATIBLE,QUARTER_NO_PASS,True

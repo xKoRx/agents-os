@@ -1,138 +1,134 @@
+# CLUTIFX-OBJECTIVE-DETECTORS — Detectores estructurales v1.0 (RECONSTRUIDO)
+
+Proyecto: Echo Futures · Misión CLUTIFX GOD (2026-10-23) · Congelado en GATE P1
+
+> **PROVENANCE:** Reconstruido desde claims SUPPORTED MKE (compilación `mke-strategies.md` §B). Regularizaciones de mandato §3.1–§3.4 aplicadas (ver STRATEGIES-MASTER). 
+
+## Contrato de ingeniería de cada detector
+
+Todo detector del paquete `clf` debe ser: determinista (sin relojes/IO/aleatoriedad — lo exige el contrato `Strategy`), causal (sólo barras cerradas hasta `decision_time`; sembrado de contraejemplos con lookahead deliberado en conformance tests), reutilizable (estrategias lo componen), configurable (params tipados vía `DecodeConfig`), compatible con warmup (estado `NOT_READY` con razón) y **diagnóstico**: cada activación/no-activación emite `TechnicalDiagnostic` con la regla citada (chNN, c-XXXX) y el estado del detector.
+
+## Regularización del eje "reacción" (mandato TIER 2 "R1/R3/R4")
+
+**La taxonomía R1/R3/R4 NO existe en la fuente** (verificado ch04 rules/documentation/concepts/claims — NOT_IN_SOURCE). Se sustituye por la taxonomía causal real de resolución de reacción del TS (3 modos, todos citados):
+
+| Modo | Regla fuente | Emisión causal |
+|---|---|---|
+| `TS_CLOSE` (control) | confirmación por cierre de la vela base dentro del rango (ch01 R1·c-0005 clásico) | al cierre de la vela del TF base |
+| `TS_EARLY_1M` (S01) | tras TS + reacción NO hace falta el cierre (ch02 R5·c-0035; ch04 R6·c-0027) | primer cierre 1m contra la dirección del sweep |
+| `TS_M30` (S02) | duda en 15m porque la 4h no cerró → confirmación en M30 (ch04 R23·c-0099) | cierre de la vela M30 |
+
+S17 queda redefinido como confirmación por **mecha de la vela siguiente** (ch09 c-0035/c-0036: la siguiente vela toma el extremo y reacciona dejando mecha) — modo `TS_WICK_NEXT`, causal (requiere cierre de la vela siguiente).
+
+## B. Detectores compartidos
+## B. Detectores compartidos
+
+### B1. Rango — creación, extensión, completitud, eliminación, estados
+- Creación: vela (NO necesariamente la siguiente) toma un extremo de la vela anterior y cierra dentro (ch01, R1·c-0005). Refinamiento: tras TS + reacción NO hace falta el cierre para considerarlo rango (ch02, R5·c-0035; ch04, R6·c-0027).
+- Extensión (regla direccional): tomado extremo y cerrado dentro, normalmente el precio va al otro extremo (ch01, c-0025); "siempre—no siempre" (c-0031); el precio se mueve por rangos "siempre" como hallazgo del equipo (c-0016) y actúa como cadena (c-0017).
+- Completitud: el rango completa cuando toma low Y high (ch01, R21·c-0078); objetivos/rangos completados se borran (ch02, R7·c-0037, c-0038).
+- Eliminación: cierre fuera del rango → eliminado (ch01, R20·c-0076, c-0077; ch02, R6·c-0056); tras eliminar: olvidar y esperar nueva vela que abra/tome low/forme rango nuevo (ch01, R23·c-0079, c-0080).
+- Matices: cierre apenas fuera que "parece prácticamente dentro" se considera rango (ch07, R13·c-0065; ch08, R18·c-0010); los cuerpos respetan el low aunque cierre afuera (ch03, R12·c-0054, c-0108); apertura por debajo/arriba puede formar rango bullish/bearish (ch03, R13·c-0097, c-0182, c-0100, c-0118); rango que cierra por fuera "un poco" → mejor no marcarlo como objetivo (ch05, R13·c-0044).
+- Estados: "no tenemos nada" = sin rango en esa TF (ch02, R8·c-0049); rangos enfrentados en un TF → ignorar ese TF y bajar (ch08, R5·c-0050, c-0052).
+- Rangos contrarios antes del objetivo: el precio no va directo, "tiene que completar los [contrarios] primero" (ch02, R9·c-0051–c-0053). TENSIÓN/CONFLICT (resoluble, decidir en implementación): ch03, R11·c-0094, c-0096 — NO hace falta completar TODOS los contrarios al bias ("con que el de 6h complete y el de 8h no, basta"; c-0214: rango alcista ya innecesario si se formó bajista y el DOL sigue intacto). ch02 exige completar los contrarios inferiores antes del objetivo; ch03 acota que no todos. CONFLICT de alcance, no de dirección.
+
+### B2. Pendiente vs reiniciado
+- Pendiente (a favor): abre por debajo, toma el low, cierra adentro o reacciona (ch01, R9·c-0041); "a favor de nuestra tendencia" (R10·c-0042); 8h: sin tomar extremo (R14·c-0054); habilita entrada (ch03, c-0087, c-0190).
+- Reiniciado (en contra): abre por arriba, toma el high, cierra adentro → rango bajista (ch01, R11·c-0044, c-0045); abre en contra del objetivo (R12·c-0049; R13·c-0055).
+- Lectura de aperturas (ch09): "abrir por abajo" = la vela toma el LOW de la anterior (crea rango a favor → long para la siguiente); "abrir por arriba" = toma el HIGH (c-0020–c-0023); no es la dirección de la apertura en sí.
+- La vela que toma el extremo NO tiene por qué ser la inmediatamente siguiente (ch01, c-0005).
+
+### B3. DOL — identificación y "objetivo tomado"
+- DOL = objetivo/liquidez al que va el precio (GLOSARIO; ch02, c-0099, c-0100; ch03, c-0070). Identificación: rangos de TF más alta + vela de la izquierda predominando → ir para allí (ch03, R8·c-0070).
+- DOL sesión: 12h/8h/6h/4h; DOL medio plazo: 3D/2D/1D (ch03, R2·c-0207, c-0208); mensual/semanal = sólo contexto (c-0206, c-0051).
+- Objetivo tomado: detectable por el checklist (ch07, c-0229 "¿está el doll tomado?"); peor situación al llegar a London (c-0039); a las 5, el precio toma el low/high según el DOL: DOL bearish → sigue; DOL bullish → toma el low, crea rango bullish y sube (ch02, c-0099).
+- Para noticias: DOLs intactos = vía libre; tomado → menor volatilidad o reversal (ch10, c-0122, c-0193, c-0194).
+
+### B4. HTF bias
+- El bias lo dan las TFs altas: 6h, 8h, 12h, 1D, 2D, 3D (ch03, R1·c-0050).
+- Jerarquía: mensual/semanal → contexto HTF; 3D/2D/1D → medio plazo; 12h/8h/6h/4h → DOL de la sesión; <4h → entradas y momento (ch03, R2·c-0206–c-0209).
+- "HTF manda": comprar en TF inferior con la vela superior sin rango creado → stop; el precio crea primero el rango superior (ch02, R16·c-0086–c-0088, c-0100); en 8h y 12h hay que tener los rangos ya a favor (ch07, R26·c-0234, c-0235).
+- Procedimiento multi-TF: marcar rangos en todas las TFs y comprobar que "estén en dirección a lo mismo" (ch02, R10·c-0054, c-0040, c-0045); entrar desde la TF más alta e ir bajando (ch08, R1·c-0002, c-0022, c-0069); "solo time-based" sin DOL/bias = operar en ciego (ch03, R3·c-0144).
+- Días de bias bloquean la dirección contraria aunque el DOL esté a favor (ch03, c-0212).
+
+### B5. Turtle Soup
+- Definición: tomar el alto/bajo para crear o completar un rango Y tener la reacción después hacia el otro lado (ch01, R15·c-0059).
+- Condición necesaria: si sigue en la dirección de la toma, NO es TS (ch01, R16·c-0063); posibles fintas (R17·c-0064).
+- Refinamiento ch02: tras TS + reacción no hace falta que la vela cierre (ch02, c-0035; ch04, c-0027).
+- Stop: debajo/sobre el TS (ch01, c-0067; ch03, c-0164; ch04, c-0048; ch07, c-0109; ch10, c-0060).
+- Siempre se quiere un TS a favor de la tendencia (ch02, c-0081); sin rango activo a favor antes del TS no se compra (ch07, c-0214).
+- Intra-TS: tomar + reacción + cerrar dentro del mismo rango, sobre un TS ya hecho (ch01, R19·c-0068, c-0075).
+
+### B6. Reacción — tipos R1/R3/R4
+NOT_IN_SOURCE. En ch04 no existe clasificación alguna de reacciones "R1/R3/R4" (verificado en rules.md, documentation.md, concepts.md, claims.jsonl). La "reacción" aparece sólo como condición genérica del TS (ch04, c-0027; ch01, c-0063) y como PDM ("la reacción en el alto del rango", ch04, c-0017).
+
+### B7. Power of 3
+- Definición: la vela se conforma de APERTURA, manipulación, distribución y cierre (ch01, R33·c-0116, c-0117). [Nota: la spec pedía "acumulación/manipulación/distribución"; la palabra "acumulación" NO es literal de ch01; ch09 habla de "consolidación, expansión, reversa" como tres momentos (c-0062).]
+- Compras ideales en contexto alcista: en la etapa de manipulación de la vela (ch01, R35·c-0121 — "siempre, siempre, siempre").
+- Procedimiento: a las 4:30 esperar a que abra la nueva vela de 4h a las 5 para entrar en el Power of 3, "punto óptimo" (ch01, R36·c-0122); equivalencia apertura-nueva vela/cierre-anterior (R37·c-0123).
+- Aperturas de vela → posibles rangos nuevos (ch02, c-0024: nuevas velas = nuevos rangos y Power of 3; ch03, R18·c-0040).
+- Coincidencia rango + Power 3 = entradas fuertes (ch01, R38·c-0126, c-0127); en 15m la manipulación "te puede liar" (R39·c-0128).
+- En noticias: posicionarse en el Power 3 de la vela de la noticia (ch10, c-0197, c-0107, c-0116).
+
+### B8. Failure swing — legítimo vs falso
+- Legítimo: identificado por reacción + order block + UNO de los 3 motivos (SMT / extremo a final de vela / feed de otro broker) (ch06, R11·c-0029, c-0046; R7, R8, R10).
+- Falso/abusivo: predecirlo mientras pasa (R2·c-0016, c-0030); asumirlo sólo por ver el extremo al final de la hora (R9·c-0011, c-0015); obsesionarse (R1).
+- Rango activado aunque no tome el extremo (R5·c-0007, c-0028, c-0063); entrada sin esperar activación clásica (R6·c-0019).
+- Motivo visible en 1h (otras velas "no concuerdan con el horario de apertura"); 5m da el minuto exacto (R13·c-0040, c-0036).
+
+### B9. Inside candle
+- Definición operativa: vela que no ha tomado NI el high NI el low de la vela anterior (ch09, R8·c-0084).
+- Regla: "tú no haces nada: no compras, no vendes" (c-0084); baja la probabilidad (c-0026, c-0034, c-0090); aplica en cualquier TF, también 1h (c-0033).
+- Habilitación: cuando la vela toma el low/alto y crea el rango (c-0085, c-0081); esperar la vela que tome algún extremo (c-0086); resolución ideal: siguiente vela toma high y reacciona dejando mecha → rango bajista + confirmación (c-0035, c-0036).
+- Con noticias: inside + noticia = riesgo de whipsaw (ch10, c-0192).
+
+### B10. Red flags (lista completa ch09, con fuerza)
+1. Rangos en contra / velas que abren al revés — FUERZA DURA (dicha sin hedge, acotada al escenario): "nunca" buscar longs ahí arriba (c-0007), "no podemos estar tomando longs" (c-0012); dura hasta que el rango reinicie o cree pendiente a favor (c-0011); sobre todo en horas clave 3, 5, 8 y 9 ("quizá 8 quitaría", c-0003); a las 5, nuevo alto simultáneo en 6h/4h/3h/2h/1h/12h puede crear rangos bajistas (c-0010); gestión: parciales + break even (c-0015), cerrar y reentrar cuando vuelvan a favor (c-0078).
+2. Inside candles — FUERZA DURA (pausa operativa): no hacer nada (c-0039, c-0084); ver B9.
+3. Objetivo ya tomado — PROBABILÍSTICA: no entrar donde ya se tomaron objetivos (c-0040, c-0044, c-0046); "la probabilidad es mucho más baja" (c-0045, c-0101, c-0103); cada entrada es una salida (c-0048, c-0049); variante sesión: levantarse con objetivo (1D/2D/1S) ya tomado = red flag para esa sesión (c-0051, c-0053); más fácil operar hacia el objetivo que desde él (c-0052, c-0104); excepción de riesgo consciente (c-0107, c-0108, ch09 R9); venta tras objetivo clara si se formaron bajistas "por todos lados" (c-0124, c-0125).
+4. Par correlacionado ya tomó su target — PROBABILÍSTICA: si un par llegó y el otro no, red flag para operar el segundo (c-0126–c-0128, c-0130, c-0131); mitigación: beneficios o break even cuando uno de los dos llega (c-0129).
+5. Sesión: venir de expansión en la vela de las 21 (Asia) → London baja la probabilidad (c-0060, c-0061); secuencia deseada 1(TS)→5(expansión) (c-0057); si expande la 1, esperar TS de reversal en la 5 y expansión a las 9 (c-0058); "expansión, expansión, expansión" no [UNCERTAIN c-0063].
+6. Vela de las 9 abriendo en contra → red flag para el short; tomar cuando se forme el rango 4h a favor (ch09, R7·c-0073, c-0074).
+7. En noticias: mismas red flags; exigir rangos a favor, no inside, DOLs intactos (ch10, c-0189–c-0195); sin TS = red flag de whipsaw (ch10, c-0062).
+- NOT_IN_SOURCE: métrica numérica de "probabilidad" (fuerzas cualitativas; el "100% que va a llegar" de c-0100 es hipérbole, ch09 documentation §8).
+
+### B11. Confirmaciones
+- Pares de confirmación según la noticia: noticias USD → pares USD en la misma dirección; pares inversos al revés; todos bullish para comprar (ch10, R6·c-0028, c-0029, c-0031; R7·c-0035, c-0036).
+- Order block como confirmación de cambio de tendencia (ch04, R8·c-0039; ch01, c-0106, c-0108 — uso en M15).
+- Confirmación en M30 si la 15m duda porque la 4h no cerró (ch04, R23·c-0099).
+- Confirmación de rango bajista tras inside: siguiente vela toma high, reacciona dejando mecha (ch09, c-0035, c-0036).
+- No entrar sin confirmación de nuevos rangos bajistas (ch08, R15·c-0084).
+- DXY como confirmación: bullish en EUR → bearish en DXY, "ya os lo puedo asegurar" (ch05, c-0085; ch10, c-0186, c-0187).
+
+### B12. Horas clave (America/New_York)
+- 5:00 — abren 90m/2h/3h/4h/6h/12h: nuevos rangos y Power of 3; propensa a Turtle Soups; reversión/retracement/continuación (ch02, R3·c-0010, c-0024).
+- 17:00 — igual que las 5 + vela de 8h (ch02, c-0022; c-0014: 12h abre 17 y 5).
+- 3:00 — 1h+2h; intrasesión/London; expansión frecuente (ch02, R3; c-0018).
+- 8:00 — aperturas USA; noticias 8:30 (ch02, R3); noticias del dólar 8:30/8:45 (ch07, c-0153).
+- 9:00 — nueva vela 4h y 8h (ch02, R3; ch07, c-0145).
+- Velas de sesión 4h: 21 / 17 / 1 (la 1 = London) (ch07, c-0002, c-0003); en 6h: 23 / 17 / 11 (ch07, c-0009); en 6h la 23 engloba London y la 5 engloba NY (ch02, c-0067).
+- Precaución/salida en horas clave: al tomar alto/bajo en hora clave se crea rango a favor o en contra → "mejor salir con precaución y asegurar" (ch02, R4·c-0064, c-0063).
+- Horas clave donde no quieres rango en contra: 3, 5, 8, 9 (ch09, c-0003).
+- Entrada al gráfico: 2:30 para London (ch07, c-0006); 1:00 en día con noticia a las 2 (ch10, c-0043); "justo a las 8" antes de noticia 8:15 (ch10, c-0166).
+- NOT_IN_SOURCE: tratamiento de cambio de horario (DST) — la fuente dice "hora New York (UTC-4)" (ch02, c-0012); usar America/New_York es decisión de implementación.
+
+### B13. Salidas
+- El objetivo (take profit en el objetivo/DOL) (ch04, R24·c-0113; ch08, R4: entrar antes de completados → mejor ratio).
+- La nueva vela de las 5 — "punto aún más óptimo"; puede no girar y seguir hasta girar a las 5 (ch04, R24·c-0113, c-0114); salida por tiempo: si no llega al objetivo, salir en la vela de las 5 cerca del target; último parcial puede correr (ch07, R14·c-0075–c-0077).
+- Entry Model: gestionar la salida por 30 minutos — si en 30m hay rango clean, usar el de 30m (ch04, c-0110). [Contenido completo del Entry Model: NOT_IN_SOURCE.]
+- En vivo: salir en el alto de la nueva vela por seguridad para que no se cree rango en contra (ch04, R20·c-0091); rangos bajistas en 4h/3h/2h al llegar a la zona = salida del long (y entrada del short) (ch04, R25·c-0115, c-0117).
+- Gestión: break even al ver completarse el movimiento / formarse rango en contra (ch03, R15·c-0106, c-0199; ch08, R11·c-0077, c-0080; ch08, R17·c-0044, c-0063); parciales por objetivos intermedios (ch03, c-0088), en nuevos extremos de nuevas velas (c-0166), por posible rango en contra (c-0169); break even + parciales tras completar un rango (ch09, c-0117, c-0120); BE no es razón para cerrar con objetivo claro (ch07, R17·c-0131); dos velas de 15m fuertes en contra justo al tomar → salir (ch08, R13·c-0068); SMT/DXY: salir o parciales si DXY toma objetivo antes (ch05, c-0096, c-0097).
+- Horas clave: salir con precaución (ch02, R4).
+
+### B14. Order block / PDM
+- Order block: una vela alcista que CIERRA por fuera de la última vela bajista (sobre tendencia bajista; espejo para shorts) (ch01, R30·c-0107).
+- Entrada: una vez la vela cierra por fuera → tomar long (ch01, R32·c-0110, c-0112; ch04, R7·c-0034); confirma que "el precio ya no baja más", aunque no es la ideal (ch04, c-0036); uso del instructor para confirmaciones en TF baja, M15 (ch01, R31·c-0106, c-0108).
+- Tras failure swing: el order block creado tras el fallo puede ser el cambio de tendencia; en 15m se puede esperar (ch06, R12·c-0038, c-0041, c-0047).
+- PDM (ch03 lo define): en alcista, el precio se apoya en el low del rango sin romperlo y lo usa de soporte para subir (ch03, R14·c-0092); con PDM + reacción alcista NO se vende aunque el DOL esté abajo (c-0213). Uso espejado en bajista: "la reacción en el alto del rango" (ch04, c-0017); entrada de short exigiendo respeto del nivel (ch04, R22·c-0096, c-0097); "no pasan muchas veces" (c-0096). Expansión de la sigla: NOT_IN_SOURCE (q-ch03-004).
+- Orden de precedencia en entradas: TS → PDM/order block → Power 3 de TF menor + pendiente (ch04, R4).
+
 ---
-type: doc
-schema_version: 1
-status: active
-area: "[[Echo]]"
-related:
-  - "[[Echo Futures]]"
-aliases:
-  - clutifx objective detectors
-  - detectores objetivos clutifx
-tags:
-  - kind/doc
-  - area/echo
-  - tech/strategy-research
-created: "2026-10-23"
-updated: "2026-10-23"
----
 
-# CLUTIFX-OBJECTIVE-DETECTORS — Biblioteca de detectores matemáticos candidatos
+## Fixtures obligatorias de conformance (P2)
 
-FASE C de la misión GOD. Objetivo: **ninguna condición material del catálogo queda sin traducción computable o sin bloqueo explícito**. Cada detector declara: fórmula, inputs, timeframe, ventana/warmup, causalidad, riesgo de lookahead, parámetros experimentales y qué hipótesis contrasta realmente.
-
-## 0. Metodología — tres niveles nunca mezclados
-
-- **SOURCE**: lo que el instructor dijo/mostró (claim-id). Si el SOURCE ya es computable, el detector se llama `NATIVO` y las alternativas son refinamientos de tolerancia, no sustitutos.
-- **OPERATIONALIZATION**: representación matemática del SOURCE con elecciones libres mínimas (tolerancias, ventanas) que el SOURCE no fijó. Se marca `[OP]`.
-- **RESEARCH HYPOTHESIS**: alternativa propuesta por el agente NO atribuida al instructor (p.ej. usar EMA donde él dijo "movimiento alcista"). Se marca `[HIP]`. **Nada `[HIP]` puede presentarse como enseñanza Clutifx.**
-
-Convención NQ: precios en ticks (1 tick = 0.25); `A` = ATR(14) Wilder de la TF indicada; barras 1m como fuente única (sin ticks en corpus — ver master §8); todas las horas ancladas a `America/New_York` IANA con DST (el "UTC-4" del curso es supuesto didáctico); barras compuestas (3h/4h/6h/8h/12h/1D+) construidas desde 1m con anclaje a la hora de apertura dicha (17/21/01/05/09/13 para 4h; etc.).
-
-## 1. Rango formado (CLF-CMP-001) — detector NATIVO
-
-- **SOURCE**: vela toma extremo de la vela anterior y cierra dentro (ch01 c-0005/c-0006/c-0009). Borde ch07 c-0065: cierre apenas fuera puede contar; ch02 c-0035: tras TS+reacción no se exige cierre; ch06 c-0028: FS activa sin toma.
-- **Fórmula base** (por TF T, vela i): `rango_alcista(i) := L(i) ≤ L(i-1) ∧ H(i) < H(i-1) ∧ C(i) > L(i-1)` — i.e., la vela i toma (toca o perfora) el low anterior y cierra dentro del rango `[L(i-1), H(i-1)]`; espejo para bajista con el high. Dirección = extremo tomado.
-- **Inputs**: OHLC de TF T. **Causalidad**: evaluada sólo al cierre de la vela i (o intrabar para la variante TS+reacción, §2). **Lookahead**: NINGUNO si se evalúa al cierre; la variante intrabar exige estado streaming.
-- **Parámetros experimentales `[OP]`**: ε-tolerancia del "cierra dentro" (0 ticks estricto / 1 tick / ε=max(1 tick, 0.05·A_T) para el borde c-0065); "toma" = tocar (L ≤ L_prev) vs perforar (L < L_prev) vs cerrar bajo (C < L_prev) — tres lecturas materialmente distintas; flag `sin_cierre` para la variante TS+reacción.
-- **Completitud** (ch01 c-0078): rango completado cuando `H(i..k)` y `L(i..k)` ambos alcanzaron los extremos del rango ⇒ se elimina. **Invalidación** (c-0076): cierre fuera del rango ⇒ eliminado (con la excepción ε).
-- **Tests**: contra-ejemplos sintéticos (toma sin cierre, cierre sin toma, borde ε); idempotencia del estado de rangos activos; recomputo desde cero vs incremental idéntico.
-
-## 2. Reacción del Turtle Soup (CLF-CMP-005) — la parte discrecional del TS
-
-- **SOURCE**: TS = toma del extremo + reacción hacia el lado contrario (ch01 c-0059/c-0063); "si sigue bajando, no es TS". La "reacción" NO está definida operativamente por el instructor ⇒ aquí vive la discrecionalidad a objetivizar.
-- **Detectores candidatos de "reacción"** (todos `[OP]/[HIP]`):
-  - **R1 [OP] — Retracement de la mecha**: tras tocar el extremo E en la vela i (1m o TF T), el precio retrocede ≥ ρ·(mecha desde E) dentro de la vela o de las siguientes w velas; ρ ∈ {0.38, 0.5, 0.618} como grid experimental, w ∈ {1, 3, 5} velas de la TF.
-  - **R2 [OP] — Cierre direccional**: la vela que toma E cierra en la mitad superior (para toma de low) del propio rango previo; equivale a "cierra dentro" del detector §1 sin exigirlo por separado.
-  - **R3 [HIP] — Momentum corto**: el retorno acumulado de las siguientes m minutos 1m (m ∈ {5, 15}) tras el toque es > 0 (low) / < 0 (high) y supera k·σ_m (k ∈ {0.5, 1.0}) con σ de ventana rodante 20 días.
-  - **R4 [HIP] — Estructura de swing**: se forma un pivot confirmado (fractal de orden n ∈ {2,3}) en dirección contraria dentro de w velas.
-- **Causalidad**: R1/R3 evaluables intrabar con 1m; R2 exige cierre de vela (la versión "no esperar cierre" ch04 c-0027 es intrabar por diseño ⇒ en backtest 1m, "intrabar" = resolución 1m, declarado como cota de fidelidad).
-- **Lookahead**: NINGUNO si la ventana w sólo usa velas posteriores al toque, ya cerradas al momento de decisión.
-- **Hipótesis que contrasta cada uno**: si la "reacción" del instructor es (retracement) vs (cierre) vs (momentum) vs (estructura) — las señales resultantes difieren en timing y en falsos positivos; el experimento mide cuál reproduce mejor la OCURRENCIA enseñada (no la rentabilidad).
-
-## 3. Bias / "movimiento alcista-bajista" (pipeline ch03/ch08) — NATIVO por conteo + alternativas
-
-- **SOURCE**: el bias se obtiene por PROCEDIMIENTO: marcar rangos bajando TFs; "normalmente el bias lo dan 6h–3D" (ch03 c-0050); "construir una narrativa" (ch08 c-0069); HTF manda (ch02 c-0088). El instructor NO usa indicadores.
-- **Detector NATIVO [OP en tolerancias] — Cadena de rangos**: para cada TF T ∈ {12h, 8h, 6h, 4h, 1D, 2D, 3D}: `bias(T) = sign(Σ rangos activos alcistas − rangos activos bajistas)` con la vela de la izquierda pesando más (ch03 c-0059: doble peso al rango más antiguo, `[OP]`). `bias_sesión = mayoría ponderada de bias(T)` con quórum q `[OP]` (p.ej. ≥ 60% del peso). TFs con rangos enfrentados ⇒ TF "sin narrativa" (ch08 c-0050), excluida del voto.
-- **Alternativas `[HIP]` para "contexto alcista" cuando se quiera contrastar la cadena nativa**:
-  - Familia A — medias: Close > EMA(n) ∧ EMA'(n) > 0 (n ∈ {20, 50}); EMA rápida > EMA lenta; separación EMA20−EMA50 normalizada por A.
-  - Familia B — estructura: HH+HL confirmados en los últimos k swings (k ∈ {2,3}); ruptura del máximo previo conocido; pendiente OLS de closes de ventana w normalizada por A.
-  - Familia C — fuerza direccional: +DI > −DI con ADX > umbral (ADX mide fuerza, NO dirección — condición compuesta obligatoria); momentum acumulado w velas / A.
-- **Warmup**: cadena nativa necesita ~2 velas por TF (máx 1D→2 velas = 2 días + margen de rangos activos: warmup 5 días de 1m es suficiente para TFs ≤ 1D; para el "1 año desde cero" de ch08 el warmup formal es 1 año, pero el bias de sesión sólo consume 12h–3D ⇒ warmup 4 días).
-- **Lookahead**: los pivotes/swings de las familias B usan confirmación retrospectiva — exigir que el swing esté confirmado por n velas cerradas antes del instante de decisión.
-- **Parámetros experimentales**: conjunto de TFs votantes; pesos; quórum; tratamiento de TFs enfrentados (excluir vs voto 0).
-
-## 4. DOL identificado (CLF-CMP-007) — NATIVO
-
-- **SOURCE**: extremo del rango(s) de TF alta hacia el bias, vela de la izquierda predominando (ch03 c-0070); jerarquía mensual/semanal contexto · 3D-1D DOL medio plazo · 12h-4h DOL sesión (ch03 c-0206–c-0209). Objetivos tomados "ya no sirven" (ch03 c-0007).
-- **Detector NATIVO**: `DOL_sesión = extremo aún no alcanzado del rango activo más antiguo (izquierda) en TFs {12h,8h,6h,4h} en dirección del bias`; `DOL_medio =` ídem en {1D,2D,3D}. "Intacto" = precio actual no lo ha alcanzado desde su formación (tracking por estado).
-- **Alternativas `[HIP]`** para investigación: extremos de sesión previa (high/low del día anterior, weekly open anchors); niveles de liquidez algorítmicos (mayor concentración de volumen por tick del corpus — NO disponible sin datos L2/ticks: `DATA_BLOCKED`); swing highs/lows HTF confirmados.
-- **Causalidad**: el rango dueño debe estar cerrado (o intrabar con reacción si aplica) antes de declarar el DOL. Sin lookahead si el extremo proviene de velas pasadas.
-
-## 5. Expansión fuerte / displacement — `[OP]/[HIP]`
-
-- **SOURCE**: "coger la expansión" (ch02 c-0080); P3 = apertura-manipulación-distribución-cierre (ch01 c-0116); displacement 5m "volando" como señal de BE (ch11 c-0041). "Fuerte" NO cuantificado por el instructor.
-- **Detectores candidatos**:
-  - **E1 [OP] — Rango realizado**: range(window w) / A(w) ≥ k (k ∈ {1.5, 2, 3}), w ∈ {1 vela de TF T, sesión}.
-  - **E2 [OP] — Cuerpo dominante**: |C−O| / (H−L) ≥ 0.6 ∧ (H−L) ≥ k·A.
-  - **E3 [HIP] — Velocidad**: retorno z-score de m minutos |r_m|/σ_m ≥ k en ≤ m minutos.
-  - **E4 [HIP] — Ruptura con desplazamiento**: cierre fuera de un rango activo con cuerpo ≥ 0.6·(H−L) y extensión ≥ k ticks más allá del nivel.
-- Uso en el sistema: confirmar que la vela operable "está expandiendo" (contexto de STR-003), y salida/BE por reacción contraria (§14).
-
-## 6. Power of 3 / ventana de manipulación (CLF-CMP-010) — NATIVO temporal
-
-- **SOURCE**: compras ideales en la etapa de manipulación de la vela (ch01 c-0121); esperar la apertura de la vela clave y entrar en su P3 (c-0122); ejemplos con horas literales.
-- **Detector NATIVO**: ventana temporal `[apertura(T_clave), apertura + δ]` con T_clave ∈ {vela de la 1, de las 5, de las 9, vela de la noticia} (hora NY) y δ `[OP]` = primer 25/33/50% de la vela. La "manipulación" como zona de precio NO tiene detector nativo (el instructor la ve); proxy `[HIP]`: el extremo opuesto de la vela en formación se hace dentro de la ventana (extremo contrario al sentido final) — medible sólo al cierre ⇒ como condición de ENTRADA es parcialmente retrospectiva: implementable como "entrar cuando el precio está en contramovimiento dentro de la ventana" (precio actual en la mitad adversa del rango de la vela en formación `[OP]`), NO como saber dónde acabará la mecha.
-- **Lookahead**: prohibido entrar "en la manipulación" usando el conocimiento de que esa vela terminó distribuyendo a favor — la versión causal entra cuando: (a) ventana activa, (b) bias y estructura a favor, (c) precio en retracement dentro de la vela (fracción del recorrido actual de la vela ≥ ρ).
-
-## 7. Rangos a favor / en contra (CLF-CMP-003/004) — NATIVO
-
-- `en_contra(dir) = ∃ rango activo de dirección contraria a dir en TFs de sesión {4h,1h} (o conjunto experimental)`; `a_favor(dir) = ∃ rango pendiente dir ∧ ¬en_contra(dir)`. Dura "hasta que reinicia o crea pendiente" (ch09 c-0011) ⇒ recomputo por estado de rangos, no por ventana fija. La definición de "activo" (no completado, no invalidado) hereda de §1.
-
-## 8. Vela inside (CLF-CMP-016) — NATIVO trivial
-
-`H(i) < H(i−1) ∧ L(i) > L(i−1)`. Pausa de entrada hasta que una vela tome alguno de los dos extremos (ch09 c-0084/c-0085). Evaluada al cierre; sin parámetros.
-
-## 9. Objetivo tomado (CLF-CMP-017) — NATIVO trivial
-
-`precio_max_desde_formación ≥ DOL` (para DOL alcista). Con el tracking del §4. Red flag de sesión: objetivo 1D/2D/1S ya tomado al inicio de la sesión del día (ch09 c-0053).
-
-## 10. Failure swing (CLF-CMP-011) — NATIVO con parámetros
-
-- **SOURCE**: falla del nuevo extremo + va al otro lado (ch06 c-0004); rango activado sin toma (c-0028); motivos (a) SMT (b) final de vela ("15% final" dicho en un ejemplo ch07 c-0202) (c) feeds.
-- **Detector**: contexto = tendencia hacia extremo E esperado (rango activo apuntando a E). FS confirmado cuando la vela i: (1) hace máximo M con `E − M ≤ ε` (ε ∈ {2 ticks, 0.25·A, 0.5·A} `[OP]`) — "prácticamente al nivel" — o el máximo se produjo en la fracción final f (f ∈ {15%, 25%}) de la vela previa `[OP]`; (2) **reacciona creando rango en la dirección contraria** (detector §1 en la dirección opuesta); entonces el rango se marca ACTIVADO con E como objetivo. El motivo (a) requiere 2º instrumento (§11); el (c) es `DATA_BLOCKED` single-feed.
-- **Causalidad**: la confirmación es la creación del rango de reacción (vela cerrada o TS+reacción intrabar). El "ε casi tocado" se evalúa con datos hasta el instante de decisión. **Anticipar el FS está PROHIBIDO por fuente** (ch06 c-0016): no emitir señal antes del rango de reacción.
-- **Lookahead**: la fracción "final de vela" se computa sobre la vela previa YA cerrada ⇒ causal.
-
-## 11. SMT / divergencia entre instrumentos (CLF-CMP-012/013/014) — bloqueado por datos hoy
-
-- **SOURCE**: 3 casos (ch05 c-0069–c-0083); tolerancia temporal NO dicha (los extremos "se ven" alineados visualmente).
-- **Detector (cuando existan 2 streams sincronizados)**: extremos E_A(t_A), E_B(t_B) de la misma TF con `|t_A − t_B| ≤ τ` (τ ∈ {1 vela, 3 velas, 15m} `[OP]`); caso 1 = rango formado en A en la vela del extremo y en B no (extremo de B no alcanzado en ±τ); caso 3 = pendiente en A, no en B. Negación (c-0076): si el objetivo sigue más allá ⇒ clasificar como pendiente, no SMT.
-- **Estado**: `MULTI_INSTRUMENT_DATA_REQUIRED` (corpus NQ-only). Propuesta NQ↔ES queda como hipótesis de adaptación futura NO enseñada.
-
-## 12. Order block (CLF-CMP-009) — NATIVO simple
-
-- **SOURCE**: confirmación = cierre por fuera de la vela (ch04 c-0034); "última vela opuesta previa a desplazamiento" NO es definición del curso — el curso sólo exige el cierre fuera de la vela de referencia (la vela OB es la que el instructor señala como la de la reacción/cambio).
-- **Detector NATIVO**: dada la vela candidata V (la del extremo/reacción en el rango), `OB_confirmado = cierre(i) > H(V)` (o < L(V)) para la primera vela i > V. Stop de la entrada OB-confirmada: bajo el TS / extremo relevante (ch04 c-0034: "stop loss por debajo del Turtle Soup").
-- **`[HIP]` alternativa**: definición ICT-style (última vela contraria antes del impulso ≥ k·A) — etiquetada como NO Clutifx, disponible para contraste.
-
-## 13. Consolidación / rango realizado estrecho — `[OP]` (para régimen)
-
-`range_realizado(w)/A(w) ≤ k` (k ∈ {0.5, 0.8}) o ADX(14) < 20 `[HIP]` o ancho Bollinger(20,2)/precio en percentil bajo `[HIP]`. Uso: contexto de "tres momentos" (ch09 c-0062) y advertencia de pirámide en consolidación (ch11 c-0070).
-
-## 14. Salida por reacción contraria / BE estructural (gestión)
-
-- **SOURCE**: dos velas 15m fuertes en contra ⇒ salir (ch08 c-0066–c-0068 [probabilística]); BE en puntos de giro estructural (ch11 c-0013/c-0014); displacement 5m ⇒ BE (ch11 c-0041); minuto 59 precaución (ch02 c-0064).
-- **Detectores**: "vela fuerte" = §5-E2 en 15m (cuerpo ≥ 0.6, tamaño ≥ k·A); dos seguidas dirección contraria al trade ⇒ señal de salida técnica (la Strategy la emite como invalidación técnica; el MM decide). BE estructural = al formarse rango en contra (§7) u objetivo tomado (§9) en TF ≥ X (X ∈ {15m, 1h} `[OP]`). Minuto 59 de {3,5,9}: predicado temporal trivial.
-
-## 15. Equivalentes y no-duplicación (FASE E insumo)
-
-- R2 (§2) ⊂ §1 (misma señal con la toma): si R2 activo, §1 activo por construcción ⇒ NO son detectores independientes; documentar solapamiento.
-- E1 ≈ E2 correlacionados en señales (rango grande suele traer cuerpo grande): si la correlación de activaciones en el dataset de control > 0.9, colapsar a una familia (regla de equivalencia observable de `CLUTIFX-EXPERIMENT-MATRIX.md`).
-- Familia A/B/C de bias: contrastan hipótesis DIFERENTES (media vs estructura vs fuerza) ⇒ mantener separadas en TIER 2.
-
-## 16. Riesgos transversales declarados
-
-1. **Resolución 1m**: toda condición "intrabar" del curso (reacción del TS, manipulación del P3, apurar 5m antes de noticia) se evalúa con granularidad 1m Last; sin ticks, los fills intrabar y el detalle de mechas son una COTA. Declarar en cada spec.
-2. **Offset horario**: hora NY del curso anclada a IANA con DST; las velas 4h/8h del curso suponen hour-anchoring NY (17/01/05/09) que difiere del grid CME Chicago 17:00 CT en DST-edge days — el anclaje ES una decisión experimental del eje H (dos alternativas: NY-anchored literal vs CME-native grid).
-3. **Warmup**: por TF compuesta T, ≥ 2·(periodo de indicador) + margen de rangos; estándar propuesto: 5 días para sesiones; 10 para 1D-3D votantes.
-4. **Estado mínimo persistido por estrategia**: set de rangos activos por TF (id, extremos, dirección, dueño-izquierda, completitud), DOLs activos con intact-flags, TS recientes por TF, flags de sesión (inside, objetivo tomado, rangos en contra), posición del episodio actual.
+Para cada detector: secuencias OHLC controladas con `input bars / known information at decision_time / expected detector state / expected Signal / expected technical stop / expected lifecycle transition`. Casos mínimos: rango con vela NO adyacente (1 y varias intermedias); rangos superpuestos y enfrentados (TF ignorada, ch08 R5); orden completitud vs invalidación (cierre fuera vs low+high); DOL ya tomado; TS sin reacción; sweep con reacción posterior; expansión sin confirmación causal; pivot no confirmado; FS legítimo (3 motivos) vs falso; señal antes de cierre válido (debe FALLAR); LONG vs SHORT espejo; cruces de sesión y DST; cambio de contrato (rollover, CycleAware); warmup insuficiente (NOT_READY); gaps; config inválida (error); rearme/reentrada; emisión duplicada (rechazada); decisiones simultáneas (orden determinista).

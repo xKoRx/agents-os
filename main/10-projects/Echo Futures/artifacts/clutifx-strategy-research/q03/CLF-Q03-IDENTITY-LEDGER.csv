@@ -1,0 +1,24 @@
+strategy_id,variant_id,signal_family_id,profile_id,tier,estado_q03,fuente,gates_g0_g4,datos_requeridos,sha_codigo_config,recibos_fisicos,bloqueos
+CLF-STR-001,CLF-VAR-C01,CLF-FAM-001,SG-R500,T1,IMPLEMENTADA y gateada Q03 (London ideal; 3 escenarios vía sopa-previa+ventana),SOURCE (ch07; matriz C01),G0-G3 PASS G4 en ola,corpus NQ ok,fb950d68/04cf933b,q03/receipts + q03/out-{g2,g3,g4},ninguno
+CLF-STR-003,CLF-VAR-C03,CLF-FAM-001,SG-R500,T1,IMPLEMENTADA y gateada Q03 (NY continuación; DOL-no-tomado+ventana-9:00),SOURCE (ch07; matriz C03),G0-G3 PASS G4 en ola,corpus NQ ok,fb950d68/04cf933b,q03/receipts + q03/out-{g2,g3,g4},ninguno
+CLF-STR-004,CLF-VAR-C04,CLF-FAM-001,SG-R500,T1,IMPLEMENTADA y gateada Q03 (NY reversal; tomado-en-London+opuesto-5:00),SOURCE (ch07; matriz C04),G0-G3 PASS G4 en ola,corpus NQ ok,fb950d68/04cf933b,q03/receipts + q03/out-{g2,g3,g4},ninguno
+CLF-STR-002,CLF-VAR-C02,CLF-FAM-002,SG-R500,T1,SIN CAMBIO (control Q01; compatibilidad de sesión SESSION_COMPATIBLE re-verificada sobre su traza),SOURCE/OP,G0-G3 PASS G4 NO_PASS,NQU6 sellado,83a9b84c/7ec9e425,qualification/receipts (9),ninguno
+CLF-STR-002,CLF-VAR-S09,CLF-FAM-002,SG-R500,T2,SIN CAMBIO (alias de ejecución NQU6 de C02; censo físico mantiene ambas compras),SOURCE/OP,G0-G3 PASS G4 NO_PASS,NQU6 sellado,83a9b84c/7ec9e425,qualification/receipts,ninguno
+CLF-STR-002,CLF-VAR-S01,CLF-FAM-002,SG-R500,T2,SESSION_INCOMPATIBLE (gate FASE 2 sobre traza G4 real: 4/4 señales fuera de ventana),SOURCE/OP,G0-G3 PASS G4 NO_PASS (no G4 adicional),NQU6 sellado,83a9b84c/7ec9e425,qualification/receipts + q03/session-compatibility,ventana
+CLF-STR-002,CLF-VAR-S02,CLF-FAM-002,SG-R500,T2,SESSION_INCOMPATIBLE (ídem 4/4),SOURCE/OP,G0-G3 PASS G4 NO_PASS (no G4 adicional),NQU6 sellado,83a9b84c/7ec9e425,qualification/receipts + q03/session-compatibility,ventana
+CLF-STR-002,CLF-VAR-S17,CLF-FAM-002,SG-R500,T2,SESSION_INCOMPATIBLE (ídem 4/4),SOURCE/OP,G0-G3 PASS G4 NO_PASS (no G4 adicional),NQU6 sellado,83a9b84c/7ec9e425,qualification/receipts + q03/session-compatibility,ventana
+CLF-STR-002,CLF-VAR-S03..S21 (13 variantes Q02),CLF-FAM-002/006,SG-R500,T2/T3,SIN CAMBIO (QUARTER_NO_PASS Q02; censo y session-compat re-verificados),SOURCE/OP,G0-G3 PASS G4 NO_PASS,NQU6 sellado,83a9b84c/7ec9e425,q02/receipts + q03/session-compatibility,ninguno
+CLF-STR-006,CLF-VAR-C06,CLF-FAM-006,SG-R500,T1,SIN CAMBIO (0 señales genuinas),SOURCE/OP,G0-G3 PASS G4 NO_PASS,NQU6 sellado,83a9b84c/7ec9e425,qualification/receipts,ninguno
+CLF-STR-009,CLF-VAR-C07,CLF-FAM-002,SG-R500,T1,SIN CAMBIO (QUARTER_NO_PASS Q02),SOURCE/OP,G0-G3 PASS G4 NO_PASS,NQU6 sellado,fb950d68 (re-compila),q02/receipts,ninguno
+CLF-STR-005,CLF-VAR-S12 (=C05),CLF-FAM-002,SG-R500,T2,SIN CAMBIO (QUARTER_NO_PASS Q02; alias C05),SOURCE/OP,G0-G3 PASS G4 NO_PASS,NQU6 sellado,q02/receipts,ninguno
+CLF-STR-005,CLF-VAR-S13,CLF-FAM-002,SG-R500,T2,SIN CAMBIO (QUARTER_NO_PASS Q02),SOURCE/OP,G0-G3 PASS G4 NO_PASS,NQU6 sellado,q02/receipts,ninguno
+CLF-STR-005,CLF-VAR-T01,CLF-FAM-002,SG-R500,T3,SIN CAMBIO (QUARTER_NO_PASS Q02; compra re-contada por el censo Q03 — fila faltante en el CSV Q02),SOURCE/OP,G0-G3 PASS G4 NO_PASS,NQU6 sellado,q02/receipts + q03/census,ninguno
+CLF-STR-006,CLF-VAR-S14,CLF-FAM-006,SG-R500,T2,ALIAS de C06 (sin corrida),SOURCE/OP,hereda,NQU6 sellado,config-identidad,-,ninguno
+CLF-STR-009,CLF-VAR-S18,CLF-FAM-002,SG-R500,T2,ALIAS de C02 (sin corrida),SOURCE/OP,hereda,NQU6 sellado,config-identidad,-,ninguno
+CLF-STR-005,CLF-VAR-C05,CLF-FAM-002,SG-R500,T1,ALIAS de S12 (sin corrida),SOURCE/OP,hereda,NQU6 sellado,equivalencia declarada,-,ninguno
+CLF-STR-003,CLF-VAR-S08,CLF-FAM-001,SG-R500,T2,DEPENDENCIA RESUELTA (C03 implementada Q03) — exige su propio G0-G4 en ciclo posterior,SOURCE/OP,sin gates,corpus NQ ok,-,-,ciclo posterior
+CLF-STR-004,CLF-VAR-T03,CLF-FAM-001,SG-R500,T3,DEPENDENCIA RESUELTA (C04 implementada Q03) — exige su propio G0-G4 en ciclo posterior,SOURCE/OP (hipótesis registrada),sin gates,corpus NQ ok,-,-,ciclo posterior
+CLF-STR-002,CLF-VAR-T02,CLF-FAM-002,SG-R500,T3,BLOCKED_SPEC (sin ancho de stop declarado en fuente),SOURCE/OP,sin gates,corpus NQ ok,-,-,falta stop_extra_ticks
+CLF-STR-007,CLF-VAR-C08,-,-,T1,BLOCKED_DATA (SMT sin segundo instrumento),SOURCE,con fixtures,PROHIBIDO sustituto NQ,-,-,ES/YM/DXY
+CLF-STR-008,CLF-VAR-C08,-,-,T1,BLOCKED_DATA (noticias sin calendario),SOURCE,con fixtures,PROHIBIDO inferir,-,calendario economico
+CLF-STR-007/008,CLF-VAR-T05,-,-,T3,BLOCKED_DATA (noticias×TS),SOURCE/OP,sin gates,PROHIBIDO fabricar,-,-,calendario economico

@@ -7,7 +7,7 @@ slug: "00-index-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: "2026-08-10"
-updated: "2026-10-24"
+updated: "2026-10-25"
 reviewed: "2026-09-17"
 aliases:
   - "00-index index"
@@ -72,3 +72,14 @@ Desde 2026-09-12 las skills de dominio y transversales viven aquí (migradas des
 
 - [[30-resources/00-RESOURCE-WIKI|Reglas de la Resource Wiki]]
 - `log.md` — bitácora cronológica de este dominio
+
+## Diseño de campañas SQX
+
+- [[30-resources/agents/skills/sqx144-campaign-design/SKILL.md|sqx144-campaign-design]]: hipótesis, catálogo real, diseño de presets y sondas en SQX 144; no opera campañas por sí sola.
+
+- [[30-resources/agents/skills/imox-strategy-research/SKILL.md|imox-strategy-research]]: roadmap, campañas, cobertura y mejora basada en evidencia; complementa el diseño de presets.
+
+## Registro de conocimiento de comunidades
+
+- [[Registro de conocimiento de comunidades]] — contrato de identidad, estados, utilidad y tiempo.
+- [[30-resources/agents/skills/community-knowledge-ingest/SKILL.md|community-knowledge-ingest]] — procedimiento de revisión por lote con cobertura comprobable.
