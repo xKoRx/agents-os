@@ -6,108 +6,129 @@ area: "[[Meli]]"
 related:
   - "[[Import de Refreshable Materialized Views externas]]"
   - "[[rio-playmaker]]"
+  - "[[10-projects/Meli/Import de Refreshable Materialized Views externas/Descripción PR — rio-controlplane-clickhouse]]"
+  - "[[10-projects/Meli/Import de Refreshable Materialized Views externas/Descripción PR — ads-signals-frontend]]"
+  - "[[10-projects/Meli/Import de Refreshable Materialized Views externas/Descripción PR — lore]]"
 aliases: []
 tags:
   - kind/doc
   - project/import-de-refreshable-materialized-views-externas
 created: "2026-10-21"
-updated: "2026-10-21"
+updated: "2026-10-24"
 ---
 
 # Descripción PR — rio-playmaker
 
-rio-playmaker · `feature/refreshable-view-import` @ `74bcdde08a1dce9ec3000db1588ad464f439d5c3` · base `origin/develop` @ `f1a4b246d74e679dd81718513b50b56818bd1deb` · [PR draft #1328](https://github.com/melisource/fury_rio-playmaker/pull/1328) · 5 files, 92 insertions, 28 deletions · SIG-700 / SIG-702 · `./scripts/run-agentic-testing-contract.sh` PASS; `./gradlew test jacocoTestReport` PASS (4,933 tests, 0 failures, 2 skipped) on 2026-10-21.
+rio-playmaker · `feature/refreshable-view-import` @ `15c359560` (pusheado con `--no-verify` autorizado por el owner, 2026-10-24; CI verde; ready for review) · base del PR `origin/feature/rio-e2e-local-flink` @ `9045e81fa6195c612171cb59f624aa50c7854be9` · 23 commits · 19 files changed, 985 insertions(+), 57 deletions(-) · [draft #1328](https://github.com/melisource/fury_rio-playmaker/pull/1328) · SIG-700 / SIG-702 · `test` 5194 tests / 3 skipped, `localTest` 64, contrato 64 selectores + 2 checks L0 (2026-10-24) · versión de prueba vigente `0.0.1-import-ref-view-ch`.
+
+> [!warning] Bloqueantes
+> **Push bloqueado por el gate Cleric (preparado hasta donde depende de esta rama):** la rama está sincronizada con la base #1332 (`dcabdc55a`, que ya trae develop y la suite nativa) y agrega el escenario nativo `junit-evidence/at-100-s11` (regenerado desde el catálogo; suite nativa 237/237, `CLEANUP_CERTIFIED`). El gate directo ya no reclama escenarios; con el perfil readonly configurado el siguiente bloqueo es "Tooling changes require added/modified committed declared Node E2E tests", disparado por `build.gradle` heredado de #1332, que nunca pasó por el gate (se pusheó desde un checkout sin hooks de Grimoire). Pasos restantes, en orden: (1) mergear #1332 a develop (requiere review); (2) sincronizar esta rama con develop; (3) `./local/test-lore.sh --gate` dejando API y worker vivos; (4) configurar `.grimoire/lore-readonly.local.json` y `.sdd/config.json` con el endpoint MCP que imprime el launcher; (5) `git push` normal. `--setup` necesita el alias SSH `github.com-emu` o un `insteadOf` temporal.
+> **Versión de prueba:** no se creó una nueva versión porque la rama no está publicada; `0.0.1-import-ref-view-ch` (`74bcdde`) ya contiene el único cambio de runtime. Los commits posteriores son tests, manifiesto y tooling local.
 
 ## Propósito
 
-Preparar el texto del PR de rio-playmaker para el slice de import de refreshable views, con la evidencia del gate final local y los pendientes de E2E conjunto y revisión del owner.
+Conservar el cuerpo verificable del PR junto al proyecto, con el template del repo y enlazado a los PRs hermanos.
 
 ## Contenido
 
-El cuerpo siguiente sigue el template de `.github/pull_request_template.md` y es el texto publicado en el PR draft #1328.
+Cuerpo del PR listo para pegar, seguido de notas internas que no van al PR.
 
 ---
 
 ## Description
 
-feat(actions): allow refreshable view description before component creation
+`feat(actions): allow refreshable view description before creation` lets the frontend describe a ClickHouse refreshable view through Playmaker, both before the component exists and for persisted ref-views that are not imported from another data product. Imported ref-views stay rejected. This PR is one part of SIG-700, together with [ClickHouse control plane #362](https://github.com/melisource/fury_rio-controlplane-clickhouse/pull/362) and [frontend #816](https://github.com/melisource/fury_ads-signals-frontend/pull/816).
 
-The refreshable import form needs to inspect an external view before it creates a component. Allow the exact `clickhouse-ref-view` / `describe-materialized-view` read pair while keeping warehouse and database listing on the existing `clickhouse-mergetree` pair. This is the rio-playmaker portion of SIG-700; control plane and frontend changes remain separate.
+The feature was developed on top of the local RIO ecosystem E2E ([#1332](https://github.com/melisource/fury_rio-playmaker/pull/1332), this PR's base): the import journey is a Lore case that drives the real frontend against local Playmaker and control planes, using the drag-and-drop tool from [Lore #21](https://github.com/melisource/fury_lore/pull/21).
 
-* Add the refreshable description pair to the reviewed read-action configuration and declare AT-100-S09 in the testing manifest.
-* Cover pre-creation dispatch with the real application YAML and authorization provider, rejected read and mutation pairs, and the existing imported-reference rename guard.
+Changes:
+*  `application.yml`: add `clickhouse-ref-view` / `describe-materialized-view` to the reviewed read actions, without `allow-imported`. This is the only runtime change.
+*  Tests load the real `application.yml` and pin the configured read and dispatch action sets exactly, including `allow-imported`. Imported ref-views are denied both by source component and by `IMPORTED` status.
+*  New local E2E case `clickhouse-refreshable-view-import` (`.lore/ecosystem`, local tooling only): import and save from an empty pipeline, first deploy, reprovision and read-only after deploy, with eight backend checks on Playmaker, Kafka results and ClickHouse.
+*  Native Lore evidence: the `junit-evidence/at-100-s11` scenario now also selects the ref-view permission tests (17 methods), regenerated from the repository catalog and declared as impacted in `.testing/impact.json`.
+*  Runner: host services run in screen sessions named after the run owner, and their process identity and group are checked before signaling. Teardown removes only resources recorded by the run, including the second broker's anonymous volumes. The seed receipt is reset per stack, and deployment checks count distinct completed deployments exactly.
+
+```mermaid
+flowchart LR
+  FE[Frontend<br/>Import external refreshable view] -->|describe-materialized-view| PM[Playmaker<br/>action authorization]
+  PM -->|action trigger| CP[ClickHouse CP<br/>describe]
+  FE -->|save + deploy| PM
+  PM -->|deployment trigger| CP2[ClickHouse CP<br/>import without recreate]
+  classDef new fill:#fff3bf,stroke:#f08c00
+  class PM new
+```
 
 ## Dev checklist (should be completed by the developer assigned to the issue)
 
-* [ ] I have met the definition of done — this slice awaits cross-app verification and owner review.
-* [x] I have used conventional commits.
-* [x] My code follows the style guidelines of this project.
-* [x] I have performed a self-review of my own code.
-* [ ] I have commented portions of my code, particularly in hard-to-understand areas — the configuration and tests need no new comment.
-* [x] I updated the applicable canonical documentation, or documented why it is unchanged — AT-100-S09 already describes declared read pairs; its manifest is updated.
-* [x] After my changes were applied the app is still buildable.
-* [ ] My changes generate no new warnings (linters, code quality) — Gradle emitted deprecation and Unsafe warnings; their baseline provenance was not rechecked.
-* [x] I have added tests that prove my fix is effective or that my feature works.
-  * [x] Unit testing is a must.
-  * [ ] Integration testing is recommended — existing tests cover the service and provider; no new integration case was added.
-* [x] New and existing unit tests pass locally with my changes.
-* [ ] Any dependent changes have been merged and published in downstream modules — other app slices are in progress.
-* [x] I have updated my current branch with changes made in develop/master previously — the worktree starts at the current `origin/develop` baseline.
-* [ ] I already deployed this branch in the pre-production environment — no deployment was requested.
+* [ ] I have met the definition of done — pending owner review of SIG-700 open questions PA-1 to PA-5
+* [x] I have used [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+* [x] My code follows the style guidelines of this project
+    * [Java Fury Guideline](https://furydocs.io/code-quality/latest/guide/#/languages/java)
+    * [Deep Source Java Guideline](https://deepsource.com/blog/java-code-review-guidelines#10-override-hashcode-when-overriding-equals)
+* [x] I have performed a self-review of my own code
+* [x] I have commented portions of my code, particularly in hard-to-understand areas
+* [x] I have made corresponding changes to the documentation (`README.md`, `DEV.md`, `CHANGELOG.md`). — `.lore/ecosystem/README.md` and the authoring skill
+* [x] After my changes were applied the app is still buildable
+* [ ] My changes generate no new warnings (linters, code quality) — not measured separately from the build
+* [x] I have added tests that prove my fix is effective or that my feature works
+    * Unit testing is a must
+    * Integration testing is recommended
+* [x] New and existing unit tests pass locally with my changes
+* [ ] Any dependent changes have been merged and published in downstream modules — base #1332 and sibling PRs are open
+* [x] I have updated my current branch with changes made in develop/master previously — synchronized with the base branch
+* [ ] I already deployed this branch in the pre-production environment — test version created, not deployed
 
 ## Code Review checklist (must be completed by the code reviewer)
 
 * [ ] Is it the issue being completed?
-  * [ ] Is the Acceptance criteria met?
-  * [ ] Is the issue ready, according to the project’s Definition Of Done?
-* [ ] Is the code good in style?
-  * [ ] Are linters used?
-  * [ ] Is it clear what a given class/method/function does?
-  * [ ] Do names reflect what code does?
-  * [ ] Are functions elegant?
+    * Is the Acceptance criteria met?
+    * Is the issue ready, according to the project’s Definition Of Done?
+
+* [ ] Is the code good in style? (Easy to read, follows good practices and our style guide)
+    * Are linters used?
+    * Is it clear what a given class/method/function does?
+    * Do names reflect what code does?
+    * Are functions elegant?
+
 * [ ] The code runs correctly? (Optional)
-  * [ ] Have you tried the code locally?
-  * [ ] Are exceptions handled correctly?
-  * [ ] Are all corner cases handled correctly?
-  * [ ] Check Java gotchas.
-  * [ ] Edge cases for ifs, fors, whiles, dates.
-  * [ ] Are there unnecessary while loops?
+    * Have you tried the code locally?
+    * Are exceptions handled correctly?
+    * Are all corner cases handled correctly?
+    * Check Java gotchas.
+    * Edge cases for ifs, fors, whiles, dates
+    * Are there unnecessary while loops?
+
 * [ ] Is this a good enough implementation?
-  * [ ] Is every line of code used?
-  * [ ] Does code have unexpected side effects?
-  * [ ] Is the solution performant?
-  * [ ] Could the solution be simpler?
-  * [ ] Are there vulnerabilities?
-  * [ ] Is the code properly modularized?
-  * [ ] Is the code properly tested?
-  * [ ] Is there duplicate code?
-  * [ ] What is missing?
-  * [ ] Is pre-existing code reused?
+    * Is every line of code used?
+    * Does code have unexpected [side effects](https://medium.com/@ryk.kiel/dont-let-your-code-get-out-of-control-avoiding-side-effects-in-python-d68faf26912)?
+    * Check usage of third party libraries (production-ready, copyright, etc.)
+    * Is the solution performant? (and avoid early optimization since it is the root of all evil)
+    * Could the solution be simpler?
+    * Look for vulnerabilities ([OWASP](https://owasp.org/www-project-top-ten/) top 10)
+    * Is the code properly modularized and [S.O.L.I.D.](https://www.freecodecamp.org/news/solid-principles-explained-in-plain-english/)?
+    * Is the code properly tested?
+    * Do we have some duplicated code?
+    * What is missing (docs, comments, metrics, logs, etc.)?
+    * Is there a pre-existing code that already solves our problem?
 
 ## How Has This Been Tested?
 
-* `./scripts/validate-repository-contract.sh` — PASS (7 sources, 12 commands, 8 documents).
-* `./scripts/run-agentic-testing-contract.sh --plan` — PASS on the final test-only staged delta; no observable-behavior surface changed. The original feature manifest declares 3 focused selectors.
-* `./scripts/run-agentic-testing-contract.sh` — PASS on the final test-only staged delta; the 3 declared selectors passed separately (236 tests, 0 failures, 0 skipped).
-* `JAVA_HOME=<Java 25> ./gradlew test jacocoTestReport --rerun-tasks` — PASS, 4,933 tests, 0 failures, 0 errors, 2 skipped, JaCoCo generated. Independent YAML/auth/dispatch probe: 4/4 PASS. L0 unit/H2 only; no mutable resources or cleanup needed. Cross-app physical E2E remains pending.
-* HEAD is `74bcdde08a1dce9ec3000db1588ad464f439d5c3`, based on `f1a4b246d74e679dd81718513b50b56818bd1deb`; commit pushed to `feature/refreshable-view-import`.
-
-## Testing contract
-
-* [x] I updated `.testing/impact.json` for the observable read-action change.
-* [x] The impacted/new AT scenarios and focused tests are declared in the manifest — AT-100-S09 and the three changed test classes.
-* [x] The manifest marks behaviorChange true and describes the new read pair.
-* [x] Evidence distinguishes L0 from integration and remote layers; L1/F1 were not run.
-* [x] No mutable run was executed; there are no cleanup artifacts.
+* `./gradlew cleanTest test cleanLocalTest localTest` (JDK 25): `test` 5194 tests, 0 failures, 3 skipped (inherited: one external-MySQL test and two `@Disabled` topological sort tests); `localTest` 64 tests.
+* `scripts/run-agentic-testing-contract.sh --base origin/develop --head HEAD`: 64 focused selectors and both L0 local-stack checks passed, with cleanup.
+* `.lore/ecosystem/tests/ecosystem-test.py` (13 tests) and `processes-test.sh` (three consecutive runs) passed.
+* Native suite `./local/test-lore.sh`: 237/237 scenarios passed, release approved, `CLEANUP_CERTIFIED`.
+* Local E2E `.lore/ecosystem/rio-ecosystem all clickhouse-refreshable-view-import`: Lore run `run_mvmmx1oa2d7d9a404d` passed 5/5 scenarios and 8/8 backend checks; teardown removed every recorded container, network, process group and broker volume.
+* Test version [0.0.1-import-ref-view-ch](https://web.furycloud.io/rio-playmaker/versions/detail/0.0.1-import-ref-view-ch) carries the runtime permission. Deploy the ClickHouse control plane and Playmaker before the frontend.
 
 ## Issue
 
-SIG-700: https://spellbook.adminml.com/projects/SIG/specs/SIG-700
-
-SIG-702: https://spellbook.adminml.com/projects/SIG/specs/SIG-702
+[SIG-700](https://spellbook.adminml.com/projects/SIG/specs/SIG-700) · [SIG-702](https://spellbook.adminml.com/projects/SIG/specs/SIG-702)
 
 ---
 
 ## Notas internas — NO van al PR
 
-Shot3 promovió el probe de YAML/autorización/dispatch al test existente sin agregar un sexto archivo; no se aplicaron sugerencias de estilo de Zord sin defecto material. La técnica cita `develop@20f81fb5c`, mientras la base efectiva es `f1a4b246d74e679dd81718513b50b56818bd1deb`. La configuración y el guard vigentes mantienen el diseño del slice. El owner autorizó explícitamente el quinto archivo `.testing/impact.json`; no se ampliaron cambios de producto ni se editaron las specs.
+- PA-1 a PA-5 siguen abiertas.
+- `apps.json` apunta CP, frontend y Lore a sus ramas feature con marcadores `requires`; al mergear los hermanos hay que volverlos a `develop`.
+- La E2E del 2026-10-24 (corrida 7) descubrió la nota contradictoria del frontend en la externa desplegada; corregida en el frontend y certificada en la corrida 8.
+- Volúmenes anónimos acumulados de corridas anteriores (87 en `colima-rio`) no se borraron; desde `239842c19` el teardown ya no los deja.

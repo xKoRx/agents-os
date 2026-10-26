@@ -88,3 +88,26 @@
 - Se creó la skill transversal `observability-metrics-standard` destilando el método de las skills `scan`/`migrate`/`pr-review` del plugin (checklist de límites de ciclo de vida, principios de tags/tipo/emisión, formato de hallazgos) sin copiar la gramática `signals.rio.*`/`fury_app`/catálogo de entidades, que es propiedad Meli y sigue evolucionando (`Status: Proposed`).
 - Trigger boundary explícito: Aranea/homelab y proyectos personales; handoff a `meli-agent-dev` para todo trabajo Meli/RIO/Signals/Ads.
 - `80-agents/skills/INDEX.md` y `30-resources/agents/00-index.md` se actualizaron con la fila y el conteo (13 federadas transversales).
+
+## [2026-10-22] ingest | rio-sunset-update b3a732e1
+
+- Sincronizada la skill desde `ads-signals-skills-marketplace`, rama `feat/rio-sunset-update`, commit `b3a732e1e2746b2137c5baaf6f7357e6fa01ccfd`. Adaptación canónica conserva metadata AGENTS OS. Scripts y referencias alineados con upstream; retirados workflow duplicado y allowlist obsoleta. Tests de gates e input pasan.
+
+## [2026-10-23] create | echo-retester-master (gobierno de parrillas, local)
+
+- Nueva skill de dominio Aranea/Echo que gobierna la ejecución supervisada de parrillas históricas de campañas del backtester en Hefesto: política de recursos del Owner (6 motores a tope con cola, único freno anti-OOM real con cifras, sub-admisión = defecto), patrón de verificación física por `comm` real (nunca patrón pgrep), correcciones seguras (relanzamiento idempotente excluyendo inflight, OOM reencolado, SIGTERM como último recurso), cadena de cierre con verificación por fila y vigilancia programada cada 20 min con reporte ≤6 líneas.
+- Documenta además las lecciones de la revisión R03: clasificación de las 23 pendientes por intento físico (6 defecto / 3 interrumpidas / 14 no ejecutadas; la cuarentena R02 era fotografía, 4 filas completaron después), causa raíz y fix del cierre protegido (`e951d258`), disciplina de identidad para binarios de diagnóstico, baseline de failure-set por commit y convención del caché de caracterización.
+- Registrada en `30-resources/agents/00-index.md` y en `80-agents/skills/INDEX.md` (tabla federada).
+- **[2026-10-24]** Esta versión local del 2026-10-23 fue sustituida por la publicación canónica del Owner del 2026-10-24 (qualification-first) en la misma ruta, previa verificación de que sus lecciones operativas ya viven en el journal R03 y en el runbook de cualificación (política de recursos §8 y tabla de diagnóstico §10). No se mantiene una segunda política.
+
+## [2026-10-24] ingest | sqx144-campaign-design → skill de diseño y guía IMOX
+
+Se creó [[30-resources/agents/skills/sqx144-campaign-design/SKILL.md|sqx144-campaign-design]], con conocimiento en [[IMOX - Empezar con SQX 144 - Metodología y primera campaña]] y provenance de Circle. Descubrimiento en índices agents y skills. Gate federado de schema/YAML aprobado; no instalación cliente ni ejecución de SQX.
+
+## [2026-10-24] ingest | imox-strategy-research → proyecto de negocio Q4
+
+Skill de conducción de investigación creada y enlazada; estado en [[Estrategias IMOX — Forex y CFD con Echo Forge]], recetas en su skill SQX existente. Auto-mejora solo por evidencia durable y revisión, sin ejecución implícita.
+
+## [2026-10-25] ingest | Contrato/skill de comunidades → seguimiento IMOX
+
+Se incorporan [[Registro de conocimiento de comunidades]] y `community-knowledge-ingest`; IMOX mantiene el estado en su registro y cobertura. No se crean conectores Reddit ni ejecuciones programadas. Casos de aplicación/validación en [[2026-10-25-community-register]].

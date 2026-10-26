@@ -19,7 +19,7 @@ tags:
   - kind/project
   - area/meli
 created: "2026-10-21"
-updated: "2026-10-22"
+updated: "2026-10-24"
 ---
 
 # Import de Refreshable Materialized Views externas
@@ -30,11 +30,68 @@ Entregar SIG-700 con un PR draft por repo, tres shots independientes y E2E físi
 
 ## 📊 Estado actual
 
+**2026-10-24 — Auditoría corregida, E2E local PASS y tres ramas publicadas; Playmaker bloqueado por el gate Cleric.** CP, front y Lore están pusheados con versiones de prueba `0.0.2-import-ref-view-ch` (CP y front). Playmaker quedó local: el pre-push pasa el contrato completo (64 selectores y 2 checks L0) y el gate Cleric responde BLOCKED por escenarios bajo `.lore/scenarios/`; la versión de prueba vigente de Playmaker sigue siendo `0.0.1-import-ref-view-ch`, que ya contiene el único cambio de runtime. Rollout: CP y Playmaker antes del front.
+
+| Repo | Rama | HEAD | Estado |
+|---|---|---|---|
+| rio-controlplane-clickhouse | `feature/refreshable-view-import` | `852628c0` | Pusheado. 4783 tests, 1 skip. Versión `0.0.2-import-ref-view-ch` |
+| ads-signals-frontend | `feature/refreshable-view-import` | `36749c94b` | Pusheado, sincronizado con develop. 122 suites/3390 tests, lint 385 warnings, typecheck 123 heredados (rojo). Versión `0.0.2-import-ref-view-ch` |
+| lore | `feature/rio-ecosystem-drag-and-drop` | `edb5fc0` | Pusheado. Runner 277 tests, typecheck y lint 0 errores |
+| rio-playmaker | `feature/refreshable-view-import` | `e8fa4230d` (remoto `0cec5e7c5`) | Push bloqueado por gate Cleric. 5194 tests/3 skips, localTest 64 |
+
+E2E local final `run_mvmmx1oa2d7d9a404d` (corrida 8/8): smoke, import y guardado, primer deploy, reprovisión y solo lectura tras el deploy PASS, con 8/8 oráculos y teardown verificado por identidad. La corrida 7 encontró que la externa desplegada mostraba una nota contradictoria; el front la corrigió antes de la 8. Descripciones: [[Descripción PR — rio-controlplane-clickhouse]], [[Descripción PR — ads-signals-frontend]], [[Descripción PR — lore]] y [[Descripción PR — rio-playmaker]]. Registro: [[2026-10-24-refreshable-audit-fixes-entity-updated]].
+
+Gate de Playmaker preparado hasta donde depende de la rama (HEAD local `9af30184d`): sincronizada con #1332 `dcabdc55a`, escenario nativo `junit-evidence/at-100-s11` regenerado (suite nativa 237/237, `CLEANUP_CERTIFIED`). El bloqueo restante es el tooling de `build.gradle` heredado de #1332; se libera al mergear #1332 a develop. Luego: sync con develop, `./local/test-lore.sh --gate`, perfil readonly + `.sdd/config.json`, push normal.
+
+### Estado anterior — 2026-10-23
+
+**2026-10-23 — Hallazgos corregidos y certificación E2E local PASS; entrega pendiente del push de Playmaker.** La base E2E `9045e81fa6195c612171cb59f624aa50c7854be9` quedó integrada por merge en la rama de import, conservando su ledger, teardown por EXIT con propagación de errores, productor Kafka fail-closed, instalación limitada a clones/checkouts administrados, correlación posterior al seed y naming con doble guion. Los cuatro drafts tienen evidencia nueva arriba y enlaces hermanos; CP, front y Lore están pusheados. El único hilo existente (CodeQL del front) fue respondido con el commit que introdujo el allowlist y el HEAD donde sus 61 tests HTTP pasan.
+
+| Repo | Rama | HEAD local verificado | Publicación y gates |
+|---|---|---|---|
+| rio-playmaker | `feature/refreshable-view-import` | `d02c4a5ef538de8754b2cd606fb71eac229bcf8c` | Push pendiente: instalación y hooks PASS; gate Cleric BLOCKED por integración de escenarios. `test`: 5191 tests, 0 fallas/errores, 3 skips; `localTest`: 64 PASS; contrato staged: 55 selectores y 2 checks L0 PASS; contrato committed contra origin/develop: 64 selectores y 2 checks L0 PASS; Python: 11 PASS; lifecycle de procesos PASS |
+| rio-controlplane-clickhouse | `feature/refreshable-view-import` | `b05fd16404d2cd876d107dfb1c2cd980729fd89c` | Pusheada. 4781 tests, 0 fallas/errores, 1 skip; tres archivos ajenos de graphify-out preservados |
+| ads-signals-frontend | `feature/refreshable-view-import` | `3bf2e828fa5f7643614b08b257f1893714894729` | Pusheada. 121 suites/3323 tests vecinos y 61 tests HTTP PASS; lint 0 errores/385 warnings; typecheck conserva exactamente los 123 diagnósticos previos |
+| lore | `feature/rio-ecosystem-drag-and-drop` | `32310661157b008bc92d79999e6bfc455ad086d8` | Pusheada. Runner 18 suites/274 tests PASS; typecheck PASS; lint 0 errores/437 warnings |
+
+| Caso | Corrida Lore | Escenarios | Oráculos |
+|---|---|---|---|
+| clickhouse-refreshable-view-import | `run_mvlg5rjk8450459643` | 4/4 PASS | 8/8 PASS |
+| clickhouse-refreshable-view | `run_mvlg99hc42c8a86ca6` | 2/2 PASS | 4/4 PASS |
+| clickhouse-mv | `run_mvlgadyh9b4603e8a0` | 3/3 PASS | 6/6 PASS |
+| clickhouse-mergetree | `run_mvlgcyn22e98704696` | 2/2 PASS | 2/2 PASS |
+| clickhouse-run-query | `run_mvlgeb496448751bd9` | 2/2 PASS | 3/3 PASS |
+
+Certificación desde limpio con `RIO_ECOSYSTEM_CONFIG` apuntando a `refview.env` y `RIO_ECOSYSTEM_HOME="$HOME/.rio-ecosystem/state-refview"`: 5/8 corridas utilizadas, 13 escenarios al 100 %, 23 oráculos PASS y costo observado US$3.2105. El comando terminó con exit 0. El teardown físico dejó cero contenedores/redes RIO, screens y procesos rastreados; se comprobaron los 16 IDs del ledger y las 24 identidades de proceso capturadas, sin archivos de tracking remanentes. Los puertos de frontend y Lore se acreditaron por PID/cwd contra los checkouts de esta ronda antes del recorrido.
+
+La extracción SQL usa el AS superior y valida el COMMENT literal opcional; la marca clásica vuelve a ser best-effort y sólo la refreshable exige persistencia. El front conserva predicados WHERE y el copy clásico, permite el primer save de revisión y bloquea la externa después del primer deploy exitoso; el primer deploy fallido conserva su comportamiento. PA-2 sólo se fijó por test, sin cambiar la reconciliación vigente.
+
+**Bloqueo restante — actualizado tras autorización:** el owner autorizó la instalación exacta de Grimorio 27.2.1 (`0c21cb41279fdbc991a4b0edee458a9f2bd852f9`), incluidos assets globales, registro y hooks. El bootstrap y `grimoire-hooks verify` terminaron PASS. El gate obligatorio se ejecutó sobre `d02c4a5ef538de8754b2cd606fb71eac229bcf8c` y terminó BLOCKED: exige escenarios Markdown añadidos/modificados en `.lore/scenarios/`; los escenarios certificados están en `.lore/ecosystem/cases/`. El contrato de la base además usa `origin/develop`, entorno `local` y un binding del proceso anterior a la corrida, mientras el ecosistema usa `ecosystem` y ya completó teardown. No se debilitó la política ni se modificó la base. Candidato para la base E2E: integrar explícitamente ambos contratos de evidencia, o preparar una suite nativa adicional bajo el contrato Cleric; requiere resolver ese alcance antes del push. El HEAD remoto sigue en `0cec5e7c5e3d352387b4284b63620bb0e91b6a18`; la definición de terminado permanece incompleta.
+
+Recursos actualizados: [[Descripción PR — rio-playmaker]], [[Descripción PR — rio-controlplane-clickhouse]], [[Descripción PR — ads-signals-frontend]] y [[Descripción PR — lore]]. Evidencia y cierre por delta: [[2026-10-23-refreshable-review-fixes-entity-updated]]. No se trasladaron estas correcciones a la base E2E. PA-1 a PA-5 siguen abiertas; la certificación local no acredita KVS/CKAAS/KMS corporativos ni despliegues Fury.
+
+### Preguntas abiertas contrastadas con las specs
+
+- PA-1: el código acepta un DEFINER existente, sin exigir usuario dedicado. Fixture con owner dedicado; recomendar dedicado para testing y decidir ownership/deprovisión antes de generalizar usuarios compartidos.
+- PA-2: la paridad vigente reconcilia antes del ownership; no se cambió la decisión de rechazar diferencias frente a reconciliar. Recomendar rechazo explícito si se quiere garantizar adopción sin alteraciones no previstas.
+- PA-3: validación SQL estricta de una fuente, sin joins/subqueries/agregaciones, se conserva. Recomendar mantenerla hasta definir soporte adicional.
+- PA-4: no se agregó validación remota de la credencial precargada; la paridad existente no la exige. Recomendar definir una verificación segura antes de cambiar ese contrato.
+- PA-5: la credencial permanece en KVS tras el import; no se decidió consumirla ni cambiar TTL. Recomendar una política explícita de reintento/retención antes de eliminarla.
+- RF-4 permite importar sin tablas origen/destino en el pipeline; el caso comienza vacío y verifica cero relaciones. El guard del modal clásico no se trasladó a refreshable. Guardar y desplegar son acciones distintas, verificadas en escenarios separados.
+
+### Preflight inicial, superado por la autorización posterior
+
+Las entradas siguientes conservan historia. La autorización posterior resolvió acceso y recreación E2E; la deuda de typecheck y la incertidumbre forense histórica no se convierten en gates aprobados por esta certificación.
+
+**2026-10-23 — BLOCKED en F0 del E2E local.** El preflight detectó `node` PID 62677 escuchando en 8443 y 8080, con cwd en el checkout original del repo `lore`, ajeno al runner de esta tarea. Se aplicó la restricción explícita de detenerse sin matar el proceso. No se ejecutaron fetch, merges, setup, suites, corridas Lore, commits, push ni edición de PRs. El intento no acredita que el feature esté listo para testing. Registro: [[2026-10-23-refreshable-import-e2e-preflight-entity-updated]].
+
+Estado local verificado: los tres worktrees siguen en `feature/refreshable-view-import`; Playmaker `74bcdde08a1dce9ec3000db1588ad464f439d5c3` y front `027d9f10c83b1962ea463c905f17d2de58b291bf` limpios; CP ClickHouse `b23862238960773fa965681e95180ad44754ae3c` conserva únicamente los tres cambios previos en `graphify-out/`, intactos. Inventario Docker no acreditado: la consulta read-only al socket de `colima-rio` fue rechazada por el sandbox. Presupuesto Lore usado en este intento: 0/12, costo US$0. PA-1 a PA-5 no investigadas ni resueltas. Una vez libre 8443, repetir F0 y continuar F1 antes de setup; siguen pendientes la integración de la base E2E, el caso nuevo, la certificación conjunta y los gates finales.
+
 **BLOCKED.** Hay tres drafts publicados, pero no se acredita el E2E completo ni se aceptan gates rojos. Bloqueos: typecheck heredado del front, capacidades locales KVS/CKAAS/KMS ausentes para el import y preservación del baseline de volúmenes todavía no acreditada. La auditoría terminó UNVERIFIED y Docker/VM siguen sin nuevas mutaciones. Zord completó 8/8 tras autorización explícita; FRONT-ZORD-1 fue corregido y rechecado independientemente, sin aceptar gates del owner.
 
 Todos los Shot 1/2/3 y el worker físico usaron el modelo exacto **gpt-6-sol, LOCAL**, con contextos nuevos por shot y agent-runs separados. El auditor de limpieza independiente también usa gpt-6-sol LOCAL. El identificador exacto del modelo del manager no fue expuesto y se registra como unknown, sin inferirlo.
 
-## 🧱 Entrega de desarrollo
+## 🧱 Entrega de desarrollo original — 21 y 22 de octubre
 
 | Repo | Rama / base real | SHA final | SPEC | Draft / diffstat real verificado por manager |
 |---|---|---|---|---|
@@ -44,7 +101,7 @@ Todos los Shot 1/2/3 y el worker físico usaron el modelo exacto **gpt-6-sol, LO
 
 El manager contrastó HEAD, merge-base, git diff --stat contra origin/develop y head/draft/base remotos de cada PR. CP conserva tres derivados graphify-out modificados por el hook de checkout fuera de los commits; PM/front están limpios. No checkout, stash, reset ni commit en originales. Fetch y worktree add se ejecutaron una vez por repo según autorización.
 
-## Gates locales y descripción de PR
+## Gates originales y descripción de PR — 21 y 22 de octubre
 
 | Repo | Gate final observado | Coverage informado | Recurso vault |
 |---|---|---|---|
@@ -121,7 +178,7 @@ Se retiraron dos volúmenes nombrados de Compose y seis anónimos. Tres anónimo
 - [r] Revisar tres drafts y matrices RF/CA; ningún gate owner aceptado. #owner/me #type/pr-review #area/meli
 - [ ] Resolver typecheck heredado sin waiver implícito. #owner/me #type/dev #area/meli
 - [x] Corregir FRONT-ZORD-1 HIGH en el mismo Shot3 y verificar integración:027d9f10c, recheck independiente4/4 y PT2fuente11/11; Zord8/8 completado sobre d49225f. #owner/me #type/pr-review #area/meli
-- [ ] Resolver capacidades locales KVS/CKAAS/cifrado y acceso al modal antes de repetir A/B/C. #owner/me #type/dev #area/meli
+- [x] Resolver capacidades locales KVS/CKAAS/cifrado y acceso al modal: proveedores locales probados, Lore drag y certificación conjunta PASS. #owner/me #type/dev #area/meli
 - [ ] Revisar auditoría de volúmenes y decidir pasos forenses antes de mutar Docker/VM. #owner/me #type/admin #area/meli
 
 ## Reusable behavior candidates
@@ -144,6 +201,25 @@ Se retiraron dos volúmenes nombrados de Compose y seis anónimos. Tres anónimo
 - [[2026-10-21-codex-gpt-6-sol-front-refreshable-import-shot1]], [[2026-10-21-codex-gpt-6-sol-front-refreshable-import-shot2]], [[2026-10-21-codex-gpt-6-sol-front-refreshable-import-shot3]].
 
 ## 📆 Bitácora
+
+- **2026-10-24 — Lore #21 en ready:** la CI fallaba porque `dragAndDrop.node.spec.ts` lanzaba Chromium sin el guard `skipIf` que usan los demás specs; corregido en `1381004`, CI verde. El check `dependencies` sigue rojo por vulnerabilidades heredadas de develop (`simple-git` 3.36.0 requiere 4.0.1; #20 cubre `sharp` y `source-map-js`, no `simple-git`).
+
+- **2026-10-24 — Publicación:** Playmaker pusheado con `--no-verify` autorizado por el owner (sólo el pre-push del gate Cleric; contrato de testing PASS sobre el HEAD), integrado el lock por contexto Docker de #1332 (`f9862eff0`); HEAD `15c359560`, CI verde. #362, #816 y #1328 en ready for review; #21 de Lore en draft con CI de Jenkins roja sin log accesible.
+
+- **2026-10-24 — Gate Cleric preparado:** merge de la base #1332 `dcabdc55a`, escenario nativo `at-100-s11` ampliado con los tests del permiso describe y declarado en `.testing/impact.json`; gate directo ahora bloquea sólo por tooling heredado de #1332.
+
+- **2026-10-24 — Auditoría y correcciones:** auditoría independiente con controles negativos; correcciones vía subagentes en los cuatro repos, run Lore colgado cancelado, E2E 8/8 PASS, CP/front/Lore pusheados, versiones `0.0.2-import-ref-view-ch` de CP y front, descripciones reescritas. Playmaker sin push por el gate Cleric. [[2026-10-24-refreshable-audit-fixes-entity-updated]].
+
+- **2026-10-23 — Continuación autorizada:** instalado Grimorio 27.2.1 en la revisión exacta aprobada, ambos proveedores y hooks verificados PASS. El gate de Playmaker terminó BLOCKED por inventario de escenarios: `.lore/scenarios/` frente a `.lore/ecosystem/cases/`; queda como integración candidata para la base, sin alterar su rama/política. Contrato committed contra `origin/develop`: 64 selectores y los dos checks L0 PASS, exit 0 y cleanup completado. No se consumieron nuevas corridas Lore.
+- **2026-10-23 — Fixes del code review:** PM `d02c4a5ef` integrado con base `9045e81fa`, CP `b05fd1640`, front `3bf2e828f` y Lore `323106611`. Suites y certificación nueva PASS: 5 corridas/13 escenarios/23 oráculos; teardown físico cero, 16 recursos y 24 identidades comprobados. Tres ramas pusheadas y cuatro drafts actualizados; push/gate de PM pendientes de autorización del instalador global fijado. El hilo del front fue respondido; PA-1..PA-5 no se decidieron. [[2026-10-23-refreshable-review-fixes-entity-updated]].
+
+- **2026-10-23 — Code review de la implementación (Claude Code, 4 revisores independientes + verificación).** Veredicto: APROBADO CON RESERVAS para pasar a testing; antes del merge: CP #362 extracción `AS (SELECT` toma el cuerpo de un CTE y oculta drift, y el import clásico de MV pasa a fallar si no se escribe la marca (decisión no tomada por el owner); front #816 `normalizeExternalRefreshableSql` borra `definer = x` dentro del query, la refreshable externa queda editable después del primer deploy, copy de MV cambiado sin tests y código muerto; Playmaker #1328 oráculos del caso nuevo cuentan corridas previas, 3 conflictos con la base E2E (16 commits atrás), naming `--` pendiente y estado/screens compartidos entre corridas (causa del teardown cruzado); Lore #21 sin bloqueantes (CHANGELOG, prompt y README).
+- **2026-10-23 — certificación local cerrada:** PM `0cec5e7c5`, CP `1a39e420`, front `cdcb115e6` y Lore `78090f60`. Cinco casos/13 escenarios/23 oráculos PASS, teardown cero; 12/12 corridas y US$7.7875. Bugs HTTP camelCase, callback SQL obsoleto y SELECT canónico del segundo PROVISION corregidos con regresiones. Tres drafts actualizados, Lore #21 de apoyo; typecheck heredado continúa rojo. [[2026-10-23-refreshable-import-e2e-alignment]].
+
+
+- **2026-10-23 — continuación con screens:** merges y suites de los tres repos publicados; PM `85f5bad67`, CP `686d8f7a8`, front `8eaa15827`. #1328 retargeteado y los tres drafts actualizados con evidencia real. Helper genérico de screens y apagado del grupo corregido con RED/GREEN; candidatos a #1332. Autenticación Spellbook y autorización de borrado de volúmenes del stack concurrente pendientes; caso y certificación no ejecutados. [[2026-10-23-refreshable-import-e2e-alignment]].
+
+- **2026-10-23 — certificación refview detenida en preflight:** bootstrap ejecutado una vez y HEAD/status comprobados; 8443 ocupado por Lore ajeno (PID 62677). Se respetó el hard stop sin tocar procesos, Docker/VM, repositorios ni PRs; ningún bug ni decisión de producto nueva. F1–F6 no ejecutadas y PA-1..PA-5 pendientes. Cierre AGENTS OS por delta, agent-run y feedback registrados en [[2026-10-23-refreshable-import-e2e-preflight-entity-updated]]. La skill de autoría app-owned no llegó a cargarse porque F1 no se ejecutó; no se declara un gap de autoría sin evidencia.
 
 - 2026-10-21: cold bootstrap, specs por SpellbookCLI y worktrees aislados desde origin/develop; tresShot1 en paralelo. Código vigente avanzó sobre bases de técnicas; no se editaron specs.
 - 2026-10-21: owner autorizó exclusivamente manifest Playmaker como quinto archivo. CP yPM completaron shots y drafts; front mantuvo bloqueos heredados/automáticos explícitos.

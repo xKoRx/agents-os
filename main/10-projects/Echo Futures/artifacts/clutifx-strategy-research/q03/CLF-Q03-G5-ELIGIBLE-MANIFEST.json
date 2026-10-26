@@ -1,0 +1,60 @@
+{
+ "schema": "echo.research.qualification.g5-manifest.v1",
+ "run_id": "CLF-Q03-20261025",
+ "generated_from": "q03/QUALIFICATION-SUMMARY.json (receipts sellados)",
+ "eligible": [],
+ "blocked": [
+  {
+   "identity": {
+    "strategy_id": "CLF-STR-001",
+    "variant_id": "CLF-VAR-C01",
+    "profile_id": "SG-R500"
+   },
+   "receipt_sha256": "sha256:064c6c697993701bcd2794ce8b190b372f9b9be54e1eca1e9caa29e19a0e4bff",
+   "reason": "QUARTER_NO_PASS",
+   "detail": {
+    "passed": 0,
+    "purchased": 0,
+    "session": "SESSION_INCOMPATIBLE",
+    "note": "las emisiones London-open (01:00 ET) caen fuera de la ventana E2T; una adaptación NQ declarada sería una identidad NUEVA (eje ancla) para un ciclo posterior"
+   }
+  },
+  {
+   "identity": {
+    "strategy_id": "CLF-STR-003",
+    "variant_id": "CLF-VAR-C03",
+    "profile_id": "SG-R500"
+   },
+   "receipt_sha256": "sha256:e0cca9aeda597e2c7e2b28229a627b20d7e471f579e689759915f64475d665c0",
+   "reason": "QUARTER_NO_PASS",
+   "detail": {
+    "passed": 0,
+    "purchased": 1,
+    "pending": 1,
+    "net_realized": "795.04 USD",
+    "session": "SESSION_COMPATIBLE",
+    "note": "cuenta pendiente al cierre del trimestre con neto positivo; sin CHALLENGE_PASSED no hay G5 (guard verificado: G4_NO_PASS)"
+   }
+  },
+  {
+   "identity": {
+    "strategy_id": "CLF-STR-004",
+    "variant_id": "CLF-VAR-C04",
+    "profile_id": "SG-R500"
+   },
+   "receipt_sha256": "sha256:c870619c326ececae322b5f57c6b214b4e71610e757fd0a4891d17a99dd22da8",
+   "reason": "QUARTER_NO_PASS",
+   "detail": {
+    "passed": 0,
+    "purchased": 0,
+    "session": "SESSION_INCOMPATIBLE",
+    "note": "las conversiones 5:00/9:00 ET caen fuera de la ventana E2T; ídem C01"
+   }
+  }
+ ],
+ "guard_verification": {
+  "note": "admit_historical(C03) sobre el recibo sellado devuelve BLOCKED_QUALIFICATION_GATE/G4_NO_PASS",
+  "verified": true
+ },
+ "future_authorization": "si un ciclo posterior obtiene >=1 CHALLENGE_PASSED conciliado en NQU6, el manifiesto se regenera con la identidad elegible y sus digests; el guard exige recibo propio G0-G4 con >=45 sesiones en UN contrato físico"
+}

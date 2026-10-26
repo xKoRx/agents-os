@@ -1,119 +1,126 @@
----
-type: doc
-schema_version: 1
-status: active
-area: "[[Echo]]"
-related:
-  - "[[Echo Futures]]"
-aliases:
-  - clutifx experiment matrix
-  - matriz experimental clutifx
-tags:
-  - kind/doc
-  - area/echo
-  - tech/strategy-research
-created: "2026-10-23"
-updated: "2026-10-23"
----
+# CLUTIFX-EXPERIMENT-MATRIX — Catálogo experimental v1.0 (RECONSTRUIDO)
 
-# CLUTIFX-EXPERIMENT-MATRIX — Variantes materiales y plan experimental
+Proyecto: Echo Futures · Misión: CLUTIFX GOD (2026-10-23) · Estado: DRAFT → congelar en GATE P1
 
-FASE E de la misión GOD. Diseña el espacio experimental para el backtester de Echo Futures (futuro encargo; aquí NO se ejecuta nada). Identidad estable por variante, ejecutable por lotes, comparación independiente. **Sin producto cartesiano ciego**: cada variante existe porque cambia UNA decisión material o explora UNA hipótesis de interacción.
+> **PROVENANCE:** El catálogo original referenciado por el mandato GOD (`clutifx-strategy-research/`) no existía físicamente en vault, Hefesto ni ningún branch del repo echo al iniciar la misión (hallazgo material P0, ver `HEFESTO-BASELINE-AUDIT.md`). Este documento es la **versión de implementación reconstruida**: estructura de tiers, familias de variantes y estrategias según el mandato §4/§6; semántica operacional según los claims SUPPORTED de la biblioteca MKE Clutifx (1.599 claims, 12/12 PASS). Toda decisión de desambiguación está marcada `[RECON]` con su justificación. Ningún resultado se presentará como réplica de un catálogo original.
 
-## 0. Reglas de diseño
+## Identidad experimental
 
-1. TIER 1 (controles): una versión simple, objetiva y reproducible por familia — la operacionalización más literal del SOURCE.
-2. TIER 2 (ortogonales): sustituir UN detector o UNA decisión por vez, manteniendo el resto constante, para medir su impacto causal.
-3. TIER 3 (combinaciones): sólo combinaciones con hipótesis de interacción explícita.
-4. Equivalencia observable: si dos variantes producen señales idénticas o casi (correlación de activaciones > 0.9 en el dataset de control, o equivalencia semántica demostrable), se documenta la relación y NO se duplican en nuevos runs (los IDs se mantienen para trazabilidad).
-5. Nada de este documento pre-selecciona ganadores ni optimiza parámetros. La selección del conjunto a ejecutar es del Owner (`EXPERIMENT_MATRIX_OWNER_APPROVAL = PENDING`).
-6. Convención de IDs: `CLF-VAR-###` con prefijo de estrategia (`S1-`, `S2-`, …) y sufijo de eje (`-D#` decisión, `-P#` parámetro). Los grid de parámetros se declaran como RANGOS, no como variantes individuales.
-
-## 1. Ejes de variación por estrategia (dimensiones materiales)
-
-| Estrategia | Eje D1 contexto | Eje D2 trigger | Eje D3 sesión | Eje D4 salida | Ejes de parámetro (grid) |
-|---|---|---|---|---|---|
-| STR-001 London ideal | bias: cadena nativa vs [HIP] A/B/C | TS: R1/R2/R3/R4 (§2 detectores) | ancla vela 1 (NY) vs ancla CME propuesta | DOL/vela-5 | ε-rango {0,1t,0.05A}; ρ-reacción {.38,.5,.618}; ventana reacción w {1,3,5} |
-| STR-002 Pendiente | TF objetivo {4h, 1D} | creación del pendiente (NATIVO) | sesión libre | DOL/vela-5 | ε-rango; TF del pendiente {1h, 4h} |
-| STR-003 NY continuación | secuencia 1-5-9 (NATIVO) | TS de la vela previa + rangos | ancla 9:00 NY vs 9:30 ET | DOL/vela-5 | δ-ventana P3 {25%,33%,50%} |
-| STR-004 NY reversal | objetivo completado (NATIVO) | vela-5 toma low + rango nuevo | ancla vela 5 | extremos 6–8h | δ; confirmación reacción R1/R2 |
-| STR-005 Refinado | hereda padre | hereda padre | libre | hereda | escala de TFs {8h→4h→1h→15m; 4h→1h→30m→15m; sin refinado} |
-| STR-006 Failure swing | tendencia hacia extremo (NATIVO) | rango de reacción (NATIVO) | libre | rango activado como target | ε-nivel {2t, .25A, .5A}; fracción final {15%, 25%} |
-| STR-007 SMT | régimen contra-tendencia (NATIVO) | casos 1/3 | libre | negación c-0076 | τ-sincronía {1,3 velas} — BLOQUEADO hasta 2º instrumento |
-| STR-008 Noticias | dolls intactos + TS previo | P3 de la vela de noticia | hora de la noticia | BE al llegar | calendario {rojo, rojo+naranja} — requiere feed |
-| STR-009 Reentrada | bias correcto + rango | cierre dentro tras stop | libre | plan original | máx reentradas {1, 2} `[PENDIENTE: límite no enseñado]` |
-
-## 2. TIER 1 — Controles (una por familia; ~8 variantes)
-
-| ID | Estrategia | Descripción (operacionalización más literal) |
-|---|---|---|
-| CLF-VAR-S1-T1 | STR-001 | Cadena de rangos nativa (12h–4h) + DOL nativo + TS con reacción R2 (cierre) + entrada al cierre del rango a favor en la ventana P3 de la vela 1 + stop bajo TS + salida DOL o vela 5 |
-| CLF-VAR-S2-T1 | STR-002 | Pendiente 4h hacia DOL 4h/1D + entrada al cierre del pendiente + stop bajo el pendiente |
-| CLF-VAR-S3-T1 | STR-003 | TS de la vela previa (R2) + rangos a favor + entrada en ventana P3 de la 9 anclada 9:00 NY |
-| CLF-VAR-S4-T1 | STR-004 | Objetivo completado en London + vela 5 toma low + rango alcista + entrada al cierre |
-| CLF-VAR-S5-T1 | STR-005 | S1-T1 con refinado 4h→1h→15m (misma lógica, TF inferior) |
-| CLF-VAR-S6-T1 | STR-006 | FS: ε=0.25·A + fracción final 25% + rango de reacción al cierre |
-| CLF-VAR-S8-T1 | STR-008 | Día de noticia roja con dolls intactos + TS previo + entrada P3 vela noticia (post-feed de calendario) |
-| CLF-VAR-S9-T1 | STR-009 | Regla de reentrada sola sobre S1-T1 (máx 1) |
-
-STR-007 sin TIER 1 (bloqueado por datos). Cada TIER 1 declara: identidades de rango/DOL/TS deterministas, estado mínimo (detectores §16) y arneses de test F1 (ver §5).
-
-## 3. TIER 2 — Sustituciones ortogonales (una decisión por vez; ~22 variantes)
-
-| ID | Base | Sustitución única | Hipótesis que mide |
-|---|---|---|---|
-| S1-D2a..c | S1-T1 | reacción TS: R1 (ρ=0.5) / R3 (m=15,k=1) / R4 (fractal n=2) | qué formalización de "reacción" reproduce mejor la ocurrencia enseñada |
-| S1-D1a..c | S1-T1 | bias: [HIP] familia A (EMA50) / B (HH-HL) / C (DMI+ADX) | estructura nativa vs indicadores (NO atribuido a Clutifx) |
-| S1-D3a | S1-T1 | ancla de sesión: CME-native (grid Chicago) vs NY-anchored | efecto del anclaje horario |
-| S1-D4a | S1-T1 | salida sólo-DOL vs sólo-vela-5 | contribución de cada salida |
-| S2-P1a,b | S2-T1 | TF del objetivo 4h→1D; TF del pendiente 4h→1h | escala del fenómeno |
-| S3-D3a | S3-T1 | ancla 9:30 ET (open cash) | fidelidad NQ del ancla FX |
-| S4-D2a | S4-T1 | reacción R1 en vez de cierre | sensibilidad del trigger de reversal |
-| S5-P1a,b | S5-T1 | escala 4h→1h→30m→15m; sin refinado (padre directo) | valor del refinado |
-| S6-P1a,b | S6-T1 | ε 2 ticks; ε 0.5·A; fracción 15% | tolerancia del "prácticamente al nivel" |
-| S1-D5a | S1-T1 | ε-rango 1 tick (borde ch07 c-0065) vs 0 | efecto del borde |
-| S1-D6a | S1-T1 | TS exige reacción intrabar 1m (R1 intrabar) vs cierre | coste/beneficio de no esperar cierre (ch04 c-0027) |
-| S9-P1a | S9-T1 | máx 2 reentradas | límite no enseñado |
-| Flags-a | cualquier T1 | red flags OFF (baseline sin filtros) | contribución agregada de los filtros ch09 |
-| Flags-b | cualquier T1 | sólo red flags duras (en-contra + inside) | valor de las probabilísticas |
-
-## 4. TIER 3 — Combinaciones con hipótesis de interacción (sólo 5)
-
-| ID | Combinación | Hipótesis de interacción |
-|---|---|---|
-| S1-C1 | ancla CME × refinado 15m | el refinado puede compensar un ancla de sesión desplazada |
-| S1-C2 | reacción R1 intrabar × stop ε-amplio | la entrada temprana necesita stop más ancho (ch04 c-0027/c-0051) |
-| S4-C1 | reversal × filtro "objetivo mayor sostiene" (ch09 c-0136) | la reversión post-objetivo sólo sobrevive con el objetivo HTF intacto |
-| S6-C1 | FS × ventana horaria clave {3,5,9} | el FS "final de vela" concentra en cierres de velas clave (ch06 c-0010) |
-| S8-C1 | noticia × TS-previo-obligatorio | sin TS previo el whipsaw destruye la entrada (ch10 c-0062) |
-
-## 5. Equivalencias y no-duplicación
-
-- R2 (cierre) ⊆ detector de rango §1: cualquier variante con R2 activa implícitamente el detector NATIVO ⇒ S1-D2* comparan contra la propia base ya contenida; documentado, no duplicado.
-- E1/E2 (expansión): antes de crear variantes de salida por "reacción contraria", medir correlación de activaciones; si > 0.9 colapsar.
-- NATIVE vs SG del universo 89 (Hefesto): el eje MM/presupuesto (R250/500/750) YA fue explorado en campaign-lab R02 para las estrategias TG/FBC/ORB/MR — las Clutifx reutilizan ese patrón de perfiles (`PROFILE-ATR14-WILDER-M1-X1-GROSS{R}-1TO1`) sin re-definirlo aquí; el eje MM queda desacoplado por contrato (frontera Strategy/MM).
-- Alias conocidos del corpus: ORB-NATIVE-Cxx ≡ ORB-CH300 (documentado en HEFESTO-BASELINE-AUDIT.md) — patrón a imitar: identidades de señal idéntica = 1 voto por familia.
-
-## 6. Plan de validación por variante (FASE F resumida; detalle en spec de implementación futura)
-
-1. **Correctness primero** (gates F1, obligatorios antes de cualquier evaluación económica): no-lookahead (replay de señales con información retrasada人工 imposible), causalidad intrabar, determinismo bit-exacto (replay), warmup, multi-TF (composición 1m→TFs), orden de eventos, LONG/SHORT, stop/invalidación, fills+costos ($2.49/lado + 1 tick), sesiones/DST, rollover (12 contratos físicos, roll events ya soportados por el motor), datos faltantes (exclusiones manifest), interacción Strategy/MM, reentradas/señales simultáneas (regla de prioridad invalidación→sesión→timeout→target del motor MR ya existente es reutilizable).
-2. **Estadístico**: baseline de desarrollo = primeros 60% días elegibles (2023-10→2025-04 aprox.); OOS 20% (2025-04→2025-12); walk-forward 20% final (2026). Congelar períodos ANTES de inspeccionar resultados. Comparación por régimen (por año/contrato/vol quintil); robustez a costos ×0.5/×1/×2; sensibilidad de cada parámetro del grid (curva unidimensional, no optimización); estabilidad temporal (T1/T2/T3 del patrón R02); penalización por múltiples pruebas (Wilson/effective-N como mínimo, declarando dependencia entre variantes del mismo mercado-período); benchmark contra controles simples existentes (las 21 familias TG/FBC/ORB/MR ya medidas).
-3. **Métricas a emitir** (el motor ya emite la mayoría): señales, trades, frecuencia/día elegible, expectancy neta, win-rate, profit factor, payoff, distribución R, MAE/MFE (con 1m), DD máx, retorno neto, tiempo en mercado, exposición, resultados por sesión/régimen/contrato, sensibilidad a costos, estabilidad OOS — más la separación challenge (E2T GAU50, 3 fases) vs calidad estadística de la señal: **una campaña que pasa challenges no es una estrategia robusta** (lección formalizada en R02: RESEARCH_ACCEPTANCE ≠ LIVE_ENABLED).
-4. **Protector de honestidad**: variante del mismo mercado/período ≠ muestras independientes; prohibido reportar "N estrategias positivas" como evidencia conjunta; todo reporte declara el universo probado.
-
-## 7. Bloqueos y dependencias
-
-| Variante | Bloqueo | Desbloqueo |
-|---|---|---|
-| S7-* (SMT) | sin 2º instrumento en corpus | incorporar ES/YM 1m al corpus (decisión Owner) |
-| S8-* (noticias) | sin feed de calendario económico en el runtime | conector de calendario (gap declarado en D1) |
-| Todas: fidelidad intrabar fina | sin ticks | corpus de ticks (pendiente físico) |
-| 23 filas R02 en cuarentena (17 SG FBC/ORB + 3 SG-TG + 3 SG-MR) | ciclo R03 ajeno en curso | re-ejecución del ciclo correctivo (Owner/otra sesión) |
-
-## 8. Gate E
+Cada corrida queda identificada por:
 
 ```text
-VARIANTES_MATERIALES_IDENTIFICADAS = 8 TIER1 + 21 TIER2 etiquetadas + 5 TIER3 (34 IDs; la fila S6-P1a,b empaqueta 3 sustituciones ⇒ 35 sustituciones efectivas; grids declarados como rangos)
-REDUNDANCIA_ELIMINADA = equivalencias R2⊆rango, E1≈E2 (pendiente medición), eje MM desacoplado, patrón alias documentado
-SELECCION_DEL_CONJUNTO = PENDING (Owner)
+variant_id · parameter_set_id · strategy_spec · strategy_config_hash
+dataset_seal · execution_profile · source_commit · binary_sha256
 ```
+
+- `dataset_seal` = `ba6f09853a0e923e41a40544e3aeca0a9eb28c41cbf645727818b5cb9ea6b6cd` (13× NQ .nt, P0).
+- Cambio en código/detector/parámetros/datos/config ⇒ nueva identidad; no se mezclan identidades en un ranking.
+
+## Conteo canónico
+
+| Nivel | IDs | Sustituciones efectivas |
+|---|---:|---:|
+| TIER 1 — Controles | 8 | 8 |
+| TIER 2 — Sustituciones | 21 | 22 |
+| TIER 3 — Interacciones | 5 | 5 |
+| **TOTAL** | **34** | **35** |
+
+La nota de reconciliación del mandato ("34 IDs y 35 sustituciones") se materializa así: **`S05 BIAS-DMI-ADX` lleva 2 parameter sets** (ADX≥20, ADX≥25, ambos con dirección DMI) = 1 ID, 2 sustituciones efectivas. `[RECON]` El mandato citaba el par `S6-P1a,b` del catálogo inexistente; la forma (un ID con 2 sets) se preserva, el sujeto se reasigna a DMI-ADX por ser el eje con dos umbrales naturales documentados.
+
+## Estrategias base y su implementabilidad
+
+| ID | Estrategia | Estado inicial | Razón |
+|---|---|---|---|
+| STR-001 | London ideal (3 escenarios ch07) | ADAPTATION_REQUIRED | Sesión FX→NQ; anclajes horarios a congelar |
+| STR-002 | Rango pendiente hacia DOL | IMPLEMENTABLE_NOW | Cadena de rangos nativa, corpus NQ 1m suficiente con warmup multitemporal |
+| STR-003 | NY continuación | ADAPTATION_REQUIRED | Anclaje NY→CME NQ; ventana E2T 10:00 ET a registrar |
+| STR-004 | NY reversal | ADAPTATION_REQUIRED | Ídem STR-003 |
+| STR-005 | Refinado multi-TF | ADAPTATION_REQUIRED | Overlay sobre padre (STR-002); dependencia declarada |
+| STR-006 | Failure swing | IMPLEMENTABLE_NOW | Detector autónomo ch06 |
+| STR-007 | SMT | DATA_REQUIRED | Sin segundo instrumento (ES/YM/DXY) sincronizado; PROHIBIDO sustituto NQ |
+| STR-008 | Noticias | DATA_REQUIRED | Sin feed de calendario económico con timestamp; PROHIBIDO inferir desde velas |
+| STR-009 | Reentrada intra-TS | RUNTIME_REQUIRED | Contrato Strategy account-agnostic; versión técnica (rearme) documentada como NO-equivalente del stop físico |
+
+## TIER 1 — Controles (8)
+
+Configuración base por estrategia; los TIER 2 sustituyen exactamente UN eje contra estos controles.
+
+| Variant ID | Estrategia padre | Configuración base [RECON salvo citas] |
+|---|---|---|
+| CLF-VAR-C01 | STR-001 | London ideal: marco 4h (velas 21/17/01 ET), 3 escenarios, entrada tras expansión en "nuestra vela", salida temporal vela de las 5, red flags completas |
+| CLF-VAR-C02 | STR-002 | Rango pendiente→DOL: cadena nativa 4h, resolución TS `TS_CLOSE` (cierre de la vela base), selección de referencia `leftmost_unbroken`, salida DOL, sin refinado, ancla horaria del curso (America/New_York), red flags completas |
+| CLF-VAR-C03 | STR-003 | NY continuación: vela 5am consolidación, expansión vela 9am, DOL no tomado tras London, "cómo abren las velas" |
+| CLF-VAR-C04 | STR-004 | NY reversal: objetivo completado en London ⇒ reversión en NY |
+| CLF-VAR-C05 | STR-005 | Refinado base: refinado 15m sobre STR-002 (ch04 "nunca bajo de 15") |
+| CLF-VAR-C06 | STR-006 | Failure swing: identificación en vivo (reacción+OB+motivo), tolerancia por defecto |
+| CLF-VAR-C07 | STR-009 | Reentrada técnica intra-TS: 1 reentrada por rearme técnico, no por stop físico |
+| CLF-VAR-C08 | STR-007/008 | Controles de contrato DATA_BLOCKED: fixtures sintéticos de SMT y Noticias (sin backtest NQ-only) |
+
+`[RECON]` C08 agrupa en UN control los contratos de las dos estrategias data-blocked para no inflar conteo de estrategias; sus fixtures existen para conformance, no para backtest.
+
+## TIER 2 — Sustituciones (21 IDs / 22 sets)
+
+| Variant ID | Eje sustituido | Padre | Valor vs control |
+|---|---|---|---|
+| CLF-VAR-S01 | Resolución TS | C02 | `TS_EARLY_1M`: tras TS+reacción no hace falta cierre (ch02 R5·c-0035) — emisión al primer cierre 1m causal contra el sweep (vs `TS_CLOSE` base) |
+| CLF-VAR-S02 | Resolución TS | C02 | `TS_M30`: confirmación en M30 ante duda del 15m (ch04 R23·c-0099) |
+| CLF-VAR-S03 | Bias | C02 | EMA en lugar de cadena de rangos (la cadena nativa PERMANECE como control interno del detector; no desaparece) |
+| CLF-VAR-S04 | Bias | C02 | Estructura swing (HH/HL) en lugar de cadena |
+| CLF-VAR-S05 | Bias | C02 | DMI+ADX **con variable de dirección** (ADX≥20 / ADX≥25 — 2 parameter sets, 1 ID) |
+| CLF-VAR-S06 | Ancla horaria | C02 | NY cash 09:30 ET (vs horas del curso) |
+| CLF-VAR-S07 | Ancla horaria | C02 | CME 17:00 CT (America/Chicago, DST vía calendario) |
+| CLF-VAR-S08 | Salida | C03 | Salida DOL en estrategia de sesión (base temporal) |
+| CLF-VAR-S09 | Salida | C02 | Salida temporal vela de las 5 (base DOL) |
+| CLF-VAR-S10 | TF pendiente | C02 | 1h (vs 4h) |
+| CLF-VAR-S11 | TF objetivo | C02 | 1D (vs 4h) |
+| CLF-VAR-S12 | Refinado | C02 | 15m — **EQUIVALENT_TO=C05** (misma identidad experimental; se ejecuta una vez y se cuenta en ambas filas como equivalencia, no como dos votos) |
+| CLF-VAR-S13 | Refinado | C02 | 30m |
+| CLF-VAR-S14 | Tolerancia FS | C06 | Estricta (reacción confirmada estricta) |
+| CLF-VAR-S15 | Tolerancia FS | C06 | Amplia (admite variantes del motivo) |
+| CLF-VAR-S16 | Tolerancia de rango | C02 | Selección estructural de vela izquierda NO adyacente (claim ch01 c-0005) vs vela inmediata |
+| CLF-VAR-S17 | Resolución TS | C02 | `TS_WICK_NEXT`: confirmación por mecha de la vela siguiente al sweep (ch09 c-0035/c-0036) |
+| CLF-VAR-S18 | Reentradas | C07 | 0 reentradas |
+| CLF-VAR-S19 | Reentradas | C07 | 2 reentradas |
+| CLF-VAR-S20 | Red flags | C02 | OFF |
+| CLF-VAR-S21 | Red flags | C02 | Duras solamente (vs completas) |
+
+## TIER 3 — Interacciones (5)
+
+| Variant ID | Interacción | Hipótesis registrada |
+|---|---|---|
+| CLF-VAR-T01 | Ancla CME × refinado 15m | La apertura de sesión CME relocaliza el rango de referencia y el refinado aprovecha mejor la manipulación temprana |
+| CLF-VAR-T02 | TS temprano (1m causal) × stop más ancho | Entrada más temprana exige stop más ancho para sobrevivir el ruido de la reacción |
+| CLF-VAR-T03 | NY reversal × objetivo HTF intacto | La reversión sólo tiene recorrido cuando el DOL del TF superior NO fue tomado en London |
+| CLF-VAR-T04 | Failure swing × ventanas clave | El FS en horas 5/9 ET (aperturas de vela) tiene más valor informativo que fuera de ellas |
+| CLF-VAR-T05 | Noticias × TS previo obligatorio | DATA_BLOCKED sin calendario; hipótesis documentada, fixtures de contrato sólo |
+
+## Splits temporales (congelar antes de comparar PnL)
+
+Particiones cronológicas desde sesiones elegibles reales (corpus 2023-10-02→2026-10-06, 672 sesiones):
+
+```text
+Development 60% · Validation 20% · Final holdout 20%
+```
+
+- Fechas exactas calculadas desde el corpus en P5 con el mayor lookback como embargo/purge.
+- El holdout final NO se usa para ajustar reglas tras observar resultados.
+- R02/R03 usaron el mismo histórico para otras familias (ORB/FBC/MR/TG): cualquier ventana ya usada para SELECCIONAR hipótesis Clutifx se declara contaminada; hoy no existe selección previa Clutifx, por lo que las particiones nacen limpias para esta familia (las familias previas no contaminan porque no seleccionaron variantes Clutifx).
+
+## Dependencias y no-duplicación
+
+- STR-005 hereda sesión/padres de STR-002: no se clasifica independiente para sesiones FX.
+- STR-009 hereda dependencias de la estrategia madre + rearme técnico.
+- STR-007/008: bloqueadas por datos; sus controles de contrato (C08) corren fixtures, jamás backtest NQ-only disfrazado.
+- Parámetros distintos NO crean registros Strategy nuevos (misma spec, distinto parameter_set_id).
+
+## GATE P1 (2026-10-23)
+
+```text
+RANGE_SEMANTICS               = VERIFIED  (leftmost_unbroken + c-0005 + determinismo de solapes)
+TEMPORAL_CAUSALITY            = VERIFIED  (TS 5 etapas; P3 proxy apertura; sin intrabar)
+MULTITF_WARMUP                = VERIFIED  (derivation por requirements; NOT_READY explícito)
+STRATEGY_MM_BOUNDARY          = VERIFIED  (STR-009 rearme técnico; sin fills/cuenta en Strategy)
+SESSION_PROVIDER_COMPATIBILITY= VERIFIED  (America/New_York; admisión E2T 10:00 registrada aparte)
+```
+
+Catálogo v1.0 RECONSTRUIDO congelado: STRATEGIES-MASTER + OBJECTIVE-DETECTORS + EXPERIMENT-MATRIX + SOURCE-COVERAGE + HEFESTO-BASELINE-AUDIT (34 IDs, 35 sustituciones efectivas, 1 equivalencia declarada S12≡C05).
