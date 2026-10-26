@@ -3,7 +3,7 @@ type: runbook
 schema_version: 1
 scope: area
 created: "2026-10-24"
-updated: "2026-10-25"
+updated: "2026-10-26"
 area: "[[Echo]]"
 project: "[[Echo Futures]]"
 application:

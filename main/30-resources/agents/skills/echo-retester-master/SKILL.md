@@ -5,7 +5,7 @@ name: echo-retester-master
 description: Gatea el desarrollo y backtesting de cada nueva estrategia o variante de Echo Futures, impidiendo históricos largos antes de correctness, smoke individual, rollover y al menos un challenge aprobado en un contrato trimestral comprobado. Cargar al implementar/validar nuevas estrategias para Echo Futures, ClutiFX o cursos futuros; no para operar LIVE ni analizar únicamente campañas ya terminadas.
 scope: area
 created: "2026-10-24"
-updated: "2026-10-25"
+updated: "2026-10-26"
 entities:
   - "[[Echo Futures]]"
 related:
