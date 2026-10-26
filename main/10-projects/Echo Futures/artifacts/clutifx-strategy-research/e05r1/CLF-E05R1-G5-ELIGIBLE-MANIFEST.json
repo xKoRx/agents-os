@@ -1,0 +1,9 @@
+{
+  "schema": "clf-e05r1-g5-eligible.v1",
+  "cycle": "CLF-E05-R1",
+  "eligible": [],
+  "reason": "0 challenges pasados en el quarter (S03 QUARTER_NO_PASS por NEGATIVE_EDGE); G5_EXECUTED=0",
+  "g4_campaigns_executed": [{"variant_id": "CLF-VAR-S03-E05R1", "contract": "NQU6", "receipt": "e05r1/g4-quarter/out-E05R1-S03-G4", "admitted_by": "qualification_guard.admit_quarter (cadena G0-G3+G2C sellada)"}],
+  "purchases": 2,
+  "passes": 0
+}

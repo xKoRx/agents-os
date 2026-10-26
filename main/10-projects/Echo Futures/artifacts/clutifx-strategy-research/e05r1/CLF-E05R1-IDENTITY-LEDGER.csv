@@ -1,0 +1,9 @@
+identity_group,variant_id,strategy_id_e05r1,fixes,g0,g1,g2a_nqz6,g2b_nqz6,g2c_nqz6,g3,g4_quarter_nqu6,g5,classification
+Bias,S03,clf-range-dol-s03-e05r1,H1,PASS,PASS,PASS (13867 evals / 12060 ready / 15 señales),SESSION_COMPATIBLE (3/15 en ventana),PASS (3 rt = 2W/1L),PASS (reutilizado Q02, linaje declarado),EXECUTED: 2 cuentas, 14 rt (5W/9L), net -744.86, 0 pases,0 (prohibido),QUARTER_NO_PASS (NEGATIVE_EDGE)
+Bias,S04,clf-range-dol-s04-e05r1,H1,PASS,PASS,PASS (ready pleno; 0 señales: el motor no favoreció emisiones en la ventana),INCONCLUSIVE_NO_SIGNALS,FAIL (0 trades),n/a,bloqueado (sin G2C),0,READY_LOW_SIGNAL (eje vivo; FX-05 prueba cableado)
+Bias,S05A,clf-range-dol-s05a-e05r1,H1,PASS,PASS,PASS (ídem S04),INCONCLUSIVE_NO_SIGNALS,FAIL (0 trades),n/a,bloqueado,0,READY_LOW_SIGNAL (eje vivo)
+Bias,S05B,clf-range-dol-s05b-e05r1,H1,PASS,PASS,PASS (ídem S04),INCONCLUSIVE_NO_SIGNALS,FAIL (0 trades),n/a,bloqueado,0,READY_LOW_SIGNAL (eje vivo)
+FailureSwing,C06,clf-failure-swing-e05r1,H2+H3+H4+H5,PASS,PASS,PASS (12060 ready; funnel: 4 intentos/4 invalidados/0 veredictos),INCONCLUSIVE_NO_SIGNALS,FAIL (0 trades),n/a,bloqueado,0,VALID_RARE_NO_ACTIVITY (ventana)
+FailureSwing,S14,clf-failure-swing-s14-e05r1,H2(required)+H3+H4,PASS,PASS,PASS (ready pleno; mismo funnel de familia),INCONCLUSIVE_NO_SIGNALS,FAIL (0 trades),n/a,bloqueado,0,VALID_RARE_NO_ACTIVITY (ventana; reproducción histórica)
+FailureSwing,S15,clf-failure-swing-s15-e05r1,H2+H3+H4(wide)+H5,PASS,PASS,PASS (ídem C06),INCONCLUSIVE_NO_SIGNALS,FAIL (0 trades),n/a,bloqueado,0,VALID_RARE_NO_ACTIVITY (ventana)
+FailureSwing,T04,clf-failure-swing-t04-e05r1,H2+H3+H4+H5+key-hours,PASS,PASS,PASS (ídem C06),INCONCLUSIVE_NO_SIGNALS,FAIL (0 trades),n/a,bloqueado,0,VALID_RARE_NO_ACTIVITY (ventana)

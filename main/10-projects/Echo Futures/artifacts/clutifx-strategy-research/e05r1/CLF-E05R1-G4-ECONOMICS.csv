@@ -1,0 +1,2 @@
+variant_id,contract,window,sessions,purchased,terminal,trades,wins,losses,net_usd,passed,verdict,primary_failure_cause,feasibility
+CLF-VAR-S03-E05R1,NQU6,2026-06-14T22:00Z..2026-09-13T22:00Z,60,2,CONTINUOUS_HORIZON_COMPLETE,14,5,9,-744.86,0,QUARTER_NO_PASS,NEGATIVE_EDGE,min_winners=ceil(3000/470.02)=7 <= 14 ejecuciones: la meta ERA alcanzable con la frecuencia observada; la muestra ejecutada es perdedora (5W/9L). No es MATHEMATICALLY_UNREACHABLE.
