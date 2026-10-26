@@ -193,6 +193,32 @@ DDL preflight rechaza checksum drift/owner incompatible antes de mutar. Roles m�
 Cada fila se prueba en C con oráculo independiente. Las incertidumbres restantes son ejecución futura, no decisiones arquitectónicas abiertas. AUTH_FORGE y permisos externos concretos afectan gates propios; no convierten defectos de implementación en bloqueos externos.
 
 
+### B13. Mapa concreto de implementación TARGET
+
+Los archivos CREATE siguientes son nombres propuestos y no evidencia CURRENT. Conservar responsabilidad si un archivo equivalente aparece en HEAD refrescado; no duplicarlo. No cambia la división en shots.
+
+| Acción / archivo relativo Echo | Símbolo/responsabilidad |
+|---|---|
+| MODIFY v3/gateway/internal/lab_v4_gateway.go y v2_wire.go | Routing exacto; DTO strict; receipts; assertions/profile/CAS; no cálculo |
+| CREATE v3/gateway/internal/lab_v4_profiles.go | DeploymentProfileResolver desde config LabV4 existente; snapshot/grants y compatibilidad, sin DML de cuentas |
+| MODIFY v3/gateway/internal/config.go y server.go | Cargar resolver; store obligatorio; inyectar servicios y capability transitoria provisioning |
+| CREATE v3/sdk/contracts/runtime_binding_config_v2.go | DTO config snapshot/profile/stamp/managed_context comunes; validación/digest, sin tipos Forge |
+| MODIFY v3/sdk/postgres/runtime_binding_repository.go | Servicio transaccional común para POST binding e ingest, receipt autónomo/CAS/outbox |
+| MODIFY v3/sdk/postgres/runtime_config_supervisor.go y runtime_ack_repository.go | Claim por consumer, epoch/fence, installer result estructurado, renew con lookup |
+| CREATE v3/core/cmd/echo-core/runtime_config_installer.go | Wire installer Core a cache/engine reales y lookup; nil fuera de capability no aparenta READY |
+| CREATE v3/bridge/internal/runtime_config_installer.go | Config apply/readback por sesión y protocolo ClientConfig existente; último envío scoped |
+| MODIFY v3/core/internal/functions/strategy_config.go | Stamp guardado con config; confirmación por lookup post-commit StateFun |
+| MODIFY v3/core/internal/functions/master_observation.go y execution_planner.go | Owner único managed/admission, contexto exacto, dispatch al planner existente y gates |
+| MODIFY v3/sdk/domain/reference_event.go y envelopes close/modify correspondientes | Extensión managed_context propagada sin crear Signal nativa |
+| CREATE v3/sdk/postgres/reference_dispatch_repository.go | Persistir/reconciliar outbox estrecho B8/B11, unique command key; no decisiones MM |
+| MODIFY v3/sdk/postgres/master_observation_service.go y strategy_history_v2_put.go | Intake/cycle scoped, journal seq, projector por snapshot/claim; helper historia existing version/CAS |
+| MODIFY v3/lab-worker/cmd/labv4-worker/main.go | Inyectar artifact store real y ciclo projector separado; mantener worker V4 |
+| CREATE migraciones siguientes libres084–086 sólo según B11 | Runner/ledger/grants/constraints; no editar migraciones históricas |
+| MODIFY Symphony sqx/adapters/echo-handoff/http_ingress_v2.go y sqx/adapters/registry-postgres/strategy_version.go | Persistencia/receipt/retry del adapter real reutilizando ControlPlane |
+| CREATE Symphony sqx/cmd/echo-ingest-v2/main.go | Entry point candidate-local que consume export autorizado+manifest, traduce DTO y usa adapter/store existentes; no campaña ni scheduler nuevo |
+
+Config clients MT4/MT5 se modifican únicamente en handlers/persistencia de protocolo B6/B7, sin cargar binarios en flota. Tests del simulador deben responder sólo después de aplicar y de lookup; un ACK scripted sin aplicar no pasa. API analítica, shared-analytics, workers matemáticos, frontend/Hasura son NO-TOUCH funcional por defecto: sólo cambios mínimos demostrados por tests del nuevo flujo, preservando la SPEC V4.
+
 ## Fuentes
 
 - Mandato Owner 2026-10-26; [[F — Decision Register]] D25/D26.

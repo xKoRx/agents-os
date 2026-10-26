@@ -82,6 +82,9 @@ Rollback de código = revert nuevo revisado en rama adecuada, sin borrar histori
 
 ### A5. Límites heredados
 
+Recheck final del diseño: ambos HEAD remotos Echo y HEAD Symphony permanecen iguales y checkouts de producto limpios. Go1.24.0 y pin shared-analytics v0.0.1-lab-v4-shot2.1 aparecen en Echo SDK/lab-worker y Symphony. No se ejecutó build frío: F03 debe verificar checksum/artefacto realmente consumido y cualquier diferencia entre código local del módulo y tag publicado antes de atribuir fixes al consumidor. No asumir que un fix local no publicado viajó al binario.
+
+
 Las **49 filas H01–H49** de SHOT4_FINAL_COVERAGE_MATRIX contabilizan 48 PASS/1 FAIL histórico (H45 prepare bundle). QA-01 es transversal y separado, coverage histórico ~85.8%/~85.2% menor que95%; encabezados antiguos 47/49 mezclaron denominadores. AUTH_FORGE sigue excepción de autenticidad; installer nil es defecto implementable, no recurso externo. Este workstream no reabre Shot4 anterior ni concede no-regresión por inferencia: C exige repetir H afectados en el nuevo SHA y señalar toda degradación. H45 no cambia budget para parecer verde.
 
 
