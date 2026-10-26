@@ -2,14 +2,18 @@
 type: resource
 schema_version: 1
 status: active
-area: "[[Trading]]"
-sources: ["[[IMOX - Fuente - Mi base de datos para analizar resultados]]"]
+area: '[[Trading]]'
+sources:
+- '[[IMOX - Fuente - Mi base de datos para analizar resultados]]'
 last_verified: 2026-10-24
 confidence: verified
 aliases: []
-tags: [kind/resource, area/trading, topic/imox]
-created: "2026-10-24"
-updated: "2026-10-24"
+tags:
+- kind/resource
+- area/trading
+- topic/imox
+created: '2026-10-24'
+updated: '2026-10-26'
 ---
 
 # IMOX - Base de datos para analizar resultados
@@ -131,3 +135,7 @@ No se publicó ningún comentario. Estas preguntas son material para preparar un
 ## Límites y contradicciones
 
 No se ejecutó ni auditó la app. No se comprobó el estado actual de políticas Darwinex ni se inspeccionaron otras publicaciones. Las capacidades se atribuyen al autor o a la interfaz observada; las sugerencias se distinguen como análisis propio. La duda del autor sobre concordancia permanece abierta.
+
+## Delta observado el 2026-10-26
+
+El cuerpo conserva la advertencia de datos ficticios. Ahora se observan 14 comentarios frente a ocho de la captura anterior; hay respuestas anidadas adicionales pendientes. No se certifican condiciones de reinicio de Darwinex desde testimonios de miembros. La revisita textual no renueva la verificación de todos los materiales previos.

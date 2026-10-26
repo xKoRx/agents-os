@@ -1,47 +1,51 @@
 ---
 type: source
 schema_version: 1
-status: "active"
-area: "[[Trading]]"
-source_url: "https://comunidad.imoxtrading.com/c/aportes-ia/builder-mineria-de-estrategias"
-repo:
-path:
-author: "Edgar David Maldonado Acosta (@jaizdeda)"
-published:
-captured: "2026-10-24"
-license:
-checksum:
-supersedes:
-superseded_by:
+status: active
+area: '[[Trading]]'
+source_url: https://comunidad.imoxtrading.com/c/aportes-ia/builder-mineria-de-estrategias
+repo: null
+path: null
+author: Edgar David Maldonado Acosta (@jaizdeda)
+published: null
+captured: '2026-10-24'
+license: null
+checksum: null
+supersedes: null
+superseded_by: null
 aliases: []
-tags: ["kind/source", "area/trading", "topic/imox"]
-created: "2026-10-24"
-updated: "2026-10-25"
-platform: "circle"
-community_key: "imox-circle"
-record_kind: "post"
-post_key: "circle:comunidad.imoxtrading.com/c/aportes-ia/builder-mineria-de-estrategias"
-canonical_post_url: "https://comunidad.imoxtrading.com/c/aportes-ia/builder-mineria-de-estrategias"
+tags:
+- kind/source
+- area/trading
+- topic/imox
+created: '2026-10-24'
+updated: '2026-10-26'
+platform: circle
+community_key: imox-circle
+record_kind: post
+post_key: circle:comunidad.imoxtrading.com/c/aportes-ia/builder-mineria-de-estrategias
+canonical_post_url: https://comunidad.imoxtrading.com/c/aportes-ia/builder-mineria-de-estrategias
 parent_context_url: null
 source_post_id: null
-space_key: "aportes-ia"
+space_key: aportes-ia
 published_at: null
 source_updated_at: null
-last_reviewed_on: "2026-10-24"
+last_reviewed_on: '2026-10-26'
 last_reviewed_at: null
-review_time_precision: "date"
-registered_at: "2026-10-25T00:13:22-03:00"
-processing_state: "partial"
-reading_scope: "body_comments_primary_attachments"
-body_coverage: "reviewed"
-comments_coverage: "partial_or_unconfirmed"
-attachments_coverage: "partial_or_unconfirmed"
-relevance_decision: "useful"
-decision_reason: "Extracción previa con conocimiento o contexto útil documentado; no implica aprobación de sus afirmaciones."
-knowledge_destinations: ["[[IMOX - Builder - Minería de estrategias]]"]
-pending_reason: "Revisar alcance y límites de la ficha antes de cerrar: puede haber comentarios dinámicos, audio, imágenes, anexos o fórmulas no auditados. No se releyó Circle en esta inicialización."
-contribution_state: "not_planned"
-last_registration_review: "[[IMOX — Revisión 2026-10-25 - Inicialización del registro]]"
+review_time_precision: date
+registered_at: '2026-10-25T00:13:22-03:00'
+processing_state: partial
+reading_scope: body_comments_primary_attachments
+body_coverage: reviewed
+comments_coverage: visible_current_subset_nested_replies_pending
+attachments_coverage: partial_or_unconfirmed
+relevance_decision: useful
+decision_reason: Extracción previa con conocimiento o contexto útil documentado; no implica aprobación de sus afirmaciones.
+knowledge_destinations:
+- '[[IMOX - Builder - Minería de estrategias]]'
+pending_reason: Respuestas anidadas y medios no revalidados íntegramente en la revisita.
+contribution_state: not_planned
+last_registration_review: '[[IMOX — Revisión 2026-10-26 - Actualización de octubre]]'
 ---
 
 # IMOX - Fuente - Builder - Minería de estrategias
@@ -65,3 +69,7 @@ La confianza verificada corresponde a la lectura de la fuente, no a reproducir l
 ## Lifecycle
 
 Fuente activa, sin reemplazos registrados.
+
+## Revisita 2026-10-26
+
+Relectura del cuerpo y discusión accesible: Edgar aclara ranking algo más exigente que filtro genético, no agresivo; Asier advierte selección contra familias con menor métrica global. Queda verificar variedad real de supervivientes y respuestas anidadas.

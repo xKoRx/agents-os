@@ -34,3 +34,7 @@ Hector adapta un manual de Víctor Corrales Urrutia al sistemático: reglas prev
 Resto del manual y sus elementos gráficos no revisados; no atribuir al autor toda la adaptación de Hector.
 
 Decisión de ingesta: `useful`. Estado de lectura: `partial`; el recurso conserva conocimiento útil incluso si quedan medios o respuestas pendientes.
+
+## Alcance del PDF
+
+Se conserva el documento completo como fuente personal, pero sólo se extrajo conocimiento de las páginas declaradas. MPPT presenta contenido educativo general y aclara que no sustituye tratamiento profesional. La aplicación al trading sistemático del post es de Hector. No se han auditado afirmaciones psicológicas, estadísticas, ejercicios ni eficacia clínica del manual y no se promueven a instrucciones personales de salud.

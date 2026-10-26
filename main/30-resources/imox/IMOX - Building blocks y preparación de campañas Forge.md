@@ -1,17 +1,29 @@
 ---
 type: resource
 schema_version: 1
-status: "active"
-area: "[[Trading]]"
-sources: ["[[IMOX - Fuente - Building Blocks Skill]]", "[[IMOX - Fuente - Guía de Building Blocks SQX 145]]", "[[IMOX - Fuente - Tipos de estrategia en trading algorítmico]]", "[[IMOX - Fuente - Builder - Minería de estrategias]]", "[[IMOX - Fuente - AnchoredVWAP - Exportación y compatibilidad por versión]]", "[[IMOX - Fuente - IA y Building Blocks - Cambio de enfoque de Aritz]]"]
-last_verified: "2026-10-24"
-confidence: "high"
+status: active
+area: '[[Trading]]'
+sources:
+- '[[IMOX - Fuente - Building Blocks Skill]]'
+- '[[IMOX - Fuente - Guía de Building Blocks SQX 145]]'
+- '[[IMOX - Fuente - Tipos de estrategia en trading algorítmico]]'
+- '[[IMOX - Fuente - Builder - Minería de estrategias]]'
+- '[[IMOX - Fuente - AnchoredVWAP - Exportación y compatibilidad por versión]]'
+- '[[IMOX - Fuente - IA y Building Blocks - Cambio de enfoque de Aritz]]'
+last_verified: '2026-10-24'
+confidence: high
 aliases: []
-tags: ["kind/resource", "area/trading", "topic/imox", "topic/building-blocks"]
-created: "2026-10-24"
-updated: "2026-10-24"
-related: ["[[IMOX]]", "[[30-resources/applications/echo/echo-forge]]"]
-source_url: "https://comunidad.imoxtrading.com/c/aportes-ia/building-blocks-skill"
+tags:
+- kind/resource
+- area/trading
+- topic/imox
+- topic/building-blocks
+created: '2026-10-24'
+updated: '2026-10-26'
+related:
+- '[[IMOX]]'
+- '[[30-resources/applications/echo/echo-forge]]'
+source_url: https://comunidad.imoxtrading.com/c/aportes-ia/building-blocks-skill
 ---
 
 # IMOX - Building blocks y preparación de campañas Forge
@@ -99,3 +111,7 @@ La revisión adicional de [[IMOX - IA y Building Blocks - Cambio de enfoque de A
 ## Límites y contradicciones
 
 Investigación documental y propuesta de contrato. La auditoría de Forge, la creación de la skill propia y la ejecución de campañas son trabajos posteriores que requieren definir el experimento y verificar el estado actual del sistema. Los umbrales y resultados de miembros no se convierten en policy de Rodrigo.
+
+## Actualización documental 2026-10-26
+
+[[IMOX - Metodología para investigación Forex y CFD]] integra los estudios nuevos de octubre, distingue orientación de Aritz de experimentos de miembros y conserva decisiones aún no resueltas para Forge. [[IMOX — Revisión 2026-10-26 - Actualización de octubre]] documenta inventario y límites. Esta ampliación no revalida todos los datos antiguos ni modifica el pipeline técnico.

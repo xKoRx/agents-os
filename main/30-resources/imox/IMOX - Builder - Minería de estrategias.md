@@ -1,17 +1,23 @@
 ---
 type: resource
 schema_version: 1
-status: "active"
-area: "[[Trading]]"
-sources: ["[[IMOX - Fuente - Builder - Minería de estrategias]]"]
-last_verified: "2026-10-24"
-confidence: "verified"
+status: active
+area: '[[Trading]]'
+sources:
+- '[[IMOX - Fuente - Builder - Minería de estrategias]]'
+last_verified: '2026-10-24'
+confidence: verified
 aliases: []
-tags: ["kind/resource", "area/trading", "topic/imox"]
-created: "2026-10-24"
-updated: "2026-10-24"
-source_url: "https://comunidad.imoxtrading.com/c/aportes-ia/builder-mineria-de-estrategias"
-related: ["[[IMOX]]", "[[30-resources/applications/echo/echo-forge]]"]
+tags:
+- kind/resource
+- area/trading
+- topic/imox
+created: '2026-10-24'
+updated: '2026-10-26'
+source_url: https://comunidad.imoxtrading.com/c/aportes-ia/builder-mineria-de-estrategias
+related:
+- '[[IMOX]]'
+- '[[30-resources/applications/echo/echo-forge]]'
 ---
 
 # IMOX - Builder - Minería de estrategias
@@ -53,3 +59,7 @@ Prioridad de consulta: **Muy alta**. Contexto de Rodrigo: la metodología de [[3
 ## Límites y contradicciones
 
 Faltan especificación reproducible del score, benchmark controlado de falsos descartes y evidencia fuera de muestra. Consultar un periodo reservado para elegir candidatos lo convierte en parte de selección; conservar un holdout independiente.
+
+## Delta observado el 2026-10-26
+
+Relectura del cuerpo y discusión accesible: Edgar aclara ranking algo más exigente que filtro genético, no agresivo; Asier advierte selección contra familias con menor métrica global. Queda verificar variedad real de supervivientes y respuestas anidadas. La revisita textual no renueva la verificación de todos los materiales previos.

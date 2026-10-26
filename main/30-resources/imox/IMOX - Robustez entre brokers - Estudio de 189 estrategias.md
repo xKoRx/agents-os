@@ -34,3 +34,7 @@ Estudio propio: 627 pruebas, 189 estrategias y siete instrumentos; Darwinex como
 Trades, terminales y calidad histórica no auditados independientemente; no importar listón 0,80 ni ranking de brokers a Forge.
 
 Decisión de ingesta: `useful`. Estado de lectura: `partial`; el recurso conserva conocimiento útil incluso si quedan medios o respuestas pendientes.
+
+## Detalles contrastados en el PDF
+
+Las tablas distinguen 627 pruebas del universo total, 189 EAs, 156 con trades individuales para rasgos y 95 comparadas en los cuatro destinos; no intercambiar denominadores. El dato de conservación no es ranking general de calidad del broker. El texto anuncia siete instrumentos con tamaños de muestra muy dispares y fuerte peso NQ; no extrapolar porcentajes a todos los activos/estrategias. Hay una inconsistencia aritmética a verificar: el ejemplo textual de beneficio 94% y DD 104% no basta por sí solo para convertir Ret/DD 4 en 3; esa frase no se usa como cálculo certificado. Calidad de ticks, cortes y sesiones siguen siendo variables de control.

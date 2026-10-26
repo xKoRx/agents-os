@@ -1,17 +1,31 @@
 ---
 type: resource
 schema_version: 1
-status: "active"
-area: "[[Trading]]"
-sources: ["[[IMOX - Fuente - IA y Building Blocks - Cambio de enfoque de Aritz]]", "[[IMOX - Fuente - SQX 144 - Builders cortos y filtros baratos]]", "[[IMOX - Fuente - SQX - Point value y comprobación monetaria]]", "[[IMOX - Fuente - Ventanas móviles de 24 meses y estabilidad temporal]]", "[[IMOX - Fuente - SQX automatizado - Hipótesis, sondas y ejecución]]", "[[IMOX - Fuente - Building Blocks Skill]]", "[[IMOX - Fuente - Actualizar Broker Profiles en SQX]]", "[[IMOX - Fuente - Guía SQX 144 - Conocimiento de Telegram]]"]
-last_verified: "2026-10-24"
-confidence: "high"
+status: active
+area: '[[Trading]]'
+sources:
+- '[[IMOX - Fuente - IA y Building Blocks - Cambio de enfoque de Aritz]]'
+- '[[IMOX - Fuente - SQX 144 - Builders cortos y filtros baratos]]'
+- '[[IMOX - Fuente - SQX - Point value y comprobación monetaria]]'
+- '[[IMOX - Fuente - Ventanas móviles de 24 meses y estabilidad temporal]]'
+- '[[IMOX - Fuente - SQX automatizado - Hipótesis, sondas y ejecución]]'
+- '[[IMOX - Fuente - Building Blocks Skill]]'
+- '[[IMOX - Fuente - Actualizar Broker Profiles en SQX]]'
+- '[[IMOX - Fuente - Guía SQX 144 - Conocimiento de Telegram]]'
+last_verified: '2026-10-24'
+confidence: high
 aliases: []
-tags: ["kind/resource", "area/trading", "topic/imox", "topic/sqx144"]
-created: "2026-10-24"
-updated: "2026-10-24"
-source_url: "https://comunidad.imoxtrading.com/c/aportes-ia/ia-building-blocks"
-related: ["[[IMOX]]", "[[30-resources/applications/echo/echo-forge]]"]
+tags:
+- kind/resource
+- area/trading
+- topic/imox
+- topic/sqx144
+created: '2026-10-24'
+updated: '2026-10-26'
+source_url: https://comunidad.imoxtrading.com/c/aportes-ia/ia-building-blocks
+related:
+- '[[IMOX]]'
+- '[[30-resources/applications/echo/echo-forge]]'
 ---
 
 # IMOX - Empezar con SQX 144 - Metodología y primera campaña
@@ -119,3 +133,7 @@ El primer entregable práctico es un paquete pequeño: ficha de hipótesis + pre
 ## Límites y contradicciones
 
 Se trata de investigación documental y una propuesta de arranque. No se ha inspeccionado ni ejecutado SQX de Rodrigo, escuchado el audio o completado la formación oficial nueva, y no se inventan umbrales faltantes. La recomendación de comenzar por Random se atribuye a evidencia escrita del administrador; no se presenta como superioridad estadística demostrada sobre genética.
+
+## Actualización documental 2026-10-26
+
+[[IMOX - Metodología para investigación Forex y CFD]] integra los estudios nuevos de octubre, distingue orientación de Aritz de experimentos de miembros y conserva decisiones aún no resueltas para Forge. [[IMOX — Revisión 2026-10-26 - Actualización de octubre]] documenta inventario y límites. Esta ampliación no revalida todos los datos antiguos ni modifica el pipeline técnico.

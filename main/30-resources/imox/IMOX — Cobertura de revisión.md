@@ -1,18 +1,22 @@
 ---
-type: "doc"
+type: doc
 schema_version: 1
-status: "active"
-area: "[[Trading]]"
-related: ["[[IMOX]]"]
+status: active
+area: '[[Trading]]'
+related:
+- '[[IMOX]]'
 aliases: []
-tags: ["kind/doc", "area/trading", "topic/imox"]
-created: "2026-10-25"
-updated: "2026-10-25"
+tags:
+- kind/doc
+- area/trading
+- topic/imox
+created: '2026-10-25'
+updated: '2026-10-26'
 coverage_intervals: []
-inventory_complete_through: 
-processing_complete_through: 
-coverage_state: "partial_inventory_observed"
-review_mode: "on_request"
+inventory_complete_through: null
+processing_complete_through: null
+coverage_state: partial_inventory_observed
+review_mode: on_request
 ---
 
 # IMOX — Cobertura de revisión
@@ -23,7 +27,13 @@ Saber qué intervalo del foro está realmente inventariado y procesado, y qué q
 
 ## Contenido
 
-### Estado por espacio — 2026-10-25
+### Actualización incremental — 2026-10-26
+
+[[IMOX — Revisión 2026-10-26 - Actualización de octubre]]: feed recorrido desde novedades del día hasta 29/30 de septiembre; 46 posts de octubre dentro del corpus observados, 28 nuevos y 18 deduplicados. Tres revisitas. No certifica todos los espacios ni detección exhaustiva de cambios; orden/filtros y cobertura por espacio no acreditados. La tabla de abajo corresponde al lote histórico anterior y no a una frontera vigente de octubre. **124 posts únicos: 3 procesados, 13 excluidos con motivo y 108 parciales.**
+
+Cinco PDF conservados con alcance explícito; manual MPPT sólo parcialmente leído. No se cerraron intervalos ni se cambió el modo a pedido. Ver síntesis [[IMOX - Metodología para investigación Forex y CFD]] y pendientes por fuente.
+
+### Estado por espacio — lote histórico 2026-10-25
 
 Lote y evidencia: [[IMOX — Reporte de regularización hasta septiembre 2026]] · [[IMOX — Revisión 2026-10-25 - Histórico hasta septiembre]].78 posts dentro del corte contextual registrados; el diccionario acumulado suma96 con los anteriores. **No hay frontera cronológica global acreditada.**
 

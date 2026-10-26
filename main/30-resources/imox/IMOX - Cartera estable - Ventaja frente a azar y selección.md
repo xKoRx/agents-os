@@ -34,3 +34,11 @@ Hipótesis abierta: distinguir ventaja propia de exposición al mercado y sesgo 
 Respuestas adicionales pendientes; no se ejecutó el experimento ni se validó código/dataset.
 
 Decisión de ingesta: `useful`. Estado de lectura: `partial`; el recurso conserva conocimiento útil incluso si quedan medios o respuestas pendientes.
+
+## Detalles contrastados en el PDF
+
+El documento de siete páginas agrega `sin datos` para menos de diez operaciones fuera y distingue falta de potencia de contradicción con la ventaja previa. Replica estrategia original con parámetros, MM, costes y TF secundarios; separa 2015-01-05→2018-06-26 de referencia 2018-06-27→2025-07-31 y descarta trades que cruzan el corte. Con réplica inferior al 60% clasifica no fiable; bajo 80% avisa. Los umbrales son diseño del autor. Controlar timezone/DST y sesiones cambió sustancialmente la réplica reportada de índices europeos. Las figuras representan simulaciones y esquema de cadena, no resultados reales de EAs. La t supone trades independientes; el autor admite posible inflación por episodios compartidos y propone remuestreo temporal. No hay evidencia todavía de cartera más estable: necesita forward.
+
+## Comentarios observados
+
+Se discute beta frente a alfa, Sharpe deflactado y PBO. Un miembro plantea PBO sobre selección por mercado/TF/dirección, no sólo una EA; Xavi reporta que sólo dos EAs de oro de unas 200 superan dos ventanas antiguas. Son declaraciones no reproducidas. Otro miembro considera válido explotar beta y pide no filtrar hasta volver imposible generar; no convertir el debate en consenso ni en prohibición de beta.

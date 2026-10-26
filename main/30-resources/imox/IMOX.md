@@ -1,15 +1,22 @@
 ---
-type: "resource"
+type: resource
 schema_version: 1
-status: "active"
-area: "[[Trading]]"
-sources: ["[[IMOX - Fuente - Mi base de datos para analizar resultados]]"]
-last_verified: "2026-10-24"
-confidence: "verified"
-aliases: ["imox", "Imox Trading", "comunidad IMOX"]
-tags: ["kind/resource", "area/trading", "topic/imox"]
-created: "2026-10-24"
-updated: "2026-10-25"
+status: active
+area: '[[Trading]]'
+sources:
+- '[[IMOX - Fuente - Mi base de datos para analizar resultados]]'
+last_verified: '2026-10-24'
+confidence: verified
+aliases:
+- imox
+- Imox Trading
+- comunidad IMOX
+tags:
+- kind/resource
+- area/trading
+- topic/imox
+created: '2026-10-24'
+updated: '2026-10-26'
 ---
 
 # IMOX
@@ -62,3 +69,7 @@ Rodrigo eligió revisar IMOX cuando lo solicite, sin revisión diaria programada
 ## Regularización histórica
 
 [[IMOX — Reporte de regularización hasta septiembre 2026]] — proyecto, fichas, fuentes y pendientes del lote hasta septiembre; cobertura completa aún no acreditada.
+
+## Actualización documental 2026-10-26
+
+[[IMOX - Metodología para investigación Forex y CFD]] integra los estudios nuevos de octubre, distingue orientación de Aritz de experimentos de miembros y conserva decisiones aún no resueltas para Forge. [[IMOX — Revisión 2026-10-26 - Actualización de octubre]] documenta inventario y límites. Esta ampliación no revalida todos los datos antiguos ni modifica el pipeline técnico.

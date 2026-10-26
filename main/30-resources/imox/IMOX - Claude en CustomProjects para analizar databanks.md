@@ -1,17 +1,23 @@
 ---
 type: resource
 schema_version: 1
-status: "active"
-area: "[[Trading]]"
-sources: ["[[IMOX - Fuente - Claude en CustomProjects para analizar databanks]]"]
-last_verified: "2026-10-24"
-confidence: "verified"
+status: active
+area: '[[Trading]]'
+sources:
+- '[[IMOX - Fuente - Claude en CustomProjects para analizar databanks]]'
+last_verified: '2026-10-24'
+confidence: verified
 aliases: []
-tags: ["kind/resource", "area/trading", "topic/imox"]
-created: "2026-10-24"
-updated: "2026-10-24"
-source_url: "https://comunidad.imoxtrading.com/c/aportes-y-recursos/como-estoy-usando-claude-dentro-de-mis-customprojects-de-sqx-para-analizar-los-databanks"
-related: ["[[IMOX]]", "[[30-resources/applications/echo/echo-forge]]"]
+tags:
+- kind/resource
+- area/trading
+- topic/imox
+created: '2026-10-24'
+updated: '2026-10-26'
+source_url: https://comunidad.imoxtrading.com/c/aportes-y-recursos/como-estoy-usando-claude-dentro-de-mis-customprojects-de-sqx-para-analizar-los-databanks
+related:
+- '[[IMOX]]'
+- '[[30-resources/applications/echo/echo-forge]]'
 ---
 
 # IMOX - Claude en CustomProjects para analizar databanks
@@ -54,3 +60,7 @@ Prioridad de consulta: **Alta**. Contexto de Rodrigo: la metodología de [[30-re
 ## Límites y contradicciones
 
 La decisión de una IA no prueba edge. Si OOS alimenta el selector y las iteraciones, ya no es una evaluación independiente del proceso. No se compartió aquí un paquete implementable auditado.
+
+## Delta observado el 2026-10-26
+
+Relectura de cuerpo y nueve comentarios anunciados. Se mantiene el desacuerdo sobre correlación temprana y coste de MC1/MC2: puede ahorrar cómputo y también eliminar una variante que después resultaría más robusta. Los tiempos/cantidades de miembros siguen siendo experimentos personales. La revisita textual no renueva la verificación de todos los materiales previos.

@@ -34,3 +34,7 @@ Estudio propio en CFD: 2.194 campañas NQ H4 y 2.076 campañas tipo tortuga D1 s
 Datos/código y figuras numéricas no reproducidos; ningún tramo histórico restante es un examen intacto según el propio autor.
 
 Decisión de ingesta: `useful`. Estado de lectura: `partial`; el recurso conserva conocimiento útil incluso si quedan medios o respuestas pendientes.
+
+## Detalles contrastados en el PDF
+
+El control por igual duración usa información conocida a posteriori: es diagnóstico de exposición y no una alternativa operable. El ensayo SQX Random que acepta una candidata frente a cero del control no permite concluir nada sobre piramidación; el autor lo distingue del A/B genético. El test en CFD no reproduce toda la tortuga histórica de futuros: faltan mercados agrícolas/tipos, topes originales de cartera y ajuste por equity; el swap de CFD pesa. El año oculto y la historia ya fueron consultados; sólo un contraste futuro sería independiente. La coincidencia de operaciones SQX→MT5 reportada en el PDF no se verificó ejecutando archivos aquí.
