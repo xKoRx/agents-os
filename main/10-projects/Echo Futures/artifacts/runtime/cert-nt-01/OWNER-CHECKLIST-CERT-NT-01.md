@@ -16,6 +16,10 @@ updated: "2026-10-23"
 
 # OWNER CHECKLIST — CERT-NT-01 (desbloqueo de gates C2/C3/C4)
 
+## PRD.6 adjudicada por Manager 2026-10-26 — DEV solo observación, ventana Owner pendiente
+
+**Código fuente `4a041e6cf17b27a023a1a693a48be1034c35e7dd` aceptado COMO CANDIDATO a certificar DEV con excepciones limitadas**, no G-IMPL pleno ni PROD. La cobertura sigue bajo GOD-03 (nuevos 89.94%; diff-aware 82.71%); excepción sólo para DEV sin órdenes. La rama incremental RocksDB no quedó probada en el lab: la copia actual de `_metadata`+dependencias no demuestra portabilidad si hay rutas absolutas. **Antes de un reinicio compartido FX/Futures, obtener savepoint/backup completo y portable usando servicios ya existentes, demostrar identidad/checkpoint/17 ingress y rollback y conseguir AUTORIZACIÓN EXPRESA DEL OWNER de la ventana.** Si el snapshot no es verificable, STOP SIN RESTART. La tarjeta WINDOW-CARD-PRD6 debe materializarse y verificarse en vault antes de la ventana. No tercer Flink, nuevo Compose project, cuentas, Sim101 ni PROD. Ver [[EF-PROD-PRD6-MANAGER-ADJUDICATION-20261026]] y planner [[Echo Futures — Runtime Pools]].
+
 ## EF-PROD 2026-10-26 — PRD.5 RO aceptado; SIN VENTANA DEV todavía
 
 El Manager verificó `c2d71357` (sólo pruebas/tooling) y aceptó el inventario, pero detectó incompatibilidad de migración en `seal.go`: sólo 1 ingress frente a 17 FX/Futures, offsets desde HWM en vez del checkpoint, copia sólo de `_metadata` sin SST/dependencias y campos de identidad sintéticos; `owner_continuity.go` rechaza keys legacy ACTIVE sin su nuevo marker. Sin snapshot/savepoint completo recuperable ni migración comprobada, **NO reiniciar/recrear Flink DEV ni declarar segura la tarjeta Owner**. PRD.6 es un único cierre GLM sobre source y pruebas aisladas, no otro GOD ni otro Flink. Cobertura también continúa bajo 95% (92.61% archivos nuevos, 78.96% diff-aware observado). PROD y SIM/órdenes siguen intactos/desarmados. Autoridades [[EF-PROD-PRD5-MANAGER-REVIEW-20261026]] y [[Echo Futures — Runtime Pools]].
