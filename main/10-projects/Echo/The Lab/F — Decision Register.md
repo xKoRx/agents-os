@@ -9,7 +9,7 @@ related:
   - "[[D — Revised Roadmap]]"
 tags: [kind/doc, area/echo]
 created: "2026-09-22"
-updated: "2026-10-22"
+updated: "2026-10-26"
 ---
 # F — Decision Register — owner clarifications and D1 decisions
 
@@ -19,7 +19,44 @@ Conservar decisiones ratificadas, su precedencia y gates técnicos de The Lab de
 
 ## Contenido
 
-## V4 — Decisiones Owner 2026-10-22: Forge, operación, curvas y rankings (autoridad vigente)
+## Ingestion V2 — Mandato Owner 2026-10-26 (autoridad vigente)
+
+El programa The Lab V4 anterior permanece cerrado con excepciones. Nuevo workstream dentro del mismo proyecto Echo en 10-projects/Echo/Ingestion V2 — Operational Integration/. No reabre Shot4 ni crea otro producto. SPEC [[B — Frozen Architecture]]; baseline/merge [[A — Source Baseline and Branch Integration]]; plan/gates [[C — Implementation Shots and Acceptance Gates]]; prompts [[D — GLM Handoff Packages]].
+
+### D25 — Base The Lab e integración temprana (OWNER_RATIFIED)
+
+**Precedencia explícita sobre D24:** nueva rama propuesta feature/lab-v4-ingestion-v2 DEBE salir del HEAD remoto refrescado de lab-v4/shot4-integration, verificado b2b3ebfe3337b3b44034c5be3bf00b8379c8f1ce. Verificar nombre/ownership. Prohibido originarla desde master, feature/ef-runtime-pools, feature/lab-v4-shot4 o backtester. Runtime feature/ef-runtime-pools@0e17c4d3f1179cde709f923c8dd28e8cd853afc9 es referencia de incompatibilidades/ownership, NO base ni destino autorizado. Divergencia125/64 y migración081 distinta requieren conciliación futura separada, sin merges/rebases/resets/cherry-picks ciegos.
+
+Primer incremento Shot2: endpoint V2 persistente. Apenas obtiene **ECHO_INGESTION_V2_ENDPOINT_INTEGRATION_PASS** (C1), integrar inmediatamente sólo commits/migraciones completos de ese incremento en lab-v4/shot4-integration, antes de provisioning/reference/copy/analytics/UI o fin de Shot2. Gate exige router real, PG/artifacts de harness, readback independiente, replay/conflictos/rollback/restart/migraciones/regresiones y cero efectos externos; no readiness/copy/curvas finalizadas. Si baseline ya satisface gate mediante prueba efectiva, no fabricar delta/merge. Registrar SHAs y RESUME_BASE_SHA; continuar desde base sincronizada. Push normal, preservar commits ajenos, ningún force-push.
+
+D25 sustituye cláusulas D24 de rama evolutiva única y resolución sobre runtime. **No sustituye** prohibición de interrumpir extracción/migrar legacy ni autoriza integración posterior a runtime, deploy o cutover. D24 queda abajo como historia, no ejecutar partes incompatibles.
+
+### D26 — Cuatro shots y QA GLM independiente (OWNER_RATIFIED)
+
+| Shot | Modelo/rol obligatorio | Límite |
+|---|---|---|
+|1 | GOD diseño/source forensics/contratos/freeze | Sólo diseño/persistencia, sin implementación ni QA ejecutado |
+|2 | GLM-5.3-Flash Max LOCAL | Implementación/validación funcional/early merge endpoint |
+|3 | GLM-5.3-Flash Max LOCAL independiente | Sesión fresca sin autoría implementación; adversarial/E2E/findings |
+|4 | GLM-5.3-Flash Max LOCAL | Fixes/regresiones y otra instancia independiente verificando SHA final dentro del mismo shot |
+
+Sustituye en D23 el reparto GOD/Luna/Sol para QA y cualquier GLM-5.3 normal en ejecución. No GOD review por defecto, Shot5 ni subshots indefinidos. Early merge es hito interno Shot2. Persistir diseño no inicia shots posteriores. Independencia final no se simula con auto-revisión.
+
+D09/D10/D11/D16–D22 conservan autoridad compatible: una identidad/ingesta/journal, observación separada de ejecución, economía honesta,4curvas/2rankings V4, cero features especulativas. H01–H49 son49; QA01 separado. H45/QA01/AUTH_FORGE e installer nil conservan atribución: installer nil es delta implementable, no permiso para READY ficticio.
+
+### D27 — Resoluciones del freeze (TECHNICAL_RESOLUTION)
+
+| ID | Resolución | Evidencia | Shot consumidor |
+|---|---|---|---|
+|IV2-01 | Reusar Gateway/SDK/registry/history/store; corregir validación/digests/artifacts/metadata CAS | A G01–G05; B2–B4 |2 E; QA3/4 |
+|IV2-02 | Profile config existente, binding CAS/snapshot; installer real/ACK fenced/lease/lookup | A G06–G08; B5/B6 |2 O; QA3/4 |
+|IV2-03 | Source/cycle exactos, un journal owner, no Signal nativa externa; dispatch durable/gates último envío | A G09–G11; B7/B8 |2 J; QA3/4 |
+|IV2-04 | Projector asíncrono scoped, N+1 acumulativo/delivered selectivo; LAB sin matemática nueva | A G12–G14; B9 |2 L; QA3/4 |
+|IV2-05 | Adapter Forge durable/receipt verificado; AUTH externo separado | A G15/G16; B10 |2 F; QA3/4 |
+
+Sin decisión de producto abierta. Contratos y alternativas descartadas sólo en B; este registro guarda autoridad/trazabilidad.
+
+## V4 — Decisiones Owner 2026-10-22: autoridad compatible; D23/D24 parcialmente sustituidas
 
 **Estado:** OWNER_RATIFIED para requisitos/producto. **No equivale a implementación ni certificación**. Esta sección complementa D09/D10/D11/D16; sustituye interpretaciones anteriores que daban por terminada una integración Forge limitada a ingesta analítica. El siguiente ciclo de cierre tiene **exactamente 4 shots** (diseño, implementación, auditoría adversarial, correcciones); no es permiso para continuar indefinidamente el Shot 4 anterior.
 
@@ -59,7 +96,7 @@ La entrada a LAB es un **screener de estrategias reales** (no fixtures ni consol
 
 **NO implementar ni diseñar ahora** scheduler, selector Top N automático, rebalanceo, simulador causal, membresías mutables ni infraestructura de portfolios. Objetivo **solo** que la identidad de versiones, revisiones/snapshots, disponibilidad temporal, provenance, curva y scores sean extensibles mediante tablas/servicios **aditivos** cuando I2 se aborde. Si un bloqueo estructural real en lo que se implementa HOY impediría esa extensión, repararlo mínimamente como parte de Forge/LAB; no abrir trabajo de I2 ni gastar tiempo en él.
 
-### D23 — Programa único de cierre: SOLO CUATRO SHOTS (OWNER_RATIFIED)
+### D23 — Programa único de cierre: SOLO CUATRO SHOTS (histórico; reparto sustituido por D26)
 
 **Shot 1:** GOD LOCAL submanager de DISEÑO detallado, coordina Luna/Sol en contexto fresco para investigación técnica y redacción; él decide contradicciones materiales y valida el paquete compacto, NO hace inspección/test masivos personalmente. Ratificar dentro del shot todos los detalles técnicos deducibles, sin devolver entrevistas generales al Owner.
 **Shot 2:** GLM LOCAL implementa, integra Echo/Forge/LAB/Hasura en superficies autorizadas y valida con data auténtica aislada.
@@ -68,7 +105,7 @@ La entrada a LAB es un **screener de estrategias reales** (no fixtures ni consol
 
 Prioridad: activar correctamente estrategia Forge en Echo, enlazar master/trade_journal e historia LAB, curvas y **dos rankings**, screener/detalle reales y Hasura. No hacer rollout/trading/operaciones destructivas sin permisos específicos; pruebas con cuentas/datos autorizados en entornos aislados. Mantener AGENTS OS master, código por repo/rama autorizada; preservar no-interferencia con el runtime paralelo.
 
-### D24 — Runtime es la única rama evolutiva; backtester legacy se migra después (OWNER_RATIFIED, 2026-10-22)
+### D24 — Runtime es la única rama evolutiva; backtester legacy se migra después (histórico; rama sustituida por D25)
 
 **Única autoridad de desarrollo del código Echo para el siguiente programa:** `xKoRx/echo`, rama `feature/ef-runtime-pools`. El modelo operacional y el motor evolucionaron en esta rama: Shot 1 debe inspeccionar su HEAD actual y diseñar todas las integraciones Echo/Forge/LAB sobre sus contratos y estructuras **vigentes**, sin tratar dos ramas como fuentes equivalentes ni mantener la rama de backtester como co-baseline. Último HEAD verificado en GitHub el 2026-10-22: `2ee61791deb3139be23e1c9be3708b1d41da8d6b` (referencia móvil; refrescar al ejecutar).
 

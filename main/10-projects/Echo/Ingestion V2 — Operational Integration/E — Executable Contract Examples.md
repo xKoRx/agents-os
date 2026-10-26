@@ -146,7 +146,7 @@ Tras preflight/guard C1, enviar request.json por POST /api/v2/strategy-ingestion
 | Response real / valor esperado | Verificación |
 |---|---|
 |202 inicial;200 replay | Mismo receipt_id y accepted_at tras GET/restart |
-|schema_version | Constante emitida por IngestionReceiptV2 del SDK; cliente valida valor efectivo, no inventa otro DTO |
+|schema_version | strategy-ingestion-receipt.v2 (literal efectivo en AcceptIngestionV2) |
 |acceptance | INGEST_ACCEPTED |
 |request_digest | identity-oracle.json, mismo hash que bytes normalizados aceptados |
 |strategy_ref | UUID asignado y misma fila crosswalk/registry |
@@ -158,7 +158,7 @@ Tras preflight/guard C1, enviar request.json por POST /api/v2/strategy-ingestion
 |analytics | state ANALYTICS_PENDING aunque worker detenido; requested_profiles si aplican |
 |links / Location | Rutas recuperables del mismo scope; GET-by-id y GET-by-key devuelven snapshot íntegro |
 
-Readback físico: echo.strategy_ingestion_receipts por namespace/writer/key; strategy_identity_crosswalk y strategy_identity_mappings; strategy_versions o tabla de receta analítica efectiva identificada por registry SQL; strategy_definitions/runtime_strategy_links; histories/history_revisions/history_operations/history_movements e history_dirty_outbox. Resolver nombres exactos desde migraciones del candidate, no crear tablas para acomodar nombres de este texto. Verificar artifact path/digest por receipt y contenido; query independiente no llama a AcceptIngestionV2.
+Readback físico: echo.strategy_ingestion_receipts por namespace/writer/key; strategy_identity_crosswalk y strategy_identity_mappings; echo.strategy_versions (incluye definition-v1); strategy_definitions/runtime_strategy_links; echo.strategy_histories/echo.strategy_history_revisions/echo.history_operations/echo.history_movements y echo.history_dirty_outbox. Contrastar firmas con migraciones068/071/076 del candidate antes de preparar queries; no crear tablas nuevas para readback. Verificar artifact path/digest por receipt y contenido; query independiente no llama a AcceptIngestionV2.
 
 Negativos exactos: cambiar display_name conservando key→409; cambiar declared_version_ref→422; declarar digest de manifest incorrecto→422; duplicate key JSON→400; misma versión íntegra+historia nueva+key nueva reutiliza versión, no409. Variante sqx-v1 usa VersionPackageV2 real con cuatro hashes/executable/effective_inputs/dependencies y sus ArtifactRef verificados; no reemplazar la evidencia de ejecutable con manifest analítico para acreditar operación Forge. Este ejemplo ANALYTIC no certifica NATIVE_RUNTIME ni ejecución de estrategia.
 
@@ -185,11 +185,11 @@ Después de integrar E y completar O, con profile propio resuelto por B5:
   "run_id": "harness-run-01",
   "source_instance_ref": "harness-provider-01",
   "execution_accounts": [],
-  "target_consumers": ["CORE:observer-01", "BRIDGE:reference-01"]
+  "target_consumers": ["CORE/observer-01", "BRIDGE/reference-01"]
 }
 ~~~
 
-Estos nombres de campos ya se aceptan en lab_v4_gateway.go; los valores son sólo identifiers sintéticos del profile propio. El resolver TARGET obliga coincidencia, no confía en ellos. La grafía kind/id de target debe corresponder al enum de consumidores que implemente B6, con normalización única; no copiar el ejemplo para inventar consumers ausentes. Idempotency-Key num-binding-01, namespace/writer de auth. POST a /api/v2/strategy-versions/{version_ref}/operational-bindings, guardar binding_ref/revision/digest y consultar /api/v2/operational-bindings/{binding_ref}/readiness.
+Estos nombres de campos ya se aceptan en lab_v4_gateway.go; los valores son sólo identifiers sintéticos del profile propio. El resolver TARGET obliga coincidencia, no confía en ellos. La grafía kind/id usa separador "/" existente en splitTargetConsumer y kinds cerrados de B6; no copiar el ejemplo para inventar consumers ausentes. Idempotency-Key num-binding-01, namespace/writer de auth. POST a /api/v2/strategy-versions/{version_ref}/operational-bindings, guardar binding_ref/revision/digest y consultar /api/v2/operational-bindings/{binding_ref}/readiness.
 
 Retener consumer antes de apply: PROVISIONING aun con outbox publicado. Apply+checkpoint+ACK exactos de todos: ECHO_OPERATIONAL_READY. Retener renew hasta lease expira: DEGRADED. Slot/source/Magic ambiguo o ausencia de certificado: bloqueo explícito, nunca número ficticio. Para ANALYTIC sin capacidad externa autorizada, profile debe rechazar incompatibilidad; fixture operacional requiere estrategia/executable/evidencia correspondientes, no un cambio de etiqueta.
 
