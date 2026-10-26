@@ -42,7 +42,7 @@ Solicitud de Rodrigo de actualizar resources con los últimos posts disponibles 
 
 ## Validación
 
-Validación dirigida de schema, YAML, identidad única, conteos, enlaces fuente/destino y checksums de las copias. El reporte de la validación se conserva en la revisión al terminarla.
+Validación dirigida de schema, YAML, identidad única, conteos, enlaces fuente/destino y checksums de las copias. Resultado: 77 notas con cero errores/advertencias; 124 identidades únicas, cero enlaces internos rotos en lo tocado y cinco checksums PDF verificados. Detalle en la revisión.
 
 ## Compartibilidad
 

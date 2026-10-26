@@ -9,7 +9,7 @@ tags: ["kind/doc", "area/trading", "topic/imox"]
 created: "2026-10-26"
 updated: "2026-10-26"
 review_started_on: "2026-10-26"
-review_finished_at: "2026-10-26T20:25:45-03:00"
+review_finished_at: "2026-10-26T20:27:09-03:00"
 inventory_complete: false
 processing_complete: false
 ---
@@ -26,7 +26,7 @@ Actualizar fuentes y recursos de IMOX hasta el estado disponible del 26 de octub
 
 ### Ventana y superficie
 
-Inicio observado de la sesión de Chrome: 2026-10-26T20:07:48-03:00 (hora de la pestaña en el inventario inicial, no timestamp de lectura de cada post). Fin de consolidación: 2026-10-26T20:25:45-03:00. Corte de contenido: lo disponible al consultar durante el 26 de octubre en America/Santiago, sin prometer publicaciones posteriores del mismo día. El intervalo objetivo de creación es octubre, hasta el momento de consulta; timestamps nativos exactos no verificados.
+Inicio de revisión: 2026-10-26, hora exacta inicial no registrada. El inventario inicial mostró la pestaña de feed abierta a las 20:07:48-03:00; ese dato no se utiliza como timestamp de lectura. Fin de consolidación: 2026-10-26T20:27:09-03:00. Corte de contenido: lo disponible al consultar durante el 26 de octubre en America/Santiago, sin prometer publicaciones posteriores del mismo día. El intervalo objetivo de creación es octubre, hasta el momento de consulta; timestamps nativos exactos no verificados.
 
 Se recorrió el feed desde su cabecera reciente (4 horas/13 horas) hasta el solapamiento 30/29 de septiembre con varios desplazamientos. Se observaron 50 tarjetas de posts de octubre: cuatro presentaciones fuera del scope y 46 posts del corpus (28 nuevos, 18 ya registrados). Además apareció un evento para el 30 de octubre, separado del contador. Se excluyen chats, presentaciones, privados CLUB/Futuros y publicaciones no mostradas por el feed. La secuencia visible desciende por fechas, pero el menú no permitió acreditar el criterio de orden/filtro ni la exhaustividad por espacio: no es inventario cronológico completo.
 
@@ -100,3 +100,7 @@ Próxima lectura con mayor valor metodológico: formación oficial 144 desde Bui
 ## Fuentes
 
 [[IMOX — Registro de publicaciones]] · [[IMOX — Cobertura de revisión]] · [[IMOX - Metodología para investigación Forex y CFD]] y las 46 fuentes de la tabla.
+
+### Validación final
+
+Lint estricto: 77 notas, cero errores y cero advertencias. Verificación adicional: 124 identidades de post únicas, conteos coherentes (3 procesadas, 13 excluidas, 108 parciales), enlaces internos de las notas tocadas resolubles y SHA-256 de las cinco copias PDF coincidentes. No acredita integridad global del foro ni validación de resultados de trading.
