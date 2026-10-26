@@ -1,0 +1,22 @@
+{
+  "schema": "echo.g5-eligible-manifest.v1",
+  "cycle": "CLF-E05",
+  "generated_at": "2026-10-26T00:00:00Z",
+  "host": "HEFESTO",
+  "source_binding": {
+    "repo": "xKoRx/echo",
+    "branch": "experiment/clutifx-s01",
+    "head": "e8c2e47ee5575698b83924ecbbc413ec2787ce6d",
+    "engine_unchanged_since_q03r1": true
+  },
+  "g5_executed": 0,
+  "eligible_identities": [],
+  "basis": {
+    "rule": "G5 requires >=1 physically reconciled CHALLENGE_PASSED in the qualified quarter (NQU6) under the identity's own G0-G4 chain",
+    "challenges_passed_clutifx_nqu6": 0,
+    "quarter_campaigns_reconciled": 19,
+    "note": "Q03R1 manifest basis unchanged: zero ClutiFX passes; no new G4 executed in E05 (no new or materially corrected identity passed G0-G3; E05-01 blocks the 4 bias configs pending Owner/source decision)"
+  },
+  "full_history_authorized": [],
+  "owner_acceptance": "REVIEW"
+}
