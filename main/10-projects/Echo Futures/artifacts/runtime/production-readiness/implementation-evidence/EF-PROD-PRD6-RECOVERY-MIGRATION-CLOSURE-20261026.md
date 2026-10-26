@@ -24,8 +24,8 @@ Evidencia consolidada del cierre PRD.6 (mandato Owner 2026-10-26 sobre el dictam
 ## Veredicto
 
 ```text
-STATUS: READY_FOR_MANAGER_REVIEW (pendiente dictamen del verificador independiente y re-review del Primary Manager)
-SOURCE_SHA: 1a5c6d8741d539fddc96eb2d1066b46dd2ea2707 (origin/feature/ef-runtime-pools, REMOTE_VERIFIED; delta c2d71357..1a5c6d87 = 4 commits producto + 1 merge de cobertura tests-only)
+STATUS: READY_FOR_MANAGER_REVIEW — verificador independiente ONE-SHOT completado: VEREDICTO READY_FOR_MANAGER_REVIEW, cero P0/P1, defectos D-1..D-4 todos P2/P3 (D-1 binario de build en el árbol: CERRADO en source `4a041e6c`; D-2 incremental no ejercitado físicamente, declarado; D-3 piso cobertura, excepción al Manager; D-3/D-4 menores)
+SOURCE_SHA: 4a041e6c (origin/feature/ef-runtime-pools, REMOTE_VERIFIED; delta c2d71357..4a041e6c; VERIFIER-REPORT sobre 1a5c6d87, delta de 4a041e6c = higiene de repo only)
 RELEASE: /home/kor/opt/echo-dev/releases/63f241c0… + 1a5c6d87 (BUILD.md con sha256 por binario; vcs.modified=false)
 A (P0-G5A): seal reescrito — frontier REAL del checkpoint vía sonda Java (deserializador propio de Flink 1.14.3: MetadataV3Serializer + backend serialization proxy), join 1:1 checkpoint↔REST↔module.yaml desplegado; HWM prohibido para offsets (divergencia medida en lab: HWM 20 vs frontier 19); campos reales (JobGraphDigest del inventario unido, CompletedAt=REST, digests=sha256 de archivos, revision=ETCD mod_revision, DomainScope derivado); toda brecha ⇒ BLOCKED
 B (P0-G5B): copia independiente COMPLETA (chk dir entero + dependencias referenciadas bajo el job dir) re-hasheada desde las copias + anexos (checkpoint-objects, job-graph); LAB S-R FULL PASS: restore DESDE LA COPIA con el original YA ROTADO por la cadencia (num-retained), latest.restored=chk-2602 en la copia, attest EXTERNAL CLEAN, contador 41→45 sin reset
@@ -62,7 +62,7 @@ R1 (pre-efecto): restore desde el ORIGINAL intacto (P1 nunca lo borra ni mueve) 
 
 ## 5. Estado y siguientes pasos
 
-1. Verificador independiente ONE-SHOT: en curso (intentos previos caídos por red del proveedor; este es el 3.º) → VERIFIER-REPORT.md.
+1. Verificador independiente ONE-SHOT: COMPLETADO — `evidence/VERIFIER-REPORT.md`: 10/10 puntos CONFIRMED (re-ejecutó tests Go, la sonda Java contra bytes reales y el grep de prohibición HWM), defectos P2 D-1 (cerrado en `4a041e6c`), D-2/D-3 declarados para decisión del Manager, D-4 P3.
 2. Re-review del Primary Manager (esta evidencia + verificador) → G-IMPL.
 3. Sólo entonces, ventana Owner con la tarjeta (orden 0-10; el desarme FX/Futures vigente se mantiene; Ninja feed sigue NOT_INICIADO).
 
