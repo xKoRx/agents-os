@@ -58,6 +58,7 @@ tags:
 ## Retrieval Feedback
 
 - Las rutas canónicas y manifests fueron útiles. Buscar primero el proyecto vigente por carpeta y estado, evitando volcar bitácoras completas. Los detalles propietarios permanecen fuera del corpus público.
+- En cierre `graphify-obsidian` no estuvo disponible en PATH ni en las ubicaciones locales consultadas; se validó continuidad mediante lectura focal del archivo canónico. No se ejecutó rebuild ni se certificó frescura del índice.
 
 ## Skill Feedback
 

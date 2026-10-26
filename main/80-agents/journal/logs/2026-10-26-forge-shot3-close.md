@@ -44,7 +44,7 @@ Continuidad del proyecto actualizada a `SHOT3_ADVERSARIAL_INCOMPLETE`; handoff p
 
 ## Validación
 
-Notas creadas con el materializador canónico; validación documental y lectura focalizada de continuidad al cierre. No L0/L1 ni duplicación de continuidad en memoria interna: no aportaban delta adicional.
+Notas creadas con el materializador canónico; lint estricto de las cinco rutas del delta: ERROR=0, WARN=0. Continuidad comprobada con lectura focal del archivo. Graphify CLI no disponible: no se certifica frescura del índice. No L0/L1 ni duplicación de continuidad en memoria interna: no aportaban delta adicional.
 
 ## Compartibilidad
 
