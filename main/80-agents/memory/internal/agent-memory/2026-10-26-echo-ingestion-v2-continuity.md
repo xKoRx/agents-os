@@ -15,7 +15,7 @@ memory_state: active
 continuity_key: echo/ingestion-v2-operational
 supersedes:
 superseded_by:
-load_policy: on_demand
+load_policy: when_project_loaded
 indexable: true
 index_priority: high
 tags:

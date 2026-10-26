@@ -134,6 +134,36 @@ Revisión documental por autor Shot1, no QA independiente ni pruebas de ejecuci�
 Veredicto: **ECHO_INGESTION_V2_GOD_DESIGN_READY_FOR_GLM**, sujeto a la verificación de persistencia master registrada en change_log. Sin blocker de diseño pendiente. AUTH_FORGE limita autenticidad futura, no freeze. Ningún gate funcional PASS por esta declaración. Siguiente acción: D2, Shot2; no iniciado en Shot1.
 
 
+### C8. Contrato de ejecución autónoma y control
+
+Adaptación explícita del skill planning: cuatro shots pedidos, proyecto existente y referencias, sin agent-project nuevo ni Fase0 adicional. Validador legacy validate_plan.py exige headings Fase/proyecto monolítico; no inventar fases para satisfacerlo. Validación equivalente dirigida de conceptos/links/matrices en change_log.
+
+| Concepto requerido | Shot2 | Shot3 | Shot4 |
+|---|---|---|---|
+| Misión exacta | C2 implementar B/early merge | C4 falsificar independiente | C5 fixes/certificación independiente |
+| Precondiciones verificables | Freeze persistido, A4/harness | Handoff Shot2, SHA fijo, sin autoría | Findings Shot3, ownership/diff |
+| Lectura obligatoria | D2 orden completo | D3 orden completo | D4 orden completo |
+| Decisiones cerradas | D25–D27/B1–B12 | Mismas invariantes | Mismas, fixes mínimos |
+| Implementación paso a paso | E→merge→O→J→L→F | Pruebas/refutación/reporte | Repro→fix→regresión→SHA→verificador |
+| Archivos esperados | MODIFY mapa A2/C2; CREATE helpers/resolver/DDL/dispatch B11 cuando necesario | CREATE fixtures/reports/tests QA propios, no producto | MODIFY culpables; CREATE regression fixture si falta |
+| No tocar | Runtime/infra/cuentas/extracción/sync.sh/.sync; O/J/L antes de early merge | Producto/flota/campañas/infra | Fuera de findings/delta y mismos límites |
+| Spikes permitidos | Comprobar firma/checkpoint consumer y capability provider en harness, una prueba mínima por seam B6; no otra arquitectura | Repro independiente y fault injection propios | Causa exacta de finding, no feature |
+| Tests y asserts | C1/C3/H | C3/C4/H expected propio | Repros+regresión superficies afectadas |
+| Entregables/Gate | Reporte/evidence/SHAs/early merge | Findings/matriz/paquete fixes | Correction log+certificación independiente |
+| Handoff | Candidate integrado a sesión fresca | Repro/owner/fix acceptance | Estado verdadero al Owner, no Shot5 |
+
+Tareas atómicas: T2.01 preflight/base/harness (A4/C1); T2.02 DTO/registry/store/metadata (B2–B4); T2.03 E01–E12 y merge inmediato (C1/A4); T2.04 profile/binding/CAS (B5/O01); T2.05 installers/ACK/readiness (B6/O02–O05); T2.06 ingress/journal (B7/J01–J04); T2.07 dispatch/policies/MM/simulator (B8/J05–J06); T2.08 projector N+1 (B9/L01–L03); T2.09 worker/cohort/UI regresión (B9/L04–L05); T2.10 producer durable/autenticidad separada (B10/F01–F03); T2.11 entrega C2. Archivos/steps y evidencia de cada tarea son los de la sección/caso referidos.
+
+T3.01 SHA/independencia/harness; T3.02 falsificar E/O/J; T3.03 falsificar L/F/H; T3.04 findings/matriz/cleanup/handoff. T4.01 reproducir/adjudicar; T4.02 fixes/commit/gates; T4.03 regresión/integración SHA final; T4.04 instancia independiente/repro/certificación; T4.05 persistencia/cleanup/estado final. No iniciar otro shot automáticamente.
+
+| Gate | Estado ejecución | Responsable | Autoridad/aceptación | Habilita |
+|---|---|---|---|---|
+| Diseño Shot1 | review documental completado, persistencia al commit | GOD | Mandato freeze con11criterios | Shot2 listo para despacho |
+| Endpoint E | pending / NOT_RUN | Shot2 GLM | D25 autorización condicionada explícita | Merge inmediato y O |
+| Shot2 completo | pending / NOT_RUN | GLM | Handoff verificable | Despacho Shot3 fresco |
+| Shot3 QA | pending / NOT_RUN | GLM independiente | Findings con evidencia | Despacho Shot4 |
+| Shot4 final | pending / NOT_RUN | GLM fixes+independiente | Informe veraz, no deploy implícito | Fin programa, Agents-OS abierto |
+
 ## Fuentes
 
 - Mandato Owner 2026-10-26; [[F — Decision Register]] D25/D26.
