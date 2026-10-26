@@ -1,0 +1,37 @@
+strategy_id,variant_id,axis_vs_control,source_class,k05_conformance_verdict,k05_finding,evidence_code,evidence_source,correction_for_hefesto,gates_to_repeat
+CLF-STR-001,CLF-VAR-C01,control sesión London,SOURCE,FIEL_CON_REDUCCIONES,F-K05-06 (refinado no expresable en sesión),session_decision.go::entryLondon,ch07 c-0010/c-0030/c-0214/c-0229,extender RefineTF a specs de sesión como identidades nuevas pre-declaradas,G2A/G2B de la identidad refinada nueva
+CLF-STR-002,CLF-VAR-C02,control maestro,SOURCE+OP,FIEL,declared reductions (bias 1d; DOL 4h),pipeline.go+detectors/*,ch01-ch04+ch09,ninguna (control vigente),no repite (campaña bit-idéntica existe)
+CLF-STR-003,CLF-VAR-C03,control sesión NY continuación,SOURCE,FIEL_CON_HUECO_FS,F-K05-07 (FS no activa rangos),session_decision.go::entryNYContinuation,ch07 c-0145/c-0166-c-0168/c-0054/c-0197-c-0206,variante pre-declarada: premisa de rango activable por FS,G2A/G2C de la variante FS-activada
+CLF-STR-004,CLF-VAR-C04,control sesión NY reversal,SOURCE,FIEL_CON_HUECO_FS,F-K05-07 + sin bias gate (correcto),session_decision.go::entryNYReversal,ch07 c-0147/c-0148/c-0150,ídem C03,G2A/G2C de la variante FS-activada
+CLF-STR-005,CLF-VAR-C05,refinado 15m,SOURCE,ALIAS,C05≡S12,equivalencia declarada matriz,ch04 §2,nada,-
+CLF-STR-006,CLF-VAR-C06,control failure swing,SOURCE,EXTRA_RESTRICTION_CONFIRMADA,F-K05-02/03/04/05 (conjunción OB+predicado+ventana),detectors/failureswing.go+decision.go::entryFailureSwing,ch06 c-0012/c-0029/c-0047/c-0040/c-0058,OB opcional + reacción=rango-opuesto + ventana hasta invalidación + adversos de la propia cadena,G0→G2C completo tras fix
+CLF-STR-007,CLF-VAR-C08,control contrato SMT,SOURCE,BLOCKED_DATA,sin 2º instrumento,fixtures de contrato,ch05,KRR-006 decisión de datos,G0→G4 con dataset sellado
+CLF-STR-008,CLF-VAR-C08,control contrato noticias,SOURCE+RUNTIME_GAP,BLOCKED_DATA,sin calendario con timestamp,fixtures de contrato,ch10,KRR-006,G0→G4 con dataset sellado
+CLF-STR-009,CLF-VAR-C07,rearme técnico,SOURCE(proxy declarado),FIEL_COMO_PROXY,eje inactivo en muestra (sin intra-TS en NQU6),decision.go::entryRange budget,ch11 c-0024/c-0025;ch01 c-0068-c-0077,regla fuente plena requiere costura Strategy×MM (integración futura),G2C si el motor expone stop-físico
+CLF-STR-002,CLF-VAR-S01,TS_EARLY_1M,SOURCE,FIEL,emisión propia fuera de ventana (KRR-004),detectors/turtlesoup.go feed1m,ch02 c-0035;ch04 c-0027,ancla (decisión Owner compartida KRR-001/002/004),G2B con ancla adjudicada
+CLF-STR-002,CLF-VAR-S02,TS_M30,SOURCE,FIEL,fix 83a9b84c vigente; ídem ancla,detectors/turtlesoup.go feedM30,ch04 c-0099,ídem,G2B con ancla adjudicada
+CLF-STR-002,CLF-VAR-S03,bias EMA,OP,MISWIRED_CONFIRMADO,F-K05-01 (gate consulta NativeAggregate; Aggregate() sin llamadas de producción),decision.go:196+session_decision.go:140,246,matriz e05 MISWIRED_CONFIG E05-01,gate = Aggregate() del motor configurado con semántica neutral pre-declarada,G0→G4 propios (nueva identidad de comportamiento)
+CLF-STR-002,CLF-VAR-S04,bias estructura HH/HL,OP,MISWIRED_CONFIRMADO,ídem S03,ídem,ídem,ídem,ídem
+CLF-STR-002,CLF-VAR-S05A,bias DMI+ADX ADX>=20,OP,MISWIRED_CONFIRMADO,ídem S03 (threshold tampoco alcanza el gate),ídem,ídem,ídem,ídem
+CLF-STR-002,CLF-VAR-S05B,bias DMI+ADX ADX>=25,OP,MISWIRED_CONFIRMADO,ídem S05A,param_set B,ídem,ídem,ídem
+CLF-STR-002,CLF-VAR-S06,ancla NY cash 0930,OP,FIEL,EXEC-S06 propio 6rt,detectors/grid.go anchors+keyhours.go,matriz S06,nada,no repite
+CLF-STR-002,CLF-VAR-S07,ancla CME 1700 Chicago,OP,FIEL,EXEC-S07 propio 3rt,ídem,matriz S07,nada,no repite
+CLF-STR-003,CLF-VAR-S08,salida DOL en continuación,SOURCE/OP,NO_MATERIALIZADA_CON_DISCREPANCIA,F-K05-12 (matriz dice C03 base temporal; código C03 base=target),config.go:253-264,matriz S08,conciliar base de salida y materializar,G0→G4 propio
+CLF-STR-002,CLF-VAR-S09,salida temporal v5,SOURCE,FIEL,fixture demuestra CLOSE_ALL distinto; in-sample inerte,decision.go:89-116,ch07 c-0075-c-0077,nada,no repite
+CLF-STR-002,CLF-VAR-S10,TF pendiente 1h,OP,FIEL,EXEC-S10 propio 3rt 3W,config SetupTF axis,ch07 c-0227 (3/5/6/8h),nada,no repite
+CLF-STR-002,CLF-VAR-S11,TF objetivo 1d,OP,FIEL,EXEC-S11 propio; scope midterm correcto,detectors/dol.go midterm,ch03 c-0207,nada,no repite
+CLF-STR-005,CLF-VAR-S12,refinado 15m,SOURCE,FIEL_CON_ALCANCE,F-K05-06 (solo STR-002; salto directo sin escalera),decision.go::resolveRefine,ch04 §2,extender a sesión + declarar escalera opcional,G2A/G2C de las identidades nuevas
+CLF-STR-005,CLF-VAR-S13,refinado 30m,SOURCE,FIEL_CON_ALCANCE,ídem; contabilidad reparada E05,ídem,ch04 §2,ídem,ídem
+CLF-STR-006,CLF-VAR-S14,tolerancia FS strict,OP,ALIAS_MAL_ESPECIFICADO,S14≡C06 por default; el eje real es OB/predicado/ventana (adjudicación),config fs_tolerance,ch06,eje rediseñado post-fix (ver fixtures),G2A/G2C post-fix
+CLF-STR-006,CLF-VAR-S15,tolerancia FS wide,OP,EXTRA_RESTRICTION_CONFIRMADA,wide=3 velas sigue sin capturar la semántica fuente,detectors/failureswing.go windows,ch06 c-0041/c-0047/0048,ídem C06,G2A/G2C post-fix
+CLF-STR-002,CLF-VAR-S16,referencia inmediata vs izquierda,SOURCE,FIEL,EXEC-S16 propio; leftmost_unbroken correcto como control,detectors/rangechain.go selectReference,ch01 c-0005;ch03 c-0059,nada,no repite
+CLF-STR-002,CLF-VAR-S17,TS_WICK_NEXT,SOURCE,FIEL,emisión propia fuera de ventana; wick=toma+cierre-adentro es OP razonable de c-0035/c-0036,detectors/turtlesoup.go wick path,ch09 c-0035/c-0036,ancla (decisión Owner),G2B con ancla
+CLF-STR-009,CLF-VAR-S18,0 reentradas,OP,ALIAS,S18≡C02 (max_reemissions 0 default),config default,ch01,ninguna,-
+CLF-STR-009,CLF-VAR-S19,2 reentradas,OP,FIEL_PROXY,exec idéntica a C02 en muestra (sin evento),decision.go budget,ch11,ídem C07,G2C con stop-físico expuesto
+CLF-STR-002,CLF-VAR-S20,red flags OFF,SOURCE,FIEL,superconjunto de emisión (16 vs 9) demostrando el eje,detectors/redflags.go mode off,ch09,GATE correcto (flags son fuente),no repite
+CLF-STR-002,CLF-VAR-S21,red flags duras solamente,SOURCE,FIEL,mismos bloqueos que full en muestra (los probabilísticos no eran decisivos),redflags.go mode hard,ch09,nada,no repite
+CLF-STR-002,CLF-VAR-T01,CME × refinado 15m,HIP,FIEL,EXEC-T01 propio 3rt 0W/3L (evidencia conservada),anchor+refine composición,matriz T01,nada,no repite
+CLF-STR-002,CLF-VAR-T02,TS temprano × stop ancho,HIP,BLOCKED_SPEC,ningún claim declara el ancho; no se inventa (KRR-005 re-verificada),-,ch02/ch11 scan,parámetro Owner si lo declara,G0→G4 con parámetro autorizado
+CLF-STR-004,CLF-VAR-T03,reversal × DOL HTF intacto,HIP,NO_MATERIALIZADA,implementable con MidTermDOL().Taken (dol.go soporta scope midterm),session_decision.go+dol.go,ch07 c-0150,materializar post-decisión Owner (KRR-007),G0→G4 propio
+CLF-STR-006,CLF-VAR-T04,FS × horas clave 5/9,HIP,EXTRA_RESTRICTION_CONFIRMADA,0 emisiones; hereda la conjunción FS,inKeyHours decision.go,ch09 c-0003;matriz T04,ídem C06 + mantener FSKeyHoursOnly,G2A/G2C post-fix
+CLF-STR-007/008,CLF-VAR-T05,noticias × TS previo,HIP,BLOCKED_DATA,ídem C08,matriz,ch10,KRR-006,G0→G4 con dataset
