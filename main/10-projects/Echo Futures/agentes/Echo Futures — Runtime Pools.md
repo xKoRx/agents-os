@@ -44,10 +44,9 @@ Entregar extensión runtime de pools y asociaciones pool–Strategy–MM mediant
 
 **Fuente de adjudicación:** [[EF-PROD-PRD6-MANAGER-ADJUDICATION-20261026]].
 
-- [x] PRD.6 — **G-IMPL SOURCE ACEPTADO PARA DEV OBSERVATION CON EXCEPCIONES P2**; full G-IMPL/PROD pendiente. Ejecución PRD.6 4a041e6c confirmada y verificador 10/10, cobertura bajo 95%, storage incremental G-REC pendiente. #owner/agent
-- [ ] PRD.7 — **UNA SOLA CERTIFICACIÓN OPERATIVA DEV EXISTENTE:** preparar savepoint/backup/manifest completo, solicitar ventana Owner para reinicio FX compartido, restaurar y certificar en el mismo Compose `flink` .75 (sin nueva infraestructura), verificar FX/M1/Futures observation y documento G-REC; Ninja feed separado Owner-only; PROD/SIM NO-GO. #owner/agent
+- [ ] CERT-NT-01 DEV — **UNA SOLA CERTIFICACIÓN OPERATIVA SOBRE FLINK EXISTENTE:** preparar savepoint/backup/manifest completo, solicitar ventana Owner para reinicio FX compartido, restaurar y certificar en el mismo Compose `flink` .75 (sin nueva infraestructura), verificar FX/M1/Futures observation y documento G-REC; Ninja feed separado Owner-only; PROD/SIM NO-GO. #owner/agent
 
-### PRD.6 Final Recovery Migration Closure — 2026-10-26 (ejecutado, pendiente verificador + re-review Manager)
+### PRD.6 Final Recovery Migration Closure — 2026-10-26 (entrega técnica histórica; adjudicación arriba)
 
 **ENTREGADO: SOURCE_SHA `4a041e6c` (`origin/feature/ef-runtime-pools`, REMOTE_VERIFIED; delta `c2d71357..4a041e6c`; el verificador dictaminó sobre `1a5c6d87` — el delta restante es higiene de repo only), release local con hashes, tarjeta de ventana GO/NO-GO lista. STATUS: READY_FOR_MANAGER_REVIEW — verificador independiente COMPLETADO (3.er intento; los 2 previos cayeron por red del proveedor): **10/10 puntos CONFIRMED, cero P0/P1**; defectos P2: D-1 binario de build en el árbol (CERRADO `4a041e6c`), D-2 incremental no ejercitado físicamente (declarado), D-3 piso de cobertura (excepción al Manager); re-review G-IMPL del Primary Manager pendiente. Sin deploy; el Flink DEV compartido NO fue tocado; PROD intacto; el lab es loopback aislado en daedalus (`/tmp/ef-prd6-lab`).**
 
