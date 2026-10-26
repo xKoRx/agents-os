@@ -29,7 +29,7 @@ usage() {
     '  scp-from <worker> <path> <dest>   Copia un archivo desde el worker.' \
     '  setup-projects <worker> [repo]    Ejecuta setup_echoforge_projects.sh desde Symphony.' \
     '' \
-    'Workers: zeus|.101|192.168.31.101, hera|.111|192.168.31.111, kronos|.121|192.168.31.121'
+    'Workers: zeus|.101|192.168.31.101, hera|.111|192.168.31.111, kronos|.121|192.168.31.121, hefesto|.164|192.168.31.164'
 }
 
 resolve_worker() {
@@ -37,6 +37,7 @@ resolve_worker() {
     zeus|.101|101|192.168.31.101) printf '%s' '192.168.31.101' ;;
     hera|.111|111|192.168.31.111) printf '%s' '192.168.31.111' ;;
     kronos|.121|121|192.168.31.121) printf '%s' '192.168.31.121' ;;
+    hefesto|.164|164|192.168.31.164) printf '%s' '192.168.31.164' ;;
     *) printf 'Worker inválido: %s\n' "${1:-<vacío>}" >&2; usage >&2; return 2 ;;
   esac
 }
@@ -61,7 +62,7 @@ case "$command_name" in
     printf '%s\n' 'Credentials: configured' "Source: $CREDENTIALS_FILE" "Account: $ACCOUNT" 'Storage: plaintext vault file (owner-approved temporary debt)'
     ;;
   workers)
-    printf '%s\n' 'zeus   kor@192.168.31.101' 'hera   kor@192.168.31.111' 'kronos kor@192.168.31.121'
+    printf '%s\n' 'zeus   kor@192.168.31.101' 'hera   kor@192.168.31.111' 'kronos kor@192.168.31.121' 'hefesto kor@192.168.31.164'
     ;;
   ssh)
     [[ $# -ge 1 ]] || { usage >&2; exit 2; }
