@@ -16,6 +16,10 @@ updated: "2026-10-23"
 
 # OWNER CHECKLIST — CERT-NT-01 (desbloqueo de gates C2/C3/C4)
 
+## EF-PROD 2026-10-26 — PRD.5 RO aceptado; SIN VENTANA DEV todavía
+
+El Manager verificó `c2d71357` (sólo pruebas/tooling) y aceptó el inventario, pero detectó incompatibilidad de migración en `seal.go`: sólo 1 ingress frente a 17 FX/Futures, offsets desde HWM en vez del checkpoint, copia sólo de `_metadata` sin SST/dependencias y campos de identidad sintéticos; `owner_continuity.go` rechaza keys legacy ACTIVE sin su nuevo marker. Sin snapshot/savepoint completo recuperable ni migración comprobada, **NO reiniciar/recrear Flink DEV ni declarar segura la tarjeta Owner**. PRD.6 es un único cierre GLM sobre source y pruebas aisladas, no otro GOD ni otro Flink. Cobertura también continúa bajo 95% (92.61% archivos nuevos, 78.96% diff-aware observado). PROD y SIM/órdenes siguen intactos/desarmados. Autoridades [[EF-PROD-PRD5-MANAGER-REVIEW-20261026]] y [[Echo Futures — Runtime Pools]].
+
 ## EF-PROD 2026-10-25 — Código GI-2 listo para preflight DEV existente; PROD NO-GO
 
 **Decisión Owner:** Aranea ya tiene dos Flink/StateFun (DEV y PROD). NO desplegar otro Flink ni nuevos proyectos Docker. Fuente candidata `0e17c4d3`; L3 restore probado sólo en laboratorio aislado. G-IMPL queda BLOCKED por cobertura insuficiente 82.92% archivos Go nuevos / 76.45% subset diff-aware observado (9 archivos sin datos). Se permite preflight sólo lectura sobre Flink DEV existente y preparar actualización observation-only; **no reiniciar jobs FX compartidos ni aplicar Compose source automáticamente**. Despliegue DEV depende de checkpoint/rollback/impacto FX comprobados y ventana Owner cuando corresponda. PROD/Ninja ejecución/Sim101 continúan DESARMADOS hasta autorización y certificación separadas. Referencia [[EF-PROD-GIMPL-MANAGER-REVIEW-20261024]] y [[Echo Futures — Runtime Pools]] PRD.5.
