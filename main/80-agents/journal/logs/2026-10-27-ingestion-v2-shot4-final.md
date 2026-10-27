@@ -45,7 +45,11 @@ tags:
 - E10: contracts rc=0, sdk/postgres rc=0 (con test de integración nuevo del projector/dispatch), gateway rc=0; core/functions rc=1 SOLO por un FAIL pre-existente verificado idéntico en el baseline `d223d9f8`.
 - F01 funcional PASS (echo-ingest-v2 → INGEST_ACCEPTED, replay idempotente, conflicto key/body); F03 pin intacto; F02 auténtica BLOCKED_EXTERNAL (AUTH_FORGE).
 - Findings S3-A-01..06 todos CORRECTED/ADDRESSED; H45/QA-01 históricos FAIL con no-regresión; sin P0/P1 nuevos abiertos.
-- Verificación independiente interna (D26/D4): instancia GLM fresca despachada con brief propio; reporte en `/srv/echo-work/ingestion-v2-shot4-20261026/harness/evidence/verifier/VERIFIER_REPORT.md`.
+- Verificación independiente interna (D26/D4): **VERIFIED_WITH_FINDINGS** — instancia GLM fresca sin autoría (03:55–04:58Z) verificó 13/13 con expected propio y re-ejecutó los gates con SU binario/PG (E 11/11 run `05566f8a33bc09a4`, O 5/5 run `81cb06da9e9bab41`, J/L 10/10 run `20c60545dc1bfd25`); 3 hallazgos P3 (cobertura delta bajo criterio ≥95% — medida independiente 79,9/78,9/75,4/64,4%; espejo cov ausente, corregido en el cierre; timeout functions no nombrado, histórico). Reporte: `/srv/echo-work/ingestion-v2-shot4-20261026/harness/evidence/verifier/VERIFIER_REPORT.md`.
+
+## Cierre del programa
+
+Los cuatro shots de Ingestion V2 quedan ejecutados y el candidato integrado (`f93cd4f8` + `22f337c`) con certificación funcional local VERIFIED_WITH_FINDINGS. Excepciones vigentes: H45/QA-01 históricos, AUTH_FORGE, cobertura delta bajo criterio (P3).
 
 ## Decisión / límites
 

@@ -85,11 +85,18 @@ Perfiles in-suite (`go test -cover`, suite completa sdk/postgres @ f93cd4f8 + te
 | `runtime_readiness_gate.go` (B8) | 1 | 64,4% |
 | `lab_v4_gateway.go` (S3-A-01/02) | — | suite rc=0 con regresión dedicada |
 
-El residuo por debajo de 95% son ramas de error/wiring que los drivers físicos ejercitan fuera de suite (jdriver 10/10, edriver 11/11, odriver 5/5, fdriver): las clases estructural/wiring conservan la adjudicación V4 (QA-01 transversal sigue FAIL por el residuo histórico 85,8/85,2 — adjudicación Owner pendiente del cierre V4; este shot no lo agranda ni lo disimula).
+El residuo por debajo de 95% son ramas de error/wiring que los drivers físicos ejercitan fuera de suite (jdriver 10/10, edriver 11/11, odriver 5/5, fdriver). El VERIFICADOR INDEPENDIENTE midió por su cuenta, statement-weighted: **79,9/78,9/75,4/64,4%** — por debajo del criterio ≥95% del fix package; se registra como hallazgo P3 del cierre (hallazgo 1 del verificador), no como PASS. Las clases estructural/wiring conservan la adjudicación V4 (QA-01 transversal sigue FAIL por el residuo histórico 85,8/85,2 — adjudicación Owner pendiente del cierre V4; este shot no lo agranda ni lo disimula).
 
-### R6. Verificación independiente interna (D26/D4)
+### R6. Verificación independiente interna (D26/D4) — **VERIFIED_WITH_FINDINGS**
 
-Despachada instancia GLM-5.3-Flash Max LOCAL fresca, sin autoría, con brief operativo en `/srv/echo-work/ingestion-v2-shot4-20261026/VERIFIER_BRIEF.md`: verifica SHA final integrado/árbol/build, re-ejecuta repros y gates con PG propia y expected propio, rechaza claims falsos. Reporte del verificador: `/srv/echo-work/ingestion-v2-shot4-20261026/harness/evidence/verifier/VERIFIER_REPORT.md` — **veredicto: (completar al cierre — ver addendum abajo)**.
+Instancia GLM-5.3-Flash Max LOCAL **fresca, sin autoría** (sesión 2026-10-27T03:55Z–04:58Z; declara no haber participado en Shot2/3/4), con brief operativo propio (`VERIFIER_BRIEF.md`), PG propia (56461) y binario propio. Reporte: `/srv/echo-work/ingestion-v2-shot4-20261026/harness/evidence/verifier/VERIFIER_REPORT.md` (índice propio, 431 artefactos).
+
+- **13/13 verificaciones PASS** con expected propio: SHAs remotos/locales/ancestría, migraciones 067–085 byte-idénticas y manifest re-verificado independiente, S3-A-03, buildinfo propio, S3-A-01 (404+cero filas), S3-A-02 (415/415/202 con oráculo propio), E11 A/B/C sin DDL parcial, suites rc=0 con el FAIL de functions adjudicado IDÉNTICO en el padre `d223d9f8`, repros J/L con readback SQL propio (MODIFY sin economía, CLOSE_BEFORE_OPEN durable, outbox PENDING/DELIVERED/FAILED=27/22/2, UNKNOWN_OUTCOME), límites y cleanup por PID.
+- **Gates re-ejecutados por el verificador con SU binario y SU PG**: E **11/11** (run `05566f8a33bc09a4`), O **5/5** (run `81cb06da9e9bab41`), J/L **10/10** (run `20c60545dc1bfd25`).
+- **Hallazgos del verificador (3, todos P3/observación, cero P0/P1)**: (1) cobertura del delta publicada pero bajo el criterio ≥95% del fix package — cómputo statement-weighted independiente del verificador 79,9/78,9/75,4/64,4%; (2) espejo de cobertura ausente en `evidence/cov/` — **corregido en el cierre** (perfiles copiados e indexados); (3) timeout 10m del paquete functions (`TestFEFBW4CapacityCampaign`) no nombrado por el implementador — verificado idéntico en el padre, histórico.
+- Ningún claim falso de apply/READY/autenticidad detectado por el verificador.
+
+**Cierre del programa:** los cuatro shots están ejecutados; el candidato queda integrado en `lab-v4/shot4-integration@f93cd4f8` con certificación funcional local VERIFIED_WITH_FINDINGS. Excepciones vigentes: H45/QA-01 históricos (FAIL, adjudicación Owner), AUTH_FORGE (BLOCKED_EXTERNAL), cobertura del delta bajo el criterio (P3 documentada). Deploy/cutover/runtime merge siguen gated al Owner. No Shot 5.
 
 ### R7. Límites y declaraciones
 
