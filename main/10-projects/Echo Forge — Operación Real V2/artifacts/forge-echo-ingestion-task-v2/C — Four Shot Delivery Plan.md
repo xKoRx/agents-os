@@ -21,6 +21,14 @@ Gestionar la implementación, la revisión adversarial y la certificación dentr
 
 ## Contenido
 
+### Estado vigente tras la entrega inicial de Shot 2 — 2026-10-27
+
+**SHOT2_INCOMPLETE.** El manager recibió y verificó las refs Symphony `07c914251760a938293b7fa7fe4e6d7b4d330640` y Echo `2c66e9402ba96ff354681552587c895ec92f4a28`, ambas descendientes directas de las bases elegidas. El tag contracts `.1` apunta al candidato Echo y permanece inmutable. La revisión acotada de código identificó bloqueos de composición/snapshot, fidelidad de historia, entrega/receipt, resultado durable y consumidor/Lab; se detallan en [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/D — Implementation Evidence|D — Implementation Evidence]] (M01–M09).
+
+Siguiente acción: el mismo implementador termina el alcance y sus pruebas dentro de Shot 2 mediante [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT2 — Local Implementation Mandate|SHOT2 — Local Implementation Mandate]]. No se adjudica FORGE_ECHO_TASK_IMPLEMENTED_LOCAL ni se inicia Shot 3. Se conservan los cuatro shots y el diseño congelado. A INCOMPLETE; B/C/D NOT_RUN según entrega; coverage ≥95% y goldens pendientes; E NOT_AUTHORIZED. El incidente del template PG compartido permanece reportado, con impacto/restauración no verificados desde CLOUD y sin permiso de reconstrucción compartida implícito.
+
+La revisión del manager es fuente/contrato, no QA runtime. Las ejecuciones declaradas por GLM y las atribuciones a baseline se conservan como tales hasta disponer de comandos/logs/evidencia. El diseño y el estado inicial descritos abajo son la historia del arranque; esta sección rige la continuidad actual.
+
 ### Identidad del programa y rectificación del despacho
 
 **Program ID: `forge-echo-ingestion-task-v2`.** Programa nuevo de la task nativa configurable `echo_ingestion_v2`, gestionado en Echo Forge. Sus cuatro shots son propios de esta funcionalidad.
@@ -28,7 +36,7 @@ Gestionar la implementación, la revisión adversarial y la certificación dentr
 | Programa | Entrega y estado | Relación |
 |---|---|---|
 | Echo / Ingestion V2 — Operational Integration | Endpoint, contratos, registry/historias, adapter/persistencia/CLI productor; cuatro shots anteriores ejecutados, VERIFIED_WITH_FINDINGS histórico | Dependencia y baseline. Sus reportes siguen vigentes para su alcance. |
-| Forge / forge-echo-ingestion-task-v2 | Resolver fuentes durables → construir DTO → task declarativa Temporal → entrega/recovery → Echo/Lab | Programa nuevo. Diseño adjudicado; Shot 2 pendiente de implementación. |
+| Forge / forge-echo-ingestion-task-v2 | Resolver fuentes durables → construir DTO → task declarativa Temporal → entrega/recovery → Echo/Lab | Programa nuevo. Diseño adjudicado; candidato Shot 2 recibido e incompleto, sujeto a terminación en el mismo shot. |
 
 Symphony 22f337ca y Echo f93cd4f8 son resultados consolidados del programa anterior y bases intencionales del nuevo. Crear una feature desde esos commits conserva trabajo verificado; no exige volver a b2b3ebfe/a0c68d1, borrar código ni reejecutar la implementación anterior.
 
@@ -42,7 +50,7 @@ Si la sesión GLM anterior escribió una memoria que marca este encargo como sta
 
 Programa nuevo dentro de [[10-projects/Echo Forge — Operación Real V2/Echo Forge — Operación Real V2|Echo Forge — Operación Real V2]], con consumidor [[Echo — Producto Integrado]]. El mandato Owner del 27-10-2026 autoriza al Primary Manager a adjudicar el diseño técnico y organizar exactamente cuatro shots. No cambia las autorizaciones de infraestructura, flota, recursos compartidos ni trading. La fuente de decisiones TARGET es [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/B — Frozen Design|B — Frozen Design]]; el contrato del consumidor conserva su autoridad en [[10-projects/Echo/Ingestion V2 — Operational Integration/Forge Task — Contract Addendum|Forge Task — Contract Addendum]].
 
-**Estado inicial del programa:** investigación de fuente terminada; diseño independiente recibido, revisado y adjudicado por el Primary Manager: FORGE_ECHO_TASK_DESIGN_FROZEN. La capacidad nueva no está implementada. Los PASS históricos de Ingestion V2 son dependencias con excepciones, no pruebas de esta task.
+**Estado inicial del programa — histórico al freeze:** investigación de fuente terminada; diseño independiente recibido, revisado y adjudicado por el Primary Manager: FORGE_ECHO_TASK_DESIGN_FROZEN. La capacidad nueva no está implementada. Los PASS históricos de Ingestion V2 son dependencias con excepciones, no pruebas de esta task.
 
 ### Baseline reproducible
 

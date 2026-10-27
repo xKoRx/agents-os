@@ -23,6 +23,51 @@ Mandato ejecutable para GLM-5.3-Flash Max LOCAL/ZCode después del gate de dise�
 
 ## Contenido
 
+### Continuación vigente de Shot 2 — adjudicación del 2026-10-27
+
+**Estado del manager: `SHOT2_INCOMPLETE`.** Se recibió el candidato `FORGE_ECHO_TASK_IMPLEMENTED_LOCAL_CANDIDATE`; la revisión de fuente no permite adjudicar `FORGE_ECHO_TASK_IMPLEMENTED_LOCAL`. El siguiente paso es terminar este mismo Shot 2 con el implementador LOCAL. Shot 3 no comienza todavía. Esta continuación no crea otro shot, no reabre el diseño y no sustituye al QA independiente.
+
+Lee primero la sección **Adjudicación del Primary Manager** de [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/D — Implementation Evidence|D — Implementation Evidence]]. Sus hallazgos M01–M09 identifican defectos comprobados en el candidato y fijan resultados mínimos de corrección. B y el addendum siguen siendo la SPEC completa. Las afirmaciones del informe inicial permanecen como traza del ejecutor; no se elevan a PASS por haber sido publicadas.
+
+#### Punto de partida y distribución
+
+- Continúa sobre Symphony `feature/forge-echo-ingestion-task-v2@07c914251760a938293b7fa7fe4e6d7b4d330640` y Echo `feature/forge-task-contract-v2@2c66e9402ba96ff354681552587c895ec92f4a28`. Conserva ese trabajo y sus bases originales. Refresca sólo deltas posteriores, preserva trabajo concurrente y no resetees los candidatos ni regreses a una base anterior.
+- El tag `v3/sdk/contracts/v0.0.1-forge-ingestion-task.1` está publicado y apunta a Echo `2c66e9402ba96ff354681552587c895ec92f4a28`. Es inmutable. Si cambias contratos, publica la siguiente versión de prueba libre, alinea pins/checksums y demuestra la versión efectiva con builds fríos independientes. No mover ni borrar el tag existente. El `exclude` actual se puede conservar si el grafo resuelto queda acreditado; por sí solo no prueba una descarga fría ni el consumidor efectivo.
+- Acredita también el checkout efectivo de `xKoRx/sdk` (`c7f11496b6f681687c9e1e41a773a13295640351` según el ejecutor), sus replacements y el módulo padre. `GOWORK=off` no deshabilita reemplazos en go.mod. Registra `go list -m`/checksums, SHAs, fuente de build y binarios efectivamente usados sin publicar credenciales.
+- La documentación se carga por el commit exacto del despacho, con fetch/git show si hace falta. El ZIP histórico no se usa. En la misma sesión conserva el bootstrap ya hecho; una sesión local nueva lo ejecuta una sola vez. No repitas Shot 1 ni busques otro diseño para suplir bugs ordinarios.
+
+#### Terminación de producto dentro de este Shot 2
+
+1. **Camino nativo real.** Completa la composición del worker, puertos de identidad/evidencia/artefactos, resolución del `source.task` seleccionado, snapshot y rehidratación por ref. El perfil data_only debe poder ejecutar las activities y wrappers que Generic/Group efectivamente necesitan, con namespace/cola/targets propios verificados y sin SQCLI. Una configuración inválida del perfil no debe activar por fallback el worker físico. Persiste el resultado de task y StageExecutionResult; `REPORT_PENDING` debe ser recuperable y distinguirse del outcome remoto.
+2. **Fuente, definición y fidelidad.** Usa el StageExecutionRef Foundation válido y su protocolo PG/CAS; recupera el snapshot ya sellado antes de volver a seleccionar. Conserva varios EvaluationRefs de una StrategyRef, sus errores por miembro y la versión compatible. Resuelve OUTPUT/STRATEGY_SQX y DEFINITION_REF desde la autoridad exacta; SEALED_REF se liga al miembro correcto. Valida children/scope/result_key/artefactos/hash/conteos y conserva metadata/MetricSets reales. No uses el primer binding global como identidad del cohort.
+3. **Historias fieles.** Cada operación fuente conserva su identidad, importe y evidencia temporal/side/scope aplicables. No agregues todos los trades en una operación ni impongas redondeo a dos decimales. No inventes exposición FLAT, cobertura, moneda ni tiempos. Aplica realmente NONE/IF_AVAILABLE/REQUIRED y emite `histories: []` cuando corresponda. Historia canónica y TradeList deben acreditar su scope y presupuestos; el HistoryID y los digests usan la receta completa congelada, sin alias por carpeta ni recorte arbitrario. XML exacto se conserva como artifact separado según B.
+4. **Entrega durable y receipt.** Corrige conjuntamente Prepare/binding/FK, bytes canónicos y scope sellado, relectura PG, BeginAttempt, reconciliación GET, estados terminales y transacciones de receipt/refs. Una excepción SQL nunca se convierte en éxito. El retry conserva key/body/versión y no vuelve a Mongo después de Prepare. Reconstruye el expected completo desde el manifest duradero y aplica un único validador compartido de receipt en POST/GET: scope, productor, versión, digest, conjunto de historias, refs/revisión/conteos/source_evidence y snapshots semánticos. El código nativo debe aceptar su propio receipt válido con historias y rechazar uno ajeno o incompleto. Preserva INGESTED; UNKNOWN puede converger a INGESTED validado; no confundir receipt inválido con rechazo autoritativo del request.
+5. **Consumidor y Lab.** Integra las validaciones compartidas de SourceEvidence y del manifest SQX en la ruta que recibe el request. Persiste bytes canónicos reales de historias/metadata y acredita sus refs con readback, reutilizando el port mínimo ya indicado. El constructor `art != nil` no sustituye ese trabajo. Lleva cobertura, estado de moneda y tiempos desconocidos hasta el consumidor final del cálculo y screener; añadir campos que nadie lee no cierra EC-06/07. Registro sin historia queda visible y con insuficiencia honesta.
+
+No interpretes M01–M09 como una reducción del alcance: ejecuta la vertical completa y cierra los defectos que afloren dentro de este mandato. Los problemas de wiring, compilación, contrato, fixtures, persistencia o harness son trabajo ordinario del implementador. Si una limitación técnica obliga a pausar la sesión, deja checkpoint inequívocamente parcial dentro de Shot 2 y continúa; no rebautices la pausa como implementación completa ni transfieras esos pendientes al auditor.
+
+#### Evidencia exigida antes de devolver el candidato
+
+- **Gate A completo:** tests propios de los caminos nuevos y negativos críticos, oráculos B O01–O24 y addendum §10 con expected/actual trazables, configuración de Flow ejecutada, fresh+upgrade de migraciones en bases propias, replay/restart/concurrencia y regresiones relevantes. La atribución a baseline de fallos históricos requiere comandos y logs comparables; no exime las pruebas nuevas.
+- **Gates B y C ejecutados:** Temporal real, PG/Mongo/MinIO, Gateway y Lab del harness aislado. Demostrar ingesta con historias y sin historias, receipts/readback de revisiones exactas y derivados/insuficiencia. Incluir caída de Mongo después de Prepare, commit+timeout, GET 404 temporal, cancelación, dos ejecutores y errores de persistencia. Guardar evidencias reproducibles de la ruta por el worker real, no sólo llamadas directas al adapter o al mapper.
+- **Coverage del código nuevo ≥95%:** publicar denominador, paquetes/archivos, comandos, perfiles y exclusiones justificadas; ningún porcentaje sin artefacto. Añadir goldens cruzados de bytes/errores/refs/digests de SourceEvidence/receipt/manifest desde el módulo efectivamente distribuido, con expected independiente del serializer que se prueba.
+- **Gate D:** realizar el intento read-only autorizado de fuente auténtica. Si falta acceso/evidencia, registrar recurso exacto, prueba del bloqueo y qué parte pudo observarse. Tiempo consumido o un bug implementable no son `BLOCKED_EXTERNAL`. No generar campañas ni mover flota para fabricar un PASS.
+- **Gate E:** permanece NOT_AUTHORIZED; no merge/release/deploy operativo ni trading. El tag de prueba no cambia esa frontera.
+
+#### Incidente del template PG y aislamiento
+
+El ejecutor reportó DROP y repoblado parcial del template compartido `lab-v4-shot4-20261021/pgdata`, base `echo_labv4_s4`. La afirmación de impacto acotado no fue verificada desde CLOUD. Mantén el incidente explícito, conserva logs y determina mediante lectura el DataPath real, PID/listener, `SHOW data_directory`, bases/schemas afectados, ownership, usuarios concurrentes y estado actual. Un puerto distinto no demuestra otro PGDATA.
+
+Acredita igualmente que el harness propio `harness2/` no comparte ese directorio ni otros targets. No reutilices ni ejecutes DROP, recreación o restauración del template compartido bajo el permiso de esta task. Prepara una recuperación concreta y preservadora; si requiere escribir recursos de otro workspace o propietario, devuelve esa única acción con evidencia y autorización específica necesaria. Continúa el trabajo autorizado en recursos propios. No declares el incidente cerrado porque la base era desechable o reconstruible.
+
+#### Entrega única al manager
+
+Actualiza D con SHAs completos y URLs verificadas, manifest de dependencias/build/runtime, Flow probado, matriz M01–M09 y O01–O24, gates A–E, coverage/goldens, logs de repro y resultado, incidentes y recursos propios conservados/retirados. Separa la evidencia del ejecutor de cualquier futura verificación independiente. Actualiza estado de proyecto/continuidad/change_log y registra el segmento según las herramientas canónicas de Agents-OS, siempre master directo, preservando concurrencia. No cierres Agents-OS ni generes feedback/L0/L1.
+
+Devuelve `FORGE_ECHO_TASK_IMPLEMENTED_LOCAL_CANDIDATE` sólo cuando la terminación y la evidencia exigidas estén reunidas. El Primary Manager adjudica y después despacha Shot 3 a un GLM LOCAL fresco. El verificador final independiente continúa reservado dentro de Shot 4.
+
+### Mandato original — continúa vigente
+
 **ROLE:** TOP LOCAL, según mandato Owner. **Modelo:** GLM-5.3-Flash Max mediante ZCode. **Work function:** implementador e integrador ONE-SHOT. El Primary Manager CLOUD conserva adjudicación y continuidad de los cuatro shots. No eres QA independiente de tu implementación.
 
 ### Identidad del programa y rectificación del despacho
@@ -32,7 +77,7 @@ Mandato ejecutable para GLM-5.3-Flash Max LOCAL/ZCode después del gate de dise�
 | Programa | Entrega y estado | Relación |
 |---|---|---|
 | Echo / Ingestion V2 — Operational Integration | Endpoint, contratos, registry/historias, adapter/persistencia/CLI productor; cuatro shots anteriores ejecutados, VERIFIED_WITH_FINDINGS histórico | Dependencia y baseline. Sus reportes siguen vigentes para su alcance. |
-| Forge / forge-echo-ingestion-task-v2 | Resolver fuentes durables → construir DTO → task declarativa Temporal → entrega/recovery → Echo/Lab | Programa nuevo. Diseño adjudicado; Shot 2 pendiente de implementación. |
+| Forge / forge-echo-ingestion-task-v2 | Resolver fuentes durables → construir DTO → task declarativa Temporal → entrega/recovery → Echo/Lab | Programa nuevo. Diseño adjudicado; candidato Shot 2 recibido y adjudicado INCOMPLETE: continuar su terminación. |
 
 Symphony 22f337ca y Echo f93cd4f8 son resultados consolidados del programa anterior y bases intencionales del nuevo. Crear una feature desde esos commits conserva trabajo verificado; no exige volver a b2b3ebfe/a0c68d1, borrar código ni reejecutar la implementación anterior.
 
@@ -175,4 +220,4 @@ Si aparece una contradicción material con el freeze, explica evidencia y altern
 ## Fuentes
 
 - [[B — Frozen Design]], [[C — Four Shot Delivery Plan]] y [[Forge Task — Contract Addendum]].
-- Mandato Owner del 2026-10-27; ejecución local aún no iniciada.
+- Mandato Owner del 2026-10-27; candidato local recibido y continuidad del mismo Shot 2 adjudicada en D.

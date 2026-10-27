@@ -22,7 +22,7 @@ tags:
   - kind/project
   - area/echo
 created: 2026-09-07
-updated: 2026-10-27
+updated: '2026-10-27'
 ---
 # Echo — Producto Integrado
 
@@ -30,7 +30,7 @@ updated: 2026-10-27
 
 ### Task nativa Forge → Echo V2 — diseño adjudicado 2026-10-27
 
-**`FORGE_ECHO_TASK_DESIGN_FROZEN`; código del programa NOT_IMPLEMENTED.** Programa nuevo forge-echo-ingestion-task-v2; los reportes Shot 2–4 anteriores no acreditan esta task. Publicación íntegra autorizada explícitamente por el Owner. El programa se gestiona en [[10-projects/Echo Forge — Operación Real V2/Echo Forge — Operación Real V2|Echo Forge — Operación Real V2]], con exactamente cuatro shots y fuente de ejecución en Symphony `22f337ca434549c492b2d402fd158e23ac4758a8`. Echo conserva exclusivamente la autoridad de su delta consumidor en [[10-projects/Echo/Ingestion V2 — Operational Integration/Forge Task — Contract Addendum|Forge Task — Contract Addendum]]: un pin compartido reproducible, receipt tipado/validado, source evidence separada de métricas Lab, REGISTER_ONLY sin historia visible en registry/screener, corrección del digest de revisión reutilizada y propagación de cobertura/moneda/tiempo a Lab. Base elegida Echo `f93cd4f80085e328f9176c1215e42e6c8e0b2404`; el nuevo workstream Runtime `2daa58da` aporta un port mínimo de artifacts canónicos y migraciones 087–091 a considerar para colisiones, sin reconciliación general ni adopción de sus PASS como evidencia de la task. Diseño: [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/B — Frozen Design|B — Frozen Design]]. Siguiente: [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT2 — Local Implementation Mandate|implementación GLM LOCAL]]. A/B/C/D NOT_RUN en este programa; sin release/PROD/trading ni cierre Agents-OS.
+**SHOT2_INCOMPLETE; delta consumidor recibido, todavía sin admisión a QA.** Programa `forge-echo-ingestion-task-v2` gestionado en [[10-projects/Echo Forge — Operación Real V2/Echo Forge — Operación Real V2|Echo Forge — Operación Real V2]], con cuatro shots y diseño congelado. Echo candidato `feature/forge-task-contract-v2@2c66e9402ba96ff354681552587c895ec92f4a28`, descendiente de `f93cd4f8`; contracts `.1` publicado e inmutable, Symphony candidato `07c914251760a938293b7fa7fe4e6d7b4d330640`. El addendum mantiene autoridad: [[10-projects/Echo/Ingestion V2 — Operational Integration/Forge Task — Contract Addendum|Forge Task — Contract Addendum]]. La revisión gerencial encontró validaciones SourceEvidence/receipt/manifest incompletas, artifacts canónicos de revisiones/metadata sin port efectivo y propagación incompleta de cobertura/moneda/tiempos y versión sin historia a Lab. Evidencia M08 y demás bloqueos de integración: [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/D — Implementation Evidence|D — Implementation Evidence]]. **Siguiente:** terminación del mismo Shot 2 conforme a [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT2 — Local Implementation Mandate|SHOT2 — Local Implementation Mandate]]; A INCOMPLETE, B/C/D NOT_RUN reportados, E NOT_AUTHORIZED. No iniciar Shot 3 ni heredar PASS históricos/Runtime. Se conserva la autorización documental pública; sin release/PROD/trading ni cierre Agents-OS.
 
 ### Convergencia Runtime + Lab V4 + Ingestion V2 — 2026-10-27
 

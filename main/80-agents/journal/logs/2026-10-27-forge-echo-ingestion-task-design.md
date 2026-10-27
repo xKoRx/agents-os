@@ -26,11 +26,21 @@ tags:
 
 # 2026-10-27 — Forge Echo Ingestion Task: diseño congelado
 
+## Adjudicación de la entrega inicial de Shot 2 — 2026-10-27
+
+- **Cambio vigente:** candidatos remotos recibidos y revisados; SHOT2_INCOMPLETE. Continuación de implementación dentro del mismo shot, sin iniciar QA independiente.
+- **Entidades actualizadas:** [[10-projects/Echo Forge — Operación Real V2/Echo Forge — Operación Real V2|Echo Forge — Operación Real V2]] y [[10-projects/Echo/Echo — Producto Integrado|Echo — Producto Integrado]]. Afirmación previa: implementación NOT_STARTED/NOT_IMPLEMENTED. Nueva verdad: implementación parcial publicada, con blockers demostrados en fuente; todavía sin gate IMPLEMENTED_LOCAL.
+- **Fuentes:** Symphony `07c914251760a938293b7fa7fe4e6d7b4d330640`, Echo `2c66e9402ba96ff354681552587c895ec92f4a28`, tag contracts `.1` y D original `5665da51f9372d50e1798f5609b28a7435e211bb`. API verificó ancestry, refs y contenido; revisión acotada de llamadas, contratos y persistencia.
+- **Decisión y localizador:** M01–M09 en [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/D — Implementation Evidence|D — Implementation Evidence]]; criterios de terminación en [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT2 — Local Implementation Mandate|SHOT2 — Local Implementation Mandate]]. B/addendum y los cuatro shots se conservan. El tag publicado permanece inmutable.
+- **Persistencia:** se actualizan D, mandato, C, dos proyectos, continuidad, este log y un agent_run atribuible al segmento de revisión. Se preserva el reporte original del ejecutor con su adjudicación posterior visible. No se crea tercer proyecto.
+- **Límites:** builds/tests/runtime locales no ejecutados por el manager; A INCOMPLETE, B/C/D NOT_RUN según ejecutor, E no autorizado. Incidente PG compartido reportado, impacto/restauración no verificados; no se ejecuta reparación ni se amplía autorización sobre recursos ajenos.
+- **Validación:** esquema/plantilla del tipo y enlaces del conjunto tocado; publicación con lease y verificación de blobs. Los fallos previos de publicación quedaron resueltos por autorización Owner para el paquete técnico de este programa.
+
 ## Cambio
 
 - **Tipo:** created + updated.
 - **Programa:** nueva task declarativa Forge → Echo V2, dentro del proyecto Forge existente.
-- **Autoridades creadas:** [[A — Source Authority Report]], [[B — Frozen Design]], [[C — Four Shot Delivery Plan]], [[SHOT2 — Local Implementation Mandate]], [[Contract Source Review]] y [[Forge Task — Contract Addendum]]. Actualizaciones acotadas de las notas de proyecto Forge y Echo incluidas en este commit documental.
+- **Autoridades creadas:** [[A — Source Authority Report]], [[B — Frozen Design]], [[C — Four Shot Delivery Plan]], [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT2 — Local Implementation Mandate|SHOT2 — Local Implementation Mandate]], [[Contract Source Review]] y [[Forge Task — Contract Addendum]]. Actualizaciones acotadas de las notas de proyecto Forge y Echo incluidas en este commit documental.
 
 ## Motivo
 
