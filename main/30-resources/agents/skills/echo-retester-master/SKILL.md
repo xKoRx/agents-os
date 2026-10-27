@@ -5,10 +5,12 @@ name: echo-retester-master
 description: Gatea el desarrollo y backtesting de cada nueva estrategia o variante de Echo Futures, impidiendo históricos largos antes de correctness, smoke individual, rollover y al menos un challenge aprobado en un contrato trimestral comprobado. Cargar al implementar/validar nuevas estrategias para Echo Futures, ClutiFX o cursos futuros; no para operar LIVE ni analizar únicamente campañas ya terminadas.
 scope: area
 created: "2026-10-24"
-updated: "2026-10-26"
+updated: "2026-10-27"
 entities:
   - "[[Echo Futures]]"
 related:
+  - "[[Echo I+D — Futures]]"
+  - "[[30-resources/runbooks/echo-rnd-cycle-runbook]]"
   - "[[30-resources/runbooks/echo-futures-strategy-qualification-runbook]]"
   - "[[30-resources/agents/skills/e2e-gated-validation/SKILL]]"
   - "[[30-resources/agents/skills/release-certification/SKILL]]"
@@ -23,6 +25,7 @@ tags:
   - kind/skill
   - scope/area
   - area/echo
+  - tech/agents-os
   - tech/backtester
   - action/validate
 ---
@@ -33,12 +36,14 @@ tags:
 
 Gobernar **cada identidad nueva** de Strategy/variante/MM que deba evaluarse con Echo Futures: primero corregir e instrumentar; después demostrar actividad y un pase físico en un contrato trimestral; sólo entonces autorizar cómputo del histórico completo. Esta skill es el criterio y el selector de gates. El runbook enlazado contiene ejecución, artefactos, recibos y recuperación.
 
-**Activar:** creación/importación/revisión de señales y variantes para futuros o Forex en Echo Futures, incluidos ClutiFX y cursos posteriores. **No activar:** sólo consulta retrospectiva, optimización de infraestructura sin estrategias, despliegue o trading LIVE. No suplanta a `agents-os-bootstrap`, `e2e-gated-validation` ni las reglas económicas del Owner.
+**Activar:** creación/importación/revisión de señales y variantes para futuros en Echo Futures, incluidos ClutiFX, investigación propia y cursos posteriores. **No activar:** investigación Forex/CFD (derivar a `imox-strategy-research`), sólo consulta retrospectiva, optimización de infraestructura sin estrategias, despliegue o trading LIVE. No suplanta a `agents-os-bootstrap`, `e2e-gated-validation` ni las reglas económicas del Owner.
+
+La gestión permanente y la selección del siguiente trabajo pertenecen a [[Echo I+D — Futures]]; esta skill gobierna desarrollo, conformidad y cualificación técnica/económica de las identidades despachadas. **Alcance de ejecución vigente: NQ.** Otros instrumentos requieren decisión Owner y contratos/datos propios antes de ejecutar. Los ejemplos E2T/GAU50 son escenarios históricos versionados, no cuentas actuales del Owner ni proveedor universal; cada mandato identifica su ProviderRuleSet/AccountPolicy efectivo y autorizado.
 
 ## Minimal Read
 
 1. Esta skill y `30-resources/runbooks/echo-futures-strategy-qualification-runbook.md`.
-2. Planner activo de [[Echo Futures]], catálogo/matriz aprobada de la fuente y contratos vigentes Strategy/MM/Provider; lectura por delta.
+2. [[Echo I+D — Futures]], planner único del trabajo despachado, catálogo/matriz aprobada de la fuente y contratos vigentes de [[Echo Futures]] Strategy/MM/Provider; lectura por delta. Optimización de Campañas conserva sus entregas, recibos y laboratorio, no sustituye al manager de mercado.
 3. Sólo los comandos reales del checkout/corpus/supervisor afectados; nunca inventar CLI ni recargar la historia del proyecto.
 
 ## Procedure
@@ -51,7 +56,15 @@ Gobernar **cada identidad nueva** de Strategy/variante/MM que deba evaluarse con
 6. **Usar presupuesto por gate y concurrencia controlada.** Antes del G4 no correr DEV de cientos de sesiones ni histórico 2023–2026. En G4/G5 usar el supervisor único existente con techo **global** de seis motores (incluidos oráculos), objetivo cinco-seis cuando RAM/PSI/swap lo permitan; cancelar nuevas admisiones ante presión. Cero OOM y cero procesos huérfanos prevalecen sobre mantener seis.
 7. **Habilitar G5 sólo por evidencia verificable en la cola.** Una fila sin recibo G0–G4 propio, o cuyo SHA de Strategy/variante/MM/build/políticas difiera, falla cerrada antes de `prepare/run/resume`. El dataset del trimestre y el histórico SON corpus diferentes por diseño: verificar cada SHA contra su propio manifiesto y exigir compatibilidad demostrada de fuente/calendario/roll/semántica de mercado; nunca exigir hashes iguales de ventanas distintas. Reejecutar sólo resultados invalidados por cambio semántico; no mezclar bytes de versiones.
 8. **Terminar con decisión completa por identidad.** La clasificación final de investigación es exactamente una de: `QUALIFIED_LAST_CONTRACT` (operación completa real y conciliada con gates funcionales PASS — jamás una variante sin round-trip propio), `NEEDS_ITERATION`, `SOURCE_REVIEW_REQUIRED`, `VALID_RARE_NO_ACTIVITY`, `SESSION_INCOMPATIBLE`, `BLOCKED_SPEC`, `BLOCKED_DATA`, `ENGINE_DEFECT`, `ALIAS_VERIFIED`, `QUARTER_NO_PASS`, `PROMOTED_FOR_HIST`. Los gates y la clasificación son dimensiones distintas: el ledger conserva ambas, sin etiquetar un bloqueo de conocimiento como pérdida comercial. Cuando la lógica no puede validarse y la fuente es la duda, emitir una ficha del Knowledge Review Loop (`CLF-KNOWLEDGE-REVIEW-QUEUE.md`: una entrada por problema material, con claim/frame IDs, comportamiento esperado vs implementado, primera divergencia causal, causa raíz, pregunta concreta al Owner y objetivo de revisión de video; timestamp no recuperable ⇒ `NOT_RESOLVED`, jamás inventado; `RETEST_SCOPE` jamás el histórico completo por defecto). Separa además ranking retrospectivo, familias distintas, frecuencia, economía y aceptación Owner.
-9. **Persistir y cerrar según instrucción del Owner.** Registrar avance en planner, agent-run y change_log; feedback event-driven. Si se solicitó cierre de sesión, ejecutar `agents-os-session-close`. No prometer vigilancia autónoma ni habilitar LIVE.
+9. **Persistir y cerrar según instrucción del Owner.** Registrar avance en planner, agent-run y change_log; feedback event-driven. Entregar el resultado al manager de mercado para actualizar su celda de cobertura y elegir la siguiente investigación. Mejorar esta skill mediante el ciclo de [[30-resources/runbooks/echo-rnd-cycle-runbook]]: fricción o contraejemplo real, delta acotado, validación y trazabilidad; cambios de gates, presupuestos, reglas económicas o autonomía requieren decisión Owner. Si se solicitó cierre de sesión, ejecutar `agents-os-session-close`. No prometer vigilancia autónoma ni habilitar LIVE.
+
+### Conformidad teoría → regla → código → ejecución
+
+G1 debe demostrar que cada regla material tiene fuente o hipótesis declarada, operacionalización determinista, predicado efectivo y evidencia positiva/contraejemplo. Separar obligación, opción, contexto e incertidumbre; no atribuir al instructor un MM experimental propio. La configuración debe llegar al gate que decide la señal: serializar un parámetro no prueba que el eje esté activo. Verificar causalidad en `decision_time`, trigger, dirección, invalidación, stop técnico, filtros, expiración y cierre. Una duda material de especificación se conserva como `BLOCKED_SPEC` o `SOURCE_REVIEW_REQUIRED`, sin adaptar la teoría retrospectivamente al código.
+
+G2 añade a sus recibos una revisión trazable de entradas, no-entradas y cierres contra esa especificación. Elegir la muestra por reglas predeclaradas que cubran casos y límites de la lógica, no por rentabilidad; conservar `SignalID`, valores de predicados, órdenes, fills y cierre. Un replay, tabla o gráfico anotado puede ayudar a inspeccionar; la prueba sigue siendo determinista y conciliada. Los fixtures prueban lógica, el último contrato prueba comportamiento físico y G4 prueba el filtro económico trimestral: ninguna evidencia sustituye a la otra ni exige ganar en G1/G2.
+
+El procedimiento y los artefactos de conformidad se detallan en G1/G2 del runbook existente; no crear otra cadena de gates. El campo de salida heredado `QUARTER_FUNDED` informa la economía del quarter `CHALLENGE_ONLY`: no acredita supervivencia funded ni retiros, que deben evaluarse explícitamente en el mandato económico aplicable.
 
 ## Output
 

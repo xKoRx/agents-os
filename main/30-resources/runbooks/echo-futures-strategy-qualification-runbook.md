@@ -3,13 +3,15 @@ type: runbook
 schema_version: 1
 scope: area
 created: "2026-10-24"
-updated: "2026-10-26"
+updated: "2026-10-27"
 area: "[[Echo]]"
 project: "[[Echo Futures]]"
 application:
 entities:
   - "[[Echo Futures]]"
 related:
+  - "[[Echo I+D — Futures]]"
+  - "[[30-resources/runbooks/echo-rnd-cycle-runbook]]"
   - "[[30-resources/agents/skills/echo-retester-master/SKILL]]"
   - "[[30-resources/agents/skills/e2e-gated-validation/SKILL]]"
 aliases:
@@ -31,24 +33,32 @@ tags:
 
 # echo-futures-strategy-qualification-runbook
 
-## Propósito y límites
+## Propósito
 
 Procedimiento ejecutable, repetible y verificable para **calificar cada nueva identidad** `Strategy × variante × MM` antes de permitir cómputo histórico costoso de Echo Futures. La skill `echo-retester-master` decide gates y promoción; este runbook posee pasos, receipts, checks de admisión, manejo de fallos y recuperación.
 
 Aplica a ClutiFX, cursos futuros, código de estrategias nuevo, nuevas versiones de un setup y perfiles monetarios candidatos. No autoriza LIVE, mutación de cuentas reales, otro scheduler, alteraciones de RuleSet/Provider ni cambios de contratos del runtime. Los paths absolutos aquí son únicamente ejemplos de Hefesto: resolver los reales en cada corrida.
 
+**Gestión y alcance (2026-10-27):** [[Echo I+D — Futures]] conserva las prioridades y el siguiente mandato; esta autoridad conserva la ejecución de G0–G5. NQ es el único instrumento habilitado por el alcance actual. Los escenarios E2T/GAU50 y sus ventanas citados aquí preservan evidencia histórica, no representan cuentas actuales del Owner ni una selección comercial vigente. Cada campaña debe fijar su ProviderRuleSet/AccountPolicy autorizado; no copiar los ejemplos como defaults. Forex/CFD utiliza `imox-strategy-research` y sus contratos propios.
+
 **Fuente del mandato Owner (2026-10-24):** desarrollar y probar cada identidad; usar el contrato físico NQ más reciente con ~3 meses realmente cubiertos; para avanzar al histórico una identidad debe haber aprobado **al menos un challenge** en ese contrato. Hasta entonces prohibido correr períodos DEV de cientos de sesiones y el histórico completo. Este criterio es un gate de economía de cómputo, NO una certificación de éxito futuro.
 
 ## Precondiciones y autoridades
 
-1. Ejecutar `agents-os-bootstrap` una sola vez si corresponde a cold start. Verificar el planner actual `10-projects/Echo Futures/agentes/Echo Futures — Optimización de Campañas.md` y el proyecto particular de estrategias. Contexto reutilizable en warm start; no recorrer el vault completo.
+1. Ejecutar `agents-os-bootstrap` una sola vez si corresponde a cold start. Verificar [[Echo I+D — Futures]] y el planner único del trabajo despachado. Leer `10-projects/Echo Futures/agentes/Echo Futures — Optimización de Campañas.md` cuando el trabajo consuma su laboratorio, políticas o recibos. Contexto reutilizable en warm start; no recorrer el vault completo.
 2. Resolver el checkout de `xKoRx/echo`, branch/HEAD, WIP, `git status --porcelain`, árbol y build efectivo. Preservar cambios legítimos; trabajar en rama/commit del proyecto autorizado, sin reset.
 3. Leer **fuente autoritativa del catálogo de estrategias**, contratos `v3/sdk/futures/strategy`, MM, Provider, motor `v3/backtester`, datasets sellados y runner real (identificado por inspección). No inventar argumentos `run`/`prepare` ni símbolos.
 4. Inspeccionar inventario NQ físico, calendario, períodos de roll, resoluciones de timeframe y exclusiones `RESEARCH_SESSION_EXCLUDED`; los 10 días de NQZ6 del reporte R03 **NO constituyen un trimestre**.
 5. Registrar `RUN_ID`, `source_sha`, `binary_sha256` (verificar `vcs.modified=false`), identidad de corpus, `window_id`, lista congelada de `strategy_id/variant_id/profile_id` y `owner_authorization`.
 6. El presupuesto de ejecuciones viene de la orden Owner y de gates reales. No interpretar `ONE-SHOT` como permiso ilimitado ni prometer trabajo después de cerrar una sesión.
 
-## 0. Control inmediato: recuperar el cómputo mal encaminado
+## Procedimiento
+
+Aplicar las secciones numeradas por identidad, con el alcance y presupuesto del mandato. La sección 0 es recuperación condicional; no se ejecuta por el mero hecho de cargar este runbook.
+
+## 0. Recuperación condicional de cómputo mal encaminado
+
+**Activar sólo ante una corrida propia identificada que incumpla gates y bajo la autorización aplicable de pausa/recuperación.** El incidente de octubre de 2026 es antecedente, no una orden permanente de detener procesos. Si no existe ese incidente, omitir esta sección y comenzar G0. No actuar sobre trabajos ajenos o producción.
 
 1. Identificar exclusivamente procesos propios del encargo, supervise/runners/cron y su job/attempt/PGID. Observar con `ps -eo pid,ppid,pgid,rss,etime,args`, `pgrep -a -f` sólo para descubrir; verificar dueño/working directory/command line antes de actuar.
 2. Poner en `PAUSED_BY_OWNER_GATE_CHANGE` las nuevas admisiones del lote DEV multicontrato. **No** lanzar nuevos jobs hasta inventariar estado. Interrumpir ordenadamente corridas caras que no cumplen los gates, conservando sus logs, plan, identity y resultados parciales como `INTERRUPTED_BY_OWNER`; nunca convertidas en estrategia perdida. No `pkill` global ni matar procesos de otros proyectos.
@@ -100,7 +110,11 @@ Para cada `strategy_id+variant_id+profile_id`:
 5. Integración mínima por variante: `Strategy → Signal → Operation → MM → Provider → order → fill → ledger → close` con ejecución física del simulador en fixture donde existe el patrón. Ninguna cuenta/stop artificial para fabricar `CHALLENGE_PASSED`.
 6. Repetibilidad con mismo build+inputs; `Strategy/MM` aplicados coinciden con config sellada.
 
-**PASS**: suite enfocada verde, ejemplos positivos/negativos y determinismo, camino económico E2E ejercitado. Una variante no hereda automáticamente `PASS` de su control aunque comparta paquete.
+**Conformidad con la tesis, antes de mirar el resultado económico.** Integrar en `G1-CORRECTNESS.md` una tabla por regla material: fuente/claim o hipótesis propia → clase (`SOURCE`, `OPERATIONALIZATION`, `HYPOTHESIS`, duda no resuelta) → obligatoriedad/opcionalidad → predicado y punto efectivo de decisión → fixture positivo → contraejemplo → resultado. Para una hipótesis empírica sin instructor, declarar esa procedencia; no inventar una fuente ni una causalidad demostrada. Verificar trigger, dirección, invalidación, stop técnico, expiración, filtros y sesión/cierre según su autoridad, manteniendo Strategy/MM/Provider separados.
+
+Los fixtures deben fijar barras de entrada, información conocida en `decision_time`, estado esperado, señal, stop y lifecycle esperado. Construir el oráculo desde la especificación antes de usarlo para juzgar la implementación; no copiar el comportamiento del código como expectativa. Un eje configurado debe alcanzar el gate efectivo y distinguir un caso positivo de su contraejemplo; que el parámetro se decodifique no prueba que cambie decisiones. Si una regla material sigue ambigua, `BLOCKED_SPEC`/`SOURCE_REVIEW_REQUIRED`; registrar la pregunta y no fabricar una interpretación rentable.
+
+**PASS**: suite enfocada verde, conformidad de reglas materiales demostrada, ejemplos positivos/negativos y determinismo, camino económico E2E ejercitado. Una variante no hereda automáticamente `PASS` de su control aunque comparta paquete.
 
 **FAIL**: `warmup` infinito, `ready=0` después del lookback completo, requirement mismatch, calendario no materializado, señal sin tick/contrato correcto, index lookahead, MM incorrecto, etc. Diagnosticar, corregir, incrementar versión semántica cuando corresponda y repetir sólo gates afectados.
 
@@ -111,7 +125,7 @@ Para cada `strategy_id+variant_id+profile_id`:
 **Tres subgates, todos por identidad, sin heredar PASS ajeno:**
 
 - **G2A — readiness / signals / detectors.** Smoke breve del inicio de trading + días ejecutables con lookback legítimo. Recibo por identidad con el funnel completo (ver abajo). `evaluations_ready=0` con barras suficientes ⇒ `FAILED_CORRECTNESS` inmediato; setup no ocurrido ⇒ `READY_LOW_SIGNAL`.
-- **G2B — STRATEGY_SESSION_COMPATIBILITY.** Obligatorio antes de G4: cada señal OPEN a `America/New_York` con DST (zoneinfo), confrontada con la ventana que el AccountPolicy impone (E2T/GAU50: `[09:30, 15:55)` ET), correlación por `SignalID` desde `OPERATION_APPLY/CAMPAIGN_SIGNAL`. Veredictos `SESSION_COMPATIBLE` / `SESSION_INCOMPATIBLE` (⇒ sin G4; no es veredicto comercial) / `INCONCLUSIVE_NO_SIGNALS`. Herramienta: `campaign-lab/session_compatibility.py`. Prohibido modificar horarios de Provider para fabricar entradas.
+- **G2B — STRATEGY_SESSION_COMPATIBILITY.** Obligatorio antes de G4: cada señal OPEN a `America/New_York` con DST (zoneinfo), confrontada con la ventana que el AccountPolicy versionado efectivo impone (ejemplo del escenario histórico E2T/GAU50: `[09:30, 15:55)` ET; no horario universal del proveedor), correlación por `SignalID` desde `OPERATION_APPLY/CAMPAIGN_SIGNAL`. Veredictos `SESSION_COMPATIBLE` / `SESSION_INCOMPATIBLE` (⇒ sin G4; no es veredicto comercial) / `INCONCLUSIVE_NO_SIGNALS`. Herramienta: `campaign-lab/session_compatibility.py`. Prohibido modificar horarios de Provider para fabricar entradas.
 - **G2C — FULL TRADE LIFECYCLE.** Sobre la traza económica real de la corrida G2: ≥1 fill de entrada, ≥1 fill de salida y ≥1 **round-trip reconciliado** reconstruido posición-a-conciencia por `campaign-lab/qualification_ledger.py` (reutiliza `research_lab.reconcile_trades`: un trade cierra sólo cuando la posición neta vuelve a cero; dinero exacto en ticks; fees reales por lado). Posición abierta al horizonte se reporta como `open_at_horizon` y jamás cuenta como trade completo. La operación completa conserva su identidad (entry_at/exit_at, dirección, qty, precios, bruto/fees/neto) e informa win/loss/break-even; ganar no se exige.
 
 **Funnel obligatorio por variante** (cantidades, rechazos y motivo en cada transición; todo cero relevante con explicación verificable):
@@ -125,6 +139,8 @@ source minutes → bars closed → requirements satisfied → evals → ready ev
 ```
 
 Los rechazos de campaña se clasifican por `input_kind=CAMPAIGN_SIGNAL` + `reasons` (`CAMPAIGN_ALLOWED` vs `CAMPAIGN_UNAVAILABLE`/`SESSION_ENTRY_WINDOW`/`SESSION_SAFETY_CUTOFF`/`SIZE_BELOW_MIN_CONTRACT`/…), correlacionados por `SignalID`; el conteo por señal difiere del conteo por día y ambos se registran.
+
+**Revisión de comportamiento físico contra la especificación.** En `G2-FULL-TRADE-EVIDENCE.md`, elegir y declarar una muestra por cobertura de reglas, direcciones aplicables, límites y rechazos; no elegirla sólo por P&L. Adjuntar replay, tabla o gráfico anotado de barras/contexto conocidos en cada decisión, regla y valores efectivos, `SignalID`, órdenes, fills y cierre; enlazar los recibos completos. Incluir entradas, no-entradas justificadas y contraejemplos disponibles, declarando qué casos sólo están probados por fixtures. La representación visual no demuestra precisión intrabar cuando el corpus sólo contiene OHLCV 1m, ni sustituye conciliación. Un desacuerdo teoría→regla→gate→traza se localiza antes de G4; corregir código o aclarar fuente con la versión correspondiente. Ninguna de estas revisiones exige operaciones ganadoras ni habilita G4 sin G2C propio.
 
 ## 5. G3 — Canary corto de rollover y recuperación de ready (obligatorio)
 
@@ -183,7 +199,7 @@ Cualquier gate → FAILED_CORRECTNESS | DATA_REQUIRED | BLOCKED_ENGINE
                 | LOW_FREQUENCY | INCONCLUSIVE | INTERRUPTED_BY_OWNER
 ```
 
-Un `LOW_FREQUENCY` con G1 y readiness probado **puede ejecutar el trimestre completo**, pero no G5 sin pase. `FAILED_CORRECTNESS` jamás cuenta como fracaso económico.
+`LOW_FREQUENCY` no exime ningún gate: sólo puede ejecutar G4 con cadena propia G0–G3 completa, incluidos G2C PASS y G2B `SESSION_COMPATIBLE`. Sin round-trip propio conserva su diagnóstico y no pasa al trimestre; nuevos datos o una revisión autorizada deben volver a satisfacer la cadena. No G5 sin pase. `FAILED_CORRECTNESS` jamás cuenta como fracaso económico.
 
 Recibos mínimos sugeridos, usando esquema local equivalente cuando ya exista uno:
 
@@ -266,7 +282,7 @@ El agente debe **adaptar** este contrato a las herramientas reales que encuentre
 |---|---|---|
 | `evaluations=0` | Requirements/serving ausente, falta de barras, trigger equivocado | Ver primeras barras, ventana y `BarClose`; FIX G1/G2 |
 | `evaluations>0`, `ready=0` tras lookback | Warmup perpetuo, reset por roll, prefix HTF inválido | G1/G3 FAIL; no DEV/histórico |
-| `ready>0`, `signals=0` | Setup raro o predicado/horario defectuoso | Fixture positivo + valores causales; si raro, G4 una vez |
+| `ready>0`, `signals=0` | Setup raro o predicado/horario defectuoso | Fixture positivo + valores causales; si raro, `VALID_RARE_NO_ACTIVITY`; sin G2C propio no G4 |
 | Señales pero 0 fills | MM no admite mínimo, cap, estrategia sin cuenta, Provider reject | Contar por etapa; si bug FIX, si rechazo válido reportar |
 | Fills pero 0 compras | Censo/identidad o compra/selección fuera de ventana | Reconciliar compras contra cash ledger/accounts |
 | Compra pero 0 pases | No cumplió RuleSet/objetivo o horizonte insuficiente | G4 NO_PASS; no G5 |
@@ -297,6 +313,10 @@ Ninguna variante termina como `0 trades`/`NO_ACTIVITY`/`COMPLETE`/`UNKNOWN`/`LOW
 ### Knowledge Review Loop (reutilizable para cualquier curso)
 
 Cuando una variante no opera o su lógica no puede validarse, emitir UNA ficha por problema material en `CLF-<CICLO>-KNOWLEDGE-REVIEW-QUEUE.md` (formato completo en la skill §8 y en el mandato): `REVIEW_ID`, identidad, `CURRENT_STATUS` (`NEEDS_ITERATION | SOURCE_REVIEW_REQUIRED | VALID_RARE_NO_ACTIVITY | SESSION_INCOMPATIBLE | BLOCKED_SPEC | BLOCKED_DATA`), `SOURCE` (curso, capítulo, claim_ids, frame_ids, timestamp de video, path del knowledge), `EXPECTED_BEHAVIOR` vs `IMPLEMENTED_BEHAVIOR`, `OBSERVED_LAST_CONTRACT` (funnel numérico), `FIRST_CAUSAL_DIVERGENCE`, `ROOT_CAUSE` (`CONFIRMED | HYPOTHESIS | UNKNOWN`), `KNOWLEDGE_QUESTION` concreta para el Owner, `VIDEO_REVIEW_TARGET` (capítulo y minuto; `NOT_RESOLVED` si no es recuperable — jamás inventado), `RECOMMENDED_ACTION` (`FIX_CODE | REVIEW_VIDEO | CLARIFY_SPEC | KEEP_RARE | ADAPT_MARKET | BLOCKED_DATA`) y `RETEST_SCOPE` (gates afectados, jamás todo el histórico por defecto). No volver a analizar el curso entero: la ficha apunta exactamente a la parte de conocimiento en duda.
+
+## Validación
+
+Verificar la evidencia exigida por G1/G2 y la admisión mecánica descrita abajo. Una revisión documental no declara ejecución de estas pruebas ni modifica recibos históricos.
 
 ## 11. Verificación anti-regresión de la propia metodología
 
@@ -336,6 +356,8 @@ Entregar bajo el proyecto/run root existente sin crear un segundo planner:
 - `REPRODUCE.md` con comandos exactos capturados del tooling real y fuente/build/corpus; `STATUS.md` inequívoco.
 
 Datos y trazas pesadas permanecen fuera de Git en run root, con checksums; docs compactos y código en la rama autorizada, sin merge ni LIVE. Planner/agent-run/change_log y feedback de fricción real. Ejecutar `agents-os-session-close` sólo cuando se pidió cierre; no simular async sin supervisor/automation reales.
+
+Entregar al manager de [[Echo I+D — Futures]] el estado científico, técnico y económico por separado. Mejoras a este procedimiento siguen [[30-resources/runbooks/echo-rnd-cycle-runbook]]: evidencia de fricción, delta acotado, caso positivo/contraejemplo y versión. No autoeditar gates, presupuesto, reglas económicas o autonomía para admitir un candidato; los cambios materiales pertenecen al Owner.
 
 ### Veredicto final obligatorio
 

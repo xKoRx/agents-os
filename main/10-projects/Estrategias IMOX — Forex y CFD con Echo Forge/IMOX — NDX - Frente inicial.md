@@ -3,16 +3,16 @@ type: doc
 schema_version: 1
 status: active
 area: "[[Trading]]"
-related: ["[[IMOX]]"]
+related: ["[[Echo — I+D de Estrategias]]", "[[IMOX]]"]
 aliases: []
 tags: ["kind/doc", "area/trading", "topic/imox"]
 created: "2026-10-24"
-updated: "2026-10-24"
+updated: "2026-10-27"
 project: "[[Estrategias IMOX — Forex y CFD con Echo Forge]]"
 research_record: "front"
 instrument: "NDX"
-inventory_state: "inventory_pending"
-rescue_state: "deferred_by_owner"
+inventory_state: "inventoried"
+rescue_state: "preserved"
 ---
 
 # IMOX — NDX - Frente inicial
@@ -23,28 +23,32 @@ Primer frente de investigación de [[Estrategias IMOX — Forex y CFD con Echo F
 
 ## Contenido
 
-### Estado y procedencia
+### Estado y procedencia — corte 2026-10-27
 
-Rodrigo declara tener estrategias NDX, una selección y un par de grupos construidos desde SQX 142, ubicados en las instalaciones 142 de los workers. **Rescate diferido por decisión expresa: hoy solo metodología/roadmap.** No se enumeraron workers, rutas, conteos, IDs, TF o familias y no se verificaron físicamente.
+**Rescate ejecutado el 25-10, revalidación 144 pendiente.** [[IMOX — Rescate 142 en flota Forge (2026-10-25)]] conserva la evidencia de los tres pools inventariados y preservados; [[IMOX — Registro de campañas]] define su procesamiento posterior. El estado `inventory_pending` / `deferred_by_owner` del 24-10 queda superado, sin reescribir esa decisión histórica ni repetir el rescate.
 
-### Etapas posteriores de rescate
+| Celda heredada | Procedencia y cantidad | Estado registrado |
+|---|---|---|
+| NDX CFD / H1 / LONG / BR-G1 | Zeus; 727 archivos SQX 142.2399 | IMPORTED en Forge; cierre EVAL-144 pendiente |
+| NDX CFD / H1 / LONG / BR-G2 | Hera; 555 archivos SQX 142.2399 | READY_IMPORT, sin despacho nuevo acreditado |
+| NDX CFD / H1 / LONG / BR-G4 | Kronos; 1.091 archivos SQX 142.2399 | READY_IMPORT, sin despacho nuevo acreditado |
 
-1. Cuando Rodrigo active esta fase, inventariar original sin alterarlo: origen, SQX build, presets/grupos/estrategias, selección y artefactos disponibles. Preservar identidad; hash si está disponible.
-2. Separar «seleccionada en 142» de «revalidada en 144» y material sin procedencia suficiente.
-3. Clasificar lógica, dirección, TF, horizonte, rol de bloques y condiciones del instrumento. Deduplicar estrategias/variantes con evidencia, no por parecido de nombre.
-4. Relacionar con campañas técnicas históricas solo si IDs/artefactos demuestran pertenencia.
-5. Definir una revalidación pequeña con la receta actual y registrar diferencias; no retocar originales para hacer coincidir métricas.
-6. Elegir el siguiente hueco de cobertura a partir del inventario, no minar de nuevo lo que ya existe sin saberlo.
+El producto/feed heredado registrado es `USATECHIDXUSD_darwinex`; el procesamiento 144 exige verificar su perfil efectivo, datos, costes, sesiones/DST y parámetros. Las cantidades son archivos, no finalistas independientes. Los pools son distintos byte a byte, pero esa diferencia no demuestra independencia económica. G4 es grupo dominante por universo de bloques, sin prueba de exclusividad. G1 tuvo resultados técnicos históricos; no se acredita Top 5 definitivo por `logical_type` ni admisión/operación Echo por estos pools.
 
-### Decisiones que se pueden tomar sin rescatar ahora
+### Secuencia aceptada para este frente
 
-Definir el contrato de hipótesis y evaluación, estados del registro y prioridades Q4. El primer grupo de minados nuevos se deja pendiente hasta conocer suficiente la exposición del legado. Se puede bosquejar una comparación de familias sin afirmar que están ausentes.
+1. **F0:** consumir certificación completa del pipeline con TEST y oráculos; los pools heredados no son fixtures. El corte técnico del 27-10 no acredita F0 PASS.
+2. **F1:** preparar y, con los gates y mandato aplicables, procesar G1/G2/G4 mediante tasks SQX 144 nuevas y una receta EVAL-144 común versionada. Conservar originales y refs; registrar el funnel y la evidencia por grupo.
+3. **F2:** revisar las familias/grupos y sus múltiples configs genéticas antes de repetir la taxonomía en otros activos. No asumir que seis grupos son una clasificación aceptada permanente.
+4. **F3:** elegir campañas nuevas desde huecos de cobertura, diversidad, presupuesto y aprendizaje. Registrar aportación real de cada celda, no sólo cantidad de EAs.
+
+**Siguiente exacto del manager:** confirmar el receipt F0 vigente desde el control técnico canónico, preparar la receta común y las decisiones Owner aún abiertas de ranking, WFM, IS/OOS/holdout, límites y admisión. El proyecto de división conserva ese mandato y su WIP. Este frente es una vista de sus celdas heredadas, no un segundo planner.
 
 ### Relación con Forge y Echo
 
-Hay antecedentes técnicos NDX en [[Echo Forge — Robust Run Selection V2]], pero no se demuestra que sean exactamente las estrategias que Rodrigo quiere rescatar. La certificación pre-Echo histórica no equivale a admisión en Echo ni a funcionamiento físico vigente del worker.
+[[10-projects/Echo Forge — Operación Real V2/Echo Forge — Operación Real V2|Echo Forge — Operación Real V2]] conserva la certificación del producto y su siguiente implementación. [[10-projects/Echo Forge — Robust Run Selection V2/Echo Forge — Robust Run Selection V2|Robust Run Selection V2]] aporta evidencia técnica histórica pre-Echo. Relacionar campañas concretas con estos pools sólo por identidad comprobada; una certificación histórica no equivale a admisión en Echo, F0 nuevo ni estado físico actual del worker.
 
 ## Fuentes
 
-- Declaración directa de Rodrigo, 2026-10-24; diferimiento del rescate en la misma conversación.
+- Declaración de Rodrigo del 24-10 y diferimiento inicial, conservados como antecedente; superados por [[IMOX — Rescate 142 en flota Forge (2026-10-25)]] y las decisiones del 26-10.
 - [[IMOX — Registro de campañas]] · [[IMOX — Cobertura de investigación]] · [[IMOX - Empezar con SQX 144 - Metodología y primera campaña]].

@@ -6,7 +6,7 @@ root: false
 status: completed
 priority: P3
 area: "[[Echo]]"
-parent: "[[Echo Futures]]"
+parent: "[[Echo I+D — Futures]]"
 sprint: 2026-09-23--2026-09-30
 start: 2026-09-23
 due: 2026-09-30
@@ -21,10 +21,13 @@ tags:
   - kind/project
   - area/echo
 created: "2026-09-23"
-updated: "2026-09-25"
+updated: "2026-10-27"
 ---
 
 # Echo Futures — Prop Economics Experiment
+
+> **Ubicación en el programa — 2026-10-27:** evidencia económica histórica de [[Echo I+D — Futures]] dentro de [[Echo — I+D de Estrategias]]. El experimento sigue cerrado; [[Echo Futures]] conserva la autoridad de producto/arquitectura. No convertir sus escenarios ni cuentas antiguas en perfiles actuales sin revalidación y decisión Owner.
+
 
 > [!success]+ Experimento cerrado — 2026-09-25
 > Este documento preserva el proyecto original de discovery, simulación y economía de futures props. Sus resultados D4/D5/D5.4 siguen siendo evidencia reutilizable, pero **ya no es la autoridad de producto ni de arquitectura**. El nuevo proyecto canónico es [[Echo Futures]].

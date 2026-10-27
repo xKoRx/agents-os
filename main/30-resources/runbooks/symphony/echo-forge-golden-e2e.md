@@ -3,7 +3,7 @@ type: runbook
 schema_version: 1
 scope: application
 created: "2026-08-29"
-updated: "2026-08-29"
+updated: "2026-10-27"
 area: "[[Echo Forge]]"
 project: "[[Echo Forge - Arquitectura de Datos y Migración de Persistencia]]"
 application: "[[xKoRx/symphony]]"
@@ -31,6 +31,9 @@ tags:
 ---
 
 # echo-forge-golden-e2e
+
+> [!important] Aplicabilidad vigente — revisión documental 2026-10-27
+> El procedimiento inferior conserva el alcance y la evidencia de agosto de 2026. Antes de ejecutarlo, resolver el mandato, baseline, herramientas y autorización actuales en [[10-projects/Echo Forge — Operación Real V2/Echo Forge — Operación Real V2.md|Echo Forge — Operación Real V2 (autoridad técnica)]]. Para el mandato Owner `GO_WITH_INTEGRATED_FIXES` del 2026-10-27, su ciclo integrado de corrección, build, deploy candidato, E2E y QA prevalece sobre la restricción histórica del paso 6 de no corregir/reintentar en la misma sesión. Cada intento conserva su evidencia, versión e identidades nuevas: esto no permite patch-and-continue sobre una corrida ya certificada ni extiende permisos a otros trabajos. El funnel dinámico y cualquier nuevo objetivo requieren su propia certificación; los comandos, topología y resultados históricos de este runbook no la demuestran ni conceden autorización de trading o producción. No se ejecutó ni recertificó físicamente este procedimiento durante esta revisión.
 
 %% Routing: area/project/application/entities/related usan links canónicos. Aliases son variantes humanas; tags/paths usan slugs. %%
 

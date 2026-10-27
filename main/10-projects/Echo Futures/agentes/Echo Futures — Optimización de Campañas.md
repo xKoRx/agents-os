@@ -6,7 +6,7 @@ root: false
 status: active
 priority: P1
 area: "[[Echo]]"
-parent: "[[Echo Futures]]"
+parent: "[[Echo I+D — Futures]]"
 sprint:
 start:
 due:
@@ -19,10 +19,15 @@ tags:
   - kind/project
   - area/echo
 created: "2026-10-20"
-updated: "2026-10-26"
+updated: "2026-10-27"
 ---
 
 # Echo Futures — Optimización de Campañas
+
+> **Gobierno vigente — 2026-10-27:** esta entrega acotada y su laboratorio pertenecen a [[Echo I+D — Futures]], dentro de [[Echo — I+D de Estrategias]]. Su puente conserva REVIEW en el nuevo padre. [[Echo Futures]] sigue siendo autoridad de producto; no se reinician campañas ni se aceptan gates por cambiar la organización. Los objetivos de cinco candidatas/25% siguen acotados a este encargo, no al programa evergreen completo.
+>
+> **Lectura del estado ClutiFX:** priorizar [[10-projects/Echo Futures/artifacts/clutifx-strategy-research/e05r1/CLF-E05R1-STATUS|E05R1]] y [[10-projects/Echo Futures/artifacts/clutifx-strategy-research/k05/CLF-K05-SOURCE-CERTIFICATION|K05]] frente a conclusiones históricas Q04 superseded. El catálogo de la biblioteca existe; E05R1 conserva OWNER_ACCEPTANCE REVIEW. La línea no depende de que ClutiFX tenga éxito.
+
 
 ## 🎯 Objetivo
 

@@ -3,10 +3,10 @@ type: project
 schema_version: 1
 owner: agent
 root: false
-status: complete
+status: completed
 priority: P1
 area: "[[Echo]]"
-parent: "[[Echo Futures]]"
+parent: "[[Echo I+D — Futures]]"
 start: 2026-09-25
 due: 2026-10-02
 progress: 100
@@ -16,14 +16,35 @@ aliases:
 tags:
   - kind/project
   - area/echo
-  - echo-futures
-  - prop-firms
-  - research
+  - tech/echo-futures
+  - topic/prop-firms
+  - action/research
 created: "2026-09-25"
-updated: "2026-09-25"
+updated: "2026-10-27"
 ---
 
 # Echo Futures — Futures Prop Universe
+
+## 🎯 Objetivo
+
+Preservar el catálogo y evidencia de providers entregados en D1, como soporte de [[Echo I+D — Futures]]. La actualización comercial para una nueva investigación se despacha desde esa línea; no reabre automáticamente este discovery histórico.
+
+## 📊 Estado actual
+
+**Entrega histórica D1 cerrada por manager el 2026-09-26**, según la revisión autoritativa conservada abajo. La normalización `complete`→`completed` del 2026-10-27 corrige el schema y no crea una nueva aceptación. Los estados comerciales y reglas de septiembre son evidencia fechada, no certificación vigente ni selección de cuenta del Owner. El perfil actual de Futures está pendiente de decisión; las cuentas E2T antiguas no fueron operadas y no son un target vigente.
+
+## 🧱 Entrega de desarrollo
+
+_No aplica — catálogo/investigación documental; cambios al modelo Provider y su integración pertenecen al owner técnico de Echo Futures._
+
+## ✅ Tareas
+
+Sin ejecución activa en este encargo histórico. La siguiente actualización necesaria se selecciona dentro de FUT-R01 en [[Echo I+D — Futures]], sin duplicar un nuevo census antes de identificar el delta.
+
+## 📆 Bitácora
+
+- **2026-10-27** — Reparentado como soporte de investigación Futures del programa común. Estado histórico conservado y normalizado al schema. No se verificaron nuevas reglas comerciales ni se operaron cuentas.
+
 
 ## Execution gate — canonical Echo Futures
 

@@ -7,8 +7,8 @@ slug: "skills-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: 2026-06-28
-updated: "2026-10-25"
-reviewed: 2026-09-12
+updated: "2026-10-27"
+reviewed: "2026-10-27"
 aliases:
   - "skills index"
   - "catálogo de skills"
@@ -28,8 +28,8 @@ tags:
 
 ## 📊 De un vistazo
 
-- **Core AGENTS OS:** 28 skills de comportamiento del sistema.
-- **Federadas transversales:** 19 skills curadas en `30-resources/agents/skills/`.
+- **Core AGENTS OS:** comportamientos del sistema enumerados en el catálogo; el índice no duplica sus procedimientos.
+- **Federadas transversales y de dominio:** catálogo curado en `30-resources/agents/skills/`; Echo I+D dispone de manager global, manager Futures y manager Forex reutilizado.
 - **Domain/app-owned:** se descubren mediante el registro de routers y el repo owner; no forman parte del índice always-load.
 - **Regla de lugar:** una skill vive en el core sólo si cambia el comportamiento de AGENTS OS itself; todo lo demás vive federado y se enlaza, no se copia.
 
@@ -41,8 +41,8 @@ tags:
 |---|---|---|
 | [[80-agents/skills/agents-os-bootstrap/SKILL.md|agents-os-bootstrap]] | Clasifica cold/warm/cambio de entidad y carga el contexto mínimo correspondiente. | Una vez en cold start; en warm reutilizar y recuperar sólo el delta. |
 | [[80-agents/skills/agents-os-context-retrieval/SKILL.md|agents-os-context-retrieval]] | Orquesta la recuperación enfocada de contexto mediante Graphify y filtros. | Al buscar contexto de entidades. |
-| [[80-agents/skills/agents-os-session-close/SKILL.md|agents-os-session-close]] | Ejecuta el flujo estricto de cierre de sesión (L0 raw, L1 summaries, etc.). | Sólo cuando el usuario pida explícitamente cerrar sesión. |
-| [[80-agents/skills/agents-os-session-feedback/SKILL.md|agents-os-session-feedback]] | Escribe notas de observación del agente sobre dolores o mejoras operativas. | Al cerrar la sesión. |
+| [[80-agents/skills/agents-os-session-close/SKILL.md|agents-os-session-close]] | Cierra por delta y preserva sólo estado/conocimiento justificado; no exige L0/L1 rituales. | Sólo cuando el usuario pida explícitamente cerrar sesión. |
+| [[80-agents/skills/agents-os-session-feedback/SKILL.md|agents-os-session-feedback]] | Captura fricción real, degradación o gaps con evidencia; no genera policy automáticamente. | Por evento o pedido explícito, no por cada cierre. |
 | [[80-agents/skills/agents-os-memory-distillation/SKILL.md|agents-os-memory-distillation]] | Promueve y destila conocimientos hacia ADRs, known errors o runbooks. | Para actualizar la memoria persistente. |
 | [[80-agents/skills/agents-os-entity-lifecycle/SKILL.md|agents-os-entity-lifecycle]] | Gestiona la creación de entidades de Sistema 2 asegurando uso de templates. | Al crear proyectos, áreas o apps. |
 | [[80-agents/skills/agents-os-entity-update/SKILL.md|agents-os-entity-update]] | Actualiza la información y el estado en los archivos Markdown canónicos. | Al cambiar el estado de un proyecto/app. |
@@ -81,12 +81,12 @@ skills de una aplicación viven y se descubren en su repo owner.
 |---|---|---|
 | [[30-resources/agents/skills/pr-description/SKILL.md|pr-description]] | Produce descripciones de PR con evidencia real y las materializa como recurso del proyecto. | Transversal; respeta template y policy del repo activo. |
 | [[30-resources/agents/skills/human-first-technical-writing/SKILL.md|human-first-technical-writing]] | Reduce la carga cognitiva del lector mediante narrativa técnica causal. | Transversal: PRs, specs, reportes, incidentes, guías. |
-| [[30-resources/agents/skills/technical-project-manager/SKILL.md|technical-project-manager]] | Gestiona iniciativas técnicas por horizonte corto de hitos diarios atómicos, con design freeze y ciclo implementation → independent verification → correction/final gate. | Transversal; proyectos con varios días/agentes y outcomes diarios verificables. |
+| [[30-resources/agents/skills/technical-project-manager/SKILL.md|technical-project-manager]] | Gestiona entregas técnicas acotadas con el Owner, decisiones explícitas, mandatos completos y verificación independiente. | Transversal; entregas técnicas delegadas. Para el programa evergreen Echo I+D usar su manager específico. |
 | [[30-resources/agents/skills/sync-local-branch/SKILL.md|sync-local-branch]] | Sincroniza ramas Git exclusivamente locales con pull literal, merge conservador, commit y push. | Dev-workflow genérico. |
 | [[30-resources/agents/skills/sdd-workflow/SKILL.md|sdd-workflow]] | Clasifica y ejecuta fases SDD sin mezclar specification, plan, tasks, implementation y verification. | Features/cambios no triviales; metodología en `30-resources/methodologies/sdd/`. |
 | [[30-resources/agents/skills/sdd-developer/SKILL.md|sdd-developer]] | Entrega una SPEC SDD ready mediante implementación one-shot, verificación adversarial independiente y corrección/gate final, preservando regresiones/E2E reutilizables. | Transversal; IMPLEMENT+VERIFY de features SDD listas. |
 | [[30-resources/agents/skills/e2e-gated-validation/SKILL.md|e2e-gated-validation]] | Orquesta validaciones E2E como secuencia de gates con evidencia y criterios PASS/FAIL. | E2E, golden runs o certificaciones físicas; transferible. |
-| [[30-resources/agents/skills/echo-retester-master/SKILL.md|echo-retester-master]] | Gatea cada nueva Strategy/variante/MM: unitarias → smoke individual → rollover → contrato trimestral con ≥1 challenge aprobado → histórico sólo de promocionadas; runbook fail-closed. | Echo Futures, ClutiFX y futuras campañas de extracción/implementación de estrategias; no LIVE. |
+| [[30-resources/agents/skills/echo-retester-master/SKILL.md|echo-retester-master]] | Gobierna desarrollo/conformidad teoría→regla→código→operación y G0–G5 por identidad Futures; histórico sólo con cualificación propia. | Echo Futures, ClutiFX y futuras campañas de extracción/implementación de estrategias; no LIVE. |
 | [[30-resources/agents/skills/release-certification/SKILL.md|release-certification]] | Certifica que release/binario corresponde al source autorizado (baseline, blob equality, SHA256). | Antes de certificar/probar sobre una release. |
 | [[30-resources/agents/skills/deployment-proof/SKILL.md|deployment-proof]] | Demuestra por jerarquía de evidencia que el runtime ejecuta la release nueva, sin aceptar exit 0. | Tras cualquier deploy que participe en una validación. |
 | [[30-resources/agents/skills/readonly-production-probe/SKILL.md|readonly-production-probe]] | Crea probes temporales read-only contra sistemas reales con cleanup obligatorio. | Inspección física de producción sin modificar estado. |
@@ -100,12 +100,16 @@ skills de una aplicación viven y se descubren en su repo owner.
 | [[30-resources/agents/skills/course-knowledge-extraction/SKILL.md|course-knowledge-extraction]] | Extrae conocimiento de videos de curso a una biblioteca por capítulo (transcript citable + 1 frame/min + frames bajo demanda + revisión POR MINUTO); prohíbe explícitamente el grind MKE por claim (44 h/video medidos). | Al procesar videos de cursos (Clutifx 2 y siguientes) o generar knowledge libraries desde video. |
 | [[30-resources/agents/skills/course-knowledge-worker/SKILL.md|course-knowledge-worker]] | Contrato de los subagentes ONE-SHOT de la skill anterior (EXTRACTOR / MINUTE_REVIEWER / DOCUMENTATION_VERIFIER): paquete de entrada, invariantes y contrato de salida por rol; workers sin acceso a archivos canónicos. | Al despachar workers de extracción/revisión/verificación de un capítulo; lo carga el orquestador y se incluye en cada paquete. |
 
-### Trading y diseño de campañas
+### Echo I+D — gestión y diseño de investigación
 
 | Skill | Una línea | Dominio / uso |
 |---|---|---|
+| [[30-resources/agents/skills/echo-rnd-manager/SKILL.md|echo-rnd-manager]] | Gestiona el programa permanente Echo I+D con el Owner: dos mercados, prioridades, WIP, agentes, aprendizaje y continuidad. | Dirección global y decisiones entre líneas; no ejecución de producto. |
+| [[30-resources/agents/skills/echo-futures-research-manager/SKILL.md|echo-futures-research-manager]] | Gestiona cobertura, hipótesis, specs, mandatos y economía challenge/funded de Futures; deriva G0–G5 al retester. | Investigación Futures; NQ inmediato según el planner. |
 | [[30-resources/agents/skills/sqx144-campaign-design/SKILL.md|sqx144-campaign-design]] | Diseña hipótesis, presets compatibles y sondas SQX 144 con evidencia de IMOX. | Trading; diseño previo, no ejecución ni cambios de Forge. |
-| [[30-resources/agents/skills/imox-strategy-research/SKILL.md|imox-strategy-research]] | Conduce roadmap, cobertura, campañas y aprendizaje de investigación IMOX. | Trading; proyecto de negocio, deriva diseño de presets y operación técnica. |
+| [[30-resources/agents/skills/imox-strategy-research/SKILL.md|imox-strategy-research]] | Manager de la línea Forex/CFD de Echo I+D: roadmap, cobertura, campañas, agentes y aprendizaje, reutilizando IMOX/SQX/Forge. | Forex/CFD; conserva F0→F3 y deriva presets/operación. Para Futures usar su manager. |
+
+Mapa operativo del programa: [[Echo I+D — Mapa de capacidades]] (etapa → skill/runbook → planner → superficie → evidencia). Metodología común de gestión: [[30-resources/runbooks/echo-rnd-cycle-runbook|echo-rnd-cycle-runbook]]. Las secuencias técnicas siguen en sus autoridades de mercado.
 
 ### Conocimiento de comunidades
 

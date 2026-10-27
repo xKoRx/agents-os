@@ -20,13 +20,26 @@ aliases:
 tags:
   - kind/project
   - area/echo
-  - echo-futures
-  - algorithmic-trading
+  - tech/echo-futures
+  - topic/algorithmic-trading
 created: "2026-09-25"
-updated: "2026-10-23"
+updated: "2026-10-27"
 ---
 
 # Echo Futures
+
+## 📊 Estado actual
+
+**Gobierno de I+D desde 2026-10-27:** la investigación permanente de estrategias se gestiona en [[Echo — I+D de Estrategias]] → [[Echo I+D — Futures]]. Este proyecto conserva producto, arquitectura, Backtester y runtime; la reorganización no acepta entregas técnicas ni autoriza producción. Los controles y cortes de producto que siguen mantienen su evidencia y vigencia propias.
+
+## ✅ Tareas
+
+Las tareas técnicas permanecen en sus controles/proyectos de entrega enlazados. El único puente vigente de [[Echo Futures — Optimización de Campañas]] está en [[Echo I+D — Futures]]; no mantener un segundo puente activo aquí. Las prioridades de nuevas investigaciones se recuperan desde esa línea.
+
+## 📆 Bitácora
+
+- **2026-10-27** — Por mandato Owner se transfiere la gestión de investigación al programa común Echo I+D, con dos divisiones. Optimización, universo de props y experimento económico se relacionan con la línea Futures; producto/runtime e historia conservan sus autoridades. Sin campañas, código, cuentas ni aceptación de gates en esta reorganización.
+
 
 > [!info]+ Proyecto canónico
 > **Área:** [[Echo]] · **Estado:** active · **Prioridad:** P1 · **Horizonte inicial:** 2026-09-25 → 2026-10-02
@@ -54,9 +67,9 @@ Auditoría NORMAL acotada (una sesión GLM, corte `07cca9d3`) al cierre `PASS_26
 
 - [/] [[Echo Futures — Runtime Pools]] GOD G-DOC accepted; PRD.6 SHA `4a041e6c` **ACEPTADO para certificar DEV observation-only con deuda QA (89.94%/82.71%) explícita**; G-IMPL FULL/PROD pendiente. CERT-NT-01 opera SOLO sobre Flink DEV ya existente: antes de reinicio compartido FX, savepoint/backup portable externo + 17 ingresses/markers/rollback acreditados y permiso Owner expreso. No tercer Flink ni órdenes; SIM/PROD NO-GO. Ver [[EF-PROD-PRD6-MANAGER-ADJUDICATION-20261026]]. #owner/me #type/supervision #area/echo
 
-## Optimización de Campañas — supervisión
+## Optimización de Campañas — navegación
 
-[r] [[Echo Futures — Optimización de Campañas]] implementar y revisar el laboratorio por shots #owner/me #type/supervision #area/echo
+La supervisión y su puente en estado REVIEW se transfirieron el 2026-10-27 a [[Echo I+D — Futures]]. [[Echo Futures — Optimización de Campañas]] conserva el planner de su entrega y el contrato técnico del laboratorio; este enlace no es una segunda tarea puente.
 
 ## Execution Client y Feed Batching — supervisión
 

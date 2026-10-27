@@ -5,9 +5,9 @@ name: "sqx144-campaign-design"
 description: "Diseña hipótesis, presets de bloques y sondas para campañas en SQX 144 basadas en IMOX; úsala al preparar minados y configuraciones Builder, con catálogo real para generar archivos importables."
 scope: "tool"
 created: "2026-10-24"
-updated: "2026-10-24"
+updated: "2026-10-27"
 entities: []
-related: ["[[IMOX]]", "[[IMOX - Empezar con SQX 144 - Metodología y primera campaña]]"]
+related: ["[[Echo — I+D de Estrategias]]", "[[Estrategias IMOX — Forex y CFD con Echo Forge]]", "[[IMOX]]", "[[IMOX - Empezar con SQX 144 - Metodología y primera campaña]]"]
 aliases: []
 load_policy: "when_preparing_sqx144_campaign"
 indexable: true
@@ -24,7 +24,7 @@ Preparar hipótesis y configuraciones de Builder para campañas SQX 144 según e
 
 ## Minimal Read
 
-1. Leer [[IMOX - Empezar con SQX 144 - Metodología y primera campaña]] para el estado metodológico y la ruta de arranque.
+1. Resolver el mandato del manager de mercado y su política vigente. Para Forex/CFD, leer las decisiones de [[Estrategias IMOX — Forex y CFD con Echo Forge]] y el contrato de presets de [[IMOX — Registro de campañas]]; después [[IMOX - Empezar con SQX 144 - Metodología y primera campaña]] para la referencia de fuentes.
 2. Para elegir lógica, consultar solo las familias pertinentes de [[IMOX - Tipos de estrategia en trading algorítmico]].
 3. Para materializar presets, leer [[IMOX - Building Blocks Skill]] y el catálogo/export real entregado. Consultar la guía 145 solo para bloques seleccionados, sin asumir compatibilidad con 144.
 
@@ -35,13 +35,14 @@ Obtener los que cambien la decisión: build SQX, motor destino, instrumento/brok
 ## Procedure
 
 1. Clasificar la petición: puesta al día, diseño de hipótesis, preparación de preset o ejecución. Reutilizar el contexto ya verificado y recuperar solo el delta.
-2. Separar la recomendación escrita de IMOX de experiencias de miembros. Para seguir el enfoque acotado de Aritz, proponer Random y un presupuesto corto; no mezclarlo silenciosamente con genética ni fijar números universales del foro.
+2. Separar la recomendación escrita de IMOX de experiencias de miembros y de decisiones Owner. La división Forex/CFD tiene como política vigente del 26-10 **genética IMOX**, con F0→F1→F2 antes de Builders nuevos y múltiples configs calibradas por grupo. Random es una alternativa explícita descrita por fuentes; no es el default de este proyecto ni sustituye silenciosamente la política acordada. No fijar números universales del foro. Una futura propuesta SQX para Futures requiere mandato, compatibilidad y validación propios de esa división.
 3. Definir la tesis falsable y sus roles: lógica, dirección, régimen, orden, disparador, filtro, horizonte y salidas. Distinguir diversificación de firma de indicadores y diversificación de exposición/riesgo.
 4. Verificar que la base de datos/instrumento tiene evidencia suficiente. Si falta comprobar point value, costes, sesiones o compatibilidad, emitir el control pendiente; no inventar una especificación del broker.
 5. Con export real, seleccionar únicamente IDs y rangos permitidos, preservando estructura. Revisar shifts, comodines, opuestos para cortos y tipo de orden. Si un signo o restricción no se puede fijar en `.sqb`, pedir la plantilla necesaria y declarar qué queda sin garantizar. Sin export, entregar diseño y faltantes, no un archivo supuestamente importable.
 6. Formular sonda con límite de recursos, criterios previos y artefactos a conservar. Proponer importación, revisión, ejemplo exportable/compilable y medición antes de aumentar presupuesto. No ejecutar esos pasos por el solo hecho de producir el plan.
 7. Separar el dato usado para adaptar hipótesis del utilizado para evaluar el proceso. Si se pide un cambio tras mirar un holdout, reclasificar ese periodo como selección y advertir la pérdida de independencia.
-8. Registrar la propuesta y resultados reales en su recurso/proyecto mediante los contratos del vault. Si falla importación o coherencia, corregir el criterio reutilizable y preservar el fallo como evidencia; no esconderlo cambiando filtros hasta que aparezca una candidata.
+8. Registrar la propuesta y resultados reales en su recurso/proyecto mediante los contratos del vault. Conservar catálogo maestro `.sqb` y preset `family/group/config/revision`, sus hashes/referencias privadas, relación con Builder `.cfx` y campaña, y límites no expresables en el preset. La revisión empleada en una campaña es inmutable; cualquier cambio motivado crea otra revisión.
+9. Si falla importación o coherencia, preservar el fallo y devolverlo al manager de mercado; no esconderlo cambiando filtros hasta que aparezca una candidata. La mejora de la skill sigue [[30-resources/runbooks/echo-rnd-cycle-runbook|el ciclo común de I+D]]: evidencia, delta acotado, revisión y comprobación en un caso. Escalar al Owner cambios materiales de política/gates/automatización; no editar por obligación en cada uso.
 
 ## Output
 
