@@ -8,6 +8,7 @@ area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 entities:
   - "[[AGENTS OS]]"
+  - "[[Polymarket Engine — MVP]]"
 related: []
 aliases: []
 agent_surface: "[[ZCode]]"
