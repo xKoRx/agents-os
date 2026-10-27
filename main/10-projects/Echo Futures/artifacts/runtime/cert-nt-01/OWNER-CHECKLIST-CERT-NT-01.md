@@ -16,6 +16,14 @@ updated: "2026-10-23"
 
 # OWNER CHECKLIST — CERT-NT-01 (desbloqueo de gates C2/C3/C4)
 
+## Manager 2026-10-26 — FASE 0 ACEPTADA, PERO VENTANA OWNER AÚN NO SOLICITABLE
+
+Release `4a041e6c` reconstruido/readback OK; DEV Flink `flink` .75 mantiene job 38/38, 17 ingress, FX consumiendo, cuentas Futures desarmadas, PROD intacto. Fase 0 sin restart ACEPTADA. **No autoriza reinicio, savepoint real, despliegue ni ARMADO.**
+
+El Submanager GLM, dentro de esta MISMA CERT-NT-01 y sin otro PRD, debe cerrar las condiciones PRE-01..05 vinculantes al inicio de [[WINDOW-CARD-PRD6]]: roster proyectado mediante `Runtime.ExpectedRoster()` y validado contra estado materializado; prueba de relay SFTP para posterior copia de estado off-host; source de restauración coherente (P1 checkpoint vs P2 savepoint: el artefacto RESTAURADO ha de ser el MISMO sellado y portable), path del savepoint dentro de JM/TM, rollback condicionado a efectos FX. Topic attest = provisioning en la ventana. **Si el savepoint falla, NO ejecutar fallback incremental no validado**; STOP antes del restart. Única acción Owner futura: aprobar explícitamente la ventana una vez presentado GO/NO-GO completo. No nuevo Flink/Compose, no tocar PROD ni cuenta comercial.
+
+
+
 ## PRD.6 adjudicada por Manager 2026-10-26 — DEV solo observación, ventana Owner pendiente
 
 **Código fuente `4a041e6cf17b27a023a1a693a48be1034c35e7dd` aceptado COMO CANDIDATO a certificar DEV con excepciones limitadas**, no G-IMPL pleno ni PROD. La cobertura sigue bajo GOD-03 (nuevos 89.94%; diff-aware 82.71%); excepción sólo para DEV sin órdenes. La rama incremental RocksDB no quedó probada en el lab: la copia actual de `_metadata`+dependencias no demuestra portabilidad si hay rutas absolutas. **Antes de un reinicio compartido FX/Futures, obtener savepoint/backup completo y portable usando servicios ya existentes, demostrar identidad/checkpoint/17 ingress y rollback y conseguir AUTORIZACIÓN EXPRESA DEL OWNER de la ventana.** Si el snapshot no es verificable, STOP SIN RESTART. La tarjeta WINDOW-CARD-PRD6 debe materializarse y verificarse en vault antes de la ventana. No tercer Flink, nuevo Compose project, cuentas, Sim101 ni PROD. Ver [[EF-PROD-PRD6-MANAGER-ADJUDICATION-20261026]] y planner [[Echo Futures — Runtime Pools]].
