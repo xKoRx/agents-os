@@ -40,6 +40,8 @@ tags:
 
 - El owner pidió ordenar el backlog de ClickHouse de Q4 para un equipo de dos, buscando reutilización, y documentar la propuesta completa en un proyecto nuevo.
 
+- Iteración 2 (mismo día): el owner aclaró que el proyecto es interno, sin Spellbook, y que la meta es un ClickHouse full al cierre de Q4. Se agregó la definición de full, dos huecos fuera del backlog (salud del refresh en refreshable, import explícito de MergeTree) y se reemplazaron los épicos propuestos por docs internos de diseño.
+
 ## Fuentes usadas
 
 - Backlog pegado en la sesión (la planilla no se abrió).

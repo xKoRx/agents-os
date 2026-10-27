@@ -44,30 +44,32 @@ updated: "2026-10-27"
 
 ## 🎯 Objetivo
 
-- Entregar en Q4 2026 los P0 del backlog de ClickHouse (refreshable, credenciales, Context v2 y warehouse) con dos personas, construyendo tres piezas base reutilizables en vez de ítems aislados. Plan completo en [[Roadmap Q4 — CP ClickHouse]].
+- Tener un **ClickHouse full** en RIO al 31-dic-2026: cada componente ClickHouse con su ciclo de vida completo, warehouse como componente y lectura con keys propias. Se hace con dos personas, construyendo tres piezas base reutilizables en vez de ítems aislados. Plan completo en [[Roadmap Q4 — CP ClickHouse]].
 
 ## 📊 Estado actual
 
-- **2026-10-27 — Roadmap propuesto, pendiente de validar con Flor.** El backlog está desactualizado: deprovision y start-stop de refreshable ya están en `master` (PR #346, release `202610.21.1`) en CP, Playmaker y front. Import refreshable está desarrollado y espera la última prueba por permisos ([[Import de Refreshable Materialized Views externas]]). Warehouse PROVISION tiene técnica en draft ([SIG-705](https://spellbook.adminml.com/projects/SIG/specs/SIG-705)). El resto se ordena en olas sobre tres piezas base: ciclo de vida de vistas, credenciales y cliente de escritura de ClickHouse Cloud.
+- **2026-10-27 — Roadmap propuesto, pendiente de validar con Flor.** El backlog está desactualizado: deprovision y start-stop de refreshable ya están en `master` (PR #346, release `202610.21.1`) en CP, Playmaker y front. Import refreshable está desarrollado y espera la última prueba por permisos ([[Import de Refreshable Materialized Views externas]]). Warehouse PROVISION tiene técnica en draft ([SIG-705](https://spellbook.adminml.com/projects/SIG/specs/SIG-705)). El resto se ordena en olas sobre tres piezas base: ciclo de vida de vistas, credenciales y cliente de escritura de ClickHouse Cloud. Fuera del backlog aparecieron dos huecos para llegar a full: la salud del refresh en refreshable (un refresh fallido se ve como RUNNING) y la falta de import explícito de MergeTree (adoptar una tabla existente la altera). Plan interno: sin Spellbook.
 
 | Pieza / lane | Owner | Ítems que destraba | Ola |
 |---|---|---|---|
 | Credenciales | Rodrigo | Context v2 sin duplicidad, credenciales import RMV, deprovision de importadas, lib de consumo | 1-2 |
 | Ciclo de vida de vistas | Rodrigo | Vista normal provision/deprovision/import, base de multi-source | 2 (con gate de demanda) |
 | Cliente Cloud de escritura | Flor | Warehouse provision, start-stop, deprovision | 1-2 |
+| Salud del refresh | Flor | Estado de runtime real de refreshable | 2 |
 
 ## 🧱 Entrega de desarrollo
 
 %% Esta sección siempre queda disponible. En proyectos que cambian código, configuración ejecutable, schemas o infraestructura, es obligatoria: una fila por repo/branch, con SPEC funcional y técnica enlazadas antes de implementar. En proyectos no técnicos, reemplazar la tabla por `_No aplica — <motivo>._`. %%
 
-_Proyecto de planificación: cada ola se entrega como proyecto o rama propia con sus SPEC. La tabla registra los frentes conocidos; las ramas se agregan al especificar._
+_Proyecto de planificación interno. Cada pieza tiene su documento de diseño dentro de este proyecto antes de implementarse; las specs del equipo que ya existen se enlazan sólo como referencia. Las ramas se agregan al iniciar cada ola._
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
 | [[rio-controlplane-clickhouse]] · [[rio-playmaker]] · [[ads-signals-frontend]] | `feature/refreshable-view-import` | `develop` | [SIG-700](https://spellbook.adminml.com/projects/SIG/specs/SIG-700) | SIG-701 / SIG-702 / SIG-703 | Desarrollado; última prueba bloqueada por permisos |
 | [[rio-controlplane-clickhouse]] | — | `develop` | — | [SIG-705](https://spellbook.adminml.com/projects/SIG/specs/SIG-705) | Técnica en draft (Flor) |
-| [[rio-controlplane-clickhouse]] | — | `develop` | Por escribir (épico credenciales) | Por escribir | Ola 1 |
-| [[rio-controlplane-clickhouse]] · [[rio-playmaker]] · [[ads-signals-frontend]] | — | `develop` | Por escribir (épico vistas) | Por escribir | Ola 2, sujeto a demanda |
+| [[rio-controlplane-clickhouse]] | — | `develop` | — | Doc interno de diseño — credenciales (por escribir) | Ola 1 |
+| [[rio-controlplane-clickhouse]] · [[rio-playmaker]] · [[ads-signals-frontend]] | — | `develop` | — | Doc interno de diseño — vistas (por escribir) | Ola 2 |
+| [[rio-controlplane-clickhouse]] | — | `develop` | — | Doc interno de diseño — salud del refresh (por escribir) | Ola 2 |
 
 ## 🧩 Subproyectos
 
@@ -100,13 +102,15 @@ views:
 > - [ ] Ola 0 — Push de Playmaker del import tras el merge de #1332 y gate Cleric #owner/me #type/dev #area/meli #waiting
 > - [ ] Ola 0 — Campaña de credenciales de refreshable existentes (inventario de DEFINER + gestión con owners) #owner/me #type/admin #area/meli
 > - [ ] Ola 0 — Query dirigida de vistas normales en prod para el gate de demanda #owner/me #type/research #area/meli
+> - [ ] Ola 0 — Decidir si full exige import explícito de MergeTree (sin alterar la tabla al adoptarla) #owner/me #type/research #area/meli
 > - [ ] Ola 0 — Decidir con Flor los permisos mínimos de admin del CP y de la API key Cloud #owner/me #type/research #area/meli
 > - [ ] Ola 0 — Verificar si Playmaker conserva outputs de la versión anterior cuando el CP no los re-envía #owner/me #type/research #area/meli
 > - [ ] Ola 1 — Pieza credenciales: Context v2 sin duplicidad (MergeTree, MV, RMV) #owner/me #type/dev #area/meli
 > - [ ] Ola 1 — Revocación de credenciales al deprovisionar vistas importadas (KVS + KMS) #owner/me #type/dev #area/meli
 > - [ ] Ola 1 — Spec de la lib de consumo de permisos #owner/me #type/dev #area/meli
 > - [ ] Ola 2 — MVP de la lib de consumo de permisos #owner/me #type/dev #area/meli
-> - [ ] Ola 2 — Vista normal provision/deprovision sobre la pieza de vistas (si hay demanda) #owner/me #type/dev #area/meli
+> - [ ] Ola 2 — Vista normal provision/deprovision sobre la pieza de vistas #owner/me #type/dev #area/meli
+> - [ ] Ola 3 — Import de vista normal + credenciales (si la query de demanda lo justifica) #owner/me #type/dev #area/meli
 > - [ ] Ola 3 — Spike de diseño multi-source (documento, sin código) #owner/me #type/research #area/meli
 
 ```dataviewjs
@@ -139,7 +143,7 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 ## 📆 Bitácora
 
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
-- **2026-10-27** — Backlog contrastado contra el código en `origin/develop` de CP, Playmaker y front; dos P0 resultaron ya entregados. Roadmap por olas documentado en [[Roadmap Q4 — CP ClickHouse]].
+- **2026-10-27** — Backlog contrastado contra el código en `origin/develop` de CP, Playmaker y front; dos P0 resultaron ya entregados. Roadmap por olas documentado en [[Roadmap Q4 — CP ClickHouse]]. Se agregó la definición de ClickHouse full y dos huecos fuera del backlog; se quitó todo uso de Spellbook.
 
 ## 🧭 Decisiones
 
@@ -147,7 +151,9 @@ _Propuestas de este roadmap; ninguna está acordada todavía con el equipo._
 
 - Propuesta: dos lanes (Rodrigo vistas + credenciales en SQL; Flor warehouse en API Cloud) para no tocar los mismos archivos.
 - Propuesta: descartar start-stop de vista normal por falta de semántica de negocio.
-- Propuesta: vista normal entra a Q4 sólo si la query de prod muestra demanda.
+- Propuesta: provision/deprovision de vista normal entran a Q4 como parte de full; el import de vista normal entra sólo si la query de prod muestra demanda.
+- Propuesta: la salud del refresh en refreshable entra a la definición de full.
+- Definido por el owner: este proyecto y sus docs son internos (AGENTS OS); nada se crea en Spellbook.
 - Propuesta: multi-source, Dictionary y Control salen de Q4; multi-source queda como spike de diseño.
 
 ## 🔗 Docs / Links

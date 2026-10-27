@@ -81,7 +81,7 @@ Verificado en `rio-controlplane-clickhouse@origin/develop 4007bd28`, `rio-playma
 | Start-stop normal view | P2 · S | **Proponer descartar** | Una vista normal no procesa nada en background: `DETACH` sólo la deja inconsultable. No hay semántica de negocio que pausar. |
 | Import normal view (+ credenciales) | P2 · L + XL | Después del gate de demanda | Reutiliza `ImportMatViewCommand` y la precarga, que sólo necesitan un DEFINER. |
 | Dictionary, Control | P2 | Fuera de Q4 | Feature nueva sin spec. |
-| Multi-source (incremental, refreshable, normal) | P3 · XXL × 3 | Fuera de Q4; un solo spike de diseño | El supuesto de una fuente está fijo en seis lugares (ver §8 del spike en la Ola 3). Es un refactor compartido, no tres XXL. |
+| Multi-source (incremental, refreshable, normal) | P3 · XXL × 3 | Fuera de Q4; un solo spike de diseño | El supuesto de una fuente está fijo en seis lugares (`MaterializedViewRequest`, `MaterializedViewIdentifierExtractor`, `SqlSecurityValidator`, `DeployMaterializedView`, `AlterMvRefreshCommand`, `DescribeMatViewQuery`). Es un refactor compartido, no tres XXL. |
 
 ### 4. Las tres piezas base
 
