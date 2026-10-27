@@ -62,17 +62,17 @@ The feature was developed together with the local RIO ecosystem E2E ([Playmaker 
 
 ## How to test the new behavior?
 
-1. Deploy, in order, ClickHouse control plane [0.0.2-import-ref-view-ch](https://web.furycloud.io/rio-controlplane-clickhouse/versions/detail/0.0.2-import-ref-view-ch), Playmaker [0.0.1-import-ref-view-ch](https://web.furycloud.io/rio-playmaker/versions/detail/0.0.1-import-ref-view-ch) and this frontend [0.0.2-import-ref-view-ch](https://web.furycloud.io/ads-signals-frontend/versions/detail/0.0.2-import-ref-view-ch).
+1. Deploy, in order, ClickHouse control plane [0.0.3-import-ref-view-ch](https://web.furycloud.io/rio-controlplane-clickhouse/versions/detail/0.0.3-import-ref-view-ch), Playmaker [0.0.2-import-ref-view-ch](https://web.furycloud.io/rio-playmaker/versions/detail/0.0.2-import-ref-view-ch) and this frontend [0.0.3-import-ref-view-ch](https://web.furycloud.io/ads-signals-frontend/versions/detail/0.0.3-import-ref-view-ch).
 2. Preload the import credential of the view owner, then open a data product and drag **Refreshable Table** onto the canvas.
 3. Click **Import external refreshable view**, choose warehouse, schema and view, click **Search refreshable view** and **Confirm import**. Check owner, source and destination in the preview.
 4. Save: the node appears as Not Deployed. Deploy it: the view keeps its UUID, DDL and target data in ClickHouse.
 5. Reopen the node: every field is read-only, there is no Save and the form shows "This external view is deployed. Its configuration is read-only."
 
-Automated checks on `36749c94b`:
+Automated checks on `f599fa78b`:
 
-- `NODE_ENV=test npx jest src/__tests__/technologies src/__tests__/node-config-modal tests/unit/api/external-materialized-views`: 122 suites, 3390 tests passed.
-- `npm run lint`: 0 errors, 385 warnings (same count as develop).
-- `npm run typecheck`: exit 2 with 123 diagnostics; the normalized list is identical to develop.
+- `NODE_ENV=test npx jest src/__tests__/technologies src/__tests__/node-config-modal tests/unit/api/external-materialized-views`: 129 suites, 3692 tests passed.
+- `npm run lint`: 0 errors, 375 warnings.
+- `npm run typecheck`: exit 2 with 122 diagnostics; the normalized list matches develop.
 - Local E2E `rio-ecosystem all clickhouse-refreshable-view-import`: Lore run `run_mvmmx1oa2d7d9a404d` passed 5/5 scenarios (import and save, first deploy, reprovision, read-only after deploy) and 8/8 backend checks.
 
 # ![alt text][checkmark] Related Issue

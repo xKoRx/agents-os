@@ -19,7 +19,7 @@ updated: "2026-10-24"
 
 # Descripción PR — rio-controlplane-clickhouse
 
-rio-controlplane-clickhouse · `feature/refreshable-view-import` @ `852628c008ab2953675e2135393bc11e03b77e99` · base `origin/develop` @ `9d7d7a08dacf17ad237e56fc730198febca4bb0f` · 14 commits · 22 files changed, 747 insertions(+), 38 deletions(-) · [draft #362](https://github.com/melisource/fury_rio-controlplane-clickhouse/pull/362) · SIG-700 / SIG-701 · `./gradlew test` 4783 tests, 0 failures, 1 skipped (2026-10-24) · versión de prueba `0.0.2-import-ref-view-ch`.
+rio-controlplane-clickhouse · `feature/refreshable-view-import` @ `377e3dcc8` · base `origin/develop` @ `9d7d7a08dacf17ad237e56fc730198febca4bb0f` · 14 commits · 22 files changed, 747 insertions(+), 38 deletions(-) · [draft #362](https://github.com/melisource/fury_rio-controlplane-clickhouse/pull/362) · SIG-700 / SIG-701 · `./gradlew test` 4962 tests, 0 failures, 1 skipped (2026-10-24) · versión de prueba `0.0.3-import-ref-view-ch`.
 
 > [!warning] Bloqueantes
 > **Orden de rollout:** CP y Playmaker deben estar desplegados antes del frontend; el frontend llama al describe/import que este PR habilita.
@@ -45,6 +45,7 @@ Changes:
 *  `DeployRefreshableView`: for an existing view, reconcile SQL drift first (same order as `DeployMaterializedView`) and import it when Rio does not manage it yet. An external reference whose view no longer exists fails instead of being recreated.
 *  `AlterMvRefreshCommand`: extract the query only from the top-level `AS`, respecting strings, identifiers, comments and parenthesis depth. An optional literal `COMMENT` may follow the body; CTE capture, unbalanced parentheses and trailing text are rejected.
 *  `ImportMatViewCommand.executeStrict`: the refreshable path fails if the import marker cannot be persisted. The classic materialized view import keeps best-effort marking and logs the cause.
+*  Reprovisioning a view imported by Rio returns its credential again (`ALTER_MV` with `table_altered=false` plus `username` and `password`), recomputed from the preloaded ciphertext without rewriting the marker. A provision that applied the marker but lost its response therefore recovers the credential on retry.
 *  `MatViewImportController` accepts the documented `plaintextPassword` field.
 *  Local scope only: `LocalCkaasEncryptionKey` (AES-GCM) and an in-memory ciphertext store let the local stack preload import credentials without KVS or CKAAS. Deployed scopes keep KVS and CKAAS unchanged.
 
@@ -103,9 +104,9 @@ Changes:
 
 ## How Has This Been Tested?
 
-* `./gradlew test` (JDK 25): 4783 tests, 0 failures, 1 skipped (`HYDRA_STACK_EXPORT_DIR`-gated export).
+* `./gradlew test` (JDK 25): 4962 tests, 0 failures, 1 skipped (`HYDRA_STACK_EXPORT_DIR`-gated export).
 * Local E2E with the Playmaker runner, `.lore/ecosystem/rio-ecosystem all clickhouse-refreshable-view-import`: Lore run `run_mvmmx1oa2d7d9a404d` passed 5/5 scenarios (smoke, import and save, first deploy, reprovision, read-only after deploy) and 8/8 backend checks. View, source and target UUIDs are unchanged, the DDL is preserved except for the import comment, the target sentinel row and the owner user are kept, the first deploy returns the owner credential and the reprovision returns `ALTER_MV` without altering the table.
-* Test version [0.0.2-import-ref-view-ch](https://web.furycloud.io/rio-controlplane-clickhouse/versions/detail/0.0.2-import-ref-view-ch) from `852628c0`. Deploy this control plane and Playmaker before the frontend.
+* Test version [0.0.3-import-ref-view-ch](https://web.furycloud.io/rio-controlplane-clickhouse/versions/detail/0.0.3-import-ref-view-ch) from `377e3dcc`. Deploy this control plane and Playmaker before the frontend.
 
 ## Issue
 
@@ -118,4 +119,4 @@ Changes:
 - PA-1 a PA-5 siguen abiertas; PA-2 está fijada sólo por el test de paridad (reconciliar antes del ownership).
 - Riesgo de diseño heredado, con paridad en el camino clásico: la marca se persiste antes de entregar las credenciales; si el resultado se reintenta, el segundo intento devuelve `ALTER_MV` sin credenciales. Decisión del owner.
 - La forma sin paréntesis acepta texto residual después del `COMMENT` (comportamiento igual a develop; no se cambió por no ser regresión).
-- Correcciones de la auditoría del 2026-10-24: tests que matan los mutantes de profundidad del `AS` y de balance del SELECT (`6ed1adb5`), y el warn de la marca clásica vuelve a registrar la excepción (`852628c0`).
+- Correcciones de la auditoría del 2026-10-24: tests que matan los mutantes de profundidad del `AS` y de balance del SELECT (`6ed1adb5`), y el warn de la marca clásica vuelve a registrar la excepción (`377e3dcc`).

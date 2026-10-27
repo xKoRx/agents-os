@@ -39,14 +39,14 @@ Cuerpo del PR listo para pegar, seguido de notas internas que no van al PR.
 
 `feat(actions): allow refreshable view description before creation` lets the frontend describe a ClickHouse refreshable view through Playmaker, both before the component exists and for persisted ref-views that are not imported from another data product. Imported ref-views stay rejected. This PR is one part of SIG-700, together with [ClickHouse control plane #362](https://github.com/melisource/fury_rio-controlplane-clickhouse/pull/362) and [frontend #816](https://github.com/melisource/fury_ads-signals-frontend/pull/816).
 
-The feature was developed on top of the local RIO ecosystem E2E ([#1332](https://github.com/melisource/fury_rio-playmaker/pull/1332), this PR's base): the import journey is a Lore case that drives the real frontend against local Playmaker and control planes, using the drag-and-drop tool from [Lore #21](https://github.com/melisource/fury_lore/pull/21).
+The feature was developed on top of the local RIO ecosystem E2E ([#1332](https://github.com/melisource/fury_rio-playmaker/pull/1332), already in `develop`): the import journey is a Lore case that drives the real frontend against local Playmaker and control planes, using the drag-and-drop tool from [Lore #21](https://github.com/melisource/fury_lore/pull/21).
 
 Changes:
 *  `application.yml`: add `clickhouse-ref-view` / `describe-materialized-view` to the reviewed read actions, without `allow-imported`. This is the only runtime change.
 *  Tests load the real `application.yml` and pin the configured read and dispatch action sets exactly, including `allow-imported`. Imported ref-views are denied both by source component and by `IMPORTED` status.
 *  New local E2E case `clickhouse-refreshable-view-import` (`.lore/ecosystem`, local tooling only): import and save from an empty pipeline, first deploy, reprovision and read-only after deploy, with eight backend checks on Playmaker, Kafka results and ClickHouse.
 *  Native Lore evidence: the `junit-evidence/at-100-s11` scenario now also selects the ref-view permission tests (17 methods), regenerated from the repository catalog and declared as impacted in `.testing/impact.json`.
-*  Runner: host services run in screen sessions named after the run owner, and their process identity and group are checked before signaling. Teardown removes only resources recorded by the run, including the second broker's anonymous volumes. The seed receipt is reset per stack, and deployment checks count distinct completed deployments exactly.
+*  Runner: host services run in screen sessions named after the run owner, and their process identity and group are checked before signaling. Resources are recorded by Compose project and run-owner labels, also when a creating step fails, so teardown removes a partially started stack and never adopts foreign `rio-*` resources; the second broker's anonymous volumes are removed too. The seed receipt is reset per stack, and deployment checks count distinct completed deployments exactly.
 
 ```mermaid
 flowchart LR
@@ -74,8 +74,8 @@ flowchart LR
     * Unit testing is a must
     * Integration testing is recommended
 * [x] New and existing unit tests pass locally with my changes
-* [ ] Any dependent changes have been merged and published in downstream modules — base #1332 and sibling PRs are open
-* [x] I have updated my current branch with changes made in develop/master previously — synchronized with the base branch
+* [ ] Any dependent changes have been merged and published in downstream modules — sibling PRs #362, #816 and #21 are open
+* [x] I have updated my current branch with changes made in develop/master previously
 * [ ] I already deployed this branch in the pre-production environment — test version created, not deployed
 
 ## Code Review checklist (must be completed by the code reviewer)
@@ -113,12 +113,12 @@ flowchart LR
 
 ## How Has This Been Tested?
 
-* `./gradlew cleanTest test cleanLocalTest localTest` (JDK 25): `test` 5194 tests, 0 failures, 3 skipped (inherited: one external-MySQL test and two `@Disabled` topological sort tests); `localTest` 64 tests.
-* `scripts/run-agentic-testing-contract.sh --base origin/develop --head HEAD`: 64 focused selectors and both L0 local-stack checks passed, with cleanup.
+* `./gradlew cleanTest test cleanLocalTest localTest` (JDK 25): `test` 5223 tests, 0 failures, 3 skipped (inherited: one external-MySQL test and two `@Disabled` topological sort tests); `localTest` 64 tests.
+* `scripts/run-agentic-testing-contract.sh --base origin/develop --head HEAD`: 70 focused selectors and both L0 local-stack checks passed, with cleanup.
 * `.lore/ecosystem/tests/ecosystem-test.py` (13 tests) and `processes-test.sh` (three consecutive runs) passed.
 * Native suite `./local/test-lore.sh`: 237/237 scenarios passed, release approved, `CLEANUP_CERTIFIED`.
-* Local E2E `.lore/ecosystem/rio-ecosystem all clickhouse-refreshable-view-import`: Lore run `run_mvmmx1oa2d7d9a404d` passed 5/5 scenarios and 8/8 backend checks; teardown removed every recorded container, network, process group and broker volume.
-* Test version [0.0.1-import-ref-view-ch](https://web.furycloud.io/rio-playmaker/versions/detail/0.0.1-import-ref-view-ch) carries the runtime permission. Deploy the ClickHouse control plane and Playmaker before the frontend.
+* Local E2E `.lore/ecosystem/rio-ecosystem all clickhouse-refreshable-view-import`: Lore run `run_mvpps59z4c0d5e6de3` passed 5/5 scenarios and 8/8 backend checks with the ClickHouse and frontend branches at their current heads; teardown left no stack resources.
+* Test version [0.0.2-import-ref-view-ch](https://web.furycloud.io/rio-playmaker/versions/detail/0.0.2-import-ref-view-ch) from `49328ca8b`. Deploy the ClickHouse control plane and Playmaker before the frontend.
 
 ## Issue
 

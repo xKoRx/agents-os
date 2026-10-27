@@ -202,6 +202,8 @@ Se retiraron dos volúmenes nombrados de Compose y seis anónimos. Tres anónimo
 
 ## 📆 Bitácora
 
+- **2026-10-26 — PRs actualizados:** #1332 entró a develop (squash) y #1328 quedó retargeteado a develop (`49328ca8b`, diff de 23 archivos sólo del feature). Conflictos con develop resueltos en CP (`377e3dcc`), front (`f599fa78b`) y Playmaker. Review de marellanoqui: ALTO del CP (credenciales tras marker con respuesta perdida) corregido devolviendo las credenciales del import en el reprovision `ALTER_MV`; MEDIO de Playmaker (arranque parcial) corregido registrando recursos por procedencia. Hilos de bots respondidos; el de PA-2 en CP queda abierto para el owner. E2E integrada `run_mvpps59z4c0d5e6de3` PASS 5/5 y 8/8. Versiones de prueba: CP y front `0.0.3-import-ref-view-ch`, Playmaker `0.0.2-import-ref-view-ch` (push con `--no-verify` autorizado por el owner).
+
 - **2026-10-24 — Lore #21 en ready:** la CI fallaba porque `dragAndDrop.node.spec.ts` lanzaba Chromium sin el guard `skipIf` que usan los demás specs; corregido en `1381004`, CI verde. El check `dependencies` sigue rojo por vulnerabilidades heredadas de develop (`simple-git` 3.36.0 requiere 4.0.1; #20 cubre `sharp` y `source-map-js`, no `simple-git`).
 
 - **2026-10-24 — Publicación:** Playmaker pusheado con `--no-verify` autorizado por el owner (sólo el pre-push del gate Cleric; contrato de testing PASS sobre el HEAD), integrado el lock por contexto Docker de #1332 (`f9862eff0`); HEAD `15c359560`, CI verde. #362, #816 y #1328 en ready for review; #21 de Lore en draft con CI de Jenkins roja sin log accesible.
