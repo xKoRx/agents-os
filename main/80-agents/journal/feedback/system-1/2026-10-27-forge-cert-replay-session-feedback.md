@@ -4,17 +4,17 @@ schema_version: 1
 scope: session
 created: 2026-10-27
 updated: 2026-10-27
-area: "[[Personal]]"
-project: "[[AGENTS OS]]"
+area: "[[Echo]]"
+project: "[[Echo Forge — Operación Real V2]]"
 entities:
   - "[[AGENTS OS]]"
 related: []
 aliases: []
-agent_surface: "[[Codex]]"
-agent_model: unknown
-agent_run:
-session_goal:
-source_session:
+agent_surface: "[[ZCode]]"
+agent_model: GLM-5.3-Flash
+agent_run: "[[2026-10-27-zcode-glm53-forge-cert-replay-blocked]]"
+session_goal: certificación replay-based E2E de Echo Forge (ONE-SHOT owner)
+source_session: ZCode CLI 2026-10-26/27
 confidence: high
 load_policy: manual
 indexable: false
@@ -30,85 +30,49 @@ tags:
 
 ## Context
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+- Agent surface: [[ZCode]]
+- Agent model: GLM-5.3-Flash
+- Agent run: [[2026-10-27-zcode-glm53-forge-cert-replay-blocked]]
+- Session goal: certificación replay-based E2E de Echo Forge (ONE-SHOT owner)
+- Main entity: [[Echo Forge — Operación Real V2]]
+- Skills used: agents-os-bootstrap, aranea-agent-dev (router), agentes-os-session-close/feedback, agent-run-register
+- Retrieval mode: Graphify no requerido; focused search + fuentes canónicas (contrato ambiente, nota proyecto)
+- Artifacts changed: nota proyecto (estado+bitácora), agent run, change log, memoria ZCode, paquete cert-replay en rama symphony
 
 ## Scores
 
-Use 1-5, where 1 is poor and 5 is excellent.
-
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
+- Startup clarity: 5
+- Retrieval usefulness: 4
+- Skill fit: 5
+- Template fit: 4
+- Closeout friction: 3
+- Overall confidence: 4
 
 ## What Complicated The Session Most
 
-- Observation:
-- Why it was hard:
-- Proposed improvement:
+- Observation: los MCPs del gateway Aranea (`aranea-ssh`, `aranea-mongo-forge`) expiraron a mitad de sesión ("Session not found or expired", 3+ reintentos) y bloquearon el acceso a worker-kronos y a Mongo directo; además la quota de subagentes mató al verificador adversarial dos veces.
+- Why it was hard: sin worker-kronos la FASE H física completa es imposible (children MT5 sin poller); sin subagentes la verificación independiente quedó reducida a checks mecánicos del implementador con anclas independientes (oráculo §5.3, SHA256, commits).
+- Proposed improvement: re-inicialización del gateway desde el cliente (o TTL más largo) y señalizar quota de subagentes antes de despachar (patrón burst ya conocido).
 
 ## Most Useful Part Of Sistema 1
 
-- What helped:
-- Why it helped:
-- Keep/change:
+- What helped: el contrato de ambientes Echo/Forge + la nota de proyecto con el historial completo permitieron resolver ambiente, authority y precedentes (w9/w11) sin re-investigar.
+- Why it helped: una fuente canónica por hecho con estado operativo actualizado.
+- Keep/change: mantener; la entrada nueva de estado ya enlaza el paquete y next exact.
 
 ## Least Useful Or Noisy Part
 
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
+- What did not help: el namespace ETCD de `sqx-flowkit/production` apunta a `sqx-dev` (peculiaridad no documentada en el vault) — costó un ciclo de debug del helper temporal.
+- Why it was weak/noisy: dato operacional vivo que vive sólo en ETCD.
+- Proposed cleanup: documentar el quirk de flowkit en el wiki de dominio aranea (candidato a L3).
 
 ## Missing Support
 
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
+- Problem not solved by Sistema 1: no existe runbook vigente de "flota física actual" (los hosts `sqx-ulab-*` ya no coinciden con la evidencia de sesiones previas; `/home/echo-dev` inaccesible para `kor`, sin workers visibles).
+- How Sistema 1 could help next time: un inventario AS-BUILT corto de la flota (host→instalación SQX→datasets→licencia→worker) como recurso de dominio.
+- Suggested artifact type: recurso wiki de dominio (30-resources/aranea) con last_verified.
 
 ## Retrieval Feedback
 
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
-
-## Skill Feedback
-
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
-
-## Template Feedback
-
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
-
-## Memoria Interna (Internal Memory)
-
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
-
-## Pain Pattern Candidate
-
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
-
-## One Next Improvement
-
--
+- Useful query or source: grep enfocado sobre `sqx/` + helpers RO propios (certread/certtemporal/certminio/certmongo) como superficie de evidencia.
+- Missing context: nada adicional.
