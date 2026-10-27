@@ -16,6 +16,12 @@ updated: "2026-10-23"
 
 # OWNER CHECKLIST — CERT-NT-01 (desbloqueo de gates C2/C3/C4)
 
+## Manager 2026-10-27 — Cierre PRE `5a0cf62f`, G0 y rollback legacy pendientes
+
+**SOURCE ACCEPTED para continuar CERT-NT-01; G0=BLOCKED_EXTERNAL, R1_LEGACY=NOT_PROVEN, OWNER_WINDOW_REQUEST=NOT_READY.** Runtime DEV, FX, NT y PROD NO se han tocado por este dictamen. El `expected-roster` configura 8 keys ACTIVE pero el split 5 `present`/3 `absent` es todavía hipótesis hasta la sonda real de las ValueSpecs; `seal --cut-kind savepoint` está desarrollado/testeado y la lectura física queda bloqueante **antes de detener el job**.
+
+El MCP SSH externo `aranea-ssh` debe re-inicializarse en el host del agente; después el MISMO Submanager sólo ejecuta G0 preflight RO (relay SFTP staging + mounts JM/TM) y certifica el camino R1 antiguo SIN fresh-submit. El Compose legacy `ac0621a1` no llevaba recovery gate ni restore args; no se puede recomendar volver a ese Compose y arrancarlo sin `-s/--fromSavepoint` explícito. Sin G0 y rollback probado, NO SOLICITAR ventana Owner. Referencia [[WINDOW-CARD-PRD6]] «Veredicto Primary Manager post cierre 5a0cf62f». No nuevo Flink, no restart FX, sin armado, PROD/SIM bloqueados.
+
 ## Manager 2026-10-26 — FASE 0 ACEPTADA, PERO VENTANA OWNER AÚN NO SOLICITABLE
 
 Release `4a041e6c` reconstruido/readback OK; DEV Flink `flink` .75 mantiene job 38/38, 17 ingress, FX consumiendo, cuentas Futures desarmadas, PROD intacto. Fase 0 sin restart ACEPTADA. **No autoriza reinicio, savepoint real, despliegue ni ARMADO.**
