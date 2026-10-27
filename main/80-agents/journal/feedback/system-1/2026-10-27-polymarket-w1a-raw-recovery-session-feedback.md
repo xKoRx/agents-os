@@ -10,11 +10,11 @@ entities:
   - "[[AGENTS OS]]"
 related: []
 aliases: []
-agent_surface: "[[Codex]]"
-agent_model: unknown
-agent_run:
-session_goal:
-source_session:
+agent_surface: "[[ZCode]]"
+agent_model: account:zai-individual-coding-plan/GLM-5.3-Flash
+agent_run: "[[2026-10-27-zcode-glm-5.3-flash-polymarket-w1a-raw-recovery]]"
+session_goal: recuperación W1-a de los Parquet raw T21/T22 de PendulumFlow (descarga exacta con validación tamaño+SHA y registros canónicos); one-shot cerrado BLOCKED por el gate de permisos de la superficie
+source_session: sess_92fef7f2-4f4c-492e-8937-3d0c5cc3f28a
 confidence: high
 load_policy: manual
 indexable: false
