@@ -32,6 +32,10 @@ Entregar extensión runtime de pools y asociaciones pool–Strategy–MM mediant
 
 ### Production Readiness — GOD Design (2026-10-23)
 
+### Primary Manager — CERT-NT-01 PRE post-5a0cf62f (2026-10-27)
+
+**GATE ACTUAL: SOURCE READY WITH GATES; G0=BLOCKED_EXTERNAL, R1_LEGACY_RESTORE=NOT_PROVEN, OWNER_WINDOW_REQUEST=NOT_READY; Flink DEV/PROD NO CHANGE.** SHA `5a0cf62f8ddbffa0a4926d1c1883085be7b87b6d` remote verified (13 archivos vs `4a041e6c`). Se aceptan a nivel source `expected-roster` + guard `EconomicEvidence` y `seal --cut-kind savepoint`, pero el split de 8 keys (5 `present` esperadas y 3 provider_rules `absent` posibles) es UNA HIPÓTESIS hasta leer las ValueSpecs del estado real; la sonda sobre bytes reales de savepoint también es NOT_RUN, exigida antes de reiniciar. Fase 0 no ha tocado runtime. **Instrucción consolidada al MISMO Submanager:** re-inicializar MCP aranea-ssh por el host (acción externa); terminar G0 con relay SFTP staging y `docker inspect` de JM/TM; además acreditar la ruta R1 LEGACY exacta con restore args (el Compose previo `ac0621a1` no tenía gate; regresar a su Compose sin restore puede arrancar job vacío), verificar FX post-cut no-effects/reconciliación; actualizar UNA tarjeta WINDOW-CARD y devolver GO/NO-GO. Source/certificación actuales no autorizan ordenar fecha de ventana. PROD/SIM/NT cuentas desarmados. Referencia [[WINDOW-CARD-PRD6]] enmienda Manager 2026-10-27.
+
 ### Manager — CERT-NT-01 Fase 0 PRE-WINDOW (2026-10-26)
 
 **Fase 0 ACEPTADA: RELEASE `4a041e6c`, readback WINDOW-CARD, Flink DEV `flink` en .75 RUNNING 38/38, 17 ingresses, FX lag~0, binding desarmado; PROD no tocado.** No se autoriza aún restart/ventana FX; **`OWNER_WINDOW_REQUEST=NOT_READY`**. La respuesta del Submanager deja 3 pendientes, de los cuales topic attest es provisioning rutinario para la futura ventana y no requiere una decisión especial del Owner.
@@ -848,6 +852,8 @@ Registrada y EJECUTADA dentro de este shot: las pruebas de disable ahora cubren 
 **Separación explícita de evidencia (obligatoria en /verify):** E2E laboratorio previamente aceptados (S02–S04, planner arriba) · procesos/clúster desplegados · AddOn compilado y cargado · feed real · ejecución NT SIM · economía observada de SIM · cuentas reales: ejecución NO autorizada.
 
 ## 📆 Bitácora
+
+- 2026-10-27 — **Manager revisa 5a0cf62f / CERT-NT-01:** source READY condicional; G0 SSH staging+JM/TM sigue NO_RUN por expiración MCP; roster 5 present/3 absent sólo hipótesis hasta runtime; savepoint bits NOT_RUN; R1 LEGACY necesita entrypoint+restore args explícitos: Compose original no tenía gate. Sin G0+R1, Owner Window NOT_READY. Enmienda [[WINDOW-CARD-PRD6]], ninguna mutación PROD/DEV. 
 
 - 2026-10-27 — **PRE-01..05 resueltas en `5a0cf62f` (mismo Submanager):** PRE-01 guard honesto (MIGRATED_LEGACY exige lectura económica real; `legacy_state_present` present|absent + split en summaries; fail-closed `MIGRATION_EVIDENCE_REQUIRED`) + subcomando `expected-roster` desde `Runtime.ExpectedRoster()` sobre la config sellada — DEV: 8 keys ACTIVE (`417d77d1…`), 0 `operation` (sin bindings), 3 provider_rules sin evidencia de journal ⇒ clasificación pre-declarada para G8; PRE-04 `seal --cut-kind savepoint` (el corte sellado portable ES el restaurado; fallback al checkpoint incremental ELIMINADO); PRE-03 topic sólo provisioning de ventana; PRE-02/05 con receta exacta bloqueadas por expiración del MCP SSH (re-init del host); 2 fallos PREEXISTENTES declarados en base limpia `4a041e6c` (TestFEFBW4CapacityCampaign timeout; TestEconomicMinimumCoreTypedConfigAndProtectionParity). Release `5a0cf62f` REMOTE_VERIFIED sin repoint; cero mutaciones de runtime. [[WINDOW-CARD-PRD6]] reescrita como tarjeta única (readback `be5094c0…`): UNA solicitud de autorización Owner condicionada a G0 (relay staging + inspect binds). #owner/agent
 
