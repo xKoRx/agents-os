@@ -423,3 +423,37 @@ La SPEC HCA-1 y mandato de §11 proponen una corrección integrada del camino hi
 0/628 BBO, 514/516 BBA, ~92% de profundidad y 674 s de llegada permanecen resultados forenses reportados; esta sesión leyó sus scripts, no reejecutó datos. Snapshot posterior repara hacia adelante y permite auditar extremos anteriores, sin demostrar toda la continuidad ni reescribir decisiones. Quedan pendientes las decisiones owner OD-H1…OD-H5 de la auditoría; no se habilita modalidad idealizada, perfil relajado, fee cero ni economía. M1 congelado, OOS y Sports Week intactos. Siguiente acción: entregar el mandato ONE-SHOT HCA-1 a un coding agent; no buscar alpha para aceptar arquitectura.
 
 Registro: [[2026-09-22-polymarket-historical-causality-audit]] y [[2026-09-22-codex-unknown-polymarket-historical-causality-audit]].
+
+## 18. Addendum 2026-10-27 — cierre correctivo W0 y mandato operativo vigente
+
+> [!important] MANDATO_CORRECTIVO_VIGENTE_2026_10_27 — NO levanta el freeze de producto
+> El `PROJECT_FROZEN_OWNER_2026_09_23` sigue siendo el estado de producto: no se reabren POCs, research, compra de datos, apertura OOS, tuning ni live por inferencia. Lo que este addendum registra es (a) el mandato operativo del Owner sobre cómo se ejecutan las sesiones a partir de ahora y (b) el cierre correctivo documental del trabajo W0. Las secciones 1–17 permanecen como historia congelada; este bloque es la capa vigente para cuestiones de operación de sesiones y registros.
+
+### Mandato operativo del Owner (registrado 2026-10-27)
+
+- **GLM Flash Max** es el ejecutor por defecto. Las sesiones largas son **one-shot**: arrancan con contexto y criterios completos y deben incluir cierre, feedback y continuidad en la misma sesión.
+- **Luna** actúa como lanzador/monitor; puede asistir sólo ante bloqueo justificado. **Sol** asiste si la complejidad lo amerita. La atribución es estricta: no atribuir a GLM trabajo de Luna/Sol ni a la inversa.
+- **No microiteraciones.** El desarrollo del engine se realiza sólo en Hefesto.
+- **Horario fijo GMT-3 (lunes a viernes):** no iniciar sesiones GLM entre 02:00 y 08:00. Una sesión previamente activa debe dejar checkpoint antes de las 02:00, con gracia máxima hasta las 02:30; después, pausa y reanudación desde las 08:00. De esta regla **no** se infiere una prohibición de fin de semana.
+- La regla de `~/.zcode/AGENTS.md` (resolver `VAULT_ROOT` y ejecutar el bootstrap canónico de Agents-OS) aplica como **default de terminal para todos los workspaces**; las reglas específicas de cada workspace pueden ser más estrictas.
+- Ningún registro lleva secretos ni datos de cuentas.
+
+### Cierre correctivo W0 (2026-10-27) — evidencia, límites y atribución
+
+- **Bootstrap de esta sesión (hecho, con evidencia de lectura real):** `/home/kor/secondbrain/main/AGENTS.md` fue abierto con la herramienta Read; resultado observable: bloque gestionado `AGENTS_OS_MANAGED` que ordena resolver `VAULT_ROOT` e invocar `80-agents/skills/agents-os-bootstrap/SKILL.md` una vez por sesión. Se ejecutó el cold start: constitución, nota interna global, índice de skills, registro de routers de dominio (resultado DEFAULT, sin router), skill de context retrieval, contrato de schema y plantillas. **Brecha:** el perfil global bajo `80-agents/memory/public/user-preference/` no pudo resolverse porque el listado de directorios y los sondeos de nombre fueron denegados por el gate de alcance del host; no se cargó ningún perfil por inferencia.
+- **Verificado físicamente por esta sesión (GLM via ZCode):** checkout `~/Documents/Codex/2026-10-27/task-2/checkout/polymarket-engine` en rama `w0/offline-causal-replay-20261027`, limpio, HEAD `09e8c7610f29a35f8080122b7cb4219b9866ebd7` (snapshot del entorno anfitrión; la lectura directa de `.git` fue denegada por el gate). `testdata/research-master/certificate.json` leído con Read: `M4_CERTIFIED_NON_LIVE`, baseline `66486ac99a4606d5dc2b44757ac0722a6baa5415` igual al pin esperado, 27 PASS / 0 FAIL / 0 in-scope NOT_RUN / 5 diferidos live, generado 2026-09-21T21:12:04Z.
+- **Hostname:** `sqx-ulab-hefesto-0` declarado por el lanzador; NO verificado por herramienta en este shot (`hostname`, `uname`, `/etc/hostname` denegados por el gate). Hecho observable: toda la operación quedó dentro de los perímetros permitidos locales.
+- **Declaraciones de la sesión W0 previa (atribuidas a Luna y a la sesión `sess_23a42e25-356c-4455-9624-76e92a77e697`; esta sesión NO la reanudó ni tiene evidencia de continuación; la antigua `sess_3482f242-1b10-4373-a051-9e9b063e2843` no debe confundirse con ella):** cinco POCs inventariadas; suite offline con 16 paquetes PASS, cero fallos y dos skips por ausencia de `HISTORICAL_ANCHOR_NDJSON` y `HISTORICAL_COHORT_NDJSON`; fixture + dos sombras + compare con dataset digest igual y run_id distinto → **INCONCLUSIVE**, sin resultado de rentabilidad; consulta pública hecha por Luna con HTTP 200/TLS válido para los manifiestos T21/T22, sin descarga de Parquet. Estas afirmaciones **permanecen como declaraciones**: los informes bajo `validated-baseline/w0` no pudieron enumerarse ni abrirse en este shot (shell de listado denegado; más de 15 nombres convencionales sondeados sin existencia). Único artefacto independiente corroborado: el certificado M4 del checkout.
+- **Omisión histórica registrada:** no hay evidencia accesible de cierre, feedback o continuidad canónicos de W0 escritos en Agents-OS por la sesión previa; el journal y la memoria interna no fueron legibles desde esta sesión (gate de alcance). Este addendum **no inventa** ese cierre retroactivo.
+- **Límites que no cambian:** rs-v03/pe001 siguen sin recuperación confirmada; Daedalus no autorizado; HCA-1 sigue sin implementar; nada de lo anterior declara edge, rentabilidad, preparación live ni validación OOS (los ejercicios W0 corren sobre fixture/sintético).
+
+### Registros escritos por esta sesión
+
+- Este addendum (única edición de la nota: bloque nuevo, historia preservada, `updated` → 2026-10-27).
+- [[2026-10-27-polymarket-w0-closeout-summary]] — resumen canónico de sesión (materializado con `materialize_schema_note.py`).
+- [[2026-10-27-polymarket-w0-closeout-session-feedback]] — feedback con la fricción real vault/hook documentada.
+- **agent_run: BLOQUEADO.** Dos denegaciones del gate al materializar `80-agents/journal/agent-runs/2026-10-27-zcode-glm-5.3-flash-polymarket-w0-closeout.md` (superficie [[ZCode]], modelo `account:zai-individual-coding-plan/GLM-5.3-Flash` reportado por el host). No se fabricó a mano por contrato; queda nombre reservado y pendiente.
+
+### Siguiente paso concreto (verificable)
+
+En una sesión con shell permitido sobre el vault: (1) materializar el agent_run con el nombre reservado de arriba; (2) enumerar `validated-baseline/w0` y cotejar sus informes contra las declaraciones registradas aquí; (3) verificar en el journal si la sesión W0 previa dejó cierre/feedback canónicos; (4) emitir el `change_log` de esta edición si el gate lo permite. Nada de esto autoriza reabrir el freeze de producto.
