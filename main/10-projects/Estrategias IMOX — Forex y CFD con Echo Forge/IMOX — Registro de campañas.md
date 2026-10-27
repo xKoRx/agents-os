@@ -173,6 +173,26 @@ La ficha de campaña y su vista de cobertura deben enlazar, nunca copiar desde s
 
 **Decisiones abiertas de Owner para congelar antes de F0:** ranking final combinando SQX Full Precision y MT5 (fórmula/pesos/tolerancias), política WFM de elección del run, split IS/OOS/holdout, criterios económicos de elegibilidad, límites de cómputo/reintentos, autorización de inyección y activación Echo. No inventar números.
 
+### Catálogo obligatorio de Building Blocks (.sqb) — no perder presets (2026-10-26)
+
+**Decisión del owner:** toda propuesta de familia/grupo y cada variante genética calibrada necesita trazabilidad durable de su preset de bloques. No basta con conservar el Builder CFX ni el nombre del grupo. El inventario se referencia desde la matriz/campañas, sin duplicar binaries ni materiales privados en el vault público.
+
+**Autoridades separadas:**
+- **Catálogo SQX 144 maestro:** export .sqb de la instalación 144 real con el universo de building blocks disponibles, versión/build y hash. Es catálogo de compatibilidad; no significa minar con todos activados.
+- **Preset .sqb de grupo/config:** archivo importable derivado de ese catálogo para cada `family_id/group_id/config_id/revision`; elegir solo IDs reales. Capturar qué selecciona y qué descarta, disparadores, filtros y rangos; qué restricciones no expresa el .sqb.
+- **Builder .cfx de campaña:** configuración SQX ejecutable versionada que referencia el .sqb aprobado y completa órdenes, plantillas, genética, instrumentos/datos y filtros que el .sqb no garantiza.
+- **Referencia física privada:** bytes del .sqb/.cfx bajo almacenamiento autorizado (por ejemplo MinIO privado o repo owner de Forge), SHA256 y URI/revisión; el vault conserva fichas e IDs, no archivos fuente privados.
+
+**Ficha mínima por preset:** `sqb_id`, `sqb_revision`, `family_id`, `group_id`, `config_id`, `sqx_build`, `source_catalog_ref/hash`, `artifact_ref/hash`, `asset_id` (o reusable declarado), `timeframe`, `direction`, `hypothesis`, `blocks_by_role` (IDs/nombres originales, subfamilia, usos y exclusiones), `parameter_ranges`, `order_template_constraints`, `broker/data dependencies`, `cfx_refs`, `validation_status`, `observed_errors`, `derives_from`, `campaign_refs`, `reviewed_by/date`. Indicar `unknown` explícitamente; no crear .sqb ficticios ni hashes inferidos.
+
+**Nomenclatura de referencia sugerida:** `IMX-SQB-<FAMILY>-Gnn-Cnn-rNN` (p. ej. `IMX-SQB-BR-G01-C02-r01`), independiente de los nombres reales de archivo; `config_id` es único dentro del grupo. El grupo antiguo BR-G1/G2/G4 no se declara automáticamente preset nuevo. El catálogo y los presets se registran solo cuando los bytes existen y se verifican.
+
+**Gates:** SPECIFIED → GENERATED → IMPORTED_SQX144 → INSPECTED → APPROVED → USED_BY_CAMPAIGN (o REJECTED con causa). Una importación sintácticamente exitosa no demuestra que el algoritmo genético respete la hipótesis; validar restricciones, templates, bloque/rol y estrategias representativas. Prohibido reescribir una revisión empleada en campaña: crear revision nueva con reason/delta.
+
+**Conexión de matriz:** CoverageCell apunta a los `config_id` investigados, cada Campaign congela `sqb_id@revision`, `cfx_ref/hash` y `methodology_revision`. Los resultados deben permitir responder qué configuraciones de la misma familia producen diferencias económicas reales, no solo distintas firmas de indicadores.
+
+**Responsable del procedimiento:** skill [[30-resources/agents/skills/sqx144-campaign-design/SKILL.md|sqx144-campaign-design]] + evidencia de [[IMOX - Building Blocks Skill]]; ajustar la skill cuando una validación revela defectos repetibles, no para esconder un preset fallido.
+
 ### Reutilización y mejora
 
 Mantener el padre reusable y su variante separados. Cambiar broker obliga a validar producto/costes/feed; cambiar TF obliga a revisar horizonte, frecuencia, rangos y muestra; cambiar long/short obliga a comprobar simetría económica y de bloques. Transferir una hipótesis no transfiere su resultado.
