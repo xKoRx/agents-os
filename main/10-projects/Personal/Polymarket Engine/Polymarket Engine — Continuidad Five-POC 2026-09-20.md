@@ -5,7 +5,7 @@ status: active
 area: "[[Personal]]"
 project: "[[Polymarket Engine — MVP]]"
 created: 2026-09-20
-updated: 2026-09-23
+updated: 2026-10-27
 aliases:
   - Five-POC continuity
   - Polymarket Engine handoff
