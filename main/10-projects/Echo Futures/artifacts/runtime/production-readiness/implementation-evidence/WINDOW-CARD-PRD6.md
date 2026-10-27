@@ -18,6 +18,21 @@ updated: "2026-10-27"
 
 # WINDOW-CARD-PRD6 — tarjeta única de ventana Owner (PRE-01..05 resueltas)
 
+## VEREDICTO DE VENTANA — EJECUTADA 2026-10-27 (Submanager GLM, autorización Owner 21:00Z)
+
+**STATUS: DEV_RO_OPERATIONAL — runtime candidato desplegado, corte sellado restaurado, migración real 8/8, atestación EXTERNAL instalada, seal gen 2 STRICT, recomposición STRICT demostrada por reinicio, observación 30 min limpia. NEW_RISK=BLOCKED; PROD/SIM/NT intactos; cero órdenes.**
+
+- **Desplegado**: core `dede6443` (echo-core `7b8d2a79…`, verificado por /proc/exe + sha256 + go version -m vcs); job `0f6901a3` RUNNING 20/20 vértices con jid pinneado vía `--job-id`; restaurado de **sp-2601** (la copia sellada, `Restoring job … from Savepoint 2601` 22:50:49Z); manifest activo **gen 2 `a9c3a5cd…`** (chk-2604, `continuity_migration:false` — STRICT forever).
+- **Gates**: G0 PASS (pre-ventana) · G1 HECHO · G2 hashes verificados en ventana · G3 topic attest creado explícito · G4 HECHO · G5 copia .161 verificada (sp-2601 3/3, chk-2604 8/8, sha256 contra anexos) · G6/G7 probe+sella 18 ingress con frontera real · **G8 MIGRATION_COMPLETE 8/8 (5 MIGRATED + 3 ALREADY, 0 MISSING/ERROR, split OBSERVADO — la hipótesis 5-present/3-absent quedó refutada por la clasificación real)** · **G9 restore del mismo corte sellado + attest EXTERNAL (sp-2601 == manifest, 6 owners 55/55, 18 ingress topic-id + offsets ≥ frontera)** · G10 FX consumiendo (lag≈0, frontiers ≥ corte), Futures DESARMADO (binding false), 0 excepciones · **G11 checkpoints post-restore (20/0 al cierre) + seal gen 2 sin migración + P9b restart con composición RECOVER gen 2 demostrada**.
+- **Correctivos de ventana** (commits e622d55e→bcffcf31, todos pusheados): adopt-legacy (correctivo registry exigido por el Owner), probe externalPointer (savepoint portable), topics compartidos, resume-offset check, attestor dual-path, roster namespace echo/, marker bridge, evidence wire, dead-exchange acks, attest sentinels, **seal→lineage ceiling bump** (hallazgo del verificador; desplegado con el próximo rollout del CLI — el runtime estable NO se tocó tras el cierre).
+- **Incidente contenido**: el primer `docker compose run` recreó la red compartida y la restart-strategy re-submitó el job sin estado (~2m52s). Contención + **R1 EJECUTADO FÍSICAMENTE** (restore con `--job-id`+`-s`, jid preservado) — la receta pasó de verificada a demostrada.
+- **Verificación independiente**: 7/7 PASS (identidad binario por /proc/exe+sha256+go-version-m; ETCD digests canónicos reproducidos desde source; REST 20/20 y restored==sp-2601; store 11/11 objetos vs anexos; desarme; coherencia documental; adversarial sin hallazgos de serving).
+- **Observación 30 min**: 23:03→23:33Z — checkpoints 5→20, 0 failed, 20/20 vértices, 0 ERROR en journal, FX lag≈0 (p3 transitorio drenando), futures silencioso, 5 capas de desarme intactas (NT .132 no re-verificado en dispositivo: viewer).
+- **Residual**: reconciliation_state=PENDING→CLEAN pendiente de su paso propio; lineage `max_generation` quedó en 1 (el seal ahora lo sube — fix desplegable con el próximo CLI); CLI del gate en .75 = `006857b8` vs core `dede6443` (delta declarado); OTLP exporter DEV caído (.45:4317, telemetría, no serving); instrumentación de ventana en el árbol (retirable).
+- **Siguiente estado del runtime**: `READY_DISARMED` — observando RO; el armado comercial sigue gated por su propia autorización (fuera de este mandato).
+
+Evidencia completa: `~/aranea/work/ef-prd6-20261026/evidence/{G0-R1-EVIDENCE-20261027.md, WINDOW-EXECUTION-20261027.md, VERIFIER-BRIEF-20261027.md}` + dictamen del verificador (7/7 PASS) en la sesión.
+
 ## Veredicto Primary Manager post cierre `5a0cf62f` — 2026-10-27
 
 **STATUS: PREWINDOW_SOURCE_ACCEPTED_WITH_RUNTIME_GATES; G0=BLOCKED_EXTERNAL; OWNER_WINDOW_REQUEST=NOT_READY; FX/DEV NO RESTART; PROD/SIM NO_GO.** Fuente remota `xKoRx/echo feature/ef-runtime-pools@5a0cf62f8ddbffa0a4926d1c1883085be7b87b6d` comprobada; delta 13 archivos vs `4a041e6c`, sin despliegue reportado. El Manager revisó los cambios de `seal`, roster, economic ValueSpec evidence y el lector REST de Flink. No ha ejecutado la sonda ni el restore sobre savepoint real. El resultado del submanager no autoriza por sí mismo tocar el job.
