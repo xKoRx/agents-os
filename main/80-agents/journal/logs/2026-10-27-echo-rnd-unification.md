@@ -68,8 +68,16 @@ También se normalizó metadata heredada sólo en notas tocadas: Trading recibe 
 
 ### Recibo de publicación
 
-Estado previo al write remoto: `LOCAL_VALIDATED_PENDING_REMOTE_VERIFICATION`.
-Se completará con el commit publicado, readback y resultado de validaciones al cerrar la sesión. No interpretar este estado provisional como sincronización física de hosts.
+**Entrega principal publicada y verificada:** [`20b1b9b08d6c8779e3001d66bee4f473babe3247`](https://github.com/xKoRx/agents-os/commit/20b1b9b08d6c8779e3001d66bee4f473babe3247) sobre `master`, fast-forward desde el baseline, sin force-push.
+
+- Lint estricto: **32 notas, 0 errores, 0 warnings**; parse YAML estricto sin claves duplicadas.
+- **321 enlaces añadidos** comprobados contra el árbol y las notas nuevas: sin destinos ausentes ni ambiguos.
+- **32/32 blobs** de la entrega principal coinciden con los bytes validados; branch readback confirmó el SHA publicado.
+- Readback íntegro desde GitHub de programa global, línea Futures, planner Forex e INDEX: contenido exacto y próximos pasos recuperables.
+- Feedback y este recibo se registran en el cierre posterior, con validación dirigida y publicación verificada por el mismo procedimiento.
+- **No verificado:** réplica física en Hefesto/Daedalus e índice Graphify local. El próximo agente local debe consumir el Markdown vigente y su recuperación normal; no se declara sincronía física por el éxito remoto.
+
+**Sesión documental cerrada; programa y líneas continúan activos.** Ninguna aceptación de estrategia, gate técnico o producción se deduce de este cierre.
 
 ## Rollback
 
