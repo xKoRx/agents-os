@@ -61,6 +61,34 @@ inventarios, el trabajo principal fue físico sobre la máquina:
   hacia Temporal `192.168.31.46:7233`, watch de etcd activo sobre
   `maintenance/control`, `sqcli` 144 ejecutable con el JRE embebido.
 
+## Actualización (mismo día, pedido del owner: modo intermitente + heap 13 GB)
+
+- Heap del drop-in reajustado a `-Xms2g -Xmx9g` (13 GB RAM + 12 GB swap; el
+  env hereda al JVM de `sqcli` de cada corrida del worker). Aplicado y
+  verificado en `/proc/<pid>/environ` del worker 75421.
+- Modo intermitente: `forge-worker-guard.timer` (tick 60s, unit
+  `forge-worker-guard.service`) apaga el worker con drain graceful
+  ("stop-after-current": la activity en vuelo termina, verified contra el
+  código — `FileQuiesceWatcher` trata SIGTERM/PENDING como drain request)
+  cuando detecta backtester Clutifx (`echo-backtest-clf*` por argv,
+  `run_g2_wave.py`/`research_lab.py` por cmdline) o `MemAvailable<3G`; lo
+  reenciende con ≥5G libres. Control manual: `forge-worker-ctl
+  {status|on|off|auto}` (hold manual en
+  `/var/lib/symphony/forge-worker-manual-off`). Instalado en
+  `/usr/local/sbin/forge-worker-guard` + `/usr/local/bin/forge-worker-ctl`.
+- Test cerrado con evidencia en journal (`journalctl -t forge-worker-guard`):
+  stop por backtester 21:28:41, re-arranque 21:29:42, poller ESTAB a Temporal.
+  Lección de test: `pgrep -f` genérico produce falsos positivos con cmdlines
+  que mencionan el nombre (incluidos wrappers de agentes); por eso el patrón
+  es `echo-backtest-clf` y no `echo-backtest`.
+- Registro del worker: NO hay registry estático en la flota — Temporal
+  (pollers dinámicos `pid@sqx-ulab-hefesto-0@`), Prometheus
+  (`symphony_sqx_activity_result_total{host_key}`) y etcd
+  (`maintenance/state/<host_key>` escrito por ops) son los canales; hefesto
+  aparece/desaparece como poller 4 según el guard. Docs del repo actualizadas
+  (commit `24975fb`): AGENTS.md, `worker-ssh` y preflight de
+  `forge-wave-dispatch` (no contar hefesto en el 3/3 ni subir K por él).
+
 ## Fuentes usadas
 
 Inventario físico de Zeus/Hera/Kronos por SSH, etcd de producción
