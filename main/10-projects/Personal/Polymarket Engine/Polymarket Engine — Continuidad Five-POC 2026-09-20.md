@@ -450,10 +450,11 @@ Registro: [[2026-09-22-polymarket-historical-causality-audit]] y [[2026-09-22-co
 ### Registros escritos por esta sesión
 
 - Este addendum (única edición de la nota: bloque nuevo, historia preservada, `updated` → 2026-10-27).
-- [[2026-10-27-polymarket-w0-closeout-summary]] — resumen canónico de sesión (materializado con `materialize_schema_note.py`).
-- [[2026-10-27-polymarket-w0-closeout-session-feedback]] — feedback con la fricción real vault/hook documentada.
-- **agent_run: BLOQUEADO.** Dos denegaciones del gate al materializar `80-agents/journal/agent-runs/2026-10-27-zcode-glm-5.3-flash-polymarket-w0-closeout.md` (superficie [[ZCode]], modelo `account:zai-individual-coding-plan/GLM-5.3-Flash` reportado por el host). No se fabricó a mano por contrato; queda nombre reservado y pendiente.
+- [[2026-10-27-polymarket-w0-closeout-summary]] — resumen canónico de sesión (materializado con `materialize_schema_note.py`; el relleno de placeholders fue denegado por el gate, ver abajo).
+- [[2026-10-27-polymarket-w0-closeout-session-feedback]] — feedback (mismo estado: materializado, sin rellenar).
+- **Advertencia de lectura:** ambas notas quedaron con la plantilla recién materializada (fechas y H1 correctos, placeholders vacíos y valores por defecto de plantilla). Sus valores por defecto —p. ej. `agent_surface: "[[Codex]]"` y `agent_model: unknown` en el feedback— son placeholders de plantilla, **no** afirmaciones sobre esta sesión; no citarlos como dato hasta que una sesión con permiso los rellene.
+- **agent_run: BLOQUEADO.** Dos denegaciones del gate al materializar `80-agents/journal/agent-runs/2026-10-27-zcode-glm-5.3-flash-polymarket-w0-closeout.md` (superficie [[ZCode]], modelo `account:zai-individual-coding-plan/GLM-5.3-Flash` reportado por el host). El relleno por script de las dos notas ya materializadas también fue denegado (heredoc y `python3 -c`). No se fabricó nada a mano por contrato; quedan nombres reservados y pendientes.
 
 ### Siguiente paso concreto (verificable)
 
-En una sesión con shell permitido sobre el vault: (1) materializar el agent_run con el nombre reservado de arriba; (2) enumerar `validated-baseline/w0` y cotejar sus informes contra las declaraciones registradas aquí; (3) verificar en el journal si la sesión W0 previa dejó cierre/feedback canónicos; (4) emitir el `change_log` de esta edición si el gate lo permite. Nada de esto autoriza reabrir el freeze de producto.
+En una sesión con shell/lectura permitidos sobre el vault: (1) rellenar los placeholders y frontmatter de las dos notas ya materializadas (resumen y feedback; corregir los valores por defecto de plantilla) y materializar el agent_run con el nombre reservado de arriba; (2) enumerar `validated-baseline/w0` y cotejar sus informes contra las declaraciones registradas aquí; (3) verificar en el journal si la sesión W0 previa dejó cierre/feedback canónicos; (4) emitir el `change_log` de esta edición si el gate lo permite. Nada de esto autoriza reabrir el freeze de producto.
