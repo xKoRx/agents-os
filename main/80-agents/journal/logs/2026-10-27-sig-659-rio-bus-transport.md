@@ -35,6 +35,7 @@ tags:
 - **Tipo:** updated
 - **Archivo(s):**
   - `10-projects/Meli/SIG-659 — Discovery & CLI/SIG-659 — Discovery & CLI.md`
+  - `10-projects/Meli/SIG-659 — Discovery & CLI/agentes/SIG-659 — RIO Bus (implementación).md` (created)
 
 ## Motivo
 
@@ -48,11 +49,19 @@ tags:
 
 ## Resolución aplicada
 
-- Estado actual, próximo paso, sección nueva "🚌 Transporte — RIO Bus" (hechos de código, propuesta, decisiones T-1 a T-5), tareas `F1·bus`, fila del SDK en la tabla de entrega, bitácora y decisión de reparto.
+- Estado actual, próximo paso, sección "🚌 Transporte — RIO Bus" (resumen del diseño cerrado por el owner y puntos abiertos), tareas `F1·bus`, fila del SDK en la tabla de entrega, bitácora, decisión de reparto y decisión de diseño del transporte.
+- Creadas en Spellbook SIG-718 (funcional) y SIG-719 (técnica) del RIO Bus, en `draft` e hijas de la epic SIG-659; contenido remoto verificado contra el local.
+- Segunda iteración con el owner: filtros múltiples confirmados en mqclient (`Filters(List<String>)`), scope como string configurado y DD-7/DD-8 (línea del SDK y entrada del reader) en la técnica; ambas specs sin preguntas abiertas.
+- Tercera iteración: un solo consumer por app y scope hacia `POST /rio-bus`; `RioBusReader` global ejecuta el process desde `RioBusProcessRegistry`; DD-4 reescrito con sus consecuencias.
+- Revisión de consistencia (v4 de ambas specs): body obligatorio, `RioBusRejectedException` unchecked, excepción en `parse` = `REJECTED`, DD-1/DD-2/DD-3 alineados con el consumer por scope, y publicación al arrancar dentro del alcance del funcional.
+- Revisión final KISS/YAGNI (v5): publicación de Discovery en el SDK (`DiscoveryContractProvider` + `DiscoveryContractPublisher`, DD-9), configuración `rio.bus` (`topic`, `scope: ${SCOPE}`, `segment-id`), `RioBusPublisher` concreto y registry dentro de `RioBusReader`. SIG-718/719 pasadas a `review`.
+- Proyecto de agente creado con el plan de implementación (3 fases, 4 controles humanos); `validate_plan.py` sin errores; tarea puente en el padre.
 
 ## Validación
 
-- `lint.py --strict` sobre la nota del proyecto.
+- `lint.py --strict` sobre la nota del proyecto, el proyecto de agente y este log.
+- `validate_plan.py` sobre el proyecto de agente: phases=3 gates=3 dispatches=3 errors=0.
+- Relectura por CLI de SIG-718 y SIG-719: tipo, estado, padre y contenido idéntico al local.
 
 ## Compartibilidad
 
@@ -61,4 +70,5 @@ tags:
 
 ## Rollback
 
-- Revertir la nota del proyecto a su contenido del 2026-10-22 (sección del transporte, tareas `F1·bus` y entradas del 2026-10-27). 
+- Revertir la nota del proyecto a su contenido del 2026-10-22 (sección del transporte, tareas `F1·bus` y entradas del 2026-10-27).
+- SIG-718 y SIG-719 quedan en `draft`; si se descartan, se quitan como hijas de SIG-659 y se borran en Spellbook. 

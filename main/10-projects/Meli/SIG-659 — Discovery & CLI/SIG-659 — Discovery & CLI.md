@@ -57,8 +57,8 @@ updated: "2026-10-27"
 - Las specs hijas son **esqueletos**: objetivo, estado actual y dependencias. Ninguna tiene criterios de aceptación ni SPEC técnica. Antes de implementar, el P0 tiene que pasar por refinamiento (fase F0).
 - Contrasté lo que la epic dice que "ya existe" contra el código (`origin/develop`). Hay **seis desvíos** que cambian el tamaño y el enfoque del P0; están en [[#🔬 Línea base verificada en código]]. El más importante: **hoy ningún CP publica su capability**, así que el canal V1 no existe en la práctica y U2 + U7 no son una migración sino una primera adopción.
 - **2026-10-22 — Specs técnicas de contrato por CP en review.** bkikuta publicó [SIG-695](https://spellbook.adminml.com/projects/SIG/specs/SIG-695) (ClickHouse), [SIG-696](https://spellbook.adminml.com/projects/SIG/specs/SIG-696) (Flink), [SIG-697](https://spellbook.adminml.com/projects/SIG/specs/SIG-697) (Kafka), [SIG-698](https://spellbook.adminml.com/projects/SIG/specs/SIG-698) (Fury) y [SIG-699](https://spellbook.adminml.com/projects/SIG/specs/SIG-699) (envelope genérico de trigger/resultado V2, no el CP de signals). Cubren el **contenido** de los contratos, pero ninguna, ni [SIG-644 SDK V2](https://spellbook.adminml.com/projects/SIG/specs/SIG-644), cubre la publicación CP → playmaker ni el registro en MySQL: ese tramo del P0 no tiene spec. Hallazgos de la revisión en la bitácora.
-- **2026-10-27 — Arranca el transporte.** Reparto: Brenda (bkikuta) deja las entidades V2 en el SDK y el parser del contrato en el bootstrap de [[rio-controlplane-kafka]]; Rodrigo construye el **RIO Bus**: un mecanismo de mensajería agnóstico playmaker ↔ CP (envelope fijo con `object` polimórfico, publicador y lector en el SDK, despachador por `type` en playmaker), con Discovery como primer cliente. Cuando Brenda tenga el mensaje, tienen que existir el tópico y el consumer de playmaker. El registro en MySQL es el punto 2. No hay spec de transporte: el canal lo describe [SIG-671](https://spellbook.adminml.com/projects/SIG/specs/SIG-671) (functional, una línea) y SIG-644/SIG-699 lo dejan fuera de alcance. Propuesta en [[#🚌 Transporte — RIO Bus]].
-- **Próximo paso:** cerrar T-1 a T-3 del RIO Bus y, con eso, escribir la spec técnica del transporte. En paralelo sigue F0: revisar los desvíos con dmuena y llevar las decisiones al kickoff.
+- **2026-10-27 — Arranca el transporte.** Reparto: Brenda (bkikuta) deja las entidades V2 en el SDK y el parser del contrato en el bootstrap de [[rio-controlplane-kafka]]; Rodrigo construye el **RIO Bus**, el transporte agnóstico playmaker ↔ CP, con Discovery como primer cliente. Cuando Brenda tenga el mensaje, tienen que existir el tópico y el consumer de playmaker. El registro en MySQL es el punto 2. Specs creadas: [SIG-718](https://spellbook.adminml.com/projects/SIG/specs/SIG-718) (funcional) y [SIG-719](https://spellbook.adminml.com/projects/SIG/specs/SIG-719) (técnica); resumen en [[#🚌 Transporte — RIO Bus]].
+- **Próximo paso:** SIG-718/719 en review; plan de implementación listo en [[SIG-659 — RIO Bus (implementación)]] (F1 espera G0). Con Brenda: `DiscoveryMessageReader` con entrada JSON (DD-8) y `DiscoveryContractProvider` en el CP Kafka. En paralelo sigue F0: revisar los desvíos con dmuena y llevar las decisiones al kickoff.
 
 ## 🧭 Qué implica el P0
 
@@ -72,7 +72,7 @@ El P0 es el **núcleo**: sin él no hay contrato que leer y el resto de la epic 
 
 **Por qué hay que refinarlo antes de codear:**
 
-- **El problema real es más grande de lo que dice la spec.** La epic asume que el canal V1 "funciona" y que el SDK sólo evoluciona. En el código, el SDK trae el record `CPCapabilityMessage` como stub (SIG-191) sin publicador, ningún CP lo envía y el registry sólo se llena posteando a mano (`scripts/seed-component-types.sh`). U2 es un publicador nuevo (scheduler + heartbeat + topic) y U7 es la primera integración en cada CP.
+- **El problema real es más grande de lo que dice la spec.** La epic asume que el canal V1 "funciona" y que el SDK sólo evoluciona. En el código, el SDK trae el record `CPCapabilityMessage` como stub (SIG-191) sin publicador, ningún CP lo envía y el registry sólo se llena posteando a mano (`scripts/seed-component-types.sh`). U2 es una publicación nueva, por el RIO Bus ([SIG-719](https://spellbook.adminml.com/projects/SIG/specs/SIG-719)), y U7 es la primera integración en cada CP.
 - **Esto abre una simplificación.** Si en producción no hay productores V1, la coexistencia V1/V2 de SIG-635 podría reducirse a "lo que ya está en la tabla". Hay que confirmarlo antes de decidirlo (ver P-1 y P-2).
 - **El alcance P0 ya está recortado en la spec** (allowlist estática de owners, sólo ACTIVE, sin DEPRECATED/RETIRED). Falta escribirlo como criterios de aceptación verificables.
 - **Hay decisiones de formato abiertas que tocan el contrato** (grants por operación, ACTIVE por cloud, monitores). Si el contrato se congela sin cerrarlas, P1 obliga a un bump major.
@@ -82,60 +82,21 @@ El P0 es el **núcleo**: sin él no hay contrato que leer y el resto de la epic 
 
 ## 🚌 Transporte — RIO Bus
 
-Propuesta del 2026-10-27, pendiente de acordar con el equipo. Un solo contrato de mensaje y un solo mecanismo de publicación y consumo para todo lo que viaja entre playmaker y los CPs. Discovery es el primer cliente; los flujos que ya funcionan en producción (resultados, actions, runtime status) se quedan donde están hasta tener su propia spec.
+Specs: funcional [SIG-718](https://spellbook.adminml.com/projects/SIG/specs/SIG-718) y técnica [SIG-719](https://spellbook.adminml.com/projects/SIG/specs/SIG-719), ambas en `draft` e hijas de la epic. El diseño vive ahí; acá queda sólo lo que gobierna el trabajo.
 
-### Qué hay hoy (refs `rio-playmaker@origin/develop 0c0e319c9`, `rio-sdk-events@origin/master b928149`, `rio-controlplane-kafka@origin/develop f4b5701`)
+- **Qué es:** un solo tópico `rio-bus` para todo lo que viaja entre playmaker y los CPs, con un mensaje de cuatro atributos (`envelope_version`, `process`, `scope`, `body`) y un cliente en rio-sdk-events que publica y consume igual en cualquier app. `process` y `scope` viajan además como filtros de BigQueue; los arma el publicador, nunca quien publica.
+- **Cómo consume una app:** un solo consumer de Fury por app y scope (filtro `scope:<scope>`) hacia `POST /rio-bus`, endpoint agnóstico que provee el SDK. `RioBusReader`, el reader global del bus, busca el `process` del mensaje entre los `RioBusProcess` suscritos de la app y lo ejecuta. Suscribirse a un process nuevo es declarar un bean, sin consumers nuevos. Costo anotado en DD-4: los processes de una app comparten rate limit y backlog, y la app descarta lo que no tiene suscrito.
+- **Primer y único cliente:** Discovery (`process = discovery`). Nada de lo que existe hoy se migra.
+- **Publicación de Discovery:** vive en el SDK (`DiscoveryContractPublisher`, al arrancar); el CP sólo implementa `DiscoveryContractProvider` (DD-9).
+- **Reparto:** Rodrigo hace el bus, la publicación de Discovery en el SDK, el tópico, el consumer y el process `discovery` en playmaker. Brenda hace el modelo V2, `DiscoveryMessageReader` y el `DiscoveryContractProvider` de [[rio-controlplane-kafka]].
+- **Configuración:** `rio.bus.topic`, `rio.bus.scope: ${SCOPE}` (scope real) y `rio.bus.segment-id` (`nonprod` o `nonsite`, según el scope).
 
-- Un tópico y un endpoint por flujo: `rio-deployment-trigger`, `rio-actions-trigger` / `rio-action-trigger` (el nombre cambia según el perfil), `rio-deployment-result`, `rio-action-result`, `rio-component-runtime-status`. Cada uno con su controller `POST /events/...` en playmaker y `POST /triggers/...` en el CP, todos `permitAll` y sin leer headers.
-- El único metadato que viaja fuera del body son los **filtros de BigQueue**: una lista de strings. Playmaker manda `scope:<scope corto>` en los triggers (`ScopeFilters.of()`) y llegan como `BigQueueMessage.filters.modified_fields`. No hay headers, atributos ni claves de orden.
-- Playmaker publica con el `Producer` de mqclient directo; los CPs usan `BigQueueClient` del SDK, que ya trae `sendWithFilters(Object, List<String>)`. `BigQueueClientImpl` descarta `withSegmentID` y el buffering: arma un builder y después crea el producer sin él. El fix está en la rama sin mergear `fix/producerbuilder-segment-buffering-discarded`.
-- `controlplanes-components` existe en el yml de playmaker pero ningún código lo lee. El SDK no trae helpers de consumo: cada app escribe su controller.
-- Las ramas `discovery-v2-0*` del SDK (modelo V2, linter, validador, writer, hasher) van sobre Boot 4 + Jackson 3 y no traen transporte. Playmaker corre Boot 4 pero fija Jackson 2 a propósito hasta que los SDKs internos migren.
-- [[rio-controlplane-kafka]] no tiene ningún hook de arranque (`ApplicationReadyEvent`, `CommandLineRunner`) y hace ack antes de procesar (`runAsync`).
+### Decidido en la técnica
 
-### Propuesta
-
-```text
-RioBusMessage                                   [NEW] rio-sdk-events · paquete bus
-├── envelope_version: 1
-├── message_id: UUID
-├── type: "discovery.contract"                  discriminador del object; también filtro
-├── type_version: 2                             versión mayor del schema del object
-├── source: RioBusSource                        { service_name, service_version }
-├── target: "rio-playmaker" | <service_name CP> también filtro
-├── correlation_id?: string                     deployment_id / action_id cuando aplique
-├── published_at: Instant UTC
-└── object: JSON crudo                          @JsonRawValue: viaja embebido, no como string
-
-Filtros BigQueue (los arma RioBusPublisher, nunca el llamador):
-  scope:<scope> · type:<type> · to:<target>
-```
-
-```text
-CP (Brenda)                                     rio-sdk-events (Rodrigo)                  playmaker (Rodrigo)
-DiscoveryContractPublisher [NEW]                RioBusPublisher [NEW]                     RioBusConsumerController [NEW]
-  ApplicationReadyEvent                           deriva filtros, fija segmento             POST /bus/messages
-  └─ DiscoveryContractWriter.requireValid ──▶     └─ mqclient Producer ──▶ tópico ──▶       └─ RioBusReader [NEW] (duplicados, límites)
-     (uno por component_type)                                                                └─ RioBusDispatcher [NEW] por (type, type_version)
-                                                                                                └─ DiscoveryContractBusHandler [NEW]
-                                                                                                   └─ DiscoveryContractValidator.check (SIG-644)
-                                                                                                   └─ registro MySQL: punto 2
-```
-
-- **El `object` no es polimorfismo de Jackson.** El lector parsea el envelope (rechazando claves duplicadas y tamaños fuera de límite) y le entrega al handler el `object` como JSON crudo. Cada handler lo lee con su propio reader: Discovery necesita el subárbol crudo para sus reglas de parseo y su hash (SIG-644 §7.3), y la API del bus no expone tipos de Jackson porque playmaker está en Jackson 2 y el SDK V2 en Jackson 3. Agregar un tipo nuevo es agregar un handler, sin release de un registro central de subtipos.
-- **El motor de playmaker es un despachador, no un workflow engine.** `RioBusHandler` declara `type`, `type_version` y `handle(delivery) → RioBusOutcome`. Spring junta los handlers. `PROCESSED`, `DUPLICATE`, `IGNORED` y `REJECTED` responden 200 (con métrica y log saneado); sólo `RETRY` responde 503, para que BigQueue reintente. Un `type` sin handler o un mensaje con `source` igual a la propia app se ignoran con 200.
-- **El aislamiento lo dan los consumers, no los tópicos.** Cada familia de mensajes tiene su consumer BigQueue con su filtro (`to:rio-playmaker` + `type:discovery.contract`), apuntando al mismo endpoint. Así cada flujo tiene su rate limit, su backlog y se puede pausar sin tocar los demás.
-- **Discovery pisa los mismos campos que el envelope** (`schema_version`, `message_id`, `published_at`, `producer`). Se deja el `DiscoveryContractMessage` intacto como `object` para no tocar el trabajo de Brenda ni el hash, que ya excluye esos campos. Regla del handler: `source.service_name` tiene que ser igual a `object.producer.service_name`; si no, `REJECTED`.
-- **Publicación al arrancar, sin heartbeat periódico en P0.** Cada instancia publica sus contratos en `ApplicationReadyEvent`; los repetidos caen en `heartbeat_noop` (SIG-635). Si playmaker está caído, los mensajes esperan en la cola hasta el TTL de BigQueue, así que el orden de deploy no importa mientras el consumer exista.
-- **Identidad del productor:** el bus no la autentica. Sigue siendo el claim del body, como acepta SIG-644 (decisión 2), y choca con la regla de SIG-635 de identidad desde el transporte autenticado. Queda explícito, no se resuelve acá.
-
-### Decisiones abiertas del transporte
-
-- **T-1 ¿Un tópico o dos?** Recomendación: dos, uno por dirección (`rio-bus-playmaker` para CP → playmaker y `rio-bus-controlplanes` para playmaker → CPs), con el mismo envelope y el mismo mecanismo. Con uno solo, playmaker y los CPs publican y consumen el mismo tópico: un filtro mal configurado hace que una app consuma sus propios mensajes, y cualquier CP pasa a publicar legítimamente donde viajan las órdenes hacia los otros CPs. P0 sólo necesita el de entrada a playmaker.
-- **T-2 Semántica de los filtros del consumer.** Confirmar con Fury cómo matchea un consumer contra la lista de strings del mensaje (cualquier tag o todos, cuántos tags por mensaje, si el tópico tiene que declararlos). Fuente indirecta: en la capacitación de Fury "el tópico es el que habilita los filtros". Bloquea la creación del tópico.
-- **T-3 Línea del SDK.** El bus va en el mismo release que el modelo V2 de Brenda (Boot 4 + Jackson 3, ramas `discovery-v2-0*` a 21 commits de `master`) o sobre `master` 1.6.1 (Jackson 2). Acordarlo con Brenda antes de abrir rama. La API del bus no depende de la respuesta porque no expone tipos de Jackson.
-- **T-4 Heartbeat periódico.** Recomendación: no en P0. Sólo hace falta si alguien consume `last_seen_at` como liveness; hoy nadie lo hace.
-- **T-5 Migración de resultados, actions y runtime status al bus.** Recomendación: fuera de P0, una spec por flujo con ventana de doble consumo. Cuando Discovery esté vivo, el contrato ACTIVE dice qué `service_name` atiende cada `component_type`, y eso permite que playmaker dirija los triggers con `to:<cp>` en vez de que cada CP filtre en el body.
+- **Filtros:** el cliente de la toolkit publica varios filtros por mensaje (`Filters(List<String>)` en mqclient 3.4.9); cada mensaje lleva `process` y `scope`, y el consumer de la app filtra por `scope`.
+- **Scope:** string con el nombre del scope de la app (`test`, `test2`, `test3`, …), configurado en `rio.bus.scope`, igual que `process`.
+- **Línea del SDK (DD-7):** el bus sale en el mismo release que el modelo Discovery V2 (Boot 4.1.1 + Jackson 3), la versión de Boot que ya corren playmaker y el CP de Kafka.
+- **Reader Discovery V2 (DD-8):** recibe el JSON del contrato, no un `BigQueueMessage`; hay que pedírselo a Brenda como entrada del reader de SIG-644.
 
 ## 🔬 Línea base verificada en código
 
@@ -220,7 +181,7 @@ F0 Refinamiento P0 ─▶ F1 P0 núcleo ─┬─▶ F2 P1 config → contrato �
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| [`rio-sdk-events`](https://github.com/melisource/fury_rio-sdk-events) | — | `master` o `discovery-v2-0*` (T-3) | [SIG-671](https://spellbook.adminml.com/projects/SIG/specs/SIG-671) (U1–U3, U8) · [SIG-676](https://spellbook.adminml.com/projects/SIG/specs/SIG-676) | Pendiente: spec del RIO Bus | Sin branch: falta cerrar T-3 |
+| [`rio-sdk-events`](https://github.com/melisource/fury_rio-sdk-events) | — | línea `discovery-v2-0*` | [SIG-671](https://spellbook.adminml.com/projects/SIG/specs/SIG-671) (U1–U3, U8) · [SIG-676](https://spellbook.adminml.com/projects/SIG/specs/SIG-676) | [SIG-719](https://spellbook.adminml.com/projects/SIG/specs/SIG-719) (RIO Bus) | Sin branch: rama sobre la línea `discovery-v2-0*` (DD-7) |
 | [`rio-playmaker`](https://github.com/melisource/fury_rio-playmaker) | — | `develop` | [SIG-671](https://spellbook.adminml.com/projects/SIG/specs/SIG-671) (U4–U6) · [SIG-677](https://spellbook.adminml.com/projects/SIG/specs/SIG-677) · [SIG-679](https://spellbook.adminml.com/projects/SIG/specs/SIG-679) · [SIG-670](https://spellbook.adminml.com/projects/SIG/specs/SIG-670) · [SIG-678](https://spellbook.adminml.com/projects/SIG/specs/SIG-678) · [SIG-675](https://spellbook.adminml.com/projects/SIG/specs/SIG-675) · [SIG-674](https://spellbook.adminml.com/projects/SIG/specs/SIG-674) · [SIG-676](https://spellbook.adminml.com/projects/SIG/specs/SIG-676) | Pendiente (F0) | Sin branch: falta SPEC técnica |
 | [`rio-controlplane-kafka`](https://github.com/melisource/fury_rio-controlplane-kafka) | — | `develop` | [SIG-673](https://spellbook.adminml.com/projects/SIG/specs/SIG-673) · [SIG-671](https://spellbook.adminml.com/projects/SIG/specs/SIG-671) (U7) | Pendiente | Sin branch: falta contrato acordado |
 | [`rio-controlplane-clickhouse`](https://github.com/melisource/fury_rio-controlplane-clickhouse) | — | `develop` | [SIG-673](https://spellbook.adminml.com/projects/SIG/specs/SIG-673) · [SIG-671](https://spellbook.adminml.com/projects/SIG/specs/SIG-671) (U7) | Pendiente | Sin branch: falta contrato acordado |
@@ -278,13 +239,12 @@ views:
 > - [ ] **F1·673** Revisar que los contratos cumplan el perfil JSON Schema y los límites de SIG-635, y congelarlos como fixtures válidos #owner/me #type/pr-review #area/meli
 > %% F1 — P0: SIG-671 canal CP → playmaker %%
 > - [ ] **F1·U1** `rio-sdk-events`: modelo V2 tipado (envelope, contract, operations, relations, anotaciones de outputs) + validación local previa a publicar #owner/me #type/dev #area/meli
-> - [ ] **F1·bus** Cerrar T-1 a T-3 del RIO Bus (tópicos, semántica de filtros con Fury, línea del SDK con Brenda) #owner/me #type/admin #area/meli
-> - [ ] **F1·bus** Escribir la spec técnica del transporte (RIO Bus) con `signals-tech-spec-authoring` y ajustar el canal en [SIG-671](https://spellbook.adminml.com/projects/SIG/specs/SIG-671) #owner/me #type/dev #area/meli
-> - [ ] **F1·bus** `rio-sdk-events`: paquete `bus` (`RioBusMessage`, `RioBusPublisher` con filtros derivados y segmento corregido, `RioBusReader`, `RioBusHandler`, `RioBusDispatcher`, `RioBusOutcome`), versión de prueba `0.0.N-rio-bus` #owner/me #type/dev #area/meli
-> - [ ] **F1·bus** Fury: crear el tópico de entrada a playmaker y el consumer `discovery.contract` de playmaker hacia `POST /bus/messages` #owner/me #type/admin #area/meli
-> - [ ] **F1·bus** `rio-playmaker`: `RioBusConsumerController` + despachador + `DiscoveryContractBusHandler` que valida con el SDK y deja la persistencia al punto 2 #owner/me #type/dev #area/meli
-> - [ ] **F1·U2** [[rio-controlplane-kafka]]: publicar el contrato en `ApplicationReadyEvent` vía `RioBusPublisher` (Brenda) #owner/me #type/supervision #area/meli
-> - [ ] **F1·bus** E2E local: CP Kafka publica, playmaker recibe y valida por el bus ([[RIO E2E local]]) #owner/me #type/dev #area/meli
+> - [x] **F1·bus** Crear las specs del transporte: [SIG-718](https://spellbook.adminml.com/projects/SIG/specs/SIG-718) funcional y [SIG-719](https://spellbook.adminml.com/projects/SIG/specs/SIG-719) técnica, hijas de SIG-659 #owner/me #type/dev #area/meli
+> - [ ] **F1·bus** Alinear con Brenda DD-7 (bus en la línea del modelo V2) y DD-8 (el reader recibe el JSON del contrato) de SIG-719 #owner/me #type/admin #area/meli
+> - [x] **F1·bus** Pasar SIG-718 y SIG-719 a review #owner/me #type/admin #area/meli
+> - [ ] **F1·bus** Ajustar el canal de [SIG-671](https://spellbook.adminml.com/projects/SIG/specs/SIG-671) para que apunte a SIG-719 #owner/me #type/admin #area/meli
+> - [ ] [[SIG-659 — RIO Bus (implementación)]] arrancar + seguimiento #owner/me #type/supervision #area/meli
+> - [ ] **F1·U2** [[rio-controlplane-kafka]]: `DiscoveryContractProvider` con sus contratos; la publicación al arrancar la hace el SDK (Brenda) #owner/me #type/supervision #area/meli
 > - [ ] **F1·U3** Fixtures JSON compartidos SDK ↔ playmaker, válidos e inválidos #owner/me #type/dev #area/meli
 > - [ ] **F1·U4** `rio-playmaker`: ingesta V2 (discriminar por `schema_version`, envelope, perfil JSON Schema, límites, `reason_code` sin payload en logs) #owner/me #type/dev #area/meli
 > - [ ] **F1·U5** `rio-playmaker`: dueño del `component_type` con allowlist estática y autenticación del productor #owner/me #type/dev #area/meli
@@ -340,7 +300,8 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 ## 📆 Bitácora
 
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
-- **2026-10-27** — Diseño del RIO Bus relevado contra código (playmaker `origin/develop@0c0e319c9`, SDK `origin/master@b928149`, kafka `origin/develop@f4b5701`). No existe spec de transporte en Spellbook: el canal sólo aparece en una línea de SIG-671. Hechos que mandan en el diseño: los filtros de BigQueue son la única metadata fuera del body (lista de strings, hoy `scope:<scope>`); `BigQueueClientImpl` descarta `withSegmentID` y el buffering; playmaker publica con mqclient directo y fija Jackson 2, mientras las ramas `discovery-v2-0*` van en Jackson 3; el CP Kafka no tiene hook de arranque y hace ack antes de procesar. Propuesta y decisiones T-1 a T-5 en la sección del transporte.
+- **2026-10-27** — SIG-718/719 revisadas bajo KISS/YAGNI (publicación de Discovery en el SDK, configuración `rio.bus` con scope real y segmento, `RioBusPublisher` concreto, sin registry ni flag aparte) y pasadas a `review`. Plan de implementación en [[SIG-659 — RIO Bus (implementación)]]: F1 SDK, F2 playmaker, F3 verificación en test; validador del plan sin errores.
+- **2026-10-27** — Diseño del RIO Bus relevado contra código (playmaker `origin/develop@0c0e319c9`, SDK `origin/master@b928149`, kafka `origin/develop@f4b5701`). No existe spec de transporte en Spellbook: el canal sólo aparece en una línea de SIG-671. Hechos que mandan en el diseño: los filtros de BigQueue son la única metadata fuera del body (lista de strings, hoy `scope:<scope>`); `BigQueueClientImpl` descarta `withSegmentID` y el buffering; playmaker publica con mqclient directo y fija Jackson 2, mientras las ramas `discovery-v2-0*` van en Jackson 3; el CP Kafka no tiene hook de arranque y hace ack antes de procesar. Con el owner quedó cerrado el diseño: un solo tópico, mensaje mínimo (`envelope_version`, `process`, `scope`, `body`), `process` y `scope` como filtros, consumo por process registrado en el SDK, Discovery como único cliente y sin migrar nada. Creadas en Spellbook [SIG-718](https://spellbook.adminml.com/projects/SIG/specs/SIG-718) (funcional) y [SIG-719](https://spellbook.adminml.com/projects/SIG/specs/SIG-719) (técnica), en `draft` e hijas de SIG-659, con el contenido remoto verificado contra el local.
 - **2026-10-22** — Reparto del P0: Brenda (bkikuta) toma los contratos; Rodrigo toma canal y transporte. Relevado en código (playmaker `origin/develop@ca4fe6be`, SDK `origin/master@b9281493`, kafka `origin/develop@f4b5701e`): el único canal es push HTTP a `POST /events/cp-components` (permitAll, sin identidad de productor); `bigqueue.cp-components-topic` (`controlplanes-components` / `-test`) existe en config pero ningún código lo lee, y topics y consumers se configuran en Fury, no en el repo; el registry `component_type_registry` sólo lo leen el upsert y `GET /v2/reference/component-types` (sidebar del front y CLI vía BFF); `scripts/seed-component-types.sh` está vacío y el seed real es `docs/runbook-seed-component-registry-test.md`; las ramas `discovery-v2-00..05` del SDK no tienen transporte y borran `CPCapabilityMessage`, que playmaker todavía compila. Kafka: tres nombres de tipo (`aws-msk-topic`, `gcp-kafka-topic` y el alias `kafka-topic`), output `servers` (no `brokers`), ACME por el fallback `*` y `peek` como read-action sin ACME, incluido en importados; `gcp-kafka-topic` se enruta a `MATERIALIZER_REST` en playmaker y su peek no funciona en el CP.
 - **2026-10-22** — Decisiones del owner: Discovery sin coexistencia V1/V2 (el V1 nunca se publicó), despliegue big bang (al llegar a prod todo component type tiene contrato) y playmaker agnóstico (asume lo que declara el CP, incluido access_level, sin pisos propios). Comentarios publicados en SIG-635, SIG-644, SIG-671, SIG-695, SIG-697 y SIG-698, verificados contra el contenido remoto. En SIG-699 se comentó que el título no corresponde, que falta el contrato del CP de signals (catalog-signal, bigqueue-signal, stream-signal) y que el trigger V2 cambia el protocolo de despliegue vigente, por lo que debería ir en una spec aparte.
 - **2026-10-22** — Revisión de SIG-695 a SIG-699 contra SIG-635, SIG-644 y el código. Falta: canal de publicación (cuándo y cómo publica el CP, el pedido desde playmaker), registro en MySQL, autenticación del productor y guardia de versión en CI. Choques con el SDK: `context_exports` no string (Kafka, ClickHouse), `orchestration.role` fuera del enum (ClickHouse) y `access_level` descartado como campo desconocido. Relaciones asimétricas: `clickhouse-mergetree` no acepta como input a `flink-sql` ni a `clickhouse-mat-view`. Faltan contratos de `clickhouse-ref-view` y de `rio-controlplane-signals`.
@@ -352,7 +313,8 @@ for(const p of pages.sort(x=>x.file.name)){const t=p.file.tasks.array().filter(x
 - **Cerradas en SIG-635:** ver su `decision_ledger` (ACTION como operation nombrada, schemas por operación, JSON como único formato aceptado, lifecycle propiedad de playmaker, identidad del productor desde el transporte autenticado, entre otras).
 - **Alcance P0 (deck):** allowlist estática para el dueño del `component_type` y sólo ACTIVE, sin ciclo DEPRECATED/RETIRED.
 - **Reparto del transporte (2026-10-27):** Brenda deja las entidades V2 en el SDK y el parser en el bootstrap del CP Kafka; Rodrigo hace el RIO Bus (tópico, mecanismo agnóstico de publicación y consumo, consumer en playmaker). El almacenamiento en MySQL es el punto 2.
-- _Las decisiones de K-1 a K-4, P-1 a P-8 y T-1 a T-5 se registran aquí cuando el equipo las cierre._
+- **Diseño del transporte (owner, 2026-10-27):** un solo tópico `rio-bus`; mensaje con `envelope_version`, `process`, `scope` y `body`; `process` y `scope` como filtros de BigQueue armados por el cliente; cada app consume registrando processes; Discovery es el único cliente y nada existente se migra. Detalle en [SIG-719](https://spellbook.adminml.com/projects/SIG/specs/SIG-719).
+- _Las decisiones de K-1 a K-4 y P-1 a P-8 se registran aquí cuando el equipo las cierre._
 
 ## 🔗 Docs / Links
 
