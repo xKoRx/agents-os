@@ -46,6 +46,7 @@ _No aplica — proyecto de negocio/investigación, no delivery de software. Los 
 - **Cobertura por evidencia:** [[IMOX — Cobertura de investigación]] distingue objetivo, preparado, probado, validado y seguimiento. Cantidad de bloques o EAs no equivale a diversidad.
 - **Un primer frente:** [[IMOX — NDX - Frente inicial]]. Primero clasificar/revalidar material heredado cuando corresponda, sin considerarlo equivalente a una construcción nueva 144.
 - **Trabajo reutilizable:** tesis, familia de preset y receta de evaluación versionadas; variantes por broker/símbolo/TF conservan vínculo y motivo del cambio. No asumir portabilidad por compartir nombre de indicador.
+- **Inventario SQB obligatorio (owner 26-10):** catalogar export maestro SQX144 y cada preset .sqb por familia/grupo/config/revisión, con bloques/roles/rangos, hash y ref privados, validación importable y vínculo al Builder CFX/campaña; contrato en [[IMOX — Registro de campañas]] § Catálogo obligatorio de Building Blocks. No guardar binarios privados en este vault público.
 - **WIP y orden del owner (26-10):** certificar primero la cadena completa usando datos de prueba; cerrar después los tres grupos históricos G1/G2/G4; rediseñar familias, grupos y múltiples configs calibradas antes de lanzar Builders nuevos. No usar los pools reales para certificar el pipeline. Conservar proyectos Echo Futures separados.
 
 
@@ -130,6 +131,8 @@ El mínimo útil al cierre anual es **un ciclo reproducible NDX y registro ínte
 - **2026-10-24** — Proyecto creado por solicitud de Rodrigo. Se define planificación Q4; rescate 142 diferido. Sin conexión a workers, ejecución de campaña o cambios de Forge/Echo.
 
 ## 🧭 Decisiones
+
+- **2026-10-26 — Registro de .sqb:** todo preset nuevo se documenta con identidad, revisión, catálogo SQX144 fuente, hipótesis, selección/exclusión de bloques, evidencias de importación, hash y vínculo a los CFX y campañas. Los .sqb reales quedan en almacenamiento privado.
 
 - Owner humano y área Trading; la asistencia del agente se realiza sobre el mismo control sin un subproyecto de desarrollo ficticio.
 - NDX primero; universo total y timeframes se incorporan gradualmente. No se despliega el producto cartesiano de todos los ejes en cientos de notas vacías.
