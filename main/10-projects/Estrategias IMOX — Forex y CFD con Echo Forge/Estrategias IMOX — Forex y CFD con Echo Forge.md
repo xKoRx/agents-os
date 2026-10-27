@@ -16,7 +16,7 @@ prs:
 aliases: ["Investigación de estrategias IMOX", "Roadmap Forex Forge Q4 2026"]
 tags: ["kind/project", "area/trading", "topic/imox"]
 created: "2026-10-24"
-updated: "2026-10-25"
+updated: "2026-10-26"
 related: ["[[IMOX]]", "[[Echo Futures]]", "[[30-resources/applications/echo/echo-forge]]"]
 ---
 
@@ -46,11 +46,51 @@ _No aplica — proyecto de negocio/investigación, no delivery de software. Los 
 - **Cobertura por evidencia:** [[IMOX — Cobertura de investigación]] distingue objetivo, preparado, probado, validado y seguimiento. Cantidad de bloques o EAs no equivale a diversidad.
 - **Un primer frente:** [[IMOX — NDX - Frente inicial]]. Primero clasificar/revalidar material heredado cuando corresponda, sin considerarlo equivalente a una construcción nueva 144.
 - **Trabajo reutilizable:** tesis, familia de preset y receta de evaluación versionadas; variantes por broker/símbolo/TF conservan vínculo y motivo del cambio. No asumir portabilidad por compartir nombre de indicador.
-- **WIP propuesto:** una campaña experimental activa; cola corta de diseños listos para la siguiente ejecución. En Echo Futures, registrar capacidad y dependencias aparte, sin mezclar sus resultados con CFDs.
+- **WIP y orden del owner (26-10):** certificar primero la cadena completa usando datos de prueba; cerrar después los tres grupos históricos G1/G2/G4; rediseñar familias, grupos y múltiples configs calibradas antes de lanzar Builders nuevos. No usar los pools reales para certificar el pipeline. Conservar proyectos Echo Futures separados.
+
+
+## Tramo prioritario — Cierre común de BR-G1/G2/G4 y rediseño posterior (2026-10-26)
+
+**Decisión del owner:** se paraliza la idea de replicar G1/G2/G4 sin revisión a nuevos activos. Primero certificar la cadena íntegra de Forge con datos de TEST y entorno descartable, después cerrar los tres pools de NDX H1 LONG, y sólo entonces volver a diseñar familias, grupos y varias configuraciones genéticas calibradas por grupo. El detalle de las tasks, la semántica de sus resultados y la matriz están en [[IMOX — Registro de campañas]]. Este control no inicia builds, test runs, deploy ni promociones.
+
+### Gates secuenciales
+
+| Gate | Resultado exigible | Estado |
+|---|---|---|
+| F0 — Certificación previa | Pipeline completo con estrategias/datos de prueba, oráculos independientes y E2E físico en SQX 144, MT5, Echo TEST y The Lab de pruebas; ranking por logical type, selección WFM/Apply, lineage, warnings y reintentos demostrados. Los pools históricos no se usan como fixtures. | PENDIENTE. Dynamic Groups Shot 4 con findings y E2E físicos abiertos; frontera Echo todavía pendiente |
+| F1 — Cierre G1/G2/G4 | Tres cohortes antiguas NDX H1 LONG procesadas por **tasks completamente nuevas** de SQX 144, usando una receta versionada común; resultado por logical type, Top 5 o UNDERFILLED justificado, warnings, reporte y estado final de Echo/The Lab. | PENDIENTE. Rescate 142 preservado |
+| F2 — Revisión de taxonomía | GLM-5.3-Flash Max desafía G1–G6, redundancias y evidencias; el owner aprueba qué familias/grupos existen y por qué se incluyen o descartan, sin obligación de mantener seis. Cada familia puede tener muchos grupos y cada grupo múltiples configs genéticas distintas y calibradas. | PENDIENTE |
+| F3 — Minería continua | Campañas nuevas según matriz de cobertura y capacidad real de Zeus, Hera, Kronos y Hefesto; reporte por campaña y mejoras sustentadas en evidencia. | PENDIENTE |
+
+### Único plan de cierre para los tres grupos heredados
+
+| Grupo inmutable | Material preservado 142 | Estado previo | Próximo paso después de F0 PASS |
+|---|---:|---|---|
+| BR-G1 · compresión y expansión | 727 | Ya ingestado en Forge | Procesar mediante nuevas tasks 144 y registrar todo el funnel |
+| BR-G2 · ruptura horizontal | 555 | READY_FOR_IMPORT | Importar, procesar con las mismas tasks 144 y reportar |
+| BR-G4 · ruptura con tendencia | 1.091 | READY_FOR_IMPORT | Importar, procesar con las mismas tasks 144 y reportar |
+
+**Pipeline propuesto y compartido:** Retester Light → ranking preliminar → clasificación por logical type → lotes de diez con objetivo Top 5 por tipo → Retester Full → WFM/Optimizer → selección del run IS/Apply con nueva versión de estrategia → Retester Full Precision tick y MT5 sobre el mismo período/artefacto y parámetros efectivos → reconciliación y ranking final de SQX + MT5 → acumulación Top 5 o UNDERFILLED con EOF probado → warnings y reporte → revisión manual de pertenencia a familia asistida por IA → ingesta idempotente en Echo → ACK operativo y métricas de The Lab. Los warnings nacen en cada task; los bloqueantes impiden selección/promoción. El Top 5 no autoriza relajar criterios.
+
+**Configuraciones:** una receta de evaluación SQX 144 por revisión (fuente y efectiva por task, hashes y entradas/outputs), compartida entre los tres grupos; diferencias por instrumento, estrategia y WFM son bindings explícitos e inmutables por ejecución. Los Builders genéticos **futuros** tendrán configs propias por grupo, nunca se reutilizan sus CFX 142 como contrato de procesamiento 144. El descriptor de orquestación WorkflowSpec establece orden y bindings; no reemplaza los CFX/INI ni los criterios de cada task.
+
+**Reporte GLM-5.3-Flash Max:** antes de la campaña producir un brief de intención, hipótesis falsable, familia/grupo/config, exclusiones, régimen y criterios previos; después un reporte de evaluación con cantidades y métricas por etapa y logical type, períodos, fallos, advertencias, contraste de motores, finalistas, diversidad y resolución. Cada dato numérico debe apuntar a evidencia de Forge/Echo/The Lab. La clasificación económica de finalistas es una revisión manual asistida por IA y no cambia silenciosamente un ClassificationSnapshot vigente.
+
+**Hefesto:** físicamente incorporado a Forge y SQX 144 con guard intermitente de recursos; se reserva a Retester/Optimizer de hasta 10 estrategias por tarea, nunca Builders. No subir concurrencia global por contar su poller ni inferir perfil/dataset actualizado de un activo sin preflight. Zeus/Hera/Kronos son los Builders principales de las campañas futuras.
+
+**Decisiones abiertas antes de F0:** ranking/eligibilidad final con métricas SQX+MT5 y tolerancias de concordancia; criterio exacto de selección del run de WFM (el código candidato usa último IS no-future, aún sin aprobación expresa del owner para este plan); límites de tiempo/candidatas y concurrencia; períodos IS/OOS y holdout independiente; autorización y gates para admisión/habilitación en Echo. Una repetición de backtest en el IS seleccionado no constituye prueba OOS.
+
+### Checklist inmediato
+
+- [ ] Cerrar F0 E2E con tests descartables y evidencia, sin estrategias históricas reales.
+- [ ] Preparar una sola receta de tasks SQX 144 con configuraciones nuevas por task, incluidas rankeos, clasificación, WFM, tick, MT5, warnings y Echo, más sus bindings y hashes.
+- [ ] Congelar las decisiones abiertas que cambian selección y comparabilidad antes de ejecutar.
+- [ ] Procesar cada pool preservado G1/G2/G4 cuando F0 esté aprobado, con un informe propio y refs de resultado.
+- [ ] Evaluar qué familias, grupos y configs genéticas calibradas sí se investigarán a futuro y cuáles se excluyen, dejando justificación.
 
 ## Roadmap hasta el 31 de diciembre de 2026
 
-Fechas objetivo propuestas, no certificaciones ni compromisos de cantidad. La capacidad semanal de Rodrigo y disponibilidad efectiva de Forge no están medidas; revisar semanalmente el alcance y no los gates para cumplir calendario.
+**Roadmap histórico del 24 de octubre: hoy subordinado a los gates F0→F1→F2→F3 anteriores.** Las fechas son orientativas; no autorizan saltos ni fabricar Top 5. La capacidad semanal y throughput de Forge se deben medir.
 
 | Ventana | Outcome de negocio | Evidencia de salida | Si no se alcanza |
 |---|---|---|---|
@@ -83,6 +123,8 @@ El mínimo útil al cierre anual es **un ciclo reproducible NDX y registro ínte
 - [ ] Revisar resultados y actualizar cobertura/aprendizajes; elegir siguiente celda sin cambiar varias dimensiones a ciegas. #owner/me #type/research #area/trading
 
 ## 📆 Bitácora
+
+- **2026-10-26** — Owner fija certificar primero el E2E con tests, cerrar BR-G1/G2/G4 históricos con todas las tasks nuevas 144, reportar con GLM-5.3-Flash Max y rediseñar familias/grupos/configs antes de reanudar minería genética. Plan documentado sin ejecutarlo.
 
 - **2026-10-25** — Rescate 142 ejecutado sobre la flota (solo lectura + copia conservadora): pools Zeus 727 G1 / Hera 555 G2 / Kronos 1091 G4 identificados, clasificados por bloques de los builders reales, preservados en MinIO `sqx-strategies/recovery-imox-142/20261025/` con SHA256/ETag verificado 15/15 (~1,71 GB) y staging de import para Forge preparado sin despachar. Pools B y C nunca habían pasado por Forge. Detalle: [[IMOX — Rescate 142 en flota Forge (2026-10-25)]]. No se lanzaron builders/retesters/optimizers ni waves; Echo PROD sin promociones Forge (0 promotions, 0 strategy versions, RO 2026-10-25).
 - **2026-10-24** — Proyecto creado por solicitud de Rodrigo. Se define planificación Q4; rescate 142 diferido. Sin conexión a workers, ejecución de campaña o cambios de Forge/Echo.
