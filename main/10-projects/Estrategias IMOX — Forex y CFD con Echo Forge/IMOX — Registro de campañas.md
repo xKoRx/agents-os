@@ -7,7 +7,7 @@ related: ["[[IMOX]]"]
 aliases: []
 tags: ["kind/doc", "area/trading", "topic/imox"]
 created: "2026-10-24"
-updated: "2026-10-24"
+updated: "2026-10-26"
 project: "[[Estrategias IMOX — Forex y CFD con Echo Forge]]"
 ---
 
@@ -129,17 +129,49 @@ La ficha de campaña y su vista de cobertura deben enlazar, nunca copiar desde s
 
 #### Trabajo requerido para poblar y explotar la matriz
 
-1. **Inventario de todas las tasks reales de G1/G2/G4:** recuperar sin modificar Builder, Retester, MC, WFM/Optimizer, Apply, Final Reretester, export/compile y MT5/INI donde existan, además del WorkflowSpec y su orden efectivo. Guardar rutas/refs, hash de fuente y config efectiva, semántica de filtros, inputs/outputs, SQX build, datasets, periodos, costes, indicadores/bloques y ranking. No asumir que todos los grupos tienen idéntico subflujo.
+1. **Nuevas configuraciones de tasks SQX 144:** diseñar una receta de procesamiento única para G1/G2/G4, con CFX/INI y reglas específicas de Retester Light, rankeo, clasificación, Retester Full, WFM/Optimizer, Apply, Retester Full Precision tick, MT5, ranking de ambos motores, Top 5 por logical type, warnings e ingesta Echo. Conservar refs y hashes de configuración fuente/efectiva por ejecución. WorkflowSpec describe la orquestación y sus bindings, no sustituye las configs de las tasks. Los Builders 142 sólo aportan cohortes históricas y procedencia.
 2. **Migración controlada 142→144:** conservar bytes originales y confirmar compatibilidad de templates/bloques y datos/point value/comisiones/spread/swap/DST; una conversión correcta debe demostrar import y cálculo monetario.
 3. **Validación de la distribución de firmas:** contar los logical_type reales antes de dimensionar el trabajo; un Top 5 por firma puede producir más de cinco finalistas por grupo. En Dynamic Groups top_n=5, batch_size=Y, K global de concurrencia y límites de presupuesto se eligen aparte; acumular sobrevivientes de todas las iteraciones y re-rankear el acumulado íntegro por firma; exhaustion real produce UNDERFILLED.
 4. **Calidad, comparabilidad y linaje:** congelar reglas IS/OOS/holdout; validar métricas procedentes de la task correcta, WFM IS seleccionado/Apply y Final Reretester de alta precisión; MT5 debe evaluar el mismo periodo y artifact lineage. No etiquetar una incompatibilidad SQX/MT5 como edge inexistente.
 5. **Destino:** Forge selecciona, pero Echo es dueño de ingesta idempotente, StrategyDefinition/version, provisión y ACK runtime, señales/trade_journal. The Lab deriva historia concatenada y revisiones de curvas, métricas y rankings sin reescribir fuentes. Mantener hitos separados: finalista, ingestado, operativo, demo, real y métricas listas.
-6. **Capacidad:** Hefesto se registra como worker **propuesto por owner** para Retester/Optimizer de hasta diez estrategias por tarea (10 cores/13 GB RAM). Verificar instalación, licencias, JVM heap, datos, ejecución exclusiva por host y throughput antes de marcarlo disponible. Zeus/Hera/Kronos quedan como Builders principales previstos.
+6. **Capacidad:** Hefesto ya figura integrado físicamente como worker Forge SQX 144 con guard intermitente y heap propio (journal 2026-10-26); política owner: Retester/Optimizer de hasta diez estrategias por tarea, no Builders. Verificar activo/dataset, memoria, compatibilidad y disponibilidad antes de cada dispatch. Zeus/Hera/Kronos siguen siendo Builders principales futuros.
 7. **Cartera de experimentos:** diseño por hipótesis genética IMOX; no adoptar Random como default desde un comentario aislado. Priorizar huecos de familia, dirección, activo, TF y exposición; registrar descarte y diversidad estadística, no sólo conteos de EAs.
 
 **Cobertura total versus objetivo anual:** si el owner aprobara tres TF (M15/H1/H4 como ejemplo), diez activos × seis grupos Breakout × dos direcciones × tres TF ya serían 360 celdas BR, antes de nuevas familias, productos/feed y múltiples logical types. La matriz puede representar todas como NR implícitas sin inventar campañas. Reportar separadamente activos registrados, activos con campaña, activos con candidato validado, activos en Echo, celdas con evidencia, celdas validadas y particiones Top 5/UNDERFILLED.
 
 **Autoridades:** [[IMOX - Tipos de estrategia en trading algorítmico]], [[SQX — BR H1 LONG — Grupos, Builders y continuidad Forge-Echo]], [[IMOX — Rescate 142 en flota Forge (2026-10-25)]], [[Dynamic Groups — Shot 2 — Estado de implementación]], diseño privado de Dynamic Groups en Symphony. A 2026-10-26 la implementación de Dynamic Groups sigue candidata sin prueba física E2E, release ni deploy; Forge→Echo→The Lab tiene gates independientes aún por certificar.
+
+
+### Cierre compartido de pools BR-G1/G2/G4 — receta propuesta EVAL-144 (2026-10-26)
+
+**Secuencia exigida:** F0 = certificación física completa en TEST con fixtures y datos descartables, incluyendo MT5, Echo y analítica The Lab, antes de usar cualquier grupo histórico → F1 = cierre de los pools NDX H1 LONG BR-G1 727, BR-G2 555 y BR-G4 1091, con **configs de todas las tasks nuevas para SQX 144** → F2 = replanteo por familia/grupo y múltiples configs calibradas, criticando los seis grupos anteriores con GLM-5.3-Flash Max → F3 = campañas genéticas continuas para llenar la matriz. F0 no se certifica sobre pools históricos ni se declara PASS por tests parciales del motor.
+
+**Estructura de investigación:** familia = mecanismo económico; grupo = hipótesis de subfamilia; config = variante genética calibrada y versionada de Builder; pipeline = cadena de evaluación versionada común; campaña = intención e hipótesis falsable aplicada a una celda/config; run = intento físico; logical type = clasificación observada de estrategias dentro de cada campaña/grupo. No equiparar grupo y logical type; no limitar a seis los nuevos grupos. Los grupos antiguos no se replicarán a otros activos hasta review y aprobación.
+
+| Orden | Task EVAL-144 | Evidencia / gate |
+|---|---|---|
+| 00 | Preflight de cohorte + perfil | StrategyRefs y hashes congelados, SQX build/activo/datos/costes/DST válidos, selección de worker por capacidad |
+| 01 | Retester Light | Evaluación rápida exacta, errores operativos separados de rechazos económicos |
+| 02 | Ranking preliminar Retester | Score/policy explícita; preservar universo completo para clasificar por tipos sin sesgo del top global |
+| 03 | Clasificación / group | ClassificationSnapshotRef; particiones por logical type; lotes iniciales Y=10, target X=5 por partición, reposición y EOF medibles |
+| 04 | Retester Full | Métricas/evidencia por candidato, producto y ventana comparables |
+| 05 | WFM / Optimizer | Fuente post-retest correcta, runs y sus ventanas IS/OOS identificadas |
+| 06 | Selección run + Apply | Regla de selección aprobada pendiente; nuevo StrategyRef/version con parámetros elegidos y readback, original inmutable |
+| 07 | Retester Full Precision tick | Backtest SQX tick real sobre el período del run elegido, sin falsificar modo ni fechas |
+| 08 | MT5 | EX5/INI por instancia, mismo período/parámetros/estrategia aplicada, evidencia de backtest efectivo |
+| 09 | Reconciliación SQX + MT5 y ranking final | Comparabilidad, tolerancias y pesos definidos antes de usar resultados; ranking de elegibilidad conjuntiva y ScoreRefs |
+| 10 | Selección Top 5 | Rerank del acumulado completo de cada logical type y entrega 5/5 o UNDERFILLED(n/5) sólo con agotamiento demostrado |
+| 11 | Warnings y reporte | Desde cualquier task: INFO / WARN / BLOCK (un BLOCK impide promoción); GLM-5.3-Flash Max genera reporte factual por campaña/grupo y revisión manual asistida de coherencia de familia de finalistas |
+| 12 | Ingesta Echo | Intake idempotente autorizado, StrategyDefinition/version, ACK y provisioning diferenciado de activación |
+| 13 | The Lab | Historia pre/post construcción y Echo, relación trade_journal, curvas/MetricSets, readiness analítica independiente |
+
+**Brief previo GLM-5.3-Flash Max:** descripción de intención, ventaja y régimen buscados; familia/grupo/config, entrada/salida, exclusiones, activo/TF/dirección, presupuesto, falsación y criterios. **Reporte posterior:** funnel con conteos por etapa y logical type, métricas y períodos efectivos, resultados SQX/MT5, warnings, fallos operativos, ranking/Top5/UNDERFILLED, divergencias, diversidad/correlación, decisión y siguiente hipótesis, citando evidence refs. El modelo ayuda a revisar manualmente la pertenencia a familia, pero no sustituye la clasificación persistida ni las validaciones deterministas.
+
+**Regla científica:** tick SQX y MT5 sobre el IS seleccionado demuestran concordancia de motores, no independencia del OOS. Conservar un holdout que no se use para ajustar configs ni scores. Ninguna conclusión de rentabilidad extrapolada por el modelo.
+
+**Checkpoint de cierre por grupo:** G1 importado en Forge, G2/G4 READY_FOR_IMPORT; los tres siguen PENDIENTES de EVAL-144 completo. Los resultados para cada grupo quedan separados por refs y se agregan mediante la misma sección del proyecto. Echo ingestado, Echo operativo, demo/real y The Lab listo son hitos diferentes.
+
+**Decisiones abiertas de Owner para congelar antes de F0:** ranking final combinando SQX Full Precision y MT5 (fórmula/pesos/tolerancias), política WFM de elección del run, split IS/OOS/holdout, criterios económicos de elegibilidad, límites de cómputo/reintentos, autorización de inyección y activación Echo. No inventar números.
 
 ### Reutilización y mejora
 
