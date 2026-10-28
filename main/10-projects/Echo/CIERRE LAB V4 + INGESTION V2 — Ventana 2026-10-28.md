@@ -86,19 +86,17 @@ Demostrado: flow_run_start → begin_workflow_span (la actividad colgada del QA)
 - Hasura PROD v2.38.0: metadata consistente. El repo `v3/hasura/` NO contiene event_triggers ⇒ delta manual obligatorio preservando triggers/headers/permisos productivos (antecedente 2026-09).
 - Bloqueo único demostrado: `echo_v4_registry_owner` ausente y ningún credencial accesible (echo_user, mcp_echo_dev_rw, sqx) tiene CREATEROLE; superusuarios `postgres`/`admin` existen en .220 sin credencial disponible. La migración 068 (bytes congelados) ejecuta `CREATE ROLE echo_v4_registry_owner NOLOGIN` guardado por IF NOT EXISTS.
 
-## Acción externa única para reanudar
 
-Ejecutar como superusuario de PostgreSQL en 192.168.31.220 (idempotente con el guard de 068):
+## Operación DEV ejecutada (tras el desbloqueo del Owner)
 
-```sql
-CREATE ROLE echo_v4_registry_owner NOLOGIN;
-```
+1. **BD `echo-develop`**: rol `echo_v4_registry_owner` + membresía (Owner); GRANT CREATE en schemas echo/execution al rol (071-owner). Catálogo completo: 24/24 V4 (067–091; 090/091 aplicadas como `sqx` con search_path=public por verificación de dueño; FK exigía prefijo de schema) + banda legacy 061–066 convergida (061 requería traspaso OWNER de 11 tablas históricas de `admin` → `echo_user`, ejecutado por el Owner). Postcondiciones: 24 entradas de ledger APPLIED, función protegida owned por el rol, `strategy_definitions.id` → text.
+2. **Hallazgo PG17**: el REVOKE UPDATE de 061 (write-once identidad) rompía el `FOR KEY SHARE` del chequeo FK en PostgreSQL 17 (exige UPDATE en la tabla referenciada). Resuelto con GRANT UPDATE a `echo_user`; la inmutabilidad REAL queda garantizada por el trigger `trg_strategy_versions_write_once` (verificado: UPDATE de negocio sigue bloqueado con IDENTITY_BWC_WRITE_ONCE).
+3. **Gateway/worker/front DEV**: binarios del candidato 347eee8b activos (gateway :8090, lab-worker D4, labv4-worker V4 nuevo con unit `echo-labv4-worker-dev`, front :4173 con build horneado VITE_SESSION_TOKEN=lab_readonly).
+4. **Hasura DEV** (.75:8080): actualizado v2.38 → v2.50 (la acción query exige el formato nuevo), recreado con source `echo_lab_v4` + `ECHO_LAB_V4_SERVICE_TOKEN` (Bearer) + auth hook `:8090/api/v1/auth/hasura`. Delta aditivo sin apply ciego: source añadida, 15 vistas `lab.v4_*` trackeadas, 30 permisos select (lab_readonly/lab_config_operator), custom types + acción `lab_v4_screener_page` (kind sync/type query) + permisos de acción. Metadata consistente (0 inconsistentes), 6 event_triggers productivos preservados verificados en export pre/post.
+5. **Smoke V2 en DEV real**: POST autenticado `dev-smoke-register-4` → **202 INGEST_ACCEPTED** receipt `6502f6e3-bf3a-415d-95fe-78b4c0a0e89e`, versión `sha256:e4fa2eea…` (idéntica a la del caso C local — determinismo cross-entorno), runtime `sv2:00cca3ed…`; replay → 200 mismo receipt; GET id/key → 200; persistencia lab-cert verificada (metadata rev 1, histories=0, HISTORY_NOT_REQUESTED, instruments [NQ]).
+6. **UI The Lab V4** (navegador real): screener muestra "QA Register Only" con Resolución NO_HISTORY, Estado analítico NO_HISTORY+NO_PUBLISHED_ANALYTICS y guiones — sin curva plana, score cero ni rank inventado. Detalle: identidad, curva "sin puntos publicados (…sin ceros inventados)", calendario "GAP/OUTSIDE_COVERAGE ⇒ sin datos, nunca verde cero falso", operaciones/candidatas/copias honestos. Captura de screener en artifacts de sesión.
+7. **PROD**: DESCARTADO por orden Owner ("NO VAMOS A DESPLEGAR EN PRODUCCIÓN"). El backup `echo-prod-20261028T160339Z.dump` y el plan sellado quedan como material de preparación sin ejecutar contra PROD; ninguna mutación PROD ocurrió (sólo lecturas y el backup).
 
-Punto exacto de reanudación: (1) aplicar plan V4 a `echo-develop` y `echo` con `apply-migration -v4 -migration-name <cada entrada> -manifest /tmp/lint-plan.json`; (2) Hasura delta manual (roles lab_readonly/lab_config_operator, tablas V4/V2, preservar event_triggers con header Authorization); (3) rollout de binarios PROD (mismos hashes BUILD.md) + unidad labv4-worker + artifact store durable; (4) smoke autenticado + observación ≥30 min.
+## Nota de alcance
 
-## Límites vigentes
-
-- REGISTER_ONLY es el recorrido operativo de la task nativa; PROVISION_REFERENCE sigue 503 hasta B5.
-- AUTH_FORGE (autenticidad Forge física) sigue BLOCKED_EXTERNAL: la campaña usa el harness aislado autorizado.
-- H45 (prepare p95≤2s @20k) y QA-01 (cobertura V4 <95%) permanecen FAIL adjudicados, sin nueva remisión.
-- `requested_curve_profiles` NO es control efectivo del consumidor (Addendum §6).
+La sección de acción externa del informe intermedio quedó obsoleta: el Owner creó el rol, concedió la membresía y ejecutó los traspasos de OWNER en `echo-develop`; PROD fue descartado explícitamente. No queda ninguna acción externa pendiente para DEV.
