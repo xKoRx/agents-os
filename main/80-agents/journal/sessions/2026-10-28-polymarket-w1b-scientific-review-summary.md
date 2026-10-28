@@ -18,7 +18,7 @@ related:
   - "[[2026-10-28-zcode-glm-5.3-flash-polymarket-w1b-scientific-review]]"
 aliases: []
 confidence: high
-source_session: "no expuesta por la superficie en esta sesión (la ID corresponde a la sesión fresca de revisión despachada por Luna; atribución final del lanzador)"
+source_session: "sess_d49dc6df-339a-4f88-9be1-6de0c4c43a85"
 load_policy: manual
 indexable: false
 index_priority: never
@@ -67,7 +67,7 @@ tags:
 
 ## Pendiente
 
-- Lanzador: (1) preservar bytes del código productor de A′/B′ con SHA registrado; (2) fijar `IDENTITY_REVISION_PATH → mapping-revision-w1b6.json`; (3) decidir completar o retirar el grupo C (puntero en `stage1_done`; su digest diferirá del canónico sólo por etiquetas si se corre bajo w1b6); (4) pin y despacho de la suite sintética de cortes (NOT_RUN).
-- Owner: prerequisitos PIT (tick pre-21:10Z, fee de certificación, universo PIT) y la elección de hipótesis, que hoy sigue sin base admisible (0 hipótesis).
-- Sin sync/publicación: todo local; verificación Git del vault no posible (git denegado).
+- **Actualización 2026-10-28 — segmento 2 (misma sesión, mandato integrado de reanudación): ingeniería w1b8 COMPLETADA.** Divergencia mapping/runner/manifest resuelta con el paquete versionado `validated-baseline/w1-b/pkg-w1b8/` (código congelado `1d3e3c25…` verificado por el propio runner en cada arranque; identidad cargada desde snapshot pinneado w1b6 `5049acf1…` con corroboración decimal/hex — etiqueta oficial `3901947:TOR` confirmada contra bytes de datos; manifiesto pineado `5e8c171b…`; puntero del grupo C preservado verbatim en copia y en `prior_pointer_preserved` del stage1-D, sin completarlo). Suite sintética EJECUTADA (comando exacto autorizado): **50 checks ALL_PASS, exit 0**, con 4 detecciones de mutación controlada y restauración (outcome exacto en `pkg-w1b8/tests-synthetic-outcome.md`; 5 defectos ordinarios del fixture corregidos en sesión). **Doble corrida nueva comparable: grupos D (`20261028T123826Z`) y E (`20261028T125105Z`), tres etapas cada uno, digests D=E=`2e3830baa38ef4b04d096223808157d1480bbc6749d5588b7f3440c4be134783`, cores byte-idénticos `092de56a…`, RSS ≤2 GiB**; `f56adf46…` queda como registro histórico canónico de A′/B′ bajo fixture w1b5 (no es el digest esperado bajo w1b8 por etiquetas+protocolo; contadores idénticos). Verificación criptográfica de la revisión completada (A′=B′ `b75f50ee…` medido; `b9f498e7…` y w1b5/w1b6 medidos). Fees: documentación docs.polymarket.com RECIBIDA del auxiliar (WebFetch denegado, 1 intento); describe CURRENT/2026, no certifica fee/tick del 2026-09-01. Corrección de atribución: prerequisitos técnicos PIT = tareas del agente (plan prospectivo propuesto y NO iniciado); Owner sólo decisiones críticas. Stage2 en background supervisado hasta exit por tope foreground 600 s; sin huérfanos. Cambios de estado de agente pendientes tras w1b8: ninguna acción automática; el resultado técnico queda validado con estrategia bloqueada por datos.
+- Lanzador: nada pendiente obligatorio de w1b8; si se quisiera completar el grupo C bajo identidad w1b6, crear cadena nueva (nuevo freeze), nunca edición in-place.
+- Owner: sólo decisiones críticas de cuenta/elegibilidad/fondos/riesgo/activación real; sin exigencia de rentabilidad para cerrar.
 - `rs-v03`/`pe001` y el mapeo de `hist-acq-20260921` siguen sin evidencia de recuperación; elegibilidad/cuenta/fondos/riesgo/arming/live siguen cerrados (freeze de producto vigente).
