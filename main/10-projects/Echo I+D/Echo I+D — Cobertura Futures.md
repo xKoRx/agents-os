@@ -22,6 +22,8 @@ updated: "2026-10-28"
 
 ## Propósito
 
+**Recurso transversal DR-01 (2026-10-28):** [[Echo Futures — DR-01 matemática de campañas prop]] — retorno recibido, NO validado, con contradicciones materiales de caja/first-passage. No es evidencia de estrategias, independencia, payouts ni gates G0–G5.
+
 Organizar la diversidad de investigación de [[Echo I+D — Futures]] y hacer visible qué conocimiento aporta cada trabajo al objetivo Owner: estrategias capaces de pasar challenges y producir retiros en cuentas funded con economía completa evaluable. Esta matriz es una superficie de cobertura enlazada al planner de mercado; no es otro planner ni una lista de estrategias rentables.
 
 **Decisiones Owner vigentes — 2026-10-27:** programa permanente con líneas Forex y Futures; ejecución Futures centrada por ahora en **NQ**; hito táctico al 31-12-2026 de cinco estrategias challenge y cinco funded produciendo retiros, en al menos dos props simultáneas, preferentemente descorrelacionadas. Se acepta usar cobertura para orientar el rescate y la investigación; el detalle de capital/denominadores sigue en [[Echo I+D — Futures]]. Otros instrumentos, incluido MNQ, no están autorizados. ClutiFX queda como histórico, sin nuevas investigaciones salvo decisión expresa. Las antiguas cuentas E2T no fueron operadas ni son perfil vigente.
