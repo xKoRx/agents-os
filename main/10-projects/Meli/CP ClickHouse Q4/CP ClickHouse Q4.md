@@ -8,10 +8,10 @@ priority: P0
 area: "[[Meli]]"
 parent:
 sprint:
-start: "2026-10-27"
-due: "2026-12-31"
+start: 2026-10-27
+due: 2026-12-31
 progress: 0
-repo: "https://github.com/melisource/fury_rio-controlplane-clickhouse"
+repo: https://github.com/melisource/fury_rio-controlplane-clickhouse
 jira:
 prs:
 aliases:
@@ -22,8 +22,10 @@ tags:
   - kind/project
   - area/meli
   - app/rio-controlplane-clickhouse
-created: "2026-10-27"
-updated: "2026-10-27"
+created: 2026-10-27
+updated: 2026-10-27
+cssclasses:
+  - wide
 ---
 
 # CP ClickHouse Q4
