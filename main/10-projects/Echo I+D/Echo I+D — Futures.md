@@ -198,6 +198,9 @@ Los perfiles Strategy, MM y Provider se mantienen separados. El resultado cambia
 
 Futures Prop Universe es una entrega histórica cerrada, normalizada de `complete` a `completed`; Prop Economics ya estaba cerrado. Enlazarlos no reactiva sus tareas ni equivale a certificar reglas actuales.
 
+
+- **DR-02 recibido (PARCIAL, sin certificación contractual):** [[FUT-R01-DR-02-contratos-prop-NQ-2026-10-28]] conserva la referencia y sus bloqueos; el submanager debe verificar reglas, costes, payouts, KYC y automatización antes de decisiones. No se autoriza compra ni operación.
+
 ## 📆 Bitácora
 
 - **2026-10-28 — campañas prop y dispatch separado** — Owner corrige el marco: no gestionar una cuenta propia rentable por trade, sino resolver evaluaciones rápidamente y estudiar la asimetría coste/cobro mediante MM, contratos y campañas. Se preserva USD 400/funded como referencia no verificada de coste agregado. Informe anterior documentado como exploratorio y rectificado; mandatos DR-01–04 y RV-01 preparados en v4, no ejecutados. Continuidad actualizada, sin cambios de producto, gates, gasto ni cierre formal. [[80-agents/journal/logs/2026-10-28-echo-futures-research-runtime-plan|Registro consolidado, addendum de frente 2]].
