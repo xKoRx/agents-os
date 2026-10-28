@@ -17,7 +17,7 @@ updated: "2026-10-28"
 
 ## Resultado
 
-`INTEGRATION_MERGED_TO_MASTER_PROD_BLOCKED_ON_PG_ROLE` — el candidato fue verificado independientemente (echo: INTEGRABLE Y CORRECTO sin defectos materiales; symphony: GO CON RESERVA, reserva resuelta con c532150), integrado por fast-forward a `xKoRx/echo:master` (`40cb63eb..347eee8b`), desplegado en DEV (gateway+worker+front) y con PROD preparado (backup + ensayo de restauración + plan sellado). El rollout físico de BD/Hasura/PROD queda bloqueado por UNA dependencia externa demostrada: crear el rol `echo_v4_registry_owner` en PostgreSQL 192.168.31.220 exige CREATEROLE y ningún credencial accesible lo posee.
+`DEV_OPERATIONAL` — The Lab V4 + Ingestion V2 operan de punta a punta en DEV (Owner confirmó: NO desplegar en PROD). Cadena verificada con evidencia física: ingesta V2 autenticada (202 + receipt), persistencia con estados honestos, replay idempotente, conflicto 409, artifact readback por digest, acción Hasura vía auth hook del gateway, screener V4 mostrando la estrategia con NO_HISTORY/NO_PUBLISHED_ANALYTICS y detalle sin ceros inventados. El alcance PROD de la misión fue DESCARTADO por orden explícita del Owner durante la ventana.
 
 ## Candidatos integrados
 
