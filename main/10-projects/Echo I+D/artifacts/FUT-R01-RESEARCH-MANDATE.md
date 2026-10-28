@@ -34,7 +34,7 @@ updated: "2026-10-28"
 
 ## Propósito
 
-**Versión 4. PREPARADO PARA DISPATCH; DR-01–04 y RV-01 NO EJECUTADOS.** Sustituye el prompt monolítico v3 para nuevos encargos externos. El Owner solicita persistir el informe anterior y recibir mandatos ONE-SHOT separados; el submanager consolida los retornos después de recibirlos. Esta actualización no ejecuta investigación autónoma ni promete trabajo en background.
+**Versión 4 del mandato. Estado actualizado 2026-10-28: DR-01 RECIBIDO, CON HALLAZGOS MATERIALES; DR-02/03/04 y RV-01 NO EJECUTADOS.** Sustituye el prompt monolítico v3 para nuevos encargos externos. El Owner solicita persistir el informe anterior y recibir mandatos ONE-SHOT separados; el submanager consolida los retornos después de recibirlos. Esta actualización no ejecuta investigación autónoma ni promete trabajo en background.
 
 **Corrección Owner vigente, 28-10-2026:** el objetivo es economía de campañas prop, no rentabilidad convencional de una cuenta propia. No imponer esperanza positiva por trade como requisito universal. Estudiar riesgo alto y resolución rápida de evaluaciones con matemática, contratos y posterior simulación autorizada. La referencia USD 400/funded es un supuesto por contrastar, no un coste agregado verificado. Strategy conserva tres bloques y MM sigue separado. Capital Futures USD 4.000 sin nuevos aportes; Forex no respalda este presupuesto.
 
@@ -50,7 +50,7 @@ El manager conserva recuperación interna, lectura de autoridades G0–G5, integ
 
 | Encargo | Pregunta propia | Estado |
 |---|---|---|
-| DR-01 | Cuándo riesgo alto/resolución rápida mejora campaña y caja | READY_TO_DISPATCH; NOT_EXECUTED |
+| DR-01 | Cuándo riesgo alto/resolución rápida mejora campaña y caja | RECEIVED_WITH_MATERIAL_FINDINGS; ver [[Echo Futures — DR-01 matemática de campañas prop]] |
 | DR-02 | Qué contratos/rutas/costes reales permiten la campaña | READY_TO_DISPATCH; NOT_EXECUTED |
 | DR-03 | Qué mecanismos NQ aportan propiedades/cobertura investigables | READY_TO_DISPATCH; NOT_EXECUTED |
 | DR-04 | Cómo definir reglas y validar señal/MM/campaña sin sobreajuste | READY_TO_DISPATCH; NOT_EXECUTED |
@@ -360,7 +360,7 @@ Sin selección aprobada de props, primera estrategia, reserva, gasto o MM. El or
 
 Recuperación interna por el manager: reglas y señales TG/FBC/ORB/MR; inventario de datos/roll/sesiones/volumen; autoridades y evidencias G0–G5; estado real de frente1; rutas de integración permitidas; definición de cohortes e intentos; KYC y condiciones de programas. No delegar a workers externos inferir estos datos de repositorios privados no suministrados.
 
-La existencia de este informe y de los prompts no demuestra estrategia rentable, campaña viable, readiness runtime ni payout. Estado de los cuatro DR: PREPARADOS, NO EJECUTADOS. La revisión RV-01 tampoco se ha ejecutado. No se cierra sesión ni se reabre ClutiFX.
+La existencia de este informe y de los prompts no demuestra estrategia rentable, campaña viable, readiness runtime ni payout. Estado: DR-01 recibido y curado con contradicciones materiales; DR-02/03/04 preparados y no ejecutados. La revisión RV-01 tampoco se ha ejecutado. No se cierra sesión ni se reabre ClutiFX.
 
 ## 14. URLs preservadas como semillas de verificación
 
