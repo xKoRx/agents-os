@@ -21,6 +21,10 @@ Gestionar la implementación, la revisión adversarial y la certificación dentr
 
 ## Contenido
 
+### Estado vigente tras Shot 3 — 2026-10-28
+
+**Shot 3 ejecutado y entregado** ([[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/E — Independent Adversarial Report|E — Independent Adversarial Report]]; veredicto de alcance en D 2026-10-28, pendiente de adjudicación del Primary Manager). Candidato congelado auditado sin cambios de SHAs; 3 findings P1 reproducidos (runner sin 017/018; decision_ref sintético/CHECK; data_only workflow colgado en `begin_workflow_span`), 4 P2/P3 y cobertura real por statements 47,1% delta / 80,4% nuevos. Gates: A PARCIAL, B/C NOT_RUN (smoke PG real PASS), D BLOCKED con lectura auténtica parcial (ETCD/PG PROD), E NOT_AUTHORIZED. **NEXT EXACT: Shot 4 — el implementador corrige los findings de E y después un verificador final fresco reconstruye el SHA y repite los oráculos críticos dentro del mismo Shot 4.** Gate objetivo: `FORGE_ECHO_INGESTION_TASK_VERIFIED`. No hay Shot 5 ni otra vuelta de Shot 2/3.
+
 ### Decisión vigente del Owner y admisión a Shot 3 — 2026-10-27
 
 **SHOT3_READY_WITH_KNOWN_GAPS.** El Owner ordenó expresamente avanzar al QA adversarial independiente y **no realizar más iteraciones de Shot 2**. Se congela la segunda entrega como candidato para auditoría. Esta decisión supersede las instrucciones administrativas anteriores de continuar Shot 2 antes de QA; los antecedentes técnicos se conservan para confirmación/falsificación sobre el SHA actual. No concede FORGE_ECHO_TASK_IMPLEMENTED_LOCAL ni PASS de calidad por relato, y no cambia el piso ≥95% ni la SPEC.
