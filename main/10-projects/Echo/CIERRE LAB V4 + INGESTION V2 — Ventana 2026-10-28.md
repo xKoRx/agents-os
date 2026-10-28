@@ -17,7 +17,7 @@ updated: "2026-10-28"
 
 ## Resultado
 
-`INTEGRATION_VALIDATED_DEPLOY_BLOCKED_ON_PG_ROLE` — el candidato integrado está construido, verificado por suites, desplegado en DEV (gateway+worker) y con PROD preparado (backup + ensayo de restauración + plan de migraciones sellado). El rollout físico de BD/Hasura/PROD queda bloqueado por UNA dependencia externa demostrada: crear el rol `echo_v4_registry_owner` en PostgreSQL 192.168.31.220 exige CREATEROLE y ningún credencial accesible lo posee.
+`INTEGRATION_MERGED_TO_MASTER_PROD_BLOCKED_ON_PG_ROLE` — el candidato fue verificado independientemente (echo: INTEGRABLE Y CORRECTO sin defectos materiales; symphony: GO CON RESERVA, reserva resuelta con c532150), integrado por fast-forward a `xKoRx/echo:master` (`40cb63eb..347eee8b`), desplegado en DEV (gateway+worker+front) y con PROD preparado (backup + ensayo de restauración + plan sellado). El rollout físico de BD/Hasura/PROD queda bloqueado por UNA dependencia externa demostrada: crear el rol `echo_v4_registry_owner` en PostgreSQL 192.168.31.220 exige CREATEROLE y ningún credencial accesible lo posee.
 
 ## Candidatos integrados
 
@@ -35,7 +35,12 @@ Ancestría verificada: master 40cb63eb es ancestro del candidato echo (merge fas
 3. `strategy_history_v2_{put,service}.go`: guard EC-03 (existing_ref sin redeclaración no toca metadata versional) + write-ahead pre-tx y artefacto real de B (H14/B-06); `NewNativeHistoryServiceV2` (store obligatorio ruta nativa) conservado.
 4. `1622c762`: master remoto NO compilaba v3/core — `.gitignore:73 echo-runtime-control` (patrón para el binario) sepultaba `expected_roster.go` + 2 tests sin commitear. Rescatados con `add -f` y patrones anclados a `v3/core/`.
 
-## Correctivos del productor (symphony, 12 commits en Shot 4)
+## Verificación independiente (agentes frescos sin autoría)
+
+- **Echo @347eee8b — INTEGRABLE Y CORRECTO, NO REFUTADO.** Traza/ancestría/tag idéntico byte a byte; merges con cero ediciones semánticas ocultas (`diff-tree --cc` vacío); master REALMENTE no compilaba sin el rescate (repro incluido); oráculo anti-takeover presente y más estricto; suites sdk/postgres (161s), contracts, E11 y gateway RC=0 contra PG18 real. Notas no materiales: el commit del rescate en historia es `8185c306` (amend de 1622c762); ambigüedad de atribución ACK sólo si un writer declara `kind` Y `kind/default` — degrada a BLOCKED, jamás concede READY ilegítimo.
+- **Symphony @3632591 — GO CON RESERVA → resuelta.** P1s cerrados probados sobre PG real; sin contra-ejemplos en validadores de evidencia (prueba empírica con `Evaluation.Validate()` productivo); contrato/build/vet sin regresiones. Defecto material D1: guardas `IsRegisteredLastAndAdditive` de 015/016 esperaban ser últimas → corregidas a aditividad ordenada en `c532150` (suite completa verde 58s), pusheado. Pre-existente no atribuible: `TestDecisionStore_ListFlowRunSelectionDecisions` (falla en base y candidato). UNKNOWN resuelto: el PG QA quedó con 017/018/019 en ledger (qavertical aplicó con el runner corregido).
+
+## Correctivos del productor (symphony, 13 commits en Shot 4)
 
 - QA-S3-05: `ordered` incluye 017/018/019 + init-panico que congela "toda migración embebida ∈ ordered".
 - QA-S3-06: migración 019 aditiva (decision_ref opcional, CHECK retirado, unique queda como guarda legacy); SaveManifest manda NULL real; meta nil jamás fabrica `decision:<key>`.
