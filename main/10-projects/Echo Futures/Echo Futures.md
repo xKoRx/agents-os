@@ -23,7 +23,7 @@ tags:
   - tech/echo-futures
   - topic/algorithmic-trading
 created: "2026-09-25"
-updated: "2026-10-27"
+updated: "2026-10-28"
 ---
 
 # Echo Futures
@@ -32,11 +32,17 @@ updated: "2026-10-27"
 
 **Gobierno de I+D desde 2026-10-27:** la investigación permanente de estrategias se gestiona en [[Echo — I+D de Estrategias]] → [[Echo I+D — Futures]]. Este proyecto conserva producto, arquitectura, Backtester y runtime; la reorganización no acepta entregas técnicas ni autoriza producción. Los controles y cortes de producto que siguen mantienen su evidencia y vigencia propias.
 
+**Convergencia Backtester–runtime — 2026-10-28:** el Owner solicita planificación y diseño para integrar los experimentos con el modelo vigente del runtime y reproducir sesiones con datos precisos. [[EF-BACKTEST-RUNTIME-INTEGRATION-PLAN]] es el diseño candidato subordinado a este proyecto, R6/Runtime Pools y GOD-05; coordina el frente 1 con [[Echo I+D — Futures]], sin crear otro planner ni reactivar S05 del laboratorio. El Owner informa pruebas PROD; el último receipt recuperado acredita DEV RO del 27-10 y se requiere identificar la evidencia operativa posterior. Esta anotación no adjudica gates ni modifica los controles de release.
+
 ## ✅ Tareas
 
 Las tareas técnicas permanecen en sus controles/proyectos de entrega enlazados. El único puente vigente de [[Echo Futures — Optimización de Campañas]] está en [[Echo I+D — Futures]]; no mantener un segundo puente activo aquí. Las prioridades de nuevas investigaciones se recuperan desde esa línea.
 
+- [/] Diseñar la convergencia Backtester–runtime y el contrato de reproducción de sesiones: [[EF-BACKTEST-RUNTIME-INTEGRATION-PLAN]]. Diseño candidato revisable; primer retorno read-only de Hefesto preparado, no ejecutado. Implementación/merge/rollout requieren sus autoridades y autorizaciones posteriores. #owner/me #type/supervision #area/echo
+
 ## 📆 Bitácora
+
+- **2026-10-28** — Nuevo mandato Owner de planificación/diseño de integración. Reconciliadas por lectura las ramas de Lab/runtime, contratos Strategy/MM, pools, temporalidad y diferencias económicas; plan candidato y mandato read-only documentados. No ejecución ni modificación de producto. [[80-agents/journal/logs/2026-10-28-echo-futures-research-runtime-plan|Registro]].
 
 - **2026-10-27** — Por mandato Owner se transfiere la gestión de investigación al programa común Echo I+D, con dos divisiones. Optimización, universo de props y experimento económico se relacionan con la línea Futures; producto/runtime e historia conservan sus autoridades. Sin campañas, código, cuentas ni aceptación de gates en esta reorganización.
 
