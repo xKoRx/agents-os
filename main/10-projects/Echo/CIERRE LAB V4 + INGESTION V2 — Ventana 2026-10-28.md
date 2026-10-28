@@ -51,7 +51,18 @@ Ancestría verificada: master 40cb63eb es ancestro del candidato echo (merge fas
 
 Stack: Temporal 7233 (ns qa-shot3), etcd 7439, Mongo 27417 (forge_qa), Garage S3 8344, PG 56438 (productor) + PG18 54338 (Echo, catálogo 091) + gateway candidato :8095. Task nativa `echo_ingestion_v2` sometida por workflow raíz Generic real (`sqx-main-v1-<token>`).
 
-Demostrado: flow_run_start → begin_workflow_span (la actividad colgada del QA) → resolve (snapshot sellado en Mongo) → batch (lee trades+definición reales de S3) → finalize (reporte tipado) → seal. Reporte del run: selected=1, phase MAPPING, `ENVELOPE INVÁLIDO` en el ítem — el POST final no parte porque la validación compartida del envelope rechaza el fixture (semilla sin filas de identidad `sqx.strategy_versions`/`strategy_magic` — qavertical no las siembra). Última milla pendiente de una sola campo; el mapper M04 sigue CONFIRMADO por su batería de oráculos en-suite.
+Demostrado: flow_run_start → begin_workflow_span (la actividad colgada del QA) → resolve (snapshot sellado en Mongo) → batch (lee trades+definición reales de S3) → finalize (reporte tipado) → seal. Reporte del run: selected=1, phase MAPPING, `ENVELOPE INVÁLIDO` en el ítem — el POST final no parte porque la validación compartida del envelope rechaza el fixture (semilla sin filas de identidad `sqx.strategy_versions`/`strategy_magic` — qavertical no las siembra). Última milla pendiente de un campo; el mapper M04 sigue CONFIRMADO por su batería de oráculos en-suite. NOTA: el stack QA es compartido con otra sesión activa del programa (qa4) — no tocar sus procesos/fixture nuevos.
+
+## Caso C completo por HTTP real (gateway candidato :8095 + PG18 + artifact store)
+
+- POST `/api/v2/strategy-ingestions` REGISTER_ONLY histories=[] con source_evidence válida → **202 INGEST_ACCEPTED**, receipt `1291300d-3304-4bad-9a58-ca70d6372a22`, versión `sha256:e4fa2eea…`, runtime `sv2:7d347eb2…`.
+- GET por receipt_id → 200 mismo snapshot; GET por `by-key` → 200 mismo receipt.
+- Replay mismo body+key → 200 mismo receipt (`replayed=true`, cero duplicados).
+- Misma key con body distinto → **409 IDEMPOTENCY_CONFLICT**.
+- Persistencia: `strategy_versions`=1, `strategy_version_metadata` rev 1 sellada, `strategy_histories`=0 (sin historia ficticia), snapshot del receipt con `HISTORY_NOT_REQUESTED`, sin outbox de dispatch (REGISTER_ONLY), definición runtime `sv2:` creada.
+- Artifact readback: bytes canónicos del request en el store direccionados por sha256 (`e05001d0…`), redecodifican al mismo envelope.
+- Envelope aceptado también por el servicio contra PG directo (probe `AcceptIngestionV2`): receipt `a079e294…` + replay idempotente.
+- La receta del digest de definición es `DigestTagged("echo-strategy-definition-content.v1", manifest)` (no sha256 plano del canónico) — nota operacional para productores manuales.
 
 ## Suites del candidato echo @347eee8b (PG18 54338, catálogo 091 completo)
 
