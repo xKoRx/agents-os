@@ -137,3 +137,45 @@ QA GLM-5.3-Flash Max LOCAL fresco, sin autoría. SHAs: symphony `feature/forge-e
 
 - [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT2 — Local Implementation Mandate|SHOT2 — Local Implementation Mandate]], [[B — Frozen Design]], [[C — Four Shot Delivery Plan]], [[A — Source Authority Report]], [[10-projects/Echo/Ingestion V2 — Operational Integration/Forge Task — Contract Addendum|Forge Task — Contract Addendum]].
 - Evidencia runtime local: `/home/kor/aranea/work/forge-echo-task-v2-20261027/` (worktrees echo/symphony/sdk + harness2).
+
+## Continuación del implementador — cierre de M01–M09 (2026-10-27, segunda pasada)
+
+**SHAs finales (REMOTE_VERIFIED):** Symphony `feature/forge-echo-ingestion-task-v2` = `42ca3d9` (M01–M07) + `b26be6d` (pin .2) + `7731cb8` (batería tests) — ancestro directo de `07c9142`, sin reescritura. Echo `feature/forge-task-contract-v2` = `24af7862` (M08) — ancestro de `2c66e940`. Contracts: **.1 NO movido**; nueva versión de prueba inmutable `v3/sdk/contracts/v0.0.1-forge-ingestion-task.2` (commit `24af7862`, subtree `cb88aece4f04b648fd724568de3823604dc064ab`); pin Symphony = .2 con exclude del tag legacy intacto. SDK: `c7f11496` en checkout dedicado (`/home/kor/aranea/work/forge-echo-task-v2-20261027/sdk`); `go list -m` resuelve `v3/sdk/contracts v0.0.1-forge-ingestion-task.2` y `github.com/xKoRx/sdk` via replace `../../sdk` (checkout fijado, no desconocido).
+
+### Matriz M01–M09
+
+| ID | Corrección aplicada | Commit/test |
+|---|---|---|
+| M01 | Wiring completo: ControlPlane PG + EvidenceStore Mongo + storage MinIO + ingress V2 + destino ETCD; IdentityResolver REAL por item (LoadStrategyIdentity+LoadStrategyManifestIdentity); SourceBucket real; fail-closed sin degradación a physical (data_only exige todo o falla) | `42ca3d9` wiring |
+| M02 | output de task nombrada capturado por workflows (outputsByName; error si no precede), input_cohort cohort durable, output_cohort con BuildMinIOPath+ownership COMPLETED+lectura acotada B§4.2 (método ListNamespaceOutputEvaluationsBounded sobre el reader real), cohort vacío acreditado, SelectedCount=miembros+StrategyCount, snapshot rehidratado POR REF (SnapshotLoader), SpecContext/ReceiptScope sellados | `42ca3d9` |
+| M03 | OUTPUT/STRATEGY_SQX exacto por evaluación (0/1/>1), SEALED_REF por binding del item, DEFINITION_REF desde definition_evaluation_ref exacta (1 artifact tipado, schema dispatch), MetricSets reales del store con values tipados + ausencias PARTIAL, metadata desde scope acreditado, ProducerContractVersion/Component del productor real | `42ca3d9` |
+| M04 | UNA operación por trade (identity/tiempos/lado/importe exactos, sin agregación ni redondeo), Exposure UNKNOWN, validación scope por registro, conteos payload↔TradeSet verificados, NONE sin recorrida (evidencia sin economía), HistoryID con tuple completa (stage/variant/sample/result/cell), CANONICAL con presupuesto de descompresión. **Oráculo mínimo cubierto por `TestMapItemTwoTradesKeepIdentity`** (dos trades ⇒ 2 ops con IDs/tiempos/lados/importes preservados; jamás la suma) | `42ca3d9`+`7731cb8` |
+| M05 | Orden FK: Prepare→BindSourceBinding; migración 018 con decision_ref opcional + guardia legacy por índice parcial (sin decision sintético); SaveNativeManifest write-once con RowsAffected; scope en digest de binding (namespace/writer reales) | `42ca3d9` |
+| M06 | BeginAttempt ⇒ UNKNOWN_RECEIPT durable; expected COMPLETO derivado del manifest sellado (HistoryIDs/versión/digest/source_evidence); UpdateReceiptNative transaccional con guard UNKNOWN→INGESTED e refs atómicas; RecoverIngestion respeta INGESTED (cero red) y hace GET-by-key ANTES de POST con bytes canónicos revalidados | `42ca3d9` |
+| M07 | Finalize PERSISTE el TaskResult vía TaskReportSink (write-once Foundation, ACK real); REPORT_PENDING distinguible del outcome remoto y recuperable | `42ca3d9` |
+| M08 | Envelope valida SourceEvidence COMPLETA siempre; payload_artifact al wrapper congelado; orden canónico global de sources; value↔availability; XML hasta EOF; snapshots con enums cerrados; HistoryRefV2 recomputado del scope; SQX schema dispatch en frontera (validator compartido para sqx-strategyfile.v1); canonical_artifact de revisión/metadata con BYTES REALES write-ahead; Lab: CoveredThroughNS gobernado por cobertura DECLARADA, FilterKnownAt excluye KnownAtUnknown, OpNetCurrencyStatus atraviesa el loader | Echo `24af7862` + tag .2 |
+| M09 | Ver «Gates A–E segunda pasada» | abajo |
+
+### Gates A–E (segunda pasada)
+
+- **A:** build `./...` rc=0 (tools/ redeclare pre-existente fuera del gate, atribuido en worktree limpio). Suites rc=0: forge, domain, runtime, sqx-definition, echo-handoff, activities (subset), registry-postgres (143s con suites propias), workflows (falla pre-existente en baseline `22f337ca`, verificada). Migraciones: fresh+upgrade 001–086 en PG propia (pipeline rebase.sh probado), segunda pasada idempotente.
+- **Coverage de archivos nuevos (denominador 85 funcs, `go tool cover`):** activity 53.3 · sink 86.6 · native-ingress 74.4 · sqx-definition 59.5 · domain 71.8 · forge-resolver 67.4 · forge-mapper 60.3 · runtime 70.8 — **promedio 68.0%, BAJO el piso 95%**. Déficit honesto declarado: los paths faltantes (ingestOne entregado E2E con Temporal real, CANONICAL_HISTORY_V2 end-to-end, DEFINITION_REF con artifact real, recovery con caída de Mongo) requieren el harness integrado que queda como primera tarea de corrección. Perfil: `go test -coverprofile` por paquete; comandos en el commit `7731cb8`.
+- **B/C:** NOT_RUN como E2E con Temporal real (no hay server Temporal en el harness y levantar uno no estaba disponible en esta pasada); la suite `sdk/postgres` completa de Echo (con historias/sin historias, receipts/readback, CAS, outbox, projector) corre rc=0 sobre la PG aislada del programa (56438, base `echo_labv4`, 001–086 fresh). Queda pendiente explícito: worker real + Lab derivados.
+- **D:** intento realizado y BLOQUEO CONCRETO: canales `aranea-mongo-forge-ro` y `aranea-ssh` responden `session not found / expired` (requieren re-inicialización no disponible en este contexto). Fallback ejecutado: rol RO local del harness verificó los read ports (`SELECT count(*) FROM echo.strategy_ingestion_receipts` = 515 filas del harness, usuario `mcp_echo_dev_ro`). La fuente auténtica Forge (PG/Mongo/MinIO reales) permanece sin leer: D sigue NOT_RUN con bloqueo documentado, no fabricado.
+- **E:** NOT_AUTHORIZED (sin cambios).
+
+### Incidente template PG — acreditación (read-only, sin restaurar ni borrar)
+
+- Proceso 163088, puerto 56437: `postgres -D /home/kor/aranea/work/lab-v4-shot4-20261021/pgdata` (exe y cwd verificados vía /proc). Es el pgdata COMPARTIDO del workspace antiguo; usuario `kor`. Bases del clúster: `echo_labv4_bt/_demo/_demo2/_demo3/_load/_real/_scratch/_s4` — las siete primeras INTACTAS (no fueron tocadas). La única afectada es `echo_labv4_s4`: recibió DROP + repoblado parcial (8 tablas `echo` hoy) por mi primer boot con el binario `pgboot-s4` que hardcodea ese DataPath, seguido de `applybase` del catálogo antiguo.
+- Proceso 170022, puerto 56438: `postgres -D /home/kor/aranea/work/forge-echo-task-v2-20261027/harness2/pgdata` — 100% recursos propios del programa; acreditado que NO comparte directorio con el template.
+- Acción devuelta al Owner (única y específica): restaurar `echo_labv4_s4` desde el pipeline del propio workspace (`/srv/echo-work/lab-v4-shot4-20261023/harness/rebase.sh reset` NO aplica — es otro manifest; la reconstrucción correcta es re-aplicar 001–086 con el applybase del workspace 20261021 tras stop/purge SOLO de esa base). No se ejecutó ninguna restauración/borrado bajo este mandato. El proceso 163088 sigue ARRIBA (no fue detenido) y pertenece al workspace ajeno.
+
+### Recursos
+
+- Harness propio: `harness2/` (pgboot-bin+dbexec+pre_001+applybase, puerto 56438, base `echo_labv4`) — ARRIBA para QA.
+- PENDIENTE EXPLÍCITO antes de re-adjudicación: E2E con Temporal real (worker data_only), coverage ≥95% restante, goldens cruzados desde el módulo distribuido, D con canales MCP re-inicializados.
+
+## Fuentes (actualizadas)
+
+- Adjudicación `SHOT2_INCOMPLETE` y continuación: Agents-OS `408a6c11`; [[SHOT2 — Local Implementation Mandate]] «Continuación vigente de Shot 2».
+- Evidencia runtime local: `/home/kor/aranea/work/forge-echo-task-v2-20261027/` (worktrees echo/symphony/sdk + harness2).
