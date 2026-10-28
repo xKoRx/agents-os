@@ -40,7 +40,14 @@ tags:
 - Retrieval mode: normal (delta-only; bootstrap de la pasada 1 reutilizado, sin re-bootstrap retroactivo)
 - Artifacts changed: checkout (extensión W1-d sin commit), preregistro v2, binario W1-d, 6 registros canónicos del vault
 
-## Scores
+## Actualización 2026-10-28 (pasada 5, misma sesión)
+
+- **Corrección científica materializada y probada:** la pasada 4 solo demostró HTTP200+página vacía BAJO ESE FILTRO; el código usaba `startDate` como kickoff sin justificación (semántica no documentada). La schema autorizada de /markets SÍ documenta `gameStartTime` (string, nullable), semántica corroborada por la doc de CLOB (`gst` = "Game start time for sports markets"). v3: kickoff = `gameStartTime` fail-closed; presupuestos `--limit` (≤100 candidatos totales) y `--max-requests` (≤3) con reintentos desactivados (`DisableRetry`); gate OOS pre-interpretación verificado por test envenenado; dedup; selección ≤4.
+- **Resultado medido (no fricción de permisos):** con el presupuesto aprobado, 1 request a las 18:15:08Z devolvió `[]` — el MISMO sha `37517e5f…` que la corrida v2 a 17:47:02Z. El bloqueo es del filtro documentado y es reproducible entre instantes; `journal verify` capture-v3 NO_INTEGRITY_FAILURES. Hipótesis principal (no verificada, sin sondas): `start_date_min` filtra `startDate` — plausible inicio de trading, pasado en mercados vivos — y por eso excluye todo.
+- **Aprendizaje:** los 200-con-`[]` no distinguen "sin datos" de "semántica distinta de la asumida"; la corrección pasó por la DOC (nombre/tipo de campo + corroboración cruzada CLOB), no por sondas en red. El preregistro por revisiones vinculadas (v1→v2→v3, nada sobrescrito) permitió auditar el cambio semántico.
+- Scores de la pasada 5: retrieval 5 (docs ya verificadas re-consultadas con prompt enfocado), skill fit 5, closeout friction 4, overall confidence 4.
+
+## Scores (pasadas 1-4; historia)
 
 Use 1-5, where 1 is poor and 5 is excellent.
 

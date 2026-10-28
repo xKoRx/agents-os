@@ -46,10 +46,11 @@ tags:
 
 ## Artifacts creados o modificados
 
+- **Pasada 5:** checkout — `catalog select.go` v3 (presupuestos/kickoff/gate OOS/dedup), `gamma.go` (+`DisableRetry`), `w1d_test.go` y `selection_query_test.go` ampliados; binario reconstruido. Data-dir — `preregister-v3.json`, `capture-v3/` (journal: 2 registros, frontier 2), `selection-manifest-v3.json` (binding `8457705c…`, página `[]` sha `37517e5f…`). Sin cambios en capture/ ni selection-manifest.json de v2 (preservados).
 - **Pasada 4:** `capture/` (journal real: 2 registros, frontier 2 — boot + página `[]`), `selection-manifest.json` (binding preregistro `9611b9b1…`, page sha `37517e5f…`, blocker). Sin cambios de código ni binario.
 - Checkout (sin commit, HEAD intacto, 3 archivos W1-c intactos): 2 transportes editados, 2 comandos nuevos, 2 dispatches, 3 archivos de tests.
-- `validated-baseline/w1-d-public-capture-20261028/`: preregister-v2.json (nuevo), engine (binario), implementation/ y close/ preservados como historia de las pasadas 1-2.
-- Vault: doc W1-d, esta summary, feedback, agent_run, change_log (secciones (11) y (12)), §18 de la continuidad.
+- `validated-baseline/w1-d-public-capture-20261028/`: preregister.json (v1), preregister-v2.json, preregister-v3.json, engine (binario v3), implementation/ y close/ preservados como historia de las pasadas 1-2.
+- Vault: doc W1-d, esta summary, feedback, agent_run, change_log (secciones (11)-(13)), §18 de la continuidad.
 
 ## Memoria propuesta o creada
 
@@ -57,11 +58,12 @@ tags:
 
 ## Decisiones
 
+- **Pasada 5:** corrección científica antes de red (verificación de semántica en la doc autorizada: `startDate` sin semántica documentada; `gameStartTime` documentado y corroborado por `gst`); regla v3 aplicada sin desviación — página `[]` ⇒ sin muestra, sin ampliar presupuesto/universo, sin WS.
 - **Pasada 4:** con `[]` en la página acotada, aplicar la regla sin desviación: cero elegibles ⇒ sin muestra, sin ampliar universo, sin WS; bloqueo medido y entregado con el colector probado (mandato explícito).
 - **Pasada 3:** no usar `policy-a/policy-b` ni fabricar manifiesto: la captura se detiene en selección (BLOCKED medido) antes que inventar identidad de mercados.
-- No reintentar variantes tras la denegación única de la pasada 3 (regla explícita del mandato).
+- No reintentar variantes tras las denegaciones únicas de cada pasada (regla explícita del mandato).
 
 ## Pendiente
 
-- Decisión lanzador/Owner sobre la regla ex ante: re-verificar la semántica documentada de `start_date_min` (la página vino vacía con 200, no 422) y, si procede, re-preregistro v3 ANTES de cualquier nuevo request; el colector, binario y preregistro v2 quedan como evidencia probada.
+- Decisión lanzador/Owner: preregistro v4 con descubrimiento sin `start_date_min` (elegibilidad por `gameStartTime` client-side, presupuestos 100/3 intactos, gate OOS intacto) — la hipótesis del vacío es que `start_date_min` filtra `startDate` (inicio de trading, pasado en vivos); NO verificarla con sondas de variantes sin nuevo preregistro.
 - Con selección real: observe init → record 5m humo (tope 90m) → observe final → verify → manifest build → replay → cierre canónico del resultado.
