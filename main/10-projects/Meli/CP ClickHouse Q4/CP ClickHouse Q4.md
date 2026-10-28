@@ -50,16 +50,13 @@ cssclasses:
 
 ## 📊 Estado actual
 
-- **2026-10-27 — Roadmap propuesto, pendiente de acordar con Flor.** Ocho entregables funcionales en dos lanes, ordenados por valor; cada uno es una capacidad usable en producción con su caso E2E. El código compartido entra como PR habilitante dentro del primer entregable que lo consume. Deprovision y start-stop de refreshable ya están en `master` (PR #346), y el import refreshable está desarrollado ([[Import de Refreshable Materialized Views externas]]). Detalle en [[Roadmap Q4 — CP ClickHouse]].
+- **2026-10-28 — Plan de Q4 propuesto, pendiente de acordar con Flor.** Sólo ítems de la planilla y con sus responsables: [[Plan Q4 ClickHouse — semana a semana]]. Deprovision y start/stop de refreshable ya están en `master`; el import refreshable está desarrollado y espera la última prueba. P0 + P1 + P2 (sin Control) suman ≈ 55 días contra ≈ 56 disponibles entre los dos, sin holgura. Control (sin definir) y multi-source (P3) quedan fuera. Tres hallazgos del código que no están en la planilla (salud del refresh, limpieza de importadas, import de MergeTree) se proponen aparte.
 
-| Ventana | Rodrigo · vistas y credenciales | Flor · salud y warehouse |
+| Semanas | Rodrigo | Flor |
 |---|---|---|
-| 27-oct → 7-nov | R1 Adoptar refreshable existentes | F1 Ver si mi refreshable falla |
-| 10-nov → 21-nov | R2 Keys siempre vigentes | F2 Crear mi warehouse (→ 28-nov) |
-| 24-nov → 12-dic | R3 Leer con mis keys | F3 Prender/apagar mi warehouse |
-| 15-dic → 23-dic | R4 Vista normal (condicionado) | F4 Borrar mi warehouse |
-| 24-dic → 31-dic | Hardening, rollout y release | Hardening, rollout y release |
-
+| S1–S2 · 28-oct → 6-nov | Cierre del import refreshable + credenciales · permisos admin | Warehouse provision (validar, orquestar, infra) |
+| S2–S5 · → 27-nov | Context v2 · lib de consumo + soporte | Warehouse provision (PM, logs, API key, BD) · start-stop · deprovision |
+| S6–S9 · → 23-dic | Vista normal: provision, deprovision, start-stop, import y credenciales | Cierre del deprovision · Dictionary |
 
 ## 🧱 Entrega de desarrollo
 
@@ -101,19 +98,16 @@ views:
 
 > [!example]- Fuente de tareas — editar / mover de estado aquí
 > %% Estados: [ ] To Do · [/] WIP · [r] Review · [x] Done · [-] Canceled. Owners: #owner/me, #owner/agent. Tipos: #type/dev #type/admin #type/research #type/pr-review #type/supervision. Flags: #blocked #waiting #urgent. Ver [[convenciones]]. %%
-> - [ ] Acordar el roadmap con Flor (orden por valor, lanes y las cinco decisiones del roadmap §8) #owner/me #type/admin #area/meli
-> - [ ] Pedir a terceros: permiso de la última prueba, API key Cloud con escritura, contrato de aprobación RIO, credenciales de vistas existentes #owner/me #type/admin #area/meli
-> - [ ] Traer los datos para validar el valor: cantidad de refreshable en prod y teams esperando warehouse #owner/me #type/research #area/meli
+> - [ ] Acordar con Flor el plan semanal (asignación de lo que no tenía dueño, hallazgos fuera de la planilla, migraciones, Control, forma de la lib) #owner/me #type/admin #area/meli
 > - [ ] Actualizar la planilla: deprovision y start-stop refreshable → hechos #owner/me #type/admin #area/meli
-> - [ ] R1 — Última prueba del import refreshable #owner/me #type/dev #area/meli #blocked
-> - [ ] R1 — Push de Playmaker tras el merge de #1332 y gate Cleric #owner/me #type/dev #area/meli #waiting
-> - [ ] R1 — Precarga de credenciales de las refreshable reales con sus owners #owner/me #type/admin #area/meli
-> - [ ] R1 — Limpieza de KVS y KMS al borrar una vista importada #owner/me #type/dev #area/meli
-> - [ ] R2 — Verificar si Playmaker conserva outputs previos cuando el CP no los reenvía #owner/me #type/research #area/meli
-> - [ ] R2 — Keys siempre vigentes tras ALTER (PR habilitante: credencial única) #owner/me #type/dev #area/meli
-> - [ ] R3 — Leer ClickHouse con keys propias (MVP de la lib) #owner/me #type/dev #area/meli
-> - [ ] R4 — Query de demanda de vistas normales en prod #owner/me #type/research #area/meli
-> - [ ] R4 — Vista normal provision/deprovision (PR habilitante: variante de vista), si hay demanda #owner/me #type/dev #area/meli
+> - [ ] Import refreshable: última prueba, sync de PM con develop, gate Cleric y push #owner/me #type/dev #area/meli #blocked
+> - [ ] Import refreshable — credenciales: pedir user/pass a los owners y cargarlos en la precarga #owner/me #type/admin #area/meli
+> - [ ] Cambio permisos de admin #owner/me #type/dev #area/meli
+> - [ ] Context v2 — credenciales sin duplicidad en los ALTER #owner/me #type/dev #area/meli
+> - [ ] Lib de consumo de permisos + implementación/soporte #owner/me #type/dev #area/meli
+> - [ ] Normal view: provision (antes medir el uso en prod), deprovision, start-stop #owner/me #type/dev #area/meli
+> - [ ] Normal view: import + credenciales #owner/me #type/dev #area/meli
+> - [ ] Llevar al líder lo que queda fuera (Control, multi-source) #owner/me #type/admin #area/meli
 
 ```dataviewjs
 const meta={" ":["To Do","var(--text-muted)","var(--background-modifier-border)"],"/":["WIP","#ba7517","rgba(234,124,12,.18)"],"r":["Review","#185fa5","rgba(55,138,221,.18)"],"x":["Done","#3b6d11","rgba(99,153,34,.18)"],"X":["Done","#3b6d11","rgba(99,153,34,.18)"],"-":["Canceled","var(--text-faint)","var(--background-modifier-border)"]};
@@ -153,14 +147,16 @@ _Salvo la primera, son propuestas a acordar con Flor._
 
 - Definido por el owner: este proyecto y sus docs son internos (AGENTS OS); nada se crea en Spellbook.
 - Propuesta: el roadmap se ordena por valor y cada entregable es una capacidad funcional en producción con caso E2E; los PRs habilitantes sólo entran si un entregable los consume en su misma ventana.
-- Propuesta: dos lanes, Rodrigo con vistas y credenciales y Flor con salud y warehouse.
-- Propuesta: lo último de cada lane (R4, F4) es lo primero que se recorta.
-- Propuesta: descartar start-stop de vista normal; import de vista normal, import explícito de MergeTree, Dictionary, Control y multi-source quedan para Q1.
+- Propuesta: se respeta la asignación de la planilla; lo que no tenía dueño va a Rodrigo (vista normal) y a Flor (Dictionary) para equilibrar la carga.
+- Propuesta: los hallazgos del código fuera de la planilla sólo entran reemplazando otro ítem.
+- Propuesta: el roadmap cubre todo el backlog de Q4; lo que no alcanza por capacidad se lleva al líder como decisión, no se recorta en el documento.
+- Propuesta: si se aprieta, se mueve la cola de cada lane (R4, F4), nunca un entregable a medias.
 
 
 ## 🔗 Docs / Links
 
-- [[Roadmap Q4 — CP ClickHouse]] — diagnóstico, piezas base, olas, riesgos.
+- [[Roadmap Q4 — CP ClickHouse]] — avance, capacidad, entregables por valor, riesgos.
+- [[Plan Q4 ClickHouse — semana a semana]] — versión corta para compartir con Flor: desarrollos con días, calendario semanal y decisiones.
 - [[Import de Refreshable Materialized Views externas]] — entrega en curso del import.
 - [[Plan de implementación — Context en ClickHouse]] — diseño previo de Context en el CP.
 - [Planilla del backlog](https://docs.google.com/spreadsheets/d/1x5Wv9Wn1j0mkyycsN5X3L8d7r4PZSCpzqo5mhDMqjy4/edit?gid=1985317832#gid=1985317832)

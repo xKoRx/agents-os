@@ -35,6 +35,7 @@ tags:
 - **Archivo(s):**
   - `10-projects/Meli/CP ClickHouse Q4/CP ClickHouse Q4.md`
   - `10-projects/Meli/CP ClickHouse Q4/Roadmap Q4 — CP ClickHouse.md`
+  - `10-projects/Meli/CP ClickHouse Q4/Plan Q4 ClickHouse — semana a semana.md` (created 2026-10-28)
 
 ## Motivo
 
@@ -43,6 +44,12 @@ tags:
 - Iteración 2 (mismo día): el owner aclaró que el proyecto es interno, sin Spellbook, y que la meta es un ClickHouse full al cierre de Q4. Se agregó la definición de full, dos huecos fuera del backlog (salud del refresh en refreshable, import explícito de MergeTree) y se reemplazaron los épicos propuestos por docs internos de diseño.
 
 - Iteración 3 (mismo día): el owner pidió priorizar por valor y que cada entregable sea funcional. El roadmap pasó de olas por pieza técnica a ocho entregables funcionales en dos lanes, con PRs habilitantes dentro del entregable que los consume y una agenda para acordarlo con Flor.
+
+- Iteración 4 (2026-10-28): el owner aclaró que el roadmap debe cubrir todo Q4 y que no correspondía mover ítems a Q1. Se agregó el avance de Q4 a la fecha (historial de PRs de octubre), la capacidad contra el backlog y la línea de capacidad como decisión del líder; se eliminó toda mención a Q1.
+
+- Iteración 5 (2026-10-28): plan corto semana a semana para compartir con Flor, con desarrollos numerados, días por persona y explicación de la capacidad; pasa a ser la fuente de las fechas y el roadmap y el proyecto se alinean a él.
+
+- Iteración 6 (2026-10-28): el owner detectó ítems ajenos a la planilla, estimaciones infladas y responsables cambiados. El plan semanal se rehízo sólo con ítems de la planilla, sus responsables y las subtareas de warehouse; los hallazgos propios quedaron como propuestas aparte.
 
 ## Fuentes usadas
 

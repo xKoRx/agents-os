@@ -10,7 +10,7 @@ parent: "[[SIG-659 — Discovery & CLI]]"
 sprint:
 start: "2026-10-27"
 due:
-progress: 83
+progress: 60
 repo: https://github.com/melisource/fury_rio-sdk-events
 jira:
 prs:
@@ -21,7 +21,7 @@ tags:
   - kind/project
   - area/meli
 created: "2026-10-27"
-updated: "2026-10-27"
+updated: "2026-10-28"
 ---
 
 # SIG-659 — RIO Bus (implementación)
@@ -48,15 +48,15 @@ updated: "2026-10-27"
 
 ## 📊 Estado actual
 
-- **2026-10-27 — F1 implementada y pusheada; publicación pendiente.** G0 aceptado y D-10 resuelto por el owner. `rio-sdk-events@feature/rio-bus` commit `df9ef57bb09ac349a06e4a4bc9e13c000e249c2f`, base `35b1a43`; worktree limpio. Tres gates PASS, 2.496 tests sin fallos/omitidos, hooks pre/post-commit PASS. Código nuevo: 100% líneas/ramas, 99,66% instrucciones; 24 archivos dentro del presupuesto (16 + 8).
-- **Próximo paso:** resolver con el owner el `PLAN_CONFLICT` del spike 2 y publicar `0.0.1-rio-bus`: Fury requiere esa versión en `build.gradle`, pero el paquete prohíbe modificar `version` y el SHA pusheado conserva `1.5.0`. La consulta para autorizar exclusivamente la versión de prueba está pendiente. G1 permanece `pending` y T1.6 `[/]` hasta completar la publicación; F2 no iniciada.
+- **2026-10-28 — F1 entregada; G1 en `review`.** `rio-sdk-events@feature/rio-bus` pusheada en `7f507839989308ee8178467d97f411337a4d37f1`, base `35b1a43`; worktree limpio. [Versión de prueba 0.0.1-rio-bus](https://web.furycloud.io/rio-sdk-events/versions/detail/0.0.1-rio-bus) publicada y resuelta desde Maven; el backend de builds confirma `finished`, SHA y rama exactos. Tres gates PASS, 2.496 tests sin fallos/errores/omitidos, hooks pre/post-commit PASS. Código nuevo: líneas 123/123 y ramas 22/22 (100%), instrucciones 580/582 (99,66%); 24 archivos dentro del presupuesto (16 + 8).
+- **En curso, por ampliación explícita del owner:** completar `DiscoveryMessageReader` según SIG-644 y DD-8 de SIG-719, publicar `0.0.2-rio-bus` y ejecutar F2 en playmaker. Worktree de playmaker creado desde `origin/develop@20e0a91094fd827962932ebb4fead35a44c1184b`; T2.1 `[/]`. G1 conserva `review`: la autorización humana para avanzar queda registrada en D-14; no es aceptación del agente. H-2 se verificará con la publicación del reader. Tarea puente intacta; STOP al entregar G2 en `review`, sin F3 ni deploy.
 
 ## 🧱 Entrega de desarrollo
 
 | Aplicación / repo | Branch | Base | SPEC funcional | SPEC técnica | Estado |
 |---|---|---|---|---|---|
-| [`rio-sdk-events`](https://github.com/melisource/fury_rio-sdk-events) | `feature/rio-bus` | `origin/feature/discovery-v2-05-contract-hasher` @ `35b1a43` | [SIG-718](https://spellbook.adminml.com/projects/SIG/specs/SIG-718) | [SIG-719](https://spellbook.adminml.com/projects/SIG/specs/SIG-719) | F1 código y gates listos; publicación pendiente |
-| [`rio-playmaker`](https://github.com/melisource/fury_rio-playmaker) | `feature/rio-bus` (create) | `origin/develop` | [SIG-718](https://spellbook.adminml.com/projects/SIG/specs/SIG-718) | [SIG-719](https://spellbook.adminml.com/projects/SIG/specs/SIG-719) | F2 pendiente |
+| [`rio-sdk-events`](https://github.com/melisource/fury_rio-sdk-events) | `feature/rio-bus` | `origin/feature/discovery-v2-05-contract-hasher` @ `35b1a43` | [SIG-718](https://spellbook.adminml.com/projects/SIG/specs/SIG-718) | [SIG-719](https://spellbook.adminml.com/projects/SIG/specs/SIG-719) | G1 en review; `7f50783`, prueba `0.0.1-rio-bus` publicada |
+| [`rio-playmaker`](https://github.com/melisource/fury_rio-playmaker) | `feature/rio-bus` (create) | `origin/develop` | [SIG-718](https://spellbook.adminml.com/projects/SIG/specs/SIG-718) | [SIG-719](https://spellbook.adminml.com/projects/SIG/specs/SIG-719) | F2 en curso; base `20e0a9109`, reader SDK autorizado |
 
 ## 🧩 Subproyectos
 
@@ -77,6 +77,8 @@ views:
 ## Alcance
 
 **IN:** lo que SIG-719 lista en "Archivos afectados" para rio-sdk-events y rio-playmaker, y la verificación en el scope de test.
+
+**Excepción autorizada 2026-10-28 (D-14):** implementar el reader de SIG-644 con entrada de contrato JSON según DD-8, sus tipos/diagnósticos y tests requeridos, publicar el SDK `0.0.2-rio-bus` y usarlo en F2. El resto de las exclusiones se conserva.
 
 **OUT:** migrar tópicos o controllers existentes; tocar el modelo Discovery V2, el linter, el validador, el writer o el hasher; escribir `DiscoveryMessageReader`; persistir contratos; cambiar CPs; crear infraestructura en Fury; abrir PRs; liberar versiones productivas; agregar flags, interfaces, registros o configuración que SIG-719 no nombra.
 
@@ -111,7 +113,9 @@ Relevado el 2026-10-27 en refs remotas: `rio-sdk-events@origin/feature/discovery
 | D-10 | TECHNICAL_RESOLUTION | Corrección manual sólo en `BigQueueClientImpl`: usar `producerBuilder.build()` conservando segmento y buffering; mantener `version`, sin cambios en `ProducerFactory`. Reemplaza el cherry-pick previsto de `c67d65e`/`f1194a4` | 2026-10-27: autorización explícita del owner en el chat ante `PLAN_CONFLICT` | F1 |
 | D-11 | TECHNICAL_RESOLUTION | En playmaker, `rio.bus.segment-id` toma el valor de `bigqueue.segment` del mismo perfil | `CONTRACT` yml de playmaker | F2 |
 | D-12 | TECHNICAL_RESOLUTION | Hasta que exista la ingesta de SIG-671, `DiscoveryBusProcess.run` registra la recepción en log (`component_type`, `contract_version`, `producer.service_name`) y no persiste | SIG-719 "rio-playmaker"; SIG-671 sin implementar | F2 |
-| D-13 | TECHNICAL_RESOLUTION | Versiones de prueba `0.0.N-rio-bus`, CHANGELOG bajo `[Unreleased]`, push de la rama sin PR | Policy del owner | F1, F2 |
+| D-13 | TECHNICAL_RESOLUTION | Versiones de prueba `0.0.N-rio-bus`, CHANGELOG bajo `[Unreleased]`, push de la rama sin PR. Excepción F1 autorizada: escribir únicamente `version = '0.0.1-rio-bus'` en `build.gradle` antes de validar, commitear, pushear y publicar con Fury | Policy del owner; excepción confirmada en el chat el 2026-10-28 | F1, F2 |
+
+| D-14 | TECHNICAL_RESOLUTION | El owner pide ejecutar playmaker tras confirmar `0.0.1-rio-bus` y autoriza «Sí, completar el reader y publicar 0.0.2-rio-bus». Se amplía H-2 sólo con `DiscoveryMessageReader` y tipos/tests de SIG-644, entrada JSON de DD-8; versión SDK `0.0.2-rio-bus` en la misma rama. Autoriza además instalar Grimoire 27.3.0, revisión `d00c6dbdfffe1eea3b531f83cdfc5e9ec145454d`, con los efectos globales y hooks descritos en AGENTS.md | Autorizaciones explícitas del owner en el chat 2026-10-28; G1 no autoaceptado | H-2, F2 |
 
 ## Puntos de control humanos
 
@@ -127,7 +131,7 @@ Relevado el 2026-10-27 en refs remotas: `rio-sdk-events@origin/feature/discovery
 | Gate | estado | responsabilidad del agente de fase | evidencia de aceptación del owner | habilita |
 |---|---|---|---|---|
 | G0 | accepted | — | 2026-10-27: el owner confirma en el chat «Sí, acepto G0 y autorizo F1» | F1 |
-| G1 | pending | Dejar `review` con la evidencia de F1 | SHA pusheado, salida de los gates, coverage y versión de prueba | H-2, F2 |
+| G1 | review | F1 entregada: `7f50783` pusheado, gates PASS, cobertura ≥95%, `0.0.1-rio-bus` publicada; evidencia final en Bitácora 2026-10-28 | Pendiente de aceptación del owner; no autoaceptado | H-2, F2 |
 | G2 | pending | Dejar `review` con la evidencia de F2 | SHA pusheado, gates y Lore del repo, coverage | H-4, F3 |
 | G3 | pending | Dejar `review` con la evidencia de F3 | Logs de playmaker y del CP en test | Cierre |
 
@@ -180,7 +184,7 @@ D-1 a D-10 y D-13. No hay decisiones de diseño abiertas en esta fase.
 
 - Clases del modelo Discovery V2, linter, validador, writer, hasher y sus tests.
 - APIs existentes de `bigqueue/` y `streams/`, salvo la corrección interna de `BigQueueClientImpl` autorizada por D-10.
-- `version` de `build.gradle`, otras ramas, PRs, versiones productivas.
+- `version` de `build.gradle`, salvo escribir `0.0.1-rio-bus` en F1 por la excepción explícita de D-13; otras ramas, PRs, versiones productivas.
 
 **Spikes permitidos**
 
@@ -333,8 +337,8 @@ D-4, D-12.
 > - [r] T1.3 `RioBusReader` y `RioBusController` con la tabla de errores de SIG-719 #owner/agent #type/dev #area/meli
 > - [r] T1.4 `DiscoveryContractProvider` y `DiscoveryContractPublisher` #owner/agent #type/dev #area/meli
 > - [r] T1.5 `RioBusAutoConfiguration`, `AutoConfiguration.imports` y `build.gradle` #owner/agent #type/dev #area/meli
-> - [/] T1.6 Tests, gates, CHANGELOG, push y versión `0.0.1-rio-bus`; G1 en review #owner/agent #type/dev #area/meli
-> - [ ] T2.1 Worktree `feature/rio-bus` desde `origin/develop` y SDK en la versión de H-2 #owner/agent #type/dev #area/meli
+> - [r] T1.6 Tests, gates, CHANGELOG, push y versión `0.0.1-rio-bus`; G1 en review #owner/agent #type/dev #area/meli
+> - [/] T2.1 Worktree `feature/rio-bus` desde `origin/develop` y SDK en la versión de H-2 #owner/agent #type/dev #area/meli
 > - [ ] T2.2 `DiscoveryBusProcess`, `permitAll` de `/rio-bus` y bloque `rio.bus` por perfil #owner/agent #type/dev #area/meli
 > - [ ] T2.3 Tests, Lore, gates y push; G2 en review #owner/agent #type/dev #area/meli
 > - [ ] T3.1 Verificar E2E-1 con logs del scope de test; G3 en review #owner/agent #type/research #area/meli
@@ -398,7 +402,15 @@ STOP=G3 en review; el cierre es del owner
 
 ## 📆 Bitácora
 
+- **2026-10-28** — Inicio F2 autorizado por el owner («quiero que ahora implementes la parte de playmaker») tras verificar `0.0.1-rio-bus` publicada. `PLAN_CONFLICT` H-2 resuelto por autorización explícita para completar el reader de SIG-644/DD-8 y publicar `0.0.2-rio-bus`; no se amplía a persistencia, F3 ni despliegues. `git fetch origin` PASS en ambos repos; worktree de playmaker creado con el comando exacto del paquete, `feature/rio-bus` desde `20e0a91094fd827962932ebb4fead35a44c1184b`, clone del owner intacto. Check de Grimoire exit 1 por pin ausente/diferente; el owner autoriza revisión exacta `d00c6dbdfffe1eea3b531f83cdfc5e9ec145454d` y todos los efectos solicitados. Instalación autorizada detenida antes de escribir: `grimoire-bootstrap: BLOCKED: Legacy Cleric files take precedence over the pinned skill in the runner and are not verified: ~/.claude/commands/grimoire.cleric.md. Remove them (pre-v2 Grimoire installation) and rerun; verification made no changes`. Se revisa migración reversible del archivo Grimoire 27.2.1; continúa implementación independiente.
+
 %% Log diario para las dailies. Una línea por día con lo avanzado / blockers. %%
+- **2026-10-28** — **Entrega final F1 / G1 `review`:** SHA pusheado `7f507839989308ee8178467d97f411337a4d37f1` en `feature/rio-bus`, base `35b1a43a3a7d0f7134486a6a430eba3561a6825b`. Gates con JDK25 y versión final: `./gradlew check` PASS (exit 0, 33s), `./gradlew test` PASS (exit 0, 26s, 2.496 tests, 0 fallos/errores/omitidos), `./gradlew jacocoTestCoverageVerification` PASS (exit 0), `./gradlew jacocoTestReport` PASS; Websec, Datasec, formatter, Checkstyle y PMD PASS sobre el código, hooks pre/post-commit del cambio de versión PASS. Código nuevo: 123/123 líneas (100%), 22/22 ramas (100%), 580/582 instrucciones (99,66%); dos líneas del fix de BigQueue también cubiertas directamente, sin modificar exclusiones. `git diff 35b1a43 --stat`: **24 files changed, 1179 insertions(+), 22 deletions(-)**, 16 código/config/CHANGELOG y 8 tests. `fury versions create --no-tests --auto-accept --confirmed` creó **0.0.1-rio-bus**; `fury list-versions --limit 5` confirma FINISHED y el cliente autenticado `BuildApi.get_build` confirma `status=finished`, rama y SHA exactos. [Pipeline 65](https://rp-builds.furycloud.io/blue/organizations/jenkins/rio-sdk-events/detail/rio-sdk-events/65/pipeline/) finalizado. Verificación física Maven: resolución de `com.mercadolibre.library:rio-sdk-events:0.0.1-rio-bus` exit 0, JAR publicado con las 12 clases esperadas. Script de verificación temporal eliminado, sin archivos de evidencia nuevos. Worktree limpio, sin PR, ninguna versión productiva creada, G1 no aceptado y F2 no iniciada.
+- **2026-10-28** — Handoff F1: API de SIG-719 sin cambios. Spike 1 materializado con `BigQueueTopicProperties` desde `rio.bus.topic`/`rio.bus.segment-id` y `BigQueueClientImpl`, sin ampliar configuración. D-10 manual y excepción de versión D-13 cuentan con autorización explícita del owner. Fricción de publicación: `fury versions get` consulta una vista que sigue mostrando `CREATING` sin CI; el listado que selecciona el backend de la aplicación y `BuildApi.get_build` confirman el build `finished`. La disponibilidad se confirmó además en Maven, sin repetir create. H-2 permanece bajo Brenda/owner y no se declara satisfecho por esta entrega.
+- **2026-10-28** — Cierre solicitado aplicado mediante `agents-os-session-close` y `agents-os-session-feedback` desde `VAULT_ROOT`, con las rutas absolutas resueltas en ejecución y modelo exacto `gpt-6.1-sol` (`[[Codex]]`). Continuidad, evidencia y feedback consolidados únicamente en este plan por la prohibición de crear archivos adicionales. Feedback: autorización de versión resolvió el último conflicto; se corrigió el orden de una comprobación opcional de Gradle sin tocar código; la discrepancia entre vistas de Fury se resolvió consultando el backend que posee el build y verificando el artefacto Maven. Segmento atribuible final: metadata/publicación verificada, evaluator agent, user_rework unknown; sin registro separado de `agent_run` por la restricción explícita de archivos. Progreso ajustado al proyecto completo (6/10 tareas en review), no sólo a F1. STOP cumplido en G1 `review`; no se acepta gate ni se inicia fase siguiente.
+- **2026-10-28** — Versión de prueba enviada a Fury después de gates/commit/push: commit final `7f507839989308ee8178467d97f411337a4d37f1` (`Set RIO Bus test version to 0.0.1-rio-bus`), `git push -u origin feature/rio-bus` exit 0, hooks post-commit Websec/Datasec PASS. Comando `fury versions create --no-tests --auto-accept --confirmed` exit 0; confirmación interna «Proceed with version 0.0.1-rio-bus» respondida conforme a la autorización del owner. Fury confirma app `rio-sdk-events`, branch `feature/rio-bus`, commit `7f5078399893`, versión `0.0.1-rio-bus`, estado inicial `pending`. Se verifica disponibilidad sin repetir create. Diff contra `35b1a43`: **24 files changed, 1179 insertions(+), 22 deletions(-)**, 16 archivos código/config/CHANGELOG + 8 tests. Worktree limpio; G1 sigue pendiente hasta resultado del build. [Build de prueba](https://web.furycloud.io/rio-sdk-events/versions/detail/0.0.1-rio-bus).
+- **2026-10-28** — Revalidación de la única línea de versión autorizada: `pre-commit run --files build.gradle` exit 0 (Websec/Datasec PASS, hooks Java sin archivos); `JAVA_HOME=<JDK25> ./gradlew check` exit 0 (`33s`), `./gradlew test` exit 0 (`26s`, 2.496 tests, 0 fallos/errores/omitidos), `./gradlew jacocoTestCoverageVerification` exit 0. El intento opcional combinado `./gradlew jacocoTestReport generatePomFileForMavenJavaPublication jar` falló por dependencia implícita heredada entre `jacocoTestReport` y `compileJava`; resuelto sin cambios de código ejecutando `./gradlew jacocoTestReport` y `./gradlew generatePomFileForMavenJavaPublication jar` por separado, ambos exit 0. POM generado verificado con `version = 0.0.1-rio-bus`; existe `rio-sdk-events-0.0.1-rio-bus.jar`. Fury renovó autenticación y confirmó de nuevo que esa versión aún no existe. Pendientes commit, push y publicación.
+- **2026-10-28** — Reanudación T1.6: el owner autoriza «version = 0.0.1-rio-bus para publicar la prueba», resolviendo `PLAN_CONFLICT` del spike 2. Excepción acotada registrada en D-13 y `No tocar`; no habilita versiones productivas ni otras fases. Worktree limpio en `feature/rio-bus@df9ef57bb09ac349a06e4a4bc9e13c000e249c2f`; se cambia sólo la versión, se revalidan gates y metadata de publicación antes de commit/push/create-version. Bootstrap warm: se reutiliza el contexto cargado.
 - **2026-10-27** — Cierre de la ejecución reanudada: aplicados `agents-os-session-close` y `agents-os-session-feedback` desde la raíz absoluta del vault resuelta para esta sesión, con modelo exacto `gpt-6.1-sol` y superficie `[[Codex]]`. Continuidad y feedback se consolidan aquí por la prohibición explícita de crear archivos de evidencia; `agents-os-agent-run-register` revisado, sin materializar registro separado por esa misma instrucción. Segmento atribuible: implementación/testing, resultado código pusheado y verificado, publicación pendiente por contradicción del plan, evaluator agent, user_rework unknown. Feedback: el preflight evitó cambios de API/version no autorizados; pruebas críticas detectaron y eliminaron fuga heredada del body; hooks completos requirieron ajustes de calidad y pasaron sin bypass. Fricción pendiente: el paquete pide una versión de prueba mientras prohíbe escribir la versión que Fury requiere. Eficiencia REVIEW, high-water mark unknown; mejora concreta: confirmar el mecanismo de versión de librerías en el paquete antes del despacho. Sin nuevos artefactos, sin cierre del proyecto, sin aceptar G1 ni empezar F2.
 - **2026-10-27** — Commit y push F1: `df9ef57bb09ac349a06e4a4bc9e13c000e249c2f` (`Add RIO Bus and Discovery startup publishing`), `git push -u origin feature/rio-bus` exit 0; sin PR. `pre-commit run --hook-stage post-commit` exit 0: notificación Websec y metadata Datasec PASS; formatter/Checkstyle/PMD sin archivos en esa etapa, ya PASS antes del commit. `git status --porcelain=v1` vacío en el worktree. `git diff 35b1a43 --stat`: **24 files changed, 1178 insertions(+), 21 deletions(-)**; 16 código/config/CHANGELOG y 8 tests. Gates finales: `./gradlew check` PASS, `./gradlew test` PASS (2.496/0 fallos/0 errores/0 omitidos), `./gradlew jacocoTestCoverageVerification` PASS, `./gradlew jacocoTestReport` PASS, con JDK25. Reporte final de clases nuevas: líneas 123/123 (100%), ramas 22/22 (100%), instrucciones 580/582 (99,66%); fix de BigQueue también cubierto directamente. Versión de prueba **no creada**: `version` conserva `1.5.0` por la restricción vigente, nunca publicada; pendiente resolver spike 2. G1 no pasa a review sin ese entregable.
 - **2026-10-27** — Gates finales previos al commit: `JAVA_HOME=<JDK25> ./gradlew check` exit 0 (`BUILD SUCCESSFUL in 27s`), `./gradlew test` exit 0 (`25s`, suite completa), `./gradlew jacocoTestCoverageVerification` exit 0 (`780ms`) y `./gradlew jacocoTestReport` exit 0 (`773ms`). `pre-commit run --files <24 archivos del cambio>` exit 0: Websec, Datasec, formatter, Checkstyle y PMD PASS sin desactivar hooks ni reglas. Los intentos previos señalaron sólo formato/Javadoc/literales y preservación de API/seguridad; corregidos con cambios acotados. Cobertura directa de las dos nuevas líneas de `BigQueueClientImpl` desde `test.exec`: builder 4/4 instrucciones y log filtrado 5/5 instrucciones, ambas 100%, sin cambiar exclusiones. Presupuesto comprobado: 24 archivos totales = 16 código/config/CHANGELOG + 8 tests. T1.1–T1.5 pasan a `[r]`; T1.6 sigue `[/]`. Preflight de existencia `fury versions list --search 0.0.1-rio-bus --limit 20 --output json` devuelve exit 3, «No versions found for repository: fury_rio-sdk-events», sin crear ni modificar versiones.

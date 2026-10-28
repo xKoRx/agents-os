@@ -20,7 +20,7 @@ tags:
   - area/meli
   - project/rio-e2e-local
 created: "2026-10-08"
-updated: "2026-10-23"
+updated: "2026-10-28"
 slug: rio-e2e-local
 entities: ["[[rio-playmaker]]", "[[rio-controlplane-kafka]]", "[[rio-controlplane-clickhouse]]", "[[rio-controlplane-flink]]"]
 related: ["[[ads-signals-frontend]]", "[[rio-frontend]]", "[[Kafka — Ambiente local con servicios reales]]", "[[Ambientes locales RIO — Comparativa de implementaciones]]"]
@@ -38,6 +38,8 @@ Diseñar y luego implementar un entorno local reproducible con cinco aplicacione
 Base fijada por el owner: rio-deployment-trigger-local y rio-deployment-result-local, sin bridge Kafka→HTTP externo ni embebido. Minimizar cambios productivos, conservar contratos y usar Clean, SOLID, KISS y YAGNI para justificar cada pieza nueva. El challenge y el consenso están completos; en el HEAD actual de PM #1286, los siete E2E del stack local pasan. Los flujos de undeploy/DEPROVISION que dependen del comportamiento defectuoso de develop permanecen etiquetados develop-gap (ver bitácora). El alcance posterior conserva CH/Flink/front.
 
 ## Estado vigente
+
+- **2026-10-28 — follow-up de Ale en Flink:** nuevo PR [#221](https://github.com/melisource/fury_rio-controlplane-flink/pull/221), `feature/local-kafka-dlt-readiness` @ `06e073bd` desde `develop` @ `e8755055`. Readiness exige metadata de ambas DLT con límite de dos segundos; fixtures usan los nombres reales. Tests productivos1969/locales101 y hooks PASS, coverage readiness100% líneas/ramas y configuración100% líneas. E2E SQL/invalid/JAR/Python/cross-CP PASS con PM develop `20e0a9109`: Lore13/13 y oráculos23/23; teardown0, sin contenedores/redes RIO ni servidores en los puertos usados. CI, coverage, dependencies, static analyzer, CodeQL y workflow SUCCESS. PR listo para review. [[Descripción PR — rio-controlplane-flink (DLT readiness)]].
 
 - **2026-10-23 — import refview alineado; certificación pendiente:** PM `85f5bad67` sobre base E2E, CP `686d8f7a8` y front `8eaa15827` sobre develop, publicados y drafts conservados. Suites PM5190, CP3973 y front11745 PASS; typecheck heredado123 sigue rojo. Runner y skill incorporan ocho screens y espera del grupo completo con regresiones RED/GREEN; candidatos a #1332. Spellbook vencido y un nuevo `down --volumes` del stack concurrente rechazado automáticamente: autenticación y autorización específicas pendientes. Lore0/12; no hay certificado de import ni teardown final. [[Import de Refreshable Materialized Views externas]], [[2026-10-23-refreshable-import-e2e-alignment]].
 
