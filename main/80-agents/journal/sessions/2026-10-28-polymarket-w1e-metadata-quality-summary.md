@@ -59,6 +59,13 @@ tags:
 
 ## Pendiente
 
-- Inspección de fee real por `regimes inspect` requiere copia derivada: `cp -a` denegado por hook (1 intento); los valores quedan en el journal sin certificar.
 - Elección de UNA primera hipótesis falsable (lanzador/Owner, con preregistro); observación futura de un `tick_size_change` real / re-poll fuera de ventana para ejercer los caminos de cambio y stale con datos.
-- Sin push/commit; live sigue cerrado; freeze de producto intacto.
+- Estrechar el INTERVAL de fee exige la autoridad documental del mapeo base_fee↔feeRate o trades reales con `fee_rate_bps` en ventana (hoy: 0 observaciones); fee sigue sin certificar (`REAL_FEE_READY=false`).
+- Sin push (commit solo local); live sigue cerrado; freeze de producto intacto.
+
+## Continuación misma sesión (tras cortes ECONNRESET 20:57:27Z y project_token_request_failed; reanudada por el lanzador, sin retry automático)
+
+- **Fee/tick real por inspección nativa** (copia derivada autorizada `capture-v6-derived`, `engine.db.pre-w1e` preservado, proyección desde cero): 4 condiciones con tick `0.01`, min-size `5`, mbf/tbf `1000/1000` bps, `fd{r:0.05,e:1,to:true}`, 0 fee observations, sin cuarentenas; 8 assets con tick `0.01` y 0 fee observations. Todas las `known_at` son recepciones reales 19:23:49.63–53.13Z (seqs 4–15); la fase final dedup por contenido idéntico. Resolución honesta: condición = INTERVAL [0,1000] bps (caso 3 del FeeResolverV1, fórmula U-02 no documentada, mbf==tbf no es convergencia), asset = UNRESOLVED (set vacío); 1000 es campo legacy declarado, no comisión certificada.
+- **Negativa causal same-wall/seq:** bug detectado por lectura (el filtro asof usaba solo wall; una revisión admitida después con misma wall habría ganado por orden de revisión) — corregido: candidatos cuentan solo con `capture_seq ≤ seq` decisión (desde `capture_ref` durable; seq ilegible = 0 = nunca cuenta, nunca inventado) Y `known_at ≤ at`. Regresiones: `TestSameWallLaterAdmissionCannotWin`, `TestMissingCaptureSeqFailsClosed`, `TestW1DSameWallAdmissionBound`; replay cut-103 post-fix con digest `b8c5854e…` y `regime_digest e66dfb8c…` idénticos al pre-fix.
+- **Checkpoint local:** commit `7d519eb712a6a4ec9f369c92d9ee2c735454678b` (29 archivos, +3648/−134, diff --check limpio, 3 W1-c verificados por SHAs exactos del certificado W1-c), árbol final limpio, sin push; binario `eb459241…`; TEST 3/3 PASS (regimes/replay/cmd-engine) + BUILD exit 0 post-gofmt; gofmt normalizó prospect.go (re-add + re-test).
+- **Fricción:** `sha256sum` inputs, `mv` wal/shm y `git diff --cached --stat` denegados por el hook (1 intento c/u, documentados); dos cortes de transporte reanudados por el lanzador sin pérdida de trabajo.
