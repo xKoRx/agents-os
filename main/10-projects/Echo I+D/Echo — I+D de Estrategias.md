@@ -36,16 +36,18 @@ Mantener una capacidad permanente de investigación y desarrollo de estrategias 
 
 El resultado de negocio es extender y mejorar el trading efectivo del Owner: convertir los sistemas y automatizaciones existentes en operación y retiros sostenibles, con decisiones respaldadas por evidencia. Producir más sistemas o documentación no constituye por sí mismo ese resultado.
 
-Unificar misión, gobierno, contratos de investigación, aprendizaje y continuidad. Cada mercado conserva sus autoridades técnicas. El programa no reemplaza a los proyectos de producto Echo Futures, Echo Forge, runtime ni integración.
+Unificar misión, gobierno, contratos de investigación, aprendizaje y continuidad. Cada mercado conserva sus autoridades técnicas. I+D Futures posee requisitos funcionales/prioridad económica de las capacidades Backtester que necesita y gestiona su desarrollo con el planner técnico existente; no se limita a consumir el motor disponible. Echo Futures/Runtime Pools conservan arquitectura, implementación y gates; la ampliación no reemplaza Echo Forge ni la división Forex.
 
 ## 📊 Estado actual
+
+**2026-10-28 — delta Owner Futures posterior a RV-01:** integración S04/variantes a master en curso según Owner, sin certificación por esta nota. [[Echo I+D — Futures]] incorpora como responsabilidad funcional el desarrollo de campañas CHALLENGE, FUNDED y SIMULATION del Backtester, coordinado con producto y el planner técnico existente. Retiro variable, reinversión total del cash recibido, USD 4.000 de compras y umbral challenge 1/3 sustituyen las preguntas económicas anteriores. Mandato/prompt: [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]]. A/B pendientes de retorno; no hay campañas/gasto ni código nuevos por esta actualización.
 
 **2026-10-28 — Futures entrega RV-01 y consolida el expediente FUT-R01.** [[FUT-R01-RV-01-CONSOLIDADO]] declara `NO_APTO_AUN` por integridad de entradas e interfaces contractual/datos/selección; no exige rentabilidad demostrada antes de investigar. [[FUT-R01-INDICE]] reúne retornos disponibles y mandato. La sesión documental está cerrada con feedback; Futures continúa pendiente de decisiones y dependencias, sin campañas ni cambios de producto. La independencia histórica de la revisión no es acreditable.
 
 | Línea permanente | Planner único de mercado | Último estado confirmado | Siguiente trabajo |
 |---|---|---|---|
 | Forex/CFD | [[Estrategias IMOX — Forex y CFD con Echo Forge]] | Iniciativa existente incorporada. F0→F1→F2→F3 sigue vigente; no confundir material 142 recuperado con validación 144 ni admisión Echo. | Manager Forex recupera el receipt F0 y las dependencias actuales; prepara el cierre EVAL-144 de G1/G2/G4 bajo las decisiones vigentes. |
-| Futures | [[Echo I+D — Futures]] | FUT-R01 en curso; RV-01 entregado `NO_APTO_AUN`. USD 4.000, NQ exclusivo, programa pendiente. Retornos y corrección Owner en [[FUT-R01-INDICE]]. | Resolver el paquete focal de integridad/contrato/datos/selección y decidir ficha de persistencia de cierre o alternativa MR06. No repetir cuatro DR ni autorizar gasto o ejecución por recepción. |
+| Futures | [[Echo I+D — Futures]] | FUT-R01 en curso; RV-01 NO_APTO_AUN, A/B pendientes. S04 en integración informada; tres campañas requeridas y economía Owner actualizadas. | Adjudicar A/B y preparar diseño C01/entrega técnica incremental mediante el planner existente. Señal PERSIST/cierre o alternativa MR06 siguen bajo revisión; no repetir los DR ni ejecutar por recepción. |
 
 `progress: 0` no mide el porcentaje de un programa infinito. Cada entrega acotada conserva su progreso y aceptación; aquí importa el estado de las líneas, los bloqueos y las decisiones.
 
@@ -106,6 +108,8 @@ No hay un recorrido obligatorio Cloud→Daedalus→Hefesto. Un paper o hipótesi
 
 **Default operativo v1, ajustable por el Owner:** una pregunta primaria en ejecución por mercado; varios workers pueden resolver partes independientes de esa pregunta. Preparar la siguiente pregunta no autoriza una segunda campaña simultánea. Si la capacidad real obliga a detener una línea, dejar bloqueo, responsable y acción de desbloqueo visibles; no fingir ejecución para cumplir el paralelismo.
 
+El mandato Owner posterior habilita diseñar campañas multietapa y posteriormente multi-Strategy/multi-prop; desarrollo habilitante puede avanzar coordinado con la investigación. Esa capacidad no autoriza automáticamente más campañas activas ni cambia límites de recursos.
+
 Cada mandato fija presupuesto de datos, cómputo, motores/jobs, intentos, tiempo o dinero según corresponda. Si falta un límite material, se prepara el mandato y se obtiene la decisión antes de ejecutar. Reutilizar límites existentes; no copiar el límite de motores Futures a la flota Forex.
 
 No hay cron, polling permanente ni compra de recursos implícitos. Automatizar una tarea repetitiva requiere propuesta concreta, autorización aplicable y validación; el agente puede ejecutarla manualmente dentro del mandato mientras tanto.
@@ -153,6 +157,8 @@ No optimizar el programa para producir siempre resultados positivos ni usar una 
 - [ ] Revisar capacidad compartida y WIP al autorizar ejecuciones concurrentes. #owner/me #type/supervision #area/trading
 
 ## 📆 Bitácora
+
+- **2026-10-28 — Futures: tipos de campaña y economía actualizadas.** Se incorpora el frente C de Backtester a la responsabilidad funcional de I+D, con entrega técnica en planner existente. Decisiones/estado/navegación reconciliados; no código, campañas, gasto ni cierre de sesión. [[2026-10-28-echo-futures-campaign-types|Registro]].
 
 - **2026-10-28 — precisión Owner** — Capital: Futures USD 4.000 y Forex aproximadamente USD 2.000, separados y sin nuevos aportes previstos. USD 5.000 deja de ser cifra vigente. La investigación Futures usará ficha simple de setup, filtro y RR/objetivo–riesgo técnico; MM por prop/etapa permanece como entidad separada. Objetivo de primer retiro USD 3.000 con split 90%/80%, bruto/neto por aclarar en el planner Futures. [[80-agents/journal/logs/2026-10-28-echo-futures-capital-simple-strategy|Registro de la corrección]].
 

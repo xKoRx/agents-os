@@ -72,3 +72,8 @@ Resolver el paquete indispensable ya identificado —integridad, ruta contractua
 - Los cinco blobs de entrada enumerados arriba y sus documentos de provenance.
 - [[FUT-R01-RV-01-CONSOLIDADO#12. Registro de fuentes críticas y alcance realmente leído|Registro focal de fuentes y límites de lectura]].
 - Instrucción Owner del 28-10-2026 para reunir originales, consolidar, publicar sobre master y cerrar con feedback.
+
+
+### Continuidad posterior: frente C y economía de campañas
+
+**28-10-2026:** [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]] incorpora el último mandato Owner y los prompts de diseño/coordinación. Retiro variable, caja de compras, MM de resolución rápida dentro de reglas, umbral challenge 1/3 y reinversión total. S04 en integración a master informado por Owner; sustituye pausa anterior, no certifica finalización. A/B pendientes de recepción. C nuevo no es el antiguo I01-C de recuperación. Los cinco archivos de entrada y RV-01 mantienen sus bytes y su alcance; esta continuidad no los reinterpreta como PASS.

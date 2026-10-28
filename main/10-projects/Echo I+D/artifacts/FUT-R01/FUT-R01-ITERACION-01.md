@@ -3,8 +3,8 @@ type: prompt
 schema_version: 1
 status: active
 area: "[[Trading]]"
-target: "Workers Cloud I01-A/I01-B; I01-C local diferido"
-prompt_version: 1
+target: "Workers I01-A/I01-B en espera de retorno; I01-C read-only por coordinar"
+prompt_version: 2
 inputs:
   - "Decisiones Owner y planner Futures vigentes"
   - "RV-01, expediente limitado y cobertura existente"
@@ -37,7 +37,9 @@ Convertir la evidencia disponible en una unidad pequeña de trabajo útil para l
 
 La prioridad, el backlog y los estados viven sólo en [[Echo I+D — Futures]]. Este documento posee los contratos de los siguientes encargos; [[Echo I+D — Cobertura Futures]] enlaza evidencia. La selección definitiva del experimento y los límites económicos permanecen con el Owner.
 
-**Instrucción Owner 28-10-2026:** frente 1 pausado mientras el runtime está en proceso de merge a master. Es información Owner, no verificación de que el merge haya terminado. A/B pueden avanzar documentalmente; C y cualquier integración/implementación/prueba quedan en espera. Los prompts están **PREPARADOS, NO EJECUTADOS** por esta entrega.
+**Delta Owner posterior — 28-10-2026:** la pausa de frente 1 está superseded: el Owner informa S04 completa/variantes en integración a master. A/B siguen pendientes de retorno a este manager; no reiniciarlos. [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]] es autoridad económica vigente: retiro variable, reinversión total del cash recibido, USD 4.000 exclusivamente caja de compras, MM de pase/pérdida rápidos dentro de reglas sin caps prudenciales adicionales, umbral challenge 1/3 y tres tipos de campaña. Aplicar el delta sobre los encargos existentes.
+
+El **frente C de campañas** es distinto del **I01-C de datos** aquí conservado. I01-C no se despacha automáticamente: coordinar su necesidad/read-only con el ejecutor/manager de integración y recuperar receipts existentes primero. No hay certificación de merge, ejecución ni autorización de compras por este delta.
 
 ## Contrato de entrada
 
@@ -75,7 +77,7 @@ Son requisitos de investigación derivados del mandato Owner; **no afirmaciones 
 3. Preparación/analytics se reutilizan sólo con inputs y disponibilidad causal compatibles; cada cambio invalida exactamente la evidencia dependiente.
 4. Agrupar trabajo por dependencias compartidas: calendario/ingesta, analytics o perfil. Mantener resultados, estados y gates por identidad; nada de producto cartesiano de indicadores×RR×MM×props.
 5. Receipts válidos evitan corridas duplicadas. Reintentos/parciales conservan identidad y motivo. Comparación entre políticas requiere mismas oportunidades externas y estado propio de cada cuenta.
-6. Reutilizar el supervisor y la admisión existentes. Capacidad se mide en Hefesto; techo global vigente no es objetivo obligatorio ni capacidad certificada. Frente 1 mantiene la pausa.
+6. Reutilizar el supervisor y la admisión existentes. Capacidad se mide en Hefesto; techo global vigente no es objetivo obligatorio ni capacidad certificada. La integración S04 está en curso según Owner; coordinar con su dueño y no duplicar preflight/trabajo.
 7. Cada iteración termina con continuar/corregir/aparcar/descartar, evidencia reutilizable y siguiente pregunta. Medir tiempo hasta decisión, coste/cómputo evitado y motivos de fallo antes de optimizar throughput.
 8. Generalizar ante un segundo uso concreto o un requisito compartido demostrado. No construir por adelantado otro motor, catálogo universal de indicadores, scheduler, DSL o infraestructura de factory.
 
@@ -102,7 +104,7 @@ Consulta la fuente primaria de la regla y los fragmentos DR-03/04 necesarios. No
 
 DECISIONES FIJAS
 NQ exclusivo. Strategy = setup + filtro + objetivo/riesgo técnico o RR. MM por prop/etapa es otra entidad. Capital Futures USD 4.000 sin aportes; Forex separado. El resultado económico se juzga por campaña/caja, sin exigir esperanza positiva por trade como admisión universal.
-Frente 1 PAUSADO: runtime está en proceso de merge a master según el Owner. No tocar producto, integración, hosts ni ejecutar nada.
+Frente 1 en integración S04→master según Owner, sin certificación por este reporte. Este encargo sigue documental; no intervenir producto/integración/hosts ni ejecutar.
 RV-01 conserva NO_APTO_AUN para campaña; su corpus es limitado. Una nueva ficha puede apoyarse en fuentes verificadas sin afirmar que los cuatro originales estén completos.
 
 TRABAJO
@@ -151,8 +153,8 @@ Si no tienes acceso al vault, pide esos insumos concretos y no los reconstruyas.
 CONTEXTO FIJO
 USD 4.000 Futures, sin aportes ni respaldo Forex; NQ exclusivo. 5 challenge + 5 funded pueden coincidir; meta de dos firmas simultáneas permanece, pero este primer perfil no es todavía la cartera.
 Se permite investigar resolución rápida y MM agresivos dentro de reglas. Expectativa por trade no positiva no descarta universalmente una campaña; tampoco la asimetría garantiza utilidad.
-USD 3.000 bruto/neto, pago único/acumulado, horizonte, prioridad entre rapidez/caja y límites de desembolso siguen abiertos: mantener escenarios y no decidirlos por el Owner.
-Frente 1 PAUSADO por merge. Sin inspección física ni cambios de arquitectura.
+Delta Owner: USD 3.000 como retiro fijo superseded; importe/momento se evaluarán mediante campañas. Reinvierte 100% del cash neto recibido. USD 4.000 sólo caja de compras, no trading propio. Challenge busca pase/pérdida rápidos dentro de reglas sin caps prudenciales adicionales; umbral 1/3. Horizonte, políticas exactas y fuente de cargos obligatorios adicionales siguen por definir; no inventarlos.
+Frente 1 en integración según Owner. Sin inspección física ni cambios de arquitectura por este encargo; coordinar contratos con el nuevo frente C de campañas.
 
 ALCANCE ACOTADO
 Partir de My Funded Futures Rapid EOD 50K como candidato DOCUMENTAL a completar, no proveedor elegido ni recomendación de compra. Usar Rapid estándar sólo para evitar la mezcla detectada en RV-01.
@@ -181,16 +183,16 @@ Un worker, hasta doce páginas oficiales decisivas, una entrega y una adjudicaci
 Campo indispensable sin evidencia, incompatibilidad o límite del presupuesto: terminar con impacto y pregunta exacta. Sin DR-05, compras, código, simulaciones, backtests, pruebas físicas ni cierre formal.
 ```
 
-### I01-C — Datos y recibos (diferido por pausa Owner)
+### I01-C — Datos y recibos (read-only por coordinar)
 
-Este contrato se prepara para continuidad; no se despacha durante la pausa. No amplía el diseño de integración.
+Este contrato se conserva para recuperar una brecha concreta si los receipts de la integración no bastan. No es el nuevo frente C de campañas ni se despacha automáticamente.
 
 ```text
 # ECHO FUTURES — I01-C: DATOS Y EVIDENCIA EXISTENTE
-## MANDATO DIFERIDO — NO DESPACHAR DURANTE LA PAUSA DEL FRENTE 1
+## MANDATO READ-ONLY — REQUIERE NECESIDAD Y ALCANCE COORDINADOS
 
 CONDICIÓN DE ENTRADA
-Requiere confirmación Owner de reanudación y alcance read-only. El anuncio de un merge o la existencia de un nuevo master no autoriza por sí solo este encargo. Si el planner mantiene la pausa, devolver NO_DESPACHADO y detenerse.
+El Owner informa integración activa; ya no rige la pausa anterior. Recuperar primero receipts del manager técnico. Antes de este dispatch, resolver necesidad, owner y alcance read-only permitido; un merge informado no autoriza inspección física adicional por inercia. Sin ese alcance, devolver NO_DESPACHADO.
 
 PREGUNTA
 ¿Los datos y recibos ya existentes permiten cualificar la ficha I01 y estudiar el perfil contractual propuesto, y cuál es la menor brecha pendiente?
@@ -217,7 +219,7 @@ Retorno único al manager, con publicación documental sólo si autorizada. No t
 - Una pregunta primaria Futures, varios workers acotados cuando sus tareas son independientes. Un solo integrador escribe planner/cobertura; cada worker tiene artefacto propio.
 - Una entrega por worker y una adjudicación del manager. Reparación focal sólo por una divergencia indispensable, con alcance explícito; sin bucle hasta obtener aprobación.
 - El horizonte táctico sigue en 31-12-2026. Ventanas comparables de 30/60 días pueden proponerse como escenarios de análisis, nunca como plazos/cobros garantizados o requisito aceptado.
-- La decisión de monto/payout, prioridad rapidez–caja, desembolso/pérdida y reinversión pertenece al Owner. No imponer una reserva o porcentajes MM.
+- El Owner ya resolvió retiro variable a evaluar, reinversión total, caja de compras y resolución rápida dentro de reglas. No reabrir esas preguntas. Políticas exactas, horizonte y financiación de cargos obligatorios se fijan antes de ejecución; no imponer reserva o porcentajes MM.
 - Un perfil con ruta/contrato incompleto no es una prop “apta”. Estudiar una fase SIM no autoriza extrapolar a live.
 - Sin compras, operaciones, código, campañas, nuevas capturas físicas, integración ni cierre formal en esta entrega.
 

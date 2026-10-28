@@ -7,7 +7,7 @@ slug: echo-rnd-capabilities
 area: "[[Trading]]"
 project: "[[Echo — I+D de Estrategias]]"
 created: "2026-10-27"
-updated: "2026-10-27"
+updated: "2026-10-28"
 reviewed: "2026-10-27"
 aliases:
   - Echo R&D capability map
@@ -66,7 +66,7 @@ Las dos skills nuevas de manager y el runbook común son `NUEVO_CONTRATO`. IMOX 
 | Diseñar building blocks y presets Forex | [[30-resources/agents/skills/sqx144-campaign-design/SKILL.md\|sqx144-campaign-design]] | Contrato y registro de campañas IMOX | CLOUD con catálogo real; prueba de compatibilidad LOCAL | Versión SQX, preset sellado, hipótesis, compatibilidad, evaluación y presupuesto; no combinar bloques sin tesis |
 | Implementar y verificar una entrega lista | [[30-resources/agents/skills/sdd-developer/SKILL.md\|sdd-developer]] y reglas del repo | SPEC/PLAN/TASKS y proyecto técnico | LOCAL; Futures en Hefesto | Código conforme, pruebas significativas, verificación independiente, correcciones y commit/evidencia exactos |
 | Desarrollar y cualificar Futures antes de histórico | [[30-resources/agents/skills/echo-retester-master/SKILL.md\|echo-retester-master]] + [[echo-futures-strategy-qualification-runbook]] | Identidad Strategy × variante × MM y sus recibos | Hefesto / Echo Backtester | Corrección y conformidad con teoría, readiness, sesión, roundtrip reconciliado, admisión trimestral e histórico sólo cuando corresponde |
-| Campañas y laboratorio económico Futures | [[Echo Futures — Optimización de Campañas]] y manual/catálogo del lab en `xKoRx/echo` | Una campaña/experimento y su provenance; producto sigue dueño del motor | Hefesto | Input sellado, builds/datos/policy, ledger completo, intentos, coste/tiempo/pases/supervivencia/retiros según fase |
+| Campañas y laboratorio económico Futures | [[Echo Futures — Optimización de Campañas]] y manual/catálogo del lab en `xKoRx/echo`; mandato [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]] | I+D Futures posee requisitos/KPI/prioridad; planner técnico entrega y producto conserva arquitectura/gates | CLOUD diseño; Hefesto implementación/certificación autorizadas | CHALLENGE/FUNDED aisladas y SIMULATION causal como requerimiento; identidad, cohortes, costes/cobros/caja y receipts por etapa. No capacidad certificada por esta fila |
 | Ejecución y funnel Forex | Proyecto técnico Forge y skills app-owned en `xKoRx/symphony:.agents/skills/` | FlowRun/evaluaciones/artifacts del owner técnico; registro IMOX enlaza | Forge operacional, mediante LOCAL autorizado | Configuración, versiones, IDs, datos y resultados por etapa; finalista pre-Echo no implica admisión ni trading |
 | Verificación física integrada | [[30-resources/agents/skills/e2e-gated-validation/SKILL.md\|e2e-gated-validation]] + runbook vigente del sistema | Proyecto/mandato de certificación | LOCAL | Ledger PASS/FAIL/INCONCLUSIVE/NOT_EXECUTED, IDs nuevos por corrida y versiones sin mezclar |
 | Fuente→binario→proceso real | [[30-resources/agents/skills/release-certification/SKILL.md\|release-certification]] + [[30-resources/agents/skills/deployment-proof/SKILL.md\|deployment-proof]] | Manifest y evidencia del owner técnico | LOCAL | Commit/pins/hashes, entrega al host y prueba de proceso; exit 0 no basta |
@@ -112,7 +112,7 @@ Las redirecciones preservadas usan exactamente los ocho basenames de la tabla ba
 ## Identidades, dependencias y recuperación
 
 - **Programa y líneas:** [[Echo — I+D de Estrategias]] → [[Estrategias IMOX — Forex y CFD con Echo Forge]] / [[Echo I+D — Futures]]. Cada uno conserva el estado de su responsabilidad; no copiar tareas entre planners.
-- **Producto Futures:** [[Echo Futures]] conserva runtime, arquitectura y entrega del Backtester. [[Echo Futures — Optimización de Campañas]] conserva la entrega acotada y el lab. El programa decide prioridades de investigación y enlaza las dependencias.
+- **Futures — delta Owner 2026-10-28:** I+D Futures es responsable funcional de las capacidades del Backtester necesarias para investigar, incluyendo nuevos tipos de campaña; las carencias se convierten en desarrollo priorizado. [[Echo Futures]] conserva runtime, arquitectura y gates técnicos; [[Echo Futures — Optimización de Campañas]] es el planner de entrega del lab. No son programas ni managers duplicados; las capacidades requeridas no se declaran ya implementadas.
 - **Producto Forex/Forge:** usar [[10-projects/Echo Forge — Operación Real V2/Echo Forge — Operación Real V2.md|Echo Forge — Operación Real V2 (autoridad técnica)]]. Hay otro archivo homónimo bajo `10-projects/Echo Forge/`; evitar el wikilink corto ambiguo. Esta reorganización no fusiona esas autoridades técnicas.
 - **Specialists federados:** `release-certification`, `deployment-proof`, `e2e-gated-validation`, `readonly-production-probe` y `distributed-incident-triage` también aparecen en rutas core históricas. Este mapa y el Skills Index seleccionan `30-resources/agents/skills/`; no crear nuevas copias ni usar la coincidencia de basename como autoridad.
 - **Ambientes y acceso:** [[30-resources/aranea/07-integration/Echo + Echo Forge — Environment Contract.md|Echo + Echo Forge — Environment Contract]] y [[30-resources/agents/skills/aranea-agent-dev/SKILL.md|aranea-agent-dev]] siguen gobernando superficies. El manager I+D no reemplaza al router ni agrega otro match de área en el registro.

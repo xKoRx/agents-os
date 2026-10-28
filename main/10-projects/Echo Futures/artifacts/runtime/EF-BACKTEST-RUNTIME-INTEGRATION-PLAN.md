@@ -25,7 +25,9 @@ updated: "2026-10-28"
 
 Preparar la convergencia de los experimentos del Backtester con el modelo vigente del runtime, de forma que una sesión registrada pueda reproducirse y contrastarse con la misma lógica de Strategy, MM, cuenta y ejecución. Mandato directo Owner del 2026-10-28: **planificación y diseño**, sin implementación ni pruebas nuevas.
 
-**Estado vigente — 28-10-2026: PAUSED_OWNER.** El Owner informa que el runtime está en proceso de merge a master y ordena no avanzar todavía el frente 1. Se conserva el diseño candidato como antecedente; no despachar el mandato read-only de §10 ni continuar integración, inspección física o implementación durante la pausa. Para reanudar se requiere confirmación Owner y resolver el corte aceptado posterior, sin inferir que el merge terminó. No implementation-ready ni autorización de despliegue u órdenes. Este artefacto pertenece a [[Echo Futures]], owner de producto, enlazado desde FUT-R01 para coordinar necesidades de investigación. No crea otro proyecto, planner, motor, skill ni SPEC congelado. La recuperación read-only de Hefesto queda diferida. [[FUT-R01-ITERACION-01]] prepara mientras tanto documentación de investigación; no rediseña este frente.
+**Estado vigente — 28-10-2026: IN_PROGRESS_OWNER_REPORTED.** El último mensaje Owner informa que S04 completa y sus variantes se están integrando a master y supersede la pausa anterior. No se afirma merge terminado, aceptación ni despliegue. Reconciliar este diseño anterior con los receipts y corte aceptado del manager/ejecutor de integración existente; no duplicar merge ni lanzar el preflight antiguo por inercia.
+
+**Ampliación funcional:** [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]] incorpora CHALLENGE/FUNDED aisladas y después SIMULATION causal, con caja de compras USD 4.000, retiro variable y reinversión total. I+D Futures es responsable de esos requisitos y prioridades; este proyecto/owners técnicos conservan arquitectura y gates. Diseño C01 puede avanzar en paralelo; implementación nueva requiere baseline/alcance/presupuesto autorizados. El cuerpo técnico siguiente es antecedente, no certificación del corte en integración.
 
 ## Contenido
 
@@ -198,15 +200,15 @@ Seleccionar del corpus existente los casos que ya prueban estos contratos. Ampli
 
 **Retorno y persistencia:** informe en las superficies canónicas existentes, con fuente por hallazgo, estado, riesgos y siguiente acción. Si se autoriza la escritura documental local, un único responsable publica el retorno bajo este artefacto y reconcilia HEAD de Agents-OS/master sin ramas/PRs. Si el worker no puede publicar, devuelve contenido y localizadores al manager; no inventa publicación. Aplicar agent-run/feedback sólo cuando corresponda a su alcance y declarar recursos/consumos comprobados o UNKNOWN. No cierre formal de sesión del programa.
 
-**Estado de despacho:** DIFERIDO / NO DESPACHAR mientras continúe PAUSED_OWNER; no ejecutado en Hefesto. Esta sesión Cloud sólo leyó fuentes y prepara/persiste documentación.
+**Estado de despacho:** NO DESPACHADO por este manager. La pausa previa está superseded por integración en curso informada por Owner. Reutilizar receipts del ejecutor actual y decidir si queda una brecha read-only que justifique este mandato; no despacharlo automáticamente ni duplicar preflight. Esta entrega sólo documenta.
 
 ### 11. Decisiones abiertas y continuidad
 
 Antes de implementar: fijar corte de convergencia aceptado, alcance de soporte runtime para RG, primera sesión/módulo y fronteras de archivos, presupuesto local y dueño de cada cambio. La propuesta de arquitectura reutiliza R6; cualquier cambio de identidad/cardinalidad o política económica vuelve al Owner.
 
-Antes de operación comercial: Provider/Program/RuleSet actuales, reserva/pérdida máxima/desembolsos, semántica bruto/neto del retiro objetivo y gates físicos aplicables. Esos puntos no impiden terminar este diseño ni el Deep Research.
+Antes de operación comercial: Provider/Program/RuleSet y ruta actuales, costes/financiación, políticas concretas de compra/MM/retiro, horizonte y gates físicos aplicables. El Owner resolvió retiro variable, reinversión total y ausencia de caps prudenciales extra dentro de reglas. No reabrir USD 3.000 ni reserva como preguntas pendientes; el nuevo mandato funcional está enlazado.
 
-Próximo paso técnico: esperar reanudación Owner; después reconciliar este candidato con el corte aceptado y decidir R0. Próximo paso documental de investigación: [[FUT-R01-ITERACION-01]] A/B después de RV-01. El mandato v3 fue sucedido por v4 y los DR ya recibidos; no volver a ejecutarlos. No cerrar FUT-R01 por entregar un prompt o plan.
+Próximo paso técnico: coordinar con la integración S04 en curso informada por Owner, recuperar su corte/receipts y reconciliar este antecedente; no duplicar R0 si esa evidencia ya existe. Próximo paso documental: recibir A/B de [[FUT-R01-ITERACION-01]] y diseñar el frente C de [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]]. El mandato v3 fue sucedido por v4 y los DR ya recibidos; no volver a ejecutarlos. No cerrar FUT-R01 por entregar un prompt o plan.
 
 ## Fuentes
 
