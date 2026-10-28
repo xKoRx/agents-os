@@ -26,6 +26,15 @@ tags:
 
 # 2026-10-27 — Forge Echo Ingestion Task: diseño congelado
 
+## Retorno de F y continuación one-shot del cierre — 2026-10-28
+
+- **Owner:** resolver bloqueos posibles desde esta superficie y entregar el próximo prompt one-shot. Se continúa Shot 4, sin reinicio ni nuevo shot.
+- **Comprobación remota:** F blob `8f2f3c4edd25e11c10a3d30af4c292dff2d7d49e` en `d27fd6478bfaf99392fbc99c3b17a1594ae5f761`; no ref shot4 ni commit d760dc3 en origin; feature Symphony `7731cb8`, Echo `24af7862` intactos. Se distingue candidato local declarado de publicación verificable.
+- **Resuelto aquí:** scope ≥95% del código nuevo incluye wiring/main; 56% por bloques requiere statements ponderados; corrector termina cobertura/Lab antes del verificador; independencia no exige otra máquina. Legacy/no-V2 no acredita falta de fuente D.
+- **Precisión material:** bitácora Owner relata consumer Kafka DEV temporal, contradiciendo jamás compartido de F. Se rectifica y manda revisión RO acotada, sin inferir consumo/impacto cero ni reparar recursos ajenos. Aislamiento debe cubrir todos los stores de escritura, no sólo ETCD.
+- **Persistencia:** [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/F — Final Certification|F — Final Certification]], [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT4 — Correction and Final Verification Mandate|SHOT4 — Correction and Final Verification Mandate]], C, continuidad y estados de Forge/Echo actualizados de Shot 4 listo a cierre pendiente/ejecutable; se conservan el informe del corrector, candidatos, requisitos y evidencia histórica. El nuevo despacho cubre publicación, aislamiento, pruebas/coverage, Lab, D y handoff fresco.
+- **Alcance/validación:** revisión documental del retorno y refs con apoyos de evidencia/ejecución; sin fuente nueva accesible, código de producto, builds ni runtime. Agent_run nuevo omitido por segmento documental/lookup. Esquema/enlaces/diff y publicación con lease/readback; sin feedback, cierre ni cuota estimada.
+
 ## Adjudicación de Shot 3 y despacho de Shot 4 — 2026-10-28
 
 - **Cambio de verdad vigente:** Shot 3 recibido con findings y alcance parcial; SHOT4_READY_WITH_ADJUDICATED_FINDINGS. Owner conserva cuatro shots y excluye nuevas vueltas Shot 2/3. [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT4 — Correction and Final Verification Mandate|SHOT4 — Correction and Final Verification Mandate]] contiene correcciones y verificador fresco dentro del mismo shot.
