@@ -1,0 +1,92 @@
+{
+  "schema": "clf-k05-handoff",
+  "version": "1.0.0",
+  "created_utc": "2026-10-26",
+  "mission": "CLF-K05 GOD KNOWLEDGE FORENSICS & COMPLETE STRATEGY CERTIFICATION",
+  "host": "DAEDALUS",
+  "provenance": {
+    "catalog_source": "knowledge-library/clutifx/strategies/STRATEGIES-CATALOG.md",
+    "catalog_source_sha256": "4c47131423ded9cf781915538ae06e2d7b7e5a12b2d76da0ea41995bda46907f",
+    "chapter_authority_sha256": {
+      "ch06_failure_swing_CLAIMS": "9b0019732172516028072257be71f3d1ebf30d665643210bad3b672555ea58dc",
+      "ch07_setups_CLAIMS": "62117584941420e71190dc777be4df2046221b5f86312451a05377bff57b6dbf"
+    },
+    "echo_repo": "xKoRx/echo",
+    "echo_branch": "experiment/clutifx-s01",
+    "echo_audited_sha": "e8c2e47ee5575698b83924ecbbc413ec2787ce6d",
+    "echo_worktree_clean": true,
+    "read_only": true,
+    "upstream_documents": {
+      "experiment_matrix": "CLUTIFX-EXPERIMENT-MATRIX.md",
+      "e05_ledger": "e05/CLF-E05-ALL34-35-IMPLEMENTATION-MATRIX.csv",
+      "q04_krr": "q04/CLF-Q04-KNOWLEDGE-REVIEW-QUEUE.md",
+      "q03r1_krr": "q03r1/CLF-Q03R1-KNOWLEDGE-REVIEW-QUEUE.md",
+      "qualification_ledger": "QUALIFICATION-LEDGER.md"
+    }
+  },
+  "scope": {
+    "strategies_audited": ["STR-001", "STR-002", "STR-003", "STR-004", "STR-005", "STR-006", "STR-007", "STR-008", "STR-009"],
+    "partials_audited": ["SET-001", "SET-002", "SET-003", "SET-004", "SET-005", "SET-006", "SET-007"],
+    "components_audited": "CMP-001..024",
+    "variant_ids": ["C01", "C02", "C03", "C04", "C05", "C06", "C07", "C08", "S01", "S02", "S03", "S04", "S05A", "S05B", "S06", "S07", "S08", "S09", "S10", "S11", "S12", "S13", "S14", "S15", "S16", "S17", "S18", "S19", "S20", "S21", "T01", "T02", "T03", "T04", "T05"],
+    "parameter_sets": 35,
+    "rules_checked": "fuente completa ch01-ch12 relevante (catálogo 9+1 estrategias, 7 parciales, 24 componentes, 13 gestión, 4 red flags) confrontada claim-a-claim contra v3/sdk/futures/strategies/clf/ (18 archivos fuente leídos completos)"
+  },
+  "failure_swing_verdict": {
+    "verdict": "EXTRA_RESTRICTION_CONFIRMED_PARCIAL",
+    "order_block": "OPCIONAL en fuente (ch06 c-0029 canónico sin OB; c-0047 'puedes esperar si quieres'); implementado OBLIGATORIO (failureswing.go:301)",
+    "reaction_predicate": "fuente = creacion de rango opuesto (c-0012/c-0029); codigo = cierre mas alla del nivel fallido (failureswing.go:321-326) — predicados no equivalentes",
+    "window": "fuente sin cota de 1 vela (c-0047/c-0041/c-0048); codigo strict=1 vela, wide=3 arbitrarias",
+    "motive_gate": "MATCH_SOURCE (R9 c-0011/c-0015 respetada; seam externo nil fail-closed)",
+    "stop_target": "stop NOT_IN_SOURCE declarado; objetivo rango de la vela fallida MATCH_SOURCE (c-0007/c-0063)",
+    "numeric_tolerances_in_source": false,
+    "residual_video_questions": ["V-01 OB requerido en espejo 1h? (ch06 09:37-09:55)", "V-02 TF de la reacción (ch06 02:49-03:12/06:03-06:31)"]
+  },
+  "confirmed_rules": [
+    "STR-002 maquinaria completa fiel (rango/pendiente/TS-4-modos/DOL/bias-nativo/red-flags/stop/salidas)",
+    "sesiones London/NY ventanas y hechos de día fieles (ch07; session_ctx)",
+    "C04 sin puerta de bias por diseño (reversión contra lo completado)",
+    "red flags con fuerzas hard/probabilistic fieles a ch09",
+    "DOL objetivo-tomado por touch 1m con borrado y recompute (ch02 R7/ch07 c-0229)",
+    "P3 marcador causal de apertura; manipulación retrospectiva nunca emitida (ch01 c-0116-c-0122)",
+    "STR-009 proxy técnico declarado NO-equivalente del stop físico (límite de contrato Strategy)",
+    "anclas S06/S07 y sus grids (ny_cash_0930; cme_1700_chicago) fieles a la matriz",
+    "S16/S10/S11/S20/S21/S09 ejes con comportamiento propio demostrado (e05 EXEC propios)"
+  ],
+  "missing_rules": [
+    {"id": "F-K05-01", "severity": "P1", "rule": "gate de bias debe consultar el motor configurado (S03/S04/S05 inertes por cableado)", "code": "decision.go:196,390; session_decision.go:140,246 — NativeAggregate en vez de Aggregate()", "status": "CORRECTION_READY (H1)"},
+    {"id": "F-K05-05", "severity": "P1", "rule": "red flag dura de rangos adversos no evaluada en FS (ch09 c-0007/c-0012)", "code": "decision.go:376-382 pasa AdverseRanges vacío; pipeline.go:97 no construye cadena para FS", "status": "CORRECTION_READY (H5)"},
+    {"id": "F-K05-06", "severity": "P1", "rule": "refinado transversal a STR-001..004 (ch04 §2; ch07 c-0214); código lo restringe a STR-002", "code": "config.go:205-207,224-226", "status": "CORRECTION_READY como identidades nuevas (H6)"},
+    {"id": "F-K05-07", "severity": "P1", "rule": "FS como activador de rangos en setups de sesión (ch07 c-0197-c-0206)", "code": "C03/C04 exigen sweep clásico", "status": "CORRECTION_READY como identidad nueva (H7)"},
+    {"id": "F-K05-18", "severity": "P2", "rule": "entrada por order block confirmado como 2º detonante de FAM-001 (ch04 c-0034/c-0036/c-0039)", "status": "REQUIRES_OWNER"},
+    {"id": "F-K05-19", "severity": "P2", "rule": "PDM como entrada y filtro no-venta (ch04 c-0017/c-0096-c-0101; ch03 c-0092/c-0213)", "status": "REQUIRES_OWNER"},
+    {"id": "F-K05-08", "severity": "P2", "rule": "salidas técnicas: minuto-59 (ch02 c-0063/c-0064), dos-15m-en-contra (ch08 c-0066-c-0068), alto-de-la-nueva-vela (ch04 c-0091)", "status": "REQUIRES_OWNER (2 personales + 1 probabilística)"}
+  ],
+  "extra_restrictions": [
+    {"id": "F-K05-02", "severity": "P0", "rule": "OB obligatorio en FS", "code": "failureswing.go:301", "status": "CORRECTION_READY (H2)"},
+    {"id": "F-K05-03", "severity": "P0", "rule": "predicado de reacción sustituido", "code": "failureswing.go:321-326", "status": "CORRECTION_READY (H3)"},
+    {"id": "F-K05-04", "severity": "P0", "rule": "ventana strict=1 vela / wide=3 sin fuente", "code": "failureswing.go:280-318", "status": "CORRECTION_READY (H4)"},
+    {"id": "F-K05-09", "severity": "P2", "rule": "jerarquías colapsadas (bias {1d}; DOL {4h}) — declaradas, deuda de motor V2", "status": "DECLARED_OK"},
+    {"id": "F-K05-14", "severity": "P2", "rule": "cota de fidelidad intrabar 1m (sin ticks) — declarada", "status": "DECLARED_OK"}
+  ],
+  "uncertain_interpretations": [
+    {"id": "V-01", "question": "¿OB requerido en la identificación 1h del caso espejo (c-0046) pese a c-0047?", "owner": true},
+    {"id": "V-02", "question": "¿TF de la reacción de FS (misma TF del fallo vs 30/15)?", "owner": true},
+    {"id": "V-03", "question": "¿Motivo 2 como fracción de vela (15% dicho en ch07 c-0202) o minutos absolutos?", "owner": true},
+    {"id": "V-04", "question": "¿Geometría del pendiente-8h (gap vs sin-tomar-extremo)?", "owner": true},
+    {"id": "F-K05-12", "question": "Base de salida de C03: target (código) o temporal (rótulo matriz S08)?", "owner": true},
+    {"id": "KRR-001/002/004", "question": "¿Identidad adaptada de ancla (precedente S06/S07) o archivo fiel-al-curso no operable?", "owner": true},
+    {"id": "KRR-005", "question": "¿Ancho extra de stop para la entrada temprana? (nada en fuente)", "owner": true}
+  ],
+  "corrections_ready_for_hefesto": ["H1 gate bias (F-K05-01)", "H2 OB opcional (F-K05-02)", "H3 reacción=rango opuesto (F-K05-03)", "H4 ventana hasta invalidación (F-K05-04)", "H5 adversos FS (F-K05-05)", "H6 refinado en sesión (pre-declarar)", "H7 FS-activación en sesión (pre-declarar, depende H2-H4)", "H8 S08/T03 (post-decisión F-K05-12)"],
+  "corrections_blocked_by_owner": ["anclas horarias (KRR-001/002/004)", "T02 stop-extra (KRR-005)", "SMT/noticias datasets (KRR-006)", "salidas técnicas personales (F-K05-08)", "entrada OB / PDM como ejes nuevos (F-K05-18/19)", "semántica neutral del motor de bias (sub-decisión de H1)"],
+  "required_fixtures": ["FX-01 FS sin OB", "FX-02 reacción A/B", "FX-03 ventana multi-vela + invalidación", "FX-04 adversos en FS", "FX-05 gate por motor ×3 + neutral", "FX-06 refinado sesión", "FX-07 FS-activación sesión", "FX-08 regresiones (C02 golden NQU6 bit-idéntico, TS 4 modos, DOL, orden determinista, DST/rollover)"],
+  "gates_to_repeat": ["C06/S14/S15/T04: G0→G2C propios tras H2-H5 (contrato NQZ6)", "S03/S04/S05A/B: G0/G1 como identidades de comportamiento nuevas tras H1 (recibos previos invalidados como medición del eje; preservar historia con KC-02)", "H6/H7/H8: ciclos G0→G4 completos por identidad", "jamás el histórico completo (G5 sigue en 0 pases)"],
+  "economic_notes": {
+    "q04_target": "US$3000 inalcanzado; geometría GROSS500 1:1 20×ATR es experimental de Echo, NO enseñanza ClutiFX (verificado F-K05-15)",
+    "k05_lever_candidates_source_backed": ["refinado en sesión (frecuencia)", "FS-activación en sesión (días del curso ensañados)", "entrada OB / PDM (frecuencia fuente-backed, decisión Owner)"],
+    "duplication_policy": "verificar equivalencia por cableado antes de comprar variantes (KC-07)"
+  },
+  "support_documents_sha256_note": "los SHA de los 9 documentos hermanos de k05 se registran en CLF-K05-STATUS.md al cierre de la publicación",
+  "verdict": "IMPLEMENTATION_REFLECTS_SOURCE_WITH_CERTIFIED_GAPS: 4 correcciones fuente-adjudicadas listas (3 P0 FS + 1 P1 gate), 3 P1 de alcance listas como identidades pre-declaradas, 7 decisiones Owner vigentes, 0 modificaciones silenciosas del curso"
+}
