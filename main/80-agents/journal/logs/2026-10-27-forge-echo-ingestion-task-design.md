@@ -26,6 +26,15 @@ tags:
 
 # 2026-10-27 — Forge Echo Ingestion Task: diseño congelado
 
+## Segundo retorno F y cierre con integración E2E — 2026-10-28
+
+- Owner pidió evaluar el retorno y terminar con prompt maestro para integración al Forge en pruebas. Revisión acotada de fuente/evidencia/topología con tres especialistas del mismo modelo heredado; sin runtime LOCAL ni código de producto.
+- Publicación comprobada: Symphony0417330, SDKbe85d144, Echo24af. F recibida en032095c6; coverage80,12%, verifier anunciado sin resultado publicado, C positivo rankings/perfiles incompleto respecto de B.
+- Fuente confirma identidad de productor fabricada por selector, SDK fix sólo por checkout replace y ausencia de task en dispatcher dinámico del linaje E2E36071d. Reabierto subcaso QA-S3-02; run canónico requiere acreditación específica, no defecto económico observado.
+- Se selecciona candidato combinado desde target E2E fresco, con reconciliación de dispatcher/módulos/migraciones y pruebas propias. Ledger identifica filename, no prefijo017/018. Echo master347eee contiene24af; no downgrade.
+- [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT4 — Correction and Final Verification Mandate|SHOT4 — Correction and Final Verification Mandate]] contiene el one-shot completo; [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/F — Final Certification|F — Final Certification]], C, continuidad y estados de Forge/Echo actualizados conservando autoría/historia. Corrector termina antes de auditor fresco; D separado, release no implícito.
+- Run de revisión registrado, esquema/enlaces/diff y publicación con lease/readback. No cuota estimada, feedback ni cierre Agents-OS.
+
 ## Retorno de F y continuación one-shot del cierre — 2026-10-28
 
 - **Owner:** resolver bloqueos posibles desde esta superficie y entregar el próximo prompt one-shot. Se continúa Shot 4, sin reinicio ni nuevo shot.

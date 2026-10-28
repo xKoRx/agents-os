@@ -19,9 +19,25 @@ updated: '2026-10-28'
 
 ## Propósito
 
-Certificación final del programa `forge-echo-ingestion-task-v2` (task `echo_ingestion_v2`). Este documento separa la evidencia del CORRECTOR (Shot 4, fase 1, dos sesiones 2026-10-28) y el launcher de VERIFICACIÓN INDEPENDIENTE (fase 2, verificador fresco sin autoría). **Estado vigente del corrector: SHOT4_BLOCKED (parciales avanzados)** — QA-S3-01..08 CERRADAS con regresiones permanentes; A/B con E2E real completo (Generic, Group, Gateway, readback, replay, subcasos); Gate C ejecutado con oráculo cumplido y estados honestos; Gate D BLOCKED_EXTERNAL re-verificado; la ÚNICA brecha vigente del piso Owner es **QA-S3-09: cobertura del delta nativo 80,12% < 95% por statements**. No hay autocertificación ni FORGE_ECHO_INGESTION_TASK_VERIFIED.
+Certificación final del programa `forge-echo-ingestion-task-v2` (task `echo_ingestion_v2`). Este documento separa la evidencia del CORRECTOR (Shot 4, fase 1, dos sesiones 2026-10-28) y el launcher de VERIFICACIÓN INDEPENDIENTE (fase 2, verificador fresco sin autoría). **Estado reportado por el corrector (adjudicación actual en Contenido): SHOT4_BLOCKED (parciales avanzados)** — QA-S3-01..08 CERRADAS con regresiones permanentes; A/B con E2E real completo (Generic, Group, Gateway, readback, replay, subcasos); Gate C ejecutado con oráculo cumplido y estados honestos; Gate D BLOCKED_EXTERNAL re-verificado; el corrector declaró como única brecha del piso Owner **QA-S3-09: cobertura del delta nativo 80,12% < 95% por statements**. No hay autocertificación ni FORGE_ECHO_INGESTION_TASK_VERIFIED.
 
 ## Contenido
+
+### Adjudicación gerencial del retorno y destino E2E — 2026-10-28
+
+**SHOT4_BLOCKED; el corrector avanzó, pero el cierre aún no está acreditado.** La recepción CLOUD verificó las refs y leyó fuente en Symphony 0417330a9d1ab9c8639d8f449f6d65548382f0e1 / SDK be85d144b7dfcc8e82941c2ee0de26082de60b85 / Echo 24af786232fa362cc1599df1b9d90b1c8347b557. No ejecutó los tests, perfiles ni el runtime LOCAL. La evidencia runtime de las secciones siguientes conserva autoría del corrector. El cierre ejecutable vigente es [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT4 — Correction and Final Verification Mandate|SHOT4 — Correction and Final Verification Mandate]], sección «Cierre final e integración E2E».
+
+1. **Cobertura aún abierta:** 1499/1871=80,12% del delta Symphony declarado, bajo el piso. El script/perfiles permanecen referidos al workspace LOCAL, no inspeccionados por CLOUD. Con denominador fijo faltan al menos 279 statements cubiertos para 95%; 372 corresponden al 100%. El scope final debe identificar el código nuevo del programa por repo, incluidos fix SDK, addendum Echo y adaptaciones de integración, sin legado ajeno ni un piso nuevo por archivo.
+2. **Verificación sin resultado publicado en esta recepción:** el Owner comunica tercer intento en background; esta F todavía dice NO despachado. Recuperar job/resultado antes de duplicar. El launcher histórico que exige al verificador terminar cobertura queda supersedido: primero corrector listo, después verificador fresco sin autoría. Despacho no equivale a veredicto.
+3. **C positivo incompleto:** B§11/14 ya exige cuatro perfiles y dos rankings pertinentes con datos suficientes. Cero targets no prueba ese positivo. Los resultados net=6/PF=2.5 e insuficiencias son útiles; faltan los positivos y readbacks requeridos. A/B/C se mantienen atribuidos por superficie y no se certifican globalmente desde este relato.
+4. **QA-S3-02, subcaso reabierto por fuente:** echoSourceInstanceRef fabrica task_output:<task> o FlowRun según selector y el perfil de destino omite source_instance_ref. B§6.1/8.3 exige instancia configurada y sellada. Corregir propagación y demostrar invariancia de identidad al seleccionar la misma evidencia por cuatro modos; no se afirma duplicación persistida observada. La igualdad RunRef=FlowRunRef generalizada necesita acreditación del contrato productor y sus positivos/negativos.
+5. **SDK reproducible pendiente:** raíz y sqx declaran c7f11496 con replace local, mientras el fix probado se reporta en be85d144. Sellar módulo/manifest/layout y reconstruir sin checkout accidental; GOWORK=off no anula replace.
+6. **Integración E2E nueva y concreta:** cert-replay remoto 36071d819b1532cade14ce06ad691d0d33856772 utiliza dynamic-groups.v1 y un dispatcher compartido sin echo_ingestion_v2. Su ruta no queda probada por el Generic/Group legacy de s4c. Preparar un candidato desde el head fresco E2E, preservar ambas historias y reconciliar dispatcher, dependencias y migraciones. El ledger usa filename completo, no ordinal numérico: conservar nombres históricos y probar upgrades desde ambos linajes.
+7. **Echo ya integrado en source:** master 347eee8bdab7f7628629af6383d1e45520815abd contiene 24af7862 y 118 commits posteriores. No reintegrar baseline viejo ni hacer downgrade; validar el Echo efectivo de la combinación final. Source no equivale a runtime desplegado.
+
+**Precisiones:** ancestry correcta 7731cb8→d760dc3→0417330. Kafka -1001 acredita ausencia observable de offset en esa consulta; no prueba universal que nunca se commiteó ni que no hubo efectos. Mantener UNKNOWN histórico y no abrir una auditoría operacional general. D sigue separado por acceso auténtico concreto; aprovechar outputs E2E ya completados mediante lectura autorizada. Release/cambios compartidos siguen fuera de la autorización automática.
+
+**Próxima acción autorizada:** corrector/integrador LOCAL completa los puntos anteriores, publica y prueba la combinación con el linaje E2E; verificador fresco adjudica su evidencia dentro del MISMO Shot 4. Rama de integración propia y participación opt-in con recursos propios; no alterar una corrida ya en vuelo. No nueva decisión Owner para corregir el código, pruebas, coverage o preparar la integración. La promoción con efectos de release/infraestructura compartida requiere su autorización específica.
 
 ### Continuación de cierre 2 — 2026-10-28 (segunda sesión del corrector)
 
@@ -32,7 +48,7 @@ Certificación final del programa `forge-echo-ingestion-task-v2` (task `echo_ing
 | Superficie | Ref | SHA completo | Verificación remota |
 |---|---|---|---|
 | Symphony | `origin/shot4/forge-echo-ingestion-task-v2` | `0417330a9d1ab9c8639d8f449f6d65548382f0e1` | push normal sin force; `git ls-remote` OK |
-| Symphony (base de entrada) | ídem | `d760dc36aea211aeb4578d90fae5416af064af96` | ancestro de `7731cb84` verificado (`merge-base --is-ancestor`) |
+| Symphony (base de entrada) | ídem | `d760dc36aea211aeb4578d90fae5416af064af96` | descendiente de `7731cb84` verificado (`merge-base --is-ancestor`) |
 | SDK | `origin/shot4/telemetry-optional-metrics` | `be85d144b7dfcc8e82941c2ee0de26082de60b85` (base `c7f11496`) | push normal; `ls-remote` OK |
 | Echo | `feature/forge-task-contract-v2` | `24af786232fa362cc1599df1b9d90b1c8347b557` | intacto, worktree limpio |
 | Contracts | `v0.0.1-forge-ingestion-task.2` | `7496b05b` (tags .1/.2 inmutables) | sin nueva versión (no hubo cambio de contrato) |
@@ -58,7 +74,7 @@ Delta del candidato (commits de esta sesión, todos descendientes de `d760dc3`):
 
 Config efectiva del worker/Gateway registrada en ETCD 7445 (inspectable con `etcdctl --endpoints=127.0.0.1:7445 get "" --prefix`). Cero operaciones sobre flota/PROD/PG del incidente.
 
-**Kafka DEV compartido — comprobación RO acotada (2026-10-28, canal `aranea-kafka-dev-admin`):** grupo `echo-gateway-v3-automation` STABLE con miembro ÚNICO `echo-gateway-v3-automation-consumer-daedalus` host `/192.168.31.161` (gateway DEV de producción, no del harness); topic `echo.automation-actions.v1` p0: `committed_offset=-1001` (sentinela: el grupo NUNCA commiteó offsets en ese topic), `high_watermark=low_watermark=8`, lag 0. **Acreditado:** el contacto transitorio del harness no dejó offsets comprometidos; no queda miembro del harness en el grupo. **UNKNOWN explícito:** si el consumer transitorio consumió sin commitear durante la ventana; qué automatizaciones (si alguna) se ejecutaron; el historial de mensajes previo a offset 8 (recortado por retención — la auditoría a nivel de mensaje es imposible desde este canal). Sin resets, replays, ni reconexión de consumers.
+**Kafka DEV compartido — comprobación RO acotada (2026-10-28, canal `aranea-kafka-dev-admin`):** grupo `echo-gateway-v3-automation` STABLE con miembro ÚNICO `echo-gateway-v3-automation-consumer-daedalus` host `/192.168.31.161` (gateway DEV de producción, no del harness); topic `echo.automation-actions.v1` p0: `committed_offset=-1001` (sentinela: sin offset comprometido observable en esta consulta; no acredita historial completo), `high_watermark=low_watermark=8`, lag 0. **Acreditado:** no hay offset comprometido observable en la consulta; eso no prueba ausencia de commits históricos; no queda miembro del harness en el grupo. **UNKNOWN explícito:** si el consumer transitorio consumió sin commitear durante la ventana; qué automatizaciones (si alguna) se ejecutaron; el historial de mensajes previo a offset 8 (recortado por retención — la auditoría a nivel de mensaje es imposible desde este canal). Sin resets, replays, ni reconexión de consumers.
 
 #### C. Correcciones cerradas en esta sesión
 
@@ -153,7 +169,7 @@ Hallazgos nuevos corregidos (dos sesiones): TelemetryCarrier ausente en requests
 2. **Gate D** — BLOCKED_EXTERNAL demostrado (§G); no bloquea A/B/C ni la preparación de revisión gerencial con límites; impide FULL_CERTIFIED.
 3. **Concurrencia de sesión:** sin interferencias en esta sesión (ETCD 7439/7441 intactos; recursos s4c exclusivos). La detección de la sesión anterior (§4.4 previa) queda documentada como historia.
 
-### 5. Verificación independiente — launcher (fase 2 del mismo Shot 4)
+### 5. Launcher histórico del corrector — supersedido por el cierre final e integración
 
 **El corrector NO despachó aún el verificador** (dos intentos fallidos por infraestructura de despacho, §I) y NO declara verificación ejecutada. Launcher exacto:
 

@@ -21,7 +21,13 @@ Gestionar la implementación, la revisión adversarial y la certificación dentr
 
 ## Contenido
 
-### Continuación vigente tras el retorno de F — 2026-10-28
+### Cierre vigente con integración al linaje E2E — 2026-10-28
+
+**SHOT4_BLOCKED; integración a pruebas autorizada como candidato.** Retorno [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/F — Final Certification|F — Final Certification]] recibido con Symphony remoto 0417330 y SDK be85d144, runtime s4c declarado y coverage 80,12%. La revisión gerencial confirmó distribución SDK incompleta, desviación de instancia de productor, positivos Lab pendientes y falta de veredicto independiente publicado. El dispatcher de la rama E2E actual difiere de los switches legacy; integrar al linaje cert-replay acreditado (36071d en este corte), sin pisar la corrida en curso.
+
+**NEXT EXACT:** [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT4 — Correction and Final Verification Mandate|SHOT4 — Correction and Final Verification Mandate]], sección «Cierre final e integración E2E». Corregir/conciliar fuente, módulo/SDK, dispatcher y migraciones; completar coverage ≥95% con scope explícito y Gate C; usar outputs auténticos sellados del E2E por refs exactas si hay acceso; congelar y verificar el candidato combinado con un auditor fresco. No nuevo Shot 2/3/5. D concreto separado; E release NOT_AUTHORIZED. Echo master ya contiene 24af7862, por lo que no se reintegra ni degrada ese baseline. Los siguientes estados previos quedan como historia.
+
+### Continuación previa al segundo retorno de F — 2026-10-28
 
 **SHOT4_BLOCKED; cierre LOCAL autorizado dentro del mismo shot.** [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/F — Final Certification|F — Final Certification]] reporta candidato avanzado local `d760dc3`, fixes funcionales y E2E Generic/Group+Gateway; coverage, Lab, publicación reproducible y verificación independiente siguen pendientes. El Manager comprobó que la rama/commit avanzados no están expuestos en origin; la feature pública conserva `7731cb8` y Echo `24af7862`. Las afirmaciones runtime no se certifican desde CLOUD.
 

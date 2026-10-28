@@ -20,11 +20,95 @@ updated: '2026-10-28'
 
 Cerrar el programa `forge-echo-ingestion-task-v2` mediante **correcciones completas y después verificación final independiente dentro del mismo Shot 4**. La task es `echo_ingestion_v2`. Se recibe Shot 3 con findings y alcance parcial; no se devuelve a Shot 2, no se abre otra vuelta de Shot 3 ni se crea Shot 5.
 
-**Estado de entrada: SHOT4_READY_WITH_ADJUDICATED_FINDINGS.** El diseño B y el addendum Echo permanecen congelados. Este mandato adjudica las nueve correcciones de E, sus criterios de cierre y la evidencia que aún falta. No declara el producto verificado ni concede release.
+**Estado vigente: SHOT4_BLOCKED; cierre e integración a pruebas autorizados según la primera sección del Contenido.** Estado histórico de entrada: SHOT4_READY_WITH_ADJUDICATED_FINDINGS. El diseño B y el addendum Echo permanecen congelados. Este mandato adjudica las nueve correcciones de E, sus criterios de cierre y la evidencia que aún falta. No declara el producto verificado ni concede release.
 
 ## Contenido
 
-### Continuación de cierre tras F — 2026-10-28
+### Cierre final e integración E2E — 2026-10-28
+
+**Mandato vigente del Owner:** terminar lo que falte, comprobar el candidato con una última verificación con correcciones e incorporarlo al linaje de Forge que participa en los E2E actuales. Se continúa el MISMO Shot 4. No se reabre Shot 2/3 ni se crea Shot 5. Este bloque supersede las instrucciones de cierre y los launchers anteriores que lo contradigan; B y el Contract Addendum siguen siendo las autoridades funcionales.
+
+**Rol/superficie:** TOP LOCAL, integrador y corrector/coordinador. Necesita repos, Go, runtime local y canales RO soportados. Después interviene un verificador LOCAL de contexto fresco y sin autoría sobre el candidato final. Puede compartir máquina/harness con ownership claro; no compartir autoría de las correcciones que adjudica.
+
+**Adjudicación de recepción: SHOT4_BLOCKED; integración a pruebas autorizada como candidato, cierre aún pendiente.** Se verificaron publicaciones y se inspeccionó fuente, no runtime desde CLOUD. El porcentaje 80,12% sigue siendo evidencia declarada del corrector; falta veredicto independiente publicado. El positivo Lab está incompleto respecto de B§11/14. Además se confirmó una desviación de source_instance_ref y la dependencia externa del SDK corregido. No basta con repetir el harness anterior ni con aumentar cobertura sin integrar la ruta actual.
+
+#### 1. Entradas exactas y continuidad
+
+Leer A, B, C, D, E, F y el Contract Addendum desde la revisión documental de este despacho. Bootstrap Agents-OS una vez por sesión nueva; en continuación caliente no repetirlo. Respetar AGENTS/contratos de cada repo. Mantener Agents-OS abierto, sin feedback/L0/L1 ni cierre de sesión.
+
+Refs remotas verificadas al preparar este mandato:
+
+| Superficie | Ref | SHA |
+|---|---|---|
+| Ingesta Symphony | shot4/forge-echo-ingestion-task-v2 | 0417330a9d1ab9c8639d8f449f6d65548382f0e1 |
+| SDK con fix métricas | shot4/telemetry-optional-metrics | be85d144b7dfcc8e82941c2ee0de26082de60b85 |
+| Forge E2E, linaje de certificación | codex/forge-cert-replay-oneshot | 36071d819b1532cade14ce06ad691d0d33856772 |
+| Symphony master | master | dd4af7d05c03db9b39b5467b46e2c2c7d0c1fa19 |
+| Echo baseline del programa | feature/forge-task-contract-v2 | 24af786232fa362cc1599df1b9d90b1c8347b557 |
+| Echo master, contiene ese baseline | master | 347eee8bdab7f7628629af6383d1e45520815abd |
+| SDK master, ancestro de be85d144 | master | c85594440f6755443ceb97ec4e333cd0ddb5b0ed |
+
+Contracts .2: tag completo `v3/sdk/contracts/v0.0.1-forge-ingestion-task.2`, objeto 7496b05b6932517e1d51b757c42cf72dad2cc1bd, commit Echo 24af786232fa362cc1599df1b9d90b1c8347b557, subtree cb88aece4f04b648fd724568de3823604dc064ab. .1/.2 son inmutables.
+
+Refrescar refs y preservar descendientes/cambios concurrentes. No resetear a los SHAs históricos. La línea real es 7731cb8 → d760dc3 → 0417330; F invirtió una descripción de ancestry. Workspace previo: `~/aranea/work/forge-echo-task-v2-20261027/`; evidencia s4c-stack y QA preservada d70c171a/8270676b. Recuperar el job/session/resultado del verificador anunciado en background antes de lanzar otro. La F recibida en Agents-OS 032095c6 todavía dice NO despachado y no contiene su veredicto: discrepancia documental, no prueba de que el proceso esté muerto. Si escribió correcciones/tests para subir el piso, registrar esa contribución como corrección y conservar una verificación posterior sin esa autoría.
+
+#### 2. Integrar contra el Forge que se prueba ahora
+
+El linaje cert-replay y el de ingesta divergen desde master: +58 y +15 commits respectivamente en el corte. El JSON E2E w12R declara execution_contract=dynamic-groups.v1. Verificar LOCAL, en lectura, rama/SHA, binarios/SDK efectivos, workflow/run IDs, queue/namespace, config, owners y estado de la corrida actual. Los commits dicen 0.4.2/w12R; no equivalen a readback runtime. Las instrucciones históricas de teardown/PIDs/restauración 0.3.2 en cert-replay pueden estar stale: no ejecutarlas contra procesos actuales.
+
+Crear worktree y rama de integración propios desde el head fresco acreditado del linaje E2E, incorporando el candidato nativo mediante merge normal o commits trazables que preserven ambas historias. No sobrescribir la rama de otra sesión ni resolver conflictos eligiendo todos los archivos de un lado. Revisar los deltas concurrentes de workflows/config/main/stage_execution/migrator/dependencias; preservar Dynamic Groups y los fixes E2E existentes.
+
+**Integración obligatoria:** el dispatcher compartido `sqx/workflows/task_dispatch.go` de cert36071d no contiene echo_ingestion_v2. Generic con ExecutionContract usa runRootTaskSequenceV2 y omite el switch legacy. Incorporar la task al camino raíz/grupo/anidado actual; preservar ExecutionScope, TaskPath estructural, TaskResult/accounting, carriers, selección y outputs por nombre, incluidos límites de grupo y ContinueAsNew aplicables. Conservar compatibilidad de Generic/Group legacy. Registrar capacidades sólo donde el contrato de bindings lo exige: no inventar un requisito de InputBindings para toda task ni una dependencia de SQCLI en ingesta. Probar configuración válida, admisión y ejecución de la nueva task por la ruta dinámica real.
+
+**Migraciones:** cert-replay aporta 017_stage_execution_identity_v2 y 018_group_partition_runs; ingesta aporta 017_ingestion_v2_persistence, 018_ingestion_v2_delivery_state y 019_ingestion_v2_delivery_state_reconcile. El ledger usa el FILENAME COMPLETO, no el prefijo numérico; no hay colisión automática sólo por compartir 017/018. Preservar nombres/SQL ya aplicados, reconciliar ordered/dependencias y añadir reconciliación sólo cuando el shape la requiera. Verificar con PG propias: fresh boot normal, upgrade desde cada linaje histórico (incluida 018 antigua de 07c9142), conservación de filas, equivalencia de esquema y boots concurrentes. No borrar ledger, renumerar migraciones aplicadas ni usar DDL manual como evidencia del boot de producto.
+
+Echo master ya contiene 24af7862 y 118 commits posteriores en el corte. No reintegrar ese baseline a ciegas ni hacer downgrade. Seleccionar el Echo efectivo compatible para la matriz final, conservar 24af como baseline reproducible y probar contra la revisión actual pertinente. No equiparar master con runtime desplegado.
+
+#### 3. Corregir identidad y distribución del candidato
+
+**QA-S3-02 reabierta en el subcaso de instancia configurada.** B§6.1/8.3 exige source_instance_ref de la identidad de productor configurada, sellada en SourceSnapshot. En 0417330, echoDestinationProfile sólo carga namespace/writer y echoSourceInstanceRef fabrica `task_output:<task>` o FlowRunRef según Source.Type. exact_evaluations/input_cohort terminan en `task_output:`. Ese valor participa en history_id y en la validación canónica.
+
+Conectar la autoridad de configuración al snapshot/binding/mapper y fallar cerrado si falta; no derivarla de selector, carpeta ni task name. Prueba obligatoria: misma evaluación, TradeSet, versión, run y scope seleccionados por los cuatro modos conservan instancia configurada e identidad económica. Un payload de otra instancia que contradiga la instancia sellada rechaza antes de Prepare/POST. La key del selector puede tener su semántica propia; no exigir igualdad de keys que B no manda. Para manifests ya sellados, recovery conserva exactamente autoridad/key/body; no reescribirlos con la nueva identidad para eludir conflictos.
+
+**Run canónico:** el código compara siempre payload.RunRef con member.FlowRunRef. Acreditar esa equivalencia sólo para el contrato productor que la declara. B§6.1 exige el run real del payload y prohíbe generalizar identidades. Cuando un contrato ya admitido permita un run económico distinto del FlowRun, probar ese positivo; si los contratos admitidos acreditan igualdad, probar esa autoridad y el rechazo tipado de contratos no soportados. Probar siempre run ajeno de la misma instancia y ausencia declarada conforme al contrato. No corregir el fixture cambiando run-1 por flow-1 para satisfacer una suposición ni quitar el contraste de identidad. Preservar decimales, operaciones, SourceEvidence, typed-null fix y oráculos M04.
+
+**SDK y módulos:** raíz/sqx aún declaran c7f11496 y reemplazos ../sdk o ../../sdk; el fix está en be85d144. GOWORK=off no desactiva replace. Fijar require/version inmutable resoluble del fix y la resolución efectiva de TODOS los módulos consumidores. Si el layout del repo conserva replaces, publicar manifest/bootstrap que obtiene exactamente el SDK declarado y falla ante checkout divergente; demostrar además resolución limpia del módulo publicado sin dependencia accidental del sibling/cache. Usar la convención existente, sin reestructurar el monorepo. Verificar go list -m -json, go.sum, MVS/exclude contracts .2, shared-analytics y go version -m de los binarios. SDK master hoy es ancestro del fix; si el SDK operacional fuese un descendiente posterior, preservar ese avance e incorporar sólo el delta necesario. Repetir métricas/tracer apagados y encendidos con el SDK final.
+
+#### 4. Completar calidad sobre el candidato integrado
+
+El corrector termina los tests y arreglos antes de entregar al verificador. Recuperar covunion4.py/perfiles/manifiesto y auditar el scope contra el diff real. El 80,12%=1499/1871 sólo describe el delta Symphony declarado; con ese denominador fijo faltan al menos 279 statements cubiertos para 95%, no los 372 necesarios para 100%. Recalcular tras cada cambio material de fuente.
+
+Mantener ≥95% por statements del código nuevo del programa con scope explícito por repositorio: task Symphony, addendum Echo, fix SDK y adaptaciones de integración. Incluir funcionalidad nueva en archivos existentes/wiring/main; separar legado ajeno y harness. No inventar 95% por archivo ni por cada repositorio, ni diluir la medición agregando legado cubierto. Matriz por repo/archivo y agregado inequívoco; archivos/rutas no ejercitados cuentan cero. NumStmt, unión de hits sólo entre bloques compatibles del mismo código/toolchain, sin duplicar denominadores, promedios de funciones ni selección de perfiles favorables. Instrumentar procesos/subprocess para boot/os.Exit; no excluirlos como no-unit-testeables. Publicar scripts y evidencia sanitizada reproducibles, sin binarios, secretos ni dumps.
+
+Priorizar pruebas con expected y efectos observables: identidad/run, corrupción de mapper, límites, errores de resolver, entrega/recovery y boot/wiring. Confirmar que tests Mongo/PG/wiring no hicieron skip. Reutilizar regresiones útiles, sin tests vacíos que sólo inflan coverage. Atribuir fallos de legado al baseline E2E actual con mismo comando/config; no usar indiscriminadamente el antiguo 22f para absolver regresiones de la integración. No cerrar la sesión de corrección sólo por llegar a una cifra mayor que 80%.
+
+#### 5. Última matriz funcional y Lab completa
+
+Usar recursos propios o ownership lógico demostrado; s4c es una opción si está libre y su configuración efectiva corresponde al manifest. No tocar stores de otra sesión, el PG del incidente ni Kafka DEV compartido. Ejecutar el binario final integrado con Foundation/Temporal/Gateway reales. No repetir pruebas ya suficientes salvo para validar cambios relevantes o la nueva combinación.
+
+Completar O01–O24 y EC01–EC08 con matriz de expected/actual, comando, exit, fixture/hash, fuente/binario/config, refs y readback. Casos mínimos críticos: raíz/grupo legacy y dinámicos/anidados; cuatro selectores y tres modos de versión; cero historia legítimo; economía por operación; SDK opcional; snapshot estable; conflictos; receipt estricto; dos workers; REPORT_PENDING y recovery sin reingesta. Para crash/timeout acreditar fronteras deterministas de snapshot, manifest, commit Echo y receipt; un SIGKILL mid-run genérico no sustituye POST que commiteó remotamente antes del timeout. Expected escrito antes de observar el resultado.
+
+**Gate C:** mantener los positivos net=6/PF=2.5 y las insuficiencias honestas. Completar el requisito YA congelado en B§11/14: fixture suficiente con Q_i causal/moneda/FX/tiempo acreditados, cuatro perfiles y dos rankings pertinentes, targets/cohortes concretos y orden/valores esperados. Cero targets no demuestra ranking funcional. Readback de HistoryRevision→outbox→generación PUBLISHED→curvas/métricas/ranks/screener. Probar cero historias visible sin placeholder/curva/score; COMPLETE/PARTIAL/GAP, known_at/economic_at UNKNOWN y cortes temporales sin look-ahead. No convertir ausencia de datos en ceros, motivos vagos ni positivos simulados como auténticos.
+
+#### 6. Participar de los E2E y resolver D cuando sea posible
+
+Además del fixture, aprovechar outputs reales ya COMPLETED/sellados del E2E actual como fuente read-only, por refs exactas: StageExecutionResult + Evaluation/TradeSet/MetricSet + artifact/hash/producer contract. No latest mutable, no carpeta como autoridad, no re-selección oculta. Ejecutar ingesta opt-in con IDs, namespace/cola, destino y stores propios. Puede cerrar D sin modificar la corrida física en curso. Guardar origen auténtico, cadena de custodia y readbacks sanitizados; si el perfil MT5 no tiene contrato soportado, devolver UNSUPPORTED_SOURCE_CONTRACT sin convertirlo silenciosamente en SQX.
+
+Demostrar también un nuevo flujo opt-in por el dispatcher dinámico del candidato integrado. Se puede alimentar de carriers sellados propios; no necesita reiniciar la campaña física completa. Usar las interfaces existentes para la lectura autorizada. Si el conector Mongo expiró, hacer el refresh/reconexión soportado o utilizar un reader existente con autorización vigente; no eludir credenciales. Si la fuente auténtica sigue inaccesible, D=BLOCKED_EXTERNAL con recurso/operación/error exactos. Legacy/no-V2 sólo describe deployment. No FULL_CERTIFIED con fixtures.
+
+#### 7. Verificador fresco y destino de integración
+
+Congelar y publicar por push normal el candidato integrado y su matriz SDK/Echo/contracts; build frío y hashes. Después, verificador fresco sin autoría reconstruye ese candidato, escribe expected independientes y comprueba findings, cobertura y matriz crítica. Los tests del corrector son regresiones reutilizables, no su única autoridad de expected. Si descubre fallo, vuelve al corrector dentro del MISMO Shot 4; verificar el descendiente corregido antes de adjudicar. Si el despacho falla, guardar launcher/SHAs/error concreto; no declarar auditoría completada ni inventar resultado.
+
+La petición actual autoriza preparar/publicar y probar la integración con la versión E2E de Forge. Usar rama de integración propia desde el target acreditado, con todo resuelto y commit verificable. Si la incorporación al target de pruebas puede realizarse por el procedimiento ordinario autorizado, sin activar despliegues/campañas ni alterar trabajo concurrente, efectuarla después de gates y releer head/ancestry. No pedir de nuevo permiso para worktrees, fixes, tests, push normal de candidato o preparar un PR/diff de integración. Si promover el target implica shared migrations, reemplazar binarios de la corrida en curso, branch protection o release/master aún no autorizado para ese efecto, completar primero candidato/PR y dejar únicamente esa acción concreta pendiente con razón/impacto. No force push ni bypass de protecciones. Master/release no se presume certificado por el éxito de la rama de pruebas; E sigue NOT_AUTHORIZED salvo autorización específica ulterior.
+
+#### 8. Entrega única y registro honesto
+
+Actualizar F con secciones separadas de corrector y verificador, SHAs finales/remotos, target E2E base/final, matriz de dependencias, identidad/migraciones, cobertura reproducible, A/B/C/D/E, refs auténticas usadas y estado de integración. No describir como único bloqueo la cobertura mientras falte evidencia o revisión. Conservar el reporte previo atribuible; corregir ancestry y precisión de Kafka: -1001 significa ausencia observable de offset en esa consulta, no prueba que nunca hubo commits/efectos. No abrir otra auditoría Kafka si no aparece evidencia nueva.
+
+Actualizar C, continuidad y estados de Forge/Echo sin pisar otros workstreams; Agents-OS master directo con lectura reciente/conflicto optimista y readback. Registrar agent_run de la ejecución material. Entregar hechos concretos: qué corrigió, qué probó, qué se integró y dónde; cualquier pendiente externo con su acción exacta. No autocertificación del corrector. El cierre puede quedar READY_FOR_MANAGER_REVIEW con D bloqueado de forma demostrada, pero no VERIFIED/FULL_CERTIFIED por decreto. Mantener sesión Agents-OS abierta.
+
+### Continuación previa tras F — 2026-10-28 (histórica; supersedida por el cierre final)
 
 **Orden vigente del Owner: resolver los bloqueos posibles y continuar con un único despacho ejecutable.** Se continúa el mismo Shot 4, primero como corrector de lo pendiente y después con verificador fresco sin autoría. No reiniciar Shots 1–3 ni crear otro shot. El launcher inicial de F §5 queda supersedido: no trasladar al verificador una entrega aún pendiente de cobertura y Gate C.
 
