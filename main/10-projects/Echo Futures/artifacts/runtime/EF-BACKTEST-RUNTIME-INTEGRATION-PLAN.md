@@ -25,7 +25,7 @@ updated: "2026-10-28"
 
 Preparar la convergencia de los experimentos del Backtester con el modelo vigente del runtime, de forma que una sesión registrada pueda reproducirse y contrastarse con la misma lógica de Strategy, MM, cuenta y ejecución. Mandato directo Owner del 2026-10-28: **planificación y diseño**, sin implementación ni pruebas nuevas.
 
-**Estado: DESIGN_CANDIDATE / READY_FOR_REVIEW; no implementation-ready ni autorización de merge, despliegue u órdenes.** Este artefacto pertenece a [[Echo Futures]], owner de producto, enlazado desde FUT-R01 para coordinar necesidades de investigación. No crea otro proyecto, planner, motor, skill ni SPEC congelado. El siguiente retorno es una recuperación read-only acotada de Hefesto.
+**Estado vigente — 28-10-2026: PAUSED_OWNER.** El Owner informa que el runtime está en proceso de merge a master y ordena no avanzar todavía el frente 1. Se conserva el diseño candidato como antecedente; no despachar el mandato read-only de §10 ni continuar integración, inspección física o implementación durante la pausa. Para reanudar se requiere confirmación Owner y resolver el corte aceptado posterior, sin inferir que el merge terminó. No implementation-ready ni autorización de despliegue u órdenes. Este artefacto pertenece a [[Echo Futures]], owner de producto, enlazado desde FUT-R01 para coordinar necesidades de investigación. No crea otro proyecto, planner, motor, skill ni SPEC congelado. La recuperación read-only de Hefesto queda diferida. [[FUT-R01-ITERACION-01]] prepara mientras tanto documentación de investigación; no rediseña este frente.
 
 ## Contenido
 
@@ -198,7 +198,7 @@ Seleccionar del corpus existente los casos que ya prueban estos contratos. Ampli
 
 **Retorno y persistencia:** informe en las superficies canónicas existentes, con fuente por hallazgo, estado, riesgos y siguiente acción. Si se autoriza la escritura documental local, un único responsable publica el retorno bajo este artefacto y reconcilia HEAD de Agents-OS/master sin ramas/PRs. Si el worker no puede publicar, devuelve contenido y localizadores al manager; no inventa publicación. Aplicar agent-run/feedback sólo cuando corresponda a su alcance y declarar recursos/consumos comprobados o UNKNOWN. No cierre formal de sesión del programa.
 
-**Estado de despacho:** PREPARADO, no ejecutado en Hefesto. Esta sesión Cloud sólo leyó fuentes y prepara/persiste documentación.
+**Estado de despacho:** DIFERIDO / NO DESPACHAR mientras continúe PAUSED_OWNER; no ejecutado en Hefesto. Esta sesión Cloud sólo leyó fuentes y prepara/persiste documentación.
 
 ### 11. Decisiones abiertas y continuidad
 
@@ -206,7 +206,7 @@ Antes de implementar: fijar corte de convergencia aceptado, alcance de soporte r
 
 Antes de operación comercial: Provider/Program/RuleSet actuales, reserva/pérdida máxima/desembolsos, semántica bruto/neto del retiro objetivo y gates físicos aplicables. Esos puntos no impiden terminar este diseño ni el Deep Research.
 
-Próximo paso técnico: revisar este candidato con el owner de producto y recuperar R0 mediante el mandato anterior. Próximo paso de investigación: ejecutar externamente [[FUT-R01-RESEARCH-MANDATE]] v3 y devolver informe/fuentes al manager. No cerrar FUT-R01 por entregar un prompt o plan.
+Próximo paso técnico: esperar reanudación Owner; después reconciliar este candidato con el corte aceptado y decidir R0. Próximo paso documental de investigación: [[FUT-R01-ITERACION-01]] A/B después de RV-01. El mandato v3 fue sucedido por v4 y los DR ya recibidos; no volver a ejecutarlos. No cerrar FUT-R01 por entregar un prompt o plan.
 
 ## Fuentes
 

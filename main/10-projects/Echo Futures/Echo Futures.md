@@ -32,15 +32,19 @@ updated: "2026-10-28"
 
 **Gobierno de I+D desde 2026-10-27:** la investigación permanente de estrategias se gestiona en [[Echo — I+D de Estrategias]] → [[Echo I+D — Futures]]. Este proyecto conserva producto, arquitectura, Backtester y runtime; la reorganización no acepta entregas técnicas ni autoriza producción. Los controles y cortes de producto que siguen mantienen su evidencia y vigencia propias.
 
-**Convergencia Backtester–runtime — 2026-10-28:** el Owner solicita planificación y diseño para integrar los experimentos con el modelo vigente del runtime y reproducir sesiones con datos precisos. [[EF-BACKTEST-RUNTIME-INTEGRATION-PLAN]] es el diseño candidato subordinado a este proyecto, R6/Runtime Pools y GOD-05; coordina el frente 1 con [[Echo I+D — Futures]], sin crear otro planner ni reactivar S05 del laboratorio. El Owner informa pruebas PROD; el último receipt recuperado acredita DEV RO del 27-10 y se requiere identificar la evidencia operativa posterior. Esta anotación no adjudica gates ni modifica los controles de release.
+**Actualización Owner posterior — 2026-10-28: PAUSED_OWNER.** El runtime está en proceso de merge a master según el Owner; el frente 1 no avanza todavía. [[EF-BACKTEST-RUNTIME-INTEGRATION-PLAN]] y su recuperación read-only quedan diferidos. Esta nota no certifica el merge ni modifica la autorización de su ejecución. [[Echo I+D — Futures]] prepara sólo la iteración documental [[FUT-R01-ITERACION-01]], sin intervenir producto.
+
+**Convergencia Backtester–runtime — antecedente 2026-10-28, ahora pausado:** el Owner solicita planificación y diseño para integrar los experimentos con el modelo vigente del runtime y reproducir sesiones con datos precisos. [[EF-BACKTEST-RUNTIME-INTEGRATION-PLAN]] es el diseño candidato subordinado a este proyecto, R6/Runtime Pools y GOD-05; coordina el frente 1 con [[Echo I+D — Futures]], sin crear otro planner ni reactivar S05 del laboratorio. El Owner informa pruebas PROD; el último receipt recuperado acredita DEV RO del 27-10 y se requiere identificar la evidencia operativa posterior. Esta anotación no adjudica gates ni modifica los controles de release.
 
 ## ✅ Tareas
 
 Las tareas técnicas permanecen en sus controles/proyectos de entrega enlazados. El único puente vigente de [[Echo Futures — Optimización de Campañas]] está en [[Echo I+D — Futures]]; no mantener un segundo puente activo aquí. Las prioridades de nuevas investigaciones se recuperan desde esa línea.
 
-- [/] Diseñar la convergencia Backtester–runtime y el contrato de reproducción de sesiones: [[EF-BACKTEST-RUNTIME-INTEGRATION-PLAN]]. Diseño candidato revisable; primer retorno read-only de Hefesto preparado, no ejecutado. Implementación/merge/rollout requieren sus autoridades y autorizaciones posteriores. #owner/me #type/supervision #area/echo
+- [ ] **PAUSED_OWNER:** convergencia Backtester–runtime y reproducción de sesiones, [[EF-BACKTEST-RUNTIME-INTEGRATION-PLAN]]. Merge runtime→master en proceso según Owner; no avanzar este frente ni despachar retorno read-only hasta reanudación. Implementación/merge/rollout conservan sus autoridades propias. #owner/me #type/supervision #area/echo
 
 ## 📆 Bitácora
+
+- **2026-10-28 — pausa Owner:** frente 1 en espera durante merge del runtime a master. Se actualiza sólo el estado/mandato; no se inspecciona ni modifica el merge, runtime, código o infraestructura. Preparación documental de factory en el planner de I+D. [[2026-10-28-echo-futures-post-rv01-iteration|Registro]].
 
 - **2026-10-28** — Nuevo mandato Owner de planificación/diseño de integración. Reconciliadas por lectura las ramas de Lab/runtime, contratos Strategy/MM, pools, temporalidad y diferencias económicas; plan candidato y mandato read-only documentados. No ejecución ni modificación de producto. [[80-agents/journal/logs/2026-10-28-echo-futures-research-runtime-plan|Registro]].
 

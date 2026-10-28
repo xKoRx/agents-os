@@ -63,6 +63,8 @@ Los nombres de archivo se preservan para mantener resolución de wikilinks por t
 
 ### Siguiente decisión
 
+**Continuidad posterior del manager (28-10-2026):** [[FUT-R01-ITERACION-01]] prepara ficha causal y contrato/caja en paralelo, con retorno técnico diferido. Frente 1 PAUSED_OWNER durante merge runtime→master. La cola y decisiones viven en [[Echo I+D — Futures]]. El consolidado, su dictamen y los cinco blobs de entrada se conservan sin modificación; no repetir los DR.
+
 Resolver el paquete indispensable ya identificado —integridad, ruta contractual, datos y selección previa— y decidir si se especifica el candidato de persistencia de cierre NQ o la alternativa MR06. Una entrega focal, sin repetir los cuatro DR ni abrir DR-05. El programa Futures permanece en curso; esta sesión documental está cerrada.
 
 ## Fuentes

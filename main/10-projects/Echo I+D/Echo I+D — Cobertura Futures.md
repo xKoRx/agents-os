@@ -22,6 +22,8 @@ updated: "2026-10-28"
 
 ## Propósito
 
+**Siguiente iteración propuesta — 28-10-2026:** [[FUT-R01-ITERACION-01]] prepara una ficha en FUT-NQ-PERSIST con contexto de cierre; MR06/FUT-NQ-REVERT permanece alternativa existente. No se crea una familia por horario ni se declara un hueco sin reconciliar reglas. El backlog/estado está en [[Echo I+D — Futures]]. Frente 1 pausado por Owner durante merge; esta preparación es documental.
+
 **RV-01 terminado — 2026-10-28:** [[FUT-R01-INDICE]] reúne los retornos disponibles y el consolidado `NO_APTO_AUN`. La revisión es autorrevisión adversarial documental, sin independencia histórica acreditada. Persistencia de cierre es candidato a especificar y MR06 su alternativa propuesta, no nuevas celdas aceptadas ni estrategias cualificadas. Se conserva el inventario y G0–G5.
 
 **Recurso transversal DR-01 (2026-10-28):** [[Echo Futures — DR-01 matemática de campañas prop]] — retorno recibido, NO validado, con contradicciones materiales de caja/first-passage. No es evidencia de estrategias, independencia, payouts ni gates G0–G5.
@@ -118,7 +120,7 @@ La evidencia económica y el estado de aceptación del lab R03 se enlazan desde 
 
 El Owner reemplaza la propuesta de descomposición extensa por tres bloques objetivos para Strategy: **setup, filtro y RR u objetivo–riesgo técnico**, definidos mediante indicadores, parámetros y reglas deterministas. La entrada/confirmación pertenece al setup; el filtro puede ser ninguno; objetivo y riesgo usan ATR o unidades de precio del instrumento. Se conserva Strategy como entidad y **MM asociado a prop/etapa como otra entidad**.
 
-La matriz relaciona esas fichas con mecanismos y evidencia. Fuente, versión, datos, ejecución, costes y gates se registran en sus superficies existentes; no son componentes adicionales obligatorios de la ficha ni un rediseño del runtime. [[FUT-R01-RESEARCH-MANDATE]] v3 conserva esta simplificación; las cinco estrategias challenge y las cinco funded pueden ser las mismas, distintas o una mezcla según confirmación Owner.
+La matriz relaciona esas fichas con mecanismos y evidencia. Fuente, versión, datos, ejecución, costes y gates se registran en sus superficies existentes; no son componentes adicionales obligatorios de la ficha ni un rediseño del runtime. [[FUT-R01-ITERACION-01]] conserva esta simplificación sobre la autoridad económica v4 y RV-01; las cinco estrategias challenge y las cinco funded pueden ser las mismas, distintas o una mezcla según confirmación Owner.
 
 La comparación de RR separará distancia objetivo/stop, riesgo monetario neto y payoff realmente realizado. Cambiar salida/timeout puede alterar frecuencia, tiempo en mercado, secuencias y compatibilidad con prop; no se modela multiplicando retrospectivamente el mismo PnL. Diferentes RR no acreditan mecanismos independientes.
 
@@ -165,9 +167,11 @@ La eficacia de cobertura se observa sobre el **subconjunto priorizado y versiona
 
 ### 7. Siguiente trabajo: FUT-R01
 
-**Mandato preparado:** [[FUT-R01-RESEARCH-MANDATE]] v3, frente 2 subordinado a FUT-R01; ficha simple setup–filtro–objetivo/riesgo, mecanismos/cobertura y economía MM–prop–etapa/cartera. La IA externa contrasta una cápsula autocontenida y fuentes primarias; el manager conserva el inventario NQ por identidad/recibos y su reconciliación. El frente 1 de integración se diseña bajo [[Echo Futures]] en [[EF-BACKTEST-RUNTIME-INTEGRATION-PLAN]], con recuperación read-only acotada de Hefesto preparada. Reutilizar campañas válidas. ClutiFX se conserva únicamente como antecedente. Proponer una primera investigación y una alternativa de mecanismo distinto; la selección material sigue correspondiendo al Owner.
+[[FUT-R01-ITERACION-01]] contiene dos mandatos Cloud acotados: ficha de persistencia de cierre y perfil contractual/caja; retorno técnico diferido por la pausa del frente 1. [[FUT-R01-INDICE]] conserva el expediente y RV-01; no se vuelven a despachar los cuatro DR.
 
-La salida debe dejar visibles: qué existe, qué está vigente/superseded/REVIEW, qué datos faltan, qué celda se informa, qué hipótesis se refuta, qué gates aplican y qué presupuesto necesita el siguiente mandato. **FUT-R01 no es un comando de ejecución, un permiso de backtest ni autorización de cuentas o producción.** La matriz no depende de que ClutiFX funcione.
+La preparación debe distinguir aporte de mecanismo, contexto y coste compartido. Reutilizar calendario/datos/analytics/RuleSet sólo donde sea válido; cada Strategy, variante y MM conserva su evidencia. El primer resultado será una ficha determinista revisable y sus casos, o una dependencia precisa. No es un set de operaciones ya ejecutadas.
+
+La selección material sigue con el Owner. **FUT-R01 no es permiso de backtest, compras ni producción.** Los estados/tareas permanecen exclusivamente en [[Echo I+D — Futures]]; esta matriz enlazará la evidencia nueva cuando exista.
 
 ## Fuentes
 
