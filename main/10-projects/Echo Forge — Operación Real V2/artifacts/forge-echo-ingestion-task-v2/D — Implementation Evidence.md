@@ -11,22 +11,28 @@ tags:
 - kind/doc
 - area/echo
 created: '2026-10-27'
-updated: '2026-10-27'
+updated: '2026-10-28'
 ---
 
 # D — Implementation Evidence
 
 ## Propósito
 
-Registrar la entrega del implementador y la adjudicación gerencial del Shot 2. **Estado vigente: SHOT3_READY_WITH_KNOWN_GAPS; candidato admitido al QA independiente por orden explícita del Owner, sin más vueltas Shot 2.** La entrega original se conserva debajo como evidencia del ejecutor, sin elevar sus afirmaciones a verificación independiente.
+Registrar la entrega del implementador y la adjudicación gerencial del Shot 2. **Estado vigente: SHOT4_READY_WITH_ADJUDICATED_FINDINGS; QA recibido con hallazgos y alcance parcial, correcciones y verificación final fresca dentro de Shot 4.** La entrega original se conserva debajo como evidencia del ejecutor, sin elevar sus afirmaciones a verificación independiente.
 
 ## Contenido
+
+### Continuidad vigente tras adjudicación de E — 2026-10-28
+
+Se recibe la entrega QA y se avanza a [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT4 — Correction and Final Verification Mandate|SHOT4 — Correction and Final Verification Mandate]], sin otra vuelta de Shot 2/3. [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/E — Independent Adversarial Report|E — Independent Adversarial Report]] conserva el informe original y, primero, la adjudicación del Manager: nueve findings obligatorios, 02/07 reclasificados P1 de integridad y 04 P2 de contrato; sin P0 acreditado. Las correcciones de migración/bootstrap, Decision y lifecycle desbloquean los E2E pendientes, pero no los sustituyen.
+
+Los SHAs de entrada siguen `7731cb844446062f861f04d19dea60a34d425373`/`24af786232fa362cc1599df1b9d90b1c8347b557`. M04 está acreditado por el auditor para sus fixtures TradeList; M08 para las superficies probadas de contratos/servicio; Lab sigue pendiente. Coberturas 47,1%/80,4% reportadas, aún por reconstruir a partir de perfiles/denominador coherentes. A INCOMPLETE, B/C NOT_RUN E2E, D auténtico parcial/BLOCKED_EXTERNAL, E NOT_AUTHORIZED. El corrector preserva y fija tests/hashes QA y luego entrega F al verificador fresco, sin autocertificación. La revisión gerencial fue acotada a evidencia/fuente; no reejecutó runtime.
 
 ### Ejecución de Shot 3 — 2026-10-28 (esperando adjudicación del Primary Manager)
 
 **Shot 3 ejecutado** por el verificador adversarial independiente LOCAL (sesión fresca, sin autoría; bootstrap Agents-OS una vez). Entrega: [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/E — Independent Adversarial Report|E — Independent Adversarial Report]] con resultado declarado `FORGE_ECHO_TASK_ADVERSARIAL_REVIEW_COMPLETE` (el alcance declarado se completó; el informe contiene 3 findings P1). SHAs auditados sin cambios: Symphony `7731cb84…`, Echo `24af7862…`, contracts .2 (`7496b05b…`/subtree `cb88aece…`), SDK `c7f11496…`; refs remotas re-verificadas por fetch, tags .1/.2 inmutables, go.sum/descarga efectiva OK. Resumen de veredictos: M04 CONFIRMADO con oráculos independientes (3 trades/precisión/identidad), M08 CONFIRMADO a nivel contratos+servicio; M05 parcialmente falsificado (migración 017/018 fuera del runner; CHECK decision_ref + `decision:<key>` sintético con meta nil); M01 falsificado para E2E data_only (workflow raíz real se cuelga en `begin_workflow_span` sin poller); M09 falsificado en cobertura (47,1% delta / 80,4% nuevos por statements; suite domain FALLA determinista). B/C NOT_RUN (sin Gateway real; smoke PG real del store nativo PASS); D BLOCKED con lectura auténtica parcial (ETCD PROD `persistence/model=legacy`, sin `worker/profile` ni `echo/ingest/v2/*`; PG PROD sin tablas V2; canales ssh/mongo expirados reproducidos hoy). Evidencia QA: `aranea/work/forge-echo-task-v2-20261027/` (`QA-SHOT3-MANIFEST.txt`, `qa-evidence/`, `qa-stack/`, `qa-temporal/`). NEXT EXACT: **Shot 4 — correcciones (QA-S3-05/06/08 primero) + verificador final fresco dentro del Shot 4**; sin Shot 5.
 
-### Decisión vigente del Owner y admisión a Shot 3 — 2026-10-27
+### Decisión histórica del Owner y admisión a Shot 3 — 2026-10-27
 
 **SHOT3_READY_WITH_KNOWN_GAPS.** El Owner ordenó expresamente avanzar al QA adversarial independiente y **no realizar más iteraciones de Shot 2**. Se congela la segunda entrega como candidato para auditoría. Esta decisión supersede las instrucciones administrativas anteriores de continuar Shot 2 antes de QA; los antecedentes técnicos se conservan para confirmación/falsificación sobre el SHA actual. No concede FORGE_ECHO_TASK_IMPLEMENTED_LOCAL ni PASS de calidad por relato, y no cambia el piso ≥95% ni la SPEC.
 

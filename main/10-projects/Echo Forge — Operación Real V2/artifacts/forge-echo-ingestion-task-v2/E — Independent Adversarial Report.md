@@ -18,9 +18,37 @@ updated: '2026-10-28'
 
 ## Propósito
 
+**Estado vigente del programa: SHOT4_READY_WITH_ADJUDICATED_FINDINGS.** El Manager recibió esta revisión con hallazgos y alcance parcial; la adjudicación del 2026-10-28 figura primero en Contenido. El relato y los resultados originales del auditor se conservan debajo como evidencia atribuida, sin elevarlos a PASS global.
+
 QA adversarial independiente (Shot 3) del candidato `forge-echo-ingestion-task-v2`, ejecutada por un verificador LOCAL fresco sin autoría de la implementación. El candidato está admitido con brechas conocidas (`SHOT3_READY_WITH_KNOWN_GAPS`); esta revisión confirma o falsifica los claims del implementador y registra defectos para Shot 4. No corrige producto ni hereda PASS. **Resultado: `FORGE_ECHO_TASK_ADVERSARIAL_REVIEW_COMPLETE`** — la revisión completó el alcance que declara, con 3 findings P1 reproducidos, gates A PARCIAL / B–C NOT_RUN (con smoke PG real) / D BLOCKED con evidencia auténtica parcial / E NOT_AUTHORIZED, y cobertura real por statements bajo el piso Owner.
 
 ## Contenido
+
+### Adjudicación vigente del Manager — Shot 4 — 2026-10-28
+
+**SHOT4_READY_WITH_ADJUDICATED_FINDINGS.** Se recibe E como revisión adversarial con hallazgos y alcance parcial, y se avanza directamente a Shot 4: correcciones completas y otro verificador LOCAL fresco dentro del mismo shot. No otra vuelta de Shot 2/3 ni Shot 5. El resultado REVIEW_COMPLETE declarado por el auditor no equivale a ejecución completa de O01–O24/EC-01–EC-08 ni a PASS del producto: su propia matriz mantiene numerosos parciales/NOT_RUN.
+
+Refs remotas comprobadas al recibir: Symphony `7731cb844446062f861f04d19dea60a34d425373`, Echo `24af786232fa362cc1599df1b9d90b1c8347b557`, sin cambios respecto de los candidatos auditados. E recibido desde Agents-OS `124430da4deb8eb95e3121f970ea366adcffd289`, blob `a56a34865f3ccccb8a80a8c28e0c58e01641df7e`. La revisión gerencial corroboró acotadamente causas en la fuente de Symphony con especialistas; no volvió a ejecutar runtime ni convirtió los logs locales narrados en observaciones propias.
+
+**Adjudicación de los nueve findings:**
+
+| IDs | Severidad vigente | Trabajo obligatorio |
+|---|---|---|
+| QA-S3-05/06/08 | P1 | Catálogo y bootstrap efectivo data_only; Decision ausente como NULL/lineage legítimo; lifecycle completo en Generic y Group. |
+| QA-S3-02/07 | P1 de integridad (reclasificados desde P2) | Rechazar identidad canónica ajena y resolver versión compatible por item en resolver/mapper y los tres version_mode. No se afirma corrupción remota ya ocurrida. |
+| QA-S3-03 | P2 | Admitir moneda acreditada por el perfil sin declaración externa innecesaria; conservar estados/evidencia. |
+| QA-S3-04 | P2 de contrato (reclasificado desde P3) | ExpectedVersionRef, binding digest y key por receta exacta, sellados antes del work-item; el efecto reportado es conflicto fail-closed, no overwrite demostrado. |
+| QA-S3-01/09 | P2 de test/evidencia | Corregir test contradictorio sin relajar Validate; fijar perfiles/scope/denominador y alcanzar ≥95% de código nuevo con pruebas útiles. |
+
+**Condiciones materiales del cierre:** el catálogo por sí solo no cierra 05 porque main bifurca a data_only antes del bootstrap durable. Registrar sólo begin_workflow_span no cierra 08: Generic/Group requieren más lifecycle. Corregir el primer helper de versión no cierra 07: mapper/activity y compatibilidad de todos los miembros deben usar autoridad por item. La 018 antigua ya registrada exige upgrade aditivo, sin editar de nuevo una migración aplicada ni borrar ledger/datos; el ledger actual sólo tiene version/applied_at, sin validación de checksum. El baseline 22f337ca contiene 017, no 018.
+
+**Precisiones de evidencia:** 47,1% (2737/5806) y 80,4% (1037/1289) quedan como cifras reportadas, pendientes de reconstrucción de perfiles, pesos por archivo y unión coherente; no recálculo independiente del Manager. El piso aplica al código nuevo de la task, incluidas sus adiciones en archivos existentes, separando el diagnóstico del legado completo. M04 se conserva para los oráculos TradeList ejecutados; M08 para contratos/servicio probados. Lab/E2E siguen pendientes. F debe reconciliar el alcance O23 NOT_RUN/EC-05 servicio PASS mediante test IDs y readbacks concretos.
+
+El stall con cero ActivityTaskStarted prueba falta de progreso observada; no identifica por sí solo ausencia de poller. La omisión de registros queda corroborada por fuente; el cierre exige historia/pending activities/errores, queues/pollers y binario/catálogo. Las lecturas D de ETCD legacy y PG sin tablas V2 describen despliegue, no ausencia de dataset fuente. La reconexión read-only normal ya estaba autorizada; falta completar el intento soportado o acreditar el recurso concreto bloqueado. «Sin operaciones PROD» se limita a sin mutaciones: E sí documenta lecturas RO.
+
+**Gates vigentes:** A INCOMPLETE por defectos y evidencia; B/C NOT_RUN como E2E; D BLOCKED_EXTERNAL con observaciones auténticas parciales reportadas y dataset aún pendiente; E NOT_AUTHORIZED. Mantener todos los pendientes en Shot 4. Preservar/fijar los tests QA, fixtures, perfiles y logs locales antes de corregirlos; un test FINDING verde puede confirmar el bug y debe promoverse con expected contractual corregido.
+
+**NEXT EXACT:** [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT4 — Correction and Final Verification Mandate|SHOT4 — Correction and Final Verification Mandate]]. Entrega final en F — Final Certification, con candidato integrado, findings/oráculos cerrados, Fresh/Upgrade, Generic/Group reales, Gateway/Lab, goldens y coverage reproducible; después verificación fresca sin autoría. No autocertificación ni PASS forzado por tener cuatro shots. Si persiste un bloqueo, Shot 4 lo reporta con causa/alcance concreto; no genera otro shot automáticamente. B y el addendum siguen congelados. Agents-OS permanece abierto, sin feedback/L0/L1; el PG compartido del incidente queda fuera de pruebas/cleanup/restauración.
 
 ### 1. Identidad del auditor independiente y manifest
 

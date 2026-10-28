@@ -3,7 +3,7 @@ type: change_log
 schema_version: 1
 scope: session
 created: '2026-10-27'
-updated: '2026-10-27'
+updated: '2026-10-28'
 area: '[[Echo]]'
 project: '[[10-projects/Echo Forge — Operación Real V2/Echo Forge — Operación Real V2|Echo Forge — Operación Real V2]]'
 application: null
@@ -25,6 +25,16 @@ tags:
 ---
 
 # 2026-10-27 — Forge Echo Ingestion Task: diseño congelado
+
+## Adjudicación de Shot 3 y despacho de Shot 4 — 2026-10-28
+
+- **Cambio de verdad vigente:** Shot 3 recibido con findings y alcance parcial; SHOT4_READY_WITH_ADJUDICATED_FINDINGS. Owner conserva cuatro shots y excluye nuevas vueltas Shot 2/3. [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT4 — Correction and Final Verification Mandate|SHOT4 — Correction and Final Verification Mandate]] contiene correcciones y verificador fresco dentro del mismo shot.
+- **Fuente:** E remoto en Agents-OS `124430da4deb8eb95e3121f970ea366adcffd289` (blob `a56a34865f3ccccb8a80a8c28e0c58e01641df7e`), refs de producto `7731cb8`/`24af7862` intactas y lectura acotada de causas en el SHA Symphony. E conserva el relato original y recibe adjudicación gerencial diferenciada; no hubo QA runtime CLOUD.
+- **Decisiones:** nueve findings obligatorios; 02/07 P1 de integridad y 04 P2 de contrato; 05/06/08 requieren bootstrap real, NULL/lineage legítimo y lifecycle Generic/Group. Coberturas reportadas pendientes de reconciliación; ≥95% de código nuevo se mantiene. A INCOMPLETE, B/C pendientes, D auténtico parcial/BLOCKED_EXTERNAL, E no autorizado.
+- **Entidades actualizadas:** [[10-projects/Echo Forge — Operación Real V2/Echo Forge — Operación Real V2|Echo Forge — Operación Real V2]] y [[10-projects/Echo/Echo — Producto Integrado|Echo — Producto Integrado]] pasan de SHOT3_READY a SHOT4_READY. C/D/E, mandato Shot 3 y continuidad enlazan el siguiente paso vigente; historia y responsabilidades ajenas preservadas. Es estado de proyecto, no sólo bitácora.
+- **Evidencia y límites:** upgrade aditivo desde 018 antigua, ledger sólo version/applied_at; el stall no prueba ausencia de poller por sí solo; D describe despliegue, no falta de dataset. PG compartido fuera de alcance. Pruebas QA y perfiles locales deben fijarse antes de corregir.
+- **Registro:** [[80-agents/journal/agent-runs/2026-10-28-chatgpt-astra-pro-forge-echo-shot4-adjudication|Agent Run — adjudicación Forge Echo Shot 4]]. Un segmento material de revisión atribuible a ChatGPT × GPT-6 Astra Pro y especialistas con modelo heredado; sin implementación ni runtime. No feedback/cierre ni cuota inventada.
+- **Validación/publicación:** template/materializador canónico para mandato y agent_run; esquema/links/diff acotado, base reciente y protección de concurrencia con readback. Continúa autorización Owner para documentación pública; sin nuevo contenido ajeno al programa.
 
 ## Transición a Shot 3 por instrucción explícita Owner — 2026-10-27
 

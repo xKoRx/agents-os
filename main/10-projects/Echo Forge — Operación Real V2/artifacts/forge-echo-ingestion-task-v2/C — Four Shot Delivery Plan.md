@@ -10,7 +10,7 @@ aliases: []
 tags:
 - kind/doc
 created: '2026-10-27'
-updated: '2026-10-27'
+updated: '2026-10-28'
 ---
 
 # C — Four Shot Delivery Plan
@@ -21,11 +21,19 @@ Gestionar la implementación, la revisión adversarial y la certificación dentr
 
 ## Contenido
 
-### Estado vigente tras Shot 3 — 2026-10-28
+### Estado vigente y siguiente ejecución — 2026-10-28
+
+**SHOT4_READY_WITH_ADJUDICATED_FINDINGS.** Se recibe Shot 3 con hallazgos y alcance parcial y se avanza a correcciones completas + verificador final LOCAL fresco dentro de Shot 4. No otra vuelta de Shot 2/3 ni Shot 5. Adjudicación canónica de los nueve findings y precisiones de evidencia: [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/E — Independent Adversarial Report|E — Independent Adversarial Report]]. El resumen inicial de tres P1 no agota el trabajo: 02/07 son P1 de integridad; 04 es P2 de contrato; 01/03/09 y todos los casos pendientes siguen obligatorios.
+
+Candidatos de entrada remotos intactos: Symphony `7731cb844446062f861f04d19dea60a34d425373`, Echo `24af786232fa362cc1599df1b9d90b1c8347b557`, contracts .2 inmutable. A INCOMPLETE, B/C E2E NOT_RUN, D BLOCKED_EXTERNAL con lectura auténtica parcial reportada; E release NOT_AUTHORIZED. Las cifras 47,1%/80,4% de E son reportadas y requieren perfiles, scope y unión reproducibles. El piso ≥95% del código nuevo sigue vigente, incluyendo adiciones en archivos existentes.
+
+**NEXT EXACT:** ejecutar [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT4 — Correction and Final Verification Mandate|SHOT4 — Correction and Final Verification Mandate]]. Primero el corrector entrega candidato integrado con los nueve cierres, Fresh/Upgrade, Generic/Group reales, Gateway/Lab, goldens y coverage. Después otro verificador sin autoría reconstruye ese SHA y verifica de forma independiente. F — Final Certification conserva por separado ambos aportes; sólo evidencia suficiente permite adjudicar FORGE_ECHO_INGESTION_TASK_VERIFIED con límites explícitos. Si persiste un bloqueo, se reporta dentro de Shot 4 sin PASS forzado ni nuevo shot automático. B/addendum permanecen congelados; Agents-OS abierto.
+
+### Recepción histórica del auditor — 2026-10-28 (anterior a adjudicación)
 
 **Shot 3 ejecutado y entregado** ([[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/E — Independent Adversarial Report|E — Independent Adversarial Report]]; veredicto de alcance en D 2026-10-28, pendiente de adjudicación del Primary Manager). Candidato congelado auditado sin cambios de SHAs; 3 findings P1 reproducidos (runner sin 017/018; decision_ref sintético/CHECK; data_only workflow colgado en `begin_workflow_span`), 4 P2/P3 y cobertura real por statements 47,1% delta / 80,4% nuevos. Gates: A PARCIAL, B/C NOT_RUN (smoke PG real PASS), D BLOCKED con lectura auténtica parcial (ETCD/PG PROD), E NOT_AUTHORIZED. **NEXT EXACT: Shot 4 — el implementador corrige los findings de E y después un verificador final fresco reconstruye el SHA y repite los oráculos críticos dentro del mismo Shot 4.** Gate objetivo: `FORGE_ECHO_INGESTION_TASK_VERIFIED`. No hay Shot 5 ni otra vuelta de Shot 2/3.
 
-### Decisión vigente del Owner y admisión a Shot 3 — 2026-10-27
+### Decisión histórica del Owner y admisión a Shot 3 — 2026-10-27
 
 **SHOT3_READY_WITH_KNOWN_GAPS.** El Owner ordenó expresamente avanzar al QA adversarial independiente y **no realizar más iteraciones de Shot 2**. Se congela la segunda entrega como candidato para auditoría. Esta decisión supersede las instrucciones administrativas anteriores de continuar Shot 2 antes de QA; los antecedentes técnicos se conservan para confirmación/falsificación sobre el SHA actual. No concede FORGE_ECHO_TASK_IMPLEMENTED_LOCAL ni PASS de calidad por relato, y no cambia el piso ≥95% ni la SPEC.
 
@@ -52,7 +60,7 @@ La revisión del manager es fuente/contrato, no QA runtime. Las ejecuciones decl
 | Programa | Entrega y estado | Relación |
 |---|---|---|
 | Echo / Ingestion V2 — Operational Integration | Endpoint, contratos, registry/historias, adapter/persistencia/CLI productor; cuatro shots anteriores ejecutados, VERIFIED_WITH_FINDINGS histórico | Dependencia y baseline. Sus reportes siguen vigentes para su alcance. |
-| Forge / forge-echo-ingestion-task-v2 | Resolver fuentes durables → construir DTO → task declarativa Temporal → entrega/recovery → Echo/Lab | Programa nuevo. Segunda entrega Shot 2 congelada y admitida a Shot 3 con brechas conocidas por orden Owner; correcciones posteriores en Shot 4. |
+| Forge / forge-echo-ingestion-task-v2 | Resolver fuentes durables → construir DTO → task declarativa Temporal → entrega/recovery → Echo/Lab | Programa nuevo. Shot 3 recibido con hallazgos y alcance parcial; Shot 4 vigente para correcciones y verificación final fresca, sin nuevos shots. |
 
 Symphony 22f337ca y Echo f93cd4f8 son resultados consolidados del programa anterior y bases intencionales del nuevo. Crear una feature desde esos commits conserva trabajo verificado; no exige volver a b2b3ebfe/a0c68d1, borrar código ni reejecutar la implementación anterior.
 

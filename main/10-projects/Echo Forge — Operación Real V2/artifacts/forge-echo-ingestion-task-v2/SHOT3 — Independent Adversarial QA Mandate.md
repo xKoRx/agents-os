@@ -11,7 +11,7 @@ tags:
 - kind/doc
 - area/echo
 created: '2026-10-27'
-updated: '2026-10-27'
+updated: '2026-10-28'
 ---
 
 # SHOT3 — Independent Adversarial QA Mandate
@@ -23,6 +23,10 @@ Ejecutar la revisión adversarial independiente del candidato `forge-echo-ingest
 **Estado de entrada: `SHOT3_READY_WITH_KNOWN_GAPS`.** La admisión habilita la auditoría. No concede PASS a A/B/C/D, no declara cumplido el 95% ni certifica las afirmaciones M01–M08 del implementador. El diseño y el contrato permanecen congelados.
 
 ## Contenido
+
+### Mandato ejecutado — continuidad en Shot 4
+
+E fue recibido el 2026-10-28 con findings y alcance parcial. **No iniciar otra ejecución de Shot 3 desde este documento.** Sus oráculos y expected siguen vinculantes para el cierre, con la adjudicación vigente en [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/E — Independent Adversarial Report|E — Independent Adversarial Report]]. Despacho actual: [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT4 — Correction and Final Verification Mandate|SHOT4 — Correction and Final Verification Mandate]], correcciones completas y después verificador fresco sin autoría dentro del mismo Shot 4. No retorno a Shot 2 ni Shot 5.
 
 **ROLE:** TOP LOCAL, según mandato Owner. **Modelo/surface:** GLM-5.3-Flash Max mediante ZCode, contexto fresco, sin autoría de la implementación. **Work function:** verificador adversarial independiente. **Necesidades:** repos/builds, MCP soportado, harness y servicios locales aislados. El Primary Manager CLOUD adjudica el informe. Si esta sesión implementó el candidato, no es independiente: este mandato se ejecuta en otra sesión fresca.
 

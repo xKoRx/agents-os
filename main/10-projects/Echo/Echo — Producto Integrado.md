@@ -22,7 +22,7 @@ tags:
   - kind/project
   - area/echo
 created: 2026-09-07
-updated: '2026-10-27'
+updated: '2026-10-28'
 ---
 # Echo — Producto Integrado
 
@@ -30,7 +30,7 @@ updated: '2026-10-27'
 
 ### Task nativa Forge → Echo V2 — diseño adjudicado 2026-10-27
 
-**SHOT3_READY_WITH_KNOWN_GAPS.** El Owner ordenó avanzar al QA adversarial fresco sin más iteraciones Shot 2. Echo candidato `24af786232fa362cc1599df1b9d90b1c8347b557`, Symphony `7731cb844446062f861f04d19dea60a34d425373`, contracts `.2` alineado y tags inmutables. El addendum mantiene autoridad: [[10-projects/Echo/Ingestion V2 — Operational Integration/Forge Task — Contract Addendum|Forge Task — Contract Addendum]]. Claims M08 se comprobarán por Gateway/readback/Lab real, incluyendo SourceEvidence/receipt/manifest, artifacts bytes, cobertura/moneda/tiempos y versión sin historia; ninguna afirmación de implementación sustituye QA. **Siguiente:** [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT3 — Independent Adversarial QA Mandate|SHOT3 — Independent Adversarial QA Mandate]]. B/C E2E y goldens pendientes; cobertura reportada bajo el piso requiere recálculo; D acceso bloqueado reportado, E NOT_AUTHORIZED. Findings corregibles pasan a Shot 4 con verificador fresco dentro del mismo shot. Decisión/evidencia: [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/D — Implementation Evidence|D — Implementation Evidence]]. Sin release/PROD/trading ni cierre Agents-OS.
+**SHOT4_READY_WITH_ADJUDICATED_FINDINGS.** QA recibido sobre Echo `24af786232fa362cc1599df1b9d90b1c8347b557`/Symphony `7731cb844446062f861f04d19dea60a34d425373`, contracts .2 inmutable. E confirma las superficies probadas de contratos/servicio; Gateway/Lab E2E y EC-06/07 permanecen pendientes. Los nueve findings y sus límites se adjudican en [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/E — Independent Adversarial Report|E — Independent Adversarial Report]]. **Siguiente:** [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT4 — Correction and Final Verification Mandate|SHOT4 — Correction and Final Verification Mandate]], correcciones y verificador final fresco dentro del mismo shot, completando readback/bytes, cero historias/screener, cobertura/moneda/tiempos y Lab positivo/insuficiencia. El addendum conserva autoridad: [[10-projects/Echo/Ingestion V2 — Operational Integration/Forge Task — Contract Addendum|Forge Task — Contract Addendum]]. B/C sin PASS todavía; D auténtico parcial/BLOCKED_EXTERNAL, E release NOT_AUTHORIZED. No otra vuelta Shot 2/3 ni Shot 5; Agents-OS abierto.
 
 ### Convergencia Runtime + Lab V4 + Ingestion V2 — 2026-10-27
 
