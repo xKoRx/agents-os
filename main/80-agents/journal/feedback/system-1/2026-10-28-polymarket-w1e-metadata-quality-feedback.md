@@ -111,3 +111,10 @@ tags:
 ## One Next Improvement
 
 - Preflightar en el mandato las formas de inspección read-only (listado, copia derivada bajo OUT, env de evidencia) junto a build/test/run.
+
+## Continuación misma sesión (2026-10-28, tras ECONNRESET 20:57:27Z y project_token_request_failed)
+
+- Fricción real: dos cortes de transporte dejaron la sesión a mitad de una edición (import huérfano en prospect.go); la reanudación por el lanzador funcionó porque el estado durable (archivo en disco + SHA comunicado por el lanzador) permitió retomar sin recopy/recaptura — patrón «checkpoint = estado en disco + SHA» validado.
+- Denegaciones del hook en esta continuación (1 intento c/u, sin variantes): `sha256sum` de inputs (la verificación la hace el preflight JSON del hook), `mv` de engine.db-wal/-shm, `git diff --cached --stat` (reemplazado por subsets `diff --cached --` permitidos). El perfil de continuación SÍ habilitó `cp -a` y gofmt -w: el ajuste fino del allowlist por fase funciona.
+- Detección positiva: el mandato de continuación describió la debilidad causal (empate wall/seq) y resultó ser un bug real del código — la revisión adversarial del lanzador aportó un oracle que las regresiones propias no cubrían; los 3 tests nuevos lo capturan.
+- Sin atribuciones cruzadas: los cortes de transporte y las denegaciones quedan como fricción de superficie; tests, commit y cierre fueron completados por GLM en la continuación.
