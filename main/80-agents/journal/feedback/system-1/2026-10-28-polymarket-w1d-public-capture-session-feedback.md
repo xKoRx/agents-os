@@ -47,7 +47,14 @@ tags:
 - **Aprendizaje:** los 200-con-`[]` no distinguen "sin datos" de "semántica distinta de la asumida"; la corrección pasó por la DOC (nombre/tipo de campo + corroboración cruzada CLOB), no por sondas en red. El preregistro por revisiones vinculadas (v1→v2→v3, nada sobrescrito) permitió auditar el cambio semántico.
 - Scores de la pasada 5: retrieval 5 (docs ya verificadas re-consultadas con prompt enfocado), skill fit 5, closeout friction 4, overall confidence 4.
 
-## Scores (pasadas 1-4; historia)
+## Actualización 2026-10-28 (pasada 6, misma sesión)
+
+- **Corrección metodológica materializada:** la pasada 5 corrigió la elegibilidad pero REPITIÓ `start_date_min` (semántica desconocida) y sobreextendió la conclusión («bloqueo de datos/universo vacío»). La pasada 6 retiró el filtro (elección conservadora: descubrir con parámetros de semántica documentada y filtrar client-side), mantuvo la elegibilidad `gameStartTime` y redujo el gate OOS a SU mecanismo real (id-only pre-interpretación), declarando sin adornos que sin `start_date_min` no existe garantía server-side.
+- **Resultado medido (el más informativo del shot):** sin el filtro, la MISMA consulta documentada devolvió 100 objetos reales en 1 request (549 KB journalizados; sha `1f43a5a8…`) — por contraste, las páginas `[]` de v2/v3 eran causadas por `start_date_min`. 0 sellados (gate no activado, test-enforced); 0 elegibles: los 100 primeros bajo el ordenamiento por defecto de Gamma (no documentado) son no deportivos (sin `gameId`/`gameStartTime`). Presupuesto de candidatos 100/100 agotado: la 2ª request habría violado el tope — no se usó.
+- **Lección:** un filtro de semántica no documentada puede silenciar un endpoint sin error alguno (200 vacío); la demostración por contraste (retirar el filtro, mantener lo demás) es el experimento correcto y barato; y «200 vacío» jamás certifica semántica — solo la ausencia bajo esa consulta.
+- Scores de la pasada 6: retrieval 5, skill fit 5, closeout friction 4, overall confidence 4.
+
+## Scores (pasadas 1-5; historia)
 
 Use 1-5, where 1 is poor and 5 is excellent.
 
