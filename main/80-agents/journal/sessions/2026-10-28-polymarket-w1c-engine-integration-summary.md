@@ -34,6 +34,7 @@ tags:
 ## Objetivo
 
 - W1-c — integración histórica del engine (sesión NUEVA GLM-5.3-Flash Max, one-shot): descubrir el camino real histimport → capture journal → manifest/replay/experiment compare, implementar el mínimo camino útil sobre los derivados stage2 congelados de w1b8, entregar un comando reproducible con dos resultados comparables, adapter auxiliar si hiciera falta, diseño prospectivo de adquisición, y cierre canónico. Estado de cierre: **PARTIAL (ingeniería y tests PASS; ejecución con datos reales NOT_RUN por gate, impedimento diagnosticado sin bypass)**.
+- **Actualización 2026-10-28 — continuación (misma sesión, sess_2466e84d…): estado de cierre final COMPLETADO para el alcance del shot.** Tras el ajuste local y acotado de la política de superficie por el lanzador, la cadena corrió real de extremo a extremo (imports D/E → verifies → manifests → tres replays con digest único medido → shadows descriptivos INCONCLUSIVE + compare); la economía sigue sin certificar y la ruta económica sigue cerrada por datos (SYNCING por tick PIT ausente). Detalle en la sección de continuación al final.
 
 ## Contexto cargado
 
