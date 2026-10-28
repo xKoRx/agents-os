@@ -78,7 +78,7 @@ tags:
 
 ## Pendiente
 
-- (Actualizado 2026-10-28 tras la corrida v2 y la denegación v3) El lanzador preflighta la fuente v3 del runner (poda numérica + espejo `latest`) con política de pin por shot (≥2 ejecuciones del mismo fuente) y re-despacha; el diagnóstico del bug de poda está completo y la reparación materializada. Con la ejecución: doble corrida comparable, mapping verificado antes del recorrido, replay upsert con validación BBO/snapshot, cortes y bordes, digests idénticos; después, máximo dos hipótesis (gate humano).
-- Tras la re-ejecución: doble corrida comparable (digests idénticos), validación BBO por snapshot, cortes negativos y ventana de incidente 22:30–22:40Z censurada; después, elección de como máximo dos hipótesis (gate humano).
+- (Actualizado 2026-10-28, cierre terminal) Acción owner/lanzador: autorizar/obtener la fuente de mapeo cohort (mapeo de `hist-acq-20260921` — registrado como no recuperado — u otro archivo autorizado market→condition/asset). Con esa fuente, el runner v3+diagnóstico ya instrumentado verifica el mapping y completa la doble corrida comparable; sin ella, W1-b queda terminally bloqueado por limitación genuina de mapping (manifiesto v3, `mapping.status = BLOCKED_MISSING_AUTHORIZED_SOURCE`).
+- Tras la re-ejecución con mapping verificado: doble corrida comparable (digests idénticos), validación BBO por snapshot, cortes negativos y ventana de incidente 22:30–22:40Z censurada; después, elección de como máximo dos hipótesis (gate humano).
 - `rs-v03`/`pe001` y el mapeo de `hist-acq-20260921` siguen sin evidencia de recuperación.
 - Sin sync/publicación: todo local; elegibilidad/cuenta/fondos/riesgo/arming/live siguen cerrados.
