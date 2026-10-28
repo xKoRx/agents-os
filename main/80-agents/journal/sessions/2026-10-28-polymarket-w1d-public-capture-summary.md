@@ -40,17 +40,19 @@ tags:
 
 ## Trabajo realizado
 
+- **Pasada 4 (misma sesión, retry único autorizado): selección ejecutada REAL — cero candidatos elegibles.** Causa real de la denegación de la pasada 3 corregida con fecha: era el argumento `--preregister` (no incluido en el perfil del hook), NO el sufijo — `catalog select` siempre estuvo permitido. El comando exacto validado por el hook corrió: página Gamma acotada HTTP 200 = `[]` (3 bytes) a las 17:47:02Z, `page_sha256 37517e5f…`, preregistro v2 vinculado (`9611b9b1…`), `selected_markets=[]` + blocker medido. `journal verify`: NO_INTEGRITY_FAILURES (2 registros, frontier 2, página durable). Regla aplicada sin desviación: 0 elegibles ⇒ sin ampliar universo, sin WS; observe/record/manifest/replay NOT_RUN con causa (sin assets reales que observar). OOS intacto; sin órdenes; sin claims (una página vacía no observa nada).
 - Aplicada al checkout la extensión mínima W1-d: `start_date_min` en gamma (sin `order`, no documentado), `FetchTickSize` en clob, TLS-forzado-salvo-loopback y redirects rechazados en ambos transportes, `catalog select` y `clob observe` nuevos, dispatch, y 3 archivos de tests offline (httptest loopback, sin red real).
 - TEST exacta del lanzador: 3/3 paquetes PASS (gamma 2.336s, clob 0.015s, cmd/engine 35.484s), primera corrida. BUILD exacta: binario W1-d construido (exit 0).
 - Preregistro v2 escrito antes de red (revisión vinculada de la v1: retira `order=startDate` no documentado; historia preservada).
-- Intento de selección con prefijo Engine exacto + `catalog select`: DENEGADO por el hook (sufijo no autorizado). Cero variantes después; ni observe ni record (sin manifiesto/assets reales es fabricación).
+- Intento de selección en pasada 3 con prefijo Engine exacto: DENEGADO por el hook — causa real precisada después: flag `--preregister` fuera del perfil (corrección registrada en doc/feedback/agent_run/change_log; historia de la denegación preservada). Cero variantes en su momento.
 - Cierre canónico en vault con el materializador (4 notas creadas + este log + §18).
 
 ## Artifacts creados o modificados
 
+- **Pasada 4:** `capture/` (journal real: 2 registros, frontier 2 — boot + página `[]`), `selection-manifest.json` (binding preregistro `9611b9b1…`, page sha `37517e5f…`, blocker). Sin cambios de código ni binario.
 - Checkout (sin commit, HEAD intacto, 3 archivos W1-c intactos): 2 transportes editados, 2 comandos nuevos, 2 dispatches, 3 archivos de tests.
 - `validated-baseline/w1-d-public-capture-20261028/`: preregister-v2.json (nuevo), engine (binario), implementation/ y close/ preservados como historia de las pasadas 1-2.
-- Vault: doc W1-d, esta summary, feedback, agent_run, change_log (sección (11)), §18 de la continuidad.
+- Vault: doc W1-d, esta summary, feedback, agent_run, change_log (secciones (11) y (12)), §18 de la continuidad.
 
 ## Memoria propuesta o creada
 
@@ -58,10 +60,11 @@ tags:
 
 ## Decisiones
 
-- No usar `policy-a/policy-b` ni fabricar manifiesto: la captura se detiene en selección (BLOCKED medido) antes que inventar identidad de mercados.
-- No reintentar variantes tras la denegación única de `catalog select` (regla explícita del mandato).
+- **Pasada 4:** con `[]` en la página acotada, aplicar la regla sin desviación: cero elegibles ⇒ sin muestra, sin ampliar universo, sin WS; bloqueo medido y entregado con el colector probado (mandato explícito).
+- **Pasada 3:** no usar `policy-a/policy-b` ni fabricar manifiesto: la captura se detiene en selección (BLOCKED medido) antes que inventar identidad de mercados.
+- No reintentar variantes tras la denegación única de la pasada 3 (regla explícita del mandato).
 
 ## Pendiente
 
-- Lanzador: autorizar el sufijo `catalog select` (flags `--data-dir/--out/--preregister/--base-url`) en el perfil por-shot y re-despachar; la cadena restante está pre-escrita y el preregistro v2 congelado antes de red.
-- Tras selección: observe init → record 5m humo (tope 90m) → observe final → verify → manifest build → replay → cierre canónico del resultado.
+- Decisión lanzador/Owner sobre la regla ex ante: re-verificar la semántica documentada de `start_date_min` (la página vino vacía con 200, no 422) y, si procede, re-preregistro v3 ANTES de cualquier nuevo request; el colector, binario y preregistro v2 quedan como evidencia probada.
+- Con selección real: observe init → record 5m humo (tope 90m) → observe final → verify → manifest build → replay → cierre canónico del resultado.

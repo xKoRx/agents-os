@@ -113,3 +113,10 @@ Use 1-5, where 1 is poor and 5 is excellent.
 ## One Next Improvement
 
 - Preflight de cadena con fixtures para todos los sufijos del shot antes del despacho.
+
+## Actualización 2026-10-28 (pasada 4, misma sesión)
+
+- **Corrección de la fricción registrada arriba:** la causa de la denegación de la pasada 3 NO fue un sufijo omitido — fue el argumento `--preregister`, que el código nuevo exige y el perfil del hook no incluía; `catalog select` sí estaba permitido. El perfil nuevo agregó únicamente ese argumento con destino exacto y el retry único corrió (historia de la atribución errónea preservada arriba, sin borrar).
+- **Fricción nueva, medida y distinta:** la página Gamma acotada (comando exacto, 17:47:02Z) devolvió `[]` con HTTP 200 — cero candidatos elegibles. La regla ex ante se aplicó sin desviación: sin universo ampliado, sin WS, cadena NOT_RUN con causa. Hipótesis no verificada (sin variantes de sondeo): semántica server-side de `start_date_min` o estado real del catálogo en ese instante; un 200 con `[]` no distingue entre ambas.
+- **Lección de sistema (repite el patrón W1-a/W1-b):** atribuir causas de gate sin preflight deja explicaciones parcialmente falsas registradas; la corrección fechada es el mecanismo correcto, pero el preflight real de forma+flag+fuente antes de afirmar reglas del hook sigue siendo la mejora pendiente.
+- Scores de la pasada 4: retrieval 5, skill fit 5, closeout friction 4 (bloqueo ahora es de datos/regla, no de permisos), overall confidence 4.
