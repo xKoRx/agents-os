@@ -19,7 +19,7 @@ tags:
   - area/trading
   - project/echo-rnd
 created: '2026-10-28'
-updated: '2026-10-27'
+updated: '2026-10-28'
 related:
   - '[[Echo Futures]]'
   - '[[Estrategias IMOX — Forex y CFD con Echo Forge]]'
@@ -45,7 +45,7 @@ Unificar misión, gobierno, contratos de investigación, aprendizaje y continuid
 | Línea permanente | Planner único de mercado | Último estado confirmado | Siguiente trabajo |
 |---|---|---|---|
 | Forex/CFD | [[Estrategias IMOX — Forex y CFD con Echo Forge]] | Iniciativa existente incorporada. F0→F1→F2→F3 sigue vigente; no confundir material 142 recuperado con validación 144 ni admisión Echo. | Manager Forex recupera el receipt F0 y las dependencias actuales; prepara el cierre EVAL-144 de G1/G2/G4 bajo las decisiones vigentes. |
-| Futures | [[Echo I+D — Futures]] | Manager activo y FUT-R01 en curso documental. NQ sigue siendo el único instrumento de ejecución; no hay prop/programa actual seleccionado. | Reconciliar baseline y cobertura, precisar capital/denominadores y preparar investigación de fundamentos y economía para al menos dos props simultáneas. |
+| Futures | [[Echo I+D — Futures]] | FUT-R01 en curso documental. Capital inicial confirmado: USD 4.000 exclusivo de Futures; NQ único instrumento y prop/programa todavía por seleccionar. | Reconciliar baseline/cobertura con ficha simple setup–filtro–objetivo/riesgo; investigar economía para al menos dos props y definir presupuesto por etapas antes de gasto. |
 
 `progress: 0` no mide el porcentaje de un programa infinito. Cada entrega acotada conserva su progreso y aceptación; aquí importa el estado de las líneas, los bloqueos y las decisiones.
 
@@ -127,7 +127,7 @@ El programa permanente no tiene una cuota universal ni una fecha de término. La
 
 El Owner quiere ambos mercados operando con props de forma relevante y sostenible. Para Futures fijó al menos cinco estrategias para challenge y cinco estrategias produciendo retiros funded, en al menos dos prop firms a la vez, con un sistema modular y escalable. El alcance, las métricas y las cuestiones abiertas viven en [[Echo I+D — Futures]]; esta meta no convierte variantes/MM en estrategias independientes ni acredita resultados actuales.
 
-El capital está por precisar: la visión menciona USD 5.000 y la respuesta operativa cerca de USD 4.000 iniciales, con autosostenimiento posterior. No se ha decidido si ese capital es exclusivo de Futures o compartido. No existe autorización de gasto implícita. La disponibilidad declarada del Owner es lunes a domingo, 08:00–23:30 en su horario local; no demuestra capacidad técnica de Hefesto ni disponibilidad exclusiva del cómputo.
+**Capital confirmado por el Owner el 2026-10-28:** USD 4.000 iniciales exclusivos de Futures y aproximadamente USD 2.000 separados para Forex. La referencia anterior a USD 5.000 queda superseded. No hay aportes adicionales previstos; no planificar transferencias entre mercados ni reposiciones implícitas. El capital disponible no autoriza gastarlo completo ni comprar cuentas: reserva, pérdida máxima y desembolsos por etapas siguen por decidir. La disponibilidad declarada del Owner es lunes a domingo, 08:00–23:30 en su horario local; no demuestra capacidad técnica de Hefesto ni disponibilidad exclusiva del cómputo.
 
 La meta táctica Forex heredada de estudiar al menos diez activos hasta el 31-12-2026 permanece en su registro como decisión revisable. Su manager conserva la traducción de la nueva visión a su propia operativa; el manager Futures no cambia el plan Forex ni asume su producto.
 
@@ -154,6 +154,8 @@ No optimizar el programa para producir siempre resultados positivos ni usar una 
 
 ## 📆 Bitácora
 
+- **2026-10-28 — precisión Owner** — Capital: Futures USD 4.000 y Forex aproximadamente USD 2.000, separados y sin nuevos aportes previstos. USD 5.000 deja de ser cifra vigente. La investigación Futures usará ficha simple de setup, filtro y RR/objetivo–riesgo técnico; MM por prop/etapa permanece como entidad separada. Objetivo de primer retiro USD 3.000 con split 90%/80%, bruto/neto por aclarar en el planner Futures. [[80-agents/journal/logs/2026-10-28-echo-futures-capital-simple-strategy|Registro de la corrección]].
+
 - **2026-10-27 — entrevista Futures, primera ronda** — Owner prioriza trading efectivo y retiros, ambos mercados operativos hacia fin de año y, para Futures, cinco estrategias challenge más cinco funded con retiros y al menos dos props simultáneas. Capital inicial y denominadores por precisar; disponibilidad personal amplia, capacidad técnica no confirmada. Se documenta en el planner existente y se prepara un mandato acotado de investigación; no se autoriza producción ni se cierra la sesión. Registro: [[80-agents/journal/logs/2026-10-27-echo-futures-fut-r01-owner-mandate]].
 
 - **2026-10-27** — Owner autoriza programa único de I+D Echo con dos líneas permanentes y gestión conjunta; prioridad Futures challenge+retiros, ejecución inmediata sólo NQ, cuentas E2T anteriores no vigentes ni operadas. Organización/documentación realizada sin nuevos motores ni código de producto. Baseline de discovery: agents-os `81d4d6b00205855d223914f2c6d7ac70aebc5fa1`. Continuidad lista en ambos planners; aceptación de candidatos y gates técnicos no cambia.
@@ -172,6 +174,8 @@ No optimizar el programa para producir siempre resultados positivos ni usar una 
 - Organizar, materializar y cerrar con continuidad; los dos chats nuevos se abrirán por el Owner.
 
 **Actualización aceptada en la entrevista Futures del 2026-10-27:** priorizar operación y dinero efectivamente retirado; hito táctico Futures 5 challenge + 5 funded con retiros y mínimo dos props simultáneas; preferir diversidad demostrada y buenas condiciones de automatización, idealmente sin consistencia. ClutiFX queda como conocimiento histórico, sin nuevas investigaciones salvo decisión expresa. Detalle, pendientes y siguientes mandatos en [[Echo I+D — Futures]].
+
+**Actualización aceptada el 2026-10-28:** capital separado USD 4.000 Futures / aproximadamente USD 2.000 Forex, sin aportes adicionales previstos. La preservación de caja condiciona el plan; no equivale a garantía de resultados ni autorización de gasto. Para Futures, el Owner exige descripción algorítmica simple por indicadores y separación de la entidad Strategy respecto de MM asociado a prop/etapa.
 
 **Decisiones operativas v1 dentro del encargo:** conservar rutas; reutilizar manager Forex; crear sólo global y Futures; usar un runbook común de gestión y los runbooks técnicos existentes. Rationale en [[echo-rnd-two-market-program]].
 

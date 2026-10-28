@@ -15,7 +15,7 @@ tags:
   - kind/doc
   - area/trading
 created: "2026-10-27"
-updated: "2026-10-27"
+updated: "2026-10-28"
 ---
 
 # Echo I+D — Cobertura Futures
@@ -108,9 +108,11 @@ En MR, la invalidación `I` y el objetivo `M` se congelan en la señal. El objet
 
 La evidencia económica y el estado de aceptación del lab R03 se enlazan desde [[Echo I+D — Futures#Baseline recuperado — evidencia existente, no promoción|baseline recuperado]]. No se asigna PASS a estas filas por existir código o un resultado agregado.
 
-#### Descomposición para investigar — propuesta, sin cambio de runtime
+#### Ficha simple para investigar — decisión Owner 2026-10-28
 
-El encargo [[FUT-R01-RESEARCH-MANDATE]] debe distinguir: hipótesis/mecanismo, datos disponibles causalmente, contexto/régimen, setup, filtro de elegibilidad, trigger, dirección/expiración, invalidación y salidas técnicas, sizing/MM, ejecución, restricciones comerciales, composición de cartera y evidencia. Setup, filtro y trigger no son sinónimos; algunos diseños no requieren filtro adicional. Un indicador se evalúa por la función que cumple y por su aporte incremental.
+El Owner reemplaza la propuesta de descomposición extensa por tres bloques objetivos para Strategy: **setup, filtro y RR u objetivo–riesgo técnico**, definidos mediante indicadores, parámetros y reglas deterministas. La entrada/confirmación pertenece al setup; el filtro puede ser ninguno; objetivo y riesgo usan ATR o unidades de precio del instrumento. Se conserva Strategy como entidad y **MM asociado a prop/etapa como otra entidad**.
+
+La matriz relaciona esas fichas con mecanismos y evidencia. Fuente, versión, datos, ejecución, costes y gates se registran en sus superficies existentes; no son componentes adicionales obligatorios de la ficha ni un rediseño del runtime. [[FUT-R01-RESEARCH-MANDATE]] v2 adopta esta simplificación.
 
 La comparación de RR separará distancia objetivo/stop, riesgo monetario neto y payoff realmente realizado. Cambiar salida/timeout puede alterar frecuencia, tiempo en mercado, secuencias y compatibilidad con prop; no se modela multiplicando retrospectivamente el mismo PnL. Diferentes RR no acreditan mecanismos independientes.
 
@@ -157,7 +159,7 @@ La eficacia de cobertura se observa sobre el **subconjunto priorizado y versiona
 
 ### 7. Siguiente trabajo: FUT-R01
 
-**Mandato preparado:** [[FUT-R01-RESEARCH-MANDATE]], subordinado a FUT-R01; anatomía/mediciones, mecanismos/cobertura y economía props/cartera. Completar el inventario NQ por identidad y recibos, dependencia de runtime y perfil económico actual; recuperar datos físicos faltantes mediante encargo read-only acotado a Hefesto. Reutilizar campañas válidas. ClutiFX se conserva únicamente como antecedente. Proponer una primera investigación y una alternativa de mecanismo distinto; la selección material sigue correspondiendo al Owner.
+**Mandato preparado:** [[FUT-R01-RESEARCH-MANDATE]] v2, subordinado a FUT-R01; ficha simple setup–filtro–objetivo/riesgo, mecanismos/cobertura y economía MM–prop–etapa/cartera. Completar el inventario NQ por identidad y recibos, dependencia de runtime y perfil económico actual; recuperar datos físicos faltantes mediante encargo read-only acotado a Hefesto. Reutilizar campañas válidas. ClutiFX se conserva únicamente como antecedente. Proponer una primera investigación y una alternativa de mecanismo distinto; la selección material sigue correspondiendo al Owner.
 
 La salida debe dejar visibles: qué existe, qué está vigente/superseded/REVIEW, qué datos faltan, qué celda se informa, qué hipótesis se refuta, qué gates aplican y qué presupuesto necesita el siguiente mandato. **FUT-R01 no es un comando de ejecución, un permiso de backtest ni autorización de cuentas o producción.** La matriz no depende de que ClutiFX funcione.
 
@@ -173,6 +175,8 @@ La salida debe dejar visibles: qué existe, qué está vigente/superseded/REVIEW
 - Código relacionado inspeccionado en `xKoRx/echo@ae1b09bc10370806f7648f076c5fa0825c9efa4e`: [FBC](https://github.com/xKoRx/echo/blob/ae1b09bc10370806f7648f076c5fa0825c9efa4e/v3/sdk/futures/strategies/fbc/fbc.go), [ORB](https://github.com/xKoRx/echo/blob/ae1b09bc10370806f7648f076c5fa0825c9efa4e/v3/sdk/futures/strategies/orb/orb.go), [TG](https://github.com/xKoRx/echo/blob/ae1b09bc10370806f7648f076c5fa0825c9efa4e/v3/sdk/futures/strategies/tg/tg.go), [MR01–MR04](https://github.com/xKoRx/echo/blob/ae1b09bc10370806f7648f076c5fa0825c9efa4e/v3/sdk/futures/strategies/mr/variants.go), [MR05–MR10](https://github.com/xKoRx/echo/blob/ae1b09bc10370806f7648f076c5fa0825c9efa4e/v3/sdk/futures/strategies/mr/variants2.go). Esta lectura acredita existencia/semántica identificada, no rentabilidad, independencia ni cualificación actual.
 
 **Actualización FUT-R01 — 2026-10-27:** decisiones de la primera entrevista Owner registradas en el planner, reconciliadas sobre Agents-OS `5418dbfbaba7524a3aa6a09c35f4cf1ff5716017`; lectura de los seis archivos de código enlazados, incluido el contrato MR. No se inspeccionó Hefesto ni se ejecutaron nuevos tests/backtests. [[80-agents/journal/logs/2026-10-27-echo-futures-fut-r01-owner-mandate|Registro de cambios y límites]].
+
+**Corrección Owner — 2026-10-28:** ficha de estrategia simplificada a tres bloques; capital confirmado y primer payout objetivo en [[Echo I+D — Futures]]. La taxonomía de mecanismos y su orden siguen siendo propuestas; no se reabre evidencia ni se acepta una estrategia por esta corrección.
 
 Autoridad vigente de gates: [[30-resources/agents/skills/echo-retester-master/SKILL]] y [[30-resources/runbooks/echo-futures-strategy-qualification-runbook]]. Autoridad de ciclo y mejora metodológica: [[30-resources/runbooks/echo-rnd-cycle-runbook]].
 
