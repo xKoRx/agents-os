@@ -21,7 +21,19 @@ Gestionar la implementación, la revisión adversarial y la certificación dentr
 
 ## Contenido
 
-### Estado vigente tras la entrega inicial de Shot 2 — 2026-10-27
+### Decisión vigente del Owner y admisión a Shot 3 — 2026-10-27
+
+**SHOT3_READY_WITH_KNOWN_GAPS.** El Owner ordenó expresamente avanzar al QA adversarial independiente y **no realizar más iteraciones de Shot 2**. Se congela la segunda entrega como candidato para auditoría. Esta decisión supersede las instrucciones administrativas anteriores de continuar Shot 2 antes de QA; los antecedentes técnicos se conservan para confirmación/falsificación sobre el SHA actual. No concede FORGE_ECHO_TASK_IMPLEMENTED_LOCAL ni PASS de calidad por relato, y no cambia el piso ≥95% ni la SPEC.
+
+Refs remotas verificadas por el Manager: Symphony `7731cb844446062f861f04d19dea60a34d425373` (+3 commits desde `07c914251760a938293b7fa7fe4e6d7b4d330640`, sin divergencia); Echo `24af786232fa362cc1599df1b9d90b1c8347b557` (+1 desde `2c66e9402ba96ff354681552587c895ec92f4a28`, sin divergencia). Son **descendientes**, corrigiendo el uso invertido de «ancestro» en la segunda entrega. Contracts `.2`: objeto `7496b05b6932517e1d51b757c42cf72dad2cc1bd` → Echo `24af7862…`, subtree `cb88aece4f04b648fd724568de3823604dc064ab`; go.mod/go.sum Symphony alineados. El tag `.1` mantiene su objeto original `d24b17b217245c47a33cea810410da41cf6ad978`. Fuente efectiva, cold builds y runtime se verificarán localmente.
+
+El implementador afirma M01–M08 corregidos. El Manager **no ejecutó otra auditoría exhaustiva ni pruebas runtime** en esta admisión; se comprobó identidad/ancestry/pins y se preparó la falsificación independiente. No heredar ni sus PASS ni los P1 adjudicados al candidato anterior. La migración018 figura modificada en el diff: Shot 3 probará Fresh y Upgrade desde la 018 anterior ya aplicada, sin reescribir ledger/checksums.
+
+Brechas conocidas al entrar: cobertura reportada **68,0% como promedio de 85 funciones**, pendiente de recalcular por statements con scope/denominador verificable; B/C E2E con worker/Temporal/Lab reales pendientes; goldens cruzados pendientes; D con canales MCP expirados reportados y sin fuente auténtica leída. Las 515 filas del harness no acreditan fuente Forge auténtica. E sigue NOT_AUTHORIZED. El incidente PG queda reportado y fuera del harness de QA; no se autoriza restaurar/borrar el template compartido.
+
+**NEXT EXACT:** ejecutar [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT3 — Independent Adversarial QA Mandate|SHOT3 — Independent Adversarial QA Mandate]] en GLM-5.3-Flash Max LOCAL/ZCode fresco y sin autoría, con estos candidatos fijos. Puede crear pruebas/harness y levantar Temporal aislado; no corregir producto durante QA. Los findings reproducidos y déficits de evidencia alimentan **Shot 4: corrección + otro verificador fresco dentro de Shot 4**. Sólo un riesgo grave concreto de ejecución insegura suspende el escenario afectado; los demás casos seguros continúan. No nueva vuelta Shot 2 ni Shot 5. Agents-OS permanece abierto, sin feedback/L0/L1.
+
+### Estado histórico tras la entrega inicial de Shot 2 — 2026-10-27
 
 **SHOT2_INCOMPLETE.** El manager recibió y verificó las refs Symphony `07c914251760a938293b7fa7fe4e6d7b4d330640` y Echo `2c66e9402ba96ff354681552587c895ec92f4a28`, ambas descendientes directas de las bases elegidas. El tag contracts `.1` apunta al candidato Echo y permanece inmutable. La revisión acotada de código identificó bloqueos de composición/snapshot, fidelidad de historia, entrega/receipt, resultado durable y consumidor/Lab; se detallan en [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/D — Implementation Evidence|D — Implementation Evidence]] (M01–M09).
 
@@ -36,7 +48,7 @@ La revisión del manager es fuente/contrato, no QA runtime. Las ejecuciones decl
 | Programa | Entrega y estado | Relación |
 |---|---|---|
 | Echo / Ingestion V2 — Operational Integration | Endpoint, contratos, registry/historias, adapter/persistencia/CLI productor; cuatro shots anteriores ejecutados, VERIFIED_WITH_FINDINGS histórico | Dependencia y baseline. Sus reportes siguen vigentes para su alcance. |
-| Forge / forge-echo-ingestion-task-v2 | Resolver fuentes durables → construir DTO → task declarativa Temporal → entrega/recovery → Echo/Lab | Programa nuevo. Diseño adjudicado; candidato Shot 2 recibido e incompleto, sujeto a terminación en el mismo shot. |
+| Forge / forge-echo-ingestion-task-v2 | Resolver fuentes durables → construir DTO → task declarativa Temporal → entrega/recovery → Echo/Lab | Programa nuevo. Segunda entrega Shot 2 congelada y admitida a Shot 3 con brechas conocidas por orden Owner; correcciones posteriores en Shot 4. |
 
 Symphony 22f337ca y Echo f93cd4f8 son resultados consolidados del programa anterior y bases intencionales del nuevo. Crear una feature desde esos commits conserva trabajo verificado; no exige volver a b2b3ebfe/a0c68d1, borrar código ni reejecutar la implementación anterior.
 
@@ -69,7 +81,7 @@ Refrescar refs al empezar cada shot y revisar sólo deltas materiales. El regist
 | Shot | Ejecutor y outcome | Gate del manager | Artefacto |
 |---|---|---|---|
 | 1 — Arquitectura y source forensics | GOD Architect independiente, apoyado por investigaciones acotadas de fuente y contratos; sin código de producto | `FORGE_ECHO_TASK_DESIGN_FROZEN` sólo tras revisar decisiones, límites, mapping, ejemplo de configuración y oráculos | A Source Authority, B Frozen Design, este plan, addendum Echo |
-| 2 — Implementación completa | GLM-5.3-Flash Max LOCAL/ZCode; implementación autónoma, builds, pruebas propias y harness integrado | `FORGE_ECHO_TASK_IMPLEMENTED_LOCAL`, sujeto a revisión de evidencia; no certificación independiente | D Implementation Evidence: SHAs, manifiesto de fuentes/binarios, fixtures, pruebas, config y resultados |
+| 2 — Implementación completa | GLM-5.3-Flash Max LOCAL/ZCode; implementación autónoma, builds, pruebas propias y harness integrado | Candidato congelado para QA por decisión Owner; brechas conocidas registradas, sin PASS independiente ni otra iteración Shot 2 | D Implementation Evidence: SHAs, manifiesto de fuentes/binarios, fixtures, pruebas, config y resultados |
 | 3 — QA adversarial | GLM-5.3-Flash Max LOCAL fresco y sin autoría de implementación; expected propio, falsificación y readback | `FORGE_ECHO_TASK_ADVERSARIAL_REVIEW_COMPLETE`; significa revisión completa, puede incluir findings | E Independent Adversarial Report: severidad, evidencia, reproducción, expected/actual, owner y criterio de corrección |
 | 4 — Corrección y certificación | GLM-5.3-Flash Max LOCAL corrige hallazgos adjudicados; después otro verificador independiente reconstruye y verifica el SHA final | `FORGE_ECHO_INGESTION_TASK_VERIFIED` únicamente con evidencia suficiente y límites explícitos | F Final Certification: correcciones, SHA final, oráculos independientes, gates y handoff |
 

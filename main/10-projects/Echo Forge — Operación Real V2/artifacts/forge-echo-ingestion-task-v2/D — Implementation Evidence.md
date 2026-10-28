@@ -18,11 +18,23 @@ updated: '2026-10-27'
 
 ## Propósito
 
-Registrar la entrega del implementador y la adjudicación gerencial del Shot 2. **Estado vigente: SHOT2_INCOMPLETE; continuar el mismo Shot 2 antes de QA.** La entrega original se conserva debajo como evidencia del ejecutor, sin elevar sus afirmaciones a verificación independiente.
+Registrar la entrega del implementador y la adjudicación gerencial del Shot 2. **Estado vigente: SHOT3_READY_WITH_KNOWN_GAPS; candidato admitido al QA independiente por orden explícita del Owner, sin más vueltas Shot 2.** La entrega original se conserva debajo como evidencia del ejecutor, sin elevar sus afirmaciones a verificación independiente.
 
 ## Contenido
 
-### Adjudicación del Primary Manager — 2026-10-27
+### Decisión vigente del Owner y admisión a Shot 3 — 2026-10-27
+
+**SHOT3_READY_WITH_KNOWN_GAPS.** El Owner ordenó expresamente avanzar al QA adversarial independiente y **no realizar más iteraciones de Shot 2**. Se congela la segunda entrega como candidato para auditoría. Esta decisión supersede las instrucciones administrativas anteriores de continuar Shot 2 antes de QA; los antecedentes técnicos se conservan para confirmación/falsificación sobre el SHA actual. No concede FORGE_ECHO_TASK_IMPLEMENTED_LOCAL ni PASS de calidad por relato, y no cambia el piso ≥95% ni la SPEC.
+
+Refs remotas verificadas por el Manager: Symphony `7731cb844446062f861f04d19dea60a34d425373` (+3 commits desde `07c914251760a938293b7fa7fe4e6d7b4d330640`, sin divergencia); Echo `24af786232fa362cc1599df1b9d90b1c8347b557` (+1 desde `2c66e9402ba96ff354681552587c895ec92f4a28`, sin divergencia). Son **descendientes**, corrigiendo el uso invertido de «ancestro» en la segunda entrega. Contracts `.2`: objeto `7496b05b6932517e1d51b757c42cf72dad2cc1bd` → Echo `24af7862…`, subtree `cb88aece4f04b648fd724568de3823604dc064ab`; go.mod/go.sum Symphony alineados. El tag `.1` mantiene su objeto original `d24b17b217245c47a33cea810410da41cf6ad978`. Fuente efectiva, cold builds y runtime se verificarán localmente.
+
+El implementador afirma M01–M08 corregidos. El Manager **no ejecutó otra auditoría exhaustiva ni pruebas runtime** en esta admisión; se comprobó identidad/ancestry/pins y se preparó la falsificación independiente. No heredar ni sus PASS ni los P1 adjudicados al candidato anterior. La migración018 figura modificada en el diff: Shot 3 probará Fresh y Upgrade desde la 018 anterior ya aplicada, sin reescribir ledger/checksums.
+
+Brechas conocidas al entrar: cobertura reportada **68,0% como promedio de 85 funciones**, pendiente de recalcular por statements con scope/denominador verificable; B/C E2E con worker/Temporal/Lab reales pendientes; goldens cruzados pendientes; D con canales MCP expirados reportados y sin fuente auténtica leída. Las 515 filas del harness no acreditan fuente Forge auténtica. E sigue NOT_AUTHORIZED. El incidente PG queda reportado y fuera del harness de QA; no se autoriza restaurar/borrar el template compartido.
+
+**NEXT EXACT:** ejecutar [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT3 — Independent Adversarial QA Mandate|SHOT3 — Independent Adversarial QA Mandate]] en GLM-5.3-Flash Max LOCAL/ZCode fresco y sin autoría, con estos candidatos fijos. Puede crear pruebas/harness y levantar Temporal aislado; no corregir producto durante QA. Los findings reproducidos y déficits de evidencia alimentan **Shot 4: corrección + otro verificador fresco dentro de Shot 4**. Sólo un riesgo grave concreto de ejecución insegura suspende el escenario afectado; los demás casos seguros continúan. No nueva vuelta Shot 2 ni Shot 5. Agents-OS permanece abierto, sin feedback/L0/L1.
+
+### Adjudicación histórica del primer candidato — 2026-10-27 (continuidad supersedida)
 
 **`SHOT2_INCOMPLETE` — continuar implementación dentro del mismo Shot 2.** El candidato fue recibido y sus refs remotas verificadas. No se adjudica `FORGE_ECHO_TASK_IMPLEMENTED_LOCAL` y no se inicia Shot 3. La devolución es técnica y está dentro del alcance ya autorizado: B y el addendum permanecen congelados, con exactamente cuatro shots.
 

@@ -23,7 +23,13 @@ Mandato ejecutable para GLM-5.3-Flash Max LOCAL/ZCode después del gate de dise�
 
 ## Contenido
 
-### Continuación vigente de Shot 2 — adjudicación del 2026-10-27
+### Transición vigente — Shot 3 autorizado, sin más iteraciones Shot 2
+
+El Owner recibió la segunda entrega y ordenó avanzar a revisión adversarial independiente. **No ejecutar otra continuación de implementación desde este documento.** Sus requisitos y antecedentes técnicos siguen vigentes como expected para QA, pero las instrucciones administrativas de repetir/completar Shot 2 antes de QA quedan supersedidas. Estado: SHOT3_READY_WITH_KNOWN_GAPS. Candidatos: Symphony `7731cb844446062f861f04d19dea60a34d425373`, Echo `24af786232fa362cc1599df1b9d90b1c8347b557`, contracts `.2` inmutable.
+
+Despacho vigente: [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT3 — Independent Adversarial QA Mandate|SHOT3 — Independent Adversarial QA Mandate]]; decisión y brechas: [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/D — Implementation Evidence|D — Implementation Evidence]]. Auditor GLM LOCAL fresco, sin autoría; confirma/falsifica M01–M09 y ejecuta las pruebas pendientes. Correcciones de producto en Shot 4 y verificador final fresco dentro del mismo Shot 4. Se mantiene el piso de cobertura y gates, sin declararlos cumplidos por la transición. Sesión abierta.
+
+### Continuación histórica de Shot 2 — adjudicación del 2026-10-27 (supersedida como despacho)
 
 **Estado del manager: `SHOT2_INCOMPLETE`.** Se recibió el candidato `FORGE_ECHO_TASK_IMPLEMENTED_LOCAL_CANDIDATE`; la revisión de fuente no permite adjudicar `FORGE_ECHO_TASK_IMPLEMENTED_LOCAL`. El siguiente paso es terminar este mismo Shot 2 con el implementador LOCAL. Shot 3 no comienza todavía. Esta continuación no crea otro shot, no reabre el diseño y no sustituye al QA independiente.
 

@@ -26,7 +26,16 @@ tags:
 
 # 2026-10-27 — Forge Echo Ingestion Task: diseño congelado
 
-## Adjudicación de la entrega inicial de Shot 2 — 2026-10-27
+## Transición a Shot 3 por instrucción explícita Owner — 2026-10-27
+
+- **Cambio vigente:** SHOT3_READY_WITH_KNOWN_GAPS. Owner pidió confirmar/falsificar sospechas en QA y no abrir más iteraciones de Shot 2. Se congela la segunda entrega; fixes en Shot 4 y verificador fresco dentro del mismo shot.
+- **Fuente nueva:** reporte GLM persistido inicialmente en Agents-OS `09f9664d`; refs remotas Symphony `7731cb844446062f861f04d19dea60a34d425373` y Echo `24af786232fa362cc1599df1b9d90b1c8347b557`, ancestry +3/+1 y tags/pins comprobados. .1 intacto; .2 apunta al candidato Echo.
+- **Estado previo → actual:** las notas [[10-projects/Echo Forge — Operación Real V2/Echo Forge — Operación Real V2|Echo Forge — Operación Real V2]] y [[10-projects/Echo/Echo — Producto Integrado|Echo — Producto Integrado]] indicaban continuar Shot 2; ahora indican ejecutar [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT3 — Independent Adversarial QA Mandate|SHOT3 — Independent Adversarial QA Mandate]]. C/D/SHOT2 y continuidad marcan la orden anterior como histórica, conservando evidencia.
+- **Brechas transportadas:** coverage reportado 68% requiere recálculo ponderado y sigue bajo el piso de 95%; B/C reales y goldens pendientes; D acceso expirado; migración 018 modificada requiere upgrade real; incidente PG no certificado por CLOUD. La admisión no equivale a PASS.
+- **Trabajo realizado:** preparación gerencial y documental con especialistas para oráculos; sin nueva auditoría exhaustiva, producto, builds ni runtime. El QA LOCAL fresco será Shot 3. Registro agent_run nuevo omitido por ser este segmento de despacho/documentación, conforme al trigger canónico; no feedback ni cierre.
+- **Validación/publicación:** esquema/links y diff acotado del programa, preservando historial público ya existente y cambios concurrentes mediante lease/readback. Autorización documental Owner continúa vigente; no se publica material nuevo ajeno al programa.
+
+## Adjudicación histórica de la entrega inicial de Shot 2 — 2026-10-27
 
 - **Cambio vigente:** candidatos remotos recibidos y revisados; SHOT2_INCOMPLETE. Continuación de implementación dentro del mismo shot, sin iniciar QA independiente.
 - **Entidades actualizadas:** [[10-projects/Echo Forge — Operación Real V2/Echo Forge — Operación Real V2|Echo Forge — Operación Real V2]] y [[10-projects/Echo/Echo — Producto Integrado|Echo — Producto Integrado]]. Afirmación previa: implementación NOT_STARTED/NOT_IMPLEMENTED. Nueva verdad: implementación parcial publicada, con blockers demostrados en fuente; todavía sin gate IMPLEMENTED_LOCAL.
