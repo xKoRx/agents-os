@@ -54,7 +54,15 @@ tags:
 - **Lección:** un filtro de semántica no documentada puede silenciar un endpoint sin error alguno (200 vacío); la demostración por contraste (retirar el filtro, mantener lo demás) es el experimento correcto y barato; y «200 vacío» jamás certifica semántica — solo la ausencia bajo esa consulta.
 - Scores de la pasada 6: retrieval 5, skill fit 5, closeout friction 4, overall confidence 4.
 
-## Scores (pasadas 1-5; historia)
+## Actualización 2026-10-28 (pasadas 7-8, misma sesión)
+
+- **Pasada 7 (sin feedback propio — corte de cuota):** lote moneyline dirigido correcto en familia pero con parser RFC3339-estricto: 100 candidatos reales, 0 elegibles (`kickoff unparsable`); exit 1 a las 18:51:35Z por proveedor 1310 (Weekly/Monthly Limit Exhausted) — no guard. El cierre canónico de esa pasada quedó incompleto; esta nota y las demás actualizaciones de la pasada 8 suplen el registro con atribución correcta. La nota del LANZADOR en §18 documenta el checkpoint auxiliar (segmento inmutable `8468ca40…`).
+- **Pasada 8 (tras reset, orden de continuar GLM; único intento):** corrección mínima del parser (layout wire observado `YYYY-MM-DD HH:MM:SS±HH` aceptado explícitamente, UTC exacta, fail-closed sin zona; regresión de equivalencia/inválidos/pasado/futuro-sintético) + ordenamiento fundado (`order=gameStartTime&ascending=false`: parámetros documentados en list-markets sobre campo documentado; la guía discover-markets documenta CERO ordenamiento — priorización de presupuesto declarada, no inferencia de kickoff). Preregistro v6 congelado antes de red. **Resultado: 1 request, 100 inspeccionados, 100 elegibles, 0 sellados, 4 seleccionados (kickoffs 2026-11-18) y cadena de captura completa exit 0** (observe init/final 12+12 HTTP 200; record 5 m con 103 frames/74 admitidos/0 rechazados y 8 libros 20-22 niveles; journal verify NO_INTEGRITY_FAILURES; replay ×2 digest idéntico `b8c5854e…`).
+- **Lección principal del ciclo v2→v6:** cada «bloqueo de datos» era realmente un contrato mal asumido (filtro de semántica desconocida, formato de campo no verificado, ausencia de dirigencia de familia). El experimento decisivo fue barato y documental: verificar el campo/valor en la fuente autorizada antes de red. Los 200-`[]` y los parseos fallidos jamás certificarán semántica — solo ausencia bajo esa consulta exacta.
+- **Fricción menor restante:** la forma `record` del hook no aceptó `--json` (1 denegación; reintentado con el conjunto exacto validado y funcionó). Denegación única, sin variantes.
+- Scores de las pasadas 7-8: retrieval 5 (docs autorizadas con prompts enfocados), skill fit 5, closeout friction 4, overall confidence 4.
+
+## Scores (pasadas 1-7; historia)
 
 Use 1-5, where 1 is poor and 5 is excellent.
 

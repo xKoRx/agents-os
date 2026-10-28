@@ -47,9 +47,9 @@ tags:
 
 ## Artifacts creados o modificados
 
-- **Pasada 6:** checkout — `catalog_select.go` v4 (retiro de `start_date_min`; regla/ids v4; OOSGate honesto sin capa estructural), test de regresión de queryparams (start_date_min NO debe enviarse); binario reconstruido. Data-dir — `preregister-v4.json`, `capture-v4/` (journal: 2 registros, 549 KB de página real, frontier 2), `selection-manifest-v4.json` (binding `3587ff3f…`; 1 request; 100 inspeccionados; 0 sellados; 0 elegibles). v1/v2/v3 preservados intactos.
-- **Pasadas 3-5:** checkout — `catalog_select.go`, `clob_observe.go`, gamma/clob (StartDateMin/DisableRetry/TLS/redirects, FetchTickSize), dispatch, 3 archivos de tests; preregistros v1-v3; capture/, capture-v3/ y manifiestos v2/v3.
-- Vault: doc W1-d, esta summary, feedback, agent_run, change_log (secciones (11)-(14)), §18 de la continuidad.
+- **Pasadas 7-8:** checkout — `catalog_select.go` v5/v6 (moneyline dirigido, presupuestos, gate OOS id-only, parser `parseKickoffInstant`, ordenamiento fundado, dedup), `gamma.go` (SportsMarketTypes repetido, Order/Ascending, DisableRetry, TLS/redirects), tests ampliados; binario v6. Data-dir — preregistros v5/v6, `capture-v5/` (100 moneyline, 0 elegibles por formato; segmento inmutable `8468ca40…`), `capture-v6/` (journal REAL completo: 103 registros, 4 segmentos, frontier 103), `selection-manifest-v5/v6.json`, `observe-init-v6.json`, `observe-final-v6.json`, `capture-manifest-v6.json`, `capture-status-v6.json`. v1-v4 preservados intactos.
+- **Pasadas 3-6:** checkout — gamma/clob (StartDateMin/TLS/redirects, FetchTickSize), dispatch, tests; preregistros v1-v4; capture/, capture-v3/, capture-v4/ y manifiestos v2/v3/v4.
+- Vault: doc W1-d, esta summary, feedback, agent_run, change_log (secciones (11)-(15)), §18 de la continuidad (incluye nota auxiliar del LANZADOR por la cuota, preservada).
 
 ## Memoria propuesta o creada
 
@@ -57,11 +57,11 @@ tags:
 
 ## Decisiones
 
-- **Pasada 6:** retirar `start_date_min` (semántica desconocida) es corrección metodológica, no optimización; el gate OOS queda honestamente reducido al gate id-only real (registrado así, sin garantías server-side inventadas); con presupuesto de candidatos agotado NO se usa la 2ª request (inspeccionar más violaría el tope).
-- **Pasadas 4-5:** con `[]`/vacío bajo el filtro, regla sin desviación: sin ampliar universo, sin WS.
+- **Pasadas 7-8:** familia por parámetro documentado (`sports_market_types=moneyline`), jamás por inferencia de datos; kickoffs inválidos rechazados fail-closed en vez de seleccionar; el ordenamiento es priorización de presupuesto declarada (no inferencia de kickoff); con 100 elegibles se seleccionan 4 por kickoff ascendente y se ejecuta la cadena completa; sin WS adicional ni rondas extra.
+- **Pasadas 4-6:** con `[]`/vacío bajo el filtro, regla sin desviación: sin ampliar universo, sin WS; retirar filtros de semántica desconocida es corrección metodológica.
 - **Pasada 3:** no fabricar manifiesto ni usar assets fixture; no reintentar variantes tras denegaciones únicas.
 
 ## Pendiente
 
-- Decisión lanzador/Owner: preregistro v5 para apuntar a deportivos — `sports_market_types`/`game_id`/`tag_id` están documentados como parámetros pero sus VALORES/semántica no: primero verificación documental enfocada; luego regla + presupuesto nuevos (p. ej. renunciar a inspección masiva y apuntar por filtro) y re-despacho con el mismo comando validado.
-- Con selección real: observe init → record 5m humo (tope 90m) → observe final → verify → manifest build → replay → cierre canónico del resultado.
+- Opcional (lanzador/Owner): el plan prospectivo PIT (tick/fee con as-of + re-poll, esbozado en W1-c) puede usar esta muestra como base; ninguna ronda automática adicional sin nuevo preregistro.
+- Deuda menor: la muestra es de 5 minutos sin ticks observados; el estado SYNCING de calidad persiste hasta un hecho PIT real de tick.
