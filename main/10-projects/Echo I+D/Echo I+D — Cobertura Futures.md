@@ -22,9 +22,11 @@ updated: "2026-10-28"
 
 ## Propósito
 
+**RV-01 terminado — 2026-10-28:** [[FUT-R01-INDICE]] reúne los retornos disponibles y el consolidado `NO_APTO_AUN`. La revisión es autorrevisión adversarial documental, sin independencia histórica acreditada. Persistencia de cierre es candidato a especificar y MR06 su alternativa propuesta, no nuevas celdas aceptadas ni estrategias cualificadas. Se conserva el inventario y G0–G5.
+
 **Recurso transversal DR-01 (2026-10-28):** [[Echo Futures — DR-01 matemática de campañas prop]] — retorno recibido, NO validado, con contradicciones materiales de caja/first-passage. No es evidencia de estrategias, independencia, payouts ni gates G0–G5.
 
-**Recurso transversal DR-03 (2026-10-28):** [[Echo Futures — DR-03 mecanismos NQ evidencia y cobertura]] — retorno íntegro [[FUT-R01-DR-03-mecanismos-NQ-2026-10-28]], recibido pero no validado. El worker propone momentum, ORB, gaps y reversión; no demuestra nuevos mecanismos, independencia ni huecos. Conserva errores materiales y depende de RV-01. Esta matriz no cambia sus celdas por recibirlo.
+**Recurso transversal DR-03 (2026-10-28):** [[Echo Futures — DR-03 mecanismos NQ evidencia y cobertura]] — retorno íntegro [[FUT-R01-DR-03-mecanismos-NQ-2026-10-28]], recibido pero no validado. El worker propone momentum, ORB, gaps y reversión; no demuestra nuevos mecanismos, independencia ni huecos. Los errores fueron adjudicados en [[FUT-R01-RV-01-CONSOLIDADO]]. Esta matriz no cambia sus celdas por recepción o revisión.
 
 Organizar la diversidad de investigación de [[Echo I+D — Futures]] y hacer visible qué conocimiento aporta cada trabajo al objetivo Owner: estrategias capaces de pasar challenges y producir retiros en cuentas funded con economía completa evaluable. Esta matriz es una superficie de cobertura enlazada al planner de mercado; no es otro planner ni una lista de estrategias rentables.
 

@@ -23,6 +23,8 @@ updated: "2026-10-28"
 
 ## Síntesis vigente
 
+**Adjudicación RV-01 — 2026-10-28:** [[FUT-R01-RV-01-CONSOLIDADO]] corrige y limita los claims disponibles; dictamen conjunto `NO_APTO_AUN`. El original DR-01 no está en el corpus recuperado: sólo existe la captura editorial reunida en [[FUT-R01-INDICE]]. La entrega es autorrevisión adversarial documental por independencia histórica no acreditable; no certifica empiria NQ ni contratos.
+
 **Estado: RECEIVED_WITH_MATERIAL_FINDINGS; no validado ni aceptado como conclusión científica.** Recurso de investigación para [[Echo I+D — Futures]]. El retorno DR-01 plantea que resolver rápidamente evaluaciones NQ puede mejorar la economía de campaña aun sin esperanza positiva por trade, pero sólo si la distribución conjunta de pases, activaciones, retiros efectivos, costes y tiempo compensa el agotamiento de caja. No hay evidencia empírica NQ, RuleSet comercial seleccionado ni simulación ejecutada. La política agresiva es hipótesis a contrastar, no recomendación aprobada.
 
 **Mandato Owner vigente:** bankroll Futures USD 4.000 sin aportes adicionales; Forex separado; NQ exclusivo (MNQ no autorizado); USD 400/funded es referencia no verificada; primer retiro USD 3.000 a distinguir bruto/neto con splits 80/90%; metas 5 challenge + 5 funded con retiros en dos props al 31-12-2026 son aspiraciones. Strategy = setup + filtro opcional + objetivo/riesgo técnico; MM por prop/programa/etapa es entidad distinta. G0–G5 no cambian.
@@ -33,7 +35,7 @@ updated: "2026-10-28"
 
 ## Evidencia y provenance
 
-- [[echo-futures-dr01-deep-research-2026-10-28-source]] — captura editorial del informe entregado el 28-10-2026; fuente primaria de *lo que afirmó el worker*, NO de su veracidad matemática ni comercial. Captura en `30-resources/futures/_sources/` (excluida del índice derivado).
+- [[echo-futures-dr01-deep-research-2026-10-28-source]] — evidencia secundaria editorial de lo preservado por el agente de ingestión; no acredita las palabras exactas del autor ni la integridad del adjunto. Captura reunida sin modificar su blob en `10-projects/Echo I+D/artifacts/FUT-R01/retornos/echo-futures-dr01-deep-research-2026-10-28.md`.
 - [[FUT-R01-RESEARCH-MANDATE]] — mandato DR-01 v4 y límites de autoridad.
 - [[echo-futures-astra-math-review]] — revisión matemática anterior (2026-09-24), válida sólo dentro de sus supuestos estáticos/continuos; no prueba contratos path-dependent ni economía con bankroll finito.
 - [[Echo I+D — Futures]] — planner de investigación, no proyecto de implementación.
@@ -51,4 +53,4 @@ updated: "2026-10-28"
 
 **Experimentos propuestos, NO ejecutados:** (E1) señal NQ congelada × MM (bajo/alto/distancia/tiempo/etapa) × RuleSet × estado inicial × horizonte, con controles nulos y adversos, métricas de payout/caja/agotamiento; (E2) misma señal/MM bajo contratos abstractos con fees, caps, splits y elegibilidad, incluyendo un contraejemplo que destruya la asimetría. El frente interno debe especificarlos y autorizarlos sin inventar motor nuevo.
 
-**Interfaces:** DR-02 → RuleSets, tarifas, elegibilidad, payout caps y restricciones oficiales; DR-03 → distribución/dependencia empírica de señales NQ; DR-04 → operacionalización objetiva, controles y validación; RV-01 → revisión independiente y adjudicación. Ningún gate G0–G5 queda aprobado por este documento.
+**Interfaces:** DR-02 → RuleSets, tarifas, elegibilidad, payout caps y restricciones oficiales; DR-03 → distribución/dependencia empírica de señales NQ; DR-04 → operacionalización objetiva, controles y validación; RV-01 → adjudicación documental y reparación focal terminadas; independencia histórica no acreditada. Ningún gate G0–G5 queda aprobado por este documento.

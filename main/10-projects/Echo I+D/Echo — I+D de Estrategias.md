@@ -40,12 +40,12 @@ Unificar misión, gobierno, contratos de investigación, aprendizaje y continuid
 
 ## 📊 Estado actual
 
-**2026-10-27 — manager Futures activo; FUT-R01 en recuperación documental y entrevista.** La organización común conserva su revisión. El Owner autorizó documentar la actualización de objetivos y preparar la investigación siguiente. Se revisan fuentes, código y recibos existentes en lectura; no se iniciaron campañas, operación ni cambios de producto.
+**2026-10-28 — Futures entrega RV-01 y consolida el expediente FUT-R01.** [[FUT-R01-RV-01-CONSOLIDADO]] declara `NO_APTO_AUN` por integridad de entradas e interfaces contractual/datos/selección; no exige rentabilidad demostrada antes de investigar. [[FUT-R01-INDICE]] reúne retornos disponibles y mandato. La sesión documental está cerrada con feedback; Futures continúa pendiente de decisiones y dependencias, sin campañas ni cambios de producto. La independencia histórica de la revisión no es acreditable.
 
 | Línea permanente | Planner único de mercado | Último estado confirmado | Siguiente trabajo |
 |---|---|---|---|
 | Forex/CFD | [[Estrategias IMOX — Forex y CFD con Echo Forge]] | Iniciativa existente incorporada. F0→F1→F2→F3 sigue vigente; no confundir material 142 recuperado con validación 144 ni admisión Echo. | Manager Forex recupera el receipt F0 y las dependencias actuales; prepara el cierre EVAL-144 de G1/G2/G4 bajo las decisiones vigentes. |
-| Futures | [[Echo I+D — Futures]] | FUT-R01 en curso documental. Capital inicial confirmado: USD 4.000 exclusivo de Futures; NQ único instrumento y prop/programa todavía por seleccionar. | Reconciliar baseline/cobertura con ficha simple setup–filtro–objetivo/riesgo; investigar economía para al menos dos props y definir presupuesto por etapas antes de gasto. |
+| Futures | [[Echo I+D — Futures]] | FUT-R01 en curso; RV-01 entregado `NO_APTO_AUN`. USD 4.000, NQ exclusivo, programa pendiente. Retornos y corrección Owner en [[FUT-R01-INDICE]]. | Resolver el paquete focal de integridad/contrato/datos/selección y decidir ficha de persistencia de cierre o alternativa MR06. No repetir cuatro DR ni autorizar gasto o ejecución por recepción. |
 
 `progress: 0` no mide el porcentaje de un programa infinito. Cada entrega acotada conserva su progreso y aceptación; aquí importa el estado de las líneas, los bloqueos y las decisiones.
 

@@ -23,7 +23,7 @@ updated: "2026-10-28"
 
 ## Síntesis vigente
 
-**Estado: RECEIVED_WITH_MATERIAL_FINDINGS / OWNER_REVIEW_PENDING.** Retorno Deep Research recibido el 2026-10-28 y conservado íntegro en [[FUT-R01-DR-03-mecanismos-NQ-2026-10-28]]. No demuestra estrategia viable, cobertura independiente, resultados NQ OOS ni utilidad económica de campaña. Aún no existe revisión independiente RV-01.
+**Estado: RECEIVED_WITH_MATERIAL_FINDINGS / OWNER_REVIEW_PENDING.** Retorno Deep Research recibido el 2026-10-28 y conservado íntegro en [[FUT-R01-DR-03-mecanismos-NQ-2026-10-28]]. No demuestra estrategia viable, cobertura independiente, resultados NQ OOS ni utilidad económica de campaña. [[FUT-R01-RV-01-CONSOLIDADO]] ya adjudicó los hallazgos con dictamen conjunto `NO_APTO_AUN`. Se clasifica como autorrevisión adversarial documental: la independencia histórica no es acreditable. El expediente está reunido en [[FUT-R01-INDICE]].
 
 **PROPUESTA del worker (no aceptada):** cuatro líneas: momentum intradía, ORB adaptativo, gaps overnight y reversión tras exceso de volatilidad. Recomienda momentum primero y ORB después; eso no aporta necesariamente un segundo mecanismo, porque ambos pueden ser persistencia. Reversión transitoria podría ser alternativa, sujeto a contraste con MR.
 
@@ -38,17 +38,17 @@ updated: "2026-10-28"
 - [[echo-futures-dr03-deep-research-2026-10-28-source]]: origen verificable con el texto íntegro de [[FUT-R01-DR-03-mecanismos-NQ-2026-10-28]].
 - [[FUT-R01-RESEARCH-MANDATE]] v4: pregunta, restricciones de investigación, NQ exclusivo y separación Strategy/MM.
 - [[Echo I+D — Cobertura Futures]]: inventario existente; no sustituirlo por clasificación de nombres en el informe.
-- Bibliografía *mencionada, no verificada durante esta ingesta*: Baltussen et al. (2021, futuros); Gao et al. (2018); Rosa (2022); Holmberg et al. (2012, acciones suecas); Grant/Wolf/Yu (2005); Zarattini/Aziz/Barbon ([SSRN 4824172](https://ssrn.com/abstract=4824172), SPY).
+- Bibliografía mencionada por el retorno: Baltussen et al. (2021), Gao et al. (2018), Rosa (2022), Holmberg et al., Grant/Wolf/Yu (2005) y Zarattini/Aziz/Barbon ([SSRN 4824172](https://ssrn.com/abstract=4824172)). La verificación focal y su alcance de lectura están en RV-01: Holmberg estudia crudo, no acciones suecas, con publicación final 2013/antecedente 2012; SSRN 4824172 tiene estudio principal SPY y apéndice de futuros con Nasdaq. No se verificaron íntegramente todos los papers ni se transfieren sus resultados a reglas adaptadas.
 
 ## Límites y contradicciones
 
 1. **Dirección temporal:** el informe dice que los últimos 30 minutos predicen el resto del día, invirtiendo predictor y tramo predicho de Baltussen; esto es material para evitar lookahead.
 2. **Redundancia:** momentum y ORB adaptativo no constituyen necesariamente líneas económicas independientes; variar ventanas y filtros no prueba diversidad.
 3. **Inventario mal inferido:** FBC no es failed breakout ni requiere ruptura; la cobertura TG/MR no se deduce por nombres o frases genéricas.
-4. **Transferencia:** resultados SPY/ES/acciones suecas/futuros agregados no demuestran edge operativo NQ; periodos, costes y ejecución por instrumento pendientes de contraste en originales.
+4. **Transferencia:** resultados SPY/ES/crudo/futuros agregados no demuestran la utilidad de una receta NQ adaptada o una campaña prop. El apéndice Nasdaq de SSRN 4824172 es evidencia reportada pertinente, pero no certifica ejecución física NQ, costes/roll ni caja Echo; ver límites de lectura en RV-01.
 5. **Observabilidad:** OHLCV de 1 minuto no certifica orden intrabar stop-target, slippage, quotes/L2, presión de dealers ni ejecución.
 6. **Refutación:** tasa de ganadoras >50%, Sharpe o expectativa positiva no son condiciones universales de utilidad de campaña; controles nulos y aleatorios deben ser comparables en exposición/frecuencia/costes.
 7. **Datos:** cobertura real OHLCV NQ, sesiones/DST, roll, slippage y comisiones sin certificación física; tampoco OOS virgen ni sensibilidad a regímenes/decay.
-8. **Autoridad:** el worker marcó RESPONDIDO; aceptación Owner y RV-01 siguen pendientes. No habilita implementación, pruebas, órdenes ni cambios de gates.
+8. **Autoridad:** el worker marcó RESPONDIDO; RV-01 documental está terminado y la aceptación Owner sigue pendiente. La revisión no habilita implementación, pruebas, órdenes ni cambios de gates.
 
-**Próxima decisión:** RV-01/submanager debe contrastar fuentes primarias, corregir refutadores, verificar cobertura real y escoger un primer mecanismo más una alternativa distinta; sin operaciones ni cierre Agents-OS.
+**Próxima decisión:** resolver el paquete focal de dependencias delimitado por [[FUT-R01-RV-01-CONSOLIDADO]] y decidir si se especifica persistencia de cierre NQ o la alternativa MR06 reconciliada. No repetir una búsqueda amplia ni afirmar independencia por variantes/MM/firmas. La sesión de RV-01 se cerró por instrucción Owner; el programa, las decisiones y los gates permanecen abiertos bajo sus autoridades.
