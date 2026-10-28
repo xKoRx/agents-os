@@ -42,6 +42,8 @@ tags:
 
 - Iteración 2 (mismo día): el owner aclaró que el proyecto es interno, sin Spellbook, y que la meta es un ClickHouse full al cierre de Q4. Se agregó la definición de full, dos huecos fuera del backlog (salud del refresh en refreshable, import explícito de MergeTree) y se reemplazaron los épicos propuestos por docs internos de diseño.
 
+- Iteración 3 (mismo día): el owner pidió priorizar por valor y que cada entregable sea funcional. El roadmap pasó de olas por pieza técnica a ocho entregables funcionales en dos lanes, con PRs habilitantes dentro del entregable que los consume y una agenda para acordarlo con Flor.
+
 ## Fuentes usadas
 
 - Backlog pegado en la sesión (la planilla no se abrió).
