@@ -24,6 +24,10 @@ tags:
 
 # 2026-10-29-polymarket-w1j-single-episode-summary
 
+## ACTUALIZACIÓN IDENTIDAD (20:39–20:46Z, adjudicación del parent antes de la ventana)
+
+- Identidad resuelta por fallback determinista autorizado: modo `identity` lee la página journalizada (0 requests), regla fijada en `identity-preregister.json` antes de leer identidad, **1 mercado 5784455** (slug `bra-cam-cru-2026-10-29-cam`, fecha=K; game_id ausente ⇒ unavailable), 2 assets, K/ventana intactos. Derivados: `prepared-plan-identity.json` `ef3a85f0…` + `selection-manifest-identity.json` `b2de46c7…`; evidencia `f3628a1e…`. Negativos probados antes del derivado (K jamás agrupa; determinismo; STOP incoherente; OOS pre-gate). gofmt vacío; suite PASS; commit `d913f26a58b0fcaebb257c0980a86bef4c9f20c4`; binario `4360afda…`. Errata corregida: request del lote 3 fue 20:21:47Z (no 20:03:11Z, que era del lote 2). Despacho del run con el plan derivado a las 20:59–21:00Z.
+
 ## ACTUALIZACIÓN LOTE 3 (continuación integrada de la misma GLM `sess_6c7409c6…`, autorizada por Metis) — RUTA DOCUMENTADA VIABLE
 
 - **Episodio elegible ENCONTRADO y READY_FUTURE sellado: K = 2026-10-29T22:30:00Z (19:30 GMT-3); ventana [K−90m, K) = [21:00Z, 22:30Z) = [18:00, 19:30) GMT-3; despacho del parent ≤ 2026-10-29T20:55:00Z (17:55:00 GMT-3)** con el comando durable en `run-outcome-w1j-ep-20261029T2230.json`. Discovery real: 1 GET, HTTP 200, 100 candidatos (1/3), **68 elegibles**, primer cluster ascendente = 3 mercados moneyline (5784455/5784461/5784468, 6 assets). Sin captura en este tramo (ventana a ~30 min); capture/replay/análisis corren en el run despachado.

@@ -21,6 +21,12 @@ tags:
 
 # 2026-10-29-polymarket-w1j-single-episode-feedback
 
+## Fricción 10 (identidad) — igual K no prueba partido, y el registro previo evitó la tentación de agrupar
+
+- **Qué pasó:** el cluster del lote 3 (3 moneylines con K idéntico) no tenía prueba de identidad mutua (gameId ausente en la respuesta). La adjudicación llegó ANTES de la ventana con la regla fallback ya fijada (menor id numérico, coherencia con K, STOP sin sustitución) — el preregistro de la regla se escribió a disco ANTES de leer cualquier campo de identidad, eliminando la tentación de agrupar por K o elegir mirando slugs.
+- **Impacto:** derivación en un ciclo (preregistro → lectura → 1 mercado 5784455, slug con fecha=K como coherencia fuerte; game_id ausente ⇒ «unavailable», no inventado); negativos probados antes del derivado; originales intactos (corroborados contra los resguardos del auxiliar).
+- **Lección:** fijar la regla de selección en un artefacto durable antes de la lectura convierte una decisión expuesta al sesgo en un trámite verificable; «unavailable» honesto > campo inventado.
+
 ## Fricción 8 (lote 3) — el gate de commit está por mensaje exacto y dos bugs míos quedaron expuestos por el recibo durable
 
 - **Qué pasó:** (a) el commit del fix ordinario fue denegado con el mensaje alternativo que le di («Outside W1-j lot3 scope…») — el perfil registra la forma de commit POR MENSAJE EXACTO; reintentado con el mensaje autorizado del lote y pasó (segundo commit con el mismo texto, sin amend). (b) Mi etiqueta GMT de pared en el recibo READY_FUTURE imprimió «GMT-5»/«-05:00»: los layouts de zona de Go interpretan fragmentos como «GMT-3»/«-03:00» como tokens de offset; la hora de pared era correcta pero la etiqueta durable era falsa — peligro real de despacho. (c) Mi orden revalidate-vs-episode dejaba la renovación sin re-query inalcanzable tras el primer prepare, justo lo que el mandato exige tras un cambio de fuente.

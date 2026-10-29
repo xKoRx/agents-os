@@ -20,6 +20,12 @@ updated: "2026-10-29"
 
 # Plan — Executable Single Episode Pilot W1-j 2026-10-29
 
+## ACTUALIZACIÓN IDENTIDAD (20:46Z) — PLAN DERIVADO LISTO PARA EL DESPACHO 20:59–21:00Z
+
+- Identidad resuelta por fallback determinista (menor id numérico 5784455; slug `bra-cam-cru-2026-10-29-cam` con fecha = K; game_id ausente ⇒ «unavailable»; K/ventana intactos). **El comando de captura ahora usa el plan derivado** (`prepared-plan-identity.json` `ef3a85f0…` + `selection-manifest-identity.json` `b2de46c7…`):
+  `env GOMAXPROCS=2 GOMEMLIMIT=1536MiB nice -n 15 /usr/bin/prlimit --as=2147483648 --cpu=7200 -- /home/kor/Documents/Codex/2026-10-27/task-2/validated-baseline/w1-j-single-episode-pilot-20261029-lot3/pilot-supervisor run --root /home/kor/Documents/Codex/2026-10-27/task-2 --out /home/kor/Documents/Codex/2026-10-27/task-2/validated-baseline/w1-j-single-episode-pilot-20261029-lot3 --engine /home/kor/Documents/Codex/2026-10-27/task-2/validated-baseline/w1-j-single-episode-pilot-20261029-lot3/engine --plan /home/kor/Documents/Codex/2026-10-27/task-2/validated-baseline/w1-j-single-episode-pilot-20261029-lot3/prepared-plan-identity.json`
+  El `analyze` post-captura usa el MISMO plan derivado. Commit de identidad `d913f26a58b0fcaebb257c0980a86bef4c9f20c4`; binario `4360afda…`; preregistro `d274ca1f…` y evidencia `f3628a1e…` en OUT3.
+
 ## ACTUALIZACIÓN LOTE 3 (documentación-first ejecutada; EPISODIO ENCONTRADO, despacho inmediato pendiente)
 
 - **Ruta probada:** documentación primaria primero (spec OpenAPI oficial de Gamma + discover-markets; evidencia y citas en `OUT3/documentation-evidence.md`) ⇒ NO existe filtro de kickoff documentado ⇒ ventana editorial `end_date_min/max` documentada como REDUCTOR de candidatos (limitación explícita; `gameStartTime` autoridad final; verificación client-side completa; sin order/ascending). Transporte mínimo nuevo `documentedWindowFetcher` dentro de discovery. Commit `257027b` (+ fix `5afb9c8`), gofmt `-l` vacío, suite PASS, recibos OUT3.
