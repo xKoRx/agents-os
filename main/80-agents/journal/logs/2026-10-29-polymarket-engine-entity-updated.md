@@ -143,3 +143,42 @@ tags:
 ### Rollback
 
 - Repo: borrar el archivo untracked (no hay commit que revertir). Vault: eliminar las 3 notas W1-h, los 3 registros journal, esta sección y el bullet (20)/"Siguiente paso" de la continuidad (historia W1-g restaurable del marcador). OUT W1-h es aditivo.
+
+---
+
+## 2026-10-29 (W1-i) — renovación causal de metadata idéntica (opción B adjudicada) y receta temporal V3
+
+### Cambio
+
+- **Tipo:** created / updated
+- **Archivo(s):**
+  - `10-projects/Personal/Polymarket Engine/Research — Causal Metadata Renewal W1-i 2026-10-29.md` (nuevo; informe canónico del shot)
+  - `10-projects/Personal/Polymarket Engine/Plan — Single Episode Pilot v3 W1-i 2026-10-29.md` (nuevo; receta V3 con deadlines absolutos, lista para adjudicación, NO ejecutada)
+  - `Polymarket Engine — Continuidad Five-POC 2026-09-20.md` (bullet (21) W1-i; "Siguiente paso" actualizado con historia W1-h preservada íntegra)
+  - `80-agents/journal/sessions/2026-10-29-polymarket-w1i-causal-renewal-summary.md`, `…w1i-causal-renewal-feedback.md`, `…zcode-glm-5.3-flash-polymarket-w1i-causal-renewal.md` (nuevos), este change_log (sección añadida)
+  - Repo externo (fuera del vault): commit LOCAL `9e2c6b7dd26e70a53b05499a2d682ef33f1dac27` en `w0/offline-causal-replay-20261027` (base `853c0e4`, sin push): `internal/regimes/renewal.go` (nuevo; política de renovación), `internal/regimes/renewal_test.go` + `internal/regimes/w1i_renewal_integration_test.go` (nuevos; sondas del contrato + receta V3), `internal/regimes/prospect.go` + `internal/regimes/service.go` (cuarentena AsOf con doble cota), y el fixture W1-h `internal/experiment/w1h_acquisition_recipe_test.go` committeada **byte-idéntica** (SHA `f7c03a48…fa17`, hash del prereg v2). Árbol limpio post-commit.
+  - OUT (fuera del vault): `validated-baseline/w1-i-causal-renewal-20261029/` (`evidence-manifest.json`, `test-receipt.md`, binario `engine` sha256 `ba75bfb1…`)
+
+### Motivo
+
+- Mandato W1-i (Metis adjudicó la **opción B** del §4 del prereg v2): renovar evidencia causal de metadata idéntica (evita gastar 90 min de captura para 15 min elegibles) y corregir la receta temporal serial (V3). Excepción técnica acotada al freeze del checkout de investigación; sin captura, sin live, sin cambio de estrategia ni adquisición.
+
+### Fuentes usadas
+
+- Prereg v2 §4 (opción B y aceptación), Plan v2 W1-h, informe W1-h, continuidad §§1–20, fixture W1-h, y fuente Go @ `853c0e4`: `internal/regimes/{reducer,service,prospect}.go`, `internal/capture/capture.go`, `internal/persist/{persist,migrate}.go`, `cmd/engine/{record,clob_observe}.go`.
+
+### Resolución aplicada
+
+- **Política de renovación** (`renewal.go`, pura y determinista): la frescura AsOf se ancla en la última renovación admitida bajo **AMBAS cotas** (`received_wall≤t` Y `capture_seq≤seq`); renovaciones por dimensión (un re-poll de fee ni renueva ni borra el hecho de tick); fail-closed en seq=0, walls malformados y provenance ausente; orden interno (wall, seq, revision) independiente del orden de entrada; first_seen (revisiones) intacto y jamás se lee `last_observed_at` hacia atrás.
+- **Cuarentena AsOf real** (`prospect.go`+`service.go`, enviado hoy): `regime_quarantine.quarantine_at` viaja al gate point-in-time; cuarentena con wall posterior a la decisión no la contamina; marca sin wall queda admitida (conservador hacia suspect).
+- **Receta V3** (tests con reloj virtual): deadlines ABSOLUTOS por tramo relativos a K; 6 tramos de 13,5 min + slots de observe de 1 min + init 1 min ⇒ 88 min, margen de cierre 2 min; tramo+observe < TTL 15 min (cadena de frescura sin lapsos); censura ex ante de polls tardíos; stop generado EN el deadline (nunca antes — defecto v2); ventana que no cabe antes de la pausa 02:00–08:00 GMT-3 no arranca; sin señal evaluable en los últimos 300 s antes de K.
+- **Bloqueador preciso**: `migrations/0025_regime_observations.sql` (ledger inmutable de renovaciones con provenance) es REQUERIDO por el contrato y está fuera del alcance de escritura de este shot (hook deniega `migrations/`; no está en la allowlist comunicada). Sin él, el wiring reducer→service NO se envió (código roto prohibido); el contrato queda fijado por tests (`TestW1IRenewalLedgerContractFromJournal`) y el paso mecanizado en el Plan v3 §4. Rechazada la elusión con `observed_at`/`last_observed_at` mutables (veredictos falsos en cortes retroactivos: T0/T10/T20 → decisión T16).
+- **Sin lock nuevo**: no existe patrón de locking compatible en el repo (foundation/persist/capture/record revisados); la exclusión queda como obligación del supervisor de procesos propios y bloqueo separado declarado. `internal/capture` intacto.
+
+### Validación
+
+- Regresión final 6/6 PASS sobre código final post-gofmt: `internal/regimes 1.675s`, `internal/books 0.250s`, `internal/replay 0.127s`, `internal/capture 0.472s`, `internal/experiment 16.850s` (incluye `^TestW1H` intacto), `cmd/engine 30.262s`; build exit 0 (`engine` `ba75bfb114c7…cb03b`); fixture W1-h byte-idéntica al SHA del prereg; 12/12 inputs nunca escritos; sin red, sin captura, sin requests a mercados; `git status` limpio post-commit.
+
+### Rollback
+
+- Repo: `git revert 9e2c6b7` (local; sin push; base `853c0e4` intacta). Vault: eliminar las 2 notas W1-i, los 3 registros journal, esta sección y el bullet (21)/"Siguiente paso" de la continuidad (historia W1-h restaurable del marcador). OUT W1-i es aditivo.
