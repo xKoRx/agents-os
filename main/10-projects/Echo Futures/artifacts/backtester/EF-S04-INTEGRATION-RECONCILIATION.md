@@ -65,6 +65,10 @@ El planner único aún contenía IN_PROGRESS_OWNER_REPORTED en su cabecera obser
 - `R02-HISTORICAL-MANIFEST.json` blob `0a2aa46ccc005df50aedf18543fefd1cf2335dad` idéntico en ambos.
 - Esta igualdad NO demuestra equivalencia del intérprete/ejecución.
 
+### Addendum I0-S1 — evidencia de planes sellados (recuperación LOCAL reportada)
+
+Retorno I0-S1 en Agents-OS `8414341b3eb3818b39ae7966f646338a8cefca5f`: censo de planes nativos r4 **52/52** (FULL/CANARY), r5 **15/15**, hefesto **5/5** y R01 **26/26**, todos con `entry_budget_policy=STRATEGIC_ENTRY_BUDGET_V1`. Las SG observadas carecen del campo. Localizadores en `EF-CAMPAIGN-MODES-I0-IMPLEMENTATION-RETURN.md`; censo con hashes reportado en `/tmp/s04-f01-census.json` (ruta LOCAL, existencia remota no comprobada por manager). **EXECUTOR_REPORTED_WITH_PLAN_CENSUS**. Esto refuta «policy vacío» para los planes observados, pero no prueba que cada resultado histórico haya cambiado. No sumar raíces como identidades distintas. Pendiente prueba Go focal del comportamiento V1 antiguo/nuevo en R>headroom positivo, igualdad y floor; no renombrar políticas ni reejecutar 89 campañas automáticamente. **S04_SEMANTIC_ACCEPTANCE=BLOCKED_EVIDENCE**.
+
 ## 4. S04-F01 — contradicción material del recibo: nativos y EntryBudgetV1
 
 **Confirmado estáticamente:** el retorno afirma «nativos = shrink legacy con entry_budget_policy vacío» para descartar efecto de la colisión V1. El catálogo actual y del linaje declara **STRATEGIC_ENTRY_BUDGET_V1 en los 26 nativos**, y el materializador transmite ese valor. La semántica V1 difiere entre el source ae1b09bc y master integrado.
