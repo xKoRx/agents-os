@@ -50,3 +50,9 @@ Antes de una delegación extensa, registrar capacidad de reactivación y reserva
 Contexto global compacto y continuidad canónica consultados. Se actualiza el proyecto existente; no se duplica checkpoint interno ni se crea transcripción artificial.
 
 Recuperación al cierre: `graphify-obsidian` no está disponible en PATH; fallback de lectura Markdown focalizada confirmó la entrada vigente del proyecto. No se instaló ni modificó infraestructura de indexación.
+
+## Feedback de la continuación acotada
+
+La reactivación de los ejecutores en esta continuación funcionó; el rechazo de tooling anterior se conserva como hecho histórico, no bloqueo vigente. La revisión independiente distinguió defecto del consumidor, evidencia inválida del fixture y límite contractual preexistente. Mantener el repro inválido como negativo permite corregir fixtures sin debilitar assertions ni atribuir un PASS a un helper inalcanzable. Ownership por archivos y hashes finales evitaron mezclar autoría de producto y verificación.
+
+El cierre actual es READY_FOR_CLOUD_REVIEW y se registra en el proyecto canónico. La configuración futura no despachable y los gates físicos siguen siendo dependencias explícitas; no convertir publicación documental en certificación. No se propone nueva regla global a partir de un solo caso.
