@@ -1,0 +1,1235 @@
+{
+  "source_repo": "xKoRx/echo",
+  "source_sha": "ae1b09bc10370806f7648f076c5fa0825c9efa4e",
+  "integrated_sha": "2baf319ddcba622d9557bc9f23a13787b44c58a7",
+  "catalog_blob": "b2abed68214c96f913d3266a02d887e7fc15cb74",
+  "manifest_blob": "0a2aa46ccc005df50aedf18543fefd1cf2335dad",
+  "candidate_count": 26,
+  "manifest_count": 89,
+  "aliases_not_executed": 15,
+  "counts": {
+    "NATIVE": 26,
+    "SG": 63
+  },
+  "candidates": [
+    {
+      "id": "TG-CH300-F0",
+      "module": "tg",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "TG-CH300-F1-TREND",
+      "module": "tg",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "TG-CH300-F2-SR",
+      "module": "tg",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "TG-CH300-F3-TREND-SR",
+      "module": "tg",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "FBC-CH300-5M",
+      "module": "fbc",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "FBC-CH300-15M",
+      "module": "fbc",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "FBC-CH300-30M",
+      "module": "fbc",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "FBC-CH300-60M",
+      "module": "fbc",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "ORB-CH300-5M",
+      "module": "orb",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "ORB-CH300-15M",
+      "module": "orb",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "ORB-CH300-30M",
+      "module": "orb",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "MR-01",
+      "module": "mr",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "MR-02",
+      "module": "mr",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "MR-03",
+      "module": "mr",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "MR-04",
+      "module": "mr",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "MR-05",
+      "module": "mr",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "MR-06",
+      "module": "mr",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "MR-07",
+      "module": "mr",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "MR-08",
+      "module": "mr",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "MR-09",
+      "module": "mr",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "MR-10",
+      "module": "mr",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "300",
+        "target_ref": "300",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "ORB-NATIVE-C01",
+      "module": "orb",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "500",
+        "target_ref": "250",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "ORB-NATIVE-C02",
+      "module": "orb",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "500",
+        "target_ref": "250",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "ORB-NATIVE-C03",
+      "module": "orb",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "500",
+        "target_ref": "250",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2
+      }
+    },
+    {
+      "id": "ORB-NATIVE-C04",
+      "module": "orb",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "500",
+        "target_ref": "250",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2,
+        "add_policy": {
+          "kind": "ADVERSE_RETRACE",
+          "max_adds": 1
+        }
+      }
+    },
+    {
+      "id": "ORB-NATIVE-C05",
+      "module": "orb",
+      "mm": {
+        "module": "tgmm",
+        "scaling_mode": "NO_ADDS",
+        "risk_ref": "500",
+        "target_ref": "250",
+        "budget_semantics": "NET_TARGET_LEGACY_V1",
+        "economic_minimum_policy": "ECONOMIC_MINIMUM_V2",
+        "entry_budget_policy": "STRATEGIC_ENTRY_BUDGET_V1",
+        "eval_daily_goal": "900",
+        "eval_pass_target": "3000",
+        "internal_pause_loss": "1000",
+        "fee_per_side_per_contract": "2.49",
+        "slippage_ticks": 1,
+        "minimum_spread_ticks": 2,
+        "add_policy": {
+          "kind": "ADVERSE_RETRACE",
+          "max_adds": 1
+        }
+      }
+    }
+  ],
+  "manifest_rows": [
+    {
+      "candidate_id": "LAB-NATIVE-TG-CH300-F0",
+      "candidate_ref": "TG-CH300-F0",
+      "module": "tg",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-TG-CH300-F0-R250",
+      "candidate_ref": "TG-CH300-F0",
+      "module": "tg",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-TG-CH300-F0-R500",
+      "candidate_ref": "TG-CH300-F0",
+      "module": "tg",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-TG-CH300-F0-R750",
+      "candidate_ref": "TG-CH300-F0",
+      "module": "tg",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-TG-CH300-F1-TREND",
+      "candidate_ref": "TG-CH300-F1-TREND",
+      "module": "tg",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-TG-CH300-F1-TREND-R250",
+      "candidate_ref": "TG-CH300-F1-TREND",
+      "module": "tg",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-TG-CH300-F1-TREND-R500",
+      "candidate_ref": "TG-CH300-F1-TREND",
+      "module": "tg",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-TG-CH300-F1-TREND-R750",
+      "candidate_ref": "TG-CH300-F1-TREND",
+      "module": "tg",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-TG-CH300-F2-SR",
+      "candidate_ref": "TG-CH300-F2-SR",
+      "module": "tg",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-TG-CH300-F2-SR-R250",
+      "candidate_ref": "TG-CH300-F2-SR",
+      "module": "tg",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-TG-CH300-F2-SR-R500",
+      "candidate_ref": "TG-CH300-F2-SR",
+      "module": "tg",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-TG-CH300-F2-SR-R750",
+      "candidate_ref": "TG-CH300-F2-SR",
+      "module": "tg",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-TG-CH300-F3-TREND-SR",
+      "candidate_ref": "TG-CH300-F3-TREND-SR",
+      "module": "tg",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-TG-CH300-F3-TREND-SR-R250",
+      "candidate_ref": "TG-CH300-F3-TREND-SR",
+      "module": "tg",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-TG-CH300-F3-TREND-SR-R500",
+      "candidate_ref": "TG-CH300-F3-TREND-SR",
+      "module": "tg",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-TG-CH300-F3-TREND-SR-R750",
+      "candidate_ref": "TG-CH300-F3-TREND-SR",
+      "module": "tg",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-FBC-CH300-5M",
+      "candidate_ref": "FBC-CH300-5M",
+      "module": "fbc",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-FBC-CH300-5M-R250",
+      "candidate_ref": "FBC-CH300-5M",
+      "module": "fbc",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-FBC-CH300-5M-R500",
+      "candidate_ref": "FBC-CH300-5M",
+      "module": "fbc",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-FBC-CH300-5M-R750",
+      "candidate_ref": "FBC-CH300-5M",
+      "module": "fbc",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-FBC-CH300-15M",
+      "candidate_ref": "FBC-CH300-15M",
+      "module": "fbc",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-FBC-CH300-15M-R250",
+      "candidate_ref": "FBC-CH300-15M",
+      "module": "fbc",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-FBC-CH300-15M-R500",
+      "candidate_ref": "FBC-CH300-15M",
+      "module": "fbc",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-FBC-CH300-15M-R750",
+      "candidate_ref": "FBC-CH300-15M",
+      "module": "fbc",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-FBC-CH300-30M",
+      "candidate_ref": "FBC-CH300-30M",
+      "module": "fbc",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-FBC-CH300-30M-R250",
+      "candidate_ref": "FBC-CH300-30M",
+      "module": "fbc",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-FBC-CH300-30M-R500",
+      "candidate_ref": "FBC-CH300-30M",
+      "module": "fbc",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-FBC-CH300-30M-R750",
+      "candidate_ref": "FBC-CH300-30M",
+      "module": "fbc",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-FBC-CH300-60M",
+      "candidate_ref": "FBC-CH300-60M",
+      "module": "fbc",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-FBC-CH300-60M-R250",
+      "candidate_ref": "FBC-CH300-60M",
+      "module": "fbc",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-FBC-CH300-60M-R500",
+      "candidate_ref": "FBC-CH300-60M",
+      "module": "fbc",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-FBC-CH300-60M-R750",
+      "candidate_ref": "FBC-CH300-60M",
+      "module": "fbc",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-ORB-CH300-5M",
+      "candidate_ref": "ORB-CH300-5M",
+      "module": "orb",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-ORB-CH300-5M-R250",
+      "candidate_ref": "ORB-CH300-5M",
+      "module": "orb",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-ORB-CH300-5M-R500",
+      "candidate_ref": "ORB-CH300-5M",
+      "module": "orb",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-ORB-CH300-5M-R750",
+      "candidate_ref": "ORB-CH300-5M",
+      "module": "orb",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-ORB-CH300-15M",
+      "candidate_ref": "ORB-CH300-15M",
+      "module": "orb",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-ORB-CH300-15M-R250",
+      "candidate_ref": "ORB-CH300-15M",
+      "module": "orb",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-ORB-CH300-15M-R500",
+      "candidate_ref": "ORB-CH300-15M",
+      "module": "orb",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-ORB-CH300-15M-R750",
+      "candidate_ref": "ORB-CH300-15M",
+      "module": "orb",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-ORB-CH300-30M",
+      "candidate_ref": "ORB-CH300-30M",
+      "module": "orb",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-ORB-CH300-30M-R250",
+      "candidate_ref": "ORB-CH300-30M",
+      "module": "orb",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-ORB-CH300-30M-R500",
+      "candidate_ref": "ORB-CH300-30M",
+      "module": "orb",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-ORB-CH300-30M-R750",
+      "candidate_ref": "ORB-CH300-30M",
+      "module": "orb",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-MR-01",
+      "candidate_ref": "MR-01",
+      "module": "mr",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-MR-01-R250",
+      "candidate_ref": "MR-01",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-01-R500",
+      "candidate_ref": "MR-01",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-01-R750",
+      "candidate_ref": "MR-01",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-MR-02",
+      "candidate_ref": "MR-02",
+      "module": "mr",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-MR-02-R250",
+      "candidate_ref": "MR-02",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-02-R500",
+      "candidate_ref": "MR-02",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-02-R750",
+      "candidate_ref": "MR-02",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-MR-03",
+      "candidate_ref": "MR-03",
+      "module": "mr",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-MR-03-R250",
+      "candidate_ref": "MR-03",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-03-R500",
+      "candidate_ref": "MR-03",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-03-R750",
+      "candidate_ref": "MR-03",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-MR-04",
+      "candidate_ref": "MR-04",
+      "module": "mr",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-MR-04-R250",
+      "candidate_ref": "MR-04",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-04-R500",
+      "candidate_ref": "MR-04",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-04-R750",
+      "candidate_ref": "MR-04",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-MR-05",
+      "candidate_ref": "MR-05",
+      "module": "mr",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-MR-05-R250",
+      "candidate_ref": "MR-05",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-05-R500",
+      "candidate_ref": "MR-05",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-05-R750",
+      "candidate_ref": "MR-05",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-MR-06",
+      "candidate_ref": "MR-06",
+      "module": "mr",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-MR-06-R250",
+      "candidate_ref": "MR-06",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-06-R500",
+      "candidate_ref": "MR-06",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-06-R750",
+      "candidate_ref": "MR-06",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-MR-07",
+      "candidate_ref": "MR-07",
+      "module": "mr",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-MR-07-R250",
+      "candidate_ref": "MR-07",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-07-R500",
+      "candidate_ref": "MR-07",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-07-R750",
+      "candidate_ref": "MR-07",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-MR-08",
+      "candidate_ref": "MR-08",
+      "module": "mr",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-MR-08-R250",
+      "candidate_ref": "MR-08",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-08-R500",
+      "candidate_ref": "MR-08",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-08-R750",
+      "candidate_ref": "MR-08",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-MR-09",
+      "candidate_ref": "MR-09",
+      "module": "mr",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-MR-09-R250",
+      "candidate_ref": "MR-09",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-09-R500",
+      "candidate_ref": "MR-09",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-09-R750",
+      "candidate_ref": "MR-09",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-MR-10",
+      "candidate_ref": "MR-10",
+      "module": "mr",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-SG-MR-10-R250",
+      "candidate_ref": "MR-10",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 250,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS250-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-10-R500",
+      "candidate_ref": "MR-10",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 500,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS500-1TO1"
+    },
+    {
+      "candidate_id": "LAB-SG-MR-10-R750",
+      "candidate_ref": "MR-10",
+      "module": "mr",
+      "modality": "SG",
+      "risk_budget_usd": 750,
+      "profile_ref": "PROFILE-ATR14-WILDER-M1-X1-GROSS750-1TO1"
+    },
+    {
+      "candidate_id": "LAB-NATIVE-ORB-NATIVE-C01",
+      "candidate_ref": "ORB-NATIVE-C01",
+      "module": "orb",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-NATIVE-ORB-NATIVE-C02",
+      "candidate_ref": "ORB-NATIVE-C02",
+      "module": "orb",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-NATIVE-ORB-NATIVE-C03",
+      "candidate_ref": "ORB-NATIVE-C03",
+      "module": "orb",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-NATIVE-ORB-NATIVE-C04",
+      "candidate_ref": "ORB-NATIVE-C04",
+      "module": "orb",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    },
+    {
+      "candidate_id": "LAB-NATIVE-ORB-NATIVE-C05",
+      "candidate_ref": "ORB-NATIVE-C05",
+      "module": "orb",
+      "modality": "NATIVE",
+      "risk_budget_usd": null,
+      "profile_ref": ""
+    }
+  ],
+  "artifact_role": "DERIVED_EVIDENCE_SNAPSHOT_NOT_A_CATALOG_AUTHORITY",
+  "review_scope": "SOURCE_ONLY; execution parity UNKNOWN pending S04-F01",
+  "as_of_local": "2026-10-28 America/Santiago"
+}
