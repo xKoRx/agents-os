@@ -107,3 +107,39 @@ tags:
 ### Rollback
 
 - Vault: eliminar las 3 notas nuevas W1-g, las secciones de erratas añadidas a las 2 notas W1-f y el bullet (19)/"Siguiente paso" de la continuidad (historia W1-f restaurable del propio marcador). OUT W1-g es aditivo.
+
+---
+
+## 2026-10-29 (W1-h) — paquete v2 del piloto económico: siete correcciones resueltas con fixture offline
+
+### Cambio
+
+- **Tipo:** created / updated
+- **Archivo(s):**
+  - `10-projects/Personal/Polymarket Engine/Preregistration — PE-005-R1 Economic Candidate v2 W1-h 2026-10-29.md` (nuevo; v2 correctiva, v1 W1-g preservada como historia)
+  - `10-projects/Personal/Polymarket Engine/Plan — Single Episode Pilot v2 W1-h 2026-10-29.md` (nuevo; receta serial de UN episodio, NO ejecutada)
+  - `10-projects/Personal/Polymarket Engine/Research — Economic Pilot Corrections W1-h 2026-10-29.md` (nuevo; 7 correcciones → evidencia/estado/decisión)
+  - `Polymarket Engine — Continuidad Five-POC 2026-09-20.md` (bullet (20) W1-h; "Siguiente paso" actualizado con historia W1-g preservada íntegra)
+  - `80-agents/journal/sessions/2026-10-29-polymarket-w1h-pilot-v2-summary.md`, `…w1h-pilot-v2-feedback.md`, `…zcode-glm-5.3-flash-polymarket-w1h-pilot-v2.md` (nuevos), este change_log (sección añadida)
+  - Repo externo (fuera del vault): archivo nuevo UNTRACKED `internal/experiment/w1h_acquisition_recipe_test.go` (SHA `f7c03a4829cae2d31e77bd68be80f1f2c389a18143182dce44d24152f3c0fa17`) — fixture offline de receta; sin commit, sin push, sin cambios de producción (HEAD `853c0e4` intacto, árbol limpio salvo ese untracked)
+  - OUT (fuera del vault): `validated-baseline/w1-h-economic-pilot-v2-20261029/` (`w1h-preregistration-v2.json`, `w1h-fixture-receipt.json`)
+
+### Motivo
+
+- Mandato W1-h (lanzador, con Metis aceptando PE-005-R1 como candidata sin aprobar captura): resolver UNA vez las siete correcciones de la v1 y dejar el piloto de UN episodio en estado adjudicable, sin ejecutar adquisición.
+
+### Fuentes usadas
+
+- W1-g originales, continuidad §§1–19, `.private-execution/w1h/{inputs.json,workspace-preflight.json}`, y fuente Go @ `853c0e4`: `internal/regimes/{reducer,prospect}.go`, `internal/capture/{capture,recover,envelope}.go`, `internal/economics/economics.go`, `internal/persist/persist.go`, `cmd/engine/record.go`, `internal/strategy/pocs/sports/sports.go`, `internal/experiment/w1f_hypothesis_integration_test.go`.
+
+### Resolución aplicada
+
+- (1) Frescura: re-poll idéntico dedupea por contenido y NO renueva `known_at` (TTL anclado a la primera recepción del contenido; cambio de contenido re-ancla) — la receta v1 de re-polls por frecuencia era infundada; writer único demostrado (segundo `capture.Open` vivo sin exclusión ⇒ colisión de seqs y pérdida silenciosa de un registro ACKed sin discontinuidad) — re-polls concurrentes con `record` prohibidos; v2 = receta serial de 6 tramos×15 min (opción A) o delta de renovación de recepción a decisión de Metis (opción B, no implementado). (2) Economía: resultado v2 = round trip virtual a H=300 s con liquidación full-size, taxonomía de 7 estados, B\* sólo diagnóstico. (3) Fees: 500 bps sensibilidad condicional del escenario A; 1000 bps estrés separado; REAL_FEE_READY=false. (4) Estadística: piloto descriptivo por partido (1 cluster), inferencia diferida a fase prospectiva sellada. (5) Aritmética: 0,0894 MB/min (no 0,9); campaña 25 ventanas=40 GB > techo ⇒ desprogramada; palomar 81/74 ⇒ ≥1 registro multi-evento, no ≥7. (6) Selección: reglas con presupuesto 3/100 y desenlace honesto NO_ELIGIBLES_EN_LOTE; sin consultar mercados. (7) Supervisión: pasos foreground seriales con recibos, checkpoint duro 02:00 GMT-3, pausa completa 02–08 sin gracia.
+
+### Validación
+
+- Comando EXACTO del mandato ejecutado: 4 corridas (2 build FAIL por 3 bugs ordinarios del fixture propio; 1 FAIL por aserción errónea del fixture — el engine hizo lo correcto: 4 registros = 2 boot-starts + 2 probes; corregida) y final **PASS exit 0** (`ok github.com/xKoRx/polymarket-engine/internal/experiment 0.018s`); gofmt aplicado con la forma full-path autorizada; 12/12 inputs intactos; sin requests de red de mercados; `git status` post-trabajo con único untracked.
+
+### Rollback
+
+- Repo: borrar el archivo untracked (no hay commit que revertir). Vault: eliminar las 3 notas W1-h, los 3 registros journal, esta sección y el bullet (20)/"Siguiente paso" de la continuidad (historia W1-g restaurable del marcador). OUT W1-h es aditivo.
