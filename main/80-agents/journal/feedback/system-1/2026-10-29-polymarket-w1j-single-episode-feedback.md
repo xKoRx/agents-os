@@ -21,6 +21,12 @@ tags:
 
 # 2026-10-29-polymarket-w1j-single-episode-feedback
 
+## Fricción 11 (cierre de captura) — los deadlines eran límites, no calendario, y el déficit económico es real, no un fallo de instrumentación
+
+- **Qué pasó:** el runner encadenó pasos sin esperar los inicios absolutos de slot: los observes insumieron ~1–3 s (no 60 s) y los records ~13m32s, de modo que el envelope WS terminó en K−8,63 min en vez de K−3min. Además el episodio capturado produjo 0 ACCEPTs (72 rechazos del gate de costes v0.1) — el endpoint económico nunca alcanzó evaluación.
+- **Impacto:** desviación temporal registrada como hallazgo (muestra descriptiva válida sobre cobertura real; NO valida ejecución exacta del preregistro temporal); resultado INCONCLUSIVE con déficit exacto — jamás presentado como P&L 0 ni como fallo de instrumentación. Verificación hecha leyendo los 17 recibos/seal/analysis originales sin repetir un solo paso ya validado.
+- **Lección:** (1) un scheduler de deadlines superiores no es un scheduler — la próxima revisión del runner debe dormir hasta el inicio absoluto de cada slot; (2) el gate de costes v0.1 (min_net_edge 50 bps a fee bound) es la barrera dominante en episodios reales: el siguiente diseño científico debe dimensionar expectativa de señales admisibles antes de capturar otra ventana.
+
 ## Fricción 10 (identidad) — igual K no prueba partido, y el registro previo evitó la tentación de agrupar
 
 - **Qué pasó:** el cluster del lote 3 (3 moneylines con K idéntico) no tenía prueba de identidad mutua (gameId ausente en la respuesta). La adjudicación llegó ANTES de la ventana con la regla fallback ya fijada (menor id numérico, coherencia con K, STOP sin sustitución) — el preregistro de la regla se escribió a disco ANTES de leer cualquier campo de identidad, eliminando la tentación de agrupar por K o elegir mirando slugs.
