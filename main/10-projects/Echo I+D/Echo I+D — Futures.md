@@ -19,7 +19,7 @@ tags:
   - project/echo-rnd
   - tech/futures
 created: '2026-10-28'
-updated: '2026-10-28'
+updated: '2026-10-29'
 related:
   - '[[Echo Futures]]'
   - '[[Echo I+D — Cobertura Futures]]'
@@ -35,9 +35,11 @@ Prioridad inmediata: **NQ**, aprovechando el trabajo existente y reduciendo ince
 
 ## 📊 Estado actual
 
-**Actualización Owner posterior — 2026-10-28: integración en curso y nuevo frente C.** El Owner informa que S04 completa y sus variantes se están integrando en master; esto supersede PAUSED_OWNER, sin certificar merge, build, aceptación ni despliegue. A/B quedan pendientes de retorno. [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]] incorpora tres capacidades requeridas del Backtester: CHALLENGE y FUNDED aisladas/comparables, seguidas de SIMULATION causal con caja común. El Backtester es responsabilidad funcional de esta línea: sus carencias necesarias se convierten en desarrollo priorizado mediante los owners técnicos existentes.
+**2026-10-29 — I01-A/B recibidos y lote de cobertura propuesto.** [[FUT-R01-LOTE-COBERTURA-01]] adjudica ambos retornos, conserva RV-01 NO_APTO_AUN por alcance y recomienda **8 señales base / techo de 24 versiones de Strategy**, con primer paquete FBC15 + ORB30 + MR04. Siete señales se rescatan de S04; I01-A es la nueva de cierre. Propuesta del manager, OWNER_ACCEPTANCE=REVIEW; no hay código, nuevas pruebas ni campañas ejecutadas. Las reparaciones de A/B son focales y no bloquean clasificar el resto del lote.
 
-**Decisiones económicas ya resueltas:** USD 4.000 son caja para comprar challenges, no equity propia de trading; NQ exclusivo y Forex separado. Retiro sin objetivo fijo de USD 3.000: se evalúa importe/momento/política. Challenge busca pase o pérdida rápidos dentro de todas las reglas aplicables, sin caps prudenciales extra impuestos por defecto; 1/3 es umbral Owner para futuras campañas. Todo cash neto recibido se reinvierte. Una media positiva no certifica escalabilidad infinita ni autoriza compras. Diseño C01 y coordinación técnica preparados; no ejecutados por esta actualización.
+**C permanece con su manager y planner técnico.** Al corte Agents-OS 5fe3995 / Echo master 2baf319d, S04 está integrado como SOURCE; C04 conserva S04_SEMANTIC_ACCEPTANCE=BLOCKED_EVIDENCE y I0 NOT_STARTED / NOT_DISPATCHED. El Owner informa continuidad de C. No repetir merge, tomar su implementación ni declarar aceptación física. [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]] sigue siendo el mandato funcional de CHALLENGE, FUNDED y SIMULATION; los detalles vigentes están en [[Echo Futures — Optimización de Campañas]].
+
+**Decisiones económicas vigentes:** USD 4.000 son caja para comprar challenges, no equity propia; NQ exclusivo, Forex separado. Retiro variable a evaluar; 100% del cash neto recibido se reinvierte. Resolución rápida dentro de todas las reglas, sin caps prudenciales extra; 1/3 es umbral Owner para futuras campañas, no estimación ni media del mercado. Meta 5 estrategias challenge + 5 estrategias funded en al menos dos firmas; cinco estrategias no equivalen a cinco cuentas simultáneas. Una media positiva no acredita escalabilidad infinita ni autoriza compras.
 
 **2026-10-28 — RV-01 y consolidado documental entregados: `NO_APTO_AUN`.** Expediente único: [[FUT-R01-INDICE]]; dictamen, reparación focal y siguiente propuesta: [[FUT-R01-RV-01-CONSOLIDADO]]. DR-01 sólo está disponible como captura editorial; DR-02 sigue PARCIAL; DR-03/04 están preservados completos según su ingestión. La independencia histórica de autoría no es acreditable: la entrega se clasifica como **AUTORREVISIÓN ADVERSARIAL DOCUMENTAL**. FUT-R01 sigue en curso por dependencias de entradas, contrato, datos y selección. Sesión documental cerrada con feedback; no hay aceptación Owner, ejecución ni cambios de producto o G0–G5.
 
@@ -173,29 +175,27 @@ El informe utiliza categorías y perfiles de una campaña; no acredita igual nú
 
 ### Próximo paso preparado dentro de FUT-R01
 
-**A/B:** [[FUT-R01-ITERACION-01]] conserva la ficha candidata PERSIST/cierre y la reparación contractual. El Owner retornará los resultados; no han sido recibidos ni aceptados aquí. B debe incorporar el delta de retiro variable, reinversión total, 1/3 y tipos de campaña, sin reiniciar investigación. MR06 sigue alternativa existente.
+**A/B recibidos:** [[FUT-R01-I01-SPEC]] y [[FUT-R01-I01-CONTRATOS]], adjudicados en [[FUT-R01-LOTE-COBERTURA-01]]. A es candidata revisable; separar veto preenvío de fills ya ocurridos/fills tardíos antes de cerrar la spec. B sigue PARTIAL_DOCUMENTAL; la ausencia de A está resuelta por recepción. Corregir inferencia cinco estrategias=cinco cuentas y atribución no demostrada del conflicto 3/4 contratos a SIM. Conservar originales y UNKNOWN de costes/payout/enforcement/ruta. No repetir los DR.
 
-**Frente 1:** IN_PROGRESS_OWNER_REPORTED. El Owner informa integración S04 completa/variantes a master. Se retira la pausa anterior y se coordina con su manager/ejecutor actual; no se duplica ni se interviene el merge. [[EF-BACKTEST-RUNTIME-INTEGRATION-PLAN]] permanece antecedente que debe reconciliarse contra el corte aceptado y receipts de esa integración.
+**Lote recomendado:** 8 bases, 6 preguntas de cobertura, hasta 24 versiones si sus alternativas se justifican. FBC15/ORB30/MR04 abren la preparación; MR09/MR06 y luego MR01/MR08 aportan contraste; I01-A se prepara en paralelo con una baseline. No se acreditan ocho estrategias ganadoras ni seis familias independientes. LC01-PREP en el documento es el siguiente mandato documental preparado; no despachado.
 
-**Frente C:** [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]] es el mandato funcional de los nuevos tipos. C01 GOD Cloud prepara diseño/KPI/delta mientras avanza S04; el manager técnico existente conduce su entrega. No crea otra fábrica ni autoriza backtests. El antiguo I01-C sólo era recuperación de datos y no debe confundirse con este frente.
-
-**RV-01 se conserva:** NO_APTO_AUN para campaña definida/reproducible; integridad limitada, contrato/ruta/costes y observabilidad pendientes. No repetir DR-01–04 ni abrir DR-05. El nuevo requerimiento no acredita esos pendientes ni presupone rentabilidad.
+**Integración y C:** SOURCE S04 integrado en el corte observado, aceptación semántica pendiente; C conserva su manager. El requisito que aporta investigación es reutilización source→receipt, admisión G0–G5 y presupuesto real por job/lote, sin confundir max-runs con horas ni characterize con un scanner nuevo. El detalle y la ejecución pertenecen al planner técnico existente.
 
 ### Cola priorizada de investigación y reutilización
 
-Una pregunta primaria de investigación Futures; varios workers independientes y el desarrollo habilitante pueden avanzar coordinados. La capacidad de ejecutar etapas/múltiples estrategias no elimina admisión, presupuesto ni límites de Hefesto. El detalle técnico vive sólo en el planner del lab.
+FUT-R01 mantiene un único lote comparativo con ramas y cola, no seis iniciativas WIP nuevas. Workers de lectura/preparación pueden trabajar por partes; los motores comparten capacidad con el resto de Hefesto y requieren mandato/presupuesto. Una rama bloqueada no paraliza las demás ni transfiere su PASS.
 
 | Orden / estado | Resultado buscado | Dependencia / aceptación / responsable |
 |---|---|---|
-| 1 — WAITING_RETURN | Recibir y adjudicar I01-A/B; incorporar delta económico | Manager Futures + Owner; preservar trabajo válido, no reabrir los DR ni esperar toda la fábrica para revisar la señal/perfil |
-| 2 — AHORA, DISEÑO PREPARADO | C01: contratos/KPI, reutilización y primer incremento challenge/funded/simulation | GOD Cloud ONE-SHOT; diseño candidato con estados, caja, admisión y casos; no implementación ni autoaceptación |
-| 3 — EN CURSO INFORMADO POR OWNER | Reconciliar integración S04/variantes a master | Manager técnico existente; commit exacto, matriz de variantes, source/build/tests/aceptación separados. No declarar merge terminado por el reporte |
-| 4 — DESPUÉS DE DISEÑO/BASE ACEPTADOS | CHALLENGE y FUNDED aisladas; solicitud dual para una Strategy | Planner lab, ejecutor técnico autorizado; MM/RuleSet/cohortes/ledger propios, KPI reconciliados. Resolver expresamente admisión funded-only frente a G4 |
-| 5 — SIGUIENTE CAPACIDAD | SIMULATION causal 1×1; luego varias estrategias/pools y dos props con caja común | Reutilizar etapas/Platform; compras, activaciones, cobros y reinversión con USD 4.000. Sin caja ficticia ni resultados IID por duplicar cuentas |
-| 6 — HANDOFF DE INVESTIGACIÓN | Primera nueva Strategy o refactor seleccionado, datos y cualificación | A/B adjudicados, evidencia necesaria disponible, mandato/budget/gates. Recuperación I01-C read-only sólo si falta evidencia; no nuevo preflight por inercia |
-| 7 — ALTERNATIVA / RESERVA | Reconciliar MR06 o una pregunta incremental dentro de la celda | Activación por decisión/aprendizaje, una hipótesis y refutador. Nada de parrilla cartesiana ni nueva familia por otro MM |
+| 1 — RECEIVED_WITH_FOCAL_REPAIRS | I01-A/B recibidos y adjudicados, reparación de tres puntos precisos | Manager Futures; ficha A aún no ejecutable aceptada, B parcial; no reiniciar fuentes |
+| 2 — PROPOSAL / REVIEW | Acordar lote 8 bases / techo 24; congelar primero FBC15, ORB30, MR04 | Owner y manager; setup/filtro/geometría, controles y versiones inequívocas; LC01-PREP preparado |
+| 3 — RECUPERACIÓN PREVIA | Clasificar 89 configuraciones existentes y reutilización por identidad | Lectura de catálogo/resultados/receipts; dato físico faltante genera recuperación read-only acotada, no rerun |
+| 4 — DEPENDENCIA TÉCNICA C | S04 evidencia semántica + admisión efectiva y coste controlado | Manager técnico existente; no nuevo merge ni manager; secuencia I0/I1/I2/etc. en su planner |
+| 5 — DESPUÉS DE ADMISIÓN Y BUDGET | Primer paquete funcional/económico por gates; comparar MM por etapa cuando proceda | Mandato físico autorizado, datos/RuleSet/ventanas fijos; medir coste antes de expandir |
+| 6 — COLA PREPARABLE | MR09/MR06, luego MR01/MR08 si aportan; I01-A reparada en paralelo | Evidencia y pregunta incremental, sin cuota de promociones ni económicos trasladados de otra identidad |
+| 7 — RESERVA CON DISPARADOR | MR02, MR07, MR10, TG SIG-B; MR05 sólo tras reconciliar descartes | Una pregunta específica activa la reserva; no parrilla cartesiana ni nuevas familias por MM |
 
-Reutilizar preparación causal, datos, perfiles, contratos, fixtures y recibos válidos; invalidar sólo lo dependiente de cambios semánticos. Las nuevas capacidades son trabajo de I+D habilitante, no cobertura adicional de mecanismos ni estrategias. No bloquear análisis A/B por dependencias técnicas que no cambien su decisión.
+Las 89 filas R03 son evidencia histórica reutilizable, no 89 mecanismos ni garantías para el motor integrado. Se preservan todos los intentos y la condición retrospectiva de datos ya usados. No se fuerza esperanza positiva por trade, Sharpe o supervivencia como gates universales; tampoco se presume que mayor riesgo o una cobertura distinta mejoren caja.
 
 ## Economía y evidencia
 
@@ -215,9 +215,9 @@ Los perfiles Strategy, MM y Provider se mantienen separados. El resultado cambia
 - [x] Confirmar superposición 5+5: mismas estrategias, conjuntos distintos o mezcla; evidencia por función/combinación. #owner/me #type/research #area/trading
 - [x] Persistir corrección Owner de campañas prop, informe exploratorio rectificado y cuatro mandatos DR separados más RV-01 en [[FUT-R01-RESEARCH-MANDATE]] v4; no exigir esperanza positiva por trade ni imponer riesgo conservador. #owner/me #type/research #area/trading
 - [x] Entregar RV-01 y consolidado de lo disponible, con reparación focal, fuentes críticas y dictamen `NO_APTO_AUN`; reunir los originales disponibles sin alterar sus bytes en [[FUT-R01-INDICE]]. Entrega documental no equivale a aceptación ni ejecución. #owner/me #type/research #area/trading
-- [/] Preparar y adjudicar [[FUT-R01-ITERACION-01]]: ficha causal A y contrato/caja B, preservando las dependencias de RV-01. Prompts preparados; retornos A/B aún no recibidos. No repetir los cuatro DR ni reconstruir originales ausentes. #owner/me #type/research #area/trading
-- [/] Coordinar el frente C y la integración S04 informada por Owner mediante el planner técnico existente: [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]]. Reconciliar evidencia antes de nuevos despachos; no duplicar merge ni certificarlo. #owner/me #type/supervision #area/echo
-- [ ] Elegir el primer experimento y una siguiente pregunta de mecanismo diferente; luego despachar sólo el alcance autorizado. #owner/me #type/research #area/trading
+- [x] Recibir y adjudicar alcance de I01-A/B en [[FUT-R01-LOTE-COBERTURA-01]]: conservar originales, registrar reparación focal de A y dos inferencias de B. Recepción/revisión no equivale a aceptación de spec, programa o G0–G5. #owner/me #type/research #area/trading
+- [/] Coordinar requisitos de investigación con el manager C existente: S04 SOURCE integrado, evidencia semántica pendiente; nuevos tipos, admisión y presupuesto en [[Echo Futures — Optimización de Campañas]]. Sin duplicar implementación o aceptación. #owner/me #type/supervision #area/echo
+- [ ] Aceptar alcance del lote 8/24 y congelar el primer paquete FBC15/ORB30/MR04; recuperar receipts de las ocho bases y resolver sólo sus dependencias materiales. LC01-PREP preparado; presupuesto físico y ejecución pendientes. #owner/me #type/research #area/trading
 
 Futures Prop Universe es una entrega histórica cerrada, normalizada de `complete` a `completed`; Prop Economics ya estaba cerrado. Enlazarlos no reactiva sus tareas ni equivale a certificar reglas actuales.
 
@@ -227,6 +227,8 @@ Futures Prop Universe es una entrega histórica cerrada, normalizada de `complet
 - **DR-02 recibido (PARCIAL, sin certificación contractual):** [[FUT-R01-DR-02-contratos-prop-NQ-2026-10-28]] conserva 38 líneas sin URLs. RV-01 verifica sólo fuentes decisivas y corrige Rapid/caps/origen de órdenes; el vector completo por programa/fase/plataforma/cohorte sigue pendiente. No autoriza compra ni operación.
 
 ## 📆 Bitácora
+
+- **2026-10-29 — recepción A/B y lote con cobertura:** revisión documental recibida, tres reparaciones focales y propuesta de ocho señales/siete existentes, seis preguntas y techo 24 versiones. Primer paquete apertura FBC15/ORB30/MR04; recuperación de las 89 S04 sin reruns automáticos. C conserva manager; se registra SOURCE integrado y evidencia semántica pendiente. Sin código, motores, gasto, cambios de gates o cierre. [[2026-10-29-echo-futures-lote-cobertura|Registro]].
 
 - **2026-10-28 — tres campañas y nuevo mandato económico:** Owner informa integración S04 en curso; levanta el estado anterior de pausa, sustituye retiro fijo por política a evaluar, fija resolución rápida sin caps prudenciales extra dentro de reglas y umbral challenge 1/3, confirma reinversión total y caja de compras. I+D asume la capacidad funcional Backtester; prompts C01/manager/C02 preparados y coordinación en planner existente. A/B pendientes. Sin producto, backtests, gasto o cierre del manager. [[2026-10-28-echo-futures-campaign-types|Registro]].
 
@@ -251,15 +253,18 @@ Futures Prop Universe es una entrega histórica cerrada, normalizada de `complet
 
 Aceptadas: dos mercados dentro del mismo programa; Futures por Echo Backtester; NQ inmediato; prioridad económica challenge+funded; Owner decide lo material. La ampliación a otros instrumentos y SQX como generación adicional quedan aparcadas, sin ejecutar ni integrar.
 
-**Confirmado el 2026-10-28:** USD 4.000 para compras Futures y Forex separado; Strategy de tres bloques/MM separado; 5+5 pueden coincidir; dos props simultáneas como meta. Integración S04→master en curso según Owner, certificación pendiente de recibo. Retiro fijo USD 3.000 superseded; política a evaluar y cash recibido reinvertido al 100%. Challenge busca pase/pérdida rápidos dentro de reglas sin caps prudenciales extra; umbral 1/3 para futuras campañas. CHALLENGE/FUNDED separadas y SIMULATION integral son capacidad requerida de I+D, entregada por los owners técnicos existentes.
+**Confirmado el 2026-10-28:** USD 4.000 para compras Futures y Forex separado; Strategy de tres bloques/MM separado; 5+5 pueden coincidir; dos props simultáneas como meta. Integración S04→master confirmada como SOURCE al corte 2baf319d; aceptación semántica y evidencia física siguen pendientes en C. Retiro fijo USD 3.000 superseded; política a evaluar y cash recibido reinvertido al 100%. Challenge busca pase/pérdida rápidos dentro de reglas sin caps prudenciales extra; umbral 1/3 para futuras campañas. CHALLENGE/FUNDED separadas y SIMULATION integral son capacidad requerida de I+D, entregada por los owners técnicos existentes.
 
-Pendientes materiales: A/B y selección de primera Strategy; programa/ruta contractual; horizonte/seguimiento; políticas concretas y evaluación temporal; costes no incluidos en compra y su fuente si existen; baseline integrado certificado; diseño C01 y decisión focal de admisión funded-only frente al G4 vigente; presupuesto/alcance del siguiente despacho físico. Ya no se pregunta por retiro fijo, reinversión o reserva prudencial. ClutiFX permanece excluida; RV-01 NO_APTO_AUN no se convierte en PASS por este mandato.
+Pendientes materiales: aceptación del lote 8/24 y freeze de baselines; reparación A/B; programa/ruta contractual; horizonte/seguimiento; políticas concretas y evaluación temporal; costes no incluidos en compra y su fuente si existen; evidencia semántica/física del baseline integrado; decisión focal D05 de C sobre funded-only frente al G4 vigente; presupuesto/alcance del siguiente despacho físico. Ya no se pregunta por retiro fijo, reinversión o reserva prudencial. ClutiFX permanece excluida; RV-01 NO_APTO_AUN no se convierte en PASS por este mandato.
 
 ## 🔗 Docs / Links
 
+- [[FUT-R01-LOTE-COBERTURA-01]] — adjudicación I01-A/B, propuesta 8/24, primer paquete, alternativas, presupuesto y LC01-PREP.
+- [[FUT-R01-I01-SPEC]] · [[FUT-R01-I01-CONTRATOS]] — retornos originales recibidos; no corregidos silenciosamente.
+
 - [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]] — decisiones actuales, KPI propuestos y prompts del frente C.
 
-- [[FUT-R01-ITERACION-01]] — siguientes prompts A/B y C diferido; requisitos de reutilización de la fábrica. El backlog vive en este planner.
+- [[FUT-R01-ITERACION-01]] — mandato de origen de A/B y antiguo C de datos; retornos recibidos, continuidad en el lote. El backlog vive en este planner.
 
 - [[Echo — I+D de Estrategias]] · [[Echo I+D — Cobertura Futures]] · [[Echo I+D — Mapa de capacidades]].
 - [[FUT-R01-INDICE]] — entrada única a mandato, retornos, trazabilidad de movimientos y cierre.
@@ -272,4 +277,4 @@ Pendientes materiales: A/B y selección de primera Strategy; programa/ruta contr
 
 ## Entrada del próximo chat
 
-> Actúa como manager Futures de Echo I+D; bootstrap sólo si cold. Recupera este planner, [[FUT-R01-INDICE]] y [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]]. A/B siguen pendientes de retorno; integrar su delta sin repetir DR. El Owner informa S04 completa/variantes en integración a master: pausa anterior superseded, no merge certificado. C es nuevo frente de tipos CHALLENGE/FUNDED/SIMULATION, distinto del antiguo I01-C de datos. I+D posee requisitos/prioridad económica del Backtester; planner técnico lab y owners existentes implementan/certifican. USD 4.000 para comprar cuentas, no futuros propios; Forex separado, NQ exclusivo. Retiro variable a evaluar, reinversión 100% del cash recibido; MM de pase/pérdida rápidos dentro de reglas sin caps prudenciales extra, umbral Owner 1/3 no media del mercado. Funded incluye quemadas y todas las iniciadas. Simulation usa caja causal, no multiplicación de ratios ni escala infinita por media positiva. Mantén G0–G5 y eleva cualquier conflicto funded-only/G4 como decisión concreta; no waiver. No código/gasto/campañas/cierre formal por preparar prompts. Reutiliza evidencia válida y coordina con manager S04 existente.
+> Actúa como manager Futures de Echo I+D; bootstrap sólo si cold. Recupera este planner y [[FUT-R01-LOTE-COBERTURA-01]]. I01-A/B recibidos y adjudicados: A necesita resolver veto preenvío/fills reales/tardíos; B sigue parcial, A ya disponible, corregir cinco estrategias≠cinco cuentas y fase del supuesto 3/4 NQ. Propuesta pendiente Owner: 8 bases, techo 24 versiones; apertura FBC15/ORB30/MR04 primero, MR09/MR06 y MR01/MR08 después, nueva A preparada en paralelo. LC01-PREP está preparado, no ejecutado. Recuperar las 89 S04, sin reruns automáticos ni transferencia de PASS. C tiene su manager; SOURCE S04 integrado en Echo 2baf319d, C04 con evidencia semántica pendiente e I0 no despachado al corte leído. Consultar delta vigente del planner lab antes de actuar. Preservar USD 4.000 para compras, Forex separado, NQ exclusivo, retiro variable/reinversión 100%, MM de resolución rápida dentro de reglas y umbral Owner 1/3. Metas 5+5 son estrategias; no igualarlas a cuentas simultáneas. No repetir los DR ni crear nuevo manager. Guard y presupuesto real por job/lote pertenecen a C; max-runs no limita horas. G0–G5 y decisión D05 funded-only sin waiver. No código, campañas, gasto ni cierre formal sin mandato correspondiente.

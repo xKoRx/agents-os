@@ -14,7 +14,7 @@ tags:
   - area/trading
   - project/echo-rnd
 created: "2026-10-28"
-updated: "2026-10-28"
+updated: "2026-10-29"
 ---
 
 # FUT-R01 — Expediente de DR-01–04 y RV-01
@@ -25,12 +25,17 @@ Reunir los retornos disponibles, el mandato/corrección Owner y el consolidado e
 
 ## Contenido
 
+**Continuidad actual — 29-10-2026:** I01-A/B recibidos; adjudicación y propuesta de lote en [[FUT-R01-LOTE-COBERTURA-01]]. Ocho bases, siete existentes y una nueva, techo propuesto 24; primera preparación FBC15/ORB30/MR04. OWNER_ACCEPTANCE=REVIEW, sin ejecución. C conserva su manager; S04 SOURCE integrado, aceptación semántica pendiente al corte C04. La pausa y A/B pendientes de notas anteriores son antecedentes superseded.
+
 **Estado al 28-10-2026:** RV-01 documental terminado con dictamen **`NO_APTO_AUN`**. Clasificación: **AUTORREVISIÓN ADVERSARIAL DOCUMENTAL**, porque la independencia histórica de autores no es acreditable. La reparación focal está incorporada en el consolidado. No se aprobaron gasto, ejecución, estrategias ni G0–G5.
 
 ### Orden de lectura
 
 | Archivo | Qué contiene | Precaución |
 |---|---|---|
+| [Lote de cobertura 01](FUT-R01-LOTE-COBERTURA-01.md) | Recepción/adjudicación A/B, propuesta 8/24, paquetes, alternativas, costes y mandato LC01-PREP. | Recomendación del manager pendiente Owner; sin conformidad ni ejecución nuevas. |
+| [I01-A: ficha de persistencia de cierre](FUT-R01-I01-SPEC.md) | Señal causal, geometría candidata y casos documentales. | Original preservado; entrada market/fill tardío necesita reparación antes del freeze ejecutable. |
+| [I01-B: contratos y economía](FUT-R01-I01-CONTRATOS.md) | Perfil candidato Rapid EOD, UNKNOWN, MM y caja. | PARTIAL_DOCUMENTAL; A ya recibida; corregir estrategia/cuenta y atribución de fase 3/4 NQ. |
 | [Consolidado RV-01](FUT-R01-RV-01-CONSOLIDADO.md) | Dictamen; 24 hallazgos con evidencia, impacto y reparación; caja/matemática; contradicciones; dependencias; decisiones Owner; experimento y alternativa; registro de fuentes. | Revisión de lo efectivamente disponible, sin certificar cuatro originales completos. |
 | [Mandato v4 y corrección económica Owner](FUT-R01-RESEARCH-MANDATE.md) | Cápsula y alcance de los cuatro DR y RV-01; antecedente exploratorio rectificado. | Preservado sin cambios. Su estado histórico «NO EJECUTADOS» no sustituye este índice ni el planner actualizados. |
 | [DR-01: captura editorial disponible](retornos/echo-futures-dr01-deep-research-2026-10-28.md) | Apartados, fórmulas y conclusiones preservadas por el agente de ingestión. | **No es el original íntegro** «Texto pegado(7).txt». Ausencia declarada, no reconstruida. |
@@ -63,9 +68,9 @@ Los nombres de archivo se preservan para mantener resolución de wikilinks por t
 
 ### Siguiente decisión
 
-**Continuidad posterior del manager (28-10-2026):** [[FUT-R01-ITERACION-01]] prepara ficha causal y contrato/caja en paralelo, con retorno técnico diferido. Frente 1 PAUSED_OWNER durante merge runtime→master. La cola y decisiones viven en [[Echo I+D — Futures]]. El consolidado, su dictamen y los cinco blobs de entrada se conservan sin modificación; no repetir los DR.
+**Continuidad vigente:** [[FUT-R01-LOTE-COBERTURA-01]] sustituye la espera de A/B por su recepción/adjudicación. Aceptar alcance de ocho bases/techo 24, congelar el primer paquete FBC15/ORB30/MR04 y recuperar receipts existentes; C mantiene su manager. La implementación, el presupuesto físico y las incógnitas contractuales siguen su propia admisión. No esperar a resolver toda la ruta comercial para clasificar mecanismos, ni usar esa preparación para declarar economía viable.
 
-Resolver el paquete indispensable ya identificado —integridad, ruta contractual, datos y selección previa— y decidir si se especifica el candidato de persistencia de cierre NQ o la alternativa MR06. Una entrega focal, sin repetir los cuatro DR ni abrir DR-05. El programa Futures permanece en curso; esta sesión documental está cerrada.
+[[FUT-R01-ITERACION-01]] conserva el mandato de origen. El consolidado, los cinco blobs de entrada y ambos retornos A/B se preservan sin modificación. RV-01 sigue NO_APTO_AUN por alcance; no repetir los cuatro DR ni abrir DR-05. El cierre histórico de la sesión RV-01 no cierra el programa ni al manager Futures.
 
 ## Fuentes
 
@@ -76,4 +81,4 @@ Resolver el paquete indispensable ya identificado —integridad, ruta contractua
 
 ### Continuidad posterior: frente C y economía de campañas
 
-**28-10-2026:** [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]] incorpora el último mandato Owner y los prompts de diseño/coordinación. Retiro variable, caja de compras, MM de resolución rápida dentro de reglas, umbral challenge 1/3 y reinversión total. S04 en integración a master informado por Owner; sustituye pausa anterior, no certifica finalización. A/B pendientes de recepción. C nuevo no es el antiguo I01-C de recuperación. Los cinco archivos de entrada y RV-01 mantienen sus bytes y su alcance; esta continuidad no los reinterpreta como PASS.
+**28-10-2026:** [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]] incorpora el último mandato Owner y los prompts de diseño/coordinación. Retiro variable, caja de compras, MM de resolución rápida dentro de reglas, umbral challenge 1/3 y reinversión total. S04 en integración a master informado por Owner; sustituye pausa anterior, no certifica finalización. Al momento de ese mandato A/B estaban pendientes; recepción y revisión resueltas después en [[FUT-R01-LOTE-COBERTURA-01]]. C nuevo no es el antiguo I01-C de recuperación. Los cinco archivos de entrada y RV-01 mantienen sus bytes y su alcance; esta continuidad no los reinterpreta como PASS.

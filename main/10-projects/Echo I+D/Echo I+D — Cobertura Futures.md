@@ -15,14 +15,14 @@ tags:
   - kind/doc
   - area/trading
 created: "2026-10-27"
-updated: "2026-10-28"
+updated: "2026-10-29"
 ---
 
 # Echo I+D — Cobertura Futures
 
 ## Propósito
 
-**Siguiente iteración propuesta — 28-10-2026:** [[FUT-R01-ITERACION-01]] prepara una ficha en FUT-NQ-PERSIST con contexto de cierre; MR06/FUT-NQ-REVERT permanece alternativa existente. No se crea una familia por horario ni se declara un hueco sin reconciliar reglas. El backlog/estado está en [[Echo I+D — Futures]]. Frente 1 pausado por Owner durante merge; esta preparación es documental.
+**2026-10-29 — propuesta de lote, recepción A/B:** [[FUT-R01-LOTE-COBERTURA-01]] recomienda 8 señales base, 7 existentes y 1 nueva, en 6 preguntas; techo 24 versiones condicionado a hipótesis concretas. Primer paquete FBC15/ORB30/MR04; luego MR09/MR06 y MR01/MR08 si justifican coste, con I01-A preparada en paralelo. **OWNER_ACCEPTANCE: REVIEW**. No se acreditan nuevas celdas cubiertas, independencia ni gates. Se recuperan las 89 S04; integración SOURCE confirmada y evidencia semántica pendiente en el planner técnico C, sin la pausa histórica como estado actual. Backlog/decisiones exclusivamente en [[Echo I+D — Futures]].
 
 **RV-01 terminado — 2026-10-28:** [[FUT-R01-INDICE]] reúne los retornos disponibles y el consolidado `NO_APTO_AUN`. La revisión es autorrevisión adversarial documental, sin independencia histórica acreditada. Persistencia de cierre es candidato a especificar y MR06 su alternativa propuesta, no nuevas celdas aceptadas ni estrategias cualificadas. Se conserva el inventario y G0–G5.
 
@@ -167,11 +167,20 @@ La eficacia de cobertura se observa sobre el **subconjunto priorizado y versiona
 
 ### 7. Siguiente trabajo: FUT-R01
 
-[[FUT-R01-ITERACION-01]] contiene dos mandatos Cloud acotados: ficha de persistencia de cierre y perfil contractual/caja; retorno técnico diferido por la pausa del frente 1. [[FUT-R01-INDICE]] conserva el expediente y RV-01; no se vuelven a despachar los cuatro DR.
+[[FUT-R01-LOTE-COBERTURA-01]] recibe I01-A/B y propone trabajar por grupos comparables. El mapa operativo propuesto usa las celdas existentes:
 
-La preparación debe distinguir aporte de mecanismo, contexto y coste compartido. Reutilizar calendario/datos/analytics/RuleSet sólo donde sea válido; cada Strategy, variante y MM conserva su evidencia. El primer resultado será una ficha determinista revisable y sus casos, o una dependencia precisa. No es un set de operaciones ya ejecutadas.
+- PERSIST × OPEN: FBC15 y ORB30; el horario y la condición de entrada no prueban independencia.
+- REVERT × FAILED × OPEN: MR04, contraste de recuperación después de ruptura.
+- REVERT: MR01 y MR06, referencia VWAP frente a shock de precio.
+- REVERT × SESSION × OPEN: MR09, cierre RTH anterior.
+- REVERT condicionada a PERSIST: MR08, recuperación local en tendencia; no trend following puro.
+- PERSIST con contexto de cierre: I01-A nueva, una sola baseline inicial.
 
-La selección material sigue con el Owner. **FUT-R01 no es permiso de backtest, compras ni producción.** Los estados/tareas permanecen exclusivamente en [[Echo I+D — Futures]]; esta matriz enlazará la evidencia nueva cuando exista.
+Son ocho señales y seis preguntas, no seis familias independientes ni ocho candidatas operables. Las baselines y las alternativas hasta el techo propuesto 24 necesitan versiones/hipótesis concretas; su MM por etapa permanece separado. La prioridad física de MR01/MR08 es menor por evidencia histórica débil; cobertura no obliga a asignarles históricos caros.
+
+I01-A requiere reparar la semántica market/fills; B sigue parcial, con correcciones focales y dependencia de A resuelta por recepción. Los contratos comerciales pendientes no impiden organizar cobertura, pero bloquean conclusiones económicas que dependan de ellos. Los originales y RV-01 se preservan en [[FUT-R01-INDICE]]; no repetir los DR.
+
+Reutilizar calendario, datos, fixtures y analytics donde sea válido. Cada identidad conserva sus gates/receipts; no transferir PASS ni multiplicar curvas. El siguiente resultado es un lote especificado y presupuestable, con primer paquete FBC15/ORB30/MR04, o bloqueos exactos. **FUT-R01 no autoriza motores, compras ni producción.** C conserva la entrega técnica y los estados se actualizan sólo en el planner Futures.
 
 ## Fuentes
 
@@ -186,7 +195,9 @@ La selección material sigue con el Owner. **FUT-R01 no es permiso de backtest, 
 
 **Actualización FUT-R01 — 2026-10-27:** decisiones de la primera entrevista Owner registradas en el planner, reconciliadas sobre Agents-OS `5418dbfbaba7524a3aa6a09c35f4cf1ff5716017`; lectura de los seis archivos de código enlazados, incluido el contrato MR. No se inspeccionó Hefesto ni se ejecutaron nuevos tests/backtests. [[80-agents/journal/logs/2026-10-27-echo-futures-fut-r01-owner-mandate|Registro de cambios y límites]].
 
-**Corrección Owner — 2026-10-28:** ficha de estrategia simplificada a tres bloques; capital confirmado y primer payout objetivo en [[Echo I+D — Futures]]. La taxonomía de mecanismos y su orden siguen siendo propuestas; no se reabre evidencia ni se acepta una estrategia por esta corrección.
+**Corrección Owner — 2026-10-28:** ficha de estrategia simplificada a tres bloques; capital confirmado y política de payout en [[Echo I+D — Futures]]; el objetivo inicial fijo de USD 3.000 fue superseded por retiro variable. La taxonomía de mecanismos y su orden siguen siendo propuestas; no se reabre evidencia ni se acepta una estrategia por esta corrección.
+
+**Lectura focal de continuidad — 2026-10-29:** A/B, DR-03/04 y C04 al corte Agents-OS 5fe399572e640fd632bd8b25d745dbb3f0c2947c; catálogo/runner y R03 en Echo 2baf319ddcba622d9557bc9f23a13787b44c58a7. Recomendación y fuentes exactas en [[FUT-R01-LOTE-COBERTURA-01]]. No se actualizan receipts físicos ni se acepta la taxonomía por publicar esta propuesta.
 
 Autoridad vigente de gates: [[30-resources/agents/skills/echo-retester-master/SKILL]] y [[30-resources/runbooks/echo-futures-strategy-qualification-runbook]]. Autoridad de ciclo y mejora metodológica: [[30-resources/runbooks/echo-rnd-cycle-runbook]].
 
