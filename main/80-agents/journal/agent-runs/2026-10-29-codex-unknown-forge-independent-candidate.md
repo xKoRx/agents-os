@@ -46,3 +46,5 @@ tags:
 ## Continuidad
 
 [[Echo Forge — Operación Real V2]] conserva el estado vigente. Siguiente responsable: manager cloud; después GLM bajo mandato posterior. E2E físico no ejecutado; prueba actual no intervenida.
+
+Publicación privada confirmada: [`ce50fc76afae7e48710e69923c743cdb19faa51b`](https://github.com/xKoRx/symphony/blob/ce50fc76afae7e48710e69923c743cdb19faa51b/specs/FEAT-SQX-DYNAMIC-GROUP-TARGETS/independent-execution/CANDIDATE-MANIFEST.md); candidato limpio y HEAD remoto coincidente.

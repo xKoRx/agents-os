@@ -43,3 +43,5 @@ Continuidad sin datos operacionales privados; proyecto existente sin duplicar. N
 ## Rollback
 
 Revertir exclusivamente el commit de continuidad de esta sesión, sin reescribir historia ni notas ajenas.
+
+Publicación privada confirmada: [`ce50fc76afae7e48710e69923c743cdb19faa51b`](https://github.com/xKoRx/symphony/blob/ce50fc76afae7e48710e69923c743cdb19faa51b/specs/FEAT-SQX-DYNAMIC-GROUP-TARGETS/independent-execution/CANDIDATE-MANIFEST.md); candidato limpio y HEAD remoto coincidente.

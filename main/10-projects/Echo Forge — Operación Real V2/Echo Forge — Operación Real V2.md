@@ -25,7 +25,7 @@ tags:
   - area/echo
   - priority/p0
 created: "2026-09-23"
-updated: '2026-10-28'
+updated: '2026-10-29'
 ---
 
 # Echo Forge — Operación Real V2
@@ -44,6 +44,8 @@ updated: '2026-10-28'
 - Cerrar este proyecto cuando una campaña real complete Forge → Echo → The Lab con linaje, evidencia y resultados inspeccionables.
 
 ## 📊 Estado actual
+
+- **CANDIDATO LOCAL DE EJECUCIÓN INDEPENDIENTE (2026-10-29): `PARTIAL_WITH_EXACT_GAPS`.** Implementación delegada y revisión local independiente integradas/publicadas en Symphony privado, rama `codex/forge-independent-logical-types`, commit `ce50fc76afae7e48710e69923c743cdb19faa51b`. [Manifest y ocho entregables privados](https://github.com/xKoRx/symphony/blob/ce50fc76afae7e48710e69923c743cdb19faa51b/specs/FEAT-SQX-DYNAMIC-GROUP-TARGETS/independent-execution/CANDIDATE-MANIFEST.md) son la autoridad técnica; contienen resultados, restricciones de compatibilidad y dependencias exactas, sin certificación operacional. GOD dirigió/adjudicó/integró; subagentes implementaron y probaron. **E2E físico no ejecutado por este mandato; prueba actual no intervenida.** **NEXT EXACT:** el owner entrega el retorno al manager cloud para revisar el candidato y resolver sus gaps; después GLM ejecutará el E2E local completo bajo mandato posterior. Este cierre no autoriza despliegue ni altera la campaña en curso. Registro: [[2026-10-29-codex-unknown-forge-independent-candidate]]; cambio: [[2026-10-29-forge-independent-candidate-continuity]].
 
 - **TASK NATIVA FORGE → ECHO V2 (2026-10-28): SHOT4_BLOCKED; cierre e integración E2E autorizados como candidato.** [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/F — Final Certification|F — Final Certification]] recibido: Symphony0417330/SDKbe85 publicados, runtime s4c declarado, coverage80,12% y sin veredicto independiente publicado. [[10-projects/Echo Forge — Operación Real V2/artifacts/forge-echo-ingestion-task-v2/SHOT4 — Correction and Final Verification Mandate|SHOT4 — Correction and Final Verification Mandate]], sección «Cierre final e integración E2E», ordena corregir instancia configurada/SDK portable, completar Lab/coverage e integrar al dispatcher dinámico del linaje cert-replay acreditado (36071d al corte) con migraciones compatibles. Echo master ya contiene24af. Participación opt-in con outputs auténticos sellados; no alterar corrida en vuelo. Después auditor fresco dentro del mismo Shot4. D concreto separado, E release NOT_AUTHORIZED.
 
