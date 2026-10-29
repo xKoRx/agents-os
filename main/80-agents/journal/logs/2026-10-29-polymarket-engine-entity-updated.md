@@ -331,3 +331,29 @@ tags:
 ### Rollback
 
 - Repo: `git revert d913f26` (local; `5afb9c8` intacto). OUT3: eliminar los 4 artefactos derivados (aditivos). Vault: revertir las secciones IDENTIDAD (historias preservadas).
+
+---
+
+## 2026-10-29 (W1-j cierre de captura) — CAPTURA COMPLETA exit 0 y resultado científico INCONCLUSIVE (0 ACCEPTs / 72 rechazos por costes); desviación temporal documentada; sin delta de código
+
+### Cambio
+
+- **Tipo:** updated (cierre integrado de la misma GLM `sess_6c7409c6…`; launcher despachó el run a las 20:59:15Z con espera ≤60 s)
+- **Archivo(s):** las 7 notas W1-j (secciones CIERRE arriba; historias identidad/lotes 1–3 preservadas). **Sin delta de código:** los 7 fuentes actuales == paquete ejecutado hash a hash (`capture-launch-identity.json` y `launcher-copy-receipt.json` verificados contra sha256sum local) ⇒ sin commit nuevo; HEAD `d913f26a58b0fcaebb257c0980a86bef4c9f20c4` intacto.
+- **OUT3 (leído, no regenerado):** 17 recibos `receipts/w1j-ep-20261029T2230-identity-*.json` exit 0/`late:false`; `run-outcome-w1j-ep-20261029T2230-identity.json` (CAPTURED, exit 0, 22:21:33Z); `analysis-w1j-ep-20261029T2230-identity.json` (INCONCLUSIVE); `episode-sealed-…identity.json` (22:21:32); `episode-manifest-…identity.json` (`7135b630…`, cutoff 9236, 14 segmentos); `replay-a/b-…identity.json` (digest idéntico `464c9ef3…`, regime `b0ad6658…`); journal 9236 registros + engine.db en `OUT3/episode`. Preservación del ejecutado por el LAUNCHER en `CLOSE_PRIVATE/capture-executed-package/` (14 archivos, actor=launcher).
+
+### Motivo
+
+- Cierre integrado tras la terminalidad del runner (22:21:35.541Z exit 0, owned_live vacío): verificar, revisar científicamente y cerrar, sin repetir pasos válidos ni nueva adquisición.
+
+### Resultado medido (lectura de originales)
+
+- WS: recibidos 9681 (1026/639/3431/1618/1372/1595), admitidos **9200**, refused 0; ~481 frames de control por tramo no clasificados (hecho por-tramo); `ws_data_records` 9200 × 2 assets = 18400 observaciones, **18393 usable (99,96%)**; journal 9236 registros verificados (CRC/contigüidad/frontera OK, `account_fact DEGRADED` declarada); payload capturado 11,19 MB; workspace total 3,261 GB ≪ 8 GB. 6 segmentos/6 conexiones con REST polls ~2,6–5,7 s entre tramos; sin gaps intra-tramo. Polls finales a intervalos máximos medidos 814,8 s < TTL 900 s ⇒ frescura sostenida por la renovación W1-i, sin STALE genuino. **Científico: INCONCLUSIVE — 0 ACCEPTs; 72 rechazos por el gate de costes v0.1 (escenarios 500 condicional/1000 estrés combinados en diagnóstico); sin números netos (estados vacíos), sin falso P&L 0; toque B\* no aplicable; REAL_FEE_READY=false.** **Desviación de protocolo:** cadena sin esperas de slot (deadlines = límites) ⇒ WS real [21:00:04.9Z, 22:21:22.7Z], último libro K−8,63 min (no K−3m); H=300s cubierto hasta 22:16:22.7Z; muestra descriptiva válida sobre cobertura real, sin validación temporal exacta del preregistro; fix mínimo propuesto (espera a inicio absoluto de slot) para la próxima revisión, no implementado.
+
+### Validación
+
+- Todo por lectura de originales: recibos/seal/manifest/replays/análisis con exit 0 y digests coherentes entre sí y con el reporte del launcher; fuentes locales == ejecutadas (sha256); 12 inputs, lotes 1/2 y originales del lote 3 intactos (guardas del launcher true); sin comandos de engine (nada faltaba); sin OOS; sin órdenes/auth/dinero; pico RSS árbol 62,7 MiB.
+
+### Rollback
+
+- Sin delta que revertir (HEAD `d913f26…` intacto). OUT3 es aditivo; OUT1/OUT2/PRIVATE intactos. Vault: revertir las secciones CIERRE (historias preservadas).
