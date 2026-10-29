@@ -23,7 +23,7 @@ Paquete concreto de implementación del primer incremento de campañas bajo el m
 
 ## Contenido
 
-**Estado post-S2 2026-10-29:** I0-S1 IMPLEMENTATION_CANDIDATE en `feature/ef-campaign-modes-i0@b964e13d` (base `2baf319d`). I0-S2 FINDINGS (4×P1 + 6×P2 +1×P3), SOURCE/receipt remoto verificado, harness LOCAL reportado. I0-S3 READY_FOR_DISPATCH/NOT_EXECUTED con manager adjudication más abajo; GOD-COMPOSITION sigue reservado. S04-F01 semántica pendiente y guard S04-F02 no portado; manager/programa abiertos.
+**Estado post-S2 2026-10-29 (HISTÓRICO; vigente: MANAGER POST-S3 más abajo):** I0-S1 IMPLEMENTATION_CANDIDATE en `feature/ef-campaign-modes-i0@b964e13d` (base `2baf319d`). I0-S2 FINDINGS (4×P1 + 6×P2 +1×P3), SOURCE/receipt remoto verificado, harness LOCAL reportado. I0-S3 READY_FOR_DISPATCH/NOT_EXECUTED con manager adjudication más abajo; GOD-COMPOSITION sigue reservado. S04-F01 semántica pendiente y guard S04-F02 no portado; manager/programa abiertos.
 
 **Fuente de verdad de diseño:** [[EF-CAMPAIGN-MODES-DESIGN]], revisión C04. **Planificador único:** [[Echo Futures — Optimización de Campañas]]. **Reconciliación:** [[EF-S04-INTEGRATION-RECONCILIATION]]. No se crea otro planner, manager, DSL o motor.
 
@@ -271,6 +271,25 @@ Publicar create: main/10-projects/Echo Futures/artifacts/backtester/EF-CAMPAIGN-
 Devolver STATUS; BASE/CANDIDATE_SHA; INDEPENDENT_E2E; FINDINGS con severidad/esperado/real; REPRO_REFS; LEGACY/NO_SPAWN; NOT_EXECUTED/UNKNOWN; REUSABLE_ASSETS; AGENTS_OS_PATHS_SHA; PRO_CHAT_POOL_DELTA confirmado o UNKNOWN.
 El manager adjudica el alcance de corrección. No aceptar el gate Owner ni iniciar I0-S3 por tu cuenta.
 ```
+
+### MANAGER POST-S3 — revisión focal I0-S3R1 (2026-10-29, vinculante)
+
+**STATE: I0-S3 candidate SOURCE_VERIFIED_WITH_MATERIAL_FINDINGS; I0-S3R1 READY_FOR_DISPATCH / NOT_EXECUTED; Owner gate no aceptado.**
+
+Base de reparación: `xKoRx/echo feature/ef-campaign-modes-i0@4ff327247f3c369ce3aded5bc577bcebc64ecc61` (implementation `a98914c79b35900fdba51b1fd1403cf4d63bfd9f`). Elegir y verificar el HEAD vigente, reconocer WIP ajeno; no reset/rebase/force ni tocar otro worktree. Retornos I0-S2 e I0-S3 se conservan inmutables.
+
+**ÚNICO ALCANCE: reparar cuatro fallos SOURCE residuales del manager; NO repetir el review F1–F11.**
+
+- **G1 P1 — RunID ≠ attempt/revision.** En `compose.go:416–423`, RunID es `DeriveRunID` de inputs sellados. `_attempt_groups()` del reporter marca `PROVEN_SAME_REVISION` cuando sólo coincide RunID y `_revision_block` descarta el gasto derivado anterior. Esto viola C05 y puede silenciar divergencias. Igual campaign_id+RunID con dos SHA distintos (p. ej. mismo spec reejecutado) ⇒ relación `UNKNOWN_EXECUTION_RELATION` y ambos gastos per-attempt visibles, no last-input como autoridad; caso de revisión REAL sólo con provenance estable explícita que la demuestre. Misma SHA releída ⇒ E8b idempotencia sin cambios. Diferentes RunIDs ⇒ igual UNKNOWN salvo prueba de instancia económica distinta, sin sumar como dos compras automáticamente.
+- **G2 P1 — funding encolado no es instalado.** `platform_campaign.go:746–783`: `Phase=LIVESIM`, `FUNDING_INSTALL_PENDING`, `CompliantAt` se asignan al encolar; `:899–904` acredita `FUNDING_CONTROL_APPLIED` después del control en contexto. `_account_funded_evidence` acepta señales provisionales. En `result.accounts[].terms.stage_id` derivado de `c.state.currentTerms` hay señal posible de fase efectivamente instalada (`:1127`); cuando no esté disponible, funded iniciado y Q quedan UNKNOWN, no 1 por `compliant_at` solo. `STOW_FEE`/`PLATFORM_FEE` Go (`:1276–1293`) son costes setup, no F_op fundada; evitar heurística temporal basada en fecha programada. Probar estado pendiente, etapa EVALUATION y compliant_at futuro contra funded realmente instalada.
+- **G3 P1 — Q completo con gaps.** `_q_status` devuelve OBSERVED si hay cualquier q_roots aunque existan `lineage_gaps`. Fixture dos compras: A prueba completa/payout recibido, B payout CREDITED sin pass/instalación; Q_proven=1 pero q estimada de toda cohorte UNKNOWN/INCOMPLETE_LINEAGE, no fracción completa 1/2. Otro caso payout_credit_at anterior a pass y/o pago CREDITED sin cash effect: debe quedar gap/UNKNOWN (conservando cash total verificable). No inferir un orden causal desde la posición de JSON; preferir instante/certificación existente, de lo contrario UNKNOWN localizado.
+- **G4 P2 — reconciliación parcial.** `_sums_by_assignment` retorna True si coincide sólo `purchase_spend`, aunque falten `renewal_spend/other_spend/total_spend`. `ResearchFundingSummary` Go expone los cuatro; falta de campos comparables ⇒ UNKNOWN, no True de completitud. El R03 real con 4/4 MATCH debe permanecer True.
+
+**Ejecución:** GLM-5.3-Flash LOCAL fresco en Hefesto, un writer, máximo 90 minutos, últimos 15 evidence/close. Leer bootstrap agents-os, C05-R1 en diseño/planner, I0-S2/FINAL-RETURN y specs del change. Crear primero 4–6 contraejemplos nuevos que fallen en el HEAD, decidir mínima corrección. Allowed Files del slice: economics_report.py, tests y append SDD; `research_lab.py` sólo si imprescindible (preferiblemente intacto). Go/SDK/driver/guard/real data/campaigns READ_ONLY. Sin motores, gastos, trading, deploy ni merge producto. No modificar harness S2/S3 histórico.
+
+**Gate obligatorio:** casos G1–G4 pasan; 51+N reporter y 124 legacy PASS, E2E real R03 doble byte-idéntico/U58/P10/804/residual0/4 funding checks, no-spawn sentinel, hashes inputs intactos, nuevo module coverage≥95% con denominador AST, git diff sólo allowed y SHA remoto con readback. Refutados E7/E8b y antiguos F1–F11 no regresan. Si la evidencia de activation o de cash credit no basta para una métrica, UNKNOWN explícito es preferible a afirmar total completo. Output: nueva sección I0-S3R1 en el VERIFICATION SDD y retorno `EF-CAMPAIGN-MODES-I0-S3R1-RETURN.md`, agent-run y change_log sólo propios. **No duplicar planner, manager, skill o diseño.**
+
+**Estado final:** READY_FOR_MANAGER_REVIEW si los nuevos oráculos y regresiones pasan; PARTIAL/BLOCKED con dependencia precisa si no. No autoaceptar Owner, ni mover rama Echo master, ni iniciar I1/I2a/I3/I4/GOD. Manager/programa quedan abiertos.
 
 ### I0-S2 — adjudicación MANAGER para I0-S3 (2026-10-29, vinculante)
 
