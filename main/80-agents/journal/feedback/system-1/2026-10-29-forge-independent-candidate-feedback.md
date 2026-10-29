@@ -48,3 +48,5 @@ Antes de una delegación extensa, registrar capacidad de reactivación y reserva
 ## Memoria
 
 Contexto global compacto y continuidad canónica consultados. Se actualiza el proyecto existente; no se duplica checkpoint interno ni se crea transcripción artificial.
+
+Recuperación al cierre: `graphify-obsidian` no está disponible en PATH; fallback de lectura Markdown focalizada confirmó la entrada vigente del proyecto. No se instaló ni modificó infraestructura de indexación.
