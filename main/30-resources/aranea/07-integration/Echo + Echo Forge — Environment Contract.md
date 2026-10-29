@@ -92,7 +92,7 @@ Alcance: esta matriz expresa exigencias del lado **Echo DEV** y de recursos comp
 | MongoDB Forge | Target/DB/colecciones e identidad RW DEV autorizadas; no escribir en Mongo Forge PROD. |
 | Kafka | Brokers/topics, consumer groups, productores y políticas DEV identificados; prohibido registrar un consumidor en grupo productivo. |
 | Flink/StateFun | Jobs, endpoints y configuración DEV; usar capability Flink DEV para control y autoridad SSH de host DEV para Docker cuando corresponda. |
-| Temporal | Namespace `sqx-dev` existente en inventario documentado; verificar al ejecutar el namespace real, task queues exclusivas, workflow IDs y workers antes de registrar consumidores o iniciar jobs. `aranea-temporal-ro` no autoriza start/cancel. |
+| Temporal | **Namespace `sqx-dev` DESTRUIDO 2026-10-29 por orden del owner** (UpdateNamespace State=DELETED verificada): atraía flujos sin workers. No despachar a `sqx-dev`; aislamiento de candidatos por cola exclusiva dentro de `sqx-prop` (patrón ILT 2026-10-29) o namespace propio creado ad-hoc. `aranea-temporal-ro` no autoriza start/cancel. |
 | MinIO | Buckets o prefijos DEV concretos y autorización específica; nunca usar amplitud de una capability RW como permiso para tocar objetos PROD o backups. |
 | etcd | Prefijos, leases, locks y owner DEV exclusivos; nunca competir con lock productivo ni saltar el access plane. |
 | MT4/MT5 | Terminal portable/data directory/worker/artifacts/cuenta demo DEV separados. Una VM clonada no demuestra separación. (Echo DEV; Forge usa el worker-kronos operacional, §0.) |
