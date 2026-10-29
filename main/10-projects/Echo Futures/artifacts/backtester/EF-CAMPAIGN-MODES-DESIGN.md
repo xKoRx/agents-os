@@ -18,18 +18,18 @@ updated: "2026-10-28"
 
 ## Propósito
 
-Mantener el diseño único de CHALLENGE, FUNDED y SIMULATION sobre el Backtester existente. Esta revisión C03 corrige F01–F03 de C02, reconcilia SOURCE S04 y prepara el incremento I0 autorizado por la instrucción Owner «diseña y comencemos la implementación». C01 original permanece recuperable en `8c79805ef5a558369f83fd6f55c82835d7e778ad`; C02 conserva su informe sin edición. Este documento no acredita código ejecutado, aceptación económica, campañas, compras ni despliegues.
+Mantener el diseño único de CHALLENGE, FUNDED y SIMULATION sobre el Backtester existente. C04 incorpora las precisiones Owner sobre reutilización, rotación, concurrencia, composición y migración legacy, contrastadas con source real; conserva las correcciones F01–F03 de C03/C02. C01 original permanece recuperable en `8c79805ef5a558369f83fd6f55c82835d7e778ad`; C02 conserva su informe sin edición. Este documento no acredita código ejecutado, aceptación económica, campañas, compras ni despliegues.
 
-**Revisión vigente: C03, 2026-10-28 America/Santiago. Rol: GOD; superficie: CLOUD; función: manager técnico existente. CURRENT_TASK_STATE: CONTINUATION. DELIVERY_STATE: READY_FOR_AUTHORIZED_IMPLEMENTATION sólo para I0 descriptivo/no-spawn. IMPLEMENTATION: NOT_STARTED / LOCAL_HANDOFF_READY. OWNER_ACCEPTANCE: REVIEW. S04_SEMANTIC_ACCEPTANCE: BLOCKED_EVIDENCE (S04-F01). PROD: FROZEN_BY_OWNER.**
+**Revisión vigente: C04, 2026-10-28 America/Santiago. Rol: GOD; superficie: CLOUD; función: manager técnico existente. CURRENT_TASK_STATE: CONTINUATION. DESIGN_VERDICT: DESIGN_READY_WITH_MINOR_DELTAS para contrato/I0; deltas documentales incorporados. DELIVERY_STATE: READY_FOR_OWNER_REVIEW del mandato ajustado. IMPLEMENTATION: NOT_STARTED / NOT_DISPATCHED. I4_ADDITIVE_COMPOSITION: NOT_DEMONSTRATED. OWNER_ACCEPTANCE: REVIEW. S04_SEMANTIC_ACCEPTANCE: BLOCKED_EVIDENCE (S04-F01). PROD: FROZEN_BY_OWNER.**
 
-I0 usa el source observado `xKoRx/echo@2baf319ddcba622d9557bc9f23a13787b44c58a7` para una proyección opt-in, sin alterar ni certificar sus políticas de trading. La orden Owner permite preparar y comenzar este slice acotado; no acepta por anticipado S04, D01–D06, un gate ni el resultado del código. El mandato LOCAL incluye reconciliación focal y parada de la parte afectada si aparece una contradicción. La admisión de campañas continúa cerrada mientras falten su paquete propio, la cualificación aplicable y la reconciliación de guards. Planner único: [[Echo Futures — Optimización de Campañas]]. Paquete: [[EF-CAMPAIGN-MODES-I0-LOCAL]].
+I0 usa el source observado `xKoRx/echo@2baf319ddcba622d9557bc9f23a13787b44c58a7` para una proyección opt-in, sin alterar ni certificar sus políticas de trading. La instrucción Owner más reciente pide dictamen y mandato ajustado antes de confirmar su despacho; esta pasada no ejecuta implementación ni agrega un gate GOD al reporter. El próximo encargo preparado es I0-S1, sujeto a ese despacho Owner. No se acepta por anticipado S04, D01–D06, un gate ni el resultado del código. El mandato LOCAL incluye reconciliación focal y parada de la parte afectada si aparece una contradicción. La admisión de campañas continúa cerrada mientras falten su paquete propio, la cualificación aplicable y la reconciliación de guards. Planner único: [[Echo Futures — Optimización de Campañas]]. Paquete: [[EF-CAMPAIGN-MODES-I0-LOCAL]].
 
 ## Contenido
 
 ### 1. Dictamen ejecutivo y límites de autoridad
 
 1. Se amplían los modos existentes de Platform: CHALLENGE corresponde a `CHALLENGE_ONLY`, FUNDED a `FUNDED_ONLY` y SIMULATION a una revisión explícita del recorrido `FULL_JOURNEY`. No se crea un cuarto modo “dual”, otra fábrica ni otro motor.
-2. Una petición dual se expresa mediante dos ítems del batch existente, relacionados por identidad de comparación; cada etapa conserva MM, RuleSet, estado inicial, cuentas y ledger propios. Ejecutarlos secuencialmente sigue cumpliendo el paralelismo lógico.
+2. Una petición dual se expresa mediante dos ítems del batch existente, relacionados por identidad de comparación; cada etapa conserva MM, RuleSet, estado inicial, cuentas y ledger propios. Son experimentos independientes: el batch actual es secuencial y el supervisor puede gestionar jobs separados. Esto satisface una comparación separada por etapa, no la simultaneidad causal de SIMULATION.
 3. La cohorte primaria descriptiva cuenta unidades comerciales de evaluación efectivamente cobradas con cantidad conocida, incluso pendientes de provisión. Factura, unidad, derecho, cuenta, intento y retry son distintos. D01/H deben estar explícitos antes de adjudicar 1/3; I0 no adjudica.
 4. FUNDED informa cobros por todas las cuentas iniciadas, incluidas las que nunca cobraron; una pagadora puede perderse después. La conversión compra→primer cobro se calcula directamente por linaje, nunca multiplicando tasas de etapas aisladas. FUNDED aislada depende de I0 y de su origen/perfil, sin esperar la implementación CHALLENGE.
 5. SIMULATION conduce una trayectoria temporal completa con USD 4.000 y un solo bankroll. El saldo nominal, los pases y las solicitudes/aprobaciones de pago no crean caja.
@@ -100,7 +100,7 @@ Se justifican dos lecturas acotadas adicionales sobre una contradicción concret
 | Estado financiero | Compartimentos conservados; `AccountContextTransition`, `AccountCashflow`, accounting SDK | Reusar controles y autoridades; evento comercial no recalcula PnL | Transición requiere precondiciones/digest; nominal separado de bankroll |
 | Runtime común | R6: Strategy única, fanout, pool reducer, Provider/Operation/MM; GOD-05 M01–M07 | Driver simulado consume esos contratos; no importar Core/internal | Misma causalidad y mismas decisiones de dominio dentro del alcance declarado |
 | Varias props simultáneas | R6 permite asociaciones separadas y exclusividad por cuenta; Platform actual selecciona un turno | Conducir varios compartimentos/asociaciones sobre un reloj común y un bankroll | Dos props compiten por la última compra sin doble gasto y reciben señales coincidentes |
-| Recursos | Supervisor único y guard S04 documentados | Reusar cola; paralelismo lógico no altera techo físico | Global ≤6 motores incluido oráculo, sujeto a recursos y mandato vigente |
+| Recursos | Supervisores R02/R03 y batch existentes; guard no incorporado en el master pre-ClutiFX inspeccionado | Reusar admisión/cola y recuperar el guard por delta autorizado | Techo y capacidad según medición/mandato vigente; no inferir throughput ni aceptar lanzamiento por número de jobs |
 | Replay | CAMPAIGN legacy sella petición; Platform conserva identidad y trazas | Replay del driver completo de tipos nuevos, no sólo RunState | Mismos eventos comerciales, transiciones y caja; primera divergencia localizada |
 
 Los símbolos nombrados son observados en S07–S10/X01 o documentados expresamente por S03/R05; esa distinción es parte de la tabla. No se afirma haber ejecutado sus fixtures.
@@ -141,6 +141,26 @@ Las cardinalidades anteriores evitan dos errores: llamar “compra” a cada ret
 - **Ventanas de selección y evaluación:** qué datos ya influyeron en MM/retiro/compra; no se solapan causalmente por escoger una seed cuyo pase ocurrió después del inicio evaluado.
 
 No se fija un número de días como si lo hubiese aprobado el Owner. La propuesta es declarar seguimiento por edad de unidad para comparar tasas y un horizonte calendario fijo para comparar caja. El período y la política de cierre al horizonte son decisiones D02/D04.
+
+#### 4.2 Identidades y procedencia mínimas para I0–I4 (delta C04)
+
+Estos son significados que el contrato debe conservar, no una exigencia de crear siete clases, nuevas factories o un framework de identidad. Usar las referencias existentes y un envelope de proyección versionado cuando baste. La forma física de I4 todavía no se congela.
+
+| Distinción | Contrato mínimo | Mapping real / límite |
+|---|---|---|
+| Tipo y definición reutilizable | CHALLENGE/FUNDED/SIMULATION seleccionan comportamiento; una configuración vincula Strategy/MM/perfil/reglas/políticas sin crear código Campaign por combinación | Los modos actuales son CHALLENGE_ONLY/FUNDED_ONLY/FULL_JOURNEY; SIMULATION es nueva semántica económica versionada, no una cadena ya aceptada por el validador |
+| Instancia lógica | Ocurrencia con inventario/linaje propios y referencia explícita a su ámbito económico; dos instancias pueden usar la misma definición. Instancia no implica caja propia: dentro de SIMULATION referencia el bankroll conjunto | Preservar CampaignID y digest originales. No asumir que CampaignID es único fuera del artefacto/request que lo contiene |
+| Ejecución, attempt y revisión | Mantener identidad del request, RunID derivado, attempt técnico y versión/hash del receipt/result de origen separados | El digest Platform incluye CampaignID+Spec/build/perfil/políticas. Attempt está en receipt; RunID derivado no prueba una ejecución física nueva. No cambiar esos hashes legacy |
+| Asociación y Strategy/MM | Referir identidad/config/version de Strategy, MM y binding/asociación; el módulo reusable no es la instancia de estado mutable | Misma política MM con estado propio por cuenta/Operation. Fanout de una Strategy común requiere identidad causal/config completa compatible; no basta coincidir en el nombre del módulo |
+| Ámbito de comparación/composición | Declarar evidencia de campaña aislada, comparación de independientes o trayectoria conjunta; identificar scope de mercado y bankroll cuando existan | Un batch no se convierte en SIMULATION conjunta por sumar sus resultados. Ausencia de scope en legacy se conserva como UNKNOWN, sin inventar simulation_id |
+| Efecto comercial y linaje | ID emitido por su autoridad más su scope económico; adquisición→intento→cuenta→activación→payout y su fuente/revisión | Un event_id/account_id local puede repetirse en dos campañas independientes. No deduplicar globalmente por esos strings; retry de la misma evidencia tampoco crea otra compra |
+| Evidencia y tiempos | Productor/schema, source digest/receipt revision, coordenada original, instante económico y orden/disponibilidad observados cuando existan | Una referencia archivo/fila identifica una observación, no inventa un ID de cargo. No convertir timestamp, StepSeq local o orden de workers en una secuencia financiera global |
+
+I0 debe soportar dos proyecciones del mismo receipt sin doble conteo, una revisión posterior que sustituya el derivado afectado y attempts fallidos/completos sin sumar artificialmente otra cohorte. Conservar evidencia de costes de attempts fallidos sólo cuando existe el efecto, sin borrar ni duplicar lo conocido. El registro anterior sigue disponible; no se reescribe para hacer coincidir un schema nuevo.
+
+`CampaignCashEvent.EventID/CauseID/AccountID` son opcionales en el código observado; `cashEvent` normal sólo rellena At/Kind/Amount/CashAfter. `researchCharge` añade IDs en el camino ResearchCashPolicy. Un payout nominal con CashflowID no demuestra por sí solo el ID del crédito comercial. El adaptador puede conciliar totales inequívocos, pero debe localizar UNKNOWN de atribución/linaje/idempotencia en lugar de inferir un enlace por importe y fecha. [C04-S06]
+
+`tickPayment` acredita al avanzar el frontier hasta CreditAt, pero estampa el cash event con CreditAt. Preservar tiempo económico y coordenada causal disponible; no ordenar otra vez eventos por At para adjudicar una compra o backfill de señales. En I0, una laguna de orden limita el claim causal; el reporter no la repara con un reloj propio. [C04-S01]
 
 ### 5. CHALLENGE: cohortes, estados y KPI
 
@@ -429,7 +449,7 @@ El paquete sellado incluye cambios de config/control, generaciones, observacione
 
 #### 10.3 Identidad e invalidación selectiva
 
-Mantener dos identidades: experimento semántico y ejecución física. La primera incluye tipo/modo, etapa comercial, Strategy/config/filtros, MM y política presupuestaria, Provider/Program/RuleSet/terms, retiro/compras/asignación/reemplazo, financiación, horizonte/cohorte, estado inicial/origen, datos/calendario/modelo, build y método de selección. La segunda añade attempt/run y localizador de evidencia sin reescribir la primera.
+Aplicar §4.2: definición/configuración reusable, instancia lógica y evidencia de ejecución/attempt/revisión son dimensiones distintas. Los parámetros materiales incluyen tipo/modo, etapa, Strategy/config/filtros, MM/policy, Provider/Program/RuleSet/terms, retiro/compras/asignación/reemplazo, financiación, horizonte/cohorte, origen, datos/calendario/modelo y build observado. El digest legacy del request completo se preserva; no se redefine retrospectivamente como ID global de plantilla ni como attempt físico. La proyección añade su propia versión/hash y referencias al origen, sin reidentificar los efectos económicos.
 
 | Cambio | Invalidación exigida | Reuso permitido |
 |---|---|---|
@@ -507,6 +527,12 @@ Las filas siguientes son criterios y revisiones de coherencia del diseño, **no 
 | V28 | Compra→primer cobro | Q cuenta raíces únicas con linaje completo; pagos repetidos no multiplican Q |
 | V29 | CHALLENGE sin funded observada y seeds exógenas | q NOT_OBSERVED o UNKNOWN/NO_LINKAGE; nunca cero inventado ni producto de tasas |
 | V30 | Crédito seguido de reverso | Primer cobro histórico visible; cash retenido neto/reverso visibles y conciliados |
+| V31 | Mismo ID local en dos instancias | Scopes/request de origen separados; no deduplicación global ni cruce de cuenta/linaje |
+| V32 | Relectura y revisión de receipt | Misma evidencia no suma efectos; nueva revisión sustituye el derivado identificado sin reescribir historia ni contar otra adquisición |
+| V33 | Retry fallido y COMPLETE | Attempt técnico no crea U/A; efectos conocidos y sus incertidumbres se conservan sin duplicarlos |
+| V34 | Batch independiente frente a composición | Dos campañas aisladas no producen SIMULATION conjunta ni un bankroll ficticio; comparación y economía conjunta son scopes distintos |
+| V35 | Fecha económica y orden observado | Preservar coordenada y fuente; timestamp solo no reordena efectos ni acredita cash disponible antes del hecho observado |
+| V36 | Proyección sin autoridad | Reporter no produce decisiones/estado de resume/ledger Go; missing EventID o linaje da UNKNOWN localizado, no evento fabricado |
 
 La conciliación tiene tres oráculos: conservación del bankroll por eventos, partición no duplicada de costes y reconstrucción de métricas desde las unidades incluidas. Un cuarto oráculo causal rechaza funded antes del pase, cash antes del crédito y datos posteriores al cut. Replay idéntico por sí solo no sustituye estos oráculos.
 
@@ -625,9 +651,53 @@ Una utilidad común sólo se extrae si tiene consumidores concretos. Aquí, la p
 | Lab reporting | Proyección pura de eventos a cohortes/KPI, completitud y comparación | Adaptador legacy + reporte económico opt-in; no decide operaciones |
 | Runner/supervisor | Jobs, intentos físicos, admisión y receipts | Cola existente y recursos medidos; paralelismo lógico independiente de concurrencia física |
 
-La relación de dependencias sigue siendo backtester→SDK y lab→artefactos de ejecución, nunca SDK→lab ni backtester→Core/internal. Una factory explícita y módulos concretos permiten agregar estrategias/MM sin modificar scheduler/ledger/venue. No crear una interfaz por tipo ni un catálogo dinámico universal anticipando cientos de estrategias; extraer sólo una costura con consumidores concretos. El tamaño futuro se maneja con módulos pequeños, identidades y pruebas propias.
+La relación de dependencias sigue siendo backtester→SDK y lab→artefactos de ejecución, nunca SDK→lab ni backtester→Core/internal. Las factories compartidas permiten resolver Strategy/MM sin duplicar el engine. El corte observado también tiene admisión/presets con listas de módulos y políticas TGMM específicas; un nuevo módulo puede requerir registro y adaptación puntual de esa validación/policy, aunque no una Campaign propia. No se garantiza intercambiabilidad arbitraria sólo por añadir una constante. [C04-S02–S04] No crear una interfaz por tipo ni un catálogo dinámico universal anticipando cientos de estrategias; extraer sólo una costura con consumidores concretos. El tamaño futuro se maneja con módulos pequeños, identidades y pruebas propias.
 
 La interpretación pública CHALLENGE/FUNDED/SIMULATION se materializa sobre CHALLENGE_ONLY/FUNDED_ONLY/FULL_JOURNEY con revisión económica explícita. La comparación dual es un vínculo de batch: mismo input técnico cuando corresponda, estados económicos independientes y ningún dinero compartido. SIMULATION sí necesita un reloj comercial y una caja comunes. La inmutabilidad/digest sella semántica; no usar IDs de intento o el orden de workers como lógica económica.
+
+#### 14.2 Contrato Owner durable: tipos, instancias y rotación
+
+**Cien Strategies y cien MM no implican cien implementaciones de Campaign.** Cada modalidad implementa su comportamiento una vez sobre el driver existente. Strategy/MM sí conservan implementaciones y registros explícitos propios. GAU50/E2T challenge y GAU50/E2T funded son perfil/programa + modalidad + configuración y estado inicial; no son clases de Campaign por Strategy ni dos runtimes nuevos.
+
+Ejemplo requerido: una instancia vincula una Strategy/config y una política MM/config a N cuentas disponibles. Dentro de esa asociación opera como máximo una a la vez; pase, pérdida/DD, pausa, elegibilidad, retiro o finalización de turno producen la transición que determinen Provider/MM/AccountPolicy y las reglas comerciales. El relevo respeta claims, afinidad y drenaje; cambiar de cuenta no reinicia Strategy/analytics ni reproduce señales pasadas. Una misma política MM produce estado financiero separado por cuenta; no compartir un objeto MM mutable entre todo el inventario. En el master actual existe rotación de inventario adquirido, pero FUNDED_ONLY sólo instala un seed: N funded iniciales se entrega en I2a.
+
+Dos escalas distintas:
+
+- **A — campañas independientes:** muchas instancias, incluso con la misma Strategy, con inventarios, condiciones y métricas separados; jobs/attempts mediante runner/supervisor existentes. Batch y preparación compartida no acreditan reloj/bankroll comunes. Su ejecución física puede ser secuencial o concurrente según recursos y gates.
+- **B — SIMULATION conjunta:** varias asociaciones/instancias económicas reciben una trayectoria común de mercado/reloj y compiten causalmente por una sola caja inicial de USD4.000, sin aportes y con reinversión de todo cash neto recibido. Puede haber una cuenta activa por asociación y varias asociaciones operando simultáneamente; la exclusividad no es global para toda la simulación. Los retiros acreditados pueden financiar nuevas compras y las pérdidas reducen inventario, sin debitar pérdida nominal como efectivo propio. No componer B sumando informes de A.
+
+Campaign gestiona el lifecycle comercial y solicita/observa controles tipados a las autoridades existentes. SIMULATION amplía esa composición en el mismo driver temporal; no recibe permiso para crear scheduler, ledger nominal, MM ni política de riesgo alternativos. El owner de bankroll conjunto serializa sus compromisos; las vistas por Strategy/prop son atribuciones conservativas, no cajas financiadas nuevamente con USD4.000.
+
+#### 14.3 Código real, límites y delta por incremento
+
+| Preocupación | Hecho observado en 2baf319d | Delta mínimo / momento |
+|---|---|---|
+| Un engine y módulos reutilizables | RunPlatformCampaign→NewRunWithComposition→CompositionFactories; modos comparten controlador. moduleFor cachea Strategy y el relevo conserva sus owners | Mantener este recorrido. Precisar el contrato ahora; no crear Campaign por combinación. [C04-S01–S02] |
+| Generalidad de Strategy/MM/perfil | Presets admiten tg/fbc/orb/mr y rutas TGMM/RG; objectiveCapacity llama NewTGMM y RequestedObjectiveBudget. PlatformProfile/Validate fija E2T/GAU50, saldo50000, target3000 y términos concretos | Nuevos perfiles/módulos requieren adaptación del perfil/config/admisión y la costura de policy, sólo ante consumidor real I1/I2a+. Las listas de admisión siguen fail-closed; no eliminarlas como atajo. [C04-S03–S04] |
+| MM por etapa | TGMM declara referencias funded y se cambia contexto/selector; no hay un par libre de módulos MM por etapa en Platform | Distinguir config de fase y módulo; parametrizar el binding/estado por etapa sólo en el incremento que lo necesite. I0 registra ambos, no los fabrica. [C04-S01–S03] |
+| N cuentas y relevo | selectTurn conserva un selected global; SelectPreservedAccount exige frontera drenada e instala Provider/MM/ledger/venue del compartimento. FUNDED_ONLY tiene un seed y no compra sucesor | I1 conserva rotación; I2a añade inventario/origen funded según contrato. No declarar N seeds implementado por la existencia de una API interna. [C04-S01,C04-S05] |
+| Independientes | RunPlatformBatch es secuencial; el CLI comparte preparación por key y abre cursor/RunState por ítem; el supervisor administra jobs | Reusar infraestructura y separar IDs/scopes en I0. Capacidad/throughput físico por medir antes de aumentarlo. [C04-S07] |
+| Simultaneidad real | composeAccount exige exactamente una cuenta; RunState mantiene Provider/ledger/venue singulares. compose_pools_test inspecciona catálogo/policies sobre RunState parcial, no varios turnos conduciendo mercado | I4 requiere adjudicar extracción/adaptación localizada de estado/routing por cuenta y conexión al reducer/claims/fanout SDK existentes. No se garantiza I4 exclusivamente aditivo ni cero refactor del adaptador. [C04-S02,C04-S05,C04-S08] |
+| Varias props/RuleSets | ConfigSnapshot.Validate exige que cada binding use el RuleSet global antes de validar pools; ProviderRuleSets no elimina esa restricción | Resolver con autoridad SDK una composición o variante opt-in validada. No omitir Validate ni copiar reglas. El alcance exacto queda para el cambio Go, no para Python. [C04-S09] |
+| Trayectoria OHLC común | intrabarPathDirection lee el neto del venue seleccionado; startNativePath elige el camino de la vela con esa dirección | I4 con OHLC exige autoridad conjunta explícita y versionada; dos RunState independientes pueden tomar caminos distintos. No cambiar el modelo legacy ni inventar política para cuentas opuestas en I0. Esta observación no invalida por sí sola un modelo tick exacto distinto. [C04-S10] |
+| Resume y evidencia | Batch reintenta la petición con Attempt nuevo; no recupera allí un checkpoint comercial parcial. EventID comercial puede faltar | I0 fija procedencia/scopes/revisión y UNKNOWN; I3 prueba resume/re-drive completo con pagos/obligaciones/compromisos, no sólo RunState. [C04-S06–S07] |
+
+**Dictamen C04:** DESIGN_READY_WITH_MINOR_DELTAS para contrato/reporting I0, con estas precisiones incorporadas. No hay defecto que obligue a construir I4 antes del reporter. La capacidad B y su composición principalmente aditiva todavía no están demostradas: preservar límites SDK/owners y localizar el cambio Go es el objetivo de una revisión de implementación futura, no una garantía de que no habrá refactor. Tampoco es una orden para refactorizar preventivamente ahora.
+
+**Autoridad Python/Go:** Go/SDK y Campaign producen los hechos de decisión, operativa, transición y efectivo. Python sólo adapta evidencia existente y calcula KPI/conciliaciones puras. No decide compras, simula activación/rotación/retiro, recalcula PnL, resuelve reglas, acredita pagos ni produce un estado que el motor use para resume. Un check contable del reporte puede detectar divergencia; no corrige el ledger ni sustituye la autoridad Go. No se introduce una librería financiera compartida, DSL o interfaz abstracta sin consumidor concreto.
+
+#### 14.4 Migración incremental de campañas antiguas
+
+Migrar significa producir configuración/identidad nueva sobre el driver compartido cuando cambie la semántica, conservando una correspondencia auditable con el origen. El primer consumidor es GAU50/E2T en CHALLENGE y FUNDED, con Strategy/MM intercambiables dentro de las capacidades admitidas; ampliar a otras props por perfil y contratos, no copiando Campaign.
+
+| Familia de origen | Entrega de migración | Conservación / gate |
+|---|---|---|
+| Platform S04 CHALLENGE/CONTINUOUS, nativas y SG | I0 adapta lectura; I1 materializa perfiles/config nueva y mapa identidad vieja→nueva si cambia economía | V1/Unclipped no se cambian en bloque; resolver S04-F01 por planes efectivos. SG sigue HISTORICAL_ONLY; 25%/5.000/ResearchCash se conservan como historia |
+| Platform FUNDED_ONLY | I0 proyecta seed/origen; I2a entrega cohorte/inventario funded y binding por etapa requeridos | No inventar adquisición financiada ni Q/q; seeds múltiples no comparten MM mutable; D05 antes de histórico afectado |
+| Platform FULL_JOURNEY | I3 crea recorrido de USD4.000/cero aportes con términos nuevos sellados | FULL_JOURNEY V1 omitido/expreso no se reinterpreta como SIMULATION nueva; target fijo/cuatro payouts/perfiles antiguos conservan significado |
+| CAMPAIGN legacy funcional y su replay | Leer su contrato y mapear al mismo modelo donde exista equivalencia; diferencias materiales generan candidato separado en el incremento correspondiente | Es driver/formato legacy distinto de Platform. No forzar adaptación ficticia, reescribir receipts ni retirar su ruta antes de demostrar compatibilidad y decisión aplicable |
+
+La matriz de migración del retorno de cada incremento debe identificar source schema/preset/hash, tuple Strategy/MM/perfil/modo/políticas, target version/config, estado SAME_SEMANTICS o NEW_EXPERIMENT, campos recuperables/UNKNOWN y regresiones/gates afectados. No hace falta otro servicio de migración ni ejecutar el producto cartesiano de cientos de módulos. Primero un caso real por modalidad y sus invariantes; después añadir configuraciones y módulos admitidos. No se multiplica evidencia estadística por copiar cuentas ni por reproducir una misma trayectoria.
 
 ### 15. Inventario de reutilización y límite del receipt
 
@@ -665,7 +735,7 @@ I1 e I2a pueden desarrollarse en paralelo sólo con ownership de archivos disjun
 
 **Resultado:** leer un artefacto existente y explicar exactamente qué compra/cuenta/intento observó, cuánto pagó/cobró, qué denominadores conoce y qué no puede adjudicar. Extender el lab con contrato/reporting opt-in, sin cambiar decisiones de trading ni ejecutar campañas.
 
-**Autorización y estado:** el Owner solicita diseñar y comenzar implementación. El paquete concreto está en [[EF-CAMPAIGN-MODES-I0-LOCAL]], para el ejecutor LOCAL existente; no se crea otro manager. READY_FOR_AUTHORIZED_IMPLEMENTATION significa permiso del slice documentado, no código ya ejecutado, aceptación de S04 ni aprobación automática del resultado.
+**Autorización y estado C04:** el Owner pide dictamen y ajuste antes de confirmar el despacho. El paquete [[EF-CAMPAIGN-MODES-I0-LOCAL]] queda preparado para el ejecutor LOCAL existente, NOT_DISPATCHED; no se crea otro manager ni se inicia código en esta revisión. Una vez despachado I0-S1, el worker resuelve detalles rutinarios dentro de su alcance sin pedir permisos repetidos. El resultado sigue siendo candidato, no aceptación S04/Owner.
 
 #### 17.1 Base, branch, responsables y recursos
 
@@ -679,7 +749,7 @@ I1 e I2a pueden desarrollarse en paralelo sólo con ownership de archivos disjun
 
 Aplican §§4–7 y §6.4 corregidos. F01: compra cobrada anterior a provisión, bundles conocidos/desconocidos, resets/renovaciones/retries y refund separado. F02: conversión directa por linaje, q ausente por alcance o evidencia incompletos. Cada métrica conserva numerador/denominador exactos, estado/razón y evidencia; no usar valor cero como ausencia. Contrato/report schema nuevo opt-in; los reports/receipts/catalog-v1 y la adjudicación 25% permanecen íntegros.
 
-Separar un adaptador de evidencia legacy, proyección pura e integración CLI/report dentro del lab existente. El adaptador sólo recupera relaciones inequívocas; un importe conocido sin relación a cuenta permite total, pero no atribución inventada. No rellenar event_id, fechas, financiación ni origen. Un nuevo contrato puede validarse como completo; el reporte legacy parcial sigue siendo útil sin pretender que sirve para SIMULATION.
+Separar un adaptador de evidencia legacy, proyección pura e integración CLI/report dentro del lab existente. Antes del schema, aplicar el mapping de §4.2: definición/instancia/request/run/attempt/revisión, scopes de mercado/bankroll, identidad de eventos y coordenadas causales. La salida no fija el layout físico futuro de I4 ni se consume como estado autoritativo por Go. El adaptador sólo recupera relaciones inequívocas; un importe conocido sin relación a cuenta permite total, pero no atribución inventada. No rellenar event_id, fechas, financiación ni origen. Un nuevo contrato puede validarse como completo; el reporte legacy parcial sigue siendo útil sin pretender que sirve para SIMULATION.
 
 La evidencia de dinero usa valores exactos ya disponibles (decimal/racional); redondear únicamente al presentar. El reducer de reporte deduplica efectos con identidad estable y falla ante mismo ID/términos incompatibles. No simula que ya existe un nuevo ledger/driver: sólo proyecta eventos/fixtures identificados y verifica su reconciliación.
 
@@ -709,7 +779,8 @@ No existe `research_campaign.py` en el corte inspeccionado; no referenciarlo com
 9. Input y receipts quedan byte-intactos; salida determinista; sentinel independiente demuestra cero spawn/egress; legacy 25%/5.000/perfiles originales permanece igual.
 10. Smoke E2E LOCAL del comando de reporting real sobre al menos un artefacto recuperable y fixtures explícitos para huecos. E2E del reporte no es backtest ni certificación financiera.
 11. Pruebas afectadas y ≥95% de coverage del desarrollo nuevo, con invariantes críticas primero; no limpiar deuda ajena ni maquillar fallos ambientales.
-12. Devolver candidato/SHA/commands/receipts y baseline observations separados. Gate final REVIEW.
+12. Aplicar V31–V36 al contrato/report: scopes, receipts/revisiones, attempts, tiempo, linaje y autoridad. Pruebas de reporter no certifican el routing multi-cuenta ni el modelo OHLC conjunto.
+13. Devolver candidato/SHA/commands/receipts y baseline observations separados. Gate final REVIEW.
 
 **Rollback:** no consumir el reporte opt-in y revertir sólo commits propios si corresponde; inputs/receipts anteriores siguen disponibles. **Parada:** presupuesto, WIP ajeno en conflicto, fuente/contrato imprescindible ilegible o necesidad de tocar runtime/gates. Un gap de equivalencia histórica no se rellena: el reporte preserva UNKNOWN y se bloquea sólo la aceptación afectada.
 
@@ -732,7 +803,7 @@ Las tareas siguientes están preparadas para I0-S1 bajo el único manager. Códi
 | I0.T7 | Documentar comandos realmente disponibles y límites | T6 | Uso reproducible desde el checkout aceptado; sin flags inventados |
 | I0.T8 | Entregar diff/receipt y revisión independiente del slice según manager | T7 | Source exacto, pruebas ejecutadas por el futuro worker, pendientes y OWNER_ACCEPTANCE=REVIEW |
 
-**Acción vigente C03: ejecutar únicamente I0-S1 del paquete [[EF-CAMPAIGN-MODES-I0-LOCAL]].** El Owner ya pidió comenzar implementación; no se vuelve a pedir permiso por decisiones rutinarias de código dentro del slice. El reporte describe y valida; no decide D01–D06 ni financia un cargo. Si aparece una contradicción de autoridad, devolverla sin alterar runtime/gates.
+**Acción preparada C04: I0-S1 del paquete [[EF-CAMPAIGN-MODES-I0-LOCAL]], pendiente de confirmación de despacho solicitada por el Owner.** Este review no implementa ni despacha. Tras recibir ese mandato, no se pide nuevamente autorización por decisiones rutinarias de código dentro del slice. El reporte describe y valida; no decide D01–D06 ni financia un cargo. Si aparece una contradicción de autoridad, devolverla sin alterar runtime/gates.
 
 ### 18. Retorno focal esperado de Hefesto
 
@@ -857,7 +928,7 @@ Las plantillas canónicas doc, feedback y change_log fueron materializadas con e
 
 Los enlaces de bootstrap fijados al SHA Agents-OS recuperado corresponden a los mismos blobs observados al arranque. No se incluyen logs pesados, prompts, transcripciones ni supuestas pruebas físicas. El retorno final añade el commit de esta entrega; el documento no pretende incluir recursivamente su propio hash.
 
-### 25. Fuentes y disposición C03
+### 25. Fuentes y disposición C03 (histórico; estado actual C04)
 
 - [[EF-CAMPAIGN-MODES-REVIEW]]: F01–F03 adoptados como reparación; C02 permanece intacto en commit `844e777f95e01e5268f8f7cd98de5299765ce0f2`.
 - [[EF-S04-INTEGRATION-RECONCILIATION]]: source, catálogo exacto, S04-F01/F02, extractos y hashes; no certificación física.
@@ -866,3 +937,26 @@ Los enlaces de bootstrap fijados al SHA Agents-OS recuperado corresponden a los 
 - Dos apoyos CLOUD ONE-SHOT de lectura/revisión aportaron evidencia separada de S04 y economía; el manager verificó los archivos decisivos y adjudicó el delta. Independencia física: NOT_EXECUTED; independencia histórica: UNKNOWN; PRO_CHAT_POOL_DELTA: UNKNOWN. No se modifica cuota por inferencia.
 - Manager y programa permanecen abiertos; C03 no ejecuta session-close del coordinador.
 
+
+### 26. Fuente observada y decisión de recursos C04
+
+Corte Agents-OS leído: `610ef5306648d234b026e92676f8d9d35ce51236`; C03 seguía sin cambios desde `cb3495e8e510669ea9d84f70ce1f88ec87ec165a`. Echo master sigue en `2baf319ddcba622d9557bc9f23a13787b44c58a7`. El retorno de merge repetido por el Owner confirma el mismo corte reportado; no aporta aquí los planes sellados faltantes ni un nuevo gate. SOURCE demostrado, BUILD/TEST reportados, aceptación S04 abierta; no repetir integración.
+
+Dos apoyos ONE-SHOT CLOUD inspeccionaron por separado reutilización/rotación y composición/causalidad. El manager corroboró los puntos decisivos. Lectura de source y tests presentes, sin ejecutar builds, suites, campañas, hosts ni trading. No se extrapola capacidad física del nombre de un test. Registro atribuible: [[2026-10-28-chatgpt-astra-echo-campaigns-c04-source-review]].
+
+| Ref | Source / símbolos en Echo@2baf319d | Blob |
+|---|---|---|
+| C04-S01 | v3/backtester/platform_campaign.go — Request.Validate, RunPlatformCampaign, selectTurn, seedFundedAccount, tickPayment | 862263302b0172f070c226c0e5e942c18a960832 |
+| C04-S02 | v3/sdk/futures/config/composition.go — ResolveStrategy/ResolveMoneyManager; v3/backtester/compose_account.go — composeAccount/seedAccountAuthorities | a62b2947dd543aa864ae96b9c71b47c341f985ee / ceab1d9962d7cc06662a2b1e21b8b4ebe04fc051 |
+| C04-S03 | v3/backtester/platform_preset.go — Validate/checkRequestStrategyIdentity; platform_operability.go — objectiveCapacity | 6bec5bb793cd32b261027e08af2b798c22e7b253 / 6bcf7140bd522f0171153d4e50ebecb20fd3d925 |
+| C04-S04 | v3/backtester/platform_profile.go — Validate/RuleSet/PayoutNet | cf527e77122a928f28773338d9f86000eeb98d4b |
+| C04-S05 | v3/backtester/platform_registry.go — installCompartment/SelectPreservedAccount; compose.go — RunState/NewRunWithComposition | 45fc6d9059a34bb109828ed92d289ba11b7f25b3 / 7f3328ac25b398dde7e76b728937dfff6401ad58 |
+| C04-S06 | v3/backtester/campaign.go — CampaignCashEvent/cashEvent; platform_research.go — researchCharge | ce4dba725b3aea15faf7494a515183e4f9373247 / 3c16f4ff57637a39608e92c4a5116436e3f2d83f |
+| C04-S07 | v3/backtester/platform_search.go — RunPlatformBatch/runPlatformBatchItem/readBatchComplete; cmd/echo-backtest/platform.go — executor | e7954937ca833a873a2463f720dcd285d9a7f4d2 / f8ba58b71c111445ef5d49daef265b343a54fa03 |
+| C04-S08 | v3/backtester/compose_pools_test.go — poolParityRunState/TestPoolSnapshotComposesSealedAuthoritiesLikeTheRuntime | 7befabdba18e38cb8862fa2f39b4669765d32e60 |
+| C04-S09 | v3/sdk/futures/config/snapshot.go — ConfigSnapshot.Validate/validateRuntimePools | 952f621534a6378514e5841c3fdde7fad1d096b6 |
+| C04-S10 | v3/backtester/ohlc_driver.go — intrabarPathDirection; ohlc_scheduler.go — startNativePath | e608c364b90ad245c0ef29866895e2c16227b10c / 230b3d25f5ced560176366ab80406b38dcdbe9a5 |
+
+**Uso propuesto de cuatro shots:** I0-S1 implementación, I0-S2 verificación adversarial LOCAL, I0-S3 corrección/gate; el cuarto queda reservado para GOD de la primera decisión concreta de composición Go. No hace falta consumirlo antes de I0: los límites se comprobaron en source y el reporter queda protegido por §4.2/§14.3. El mandato reservado está en el mismo paquete LOCAL y no se despacha sin incremento/consumidor/alcance reales. Usar LOCAL sólo si la decisión exige evidencia local no resuelta por una cápsula focal. Los cuatro shots no prometen completar I0–I4 ni autorizar campañas.
+
+Manager/programa abiertos; sin nueva sesión de cierre, nuevo planner, skill o arquitectura paralela. I+D conserva prioridad económica/retornos A-B y su planner; este manager conserva la entrega técnica y la migración incremental. PRO_CHAT_POOL_DELTA: UNKNOWN, sin incremento inferido.

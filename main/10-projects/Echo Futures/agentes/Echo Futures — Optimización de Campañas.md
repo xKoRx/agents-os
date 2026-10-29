@@ -24,69 +24,79 @@ updated: "2026-10-28"
 
 # Echo Futures — Optimización de Campañas
 
-> **Gobierno vigente — delta Owner 2026-10-28:** este planner técnico y su laboratorio pertenecen a [[Echo I+D — Futures]], dentro de [[Echo — I+D de Estrategias]]. I+D posee requisitos funcionales/prioridad económica del Backtester; [[Echo Futures]]/Runtime Pools conservan arquitectura y gates. SOURCE S04 integrado comprobado en `xKoRx/echo@2baf319d`; aceptación semántica abierta por S04-F01 y evidencia física pendiente, según estado vigente C03. No se repite la integración. [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]] incorpora CHALLENGE, FUNDED y SIMULATION al alcance de desarrollo incremental, sin duplicar manager ni merge. **Para futuras campañas challenge rige 1/3 como umbral Owner**, supersediendo 25%/1 de 4; recibos, selecciones y criterios históricos conservan su identidad. El puente de aceptación no cambia por esta actualización documental.
+> **Gobierno vigente — delta Owner 2026-10-28:** este planner técnico y su laboratorio pertenecen a [[Echo I+D — Futures]], dentro de [[Echo — I+D de Estrategias]]. I+D posee requisitos funcionales/prioridad económica del Backtester; [[Echo Futures]]/Runtime Pools conservan arquitectura y gates. SOURCE S04 integrado comprobado en `xKoRx/echo@2baf319d`; aceptación semántica abierta por S04-F01 y evidencia física pendiente, según estado vigente C04. No se repite la integración. [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]] incorpora CHALLENGE, FUNDED y SIMULATION al alcance de desarrollo incremental, sin duplicar manager ni merge. **Para futuras campañas challenge rige 1/3 como umbral Owner**, supersediendo 25%/1 de 4; recibos, selecciones y criterios históricos conservan su identidad. El puente de aceptación no cambia por esta actualización documental.
 >
 > **Lectura del estado ClutiFX:** priorizar [[10-projects/Echo Futures/artifacts/clutifx-strategy-research/e05r1/CLF-E05R1-STATUS|E05R1]] y [[10-projects/Echo Futures/artifacts/clutifx-strategy-research/k05/CLF-K05-SOURCE-CERTIFICATION|K05]] frente a conclusiones históricas Q04 superseded. El catálogo de la biblioteca existe; E05R1 conserva OWNER_ACCEPTANCE REVIEW. La línea no depende de que ClutiFX tenga éxito.
 
 
-## Estado vigente C03 — campañas y entrega incremental
+## Estado vigente C04 — capacidad reusable de campañas y migración
 
-**Fecha: 2026-10-28 America/Santiago. CURRENT_TASK_STATE: CONTINUATION. DELIVERY_STATE: READY_FOR_AUTHORIZED_IMPLEMENTATION únicamente I0 descriptivo/no-spawn. I0_IMPLEMENTATION: NOT_STARTED / LOCAL_HANDOFF_READY. S04_SEMANTIC_ACCEPTANCE: BLOCKED_EVIDENCE. OWNER_ACCEPTANCE: REVIEW. PROD: FROZEN_BY_OWNER.** Manager técnico existente; ningún coordinador nuevo. Este bloque define el siguiente trabajo; despachos S01–S05 y bitácoras posteriores de esta nota mantienen su identidad histórica y no son nuevas órdenes.
+**Fecha: 2026-10-28 America/Santiago. CURRENT_TASK_STATE: CONTINUATION. DESIGN_VERDICT: DESIGN_READY_WITH_MINOR_DELTAS para contratos/I0, deltas documentales incorporados. DELIVERY_STATE: READY_FOR_OWNER_REVIEW del mandato ajustado. I0_IMPLEMENTATION: NOT_STARTED / NOT_DISPATCHED. S04_SEMANTIC_ACCEPTANCE: BLOCKED_EVIDENCE. I4_ADDITIVE_COMPOSITION: NOT_DEMONSTRATED. OWNER_ACCEPTANCE: REVIEW. PROD: FROZEN_BY_OWNER.** El manager existente asume continuidad de entrega y migración; no se abre otro coordinador. Este bloque es el estado activo. Los despachos S01–S05, C01–C03 y bitácoras antiguas conservan identidad histórica; no ejecutarlos como órdenes vigentes.
 
-### Reconciliación actual
+### Contrato Owner durable — no volver a reconstruir la intención
 
-| Capa | Estado | Evidencia / pendiente |
+1. Tres modalidades funcionales reutilizables: CHALLENGE, FUNDED y SIMULATION. Una implementación por comportamiento de modalidad sobre el motor compartido; cien Strategies/MM no producen cien Campaigns. Se aceptan módulos/archivos y registros concretos por Strategy y MM.
+2. GAU50/E2T challenge y GAU50/E2T funded son perfiles/configuraciones por etapa. Una instancia vincula Strategy+MM a N cuentas disponibles, con una activa a la vez en esa asociación y relevo por reglas/estado/objetivos. Strategy/analytics conservan continuidad; estado MM/Provider/ledger se aísla por cuenta. Pausa, DD, pase y retiro son eventos distintos, no una condición genérica inventada.
+3. Capacidad A: múltiples campañas independientes, incluso de la misma Strategy con distintos MM, etapas y perfiles; sus métricas/caja/evidencia permanecen separadas. Runner/supervisor existente administra ejecución física. Batch secuencial también es comparación independiente, sin afirmar simultaneidad.
+4. Capacidad B: SIMULATION compone causalmente varias asociaciones/cuentas/props sobre un mismo histórico/reloj y bankroll inicial USD 4.000, sin aportes y reinvirtiendo 100% del efectivo neto recibido. Varias asociaciones pueden operar a la vez, máximo una cuenta por asociación bajo R6. No se suman resultados aislados ni se asignan 4.000 a cada participante.
+5. Strategy decide técnicamente; MM sizing/gestión; Provider/Runtime reglas/operativa; Campaign compras/provisión/activación/retiros/caja; reporting sólo métricas desde evidencia. La composición futura reutiliza esas autoridades y el scheduler. Python I0 nunca se convierte en ledger ejecutable, motor de compras o estado de resume de Go.
+6. I0 fija significado de definición/instancia/request/run/attempt/revisión, asociación/config, scope de dinero/mercado, eventos/linaje y tiempos. No anticipa la forma física de I4 ni crea DSL/framework/factory abstracta/servicio financiero/scheduler nuevo.
+7. Migrar campañas antiguas gradualmente al modelo/config nueva con trazabilidad source→target, preservando presets, receipts, 25%, 5.000, cuatro payouts y políticas históricas. SAME_SEMANTICS y NEW_EXPERIMENT son estados distintos. No renombrar V1 a Unclipped ni ResearchCash a SIMULATION; no convertir funded exógena en adquisición financiada.
+8. Esta pasada es revisión y documentación. Owner pide dictamen y prompts antes de confirmar despacho; no se implementa producto todavía. Manager/programa siguen abiertos; cierre formal sólo por solicitud Owner.
+
+La fuente técnica única de estas definiciones es [[EF-CAMPAIGN-MODES-DESIGN]] C04, especialmente §§4.2, 8, 14.1–14.4 y 26. Este resumen da routing; no crea una segunda SPEC.
+
+### Reconciliación y código observado
+
+| Frente | Estado / evidencia | Consecuencia |
 |---|---|---|
-| SOURCE S04 | DEMOSTRADO | `xKoRx/echo master@2baf319ddcba622d9557bc9f23a13787b44c58a7`; merge `2188ac3e`, padres `347eee8b` + `ae1b09bc` |
-| Catálogo | DEMOSTRADO como source | 26 nativas + 63 SG = 89; 15 alias excluidos; módulos s1/s2/tg/fbc/orb/mr + fixture, MM gerardmm/tgmm/riskgeometry |
-| BUILD / TEST | EXECUTOR_REPORTED | Recuperar identidad de build, logs y causas de fallos; `-race` NOT_EXECUTED reportado |
-| Revisión independiente | REPORTED | CANDIDATE_APPROVED informado; retorno completo no recuperado |
-| Paridad histórica | BLOCKED_EVIDENCE: S04-F01 | Los 26 nativos declaran V1 y el generador lo copia; V1 difiere entre S04/master. Planes efectivos y fixture de frontera pendientes; no afirmar que todos los resultados cambiaron |
-| Admisión del launcher | S04-F02 | Guard `qualification_guard.py` ausente en master pre-ClutiFX; adaptar admisión vigente antes de motores nuevos, sin portar ClutiFX entero |
-| ACCEPTANCE / DEPLOY | REVIEW / NONE_REPORTED | Merge no certifica runtime-ready ni PROD; congelamiento Owner intacto |
+| S04 SOURCE | master Echo `2baf319ddcba622d9557bc9f23a13787b44c58a7`, merge `2188ac3e`; 26 nativas + 63 SG = 89; 15 alias fuera del censo | Merge terminado como hecho, sin repetirlo |
+| BUILD/TEST/review de integración | EXECUTOR_REPORTED; informe completo y receipts físicos pendientes; race NOT_EXECUTED reportado | No equivalen a aceptación por estar en master |
+| S04-F01/F02 | V1 de 26 nativas/generador difiere del intérprete histórico; planes efectivos pendientes. Guard ausente en corte pre-ClutiFX | Reconciliación focal; guard antes de nuevas campañas, sin importar ClutiFX entero ni saltar G4 |
+| Reutilización Strategy/MM | RunPlatformCampaign→NewRunWithComposition→CompositionFactories; compartimentos preservados | No Campaign por Strategy; admisión/presets/policies aún específicos de módulos |
+| Perfil y rotación | Platform E2T/GAU50; selected global, relevo drenado; FUNDED_ONLY sólo una seed | N funded/perfiles heterogéneos son extensiones I1/I2a+, no hechos ya entregados |
+| SIMULATION simultánea | composeAccount exige 1 cuenta; Provider/ledger/venue singulares; pools test sólo catálogo/policies | I4 requiere adjudicar adaptación local del driver/routing y conectar reducer/claims/fanout existentes |
+| Multi-prop y trayectoria | Validate iguala bindings al RuleSet global; OHLC elige camino por neto del venue seleccionado | No prometer cero refactor. Decisiones concretas para composición Go, no reporter |
 
-Detalle y hashes: [[EF-S04-INTEGRATION-RECONCILIATION]]. Inventario derivado exacto: `artifacts/backtester/EF-S04-CATALOG-RECONCILIATION.json`; catálogos originales de Echo siguen siendo autoridad.
+Fuente/bytes S04: [[EF-S04-INTEGRATION-RECONCILIATION]] y snapshot censal. Hallazgos C04 con paths/símbolos/blobs y límites: [[EF-CAMPAIGN-MODES-DESIGN]] §§14.3/26. La revisión SOURCE no ejecutó tests, builds, campañas ni operaciones sobre hosts.
 
 ### Disposición de entradas
 
-- ACCEPTED_INPUT: requisitos Owner, R6/fronteras y G0–G5 vigentes; C02 F01–F03 para reparación; source observado de S04 para inspección y reporte.
-- REFERENCE_ONLY: R03/89 y parámetros históricos para los modos nuevos; no convertir 25%/5.000/perfiles originales en defaults ni reinterpretar recibos.
-- UNREVIEWED: equivalencia histórica completa, build/tests del merge y retorno íntegro del verificador hasta recuperar evidencia.
-- SUPERSEDED: cabecera IN_PROGRESS_OWNER_REPORTED y foto C01 master347 como estado presente. Sus hechos históricos permanecen.
+- ACCEPTED_INPUT: requisitos Owner y precisiones de esta vuelta; C02 F01–F03 y C03 corregido; autoridades R6/SDD/retester; source leído para contratos y proyección.
+- REFERENCE_ONLY: campañas/presets/resultados históricos como fuentes de compatibilidad, no defaults del modelo nuevo ni estimaciones futuras.
+- UNREVIEWED: paridad histórica S04 completa, receipts físicos y ejecución/adaptación multi-asociación. No confundir catálogo sellado con E2E de pools.
+- SUPERSEDED para estado presente: IN_PROGRESS_OWNER_REPORTED de integración y auto-despacho inmediato de I0 de C03; Owner pidió revisar antes de confirmar. C01/C02/C03 siguen recuperables por Git y sus recibos no se reescriben.
 
-### Diseño y siguiente incremento
+### Cola técnica y migración por incremento
 
-C03 corrige el documento existente [[EF-CAMPAIGN-MODES-DESIGN]]: compra cobrada entra al denominador antes de provisión; Q/q mide compra→primer cobro por linaje; FUNDED aislada depende de I0 y su propio origen/perfil, sin dependencia artificial de CHALLENGE. Misma fábrica/SDK/driver, contratos tipados, reporter puro y runner/supervisor existentes. No se agregan motores, DSL, DB ni scheduler.
-
-| Cola | Outcome / dependencia | Estado |
+| Incremento | Resultado / migración | Dependencia y estado |
 |---|---|---|
-| Baseline S04 | Resolver S04-F01 y recuperar receipts antes de aceptar equivalencia o ejecutar dependencias afectadas | VERIFYING focal, sin nuevo merge |
-| I0 contratos/KPI | Proyección opt-in, compra/provisión/intento/cash/UNKNOWN; sin motores | Activo, LOCAL_HANDOFF_READY |
-| I1 CHALLENGE | Cohortes continuas, costes y resets; I0 + perfil + admisión y paridad aplicables | Futuro |
-| I2a FUNDED aislada | Origen/estado/cobros propios; I0 + perfil; D05 para histórico | Futuro, independiente de I1 |
-| I2b dual | I1 + I2a, etapas y ledgers separados | Futuro |
-| I3 SIMULATION 1×1 | Capacidades de ambas etapas + contratos/caja/tiempos/admisión conjunta | Futuro |
-| I4 multi-Strategy/multi-prop | I3 + R6/fanout común y recursos medidos | Futuro |
+| Baseline S04 | Disponer V1/planes efectivos, build/logs/verificador; SOURCE ya integrado | VERIFYING focal; no nuevo merge ni 89 reruns |
+| I0 contratos/KPI | Adaptador legacy y reporte opt-in: F01/F02, scopes/identidad/receipts/UNKNOWN; mapa source→proyección | Próximo preparado, NOT_DISPATCHED; no motores ni cambios Go |
+| I1 CHALLENGE + migración | Modo reusable, cohortes/provisión/reset/rotación, perfil GAU50 inicial; mapear presetsS04 y costes | I0 + perfil/admisión/paridad de identidades consumidas; no Campaign por Strategy |
+| I2a FUNDED + migración | Origen explícito, N cuentas disponibles/estado aislado, cobros repetidos y configuración MM por etapa necesaria | I0 + perfil/origen; independiente de I1; D05 para histórico afectado |
+| I2b comparación dual | Resultados de etapas relacionados, sin fusionar dinero ni inferir q | I1 + I2a |
+| I3 SIMULATION 1×1 | Full journey nuevo 4.000/cero aportes, obligaciones/cobro/recompra y resume comercial | Capacidades de ambas etapas, términos y admisión; FULL_JOURNEY legacy conserva identidad |
+| I4 multi-Strategy/multi-prop | Mercado/reloj/recursos y caja comunes; routing real por cuenta/asociación | I3 + decisión técnica de composición Go, multi-RuleSet y execution model común; throughput medido |
 
-La aceptación S04 no se adelanta. I0 puede producir un candidato de reporter sin depender de equivalencia de ejecución, porque sólo lee artefactos y conserva sus UNKNOWNs. La secuencia de campañas mantiene la baseline aceptada y todos los guards como prerrequisitos.
+La migración CAMPAIGN legacy funcional se mapea en el incremento correspondiente sólo cuando exista equivalencia explícita con el target. No retirar ni reetiquetar su ruta de replay por compartir nombre con Platform. Un perfil/config nuevo se entrega sobre owners existentes; diferencias semánticas generan nuevo experimento y gates afectados.
 
-**Incremento activo:** I0-S1 del paquete [[EF-CAMPAIGN-MODES-I0-LOCAL]]. Owner solicita «diseña y comencemos la implementación»; no se pide nuevamente autorización para este desarrollo acotado. La orden no acepta gates ni habilita gasto/campañas.
+### Próximo mandato y uso de cuatro shots
 
-- Base producto real: `2baf319ddcba622d9557bc9f23a13787b44c58a7`. Censar WIP del ejecutor; reusar rama propia o create `feature/ef-campaign-modes-i0` si no existe. Rama propuesta, no creada por CLOUD.
-- SPEC funcional/técnica, criterios y tasks: [[EF-CAMPAIGN-MODES-DESIGN]] §§4–7, 14, 16–18 y tareas I0; materializar change SDD en feature existente antes de código conforme a las reglas del repo.
-- Responsable: GLM LOCAL vigente en Hefesto, un writer, ≤150 min con hasta30 de reconciliación y20 finales de cierre. Verificador TOP LOCAL fresco ≤90 min; corrección GLM LOCAL ≤120 min, ambos aún NOT_DISPATCHED.
-- Scope: lab/reporting/contracts opt-in y tests/documentación contiguos; SDK/Core/driver/launchers/presets/catálogos/receipts sellados read-only.
-- Aceptación: F01/F02 + casos C03, dinero exacto, reconciliación, UNKNOWN localizado, E2E reporter, cero spawn y legacy intacto, cobertura nueva≥95% con críticos primero. Candidato no es gate aceptado.
-- Rollback: dejar de consumir el reporter opt-in; conservar entradas y versiones; revertir sólo commits propios si corresponde. STOP por presupuesto, WIP conflictivo o necesidad de tocar runtime/gates. No polling indefinido.
-- I0-S2 intenta falsificar el SHA exacto sin arreglar producto; I0-S3 corrige findings adjudicados y conserva regresiones durables. Review CLOUD no reemplaza E2E LOCAL.
+[[EF-CAMPAIGN-MODES-I0-LOCAL]] contiene I0-S1 ajustado, verificador I0-S2 y corrección I0-S3. Base SOURCE `2baf319ddcba622d9557bc9f23a13787b44c58a7`; resolver WIP del ejecutor y reusar rama propia, o crear `feature/ef-campaign-modes-i0` sólo si no existe. Rama propuesta, no creada por CLOUD. Scope lab/report/contracts/tests/docs opt-in; SDK/Core/driver/launcher/datos/presets/receipts read-only.
 
-### Decisiones y handoff mínimo a I+D
+1. I0-S1 GLM LOCAL existente, un writer, ≤150 min (≤30 de reconciliación, 20 finales para evidencia/cierre): contrato/report y mapping de identidad/scope/revisión antes del schema.
+2. I0-S2 TOP LOCAL fresco, ≤90 min: E2E real del comando y falsificación independiente, incluido IDs homónimos entre scopes, receipts/retries/revisiones y ausencia de autoridad financiera Python.
+3. I0-S3 GLM LOCAL, ≤120 min: corregir findings adjudicados, preservar fixtures durables y gate REVIEW.
+4. Reservar GOD-COMPOSITION para primera decisión Go concreta de composición; no gastarlo ahora por formalidad. El source ya prueba las limitaciones y no se requiere construir I4 para I0. Mandato reservado en el mismo paquete; LOCAL sólo si evidencia local material lo exige. No se promete toda I0–I4 en cuatro shots.
 
-D01 unidad/seguimiento y D02 horizonte se deben fijar por campaña antes de adjudicar1/3; I0 sólo describe. D03 fuente de fees obligatorios y D04 selección económica continúan explícitos, sin financiar con pagos pendientes. D05 conserva G4 challenge vigente: propuesta futura de criterio funded específico se eleva a Owner/retester; nada de bypass. D06/retornos A/B y elección contractual quedan con I+D. No bloquear A/B por el reporter.
+Aceptación I0: F01/F02 y V31–V36, exactitud monetaria, conciliación/UNKNOWN localizado, input intacto, determinismo, sentinel no-spawn, legacy sin cambios ycoverage ≥95% del desarrollo nuevo con invariantes primero. Rollback: dejar de consumir reporte opt-in y revertir sólo commits propios; conservar inputs. STOP por presupuesto, WIP conflictivo o necesidad de tocar runtime/gates. No vigilancia indefinida ni iteraciones sin retorno.
 
-**Handoff a I+D:** C01/C02 revisados y C03 corregido; source S04 integrado con hallazgo de paridad pendiente; I0 listo para ejecución LOCAL sin campañas. Capacidad todavía no acreditada: cohortes nuevas con provisión/cargos completos, funded histórico admisible, caja conjunta/reanudación y multi-prop. Siguiente pregunta económica: recibir A/B y fijar primera Strategy/perfil/fechas y seguimiento; D05 se decide antes del primer histórico funded afectado. Este manager no escribe el planner central de I+D.
+### Handoff I+D y continuidad
 
-**Continuidad:** este es el único planner. Actualizarlo por retorno verificable; no mantener vigilancia. Workers ONE-SHOT cierran sólo su trabajo con path/SHA/estado. Manager/programa abiertos; consumo Pro UNKNOWN, sin incremento inferido.
+I+D conserva A/B,perfil/Strategy/ventanas iniciales y selección económica; no bloquear ese retorno por I0. D01/D02 fijan unidad/horizonte antes del 1/3; D03/D04 términos/financiación/selección explícitos; D05 se decide antes del histórico funded afectado, sin reinterpretar G4. La capacidad futura de simulación no autoriza gastos/trading ni promover HISTORICAL_ONLY.
+
+Único manager/planner vigente; actualización siguiente por confirmación de despacho o retorno verificable. Workers ONE-SHOT entregan activos/feedback/cierre propio con path/SHA/estado. No cierre del coordinador en esta pasada. PRO_CHAT_POOL_DELTA: UNKNOWN; no modificar cuota por inferencia. I+D actualiza su propio planner central.
 
 ## 🎯 Objetivo
 
