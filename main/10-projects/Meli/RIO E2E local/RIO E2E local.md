@@ -20,7 +20,7 @@ tags:
   - area/meli
   - project/rio-e2e-local
 created: "2026-10-08"
-updated: "2026-10-28"
+updated: "2026-10-29"
 slug: rio-e2e-local
 entities: ["[[rio-playmaker]]", "[[rio-controlplane-kafka]]", "[[rio-controlplane-clickhouse]]", "[[rio-controlplane-flink]]"]
 related: ["[[ads-signals-frontend]]", "[[rio-frontend]]", "[[Kafka — Ambiente local con servicios reales]]", "[[Ambientes locales RIO — Comparativa de implementaciones]]"]
@@ -38,6 +38,8 @@ Diseñar y luego implementar un entorno local reproducible con cinco aplicacione
 Base fijada por el owner: rio-deployment-trigger-local y rio-deployment-result-local, sin bridge Kafka→HTTP externo ni embebido. Minimizar cambios productivos, conservar contratos y usar Clean, SOLID, KISS y YAGNI para justificar cada pieza nueva. El challenge y el consenso están completos; en el HEAD actual de PM #1286, los siete E2E del stack local pasan. Los flujos de undeploy/DEPROVISION que dependen del comportamiento defectuoso de develop permanecen etiquetados develop-gap (ver bitácora). El alcance posterior conserva CH/Flink/front.
 
 ## Estado vigente
+
+- **2026-10-29 — Refview y configuración Fury:** tres ramas sincronizadas; CP `9b9f677c` incorpora el lector `configs` de develop #363 y genera `0.0.5-import-ref-view-ch` FINISHED/CI PASS. Suite CP5123 PASS/1 omitido; sin nueva corrida Lore ni despliegue del agente. Error de arranque del owner en `test2-consumer-nonprod` por ownership KVS sin contenedor efectivo; lectura del perfil bloqueada por el proxy HTTP404. [[Import de Refreshable Materialized Views externas]], [[2026-10-29-refreshable-cp-fury-configs-entity-updated]].
 
 - **2026-10-28 — Refview sincronizado y versiones para test:** [[Import de Refreshable Materialized Views externas]] publica los tres merges de develop. CP y front `0.0.4-import-ref-view-ch`, PM `0.0.3-import-ref-view-ch`: las tres FINISHED, CI PASS y registry disponible para el deploy del owner en `test`. Suites locales PASS; sin despliegues ni nueva E2E Lore. [[2026-10-28-refreshable-testing-versions-entity-updated]].
 

@@ -19,7 +19,7 @@ tags:
   - kind/project
   - area/meli
 created: "2026-10-21"
-updated: "2026-10-28"
+updated: "2026-10-29"
 ---
 
 # Import de Refreshable Materialized Views externas
@@ -29,6 +29,16 @@ updated: "2026-10-28"
 Entregar SIG-700 con un PR draft por repo, tres shots independientes y E2E físico conjunto. Rodrigo Jara cierra los gates; el manager solo prepara evidencia para revisión. Se completaron los nueve shots de código; las continuaciones por manifest y por E2E permanecieron dentro de sus shots originales. No hubo Shot 4 ni release productiva.
 
 ## 📊 Estado actual
+
+### Arranque nonprod y sincronización — 2026-10-29
+
+Las tres ramas `feature/refreshable-view-import` están publicadas y con cero commits detrás de develop observado. CP integra `5c469575` mediante `9b9f677c`; Playmaker conserva `fd4b1dac0`/develop `c7d894aad` y front `e0f07541b`/develop `c4c09b0bb`.
+
+Nueva versión del CP: [0.0.5-import-ref-view-ch](https://web.furycloud.io/rio-controlplane-clickhouse/versions/detail/0.0.5-import-ref-view-ch), build576, FINISHED, CI PASS y registry AWS/GCP. Incluye el lector del perfil `configs` de Fury que entró hoy a develop en #363. Suite completa del CP: 469 suites, 5123 tests, 0 fallas/errores y 1 omitido. Playmaker sigue en `0.0.3-import-ref-view-ch`; front en `0.0.4-import-ref-view-ch`.
+
+El despliegue del owner en `test2-consumer-nonprod` falló al crear ownership KVS: `kvs.ownership-container-name` efectivo vacío. Ese scope deriva `test2-consumer`, sin un YAML empaquetado que aporte el campo. La versión anterior `0.0.4-import-ref-view-ch` tampoco leía el perfil Fury; la nueva lo carga antes del binding. La clave debe existir en las fuentes de configuración efectivas del scope. El contenedor `deploy-state-test-nonprod` existe, pero su asignación y segmento deben confirmarse con el perfil real. La lectura remota quedó bloqueada por HTTP404 del proxy de comandos; esto no prueba que falten archivos en la instancia. Se pidió únicamente el bloque KVS no sensible. No hubo despliegues ni cambios remotos de configuración del agente.
+
+Evidencia, límites y diagnóstico: [[2026-10-29-refreshable-cp-fury-configs-entity-updated]]. Los tres Graphify ajenos del CP permanecen intactos.
 
 ### Versiones para test — 2026-10-28
 
@@ -217,6 +227,8 @@ Se retiraron dos volúmenes nombrados de Compose y seis anónimos. Tres anónimo
 - [[2026-10-21-codex-gpt-6-sol-front-refreshable-import-shot1]], [[2026-10-21-codex-gpt-6-sol-front-refreshable-import-shot2]], [[2026-10-21-codex-gpt-6-sol-front-refreshable-import-shot3]].
 
 ## 📆 Bitácora
+
+- **2026-10-29 — Configuración de arranque del CP:** rama sincronizada con develop de #363 en `9b9f677c`, versión `0.0.5-import-ref-view-ch` FINISHED/CI PASS/registry disponible. PM y front ya estaban sincronizados. Error del owner en `test2-consumer-nonprod`: ownership KVS sin contenedor efectivo; nueva versión incorpora lectura de Fury Configs. Perfil efectivo pendiente por HTTP404 del proxy de lectura. CP5123/1 omitido PASS; sin despliegues ni cambios de configuración remota del agente. [[2026-10-29-refreshable-cp-fury-configs-entity-updated]].
 
 - **2026-10-28 — Versiones nuevas para test:** develop integrado por merge en las tres ramas; CP `30cc111e`/front `e0f07541b`/PM `fd4b1dac0` publicados, suites locales PASS. CP y front `0.0.4-import-ref-view-ch`, PM `0.0.3-import-ref-view-ch`: las tres FINISHED, CI PASS y registry disponible, con tests habilitados. Excepción de pre-push de PM autorizada sólo para esta versión; sin despliegues ni nueva corrida Lore. [[2026-10-28-refreshable-testing-versions-entity-updated]].
 
