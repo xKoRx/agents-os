@@ -303,3 +303,31 @@ tags:
 ### Rollback
 
 - Repo: `git revert 5afb9c8 257027b` (local; sin push; `1070dbf` intacto). Vault: revertir las secciones LOTE 3/bullet (26)/fricciones 8–9 (historias lote 1/2 restaurables del propio texto). OUT3 es aditivo; OUT1/OUT2/PRIVATE no fueron tocados. Si el run despachado captura: su evidencia es aditiva en OUT3/episode.
+
+---
+
+## 2026-10-29 (W1-j identidad) — identidad derivada por fallback determinista ANTES de la ventana: 1 mercado 5784455 (slug con fecha=K), plan/manifest derivados listos para el despacho 20:59–21:00Z
+
+### Cambio
+
+- **Tipo:** updated (misma GLM `sess_6c7409c6…`; adjudicación del parent a las ~20:39Z, antes de la ventana)
+- **Archivo(s):**
+  - Las 7 notas W1-j (secciones IDENTIDAD arriba; historias preservadas; errata corregida: request del lote 3 fue 20:21:47Z, no 20:03:11Z — esa hora era del lote 2)
+  - Repo externo (fuera del vault): commit LOCAL **`d913f26a58b0fcaebb257c0980a86bef4c9f20c4`** «Verify single-market identity from preserved discovery» (3 archivos: `discovery.go` modo `identity` + `gmt3WallLabel` etc. ya en 5afb9c8; `discovery_test.go` 4 negativos; `main.go` caso identity; +368/−1) sobre `5afb9c8` sin amend; árbol limpio; sin push
+  - OUT3 (aditivo): `identity-preregister.json` (`d274ca1f…`; regla fijada ANTES de leer identidad), `identity-evidence.json` (`f3628a1e…`), `selection-manifest-identity.json` (`b2de46c7…`; 1 mercado/2 assets), `prepared-plan-identity.json` (`ef3a85f0…`; K/ventana intactos, manifest derivado enlazado, RunID `-identity`); binario `pilot-supervisor` `4360afda…`; originales plan/manifest/rules/budget intactos (SHAs corroborados contra `PRIVATE_ID/original-plan-hashes.json`)
+
+### Motivo
+
+- Igual K no demuestra mismo partido (gameId ausente en la respuesta). Adjudicación: resolver identidad AHORA desde la metadata YA journalizada, sin requests y sin agrupar por K, con fallback autorizado de UN mercado (menor id numérico, coherencia con K, STOP sin sustitución) para no perder la ventana 21:00–22:30Z.
+
+### Resolución aplicada
+
+- Modo `identity` (mismos flags + `--plan`): lee la página journalizada vía `capture.OpenView` (0 requests), gate OOS id-first, **preregistro de la regla a disco ANTES de leer identidad**, derivación pura testeada con 4 negativos (K jamás agrupa; determinismo+mapeo con ausentes ⇒ «unavailable»; STOP incoherente; OOS envenenado excluido). **Derivado: mercado 5784455 (slug `bra-cam-cru-2026-10-29-cam`, fecha del slug = K 2026-10-29; game_id unavailable no inventado), 2 assets** — captura de 1 mercado/partido con sus 2 outcomes. K=2026-10-29T22:30:00Z y ventana [21:00Z,22:30Z) intactos; despacho 20:59–21:00Z; `analyze` usará el plan derivado.
+
+### Validación
+
+- gofmt `-w`+`-l` vacío; suite completa PASS (exit 0, ~7,3 s) con recibos OUT3 refrescados; build exit 0 (`pilot-supervisor` `4360afda…`; engine sin cambios `065ed4e1…`); ejecución real del modo identity con salida durable; hashes medidos; originales byte-intactos; `diff`/`rev-parse` limpios; sin requests (0 GET); OOS intactos.
+
+### Rollback
+
+- Repo: `git revert d913f26` (local; `5afb9c8` intacto). OUT3: eliminar los 4 artefactos derivados (aditivos). Vault: revertir las secciones IDENTIDAD (historias preservadas).
