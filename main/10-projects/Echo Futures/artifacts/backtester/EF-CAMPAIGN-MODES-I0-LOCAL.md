@@ -272,6 +272,18 @@ Devolver STATUS; BASE/CANDIDATE_SHA; INDEPENDENT_E2E; FINDINGS con severidad/esp
 El manager adjudica el alcance de corrección. No aceptar el gate Owner ni iniciar I0-S3 por tu cuenta.
 ```
 
+### MANAGER POST-S3R2 — I0-INTEGRATION-GATE (2026-10-29, VIGENTE)
+
+**Estado I0: manager APPROVED_FOR_CONTROLLED_MERGE_GATE; no MERGE ni PROD.** Código candidato EXACTO: `xKoRx/echo@feature/ef-campaign-modes-i0@01a38c13b0a1b280eefb9d18f6d2b167e3cd8739`, base `2baf319ddcba622d9557bc9f23a13787b44c58a7`. Source compare GitHub: 7 commits, siete paths (economics_report.py, test_economics_report.py, research_lab.py opt-in, 4 artefactos FEAT-CHALLENGE-HISTORY/CHANGE-001). Retornos [[EF-CAMPAIGN-MODES-I0-S3R2-RETURN]] y previos I0-S1/S2/S3/S3R1 preservados. I0-S3R2 reparación concluyó, no despachar más rondas por inercia.
+
+**Rol:** GLM LOCAL release/integration executor ONE-SHOT o manager local, contexto fresco. Bootstrap agents-os/master y Echo AGENTS/CONSTITUTION/SDD. Validar destino `origin/master`, origen `origin/feature/ef-campaign-modes-i0`, ancestry y cualquier delta nuevo. Un writer; no reset/force/stash ni tocar WIP ajeno, y no mentir sobre fallos legacy. NO abrir diseño, skill, fábrica, campaña o motor.
+
+**Gate técnico para MERGE_READY_FOR_OWNER:** comprobar SHA/ref; confirmar que `master` no contiene aún I0; diff contra master sólo los siete paths esperados; suite Python `test_economics_report` 69/69 y suites legacy 124/124 sobre candidato; E2E opt-in `research_lab.py economics` sobre R03 sellado con doble salida byte-idéntica, sha256 inputs pre/post intactos, U58/P10, costo/pase804USD, cash residual0, 4/4 `research_funding` MATCH; sentinel no-spawn/egress; invariantes M1–M4 y F1–F11/G1–G4; coverage >=95% del desarrollo nuevo con método AST/denominador; búsqueda de `research_lab.py` hunk limitado a subcomando economics; revisión de cambios SPEC/PLAN/TASKS/VERIFICATION conforme SDD. Go/SDK/runtime/guard/campañas READ_ONLY. Si suite Go de producto se decide correr, registrar EXACTAMENTE qué ejecutó y failure sets, sin llamar PASS a pruebas no corridas; Go no tuvo delta en I0.
+
+**Seguridad:** ninguna nueva campaña/historia/trading. S04-F01 equivalencia histórica V1 abierta y S04-F02 guard no portado; freeze PROD persiste. I0 report no autoriza run/resume, I1–I4 ni causal SIMULATION. Ningún ingreso económico se deduce de R03.
+
+**Resultado:** retornar `MERGE_READY_FOR_OWNER` con SHA exacto, gate físico y propuesta de estrategia de merge o `BLOCKED` con dependencia. **Sin autorización Owner explícita para esta integración, NO mover origin/master ni crear PR automático.** Si Owner luego aprueba, ejecutar merge separado bajo SHA/HEAD guardados sin force y readback, sin deploy. Publicar reporte de gate en el paquete existente y agent-run/change_log atribuibles; conservar manager y programa OPEN.
+
 ### MANAGER POST-S3R1 — I0-S3R2 FINAL MICROFIX (2026-10-29; VIGENTE)
 
 **STATUS: READY_FOR_DISPATCH / NOT_EXECUTED. Gate I0 BLOCKED_FOCUSED.** Echo repo `xKoRx/echo`, branch `feature/ef-campaign-modes-i0`, BASE `bab3bef170f52d93ab649eb4de973a2bf1e2a5df` (descendiente de `4ff32724`). Resolver HEAD y WIP primero. Retorno S3R1 [[EF-CAMPAIGN-MODES-I0-S3R1-RETURN]]. No reabrir G1–G4 ni F1–F11: **sólo M1–M4 de manager SOURCE review**.
