@@ -53,7 +53,7 @@ Certificación final del programa `forge-echo-ingestion-task-v2` (task `echo_ing
 
 | Superficie | Ref | SHA |
 |---|---|---|
-| Symphony integración | `origin/shot4/forge-echo-ingestion-e2e-integration` | merge 8e9ca6e sobre 36071d8 ⊕ 0417330;dispatcher 64b60c9;migraciones+setup de instance 5d1a2f4-series;pin SDK 9ad2cce;harness Gate C final (ver SHAs exactos por `git log` de la rama) |
+| Symphony integración | `origin/shot4/forge-echo-ingestion-e2e-integration` | 8e9ca6e (merge 0417330 sobre 36071d8) → 64b60c9 (dispatcher V2) → 908e4d3 (migraciones+harness flow_run) → c60c1af (source_instance_ref) → 9ad2cce (pin SDK) → 73e4899 (harness Gate C) |
 | Echo (linaje del programa) | `origin/shot4/integ-gatec-fixes` | 1376476b1bcb78d3821efe83daaf080a40ad16d7 (24af7862 + 087_lab_v4_integ_metric_values_bundle_index) |
 | SDK | `origin/shot4/telemetry-optional-metrics` | be85d144b7dfcc8e82941c2ee0de26082de60b85 pinneado como `v0.0.0-20261028194935-be85d144b7df` |
 | Contracts | `v0.0.1-forge-ingestion-task.2` | 7496b05b inmutable; `exclude lab-v4-shot2.1` mantiene MVS |
