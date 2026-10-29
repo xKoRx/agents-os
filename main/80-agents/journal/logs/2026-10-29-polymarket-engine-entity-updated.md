@@ -268,3 +268,38 @@ tags:
 ### Rollback
 
 - Repo: `git revert 1070dbf` (local; sin push; `a20e617` intacto). Vault: revertir las secciones LOTE 2/bullet (25)/fricciones 5–7 (historia del lote 1 restaurable del propio texto). OUT2 es aditivo y puede archivarse; OUT1 y PRIVATE no fueron tocados.
+
+---
+
+## 2026-10-29 (W1-j lote 3) — ruta documentation-first viable: episodio encontrado, READY_FUTURE con K exacto 2026-10-29T22:30:00Z
+
+### Cambio
+
+- **Tipo:** created / updated (continuación integrada de la misma GLM `sess_6c7409c6…`; lote 3 autorizado por Metis)
+- **Archivo(s):**
+  - `10-projects/Personal/Polymarket Engine/Research — Single Episode Public Pilot W1-j 2026-10-29.md` (sección LOTE 3 arriba; historias lote 1/2 preservadas)
+  - `10-projects/Personal/Polymarket Engine/Plan — Executable Single Episode Pilot W1-j 2026-10-29.md` (sección LOTE 3 con K, ventana, despacho y comando durable)
+  - `Polymarket Engine — Continuidad Five-POC 2026-09-20.md` (bullet (26) lote 3; "Siguiente paso" actualizado con historia del lote 2 preservada íntegra)
+  - `80-agents/journal/sessions/2026-10-29-polymarket-w1j-single-episode-summary.md`, `…w1j-single-episode-feedback.md` (fricciones 8–9), `…zcode-glm-5.3-flash-polymarket-w1j-single-episode.md` (sección lote 3), este change_log (sección añadida)
+  - Repo externo (fuera del vault): commits LOCALES **`257027b9ce0ee948682894f751b9b34a322a2582`** «Bound documented near-event discovery for third pilot lot» (3 archivos, +206/−60) y **`5afb9c89327e04478ac8ab99ea3ed629dc3a5b8c`** (mismo mensaje autorizado por el hook; fixes ordinarios: etiqueta GMT de pared campo a campo y orden revalidate-vs-episode; +30/−14) sobre `1070dbf` preservado sin amend; árbol limpio; sin push. `cmd/researchpilot/discovery.go` (documentedWindowFetcher + reglas v3 + rango/déficit + gmt3WallLabel), `discovery_test.go` (query codificada + esquema + selección end-to-end sobre stub), `supervisor_test.go` (destinos OUT3 + contrato lot3).
+  - OUT3 (fuera del vault): `validated-baseline/w1-j-single-episode-pilot-20261029-lot3/` — `documentation-evidence.md` (`5a913dfa…`, leída ANTES de datos), `offline-preflight.json` (`72f42895…`, 9/9 + SHA fuentes finales), `inputs.json` (`66a52d63…`), `discovery-rules.json` v3 (`385d4341…`), `selection-manifest.json` (`c2218663…`; 1 GET, HTTP 200, 100 inspeccionados, 0 sellados, 68 elegibles, 3 seleccionados), `discovery-budget.json` (1/3 requests, 100/100, exhausted), `prepared-plan.json` (`0608bdfe…`), `run-outcome-w1j-ep-20261029T2230.json` (`6fe1f6cb…`; READY_FUTURE, exit 0), `episode/` (página cruda durable, capture_seq 2), binarios `engine` (`065ed4e1…`) y `pilot-supervisor` (`b60eb7b6…`). OUT1/OUT2 y `.private-execution/w1j-lot3/*` intactos.
+
+### Motivo
+
+- Adjudicación Metis del lote 3: establecer con documentación primaria una ruta viable a próximos eventos deportivos, corregir mínimamente discovery, probarla offline y ejecutar un lote independiente; si no hay ruta defendible, cerrar bloqueo exacto sin gastar consultas.
+
+### Fuentes usadas
+
+- Documentación primaria (WebFetch HTTPS sólo docs.polymarket.com, sin query/fragment): `docs.polymarket.com` (landing), `llms.txt`, `api-spec/gamma-openapi.yaml` (×2), `market-data/discover-markets.md`. Citas y lectura verbatim en `OUT3/documentation-evidence.md`. Más mandato lote 3, continuidad §18 bullets (24)–(25), y fuente propia @ `1070dbf`.
+
+### Resolución aplicada
+
+- **Evidencia:** el spec OpenAPI oficial documenta `end_date_min/max` (date-time) en /markets SIN semántica de campo y sin NINGÚN filtro de kickoff (`gameStartTime` es sólo campo de respuesta); `order` no enumera valores. **Ruta elegida (limitación explícita):** ventana editorial `end_date_min=now−30m/end_date_max=now+30h` como REDUCTOR de candidatos — jamás prueba de kickoff ni de universo PIT; `gameStartTime` del mercado es la única autoridad de kickoff; cada candidato re-verificado client-side (≥95m, ≤26h, ventana 08–02 GMT-3); sin order/ascending en la consulta. Transporte mínimo nuevo dentro de discovery (`documentedWindowFetcher`: HTTPS-only salvo loopback, redirects rechazados, cero reintentos, body acotado, sin credenciales) porque `internal/transport/gamma` no expresa `end_date_*` (fuera del alcance). **Resultado: 1 GET, HTTP 200, 100 candidatos, 0 sellados, 68 elegibles; primer cluster ascendente K=2026-10-29T22:30:00Z (19:30 GMT-3), 3 mercados moneyline (5784455/5784461/5784468, 6 assets); run selló READY_FUTURE (exit 0) con despacho del parent ≤20:55:00Z (17:55:00 GMT-3) y comando durable.** Dos bugs ordinarios propios corregidos en-continuación con ciclos de renovación sin re-query: etiqueta GMT de pared (layouts de Go estampaban «GMT-5»/«-05:00»; ahora `gmt3WallLabel` campo a campo) y orden revalidate-vs-episode (la renovación sin re-query era inalcanzable tras prepare). Limitación declarada: cluster por K explícito; identidad fina (gameId) no interpretada en preparación — el análisis etiquetará la composición real. Captura/replay/análisis: programados en el run despachado (no NOT_RUN por bloqueo); OOS jamás consultados (0 sellados); sin órdenes/auth/live; sin claims económicos.
+
+### Validación
+
+- gofmt `-w` + `-l` (stdout vacío) sobre los 7 paths absolutos; suite completa PASS sobre fuente final (exit 0, ~7,1–7,3 s) tras cada fix; recibos producidos por TestMain en OUT3; `diff --cached --check` vacío en ambos commits; `git show --stat`/`rev-parse` verificados; hashes medidos de binarios finales, recibos, reglas, plan, manifiesto, docs; 12 inputs del auxiliar intactos; OUT1/OUT2 intactos; workspace ~3,1 GB ≪ 8 GB.
+
+### Rollback
+
+- Repo: `git revert 5afb9c8 257027b` (local; sin push; `1070dbf` intacto). Vault: revertir las secciones LOTE 3/bullet (26)/fricciones 8–9 (historias lote 1/2 restaurables del propio texto). OUT3 es aditivo; OUT1/OUT2/PRIVATE no fueron tocados. Si el run despachado captura: su evidencia es aditiva en OUT3/episode.
