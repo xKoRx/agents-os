@@ -19,7 +19,7 @@ tags:
   - kind/project
   - area/meli
 created: "2026-10-21"
-updated: "2026-10-24"
+updated: "2026-10-28"
 ---
 
 # Import de Refreshable Materialized Views externas
@@ -29,6 +29,22 @@ updated: "2026-10-24"
 Entregar SIG-700 con un PR draft por repo, tres shots independientes y E2E físico conjunto. Rodrigo Jara cierra los gates; el manager solo prepara evidencia para revisión. Se completaron los nueve shots de código; las continuaciones por manifest y por E2E permanecieron dentro de sus shots originales. No hubo Shot 4 ni release productiva.
 
 ## 📊 Estado actual
+
+### Versiones para test — 2026-10-28
+
+Las tres ramas `feature/refreshable-view-import` están sincronizadas con develop mediante merge y publicadas. Las tres versiones nuevas están FINISHED en Fury, con CI PASS y artefactos disponibles en registry para desplegarlas en `test`. El owner realizará los despliegues; esta operación no los ejecutó.
+
+| Aplicación | HEAD publicado | Develop integrado | Nueva versión | Estado Fury verificado |
+|---|---|---|---|---|
+| rio-controlplane-clickhouse | `30cc111e` | `b1dbe13d` | [0.0.4-import-ref-view-ch](https://web.furycloud.io/rio-controlplane-clickhouse/versions/detail/0.0.4-import-ref-view-ch) | FINISHED, CI PASS, registry AWS/GCP |
+| rio-playmaker | `fd4b1dac0` | `c7d894aad` | [0.0.3-import-ref-view-ch](https://web.furycloud.io/rio-playmaker/versions/detail/0.0.3-import-ref-view-ch) | FINISHED, CI PASS, registry AWS/GCP |
+| ads-signals-frontend | `e0f07541b` | `c4c09b0bb` | [0.0.4-import-ref-view-ch](https://web.furycloud.io/ads-signals-frontend/versions/detail/0.0.4-import-ref-view-ch) | FINISHED, CI PASS, registry AWS/GCP |
+
+Suites locales: Playmaker 5327 tests/3 omitidos y CP 5062/1 omitido, sin fallas ni errores; front 513 suites/12194 tests PASS, lint 0 errores/375 advertencias. Typecheck conserva 122 diagnósticos idénticos al snapshot actual de develop, sin regresiones nuevas. Tests habilitados en los tres builds de Fury. El pre-push de Playmaker quedó bloqueado por la conexión Lore local ausente; el owner autorizó omitir únicamente ese pre-push para `fd4b1dac0` y su versión de test. Los tres archivos Graphify ajenos del CP se conservaron byte por byte. No se recertificó Lore después de estos merges; la última E2E integrada documentada sigue siendo `run_mvpps59z4c0d5e6de3`.
+
+Desplegar CP y Playmaker antes del front. Registro y límites de esta operación: [[2026-10-28-refreshable-testing-versions-entity-updated]].
+
+### Estado anterior — 2026-10-24
 
 **2026-10-24 — Auditoría corregida, E2E local PASS y tres ramas publicadas; Playmaker bloqueado por el gate Cleric.** CP, front y Lore están pusheados con versiones de prueba `0.0.2-import-ref-view-ch` (CP y front). Playmaker quedó local: el pre-push pasa el contrato completo (64 selectores y 2 checks L0) y el gate Cleric responde BLOCKED por escenarios bajo `.lore/scenarios/`; la versión de prueba vigente de Playmaker sigue siendo `0.0.1-import-ref-view-ch`, que ya contiene el único cambio de runtime. Rollout: CP y Playmaker antes del front.
 
@@ -201,6 +217,8 @@ Se retiraron dos volúmenes nombrados de Compose y seis anónimos. Tres anónimo
 - [[2026-10-21-codex-gpt-6-sol-front-refreshable-import-shot1]], [[2026-10-21-codex-gpt-6-sol-front-refreshable-import-shot2]], [[2026-10-21-codex-gpt-6-sol-front-refreshable-import-shot3]].
 
 ## 📆 Bitácora
+
+- **2026-10-28 — Versiones nuevas para test:** develop integrado por merge en las tres ramas; CP `30cc111e`/front `e0f07541b`/PM `fd4b1dac0` publicados, suites locales PASS. CP y front `0.0.4-import-ref-view-ch`, PM `0.0.3-import-ref-view-ch`: las tres FINISHED, CI PASS y registry disponible, con tests habilitados. Excepción de pre-push de PM autorizada sólo para esta versión; sin despliegues ni nueva corrida Lore. [[2026-10-28-refreshable-testing-versions-entity-updated]].
 
 - **2026-10-26 — PRs actualizados:** #1332 entró a develop (squash) y #1328 quedó retargeteado a develop (`49328ca8b`, diff de 23 archivos sólo del feature). Conflictos con develop resueltos en CP (`377e3dcc`), front (`f599fa78b`) y Playmaker. Review de marellanoqui: ALTO del CP (credenciales tras marker con respuesta perdida) corregido devolviendo las credenciales del import en el reprovision `ALTER_MV`; MEDIO de Playmaker (arranque parcial) corregido registrando recursos por procedencia. Hilos de bots respondidos; el de PA-2 en CP queda abierto para el owner. E2E integrada `run_mvpps59z4c0d5e6de3` PASS 5/5 y 8/8. Versiones de prueba: CP y front `0.0.3-import-ref-view-ch`, Playmaker `0.0.2-import-ref-view-ch` (push con `--no-verify` autorizado por el owner).
 
