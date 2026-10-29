@@ -23,7 +23,7 @@ Paquete concreto de implementación del primer incremento de campañas bajo el m
 
 ## Contenido
 
-**Estado post-S1 2026-10-29:** I0-S1 IMPLEMENTATION_CANDIDATE recibido en `feature/ef-campaign-modes-i0@b964e13d`, base `2baf319d`; I0-S2 NEXT/NOT_EXECUTED, I0-S3 y GOD NOT_DISPATCHED, manager/programa abiertos. S04-F01 tiene censo de planes V1 reportado; paridad pendiente.
+**Estado post-S2 2026-10-29:** I0-S1 IMPLEMENTATION_CANDIDATE en `feature/ef-campaign-modes-i0@b964e13d` (base `2baf319d`). I0-S2 FINDINGS (4×P1 + 6×P2 +1×P3), SOURCE/receipt remoto verificado, harness LOCAL reportado. I0-S3 READY_FOR_DISPATCH/NOT_EXECUTED con manager adjudication más abajo; GOD-COMPOSITION sigue reservado. S04-F01 semántica pendiente y guard S04-F02 no portado; manager/programa abiertos.
 
 **Fuente de verdad de diseño:** [[EF-CAMPAIGN-MODES-DESIGN]], revisión C04. **Planificador único:** [[Echo Futures — Optimización de Campañas]]. **Reconciliación:** [[EF-S04-INTEGRATION-RECONCILIATION]]. No se crea otro planner, manager, DSL o motor.
 
@@ -272,6 +272,27 @@ Devolver STATUS; BASE/CANDIDATE_SHA; INDEPENDENT_E2E; FINDINGS con severidad/esp
 El manager adjudica el alcance de corrección. No aceptar el gate Owner ni iniciar I0-S3 por tu cuenta.
 ```
 
+### I0-S2 — adjudicación MANAGER para I0-S3 (2026-10-29, vinculante)
+
+**Retorno validado:** [[EF-CAMPAIGN-MODES-I0-VERIFY-RETURN]]. I0-S2 = FINDINGS, **4 P1 + 6 P2 + 1 P3**, E7/E8b REFUTED. El resumen abreviado de verificador/agent-run dice nueve pero el retorno detallado documenta F1–F11: usar la tabla detallada, no la cifra abreviada. Código base b964e13df59e20b06349eb7e0ad4f4ed057d04a0; R03 E2E y legacy 34+124 PASS reportados independientemente en LOCAL; harness persiste en ~/echo-work/i0-s2-verify/.
+
+**F1–F4 (P1) ACCEPTED / BLOCKING:** F1 fórmula cash con REFUND; F2 Q sin pase+activación acreditados; F3 funded inflada por review_at/credentials_at; F4 cutoff contra cash_final terminal.
+**F5–F10 (P2) ACCEPTED / REQUIRED:** F5 RFC3339 UTC vs strings; F6 post-cutoff mantenerse en effects con marca; F7 timestamp faltante→UNKNOWN y métricas de ventana no completas; F8 setup fees no computan F_op; F9 attempt físico ≠ revisión del mismo receipt; F10 payout sin atribución no produce q=0 OBSERVED. **F11 (P3) ACCEPTED:** no emitir reconciliation True constante. **E7 y E8b REFUTED:** preservar comportamiento correcto.
+
+**Criterios operativos del manager para corrección:**
+- F1 incluir refunds recibidos una sola vez en cash proyectado/residual y cost_net. Cuenta/timing de la devolución quedan según evidencia y alcance.
+- F2+F10 exigir cadena compra→intento→pase→activación funded APLICADA→primer payout CREDITED asociado, dentro de horizonte. Si falta cualquier costura, usar INCOMPLETE_LINEAGE/UNKNOWN o NOT_OBSERVED según evidencia; no inferir 0 observado. Las cantidades de cobros pueden seguir reportadas globalmente aunque falte atribución.
+- F3+F8 review_at/credentials_at son preactivación. compliant_at es fecha *programada* de compliance y NO prueba timestamp de activación. Para frontera real usar estado/control instalado y su evidencia en el artefacto; si no existe, conservar UNKNOWN específico para funded iniciado, fecha y F_op, sin convertir estado del último receipt en historia temporal.
+- F4+F5+F6+F7 mantener la lista de efectos con su clasificación temporal comparada en UTC; cash de cutoff sólo se reconcilia contra estado al mismo corte. Si un efecto no puede datarse, no incluirlo como previo al corte y marcar incompletitud del total afectado. E2E legado sin cutoff conserva número bruto correcto.
+- F9 NO sumar dos attempts ejecutados como compras nuevas ni descartar uno por tener mismo campaign_id. Revisión legítima exige identidad de receipt/provenance; dos RunIDs diferentes no prueban una misma revisión. Si origen/relación no demostrados, enseñar ambos resultados/per-attempt spend y total conjunto UNKNOWN/NOT_COMPOSABLE. No elegir arbitrariamente last input como autoridad comercial; no leer/escribir historia fuera del scope autorizado.
+- F11 reconciled/sums_by_assignment sólo True si calculado con datos completos y sin conflictos; si no, False o UNKNOWN con razón explícita, sin inventar ledger.
+- Usar harness E1–E8 de ~/echo-work/i0-s2-verify/, integrar falsificadores nuevos como regresiones durables dentro del owner, conservar E7/E8b, sin reescribir fixtures del verificador ni tests legacy sin TCR.
+- Verificar SDD, 34+N tests de contrato, 124 legacy, cobertura nueva >=95% (o estado bloqueado), E2E R03 doble determinista, inputs sellados intactos, no-spawn/egress sentinel, diff/rollback y ausencia de cambios Go/launcher. No auto-merge de xKoRx/echo.
+
+**Independencia:** el verificador I0-S2 fue otro worker/harness fresco, pero agent-run declara GLM-5.3-Flash (no GPT-6 Sol TOP solicitado). Registrar la limitación; el manager realizará challenge del delta final en otra superficie antes de recomendar aceptación. No consumir el shot GOD para el reporter por rutina.
+
+**Salida esperada:** READY_FOR_OWNER_REVIEW sólo con F1–F11 resueltos y evidencia local; en caso contrario PARTIAL/BLOCKED con dependencia concreta. No resolver D01–D06 ni S04-F01/F02 en este shot.
+
 ### Prompt posterior — I0-S3, sólo con retorno S2 y findings adjudicados
 
 ```text
@@ -289,7 +310,7 @@ Corregir los findings aceptados de I0-S2, preservar sus falsificadores durables 
 
 /authorities
 
-Bootstrap agents-os/master desde main/AGENTS.md. C04 diseño, planner único Optimización de Campañas, EF-CAMPAIGN-MODES-I0-LOCAL y retornos IMPLEMENTATION-RETURN/VERIFY-RETURN. Adjudicación explícita del manager del alcance de findings.
+Bootstrap agents-os/master desde main/AGENTS.md. C04 diseño, planner único Optimización de Campañas, EF-CAMPAIGN-MODES-I0-LOCAL y retornos IMPLEMENTATION-RETURN/VERIFY-RETURN. Adjudicación explícita del manager del alcance de findings (sección vinculante I0-S2 de este paquete, publicada 2026-10-29).
 Cargar sdd-workflow/sdd-developer, retester/runbook y run-register/feedback/session-close. Leer reglas SDD 08/09, constitution, SPEC/PLAN/TASKS/VERIFICATION del repo.
 
 /baseline
