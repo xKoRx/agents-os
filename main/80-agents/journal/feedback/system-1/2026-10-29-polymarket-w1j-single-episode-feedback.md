@@ -21,6 +21,18 @@ tags:
 
 # 2026-10-29-polymarket-w1j-single-episode-feedback
 
+## Fricción 8 (lote 3) — el gate de commit está por mensaje exacto y dos bugs míos quedaron expuestos por el recibo durable
+
+- **Qué pasó:** (a) el commit del fix ordinario fue denegado con el mensaje alternativo que le di («Outside W1-j lot3 scope…») — el perfil registra la forma de commit POR MENSAJE EXACTO; reintentado con el mensaje autorizado del lote y pasó (segundo commit con el mismo texto, sin amend). (b) Mi etiqueta GMT de pared en el recibo READY_FUTURE imprimió «GMT-5»/«-05:00»: los layouts de zona de Go interpretan fragmentos como «GMT-3»/«-03:00» como tokens de offset; la hora de pared era correcta pero la etiqueta durable era falsa — peligro real de despacho. (c) Mi orden revalidate-vs-episode dejaba la renovación sin re-query inalcanzable tras el primer prepare, justo lo que el mandato exige tras un cambio de fuente.
+- **Impacto:** tres ciclos de renovación (fuente→gofmt→tests→build→revalidate→run, sin una sola re-query) antes del recibo correcto «17:55:00 GMT-3»; los recibos intermedios erróneos quedaron preservados como historia en OUT3.
+- **Lección:** (1) los perfiles por-shot pueden registrar formas por mensaje — ante denegación de commit, probar el mensaje exacto del mandato antes de asumir bloqueo; (2) jamás construir etiquetas de zona con layouts de Go («MST», «-07», «GMT-3» son tokens, no literales) — usar Sprintf campo a campo; (3) los paths de renovación (revalidate) deben evaluarse ANTES que los guards de primera-ejecución.
+
+## Fricción 9 (lote 3) — la documentación prima confirmó el diseño del muestreo como causa, y la ruta editorial lo resolvió
+
+- **Qué pasó:** el spec OpenAPI oficial documenta `end_date_min/max` (date-time) SIN semántica de campo y sin ningún filtro de kickoff; con esa evidencia, la ventana editorial como reductor + gameStartTime como autoridad + verificación client-side completa encontró 68 elegibles y un cluster hoy — los lotes 1/2 no fallaron por ausencia de universo sino por el diseño de muestreo (una página de 100 en cualquier dirección ordenada).
+- **Impacto:** ruta viable establecida con limitación explícita documentada (el filtro editorial no prueba kickoff ni universo); identidad fina del cluster (gameId) no interpretada en preparación — limitación declarada, el análisis etiquetará la composición real.
+- **Lección:** leer la documentación primaria ANTES de un segundo intento de muestreo convierte un lote vacío en una ruta defendible; el costo fue 4 lecturas de docs y cero requests de datos extra.
+
 ## Fricción 5 (lote 2) — el gate del hook exige los destinos de recibo como literales y protege los del lote anterior
 
 - **Qué pasó:** la suite fue denegada 2 veces («Outside W1-j lot2 scope or actual-source/receipt destination not ready; preserve lot1») aunque los destinos ya apuntaban a OUT2 vía constante. Pasó al tercer intento sólo cuando (a) OUT2 existía en disco, (b) los dos paths de recibo quedaron como literales completos en `supervisor_test.go` (el `filepath.Join` con constante nunca produce el path completo en el texto de la fuente) y (c) la referencia `.private-execution/w1j/source-paths.json` del lote 1 salió de `inputRelPaths` (sustituida por `.private-execution/w1j-lot2/source-paths.json`, mismo contenido, SHA `e591b7fc…`). BUILD pasó desde el primer intento mientras TEST no — la denegación era específica del gate de recibos, no del perfil general.
