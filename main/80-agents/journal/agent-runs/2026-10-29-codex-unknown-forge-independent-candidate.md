@@ -19,7 +19,7 @@ outcome: partial
 verification: partial
 evaluator: agent
 user_rework: unknown
-source_session: codex-local-owner-mandate-2026-10-29
+source_session:
 load_policy: manual
 indexable: false
 index_priority: never

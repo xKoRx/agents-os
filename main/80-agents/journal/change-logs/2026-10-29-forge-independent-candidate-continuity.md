@@ -11,7 +11,7 @@ entities: ["[[Echo Forge — Operación Real V2]]"]
 related: []
 aliases: []
 confidence: verified
-source_session: codex-local-owner-mandate-2026-10-29
+source_session:
 source_feedbacks: []
 share_scope: local
 load_policy: manual

@@ -6,15 +6,14 @@ created: 2026-10-29
 updated: 2026-10-29
 area: "[[Echo]]"
 project: "[[Echo Forge — Operación Real V2]]"
-entities: ["[[Echo Forge — Operación Real V2]]"]
-  - "[[AGENTS OS]]"
+entities: ["[[Echo Forge — Operación Real V2]]", "[[AGENTS OS]]"]
 related: []
 aliases: []
 agent_surface: "[[Codex]]"
 agent_model: unknown
 agent_run: "[[2026-10-29-codex-unknown-forge-independent-candidate]]"
 session_goal: Candidato privado para revisión cloud sin E2E físico
-source_session: codex-local-owner-mandate-2026-10-29
+source_session:
 confidence: high
 load_policy: manual
 indexable: false
