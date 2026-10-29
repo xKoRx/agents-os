@@ -19,7 +19,7 @@ tags:
   - kind/project
   - area/echo
 created: "2026-10-20"
-updated: "2026-10-28"
+updated: "2026-10-29"
 ---
 
 # Echo Futures — Optimización de Campañas
@@ -38,6 +38,8 @@ updated: "2026-10-28"
 **I0-S3R2 manager adjudicación:** M1 mapping Go other_spend=STOW_FEE+PLATFORM_FEE, total_spend incluye esos fees, RESET_PAID sin correspondencia silenciada; M2 Q exige CREDITED neto positivo y PAYOUT_COLLECTED positivo en ventana, atribuido a la cuenta o pooled reconciliado con pagos de Go; M3 setup comercial por kind con account_id posiblemente ausente; M4 supersesión sólo con attempt_id/chain explícitos más request sellado equivalente. Findings F1–F11/G1–G4 se conservaron como regresiones. Los nuevos campos son analítica DERIVADA, no autoritativos para Go/admisión/resume. Con evidencia insuficiente el reporter devuelve UNKNOWN/NOT_COMPOSABLE.
 
 **Próxima acción única:** `I0-INTEGRATION-GATE`, ONE-SHOT LOCAL, definido en [[EF-CAMPAIGN-MODES-I0-LOCAL]]. Reejecutar gate en contexto de destino master, verificar base/ref remotos y que el diff sea el previsto; presentar MERGE_READY_FOR_OWNER. **Sin autorización de Owner en este mandato no mover echo/master**, sin squash/reinterpretar receipts; si se aprueba un merge posterior, preferir fast-forward/merge con check de ancestro/HEAD, sin force, conservando SDD y todos los SHA. No desplegar ni lanzar campañas. El hecho de integrar reporter no resuelve S04-F01 (intérprete V1) ni S04-F02 (guard de cualificación), que continúan bloqueando cualquier nueva campaña/aceptación semántica que los requiera. I1–I4 aún no despachados. Cuarto shot GOD reservado para decisión Go real de composición. PRO_CHAT_POOL_DELTA UNKNOWN.
+
+**I0-INTEGRATION-GATE EJECUTADO (2026-10-29, ONE-SHOT LOCAL): `MERGE_READY_FOR_OWNER`.** Gate físico re-ejecutado en verde sobre el SHA exacto `01a38c13b0a1b280eefb9d18f6d2b167e3cd8739`: refs/ancestry/master-sin-I0 verificados por ls-remote+merge-base, 7 commits y exactamente 7 paths (hunk de `research_lab.py` limitado al subcomando `economics`), 69/69 reporter, 124/124 legacy, 25/25 frozen, 14/14 falsificadores M1–M4, coverage 100% (442/442 AST), E2E R03 doble corrida byte-idéntica (sha256 `3921d13e…` == recibo S3R2) con U58 KNOWN/P10/804 USD·pase/residual 0/4-4 funding MATCH/conversion NOT_OBSERVED, sentinel no-spawn byte-idéntico, inputs sellados intactos pre/post, SDD conforme a reglas 08/09. Suite Go NOT_EXECUTED por decisión (sin delta Go; declarado). **`origin/master` sigue `2baf319d` SIN mover; sin PR.** Retorno y procedimiento de integración recomendado (`merge --ff-only` con guard pre-mutación y readback, sólo con autorización Owner explícita): [[EF-CAMPAIGN-MODES-I0-GATE-RETURN]]. Manager/programa abiertos; S04-F01/F02 y PROD freeze intactos; I0 sigue sin autorización de integración.
 
 ## Estado vigente I0-S3R1 — adjudicación final de fuente (2026-10-29)
 
