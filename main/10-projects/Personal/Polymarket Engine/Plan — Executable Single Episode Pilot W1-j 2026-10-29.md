@@ -20,6 +20,14 @@ updated: "2026-10-29"
 
 # Plan — Executable Single Episode Pilot W1-j 2026-10-29
 
+## ACTUALIZACIÓN LOTE 3 (documentación-first ejecutada; EPISODIO ENCONTRADO, despacho inmediato pendiente)
+
+- **Ruta probada:** documentación primaria primero (spec OpenAPI oficial de Gamma + discover-markets; evidencia y citas en `OUT3/documentation-evidence.md`) ⇒ NO existe filtro de kickoff documentado ⇒ ventana editorial `end_date_min/max` documentada como REDUCTOR de candidatos (limitación explícita; `gameStartTime` autoridad final; verificación client-side completa; sin order/ascending). Transporte mínimo nuevo `documentedWindowFetcher` dentro de discovery. Commit `257027b` (+ fix `5afb9c8`), gofmt `-l` vacío, suite PASS, recibos OUT3.
+- **Resultado real (20:03→20:3xZ): 1 GET, 100 candidatos, 68 elegibles; primer cluster ascendente K = 2026-10-29T22:30:00Z (19:30 GMT-3) con 3 mercados moneyline (5784455/5784461/5784468, 6 assets).** `run` selló READY_FUTURE: **despacho del parent a más tardar 2026-10-29T20:55:00Z = 17:55:00 GMT-3** con el comando exacto (durable en `run-outcome-w1j-ep-20261029T2230.json`):
+  `env GOMAXPROCS=2 GOMEMLIMIT=1536MiB nice -n 15 /usr/bin/prlimit --as=2147483648 --cpu=7200 -- /home/kor/Documents/Codex/2026-10-27/task-2/validated-baseline/w1-j-single-episode-pilot-20261029-lot3/pilot-supervisor run --root /home/kor/Documents/Codex/2026-10-27/task-2 --out /home/kor/Documents/Codex/2026-10-27/task-2/validated-baseline/w1-j-single-episode-pilot-20261029-lot3 --engine /home/kor/Documents/Codex/2026-10-27/task-2/validated-baseline/w1-j-single-episode-pilot-20261029-lot3/engine --plan /home/kor/Documents/Codex/2026-10-27/task-2/validated-baseline/w1-j-single-episode-pilot-20261029-lot3/prepared-plan.json`
+- **En el run despachado:** espera ≤60 s hasta K−90m (21:00Z), luego init observe → 6×(record 13,5 m + observe 1 m) → verify/manifest/replay×2 → análisis descriptivo único (500 condicional/1000 estrés). Último record termina K−3m = 22:27Z; cierre completo antes de K=22:30Z. Si el despacho llegara tarde: NOT_RUN_WINDOW_MISSED sin perseguir la ventana.
+- **Limitación declarada:** cluster por K explícito (prereg v2 §3); identidad fina (gameId) no interpretada en preparación — el análisis etiquetará la composición real del cluster.
+
 ## ACTUALIZACIÓN LOTE 2 (ejecutado y cerrado 2026-10-29)
 
 - El lote 2 se ejecutó según este plan con la corrección adjudicada: commit `1070dbf8d28bf19b7224dff400a45ac24b26c614`, gofmt verificado (`-l` vacío sobre los 7 paths), suite completa PASS con recibos en OUT2 (`offline-preflight.json` 9/9 casos, `inputs.json`), builds en OUT2 (`engine` `3e604614…`, `pilot-supervisor` `01cba874…`), y prepare/run reales: **1 GET, 100/100 candidatos, 0 sellados, 0 elegibles — rango REAL observado [2026-11-20T01:00:00Z .. 2027-03-06T19:00:00Z], déficit «kickoff beyond the 26h horizon» ×100**; recibo terminal `NO_ELIGIBLES_EN_LOTE` (exit 0, 20:03:47Z). Reglas v2: `30eaf86a…`; página: `157a4b03…`.
