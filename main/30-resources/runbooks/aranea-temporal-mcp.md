@@ -43,7 +43,7 @@ capability:  aranea-temporal-ro
 endpoint:    http://mcps.lab.aranea.cl:3010/mcp
 authority:   PROD-RO estricta (hardReadOnly por diseño + allowedNamespaces)
 target:      Temporal Server 1.31.2 — frontend gRPC 192.168.31.46:7233 (VM temporal, VMID 158, PTR temporal.aranea.local)
-namespaces:  sqx-dev, sqx, sqx-prop (allowlist); temporal-system BLOQUEADO server-side
+namespaces:  sqx, sqx-prop (allowlist vigente); temporal-system BLOQUEADO server-side. NOTA 2026-10-29: sqx-dev fue DESTRUIDO por orden del owner (UpdateNamespace State=DELETED verificada, state=3) — namespace sin workers atraía flujos de agentes; la entrada `sqx-dev` puede quedar inerte en temporal-mcp.json hasta el próximo mantenimiento del config en mcps.
 upstream:    stevekinney/temporal-mcp npm 0.2.1 (28 tools read-only por diseño; stdio-only)
 wrapper:     mcp-proxy 6.7.16 + fix GAP-ECHO-010 (respawn shared-child), patrón familia hasura
 imagen:      local/temporal-mcp-http:0.2.1-mcpproxy6.7.16-g010fix (sha256 038eef5c1d56…)
