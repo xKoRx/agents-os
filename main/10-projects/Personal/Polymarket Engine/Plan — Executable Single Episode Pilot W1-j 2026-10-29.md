@@ -20,6 +20,12 @@ updated: "2026-10-29"
 
 # Plan — Executable Single Episode Pilot W1-j 2026-10-29
 
+## CIERRE W1-j (captura ejecutada y analizada; plan para la PRÓXIMA revisión)
+
+- La ventana se ejecutó y cerró terminal (exit 0, 22:21:35Z; análisis automático INCONCLUSIVE con 0 ACCEPTs y 72 rechazos por costes). **Nada queda en ejecución.**
+- **Fix mínimo propuesto para la próxima revisión del runner (NO implementado en este cierre, sin re-captura retroactiva):** en `runStepSequence`, dormir hasta el inicio absoluto de cada slot antes de spawn (los deadlines ya existen como límites de kill); con eso el último libro cae en K−3m y el envelope coincide con el preregistro temporal. Como la ventana editorial probablemente haya movido los partidos, la próxima adjudicación repetiría: prepare (presupuesto fresco) → identity → run corregido.
+- Artefactos de cierre en OUT3: análisis `analysis-w1j-ep-20261029T2230-identity.json`, seal, manifiesto `7135b630…`, replays A/B (`464c9ef3…`), 17 recibos, run-outcome CAPTURED/INCONCLUSIVE. Preservación del ejecutado por el launcher en `CLOSE_PRIVATE/capture-executed-package/`.
+
 ## ACTUALIZACIÓN IDENTIDAD (20:46Z) — PLAN DERIVADO LISTO PARA EL DESPACHO 20:59–21:00Z
 
 - Identidad resuelta por fallback determinista (menor id numérico 5784455; slug `bra-cam-cru-2026-10-29-cam` con fecha = K; game_id ausente ⇒ «unavailable»; K/ventana intactos). **El comando de captura ahora usa el plan derivado** (`prepared-plan-identity.json` `ef3a85f0…` + `selection-manifest-identity.json` `b2de46c7…`):
