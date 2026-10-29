@@ -136,6 +136,16 @@ Las extensiones de productores se limitan a hacer disponible evidencia real del 
 
 Al terminar Shot 1, A/B/C/D quedan **NOT_RUN en este programa**; E queda **NOT_AUTHORIZED/NOT_RUN**. No se declara que falte toda fuente auténtica: esta superficie sólo verificó repositorios. El TOP local debe intentar acceso read-only mediante canales autorizados; si no obtiene el recurso concreto, documenta el bloqueo de D con evidencia y continúa A/B/C. Un gap implementable de producto nunca se reclasifica como `BLOCKED_EXTERNAL`.
 
+### Estado de gates al cierre del integrador — 2026-10-28 (tercera sesión del corrector)
+
+| Gate | Estado | Evidencia (autoría del corrector; verificación independiente pendiente) |
+|---|---|---|
+| A | PASS declarado (integración incluida) | 9 correcciones + identidad de instancia configurada + reconciliación de migraciones (fresh/upgrade×3/equivalencia/concurrentes, PG propia) + dispatcher dinámico con cero regresiones nuevas frente al baseline 36071d8 |
+| B | PASS declarado | Gateway real s4c: 19 entregas INGESTED acumuladas, receipts estrictos, readback; w5 legacy y w6 con `execution_contract=dynamic-groups.v1` COMPLETED por el binario integrado |
+| C | PASS parcial honesto | 4 perfiles muestra-suficiente (34 ops/34 días, Q_i, moneda OBSERVED, sin look-ahead) PUBLISHED; métricas con valores exactos del fixture; 2 rankings (edge_duo, forge_quality_four) con exclusiones tipadas. Positivo eligible>0 pendiente por F-INTEG-02 (ventana sellada from=0 con miembros sin manifest) |
+| D | BLOCKED_EXTERNAL (parcial RO) | Metadata auténtica leída por Mongo RO recuperado (FlowRun 5cbd4400…, stage mt5_backtesting ⇒ UNSUPPORTED_SOURCE_CONTRACT es el contrato correcto); PG de campaña trading_systems_test y bytes de artefactos sin canal soportado |
+| E | NOT_AUTHORIZED | Sin release/deploy; la flota E2E (0.4.2→0.4.3) fue manejada por trabajo ajeno y no fue alterada |
+
 ### QA mínimo obligatorio
 
 Los oráculos de B y del addendum son vinculantes. La revisión independiente debe cubrir los casos de origen Full Precision acreditado; mismo routing renombrado; otro productor válido; linaje Retester/Exporter; etiquetas iguales con identidades distintas; varias Evaluations/MetricSets/TradeSets; ausencia de TradeSet; corrupción o discrepancias PG/Mongo/MinIO; costes/moneda/FX/Q_i/tiempos/cobertura desconocidos; replay y duplicados; crash antes/después de manifest y POST; timeout con commit; key con body distinto; caída Mongo después de snapshot; restart; concurrencia; divergencia de SDK/digest; receipt inválido/ausente; corrección de historia; integración Temporal; no-regresión; readback de Echo/Lab y no-interferencia.
