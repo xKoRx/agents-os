@@ -197,3 +197,39 @@ tags:
 - **Archivo(s):** los 6 del subset commiteados — `migrations/0025_regime_observations.sql`, `internal/regimes/{reducer.go, service.go, w1i_renewal_integration_test.go}`, `internal/experiment/{w1h_acquisition_recipe_test.go, w1f_hypothesis_integration_test.go}`.
 - **Repo:** commit LOCAL `62a819dc09fb715247973451895106f5c9b7cc6d` (6 archivos, +553/−74; sobre `9e2c6b7` sin amend/reset; árbol limpio; sin push). **Regresión final 6/6 PASS sobre árbol final post-gofmt** (regimes 1,584s / books 0,230s / replay 0,125s / capture 0,392s / experiment 14,133s / cmd-engine 28,592s) + build exit 0 (binario `ba55a5ec…2f30`). **12/12 inputs SHA-verificados** (6 JSONs + engine.db + manifest + 4 `.seg`), ninguno escrito.
 - **Motivo:** terminar regresión/commit/cierre de W1-i; sin capturas ni investigación nueva. Receta V3 lista para autorización de descubrimiento/captura (no ejecutada).
+
+---
+
+## 2026-10-29 (W1-j) — supervisor del piloto público materializado y probado; descubrimiento REAL agotó el presupuesto de candidatos → NO_ELIGIBLES_EN_LOTE
+
+### Cambio
+
+- **Tipo:** created / updated
+- **Archivo(s):**
+  - `10-projects/Personal/Polymarket Engine/Research — Single Episode Public Pilot W1-j 2026-10-29.md` (nuevo; informe canónico: gate PASS, descubrimiento real 1 request/100 candidatos/0 elegibles, cierre terminal)
+  - `10-projects/Personal/Polymarket Engine/Plan — Executable Single Episode Pilot W1-j 2026-10-29.md` (nuevo; plan de continuación con comandos exactos probados y la decisión pendiente de Metis/lanzador)
+  - `Polymarket Engine — Continuidad Five-POC 2026-09-20.md` (bullet (24) W1-j; "Siguiente paso" actualizado con historia W1-i preservada íntegra)
+  - `80-agents/journal/sessions/2026-10-29-polymarket-w1j-single-episode-summary.md`, `…w1j-single-episode-feedback.md`, `…zcode-glm-5.3-flash-polymarket-w1j-single-episode.md` (nuevos), este change_log (sección añadida)
+  - Repo externo (fuera del vault): commit LOCAL `a20e61777b3db57ecea7ade14f9f0d3fc2acfe1f` en `w0/offline-causal-replay-20261027` (base `62a819dc09fb715247973451895106f5c9b7cc6d`, sin push): 7 archivos NUEVOS `cmd/researchpilot/{main,supervisor,supervisor_test,economics,economics_test,discovery,discovery_test}.go` (+3554) — exactamente la allowlist `.private-execution/w1j/source-paths.json`. Árbol limpio post-commit.
+  - OUT (fuera del vault): `validated-baseline/w1-j-single-episode-pilot-20261029/` — `offline-preflight.json` (gate, 9/9 casos + SHA de los 7 fuentes, producido por TestMain tras PASS), `discovery-rules.json` (SHA `1c04a6ad…`, congeladas antes del request), `selection-manifest.json` (lote: 1 GET, HTTP 200, 100 inspeccionados, 0 sellados, 0 elegibles, página `56b45267…`), `discovery-budget.json` (durable: 1/3 requests, 100/100 candidatos, exhausted), `prepared-plan.json`, `execution-identity.json`, `run-outcome-.json` (terminal `NO_ELIGIBLES_EN_LOTE`, exit 0, 19:31:07Z), `episode/` (página cruda journalizada durable antes de decidir, capture_seq 2), binarios `engine` (`09bfa09a…`) y `pilot-supervisor` (reconstruido tras el fix del path de `run`; el SHA en execution-identity es el previo al rebuild, preservado como historia).
+  - `.private-execution/w1j/inputs.json` (nuevo; 12 inputs con SHA medidos por la misma corrida de tests — go.mod `b3a5f56b…`, go.sum `7d442ddd…`, reducer `23814a47…`, renewal `65f3c2a5…`, service `8b5fad8c…`, economics `e585bc46…`, sports `72feda00…`, record/clob_observe/journal/replay, source-paths.json; los primeros cuatro corroboran los registros W1-i).
+
+### Motivo
+
+- Mandato W1-j (Metis aceptó el PASS técnico W1-i y autorizó el piloto público de UN episodio; no finanzas ni nuevos episodios): supervisor mínimo antes de red, discovery público acotado con desenlace honesto, y cierre en Agents-OS en la misma sesión.
+
+### Fuentes usadas
+
+- Prereg v2, Plan v3, informe W1-i, continuidad §§1–23, preflight del lanzador (`.private-execution/w1j/workspace-preflight.json`, `supervise.py` como referencia), y fuente Go @ `62a819d`: `cmd/engine/{main,record,clob_observe,catalog_select,journal,replay}.go`, `internal/{books/{books,reducer}.go, capture/capture.go, regimes/reducer.go, economics/economics.go, strategy/{api,runtime}.go, strategy/pocs/{sports/sports.go, pocdata/pocdata.go}, transport/gamma/gamma.go, foundation/clock.go}`, `internal/experiment/experiment.go`.
+
+### Resolución aplicada
+
+- Supervisor serial con presupuesto durable de discovery, gate OOS id-only pre-interpretación, manifiesto compatible con `loadSelectionManifest` del engine, deadlines absolutos V3 (init 1 m + 6×(13,5 m record + 1 m observe) = 88/90 m, último record K−3m, sobre WS real 81 m), stop-file EN deadline, señal sólo a hijos propios con PID+starttime verificados, fail-closed ante escritor ajeno (scan /proc por substring del path propio, sin loguear args ajenos), pausa 02:00–08:00 GMT-3 jamás cruzada, workspace stop-line 8 GB, replay ×2 schedules con digests idénticos exigidos y análisis offline único (round trip H=300 s, taxonomía de 7 estados, escenarios 500/1000 bps por ambas patas, pérdidas con signo, REAL_FEE_READY=false). **Causa raíz del lote vacío declarada sin atenuación:** `ascending=true` apuntó el presupuesto de candidatos a los kickoffs más antiguos (pasados, aún activos) — el prereg v2 §3 había fijado `ascending=false` para poblar el lote con kickoffs futuros; 100/100 candidatos con «kickoff closer than the 30m preparation margin» ⇒ NO_ELIGIBLES_EN_LOTE terminal, sin ampliar búsqueda ni re-consultar (la re-consulta exige decisión nueva de Metis/lanzador). Primer `run` falló exit 1 por un bug de orden propio (schedule vacío evaluado antes del corte NO_ELIGIBLES); corregido con tests verdes y rebuild antes del segundo run (fallo y fix como hechos, sin retry de red).
+
+### Validación
+
+- Suite `./cmd/researchpilot` PASS (exit 0, ~7,1–7,3 s; 9/9 casos del gate + negativos económicos sobre `poc-sports`/`economics`/`books`/`regimes` reales con fixture sintético — profundidad de salida insuficiente ⇒ `entry_fill_exit_non_executable`, misma recuperación +1,775 a 500 bps vs −0,95 a 1000 bps, `invalid_gap` al cruzar fin de tramo, entrada siempre posterior a la señal); recibos producidos por TestMain sólo tras PASS completo (no fabricados); `prepare` y `run` reales sobre Gamma con TLS, sin retry, 429 ⇒ parar; OOS jamás consultados (0 sellados); sin órdenes/auth/live; WS jamás abierto; árbol limpio tras commit; 12 inputs intactos.
+
+### Rollback
+
+- Repo: `git revert a20e617` (local; sin push; base `62a819d` intacta). Vault: eliminar las 2 notas W1-j, los 3 registros journal, esta sección y el bullet (24)/"Siguiente paso" de la continuidad (historia W1-i restaurable del marcador). OUT W1-j es aditivo; `episode/` conserva la evidencia del lote 1.
