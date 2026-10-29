@@ -21,7 +21,25 @@ tags:
 
 # 2026-10-29-polymarket-w1j-single-episode-feedback
 
-## Fricción 1 — perfil del hook de este shot: formas básicas denegadas y hash delegado a la corrida de tests
+## Fricción 5 (lote 2) — el gate del hook exige los destinos de recibo como literales y protege los del lote anterior
+
+- **Qué pasó:** la suite fue denegada 2 veces («Outside W1-j lot2 scope or actual-source/receipt destination not ready; preserve lot1») aunque los destinos ya apuntaban a OUT2 vía constante. Pasó al tercer intento sólo cuando (a) OUT2 existía en disco, (b) los dos paths de recibo quedaron como literales completos en `supervisor_test.go` (el `filepath.Join` con constante nunca produce el path completo en el texto de la fuente) y (c) la referencia `.private-execution/w1j/source-paths.json` del lote 1 salió de `inputRelPaths` (sustituida por `.private-execution/w1j-lot2/source-paths.json`, mismo contenido, SHA `e591b7fc…`). BUILD pasó desde el primer intento mientras TEST no — la denegación era específica del gate de recibos, no del perfil general.
+- **Impacto:** dos denegaciones productivas que señalaron exactamente los residuos del lote 1 en mi fuente; ninguna variante inventada; los recibos del lote 1 quedaron intactos.
+- **Lección:** cuando un perfil por-shot protege evidencia anterior, auditar la fuente propia por referencias residuales (paths literales, no solo destinatarios lógicos) ANTES de la primera ejecución; los mensajes del hook describen la condición, no la causa.
+
+## Fricción 6 (lote 2) — mi fixture de horizonte estaba mal (25h30m es elegible)
+
+- **Qué pasó:** el test nuevo de selección usó «muy futuro» = now+25h30m, que está DENTRO del horizonte 26h ⇒ era legítimamente elegible y el assert de 3 blockers falló; el detector lo señaló antes de cualquier red.
+- **Impacto:** corregido a now+26h30m con aserción propia de la razón «beyond the 26h horizon».
+- **Lección:** los bordes del dominio (26h, 95m) deben aparecer en los fixtures con su razón nominal, no por aproximación.
+
+## Fricción 7 (lote 2) — la estructura del presupuesto limita lo que cualquier dirección puede ver
+
+- **Qué pasó:** con `ascending=false` el lote 2 recibió los 100 kickoffs MÁS LEJANOS [2026-11-20 .. 2027-03-06], todos >26h; el extremo cercano del catálogo no es observable con una página de 100 candidatos en ninguna dirección (el lote 1 lo demostró en el otro extremo).
+- **Impacto:** cierre honesto con rango real y déficit exacto, sin tercer lote; la decisión de un eventual reintento exige cambio documentado de reglas (filtro futuro documentado en query o multi-página planificada), no más presupuesto del mismo diseño.
+- **Lección:** el diseño del muestreo define qué puede concluirse; un lote vacío por estructura no es evidencia de vacío del mundo.
+
+## Fricción 1 — perfil del hook de este shot: formas básicas denegadas y hash delegado a la corrida de tests (LOTE 1)
 
 - **Qué pasó:** `sha256sum`, `gofmt` (también full-path), `go fmt`, `date`, `ls`, `grep`, `go test -run`, las formas `git diff --check/--stat` (con y sin `--cached`), la forma combinada `git status && git rev-parse` y toda invocación manual del binario engine (incluso `journal verify` read-only) fueron denegadas 1 vez cada una con el mensaje genérico «Outside W1-j exact scope…». Las únicas formas de ejecución que pasaron fueron los sufijos exactos de test/build y `pilot-supervisor prepare/run/analyze` con flags exactos.
 - **Impacto:** los hashes exigidos (preflight de fuentes, 12 inputs) y los recibos del gate se produjeron con la única máquina permitida — `TestMain` tras PASS completo — que además es la regla del mandato («el recibo lo produce la prueba»); el formateo se verificó por compilación limpia sin poder correr gofmt; el SHA del binario `pilot-supervisor` tras el rebuild post-prepare quedó sin medir (preservado el previo en `execution-identity.json`).

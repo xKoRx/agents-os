@@ -20,6 +20,12 @@ updated: "2026-10-29"
 
 # Plan — Executable Single Episode Pilot W1-j 2026-10-29
 
+## ACTUALIZACIÓN LOTE 2 (ejecutado y cerrado 2026-10-29)
+
+- El lote 2 se ejecutó según este plan con la corrección adjudicada: commit `1070dbf8d28bf19b7224dff400a45ac24b26c614`, gofmt verificado (`-l` vacío sobre los 7 paths), suite completa PASS con recibos en OUT2 (`offline-preflight.json` 9/9 casos, `inputs.json`), builds en OUT2 (`engine` `3e604614…`, `pilot-supervisor` `01cba874…`), y prepare/run reales: **1 GET, 100/100 candidatos, 0 sellados, 0 elegibles — rango REAL observado [2026-11-20T01:00:00Z .. 2027-03-06T19:00:00Z], déficit «kickoff beyond the 26h horizon» ×100**; recibo terminal `NO_ELIGIBLES_EN_LOTE` (exit 0, 20:03:47Z). Reglas v2: `30eaf86a…`; página: `157a4b03…`.
+- **Lectura estructural honesta para la próxima decisión:** con un presupuesto de 100 candidatos y UNA página ordenada, la consulta sólo alcanza UN extremo del catálogo — la descendente ve los más lejanos (este lote: todos >26h), la ascendente ve los más antiguos (lote 1: todos pasados). Ningún lote de una página puede demostrar presencia o ausencia de partidos en las próximas 26h; afirmar lo contrario sería el mismo atajo del lote 1. W1-d (100 elegibles con kickoffs 2026-11-18 el 2026-10-28) tampoco respalda futuros ≤26h hoy: Nov 18 ya está a ~20 días y el catálogo cambió en un día.
+- **Siguiente decisión (Metis/lanzador, si alguna vez se desea reintentar):** sólo con un cambio DOCUMENTADO de reglas de discovery (p. ej., ventana gameStartTime documentada acotada al futuro en el query, o presupuesto multi-página con offsets planificados ex ante), nueva adjudicación y presupuesto fresco por lote; NUNCA ampliando el presupuesto del lote cerrado ni reinterpretando estos cierres como ausencia de universo. Sin tercer lote por inferencia. Mientras tanto: capture/replay/análisis NOT_RUN con causa; nada pendiente en ejecución.
+
 ## Propósito
 
 - Plan de CONTINUACIÓN verificado contra el código committeado `a20e61777b3db57ecea7ade14f9f0d3fc2acfe1f` (forma exacta de cada comando, probada en este shot). El estado actual es **NO_ELIGIBLES_EN_LOTE** con el presupuesto de descubrimiento del shot AGOTADO (1/3 requests, 100/100 candidatos): **una nueva ventana de descubrimiento exige decisión explícita de Metis/lanzador** — el supervisor no re-consulta por diseño (presupuesto durable en `OUT/discovery-budget.json`). Ejecutable por especificación, no ejecutado más allá de lo narrado en [[Research — Single Episode Public Pilot W1-j 2026-10-29]].
