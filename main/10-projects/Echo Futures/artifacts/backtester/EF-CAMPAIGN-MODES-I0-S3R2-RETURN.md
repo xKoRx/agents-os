@@ -22,12 +22,12 @@ Retorno ONE-SHOT de I0-S3R2 (microfix final M1–M4 del manager sobre I0-S3R1, p
 
 ## STATUS
 
-**READY_FOR_MANAGER_REVIEW** — M1–M4 todos CORRECTED_AND_VERIFIED con falsificadores permanentes que reproducen los defectos contra el HEAD pre-reparación `bab3bef1` (11 checks FAIL con la suite 62/62 en verde); gate completo re-ejecutado en verde; E7/E8b refutados y F1–F11/G1–G4 sin regresión (re-verificación 25/25 sobre fixtures congelados S2). El challenge del manager sobre este delta y el gate Owner permanecen abiertos; este shot no auto-acepta nada y no despacha I1–I4 ni GOD-COMPOSITION.
+**READY_FOR_MANAGER_REVIEW** — M1–M4 todos CORRECTED_AND_VERIFIED con falsificadores permanentes que reproducen los defectos contra el HEAD pre-reparación `bab3bef1` (10 de 14 checks FAIL con la suite 62/62 en verde); gate completo re-ejecutado en verde; E7/E8b refutados y F1–F11/G1–G4 sin regresión (re-verificación 25/25 sobre fixtures congelados S2). El challenge del manager sobre este delta y el gate Owner permanecen abiertos; este shot no auto-acepta nada y no despacha I1–I4 ni GOD-COMPOSITION.
 
 ## BASE_SHA / REPAIR_SHA
 
 - BASE: `bab3bef170f52d93ab649eb4de973a2bf1e2a5df` — HEAD de `feature/ef-campaign-modes-i0` en `~/go/src/github.com/xKoRx/echo-i0` al inicio; `origin == HEAD == bab3bef1` verificado por fetch antes de escribir; único estado sin trackear: `__pycache__` (bytecode derivado, preservado sin commitear). Implementación S3R1 intacta como ancestro.
-- REPAIR_SHA: **`8105ef6a657e02a319a9df7fa79d4671d6b10932`** — push con readback (`origin/feature/ef-campaign-modes-i0 == HEAD == 8105ef6a`, verificado por fetch posterior). Diff del commit: sólo `economics_report.py` (+389/−100 netos junto con tests y SDD), `test_economics_report.py` y append de la sección I0-S3R2 en el VERIFICATION SDD; `research_lab.py` byte-idéntico (diff 0); nada Go/SDK/runtime/guard/launcher/presets/receipts.
+- REPAIR_SHA: **`01a38c13b0a1b280eefb9d18f6d2b167e3cd8739`** — push con readback (`origin/feature/ef-campaign-modes-i0 == HEAD == 01a38c13`, verificado por fetch posterior). Dos commits sobre BASE: `8105ef6a` (microfix M1–M4) y `01a38c13` (errata documental del SDD: la corrida pre-reparación produjo 10 FAIL de 14 checks, no 11; sin cambio de código). Diff total `bab3bef1..01a38c13`: sólo `economics_report.py`, `test_economics_report.py` y el VERIFICATION SDD; `research_lab.py` byte-idéntico (diff 0); nada Go/SDK/runtime/guard/launcher/presets/receipts.
 
 ## M1–M4 DISPOSITION (todas CORRECTED_AND_VERIFIED)
 
@@ -42,7 +42,7 @@ Controles preservados: E7/E8b refutados sin cambio de mecanismo; F1–F11 y G1�
 
 ## REPRODUCTION_AGAINST_PRE_REPAIR_HEAD
 
-El arnés `~/echo-work/i0-s3r2-verify/falsifiers_m1_m4.py` se creó ANTES de parchear producto y se ejecutó contra `bab3bef1`: **11 checks FAIL** — M1 True→False (mapeo other→RESET_PAID), M2a/b/c/d acreditaban Q=1 (dos de ellos OBSERVED) con cash post-cutoff, net≤0+reverso, cash de B y pooled no reconciliado, M3 registraba el setup en unattributed con F_activation 0, M4 declaraba PROVEN_SAME_REVISION y componía el agregado 240 — con la suite preexistente **62/62 en verde**: los defectos M1–M4 estaban vivos y en verde bajo S3R1. Tras el parche: **14/14 PASS**.
+El arnés `~/echo-work/i0-s3r2-verify/falsifiers_m1_m4.py` se creó ANTES de parchear producto y se ejecutó contra `bab3bef1`: **10 de 14 checks FAIL** (recibo `~/echo-work/i0-s3r2-verify/falsifiers_against_base_bab3bef1.log`, reproducido también contra el módulo BASE extraído por git) — M1 True→False (mapeo other→RESET_PAID), M2a/b/c/d acreditaban Q=1 (dos de ellos OBSERVED) con cash post-cutoff, net≤0+reverso, cash de B y pooled no reconciliado, M3 registraba el setup en unattributed con F_activation 0, M4 declaraba PROVEN_SAME_REVISION y componía el agregado 240 — con la suite preexistente **62/62 en verde**: los defectos M1–M4 estaban vivos y en verde bajo S3R1. Los 4 checks PASS son sub-condiciones que ya se cumplían en BASE (W_credits de ventana, nunca-acreditar con net negativo, F_op 0, account_id None). Tras el parche: **14/14 PASS** (`falsifiers_against_repair_8105ef6a.log`).
 
 ## REGRESSION_EVIDENCE y TCR
 
@@ -82,7 +82,7 @@ DEMONSTRADO: 124/124 suites legacy en el REPAIR_SHA; `research_lab.py` byte-idé
 - `10-projects/Echo Futures/artifacts/backtester/EF-CAMPAIGN-MODES-I0-S3R2-RETURN.md` (este archivo, create)
 - `80-agents/journal/agent-runs/2026-10-29-zcode-glm-5.3-flash-echo-campaign-modes-i0-s3r2.md` (create)
 - `80-agents/journal/logs/2026-10-29-echo-campaign-modes-i0-s3r2.md` (create, change_log)
-- Repo echo: `specs/FEAT-CHALLENGE-HISTORY/changes/CHANGE-001-campaign-modes-i0-economics.VERIFICATION.md` (append sección I0-S3R2, commit `8105ef6a…` push con readback)
+- Repo echo: `specs/FEAT-CHALLENGE-HISTORY/changes/CHANGE-001-campaign-modes-i0-economics.VERIFICATION.md` (append sección I0-S3R2, commits `8105ef6a…` + errata `01a38c13…`, push con readback)
 - Commit Agents-OS: NOT_EXECUTED — el vault `main/` sigue sin `.git` accesible en esta superficie (verificado en S1–S3R1; mecanismo de sincronización gestionado fuera del host; el manager valida en su superficie). Persistencia create-only y delta declarado aquí, sin inventar SHA remoto.
 
 ## PRO_CHAT_POOL_DELTA
@@ -91,4 +91,4 @@ UNKNOWN (no observable desde este shot).
 
 ## NEXT
 
-Manager challenge del delta `8105ef6a` (diff `bab3bef1..8105ef6a`: reporter + tests + SDD). No autoaceptación de gate Owner; I1–I4 y GOD-COMPOSITION siguen sin despachar; manager y programa Echo Futures permanecen abiertos.
+Manager challenge del delta `01a38c13` (diff `bab3bef1..01a38c13`: reporter + tests + SDD, dos commits — microfix `8105ef6a` y errata documental `01a38c13`). No autoaceptación de gate Owner; I1–I4 y GOD-COMPOSITION siguen sin despachar; manager y programa Echo Futures permanecen abiertos.
