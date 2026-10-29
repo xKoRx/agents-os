@@ -83,3 +83,9 @@ Prefijos 16-hex registrados por la continuidad W1-d/W1-e, usados como corroborac
 - Manifests v6 (sólo metadata): `selection-manifest-v6.json`, `capture-manifest-v6.json`, `preregister-v6.json`, `observe-init-v6.json`, `observe-final-v6.json`, `capture-status-v6.json`.
 - `.private-execution/w1f/inputs.json` (12 SHAs autorizados).
 - Código real leído en el checkout @ `7d519eb`: `internal/regimes/{prospect,service,reducer,feeresolver}.go`, `internal/books/reducer.go`, `internal/replay/{replay,manifest}.go`, `internal/experiment/experiment.go`, `cmd/engine/replay.go`.
+
+## Nota de alcance añadida 2026-10-29 (shot W1-g; el preregistro original se preserva íntegro)
+
+- **"Congelado antes de medir" — alcance exacto de la evidencia:** el gate del harness (fallar cerrado si falta el prereg) + el hash del archivo demuestran disponibilidad e integridad del artefacto AL MEDIR; no prueban que la redacción precedió a toda inspección previa (el propio prereg lista como entradas manifests v6 y código fuente leídos antes). La evidencia de orden es la del registro observable de la sesión. Esta aclaración NO invalida el preregistro: delimita qué demuestra.
+- **Carácter técnico del ensayo:** P1–P7 verifican semántica ya establecida por W1-e (regresiones técnicas de la cadena); ninguna predicción aquí es evidencia económica. La "candidata condicional S02-style" documentada arriba era un boceto de gates, no un preregistro económico; el preregistro económico completo de esa candidata es [[Preregistration — PE-005-R1 Economic Candidate W1-g 2026-10-29]].
+- **Errata de composición:** la frase "74 registros marketws (8 libros + 73 eventos no clasificados)" mezcla unidades — 74 son registros de journal `marketws/data`; 8+73=81 son eventos enumerados parseando esos registros (múltiples eventos por registro posible; contadores en `w1f_hypothesis_integration_test.go`). Detalle y desconocido exacto en la errata de [[Research — First Hypothesis W1-f 2026-10-29]].
