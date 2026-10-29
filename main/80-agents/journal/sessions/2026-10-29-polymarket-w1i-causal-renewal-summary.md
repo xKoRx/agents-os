@@ -38,18 +38,15 @@ tags:
 
 ## Trabajo realizado
 
-- Política pura `EvaluateRenewedConstraint` (`internal/regimes/renewal.go`): ancla de frescura en la última renovación admitida bajo doble cota (`received_wall≤t` Y `capture_seq≤seq`), por dimensión, fail-closed, determinista.
-- Cuarentena AsOf con doble cota real enviada (`prospect.go`+`service.go`): `quarantine_at` viaja al gate; wall futuro no contamina; marca sin wall queda admitida (conservador).
-- 15 tests nuevos: sondas puras del contrato + integración sobre store real (sondas W1-e, no-lookahead drain, contrato del ledger, receta V3 con reloj virtual).
-- Bloqueador preciso declarado y wiring NO enviado roto: `migrations/0025_regime_observations.sql` requerido por el contrato y denegado (hook + allowlist); contrato fijado por tests; paso mecanizado en el Plan v3 §4.
-- Sin lock nuevo: sin patrón compatible en el repo; exclusión = obligación del supervisor (documentada), `internal/capture` intacto.
-- Fixture W1-h committeada byte-idéntica (SHA del prereg) — expectativas v1 válidas porque la semántica de producción no cambió.
+- **Segmento 1 (historia):** política pura `EvaluateRenewedConstraint`; cuarentena AsOf con doble cota real; 15 tests; bloqueador preciso de `migrations/0025` declarado; sin lock nuevo; fixture W1-h intacta.
+- **Segmento 2 (misma sesión, continúa):** el lanzador desbloqueó el perfil para `migrations/` (lectura de 0020–0024+embed, escritura de 0025) — el ledger quedó **CONECTADO de verdad**: migración creada desde los esquemas reales (no desde propuestas); `upsertRegimeRevision` registra la observación inmutable en las 3 ramas con provenance real y contadores `ObservationsNew`/`RenewalsNew`; idempotencia `UNIQUE(entity_id, capture_seq, source_ref) DO NOTHING`; `AssetConstraintAsOf` consume el ledger vía la política probada con **chequeo de completitud** (ledger parcial ⇒ ruta legacy fail-closed); `Inspect` expone `observations`; test nativo de ruta REAL (`TestW1IRenewalLedgerNativeThroughService`: T16 invariante antes/después de drenar T20, T20 known con su seq, ledger T0+T20, first_seen T0, re-drain idempotente, restart/rebuild deterministas); fixture W1-h actualizada SÓLO en la expectativa de frescura (renovación re-ancla; historia declarada en el archivo).
+- **Regresión:** regimes/books/replay/capture/cmd-engine PASS; `internal/experiment` rojo en UNA sonda (`TestW1FCaptureV6GateAvailabilityTrial` P5): su premisa es la semántica retraída (ancla init + consulta a seq=frontier, donde la renovación final está legítimamente admitida). El engine es correcto; `regime_digest` invariante. La corrección de 2 líneas está en `internal/experiment/w1f_hypothesis_integration_test.go` — FUERA de la allowlist, denegada por el hook (1 sonda). **Impedimento real ⇒ delta SIN commit** (regla: suite roja no se sella); árbol @ `9e2c6b7` + 4 modificados + migración nueva, todo hasheado. 12 inputs: 7/12 re-verificados (4 `.seg` + `engine.db` denegados al hash por el perfil; récords vigentes).
 
 ## Artifacts creados o modificados
 
-- Repo: commit `9e2c6b7dd26e70a53b05499a2d682ef33f1dac27` (6 archivos, +1773/−14, árbol limpio, sin push).
-- OUT: `validated-baseline/w1-i-causal-renewal-20261029/` (`evidence-manifest.json`, `test-receipt.md`, binario `engine` sha256 `ba75bfb1…cb03b`).
-- Vault: INFORME + PLAN V3 (doc), summary/feedback/agent_run (journal), change_log (sección añadida al log consolidado), continuidad (bullet (21)).
+- Repo (SIN commit, árbol @ `9e2c6b7` + delta): `migrations/0025_regime_observations.sql` (nuevo, sha `89bdbab9…`), `internal/regimes/{reducer.go, service.go, w1i_renewal_integration_test.go}` modificados, `internal/experiment/w1h_acquisition_recipe_test.go` modificada (frescura). Segmento 1 ya commiteado: `9e2c6b7dd26e70a53b05499a2d682ef33f1dac27`.
+- OUT: `validated-baseline/w1-i-causal-renewal-20261029/` (`evidence-manifest.json`, `test-receipt.md` del segmento 1, binario `engine` reconstruido sobre código wired).
+- Vault: INFORME + PLAN V3 actualizados (segmento 2), summary/feedback/agent_run (esta edición), change_log (sección ampliada), continuidad (bullet (21) actualizado).
 
 ## Memoria propuesta o creada
 
@@ -63,5 +60,6 @@ tags:
 
 ## Pendiente
 
-- Shot siguiente (con autorización): crear `migrations/0025` + wiring reducer/service (≈40 líneas mecanizadas, Plan v3 §4) + re-corrida de regresión; recién entonces la receta V3 es adjudicable para captura.
-- Lock de data-dir: bloqueo separado (sin patrón compatible en repo).
+- **Un desbloqueo exacto:** permitir la edición de `internal/experiment/w1f_hypothesis_integration_test.go` (sondas P5 en `a.FirstSeq` — comentario y corrección ya redactados en el informe, §0) o aplicarla el lanzador; luego re-corrida de los 6 paquetes (se espera 6/6) y commit 'Renew causal prospective metadata observations for research' con el subset completo.
+- Lock de data-dir: bloqueo separado (sin patrón compatible en repo), sin cambios.
+- Los 4 segmentos `.seg` + `engine.db` de capture-v6 quedaron sin re-hash este segmento (perfil deniega); sus hashes de récord W1-h siguen vigentes.
