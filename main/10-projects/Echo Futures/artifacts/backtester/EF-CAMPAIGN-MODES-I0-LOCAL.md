@@ -23,7 +23,7 @@ Paquete concreto de implementación del primer incremento de campañas bajo el m
 
 ## Contenido
 
-**Estado C04:** DESIGN_READY_WITH_MINOR_DELTAS para I0; precisiones incorporadas. I0-S1 LOCAL_HANDOFF_READY / NOT_DISPATCHED, código NOT_STARTED, a la espera del despacho que el Owner pidió confirmar tras el dictamen. I0-S2 e I0-S3 preparados, NOT_DISPATCHED hasta retorno/SHA anterior y adjudicación. GOD-COMPOSITION queda reservado, sin ser gate previo de I0. Manager y programa abiertos.
+**Estado post-S1 2026-10-29:** I0-S1 IMPLEMENTATION_CANDIDATE recibido en `feature/ef-campaign-modes-i0@b964e13d`, base `2baf319d`; I0-S2 NEXT/NOT_EXECUTED, I0-S3 y GOD NOT_DISPATCHED, manager/programa abiertos. S04-F01 tiene censo de planes V1 reportado; paridad pendiente.
 
 **Fuente de verdad de diseño:** [[EF-CAMPAIGN-MODES-DESIGN]], revisión C04. **Planificador único:** [[Echo Futures — Optimización de Campañas]]. **Reconciliación:** [[EF-S04-INTEGRATION-RECONCILIATION]]. No se crea otro planner, manager, DSL o motor.
 
@@ -239,6 +239,17 @@ No escribir planner compartido ni modificar los informes de S1/C02. Agents-OS s�
 6. Probar input intacto, output determinista, no escritura sobre recibos/legacy y cero spawn/egress mediante sentinel del proceso. Revisar imports/rutas que podrían invocar run/resume.
 7. Ejecutar regresiones afectadas contra base/candidato y evaluar coverage nuevo por invariantes. No limpiar ni ocultar fallos preexistentes. Revisar la disposición S04-F01: plan sellado y fixture sólo respaldan su alcance exacto; si permanece UNKNOWN, no llamarlo corregido.
 8. Si encuentras un defecto, registrar esperado/real/archivo/coordenada/mínima corrección; NO corregir producto.
+
+8. Falsificadores SOURCE focales del manager (a REPRODUCIR o REFUTAR; no se consideran tests ya ejecutados):
+   - P1: refunds suman cash pero `cash_final_projected`/`cash_residual` usan gross costs sin refunds. Opening200/PURCHASE100/REFUND100/final200 debería conciliar en cero.
+   - P1: `Q` agrega cada `paid_out` sin exigir los `passed` y `activated` calculados; crédito sin pase o activación acreditada no puede generar compra→primer cobro demostrada.
+   - P1: `_account_funded_evidence` admite `review_at`; cuenta PASS_REVIEW aún no activada no cuenta como funded iniciada.
+   - P1: cutoff previo al último flujo compara cash parcial con `cash_final` terminal; exigir cash a frontera comparable o UNKNOWN, no residual falso.
+   - P2: `_ts` es comparación lexicográfica y no normaliza offset RFC3339; probar UTC equivalente y timestamp ausente bajo cutoff.
+   - P2: `funded_since` usa `credentials_at` y puede computar setup/activation como F_op funded anterior a activación; separar fase, no sumar dos veces.
+   - P2: dos PURCHASE del mismo AccountID, bundles y reintentos; no usar AccountID distinto como proxy universal de raíz comercial sin evidencia.
+   - P2: dos attempts con mismo campaign_id y SHA distinto no son necesariamente revisiones del mismo receipt; demostrar la relación o devolver UNKNOWN.
+   Para cada punto: expected/actual, caso independiente, causa, severidad, reproducción y destino del fixture. El verificador no corrige producto ni ejecuta Go/campañas. Hallazgo no reproducido debe quedar identificado como tal.
 
 /verify
 
