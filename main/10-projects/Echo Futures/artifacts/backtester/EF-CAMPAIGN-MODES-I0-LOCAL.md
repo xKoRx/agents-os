@@ -272,6 +272,23 @@ Devolver STATUS; BASE/CANDIDATE_SHA; INDEPENDENT_E2E; FINDINGS con severidad/esp
 El manager adjudica el alcance de corrección. No aceptar el gate Owner ni iniciar I0-S3 por tu cuenta.
 ```
 
+### MANAGER POST-S3R1 — I0-S3R2 FINAL MICROFIX (2026-10-29; VIGENTE)
+
+**STATUS: READY_FOR_DISPATCH / NOT_EXECUTED. Gate I0 BLOCKED_FOCUSED.** Echo repo `xKoRx/echo`, branch `feature/ef-campaign-modes-i0`, BASE `bab3bef170f52d93ab649eb4de973a2bf1e2a5df` (descendiente de `4ff32724`). Resolver HEAD y WIP primero. Retorno S3R1 [[EF-CAMPAIGN-MODES-I0-S3R1-RETURN]]. No reabrir G1–G4 ni F1–F11: **sólo M1–M4 de manager SOURCE review**.
+
+**Mandato:** GLM-5.3-Flash LOCAL Hefesto, ONE-SHOT y un writer. Bootstrap agents-os/master, planner, diseño C05-R2, S3R1 retorno, `platform_research.go`, `platform_campaign.go`, reglas SDD 08/09. Primero 4 falsificadores que fallen en BASE; después parche mínimo dentro de `economics_report.py`, `test_economics_report.py` y append SDD VERIFICATION. `research_lab.py`, Go/SDK/runtime/guard/launcher y datos sellados READ_ONLY. No campañas, motores, compras, trading, despliegues ni merge del producto.
+
+**M1 P1 — mapeo `research_funding` sellado:** fixture Go-faithful PURCHASE100, RENEWAL60, STOW_FEE400, PLATFORM_FEE100, funding {purchase100,renewal60,other500,total660} ⇒ `sums_by_assignment_reconcile=True`, checks 4/4. El mapping actual other→RESET_PAID y total→EVAL_COST es incorrecto: corregir. TCR al test G4 positivo S3R1 que considera RESET_PAID como other_spend; preservar su intención y añadir control negativo sin renombrar RESET como fees. Si el evento reset no tiene término comparable Go, marcar UNKNOWN explícito.
+
+**M2 P1 — Q requiere primer cash positivo dentro del scope/cutoff:** no contar CREDITED con `net<=0`; no usar reversos o cash post-cutoff como `payout_cash_observed`. Fixture pago positivo A CREDITED previo al cutoff pero único PAYOUT_COLLECTED posterior ⇒ Q no acreditado/q UNKNOWN, W_credits=0 en ventana. Fixture pago neto0/negativo + sólo PAYOUT_REVERSED ⇒ Q no acreditado. Cash de B/total no reconciliado no acredita A por mera existencia de efecto. Corroborar `PAYOUT_COLLECTED` positivo con pagos reales, evitar inventar enlace por importe/fecha; si no es demostrable, INCOMPLETE_LINEAGE y gaps. Preservar dos payouts positivos de una raíz Q=1 y reverso posterior legítimo.
+
+**M3 P2 — setup conocido sin account_id:** Go `paySetupFees` usa `cashEvent` sin AccountID para STOW_FEE/PLATFORM_FEE. Clasificar por kind Go como `F_activation_setup_external` a nivel campaña (ejemplo 400+100=500), F_op=0 y cuenta/linaje UNKNOWN; no inferir account_id de orden de archivo ni `compliant_at`.
+
+**M4 P2 — revisión request incompatible:** igual campaign_id/attempt_id con revision_index 0,1 pero different immutable request/config/policy ⇒ no `PROVEN_SAME_REVISION`; conservar ambos spends, `UNKNOWN_EXECUTION_RELATION`, agregado NOT_COMPOSABLE. Mismo request sellado con cadena explícita mantiene revisión válida. RunID sigue identidad de inputs, no física.
+
+**Gate:** 62+N reporter; 124 legacy; frozen 25/25 sin regresión; E2E R03 doble byte-idéntico U58/P10/804/cash0 y 4/4 MATCH; no-spawn sentinel, input sha256 intacto, coverage AST≥95% con denominador, diff sólo allowed, push con readback. Si bloqueo económico real, PARTIAL/BLOCKED con dependencia; no otra auditoría amplia. Retorno create `EF-CAMPAIGN-MODES-I0-S3R2-RETURN.md`, agent-run/change_log propios, append VERIFICATION SDD. No autoaceptar merge ni despachar I1–I4/GOD. Manager y programa OPEN.
+
+
 ### MANAGER POST-S3 — revisión focal I0-S3R1 (2026-10-29, vinculante)
 
 **STATE: I0-S3 candidate SOURCE_VERIFIED_WITH_MATERIAL_FINDINGS; I0-S3R1 READY_FOR_DISPATCH / NOT_EXECUTED; Owner gate no aceptado.**

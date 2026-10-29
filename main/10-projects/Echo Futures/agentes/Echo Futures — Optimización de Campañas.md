@@ -29,6 +29,18 @@ updated: "2026-10-28"
 > **Lectura del estado ClutiFX:** priorizar [[10-projects/Echo Futures/artifacts/clutifx-strategy-research/e05r1/CLF-E05R1-STATUS|E05R1]] y [[10-projects/Echo Futures/artifacts/clutifx-strategy-research/k05/CLF-K05-SOURCE-CERTIFICATION|K05]] frente a conclusiones históricas Q04 superseded. El catálogo de la biblioteca existe; E05R1 conserva OWNER_ACCEPTANCE REVIEW. La línea no depende de que ClutiFX tenga éxito.
 
 
+## Estado vigente I0-S3R1 — adjudicación final de fuente (2026-10-29)
+
+**I0-S3R1 DELIVERED en Echo `feature/ef-campaign-modes-i0@bab3bef170f52d93ab649eb4de973a2bf1e2a5df`. I0_GATE: BLOCKED_BY_FOCUSED_CONTRACT_FINDINGS; I0-S3R2 FINAL_MICROFIX READY_FOR_DISPATCH / NOT_EXECUTED. Echo master sigue `2baf319d`; S04-F01/F02 abiertos; PROD FROZEN; manager y programa abiertos.** Esta sección sustituye el estado I0 de las secciones históricas siguientes.
+
+- Alcance GitHub comprobado: un commit desde `4ff32724` cambia sólo `economics_report.py`, tests y VERIFICATION SDD. Worker reporta 62/62 reporter, 124/124 legacy, 25/25 frozen, E2E R03 determinista U58/P10/coste804/residual0, sentinel no-spawn y cobertura445/445. Manager CLOUD verificó source/diff/return, NO reejecutó Hefesto.
+- **M1 P1, Go↔reporter:** `platform_research.go::finishResearchFunding` define `other_spend=STOW_FEE+PLATFORM_FEE` y `total_spend=PURCHASE+RENEWAL+STOW_FEE+PLATFORM_FEE`. Python vincula other_spend a RESET_PAID y total sólo EVAL_COST, falso mismatch con fees no cero; test positivo G4 autor usa mapping erróneo. R03 tiene other0.
+- **M2 P1, primer payout:** `_q_lineage` acepta pagos CREDITED de net<=0 y `payout_cash_observed` de cualquier cash effect, incluso reversos/otro account/post-cutoff; puede probar Q sin `PAYOUT_COLLECTED` positivo recibido dentro de la ventana. Exigir corroboración del cash y alcance/atribución sin inventar IDs.
+- **M3 P2, fees:** Go emite STOW_FEE/PLATFORM_FEE por `cashEvent` sin AccountID. Son setup por tipo contractual aun si no atribuibles a cuenta; Python hoy los registra fase UNKNOWN. Sumar setup por campaña, mantener AccountID UNKNOWN y F_op sin setup.
+- **M4 P2, revisions:** iguales attempt_id+revision_index no autorizan supersesión si los requests/config sellados difieren; comprobar identidad inmutable, caso contrario UNKNOWN_EXECUTION_RELATION.
+- Próximo mandato **I0-S3R2 final microfix**, sin reabrir once F ni cuatro G generales, en [[EF-CAMPAIGN-MODES-I0-LOCAL]]. Únicamente reporter/tests/SDD; no Go, nuevas campañas, gastos, trading, merge o deploy. Manager decide integración post retorno. PRO_CHAT_POOL_DELTA UNKNOWN.
+
+
 ## Estado vigente I0-S3 — challenge de manager (2026-10-29)
 
 **I0-S3 SOURCE_DELIVERED / REVIEWED_WITH_BLOCKERS. Echo branch feature/ef-campaign-modes-i0 HEAD `4ff327247f3c369ce3aded5bc577bcebc64ecc61` (implementation `a98914c79b35900fdba51b1fd1403cf4d63bfd9f`); dos commits sobre S2 b964e13d, sólo economics_report.py, sus tests y VERIFICATION SDD. I0_GATE: BLOCKED_TARGETED_CORRECTNESS; next I0-S3R1 LOCAL_FOCUSED_REPAIR / NOT_EXECUTED. S04-F01/F02 abiertos; PROD FROZEN; manager/programa abiertos.** Este bloque supersede sólo el estado I0-S3 READY_FOR_DISPATCH de secciones anteriores. No reescribe el retorno [[EF-CAMPAIGN-MODES-I0-FINAL-RETURN]].
