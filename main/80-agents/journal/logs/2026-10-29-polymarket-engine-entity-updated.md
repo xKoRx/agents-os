@@ -233,3 +233,38 @@ tags:
 ### Rollback
 
 - Repo: `git revert a20e617` (local; sin push; base `62a819d` intacta). Vault: eliminar las 2 notas W1-j, los 3 registros journal, esta sección y el bullet (24)/"Siguiente paso" de la continuidad (historia W1-i restaurable del marcador). OUT W1-j es aditivo; `episode/` conserva la evidencia del lote 1.
+
+---
+
+## 2026-10-29 (W1-j lote 2) — priorización de discovery corregida (query descendente, selección ascendente client-side); segundo lote REAL cerrado NO_ELIGIBLES con rango REAL; gofmt verificado de verdad
+
+### Cambio
+
+- **Tipo:** updated (continuación focal de la misma GLM `sess_6c7409c6…`; lote 2 autorizado por Metis)
+- **Archivo(s):**
+  - `10-projects/Personal/Polymarket Engine/Research — Single Episode Public Pilot W1-j 2026-10-29.md` (sección LOTE 2 añadida arriba; historia del lote 1 preservada íntegra)
+  - `10-projects/Personal/Polymarket Engine/Plan — Executable Single Episode Pilot W1-j 2026-10-29.md` (sección LOTE 2 con estado, lectura estructural y próxima decisión)
+  - `Polymarket Engine — Continuidad Five-POC 2026-09-20.md` (bullet (25) lote 2; "Siguiente paso" actualizado con historia del lote 1 preservada íntegra)
+  - `80-agents/journal/sessions/2026-10-29-polymarket-w1j-single-episode-summary.md`, `…w1j-single-episode-feedback.md` (fricciones 5–7), `…zcode-glm-5.3-flash-polymarket-w1j-single-episode.md` (sección lote 2), este change_log (sección añadida)
+  - Repo externo (fuera del vault): commit LOCAL **`1070dbf8d28bf19b7224dff400a45ac24b26c614`** «Correct prospective discovery priority for bounded second lot» (6 archivos, +271/−111, sobre `a20e617` preservado sin amend; `diff --cached --check` vacío; árbol limpio; sin push): `cmd/researchpilot/discovery.go` (query `ascending=false` + `kickoffPrepMargin=95m` + rango/déficit en el cierre de lote vacío + reglas v2), `discovery_test.go` (query codificada en el wire vía httptest + selección que descarta pasado/incompleto/horizonte), `supervisor_test.go` (destinos de recibo a OUT2 como paths literales; referencia privada del lote 1 retirada), y normalización gofmt real de `economics.go`/`economics_test.go`/`supervisor.go`.
+  - OUT2 (fuera del vault): `validated-baseline/w1-j-single-episode-pilot-20261029-lot2/` — `offline-preflight.json` (9/9 casos + SHA de los 7 fuentes finales; archivo `8f1f446d…`), `inputs.json` (`7bf3d27c…`; destino movido a OUT2 según adjudicación), `discovery-rules.json` v2 (`30eaf86a…`), `selection-manifest.json` (1 GET, HTTP 200, 100 inspeccionados, 0 sellados, página `157a4b03…`), `discovery-budget.json` (1/3 requests, 100/100 candidatos, exhausted), `prepared-plan.json` (`c4ffd64b…`), `run-outcome-.json` (terminal `NO_ELIGIBLES_EN_LOTE`, exit 0, 20:03:47Z), `episode/` (página cruda durable, capture_seq 2), binarios `engine` (`3e604614…`) y `pilot-supervisor` (`01cba874…`). OUT1 y `.private-execution/w1j-lot2/inputs.json` (mapa inmutable del auxiliar, 12 artefactos capture-v6) intactos.
+
+### Motivo
+
+- Adjudicación Metis del lote 2: corregir la priorización server-side a `ascending=false` conforme prereg v2 §3 conservando la selección final client-side por primer kickoff ascendente elegible con ventana íntegra; presupuesto NUEVO 3 GET/100 candidatos; cierre honesto con rango si no hay elegibles; sin tocar estrategia/params/semántica del supervisor y sin más búsquedas.
+
+### Fuentes usadas
+
+- Mandato del lote 2, `.private-execution/w1j-lot2/{inputs.json,source-paths.json,workspace-preflight.json}`, informe/plan W1-j (lote 1), continuidad §18 bullet (24), y fuente propia @ `a20e617`.
+
+### Resolución aplicada
+
+- Dos decisiones separadas en código y tests: la consulta DESCIENDE (priorización server-side hacia los kickoffs más poblados) y la selección FINAL es client-side por primer cluster elegible por K ascendente con ventana íntegra (margen 95 m: discovery termina ≤K−95m). El cierre de lote vacío ahora registra el rango REAL de kickoffs parseables recibidos y el déficit por razones. Correcciones de atajos aplicadas y declaradas: compilar/testear no verifica gofmt (verificado con `gofmt -l` vacío sobre los 7 paths; el drift del lote 1 quedó normalizado en este commit); el orden server-side erróneo del lote 1 fue fallo de implementación, no ausencia de universo; los 100 elegibles de W1-d (Nov 18) no respaldan futuros ≤26h hoy. **Resultado del lote 2: 1 GET, 100/100 candidatos, 0 sellados, 0 elegibles — rango REAL [2026-11-20T01:00:00Z .. 2027-03-06T19:00:00Z], déficit «beyond 26h» ×100; recibo terminal exit 0 (20:03:47Z); captura/replay/análisis NOT_RUN con causa; sin tercer lote ni más requests.** Lectura estructural: con una página de 100 candidatos ningún dirección alcanza el extremo opuesto del catálogo — el lote no demuestra presencia ni ausencia de partidos cercanos.
+
+### Validación
+
+- gofmt `-w` y `-l` (stdout vacío) sobre los 7 paths absolutos; suite completa PASS sobre fuente final (exit 0, ~7,3 s) con recibos producidos por TestMain en OUT2 (gate del hook denegó la suite 2 veces hasta que OUT2 existió, los destinos quedaron como literales en fuente y la referencia privada del lote 1 salió — fricción documentada sin variantes; un fallo real del fixture de horizonte corregido antes del PASS); builds exit 0 con SHA medidos; `diff --cached --check` vacío; `git show --stat` con los 6 archivos; 12 inputs del auxiliar intactos; OUT1 intacto; OOS jamás consultados (0 sellados); sin órdenes/auth/live; WS jamás abierto; workspace ~3,1 GB ≪ 8 GB.
+
+### Rollback
+
+- Repo: `git revert 1070dbf` (local; sin push; `a20e617` intacto). Vault: revertir las secciones LOTE 2/bullet (25)/fricciones 5–7 (historia del lote 1 restaurable del propio texto). OUT2 es aditivo y puede archivarse; OUT1 y PRIVATE no fueron tocados.
