@@ -384,3 +384,40 @@ tags:
 ### Rollback
 
 - Repo: descartar el delta sin commit (`git checkout -- cmd/researchpilot/{supervisor,supervisor_test,economics,economics_test}.go`); HEAD `d913f26` intacto, nada que revertir. Vault: revertir las secciones CIERRE CIENTÍFICO y el bullet (29)/"Siguiente paso" de la continuidad (historia preservada en el propio texto). El directorio de revisión es aditivo y queda vacío hasta la corrida.
+
+---
+
+## 2026-10-29 (W1-j cierre científico EJECUTADO) — formas exactas PASS, commit `20da289c`, 72 rechazos descompuestos con réplica exacta; gate v0.1 estructural
+
+### Cambio
+
+- **Tipo:** updated (misma sesión GLM reanudada; el lanzador registró las formas exactas de toolchain que el bloqueo anterior exigía)
+- **Archivo(s) del vault:** las 7 notas W1-j (secciones CIERRE CIENTÍFICO actualizadas a ejecutado; el estado BLOCKED/SIN COMMIT del bloque anterior queda como historia), este change_log (sección añadida).
+- **Repo:** commit LOCAL **`20da289c9a6efa0f0e8a5bf5615dc357ee6a75b2`** «Validate W1-j scientific revision» (los 4 archivos de la allowlist, +1235/−27, sobre `d913f26` sin amend; árbol limpio; sin push). SHAs finales de fuente: `supervisor.go` `5cac35ca…`, `supervisor_test.go` `067a1233…`, `economics.go` `42e46a3e…`, `economics_test.go` `bb1b970c…`.
+- **OUT (ruta nueva, generado por la corrida):** `validated-baseline/w1-j-single-episode-pilot-20261029-lot3/analysis-revision-w1j-20261029/` — `analysis-revision-w1j-ep-20261029T2230-identity.json` (SHA `93e7fe798736e650e9d943fedcec5716ebc9b7b0b94f440bd5524a84ee43f62d`), `offline-preflight.json` (`b8a5182f…`, 9/9 casos + SHA de fuentes finales), `inputs.json` (`66a52d63…`, IDÉNTICO al recibo del lote 3 ⇒ 12 inputs corroborados), binario `pilot-supervisor` (hash denegado 3× por el gate; vinculado por commit + forma de build registrada).
+
+### Motivo
+
+- Completar la verificación exigida por el mandato de cierre: gofmt, suite, build y análisis nativo offline; generar la derivación en la carpeta NUEVA; decidir el próximo paso con datos.
+
+### Ejecución (formas exactas, en orden)
+
+- gofmt `-w`/`-l` (stdout vacío) sobre los 4 paths absolutos — 3 corridas. `go test -p 1 -count=1 -timeout 15m ./cmd/researchpilot` (GOTOOLCHAIN=local, GOPROXY=off, GOSUMDB=off, GOFLAGS=-mod=readonly, GOCACHE/GOMODCACHE en validated-baseline, GOMAXPROCS=2/GOMEMLIMIT=1536MiB, prlimit as=2GiB/cpu=900): 2 FAIL de compilación por bugs ordinarios propios (`scenRuntime` local usado a nivel paquete; llave de cierre faltante en el literal del mapa de escenarios — `inst`/`fee` cayeron dentro del literal `revisionScenario`), corregidos y revalidados; luego PASS 14,564s y validación final 15,067s. `go build -p 1 -o <revisión>/pilot-supervisor ./cmd/researchpilot`: exit 0 (×2). `pilot-supervisor analyze --root … --out <revisión> --engine <OUT3>/engine --plan prepared-plan-identity.json`: PASS ×2 — salida: **INCONCLUSIVE (revision): frames 18393/18400 usable, rejections A=36 S=36 combined=72, last usable frame 2026-10-29T22:21:22.701294841Z**.
+- Correcciones de diseño previas a la primera corrida (ambas dentro de los 4 archivos): `runAnalyze` lee seal/análisis original junto al EPISODIO (`outDirOf(plan)`) y despacha al generador de revisión cuando `--out` es una ruta distinta; la réplica del nivel L incluye el mid del frame de señal (la estrategia apendea en Detect ANTES de que Evaluate lea `referenceLevel` — verificado en fuente `sports.go`).
+- Denegaciones registradas sin bypass: `sha256sum` del binario de revisión ×3 y denegaciones transitorias por invocación en lote paralelo (mitigación: llamadas únicas secuenciales).
+
+### Resultado por escenario (artefacto `93e7fe79…`; sin P&L; fee UNRESOLVED)
+
+- **A_conditional_500 (intervalo [0,500] al upper bound; fórmula documentada):** 36 widenings detectados, 0 aceptados, 36 rechazados, 0 inconclusos; net edge min/mediana/max **−1419/−1215/−1069 bps** del notional de entrada; shortfall 1,119–1,469 bps bajo el umbral congelado de 50.
+- **S_stress_1000 (point 1000; estrés legacy separado):** 36/0/36/0; **−2397/−2204/−2066 bps**; shortfall 2,116–2,447 bps.
+- **Combinados:** 72 = el MISMO conjunto de 36 widenings × 2 escenarios (jamás 72 oportunidades independientes); 72/72 filas `replication_match=true` contra el NET_EDGE_BPS emitido; causa uniforme `REVERT_INSUFFICIENT_AFTER_COSTS`; por fila: spread/ref emitidos y replicados, widening, profundidad observada (62k–93k en el top del libro), tamaño virtual 36,76–73,52 acciones, VWAP/notional/fee de entrada al bound (~1,25 a 500 / ~2,50 a 1000), notional/fee de salida a L, B\*.
+- **Cobertura (timestamps reales):** envelope [21:00:04.925 → 22:21:22.701] = 81,30 min, 6 segmentos, gaps 5,95–13,41 s; deriva record-6 −338,84 s al inicio, −336,76 s al fin vs el kill-cap 22:27:00Z jamás disparado (stop 0/timeouts 0/late 0); tres fines distinguidos (libro usable / frame admitido 9681→9200/0 / proceso 22:21:33.851576833Z + launcher 22:21:35.541Z con provenance); H=300 sólo hasta 22:16:22.701294841Z.
+- **Hallazgo para la decisión (contrafactual aritmético etiquetado, no certificación):** L < VWAP de entrada en las 36 señales ⇒ a fee 0 el mejor net-at-reference sería ≈ −73 bps < 50 ⇒ el gate v0.1 es ESTRUCTURAL a cualquier fee ≥ 0; la certificación de fee sigue pendiente para REAL_FEE_READY pero no cambia el veredicto. Próximo paso: decisión de diseño del estimando/modelo de salida v0.1 (Metis/Owner, preregistro), NO otra captura.
+
+### Validación
+
+- Las cinco formas exactas ejecutadas y PASS; `git status` limpio post-commit con los 4 archivos; original `8fc7ec9d…` re-medido intacto al cierre; OUT3/recibos/raw/OOS/12 inputs intactos; sin requests de red de datos, sin órdenes/auth/live; PASS técnico de la revisión ≠ validación de rentabilidad (científico INCONCLUSIVE).
+
+### Rollback
+
+- Repo: `git revert 20da289c` (local; sin push; `d913f26` intacto). OUT: el directorio de revisión es aditivo y puede archivarse; OUT3 sellado no fue tocado. Vault: revertir las secciones CIERRE CIENTÍFICO EJECUTADO y los bullets (30)/"Siguiente paso" (historia preservada en el propio texto).
