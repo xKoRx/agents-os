@@ -113,3 +113,9 @@ Use 1-5, where 1 is poor and 5 is excellent.
 ## One Next Improvement
 
 - Incluir en el mensaje del mandato la lista EXACTA de paths autorizados y denegados por el hook por-shot (o pegar source-paths.json), eliminando las probes de descubrimiento que dominaron la fricción de esta sesión.
+
+## Segment 2 Addendum (misma sesión, continuación)
+
+- **Fricción nueva:** el perfil de continuación desbloqueó `migrations/` y recibos puntuales, pero NO anticipó el radio de colisión del cambio de contrato sobre los fixtures técnicos: `TestW1FCaptureV6GateAvailabilityTrial` P5 quedó roja por premisa retraída (ancla init + consulta a seq=frontier, donde la renovación final está legítimamente admitida) y su corrección de 2 líneas en `internal/experiment/w1f_hypothesis_integration_test.go` fue denegada por el hook (1 sonda de escritura). Regla "suite roja no se sella" ⇒ delta sin commit: el trabajo correcto queda retenido por un archivo ajeno de una línea.
+- **Menor:** hashes por lotes denegados según el tipo de path (6 JSONs pasaron; `.seg`/`engine.db` no, ni de a uno); forma `go test -run` denegada (sólo paquete completo); `sha256sum` del primer lote de 6 inputs sí pasó.
+- **Propuesta:** cuando un mandato autoriza un cambio de semántica, incluir en la allowlist por-shot los fixtures que fijan esa semántica (aquí W1h sí, W1f no), o preveer un paso del lanzador para aplicar el patch de expectativa adjunto.
