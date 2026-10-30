@@ -25,7 +25,7 @@ tags:
   - tech/polymarket
   - topic/prediction-markets
 created: 2026-09-15
-updated: 2026-09-23
+updated: 2026-10-30
 ---
 
 # Polymarket Engine — MVP
@@ -762,7 +762,19 @@ Aplica a strategies promovidas, no al Engine MVP. Reglas:
 - **Excluido:** `fix/u02-buy-shares-accounting` / `d5ce263` (`PATCH_NOT_ACCEPTED_FOR_V2`). Tag `archive/u02-patch-not-accepted-for-v2`. Autoridad [[u02-v2-cash-confirmed]].
 - **Sports Reversion:** E2 entregado 2026-09-21 con **cero código**; nada que mergear. Worktree `feature/five-poc-integration` conservado para esa sesión.
 
+### W1-n — cobertura sintética del déficit de profundidad de ENTRADA (2026-10-30)
+
+- [x] Test nativo del harness: señal REALMENTE aceptada + frame siguiente con profundidad observada `0.009` ⇒ estado `sufficiency_deficit` con razón exacta, patas de entrada/salida y P&L en null explícito (serializados), agregados vacíos y veredicto `INCONCLUSIVE` (nada de fila ni P&L fabricate) #owner/me #type/dev #area/personal
+- [x] Borde exacto del paso de acción: profundidad `0.01` ⇒ tamaño `0.01` y round trip con fills y contabilidad exacta en ambos escenarios (`0.005`/`0.00025` entrada; `0.0059`/`0.000295` salida; bruto `0.0009`; neto `0.000355` en A y `-0.00019` en S; `B*` `0.5526315789473684`/`0.6111111111111111`) #owner/me #type/dev #area/personal
+- [x] Caso bajo presupuesto: profundidad `10` con presupuesto que permite `50` ⇒ entrada `5` y ejecución normal (ser menor que el presupuesto completo NO es déficit) #owner/me #type/dev #area/personal
+- [x] Deficiencia en el frame de SEÑAL ⇒ la estrategia congelada rechaza (`INSUFFICIENT_DEPTH`) y el harness no inventa fila #owner/me #type/dev #area/personal
+- [x] Redirección de `revisionOutDir` antes de cualquier test/build (ruta W1-n) y verificación completa: focal + chequeo de mutación + suite de 3 paquetes + build + `gofmt -l` vacío + `git diff --check` limpio; commit local `6249aab` sin push #owner/me #type/dev #area/personal
+- [ ] **Owner:** fijar en el próximo preregistro la regla de L (si `ref` y si `L` incluyen o excluyen el frame de señal); hoy el código excluye el frame en `ref` (pre-append) y lo incluye en `L` (post-append), ambas compatibles con el «≤t» de la v2 — W1-n no adjudicó ni calculó la sensibilidad #owner/me #type/research #area/personal
+- [ ] **Owner:** evidencia mínima por mercado/asof para `REAL_FEE_READY` (autoridad documental fechada del mapeo `base_fee`/`fd.r` ⇒ tasa aplicada + trades reales del mismo asset en ventana con `fee_rate_bps`), distinguiendo fórmula probada de parámetros reales del venue #owner/me #type/research #area/personal
+
 ## 📆 Bitácora
+
+- 2026-10-30 (W1-n): cobertura sintética directa del estado `sufficiency_deficit` de ENTRADA del harness `cmd/researchpilot` (hueco que W1-m dejó abierto): 5 tests sobre el flujo real capture → books → regimes → estrategia congelada → analyze; regla canónica `floor2(min(25/bestAsk, profundidad observada))` preservada y «suficiente» explicitado; commit local `6249aab` (2 archivos, +578/−1), sin push, `economics.go` intacto; focal verde con **chequeo de mutación** que prueba que las aserciones se ejecutan, suite de 3 paquetes verde, build exit 0, `gofmt -l` vacío y `git diff --check` limpio. Sin captura, sin episodio real, sin OOS, sin live; `REAL_FEE_READY=false`; la regla de L sigue pendiente de decisión del Owner. Ver [[Research — Entry Depth Regression W1-n 2026-10-30]].
 
 - 2026-10-30: setup MiniMax validado; nuevo supervisor con selección explícita y guard de respaldo; producto sin nuevas ejecuciones. Ver [[Setup — MiniMax CLI 2026-10-30]].
 
