@@ -11,6 +11,7 @@ related:
   - "[[Copilot CLI]]"
   - "[[ZCode]]"
   - "[[ChatGPT]]"
+  - "[[MiniMax M3.1 Flash]]"
 aliases: []
 tags:
   - kind/doc
@@ -30,8 +31,9 @@ Este directorio centraliza las superficies autorizadas para trabajar sobre el Se
 
 ### Contrato de identidad
 
-- **Superficies registradas:** [[Codex]], [[Claude Code]], [[Cursor]], [[Antigravity]], [[Copilot CLI]], [[ZCode]] y [[ChatGPT]].
+- **Superficies registradas:** [[Codex]], [[Claude Code]], [[Cursor]], [[Antigravity]], [[Copilot CLI]], [[ZCode]], [[ChatGPT]] y [[MiniMax M3.1 Flash]].
 - **Identidad atribuible:** cuando un schema admita `agent_surface`/`agent_model`, debe usar el perfil canónico de la superficie y el modelo exacto reportado para ese trabajo; no agregar esos campos a tipos que no los soportan.
+- **Superficies con modelo fijo:** [[Ariadna]] y [[MiniMax M3.1 Flash]] declaran su modelo base en el perfil; el resto usa `model: dynamic`. Un modelo usado dentro de otra superficie sigue atribuyéndose a esa superficie (por ejemplo [[ZCode]] × `minimax/MiniMax-M3.1-Flash`), no a la entrada del modelo.
 - **Registro de ejecución:** `80-agents/journal/agent-runs/` mediante [[agents-os-agent-run-register]].
 - **Clave de comparación:** `agent_surface × agent_model`; un cambio de cualquiera crea otro run atribuible.
 - **Modelo:** identificador exacto reportado por el host o usuario; `unknown` si no existe evidencia, nunca inferido.
