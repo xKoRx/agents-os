@@ -27,9 +27,9 @@ El candidato C06 pasó de fail-closed incompleto a **capacidad materialmente ent
 | BASE_SHA | `2baf319ddcba622d9557bc9f23a13787b44c58a7` (master remoto sin mover; ancestry verificado) |
 | EXACT_REVIEWED_SHA | `062b6df77845d2042e398bb6174700e80bb58b60` (el SHA exacto que S03/S03R1 revisaron) |
 | BRANCH | `feature/ef-campaigns-go` (remoto `origin/feature/ef-campaigns-go` == local, readback verificado) |
-| FINAL_SHA | `baca3c602e57d53a48f79f5c6c6c300d27e980df` |
-| BUILD_SHA256 | `4b09aebfb8a7be35f00a5f8dfc2cf1bdba54210b9e21189cb6dc9ffcfbbc5d27` (`go build -trimpath -buildvcs=true`, `vcs.modified=false`) |
-| DIFF_SCOPE | 31 archivos, +5.706/−165, 16 commits sobre `062b6df7` (7 del autor S02 + 16 de este shot) |
+| FINAL_SHA | `a22970c85d139c81c919aafac69f4bf6ceaf5dcd` (remoto `origin/feature/ef-campaigns-go` == local, readback verificado) |
+| BUILD_SHA256 | `9769039d69d26ddb54b953ad2a9eb289a6ac9d6c7f5bd9faf1392bac5c939c35` (`go build -trimpath -buildvcs=true` en FINAL_SHA) |
+| DIFF_SCOPE | 31 archivos, +5.706/−165, 17 commits sobre `062b6df7` (7 del autor S02 + 16 de producción/pruebas de este shot + 1 documental de VERIFICATION/TASKS) |
 | Superficie nueva | `campaign_v2_sealed.go` (autoridades selladas de producción), `campaign_v2_candidate.go` (loader de preset sellado + derivador v2 de candidata), 2 TCR |
 | AGENTS_OS_PATHS_SHA | este retorno: `10-projects/Echo Futures/artifacts/backtester/EF-CAMPAIGN-MODES-GO-S04-RETURN.md` (create-only); delta del planner: `10-projects/Echo Futures/agentes/Echo Futures — Optimización de Campañas.md`; run-register: `80-agents/journal/agent-runs/2026-10-30-zcode-glm-5.3-flash-echo-c06-go-s04.md` |
 
@@ -166,7 +166,7 @@ La #2 tiene la mejor fracción observada de la parrilla, pero con muestra corta,
 | `go test ./v3/backtester/cmd/echo-backtest -run 'TestS04D1\|TestGateCanary\|Lab\|Migrate' -count=1` | verde |
 | **Corpus del verificador (bytes intactos, vía copia a worktree aislado)** | **15/21 PASS, 5 FAIL** — los 5 FAIL son **exactamente las mutaciones TCR**: el flip NF2 ahora corre limpio (assert pedía error) y los rechazos de heterogeneidad/FUNDED-multi/segundo-perfil ahora nombran la causa correcta y más fuerte ("declare the sealed mm_catalog", "resolves to no declared profile v2"). Ninguno es defecto nuevo |
 | Go-only sandbox sin python3 | ok + `lab migrate --materialize-v2` exit 0, 28 artefactos, 104 filas |
-| `go build -trimpath -buildvcs=true ./v3/backtester/cmd/echo-backtest/` | limpio, SHA256 `4b09aebf…` |
+| `go build -trimpath -buildvcs=true ./v3/backtester/cmd/echo-backtest/` | limpio, SHA256 `9769039d…` |
 | Capacidad | K=5 simultáneas: 5 compras, cash 2.380 USD, reconciliado, `CONTINUOUS_HORIZON_COMPLETE`, wall 5,05 s |
 | `-race` | **NOT_EXECUTED** — el host no tiene gcc/cc (`go: -race requires cgo`); residual heredado de S03/S03R1; no se instaló infraestructura |
 
@@ -212,7 +212,7 @@ Dos TCR en `specs/FEAT-EF-CAMPAIGNS-GO/`: `TEST_CHANGE_REQUEST-C06-GO-S04.md` (c
 | W-D1 — admisión E1/F8 + E5/NF4 | `clf-flash` GLM-5.3-Flash | **MURIÓ por límite de concurrencia** sin trabajo ⇒ ejecutado por el **integrador** en worktree propio (`88a0ad9d`, `4b63729d`), con TCR propio y canaries |
 | W-D2 — migración honesta + builder GO_V2 | `clf-flash` GLM-5.3-Flash | **COMPLETE** — 3 commits (`069a13fa`, `42433580`, `12ec8357`); murió por corte de red a mitad ⇒ **reanudado con su WIP** y completado |
 | W-CAND — candidatas v2 | `clf-flash` GLM-5.3-Flash | **COMPLETE en sustancia** (`9b9bfb3d` + `d2ed6804`, 8/8 tests verdes, artifacts escritos); murió por **cuota** tras dejar el trabajo hecho ⇒ cierre por el integrador (retirada del archivo debug temporal y commit del WIP de tests) |
-| Integrador (este shot) | GLM-5.3-Flash | baseline, adjudication, D1, integración tardía (`baca3c60`), corpus del verificador, Go-only, cobertura, K=5, push, este retorno |
+| Integrador (este shot) | GLM-5.3-Flash | baseline, adjudication, D1, integración tardía (`baca3c60` + cierre documental `a22970c8`), corpus del verificador, Go-only, cobertura, K=5, push, este retorno |
 
 Ningún resultado de subagente fue inventado; los dos workers completados y los dos muertos/reanudados quedan como están.
 
@@ -234,8 +234,8 @@ Ningún resultado de subagente fue inventado; los dos workers completados y los 
 
 ## RELEASE_ROLLBACK
 
-- Rama `feature/ef-campaigns-go` publicada con readback (`origin` == local == `baca3c60…`). **Sin merge a master, sin release, sin deploy, sin compras, sin trading.**
-- Rollback: revertir los commits propios del shot (16) sobre `062b6df7`; `062b6df7` es el punto exacto de rollback verificado (remoto y local), con su build reproducible `e4166366…`. Ningún catálogo, receipt, artifact sellado ni estado externo fue mutado por este shot.
+- Rama `feature/ef-campaigns-go` publicada con readback (`origin` == local == `a22970c8…`). **Sin merge a master, sin release, sin deploy, sin compras, sin trading.**
+- Rollback: revertir los commits propios del shot (17, incluido el commit documental final) sobre `062b6df7`; `062b6df7` es el punto exacto de rollback verificado (remoto y local), con su build reproducible `e4166366…`. Ningún catálogo, receipt, artifact sellado ni estado externo fue mutado por este shot.
 
 ## AGENTS_OS_PATHS_SHA
 
@@ -243,7 +243,7 @@ Ningún resultado de subagente fue inventado; los dos workers completados y los 
 - Este retorno: `10-projects/Echo Futures/artifacts/backtester/EF-CAMPAIGN-MODES-GO-S04-RETURN.md` (nuevo, create-only; **no** reescribe los retornos S02/S03/S03R1).
 - Delta del planner: `10-projects/Echo Futures/agentes/Echo Futures — Optimización de Campañas.md` (CURRENT_TASK_STATE + Bitácora por delta).
 - Run-register: `80-agents/journal/agent-runs/2026-10-30-zcode-glm-5.3-flash-echo-c06-go-s04.md` (journal privado).
-- Producto: `xKoRx/echo@feature/ef-campaigns-go@baca3c602e57d53a48f79f5c6c6c300d27e980df`; SDD del change: `specs/FEAT-EF-CAMPAIGNS-GO/{SPEC,PLAN,TASKS,VERIFICATION}.md` + 2 TCR.
+- Producto: `xKoRx/echo@feature/ef-campaigns-go@a22970c85d139c81c919aafac69f4bf6ceaf5dcd`; SDD del change: `specs/FEAT-EF-CAMPAIGNS-GO/{SPEC,PLAN,TASKS,VERIFICATION}.md` + 2 TCR.
 
 ## PRO_CHAT_POOL_DELTA
 
@@ -251,4 +251,4 @@ UNKNOWN (sin observabilidad del pool desde esta superficie; identidad de modelo 
 
 ## Fuentes
 
-[[EF-CAMPAIGN-MODES-GO-S03-RETURN]] · [[EF-CAMPAIGN-MODES-GO-S03R1-RETURN]] (adjudicación F1–F10/NF1–NF4 y paquete A–E) · [[EF-CAMPAIGN-MODES-DESIGN]] C06 §3/§4/§5/§6/§10/§11/§12 · [[Echo Futures — Optimización de Campañas]] (planner único, R01–R12/A01–A16) · [[EF-CAMPAIGN-MODES-I0-LOCAL]] (contrato común) · [[Echo Futures — Runtime Pools]] (R6 y el frente ECHO_FUTURES_FIRST_LIVE_TRADE) · runbook de cualificación (G0–G5) · repo `xKoRx/echo@baca3c60` (AGENTS.md, CONSTITUTION.md, `.agents/rules/08-09`, `specs/FEAT-EF-CAMPAIGNS-GO/`) · evidencia física en `~/echo-work/c06-s04/`, `~/echo-work/c06-s03/`, `~/echo-work/c06-s03r1/` · R03 (`v3/backtester/tools/tradesgerard/campaign-lab/correction/s04/lab-r03/R03-DECISION-STRATEGIES.md`).
+[[EF-CAMPAIGN-MODES-GO-S03-RETURN]] · [[EF-CAMPAIGN-MODES-GO-S03R1-RETURN]] (adjudicación F1–F10/NF1–NF4 y paquete A–E) · [[EF-CAMPAIGN-MODES-DESIGN]] C06 §3/§4/§5/§6/§10/§11/§12 · [[Echo Futures — Optimización de Campañas]] (planner único, R01–R12/A01–A16) · [[EF-CAMPAIGN-MODES-I0-LOCAL]] (contrato común) · [[Echo Futures — Runtime Pools]] (R6 y el frente ECHO_FUTURES_FIRST_LIVE_TRADE) · runbook de cualificación (G0–G5) · repo `xKoRx/echo@a22970c8` (AGENTS.md, CONSTITUTION.md, `.agents/rules/08-09`, `specs/FEAT-EF-CAMPAIGNS-GO/`) · evidencia física en `~/echo-work/c06-s04/`, `~/echo-work/c06-s03/`, `~/echo-work/c06-s03r1/` · R03 (`v3/backtester/tools/tradesgerard/campaign-lab/correction/s04/lab-r03/R03-DECISION-STRATEGIES.md`).
