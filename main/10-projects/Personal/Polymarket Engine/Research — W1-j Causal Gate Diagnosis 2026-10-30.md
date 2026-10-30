@@ -6,6 +6,7 @@ area: "[[Personal]]"
 project: "[[Polymarket Engine — MVP]]"
 related:
   - "[[Research — Single Episode Public Pilot W1-j 2026-10-29]]"
+  - "[[Plan — Minimal Economic Instrumentation W1-l 2026-10-30]]"
   - "[[Polymarket Engine — Continuidad Five-POC 2026-09-20]]"
   - "[[Plan — Executable Single Episode Pilot W1-j 2026-10-29]]"
   - "[[2026-10-30-polymarket-w1j-causal-gate-summary]]"
@@ -23,6 +24,10 @@ updated: "2026-10-30"
 ---
 
 # Research — W1-j Causal Gate Diagnosis 2026-10-30
+
+## ERRATA (2026-10-30, W1-l ADJUDICACIÓN METIS) — veredicto de conformidad retirado; L queda en AMBIGÜEDAD DOCUMENTAL
+
+La adjudicación autoritativa de Metis sobre este informe NO aceptó el veredicto del punto 4 de la auditoría («no hay desviación del preregistro vigente» — conformidad estricta por silencio). La razón: la v2 ([[Preregistration — PE-005-R1 Economic Candidate v2 W1-h 2026-10-29]]) reemplaza en alcance a la v1 resolviendo las siete correcciones y MANTIENE el enunciado v1, y su única atadura temporal («señal, elegibilidad y referencia usan sólo frames recibidos ≤ instante de decisión», v2 §5) usa el operador ‘≤t’, que admite tanto INCLUIR como EXCLUIR el frame actual de la referencia — el preregistro vigente, por tanto, NO fija la regla de inclusión de `L` (ni cierra la misma pregunta para el `ref` de detección frente a ese operador). Clasificación vigente de este informe: **AMBIGÜEDAD DOCUMENTAL de la regla de L** — sin afirmar bug temporal (el hecho de código verificado se mantiene: ninguna referencia lee frames posteriores al instante de decisión; `ref` excluye el frame de señal por computarse pre-append, `L` lo incluye por leerse post-append) y sin afirmar conformidad estricta (el texto no decide). El punto 4 de la auditoría de conformidad (su veredicto) queda SUPERSEDED por esta clasificación; sus hechos de código y la determinación técnica del punto 6 (`bestAsk < L` como aritmética ya necesaria del gate, no adoptada como detector) se mantienen. La definición explícita de la regla de `L` pertenece al próximo preregistro que toque el piloto — decisión Owner/Metis. Detalle y deltas de instrumentación en [[Plan — Minimal Economic Instrumentation W1-l 2026-10-30]].
 
 ## Resultado actual
 
