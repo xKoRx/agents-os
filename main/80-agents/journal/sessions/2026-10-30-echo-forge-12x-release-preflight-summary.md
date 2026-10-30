@@ -7,8 +7,11 @@ updated: "2026-10-30"
 area: "[[Echo]]"
 project: "[[Echo Forge — Operación Real V2]]"
 application:
-entities: []
-related: []
+entities:
+  - "[[Echo Forge — Operación Real V2]]"
+related:
+  - "[[2026-10-30-echo-forge-12x-entity-updated]]"
+  - "[[2026-10-30-echo-forge-12x-release-preflight-session-feedback]]"
 aliases: []
 confidence: high
 source_session:

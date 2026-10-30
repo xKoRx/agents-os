@@ -6,9 +6,6 @@ created: 2026-10-30
 updated: 2026-10-30
 area: "[[Echo]]"
 project: "[[Echo Forge — Operación Real V2]]"
-entities:
-  - "[[AGENTS OS]]"
-related: []
 aliases: []
 agent_surface: "[[Codex]]"
 agent_model: unknown
