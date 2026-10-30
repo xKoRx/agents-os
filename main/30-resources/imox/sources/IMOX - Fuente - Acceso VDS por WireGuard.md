@@ -16,7 +16,7 @@ superseded_by:
 aliases: []
 tags: ["kind/source", "area/trading", "topic/imox"]
 created: "2026-10-26"
-updated: "2026-10-26"
+updated: "2026-10-30"
 platform: "circle"
 community_key: "imox-circle"
 record_kind: "post"
@@ -30,7 +30,7 @@ published_year_context: 2026
 published_year_precision: "context_inferred"
 source_updated_at: 
 registered_at: "2026-10-26T20:22:38-03:00"
-last_reviewed_on: "2026-10-26"
+last_reviewed_on: "2026-10-30"
 last_reviewed_at: 
 review_time_precision: "date"
 processing_state: "partial"
@@ -43,10 +43,8 @@ decision_reason: "Tras malware en dos VDS, el autor relata reinstalación, túne
 knowledge_destinations: ["[[IMOX - Acceso VDS por WireGuard]]"]
 pending_reason: "Ninguno dentro del texto del post; no había comentarios en el feed observado."
 contribution_state: "not_planned"
-last_registration_review: "[[IMOX — Revisión 2026-10-26 - Actualización de octubre]]"
+last_registration_review: "[[IMOX — Revisión 2026-10-30 - Actualización incremental]]"
 ---
-
-
 
 # IMOX - Fuente - Acceso VDS por WireGuard
 
@@ -73,3 +71,7 @@ Ninguno dentro del texto del post; no había comentarios en el feed observado.
 ## Notas de provenance
 
 Origen y alcance declarados arriba. La lectura usa Chrome autenticado y, para los PDF, descarga personal y lectura local autorizadas. No se redistribuyó contenido ni se ejecutaron instrucciones o archivos; resultados atribuidos, sin validación independiente.
+
+## Revisita 2026-10-30
+
+El post ahora muestra cinco comentarios. Se aconseja tener varios dispositivos autorizados para no depender de uno; otro miembro menciona firewall del proveedor para gestionar acceso desde fuera. No se verifica esa configuración ni se amplía acceso. Lectura de comentarios no sustituye una prueba de recuperación.

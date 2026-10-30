@@ -16,7 +16,7 @@ superseded_by:
 aliases: []
 tags: ["kind/source", "area/trading", "topic/imox"]
 created: "2026-10-25"
-updated: "2026-10-25"
+updated: "2026-10-30"
 platform: "circle"
 community_key: "imox-circle"
 record_kind: "post"
@@ -29,7 +29,7 @@ published_display: "16 sept"
 published_year_context: 2026
 published_year_precision: "context_inferred"
 source_updated_at: 
-last_reviewed_on: "2026-10-25"
+last_reviewed_on: "2026-10-30"
 last_reviewed_at: 
 review_time_precision: "date"
 registered_at: "2026-10-25T01:39:15-03:00"
@@ -43,7 +43,7 @@ decision_reason: "Reglas del espacio de servidores: casos, seguridad, hardware, 
 knowledge_destinations: ["[[IMOX - Reglas de Seguridad y Servidores]]"]
 pending_reason: "Comentarios/respuestas completos sin certificar. Falta comprobar ausencia de adjuntos/cambios y completar discusión."
 contribution_state: "not_planned"
-last_registration_review: "[[IMOX — Revisión 2026-10-25 - Histórico hasta septiembre]]"
+last_registration_review: "[[IMOX — Revisión 2026-10-30 - Actualización incremental]]"
 ---
 
 # IMOX - Fuente - Reglas de Seguridad y Servidores
@@ -71,3 +71,7 @@ Comentarios/respuestas completos sin certificar. Falta comprobar ausencia de adj
 ## Notas de provenance
 
 Captura web desde Chrome autenticado y, cuando se indica, lectura local de su descarga autorizada. La confianza corresponde a la lectura de la fuente; no acredita resultados, compatibilidad ni verificación independiente. Uso personal sin publicar el contenido ni ejecutar sus instrucciones.
+
+## Revisita 2026-10-30
+
+El post fijado ahora organiza infraestructura, virtualización y seguridad/backups con enlaces; mantiene dudas diarias en chat. La fecha original mostrada sigue 16 sept; no se inventa timestamp de edición.

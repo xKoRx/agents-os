@@ -7,10 +7,8 @@ related: []
 aliases: []
 tags: ["kind/doc", "area/trading", "topic/imox"]
 created: "2026-10-24"
-updated: "2026-10-26"
+updated: "2026-10-30"
 ---
-
-
 
 # IMOX — Bitácora
 
@@ -53,3 +51,7 @@ A las 00:13:22 de Santiago se inició una migración de metadata de 23 fuentes e
 ## [2026-10-26] ingest | Octubre hasta la consulta → fuentes y síntesis metodológica
 
 [[IMOX — Revisión 2026-10-26 - Actualización de octubre]]: 28 posts nuevos, tres revisitas, cinco PDFs personales con SHA-256 y alcance, actualización del registro/índice/cobertura y [[IMOX - Metodología para investigación Forex y CFD]]. **124 posts únicos: 3 procesados, 13 excluidos con motivo y 108 parciales.** Se reabre una fuente por comentarios nuevos; se mantienen cinco descartes motivados y tres medios diferidos. No se acredita cobertura global ni se ejecuta Forge/trading.
+
+## [2026-10-30] ingest | Novedades, cambios de índices y manifiesto entre sesiones
+
+[[IMOX — Revisión 2026-10-30 - Actualización incremental]]: tres posts recientes y un histórico nuevo, nueve revisitas, source de evento finalizado y documento sqcli inaccesible por login. **128 posts únicos: 5 procesados, 13 excluidos con motivo y 110 parciales.** Se actualizan síntesis, índice, registro y cobertura; [[IMOX — Descargas pendientes]] permite la carga posterior. Se crea `imox-update`, enlazada desde el registro del bootstrap; sin operaciones externas de escritura.

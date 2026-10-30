@@ -9,11 +9,9 @@ confidence: "high"
 aliases: []
 tags: ["kind/resource", "area/trading", "topic/imox"]
 created: "2026-10-26"
-updated: "2026-10-26"
+updated: "2026-10-30"
 related: ["[[IMOX]]"]
 ---
-
-
 
 # IMOX - Acceso VDS por WireGuard
 
@@ -30,3 +28,7 @@ Tras malware en dos VDS, el autor relata reinstalación, túnel WireGuard, RDP r
 Ninguno dentro del texto del post; no había comentarios en el feed observado.
 
 Decisión de ingesta: `useful`. Estado de lectura: `partial`; el recurso conserva conocimiento útil incluso si quedan medios o respuestas pendientes.
+
+## Delta observado el 2026-10-30
+
+El post ahora muestra cinco comentarios. Se aconseja tener varios dispositivos autorizados para no depender de uno; otro miembro menciona firewall del proveedor para gestionar acceso desde fuera. No se verifica esa configuración ni se amplía acceso. Lectura de comentarios no sustituye una prueba de recuperación.

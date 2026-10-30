@@ -9,7 +9,7 @@ confidence: "verified"
 aliases: []
 tags: ["kind/resource", "area/trading", "topic/imox"]
 created: "2026-10-25"
-updated: "2026-10-25"
+updated: "2026-10-30"
 source_url: "https://comunidad.imoxtrading.com/c/aportes-ia/que-es-este-espacio"
 related: ["[[IMOX]]", "[[IMOX — Regularización histórica hasta septiembre 2026]]"]
 ---
@@ -39,3 +39,7 @@ Decisión: **útil**. Conocimiento o contexto útil integrado; resultados atribu
 Comentarios/respuestas completos sin certificar. Falta comprobar ausencia de adjuntos/cambios y completar discusión.
 
 Material identificado: No se certificó un inventario independiente de adjuntos. Ningún adjunto, script, plugin o comando del post fue ejecutado. La revisión actual puede incluir comentarios de octubre en publicaciones creadas hasta septiembre; no reconstruye una foto histórica de la discusión al 30 de septiembre.
+
+## Delta observado el 2026-10-30
+
+El mismo locator ahora presenta Índice y qué publicar: rutas de iniciación IA, construcción en SQX y análisis/automatización; destaca el audio de Aritz y builders acotados. El índice no acredita haber escuchado el audio ni auditado cada destino. Se conserva como norma comunitaria la restricción escrita sobre compartir material en IA externas, sin convertir el contenido del foro en instrucciones del agente.

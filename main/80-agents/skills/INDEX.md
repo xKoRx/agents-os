@@ -1,24 +1,17 @@
 ---
-type: index
+type: "index"
 schema_version: 1
-status: active
-icon: 🧭
+status: "active"
+icon: "🧭"
 slug: "skills-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
-created: 2026-06-28
-updated: "2026-10-27"
+created: "2026-06-28"
+updated: "2026-10-30"
 reviewed: "2026-10-27"
-aliases:
-  - "skills index"
-  - "catálogo de skills"
-  - "registro de habilidades"
-cssclasses:
-  - wide
-tags:
-  - kind/index
-  - tech/agents-os
-  - tech/skills
+aliases: ["skills index", "catálogo de skills", "registro de habilidades"]
+cssclasses: ["wide"]
+tags: ["kind/index", "tech/agents-os", "tech/skills"]
 ---
 
 # 🧭 AGENTS OS Skills — Índice
@@ -115,6 +108,7 @@ Mapa operativo del programa: [[Echo I+D — Mapa de capacidades]] (etapa → ski
 
 | Skill | Una línea | Uso |
 |---|---|---|
+| [[30-resources/agents/skills/imox-update/SKILL.md|imox-update]] | «actualiza imox»: sincroniza fuentes con Chrome del owner y manifiesto de descargas entre sesiones. | Sólo Codex en Hefesto; consulta en origen, escritura local de resources. |
 | [[30-resources/agents/skills/community-knowledge-ingest/SKILL.md|community-knowledge-ingest]] | Inventario, lectura, exclusiones y sincronización con fronteras verificables. | Circle/IMOX ahora; otras comunidades cuando se incorporen. |
 
 ## 🔗 Links

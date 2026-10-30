@@ -7,15 +7,13 @@ related: ["[[IMOX]]"]
 aliases: ["Diccionario de posts IMOX", "Índice de posts procesados IMOX"]
 tags: ["kind/doc", "area/trading", "topic/imox"]
 created: "2026-10-25"
-updated: "2026-10-26"
-registered_posts: 124
-processed_posts: 3
-partial_posts: 108
-snapshot_at: "2026-10-26T20:25:45-03:00"
+updated: "2026-10-30"
+registered_posts: 128
+processed_posts: 5
+partial_posts: 110
+snapshot_at: "2026-10-30T16:04:51-03:00"
 excluded_posts: 13
 ---
-
-
 
 # IMOX — Registro de publicaciones
 
@@ -25,9 +23,9 @@ Diccionario operacional de publicaciones de [[IMOX]]: qué se conoce, qué se le
 
 ## Contenido
 
-### Estado consolidado — 2026-10-26
+### Estado consolidado — 2026-10-30
 
-**124 posts únicos: 3 procesados, 13 excluidos con motivo y 108 parciales.** Actualización: [[IMOX — Revisión 2026-10-26 - Actualización de octubre]]. Las revisiones anteriores conservan su estado histórico. Adjuntos separados; sin frontera global certificada.
+**128 posts únicos: 5 procesados, 13 excluidos con motivo y 110 parciales.** Lote [[IMOX — Revisión 2026-10-30 - Actualización incremental]]: tres publicaciones recientes y un hallazgo histórico nuevos; nueve revisitas. Adjuntos y evento separados. Cobertura global parcial.
 
 ### Diccionario consultable
 
@@ -45,6 +43,7 @@ La autoridad de cobertura, motivo y destino es cada source. `processed` signific
 | [[IMOX - Fuente - Análisis visual de sistemas y portfolios]] · [Circle](https://comunidad.imoxtrading.com/c/plugins-627f40/heramientas-para-analizar-visualmente-sistemas-y-portfolios) | `plugins-627f40` | `partial` | [[IMOX - Análisis visual de sistemas y portfolios]] |
 | [[IMOX - Fuente - Apalancamiento - Retorno compuesto y VaR]] · [Circle](https://comunidad.imoxtrading.com/c/laboratorio-a51b70/por-que-apalancar-una-estrategia-ganadora-puede-convertirla-en-perdedora) | `laboratorio-a51b70` | `partial` | [[IMOX - Apalancamiento - Retorno compuesto y VaR]] |
 | [[IMOX - Fuente - Auditorías de universos de estrategias]] · [Circle](https://comunidad.imoxtrading.com/c/aportes-ia/auditorias-de-universos-de-estrategias) | `aportes-ia` | `partial` | [[IMOX - Auditorías de universos de estrategias]] |
+| [[IMOX - Fuente - Automatizar SQX con sqcli - Experimento 143]] · [Circle](https://comunidad.imoxtrading.com/c/aportes-y-recursos/automatizar-sqx-con-sqcli) | `aportes-y-recursos` | `partial` | [[IMOX - Automatizar SQX con sqcli - Experimento 143]] |
 | [[IMOX - Fuente - Axi Seed - Promoción compartida]] · [Circle](https://comunidad.imoxtrading.com/c/axi-select/novedades-axi-select-etapa-seed) | `axi-select` | `excluded` | [[IMOX - Axi Seed - Promoción compartida]] |
 | [[IMOX - Fuente - Axi Select - Edge Score y límites de su interpretación]] · [Circle](https://comunidad.imoxtrading.com/c/axi-select/edge-score-a-fondo-que-mide-por-que-cuesta-tanto-llegar-a-90-y-que-podemos-hacer) | `axi-select` | `partial` | [[IMOX - Axi Select - Edge Score y límites de su interpretación]] |
 | [[IMOX - Fuente - Axi por etapas - Sizing y exposición conjunta]] · [Circle](https://comunidad.imoxtrading.com/c/axi-select/axi-select-por-etapas-cuanto-capital-y-cuanto-riesgo-para-no-caer-en-cuarentena-con-numeros) | `axi-select` | `partial` | [[IMOX - Axi por etapas - Sizing y exposición conjunta]] |
@@ -113,6 +112,7 @@ La autoridad de cobertura, motivo y destino es cada source. `processed` signific
 | [[IMOX - Fuente - Nueva Academia - Acceso y documentos]] · [Circle](https://comunidad.imoxtrading.com/c/anuncios-627857/la-nueva-academia-de-imox-y-actualizacion-de-hoy-y-manana) | `anuncios-627857` | `partial` | [[IMOX - Nueva Academia - Acceso y documentos]] |
 | [[IMOX - Fuente - Organización de contexto y ahorro de tokens]] · [Circle](https://comunidad.imoxtrading.com/c/aportes-ia/organizacion-de-contexto-y-ahorro-de-tokens-para-principiantes-utilizar-1-agente) | `aportes-ia` | `partial` | [[IMOX - Organización de contexto y ahorro de tokens]] |
 | [[IMOX - Fuente - PCs dedicados]] · [Circle](https://comunidad.imoxtrading.com/c/seguridad-y-sevidores-vds/pc-s-dedicados) | `seguridad-y-sevidores-vds` | `partial` | [[IMOX - PCs dedicados]] |
+| [[IMOX - Fuente - Panel de EAs - Comparación del custom con MT5]] · [Circle](https://comunidad.imoxtrading.com/c/aportes-y-recursos/empezando-a-trastear-y-aprender-con-las-ia-el) | `aportes-y-recursos` | `partial` | [[IMOX - Panel de EAs - Comparación del custom con MT5]] |
 | [[IMOX - Fuente - Pares de conversión en MT4 y MT5]] · [Circle](https://comunidad.imoxtrading.com/c/aportes-y-recursos/por-que-mostrar-siempre-los-pares-de-conversion-en-mt4-5) | `aportes-y-recursos` | `partial` | [[IMOX - Pares de conversión en MT4 y MT5]] |
 | [[IMOX - Fuente - Participar en hilos y comentarios]] · [Circle](https://comunidad.imoxtrading.com/c/anuncios-627857/si-no-participas-en-hilos-comentarios-no-te-enteras) | `anuncios-627857` | `partial` | [[IMOX - Participar en hilos y comentarios]] |
 | [[IMOX - Fuente - Parálisis por análisis]] · [Circle](https://comunidad.imoxtrading.com/c/errores/paralisis-por-analisis) | `errores` | `partial` | [[IMOX - Parálisis por análisis]] |
@@ -151,6 +151,7 @@ La autoridad de cobertura, motivo y destino es cada source. `processed` signific
 | [[IMOX - Fuente - Seminario 30 de octubre - Repaso 136 a 144]] · [Circle](https://comunidad.imoxtrading.com/c/anuncios-627857/estamos-de-vuelta-y-seminario-viernes-30) | `anuncios-627857` | `partial` | [[IMOX - Seminario 30 de octubre - Repaso 136 a 144]] |
 | [[IMOX - Fuente - Sin margen en Demo Darwinex]] · [Circle](https://comunidad.imoxtrading.com/c/errores/sin-margen-en-demo-darwinex) | `errores` | `partial` | [[IMOX - Sin margen en Demo Darwinex]] |
 | [[IMOX - Fuente - Store Chart Data y consumo de disco]] · [Circle](https://comunidad.imoxtrading.com/c/aportes-y-recursos/store-chart-data-activado-o-como-colapsar-tu-disco-duro-en-un-solo-paso) | `aportes-y-recursos` | `partial` | [[IMOX - Store Chart Data y consumo de disco]] |
+| [[IMOX - Fuente - Tailscale sin login - Recuperación por IPMI]] · [Circle](https://comunidad.imoxtrading.com/c/seguridad-y-sevidores-vds/perdi-el-acceso-a-mi-servidor-por-tailscale-y-como-lo-recupere-por-ipmi) | `seguridad-y-sevidores-vds` | `processed` | [[IMOX - Tailscale sin login - Recuperación por IPMI]] |
 | [[IMOX - Fuente - Tailscale y acceso a equipos]] · [Circle](https://comunidad.imoxtrading.com/c/seguridad-y-sevidores-vds/tailscale-seguridad-y-acceso-a-todos-tus-equipos-como-si-estuvieran-en-casa) | `seguridad-y-sevidores-vds` | `partial` | [[IMOX - Tailscale y acceso a equipos]] |
 | [[IMOX - Fuente - Tipos de estrategia en trading algorítmico]] · [Circle](https://comunidad.imoxtrading.com/c/aportes-y-recursos/tipos-de-estrategia-en-trading-algoritmico) | `aportes-y-recursos` | `partial` | [[IMOX - Tipos de estrategia en trading algorítmico]] |
 | [[IMOX - Fuente - Trayectoria de trader - Proceso y coste hundido]] · [Circle](https://comunidad.imoxtrading.com/c/psicotrading/mi-trayectoria-el-camino-de-un-trader) | `psicotrading` | `excluded` | [[IMOX - Trayectoria de trader - Proceso y coste hundido]] |
@@ -159,6 +160,7 @@ La autoridad de cobertura, motivo y destino es cada source. `processed` signific
 | [[IMOX - Fuente - Ventanas móviles de 24 meses y estabilidad temporal]] · [Circle](https://comunidad.imoxtrading.com/c/aportes-y-recursos/ventanas-moviles-de-2-anos-y-si-la-metrica-global-nos-esta-escondiendo-lo-importante) | `aportes-y-recursos` | `partial` | [[IMOX - Ventanas móviles de 24 meses y estabilidad temporal]] |
 | [[IMOX - Fuente - Virtualización de servidores para incubación]] · [Circle](https://comunidad.imoxtrading.com/c/seguridad-y-sevidores-vds/guia-basica-para-entender-y-optimizar-la-virtualizacion-de-servidores-para-incubacion-en-metatrader) | `seguridad-y-sevidores-vds` | `partial` | [[IMOX - Virtualización de servidores para incubación]] |
 | [[IMOX - Fuente - WTI con volumen]] · [Circle](https://comunidad.imoxtrading.com/c/catalizadores-mercado/wti-con-volumen-el-crudo-sigue-mandando) | `catalizadores-mercado` | `excluded` | [[IMOX - WTI con volumen]] |
+| [[IMOX - Fuente - Índice general de Zona de Aportes]] · [Circle](https://comunidad.imoxtrading.com/c/indice-general/indice-general-de-la-comunidad) | `indice-general` | `processed` | [[IMOX - Índice general de Zona de Aportes]] |
 
 ### Vista viva de pendientes en Obsidian
 

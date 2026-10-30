@@ -9,7 +9,7 @@ confidence: "verified"
 aliases: []
 tags: ["kind/resource", "area/trading", "topic/imox"]
 created: "2026-10-25"
-updated: "2026-10-25"
+updated: "2026-10-30"
 source_url: "https://comunidad.imoxtrading.com/c/aportes-y-recursos/que-es-este-espacio"
 related: ["[[IMOX]]", "[[IMOX — Regularización histórica hasta septiembre 2026]]"]
 ---
@@ -39,3 +39,7 @@ Decisión: **útil**. Conocimiento o contexto útil integrado; resultados atribu
 Comentarios/respuestas completos sin certificar. Falta comprobar ausencia de adjuntos/cambios y completar discusión.
 
 Material identificado: No se certificó un inventario independiente de adjuntos. Ningún adjunto, script, plugin o comando del post fue ejecutado. La revisión actual puede incluir comentarios de octubre en publicaciones creadas hasta septiembre; no reconstruye una foto histórica de la discusión al 30 de septiembre.
+
+## Delta observado el 2026-10-30
+
+El post fijado conserva identidad y ahora se titula Índice y qué publicar. Organiza rutas para empezar con 144, construir/filtrar, automatizar, exportar y resolver fallos; enlaza el experimento sqcli y un panel SQX→MT5 antes no registrado. Es curaduría de navegación, no receta oficial de umbrales.

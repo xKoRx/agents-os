@@ -111,3 +111,7 @@ Skill de conducción de investigación creada y enlazada; estado en [[Estrategia
 ## [2026-10-25] ingest | Contrato/skill de comunidades → seguimiento IMOX
 
 Se incorporan [[Registro de conocimiento de comunidades]] y `community-knowledge-ingest`; IMOX mantiene el estado en su registro y cobertura. No se crean conectores Reddit ni ejecuciones programadas. Casos de aplicación/validación en [[2026-10-25-community-register]].
+
+## [2026-10-30] ingest | imox-update → actualización reproducible entre sesiones
+
+Se creó la skill federada `imox-update`, registrada en el catálogo del bootstrap, y se enlazó el handoff desde `community-knowledge-ingest`. Trigger natural «actualiza imox», gate Codex/Hefesto, Chrome del owner y manifiesto de descargas con URLs para carga posterior. Sin copiar skills a carpetas cliente. Evidencia y validación en [[2026-10-30-imox-update-skill-e-ingesta]].

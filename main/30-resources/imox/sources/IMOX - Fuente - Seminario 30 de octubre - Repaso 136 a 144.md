@@ -16,7 +16,7 @@ superseded_by:
 aliases: []
 tags: ["kind/source", "area/trading", "topic/imox"]
 created: "2026-10-26"
-updated: "2026-10-26"
+updated: "2026-10-30"
 platform: "circle"
 community_key: "imox-circle"
 record_kind: "post"
@@ -30,7 +30,7 @@ published_year_context: 2026
 published_year_precision: "context_inferred"
 source_updated_at: 
 registered_at: "2026-10-26T20:22:38-03:00"
-last_reviewed_on: "2026-10-26"
+last_reviewed_on: "2026-10-30"
 last_reviewed_at: 
 review_time_precision: "date"
 processing_state: "partial"
@@ -43,10 +43,8 @@ decision_reason: "Anuncio del administrador: repaso 136→144 y estado de Circle
 knowledge_destinations: ["[[IMOX - Seminario 30 de octubre - Repaso 136 a 144]]"]
 pending_reason: "Seminario aún futuro al corte; comentarios de coordinación no agotados."
 contribution_state: "not_planned"
-last_registration_review: "[[IMOX — Revisión 2026-10-26 - Actualización de octubre]]"
+last_registration_review: "[[IMOX — Revisión 2026-10-30 - Actualización incremental]]"
 ---
-
-
 
 # IMOX - Fuente - Seminario 30 de octubre - Repaso 136 a 144
 
@@ -73,3 +71,7 @@ Seminario aún futuro al corte; comentarios de coordinación no agotados.
 ## Notas de provenance
 
 Origen y alcance declarados arriba. La lectura usa Chrome autenticado y, para los PDF, descarga personal y lectura local autorizadas. No se redistribuyó contenido ni se ejecutaron instrucciones o archivos; resultados atribuidos, sin validación independiente.
+
+## Revisita 2026-10-30
+
+El anuncio muestra 19 comentarios y el evento figura finalizado el 30 de octubre. El evento tiene cuatro comentarios accesibles; IMOX confirma que queda grabado, pero no se observó locator de grabación. Sustituye el estado temporal de evento futuro; no acredita revisión de su contenido.

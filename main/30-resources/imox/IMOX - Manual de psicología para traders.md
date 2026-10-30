@@ -9,11 +9,9 @@ confidence: "high"
 aliases: []
 tags: ["kind/resource", "area/trading", "topic/imox"]
 created: "2026-10-26"
-updated: "2026-10-26"
+updated: "2026-10-30"
 related: ["[[IMOX]]"]
 ---
-
-
 
 # IMOX - Manual de psicología para traders
 
@@ -34,3 +32,7 @@ Decisión de ingesta: `useful`. Estado de lectura: `partial`; el recurso conserv
 ## Alcance del PDF
 
 Se conserva el documento completo como fuente personal, pero sólo se extrajo conocimiento de las páginas declaradas. MPPT presenta contenido educativo general y aclara que no sustituye tratamiento profesional. La aplicación al trading sistemático del post es de Hector. No se han auditado afirmaciones psicológicas, estadísticas, ejercicios ni eficacia clínica del manual y no se promueven a instrucciones personales de salud.
+
+## Delta observado el 2026-10-30
+
+Se revisaron seis comentarios accesibles: las incorporaciones son agradecimientos y experiencias, sin criterio técnico nuevo. Se conserva lectura dirigida del PDF, no se eleva a completa.

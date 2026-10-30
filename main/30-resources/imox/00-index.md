@@ -7,24 +7,26 @@ slug: "imox-index"
 area: "[[Trading]]"
 project: 
 created: "2026-10-24"
-updated: "2026-10-26"
-reviewed: "2026-10-26"
+updated: "2026-10-30"
+reviewed: "2026-10-30"
 aliases: ["IMOX — Índice"]
 cssclasses: ["wide"]
 tags: ["kind/index", "area/trading", "topic/imox"]
 ---
 
-
-
 # IMOX — Índice
 
 ## 📊 De un vistazo
 
-Biblioteca personal de [[Trading]]: **124 posts únicos: 3 procesados, 13 excluidos con motivo y 108 parciales.** Ingesta reciente: [[IMOX — Revisión 2026-10-26 - Actualización de octubre]]; 28 posts nuevos de octubre, tres revisitas y cinco PDFs conservados con alcance explícito. La cobertura global sigue parcial.
+Biblioteca personal de [[Trading]]: **128 posts únicos: 5 procesados, 13 excluidos con motivo y 110 parciales.** Último lote [[IMOX — Revisión 2026-10-30 - Actualización incremental]]: tres publicaciones recientes y un hallazgo histórico, nueve revisitas y un documento nuevo pendiente de descarga. Cobertura global parcial.
 
 Entrada metodológica: [[IMOX - Metodología para investigación Forex y CFD]].
 
 ## Seguimiento de publicaciones
+
+- [[IMOX — Descargas pendientes]] — URLs clicables, motivo y estado para continuar en otra sesión.
+- [[IMOX — Revisión 2026-10-30 - Actualización incremental]] — actualización al 30 de octubre de 2026.
+
 
 - [[IMOX — Regularización histórica hasta septiembre 2026]] — proyecto de regularización con reporte central.
 
@@ -66,6 +68,10 @@ Entrada metodológica: [[IMOX - Metodología para investigación Forex y CFD]].
 | [[IMOX - Upcomers - Oferta y dudas de miembros]] | Presentación de oferta instant y debate de miembros sobre restricciones y reputación. | `not_useful` · revisión 2026-10-26 |
 | [[IMOX - Incubación masiva - Experimento de Tony]] | Variante personal con legado 142: unos 3.900 EAs en incubación, múltiples activo/TF/dirección, HBP/MC/SPP/optimización secuencial y sin WFA/WFM antes de demo. | `useful` · revisión 2026-10-26 |
 | [[IMOX - Desafío frente a fondeada - Audio pendiente]] | Anuncio del administrador sobre dudas tras bloqueos de cuentas FTMO; contenido sustantivo en audio. | `deferred` · revisión 2026-10-26 |
+| [[IMOX - Tailscale sin login - Recuperación por IPMI]] | Relata pérdida de acceso a Windows tras reinicio y diagnóstico por consola IPMI: sistema encendido en pantalla de login, pero Tailscale no disponible antes de iniciar sesión. | `processed` · 2026-10-30 |
+| [[IMOX - Índice general de Zona de Aportes]] | Índice del administrador con selección de posts y comentarios destacados de ocho espacios: SQX, IA, Herramientas, Seguridad, Laboratorio, Psicotrading, Errores y Resultados. | `processed` · 2026-10-30 |
+| [[IMOX - Automatizar SQX con sqcli - Experimento 143]] | David propone encadenar builders, auditoría OOS y robustez por línea de comandos durante la noche. | `partial` · 2026-10-30 |
+| [[IMOX - Panel de EAs - Comparación del custom con MT5]] | Hallazgo histórico a través del índice fijado de SQX. | `partial` · 2026-10-30 |
 | [[IMOX]] | Biblioteca personal y relación metodológica con Forge. | Entrada |
 | [[IMOX - Building blocks y preparación de campañas Forge]] | Contrato propuesto, familias, gates y decisiones antes de minar. | Prioridad muy alta |
 | [[IMOX - Base de datos para analizar resultados]] | Trazabilidad de minados, backtests y demo; primera ingesta. | [Circle](https://comunidad.imoxtrading.com/c/plugins-627f40/mi-base-de-datos-para-analizar-resultados) |

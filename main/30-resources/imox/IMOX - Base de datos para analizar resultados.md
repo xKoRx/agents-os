@@ -9,10 +9,8 @@ confidence: "verified"
 aliases: []
 tags: ["kind/resource", "area/trading", "topic/imox"]
 created: "2026-10-24"
-updated: "2026-10-26"
+updated: "2026-10-30"
 ---
-
-
 
 # IMOX - Base de datos para analizar resultados
 
@@ -137,3 +135,7 @@ No se ejecutó ni auditó la app. No se comprobó el estado actual de políticas
 ## Delta observado el 2026-10-26
 
 El cuerpo conserva la advertencia de datos ficticios. Ahora se observan 14 comentarios frente a ocho de la captura anterior; hay respuestas anidadas adicionales pendientes. No se certifican condiciones de reinicio de Darwinex desde testimonios de miembros. La revisita textual no renueva la verificación de todos los materiales previos.
+
+## Delta observado el 2026-10-30
+
+El feed muestra 15 comentarios, frente a 14 observados antes. Se leyeron 13 artículos accesibles; la incorporación más reciente es agradecimiento, sin capacidad técnica nueva. Las respuestas anidadas siguen sin agotarse y no se reconfirman afirmaciones sobre asignaciones Darwinex.

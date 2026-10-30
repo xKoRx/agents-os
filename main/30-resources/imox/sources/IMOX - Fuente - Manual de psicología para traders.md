@@ -16,7 +16,7 @@ superseded_by:
 aliases: []
 tags: ["kind/source", "area/trading", "topic/imox"]
 created: "2026-10-26"
-updated: "2026-10-26"
+updated: "2026-10-30"
 platform: "circle"
 community_key: "imox-circle"
 record_kind: "post"
@@ -30,7 +30,7 @@ published_year_context: 2026
 published_year_precision: "context_inferred"
 source_updated_at: 
 registered_at: "2026-10-26T20:22:38-03:00"
-last_reviewed_on: "2026-10-26"
+last_reviewed_on: "2026-10-30"
 last_reviewed_at: 
 review_time_precision: "date"
 processing_state: "partial"
@@ -43,10 +43,8 @@ decision_reason: "Hector adapta un manual de Víctor Corrales Urrutia al sistem�
 knowledge_destinations: ["[[IMOX - Manual de psicología para traders]]"]
 pending_reason: "Resto del manual y sus elementos gráficos no revisados; no atribuir al autor toda la adaptación de Hector."
 contribution_state: "not_planned"
-last_registration_review: "[[IMOX — Revisión 2026-10-26 - Actualización de octubre]]"
+last_registration_review: "[[IMOX — Revisión 2026-10-30 - Actualización incremental]]"
 ---
-
-
 
 # IMOX - Fuente - Manual de psicología para traders
 
@@ -73,3 +71,7 @@ Resto del manual y sus elementos gráficos no revisados; no atribuir al autor to
 ## Notas de provenance
 
 Origen y alcance declarados arriba. La lectura usa Chrome autenticado y, para los PDF, descarga personal y lectura local autorizadas. No se redistribuyó contenido ni se ejecutaron instrucciones o archivos; resultados atribuidos, sin validación independiente.
+
+## Revisita 2026-10-30
+
+Se revisaron seis comentarios accesibles: las incorporaciones son agradecimientos y experiencias, sin criterio técnico nuevo. Se conserva lectura dirigida del PDF, no se eleva a completa.

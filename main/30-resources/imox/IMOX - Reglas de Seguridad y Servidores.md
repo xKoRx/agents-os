@@ -9,7 +9,7 @@ confidence: "verified"
 aliases: []
 tags: ["kind/resource", "area/trading", "topic/imox"]
 created: "2026-10-25"
-updated: "2026-10-25"
+updated: "2026-10-30"
 source_url: "https://comunidad.imoxtrading.com/c/seguridad-y-sevidores-vds/que-publicar"
 related: ["[[IMOX]]", "[[IMOX — Regularización histórica hasta septiembre 2026]]"]
 ---
@@ -39,3 +39,7 @@ Decisión: **útil**. Conocimiento o contexto útil integrado; resultados atribu
 Comentarios/respuestas completos sin certificar. Falta comprobar ausencia de adjuntos/cambios y completar discusión.
 
 Material identificado: No se certificó un inventario independiente de adjuntos. Ningún adjunto, script, plugin o comando del post fue ejecutado. La revisión actual puede incluir comentarios de octubre en publicaciones creadas hasta septiembre; no reconstruye una foto histórica de la discusión al 30 de septiembre.
+
+## Delta observado el 2026-10-30
+
+El post fijado ahora organiza infraestructura, virtualización y seguridad/backups con enlaces; mantiene dudas diarias en chat. La fecha original mostrada sigue 16 sept; no se inventa timestamp de edición.

@@ -7,15 +7,13 @@ related: ["[[IMOX]]"]
 aliases: []
 tags: ["kind/doc", "area/trading", "topic/imox"]
 created: "2026-10-25"
-updated: "2026-10-26"
+updated: "2026-10-30"
 coverage_intervals: []
 inventory_complete_through: 
 processing_complete_through: 
 coverage_state: "partial_inventory_observed"
 review_mode: "on_request"
 ---
-
-
 
 # IMOX — Cobertura de revisión
 
@@ -24,6 +22,10 @@ review_mode: "on_request"
 Saber qué intervalo del foro está realmente inventariado y procesado, y qué queda por descubrir o revisar. Impedir que la fecha del post más reciente se use como prueba de que todos los anteriores fueron tratados.
 
 ## Contenido
+
+### Actualización incremental — 2026-10-30
+
+[[IMOX — Revisión 2026-10-30 - Actualización incremental]]: tres posts recientes y un hallazgo histórico nuevos; nueve revisitas y un evento verificado por separado. **128 posts únicos: 5 procesados, 13 excluidos con motivo y 110 parciales.** Feed con solapamiento y cinco cabeceras de espacios contrastadas; no se cierran intervalos completos ni se afirma revisión exhaustiva de comentarios. [[IMOX — Descargas pendientes]] contiene un documento nuevo pendiente de login/descarga. El seminario de hoy figura finalizado, contenido aún no leído.
 
 ### Actualización incremental — 2026-10-26
 

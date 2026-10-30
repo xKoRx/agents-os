@@ -9,11 +9,9 @@ confidence: "high"
 aliases: []
 tags: ["kind/resource", "area/trading", "topic/imox"]
 created: "2026-10-26"
-updated: "2026-10-26"
+updated: "2026-10-30"
 related: ["[[IMOX]]"]
 ---
-
-
 
 # IMOX - Cartera estable - Ventaja frente a azar y selección
 
@@ -38,3 +36,7 @@ El documento de siete páginas agrega `sin datos` para menos de diez operaciones
 ## Comentarios observados
 
 Se discute beta frente a alfa, Sharpe deflactado y PBO. Un miembro plantea PBO sobre selección por mercado/TF/dirección, no sólo una EA; Xavi reporta que sólo dos EAs de oro de unas 200 superan dos ventanas antiguas. Son declaraciones no reproducidas. Otro miembro considera válido explotar beta y pide no filtrar hasta volver imposible generar; no convertir el debate en consenso ni en prohibición de beta.
+
+## Delta observado el 2026-10-30
+
+Comentarios posteriores proponen un control sintético con ventaja conocida para medir también falsos negativos, no sólo paseos sin ventaja. Xavi dice que lo probará; Ayose cuestiona cómo construir/calibrar un control independiente. Es propuesta y desacuerdo de miembros, no test implementado ni validado. Evitar ajustar el propio test hasta obtener el resultado esperado.

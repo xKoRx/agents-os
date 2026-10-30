@@ -3,23 +3,21 @@ type: "resource"
 schema_version: 1
 status: "active"
 area: "[[Trading]]"
-sources: ["[[IMOX - Fuente - IA y Building Blocks - Cambio de enfoque de Aritz]]", "[[IMOX - Fuente - Building Blocks Skill]]", "[[IMOX - Fuente - Tipos de estrategia en trading algorítmico]]", "[[IMOX - Fuente - Actualizar Broker Profiles en SQX]]", "[[IMOX - Fuente - SQX - Point value y comprobación monetaria]]", "[[IMOX - Fuente - Claude en CustomProjects para analizar databanks]]", "[[IMOX - Fuente - Builder - Minería de estrategias]]", "[[IMOX - Fuente - Acceso VDS por WireGuard]]", "[[IMOX - Fuente - Manual de psicología para traders]]", "[[IMOX - Fuente - Seminario 30 de octubre - Repaso 136 a 144]]", "[[IMOX - Fuente - Cartera estable - Ventaja frente a azar y selección]]", "[[IMOX - Fuente - Gestión variable - Martingala H1 de Ramon]]", "[[IMOX - Fuente - Piramidación - Comparación a igual riesgo]]", "[[IMOX - Fuente - FOMO - Plan y decisiones trazables]]", "[[IMOX - Fuente - Gestión variable - Error de timeframe y límite de lotes]]", "[[IMOX - Fuente - MetaTrader móvil - Observar sin intervenir]]", "[[IMOX - Fuente - Robustez entre brokers - Estudio de 189 estrategias]]", "[[IMOX - Fuente - Axi por etapas - Sizing y exposición conjunta]]", "[[IMOX - Fuente - Capacidad SQX - Comparar bloques equivalentes]]", "[[IMOX - Fuente - FTMO - Recuperación con escalera de riesgo]]", "[[IMOX - Fuente - Incubación masiva - Experimento de Tony]]"]
+sources: ["[[IMOX - Fuente - IA y Building Blocks - Cambio de enfoque de Aritz]]", "[[IMOX - Fuente - Building Blocks Skill]]", "[[IMOX - Fuente - Tipos de estrategia en trading algorítmico]]", "[[IMOX - Fuente - Actualizar Broker Profiles en SQX]]", "[[IMOX - Fuente - SQX - Point value y comprobación monetaria]]", "[[IMOX - Fuente - Claude en CustomProjects para analizar databanks]]", "[[IMOX - Fuente - Builder - Minería de estrategias]]", "[[IMOX - Fuente - Acceso VDS por WireGuard]]", "[[IMOX - Fuente - Manual de psicología para traders]]", "[[IMOX - Fuente - Seminario 30 de octubre - Repaso 136 a 144]]", "[[IMOX - Fuente - Cartera estable - Ventaja frente a azar y selección]]", "[[IMOX - Fuente - Gestión variable - Martingala H1 de Ramon]]", "[[IMOX - Fuente - Piramidación - Comparación a igual riesgo]]", "[[IMOX - Fuente - FOMO - Plan y decisiones trazables]]", "[[IMOX - Fuente - Gestión variable - Error de timeframe y límite de lotes]]", "[[IMOX - Fuente - MetaTrader móvil - Observar sin intervenir]]", "[[IMOX - Fuente - Robustez entre brokers - Estudio de 189 estrategias]]", "[[IMOX - Fuente - Axi por etapas - Sizing y exposición conjunta]]", "[[IMOX - Fuente - Capacidad SQX - Comparar bloques equivalentes]]", "[[IMOX - Fuente - FTMO - Recuperación con escalera de riesgo]]", "[[IMOX - Fuente - Incubación masiva - Experimento de Tony]]", "[[IMOX - Fuente - Tailscale sin login - Recuperación por IPMI]]", "[[IMOX - Fuente - Índice general de Zona de Aportes]]", "[[IMOX - Fuente - Automatizar SQX con sqcli - Experimento 143]]", "[[IMOX - Fuente - Panel de EAs - Comparación del custom con MT5]]", "[[IMOX - Fuente - Evento Repaso 136 a 144 del 30 de octubre]]"]
 last_verified: "2026-10-26"
 confidence: "high"
 aliases: []
 tags: ["kind/resource", "area/trading", "topic/imox", "topic/methodology"]
 created: "2026-10-26"
-updated: "2026-10-26"
+updated: "2026-10-30"
 related: ["[[IMOX]]", "[[Estrategias IMOX — Forex y CFD con Echo Forge]]"]
 ---
-
-
 
 # IMOX - Metodología para investigación Forex y CFD
 
 ## Síntesis vigente
 
-La definición de trabajo para [[Estrategias IMOX — Forex y CFD con Echo Forge]] es un proceso de investigación: formular hipótesis acotadas, construir búsquedas compatibles con el instrumento real, generar candidatas, someterlas a selección y robustez, comprobar ejecución, y evaluar su contribución a una cartera con seguimiento trazable. Esta es una síntesis documental personal con corte al 26 de octubre de 2026; no una transcripción certificada de toda la formación oficial ni una validación de Forge.
+La definición de trabajo para [[Estrategias IMOX — Forex y CFD con Echo Forge]] es un proceso de investigación: formular hipótesis acotadas, construir búsquedas compatibles con el instrumento real, generar candidatas, someterlas a selección y robustez, comprobar ejecución, y evaluar su contribución a una cartera con seguimiento trazable. Esta es una síntesis documental personal con fuentes iniciales al 26 de octubre de 2026 y delta explícito al 30 de octubre; no una transcripción certificada de toda la formación oficial ni una validación de Forge.
 
 La orientación escrita de Aritz en [[IMOX - IA y Building Blocks - Cambio de enfoque de Aritz]] prioriza Random, indicadores calibrados, builders acotados y tandas de minutos. La incubación masiva 142, la genética amplia, la selección IA y los esquemas de riesgo de otros miembros son variantes con objetivos y evidencias diferentes. La comunidad contiene desacuerdos; no hay una única receta inferible de sumar sus parámetros.
 
@@ -84,3 +82,17 @@ Las notas `source` del frontmatter resuelven a Circle y a sus PDF adjuntos. Revi
 ## Límites y contradicciones
 
 No existe cobertura global certificada de Circle, sus chats, clubes privados o Academia. Las fuentes nuevas conservan medios y respuestas pendientes; el manual MPPT se revisó de forma dirigida. Los PDFs son copias personales de acceso restringido, sin redistribución. No se ejecutaron minados, pruebas de rentabilidad, cambios de software, riesgo ni operaciones de trading. Las propuestas de esta página son material de investigación para el proyecto, sin aprobación implícita de estrategia o MM.
+
+## Actualización de fuentes — 2026-10-30
+
+La ruta oficial ahora incorpora [[IMOX - Índice general de Zona de Aportes]] y cuatro índices fijados actualizados en sus locators originales. Son herramientas de descubrimiento, con curaduría por interacción; no validan cada afirmación que destacan ni sustituyen la formación.
+
+[[IMOX - Automatizar SQX con sqcli - Experimento 143]] añade una propuesta personal para build 143. Los comentarios de Aritz remiten explícitamente a los fallos de GUI sqcli y a la automatización nocturna ya documentados. El documento adjunto está pendiente de login/descarga; no se puede certificar su receta ni adaptarla a 144 desde el título.
+
+La discusión de [[IMOX - Cartera estable - Ventaja frente a azar y selección]] amplía el control de calidad del test: además de no detectar ventaja donde no existe, comprobar su capacidad para detectar una ventaja conocida. Hay desacuerdo sobre construir ese control sintético de forma independiente; no es un método ya implementado. No convertir popularidad o nuevos comentarios en validación experimental.
+
+[[IMOX - Seminario 30 de octubre - Repaso 136 a 144]] pasó de futuro a finalizado según Circle. Aritz afirma que queda grabado; no se observó locator ni se revisó el contenido. La cadena oficial y sus umbrales continúan pendientes de contraste.
+
+El hallazgo histórico [[IMOX - Panel de EAs - Comparación del custom con MT5]] refuerza la pregunta de equivalencia entre motores y selección para demo, pero sus cuatro imágenes siguen pendientes de lectura completa. [[IMOX - Tailscale sin login - Recuperación por IPMI]] es continuidad operacional atribuida a un miembro, sin adopción de sus cambios de seguridad.
+
+Revisión: [[IMOX — Revisión 2026-10-30 - Actualización incremental]]. Descargas: [[IMOX — Descargas pendientes]].

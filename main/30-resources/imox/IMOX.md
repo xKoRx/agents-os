@@ -9,10 +9,8 @@ confidence: "verified"
 aliases: ["imox", "Imox Trading", "comunidad IMOX"]
 tags: ["kind/resource", "area/trading", "topic/imox"]
 created: "2026-10-24"
-updated: "2026-10-26"
+updated: "2026-10-30"
 ---
-
-
 
 # IMOX
 
@@ -68,3 +66,7 @@ Rodrigo eligió revisar IMOX cuando lo solicite, sin revisión diaria programada
 ## Actualización documental 2026-10-26
 
 [[IMOX - Metodología para investigación Forex y CFD]] integra los estudios nuevos de octubre, distingue orientación de Aritz de experimentos de miembros y conserva decisiones aún no resueltas para Forge. [[IMOX — Revisión 2026-10-26 - Actualización de octubre]] documenta inventario y límites. Esta ampliación no revalida todos los datos antiguos ni modifica el pipeline técnico.
+
+## Actualización a pedido entre sesiones
+
+Usar [[30-resources/agents/skills/imox-update/SKILL.md|imox-update]] al decir «actualiza imox». [[IMOX — Descargas pendientes]] conserva la cola de materiales para cargar desde Descargas. Último lote: [[IMOX — Revisión 2026-10-30 - Actualización incremental]]. La skill posee la restricción vigente de ejecución; no duplicarla aquí.

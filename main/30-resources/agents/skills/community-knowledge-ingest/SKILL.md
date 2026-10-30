@@ -1,11 +1,11 @@
 ---
-type: skill
+type: "skill"
 schema_version: 1
 name: "community-knowledge-ingest"
 description: "Registra y procesa publicaciones de foros/comunidades con utilidad o descarte motivado, provenance, revisiones por lote y fronteras de cobertura; úsala al inventariar o sincronizar conocimiento de Circle/IMOX u otra comunidad incorporada."
 scope: "workflow"
 created: "2026-10-25"
-updated: "2026-10-25"
+updated: "2026-10-30"
 entities: []
 related: ["[[IMOX]]", "[[Registro de conocimiento de comunidades]]"]
 aliases: []
@@ -21,6 +21,8 @@ area: "[[Personal]]"
 ## Purpose
 
 Inventariar, leer y procesar publicaciones de comunidades con decisiones, provenance y cobertura verificable; mantener revisiones incrementales a pedido. Aplicar a Circle/IMOX o a otra comunidad explícitamente incorporada. No activar para una consulta general sin registro de fuentes ni para publicar mensajes. La ingesta de conocimiento canónico usa `agents-os-resource-wiki`.
+
+Para pedidos de actualizar IMOX o cargar sus descargas, entrar por [[30-resources/agents/skills/imox-update/SKILL.md|imox-update]]: ese adaptador posee el gate de superficie/host/Chrome y la continuación entre sesiones. Este contrato mantiene identidad, clasificación y cobertura.
 
 ## Minimal Read
 

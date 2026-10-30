@@ -1,20 +1,17 @@
 ---
-type: index
+type: "index"
 schema_version: 1
-status: active
-icon: 🗂️
+status: "active"
+icon: "🗂️"
 slug: "00-index-index"
 area: "[[Personal]]"
 project: "[[AGENTS OS]]"
 created: "2026-08-10"
-updated: "2026-10-25"
+updated: "2026-10-30"
 reviewed: "2026-09-17"
-aliases:
-  - "00-index index"
-cssclasses:
-  - wide
-tags:
-  - kind/index
+aliases: ["00-index index"]
+cssclasses: ["wide"]
+tags: ["kind/index"]
 ---
 
 # 🗂️ Agents — Índice
@@ -83,3 +80,5 @@ Desde 2026-09-12 las skills de dominio y transversales viven aquí (migradas des
 
 - [[Registro de conocimiento de comunidades]] — contrato de identidad, estados, utilidad y tiempo.
 - [[30-resources/agents/skills/community-knowledge-ingest/SKILL.md|community-knowledge-ingest]] — procedimiento de revisión por lote con cobertura comprobable.
+
+- [[30-resources/agents/skills/imox-update/SKILL.md|imox-update]] — disparador «actualiza imox»; Codex/Hefesto, Chrome del owner y manifiesto persistente de descargas.

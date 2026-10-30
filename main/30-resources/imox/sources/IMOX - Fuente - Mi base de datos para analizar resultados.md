@@ -16,7 +16,7 @@ superseded_by:
 aliases: []
 tags: ["kind/source", "area/trading", "topic/imox"]
 created: "2026-10-24"
-updated: "2026-10-26"
+updated: "2026-10-30"
 platform: "circle"
 community_key: "imox-circle"
 record_kind: "post"
@@ -27,7 +27,7 @@ source_post_id:
 space_key: "plugins-627f40"
 published_at: 
 source_updated_at: 
-last_reviewed_on: "2026-10-26"
+last_reviewed_on: "2026-10-30"
 last_reviewed_at: 
 review_time_precision: "date"
 registered_at: "2026-10-25T00:13:22-03:00"
@@ -41,10 +41,8 @@ decision_reason: "Extracción previa con conocimiento o contexto útil documenta
 knowledge_destinations: ["[[IMOX - Base de datos para analizar resultados]]"]
 pending_reason: "Respuestas anidadas y medios no revalidados íntegramente en la revisita."
 contribution_state: "not_planned"
-last_registration_review: "[[IMOX — Revisión 2026-10-26 - Actualización de octubre]]"
+last_registration_review: "[[IMOX — Revisión 2026-10-30 - Actualización incremental]]"
 ---
-
-
 
 # IMOX - Fuente - Mi base de datos para analizar resultados
 
@@ -78,3 +76,7 @@ Fuente activa, sin reemplazos registrados.
 ## Revisita 2026-10-26
 
 El cuerpo conserva la advertencia de datos ficticios. Ahora se observan 14 comentarios frente a ocho de la captura anterior; hay respuestas anidadas adicionales pendientes. No se certifican condiciones de reinicio de Darwinex desde testimonios de miembros.
+
+## Revisita 2026-10-30
+
+El feed muestra 15 comentarios, frente a 14 observados antes. Se leyeron 13 artículos accesibles; la incorporación más reciente es agradecimiento, sin capacidad técnica nueva. Las respuestas anidadas siguen sin agotarse y no se reconfirman afirmaciones sobre asignaciones Darwinex.
