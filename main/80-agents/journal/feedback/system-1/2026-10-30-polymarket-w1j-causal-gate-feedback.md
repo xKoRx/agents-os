@@ -1,22 +1,31 @@
 ---
-type: session_feedback
+type: feedback
 schema_version: 1
+scope: session
 status: captured
 area: "[[Personal]]"
 project: "[[Polymarket Engine — MVP]]"
+entities:
+  - "[[Polymarket Engine]]"
 created: "2026-10-30"
 updated: "2026-10-30"
 source_session: sess_no-legible-desde-superficie-w1k-recovery
-surface: "[[ZCode]]"
-model: "account:zai-individual-coding-plan/GLM-5.3-Flash"
+agent_surface: "[[ZCode]]"
+agent_model: "account:zai-individual-coding-plan/GLM-5.3-Flash"
 agent_run: "[[2026-10-30-zcode-glm-5.3-flash-polymarket-w1j-causal-gate]]"
+session_goal: "Recuperación final W1-k: ejecución del extractor verificado y cierre canónico completo"
 related:
   - "[[2026-10-30-polymarket-w1j-causal-gate-summary]]"
   - "[[2026-10-30-zcode-glm-5.3-flash-polymarket-w1j-causal-gate]]"
   - "[[2026-10-29-polymarket-engine-entity-updated]]"
 aliases: []
+confidence: high
+load_policy: manual
+indexable: false
+index_priority: low
 tags:
   - kind/feedback
+  - scope/session
   - topic/research-ops
 ---
 

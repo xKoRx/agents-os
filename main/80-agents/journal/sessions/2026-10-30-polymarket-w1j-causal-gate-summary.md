@@ -1,9 +1,12 @@
 ---
 type: session
 schema_version: 1
+scope: session
 status: closed
 area: "[[Personal]]"
 project: "[[Polymarket Engine — MVP]]"
+application:
+entities: []
 created: "2026-10-30"
 updated: "2026-10-30"
 source_session: sess_no-legible-desde-superficie-w1k-recovery
@@ -17,8 +20,13 @@ related:
   - "[[2026-10-30-zcode-glm-5.3-flash-polymarket-w1j-causal-gate]]"
   - "[[2026-10-29-polymarket-engine-entity-updated]]"
 aliases: []
+confidence: high
+load_policy: manual
+indexable: false
+index_priority: never
 tags:
   - kind/session
+  - scope/session
   - topic/research-ops
 ---
 
