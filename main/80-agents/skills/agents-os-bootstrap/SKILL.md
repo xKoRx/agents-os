@@ -87,7 +87,7 @@ changed on disk. Do NOT re-run the full ritual on every message.
      that router; more than one match fails closed and loads none.
    A missing or empty registry is a valid DEFAULT installation. The selected
    router loads at most ONE specialized skill and owns its scoped preferences.
-7. Apply Scout Routing below before nontrivial vault or repository discovery. An assigned scout executes its own skill without redispatch. Exact lookup/targeted verification may use `agents-os-context-retrieval` directly. Skip retrieval when the request needs neither vault nor repo context.
+7. Honor an assigned delivery_role under Delegated Delivery Roles below; otherwise apply Scout Routing before nontrivial vault or repository discovery. An assigned scout executes its own skill without redispatch. Exact lookup/targeted verification may use `agents-os-context-retrieval` directly. Skip retrieval when the request needs neither vault nor repo context.
 8. Open source Markdown only for notes that affect a persistent decision,
    edit, or answer that must be verified.
 9. Select at most ONE additional specialized skill (lazy-load) only if the
@@ -119,6 +119,10 @@ Before nontrivial discovery, load `../_shared/scout-contract.md` once and dispat
 When `scout_role` is present, load only missing base sources and applicable domain restrictions, then run the assigned scout skill. Do not dispatch another scout or start domain implementation. A complete base source actually injected with provenance can be reused; a claim that the parent bootstrapped is insufficient. A scout and its required dependencies are one assigned capability, not an additional manager or permission grant.
 
 The shared contract owns reuse, generic-subagent/inline fallback, direct-verification exceptions, output, feedback and maintenance limits. The principal retains design/acceptance and source access but must not repeat the same discovery by default. Read scout skill bodies in the worker context, not both bodies in the principal merely to dispatch.
+
+## Delegated Delivery Roles
+
+When `delivery_role` is assigned, load missing base sources and applicable domain restrictions, then execute only the assigned canonical skill from the SDD role map in `30-resources/agents/skills/sdd-developer/SKILL.md`. The dispatch supplies its exact path; the worker does not reload the orchestrator or the other role bodies merely to start. Reuse verified context; targeted source inspection remains allowed. For missing nontrivial context use the parent-mediated scout/delta or declared fallback in `30-resources/agents/skills/sdd-developer/role-contract.md`. Do not recursively start the SDD pipeline, inherit permission for other phases, or certify independence by changing a role label in the same context. Roles and their required dependencies are one assigned capability; a simultaneous scout_role/delivery_role conflict returns to the dispatcher.
 
 ## Lazy Skill Routing
 

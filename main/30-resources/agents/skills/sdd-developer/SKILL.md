@@ -2,19 +2,23 @@
 type: skill
 schema_version: 1
 name: sdd-developer
-description: Execute a ready SDD feature/change through autonomous implementation, independent adversarial verification, correction and final gate while preserving reusable regression/E2E assets and feeding repeatable agent behavior into Agents-OS feedback. Use when SPEC/PLAN/TASKS are ready and a fresh coding agent must deliver an SDD slice or feature to a certified commit. Do not use to create the initial specification/plan/tasks or for validation-only/release-only work.
+description: Orchestrate a ready SDD unit through three fresh-context roles (implement, independently verify, correct) and a separate evidence-based acceptance gate. Delegate each phase to its canonical skill; do not use to create initial SPEC/PLAN/TASKS, for isolated lookups, or to turn a worker into another manager.
 scope: global
-created: "2026-09-23"
-updated: "2026-09-23"
+created: '2026-09-23'
+updated: '2026-10-30'
 entities: []
 related:
-  - "[[sdd-workflow]]"
-  - "[[compounding-engineering-vision]]"
-  - "[[technical-project-manager]]"
-  - "[[e2e-gated-validation]]"
-  - "[[agents-os-agent-run-register]]"
-  - "[[agents-os-session-feedback]]"
-  - "[[agents-os-session-close]]"
+  - '[[sdd-workflow]]'
+  - '[[compounding-engineering-vision]]'
+  - '[[technical-project-manager]]'
+  - '[[e2e-gated-validation]]'
+  - '[[agents-os-agent-run-register]]'
+  - '[[agents-os-session-feedback]]'
+  - '[[agents-os-session-close]]'
+  - '[[sdd-shot-1-implement]]'
+  - '[[sdd-shot-2-verify]]'
+  - '[[sdd-shot-3-correct]]'
+  - '[[sdd-acceptance-gate]]'
 aliases:
   - sdd developer
   - sdd implementation agent
@@ -31,231 +35,84 @@ tags:
   - action/verification
 ---
 
-# SDD Developer
+# SDD Developer — orquestación de entrega
 
 ## Purpose
 
-Deliver a ready SDD unit as a certified commit using a three-shot implementation loop: autonomous implementation, fresh-context adversarial verification, then correction plus final gate. Preserve executable product knowledge as tests/harnesses and report repeatable agent/process knowledge as feedback candidates for later Hygiene/Kaizen promotion.
+Orquestar una unidad SDD ready mediante IMPLEMENT → VERIFY independiente → CORRECT → ACCEPTANCE. Esta skill posee secuencia, handoff y ubicación del conocimiento ejecutable; las cuatro skills de rol poseen sus criterios. No duplicar sus procedimientos aquí ni crear un quinto implementation-worker. El gate es una decisión posterior, no otro shot de código.
 
 ## Minimal Read
 
-Read only:
-
-1. `30-resources/agents/skills/sdd-workflow/SKILL.md`.
-2. The active feature's `SPEC.md`, `PLAN.md`, `TASKS.md`, `VERIFICATION.md` and repository instructions.
-3. The exact certified repository baseline and only the code/tests needed by the active task.
-4. `30-resources/agents/skills/e2e-gated-validation/SKILL.md` only when the acceptance gate includes a physical/runtime E2E.
-5. Agents-OS run/feedback/close skills at closeout.
+1. `30-resources/agents/skills/sdd-workflow/SKILL.md` y `role-contract.md` de esta carpeta.
+2. SPEC/PLAN/TASKS/VERIFICATION de la unidad activa y reglas del repo; packs de scouts suficientes y vigentes.
+3. Baseline exacta, evidencia de dependencias y autoridad de aceptación.
+4. `e2e-gated-validation`, release/deployment skills sólo si ese nivel pertenece al alcance autorizado.
+5. Cargar el cuerpo de cada skill de rol en su contexto ejecutor; el principal usa el mapa siguiente y los retornos. Authoring/mantenimiento sólo ante mejora evidenciada.
 
 ## Inputs
 
-- SDD feature/change identifier.
-- Ready SPEC/PLAN/TASKS and active task(s).
-- Certified starting commit.
-- Frozen business/architecture/data-contract decisions.
-- Acceptance criteria and required evidence.
-- Repository test surfaces: package tests, integration tests, canonical E2E module and reusable toolkit/test-support, when present.
+Unidad/tarea, baseline, SPEC/PLAN/TASKS ready, decisiones congeladas, AC y no-objetivos, scopes y entorno autorizado, autoridad de aceptación/publicación y restricciones del repo. `role-contract.md` posee el envelope de cada despacho.
 
 ## Procedure
 
-### 1. Confirm SDD readiness
+### 1. Confirmar readiness y capacidad
 
-1. Verify SPEC, PLAN and TASKS are ready and internally consistent.
-2. Resolve the exact active task/slice and its acceptance criteria.
-3. If implementation requires inventing unresolved business semantics or architecture, stop with `SDD_NOT_READY` and return the gap to SPECIFY/PLAN through `sdd-workflow`.
-4. Freeze baseline, write scope, non-goals and existing behavior that must not regress.
+Verificar consistencia de autoridades, identidad del workspace y gates. Semántica/arquitectura abierta → `SDD_NOT_READY` y retorno a la fase dueña mediante `sdd-workflow`; tooling/evidencia externa inaccesible → bloqueo preciso. No inventar defaults de negocio ni poner todo el discovery dentro de la implementación.
 
-### 2. Build the one-shot master mandate
+Usar los scouts para gaps no triviales antes de despachar. Resolver capacidad real de contexto independiente, escritura y pruebas seguras. Si no hay subagentes, usar sesiones separadas con handoff. No declarar una revisión independiente desde el mismo contexto implementador.
 
-Every Shot 1/2/3 mandate is fresh-context and self-contained. It MUST contain these literal semantic sections:
+### 2. Despachar los roles sin duplicar responsabilidades
 
-```text
-/goal
-/authorities
-/baseline
-/frozen
-/scope
-/execute
-/verify
-/reuse
-/improve
-/close
-```
+| Fase | Rol asignado | Skill canónica relativa a VAULT_ROOT | Retorno habilitante |
+|---|---|---|---|
+| Shot 1 | `shot-1-implement` | `30-resources/agents/skills/sdd-shot-1-implement/SKILL.md` | `IMPLEMENTATION_CANDIDATE` identificado |
+| Shot 2 | `shot-2-verify` | `30-resources/agents/skills/sdd-shot-2-verify/SKILL.md` | reporte independiente completo + findings/probes |
+| Shot 3 | `shot-3-correct` | `30-resources/agents/skills/sdd-shot-3-correct/SKILL.md` | `FINAL_CANDIDATE_READY` con evidencia |
+| Gate | `acceptance-gate` | `30-resources/agents/skills/sdd-acceptance-gate/SKILL.md` | veredicto técnico y aceptación autorizada o gap |
 
-These are prompt sections, not assumed IDE commands.
+Cada Shot 1/2/3 usa contexto fresh y mandato self-contained con las secciones `/goal`, `/authorities`, `/baseline`, `/frozen`, `/scope`, `/execute`, `/verify`, `/reuse`, `/improve`, `/close`. Son secciones semánticas, no comandos del IDE. Incluir el `delivery_role`, `run_id`, skill obligatoria y sus revisiones según `role-contract.md`. `/close` sólo pide resultado/registros; cierre de sesión Agents-OS requiere solicitud explícita aparte.
 
-- `/goal`: one observable end state and explicit PASS/FAIL gate. Never "advance", "work on" or "investigate" as the final goal.
-- `/authorities`: SPEC/PLAN/TASKS/VERIFICATION plus repository instructions.
-- `/baseline`: exact certified commit/branch and relevant dependency state.
-- `/frozen`: decisions the executor may not change to make coding easier.
-- `/scope`: allowed discovery/write boundary and explicit non-goals.
-- `/execute`: autonomous task; ordinary technical obstacles are solved inside the shot.
-- `/verify`: mandatory tests/evidence and regression comparison.
-- `/reuse`: classify new tests/probes/harnesses and preserve durable assets.
-- `/improve`: evaluate repeatable agent/process behavior; `NONE` is valid. Persist feedback only when a concrete candidate meets the feedback trigger.
-- `/close`: agent-run, SDD artifacts/status, journal/change-log as applicable, Agents-OS closeout and structured final response.
+El principal adjudica los findings de Shot 2 antes de Shot 3, preservando evidencia y aceptación del Owner cuando corresponda. Un reporte parcial no habilita la fase como si estuviera completo. No esperar que los subagentes se lancen entre sí ni entregarles la autoridad global del manager.
 
-Do not complete a shot through conversational micro-prompts. A one-shot may only return to the owner for a genuine frozen-decision contradiction.
+Un Shot 2 limpio no obliga a inventar fixes: Shot 3 puede entregar candidato sin delta tras comprobar evidencia y disposición de assets. Defectos ordinarios dentro del scope se resuelven durante el shot; no planear una cuarta ronda correctiva. Si no alcanza, reportar FAIL/BLOCKED/NOT_READY y que el principal decida un nuevo ciclo explícito. El gate puede ordenar una revalidación independiente acotada del fix, nunca arreglarlo por sí mismo.
 
-### 3. Shot 1 — IMPLEMENT
+### 3. Preservar verificación y conocimiento ejecutable
 
-Use a fresh senior implementation context.
+Mantener en `VERIFICATION.md` la relación `AC/invariante → test/escenario → evidencia/identidad → estado`. Pruebas quedan en sus owners canónicos: invariantes locales en el paquete, integraciones en su paquete, comportamiento cross-component en el módulo E2E existente y setup/validadores reutilizables en toolkit/test-support. Una carpeta por SPEC es convención local, no requisito universal. Si falta owner de E2E, resolverlo en PLAN; no crear framework competidor en una implementación.
 
-It MUST:
+Clasificar todo nuevo asset de verificación como `PERMANENT_REGRESSION`, `E2E_CANDIDATE`, `HARNESS_TOOLKIT_CANDIDATE` o `DISPOSABLE_REPRODUCER`. Los reproducers que detectan defectos reales se presumen regresiones valiosas; documentar su descarte, unificar cobertura equivalente y conservar el invariante más fuerte. No esconder código ejecutable de tests en carpetas de documentación salvo policy explícita del repo. Conservar fixtures allí sólo cuando la policy lo admita.
 
-- implement only the active SDD slice;
-- add normal unit/integration tests required by the SPEC;
-- execute the declared gate;
-- record exact changed files/commits/test commands;
-- update SDD task/evidence without self-accepting the feature;
-- classify reusable artifacts created during implementation.
+### 4. Aplicar gate y devolver el estado real
 
-Shot 1 output is `IMPLEMENTATION_CANDIDATE`, never final acceptance.
+La skill `sdd-acceptance-gate` posee la tabla de decisión. El principal no agrega una segunda aprobación basada sólo en el resumen: comprobar sus evidencias críticas y la autoridad de quien acepta. Sin autorización efectiva, `SDD_READY_FOR_ACCEPTANCE` es intermedio, no `SDD_DELIVERY_PASS`. Aceptación de source no certifica deploy, producción ni resultado económico.
 
-### 4. Shot 2 — VERIFY adversarially
+No cerrar tasks como aceptadas ni publicar releases por un candidato listo. Registrar estado real, findings adjudicados, evidencia final y siguiente fase en los artefactos existentes; no crear otro planner.
 
-Use a fresh context that does not trust Shot 1 and does not fix product code.
+### 5. Perfeccionar roles con evidencia
 
-The verifier MUST:
+Cada invocación de los cuatro roles evalúa y registra feedback compacto según `role-contract.md`; registrar agent_run cuando su trigger aplique. NO_FINDING es válido. Vincular defectos escapados, falsos positivos y retrabajo al feedback del rol que originó la conducta, no sólo al último modelo que los vio.
 
-1. verify the exact candidate commit and diff against baseline;
-2. derive tests from acceptance criteria and invariants, not only from Shot 1's tests;
-3. attack boundaries relevant to the feature: invalid inputs, persistence, concurrency, retries/idempotency, tenancy/auth, time/precision, rollback, error classification, compatibility and side effects as applicable;
-4. independently recompute critical derived values when reusing product helpers would make the test tautological;
-5. compare alleged regressions against the certified baseline;
-6. produce exact reproducible findings with severity, expected/actual and minimal correction;
-7. classify every new verifier artifact as:
-   - `PERMANENT_REGRESSION`
-   - `E2E_CANDIDATE`
-   - `HARNESS_TOOLKIT_CANDIDATE`
-   - `DISPOSABLE_REPRODUCER`.
-
-Shot 2 owns falsification, not implementation.
-
-### 5. Shot 3 — CORRECT + FINAL GATE
-
-Use a fresh implementation context.
-
-It MUST:
-
-1. fix only manager/owner-accepted Shot 2 findings;
-2. preserve frozen SDD semantics;
-3. convert valuable verifier reproducers into permanent executable assets;
-4. rerun the complete affected suite and independent critical probes;
-5. review the final diff against both baseline and Shot 1 candidate;
-6. update `VERIFICATION.md` with the final acceptance matrix;
-7. emit the exact certified commit and final status.
-
-Normal defects found inside Shot 3 are corrected and re-tested within Shot 3. Do not plan a fourth shot.
-
-### 6. Own E2E by SPEC without putting code in docs
-
-A SPEC owns its verification logically; executable tests remain in canonical code/test modules.
-
-For each acceptance criterion maintain in the feature `VERIFICATION.md`:
-
-```text
-AC / invariant → executable test path → test name/scenario → evidence/status
-```
-
-Placement rules:
-
-- package-local invariant → owning package `*_test.go`;
-- DB/HTTP/component integration invariant → owning integration test package;
-- stable cross-component behavior → canonical E2E module, preferably grouped by feature/spec ID when the repository supports it, e.g. `v3/e2e/specs/<SPEC-ID>/`;
-- reusable setup/validators/builders → canonical toolkit/test-support owner;
-- SPEC directory → specification, plan, tasks, verification manifest, fixtures/data only when repository policy explicitly allows them; do not hide executable application test code under documentation paths.
-
-A per-SPEC E2E directory is a repository convention to adopt deliberately, not a universal requirement. If no canonical E2E owner exists, first define ownership in PLAN rather than creating a competing framework.
-
-### 7. Harvest executable knowledge
-
-Before final PASS, inventory all tests/probes/scripts/helpers created by Shots 1–3.
-
-Promote when:
-- the asset protects a durable product invariant;
-- it is deterministic/repeatable enough for CI or a documented local gate;
-- ownership is clear;
-- it materially reduces future rediscovery.
-
-Verifier tests that caught a real defect are presumed valuable permanent regressions unless a documented reason rejects them.
-
-Do not keep duplicate tests merely because different agents wrote them; merge equivalent coverage while preserving the stronger invariant.
-
-### 8. Harvest repeatable agent behavior
-
-At each shot close:
-
-1. register the material execution through `agents-os-agent-run-register`;
-2. return `REUSABLE_BEHAVIOR_CANDIDATES` under `/improve`;
-3. candidates may include verification strategies, discovery sequences, failure guards, missing tooling, prompt/orchestration patterns or test-harness opportunities;
-4. `NONE` is correct when no concrete reusable behavior emerged;
-5. when warranted, persist compact session feedback with evidence and proposed class: `skill`, `runbook`, `pattern`, `known_error`, `tooling`, or `test_harness`;
-6. do not create/refine shared skills from an ordinary implementation shot. Hygiene/Kaizen promotes repeated evidence, severe blockers or forward-tested improvements.
-
-### 9. Final SDD status
-
-Return exactly one:
-
-- `SDD_DELIVERY_PASS`
-- `SDD_DELIVERY_FAIL`
-- `SDD_NOT_READY`
-- `SDD_BLOCKED_EXTERNAL`
-
-`SDD_DELIVERY_PASS` requires:
-- all active acceptance criteria proven;
-- no material finding pending;
-- reusable verifier assets dispositioned;
-- final diff within frozen scope;
-- `VERIFICATION.md` updated;
-- exact certified commit;
-- no false claim of deployment/production unless separately certified.
+Cada rol mantiene su propia skill a través de `30-resources/runbooks/sdd-role-improvement.md`, en mantenimiento separado, revisión independiente y aplicación desde la siguiente invocación. El principal mantiene orquestador/contrato/runbook compartidos. No modificar skills ni criterios a mitad de una entrega para lograr PASS. Una mejora puede ocurrir tras un run fallido terminal sin exigir que el producto pase primero; no recertifica ese run.
 
 ## Output
 
 ```text
-Feature / active task:
-Certified baseline:
-
-Shot 1:
-  candidate commit:
-  tests:
-  reusable assets:
-
-Shot 2:
-  verified commit:
-  independent probes:
-  findings:
-  reusable assets:
-
-Shot 3:
-  final commit:
-  corrections:
-  final tests:
-  promoted regression/E2E/toolkit assets:
-
-Verification matrix:
-Final status: SDD_DELIVERY_PASS|SDD_DELIVERY_FAIL|SDD_NOT_READY|SDD_BLOCKED_EXTERNAL
-
-/improve:
-  REUSABLE_BEHAVIOR_CANDIDATES: <items | NONE>
-  feedback persisted: <path | none>
-
-Next exact SDD phase/task:
+feature/task + baseline + alcance de aceptación:
+shots: rol, run_id, skill/revisión, identidad, estado y evidencia
+adjudication: findings aceptados/refutados/deferred y autoridad
+assets: regresión/E2E/toolkit/disposable con ubicación y disposición
+final_identity + verification_matrix:
+gate: technical_gate, acceptance, authority, result según sdd-acceptance-gate
+learning: feedback/agent_run por rol, mejoras propuestas/aprobadas/aplicadas o NONE
+next_exact_phase_or_dependency:
 ```
 
 ## Hard Rules
 
-- SPEC/PLAN/TASKS must be ready before implementation; do not hide upstream ambiguity in code.
-- Every Shot 1/2/3 is one-shot and executable from fresh context.
-- Shot 1 never accepts itself.
-- Shot 2 is adversarial and independent; rerunning only implementation tests is insufficient.
-- Shot 2 does not fix product code.
-- Shot 3 cannot reopen frozen product/architecture/data semantics.
-- No fourth planned shot.
-- Every acceptance criterion maps to executable evidence or an explicit unavailable/external gate.
-- Do not equate "E2E" with "put test in a folder named e2e"; test placement follows behavior boundary and canonical ownership.
-- Preserve strong verifier work as executable regression/E2E/toolkit assets rather than leaving it in temporary branches.
-- Product behavior belongs in tests/harnesses; agent behavior belongs in skills/runbooks/patterns.
-- `/improve` always evaluates reusable behavior but may legitimately produce `NONE`; never manufacture feedback or skills to fill a quota.
-- Production/deployment claims require their own release/deployment/E2E certification.
+- No duplicar el lifecycle de `sdd-workflow` ni los procedimientos de las cuatro skills; cada hecho tiene un owner.
+- El worker asignado carga su rol, no vuelve a orquestar este pipeline. Diseño principal y decisiones del Owner siguen congelados.
+- Shots 1/3 no aceptan su código; Shot 2 no lo corrige; gate no implementa. Un cambio de modelo no sustituye independencia ni evidencia.
+- No planear un cuarto shot para forzar éxito ni ejecutar micro-prompts de corrección indefinidos; devolver el gap material.
+- Ningún requisito obligatorio queda PASS por NOT_RUN, waiver silencioso, coverage global, pruebas tautológicas o firmas de los agentes.
+- Conservar regresiones útiles y evidencia vinculada a la identidad final; no degradar verificabilidad por ahorrar tokens.
+- No crear prompts/skills paralelos en el cliente. El adaptador enlaza: `role-adapters.md`.
