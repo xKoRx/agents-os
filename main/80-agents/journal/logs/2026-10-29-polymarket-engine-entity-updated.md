@@ -463,3 +463,36 @@ tags:
 - **Reconciliación canónica:** summary/feedback/agent_run reconciliados a campos canónicos con Edit (scope/confidence/load_policy/indexable/index_priority/application/entities; agent_surface/agent_model/session_goal; task_type/task_complexity/outcome/verification/evaluator/user_rework; type feedback); change_log ya era canónico; doc ya cubría los campos canónicos; templates obtenidos vía `--stdout` sobre targets virtuales sin fingir creación.
 - **Comparación con el borrador `a966b1ff…`:** agregados compartidos idénticos; única divergencia el ejemplo mediano (2383→2386, mismo empate de gross; la verificada es fiel a la regla 18/36); el borrador permanece NO acreditado.
 - **Rollback:** vault — revertir las ediciones de reconciliación y las secciones de recuperación (historia preservada); OUT recovery-v2 es aditivo; repo sin cambios (`c0c35e7` intacto).
+
+---
+
+## 2026-10-30 (W1-k CONFORMIDAD) — informe W1-j Causal Gate Diagnosis corregido (bid-led retirado, ejemplos ejecutados) + auditoría de conformidad prereg v2 vs código congelado; `bestAsk < L` determinado condición necesaria, sin adopción
+
+### Cambio
+
+- **Tipo:** updated / created (sesión nueva W1-k CONFORMIDAD, GLM-5.3-Flash único autor; host Hefesto; hook fijado `90bdb0284012d344ab0db7bb59dba4beadb9fc23bc1d751b67117eeb39c4f2af`; SÓLO lectura de fuentes y edición canónica — cero extractor/tests/build/replay y cero código producto)
+- **Archivo(s) del vault:**
+  - `10-projects/Personal/Polymarket Engine/Research — W1-j Causal Gate Diagnosis 2026-10-30.md` (corregido: «Resultado actual» y «Separación de hechos» sin el salto causal bid-led, con la observación estricta `ask > L` + widening y mecanismo NO IDENTIFICADO; «Ejemplos» actualizados a los representantes ejecutados — min seq 4420 / mediana seq 2386 / max seq 4423 con assets, timestamps y profundidad de entrada reales del diagnóstico verificado, historia 2383/4420 preservada como superseded; sección nueva «Auditoría de conformidad con el preregistro aplicable» con citas textuales de preregs/código/tests y ejemplo mínimo razonado; «Decisión» 2 con el margen ≥12% marcado SIN EFECTO como umbral; ERRATA de conformidad añadida; frontmatter `related` ampliado)
+  - `Polymarket Engine — Continuidad Five-POC 2026-09-20.md` (bullet (33) W1-k CONFORMIDAD; «Siguiente paso» actualizado en el lugar con el estado anterior preservado)
+  - `80-agents/journal/sessions/2026-10-30-polymarket-w1k-conformance-summary.md`, `…feedback/system-1/2026-10-30-polymarket-w1k-conformance-feedback.md`, `…agent-runs/2026-10-30-zcode-glm-5.3-flash-polymarket-w1k-conformance.md` (nuevos, materializados con `materialize_schema_note.py` en ruta relativa), este change_log (sección añadida)
+- **Repo:** sin cambios (HEAD `c0c35e7…` intacto, árbol limpio, sin commit ni push). Preregs y hashes: intactos. El informe piloto W1-j no se tocó (no arrastra las afirmaciones afectadas).
+
+### Motivo
+
+- Mandato W1-k CONFORMIDAD (lanzador): corregir dos problemas materiales del informe original sin inventar causalidad — (1) `ask > L` + widening no identifican el lado que causó el ensanche y faltaban bid/mid de referencia; (2) auditar directamente el preregistro aplicable v2 contra el código congelado (`Detect`/`Evaluate`/`referenceLevel`, tests, orden de llamadas) y determinar si `bestAsk < L` es condición ya necesaria del gate.
+
+### Fuentes usadas
+
+- Prereg v2 (Propósito, §5), prereg v1 W1-g (§4), Research Corrections W1-h, informe piloto W1-j, informe W1-k y `recovery-v2/verified-diagnostics.json` (`a1fc1d73…`), continuidad §18 (31)-(32), y fuente congelada @ `c0c35e7`: `internal/strategy/pocs/sports/{sports.go, sports_test.go, w1k_synthetic_counterexample_test.go}`, `cmd/researchpilot/{economics.go, supervisor.go}`.
+
+### Resolución aplicada
+
+- (1) Retiro del salto causal «bid-led demostrado» (observación estricta: `best_ask > L` con widening 36/36; mecanismo bid vs ask NO IDENTIFICADO; patrón bid-led probado sólo en el sintético) y actualización de los ejemplos a los representantes ejecutados (mediana 2383→2386, max 4420→4423; mismos grupos de empate de gross; historia superseded preservada). (2) Determinación del alcance de «excluir actual»: ambiguo en la v1 (historia); el código excluye el frame de señal sólo de `ref` (computado pre-append, `sports.go:262`/`:282`) y lo incluye en `L` (leído en `Evaluate` post-append, `:514`); bajo la v2 aplicable («frames recibidos ≤ instante de decisión») ambos son conformes — sin lookahead temporal y sin desviación del preregistro vigente; la tensión literal sería sólo con la v1 leída en sentido amplio. Orden de llamadas documentado (Detect→Evaluate sobre el mismo frame, una vez por señal; réplica con anillo pre-append y L sobre anillo+señal, 36/36). (3) `bestAsk < L` es condición ya necesaria de todo ACCEPT con fees no negativas y `entryVWAP ≥ bestAsk` (multi-nivel endurece a `entryVWAP < L`); no cambia veredictos, no se adopta como detector ni margen — decisión Owner/Metis si cambiara la estrategia.
+
+### Validación
+
+- Citas textuales verificadas por lectura directa de preregs, informe y fuente (líneas citadas); re-lectura de cada documento escrito; `sha256sum` sobre las rutas escritas; `git -C <repo> status --short` limpio y `rev-parse HEAD` = `c0c35e7…`; sin red/captura/raw/engine.db/OOS/cuentas/órdenes/push. Bloqueo registrado: perfil público global del bootstrap no legible por el guard (nombres plausibles y `ls` denegados, sin variantes).
+
+### Rollback
+
+- Vault: revertir las ediciones listadas (historia preservada en el propio texto del informe y de la continuidad). Repo: nada que revertir (`c0c35e7` intacto). Sin OUT nuevo.
