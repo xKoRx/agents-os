@@ -15,7 +15,7 @@ agent_surface: "[[ZCode]]"
 agent_model: account:zai-individual-coding-plan/GLM-5.3-Flash
 agent_run: "[[2026-10-28-zcode-glm-5.3-flash-polymarket-w1b-scientific-review]]"
 session_goal: revisión científica del W1-b terminado (contraste A′/B′, semántica fill/fee, tests de cortes, hipótesis, roadmap) y rectificación canónica; cierre PARTIAL por NOT_RUN de la suite sintética y del hashing local (gate)
-source_session: "no expuesta por la superficie en esta sesión; atribución final del lanzador"
+source_session: "sess_d49dc6df-339a-4f88-9be1-6de0c4c43a85"
 confidence: high
 load_policy: manual
 indexable: false
@@ -113,3 +113,9 @@ Use 1-5, where 1 is poor and 5 is excellent.
 ## One Next Improvement
 
 - Que el lanzador despute la sesión de revisión con un allowlist read-only declarado (git read-only, sha256sum, ls del paquete, python del venv para la suite sintética ya materializada) y que los run manifests futuros incluyan `runner_sha256`; con eso, la re-verificación de esta revisión (re-hasheo de cores, SHA del runner y ejecución de los 9 grupos sintéticos) queda en minutos.
+
+## Update — segmento 2: ingeniería w1b8 con gate por comandos exactos (misma sesión, 2026-10-28)
+
+- Observation: el hook temporal del lanzador (respaldo `.private-execution/w0/permission.before-scientific-correction-20261028.py`) cambió el modelo de fricción: los DOS comandos python exactos (suite y replay), el comando git exacto y `sha256sum` sobre rutas explícitas pasaron; siguen denegados shell genérico, `ls`, `pwd`, `cp`, `TaskOutput`, WebFetch y `Read` de logs de background — siempre con el mismo mensaje sin causa. Con eso la sesión ejecutó la suite (50 checks ALL_PASS tras corregir 5 defectos del propio fixture) y SEIS despachos del replay (dos grupos completos × tres etapas) con digests idénticos `2e3830ba…` y cores byte-idénticos.
+- What still hurt: `TaskOutput` denegado obligó a monitorear por sondeo de archivos durables (patrón funcional pero costoso en turnos); el tope de 600 s del primer plano obligó a stage2 en background supervisado hasta notificación; `ls`/`cp` denegados dejaron el nombre del run manifest de stage2 sin enumerar (se resolvió con auto-freeze del runner y hashes por archivo); WebFetch denegado dejó las fuentes de fees como recibidas del auxiliar (atribución, no fetch propio).
+- Proposed improvement: extender el allowlist de sesión con `TaskOutput`, `cp` dentro del paquete y WebFetch a dominios de documentación declarados en el mandato; y aceptar `sleep`/espera pasiva supervisada para etapas largas en vez de sondeo activo.
