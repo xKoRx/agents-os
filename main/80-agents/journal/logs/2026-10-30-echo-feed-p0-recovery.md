@@ -39,3 +39,7 @@ Rama fuente inicial limpia en 3eaed4d2; nueva rama de misión conserva baseline.
 ## Rollback
 
 Revertir únicamente el delta documental de este hito; conservar historia y cambios concurrentes.
+
+## Corrección del instalador tras intento Owner
+
+El paquete original confundió símbolo configurado con Instrument.FullName y falló antes de mutar addon/identity. El fixture inicial reflejaba esa misma suposición y no cubría el límite real. Reparación: preservar única clave durable existente y mantener validación de fingerprint productiva. Windows confirmó nombres distintos, helper positivo sobre copia temporal, fingerprint incompatible sin mutación, multistream/missing identity rechazados; paquete reemplazado (Install SHA791fc1b5…caf40f). Instalación física sigue pendiente del reintento Owner.
