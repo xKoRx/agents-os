@@ -3,7 +3,7 @@ type: change_log
 schema_version: 1
 scope: session
 created: "2026-10-29"
-updated: "2026-10-29"
+updated: "2026-10-30"
 area: "[[Personal]]"
 project: "[[Polymarket Engine — MVP]]"
 application:
@@ -421,3 +421,36 @@ tags:
 ### Rollback
 
 - Repo: `git revert 20da289c` (local; sin push; `d913f26` intacto). OUT: el directorio de revisión es aditivo y puede archivarse; OUT3 sellado no fue tocado. Vault: revertir las secciones CIERRE CIENTÍFICO EJECUTADO y los bullets (30)/"Siguiente paso" (historia preservada en el propio texto).
+
+---
+
+## 2026-10-30 (W1-k) — diagnóstico causal del gate de widening: contraejemplo del Engine real PASS (gate no estructural), episodio bid-led 36/36; test commiteado `c0c35e7`; errata de comisiones; extractor NOT_RUN por guard
+
+### Cambio
+
+- **Tipo:** created / updated (sesión de recuperación W1-k, misma superficie×modelo; offline; mandato one-shot del lanzador)
+- **Archivo(s) del vault:**
+  - `10-projects/Personal/Polymarket Engine/Research — W1-j Causal Gate Diagnosis 2026-10-30.md` (nuevo; informe canónico W1-k: álgebra, 36 señales, ejemplos, contraejemplo, límites, decisión, errata)
+  - `10-projects/Personal/Polymarket Engine/Research — Single Episode Public Pilot W1-j 2026-10-29.md` (sección ERRATA 2026-10-30 añadida arriba; historia íntegra preservada; `updated` a 2026-10-30)
+  - `Polymarket Engine — Continuidad Five-POC 2026-09-20.md` (bullet (31) W1-k; "Siguiente paso" actualizado con el estado del 2026-10-29 preservado como cita HISTORIA; `updated` a 2026-10-30)
+  - `80-agents/journal/sessions/2026-10-30-polymarket-w1j-causal-gate-summary.md`, `…2026-10-30-polymarket-w1j-causal-gate-feedback.md`, `…2026-10-30-zcode-glm-5.3-flash-polymarket-w1j-causal-gate.md` (nuevos), este change_log (sección añadida)
+- **Repo externo (fuera del vault):** commit LOCAL **`c0c35e7`** «test: verify frozen widening counterexample» (1 archivo nuevo `internal/strategy/pocs/sports/w1k_synthetic_counterexample_test.go`, +120, sobre `20da289c` sin amend; sin push; sin cambios de producción).
+- **OUT (fuera del vault):** `validated-baseline/w1-j-single-episode-pilot-20261029-lot3/analysis-revision-w1j-20261029/w1k-causal-gate-diagnosis-20261030/` — `extract_episode_diagnostics.py` (borrador v1, sha `3f36014b…`), `episode-diagnostics.json` (sha `a966b1ff…`, **NO acreditado como ejecución**), `ERRATA-fees-w1k-20261030.md` (sha `a7665be1…`), `recovery-v2/verified_extractor.py` (ejecución NOT_RUN). Sellados intactos: original `8fc7ec9d…` y revisión `93e7fe79…` re-medidos intactos.
+
+### Motivo
+
+- El cierre previo W1-k (exit 0) no completó el mandato: test no ejecutado y registros canónicos ausentes. Recuperación autorizada: ejecutar el test con las formas exactas, cerrar en Agents-OS, y producir el extractor verificado de un único input sellado sin reconstruir historia.
+
+### Resolución aplicada
+
+- **Test del contraejemplo (Engine real, formas exactas, límites CPU/RAM):** contraejemplo de dos lados con ask bajo `L` ACCEPTA el gate congelado (+1375/+250 bps en A/S); control bid-led con ask pegado RECHAZA (`REVERT_INSUFFICIENT_AFTER_COSTS`) — el gate no es no-positivo por construcción; el episodio fue negativo por la forma del libro (36/36 señales con `best_ask > L`, gross mark-to-`L` negativo 36/36, `B* > L` 36/36, net −1069…−2397 bps vs umbral 50). Dedup `(asset, signal_seq)`: 36 señales únicas (18 frames × 2 activos, 3 ráfagas de 6 frames). Decisión: ensayo v0.1 INCONCLUSIVE de un mercado; revisión económica especificada (`bestAsk < L·(1−margen)`), sin código ni captura.
+- **Errata de comisiones:** A (500 bps) y S (1000 bps) son sensibilidades lineales legacy por pata (`notional × bps/10,000`, `economics.BuildQuote`/`BpsToFeeCoefficient`), NO la fórmula actual del venue ni certificación; la forma venue es `regimes.FeeSchedule.LevelCost` (price-square por nivel, REAL_UNVERIFIED/SYNTHETIC_FIXTURE vía `BuildQuoteScheduled`) y nunca se aplicó; fee UNRESOLVED, REAL_FEE_READY=false; números W1-j preservados como historia sin reetiquetar P&L.
+- **No ejecutado con causa:** `/usr/bin/python3 <recovery-v2/verified_extractor.py>` denegado 3× por el guard de la superficie (mensaje genérico de scope) pese a estar declarado en el mandato; materializador canónico en deadlock (hook: sólo ruta absoluta; script `validate_target`: sólo relativa) — notas nuevas creadas con Write replicando el frontmatter de las materializadas del 2026-10-29, desviación registrada en summary/feedback/agent_run.
+
+### Validación
+
+- Test-only PASS 0.005s; suite completa del paquete `./internal/strategy/pocs/sports` PASS 0.014s; build exit 0; `gofmt -w`/`-l` vacío; commit `c0c35e7` con árbol limpio (`git status --short`); input sellado `93e7fe79…` re-medido intacto al cierre; sin SQLite/OOS/red/órdenes; sin push.
+
+### Rollback
+
+- Repo: `git revert c0c35e7` (local; sin push; `20da289c` intacto). Vault: eliminar la nota W1-k y los 3 registros del 2026-10-30, revertir la ERRATA del informe W1-j, el bullet (31)/"Siguiente paso" de la continuidad y esta sección (historia preservada en el propio texto). OUT: el directorio w1k es aditivo y puede archivarse; sellados intactos.
