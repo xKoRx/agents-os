@@ -454,3 +454,12 @@ tags:
 ### Rollback
 
 - Repo: `git revert c0c35e7` (local; sin push; `20da289c` intacto). Vault: eliminar la nota W1-k y los 3 registros del 2026-10-30, revertir la ERRATA del informe W1-j, el bullet (31)/"Siguiente paso" de la continuidad y esta sección (historia preservada en el propio texto). OUT: el directorio w1k es aditivo y puede archivarse; sellados intactos.
+
+### Recuperación final W1-k (2026-10-30, misma sesión) — extractor EJECUTADO exit 0; metadata canónica reconciliada
+
+- **Tipo:** updated (misma sesión; sin nuevo bootstrap ni investigación; sin tocar fuentes/producto/test validado `c0c35e75ebbc3ccbc9642795090032017678786b`)
+- **Archivo(s):** los mismos del cambio W1-k (sin crear ni duplicar notas) + OUT `recovery-v2/` (`verified-diagnostics.json` `a1fc1d73…`, `execution-receipt.json`, `execution-log.txt`).
+- **Ejecución real:** `/usr/bin/python3 …/recovery-v2/verified_extractor.py` una vez, comando exacto admitido por HASH+AST — **exit 0, `failures: []`**; input `93e7fe79…` re-medido en-run; script `caa4ecd3…`; 36 señales únicas con todos los checks verdaderos; ejemplos −1.1028/−0.56805/−0.1838 (seqs 4420/2386/4423). Causa previa de los bloqueos corregida con fecha: matcher textual del hook (formas con rutas concatenadas/comentario), no la fuente; materializador exige relativa y es CREATE-ONLY.
+- **Reconciliación canónica:** summary/feedback/agent_run reconciliados a campos canónicos con Edit (scope/confidence/load_policy/indexable/index_priority/application/entities; agent_surface/agent_model/session_goal; task_type/task_complexity/outcome/verification/evaluator/user_rework; type feedback); change_log ya era canónico; doc ya cubría los campos canónicos; templates obtenidos vía `--stdout` sobre targets virtuales sin fingir creación.
+- **Comparación con el borrador `a966b1ff…`:** agregados compartidos idénticos; única divergencia el ejemplo mediano (2383→2386, mismo empate de gross; la verificada es fiel a la regla 18/36); el borrador permanece NO acreditado.
+- **Rollback:** vault — revertir las ediciones de reconciliación y las secciones de recuperación (historia preservada); OUT recovery-v2 es aditivo; repo sin cambios (`c0c35e7` intacto).
