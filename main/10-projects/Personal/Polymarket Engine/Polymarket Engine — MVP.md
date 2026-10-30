@@ -766,7 +766,7 @@ Aplica a strategies promovidas, no al Engine MVP. Reglas:
 
 ### W1-n — cobertura sintética del déficit de profundidad de ENTRADA (2026-10-30)
 
-- [ ] Aislar el test heredado `TestW1JAnalysisRevisionSealedEpisode` antes de reejecutar suites: el shot W1-n dejó una regresión útil pero aceptación PARCIAL por reanálisis sellado inesperado; original recuperado con SHA exacto y sin segunda corrida #owner/me #type/dev #area/personal
+- [x] Aislar el test heredado `TestW1JAnalysisRevisionSealedEpisode` antes de reejecutar suites: el shot W1-n dejó una regresión útil pero aceptación PARCIAL por reanálisis sellado inesperado; original recuperado con SHA exacto y sin segunda corrida #owner/me #type/dev #area/personal
 
 - [x] Test nativo del harness: señal REALMENTE aceptada + frame siguiente con profundidad observada `0.009` ⇒ estado `sufficiency_deficit` con razón exacta, patas de entrada/salida y P&L en null explícito (serializados), agregados vacíos y veredicto `INCONCLUSIVE` (nada de fila ni P&L fabricate) #owner/me #type/dev #area/personal
 - [x] Borde exacto del paso de acción: profundidad `0.01` ⇒ tamaño `0.01` y round trip con fills y contabilidad exacta en ambos escenarios (`0.005`/`0.00025` entrada; `0.0059`/`0.000295` salida; bruto `0.0009`; neto `0.000355` en A y `-0.00019` en S; `B*` `0.5526315789473684`/`0.6111111111111111`) #owner/me #type/dev #area/personal
@@ -775,6 +775,16 @@ Aplica a strategies promovidas, no al Engine MVP. Reglas:
 - [x] Redirección de `revisionOutDir` antes de cualquier test/build (ruta W1-n) y verificación completa: focal + chequeo de mutación + suite de 3 paquetes + build + `gofmt -l` vacío + `git diff --check` limpio; commit local `6249aab` sin push #owner/me #type/dev #area/personal
 - [ ] **Owner:** fijar en el próximo preregistro la regla de L (si `ref` y si `L` incluyen o excluyen el frame de señal); hoy el código excluye el frame en `ref` (pre-append) y lo incluye en `L` (post-append), ambas compatibles con el «≤t» de la v2 — W1-n no adjudicó ni calculó la sensibilidad #owner/me #type/research #area/personal
 - [ ] **Owner:** evidencia mínima por mercado/asof para `REAL_FEE_READY` (autoridad documental fechada del mapeo `base_fee`/`fd.r` ⇒ tasa aplicada + trades reales del mismo asset en ventana con `fee_rate_bps`), distinguiendo fórmula probada de parámetros reales del venue #owner/me #type/research #area/personal
+
+### W1-nR — aislamiento de la suite por defecto (2026-10-30)
+
+- [x] Test histórico tras un opt-in explícito (`POLYMARKET_TEST_HISTORICAL=1`) como primera sentencia ejecutable, con raíz de entrada explícita (`POLYMARKET_TEST_EPISODE_ROOT`) y sin fallback host-específico #owner/me #type/dev #area/personal
+- [x] Salida de la revisión histórica a `t.TempDir()` con la metadata leída copiada byte a byte al scratch: el árbol sellado conserva bytes y lista de archivos #owner/me #type/dev #area/personal
+- [x] `TestMain` con opt-out de exportación como segunda sentencia: la suite por defecto no persiste evidencia; la exportación exige opt-in y una raíz nueva (`POLYMARKET_TEST_RECEIPTS_ROOT`), crea directorios propios únicos y rechaza objetivos existentes o inseguros #owner/me #type/dev #area/personal
+- [x] Regresiones de aislamiento con fixtures sintéticos (orden del guard, entrada/salida, ruta de revisión que escribe sólo bajo su `outDir`, contrato de exportación) #owner/me #type/dev #area/personal
+- [x] Verificación: preflight `safe: true` antes de cada corrida, focal `^TestW1NR` verde, histórico `--- SKIP` sin opt-in, suite de 3 paquetes verde, build exit 0, `gofmt -l` vacío, `git diff --check` limpio; commit local `4acf954` sin push #owner/me #type/dev #area/personal
+- [ ] **Owner:** decidir la regla de L. Recomendación técnica de W1-nR: preservar la semántica congelada (`ref` excluye, `L` incluye) y declararla explícitamente en el próximo preregistro — el código no lee frames posteriores al instante de decisión y el artefacto W1-m ya codifica ambas banderas, así que cambiarla invalidaría la comparación pineada. La fuente no adjudica: el «≤t» de la v2 admite ambas lecturas #owner/me #type/research #area/personal
+- [ ] **Owner:** autorizar el siguiente paso documental: auditar en lectura offline la identidad de fee del mercado objetivo `5784455` y sus 2 assets con `known_at` reales, pasando el conjunto por el `FeeResolverV1` existente, y compararlo explícitamente con la evidencia W1-e de otros mercados sin transferir tasas ni fechas #owner/me #type/research #area/personal
 
 ## 📆 Bitácora
 
