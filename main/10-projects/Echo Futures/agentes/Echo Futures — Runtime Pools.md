@@ -36,14 +36,14 @@ Mandato Owner: recuperar feed end-to-end mediante Sol (`gpt-6.1-sol`) y Luna (`g
 
 | Campo | Estado verificado |
 |---|---|
-| Gate activo | Investigación/reproductor del P0; certificación física NOT_RUN |
+| Gate activo | Implementación autorizada tras repro y contrato congelado; certificación física NOT_RUN |
 | Baseline | `xKoRx/echo@3eaed4d28c24491a6926c7e78f1e0a4811c74f16`, checkout existente `ef-b2-analytics-20261030`, rama de misión `codex/echo-feed-p0`; preserva `903de719` y `663e81dc` |
 | Runtime observado | Core PID 78126; relay PID 78385 pineado a release `2ee61791`; gateway PID 79000. Paridad por contenido pendiente |
 | Feed físico | Owner reinició NT tras pausa solicitada; sesión abierta 13:58:42 Chile; 13:59:09 `sessions=1`, `published=2754` items, errores/rechazos=0. No equivale a estabilidad ni continuidad certificada |
 | Hallazgos | Source confirma incompatibilidad NACK episódico del relay / latch C# persistente; ACK no limpia latch. `PublishSync` ignora contexto; causa inicial de congestión aún NO demostrada. `published` cuenta items, HWM Kafka records: comparación histórica directa inválida |
-| Workers | Sol: relay/SDK/reproductor; Luna: outbox/socket/reproductor; apoyo Luna read-only: métricas/runtime y desarme. Implementación pendiente contrato mínimo congelado |
+| Workers | Sol: relay/SDK/reproductor; Luna: outbox/socket/reproductor; apoyo Luna read-only: métricas/runtime y desarme. Contrato mínimo congelado en `xKoRx/echo:specs/EF-FEED-RECOVERY/`; implementación en archivos disjuntos y revisión cruzada posterior |
 | B2/C/D/E | NOT_CERTIFIED; binding del hello reporta MISMATCH de cuenta; desarme/economía debe revalidarse antes de SIM |
-| Cuota | Herramienta de cuenta confirma 36% usado / 64% restante al inicio y al retomar; reserva intocable 5%; granularidad entera no permite atribuir consumo menor a 1 punto |
+| Cuota | Herramienta de cuenta confirma 36% usado / 64% restante al inicio y 63% tras investigación; consumo global confirmado 1 punto, no atribuido a un worker; reserva intocable 5% |
 
 ### Fase B1 — RCA feed demostrada: AddOn dializa el puerto viejo 9771; parche una-acción en C:\Temp (2026-10-30)
 
@@ -240,8 +240,8 @@ Cuatro shots/gates como contrato Owner. S02 mantiene las ocho tareas T2.1–T2.8
 
 ## ✅ Tareas
 
-- [/] P0.1 Reproducir bloqueo y congelar contrato Go/C# compatible; Sol + Luna, sin rediseño.
-- [ ] P0.2 Implementar corrección mínima con ownership disjunto, pruebas críticas y revisión cruzada ejecutada.
+- [x] P0.1 Go reproduce ACK acumulativo prematuro y contexto ignorado; incompatibilidad NACK confirmada por source, harness C# físico de código puro pendiente. Contrato mínimo congelado para implementación; causa primaria de saturación todavía pendiente.
+- [/] P0.2 Implementar corrección mínima con ownership disjunto, pruebas críticas y revisión cruzada ejecutada.
 - [ ] P0.3 Integrar y preparar release/rollback con hashes y paridad; instalar AddOn mediante una acción Owner si requiere sesión Windows.
 - [ ] P0.4 Certificar recuperación física, 30 minutos CERT-NT-01 y barras/indicadores S2; separar transporte de continuidad.
 - [ ] P0.5 Completar S2→SIM con autorización económica explícita, cierre reconciliado y tarjeta LIVE GO; nunca forzar señales.
