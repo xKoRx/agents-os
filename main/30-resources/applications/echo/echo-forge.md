@@ -63,7 +63,10 @@ updated: 2026-09-13
 - **F-04 [BRANCH-ONLY]:** Magic V1 allocator + StrategyVersion seal + handoff + migraciones 015/016, presentes en el runner del branch; `SealStrategyVersion` implementado SIN caller de producción; no hay fixture auténtica committed del producer (testdata = copia byte-equal del corpus S0 Echo).
 - **Legado cerrado dentro de Forge:** task `wfm_exporter` (error explícito), `legacy_apply_selected_run_disabled`, `overview_exporter` skip.
 
-## 🚨 Estado y gaps conocidos (volátil · last_verified: 2026-09-13)
+## 🚨 Estado y gaps conocidos (volátil · last_verified: 2026-10-30)
+
+- **Entorno vigente (mandato owner 2026-10-30):** `sqx-prop` es el ÚNICO workspace/namespace operativo de Forge (desarrollo, pruebas y operación conviven ahí; `sqx-dev` destruido 2026-10-29 y prohibido; FORGE TODAVÍA NO HA PASADO A PRODUCCIÓN — no exigir promoción para certificar). `ENV=production` y ETCD `/sqx-worker/production/` son identificadores técnicos, no señal de madurez. Detalle: [[Echo + Echo Forge — Environment Contract]] §0.1.
+- **Estado operacional 2026-10-30:** candidato `xKoRx/symphony@7be3746` (rama `codex/forge-independent-logical-types`; código revisado `08cec708`), release worker 0.4.8 desplegada 4/4 (Zeus/Hera/Kronos/Hefesto, SHA binario `9d1baee2`), watcher 0.4.8 publicado por desplegar (intakes echo-dev en Zeus). 12W Terminated por owner, ILT_CONT Completed con 0 elegibles WFM (investigación de descarte en curso); identidad 12X libre con spec preparado (SHA `236e5f67`). Evidencia: rama `codex/echo-forge-12x-preflight-evidence-20261030` @ `348ffc4`.
 
 - G1: sin transporte real hacia Echo (ver sección Frontera). G2: seal sin caller → el manifest no puede construirse con datos sellados reales en el flujo productivo. G4: reconciliación `UNKNOWN_RECEIPT` sin consumidor del read idempotente que Echo ya provee. G5: `FORGE_GOLDEN_FIXTURE_PENDING` (T21/AC-37). G6: el spec conceptual `FEAT-SQX-ECHO-INGESTION` (repo) diverge del contrato frozen implementado y está superseded de facto — citarlo sólo como historia.
 - Ubicación futura del cableado seal→manifest→deliver: desconocida (no hay TODO ni wiring en código); la wiki no decide producto.
