@@ -115,3 +115,10 @@ SnapshotFlink20:28:34–35Z instancia iniciada20:13:46.962Z,2608completo20:26:46
 ## Ventana core autorizada y ejecutada
 
 Owner autorizó explícitamente reiniciar coreDEV y repararDEV, sin volver a pedir el gateFX. Baseline previa coincidió; readyfalse/noexecutionpermits, FXcacheSTABLE y Flink ya en recuperación antes de mutar. Se instaló únicamente drop-in90-feed-p0-core.conf y reinició echo-core-dev20:59:54Z. PID253760 carga7db3e169 SHA580ff43a…81418 por /proc/exe; /healthok. Gateway79000/relay187477/current3eaed4d2 intactos, sin intervenciónmanualFlink. Runtime sigue bloqueado y frescura pendiente. Core-window/deployment-result.json y owner-authorization.txt preservan evidencia. Sol observa RPCdiag y runtime_evidence investiga recuperaciones rápidasJM/TM (anteriores y posteriores alrestart); noRCAanticipada.
+
+
+## Direct memory OOM físico y recuperación worker
+
+Nuevo fallo21:01Z: Direct buffer memory en Kafka NetworkReceive y Nettycliente; workerJVMactual Directcap1744830464bytes, RSS10.2GiB, sinOOMcgroup/Docker. Workeractivo11:14:59Z mientras master28restarts. Root comprobó8/8objects del inventariochk2604 y5/5shareddepsoriginales presentes/hashmatch; manifest-2metadata/annexdigest divergen debytesactuales inventariados, driftpreexistente, noCLEANnuevo. No cambiarestoreargs: masterexistente reusa corteconfigurado; no seleccionarcheckpointantiguo manualmente.
+
+AutorizaciónOwnerDEV vigente: root ejecutó una vez dockerrestartstatefun-worker,StartedAt21:05:33.137Z, sin config/state/offsetchanges ni manualJMrestart. Post21:06RUNNING40/40, RSS~3.43GiB vs10.2previo,mismocap; primeraRPC146batches/988items/5.526s/HTTP200. Disponibilidad recuperada, causa de acumulaciónaúnnoresuelta ni certificación. Observarcheckpoint/progresoFX y Futures; nodeclararSTABLEcache comoavanceporoffset=-1001. Evidencia post-deploy-ro-evidence.json en core-window.
