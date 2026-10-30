@@ -10,6 +10,8 @@ related:
   - "[[Plan — Executable Single Episode Pilot W1-j 2026-10-29]]"
   - "[[2026-10-30-polymarket-w1j-causal-gate-summary]]"
   - "[[2026-10-30-zcode-glm-5.3-flash-polymarket-w1j-causal-gate]]"
+  - "[[2026-10-30-polymarket-w1k-conformance-summary]]"
+  - "[[2026-10-30-zcode-glm-5.3-flash-polymarket-w1k-conformance]]"
 aliases:
   - "W1-k causal gate diagnosis"
   - "W1-j gate adjudication"
@@ -24,7 +26,9 @@ updated: "2026-10-30"
 
 ## Resultado actual
 
-**El gate de costes v0.1 NO es no-positivo por construcción: un contraejemplo sintético plausible ejecutado contra la implementación congelada pasa el gate en ambos escenarios de fee (A-500 y S-1000, test `TestW1kSyntheticCounterexample` PASS, commit `c0c35e7`).** Lo que hizo negativas las 36 decisiones de señal del episodio sellado fue la FORMA del libro: widenings liderados por caída del bid con ask pegado, dejando el ask de entrada estrictamente sobre el nivel de referencia `L` (36/36 con `best_ask − L` ∈ [+0.005, +0.015] USD), de modo que el gross mark-to-`L` fue negativo en 36/36 (−1.1028 … −0.1838 USD por entrada virtual de 25) y las fees lo llevaron a −1069…−2397 bps, muy bajo el umbral congelado de +50 bps. **Decisión: el ensayo v0.1 se mantiene INCONCLUSIVE de un mercado** — no hay inconsistencia demostrada del harness (réplica del gate 72/72 exacta) — y la revisión económica queda especificada (no implementada, sin captura).
+**Estado 2026-10-30 (revisión W1-k CONFORMIDAD):** este informe fue corregido en DOS puntos materiales (ejemplos actualizados a los representantes ejecutados; retiro del salto causal «bid-led demostrado», preservados como errata abajo) y se añadió la auditoría de conformidad con el preregistro aplicable v2 (sección propia más abajo). El estado científico no cambia.
+
+**El gate de costes v0.1 NO es no-positivo por construcción: un contraejemplo sintético plausible ejecutado contra la implementación congelada pasa el gate en ambos escenarios de fee (A-500 y S-1000, test `TestW1kSyntheticCounterexample` PASS, commit `c0c35e7`).** Lo que hizo negativas las 36 decisiones de señal del episodio sellado fue la FORMA del libro: el spread se ensanchó sobre su mediana previa y el ask de entrada quedó estrictamente sobre el nivel de referencia `L` (36/36 con `best_ask − L` ∈ [+0.005, +0.015] USD), de modo que el gross mark-to-`L` fue negativo en 36/36 (−1.1028 … −0.1838 USD por entrada virtual de 25) y las fees lo llevaron a −1069…−2397 bps, muy bajo el umbral congelado de +50 bps. **Qué lado del libro lideró cada widening (bid vs ask vs mixto) NO es identificable desde la fuente sellada** — ver la observación estricta y su errata. **Decisión: el ensayo v0.1 se mantiene INCONCLUSIVE de un mercado** — no hay inconsistencia demostrada del harness (réplica del gate 72/72 exacta) — y la revisión económica queda especificada (no implementada, sin captura).
 
 ## Separación de hechos
 
