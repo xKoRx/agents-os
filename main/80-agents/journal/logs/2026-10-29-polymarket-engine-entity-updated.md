@@ -496,3 +496,33 @@ tags:
 ### Rollback
 
 - Vault: revertir las ediciones listadas (historia preservada en el propio texto del informe y de la continuidad). Repo: nada que revertir (`c0c35e7` intacto). Sin OUT nuevo.
+
+---
+
+## 2026-10-30 (W1-m) — instrumentación económica implementada (P0-2/P0-3/P1-4/P1-5/P2-6), episodio sellado re-exportado con identidad por fila; decisiones EXACTAS preservadas; commit `9f6caaa`
+
+### Cambio
+
+- **Tipo:** created / updated (sesión one-shot W1-m, GLM-5.3-Flash; host Hefesto; hook fijado `6771fc068113759bfe31840e19fdb8f62865495c35b17221389e51341dfb5350` no modificado; stop duro 05:00 UTC cumplido)
+- **Archivo(s) del vault:**
+  - `10-projects/Personal/Polymarket Engine/Research — Economic Instrumentation W1-m 2026-10-30.md` (nuevo; informe canónico del shot)
+  - `80-agents/journal/sessions/2026-10-30-polymarket-w1m-instrumentation-summary.md`, `…feedback/system-1/2026-10-30-polymarket-w1m-instrumentation-feedback.md`, `…agent-runs/2026-10-30-zcode-glm-5.3-flash-polymarket-w1m-instrumentation.md` (nuevos, materializados con `materialize_schema_note.py`)
+  - `80-agents/journal/logs/2026-10-27-polymarket-engine-entity-updated.md` (anexo pendiente W1-l registrado con atribución honesta), este change_log (sección añadida)
+- **Repo externo (fuera del vault):** commit LOCAL **`9f6caaa`** «w1m economic instrumentation P0-2 P0-3 P1-4 P1-5 P2-6 with revision route rename» (5 archivos, +1143/−28, sobre `c0c35e7` sin amend; árbol limpio; sin push): `cmd/researchpilot/economics.go` (ventana de referencia con identidad por fila + accept_rows; descomposición completa de round trips ACCEPT con `WalkSideDetailed`/`LevelTake`; timestamps/gaps por fila con fin de segmento REAL en `invalid_gap`; provenance de fees; `revisionDirName` → `analysis-revision-w1m-20261030`), `cmd/researchpilot/supervisor_test.go` (destino de receipts vivos a la ruta nueva), y 3 archivos de test NUEVOS (`cmd/researchpilot/w1m_instrumentation_test.go`, `internal/economics/w1m_scheduled_test.go`, `internal/regimes/w1m_schedule_test.go` — test-only, cero código de producto; sports congelado intacto).
+- **OUT nuevo (fuera del vault):** `validated-baseline/w1-j-single-episode-pilot-20261029-lot3/analysis-revision-w1m-20261030/` — `analysis-revision-w1j-ep-20261029T2230-identity.json` (`revision_run_id w1m-revision-20261030T031117.575690517Z`, sha256 `d646e56e…`), prereg `w1m-prereg-side-leadership.md/.json` fijados ANTES de la revisión, `w1m-run-receipt.json` (comandos/exit/hashes), `w1m-comparison-w1j.json`, `offline-preflight.json`/`inputs.json` producidos por TestMain, binario `pilot-supervisor` (`91fd24c1…`). Sellados intactos re-medidos: original `8fc7ec9d…`, revisión W1-j `93e7fe79…`.
+
+### Motivo
+
+- Ejecutar el incremento técnico aprobado por Metis (plan W1-l): exportar lo que el journal sellado ya contenía (déficit de REPORTE, no de captura) sin cambiar estrategia, parámetros ni decisiones; sin captura/red/órdenes/OOS; REAL_FEE_READY=false.
+
+### Resolución aplicada
+
+- P0-2: `reference_window` por fila (rechazos Y accepts) con hasta 10 observaciones pre-append `{seq,wall,bid,ask,mid,spread_bps}` + frame de señal marcado; `ref_bps` (EXCLUYE señal, orden Detect congelado `sports.go:262/282`) y `reference_level_L` (INCLUYE señal, orden Evaluate `:514`) re-derivables; flags de inclusividad explícitos. P0-3: `signalRow` con descomposición completa por nivel de ambas patas, fees por pata, gross, B\*, H=señal+300s y reason codes estructurados; campos nuevos con valor o null explícito (inerte hoy: 0 ACCEPTs reales). P2-6: H, latencias señal→entrada y salida→H (segundos y registros WS), `segment_index`/`segment_end_utc` reales; `invalid_gap` declara el fin de segmento OBSERVADO que lo causa. P1-5: `fee_formula_applied` (bound lineal vía BuildQuote), `fee_schedule_applied`=null con razón «never applied in this pilot», evidencia citada como W1-e/capture-v6 de OTROS mercados (tick 0.01, mbf/tbf 1000 legacy INTERVAL [0,1000]/UNRESOLVED, fd verbatim). P1-4 (test-only): oráculos de `LevelCost == truncate6(rate·p^e·(1−p)^e·take)` (fixture SYNTHETIC_FIXTURE, exponente 2, pineado 0.822328), Σ por nivel == `FeeTotal`, INTERVAL [0,500]/UNRESOLVED sin POINT inventado, REAL_UNVERIFIED etiquetado no-certificación. UNKNOWN W1-l cerrado: `EncodeLevels` trunca a `TopLevels=6` niveles por lado (documentado en assumptions). Regla descriptiva preregistrada (partición total bid_led/ask_led/mixto/NO_IDENTIFICADO sobre derivas exactas contra medianas por lado de la ventana; sin causalidad, sin tuning): en datos reales 50306… `bid_led` (bid −0.01/ask 0) y 61296… `ask_led` (bid 0/ask +0.01) — los dos assets abren por lados OPUESTOS.
+
+### Validación
+
+- Precondición crítica ejecutada primero: ambos destinos declarados en fuente antes de tests (hook abrió tests/revisión sólo entonces). Suite EXACTA verde (ok cmd/researchpilot 9.499s / internal/economics / internal/regimes) con los pines preexistentes de decisiones/agregados EXACTOS (72 rechazos, cobertura sellada) still green; build EXACTO exit 0; gofmt `-l` vacío; `git diff --check` limpio; revisión nativa ÚNICA exit 0: INCONCLUSIVE preservado, 18393/18400 frames, 72 = A 36 + S 36 exactos; comparación por asset/seq contra el artefacto congelado idéntica en los solapes verificados (recibo dedicado); correcciones ordinarias registradas: 2 ciclos de compilación de tests propios (API error-chaining de foundation) + 1 lógica de test corregida (S sí tiene 1 ACCEPT); flake único preexistente de timing (198.19ms vs 200ms bajo carga) verde en re-ejecuciones. Denegaciones del hook (ls/wc/grep/sha256sum multi-arg/TaskOutput/TodoWrite/log /tmp) registradas sin bypass; resolución con herramientas dedicadas. No ejecutado: `sufficiency_deficit` de entrada sin caso sintético directo (NOT RUN); sensibilidad de L incluir/excluir no calculada (decisión Owner, prereg v3).
+
+### Rollback
+
+- Repo: `git revert 9f6caaa` (local; sin push; `c0c35e7` intacto). OUT: el directorio W1-m es aditivo y puede archivarse; sellados no tocados. Vault: eliminar la nota W1-m y los 3 registros journal, revertir la sección de este log y el anexo W1-l en la bitácora 2026-10-27 (historia preservada en el propio texto).
