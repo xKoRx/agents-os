@@ -3,10 +3,19 @@ type: doc
 schema_version: 1
 status: active
 area: "[[Personal]]"
-related: []
-aliases: []
+project: "[[Polymarket Engine — MVP]]"
+related:
+  - "[[Research — Entry Depth Regression W1-n 2026-10-30]]"
+  - "[[Research — Economic Instrumentation W1-m 2026-10-30]]"
+  - "[[Plan — Minimal Economic Instrumentation W1-l 2026-10-30]]"
+  - "[[Polymarket Engine — Continuidad Five-POC 2026-09-20]]"
+aliases:
+  - "W1-nR default suite isolation"
+  - "Research W1-nR"
+  - "aislamiento de la suite por defecto"
 tags:
   - kind/doc
+  - topic/research-ops
 created: "2026-10-30"
 updated: "2026-10-30"
 ---
@@ -15,12 +24,77 @@ updated: "2026-10-30"
 
 ## Propósito
 
--
+- Corregir la desviación de aislamiento detectada en W1-n: la suite por defecto ejecutaba el test histórico sellado, reanalizaba el episodio real y sobrescribía el artefacto de revisión W1-m. Este shot es **técnico y estructural**: aísla las rutas de escritura, no cambia estrategia, dimensionamiento, fees, parámetros ni la regla de L, y no toca código de producción.
+- Alcance: repo `polymarket-engine`, rama `w0/offline-causal-replay-20261027`, baseline `6249aabdd3bb3a0d7adb02a6c56e4bcb516599c1`, commit propio `4acf954407ede3e5bb42d057f35d7b2c7f02c913` (sin push). Tres archivos propios: `cmd/researchpilot/economics_test.go`, `cmd/researchpilot/supervisor_test.go` y `cmd/researchpilot/w1nr_isolation_test.go` (nuevo).
+- Fuera de alcance por mandato: no se ejecutó análisis histórico, no se leyó ni reanalizó un episodio real, no hubo captura nueva, red, OOS, live, órdenes ni fondos; `REAL_FEE_READY=false` intacto.
 
 ## Contenido
 
--
+### Bootstrap y contexto cargado (evidencia de lectura real, 14/14 ventanas)
+
+- Las 14 ventanas exigidas se leyeron completas y sin truncado: AGENTS global de ZCode, `main/AGENTS.md`, `agents-os-bootstrap/SKILL.md`, `agent-constitution.md`, `rjara-agent-profile.md`, `agents-os-operating-continuity.md`, `skills/INDEX.md`, `domain-router-registry.md`, `agents-os-context-retrieval/SKILL.md`, y cuatro ventanas de `Polymarket Engine — Continuidad Five-POC 2026-09-20` (cierre W1-m, orden del Owner y setup MiniMax, rectificación W1-n) más los documentos completos W1-n, W1-m, W1-l, W1-e y los preregistros W1-g/W1-h.
+- Entidad activa `[[Polymarket Engine — MVP]]`, área `Personal`: el registro de routers sólo tiene filas `meli` y `aranea`, luego **cero matches ⇒ DEFAULT sin router**. Recuperación por lectura enfocada; no se barrió el vault.
+- **Contexto que estaba equivocado en W1-n, corregido aquí:** W1-n sujetos sus aserciones («cero episodio real», «preservación durante todo el shot») a un hecho que era falso en su propia corrida. Esta nota no repite esas aserciones: la suite por defecto ahora **no puede** alcanzar el episodio real, y esa propiedad se prueba por construcción y por regresión, no por una afirmación de cierre.
+
+### La desviación, aislada
+
+- Causa: `TestW1JAnalysisRevisionSealedEpisode` (en `economics_test.go`) llamaba `analyzeEpisodeRevision(taskRoot, sealedLot3Out, plan, originalAnalysisSHA256)`, con `sealedLot3Out` como **destino de escritura**. La ruta de revisión vive bajo `outDir/revisionDirName`, de modo que la suite por defecto escribía exactamente sobre el artefacto de revisión W1-m. Un segundo problema Structural: `TestMain` escribía `offline-preflight.json` e `inputs.json` en una ruta absoluta fija (`validated-baseline/w1-n-entry-depth-20261030`) en **cada** corrida, sin opt-in.
+- Auditoría de fuentes (los tres paquetes afectados: `cmd/researchpilot`, `internal/economics`, `internal/regimes`; todo `*_test.go`): el preflight reporta **47 sitios de escritura** sobre **36 archivos fuente**. Casi todos son derivados de `t.TempDir()`. Las **dos rutas no temporales** que requerían corrección eran exactamente el test histórico sellado y la exportación de recibos de `TestMain`; ambas quedaron corregidas. `internal/regimes` conserva su `emitG01Evidence`, ya protegido por `PM_ENGINE_EMIT_EVIDENCE`: quedó **sin cambios y con la variable sin definir**. Este inventario es de fuentes, no una prueba formal de filesystem de todo el repo.
+
+### Corrección implementada
+
+- **Test histórico** (`economics_test.go`): la primera sentencia ejecutable es ahora el guard de opt-in `if os.Getenv("POLYMARKET_TEST_HISTORICAL") != "1" { t.Skip("historical analysis requires explicit opt-in") }`, antes de cualquier `Stat`, lectura, hash, copia o apertura. La raíz de entrada es explícita (`POLYMARKET_TEST_EPISODE_ROOT`), sin fallback host-específico. Cuando se habilita, la revisión escribe en `scratch := t.TempDir()` y recibe ese scratch como argumento de salida de `analyzeEpisodeRevision`; la metadata que la ruta lee (análisis original pineado, evidencia de identidad, digest de replay, run outcome y recibos) se copia byte a byte a scratch, de modo que el árbol sellado conserva sus bytes exactos y su lista exacta de archivos. Las aserciones y la funcionalidad del chequeo histórico quedan **preservadas**.
+- **`TestMain`** (`supervisor_test.go`): empieza con `code := m.Run()` y la segunda sentencia es el guard de opt-out `if os.Getenv("POLYMARKET_TEST_EXPORT_RECEIPTS") != "1" { os.Exit(code) }`. Sólo después de ese guard se inspeccionan los casos requeridos y se exportan recibos. La exportación va a una **raíz nueva** (`POLYMARKET_TEST_RECEIPTS_ROOT`) y crea un directorio propio único; una raíz no configurada, una raíz dentro del checkout del engine o un objetivo existente se **rechazan** en vez de sobrescribirse. La suite por defecto ya **no persiste evidencia** fuera de sus directorios temporales.
+- Se eliminaron los comentarios obsoletos de W1-n que afirmaban «el analyze real no se invoca en este shot» y la variable `revisionOutDir` de ruta absoluta fija.
+
+### Regresiones nuevas (`w1nr_isolation_test.go`, 4 tests, recursos sintéticos)
+
+- `TestW1NRHistoricalTestIsOptInOnly`: el guard de opt-in del test histórico es su **primera** sentencia ejecutable y precede a todo acceso a filesystem (verificado contra el fuente, porque un test que ya corrió ya pasó su propio guard).
+- `TestW1NRHistoricalRevisionWritesOnlyToScratch`: sobre un árbol sintético, la copia preserva bytes exactos, el árbol de entrada conserva lista y hashes, y el scratch contiene exactamente los archivos copiados.
+- `TestW1NRRevisionRouteKeepsItsOwnOutput`: la ruta de revisión de producción escribe el artefacto **sólo** bajo el `outDir` que recibe y el árbol del episodio sintético queda byte-idéntico.
+- `TestW1NRReceiptExportIsOptInOnly`: raíz no configurada rechazada, raíz insegura (dentro del checkout) rechazada, y dos exportaciones SUCCESSIVAS producen directorios distintos (nunca se sobrescribe un objetivo existente).
+- `TestW1NRDefaultSuitePersistsNothingOutsideTemp`: el guard de export es la **segunda** sentencia de `TestMain` y ninguna escritura de recibos lo precede.
+- Estas aserciones son de **aislamiento y procedencia**. No miden rentabilidad, fees ni alpha, y no Replace ninguna aserción de producción para simular mutación: no se corrió ningún chequeo de mutación y no se declara coverage porcentual.
+
+### Verificación (comandos exactos del mandato, sin variantes)
+
+- Preflight de seguridad: `safe: true`, `problems: []`, `writer_sites: 47`, `source_files: 36`, `sealed_unchanged: true`. Es un gate **previo** a cualquier test o build; se re-corrió después de cada edición de fuente y antes de cada corrida.
+- Focal `-run '^TestW1NR'` → `ok 0.039s`. Histórico `-run '^TestW1JAnalysisRevisionSealedEpisode$' -v` → **`--- SKIP: TestW1JAnalysisRevisionSealedEpisode`**, con el mensaje `historical analysis requires explicit opt-in` y sin variables de opt-in presentes.
+- Suite `./cmd/researchpilot ./internal/economics ./internal/regimes` → `ok 7.965s` / `ok 0.011s` / `ok 1.711s`. Build de `pilot-supervisor` → exit 0 en la ruta nueva de este shot. `gofmt -l` vacío; `git diff --check` limpio; árbol limpio tras el commit.
+- **Fricción honesta, no oculta:** la primera corrida de suite falló en `TestStepSequenceWaitsForAbsoluteSlotStart` (198.392396 ms contra un umbral de 200 ms). Es un flake de timing **preexistente** —la continuidad de W1-m registra el mismo test fallando una vez en 198.19 ms frente a 200 ms y pasando en repeticiones— y este shot **no tocó** `supervisor.go` ni ninguna lógica de timing. La segunda corrida de la misma suite dio verde en los tres paquetes.
+- **Preservación: no la afirmo yo.** El preflight reporta `sealed_unchanged: true` y esta sesión no escribió en ninguna ruta sellada; la medición de los 90 hashes y de la lista de archivos corresponde al supervisor. La ausencia de escrituras externas es el mecanismo, no la certificación.
+
+### Análisis documental de fees (identidad, as-of, disponibilidad)
+
+| Identidad (mercado/asset) | as-of / known-at | Campo y valor bruto | Fuente | Disponibilidad | Qué puede y qué no certifica |
+|---|---|---|---|---|---|
+| W1-j objetivo: mercado `5784455`, condición `0x5022…cf2a62`, assets `61296…6143` y `50306…9615` | kickoff `2026-10-29T22:30:00Z`; observado `2026-10-29T20:45:49.500907424Z`; plan SHA `ef3a85f0…` | identidad de selección (2 assets de 1 mercado) | research W1-m; artefacto original W1-m pineado | PRESENTE_IDENTIDAD | Certifica la identidad y el instante de la decisión; **no** certifica fee |
+| W1-j objetivo (2 assets) | idem | fee de settlement / schedule / rate / exponente / redondeo = **null** | research W1-m | **NOT_CERTIFIED — metadata de fee del objetivo NO inspeccionada por este setup** | No se puede afirmar ausencia: «no inspeccionado» ≠ «ausente»; no se transfieren tasas de otros mercados |
+| W1-e capture-v6 **OTROS** mercados `6013297/6013337/6013387/6013310` | evidencia capturada `2026-10-28`, no la fee vigente ni el episodio W1-j | `maker/taker_base_fee_bps = 1000` (campo legacy declarado) | research W1-e | PRESENTE_OTROS_MERCADOS_NO_TRANSFERIBLE | Acota un cap a 1000 bps **en esos mercados y esa fecha**; no es una comisión certificada ni un 10 % aplicable |
+| W1-e capture-v6 OTROS mercados |idem | `fd` crudo = `{e:1, r:0.05, to:true}` | research W1-e (citado por W1-m) | RAW_REPORTED_UNINTERPRETED | Sin conversión probada a `base_fee` ni mapeo a settlement; se preserva verbatim |
+| W1-e capture-v6 OTROS mercados | idem | `tick = 0.01`, `fee_observed = 0` | research W1-e | PRESENTE | `fee_observed = 0` significa **cero trades observados**, NO fee cero |
+| Escenarios del harness | fijos, no fecha de mercado | A = intervalo condicional `[0,500]` al upper bound; S = estrés `1000` | prereg W1-h v2 §6; W1-m; `economics.go` | SENSITIVITY_ASSUMPTIONS_NOT_VENUE_FEES | Acotan la aritmética del motor; no son la tarifa del venue |
+| Objetivo W1-j (regla de aplicación) | n/a | fórmula lineal `notional × bps/10000` por pata vía `BuildQuote`; `FeeSchedule` **nunca aplicado** en piloto | W1-m P1-5; `economics.go` | PRESENTE_ENGINERIA | Certifica **la fórmula que el engine aplica**, nunca una tasa del venue |
+
+- Reglas que este shot sostiene explícitamente: la fee **vigente** nunca se aplica retroactivamente a un episodio pasado; el `POINT` de `FeeResolverV1` es evidencia convergente de una identidad (declarada o trade-observada), **no** un certificado de settlement ni `REAL_FEE_READY`; y `REAL_FEE_READY=false` sigue vigente. El mercado objetivo y sus 2 assets **no son** los 4 mercados de W1-e: son identidades, fechas y campos distintos, y sus tasas no se transfieren en ninguna dirección.
+
+### Regla de L: qué dice la fuente y qué no puede adjudicar
+
+- **Texto autoritativo.** W1-g v1 §4: «**Lookback:** últimos `ref_frames=10` frames del MISMO asset (mediana de spreads para detección; mediana de mids para el nivel de referencia L). El frame actual jamás entra a su propia referencia (por construcción v0.1).» W1-h v2 §5: «**Sin datos futuros:** señal, elegibilidad y referencia usan sólo frames recibidos ≤ instante de decisión; la liquidación usa frames ≤ H…». W1-l P0-1: «el próximo preregistro que toque el piloto debe fijar explícitamente si `ref` (detección) y `L` (nivel de referencia) incluyen o excluyen el frame de señal», clasificado como **cambio económico Owner**.
+- **Orden de código actual (verificado en este shot, HEAD `4acf954`).** En `internal/strategy/pocs/sports/sports.go`, `Detect` lee la referencia de detección en `sports.go:262` (`s.reference`) **antes** del `s.append` de `sports.go:282`: `ref` **excluye** el frame de señal. `Evaluate` lee el nivel de referencia en `sports.go:514` (`s.referenceLevel`), ya en el anillo post-append: `L` **incluye** el frame de señal. Ambas referencias leen sólo frames recibidos ≤ el instante de decisión ⇒ **no hay bug temporal ni look-ahead**.
+- **Opciones exactas.** (A) `ref` excluye / `L` incluye — la semántica congelada actual; (B) `ref` excluye / `L` excluye — lectura estricta de la frase v1 «jamás entra a su propia referencia»; (C) `ref` incluye / `L` incluye — referencia auto-referencial en la detección, que además no es la implementación congelada.
+- **Qué la spec fija y qué no.** Fija: no datos futuros (v2 §5), las taxonomías, los escenarios de fee y el congelamiento de parámetros. **No** fija si el frame de señal pertenece a la ventana de referencia de `ref` ni de `L`: el «≤t» de la v2 admite lectura inclusiva y la v1 no distingue el alcance de su frase. Por eso W1-l lo adjudicó como **ambigüedad documental**: ni bug temporal (hecho de código verificado) ni conformidad estricta (el texto no fija la regla).
+- **Consecuencia sin tuning de resultados.** `L` es el precio de salida del round trip; cambiar su inclusividad cambia notional de salida, fee de salida y `net_edge_bps`, y puede mover filas a través del gate de 50 bps y de la línea de net cero. Cambiar `ref` cambia qué frames ensanchan, es decir qué filas existen. En el episodio sellado W1-j las 72 filas fueron rechazos por coste en ambos escenarios y los máximos de `net_edge_bps` quedaron bajo 50, así que **el signo del efecto no es identificable con ese episodio**. La elección debe fijarse *a priori* en un preregistro: elegirla después de ver resultados sería exactamente el tuning que el prereg v2 prohíbe.
+- **Recomendación técnica (no aplicada en este shot).** Preservar la semántica congelada (opción A: `ref` excluye, `L` incluye) y **declararla explícitamente** en el próximo preregistro. Es técnicamente la opción más limpia porque: el código congelado ya no lee frames posteriores al instante de decisión (no hay bug que corregir); el artefacto de revisión W1-m ya publicado codifica `ref_includes_signal_frame=false` y `l_includes_signal_frame=true`, de modo que cambiar `L` invalidaría la comparación pineada; y la exportación W1-m documenta ambas banderas, así que la regla queda legible sin tocar el engine. Este shot **no cambió `L`** ni corrió sensibilidad alternativa.
+
+### Próximo paso documental ejecutable (uno, sin framework/captura/campaña)
+
+- **Auditar la identidad de fee del mercado objetivo `5784455` y sus 2 assets, en lectura offline y sólo con evidencia ya capturada.** Concretamente: extraer del journal sellado W1-j las observaciones de fee de la condición `0x5022…cf2a62` y de los dos assets, con su `known_at` real de recepción, y pasar ese conjunto por el `FeeResolverV1` **existente** para obtener el estado de fee del objetivo en sus instantes de decisión (POINT / INTERVAL / UNRESOLVED / SUSPECT). Entregable: una tabla de identidad/as-of con los campos crudos del objetivo y su resolución, más la comparación explícita con la evidencia W1-e de **otros** mercados.
+- Por qué este paso y no otro: el hueco declarado en la evidencia disponible es literalmente «la metadata de fee del objetivo **no fue inspeccionada**»; la evidencia que sí existe (mbf/tbf 1000, `fd` crudo, tick 0.01, `fee_observed` 0) pertenece a 4 mercados distintos, con fecha distinta, y por contrato no se transfiere. Es evidencia pública ya capturada: **no requiere cuenta propia, órdenes ni fondos**, y no requiere captura nueva, framework ni campaña.
+- Lo que este paso **no** hará: no certificará `REAL_FEE_READY` (el mapeo documental `base_fee`↔`feeRate`↔settlement sigue siendo el gap U-02; el resolver no infiere la identidad 3, la fee efectiva de settlement), no producirá rentabilidad ni alpha, no abrirá OOS ni live, y no alterará `ref`/`L`.
 
 ## Fuentes
 
--
+- Repo `polymarket-engine` (rama `w0/offline-causal-replay-20261027`): `cmd/researchpilot/economics_test.go`, `cmd/researchpilot/supervisor_test.go`, `cmd/researchpilot/w1nr_isolation_test.go` (nuevo), lectura de `cmd/researchpilot/economics.go` (ruta de revisión, `analyzeEpisodeRevision`, `buildRevisionCoverage`, `revisionIdentity`), `cmd/researchpilot/main.go` (constantes `taskRoot`, `repoRelDir`, `sourceRelPaths`), `internal/strategy/pocs/sports/sports.go` (`Detect`/`Evaluate`/`reference`/`referenceLevel`), `internal/regimes/feeresolver.go` (`FeeResolverV1`, `BpsToFeeCoefficient`), `internal/regimes/schedule.go` (`FeeSchedule`, `ProvenanceRealUnverified`), `internal/capture` (vista read-only) e `internal/persist` (`Options.ReadOnly`).
+- Evidencia de fees fijada para este shot: `available-fee-evidence.json` (setup de la supervisión, sanitizada).
+- [[Research — Entry Depth Regression W1-n 2026-10-30]] (el incidente y su rectificación), [[Research — Economic Instrumentation W1-m 2026-10-30]] (instrumentación vigente y procedencia de fees), [[Plan — Minimal Economic Instrumentation W1-l 2026-10-30]] (adjudicación de L), [[Research — Prospective Metadata Quality W1-e 2026-10-28]] (evidencia de fees de otros mercados), [[Preregistration — PE-005-R1 Economic Candidate W1-g 2026-10-29]] y [[Preregistration — PE-005-R1 Economic Candidate v2 W1-h 2026-10-29]] (textos autoritativos de fee y de atadura temporal), [[Polymarket Engine — Continuidad Five-POC 2026-09-20]] (continuidad).
