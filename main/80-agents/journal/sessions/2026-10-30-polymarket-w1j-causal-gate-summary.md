@@ -72,5 +72,5 @@ tags:
 
 ## Pendiente
 
-- Ejecución del extractor de recuperación (requiere que el lanzador registre la forma exacta del script, patrón W1-b/W1-j: preflight de fuente por SHA) y cotejo formal contra el borrador no acreditado.
+- ~~Ejecución del extractor de recuperación~~ **COMPLETADA en la recuperación final de la misma sesión** (exit 0, `verified-diagnostics.json` `a1fc1d73…`, recibos y comparación con el borrador no acreditado — ver sección RECUPERACIÓN FINAL arriba).
 - Decisión Metis/Owner sobre la revisión económica especificada (sin código ni captura hasta entonces).
