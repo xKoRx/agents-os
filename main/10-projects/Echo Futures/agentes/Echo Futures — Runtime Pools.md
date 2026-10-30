@@ -39,11 +39,11 @@ Mandato Owner: recuperar feed end-to-end mediante Sol (`gpt-6.1-sol`) y Luna (`g
 | Gate activo | Implementación autorizada tras repro y contrato congelado; certificación física NOT_RUN |
 | Baseline | `xKoRx/echo@3eaed4d28c24491a6926c7e78f1e0a4811c74f16`, checkout existente `ef-b2-analytics-20261030`, rama de misión `codex/echo-feed-p0`; preserva `903de719` y `663e81dc` |
 | Runtime observado | Core PID 78126; relay PID 78385 pineado a release `2ee61791`; gateway PID 79000. Paridad por contenido pendiente |
-| Feed físico | Owner reinició NT tras pausa solicitada; sesión abierta 13:58:42 Chile; 13:59:09 `sessions=1`, `published=2754` items, errores/rechazos=0. No equivale a estabilidad ni continuidad certificada |
+| Feed físico | REPRO P0 en baseline: conectado13:58:42 Chile; a14:09:39 relay registra saturation+drain, a14:09:43 AddOn NACKED con pending_items=0 y cursor28576. Capturas nuevas no se sellan pese a callbacks crecientes; gap real ≤14:09:39, onset exacto desconocido. Sin reinicios adicionales ni certificación |
 | Hallazgos | Repro C# real Windows: latch tras NACK/ACK/reconnect (7 checks); baseline 110 asserts PASS. Go reproduce ACK prematuro frame vacío y contexto ignorado. Reconnect puede acumular workers bloqueados; corrección lifecycle scoped en curso. Pérdida por OUTBOX_FULL no deja gap C-SEQ: corrección durable por adjudicar. Causa inicial de congestión NO demostrada; items vs records no son comparables |
 | Workers | Sol: relay/SDK/reproductor; Luna: outbox/socket/reproductor; apoyo Luna read-only: métricas/runtime y desarme. Contrato mínimo congelado en `xKoRx/echo:specs/EF-FEED-RECOVERY/`; implementación en archivos disjuntos y revisión cruzada posterior |
-| B2/C/D/E | NOT_CERTIFIED; binding del hello reporta MISMATCH de cuenta; desarme/economía debe revalidarse antes de SIM |
-| Cuota | Herramienta de cuenta confirma 36% usado / 64% restante al inicio y 62% tras investigación y comienzo implementación; consumo global confirmado 2 puntos, no atribuido a un worker; reserva intocable 5% |
+| B2/C/D/E | NOT_CERTIFIED. S2 admitía OPEN con warmup+NOT_READY: reproducido y guard implementado, suite/race PASS, review pendiente. Binding del hello MISMATCH; configuración económica global no demostrada (snapshot truncado), binding disabled y SQL sin exposición no bastan |
+| Cuota | Herramienta de cuenta confirma 36% usado / 64% restante al inicio y 61% tras implementación y primera revisión; consumo global confirmado 3 puntos, no atribuido a un worker; reserva intocable 5% |
 
 ### Fase B1 — RCA feed demostrada: AddOn dializa el puerto viejo 9771; parche una-acción en C:\Temp (2026-10-30)
 
