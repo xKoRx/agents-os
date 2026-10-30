@@ -87,3 +87,10 @@ Provider confirmado actual por candidatos QUOTE/TRADE19:59:42Z, stampedseq719726
 Checkpoints2605/2606/2607 completados tras restore2604, avance durabledelstream19721→82081 facts yLSO14721518→14783885; diagnóstico inicial sano se limita a ese corte. A20:04:49Z apareció RequestTimeoutException NQmarket_stream, checkpoint2608 falló Coordinator suspending yrestore2607@20:04:54Z; no atribución aC# ni mutaciónmanual. Lagposterior35603 sigue descendiendo; no fullCERTPASS.
 
 Sol/Luna demuestran fuente EchoNativeBars sinlookbackconfig (cursor→now o1día), insuficienteparademostrar51H4/20×5m ni rehidratartrasrestoredownstream. Recovery porOHLCtickssynthetic noadmitida. Root adjudica P0 de seguridad: BAR_COVERAGE puedehacerREADYaunqueSourceGapOpen; Sol autorizadofixmínimoSDKmarket/readiness+red/green, Lunaverificaciónindependiente; sourceonly, sinruntimewrites. Contracto de rebootstrap/epochcontinúadesignonly: no resets, nodeletionsgap, noREADYmanual. Cuota49% restante.
+
+
+## Guard integrado y diagnóstico sin hipótesis promovidas
+
+Root integra/pushea d49648e83a8db79e7f62de2dd6772229335a4930 tras red6casos/green SDKmarket+ctx+analytics+S2 race, corefuncionesfocal yvet; Luna3probesindependientes overlay/racePASS. Root detectócausabarspuria conOpenGapsvacío, Sol corrigióantesfreeze. Corebuildlimpio Go1.27.1/vcs.modified=false SHA9fe03c835e28c4289009650037a557b63e3a48084fb4154f9838f319a42d4f62 staged echo-feed-p0-release-d49648e8; nodeploy.
+
+A20:12:33 CP2607últimocompleto,2608/2609/2610fallidos,restorecount4; committed45156750 sinavancedurable desde20:06:53,lag35603→37303. Fuentequote/tradeactualinnerEpoch1 distintoouterrelayepoch. HeadKafka45156750es4QUOTElegacy event02:19Z,no70itemsactuales. Perfhermético bounded16invocations×70items431ms,response4.01MB;16×256771ms,response9.10MB. No explica2minfísico, noRCAporamplificaciónniaprobarcaparbitrario. Sólolectura/perfaislado; runtimeintacto. RebuildSegment existecomo tipo sinrutaoperativa: gapirrecuperable+51H4/20×5m requierecontratorevalidaciónnativaauditable aúnnoimplementado; no usartickssynthetic niresetcursor.
