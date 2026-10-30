@@ -69,3 +69,7 @@ tags:
 ## Rollback
 
 - Revertir los commits locales `e4d201a` y `4acf954` en `w0/offline-causal-replay-20261027` devuelve el árbol a `6249aabdd3bb3a0d7adb02a6c56e4bcb516599c1`, con el estado previo de W1-n (suite no aislada). Las notas del vault se corrigen editando los bloques agregados en esta sesión.
+## Readback de supervisión
+
+- Cierre terminal, commit y 90/90 originales verificados; véase el readback final de [[Research — Default Suite Isolation W1-nR 2026-10-30]]. El mismo fallo temporal tiene evidencia real en W1-m (03:08:50Z, 198.190008 ms) y cuerpo idéntico; no se ejecutó control baseline emparejado ni se afirma regresión descartada. Se conserva el historial de los dos fallos actuales y la tercera corrida verde, sin repetir suites aquí.
+- Se corrigió documentalmente la procedencia del dato de selección y la consecuencia de L: exclusión escrita en v1 frente a inclusión actual, sin equiparar L con la liquidación observada a H. Fees/L entregados como análisis documental; no se extrajo metadata cruda adicional ni se implementó L. La decisión de preregistro no bloquea el inventario offline de fees.

@@ -17,8 +17,8 @@ agent_model: minimax/MiniMax-M3.1-Flash
 model_source: host
 task_type: coding
 task_complexity: medium
-outcome: success
-verification: passed
+outcome: partial
+verification: partial
 evaluator: agent
 user_rework: unknown
 source_session:
@@ -61,3 +61,8 @@ tags:
 - **Outcome:** partial — el defecto de aislamiento quedó corregido y verificado, pero la revisión de la supervisión encontró una regresión en la semántica de recibos (una suite roja podía acuñar `all_required_cases_passed`), corregida en un segundo commit con una regresión negativa que se demostró mordiendo. La suite completa **no es fiablemente verde en este host** por el flake de timing preexistente; la tercera corrida registrada fue verde.
 - **Rework posterior:** la revisión de la supervisión rechazó la primera entrega por la regresión de la garantía de corrida verde; ese rework está en `e4d201a`. El Owner todavía no ha reaccionado a la corrección.
 - **Aprendizaje para comparar herramientas:** en superficies con hook de alcance, el gate de seguridad previo es la fuente más barata de verdad sobre la forma exacta que debe tener el código (orden de sentencias y literales); implementarlo contra el gate evitó un ciclo de ensayo y error sobre el comportamiento correcto. Y una garantía semántica que se traslada a otro mecanismo (aquí, el opt-in de exportación) debe conservar **todas** sus precondiciones, no sólo la nueva: la Corrección del `if code == 0` se perdió al reescribir `TestMain` y sólo la revisión externa la detectó, porque las pruebas del shot no cubrían la ruta de suite roja.
+
+## Readback de supervisión
+
+- Cierre terminal, commit y 90/90 originales verificados; véase el readback final de [[Research — Default Suite Isolation W1-nR 2026-10-30]]. El mismo fallo temporal tiene evidencia real en W1-m (03:08:50Z, 198.190008 ms) y cuerpo idéntico; no se ejecutó control baseline emparejado ni se afirma regresión descartada. Se conserva el historial de los dos fallos actuales y la tercera corrida verde, sin repetir suites aquí.
+- Se corrigió documentalmente la procedencia del dato de selección y la consecuencia de L: exclusión escrita en v1 frente a inclusión actual, sin equiparar L con la liquidación observada a H. Fees/L entregados como análisis documental; no se extrajo metadata cruda adicional ni se implementó L. La decisión de preregistro no bloquea el inventario offline de fees.

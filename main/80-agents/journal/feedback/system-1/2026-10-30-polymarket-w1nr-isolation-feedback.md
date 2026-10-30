@@ -114,3 +114,7 @@ Use 1-5, where 1 is poor and 5 is excellent.
 
 - Que el informe del gate de seguridad exponga el inventario nominal de archivos de fuente y sus rutas de escritura, de modo que una auditoría de rutas no temporales sea reproducible sin sondeo por rutas adivinadas.
 - Y, para la clase de defecto que la revisión encontró: al reescribir un mecanismo que ya tenía garantías (en este caso la exportación de recibos bajo opt-in), conservar la lista explícita de precondiciones del mecanismo anterior (`code == 0`) y cubrir la ruta de fallo con una prueba, no sólo con el camino feliz.
+## Readback de supervisión
+
+- Cierre terminal, commit y 90/90 originales verificados; véase el readback final de [[Research — Default Suite Isolation W1-nR 2026-10-30]]. El mismo fallo temporal tiene evidencia real en W1-m (03:08:50Z, 198.190008 ms) y cuerpo idéntico; no se ejecutó control baseline emparejado ni se afirma regresión descartada. Se conserva el historial de los dos fallos actuales y la tercera corrida verde, sin repetir suites aquí.
+- Se corrigió documentalmente la procedencia del dato de selección y la consecuencia de L: exclusión escrita en v1 frente a inclusión actual, sin equiparar L con la liquidación observada a H. Fees/L entregados como análisis documental; no se extrajo metadata cruda adicional ni se implementó L. La decisión de preregistro no bloquea el inventario offline de fees.

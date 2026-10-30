@@ -71,3 +71,7 @@ tags:
 - La medición de los 90 hashes sellados y de la lista final de archivos corresponde al supervisor; esta sesión sólo puede afirmar que no escribió en rutas selladas y que el preflight informó `sealed_unchanged: true`.
 - El flake de timing preexistente `TestStepSequenceWaitsForAbsoluteSlotStart` (umbral de 200 ms) volvió a aparecer **dos** veces en la suite de esta continuación (199.512005 ms y 199.026946 ms) antes de una tercera corrida registrada en verde; el test que falla no fue tocado por esta corrección.
 - `REAL_FEE_READY=false` y OOS/live permanecen desactivados; no hay segundo shot ni relanzamiento.
+## Readback de supervisión
+
+- Cierre terminal, commit y 90/90 originales verificados; véase el readback final de [[Research — Default Suite Isolation W1-nR 2026-10-30]]. El mismo fallo temporal tiene evidencia real en W1-m (03:08:50Z, 198.190008 ms) y cuerpo idéntico; no se ejecutó control baseline emparejado ni se afirma regresión descartada. Se conserva el historial de los dos fallos actuales y la tercera corrida verde, sin repetir suites aquí.
+- Se corrigió documentalmente la procedencia del dato de selección y la consecuencia de L: exclusión escrita en v1 frente a inclusión actual, sin equiparar L con la liquidación observada a H. Fees/L entregados como análisis documental; no se extrajo metadata cruda adicional ni se implementó L. La decisión de preregistro no bloquea el inventario offline de fees.
