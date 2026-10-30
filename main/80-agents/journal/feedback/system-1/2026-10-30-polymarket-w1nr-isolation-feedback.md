@@ -38,7 +38,7 @@ tags:
 - Main entity: [[Polymarket Engine — MVP]]
 - Skills used: `agents-os-bootstrap`, `agents-os-context-retrieval`, `agents-os-agent-project-workflow`, `agents-os-agent-run-register`, `agents-os-entity-update`, `agents-os-session-close`, `agents-os-session-feedback`.
 - Retrieval mode: lectura enfocada por rutas canónicas (sin Graphify en este disparo); el preflight de seguridad propio de la supervisión actuó como gate de forma previa.
-- Artifacts changed: repo `polymarket-engine` (3 archivos de test, commit local `4acf954`); en el vault, el informe de research W1-nR, la continuidad Five-POC, el MVP, el resumen de sesión, este feedback, el agent run y el change log de entidad.
+- Artifacts changed: repo `polymarket-engine` (3 archivos de test, commits locales `4acf954` y `e4d201a`); en el vault, el informe de research W1-nR, la continuidad Five-POC, el MVP, el resumen de sesión, este feedback, el agent run y el change log de entidad.
 
 ## Scores
 
@@ -53,8 +53,8 @@ Use 1-5, where 1 is poor and 5 is excellent.
 
 ## What Complicated The Session Most
 
-- Observation: el mandato exigía inventariar todos los tests y helpers alcanzables de los tres paquetes afectados, y enumerar sus rutas de salida; el hook de alcance denegó `grep`, `find` y `ls` sobre esos raíces, así que la enumeración real de archivos se hizo probando rutas con `Read` y apoyándose en la sugerencia «Did you mean?» del propio lector.
-- Why it was hard: no había una forma autorizada de listar un directorio del repo; sin inventario completo, la afirmación «rutas no temporales corregidas» queda apoyada en el recuento del preflight (47 sitios de escritura sobre 36 archivos) y en la lectura de los archivos que sí se pudieron abrir, no en una lista exhaustiva producida por una herramienta.
+- Observation: el mandato exigía inventariar todos los tests y helpers alcanzables de los tres paquetes afectados, y enumerar sus rutas de salida; el hook de alcance denegó `grep`, `find` y `ls` sobre esos raíces, así que la enumeración real de archivos se hizo probando rutas con `Read` y apoyándose en la sugerencia «Did you mean?» del propio lector. En la continuación de la misma sesión, además, el flake de timing preexistente `TestStepSequenceWaitsForAbsoluteSlotStart` incidió en **dos** de las tres corridas registradas de la suite (199.512005 ms y 199.026946 ms frente al umbral de 200 ms), de modo que la suite completa no pudo declararse verde de forma fiable y fue necesario una tercera corrida registrada.
+- Why it was hard: no había una forma autorizada de listar un directorio del repo; sin inventario completo, la afirmación «rutas no temporales corregidas» queda apoyada en el recuento del preflight (47 sitios de escritura sobre 36 archivos) y en la lectura de los archivos que sí se pudieron abrir, no en una lista exhaustiva producida por una herramienta. Y un flake que ya estaba documentado sigue consumiendo la confianza en el resultado de la suite, aunque se sepa que no es de este trabajo.
 - Proposed improvement: permitir un listado/grep de solo lectura acotado a las raíces de los paquetes bajo auditoría, de modo que el inventario de fuentes exigido por el mandato sea reproducible por el agente y no dependa del sondeo por rutas.
 
 ## Most Useful Part Of Sistema 1
@@ -106,10 +106,11 @@ Use 1-5, where 1 is poor and 5 is excellent.
 ## Pain Pattern Candidate
 
 - Is this likely to repeat? yes
-- Suggested severity: medium
+- Suggested severity: high
 - Candidate owner: agent
 - Promote to L3 memory? defer
 
 ## One Next Improvement
 
 - Que el informe del gate de seguridad exponga el inventario nominal de archivos de fuente y sus rutas de escritura, de modo que una auditoría de rutas no temporales sea reproducible sin sondeo por rutas adivinadas.
+- Y, para la clase de defecto que la revisión encontró: al reescribir un mecanismo que ya tenía garantías (en este caso la exportación de recibos bajo opt-in), conservar la lista explícita de precondiciones del mecanismo anterior (`code == 0`) y cubrir la ruta de fallo con una prueba, no sólo con el camino feliz.
