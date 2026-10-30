@@ -3,7 +3,7 @@ type: change_log
 schema_version: 1
 scope: session
 created: "2026-10-27"
-updated: "2026-10-28"
+updated: "2026-10-30"
 area: "[[Personal]]"
 project: "[[Polymarket Engine — MVP]]"
 application:
