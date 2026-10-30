@@ -17,10 +17,16 @@ tags:
   - kind/doc
   - topic/research-ops
 created: "2026-10-29"
-updated: "2026-10-29"
+updated: "2026-10-30"
 ---
 
 # Research — Single Episode Public Pilot W1-j 2026-10-29
+
+## ERRATA (2026-10-30, W1-k) — sensibilidad de comisiones del cierre W1-j
+
+- El cierre W1-j presentó la sensibilidad A como si fuera una aplicación validada de la fórmula actual de comisiones del venue. **No lo es: A (500 bps) y S (1000 bps) son sensibilidades lineales del modelo legacy del Engine, cobradas por pata como `notional × bps/10,000`** — demostrado por `economics.BuildQuote` (`internal/economics/economics.go`, FeeLow/FeeHigh = notional × coeficiente vía `regimes.BpsToFeeCoefficient`, `internal/regimes/feeresolver.go`). **No son la fórmula actual del fee schedule del venue ni una certificación de comisiones.** El modelo con forma de venue que el Engine sí implementa es `regimes.FeeSchedule.LevelCost` (`internal/regimes/schedule.go`): `cost = rate·price^exponent·(1−price)^exponent·take` por nivel llenado (familia `price_square_v1`, TRUNCATE_6DP, exponente observado 1), aplicado sólo vía `economics.BuildQuoteScheduled` (`internal/economics/scheduled.go`) y sólo sobre resolución POINT, con provenance REAL_UNVERIFIED/SYNTHETIC_FIXTURE — funcionalmente distinta y nunca aplicada en este piloto. Fuentes: sólo código citado del Engine; sin fuentes web.
+- Los números de este informe y de la revisión (`93e7fe79…`) permanecen como historia del modelo que se ejecutó; no se reetiquetan como P&L. La fee aplicada al mercado sigue **UNRESOLVED / REAL_FEE_READY=false**.
+- Sidecar íntegro de la errata en el paquete: `validated-baseline/w1-j-single-episode-pilot-20261029-lot3/analysis-revision-w1j-20261029/ERRATA-fees-w1k-20261030.md` (sha256 `a7665be1b12f414e8833c6747ac31e44e51a99a9286c9b904ef806beafdbec2a`). Diagnóstico completo del gate en [[Research — W1-j Causal Gate Diagnosis 2026-10-30]].
 
 ## CIERRE CIENTÍFICO W1-j (reanudación, misma sesión; offline) — EJECUTADO Y VALIDADO: formas exactas PASS, commit `20da289c`, 72 rechazos descompuestos (A 36: −1419/−1215/−1069; S 36: −2397/−2204/−2066), gate v0.1 estructural
 
