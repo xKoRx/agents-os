@@ -23,6 +23,16 @@ updated: "2026-10-30"
 
 ## Contenido
 
+### EXACT_REVIEWED_SHA
+
+| Campo | Valor |
+|---|---|
+| BASE_SHA | `2baf319ddcba622d9557bc9f23a13787b44c58a7` (ancestry verificado) |
+| BRANCH | `feature/ef-campaigns-go` |
+| EXACT_REVIEWED_SHA | `062b6df77845d2042e398bb6174700e80bb58b60` (rama local == HEAD del clon r1; sin drift respecto de S03) |
+| BUILD_SHA256 | `e416636670b055c246af535e0c379ff7718ee91841a5e4ff2e7e4a8bdacaebbb` — reproducido byte-idéntico por tercera vez desde checkout r1 con `go build -trimpath -buildvcs=true` (`vcs.modified=false`) |
+| Checkout del relevo | `~/echo-work/c06-s03r1/checkouts/r1` (clon propio; árbol del autor NO tocado) |
+
 ### MODEL_AND_EXECUTION_INDEPENDENCE
 
 - **MODEL_MISMATCH declarado ANTES de gastar la batería, conforme al mandato.** La superficie expone identidad efectiva `account:zai-individual-coding-plan/GLM-5.3-Flash`; el encargo exige GOD no-GLM. El Owner declarado para esta sesión no-GLM NO se materializó: la ejecución efectiva de este relevo es GLM-5.3-Flash, el mismo modelo del equipo autor de GO-S02/W5. La declaración se emitió en el primer mensaje del shot, antes de cualquier prueba. **Consecuencia para el Owner:** todo este trabajo tiene independencia de ejecución/checkout/corpus pero NO de modelo; si el contrapeso no-GLM sigue siendo requisito, este paquete es la base de re-dispacho, no su sustituto.
