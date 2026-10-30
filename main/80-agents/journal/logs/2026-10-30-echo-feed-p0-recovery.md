@@ -94,3 +94,10 @@ Sol/Luna demuestran fuente EchoNativeBars sinlookbackconfig (cursor→now o1día
 Root integra/pushea d49648e83a8db79e7f62de2dd6772229335a4930 tras red6casos/green SDKmarket+ctx+analytics+S2 race, corefuncionesfocal yvet; Luna3probesindependientes overlay/racePASS. Root detectócausabarspuria conOpenGapsvacío, Sol corrigióantesfreeze. Corebuildlimpio Go1.27.1/vcs.modified=false SHA9fe03c835e28c4289009650037a557b63e3a48084fb4154f9838f319a42d4f62 staged echo-feed-p0-release-d49648e8; nodeploy.
 
 A20:12:33 CP2607últimocompleto,2608/2609/2610fallidos,restorecount4; committed45156750 sinavancedurable desde20:06:53,lag35603→37303. Fuentequote/tradeactualinnerEpoch1 distintoouterrelayepoch. HeadKafka45156750es4QUOTElegacy event02:19Z,no70itemsactuales. Perfhermético bounded16invocations×70items431ms,response4.01MB;16×256771ms,response9.10MB. No explica2minfísico, noRCAporamplificaciónniaprobarcaparbitrario. Sólolectura/perfaislado; runtimeintacto. RebuildSegment existecomo tipo sinrutaoperativa: gapirrecuperable+51H4/20×5m requierecontratorevalidaciónnativaauditable aúnnoimplementado; no usartickssynthetic niresetcursor.
+
+
+## Ventana30min completada, sin certificación end-to-end
+
+19:52:51.799→20:22:51.799Z. ÚltimoheartbeatACTIVE/cursor57378,9781/9780sealed/sent,pending2,reconnects1. RelayACK57349/440ms,queue4/64,saturation/stall0; publishfail54→84/rejected22→45. Progreso de transporte yassemblyrehandshake demostrados; noPASScontinuidad/frescura/S2 porloopFlink ydatosnoacreditados. Reporte preservado echo-feed-p0-reconnect-evidence/post-update-window-20261030.md SHA98eeb6fb…ec732; colectorROstoppedtrasventana, sinserviciosafectados.
+
+Root autorizó observabilidad focal source-only aSol (HTTPbytes/status/duration/cancel +contador/time marketstream, sinpayloads/identidades, memoriaacotada ysinsemánticacambiada), Lunaverificará; prepararpaquetecoreyrollback antesdepedirúnicaventanaFX. NuevodeploytodavíaNO autorizado. CorePID78126 ybaselineSHA0dc3ca7f…26de9 re-verificados. FXgroup echo-core-v3 STABLE (configcache sincommittedoffset, nointerpretarlagcomoatraso); FXreferenceevents lag9 enlecturaRO. Noorders/armado/offsetreset.

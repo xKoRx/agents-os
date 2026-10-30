@@ -59,7 +59,7 @@ tags:
 - Contrato de tipo `agent` en verde: `materialize_schema_note.py agent "80-agents/crew/MiniMax M3.1 Flash.md" --dry-run` resolvió sistema s2 y plantilla `70-templates/agent-profile.md`; la materialización real confirmó el mismo contrato.
 - Frontmatter del perfil y del log validados contra el contrato (`schema_version: 1`, `status: active`, `share_scope`, `load_policy`, `indexable`, `index_priority`, secciones `## 📜 Directivas y Reglas de Comportamiento` y `## 🛠️ Limitaciones Técnicas y Operativas`).
 - Enlaces verificados: `[[MiniMax M3.1 Flash]]` resuelve al archivo creado y las referencias a superficies existentes (`[[ZCode]]`, `[[Codex]]`, `[[Claude Code]]`, `[[Cursor]]`, `[[Antigravity]]`, `[[Copilot CLI]]`, `[[ChatGPT]]`, `[[Ariadna]]`) son canónicas.
-- `agents-os-doctor` ejecutado sobre el vault: sin veredictos nuevos atribuibles a este cambio.
+- `agents-os-doctor` ejecutado sobre el vault antes y después del cambio (copias limpias del commit previo `eee86f03` y del árbol actual): veredictos idénticos — structural 4 high · 13 medium, conformance 3 pass · 5 fail · 1 warn · 17 skip, canonical 4 pass · 6 fail · 11 warn · 4860 findings. Los FAIL actuales (memory-lifecycle, SCHEMA-VALIDATOR-GREEN, CL-01) son drift preexistente del corpus y este cambio no agrega ninguno.
 
 ## Compartibilidad
 
