@@ -895,6 +895,8 @@ Registrada y EJECUTADA dentro de este shot: las pruebas de disable ahora cubren 
 
 ## 📆 Bitácora
 
+- 2026-10-30 — Core diagnóstico7db3e169 integrado y remoto verificado; QA focal/race/vet e independiente PASS. Build limpio SHA580ff43a…81418 staged sin activar, rollback exacto preparado. Gate único pendiente: autorización Owner para pausa FX al reiniciar coreDEV, según mandato§11. NT transporta automáticamente; certificado end-to-end sigue bloqueado por timeout/recovery y continuidad/warmup. Tarjeta: `/home/kor/aranea/work/echo-feed-p0-core-window/CORE-WINDOW.md`. Cuota45% restante; sin órdenes ni mutaciónruntime.
+
 - 2026-10-30 — P0 contrato congelado y workers implementando: FIFO sin NACK terminal por presión/datos retenidos, ACK vacío en FIFO, writes completos, reconexión con ownership socket, límites de worker/Sarama exclusivos del relay. QA real Windows baseline 110/0 y sticky reproducer 7/7; corpus Go -race focal PASS. Gaps de captura y barrera S2 pendientes de falsificación/adjudicación; no declarar continuidad por FRESH. Cuota62% restante. Runtime y cuentas sin mutaciones.
 
 - 2026-10-30 — Segundo intento Owner falló por clave vacía en línea193. Repro independiente WindowsPS5.1: data_seq ausente produce una entrada null al enumerar PSObject.Properties; {} sí produce cero. La primera igualdad fallida también puede corresponder al mismo campo ausente, por tanto nombres distintos NO es RCA física demostrada. Fuente admite identidad legacy sin data_seq. Se requiere forma real mínima y segura; no inventar stream ni migración. Reparación parsing y prueba completa Apply/Rollback en UserDataDir temporal en curso; diagnóstico de solo lectura para Owner.
