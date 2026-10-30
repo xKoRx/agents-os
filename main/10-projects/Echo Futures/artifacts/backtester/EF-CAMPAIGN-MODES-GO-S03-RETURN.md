@@ -32,7 +32,7 @@ updated: "2026-10-29"
 
 ## INDEPENDENCE_REAL
 
-- **Independencia de modelo: NO LOGRADA.** El GOD efectivo y todos los workers disponibles en este host son GLM-5.3-Flash — el mismo modelo que implementó GO-S02. La cuota de subagentes del host está agotada: 3 despachos (Front 1, Front 2, Front 3) murieron en ~2 s con `exceed quota limit`. No se sustituyó silenciosamente nada: la revisión la ejecutó el GOD directamente y esta limitación queda declarada. Los modelos no-GLM del registro (`openrouter/openai/gpt-6.1-sol`, `gpt-6-luna`, claude/grok/kimi) no tienen superficie de delegación disponible en esta sesión sin un flujo de workflow con confirmación de usuario, que no existe en ejecución autónoma.
+- **Independencia de modelo: NO LOGRADA.** El GOD efectivo y todos los workers disponibles en este host son GLM-5.3-Flash — el mismo modelo que implementó GO-S02. La cuota de subagentes del host está agotada: 4 despachos (Front 1, Front 2, Front 3, contrapeso adversarial del propio review — este último reintentado al día siguiente por pedido del usuario) murieron en ~1–2 s con `exceed quota limit`. No se sustituyó silenciosamente nada: la revisión la ejecutó el GOD directamente y esta limitación queda declarada. Los modelos no-GLM del registro (`openrouter/openai/gpt-6.1-sol`, `gpt-6-luna`, claude/grok/kimi) no tienen superficie de delegación disponible en esta sesión sin un flujo de workflow con confirmación de usuario, que no existe en ejecución autónoma.
 - **Independencia de ejecución/checkout: LOGRADA.** Clon y worktrees propios, build independiente reproducido, sonda falsificadora propia (`s03god_probe_test.go`, archivo aditivo en checkout del revisor), re-medición independiente de migración/cobertura/suites/Go-only. El árbol del autor permanece READ_ONLY y sin modificar.
 - **Independencia de corpus/oráculo: PARCIAL.** Los oráculos de rechazo y economía se derivaron del contrato C06 y de lectura de source (no de los tests del autor); la comparación de identidad de reporte/matriz reutilizó fixtures deterministas del autor donde el oráculo correcto ES la igualdad de bytes. La clasificación de regresión usó los receipts baseline de S02 y añade la re-ejecución baseline propia en `w-base` (ver REGRESSION_BASELINE_CLASSIFICATION).
 - **Independencia de autor de W5: SIGUE ABIERTA como residual.** La matriz funcional W5 fue cerrada por el integrador (cuota); este review re-verificó mecánicamente sus piezas principales, pero ninguna suite del candidato fue re-ejecutada por un modelo distinto del equipo autor.
@@ -153,6 +153,7 @@ Un solo shot, agrupado por owner/dependencia para no re-descubrir arquitectura. 
 | Front 1 (completitud/migración) | clf-flash GLM-5.3-Flash | FALLO ~2 s: `exceed quota limit` — sin trabajo |
 | Front 2 (composición/seguridad) | clf-flash GLM-5.3-Flash | FALLO ~2 s: `exceed quota limit` — sin trabajo |
 | Front 3 (economía/causalidad, reintento) | clf-flash GLM-5.3-Flash | FALLO ~2 s: `exceed quota limit` — sin trabajo |
+| Contrapeso adversarial del propio review (reintento 2026-10-30 por pedido del usuario) | clf-flash GLM-5.3-Flash | FALLO ~1 s: `exceed quota limit` — sin trabajo |
 | Ejecución efectiva | GOD directo (GLM-5.3-Flash, sesión `zcode` local) | Todo el review: verificación baseline, lectura de source, sonda propia, suites, matriz, cobertura, Go-only, capacidad, síntesis |
 
 Ningún resultado de subagente fue inventado ni presupuestado; la sección INDEPENDENCE_REAL declara la consecuencia.
@@ -167,4 +168,4 @@ UNKNOWN (sin observabilidad del pool desde esta superficie; consumo GLM-5.3-Flas
 
 ## Base de la clasificación de regresión (re-ejecución baseline propia)
 
-Resultado de la suite completa sobre `w-base` (`2baf319d`, checkout propio): ver línea añadida al cierre — `receipts/f4/s03-suites-baseline.log`.
+La suite completa sobre `w-base` (`2baf319d`, checkout propio de este review) fue re-ejecutada físicamente: **23 fallos, conjunto IDÉNTICO por nombre al del candidato** (diff vacío; receipts `receipts/f4/s03-suites-baseline.log`, `base-own-fails.txt`). Triángulo de regresión cerrado: candidato (23) == baseline del autor S02 (23) == baseline propio GOD (23). Los fallos ambientales (reserva 8 GiB vs tmpfs) y la deuda pre-existente (BTG-S05, TG parity) se reproducen en ambos lados del diff de forma independiente de los receipts del autor. **NEW_REGRESSION: 0.**
