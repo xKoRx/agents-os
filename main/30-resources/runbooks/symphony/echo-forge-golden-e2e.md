@@ -32,8 +32,10 @@ tags:
 
 # echo-forge-golden-e2e
 
-> [!important] Aplicabilidad vigente — revisión documental 2026-10-27
+> [!important] Aplicabilidad vigente — revisión documental 2026-10-27; mecanismo de dispatch actualizado 2026-10-30
 > El procedimiento inferior conserva el alcance y la evidencia de agosto de 2026. Antes de ejecutarlo, resolver el mandato, baseline, herramientas y autorización actuales en [[10-projects/Echo Forge — Operación Real V2/Echo Forge — Operación Real V2.md|Echo Forge — Operación Real V2 (autoridad técnica)]]. Para el mandato Owner `GO_WITH_INTEGRATED_FIXES` del 2026-10-27, su ciclo integrado de corrección, build, deploy candidato, E2E y QA prevalece sobre la restricción histórica del paso 6 de no corregir/reintentar en la misma sesión. Cada intento conserva su evidencia, versión e identidades nuevas: esto no permite patch-and-continue sobre una corrida ya certificada ni extiende permisos a otros trabajos. El funnel dinámico y cualquier nuevo objetivo requieren su propia certificación; los comandos, topología y resultados históricos de este runbook no la demuestran ni conceden autorización de trading o producción. No se ejecutó ni recertificó físicamente este procedimiento durante esta revisión.
+>
+> **Mecanismo de release/dispatch vigente (2026-10-30, mandato owner):** namespace único `sqx-prop`, cola `sqx-main-queue`, flota Stager 0.4.8 en Zeus/Hera/Kronos/Hefesto. Release: `./deploy_release.sh --release-only <X.Y.Z>` desde el worktree (publica MinIO + manifest; el verify por SSH kor falla de forma inofensiva — verificar adopción por host leyendo `/opt/stager/releases/<ver>/bin/symphony` SHA). Dispatch: watcher remoto en Zeus (`/home/echo-dev/<entorno>/sqx-watcher`, input JSON + 4 CFX en la raíz del intake; mueve todo a `processed/` al consumir; relanzar `setsid nohup env ENV=<entorno> ./sqx-watcher &` si muere). La ruta histórica de este runbook (screens locales `deployer`/`watcher` en Daedalus + `deploy_release.sh "" 60` con copy a `input/`) queda `SUPERSEDED` como mecanismo de certificación vigente; `sqx-dev` no existe (destruido 2026-10-29) y no se recrea. No repetir campañas completas por cada arreglo: probar el tramo mínimo afectado con artifacts reutilizables.
 
 %% Routing: area/project/application/entities/related usan links canónicos. Aliases son variantes humanas; tags/paths usan slugs. %%
 
