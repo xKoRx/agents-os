@@ -43,7 +43,7 @@ El candidato C06 pasó de fail-closed incompleto a **capacidad materialmente ent
 | **F4** CloseSafety v2 (P2) | CONFIRMED | **CORREGIDO** — superficie legacy-shaped admitida en v2 y consumida por el runtime (close-risk, checkpoint, force-close, flat checks). `CLOSE_CALENDAR_MISSING` conservado como negativo | `campaign_modes_v2.go`, `campaign_composition.go` |
 | **F5** reversos/refunds sin productor (P2) | CONFIRMED | **CORREGIDO PARCIALMENTE** — el **productor de REVERSO** existe (identidad propia `payment.ID+"/reversed"`, caja ajustada una vez, primer crédito preservado, idempotencia, conflicto nombrado, `finish()` concilia). El **productor REFUND de lifecycle NO se implementó**: no existe transición declarada consumidora (una transición de contexto rechazada falla el run; `PENDING_AT_HORIZON` permanece por C06 §6) ⇒ inventar el disparador sería economía nueva prohibida. Contrato REFUND sellado en emisor+proyector | `campaign_accounts_v2.go` (`reconcileCreditedPayouts`), `campaign_modes_v2.go` (`finish`) |
 | **F6** MIGRATED=LEGACY_PATH (P2) | CONFIRMED | **CORREGIDO** — etiqueta honesta `LEGACY_PATH_PRESERVED` + **builder de materialización GO_V2 real** (antes: constante sin builder). 104 filas, censo delta CERO, materialización por identidad | `campaign_migrate.go`, `campaign_v2_sealed.go`, `lab migrate --materialize-v2` |
-| **F7** cobertura <95% (P2) | CONFIRMED | **PARCIAL** — las funciones nuevas de este shot quedan 71–100%; el piso por archivo **no** se alcanza en 4 superficies grandes por ramas fail-closed **pre-existentes** medidas por S03 (`paySetupFees` 48%, `pauseUntilForReason` 40%, `nyOpenOnOrAfter` 0%, `composePoolSealedAuthorities` 10,5% — ruta pool con suite propia fuera del regex de campaña). Declarado, no maquillado | ver §COVERAGE |
+| **F7** cobertura <95% (P2) | CONFIRMED | **PARCIAL** — el piso 95% **no** se alcanza ni por archivo ni diff-aware (79,6% statement-based sobre 1.027 statements nuevos); los huecos combinan superficies nuevas (`campaign_v2_candidate.go` 68,9%, `campaign_v2_sealed.go` 74,4%, `campaign_migrate.go` 74,6%) y pre-existentes (`qualification_admission.go` 30,5% con suite en otro paquete, `campaign_modes_v2.go` 83,6%). Medida statement-based con denominador explícito (el promedio por función del retorno S02 no es la medida de policy). Declarado, no maquillado | ver §COVERAGE |
 | **F8** puertas legacy con bypass opt-in (P2) | RECLASSIFIED a defecto WITHIN_C06 | **CORREGIDO** — las cuatro puertas ejecutables legacy (`run`, `platform-batch`, `campaign`, `reproduce`) clasifican ahora el **propósito físico** del input reutilizando `ClassifyExecutionPurpose`: QUARTER/HISTORICAL sin cadena de receipts ⇒ `RECEIPT_MISSING` pre-engine (exit 78, cero motores). La alternativa "ledger-only" del retorno S03 fue descartada. Se conservan: SMOKE sin receipts, replay de identidad ya admitida, comandos de sólo lectura, D05 bloqueado | `qualification_gate.go`, `qualification_admission.go`, `btx_s04_gate_purpose_test.go` |
 | **F9** capacidad sólo anillo 1×N (P3) | CONFIRMED | **CORREGIDO** — K=5 asociaciones simultáneas medidas (5 compras, cash 2.380 USD, reconciliado, `CONTINUOUS_HORIZON_COMPLETE`) sobre un único mercado/reloj/scheduler/caja. El reviewer midió K=2/K=3 | `campaign_v2_s04_capacity_test.go` |
 | **F10** independencia de modelo (P3) | CONFIRMED / NO RESUELTO | **RESIDUAL DECLARADO** — el verificador final no-GLM **no estaba disponible**: el surface expone `account:zai-start-plan/GLM-5.3-Flash` y los despachos de subagente funcionaron sólo intermitentemente (cuota muerta en dos tramos; dos workers completaron, dos murieron y fueron reanudados). Todo el trabajo de este shot es **GLM-5.3-Flash**. No se etiqueta como GOD a ninguna ejecución GLM | ver §SUBAGENT_RECEIPTS |
@@ -176,19 +176,28 @@ Dos TCR en `specs/FEAT-EF-CAMPAIGNS-GO/`: `TEST_CHANGE_REQUEST-C06-GO-S04.md` (c
 
 ## COVERAGE
 
-Perfil per-file con denominador de statements (`go tool cover`, batería focal del paquete):
+**Medida válida: statement-based, denominador explícito** (`go tool cover` sobre el perfil `/tmp/s04-cover-final.out`; el "promedio de porcentajes por función" que usó el retorno S02 y el worker de la ola A **no** es la medida de policy y no se usa aquí).
 
-| Archivo | Cobertura | Observación |
+**Diff-aware (statements nuevas del diff, desarrollo nuevo) — 817/1.027 = 79,6%:**
+
+| Archivo (producción) | Diff-aware | Observación |
 |---|---|---|
-| `campaign_v2_contract.go` | 96,2% | ≥95% |
-| `campaign_v2_sealed.go` (nuevo) | 87–92% | derivadores sellados |
-| `campaign_v2_candidate.go` (nuevo) | 84–90% | loader/derivador de candidata |
-| `campaign_accounts_v2.go` | 88,6% | **<95%** (pre-existente: `paySetupFees` 48%) |
-| `campaign_composition.go` | 85,5% | **<95%** (pre-existente: `nyOpenOnOrAfter` 0%) |
-| `campaign_modes_v2.go` | 85,2% | **<95%** (pre-existente) |
-| `compose_account.go` | 81,0% | **<95%** (pre-existente: `composePoolSealedAuthorities` 10,5%, ruta pool con suite propia) |
+| `campaign_accounts_v2.go` | 92,5% | mejor superficie corregida |
+| `campaign_v2_contract.go` | 89,7% | |
+| `compose_account.go` | 86,5% | |
+| `reproduce.go` | 85,7% | |
+| `campaign_modes_v2.go` | 85,3% | |
+| `campaign_composition.go` | 84,5% | |
+| `campaign_migrate.go` | 77,7% | |
+| `campaign_v2_sealed.go` (nuevo) | 74,4% | derivadores sellados |
+| `campaign_v2_candidate.go` (nuevo) | 68,9% | loader/derivador de candidata |
+| `replay.go` | 71,4% | replay nombrado de items |
+| `vol_analytics.go` | 100% | |
 
-**Piso por archivo NO alcanzado en 4 superficies**; las funciones nuevas de este shot quedan 71–100% (51 funciones al 100% en los archivos tocados). Los huecos son ramas fail-closed pre-existentes medidas por S03 (74–84% en su batería). Declarado, no maquillado: cerrar esto es lo que separa C06 PARTIAL de C06 completo.
+**Por archivo completo (statements cubiertos/totales):** `campaign_v2_contract.go` 94,7% · `compose.go` 89,9% · `vol_analytics.go` 88,0% · `campaign_accounts_v2.go` 84,9% · `compose_account.go` 85,4% · `replay.go` 83,8% · `campaign_modes_v2.go` 83,6% · `campaign_composition.go` 82,5% · `platform_campaign.go` 83,0% · `campaign_migrate.go` 74,6% · `campaign_v2_sealed.go` 74,4% · `campaign_v2_candidate.go` 68,9% · `qualification_admission.go` 30,5% (superficie mayormente **pre-existente**, con suite propia en otro paquete) · **total archivos tocados 3.572/4.536 = 78,7%**.
+
+**El piso 95% NO se alcanza**: ni por archivo ni en diff-aware (79,6%). Los huecos son ramas **fail-closed y de camino feliz** no ejercitadas —superficies nuevas (`campaign_v2_candidate.go` 68,9%, `campaign_v2_sealed.go` 74,4%, `campaign_migrate.go` 74,6%) y pre-existentes (`qualification_admission.go` 30,5% con su suite en otro paquete, `campaign_modes_v2.go` 83,6%). **F7 queda PARCIAL y declarado**: cerrar el piso es trabajo de otro shot, no un remiendo de este. Lo que sí se sostiene: los invariantes priorizados (economía exacta, identidad, causalidad, idempotencia, fail-closed, admisión sin bypass) tienen regresión permanente propia, y ninguna rama se maquilla con aserciones tautológicas.
+
 
 ## FINAL_GATE_RECEIPTS / EVIDENCIA INDEPENDIENTE
 
@@ -205,7 +214,7 @@ Perfil per-file con denominador de statements (`go tool cover`, batería focal d
 | W-CAND — candidatas v2 | `clf-flash` GLM-5.3-Flash | **COMPLETE en sustancia** (`9b9bfb3d` + `d2ed6804`, 8/8 tests verdes, artifacts escritos); murió por **cuota** tras dejar el trabajo hecho ⇒ cierre por el integrador (retirada del archivo debug temporal y commit del WIP de tests) |
 | Integrador (este shot) | GLM-5.3-Flash | baseline, adjudication, D1, integración tardía (`baca3c60`), corpus del verificador, Go-only, cobertura, K=5, push, este retorno |
 
-Ninguna.replace de resultado fue inventado; los dos workers completados y los dos muertos/reanudados quedan como están.
+Ningún resultado de subagente fue inventado; los dos workers completados y los dos muertos/reanudados quedan como están.
 
 ## REUSABLE_ASSETS
 
