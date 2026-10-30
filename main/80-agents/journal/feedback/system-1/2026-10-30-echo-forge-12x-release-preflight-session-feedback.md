@@ -56,6 +56,9 @@ Use 1-5, where 1 is poor and 5 is excellent.
 - Observation: The configured Temporal MCP profile targeted a namespace that no longer exists; history reads needed an explicit production-namespace SDK path.
 - Why it was hard: the initial MCP error did not name the stale binding clearly, so direct read-only evidence recovery was slower and required reconciling PG with Temporal.
 - Proposed improvement: expose an explicit namespace parameter or refresh the profile default and return the resolved namespace in every read response.
+- Observation: the global schema-contract validator reports an unrelated creation entrypoint in `agents-os-skill-authoring/SKILL.md` that omits the materializer.
+- Why it was hard: the changed notes still pass strict lint, but the global check is not green and the issue is outside this operation's scope.
+- Proposed improvement: update that skill in a separate Agents-OS maintenance change.
 
 ## Most Useful Part Of Sistema 1
 

@@ -64,6 +64,7 @@ tags:
 - Nuevas notas: [[2026-10-30-echo-forge-12x-entity-updated]], [[2026-10-30-echo-forge-12x-release-preflight-session-feedback]] y [[2026-10-30-codex-unknown-echo-forge-12x-release-review]].
 - Preflight privado local: `/tmp/echo-forge-12x-20261029/` (12W request/spec/CFX, diff y SHA256). No copiar payloads a memoria pública.
 - Symphony candidate tree sin cambios; no nueva release, modificación de worker, commit de producto ni dispatch.
+- Verificación documental: lint estricto de las cinco notas tocadas, 0 errores/avisos. El validador global del schema reportó un error previo no relacionado con estas notas: el entrypoint de `agents-os-skill-authoring/SKILL.md` omite `materialize_schema_note.py`; no se amplió el scope para cambiar ese skill.
 
 ## Memoria propuesta o creada
 
