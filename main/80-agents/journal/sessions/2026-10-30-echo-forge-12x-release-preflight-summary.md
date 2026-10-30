@@ -38,7 +38,7 @@ tags:
 
 - Agents-OS y rutas vigentes de Echo Forge, Aranea/SSH, Temporal, MinIO, release/Stager, dispatch, proyecto y cierre de sesión.
 - Proyecto: [[Echo Forge — Operación Real V2]]. Source candidato Symphony `7be374689bbfeb9cbe0aa461ec92cc4aa7aa5aef`; SHA de código del manifest `08cec708921fd77d696c54566f3ad4360965b720`.
-- Evidencia operacional cruda privada en `/tmp/echo-forge-12x-20261029/`; el worktree de Symphony quedó limpio, sin fixes ni commits nuevos.
+- Evidencia operacional cruda y copias SHA-verificadas en `/tmp/echo-forge-12x-20261029/`, también preservadas en Symphony en la rama de evidencia `codex/echo-forge-12x-preflight-evidence-20261030`, commit `673a9c8`. El checkout regresó a la rama candidata original `codex/forge-independent-logical-types` @ `7be374689bbfeb9cbe0aa461ec92cc4aa7aa5aef`; no se modificó su source.
 
 ## Trabajo realizado
 
@@ -62,8 +62,8 @@ tags:
 
 - Actualizado [[Echo Forge — Operación Real V2]] con checkpoint y siguiente paso.
 - Nuevas notas: [[2026-10-30-echo-forge-12x-entity-updated]], [[2026-10-30-echo-forge-12x-release-preflight-session-feedback]] y [[2026-10-30-codex-unknown-echo-forge-12x-release-review]].
-- Preflight privado local: `/tmp/echo-forge-12x-20261029/` (12W request/spec/CFX, diff y SHA256). No se copió a Symphony porque el plan SDD vigente mantiene la regla `No commits until manager integration`; los artifacts 12W/12X siguen sin publicación privada durable.
-- Symphony candidate tree sin cambios; no nueva release, modificación de worker, commit de producto ni dispatch.
+- Paquete privado durable: `specs/FEAT-SQX-DYNAMIC-GROUP-TARGETS/independent-execution/evidence/ops-12x-preflight-20261030/` en la rama Symphony `codex/echo-forge-12x-preflight-evidence-20261030` @ `673a9c8`; contiene Temporal request/spec, snapshot PG, raw `job_config.json`, cuatro CFX, spec/diff 12X, reporte y `SHA256SUMS.txt`. No se escribieron config durable, resultados ni outputs 12X en PG/MinIO.
+- Commit de evidencia privado Symphony `673a9c8` en rama separada; contiene sólo reporte y artifacts recuperados, sin código. La rama candidata original quedó limpia en su SHA revisado. No nueva release, modificación de worker ni dispatch.
 - Verificación documental: lint estricto de las cinco notas tocadas, 0 errores/avisos. El validador global del schema reportó un error previo no relacionado con estas notas: el entrypoint de `agents-os-skill-authoring/SKILL.md` omite `materialize_schema_note.py`; no se amplió el scope para cambiar ese skill.
 
 ## Memoria propuesta o creada

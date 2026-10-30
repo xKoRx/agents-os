@@ -40,7 +40,7 @@ tags:
 
 ## Fuentes usadas
 
-- Request/spec durable de 12W, estado Temporal y PG, validación local del spec 12X, revisión del source candidato y readback remoto read-only de servicios/procesos.
+- Request/spec durable de 12W, estado Temporal y PG, validación local del spec 12X, revisión del source candidato y readback remoto read-only de servicios/procesos. Paquete probatorio privado en Symphony: rama `codex/echo-forge-12x-preflight-evidence-20261030` @ `673a9c8`.
 
 ## Resolución aplicada
 
@@ -48,7 +48,7 @@ tags:
 
 ## Validación
 
-- El resumen de sesión registra los hashes/diffs examinados. No se certificaron release, Builder, rejoin de Hefesto, consumidores MT5 ni campaña.
+- El resumen de sesión y el paquete privado Symphony registran los hashes/diffs examinados. No se certificaron release, Builder, rejoin de Hefesto, consumidores MT5 ni campaña.
 
 ## Compartibilidad
 

@@ -36,7 +36,7 @@ tags:
 
 - **Objetivo:** revisar source candidato y preflight 12X a partir de la configuración efectiva de 12W.
 - **Alcance atribuible a esta combinación superficie×modelo:** revisar commits de retry/maintenance; recuperar y validar request/spec; leer estado de servicios, procesos, dependencias y cgroups.
-- **Artefactos afectados:** sólo checkpoint de proyecto y notas Agents-OS; source/product runtime sin cambios.
+- **Artefactos afectados:** checkpoint de proyecto, notas Agents-OS y rama privada de evidencia Symphony `673a9c8`; source/product runtime sin cambios.
 
 ## Evidencia
 
