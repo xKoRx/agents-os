@@ -34,6 +34,8 @@ tags: ["kind/index", "tech/agents-os", "tech/skills"]
 |---|---|---|
 | [[80-agents/skills/agents-os-bootstrap/SKILL.md|agents-os-bootstrap]] | Clasifica cold/warm/cambio de entidad y carga el contexto mínimo correspondiente. | Una vez en cold start; en warm reutilizar y recuperar sólo el delta. |
 | [[80-agents/skills/agents-os-context-retrieval/SKILL.md|agents-os-context-retrieval]] | Orquesta la recuperación enfocada de contexto mediante Graphify y filtros. | Al buscar contexto de entidades. |
+| [[80-agents/skills/agents-os-context-scout/SKILL.md|agents-os-context-scout]] | Recupera contexto canónico con evidencia y feedback por invocación; mejora sólo su propia skill/runbook. | Scout obligatorio para contexto no trivial del vault; routing desde bootstrap. |
+| [[80-agents/skills/agents-os-code-scout/SKILL.md|agents-os-code-scout]] | Describe diseño existente, patrones, rules y puntos críticos de repos; no diseña ni modifica producto. | Scout obligatorio para comprensión no trivial de código; feedback y ownership acotados. |
 | [[80-agents/skills/agents-os-session-close/SKILL.md|agents-os-session-close]] | Cierra por delta y preserva sólo estado/conocimiento justificado; no exige L0/L1 rituales. | Sólo cuando el usuario pida explícitamente cerrar sesión. |
 | [[80-agents/skills/agents-os-session-feedback/SKILL.md|agents-os-session-feedback]] | Captura fricción real, degradación o gaps con evidencia; no genera policy automáticamente. | Por evento o pedido explícito, no por cada cierre. |
 | [[80-agents/skills/agents-os-memory-distillation/SKILL.md|agents-os-memory-distillation]] | Promueve y destila conocimientos hacia ADRs, known errors o runbooks. | Para actualizar la memoria persistente. |

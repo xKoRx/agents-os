@@ -4,7 +4,7 @@ schema_version: 1
 name: agents-os-session-feedback
 scope: global
 created: 2026-06-27
-updated: 2026-08-11
+updated: 2026-10-30
 description: Capture compact feedback only when AGENTS OS had real friction, degraded retrieval, an uncovered Sistema 1 gap, periodic sampling, or an explicit feedback request. A normal clean close does not invoke this skill.
 aliases:
   - agents-os-session-feedback
@@ -31,16 +31,19 @@ Trigger conditions (any one):
 - Retrieval was degraded and a workaround was needed.
 - A gap in Sistema 1 was detected that the system does not solve.
 - Periodic sampling asks for one (e.g. the hygiene cycle requests one).
+- An explicit request asks for feedback, including the standing per-invocation scout sampling defined below.
 
-A clean close with no friction → no feedback note. Do not write feedback to
-fill a quota; that pollutes the evidence base the system is trying to keep
-clean.
+A clean close without friction or an explicit sampling request produces no feedback. Do not invent findings to fill a quota.
 
 Feedback is not L3 memory by default. It is evaluation data. Promote only
 repeated or high-confidence patterns through `agents-os-memory-distillation`.
 Operational coordination or hypotheses belong in internal memory
 (`80-agents/memory/internal/`) only when they provide durable continuity; the
 feedback note may assess whether that memory helped.
+
+## Scout Sampling — explicit standing request
+
+For `context-scout` and `code-scout`, the Owner requires feedback on EVERY invocation, including clean, reused, PARTIAL and BLOCKED returns. Use the compact, idempotent scout mode in `../_shared/scout-contract.md` instead of the general session procedure below. This is an explicit standing sample, not permission to close a session or create feedback for unrelated agents. Preserve the contracted `type: feedback` and materializer; use the scout path/fields, report `NO_FINDING` honestly, and mark persistence pending when unavailable. Do not require session scores, internal-memory commentary or a separate Graphify note for this mode. Promotion outside the scout's own skill/runbook is handed to the principal, never performed by the scout.
 
 ## Minimal Read
 
@@ -67,7 +70,7 @@ Read only when needed:
 
 1. **Decide if feedback is warranted** by the trigger conditions in Purpose.
    If the session was clean (no friction, no degradation, no gap, not part
-   of periodic sampling) → skip this skill entirely. Record nothing.
+   of periodic sampling and no explicit request) → skip this skill entirely. Record nothing.
 2. If warranted during a close, run near its end, after the persistence
    outcome is known and before the final user report.
 3. Materialize one `type: feedback` note under
@@ -113,9 +116,7 @@ Promotion recommendation:
 - Do not use feedback as the performance census. Code performance lives in `agent_run`; feedback links it only when feedback is independently warranted.
 - Keep feedback notes outside normal retrieval unless AGENTS OS explicitly
   changes the indexing policy later.
-- **Feedback is event-driven.** Run this skill only when one of the trigger
-  conditions in Purpose holds. A clean session with no friction → no feedback
-  note. Do NOT create feedback just because closeout ran.
+- **Feedback is event-driven or explicitly sampled.** Run only under a Purpose trigger; clean sessions without a sampling request produce no feedback. Scout Sampling is the scoped standing request. Do NOT create feedback just because closeout ran.
 - Graphify-specific feedback is NOT automatic. Aggregate routine Graphify
   observations during `agents-os-hygiene-cycle`; create a dedicated note only
   when something notable happened.

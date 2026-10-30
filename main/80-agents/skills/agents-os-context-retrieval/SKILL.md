@@ -4,7 +4,7 @@ schema_version: 1
 name: agents-os-context-retrieval
 scope: global
 created: 2026-07-04
-updated: 2026-09-03
+updated: 2026-10-30
 description: Retrieve focused context for the Agent Memory System using Graphify or an equivalent index. Use when an agent needs project/application/entity context, learnings, ADRs, known errors, runbooks, integrations, or related notes before working, while keeping context/token usage low.
 aliases:
   - agents-os-context-retrieval
@@ -27,6 +27,10 @@ tags:
 ## Purpose
 
 Load the smallest useful context set. Markdown is canonical; Graphify is a derived index.
+
+## Dispatch Boundary
+
+The principal follows `agents-os-bootstrap` Scout Routing before nontrivial vault/repo discovery. This skill remains the retrieval algorithm, not a second orchestrator. An assigned scout or declared inline fallback executes it directly without redispatch; exact lookups and targeted verification remain available to the principal under `../_shared/scout-contract.md`. Do not repeat discovery already covered by a sufficient fresh pack.
 
 ## Minimal Read
 
@@ -69,7 +73,7 @@ Layer 3  note body          → only chosen Markdown sources      (body-only, su
 5. **Climb from the entry layer cheap→expensive; stop when sufficient.** Bootstrap already loaded the base invariants on cold start: do not reload them here. Within entity context prefer the canonical entity file, then `memory_state: active` scoped continuity with a matching `continuity_key`, active decisions/errors and relevant runbooks. Ignore `superseded` and `archived` memory unless the user asks for history; treat lifecycle-less legacy memory as candidates, never as a set to bulk-load, and migrate it when touched.
 6. **Layer 2 relations:** traverse allowlisted frontmatter edges (`in_area`, `child_of`, `in_project`, `for_application`, `about`, `related_to`, `supersedes`) before generic body links when the question names that relation. Vault `[[wikilinks]]` remain `references` edges. Query backlinks with `graphify-obsidian affected "<note>.md" --relation references`; the `.md` suffix and explicit relation are required for generic backlinks. See `../_shared/graphify-contract.md`.
 7. **Layer 3 body-only:** open only selected source notes and load their body without frontmatter or `tasks` blocks. A persisted decision or edit still requires verification against source Markdown because Graphify is derived.
-8. Keep the context-pack inventory internal. Expose it only on degradation, ambiguity that affects the answer, or explicit audit. If a layer misses, escalate one layer and continue with the safest narrow assumption.
+8. Keep the context-pack inventory internal to the agent workflow; a delegated scout returns its evidence pack to the principal. Expose the inventory to the user only on degradation, material ambiguity or explicit audit. If a layer misses, escalate one layer and continue with the safest narrow assumption.
 
 ## Noisy Query Handling
 
@@ -102,7 +106,7 @@ Without shell, request `update`, `filter`, `explain`, `query`, `path` or `affect
 ## Output — the context pack
 
 Track internally: intent, canonical entity, route/layers, selected sources,
-approximate tokens, confidence and gaps. Show it only on degradation or audit.
+approximate tokens, confidence and gaps. Delegate returns use `../_shared/scout-contract.md`; user-facing inventory remains limited to degradation or audit.
 
 ## Validation
 

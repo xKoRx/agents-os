@@ -4,7 +4,7 @@ schema_version: 1
 name: agents-os-bootstrap
 scope: global
 created: 2026-07-04
-updated: 2026-09-14
+updated: 2026-10-30
 description: Mandatory AGENTS OS startup skill. Run once at cold start when a new session begins or the user explicitly asks to load AGENTS OS. Its loaded contract governs warm turns and entity swaps without rereading the skill or base stack. Loads the minimum operating stack and routes entity-specific context lazily.
 aliases:
   - agents-os-bootstrap
@@ -87,7 +87,7 @@ changed on disk. Do NOT re-run the full ritual on every message.
      that router; more than one match fails closed and loads none.
    A missing or empty registry is a valid DEFAULT installation. The selected
    router loads at most ONE specialized skill and owns its scoped preferences.
-7. If the request needs vault state or domain context, route to `agents-os-context-retrieval` for the active entity (cheapest layer first; stop when sufficient). For casual or general requests that do not depend on a vault entity, skip entity retrieval.
+7. Apply Scout Routing below before nontrivial vault or repository discovery. An assigned scout executes its own skill without redispatch. Exact lookup/targeted verification may use `agents-os-context-retrieval` directly. Skip retrieval when the request needs neither vault nor repo context.
 8. Open source Markdown only for notes that affect a persistent decision,
    edit, or answer that must be verified.
 9. Select at most ONE additional specialized skill (lazy-load) only if the
@@ -99,18 +99,26 @@ changed on disk. Do NOT re-run the full ritual on every message.
 ### Warm turn
 
 1. Reuse the stack already loaded.
-2. Fetch only the delta required for the new turn.
+2. Reuse a sufficient fresh context pack; apply Scout Routing only to the missing delta, without repeating discovery.
 3. Only re-read a source if it changed on disk or the entity/intent shifted.
 4. Do not invoke or reread bootstrap merely because the user sent another message.
 
 ### Entity swap
 
 1. Keep the invariants and global internal note from cold start.
-2. Resolve the new entity and route to `agents-os-context-retrieval` for it.
+2. Resolve the new entity minimally; after applying its domain gate, obtain the required pack through Scout Routing.
 3. Re-apply the domain gate with the new entity's `area`; if the domain
    changed, drop the previous domain pack (router + scoped preferences) and
    load the new router. Never hold two domain packs at once.
 4. Drop the previous entity pack from active reasoning.
+
+## Scout Routing
+
+Before nontrivial discovery, load `../_shared/scout-contract.md` once and dispatch the applicable specialist: vault context → `context-scout` / `agents-os-context-scout`; repository understanding → `code-scout` / `agents-os-code-scout`. This applies even when a code question has no vault entity. Pass the concrete question, scope, `dispatch_id` and already verified evidence, not the full conversation. The specialist skill is mandatory; adapter attributes live in `../_shared/scout-adapters.md`.
+
+When `scout_role` is present, load only missing base sources and applicable domain restrictions, then run the assigned scout skill. Do not dispatch another scout or start domain implementation. A complete base source actually injected with provenance can be reused; a claim that the parent bootstrapped is insufficient. A scout and its required dependencies are one assigned capability, not an additional manager or permission grant.
+
+The shared contract owns reuse, generic-subagent/inline fallback, direct-verification exceptions, output, feedback and maintenance limits. The principal retains design/acceptance and source access but must not repeat the same discovery by default. Read scout skill bodies in the worker context, not both bodies in the principal merely to dispatch.
 
 ## Lazy Skill Routing
 
