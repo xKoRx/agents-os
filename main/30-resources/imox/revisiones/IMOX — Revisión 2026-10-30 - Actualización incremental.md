@@ -9,7 +9,7 @@ tags: ["kind/doc", "area/trading", "topic/imox"]
 created: "2026-10-30"
 updated: "2026-10-30"
 review_started_at: "2026-10-30T15:58:07-03:00"
-review_finished_at: "2026-10-30T16:04:51-03:00"
+review_finished_at: "2026-10-30T16:05:31-03:00"
 inventory_complete: false
 processing_complete: false
 ---
@@ -60,3 +60,7 @@ Feed desde cabecera (post de 19 horas) hasta solapamiento con posts del 23–26 
 ## Fuentes
 
 [[IMOX — Registro de publicaciones]] · [[IMOX — Cobertura de revisión]] · [[IMOX — Descargas pendientes]] y las fuentes de este lote.
+
+## Validación final
+
+41 notas canónicas con lint estricto: cero errores y cero advertencias. Bitácora de Agents append-only preservada en su formato previo. Las 42 rutas tocadas tienen enlaces internos resolubles; 128 identidades de post únicas, conteos coherentes y manifiesto con una descarga pendiente sin filename inventado. Skill registrada para cold start, frontmatter YAML válido y prueba real del pedido actual; sin prometer cobertura completa del foro. Fin verificado: 2026-10-30T16:05:31-03:00.

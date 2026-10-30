@@ -73,7 +73,7 @@ Conservar identidad hipótesis→campaña→configuración→EA→retest→ejecu
 | Equivalencia con Forge | Verificar qué implementa hoy y qué sólo es propuesta documental. Esta ingesta no inspeccionó repos, workers ni runtime. |
 | Criterio de cartera/MM | Objetivo y restricciones propias por vehículo, con evidencia de ejecución y exposición conjunta; no copiar porcentajes comunitarios. |
 
-Ruta detallada de arranque: [[IMOX - Empezar con SQX 144 - Metodología y primera campaña]]. Contrato de presets: [[IMOX - Building blocks y preparación de campañas Forge]]. [[IMOX - Seminario 30 de octubre - Repaso 136 a 144]] es una oportunidad futura de completar formación, no evidencia ya disponible al corte.
+Ruta detallada de arranque: [[IMOX - Empezar con SQX 144 - Metodología y primera campaña]]. Contrato de presets: [[IMOX - Building blocks y preparación de campañas Forge]]. [[IMOX - Seminario 30 de octubre - Repaso 136 a 144]] figuraba futuro en la captura inicial y finalizado el 30 de octubre; su contenido y la grabación siguen pendientes de revisión.
 
 ## Evidencia y provenance
 

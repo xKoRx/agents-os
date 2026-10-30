@@ -42,7 +42,7 @@ Una skill específica posee ejecución/continuación IMOX y delega identidad/ing
 
 Forward-test real: pedido actual en Codex/Hefesto, Chrome KoR, fuentes nuevas/delta, Academia pide login, se persiste manifiesto con URL sin repetir descargas ni transmitir credenciales. Casos de activación revisados: «actualiza imox» aplica; «explica qué es IMOX» sólo consulta wiki; «ejecuta campaña Forge» deriva al owner de investigación y no inicia ingesta/operación por esta skill. Caso host distinto: la instrucción detiene ingesta y no propone otro navegador/máquina.
 
-Lint estricto del SKILL ya pasó sin errores/advertencias; validación final del lote y enlaces pendiente de registrar abajo. Parse YAML estricto aplicable al frontmatter. `quick_validate.py` se ejecutó: incompatibilidad esperada del perfil portable, rechaza `aliases, area, created, entities, index_priority, indexable, load_policy, related, schema_version, scope, tags, type, updated`. Se conserva metadata federada por el contrato canónico, no se suprime para fabricar PASS. No hay `agents/openai.yaml` adicional que validar.
+Lint estricto del SKILL ya pasó sin errores/advertencias; validación final del lote: 41 notas sin errores/advertencias, enlaces de las 42 rutas resolubles, 128 IDs únicos y manifiesto retomable. Parse YAML estricto aplicable al frontmatter. `quick_validate.py` se ejecutó: incompatibilidad esperada del perfil portable, rechaza `aliases, area, created, entities, index_priority, indexable, load_policy, related, schema_version, scope, tags, type, updated`. Se conserva metadata federada por el contrato canónico, no se suprime para fabricar PASS. No hay `agents/openai.yaml` adicional que validar.
 
 ## Compartibilidad
 
