@@ -4,8 +4,8 @@ schema_version: 1
 scope: session
 created: "2026-10-30"
 updated: "2026-10-30"
-area:
-project:
+area: "[[Echo]]"
+project: "[[Echo Futures — Runtime Pools]]"
 application:
 entities: []
 related: []
@@ -24,35 +24,18 @@ tags:
 
 # 2026-10-30-echo-feed-p0-recovery
 
-%% Routing: area/project/application/entities/related usan links canónicos. Aliases son variantes humanas; tags/paths usan slugs. %%
-
 ## Cambio
 
-- **Tipo:** created / updated / deleted / conflict-resolution
-- **Archivo(s):**
-  - 
+Actualización de [[Echo Futures — Runtime Pools]] con mandato P0, baseline preservado, ownership Sol/Luna, gates pendientes y cuota confirmada. El proyecto sigue como único planificador.
 
-## Motivo
+## Evidencia y motivo
 
-- 
+Mandato Owner 2026-10-30; lectura source de workers y estado local systemd/journal. Feed reconectado tras acción física Owner a las 13:58:42 Chile, sin certificación inferida. Se corrige la inferencia histórica que comparaba items del relay con records Kafka: no demuestra estancamiento por sí sola.
 
-## Fuentes usadas
+## Validación y límites
 
-- 
-
-## Resolución aplicada
-
-- 
-
-## Validación
-
-- 
-
-## Compartibilidad
-
-- **Scope:** local / team
-- **Redacción revisada:** sin identidad, paths locales, memoria interna ni secretos
+Rama fuente inicial limpia en 3eaed4d2; nueva rama de misión conserva baseline. Pruebas todavía NOT_RUN, runtime sin mutaciones, certificaciones pendientes. Cuenta de cuota: 64% restante; reserva 5%. Sin secretos ni dumps persistidos.
 
 ## Rollback
 
-- 
+Revertir únicamente el delta documental de este hito; conservar historia y cambios concurrentes.
