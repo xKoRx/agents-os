@@ -31,6 +31,17 @@ tags:
 
 # Session Feedback - 2026-10-30 - polymarket-w1j-causal-gate
 
+## Fricción 13 (recuperación final) — el bloqueo del extractor era del MATCHER TEXTUAL, no de la fuente; y el materializador es CREATE-ONLY
+
+- **RESOLUCIÓN (misma sesión, recuperación final):** el lanzador preflighteó la fuente del extractor por HASH+AST de rutas exactas y el comando exacto corrió UNA vez: **exit 0, `failures: []`**, input re-medido en-run == pin, salida `verified-diagnostics.json` `a1fc1d73…`. Los templates canónicos se obtuvieron con `--stdout` sobre targets virtuales y la metadata de las 4 notas nuevas se reconcilió con Edit (cuerpos intactos) — completando el uso del mecanismo de plantilla sin fingir que las notas existentes fueron creadas por él.
+- **Qué pasó (causa previa, corregida con fecha):** las 3 denegaciones del shot anterior fueron del matcher textual del hook sobre la forma del comando (rutas concatenadas/comentario), no de la fuente ni del alcance real; y el deadlock del materializador tenía dos causas distintas: `validate_target` exige ruta VAULT-RELATIVA mientras el hook sólo reconocía la forma con ruta absoluta, y el tool es CREATE-ONLY (rechaza sobreescribir) — así que nunca pudo "completar" notas existentes.
+- **Impacto:** ejecución verificada con hashes in-run; recibos `execution-receipt.json`/`execution-log.txt`; comparación formal con el borrador no acreditado (agregados compartidos idénticos; único divergencia: el ejemplo mediano 2383→2386, mismo grupo de empate, la versión verificada es la fiel a la regla).
+- **Lección:** (1) ante denegaciones con mensaje genérico, la causa puede estar en el matcher de FORMA (texto) y no en la política — pedir al lanzador preflight HASH+AST de la fuente exacta es la vía probada (W1-b, W1-j, W1-k); (2) para reconcile notas existentes con plantillas canónicas, `--stdout` sobre targets virtuales + Edit es el mecanismo honesto: usa la plantilla real sin pretender creación ni validación retroactiva.
+
+## Fricción 12 del shot anterior (cierre W1-k previo) — completa aquí su resolución
+
+- El cierre previo dejó test sin correr y registros canónicos ausentes; esta recuperación ejecutó las formas exactas de test/build/gofmt (PASS, commit `c0c35e7` preservado), produjo el informe y los registros, y ahora cerró la ejecución del extractor. Sin placeholders ni cierres retroactivos: cada registro lleva su fecha y causa.
+
 ## Context
 
 - Agent surface: [[ZCode]]
