@@ -80,3 +80,10 @@ Heartbeats posteriores ACTIVE yreason vacío; cursor47242→47400. Observación3
 ## Diagnóstico B2 posterior al update
 
 Provider confirmado actual por candidatos QUOTE/TRADE19:59:42Z, stampedseq719726..720339; no falta conexiónNT. Estado canónico comprometido aún02:00Z/LEGACY_DEGRADED; grupoFlink drena45146621→45151726, lag43373→39298. Iniciojob19:54:03Z requiere verificar causa/restore antes de inferir continuidad; no mutacionesruntime. Publicaciónrelay registra9fallosTCP sobre4seq y ACKposterior49468; progreso recuperado, no prueba porpayload de exactlyonce. Observación continúa hasta20:22:51Z. SIMreview debe distinguir selectorlegacyfeed de bindings ejecuciónCERTNT01-SIM01 ya documentados; no concluirausenciaSIM buscando sólo prefijosSIM/Sim101.
+
+
+## Delta físico y guard de continuidad
+
+Checkpoints2605/2606/2607 completados tras restore2604, avance durabledelstream19721→82081 facts yLSO14721518→14783885; diagnóstico inicial sano se limita a ese corte. A20:04:49Z apareció RequestTimeoutException NQmarket_stream, checkpoint2608 falló Coordinator suspending yrestore2607@20:04:54Z; no atribución aC# ni mutaciónmanual. Lagposterior35603 sigue descendiendo; no fullCERTPASS.
+
+Sol/Luna demuestran fuente EchoNativeBars sinlookbackconfig (cursor→now o1día), insuficienteparademostrar51H4/20×5m ni rehidratartrasrestoredownstream. Recovery porOHLCtickssynthetic noadmitida. Root adjudica P0 de seguridad: BAR_COVERAGE puedehacerREADYaunqueSourceGapOpen; Sol autorizadofixmínimoSDKmarket/readiness+red/green, Lunaverificaciónindependiente; sourceonly, sinruntimewrites. Contracto de rebootstrap/epochcontinúadesignonly: no resets, nodeletionsgap, noREADYmanual. Cuota49% restante.
