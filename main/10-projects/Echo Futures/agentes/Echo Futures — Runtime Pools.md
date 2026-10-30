@@ -36,13 +36,13 @@ Mandato Owner: recuperar feed end-to-end mediante Sol (`gpt-6.1-sol`) y Luna (`g
 
 | Campo | Estado verificado |
 |---|---|
-| Gate activo | Implementación autorizada tras repro y contrato congelado; certificación física NOT_RUN |
+| Gate activo | Go y guard S2 verificados independientemente; límite pending C# bajo revisión final; release e instalación pendientes; certificación física NOT_RUN |
 | Baseline | `xKoRx/echo@3eaed4d28c24491a6926c7e78f1e0a4811c74f16`, checkout existente `ef-b2-analytics-20261030`, rama de misión `codex/echo-feed-p0`; preserva `903de719` y `663e81dc` |
 | Runtime observado | Core PID 78126; relay PID 78385 pineado a release `2ee61791`; gateway PID 79000. Paridad por contenido pendiente |
 | Feed físico | REPRO P0 en baseline: conectado13:58:42 Chile; a14:09:39 relay registra saturation+drain, a14:09:43 AddOn NACKED con pending_items=0 y cursor28576. Capturas nuevas no se sellan pese a callbacks crecientes; gap real ≤14:09:39, onset exacto desconocido. Sin reinicios adicionales ni certificación |
-| Hallazgos | Repro C# real Windows: latch tras NACK/ACK/reconnect (7 checks); baseline 110 asserts PASS. Go reproduce ACK prematuro frame vacío y contexto ignorado. Reconnect puede acumular workers bloqueados; corrección lifecycle scoped con Sarama blackhole real PASS (defaults≈2.1s), review independiente encontró input sin newline no acotado y cola C# pending sin límite (1000callbacks), correcciones dirigidas en curso. Pérdida por OUTBOX_FULL no deja gap C-SEQ: corrección durable por adjudicar. Causa inicial de congestión NO demostrada; items vs records no son comparables |
+| Hallazgos | Repro C# real Windows: latch tras NACK/ACK/reconnect (7 checks); baseline 110 asserts PASS. Go reproduce ACK prematuro frame vacío y contexto ignorado. Reconnect puede acumular workers bloqueados; corrección lifecycle scoped con Sarama blackhole real PASS (defaults≈2.1s), review independiente encontró input sin newline no acotado y cola C# pending sin límite (1000callbacks), Go corregido y probado; cap C# implementado con165asserts/0fail, revisión independiente pendiente. Gap durable por pérdida de captura implementado; paquete registrará también el gap preupgrade sin fabricar ticks. Causa inicial de congestión NO demostrada; items vs records no son comparables |
 | Workers | Sol: relay/SDK/reproductor; Luna: outbox/socket/reproductor; apoyo Luna read-only: métricas/runtime y desarme. Contrato mínimo congelado en `xKoRx/echo:specs/EF-FEED-RECOVERY/`; implementación en archivos disjuntos y revisión cruzada posterior |
-| B2/C/D/E | NOT_CERTIFIED. S2 admitía OPEN con warmup+NOT_READY: reproducido y guard implementado, suite/race PASS, review pendiente. Binding del hello MISMATCH; configuración económica global no demostrada (snapshot truncado), binding disabled y SQL sin exposición no bastan |
+| B2/C/D/E | NOT_CERTIFIED. S2 admitía OPEN con warmup+NOT_READY: reproducido y guard implementado, suite/race y revisión adversarial independiente PASS. Binding del hello MISMATCH; /ready17:20:57Z demuestra execution_authorized BLOCKED por ausencia de permisos y new_risk_eligible=false. Configuración económica global no demostrada (snapshot truncado); sin exposición SQL |
 | Cuota | Herramienta de cuenta confirma 36% usado / 64% restante al inicio y 61% tras implementación y primera revisión; consumo global confirmado 3 puntos, no atribuido a un worker; reserva intocable 5% |
 
 ### Fase B1 — RCA feed demostrada: AddOn dializa el puerto viejo 9771; parche una-acción en C:\Temp (2026-10-30)
@@ -240,7 +240,7 @@ Cuatro shots/gates como contrato Owner. S02 mantiene las ocho tareas T2.1–T2.8
 
 ## ✅ Tareas
 
-- [x] P0.1 Go reproduce ACK acumulativo prematuro y contexto ignorado; incompatibilidad NACK confirmada por source, harness C# físico de código puro pendiente. Contrato mínimo congelado para implementación; causa primaria de saturación todavía pendiente.
+- [x] P0.1 Go reproduce ACK acumulativo prematuro y contexto ignorado; latch NACK reproducido en Windows con C# real (7checks) y en feed instalado (NACKED aun con pending0). Contrato mínimo congelado para implementación; causa primaria de saturación todavía pendiente.
 - [/] P0.2 Implementar corrección mínima con ownership disjunto, pruebas críticas y revisión cruzada ejecutada.
 - [ ] P0.3 Integrar y preparar release/rollback con hashes y paridad; instalar AddOn mediante una acción Owner si requiere sesión Windows.
 - [ ] P0.4 Certificar recuperación física, 30 minutos CERT-NT-01 y barras/indicadores S2; separar transporte de continuidad.
