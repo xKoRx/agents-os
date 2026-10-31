@@ -46,7 +46,7 @@ tags:
 
 - `Preregistration — PE-005-R1 Economic Candidate W1-g 2026-10-29.md` (valores congelados de la hipótesis).
 - `Preregistration — PE-005-R1 Economic Candidate v2 W1-h 2026-10-29.md` (endpoint a horizonte fijo, taxonomía, descriptividad, presupuesto).
-- `Plan — Single Episode Pilot v3 W1-i 2026-10-29.md`, `Plan — Executable Single Episode Pilot W1-j 2026-10-29.md`, `Plan — Minimal Economic Instrumentation W1-l 2026-10-30.md` (deadlines, formas de comando, P0-1 de L).
+- `Plan — Single Episode Pilot v3 W1-i 2026-10-29.md` (deadlines absolutos, wiring **FINAL** de renovación causal `62a819d` — ancla de la vigencia en la última observación admitida), `Plan — Executable Single Episode Pilot W1-j 2026-10-29.md` (formas de comando, `H` ≤ fin real del tramo, cobertura real del horizonte), `Plan — Minimal Economic Instrumentation W1-l 2026-10-30.md` (P0-1 de L; bloqueo real de superficie por shot).
 - `Research — Fee Formula Documentary W1-p 2026-10-31.md` y `Research — E1 Fee Model Conformance W1-q 2026-10-31.md` (fórmula, unidades, redondeo no adjudicado, roles, conformidad del modelo `e = 1`).
 - `validated-baseline/w1-q-e1-conformance-20261031/prereg-draft.md` (draft consolidado y sustituido en alcance).
 - Código en HEAD `dee7a977cdf67ad6aabdff374abecc9b0d0cdd0d`: `internal/regimes/schedule.go`, `internal/economics/scheduled.go`, `internal/strategy/pocs/sports/sports.go`, `cmd/researchpilot/{main,economics,discovery}.go`.
