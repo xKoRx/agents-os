@@ -2,18 +2,19 @@
 type: feedback
 schema_version: 1
 scope: session
-created: 2026-10-31
-updated: 2026-10-31
+created: "2026-10-31"
+updated: "2026-10-31"
 area: "[[Personal]]"
-project: "[[AGENTS OS]]"
+project: "[[Polymarket Engine — MVP]]"
 entities:
-  - "[[AGENTS OS]]"
+  - "[[Polymarket Engine — MVP]]"
+  - "[[Research — E1 Opt-in Integration W1-s 2026-10-31]]"
 related: []
 aliases: []
-agent_surface: "[[Codex]]"
-agent_model: unknown
-agent_run:
-session_goal:
+agent_surface: "[[ZCode]]"
+agent_model: GLM-5.3-Flash
+agent_run: "[[2026-10-31-zcode-glm-5.3-flash-polymarket-w1s-glm-e1-optin-integration]]"
+session_goal: W1-s opt-in documented e1 integration (offline, L-independent)
 source_session:
 confidence: high
 load_policy: manual
@@ -22,93 +23,40 @@ index_priority: low
 tags:
   - kind/feedback
   - scope/session
-  - project/agents-os
+  - project/polymarket-engine
   - agent/system1
 ---
 
-# Session Feedback - 2026-10-31 - short-topic
+# Session Feedback - 2026-10-31 - polymarket w1s glm e1 optin integration
 
 ## Context
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+- Agent surface: ZCode terminal (GLM como respaldo explícito por cuota MiniMax 429/2067; sin sondas a MiniMax ni fallback adicional).
+- Agent model: GLM-5.3-Flash (proveedor GLM; identidad provista por el lanzador, no autodeclarada).
+- Agent run: [[2026-10-31-zcode-glm-5.3-flash-polymarket-w1s-glm-e1-optin-integration]].
+- Session goal: integración offline opt-in del modelo documentado e1 (gate real + analizador) con bloqueo real L_PENDING_OWNER del candidato.
+- Main entity: [[Polymarket Engine — MVP]].
+- Skills used: agents-os-bootstrap, agents-os-context-retrieval, agents-os-code-scout (+ scout contract/runbook), agents-os-agent-project-workflow, agentes de cierre canónico y materializador de notas.
+- Retrieval mode: bootstrap real + scout inline-fallback sobre catálogo exacto de fuentes; sin reescaneo del vault.
+- Artifacts changed: commit local `64ae3a6` (9 archivos), informe canónico W1-s, W1-r (D-1/D-7), continuidad, MVP, 5 notas GLM de journal, OUT propio.
 
 ## Scores
 
 Use 1-5, where 1 is poor and 5 is excellent.
 
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
+- Startup clarity: 5
+- Retrieval usefulness: 5
+- Skill fit: 4
+- Template fit: 4
+- Closeout friction: 4
+- Overall confidence: 5
 
 ## What Complicated The Session Most
 
-- Observation:
-- Why it was hard:
-- Proposed improvement:
+- Observation: el mandato llegaba por fases con rutas exactas y denegaciones de hook por alcance (OUT propio sin resolver al inicio; dos rutas rechazadas antes de que el lanzador entregara la ruta exacta de validated-baseline).
+- Why it was hard: sin listado ni búsqueda, un path de OUT ausente en el contexto del lanzador obliga a detenerse y reportar en vez de adivinar.
+- Proposed improvement: incluir la ruta OwnOUT exacta en el primer despacho cuando el mandato exige escribir artefactos propios.
 
 ## Most Useful Part Of Sistema 1
 
-- What helped:
-- Why it helped:
-- Keep/change:
-
-## Least Useful Or Noisy Part
-
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
-
-## Missing Support
-
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
-
-## Retrieval Feedback
-
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
-
-## Skill Feedback
-
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
-
-## Template Feedback
-
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
-
-## Memoria Interna (Internal Memory)
-
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
-
-## Pain Pattern Candidate
-
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
-
-## One Next Improvement
-
--
+- El contrato de scout + catálogo exacto de fuentes: permitió reutilizar el discovery previo y el borrador preservado sin repetir discovery, y el schema-contract materializó las notas GLM sin inventar frontmatter.
