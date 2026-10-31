@@ -41,7 +41,7 @@ tags:
 ## Trabajo realizado
 
 - Núcleo compartido en `internal/economics/research_e1.go`: observaciones PIT tipadas (identidad mercado/asset, lexema de rate exacto, receive wall + capture seq), resolución fail-closed con `regimes.ProspectiveTickTTL`, invariancia de prefijo (admisibilidad temporal antes de ambigüedad de identidad), pata tipada y ledger (`net = sell.NetProceeds − buy.CashDebit`, banda floor5/ceil5 por pata).
-- Gate real en `internal/strategy/pocs/sports/`: opt-in explícito `research_cost_model=documented_e1` + schedules declarados; cutoff congelado en Detect y verificado en Evaluate;Legacy intacto por defecto.
+- Gate real en `internal/strategy/pocs/sports/`: opt-in explícito `research_cost_model=documented_e1` + schedules declarados; cutoff congelado en Detect y verificado en Evaluate; legacy intacto por defecto.
 - Analizador en `cmd/researchpilot/`: guardia de despacho (CLI analyze-only que PROPAGA `L_PENDING_OWNER` y no habilita nada; guardia de entrada antes de abrir journal/store), fila E1 con contrato corregido (entrada causal estrictamente posterior mismo tramo ≤ H, salida orden ≥ entrada, fee SELL as-of H mismo con capture seq del prefijo de admisión sobre envelopes completos, frontier desconocido ante malformed/regresión/detrás-del-book, 7 estados, skips a `signal_no_fill` con contadores separados, nulls con razón).
 - Correcciones de revisión: cutoff de gate congelado, frontier con wall = H, prefix-invariance, oracle de identidad honesto (missing vs mismatch), oracle de prosa sustituido por aserciones estructuradas.
 
