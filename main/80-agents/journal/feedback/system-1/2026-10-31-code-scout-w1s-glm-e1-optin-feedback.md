@@ -2,18 +2,18 @@
 type: feedback
 schema_version: 1
 scope: session
-created: 2026-10-31
-updated: 2026-10-31
+created: "2026-10-31"
+updated: "2026-10-31"
 area: "[[Personal]]"
-project: "[[AGENTS OS]]"
+project: "[[Polymarket Engine — MVP]]"
 entities:
-  - "[[AGENTS OS]]"
+  - "[[Polymarket Engine — MVP]]"
 related: []
 aliases: []
-agent_surface: "[[Codex]]"
-agent_model: unknown
-agent_run:
-session_goal:
+agent_surface: "[[ZCode]]"
+agent_model: GLM-5.3-Flash
+agent_run: "[[2026-10-31-zcode-glm-5.3-flash-polymarket-w1s-glm-e1-optin-integration]]"
+session_goal: code-scout w1s-glm-e1-optin (inline-fallback) sobre el catálogo exacto del repo
 source_session:
 confidence: high
 load_policy: manual
@@ -22,93 +22,42 @@ index_priority: low
 tags:
   - kind/feedback
   - scope/session
-  - project/agents-os
+  - project/polymarket-engine
   - agent/system1
 ---
 
-# Session Feedback - 2026-10-31 - short-topic
+# Session Feedback - 2026-10-31 - code-scout w1s-glm-e1-optin
 
 ## Context
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+- Request/revisiones: dispatch `w1s-glm-e1-optin`, `scout_role: code-scout`, `execution: inline-fallback` (sin subagente disponible); mapa de gate real, analizador, núcleo documentado e1, formas PIT y draft preservado; segunda pasada con los deltas de revisión temporal (H clock, frontier, orden causal, prefijo PIT).
+- Ruta de recuperación: bootstrap base ya en sesión; lecturas targeted exclusivamente sobre el catálogo lanzado (sports.go, scheduled.go, schedule.go, prospect.go, economics.go del piloto, main.go, fixtures w1q/w1m, draft 528 líneas). Sin grafo de código; sin listado.
+- Rangos realmente leídos: por símbolo/rango (Evaluate 447-589, BuildQuoteDocumentedE1 227-311, analyzer 320-878/1046-2110, prospect.go:1-80, entre otros); declarado en `scout-pack.json`.
+- Utilidad observada: el pack respondió ambas pasadas sin discovery repetido; los consumidores (implementación y tests) se apoyaron en él sin releer historial.
+- Gaps/degradación: `cmd/researchpilot/supervisor.go` y el paquete base `internal/strategy` fuera del catálogo (usados por firma/call-sites); sin ejecución de nada.
+- Causa: `none` (el scope del lanzador excluyó esos archivos; se declaró como gap, no se evadió).
+- Decisión de mantenimiento: `unchanged` — la fricción observada (ruta OwnOUT ausente en el contexto del despacho) es del lanzador, no de la skill del scout; sin mejora accionable propia reproducible en esta invocación.
+- Main entity: [[Polymarket Engine — MVP]].
+- Skills used: agents-os-code-scout + scout contract/runbook (procedure del especialista).
+- Artifacts changed: sólo este feedback y `scout-pack.json` (retorno del scout); sin cambios de skill/runbook.
 
 ## Scores
 
 Use 1-5, where 1 is poor and 5 is excellent.
 
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
+- Startup clarity: 5
+- Retrieval usefulness: 5
+- Skill fit: 5
+- Template fit: 4
+- Closeout friction: 4
+- Overall confidence: 5
 
 ## What Complicated The Session Most
 
-- Observation:
-- Why it was hard:
-- Proposed improvement:
+- Observation: dos Writes de OUT fueron denegados por el hook ("Outside immutable W1-s scope") antes de que el lanzador entregara la ruta exacta de validated-baseline.
+- Why it was hard: el contrato prohíbe variantes tras una denegación, así que la única salida honesta fue reportar y esperar el locator.
+- Proposed improvement: que el despacho incluya siempre la ruta OwnOUT exacta cuando exige artefactos propios (mejora del lanzador, no de esta skill).
 
 ## Most Useful Part Of Sistema 1
 
-- What helped:
-- Why it helped:
-- Keep/change:
-
-## Least Useful Or Noisy Part
-
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
-
-## Missing Support
-
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
-
-## Retrieval Feedback
-
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
-
-## Skill Feedback
-
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
-
-## Template Feedback
-
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
-
-## Memoria Interna (Internal Memory)
-
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
-
-## Pain Pattern Candidate
-
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
-
-## One Next Improvement
-
--
+- El scout contract + runbook: fronteras claras de lectura/retorno/feedback permitieron completar el pack y el feedback sin tocar producto ni repetir discovery.
