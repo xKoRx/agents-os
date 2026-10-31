@@ -72,8 +72,8 @@ Use 1-5, where 1 is poor and 5 is excellent.
 
 ## Missing Support
 
-- Problem not solved by Sistema 1: no hay ninguna forma canónica de **consolidar** varios documentos canónicos en un único documento derivado sin duplicar su autoridad; esta sesión lo resolvió con un mapa de fuentes explícito (`source-map.json`) y una regla de "una sola autoridad", pero ese patrón no está en ninguna skill.
-- How Sistema 1 could help next time: una nota de patrón en `80-agents/memory/public/pattern/` para "consolidación documental con una sola autoridad y mapa de fuentes", reutilizable en cualquier dominio.
+- Problem not solved by Sistema 1: no hay ninguna forma canónica de **consolidar** varios documentos canónicos en un único documento derivado sin duplicar su autoridad; esta sesión lo resolvió con un mapa de fuentes explícito (`source-map.json`) y una regla de "una sola autoridad", pero ese patrón no está en ninguna skill. Tampoco hay ninguna forma canónica de **revisar un documento largo por coherencia interna** antes de cerrarlo: las contradicciones que encontró el supervisor (frescura, cohorte/gate, selección, presupuesto, afirmaciones heredadas superadas) eran verificables leyendo el propio texto contra las fuentes canónicas, y ninguna skill propone ese chequeo.
+- How Sistema 1 could help next time: una nota de patrón en `80-agents/memory/public/pattern/` para "consolidación documental con una sola autoridad y mapa de fuentes", y otra para "chequeo de coherencia interna de un entregable largo contra su mapa de fuentes" (contradicciones, afirmaciones heredadas superadas por un estado posterior, y claims de 'sin costo'/'sin recursos' que conviene acotar), reutilizables en cualquier dominio.
 - Suggested artifact type: pattern (S1).
 
 ## Retrieval Feedback
