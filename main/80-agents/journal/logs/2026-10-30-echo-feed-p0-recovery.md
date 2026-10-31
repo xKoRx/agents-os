@@ -177,3 +177,8 @@ Verificación operacional independiente Sol cerrada23:15Z PASS acotado: mismosJM
 ## Cambio Owner: reserva15% y foco en corrección
 
 Owner respondiócontinua: NT cerrado para prueba esencial del actualizador. Nueva reserva mínima15% semanal supersede5%; herramienta confirma29%restante/71%usado. Presupuesto disponible máximo14puntos. Prioridad detectar/corregir; diferir campañas de certificación, datos frescos y SIM al mercado abierto. Sólo runtime_evidence retoma QA esencial Windows Apply/idempotencia/rollback/preservación y preparación paquete final, sin repetir suites ya aprobadas ni tocar perfilKoR. Core/relay ya desplegados y verificados.
+
+
+## Actualizador verificado y carrera de conexión corregida
+
+NTcount0 real; QA WindowsPS5.1 en fixture sintético equivalente al diagnóstico epoch1/data_seqNQ12-26=991264/gap550237: Apply/idempotencia/rollback y rechazo drift PASS; identidad/outbox byteexactos. Evidencia UPDATER-QA.json en release. No perfilKoR tocado. Root detectó que ACKrelay podía preceder conexiónprecio y latch dehistoria fallaba terminalmente. Luna confirmó API deDLLNT8.1.8.4, corrigió sóloAddOn: comprobar conexión antespausa y anteshistoria; timer existente espera preflight, serializedstart, sin retry fallosdurables. Rootrevisión+WindowscompilePASS, sin claim runtimeconcurrency. SHA5b1e1a024b8793ee3632411f6450ea257781420614d1b8d4728659df83a8eb6f; commite8698520eb63daec0ef5736b577c635b9d8ca079 pushedFF. Go46330794 desplegado permanece intacto; no repetir suites ni deploy. Paquete final refrescándose antescomandoOwner. Cuota28% restante/reserva15%; campañas/frescura/SIM diferidas porOwner.
