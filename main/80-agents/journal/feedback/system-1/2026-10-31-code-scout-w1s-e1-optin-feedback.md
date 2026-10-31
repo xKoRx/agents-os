@@ -4,111 +4,38 @@ schema_version: 1
 scope: session
 created: 2026-10-31
 updated: 2026-10-31
-area: "[[Personal]]"
-project: "[[AGENTS OS]]"
+area: '[[Personal]]'
+project: '[[AGENTS OS]]'
 entities:
-  - "[[AGENTS OS]]"
-related: []
+- '[[Polymarket Engine — MVP]]'
+related:
+- '[[Research — E1 Opt-in Integration W1-s 2026-10-31]]'
+- '[[Polymarket Engine — MVP]]'
 aliases: []
-agent_surface: "[[Codex]]"
-agent_model: unknown
-agent_run:
-session_goal:
-source_session:
+agent_surface: '[[ZCode]]'
+agent_model: MiniMax-M3.1-Flash
+agent_run: null
+session_goal: W1-s offline opt-in e1 integration; provider quota blocked
+source_session: sess_2134401b-3a61-476b-94a9-52f50a424ae3
 confidence: high
 load_policy: manual
 indexable: false
 index_priority: low
 tags:
-  - kind/feedback
-  - scope/session
-  - project/agents-os
-  - agent/system1
+- kind/feedback
+- scope/session
+- project/agents-os
+- agent/system1
 ---
-
-# Session Feedback - 2026-10-31 - short-topic
 
 ## Context
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
+Feedback code-scout W1-s, execution inline-fallback, dispatch_id w1s-e1-optin; autor Sol/Codex, no MiniMax. Misma sesión ZCode `sess_2134401b-3a61-476b-94a9-52f50a424ae3`, MiniMax M3.1 Flash; bootstrap13 confirmado. Objetivo: integración offline e1 opt-in en gate y analizador, L pendiente.
 
-## Scores
+## Resultado observado
 
-Use 1-5, where 1 is poor and 5 is excellent.
+Bloqueo inicial por herramientas de descubrimiento: perfil sin listing, rutas de tests adivinadas; pausa propia130 y continuación con locators del catálogo preexistente, sin ampliar controles. Después cuota del proveedor: HTTP429/2067 Token Plan, exit1, drenado. Sólo borrador de helper sin callers/tests, preservado por hash y retirado del checkout activo. Código/tests/commit y cierre MiniMax NOT_DONE. No cambios de skill/runbook.
 
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
+## Aprendizaje acotado
 
-## What Complicated The Session Most
-
-- Observation:
-- Why it was hard:
-- Proposed improvement:
-
-## Most Useful Part Of Sistema 1
-
-- What helped:
-- Why it helped:
-- Keep/change:
-
-## Least Useful Or Noisy Part
-
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
-
-## Missing Support
-
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
-
-## Retrieval Feedback
-
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
-
-## Skill Feedback
-
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
-
-## Template Feedback
-
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
-
-## Memoria Interna (Internal Memory)
-
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
-
-## Pain Pattern Candidate
-
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
-
-## One Next Improvement
-
--
+Entregar desde el inicio los locators exactos de tests del manifiesto ya conocido; no asumir Glob/Grep/TodoWrite ni autorizar búsqueda por variantes tras rechazo. Separar cuota agotada de error transitorio y no relanzar sin nueva evidencia de disponibilidad. No atribuir progreso de implementación a un proceso con heartbeat. Causa: tooling y provider quota. Mantenimiento deferred; no ampliar alcance para arreglar herramientas. No se midieron ahorros ni se certificó independencia del scout inline.
