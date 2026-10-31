@@ -8,12 +8,12 @@ aliases: []
 tags:
   - kind/doc
 created: "2026-10-29"
-updated: "2026-10-29"
+updated: "2026-10-30"
 ---
 
 # Echo Futures — I0 manager technical acceptance
 
-> Registro histórico de la aceptación técnica I0. **La vía de entrega/merge Python de este registro queda revocada por la decisión Owner C06 GO-ONLY del mismo día**, documentada al final. El código Echo no se modifica por este log.
+> Registro histórico de la aceptación técnica I0. La vía de entrega/merge Python de este registro fue revocada por la decisión Owner C06 GO-ONLY. El delta del30-10 al final registra la entrega final GLM+MiniMax. Ninguno de estos registros ejecuta por sí solo operaciones de producto.
 
 ## Motivo
 Cerrar la secuencia I0-S1/S2/S3/S3R1/S3R2 sin otra revisión amplia, recuperar retorno S3R2 y decidir preparación para integración controlada del reporter económico opt-in.
@@ -47,3 +47,22 @@ Se publican blobs/cambios documentales con base tree reconciliado, optimistic HE
 
 ### Pendientes y continuidad
 S04-F01 equivalencia V1, S04-F02 admisión Go y D05 para investigación funded-only permanecen explícitos; no bloquean pruebas funcionales sintéticas ni autorizan G5. Ningún estudio A/B ni workstream vecino se redefine. SOURCE/BUILD/TEST/E2E/QUALIFICATION/MERGE/DEPLOY siguen separados. La siguiente acción es GO-S02 del paquete vigente; reviews sólo contra el SHA retornado. Manager y programa abiertos; PRO_CHAT_POOL_DELTA UNKNOWN. Rollback documental mediante nuevo commit reconciliado, nunca reset/force, conservando snapshots.
+
+## Delta Owner 2026-10-30 — EF-CAMPAIGNS-FINAL
+
+### Mandato
+El Owner solicita una última sesión local integral: GLM-5.3-Flash sólo coordinador y todos los workers MiniMax M3.1 Flash; completar C06/migración de todos los canónicos, determinismo runtime/backtest, comparación con versión anterior y validación de señales/operaciones en último contrato físico NQ2–3meses; entregar histórico completo listo al siguiente agente sin ejecutarlo aquí. Primera candidata real objetivo domingo1-11-2026, America/Santiago. El objetivo de calendario no constituye permiso de operar.
+
+### Baseline documental y producto comprobados
+Se leyeron bootstrap actualizado30-10, guía Agents-OS, planner actual, paquete, retester y skill manager por alcance. Se verificaron GitHub refs: Echo feature/ef-campaigns-go `a22970c85d139c81c919aafac69f4bf6ceaf5dcd`; master `2baf319ddcba622d9557bc9f23a13787b44c58a7`. Corte Agents-OS de lectura `bb51f2ecd228047abd31c63edf94c11517d65e8e`. Los hechos físicos del S04 siguen executor-reported; no se reejecutaron desde CLOUD.
+
+### Decisiones de ejecución publicadas
+Se compacta el planner existente, preservando la versión previa en Git; se reemplaza el paquete de tres shots del path I0-LOCAL por un mandato final autosuficiente. C06 sigue siendo la arquitectura, sin nuevo manager/diseño. Requisitos precisados: P0 determinismo, P1 legacy/nuevo, P2 runtime fact replay con mismos inputs/estado/fills y comparación de decisiones antes de aplicar respuestas; controles CloseSafety efectivos; Strategy real y no fixture; manifest de policies extraído de fuentes selladas, sin transcripción manual Owner ni defaults; refund aplicado sólo como devolución comercial confirmada; catálogo entero y clasificación independiente de rentabilidad; cola G5 sólo preparada. Los porcentajes de reutilización no son un gate técnico: se reutilizan owners por contrato y evidencia, sin objetivo porcentual artificial.
+
+Los procesos de implementación y verificación son MiniMax reales, con preflight provider y receipts, sin fallback de implementación GLM. La ausencia de subagentes debe resolverse mediante una ruta existente/autorizada MiniMax o reportarse como bloqueo proveedor; no fingir modelos ni agregar otra plataforma de agentes. La revisión independiente será de autor/contexto; no se afirma independencia de modelo entre dos workers MiniMax.
+
+### Escritura y verificación
+Cambios exclusivamente documentales en los archivos ya existentes: planner, paquete de mandatos y este change_log. La primera propuesta extensa de blob para el planner fue rechazada por la herramienta; se revisó y publicó una versión resumida del estado/plan con `update_file`, commit `c5ea6303fd06dabff8059973a3e9b1670c4b9c64`. No se da por publicado un blob sólo por haberlo creado: se exige commit/ref y readback del paquete y del log. No hay escritura de producto Echo, ejecución de pruebas o campañas, merge/deploy/gasto/trading. No se declara lint/Graphify ejecutado.
+
+### Continuidad
+El próximo agente carga EF-CAMPAIGNS-FINAL y completa los fixes/retests ordinarios en esa misma sesión; no entrega otra cadena de prompts de desarrollo. El histórico completo pertenece al siguiente agente, con manifests/gates elegibles y binario preparados. Live y merge requieren permisos correspondientes. El manager de conversación y el programa permanecen abiertos; el coordinador local cierra sólo su encargo. Consumo Pro UNKNOWN.

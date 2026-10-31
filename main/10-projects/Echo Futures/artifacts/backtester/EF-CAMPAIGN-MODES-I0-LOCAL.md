@@ -6,297 +6,209 @@ area: "[[Echo]]"
 related:
   - "[[EF-CAMPAIGN-MODES-DESIGN]]"
   - "[[Echo Futures — Optimización de Campañas]]"
+  - "[[EF-CAMPAIGN-MODES-GO-S04-RETURN]]"
   - "[[EF-S04-INTEGRATION-RECONCILIATION]]"
 aliases:
   - "Echo Futures — Mandatos Go-only C06"
+  - "Echo Futures — Cierre final y último contrato"
 tags:
   - kind/doc
 created: "2026-10-28"
-updated: "2026-10-29"
+updated: "2026-10-30"
 ---
 
 # EF-CAMPAIGN-MODES-I0-LOCAL
 
 ## Propósito
 
-**C06 GO-ONLY — paquete vigente GO-S02, GO-S03 y GO-S04.** Se conserva el path histórico para que los agentes existentes resuelvan la continuidad sin otro planner. I0 Python y todos sus prompts/merge gates quedan SUPERSEDED_FOR_DELIVERY por la instrucción Owner del 29-10-2026. No ejecutar ni mergear `feature/ef-campaign-modes-i0` como producto final. Sus retornos siguen siendo evidencia histórica, no permisos nuevos.
+**MANDATO VIGENTE: EF-CAMPAIGNS-FINAL — 30-10-2026 (America/Santiago).** Una única sesión coordinadora LOCAL nueva debe completar la entrega Go C06, migrar el catálogo entero, ejecutar y comparar el último contrato físico NQ y entregar al siguiente agente el histórico completo listo para ejecutar. **GLM-5.3-Flash coordina; TODO el código, pruebas, harnesses y correcciones los implementan subagentes MiniMax M3.1 Flash.** No se despacha otra revisión general antes de avanzar ni otro ciclo S03/S04 por rutina.
 
-GO-S01 es el diseño/plan de la sesión manager actual. A continuación hay exactamente **tres shots locales**: implementación, revisión adversarial y correcciones. Cada uno puede usar workers internos finitos y especializados; esos workers no son managers permanentes ni cambian la autoridad del Owner. Ejecutar sólo el shot despachado, no los tres de una vez.
+El diseño C06 [[EF-CAMPAIGN-MODES-DESIGN]] sigue siendo la arquitectura. Este documento es su mandato final de entrega y precisa las pruebas de determinismo y el alcance autorizado por el Owner, no otro diseño/motor. El planner único es [[Echo Futures — Optimización de Campañas]]. Este path histórico se conserva para no romper routing; los prompts de tres shots que lo ocupaban quedan supersedidos como instrucciones activas, con su texto y los retornos íntegros preservados en Git (corte anterior `bb51f2ecd228047abd31c63edf94c11517d65e8e`). No reactivar el I0 Python ni fusionar su rama.
 
-Diseño único: [[EF-CAMPAIGN-MODES-DESIGN]] C06. Planner único y plan detallado: [[Echo Futures — Optimización de Campañas]], W0–W6/R01–R12/A01–A16. Mandato funcional: [[FUT-R01-CAMPANAS-CHALLENGE-FUNDED-SIMULATION]]. I+D conserva selección/economía; Runtime Pools/R6/SDK y retester conservan contratos/gates. Este paquete no es otra SPEC.
+**Visión del Owner:** cientos de estrategias y MM concretos, reutilizados mediante factories compartidas por runtime y backtester; tres tipos de Campaign reutilizables, no una implementación por estrategia; mismos hechos ordenados y mismo estado deben producir exactamente la misma operación; investigación histórica posterior sin volver a desarrollar el sistema. Primera candidata real objetivo domingo **1 de noviembre de 2026**. La fecha expresa prioridad, no certificación automática, promesa de rentabilidad ni autorización de órdenes reales.
 
-La copia íntegra del paquete Python anterior se conserva byte-idéntica como `artifacts/backtester/history/EF-CAMPAIGN-MODES-I0-LOCAL-before-C06.txt` (blob `c08e8992ce27cb0491366bb18f1c4c4768b97220`), sólo histórico no operativo.
+## 1. Baseline y memoria mínima que evita repetir el trabajo
 
-## Contenido
+| Elemento | Estado de entrada |
+|---|---|
+| Repositorio producto | `xKoRx/echo` |
+| Rama de trabajo | `feature/ef-campaigns-go` |
+| HEAD verificado para este despacho | `a22970c85d139c81c919aafac69f4bf6ceaf5dcd` |
+| Master observado | `2baf319ddcba622d9557bc9f23a13787b44c58a7`; sin merge C06 |
+| SHA revisado en S03/S03R1 | `062b6df77845d2042e398bb6174700e80bb58b60` |
+| Build S04 reportado | SHA256 `9769039d69d26ddb54b953ad2a9eb289a6ac9d6c7f5bd9faf1392bac5c939c35` |
+| C06 actual | PARTIAL según retorno S04; no acabado ni LIVE-ready |
+| Catálogo de referencia | 26 nativas +63 SG =89 configuraciones ejecutables; +15 aliases =104 filas; no son104 estrategias |
+| Materialización general reportada | 27 V2_ADMITTED (26 TGMM+1 RGMM), 62 BLOCKED por fuente sellada de AccountPolicy RG,15 aliases; LEGACY_PATH_PRESERVED es dimensión adicional, no otras26 |
+| Ejecuciones económicas C06 reportadas | 0 históricas; las pruebas mecánicas de candidatas NO ejecutan sus señales reales |
+| Candidata priorizada | `LAB-SG-FBC-CH300-15M-R500`; comparación `LAB-SG-MR-09-R750`, prioridad de revalidación, no ganadora impuesta |
+| Restricción LIVE | RGMM es HISTORICAL_POLICY_ONLY; no eliminar guardas para decir listo |
 
-### Contrato común de los tres shots
+Estos datos de ejecución son reportados por los workers anteriores. El manager CLOUD comprobó las refs/retornos/source focal, no ejecutó sus suites. El coordinador nuevo verifica hashes y recupera evidencia local antes de reutilizarla. Si cambió HEAD, reconciliar el delta y fijar base efectiva sin pisar WIP. No volver a implementar lo que ya está ni basarse en la rama Python.
 
-- Bootstrap vigente `xKoRx/agents-os/master`, `main/AGENTS.md`, vault `main/`; leer por routing, no reconstruir la historia completa. Skills necesarias: technical-project-manager como handoff, sdd-workflow/sdd-developer y autoridades retester/qualification del alcance. Workers cargan agents-os-agent-run-register cuando aplique, agents-os-session-feedback y agents-os-session-close.
-- Producto `xKoRx/echo`. Source observado master `2baf319ddcba622d9557bc9f23a13787b44c58a7`; ref I0 `01a38c13b0a1b280eefb9d18f6d2b167e3cd8739` es sólo histórico. Rama propuesta `feature/ef-campaigns-go`, desde master reconciliado. Resolver refs/worktrees/WIP realmente, sin reset/force/stash destructivo ni tocar trabajo ajeno.
-- Leer Echo AGENTS.md, CONSTITUTION.md, v3/backtester/README.md, reglas SDD08/09, specs/SPECS.md y change owner. Source/tests ejecutables prevalecen sobre comentarios viejos. No asumir cambios locales/SHAs que no se observaron.
-- Owner define Go-only, tres modalidades, módulos reutilizables, NQ, USD4000 caja conjunta/cero aportes/reinversión100% net received, payout variable y reglas por perfil, sin caps financieros propios. Los instrumentos, términos y umbrales de producción no se investigan ni redefinen por este mandato.
-- G0–G5 y S04-F01/F02 se conservan por alcance. Cada escenario económico real requiere identidad, datos, horizonte, profile, gates y budget. Tests funcionales Go no son certificación estadística, de prop o LIVE. FUNDED-only no hereda un pase challenge de otro MM; D05 no se salta.
-- Go como autoridad de Campaign/economía y reporting. No puerto literal de Python, no intérprete embebido, wrappers a scripts, Python fallback, segunda lógica de Strategy/MM/Provider, otro scheduler/bankroll service/DSL/framework. Reusar owners existentes y documentar cambios realmente necesarios.
-- La capa oficial que se entrega incluye lifecycle y ejecución, no sólo métricas. Una corrida conjunta tiene mercado/reloj/scheduler y caja únicos, no suma de runs independientes. Una activa por asociación, muchas asociaciones posibles.
-- Ningún agente puede autorizar su propio merge/release/deploy/LIVE, cambiar las reglas para obtener verde o decir que ejecutó todas las estrategias cuando sólo validó catálogo. Manager y programa permanecen abiertos.
-- Recursos: una entrega finita por shot, workers con scope/inputs/Allowed Files/output, un integrador, presupuesto global del supervisor vigente para motores de investigación (hasta seis incluidos oráculos, con recursos medidos). Paralelismo de desarrollo no equivale a concurrencia de motores. Sin polling/vigilancia indefinida ni multiplicar configuraciones por rutina.
-- Cada subagente devuelve ID real/modelo/surface/rol, path/SHA, tests realmente ejecutados, límites, activos reutilizables y feedback o NONE. Si el host no puede delegar, no inventar subagentes ni trabajar silenciosamente como supuesto orquestador; devolver dependencia de capacidad. No sustitución de modelos sin registrar la discrepancia.
-- Agents-OS master, sin ramas/PR/force. Sólo el orquestador escribe su retorno/agent-run/change_log y propone el delta del planner; no writers concurrentes sobre el diseño/planner. Usar materializador/validadores vigentes para notas nuevas, rutas vault relativas. Si publicación falla, conservar bytes/localizadores y marcar NOT_PUBLISHED; readback sólo cuando realmente observado. Consumo Pro confirmado o UNKNOWN. Cerrar únicamente worker/shot, no programa/manager.
+### 1.1 Qué ya existe y se reutiliza
 
-### GO-S02 — implementación Go-only (activar ahora)
+Go implementa CHALLENGE/FUNDED/SIMULATION, inventario/rotación, composición simultánea, wiring TGMM/RG por catálogos sellados, heterogeneidad de perfiles/RuleSets/MM, FUNDED multi-asociación, CloseSafety, eventos/proyección, reversos y CLI lab. S04 reporta correcciones de routing de la segunda Strategy y del RuleSet del seed, activación aplicada/compliance separados y admisión física en puertas legacy. Revalidar los seams críticos con fixtures/outputs, no rediseñar por sospecha general.
 
-```text
-# ECHO FUTURES — GO-S02: IMPLEMENTACIÓN GO-ONLY DE CAMPAÑAS
+Factories y owners SDK: `NewSealedMoneyManagerCatalog`, `WireSealedMoneyManagers`, `SealedAccountPolicy`, Strategy/Operation/Provider/accounting, claims/fencing/drain. Backtester añade adaptadores de fuente/reloj/venue y Campaign comercial; no debe duplicar señales, sizing, reglas de riesgo o lógica de operaciones.
 
-ROLE: TOP por función de submanager de implementación; modelo GLM-5.3-Flash
-por instrucción Owner explícita. Registrar identificador efectivo del host.
-SURFACE: LOCAL (Hefesto/checkout autorizado).
-WORK FUNCTION: orquestador temporal + integrador de implementación.
-EXECUTION MODEL: ONE-SHOT con subagentes implementadores GLM-5.3-Flash
-frescos y especializados, por olas y archivos disjuntos.
+### 1.2 Problemas conocidos que esta sesión debe resolver
 
-/goal
-Entregar IMPLEMENTATION_CANDIDATE de la capacidad completa C06:
-CHALLENGE, FUNDED y SIMULATION Go; Strategy/MM reutilizables; N cuentas y
-rotación; composición causal multi-asociación/multi-perfil con caja única;
-economía/evidencia/KPI Go; tooling/admisión/runner Go; migración legacy
-trazable y retiro de Python del flujo oficial. No entregar únicamente un
-reporter Go ni presentar una configuración como otra implementación Campaign.
+1. **Migración parcial de configuración:** faltan62 SG en el builder general. R01/R03 ya declaran AccountPolicy por identidad; recuperar planes+receipts, verificar contenido/hashes y materializar un manifest derivado completo. El Owner autoriza esta recuperación de hechos existentes para la migración: NO pedirle transcribir62 políticas ni inventar defaults870/1000 para todas. Conflicto entre fuentes => identidad concreta bloqueada, no paralizar las demás.
+2. **Sustitución de Strategy en la prueba:** `campaign_v2_candidate_test.go::candidateMechanicalFixture` devuelve `platformproof.NYStrategy`; prueba un MM/lifecycle, no FBC/MR. Las validaciones de catálogo y último contrato deben usar módulos y parámetros reales sin overrides. Fixtures de señales sólo para unitarios adversariales, rotulados aparte.
+3. **Pérdida de CloseSafety al derivar:** `campaign_v2_candidate.go` documenta que el calendario sellado queda sólo como provenance y no viaja al request v2; horizonte NO reemplaza calendario de sesiones/horas/exclusiones. Conservar los controles y datos efectivos en la migración; si el perfil nuevo cambia semántica, versionarlo y no afirmar SAME_SEMANTICS.
+4. **REFUND sin productor de lifecycle:** no basta enum/proyector. Implementar aplicación determinista de una devolución comercial explícitamente declarada/confirmada mediante el control/evento del owner existente: causa, importe, moneda, adquisición, idempotencia, autorización/provenance y caja. NO inventar una regla de reembolso automático por fallo/fin de horizonte. Una devolución no declarada nunca ocurre; el test usa instrucción de devolución rotulada y demuestra el productor real.
+5. **Calidad pendiente:** coverage reportado79,6% diff-aware vs piso95%; race no ejecutado por host; corpus decía15 PASS+5 FAIL de21, falta clasificar una fila. Reconciliar resultados completos por ID (PASS/FAIL/ERROR/SKIP/NOT_RUN suman total), TCR y positivos nuevos. Ningún FAIL se vuelve PASS por renombrar la expectativa sin autoridad.
+6. **Fuente legacy no universal:** S04-F01 cambió intérprete de `STRATEGIC_ENTRY_BUDGET_V1` entre el linaje y master. Congelar baseline efectivo por familia/configuración y demostrar igualdad o divergencia, no renombrar V1→Unclipped ni confundir constantes iguales con conducta igual.
+7. **Runtime serving:** integrar lo que falte para ejecutar módulos/configuraciones mediante las costuras runtime reales y probarlas en entorno sin egress económico. `HISTORICAL_POLICY_ONLY` indica capacidad/autoridad pendiente; implementar y certificar el servicio correspondiente en coordinación con Runtime Pools, no borrar la guarda o sustituir MM. La habilitación productiva requiere GO Owner y no ocurre aquí.
+8. **Fragilidad de agentes:** muchos workers GLM murieron por cuota/red; se llegó a declarar review GOD cuando corría GLM. La selección real MiniMax se valida antes del trabajo. WIP/harness de workers muertos se recupera, no se descarta ni se declara completado por existir archivos.
 
-/authorities
-Ejecutar íntegramente el contrato común de este paquete.
-Leer EF-CAMPAIGN-MODES-DESIGN C06 y el planner único Optimización de Campañas,
-especialmente W0–W6, R01–R12 y A01–A16. No usar el diseño Python de C05 como
-arquitectura vigente. No crear otro manager, planner o diseño.
+## 2. Autoridad y alcance de esta última sesión
 
-/baseline
-Master source observado 2baf319ddcba622d9557bc9f23a13787b44c58a7.
-Crear o reconciliar feature/ef-campaigns-go desde el master real verificado.
-La rama I0 Python no se integra ni es base. Recuperar módulos S04, fixtures,
-catálogos y receipts sólo como referencia de compatibilidad y casos.
-Si master avanzó, revisar delta material antes de fijar BASE_SHA efectivo.
-No tocar cambios ajenos ni restaurar archivos para fingir árbol limpio.
+**Autorizado ahora:** completar implementación/refactor mínimo C06 y su wiring runtime compartido; recuperar y sellar configuraciones ya existentes; tests/adversarial/replay; ejecutar cada configuración admitida en el último contrato físico NQ (~2–3 meses) tras sus gates; baseline antiguo comparable limitado a esa misma ventana; corregir divergencias y validar reglas de señales/cierres; publicar candidato y paquete para histórico posterior. El diseño no vuelve al Owner para elegir helpers ni recuperar valores ya sellados.
 
-/execute
-1. W0: inventariar entrypoints/consumidores Python, owners Go y rutas de
-   ejecución; fuente/catálogo/89 IDs de referencia y aliases; estado S04-F01
-   y guard F02; congelar SPEC/PLAN/TASKS/Allowed Files antes de programar.
-2. Despachar workers por W1 economía/contratos, W2 lifecycle+perfiles,
-   W3 composición/runtime-routing y W4 CLI/admisión/migración. No asignar el
-   mismo archivo a dos writers. Sólo avanzar una dependencia cuando su
-   artefacto/commit esté integrado y probado; paquetes de worker frescos,
-   objetivos verificables, no instrucciones vagas de "hazlo escalable".
-3. Usar los tipos monetarios y owners del SDK, PlatformCampaign, registro de
-   cuentas, controles, scheduler, dataset/analytics y factories actuales.
-   Concentrar las decisiones técnicas ordinarias en el integrador; no pedir
-   al Owner confirmar cada helper ni inventar defaults económicos faltantes.
-4. Extender semántica por versión: legacy intacto por identidad/replay,
-   nueva Campaign configurable. Resolver perfil global/RuleSet por binding,
-   callbacks account-scoped y camino de mercado común sin otro engine.
-   Pausa/rotación de cuenta nunca pausa/recrea Strategy. No simular varias
-   asociaciones alternando un puntero global sin routing de sus efectos.
-5. Caja Go única en SIMULATION: 4000 iniciales, cero aportes, pagos netos
-   recibidos reinvertidos; reservas, provisión, adquisición/activación,
-   retrasos, pérdidas y reversos conciliados. Nominal PnL nunca se deposita.
-   La evidencia del productor identifica linaje y aplicación real; reporting
-   deriva sin reinterpretar ni convertirse en checkpoint del motor.
-6. CLI oficial Go y admisión común en todas las rutas run/resume/batch.
-   Portar lo necesario del supervisor, sin dos owners simultáneos. Inventario
-   Python con disposición por consumer y pruebas del reemplazo; no conservar
-   Python ejecutable bajo otro nombre/carpeta como dependencia oficial.
-7. Migrar configuraciones, no reescribir historia. Cada source→target lleva
-   SAME_SEMANTICS demostrado o NEW_EXPERIMENT. V1/Unclipped y ResearchCash
-   histórico no se renombran silenciosamente. No añadir ClutiFX entero.
-8. W5: matriz funcional de todas las identidades admitidas, E2E por los tres
-   modos y composición conjunta, dos MM y dos perfiles, sin Python instalado.
-   Investigación histórica sólo donde los gates y inputs concretos lo permiten;
-   registrar bloqueos fila por fila, no forzar trades ni cambiar señales.
-9. W6: integrar un candidato único, documentar comandos realmente disponibles,
-   hashes/receipts, coverage, capacidad y dependencias. No mover master.
+**Fuera de alcance:** ejecutar el histórico multianual completo, optimizar/buscar parámetros o nuevas estrategias, ampliar el universo cartesiano, migrar ramas ajenas no aceptadas, reescribir historia/evidencia, gastos/compras, trade LIVE, deploy productivo, cambiar reglas de prop, inicializar otro repo/vault, merge a master sin autorización específica vigente. Preparar la integración y reproducibilidad del candidato en esta misma sesión; no entregar otro prompt de desarrollo al Owner por un fix ordinario.
 
-/verify
-R01–R12 y A01–A16 trazados a pruebas/receipts o estado explícito.
-Pruebas Go nuevas y regresiones SDK/runtime/backtester afectadas; cobertura
->=95% del desarrollo nuevo, críticos primero. No ocultar deuda baseline.
-Go-only se prueba en entorno sin Python en build/test/CLI/guard/report oficial,
-no sólo buscando imports. Inspectar el proceso real de prepare/run/report y
-resume/reproduce, outputs completos y dinero causal. Cero eventos de negocio
-duplicados. SOURCE/BUILD/TEST/E2E/QUALIFICATION/ECONOMIC_RESULT separados.
-Fixture positivo debe producir entrada/salida/fills/round-trip y lifecycle,
-no sólo exit 0. Multi-prop funcional puede usar perfiles TEST_ONLY declarados;
-no equivale a validar reglas comerciales actuales.
+**G0–G5 siguen vigentes.** El mandato autoriza G2/G4 en la ventana sellada a quienes satisfagan prerequisitos; no autoriza fingirlos. G5 se deja como cola elegible, **no se ejecuta**. D05 funded-only se recupera de autoridad y no se salta; su ausencia no bloquea CHALLENGE ni el soporte funcional del tipo FUNDED. El umbral1/3 no es sinónimo de G4: preservar ambos requisitos sin mezclarlos. Rendimiento económico malo no es bug de software ni motivo para forzar señales.
 
-/stop
-PLAN_CONFLICT por contradicción material con C06/R6; BLOCKED_DATA o
-BLOCKED_QUALIFICATION sólo en el alcance afectado. No lanzar históricos para
-resolver falta de spec. Preservar el resto del trabajo; no entregar stubs como
-completo ni autoabrir otro shot. No merge/deploy/gasto/trading.
+La arquitectura objetivo sigue KISS/SOLID: un módulo por Strategy/MM como hoy, tipos/configuraciones Campaign reutilizables, un owner comercial y mismo motor SDK, sin DSL, otra plataforma de agentes, otro supervisor económico o segunda contabilidad.
 
-/return
-Publicar EF-CAMPAIGN-MODES-GO-S02-RETURN.md en el directorio artifacts/backtester
-existente, siguiendo contrato canónico. Incluir STATUS, BASE_SHA, BRANCH,
-CANDIDATE_SHA, BUILD_ID, DIFF_SCOPE, REUSE_MAP, PYTHON_DISPOSITION, GO_ONLY,
-R01_R12_MATRIX, LEGACY_MIGRATION_MATRIX, EXECUTION_MATRIX, GATES_PER_IDENTITY,
-TEST_COMMANDS_RECEIPTS, COVERAGE, PERFORMANCE_MEASURED, NOT_EXECUTED, UNKNOWN,
-REUSABLE_ASSETS, SUBAGENT_RECEIPTS, AGENTS_OS_PATHS_SHA, PRO_CHAT_POOL_DELTA.
-Estado IMPLEMENTATION_CANDIDATE sólo para lo realmente entregado; de lo
-contrario PARTIAL/BLOCKED con lista material y checkpoint exacto.
-Cargar run-register/feedback/session-close; cierre exclusivo de este shot.
-NEXT: GO-S03 sobre CANDIDATE_SHA exacto; no ejecutarlo por tu cuenta.
-```
+## 3. Contrato de agentes — obligatorio antes de modificar código
 
-### GO-S03 — revisión adversarial GOD local (sólo contra retorno y SHA S02)
+- **Coordinador: GLM-5.3-Flash LOCAL, función submanager de entrega.** Puede leer/razonar, planificar, despachar, revisar diffs/receipts, resolver decisiones técnicas ordinarias, ejecutar comandos de integración ya existentes y mantener documentación. **No implementa producto, harnesses ni tests**, ni siquiera un arreglo de una línea: toda escritura de código la hace MiniMax.
+- **Todos los workers de implementación, pruebas, migración y verificación: MiniMax M3.1 Flash**, con ID real resuelto del provider del host (p. ej. etiqueta esperada `MiniMax-M3.1-Flash`, no inventarla si difiere). No usar GLM, Luna o Sol como fallback silencioso; la instrucción Owner actual reemplaza el reparto anterior.
+- Antes de trabajo: una tarea read-only mínima a un worker MiniMax y un recibo de finalización. Verificar provider/modelo efectivo en metadata del harness, no en lo que el modelo dice ser. No modificar el default del coordinador ni mostrar/copiar claves. Usar ZCode/cliente/provider existente y autorizado, no construir una plataforma para delegar.
+- Si el mecanismo principal de subagentes está agotado, usar otro mecanismo LOCAL YA INSTALADO y autorizado que ejecute MiniMax (CLI/workflow existente), con ID/receipt y workspace separado. No repetir indefinidamente errores `exceed quota`. Si MiniMax no puede ejecutar por ninguna ruta existente: `BLOCKED_PROVIDER` con prueba y acción mínima Owner; no empezar a implementar con GLM.
+- Un coordinador, una cola finita de tareas, un integrador de commits. Workers sin subdelegación recursiva ni autoridad de negocio; scope/Allowed Files/No tocar/expected tests/SHA/result claros. Context scout y code scout, si el bootstrap los requiere, también MiniMax y con sus skills, no otro manager.
+- Paralelismo por archivos/owners disjuntos; worktree/TMPDIR/outputs únicos. Ningún `pkill` por patrón amplio ni background sin handle/timeout/exit receipt. Subagentes pueden correr en paralelo; motores de backtest respetan el techo global vigente (hasta6 incluidos baseline/oráculos) y RAM/PSI/swap medidos. La capacidad de modelos y la de motores son cuotas distintas.
+- Un MiniMax fresco que no escribió los cambios críticos verifica corpus y paridad, idealmente uno por frente. Eso aporta independencia de autor/contexto/corpus y modelo respecto a la implementación GLM previa; no afirmar independencia de modelo entre implementador MiniMax y revisor MiniMax, ni llamarlo GOD si no lo es.
 
-```text
-# ECHO FUTURES — GO-S03: GOD LOCAL / REVISIÓN ADVERSARIAL GO-ONLY
+## 4. Datos y universo: cerrar antes de repartir motores
 
-ROLE: GOD.
-MODEL: GPT-6 Astra o identificador real correspondiente en el host; no
-simular independencia de modelo. SURFACE: LOCAL.
-WORK FUNCTION: submanager temporal de revisión adversarial.
-EXECUTION MODEL: ONE-SHOT, contexto fresco, producto READ_ONLY.
-GOD razona/adjudica el review y manda a ejecutar a subagentes reales:
-Luna para inventario, comprobaciones mecánicas, recopilación/reproducción;
-Sol para tests/harness Go, causalidad, contratos y falsificación compleja.
-No es el Primary Manager ni implementa correcciones de producto.
+### 4.1 Universo exhaustivo sin expansión especulativa
 
-/goal
-Intentar falsificar el candidato C06 completo con evidencia LOCAL, y devolver
-VERIFY_PASS/FINDINGS/BLOCKED. No es otra investigación de arquitectura y no
-aprueba merge, campañas económicas fuera de gates ni producción.
+Congelar un manifiesto de TODAS las Strategy/variante/MM/config existentes y aceptadas en el alcance del repo/catálogo del proyecto. Referencia inicial S04:89 ejecutables y15 aliases. Censar también módulos/configuraciones oficiales registrados en runtime/backtester que no aparezcan en esa tabla; ninguna exclusión silenciosa. Si hay deltas reales, nombrarlos y justificar procedencia; no importar por rutina toda la rama ClutiFX no aceptada ni crear combinaciones nuevas. Cientos de tipos futuros son capacidad de extensión, no una orden de correr un producto cartesiano hoy.
 
-/authorities
-Contrato común de este paquete, diseño C06, planner W0–W6/R01–R12/A01–A16,
-GO-S02-RETURN, SDD y contratos runtime/R6/retester vigentes.
-Descubrir capacidades/modelos de delegación reales del host antes de despachar.
-Luna no decide semántica financiera; Sol no reemplaza autoridad Owner.
+Una fila tiene identidad de señal, variante, MM/config/policy, etapa/perfil/RuleSet, dataset/corte, hashes source/target, compatibilidad runtime, materialización, ejecución y clasificación. Aliases apuntan a su canónico sólo con equivalencia demostrada. Un status MIGRATED requiere request nuevo válido y prueba ejecutable del camino real, no sólo un string de catálogo.
 
-/baseline
-Resolver BASE_SHA/CANDIDATE_SHA/branch del retorno S02 publicado y verificar
-remoto+árbol+diff. Si falta el retorno o SHA, NOT_DISPATCHED/BLOCKED; no revisar
-master por sustitución ni confiar en la última rama abierta. Producto/tests
-del autor READ_ONLY; harness/fixtures propios fuera de su working tree.
+### 4.2 Último contrato y horizonte
 
-/execute
-1. Reconstruir sólo llamadas reales y fuente necesaria para cada riesgo:
-   Strategy/MM factories→driver→pools/Provider/accounting→Campaign→report→CLI.
-   Detectar funciones duplicadas, segunda caja, runtime alternativo o Python
-   escondido en shell, Make, go generate, CI, datasets, qualification o resume.
-2. Delegar review independiente por frentes: A economía/linaje/idempotencia;
-   B market-clock/account-routing/claims/RuleSets/MM parity; C migración/admisión/
-   tooling Go-only; D E2E física/capacidad/abort/resume. Un owner por harness,
-   ningún escritor del producto. Paquetes finitos con source SHA y esperado
-   derivado del contrato, no helpers/expected del autor.
-3. Falsificar al menos: dos demandas por última caja; payout pendiente que
-   intenta financiar; free/paid reset y unidad; cargo pagado no provisionado;
-   fees netos/activación; reverso y doble emisión; same RunID/different attempt;
-   control encolado vs aplicado; evento futuro/latencia de observación;
-   dos cuentas long/short bajo un mercado; dos MM simultáneos sin contaminar
-   estado; rotación con órdenes/reservas activas; RuleSet ajeno; venue callback
-   dirigido a cuenta incorrecta; legacy con V1 distinto; resume/batch bypass.
-4. Ejecutar el CLI Go real sin Python con un pequeño input determinista que
-   atraviese engine/Strategy/MM/Provider/fills/Campaign y reporte; comparar con
-   un oráculo independiente. Repetir replay/failure recovery y coste atribuido.
-   No sustituir owners productivos por mocks para anunciar E2E.
-5. Comprobar matriz completa de migración/ejecuciones: 89 es referencia de
-   catálogo, no 89 estrategias independientes ni 89 históricos realizados.
-   Verificar todos los bloqueos/gates declarados; no autorizar G5 sin G4.
-6. Revisar maintained surface, contracts versionados y deprecación real.
-   Tests/coverage/mismo failure set no prueban verdad económica por sí solos.
-   La modificación necesaria del adapter Go no es razón para pedir otro
-   engine; interfaces especulativas deben tener consumidores concretos.
-7. Devolver findings con prioridad/impacto/caso reproducible/source locator,
-   minimal repair y autoridad. Refutar explícitamente falsificadores que no
-   sostienen defecto. Cero P1/P2 abiertos para VERIFY_PASS.
+Elegir antes del ranking el contrato físico trimestral NQ más reciente con cobertura efectiva suficiente: objetivo2–3 meses, mínimo vigente45 sesiones elegibles más warmup causal. Preferir el más reciente si cumple; de lo contrario usar el inmediatamente anterior suficiente y declarar fallback con fechas/datos exactos. NO asumir ticker por la fecha actual, no concatenar vencimientos para fabricar un trimestre ni escoger el periodo que dé más beneficio.
 
-/verify
-A01–A16 deben tener receipts o NOT_EXECUTED/UNKNOWN justificados. Separar pruebas
-funcionales de cualificación/rentabilidad. GOD revisa el trabajo de subagentes;
-no suma PASSs sin leer contraejemplos y límites. No cambiar reglas/presets/
-fuentes para arreglar defectos. Preservar corpus y hashes del verificador.
+Sellar `WINDOW_MANIFEST`: contract_id, inicio/fin exclusivos, sesiones de mercado/exclusiones, source/data hashes, granularidad, zona/calendario/roll, warmup y prioridad de orden causal; evidenciar gaps. Trailing warmup anterior al corte puede leerse, nunca atribuir sus trades/KPI al periodo. Rollover G3 sólo canarios acotados autorizados, no histórico multianual encubierto.
 
-/return
-EF-CAMPAIGN-MODES-GO-S03-RETURN.md con STATUS, EXACT_REVIEWED_SHA, REVIEW_MATRIX,
-FINDINGS, REPRO_HARNESS_MANIFEST, INDEPENDENT_E2E, GO_ONLY, LEGACY/PARITY,
-MODEL_AND_EXECUTION_INDEPENDENCE, RESOURCE_RECEIPTS, NOT_EXECUTED/UNKNOWN,
-REUSABLE_ASSETS, SUBAGENT_RETURNS, AGENTS_OS_PATHS_SHA, PRO_CHAT_POOL_DELTA.
-Cada finding queda como WITHIN_SPEC_CORRECTION o NEEDS_OWNER_DECISION.
-Los primeros pueden ser entrada de S04; los segundos bloquean sólo la
-corrección afectada hasta adjudicación del manager. No corregir producto ni
-autoarrancar S04. Cerrar sólo review/workers; programa y manager abiertos.
-```
+Los presets pueden apuntar a HIST2023–2026. Crear identidad DERIVED_LAST_CONTRACT explícita para limitar ventana y reproducir estado comparable, sin editar el original ni usar1050 días por accidente. Ajustar sólo ventana/corpus/warmup y los IDs derivados necesarios; conservar señal, MM, stops, fees, calendario CloseSafety y reglas. Si se exige estado continuo de una campaña que empezó antes, ambas versiones reciben el mismo snapshot/checkpoint inicial verificable. Filtrar trades de un histórico sin reproducir su estado NO es comparación válida. Si falta snapshot, hacer old/new desde el mismo inicio declarado y nombrarlo como nueva comparación, no afirmar que es el recorte exacto de R03.
 
-### GO-S04 — corrección GLM local TOP y cierre del entregable
+### 4.3 Prerequisitos y presupuesto
 
-```text
-# ECHO FUTURES — GO-S04: CORRECCIÓN Y GATE FINAL GO-ONLY
+G0→G1→G2A/B/C→G3→G4 por identidad. Ejecutar primero smoke/actividad/ciclo y luego el trimestre según el runbook; G2C requiere un round-trip real conciliado en la ventana, no orden rechazada. Corregir un adaptador defectuoso si el gate no puede aceptar una identidad válida; NO fabricar receipts, reclasificar datos para saltarlo ni heredar el pase de otra variante. Reutilizar receipts vigentes y bit-idénticos después de verificar compatibilidad de build/semántica.
 
-ROLE: TOP por mandato Owner para el corrector/submanager local.
-MODEL: GLM-5.3-Flash efectivo, no GPT-6 Sol por inferencia del rol.
-SURFACE: LOCAL. EXECUTION MODEL: ONE-SHOT con workers implementadores por owner
-cuando sea necesario, un integrador y un worker fresco para retest que no haya
-escrito los cambios críticos. No es el manager del programa.
+Este encargo autoriza el lote finito de último contrato del universo congelado; no pedir otra autorización genérica para correrlo. El número de intentos, coste/perfil y criterio de cohorte se recuperan de las fuentes. Decisiones realmente ausentes se registran por fila y sólo se escalan si cambian economía; el coordinador sigue con lo independiente. No terminar llamando a todo el lote BLOCKED_D01/D02 sin haber resuelto la ventana Owner y los datos existentes.
 
-/goal
-Resolver findings aceptados GO-S03 y cerrar la implementación Go completa con
-FINAL_SHA y evidencia. La capacidad final son campañas reales del backtester,
-no un reporte traducido. Cero Python en el camino oficial entregado.
+## 5. Paridad determinista — definición verificable de EXACTAMENTE IGUAL
 
-/authorities
-Contrato común, C06, planner, SPEC/PLAN/TASKS efectivos, retornos S02 y S03 y
-adjudicación del manager. Aplicar run-register/feedback/session-close.
-Cargar el corpus del verificador intacto y su manifiesto de checksums.
+No confundir el mismo paquete importado con la misma ejecución. Entregar tres pruebas separadas; ninguna reemplaza a las otras.
 
-/baseline
-Base: SHA exacto revisado en S03; rama de producto GO-S02. Reconciliar HEAD/WIP.
-No reparar otro SHA ni fusionar cambios ajenos sin revisión del delta.
-Sin S03 o findings materiales que contradigan C06 no adjudicados: bloquear
-la parte afectada; no adivinar reglas económicas ni otro diseño.
+### P0 — determinismo nuevo→nuevo
 
-/execute
-1. Traducir findings WITHIN_SPEC_CORRECTION a tareas/Allowed Files por owner.
-   Clasificar root causes compartidas para corregir en el dueño Go, no agregar
-   parches Python ni divergencia runtime/backtest. No reimplementar módulos.
-2. Aplicar correcciones mínimas manteniendo contracts legacy y nuevos scopes.
-   No mover expected/fixtures del verificador para obtener verde. TCR sólo con
-   evidencia de oráculo equivocado y aprobación aplicable; registrar intent.
-3. Promover a regresiones Go los falsificadores durables. Preservar los bytes
-   originales del harness independiente y ejecutar ese corpus contra FINAL_SHA.
-   Corregir defectos ordinarios adicionales dentro del mismo scope, no iniciar
-   un ciclo de microfixes sin presupuesto ni ocultar fallos restantes.
-4. Integrar y ejecutar gate completo: módulos Go afectados/paridad runtime,
-   unit/integration/E2E/campaign paths, Go-only sin Python, migración exhaustiva,
-   lifecycle de los tres modos, una SIMULATION conjunta con competencia de
-   caja, múltiples perfiles y señales opuestas; replay/failure recovery;
-   restricciones qualification en run/resume y exporters no autoritativos.
-5. Ejecutar pruebas de datos reales sólo en el alcance/gates/budget admitidos;
-   no confundir ese estudio con fixtures funcionales. Entregar por fila
-   qué configuración se migró/validó/corrió/no corrió y por qué. Cero promesas
-   de "todas ejecutadas" basadas en compilación o configuración.
-6. Revisar diff final y documentos: comandos reales, decisiones/versiones,
-   sin código Python/dependencia oficial, cobertura>=95% del desarrollo nuevo,
-   capacidad medida, no secretos/receipts mutados, sin nueva arquitectura.
-7. Publicar candidato FINAL_SHA en rama con readback. No merge a master,
-   release/deploy, compras ni LIVE. La aceptación final pertenece al Owner.
+Repetir la misma identidad semántica al menos dos veces, con procesos/attempts separados, mismos inputs y estado. Comparar toda la traza canónica de decisiones y negocio; invariancia ante orden irrelevante de mapas/despacho de jobs. Los IDs técnicos de proceso/attempt y metadata no determinista de observabilidad pueden diferir; el esquema de normalización es explícito, mínimo y probado, nunca elimina tiempos de negocio, orden causal, señales, precios o dinero.
 
-/verify
-No READY_FOR_OWNER_REVIEW con P1/P2 abiertos, stubs, R01–R12 omitidos ni Python
-necesario. No inferir PASS de pruebas no ejecutadas. Identificar si un bloqueo
-es de producto, datos, gate comercial o herramienta. Un histórico bloqueado
-no invalida por sí solo la mecánica Go demostrada, pero tampoco cuenta como
-estrategias evaluadas. Conservar invariantes y arquitectura KISS de C06.
+### P1 — campaña anterior→campaña nueva, último contrato
 
-/return
-EF-CAMPAIGN-MODES-GO-S04-RETURN.md: STATUS, BASE/REVIEWED/FINAL_SHA, DIFF_SCOPE,
-FINDINGS_DISPOSITION, R01_R12/A01_A16, GO_ONLY_PROOF, MIGRATION/EXECUTION_MATRIX,
-FINAL_GATE_RECEIPTS, INDEPENDENT_CORPUS_RESULTS, COVERAGE, PERFORMANCE,
-S04_F01_F02/D05_REMAINING, NOT_EXECUTED/UNKNOWN, RELEASE_ROLLBACK,
-REUSABLE_ASSETS, SUBAGENT_RECEIPTS, AGENTS_OS_PATHS_SHA, PRO_CHAT_POOL_DELTA.
-Estado final READY_FOR_OWNER_REVIEW o PARTIAL/BLOCKED con causa exacta. No
-programar un quinto shot automáticamente. Cerrar sólo este shot y sus workers;
-el manager y el programa Echo Futures permanecen abiertos.
-```
+Baseline por identidad = implementación/policy que realmente produjo su referencia sellada, no elegir automáticamente master actual ni un SHA por conveniencia. Master2baf y linajeS04 pueden interpretar V1 distinto: recuperar manifest/receipt/commit efectivos. Comparar dos binarios Go aislados con mismos módulos/config/policies/reglas/fees/slippage/calendario/cierre, corpus, market model, warmup y estado inicial. Un camino legacy monocuenta y un modelo OHLC nuevo de multi-asociación pueden representar experimentos distintos; usar el contrato legacy equivalente para el test de compatibilidad, no forzar resultados de modelos incompatibles.
+
+Comparación por `SignalID`/identidad causal y operación: evaluaciones, señales, filtros/faltantes, decisiones de MM/AccountPolicy/Provider, órdenes/cancelaciones/rechazos, fills/timestamp/precio/cantidad/costes, stops/targets, cierres/PnL nominal, estados de cuenta, compras/pases/activaciones/retiros/caja. En variantes misma semántica: igualdad exacta de campos económicos y causalidad, no sólo mismo PnL agregado ni tolerancia elegida después.
+
+Toda divergencia conserva primer evento distinto, estado previo, expected/actual y causa. Corregir adaptador nuevo si es regresión. Si el viejo violaba fuente/contrato, NO reproducir el bug: prueba contra la fuente, fixture rojo→verde, cambio versionado/identidad nueva y adjudicación explícita. Mientras se afirme compatibilidad, ese caso NO cuenta `LEGACY_PARITY_EXACT`; clasificarlo separadamente como cambio deliberado demostrado y no esconderlo con hash/tolerancia/renombre. Prohibido alterar estrategias para empatar ganancias o cambiar V1 a Unclipped sin identidad.
+
+### P2 — runtime→backtest, replay exacto de operación
+
+Usar los owners/adaptadores runtime reales en entorno no económico y el backtester con las MISMAS entradas canónicas: config/build/policies, snapshots de Strategy/MM/Operation/Provider/cuentas, mercado ordenado, readiness de indicadores, reloj/temporizadores, comandos/eventos de control, ACK/rechazos/fills/cancelaciones, fees y orden de aplicación. Capturar una traza/event tape reutilizable y reproducirla sin segunda lógica de negocio. Comparar intenciones y decisiones ANTES de aplicar las respuestas externas grabadas; después aplicar esos mismos hechos y comparar estado/PnL/cierre. Reinyectar el resultado final o forzar fills para ocultar decisiones diferentes NO es paridad.
+
+Una operación capturada en runtime debe dar EXACTAMENTE la misma secuencia y resultado al replay con sus hechos observados. IDs de negocio y referencias causales se preservan o usan mapeo canónico biyectivo predefinido; no ignorar diferencias de orden/riesgo/qty/precio/SL/TP/PnL/time. Semillas aleatorias, versiones, tiempo monotónico/lógico y serialización deben estar fijados cuando afecten decisiones. Usar aritmética exacta y redondeo contractual común.
+
+**Límite que no se puede falsear:** un backtest OHLC con fills simulados no predice los fills reales del broker a partir de velas. Para reproducir una operación runtime exacta se necesitan sus eventos/fills y estado. Si faltan, `MISSING_REPLAY_INPUT`, no PARITY_PASS por aproximación. Separar `DECISION_REPLAY_EXACT`, `FACT_REPLAY_EXACT` y `SIMULATED_EXECUTION_MODEL`; las dos primeras son el requisito de equivalencia y la tercera es el modelo de investigación, no promesa de precio real.
+
+Recuperar grabaciones existentes autorizadas; si aún no hay operaciones LIVE, probar el mismo entrypoint runtime con hechos/ACK/fills de una sesión SIM/integración aislada, sin egress económico, y registrar `SOURCE=RUNTIME_SIM` (no atribuir LIVE observado). Esto prueba la capacidad de replay; una captura real posterior se podrá consumir sin nuevo desarrollo. No desbloquear guardas productivas para conseguir esa captura. P2 tiene pruebas de ejecución real de componentes, no dos llamadas a `riskgeommm.New` con el mismo input ni un stub de Strategy.
+
+## 6. Estrategias reales y conformidad de reglas
+
+Usar siempre el módulo Strategy real y MM real del catálogo por las factories de producción en las validaciones G1/G2/G4 y P1/P2. Retirar del camino de certificación cualquier override `platformproof`, señales pregrabadas en lugar de evaluar la Strategy o mocks de Provider/MM. Conservar esos fixtures sólo como pruebas técnicas negativas, sin contarlos como ejecución de FBC/MR/ORB.
+
+Además de comparar resultados, comprobar teoría/configuración→predicado→decisión con trazas: mercado→barras→indicadores/readiness→detección→filtros→señal→sesión→cuenta/MM→Provider→orden→fill→protección→cierre. Muestreo predeclarado por límites/ramas, no por ganancia: entradas y NO entradas, long/short, cruce de sesión, warmup, stop/target y rollover. Revisar todos los eventos mediante invariantes y conservar ejemplos positivos/contraejemplos por familia/configuración. El oráculo no copia los expected del autor ni el mismo helper que se evalúa.
+
+Cero señales/entradas/round-trips no termina como `COMPLETE0` sin explicación. Distinguir bug de readiness/filtro/sesión/MM de una Strategy válida pero rara; no fabricar operación ni relajar filtro para aprobar. Una Strategy perdedora puede ser técnicamente correcta; se etiqueta económicamente y no recibe elegibilidad para histórico que no ganó. Cada fila se evalúa o conserva un bloqueo real con primer eslabón y causa; no excluir62 perfiles para declarar 27/27 terminado.
+
+## 7. Plan único de cierre por frentes MiniMax
+
+El coordinador mantiene este plan/cola y acepta entregas por evidencia, no sólo commits. Son olas dentro de esta sesión, no nuevos shots que el Owner deba despachar.
+
+| Frente | Trabajo y dependencias | Salida/prueba |
+|---|---|---|
+| A — inventario/datos/config | Lectura C06/retornos, provider preflight, catálogo entero, policies selladas faltantes, WINDOW_MANIFEST, baseline efectivo por identidad | Censo sin delta inexplicado; cada campo source→target con hash; ninguna policy inventada |
+| B — implementación/migración | Resolver gaps C06/refund/CloseSafety/migrador genérico; consumos CLI; preservar99% reutilizable, evitar loaders por candidata; puede avanzar junto A con contratos sellados | Requests v2 para cada canónico, no prototipos específicos FBC/MR; pruebas por tipo/cuenta/composición |
+| C — runtime/paridad | En coordinación con Runtime Pools, conectar capacidades SDK/runtime requeridas, snapshots/event tape/adaptador replay, P0/P2 | Runtime y backtest mismo owner real; no guarda borrada para ocultar capacidad ausente |
+| D — corpus/compatibilidad | Baseline Go + nuevo, mapeos canónicos, P1 último contrato, reglas señales/cierres y per-op first divergence; después de A/B | Matriz comparada fila a fila, con análisis de divergencias verificable |
+| E — adversarial/quality | MiniMax fresco no autor; repetir harnesses reales, fallos/refunds/caja/sesión/idempotencia; coverage y race en entorno autorizado | Evidencia independiente de autor, regresiones y exacto recuento del corpus |
+| F — lote final/handoff | Tras freeze del código, ejecutar/reutilizar último contrato por todos los elegibles; resumen económico, paquete histórico y candidata | FINAL_SHA + manifests + gates + comandos reales sin programar nada después |
+
+Un worker independiente revisa fixes de otro; los conflictos los resuelve otro worker MiniMax, no el coordinador editando a escondidas. Antes de correr el lote costoso integrar y hacer canario corto con un caso de cada costura crítica; luego congelar build. Si se corrige código tras el lote, invalidar/repetir sólo filas y gates afectados con prueba de impacto; no reutilizar evidencia de otro SHA sin compatibilidad demostrada ni reiniciar todo el histórico por rutina.
+
+### 7.1 Cerrar C06 sin inventar economía
+
+CHALLENGE/FUNDED/SIMULATION, rotación N, varias asociaciones/props y caixa4000 siguen el diseño. `AccountSlots` inventario concurrente y reemplazos, no límite de compras de por vida. MM por etapa/config explícitos; FUNDED aislada no demuestra compra financiada. Producir eventos para devoluciones explícitas confirmadas conserva cohorte y no autoriza refunds automáticos. Comparación legacy puede usar5000/ResearchCash sólo como identidad histórica; nunca llamar a eso SIMULATION4000 ni forzar ese cambio para que coincida el replay.
+
+La migración es genérica por registros sellados. La candidata no debe estar hardcodeada en funciones de negocio, rutas absolutas del host ni selección fija del motor. References/rankings pueden vivir en configuración/manifests. Artefactos que falten se recuperan por rutas declaradas y checksums, no tests `Skip` que luego se cuentan PASS en el gate obligatorio.
+
+### 7.2 Quality gates de esta sesión
+
+Usar perfiles Go válidos, coverage de desarrollo nuevo según policy >=95% con denominador statement/diff explícito y caminos críticos completos; no promedios por función. Tests críticos con missing source fallan como gate, no SKIP silencioso. Normalizar/actualizar TCR sólo con autoridad semántica, preservando corpus previo y pruebas positivas que ahora deben pasar. 15+5 no suma21: publicar el inventario con todos los estados.
+
+`-race` debe ejecutarse en toolchain/host efímero o existente compatible y autorizado por las policies del repositorio, sin mutar infra productiva ni instalar globalmente por iniciativa. Si falta autorización/capacidad real, se registra un bloqueo preciso y no `PASS`. No prohibir el trabajo técnico normal en un entorno de build ya aprobado para perpetuar un bloqueo de gcc. Clasificar deuda baseline por causa, aislar todos los fallos nuevos; mismos nombres de fallos no bastan.
+
+Prueba Go-only completa prepare/admit/run/report/resume/reproduce/export del binario final, sin intérprete Python en el camino oficial. Un directorio que contiene scripts viejos en worktree baseline no es permiso de ejecutarlos en producto ni de reintroducir wrappers. Cancelación y presión de memoria se prueban, incluyendo K>1 simultáneo, sin loops descontrolados ni OOM.
+
+## 8. Candidata, domingo y siguiente agente
+
+Prioridad de validación: `LAB-SG-FBC-CH300-15M-R500`; contraste `LAB-SG-MR-09-R750`. Los números viejos (26→9, coste/pase666,67 frente a13→5,936) son descriptivos históricos, no se transfieren al corte nuevo ni prueban retiros. El último periodo y las reglas reales pueden cambiar la selección; no tunear ni escoger ventana retrospectivamente para favorecerla.
+
+La entrega deja la candidata operativa en backtest nuevo con módulo real y la integración runtime correspondiente implementada/probada en entorno no económico. Para RGMM, completar el trabajo compartido de serving que falte con el owner Runtime Pools, reusar sus contratos y verificación de readiness; no aparcar automáticamente todo como "es HISTORICAL_ONLY" ni eliminar la guarda. No certificar LIVE sin el gate específico y GO Owner. Si hay writer/mandato runtime concurrente, coordinar la frontera y trabajar sólo en cambios propios compatibles.
+
+**Domingo1/11/2026 es objetivo Owner, no permiso implícito para operar.** No cambiar caps/riesgo/SL para encajar una certificación y conservar la etiqueta de la estrategia vieja. No afirmar que terminar C06 implica que la cuenta/bridge/entitlement/feed ya son aptos; comprobar estado vigente del frente FIRST_LIVE_TRADE, sin competir con su manager. Preparar todo lo desarrollable y el paquete exacto para certificar esa identidad; bloqueo externo auténtico debe tener comprobante y acción mínima, no frase genérica.
+
+El próximo agente ejecuta histórico completo, NO continúa desarrollando esta capacidad. Debe recibir binario/FINAL_SHA, catálogos/requests v2 completos, provenances, datasets/recursos/gates, resultados último contrato y lista EXACTA de IDs elegibles/inelegibles. Si cambia corpus de trimestre a historia, cada dataset tiene su hash/manifiesto y compatibilidad explícita, no hashes falsamente iguales. El script/comando de histórico se entrega validado/dry-run, sin lanzar el motor multianual aquí.
+
+## 9. Artefactos de salida y criterios de cierre
+
+Guardar evidencia de código/datasets fuera del vault en el workspace autorizado; el vault conserva refs/hashes y decisión. El manifest de evidencias puede agrupar nombres (no crear un documento por tarea). Mínimos derivados legibles por máquina:
+
+- `catalog-status`: universo/aliases y por ID source/policies/request digest, runtime-binding, migración y estados. Contadores deduplicados; aclarar que dos candidatas de ruta separada pueden solaparse con las62 del censo.
+- `window-and-baselines`: datos exactos, warmup/cutoff, baseline SHA/binary/config por fila, semántica antigua/nueva y razones.
+- `parity-report`: P0/P1/P2 por identidad/operación, campos comparados, mapeo IDs, first divergence o hash de traza exacto; evidencia runtime SIM/LIVE explícita.
+- `last-contract-results`: funnel, fills/cierres/PnL/costos, compras/pases/pérdidas/pendientes y recibos G0–G4/clasificación, no sólo ranking.
+- `full-history-handoff`: build/dataset/queue/resources/commands validados; ELIGIBLE/BLOCKED/EXCLUDED_BY_ALIAS y causa. G5_READY no G5_EXECUTED.
+- `candidate-runtime-handoff`: identidad exacta, señales/MM/risks/configs/serving, pruebas y límites; READY_FOR_CERTIFICATION no LIVE_EXECUTED.
+
+Retorno canónico final NUEVO materializado por skill: `main/10-projects/Echo Futures/artifacts/backtester/EF-CAMPAIGN-MODES-FINAL-RETURN.md`. Enlazar los artefactos, no inventar sandbox links. Actualizar sólo este planner y los artefactos propios/SDD existentes; el reporte previo S04 permanece inmutable.
+
+Estados separados: `DELIVERY=READY_FOR_OWNER_REVIEW|PARTIAL|BLOCKED`, `CATALOG_MIGRATION`, `P0_DETERMINISM`, `P1_LEGACY_PARITY`, `P2_RUNTIME_REPLAY`, `LAST_CONTRACT_VALIDATION`, `FULL_HISTORY_HANDOFF`, `CANDIDATE_RUNTIME_CERTIFICATION`, `MERGE`, `DEPLOY`, `LIVE`.
+
+**READY exige**: todo el catálogo aceptado materializado sin omitidos; casos reales probados y todas las filas con evaluación/clasificación justificada en el periodo; paridad exacta en dominios de igualdad sin divergencias inexplicadas; cero fallos técnicos materiales del scope; C06 y Go-only completos; quality gates; comandos/manifests listos para histórico. Un resultado económico perdedor/rare honestamente clasificado no obliga a cambiar Strategy ni convierte en listo para G5. Bloqueos por missing config recuperable o capacidad no implementada son PARTIAL, no cierre pleno. Las diferencias intencionadas documentadas no se presentan como igualdad exacta. G5/LIVE siguen sin ejecutar.
+
+No devolver otro prompt de implementación para un fix ordinario ni cerrar al terminar sólo W1. Corregir/retestear dentro de esta sesión hasta completar el backlog finito. Si una dependencia externa real impide el resultado, conservar entregables y nombrar la mínima intervención necesaria; no prometer terminar después ni inventar PASS por la fecha del domingo.
+
+## 10. Arranque, permisos de persistencia y cierre
+
+Orden de primera acción: bootstrap vigente + router/skills/scouts exigidos → leer este paquete y estado vigente → verificar modelos parent/worker MiniMax con una tarea real → reconciliar HEAD/WIP → sellar inventario/ventana/plan de owners → implementar y probar por las olas. Recuperar artefactos `c06-s02`, `c06-s03`, `c06-s03r1`, `c06-s04` por el workspace del host; no asumir que cambiar cuenta transportó sus archivos. Rutas absolutas antiguas son localizadores, nunca contrato portable.
+
+GLM mantiene contexto limpio con retornos cortos por worker y manifests, sin volcar dumps/historial completo. Si un worker muere, inspeccionar su status/WIP/hashes antes de retomar por MiniMax; no dar su trabajo por integrado. Una prueba de capacidad fallida no dispara cuatro reintentos idénticos. Avisar inmediatamente bloqueos externos; seguir trabajo independiente en vez de detener toda la entrega.
+
+Agents-OS master directo, HEAD reconciliado, sin ramas/PR/force; un writer documental principal, change_log y readback remoto. No convertir vault sin .git en repo nuevo: usar mecanismo de publicación vigente, sincronizar sólo deltas propios y preservar cambios concurrentes. Materializador/schema de notas para retornos nuevos. Journal privado según policy; no forzar publicación de memoria privada ni secretos. Registrar modelo/provider real por child y consumo sólo confirmado.
+
+Echo: cambios en la rama de trabajo reconciliada, commits verificables y candidato final; no nuevo branch de producto por cada corrección salvo worktrees internos coordinados. Integración técnica y plan de merge listos, no autopromoción a master/release/producción sin autorización específica. No redistribuir credenciales ni alterar cuentas/infra LIVE para probar.
+
+Los workers cargan `agents-os-agent-run-register` cuando aplica, `agents-os-session-feedback` y `agents-os-session-close`, y cierran sólo su encargo. Este mandato autoriza el cierre de la sesión local final cuando entregue su resultado verificable, no cerrar automáticamente al manager coordinador de la conversación ni el programa Echo Futures.
 
 ## Fuentes
 
-Decisión Go-only del Owner en este turno; [[EF-CAMPAIGN-MODES-DESIGN]] C06; planner único; FUT-R01 y contratos del repo Echo. Presupuestos y gates de investigación siguen los runbooks vigentes; no confundirlos con autorización de producción.
+Instrucción Owner30-10-2026: última iteración, GLM coordinador + implementadores MiniMax, todas las estrategias, determinismo runtime/backtest, comparación último contrato2–3 meses y handoff de histórico para otro agente; domingo1-11 prioridad real. Arquitectura [[EF-CAMPAIGN-MODES-DESIGN]] C06; contratos Runtime Pools/R6, retester y qualification runbook; retornos GO-S02/S03/S03R1/S04; source Echo en HEADa22970c8. Los hechos nuevos y resultados de esta sesión aún NO han sido ejecutados por el manager CLOUD.
