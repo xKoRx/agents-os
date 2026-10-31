@@ -71,3 +71,5 @@ tags:
 ## Rollback
 
 - Revertir los tres archivos de Sistema 2 (`Research — Fee Formula Documentary W1-p 2026-10-31.md` se puede eliminar; MVP y Continuidad se restauran quitando la sección W1-p y la entrada de bitácora y volviendo `updated: 2026-10-30` en el MVP) y las notas de journal del 31-10-2026 con prefijo `polymarket-w1p-fee-documentary` y `code-scout-w1p-fee-docs`. Los artefactos del shot son derivados y read-only para el vault.
+
+- **Verificación independiente de integración:** la supervisión corrigió el recuento de fuentes: 34 entradas de evidencia del ledger corresponden a 31 URLs distintas, no a 34 URLs únicas. Se ajustó únicamente esa métrica en informe/continuidad/resumen/agent run y recibos; sin nueva investigación, cambios científicos, código, pruebas ni consultas web. Copias previas preservadas en la evidencia privada del shot.

@@ -122,3 +122,5 @@ Cinco hallazgos concretos sobre **mis propios artefactos**, todos corregidos en 
 ## One Next Improvement
 
 - Regla de método para evidencia documental: **una fuente se cita con lo que declara y nada más**: si la fuente nombra un parámetro sin publicar la expresión, el modelo se acota al caso sustentado; si no fija un modo de redondeo o una unidad, se declara no adjudicado; y una fecha de commit, un anuncio o una URL intentada nunca se elevan a prueba de vigencia, de despliegue o de existencia.
+
+- **Verificación independiente de integración:** la supervisión corrigió el recuento de fuentes: 34 entradas de evidencia del ledger corresponden a 31 URLs distintas, no a 34 URLs únicas. Se ajustó únicamente esa métrica en informe/continuidad/resumen/agent run y recibos; sin nueva investigación, cambios científicos, código, pruebas ni consultas web. Copias previas preservadas en la evidencia privada del shot.
