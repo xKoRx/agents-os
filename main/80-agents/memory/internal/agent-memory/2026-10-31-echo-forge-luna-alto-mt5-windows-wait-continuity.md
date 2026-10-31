@@ -94,10 +94,11 @@ tags:
 ## Plan de drenaje del slot (para Shot 2, luego del fix desplegado)
 
 1. Stagear la release corregida y escribir `C:\ProgramData\Stager\CURRENT` **con LF y sin BOM** (known-error `stager-windows-powershell-crlf-current`: PowerShell 5.1 `Set-Content` mete CRLF y el runtime no selecciona la release).
-2. El supervisor `Start-EchoForgeSessionWorker.ps1` detecta que CURRENT avanzó y **señala el drain** (`Global\echo-forge-sqx-mt5-worker-drain`): el worker cierra admisión, espera las actividades en vuelo, libera leases/ownership y sale limpio. **El drain NO se completará solo**, porque la actividad en vuelo está bloqueada para siempre.
-3. Con la admisión cerrada, terminar **sólo** el `terminal64.exe` del job propio (PID verificado por la lease: `run_id=01a1926e-0928-…`, `activity_id=5`, `strategy_ref=055f737e-…`), nunca por nombre ni terminales ajenos. Con eso el worker completa el intento, libera la lease y sale limpio.
-4. El supervisor, al ver el worker ausente, barre huérfanos GUI bajo `C:\MT5` y adopta la release nueva. El retry legítimo de la actividad lo toma el worker corregido (no hay que forzar nada).
-5. Verificar ausencia de procesos/ownership incompatibles antes de permitir el retry.
+2. El supervisor `Start-EchoForgeSessionWorker.ps1` detecta que CURRENT avanzó y **señala el drain** (`Global\echo-forge-sqx-mt5-worker-drain`) → `main.go:314 controller.BeginDrain()`. **VERIFICADO EN CÓDIGO**: `sqx/core/lifecycle/controller.go:29 TryAdmit()` sólo admite en `StateAccepting`; `BeginDrain()` (línea 51) pasa a `StateDraining` ⇒ `sqx/core/lifecycle/temporal.go:41` devuelve `worker_draining` (retryable) para toda activity nueva. **El worker viejo NO puede robar el retry.**
+3. **El drain NO se completará solo**: `Drained()` sólo cierra cuando `active == 0`, y la activity bloqueada mantiene `active = 1` para siempre. Por eso hace falta el paso 4.
+4. Con la admisión cerrada, terminar **sólo** el `terminal64.exe` del job propio (PID verificado por la lease: `run_id=01a1926e-0928-…`, `activity_id=5`, `strategy_ref=055f737e-…`), nunca por nombre ni terminales ajenos. Con eso la activity devuelve (fallo físico honesto), el allocator libera la lease, `Release()` baja `active` a 0, `drained` cierra, `worker.Stop()` + `MarkStopped()` + `singleton.Release()` ⇒ salida limpia. **Un binario nuevo no cambia una goroutine vieja**: por eso el orden stage→drain→release es obligatorio.
+5. El supervisor, al ver el worker ausente, barre huérfanos GUI bajo `C:\MT5` (`Remove-Mt5GuiOrphans`) y adopta la release nueva. La activity reintentada la toma el worker corregido. `MaxConcurrentActivityExecutionSize = 1` (`main.go:43`) ⇒ una activity a la vez en el host.
+6. Verificar ausencia de procesos/ownership incompatibles antes de permitir el retry.
 
 ## Parámetros operativos para el acto final (verificados en ventana o leídos de skill canónica)
 
