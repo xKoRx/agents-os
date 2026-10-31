@@ -4,8 +4,8 @@ schema_version: 1
 scope: session
 created: "2026-10-31"
 updated: "2026-10-31"
-area:
-project:
+area: "[[Echo]]"
+project: "[[Echo Futures — Runtime Pools]]"
 application:
 entities: []
 related: []
@@ -14,9 +14,9 @@ agent_surface: "[[Codex]]"
 agent_model: unknown
 model_source: unknown
 task_type: coding
-task_complexity: unknown
-outcome: partial
-verification: not_run
+task_complexity: high
+outcome: success
+verification: passed
 evaluator: agent
 user_rework: unknown
 source_session:
@@ -28,32 +28,20 @@ tags:
   - scope/session
 ---
 
-# Agent Run — 2026-10-31-codex-unknown-echo-p0-runtime-independent-qa
+# Worker runtime_evidence: operaciones previas y QA independiente
 
 ## Trabajo
 
-- **Objetivo:**
-- **Alcance atribuible a esta combinación superficie×modelo:**
-- **Artefactos afectados:**
+Contribución atribuible previa a instalador/operaciones autorizadas y en el cierre exclusivamente QA independiente de fuentes; sin operaciones de runtime en esta fase.
 
 ## Evidencia
 
-- **Validaciones ejecutadas:**
-- **Resultado observable:**
-- **Limitaciones de la evidencia:**
+INDEPENDENT-QA-SDK-RELAY.md: SDK6paquetes, relay3paquetes yRiskFinalizer con-racePASS; GOWORK y módulos resuelven checkout integrado; revisión semántica entryfilters/rebuild/rollover/config/dedup y ausencia de fixtures eliminados.
 
-## Evaluación
+Informes: `/home/kor/aranea/work/echo-p0-final-integration-evidence`. Contrato publicado: `xKoRx/echo:specs/EF-FEED-RECOVERY/SOURCE-INTEGRATION-20261031.md`.
 
-%% Scores opcionales 1–5: agregar al frontmatter sólo cuando exista evidencia suficiente. Si son autoevaluados, conservar evaluator: agent. %%
+## Evaluación y límites
 
-- **Correctness:**
-- **Autonomy:**
-- **Efficiency:**
-- **Tool use:**
-- **Overall:**
+La independencia corresponde al verificador de la resolución del merge, no a una auditoría totalmente ajena a toda implementación histórica P0; no certifica feed físico ni permisos económicos. Modelo exacto: unknown; superficie Codex. Se separan segmentos atribuibles para no confundir responsabilidades o independencia; no se comparan modelos no identificados.
 
-## Resultado
-
-- **Outcome:**
-- **Rework posterior:**
-- **Aprendizaje para comparar herramientas:**
+[[2026-10-31-echo-feed-p0-closeout-session-feedback]] · [[2026-10-30-echo-feed-p0-recovery]]

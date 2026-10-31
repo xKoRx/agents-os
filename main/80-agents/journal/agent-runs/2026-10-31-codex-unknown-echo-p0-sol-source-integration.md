@@ -4,8 +4,8 @@ schema_version: 1
 scope: session
 created: "2026-10-31"
 updated: "2026-10-31"
-area:
-project:
+area: "[[Echo]]"
+project: "[[Echo Futures — Runtime Pools]]"
 application:
 entities: []
 related: []
@@ -14,9 +14,9 @@ agent_surface: "[[Codex]]"
 agent_model: unknown
 model_source: unknown
 task_type: coding
-task_complexity: unknown
-outcome: partial
-verification: not_run
+task_complexity: high
+outcome: success
+verification: passed
 evaluator: agent
 user_rework: unknown
 source_session:
@@ -28,32 +28,20 @@ tags:
   - scope/session
 ---
 
-# Agent Run — 2026-10-31-codex-unknown-echo-p0-sol-source-integration
+# Worker Sol: Go y reconciliación
 
 ## Trabajo
 
-- **Objetivo:**
-- **Alcance atribuible a esta combinación superficie×modelo:**
-- **Artefactos afectados:**
+Contribución atribuible al worker Sol en Go/StateFun/rebuild y, en el cierre, scout de diferencias y resolución mínima del conflicto runtime.go. Conservó RiskFinalizer de master y bindNativeRebuild de P0. No push ni runtime en esta fase.
 
 ## Evidencia
 
-- **Validaciones ejecutadas:**
-- **Resultado observable:**
-- **Limitaciones de la evidencia:**
+RECONCILIATION-FREEZE.json: cinco builds workspace PASS; Core -race P0/Continuity/Compose/calendar/snapshot/R6 PASS. Tres fallos GOWORK=off reproducidos constderr idéntico enmaster limpio.
 
-## Evaluación
+Informes: `/home/kor/aranea/work/echo-p0-final-integration-evidence`. Contrato publicado: `xKoRx/echo:specs/EF-FEED-RECOVERY/SOURCE-INTEGRATION-20261031.md`.
 
-%% Scores opcionales 1–5: agregar al frontmatter sólo cuando exista evidencia suficiente. Si son autoevaluados, conservar evaluator: agent. %%
+## Evaluación y límites
 
-- **Correctness:**
-- **Autonomy:**
-- **Efficiency:**
-- **Tool use:**
-- **Overall:**
+El modelo exacto de este worker no está verificado por metadata disponible; el nombre Sol no basta para inferirlo. Modelo exacto: unknown; superficie Codex. Se separan segmentos atribuibles para no confundir responsabilidades o independencia; no se comparan modelos no identificados.
 
-## Resultado
-
-- **Outcome:**
-- **Rework posterior:**
-- **Aprendizaje para comparar herramientas:**
+[[2026-10-31-echo-feed-p0-closeout-session-feedback]] · [[2026-10-30-echo-feed-p0-recovery]]
