@@ -46,7 +46,7 @@ tags:
 
 ## Most Useful Part Of Sistema 1
 
-- What helped: el contrato de `FeeSchedule` y el taxonomy de errores (`KindUnsupported` = "bien formado pero fuera del contrato congelado") permitieron fail-closed en `e ≠ 1` sin tocar el contrato legacy, y el materializador+Fronte de error de la sesión — el draft de W1-q (modelo, unidades, redondeo no adjudicado, `REAL_FEE_READY=false`) llegó ya读完, con fuentes fechadas, así que el trabajo fue de implementación y no de re-investigación.
+- What helped: el contrato de `FeeSchedule` y el taxonomy de errores (`KindUnsupported` = "bien formado pero fuera del contrato congelado") permitieron fail-closed en `e ≠ 1` sin tocar el contrato legacy; y el draft heredado de W1-q (modelo, unidades, redondeo no adjudicado, `REAL_FEE_READY=false`) llegó ya leído y con fuentes fechadas, así que el trabajo fue de implementación y no de re-investigación.
 - Why it helped: separar "conformidad del modelo" de "certificación de cobro" evitó el modo de fallo más caro del dominio (afirmar un cobro que nadie observó).
 - Keep/change: mantener. Falta un artefacto que ya no haya que reconstruir: el ledger de fuentes con Extractos literals reutilizables en el vault, no sólo summarized.
 
