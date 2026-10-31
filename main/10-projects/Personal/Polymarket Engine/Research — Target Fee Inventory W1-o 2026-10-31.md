@@ -60,11 +60,12 @@ Lectura de las resoluciones: `INTERVAL [0, 1000]` y `POINT 0 bps` son **outputs 
 
 ### Qué falta exactamente para la fee efectiva
 
-1. **El mapeo de aplicación (U-02):** ninguna fuente autorizada documenta cómo `base_fee = 1000` y `fd = {e:1, r:0.05, to:true}` se convierten en la comisión efectivamente cobrada (escala, redondeo, papel de `r`/`to`). Sin ese mapeo la identidad de settlement sigue sin certificarse.
+1. **El mapeo de aplicación (U-02):** ninguna fuente autorizada documenta cómo `base_fee = 1000` y `fd = {e:1, r:0.05, to:true}` se convierten en la comisión efectivamente cobrada (base de coste, unidades, escala, redondeo, qué se cobra y cuándo, papel de `r`/`to`). Sin ese mapeo la identidad de settlement sigue sin certificarse.
 2. **Alcance del `0` trade-observado:** el inventario no puede decidir si `fee_rate_bps = "0"` es la comisión aplicada a esos trades, un valor por defecto del emisor o una convención de fee-rate del venue (documentación no disponible en el corpus autorizado).
 3. **Ventana post-K:** el episodio cierra 9 minutos antes de K; nada dice sobre la fee vigente después del episodio.
+4. **Por qué una captura futura no sustituye al mapeo ni a la validez temporal:** `/fee-rate` es la identidad de **límite declarado por asset** (mismo tipo que `mbf`/`tbf`): no documenta curva, escala, redondeo ni settlement. `new_market` es **metadata de notificación**, no una fecha efectiva histórica de comisión; y el target existente tampoco obliga ni proporciona un evento `new_market` nuevo. Capturar hoy, además, está fuera de alcance y no certificaría retroactivamente el 29-10-2026.
 
-**Próximo paso económico útil (no ejecutado):** con la fee efectiva aún sin certificar, el gate de costes del motor debe seguir usando el intervalo declarado `[0, 1000]` bps como cota superior y el `0` trade-observado como evidencia por trade desde su `capture_seq`, nunca como fee universal. Lo que permitiría mover `REAL_FEE_READY` es documentar el mapeo U-02 con fuente pública del venue o capturar (exploratorio) una lectura `/fee-rate` por asset y un `new_market` del target — en este episodio no hubo ninguno de los dos.
+**Próximo paso útil preciso (SIN EJECUTAR):** investigación **documental** de fuentes oficiales **fechadas** que cubran el mercado `5784455`, sus dos assets y la categoría, con as-of `2026-10-29`: qué significa el campo WS `fee_rate_bps = "0"` frente a los límites maker/taker `1000` y al `fd` crudo `{e:1, r:0.05, to:true}`; fórmula, base de coste, unidades, escala, redondeo y cobro; y vigencia histórica verificable. El entregable es determinar si alguna fuente disponible **prueba realmente esa aplicación** y cuál es el gap exacto que queda; si sólo hay documentación actual, no se traslada al pasado ni se certifica `REAL_FEE_READY`. Este paso no propone capturas nuevas como sustituto del mapeo o de la validez temporal, no inicia ahora investigación web, y no requiere decidir la regla de L: cualquier re-score, piloto o cambio económico posterior sigue con su preregistro y decisión explícita aparte.
 
 ### Límites
 
@@ -72,6 +73,7 @@ Lectura de las resoluciones: `INTERVAL [0, 1000]` y `POINT 0 bps` son **outputs 
 - Ninguna fee se transfiere desde otros mercados o cohortes: la evidencia W1-e (`mbf/tbf 1000`, `fd {e:1,r:0.05,to:true}`, `tick 0.01`, `fee_observed 0`) pertenece a otros cuatro mercados con otra fecha y **no** se usa aquí en ninguna dirección.
 - Un campo ausente se reporta ausente; ausencia de captura nunca se lee como fee 0.
 - El `POINT 0` trade-informed y el `INTERVAL [0,1000]` declarado son identidades distintas y no se funden.
+- Este inventario **clasifica evidencia**: no autoriza cambiar el gate de costes, ni adjudicar los escenarios congelados A/S del piloto, ni aplicar la fee vigente a instantes anteriores a su admisión.
 - `REAL_FEE_READY = false`. La decisión de L del Owner sigue pendiente y no bloquea este inventario.
 
 ## Fuentes

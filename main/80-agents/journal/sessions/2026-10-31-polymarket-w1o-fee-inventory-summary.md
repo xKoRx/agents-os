@@ -63,11 +63,11 @@ tags:
 - `POINT` en la identidad trade-informed **no** se lee como fee efectiva ni habilita `REAL_FEE_READY`; la identidad de settlement se declara `NOT_CERTIFIED` (gap U-02).
 - El ancla `as_of_kickoff_K` describe lo conocido hasta K; no habilita decisiones anteriores ni aplicación retroactiva de fee.
 - Nada se traslada desde W1-e u otros mercados: la evidencia de fee de los otros cuatro mercados no se usa en ninguna dirección.
-- El `0` trade-observado se reporta como **observación de esos trades**, no como fee 0 del mercado.
+- El lexema `0` es **lo que reportó el emisor** en 78 trades; bajo el resolver la identidad trade-observed resuelve `POINT`. No se afirma que pruebe la comisión aplicada a esos trades (podría ser default o convención del venue) ni que sea la fee 0 del mercado.
 - La decisión de L del Owner sigue pendiente y no bloquea este inventario.
 
 ## Pendiente
 
-- Documentar el mapeo U-02 (`base_fee`↔`feeRate`↔settlement) con fuente pública del venue, o autorizar una captura exploratoria de `/fee-rate` por asset y de un `new_market` del target: es lo que permitiría mover `REAL_FEE_READY` (hoy `false`).
-- Decidir el alcance del `fee_rate_bps = "0"` observado (comisión aplicada vs valor por defecto del emisor vs convención del venue).
-- Cerrar la regla de L con el Owner (incluir o no el frame de señal en `ref`/`L`) en el próximo preregistro; no se cambió código ni parámetros.
+- Investigación **documental** de fuentes oficiales **fechadas** (mercado `5784455`, sus 2 assets, categoría, as-of `2026-10-29`): significado del campo WS `fee_rate_bps = "0"` frente a maker/taker `1000` y `fd` crudo `{e:1, r:0.05, to:true}`; fórmula, base de coste, unidades, escala, redondeo, cobro y vigencia histórica verificable. El entregable es determinar si alguna fuente disponible prueba realmente esa aplicación y cuál es el gap exacto que queda; si sólo hay documentación actual, no se traslada al pasado ni se certifica `REAL_FEE_READY`. **No** se capturan datos nuevos: `/fee-rate` es el límite declarado por asset y `new_market` es metadata de notificación (ninguno sustituye el mapeo ni la validez temporal), y capturar hoy no certificaría el 29-10-2026. No se inicia ahora la investigación web.
+- Determinar, con la fuente fechada que se encuentre, el alcance del `fee_rate_bps = "0"` observado (comisión aplicada vs valor por defecto del emisor vs convención del venue).
+- Cerrar la regla de L con el Owner (incluir o no el frame de señal en `ref`/`L`) en el próximo preregistro; no se cambió código ni parámetros. Es independiente del paso documental de fee y no lo bloquea.
