@@ -13,8 +13,8 @@ aliases: []
 agent_surface: "[[Codex]]"
 agent_model: unknown
 agent_run:
-session_goal:
-source_session:
+session_goal: "Scout P0 final integration; dispatch p0-final-integration"
+source_session: "dispatch:p0-final-integration"
 confidence: high
 load_policy: manual
 indexable: false
@@ -26,89 +26,15 @@ tags:
   - agent/system1
 ---
 
-# Session Feedback - 2026-10-31 - short-topic
+# Code Scout — P0 final integration
 
 ## Context
 
-- Agent surface:
-- Agent model:
-- Agent run:
-- Session goal:
-- Main entity:
-- Skills used:
-- Retrieval mode:
-- Artifacts changed:
-
-## Scores
-
-Use 1-5, where 1 is poor and 5 is excellent.
-
-- Startup clarity:
-- Retrieval usefulness:
-- Skill fit:
-- Template fit:
-- Closeout friction:
-- Overall confidence:
-
-## What Complicated The Session Most
-
-- Observation:
-- Why it was hard:
-- Proposed improvement:
-
-## Most Useful Part Of Sistema 1
-
-- What helped:
-- Why it helped:
-- Keep/change:
-
-## Least Useful Or Noisy Part
-
-- What did not help:
-- Why it was weak/noisy:
-- Proposed cleanup:
-
-## Missing Support
-
-- Problem not solved by Sistema 1:
-- How Sistema 1 could help next time:
-- Suggested artifact type:
-
-## Retrieval Feedback
-
-- Useful query or source:
-- Missing context:
-- Duplicate/noisy result:
-- Better future query:
-
-## Skill Feedback
-
-- Skill that worked well:
-- Skill that was confusing:
-- Trigger/routing gap:
-- Suggested contract change:
-
-## Template Feedback
-
-- Template used:
-- Field that helped:
-- Field that felt redundant:
-- Missing field:
-
-## Memoria Interna (Internal Memory)
-
-- ¿Consultaste la memoria interna (`80-agents/memory/internal/`) al iniciar? [sí/no]
-- ¿Qué valor operativo aportó para esta sesión (continuidad, detalles crudos, advertencias)?
-- ¿Dejaste algún mensaje, instrucción o hipótesis para el próximo agente en la memoria interna?
-- ¿Qué tan útil te resulta tener este espacio privado fuera de la vista directa del usuario (1-5) y cómo podemos mejorar su utilidad?
-
-## Pain Pattern Candidate
-
-- Is this likely to repeat? yes/no/unknown
-- Suggested severity: low/medium/high
-- Candidate owner:
-- Promote to L3 memory? yes/no/defer
-
-## One Next Improvement
-
--
+- Request: dispatch_id=p0-final-integration; scout_role=code-scout; execution=subagent.
+- Revisions: base347eee8b, P064f0853b, master2baf319d; clean P0 at start, root integration worktree has pending merge.
+- Retrieval: canonical scout contract/runbook + repo AGENTS/CONSTITUTION/rules; git commit/path inventories and two overlapping API diffs. Relevant runtime/strategy/rollover symbols and tests inspected statically.
+- Result: two shared paths; only runtime.go textual EOF conflict. Entry filters and TechnicalRebuildReceipts additive automerge observed. Utility unknown until consumer accepts; no builds/tests/runtime operations in scout phase.
+- Limits: graph absent; direct symbol search. One broad combined output truncated; critical two-path diffs were received, later scoped reads completed relevant symbols. Master82 commits inventoried, not exhaustively audited.
+- Cause: tooling.
+- Maintenance: unchanged; NO_FINDING in skill/runbook. Existing focused retrieval procedure is adequate; no policy or skill modification.
+- Handoff: derived inventory/report outside vault at echo-p0-final-integration-evidence/CODE-SCOUT.json; root separately authorized worker reconciliation after this scout return.
