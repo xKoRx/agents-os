@@ -19,7 +19,7 @@ tags:
   - kind/project
   - area/echo
 created: "2026-10-16"
-updated: "2026-10-30"
+updated: "2026-10-31"
 ---
 
 # Echo Futures — Runtime Pools
@@ -29,6 +29,18 @@ updated: "2026-10-30"
 Entregar extensión runtime de pools y asociaciones pool–Strategy–MM mediante cuatro shots independientes, con diseño verificable, implementación, auditoría adversarial y corrección. S01 diseña y prepara; no implementa producto. Autoridad funcional/técnica única: `VAULT_ROOT/10-projects/Echo Futures/artifacts/runtime/ECHO-FUTURES-RUNTIME-POOL-DESIGN.md` (§1–11 decisiones compatibles R5; §12–18 contrato R6 prioritario). Este proyecto es el planificador único; no duplicar tasks/gates en otra SPEC.
 
 ## 📊 Estado actual
+
+### Handoff Owner — cierre de sesión 2026-10-31 (prioritario; supersede cortes anteriores donde contradigan)
+
+**Estado comprobado REMOTO (GitHub):** `xKoRx/echo` `master=2baf319ddcba622d9557bc9f23a13787b44c58a7` (último commit 2026-10-28); `codex/echo-feed-p0=64f0853b99b591bff662ccba81e48b3bb53bbb99` (2026-10-31). Comparación: **DIVERGED, 23 commits por integrar y 82 commits de master ausentes en la rama; 117 archivos diferentes**. Los fixes de feed/continuidad/B2 **NO están en master**. No se verificó estado LIVE del despliegue en esta lectura.
+
+**Última evidencia aportada por Owner del GOD (2026-10-31):** paquete EchoFeedB2Times instalado; NinjaTrader muestra identidad de cápsula nueva `e8f6c5ab…`, completada localmente tras reinicio y feed ACTIVE. **No hay receipt de aceptación final del servidor ni de todos los target owners**; continuidad fresca epoch 3, warmup/Strategy S2 y SIM E2E no certificados. Distancia explícita entre source, local NT, relay, read-committed Core y prueba económica. Persisten gaps históricos; NO limpiar, reescribir o afirmar replay de ticks ausentes.
+
+**Mandato Owner 1, secuencia inmediata:** GOD actual realiza **solo** cierre de integración source: reconcile/merge `codex/echo-feed-p0` sobre latest `master`, resolver divergencias semánticas, tests y revisión independiente; push **no-force** a `xKoRx/echo/master` con SHA remoto comprobado. Ninguna mutación del runtime en este cierre salvo autorización separada; proteger checkpoint/savepoint, FX, cuentas, live y la evidencia de B2. GOD persiste run/feedback, cierre Agents-OS por solicitud Owner. Si no pasa gate, NO falsear merge: entregar bloqueador exacto.
+
+**Mandato Owner 2 (nuevo manager):** tras confirmación de master, empezar rama NUEVA en el producto Echo desde ese HEAD; Agents-OS sigue **directo en master**, sin PR/branches. Primer turno GOD LOCAL sólo para recuperación profunda de contexto y mapa de riesgos, después TOP LOCAL de manager; ejecutores económicos mediante **ZCode CLI + MiniMax M3.1 Flash** (modelo/provider verificados) con bootstrap Agents-OS obligatorio. Meta domingo **2026-11-01 ~20:00 Chile** apertura ordinaria CME NQ/MNQ, verificar horarios oficiales y DST US; priorizar release READY, server capsule receipts, nueva época/continuidad, feed 30m, H4/5m 51/20 warmup, S2 Signal verdadera, Pool/MM → ciclo SIM completo → riesgo agregado USD 100 y autorización LIVE específica. No inventar señal ni ordenar trade forzado. Echo DEV prohibe capital real; PROD/cuenta comercial sólo en carril aprobado por Owner. Puede quedar técnicamente preparado sin trade si no ocurre señal.
+
+**Próxima acción inmutable:** primero exigir `origin/master` integrado con SHA/test evidence; segundo nuevo manager verifica aceptación server `e8f6c5ab…` read-committed y gates; tercero SIM y owner GO económico. No volver a auditar desde Fase A, no tocar Forge/backtester.
 
 ### P0 feed — mando activo 2026-10-30
 
