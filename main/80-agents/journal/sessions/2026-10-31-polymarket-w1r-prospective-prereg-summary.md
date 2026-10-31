@@ -45,7 +45,8 @@ tags:
 - Redactado el candidato con §0–§10: autoridad y delta congelado, parámetros PIT, mapeo explícito del modelo de costos, entrada/salida y contabilidad, ventana futura y requisitos de datos, número/selección/independencia/muestra, evidencia faltante y gate de admisión, instrucciones listas con dependencias, decisión `L_PENDING_OWNER`, y qué NO hace.
 - Aplicadas las correcciones obligatorias al draft de W1-q: sólo adquisición **futura** pre-declarada (los datos del 29-10-2026 son retrospectivos/exploratorio-causales), PIT por orden del observador y no por "as-of conocido", y L con recomendación única, sin implementarla ni elegirla por resultados.
 - Nombradas las dependencias técnicas reales sin inventar comandos: la ruta de análisis no ejecuta hoy el modelo documentado y la regla de L elegida requeriría cambio de código.
-- Cero código, tests, build, auditorías SDK/web/mercados, capturas, re-score, piloto, gate, L ni modelos alternativos; cero escrituras en el checkout.
+- **Revisión documental de Sol aplicada en el mismo shot** (nueve correcciones mínimas, sin ejecución): frescura anclada en la última observación admitida (W1-i §4 FINAL); cohorte única coherente con `e = 1` como delta aritmético propuesto con aprobación del manager y wiring de gate real **y** réplica; selección de mercado determinista por `(K, id de mercado numérico)`; PIT en dos coordenadas; presupuesto nominal de dimensionamiento vs débito de caja reportados por separado; sensibilidad de redondeo bilateral por pata sin redondeo inventado por fill; horizonte con cobertura real y `PnL` nulo; comandos sin duplicado con precondiciones antes de cualquier discovery; recibos bajo opt-in explícito de W1-nR; y eliminación de la afirmación de "cero recursos" con la aclaración de comparabilidad de los artefactos previos.
+- Cero código, tests, build, auditorías SDK/web/mercados, capturas, re-score, piloto, gate, L ni modelos alternativos; cero escrituras en el checkout; ninguna adquisición ni operación de producto adicional.
 
 ## Artifacts creados o modificados
 
@@ -62,14 +63,15 @@ tags:
 ## Decisiones
 
 - El candidato es **DRAFT_NOT_APPROVED**: no autoriza ejecución, captura, piloto, gate ni decisión.
-- `L_PENDING_OWNER` con **recomendación única**: excluir el frame de señal del nivel `L` (coherente con el literal de la v1 §4 y con referencias sólo anteriores); la referencia de detección sigue excluyendo el frame actual en cualquier escenario.
-- Los escenarios A/S lineales quedan como historia: no son coste de venue ni compiten con el modelo documentado `e = 1`.
-- La identidad del experimento es de **mercado único**; compartir el mismo `K` no es identidad.
+- `L_PENDING_OWNER` con **recomendación única**: excluir el frame de señal del nivel `L` (coherente con el literal de la v1 §4 y con referencias sólo anteriores); la referencia de detección sigue excluyendo el frame actual en cualquier escenario. **Sin cambios** tras la revisión documental.
+- **Cohorte única coherente** con el modelo documentado `e = 1` desde la admisión por referencia hasta BUY/SELL a `H`, con el umbral `net_bps >= 50` sin cambio; es un **delta aritmético propuesto** que exige aprobación del manager y wiring de gate real **y** réplica/analizador, no una nota.
+- Los escenarios A/S lineales quedan como historia: no son coste de venue ni compiten con el modelo documentado `e = 1`; el resultado del episodio del 29-10-2026 sigue válido bajo su convención registrada, pero no comparable como la misma especificación.
+- La identidad del experimento es de **mercado único**, con selección determinista por `(K, id de mercado numérico)`; compartir el mismo `K` no es identidad.
 - `REAL_FEE_READY=false` y el gap U-02 siguen abiertos.
 
 ## Pendiente
 
 - `L_PENDING_OWNER` (Owner): bloquea el siguiente piloto económico, no las matemáticas ya cerradas de W1-q.
-- Revisión/aprobación del candidato por el **manager**; el shot queda detenido **sólo aquí**, sin cancelar el proyecto ni freeze global.
-- Dependencias D-1 a D-5 antes de cualquier ejecución futura (wiring del modelo documentado, wiring de L, recepción PIT de `feeSchedule`, permisos por shot, binding por hash).
+- **Aprobación del delta aritmético** (manager) y revisión/aprobación del candidato; el shot queda detenido **sólo aquí**, sin cancelar el proyecto ni freeze global.
+- Dependencias D-1 a D-7 antes de cualquier ejecución futura: wiring del modelo documentado en gate real y réplica, wiring de L, recepción PIT de `feeSchedule`, permisos por shot, binding de preregistro **y de selección/deadlines**, recibos bajo opt-in explícito y doble contabilidad notional/caja.
 
