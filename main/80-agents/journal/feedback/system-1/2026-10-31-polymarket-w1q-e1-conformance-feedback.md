@@ -59,7 +59,7 @@ tags:
 ## Missing Support
 
 - Problem not solved by Sistema 1: validar que un camino **nuevo** de código cubre el dominio completo (no sólo el rol principal) no tiene herramienta: dependió de la lectura crítica del supervisor.
-- How Sistema 1 could help next time: un checklist de revisión para "vía nueva sobre contrato existente" que fuerce enumerar las ramas (rols, lados, estados de la entrada) y sus guards.
+- How Sistema 1 could help next time: un checklist de revisión para "vía nueva sobre contrato existente" que fuerce enumerar las ramas (roles, lados, estados de la entrada) y sus guards.
 - Suggested artifact type: checklist de revisión de producto (runbook corto), no memoria.
 
 ## Retrieval Feedback
