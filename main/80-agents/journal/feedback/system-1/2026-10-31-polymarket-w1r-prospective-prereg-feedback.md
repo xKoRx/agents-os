@@ -14,7 +14,6 @@ related:
 aliases: []
 agent_surface: "[[ZCode]]"
 agent_model: minimax/MiniMax-M3.1-Flash
-model_source: host
 agent_run: "[[2026-10-31-zcode-minimax-m3.1-flash-polymarket-w1r-prospective-prereg]]"
 session_goal: Consolidar UN preregistro candidato (DRAFT_NOT_APPROVED) para la próxima prueba exploratoria económica de PE-005-R1, reutilizando el draft W1-q y los planes vigentes, sin ejecutar nada de lo propuesto.
 source_session: w1r-prospective-prereg-20261031
