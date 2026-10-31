@@ -77,7 +77,7 @@ Auditoría NORMAL acotada (una sesión GLM, corte `07cca9d3`) al cierre `PASS_26
 
 ## Runtime pools — supervisión
 
-- [/] [[Echo Futures — Runtime Pools]] GOD G-DOC accepted; PRD.6 SHA `4a041e6c` **ACEPTADO para certificar DEV observation-only con deuda QA (89.94%/82.71%) explícita**; G-IMPL FULL/PROD pendiente. CERT-NT-01 opera SOLO sobre Flink DEV ya existente: antes de reinicio compartido FX, savepoint/backup portable externo + 17 ingresses/markers/rollback acreditados y permiso Owner expreso. No tercer Flink ni órdenes; SIM/PROD NO-GO. Ver [[EF-PROD-PRD6-MANAGER-ADJUDICATION-20261026]]. #owner/me #type/supervision #area/echo
+- [/] [[Echo Futures — Runtime Pools]] **Review:** cierre P0 source integrado en `master bf7420d2`, QA PASS; servidor/epoch3/feed/S2/SIM/GO comercial pendientes del nuevo manager. GOD G-DOC accepted; PRD.6 SHA `4a041e6c` **ACEPTADO para certificar DEV observation-only con deuda QA (89.94%/82.71%) explícita**; G-IMPL FULL/PROD pendiente. CERT-NT-01 opera SOLO sobre Flink DEV ya existente: antes de reinicio compartido FX, savepoint/backup portable externo + 17 ingresses/markers/rollback acreditados y permiso Owner expreso. No tercer Flink ni órdenes; SIM/PROD NO-GO. Ver [[EF-PROD-PRD6-MANAGER-ADJUDICATION-20261026]]. #owner/me #type/supervision #area/echo
 
 ## Optimización de Campañas — navegación
 
