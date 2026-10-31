@@ -4,7 +4,7 @@ schema_version: 1
 status: active
 area: '[[Personal]]'
 related:
-- '[[Research — E1 Opt-in Integration W1-s 2026-10-31]]'
+- '[[Preregistration — Prospective Economic Candidate W1-r 2026-10-31]]'
 - '[[Polymarket Engine — MVP]]'
 aliases: []
 tags:
