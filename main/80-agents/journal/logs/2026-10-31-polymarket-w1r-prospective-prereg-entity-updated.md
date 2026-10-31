@@ -65,7 +65,7 @@ tags:
 
 - Validación documental: readback de los tres archivos de Sistema 2 tras la última edición y materialización canónica de las seis notas de journal vía `materialize_schema_note.py` (tipos `doc`, `session`, `feedback`, `agent_run`, `change_log`).
 - Validación de repo (sólo lectura): `git -C REPO status --short` vacío y `git -C REPO rev-parse HEAD` = `dee7a977cdf67ad6aabdff374abecc9b0d0cdd0d`; el checkout no fue modificado.
-- **Gap de validación declarado:** los 90 hashes sellados, la sincronización remota del vault, la integridad del episodio sellado y los procesos externos los verifica el supervisor; esta sesión **no** los midió. La escritura local **no** prueba publicación remota (W1-q ya fue verificado remotamente por el parent; el candidato W1-r es local).
+- **Gap de validación declarado:** los 90 hashes sellados, la sincronización remota del vault, la integridad del episodio sellado y los procesos externos los verifica el Root **después** del cierre de esta sesión, no de forma prospectiva; esta sesión **no** los midió. La escritura local **no** prueba publicación remota (W1-q ya fue verificado remotamente por el parent; el candidato W1-r es local). Ningún archivo denegado por el hook se leyó por otra vía.
 
 ## Compartibilidad
 
