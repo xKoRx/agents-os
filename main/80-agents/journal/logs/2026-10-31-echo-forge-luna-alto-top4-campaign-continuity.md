@@ -13,6 +13,8 @@ related:
   - "[[Echo + Echo Forge — Environment Contract]]"
 aliases: []
 confidence: verified
+source_feedbacks:
+  - "[[2026-10-31-zcode-minimax-echo-forge-luna-alto-mt5-lifecycle-friction]]"
 source_session: "2026-10-31-luna-alto-forge-top4"
 share_scope: local
 load_policy: manual
